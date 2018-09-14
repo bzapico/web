@@ -4,6 +4,12 @@ Nalej management cluster UI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.1.
 
+## Requirements
+
+- Node Package Manager (NPM) https://www.npmjs.com/
+- Angular Command Line (Angular-CLI) https://cli.angular.io/
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
