@@ -10,8 +10,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Angular Command Line (Angular-CLI) https://cli.angular.io/
 
 ## Installation
-`npm install`
 
+- `Change to project directory`
+- `npm install`
 
 ## Development server
 
