@@ -9,6 +9,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Node Package Manager (NPM) https://www.npmjs.com/
 - Angular Command Line (Angular-CLI) https://cli.angular.io/
 
+## Installation
+`npm install`
+
 
 ## Development server
 
