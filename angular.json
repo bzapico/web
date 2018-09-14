@@ -123,5 +123,10 @@
       }
     }
   },
-  "defaultProject": "nalej"
+  "defaultProject": "nalej",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
