@@ -1,10 +1,9 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { ErrorHandlerService } from './error-handler.service';
-import { HttpModule } from '@angular/http';
 
 describe('ErrorHandlerService', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [HttpModule],
+    imports: [],
     providers: [ErrorHandlerService]
   }));
 
@@ -13,5 +12,16 @@ describe('ErrorHandlerService', () => {
     expect(service).toBeTruthy();
   });
 
+  // tslint:disable-next-line:max-line-length
+  it('handleError() - It will test if handleError method is called with error parameter', inject([ErrorHandlerService], (service: ErrorHandlerService) => {
+    const error: Error = new Error('ERROR');
+    const handleError = spyOn(service, 'handleError').and.returnValue(true);
+    handleError(error);
+    expect(handleError).toHaveBeenCalledWith(error);
+  }));
+
+
 
 });
+
+
