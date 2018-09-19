@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-debug-panel',
+  // tslint:disable-next-line:component-selector
+  selector: 'debug-panel',
   templateUrl: './debug-panel.component.html',
   styleUrls: ['./debug-panel.component.scss']
 })
