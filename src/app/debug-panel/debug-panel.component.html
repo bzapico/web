@@ -1,14 +1,58 @@
+<!-- Header -->
 <div class="modal-header">
-  <h4 class="modal-title pull-left">{{title}}</h4>
-  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-    <span aria-hidden="true">&times;</span>
+  <h4 class="modal-title pull-left">
+    Debug panel
+  </h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()">
+    <span aria-hidden="true">
+      &times;
+    </span>
   </button>
 </div>
+<!-- Body -->
 <div class="modal-body">
-  <ul *ngIf="list.length">
-    <li *ngFor="let item of list">{{item}}</li>
-  </ul>
+  <div *ngIf="components.length">
+    <div
+      class="row"
+      *ngFor="let item of components; let index = index">
+      <!-- Option name -->
+      <span class="col-3">
+        {{item.name}}
+      </span>
+      <!-- Option buttons -->
+      <div
+        class="btn-group offset-5"
+        btnRadioGroup
+        [(ngModel)]="components[index].mock"
+        (click)="optionChange(components[index])">
+        <label
+          class="btn btn-outline-primary"
+          btnRadio="false"
+          tabindex="0"
+          role="button">
+          Real
+        </label>
+        <label
+          class="btn btn-outline-primary"
+          btnRadio="true"
+          tabindex="0"
+          role="button">
+          Mock
+        </label>
+      </div>
+    </div>
+  </div>
 </div>
+<!-- Footer -->
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+  <button
+    type="button"
+    class="btn btn-default"
+    (click)="bsModalRef.hide()">
+    Close
+  </button>
 </div>

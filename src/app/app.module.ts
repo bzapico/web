@@ -5,6 +5,8 @@ import { ErrorHandlerService } from './services/error-handler.service';
 import { AppComponent } from './app.component';
 import { DebugPanelComponent } from './debug-panel/debug-panel.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ButtonsModule } from 'ngx-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,8 +16,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
   ],
   entryComponents: [DebugPanelComponent],
   imports: [
+    FormsModule,
     BrowserModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    ButtonsModule.forRoot()
   ],
   providers: [{provide: ErrorHandler, useClass: ErrorHandlerService}],
   bootstrap: [AppComponent]
