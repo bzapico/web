@@ -26,7 +26,7 @@ export class ErrorHandlerService implements ErrorHandler {
             break;
         case 403 : console.log('Forbidden, the user does not have access rights to the content');
             break;
-        case 404 : console.log('Not found, the server can not find requested resource');
+        case 404 : console.log('Not Found, the server can not find requested resource');
             break;
         case 409 : console.log('Confict, the request could not be completed due to a conflict with the current state of the resource');
             break;
