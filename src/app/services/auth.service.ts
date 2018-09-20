@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as jwt_decode from 'jwt-decode';
 
 export const TOKEN_NAME: string = 'access_token';
-
 @Injectable()
 export class AuthService {
 
@@ -47,7 +46,7 @@ export class AuthService {
         return this.http
           .post(`${this.url}/login`, JSON.stringify(user), { headers: this.headers })
           .toPromise()
-          .then(res => (res as any).text());       
+          .then(res => (res as any).text());
       } else {
         return false;
       }
@@ -66,6 +65,6 @@ export class AuthService {
   }
 
   public get loggedIn(): boolean {
-    return (this.getToken() !== null)
+    return (this.getToken() !== null);
   }
 }
