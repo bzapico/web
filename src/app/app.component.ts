@@ -1,5 +1,6 @@
 import { Component, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { DebugPanelComponent } from './debug-panel/debug-panel.component';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,17 @@ export class AppComponent {
   modalRef: BsModalRef;
   constructor(private modalService: BsModalService) {
   }
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+  openModal() {
+    const initialState = {
+      list: [
+        'Open a modal with component',
+        'Pass your data',
+        'Do something else',
+        '...'
+      ],
+      title: 'Modal with component'
+    };
+    this.modalRef = this.modalService.show(DebugPanelComponent, {initialState});
+    this.modalRef.content.closeBtnName = 'Close';
   }
 }

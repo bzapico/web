@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -7,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./debug-panel.component.scss']
 })
 export class DebugPanelComponent implements OnInit {
-
-  constructor() { }
+  title: string;
+  closeBtnName: string;
+  list: any[] = [];
+  constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit() {
+    this.list.push('PROFIT!!!');
   }
 
 }
