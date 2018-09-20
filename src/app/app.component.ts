@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { DebugPanelComponent } from './debug-panel/debug-panel.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'nalej';
+  modalRef: BsModalRef;
+  constructor(private modalService: BsModalService) {
+  }
+  openModal() {
+    this.modalRef = this.modalService.show(DebugPanelComponent);
+    this.modalRef.content.closeBtnName = 'Close';
+  }
 }
