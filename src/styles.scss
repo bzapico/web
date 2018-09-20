@@ -1,3 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Aldrich|Open+Sans:300,300i,400,400i,600,600i,700,800');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
+
+html, body{
+    /* Remove browser default margin on body */
+    margin: 0px;
+    height: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
