@@ -1,53 +1,71 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { debug } from 'util';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import * as jwt_decode from 'jwt-decode';
+
+export const TOKEN_NAME: string = 'access_token';
 
 @Injectable()
 export class AuthService {
 
   private isMocked: boolean = true;
+  private url: string = 'api/auth';
+  private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string): Observable<boolean> | boolean {
+  getToken(): string {
+    return localStorage.getItem(TOKEN_NAME);
+  }
 
-    
+  setToken(token: string): void {
+    localStorage.setItem(TOKEN_NAME, token);
+  }
+
+  getTokenExpirationDate(token: string): Date {
+    const decoded = jwt_decode(token) as any;
+
+    if (decoded.exp === undefined) return null;
+
+    const date = new Date(0); 
+    date.setUTCSeconds(decoded.exp);
+    return date;
+  }
+
+  isTokenExpired(token?: string): boolean {
+    if(!token) token = this.getToken();
+    if(!token) return true;
+
+    const date = this.getTokenExpirationDate(token);
+    if(date === undefined) return false;
+    return !(date.valueOf() > new Date().valueOf());
+  }
+
+  login(user): Promise<string> | boolean {
+
     if (!this.isMocked) { // auth service is not mocked
-
-      if (email === 'test@test.com' && password === 'password') {
-        return this.http.post<{token: string}>('/api/auth', {email: email, password: password})
-        .pipe(
-          map(result => {
-            localStorage.setItem('access_token', result.token);
-            return true;
-          })
-        );       
+      if (user.email === 'test@test.com' && user.password === 'password') {
+        return this.http
+          .post(`${this.url}/login`, JSON.stringify(user), { headers: this.headers })
+          .toPromise()
+          .then(res => (res as any).text());       
       } else {
         return false;
       }
-
-
     } else { // auth service is mocked
-
-      if (email === 'test@test.com' && password === 'password') {
-        localStorage.setItem('acces_token', 'test_token');
-        console.log('login ok');
+      if (user.email === 'test@test.com' && user.password === 'password') {
+        localStorage.setItem('access_token', 'test_token');
         return true;
       } else {
-        console.log('login failed');
         return false;
       }
-
     }
   }
 
   logout() {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem(TOKEN_NAME);
   }
 
   public get loggedIn(): boolean {
-    return (localStorage.getItem('access_token') !== null);
+    return (this.getToken() !== null)
   }
 }
