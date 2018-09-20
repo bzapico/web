@@ -14,16 +14,23 @@ export class AuthService {
   login(email: string, password: string): Observable<boolean> | boolean {
 
     
-    if (!this.isMocked) {
-        console.log('not mocked auth service');
-     return this.http.post<{token: string}>('/api/auth', {email: email, password: password})
-      .pipe(
-        map(result => {
-          localStorage.setItem('access_token', result.token);
-          return true;
-        })
-      );
-    } else {
+    if (!this.isMocked) { // auth service is not mocked
+
+      if (email === 'test@test.com' && password === 'password') {
+        return this.http.post<{token: string}>('/api/auth', {email: email, password: password})
+        .pipe(
+          map(result => {
+            localStorage.setItem('access_token', result.token);
+            return true;
+          })
+        );       
+      } else {
+        return false;
+      }
+
+
+    } else { // auth service is mocked
+
       if (email === 'test@test.com' && password === 'password') {
         localStorage.setItem('acces_token', 'test_token');
         console.log('login ok');
@@ -32,6 +39,7 @@ export class AuthService {
         console.log('login failed');
         return false;
       }
+
     }
   }
 
