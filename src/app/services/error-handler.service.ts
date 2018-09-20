@@ -28,7 +28,7 @@ export class ErrorHandlerService implements ErrorHandler {
             break;
         case 404 : console.log('Not Found, the server can not find requested resource');
             break;
-        case 409 : console.log('Confict, the request could not be completed due to a conflict with the current state of the resource');
+        case 409 : console.log('Conflict, the request could not be completed due to a conflict with the current state of the resource');
             break;
         case 410 : console.log('Gone, the page is no longer available from the server and no forwarding address has been set up');
             break;
