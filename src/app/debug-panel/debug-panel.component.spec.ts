@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DebugPanelComponent } from './debug-panel.component';
+import { FormsModule } from '@angular/forms';
+import { ButtonsModule, BsModalRef } from 'ngx-bootstrap';
 
 describe('DebugPanelComponent', () => {
   let component: DebugPanelComponent;
@@ -8,7 +10,10 @@ describe('DebugPanelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DebugPanelComponent ]
+      declarations: [ DebugPanelComponent ],
+      imports: [FormsModule, ButtonsModule],
+      providers: [BsModalRef]
+
     })
     .compileComponents();
   }));
