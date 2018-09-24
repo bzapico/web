@@ -15,17 +15,32 @@ import { ErrorHandlerService } from '../services/error-handler.service';
 export class NotificationsComponent implements OnInit, OnDestroy {
 
   /**
-   * Alerts list
-   */
-  public alerts: AlertModule = [];
-  /**
    * Backend handler (mocked up or real backend)
    */
   public backend: Backend;
+
   /**
-   * Holds recursive timeout reference
+   * Alerts have dismiss option.
    */
-  timeout: any;
+  dismissible = true;
+  /**
+   * Dynamic HTML in alerts
+   */
+  defaultAlerts: any[] = [
+    {
+      type: 'success',
+      msg: `<strong>Well done!</strong> You successfully read this important alert message.`
+    },
+    {
+      type: 'info',
+      msg: `<strong>Heads up!</strong> This alert needs your attention, but it's not super important.`
+    },
+    {
+      type: 'danger',
+      msg: `<strong>Warning!</strong> Better check yourself, you're not looking too good.`
+    }
+  ];
+  alerts = this.defaultAlerts;
 
   constructor(
     private mockupBackendService: MockupBackendService,
@@ -33,8 +48,8 @@ export class NotificationsComponent implements OnInit, OnDestroy {
     private errorHandlerService: ErrorHandlerService
   ) {
 
-    const alertsMock = localStorage.getItem(LocalStorageKeys.notificationsMock);
-    if (alertsMock === 'true') {
+    const notificationsMock = localStorage.getItem(LocalStorageKeys.notificationsMock);
+    if (notificationsMock === 'true') {
       this.backend = mockupBackendService;
     } else {
       this.backend = backendService;
@@ -42,15 +57,20 @@ export class NotificationsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
   }
   ngOnDestroy(): void {
-    clearInterval(this.timeout);
   }
 
-
-  openNotification() {
-
+  /**
+   * Alerts have dismiss option. Enabling it will show close button to the right of the alert.
+   */
+  reset(): void {
+    this.alerts = this.defaultAlerts;
   }
+
+  onClosed(dismissedAlert: any): void {
+    this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
+  }
+
 
 }
