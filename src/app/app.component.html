@@ -1,7 +1,9 @@
 <nav class="navbar navbar-dark bg-dark mb-5">
   <a class="navbar-brand" href="/">NALEJ</a>
 </nav>
+
 <div class="container">
+ 
 
 <div class="jumbotron">
   <h1>NALEJ APP</h1>
@@ -10,11 +12,12 @@
   </p>
   <button type="button" class="btn btn-outline-primary" (click)="openModal()">Open debug panel</button>
   <hr>
-  <button type="button" class="btn btn-outline-primary" (click)="openNotifications()"><i class="material-icons">done</i>Show Alert</button>
+  <button type="button" class="btn btn-outline-primary" (click)="add()"><i class="material-icons">done</i>Show Alert</button>
   
 </div>
-
-
+<app-notifications [notifications]="notificationInstances"></app-notifications>
 </div>
+
+
  
 

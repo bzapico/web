@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy  } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input  } from '@angular/core';
 import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { LocalStorageKeys } from '../definitions/local-storage-keys';
 import { Backend } from '../definitions/backend';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { BackendService } from '../services/backend.service';
-import { ErrorHandlerService } from '../services/error-handler.service';
+
 
 @Component({
   selector: 'app-notifications',
@@ -13,6 +13,8 @@ import { ErrorHandlerService } from '../services/error-handler.service';
   styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent implements OnInit, OnDestroy {
+
+  @Input('notifications') alerts: any[];
 
   /**
    * Backend handler (mocked up or real backend)
@@ -40,14 +42,14 @@ export class NotificationsComponent implements OnInit, OnDestroy {
       msg: `<strong>Warning!</strong> Better check yourself, you're not looking too good.`
     }
   ];
-  alerts = this.defaultAlerts;
+ // alerts = this.defaultAlerts;
 
   constructor(
     private mockupBackendService: MockupBackendService,
     private backendService: BackendService,
-    private errorHandlerService: ErrorHandlerService
+    alertModule: AlertModule
   ) {
-
+    this.alerts = [];
     const notificationsMock = localStorage.getItem(LocalStorageKeys.notificationsMock);
     if (notificationsMock === 'true') {
       this.backend = mockupBackendService;

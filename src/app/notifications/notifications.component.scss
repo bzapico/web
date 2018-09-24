@@ -76,7 +76,8 @@ button.alert-close-button {
     -moz-border-radius: 10px 10px 10px 10px;
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
-    background-position: 15px center;
+    border-color: transparent;
+    background-position: center;
     background-repeat: no-repeat;
     -moz-box-shadow: 0 0 12px #949494;
     -webkit-box-shadow: 0 0 12px #949494;
@@ -112,7 +113,12 @@ button.alert-close-button {
     background-color: #030303;
 }
 .alert-success {
-    background-color: #0023B0;
+    // background-color: #0023B0;
+    background: #0937ff; /* Old browsers */
+    background: -moz-linear-gradient(left, #0937ff 0%, #051c80 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #0937ff 0%,#051c80 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #0937ff 0%,#051c80 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0937ff', endColorstr='#051c80',GradientType=1 ); /* IE6-9 */
 }
 .alert-error {
     background-color: #FF437D;
@@ -122,6 +128,21 @@ button.alert-close-button {
 }
 .alert-warning {
     background-color: #FF004D;
+}
+.alert-icon {
+    position: absolute;
+    left: 0.0em;
+    top: 0.0em;
+    font-weight: normal;
+    color: #ffffff;
+}
+.icon-info {
+    width: 35px;
+    height: 100%;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR…b0vjdyFT4Cxk3e/kIqlOGoVLwwPevpYHT+00T+hWwXDf4AJAOUqWcDhbwAAAAASUVORK5CYII=) !important;
 }
 .alert-progress {
     position: absolute;

@@ -1,10 +1,7 @@
-
-<div  class="alert-top-right" id="alert-container" *ngFor="let alert of alerts">
-  <alert class="alert" [dismissible]="dismissible" (onClosed)="onClosed(alert)"
-      [type]="alert.type"><span class="alert-message" [innerHtml]="alert.msg"></span>
-  </alert>
-
-  <button type="button" class="btn btn-primary" (click)="dismissible = !dismissible">Toggle dismissible</button>
-  <button type="button" class="btn btn-primary" (click)="reset()">Reset</button>
-
+<div *ngIf="alerts.length > 0">
+  <div class="alert-top-right" id="alert-container" *ngFor="let alert of alerts">
+    <alert class="alert" [dismissible]="dismissible" (onClosed)="onClosed(alert)"
+        [type]="alert.type"><span class="alert-message" [innerHtml]="alert.msg"></span>
+    </alert>
+  </div>
 </div>

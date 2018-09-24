@@ -12,17 +12,31 @@ import { NotificationsComponent } from './notifications/notifications.component'
 export class AppComponent {
   title = 'nalej';
   modalRef: BsModalRef;
-  notificationRef: AlertModule;
+  notificationInstances: any[];
+ 
+  constructor(
+    private modalService: BsModalService,
+    
+    ) {
+    this.notificationInstances = [{
+    type: 'success',
+    msg: `Well done! You successfully read this important alert message. (added: ${new Date().toLocaleTimeString()})`,
+    timeout: 5000
+  }];
 
-  constructor(private modalService: BsModalService) {
   }
+  
 
   openModal() {
     this.modalRef = this.modalService.show(DebugPanelComponent);
     this.modalRef.content.closeBtnName = 'Close';
   }
-  openNotifications() {
-    this.notificationRef = NotificationsComponent;
-
+ add(): void {
+    this.notificationInstances.push({
+      type: 'info',
+      msg: `This alert will be closed in 5 seconds (added: ${new Date().toLocaleTimeString()})`,
+      timeout: 5000
+    });
+  console.log(this.notificationInstances);
   }
 }
