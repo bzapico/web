@@ -15,7 +15,8 @@ export const AvailableComponents = {
   organization: 'Organization',
   resources: 'Resources',
   apps: 'Apps',
-  profile: 'Profile'
+  profile: 'Profile',
+  notifications: 'Notifications'
 };
 
 @Component({
@@ -29,8 +30,11 @@ export class DebugPanelComponent implements OnInit {
    * List of components available to mock up
    */
   components: ComponentMockOption[] = [];
+  notificationsMock: any;
 
-  constructor(public bsModalRef: BsModalRef) { }
+  constructor(public bsModalRef: BsModalRef) {
+    this.notificationsMock = (localStorage.getItem(LocalStorageKeys.notificationsMock) === 'true' ? true : false);
+   }
 
   ngOnInit() {
     // Load values from localStorage and populate options list
@@ -53,6 +57,10 @@ export class DebugPanelComponent implements OnInit {
     this.components.push({
       name: AvailableComponents.profile,
       mock: localStorage.getItem(LocalStorageKeys.profileMock) === 'false' ? 'false' : 'true'
+    });
+    this.components.push({
+      name: AvailableComponents.notifications,
+      mock: localStorage.getItem(LocalStorageKeys.notificationsMock) === 'false' ? 'false' : 'true'
     });
   }
 
@@ -77,6 +85,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.profile:
         localStorage.setItem(LocalStorageKeys.profileMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.notifications:
+        localStorage.setItem(LocalStorageKeys.notificationsMock, componentMockOption.mock);
       break;
       default:
         console.log('Selected option not registered as available component');
