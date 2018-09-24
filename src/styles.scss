@@ -2,18 +2,18 @@
 
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
+@import '../node_modules/bootstrap/scss/bootstrap';
 
 @font-face {
   font-family: 'Aldrich';
-  src: url(../assets/fonts/Aldrich-Regular.ttf) format('truetype');
+  src: '../assets/fonts/Aldrich-Regular.ttf';
 }
 @font-face {
   font-family: 'Open Sans';
-  src: url(../assets/fonts/OpenSans-Regular.ttf) format('truetype');
+  src: '../assets/fonts/OpenSans-Regular.ttf';
 }
 
 html, body{
-    /* Remove browser default margin on body */
     margin: 0px;
     height: 100%;
     min-height: 100vh;
