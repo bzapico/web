@@ -2,7 +2,8 @@
   <div  *ngFor="let alert of alerts" class="row">
     <div class="col-12">
       <alert [dismissible]="dismissible" (onClosed)="onClosed(alert)" 
-          [type]="alert.type"><span class="alert-message" [innerHtml]="alert.msg"></span>
+          [type]="alert.type" [dismissOnTimeout]="alert.timeout">
+          <span class="alertis-message" [innerHtml]="alert.message"></span>
       </alert>
     </div>
   </div>

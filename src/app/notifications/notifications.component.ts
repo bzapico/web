@@ -2,9 +2,10 @@ import { Component, OnInit, OnDestroy, Input  } from '@angular/core';
 import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { LocalStorageKeys } from '../definitions/local-storage-keys';
-import { Backend } from '../definitions/backend';
+
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { BackendService } from '../services/backend.service';
+import { Backend } from '../definitions/backend';
 
 
 @Component({
@@ -14,6 +15,7 @@ import { BackendService } from '../services/backend.service';
 })
 export class NotificationsComponent implements OnInit, OnDestroy {
 
+  // tslint:disable-next-line:no-input-rename
   @Input('notifications') alerts: any[];
 
   /**
@@ -71,7 +73,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
   }
 
   onClosed(dismissedAlert: any): void {
-    this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
+  console.log(dismissedAlert);
   }
 
 

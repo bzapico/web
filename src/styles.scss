@@ -2,7 +2,9 @@
 
 @import "~bootstrap/dist/css/bootstrap.css";
 //  @import '../assets/scss/_reboot.scss';
-@import '../node_modules/bootstrap/scss/bootstrap';
+@import '~node_modules/bootstrap/scss/bootstrap';.alert-title {
+    font-weight: bold;
+}
 
 @font-face {
   font-family: 'Aldrich';
@@ -21,18 +23,18 @@ html, body{
     overflow-x: hidden;
     font-family: 'Aldrich', sans-serif;
 }
-.alert-title {
-    font-weight: bold;
-}
-.alert-message {
+
+
+.alertis-message {
     -ms-word-wrap: break-word;
     word-wrap: break-word;
+
 }
-.alert-message a,
-.alert-message label {
+.alertis-message a,
+.alertis-message label {
     color: #ffffff;
 }
-.alert-message a:hover {
+.alertis-message a:hover {
     color: #949494;
     text-decoration: none;
 }
@@ -103,19 +105,21 @@ html, body{
 .alert {
   // background-color: #030303;
     background: #0937ff; /* Old browsers */
-  background: -moz-linear-gradient(left, #0937ff 0%, #051c80 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, #0937ff 0%,#051c80 100%); /* Chrome10-25,Safari5.1-6 */
+  background: -moz-linear-gradient(left, #0937ff 0%, #051c80 100%); /* FF3.6-15 */ 
+  background: -webkit-linear-gradient(left, #0937ff 0%,#051c80 100%); /* Chrome10-25,Safari5.1-6 */ 
   background: linear-gradient(to right, #0937ff 0%,#051c80 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0937ff', endColorstr='#051c80',GradientType=1 ); /* IE6-9 */
 }
+
 .alert-success {
-  // background-color: #0023B0;
-  background: #0937ff; /* Old browsers */
-  background: -moz-linear-gradient(left, #0937ff 0%, #051c80 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, #0937ff 0%,#051c80 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, #0937ff 0%,#051c80 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0937ff', endColorstr='#051c80',GradientType=1 ); /* IE6-9 */
-}
+    // background-color: #0023B0;
+    background: #0937ff; /* Old browsers */
+    background: -moz-linear-gradient(left, #0937ff 0%, #051c80 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #0937ff 0%,#051c80 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #0937ff 0%,#051c80 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0937ff', endColorstr='#051c80',GradientType=1 ); /* IE6-9 */
+  }
+
 .alert-error {
     background-color: #FF437D;
 }
@@ -158,4 +162,5 @@ html, body{
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
     filter: alpha(opacity=40);
 }
+
 
