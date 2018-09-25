@@ -1,7 +1,9 @@
-<div *ngIf="alerts.length > 0">
-  <div class="alert-top-right" id="alert-container" *ngFor="let alert of alerts">
-    <alert class="alert" [dismissible]="dismissible" (onClosed)="onClosed(alert)"
-        [type]="alert.type"><span class="alert-message" [innerHtml]="alert.msg"></span>
-    </alert>
+<div *ngIf="alerts.length > 0" class="container alert-top-right" id="alert-container">
+  <div  *ngFor="let alert of alerts" class="row">
+    <div class="col-12">
+      <alert [dismissible]="dismissible" (onClosed)="onClosed(alert)" 
+          [type]="alert.type"><span class="alert-message" [innerHtml]="alert.msg"></span>
+      </alert>
+    </div>
   </div>
 </div>

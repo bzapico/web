@@ -16,7 +16,6 @@ export class AppComponent {
  
   constructor(
     private modalService: BsModalService,
-    
     ) {
     this.notificationInstances = [{
     type: 'success',
@@ -26,16 +25,14 @@ export class AppComponent {
 
   }
   
-
   openModal() {
     this.modalRef = this.modalService.show(DebugPanelComponent);
     this.modalRef.content.closeBtnName = 'Close';
   }
- add(): void {
+  add(): void {
     this.notificationInstances.push({
-      type: 'info',
-      msg: `This alert will be closed in 5 seconds (added: ${new Date().toLocaleTimeString()})`,
-      timeout: 5000
+      type: 'danger',
+      msg: `This alert is added`,
     });
   console.log(this.notificationInstances);
   }
