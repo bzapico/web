@@ -15,7 +15,6 @@
   src: '../assets/fonts/OpenSans-Regular.ttf';
 }
 
-
 html, body{
     margin: 0px;
     height: 100%;
@@ -24,17 +23,15 @@ html, body{
     font-family: 'Aldrich', sans-serif;
 }
 
-
-.alertis-message {
+.alert-message {
     -ms-word-wrap: break-word;
     word-wrap: break-word;
-
 }
-.alertis-message a,
-.alertis-message label {
+.alert-message a,
+.alert-message label {
     color: #ffffff;
 }
-.alertis-message a:hover {
+.alert-message a:hover {
     color: #949494;
     text-decoration: none;
 }

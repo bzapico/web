@@ -2,6 +2,8 @@ import { Component, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { DebugPanelComponent } from './debug-panel/debug-panel.component';
 import { NotificationsService } from './services/notifications.service';
+import { NotificationsComponent } from './notifications/notifications.component';
+
 
 @Component({
   selector: 'app-root',
