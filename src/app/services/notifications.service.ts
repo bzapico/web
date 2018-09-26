@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 export interface Notification {
   message: string;
   type?: string;
-  duration?: string;
+  timeout?: number;
 }
 
 @Injectable({
@@ -11,17 +11,20 @@ export interface Notification {
 })
 export class NotificationsService {
 
-  private _notifications: any[];
+// tslint:disable-next-line:max-line-length
+// variable privada q se declara cuand osolo se va a utilizar dentro del servicio es decir no vas a jugar con ella fuera de este para nada por eso es private
+
+  private _notificationsss: any[];
 
   constructor() {
-    this._notifications = [];
+    this._notificationsss = [];
    }
 
   add(notificationInstance: Notification) {
     this.notifications.push(notificationInstance);
   }
   get notifications() {
-    return this._notifications;
+    return this._notificationsss;
   }
 
 }

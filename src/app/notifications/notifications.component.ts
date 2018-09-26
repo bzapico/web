@@ -1,4 +1,4 @@
-import { Component, OnInit, Input  } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LocalStorageKeys } from '../definitions/local-storage-keys';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { BackendService } from '../services/backend.service';

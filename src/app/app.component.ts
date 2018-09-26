@@ -8,7 +8,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [ NotificationsComponent ]
 })
 export class AppComponent {
   title = 'nalej';
@@ -24,9 +25,12 @@ export class AppComponent {
     this.modalRef.content.closeBtnName = 'Close';
   }
   add(): void {
+    // if (this.notificationsService.length < 5) {
     this.notificationsService.add({
       type: 'warning',
       message: `This alert is added`,
+      timeout: 10000
     });
   }
+  // }
 }
