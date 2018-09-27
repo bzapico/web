@@ -25,12 +25,15 @@ export class AppComponent {
     this.modalRef.content.closeBtnName = 'Close';
   }
   add(): void {
-    // if (this.notificationsService.length < 5) {
     this.notificationsService.add({
       type: 'warning',
       message: `This alert is added`,
-      timeout: 10000
+      // timeout: 10000
     });
   }
-  // }
+  onClosed(dismissedNotifications) {
+    console.log(dismissedNotifications);
+
+  }
+
 }
