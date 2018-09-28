@@ -6,8 +6,10 @@ import { AppComponent } from './app.component';
 import { DebugPanelComponent } from './debug-panel/debug-panel.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ButtonsModule } from 'ngx-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './services/auth.service';
+import { BackendService } from './services/backend.service';
 
 
 @NgModule({
@@ -20,10 +22,16 @@ import { LoginComponent } from './login/login.component';
   imports: [
     FormsModule,
     BrowserModule,
+    ReactiveFormsModule,
     ModalModule.forRoot(),
     ButtonsModule.forRoot()
   ],
-  providers: [{provide: ErrorHandler, useClass: ErrorHandlerService}],
+  providers: [
+    AuthService,
+    BackendService,
+    { provide: ErrorHandler,
+      useClass: ErrorHandlerService }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
