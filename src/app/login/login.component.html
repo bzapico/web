@@ -1,3 +1,47 @@
-<p>
-  login works!
-</p>
+<div class="login">
+  <div class="container">
+      <!-- Login form -->
+      <form 
+      [formGroup]="loginForm"
+      class="form-login"
+      (ngSubmit)=onSubmit()>
+          <h2 class="form-login-heading">Nalej</h2>
+          <div class="card">
+              <h5 class="card-title">Log in</h5>
+              <div class="card-body">
+                  <!-- Form fields -->
+                  <input 
+                      type="email" 
+                      formControlName="mail"
+                      id="inputEmail" 
+                      class="form-control" 
+                      placeholder="Email*" 
+                      [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                      required>
+                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                          <div *ngIf="f.email.errors.required">
+                              Email is required
+                          </div>
+                      </div>
+                  <input 
+                      type="password" 
+                      formControlName="password"
+                      id="inputPassword" 
+                      class="form-control" 
+                      placeholder="Password*"
+                      [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                      required>
+                      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                          <div *ngIf="f.password.errors.required">Password is required</div>
+                      </div>
+                  <!-- Form actions -->
+                  <button 
+                      class="btn btn-lg btn-primary btn-block" 
+                      type="submit">
+                      Log in
+                  </button>
+              </div>  
+          </div> 
+      </form>
+  </div>
+</div>

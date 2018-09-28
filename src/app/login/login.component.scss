@@ -1,0 +1,95 @@
+.login {
+    height: 100vh;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: white;
+    background-image: linear-gradient(-85deg, #151515, #505050);
+  }
+  .form-login {
+    max-width: 350px;
+    padding: 15px;
+    margin: 10% auto;
+    .form-login-heading {
+      margin-bottom: 10px;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 1.9em;
+      margin-left: 58px;
+      margin-bottom: 25px;
+      padding-bottom: 28px;
+      font-size: 19px;
+    }
+    .form-control {
+      position: relative;
+      height: auto;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 14px;
+      font-size: 12px;
+      text-align: center;
+      border-radius: 10px;
+      &:focus {
+        z-index: 2;
+        border-color: #0937FF;
+        outline: none;
+        box-shadow: none;
+        &::placeholder {
+          color: white;
+        }
+      }
+    }
+    input {
+      width: 257px;
+      border: 2px solid #EEEEEE;
+      color: #949494;
+      caret-color: #0937FF;
+      
+      &::placeholder {
+        color: #949494;
+      }
+      &[type="email"] {
+        margin-bottom: -2px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+      &[type="password"] {
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
+      }
+    }
+  }
+  .btn-primary {
+    width: 257px;
+    color: #fff;
+    background-color: #0937FF;
+    background-image: linear-gradient(-85deg, #051C80, #0937FF);
+    border-color: #051C80;
+    border: 0px;
+    border-radius: 10px;
+    
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+  .btn-group-lg > .btn, .btn-lg {
+    margin-top: 58px;
+    padding: 15px;
+    font-size: 14px;
+  }
+  .card {
+    background: white;
+    height: 371px;
+    width: 320px;
+    border-radius: 10px;
+    .card-title {
+      font-size: 18px;
+      text-align: center;
+      margin-top: 70px;
+    }
+    .card-body {
+      margin: 0 auto;
+    }
+  }
+  
