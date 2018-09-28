@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { BackendService } from './services/backend.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { BackendService } from './services/backend.service';
   imports: [
     FormsModule,
     BrowserModule,
+    HttpClientModule,
+    HttpModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
     ButtonsModule.forRoot()
