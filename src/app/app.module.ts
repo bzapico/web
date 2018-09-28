@@ -30,6 +30,9 @@ import { HttpModule } from '@angular/http';
     ModalModule.forRoot(),
     ButtonsModule.forRoot()
   ],
+  exports: [
+    LoginComponent
+   ],
   providers: [
     AuthService,
     BackendService,
