@@ -7,28 +7,43 @@ import { AppComponent } from './app.component';
 import { DebugPanelComponent } from './debug-panel/debug-panel.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ButtonsModule } from 'ngx-bootstrap';
-import { FormsModule } from '@angular/forms';
 import { MainComponent } from './main/main.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './services/auth.service';
+import { BackendService } from './services/backend.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DebugPanelComponent,
-    MainComponent
+    MainComponent,
+    LoginComponent
   ],
   entryComponents: [DebugPanelComponent],
   imports: [
-    FormsModule,
     BrowserModule,
     routing,
+    FormsModule,
+    HttpClientModule,
+    HttpModule,
+    ReactiveFormsModule,
     ModalModule.forRoot(),
     ButtonsModule.forRoot(),
   ],
+  exports: [
+    LoginComponent
+   ],
   providers: [
+    AuthService,
     appRoutingProviders,
-    {provide: ErrorHandler, useClass: ErrorHandlerService}
-  ],
+    BackendService,
+    { provide: ErrorHandler,
+      useClass: ErrorHandlerService }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

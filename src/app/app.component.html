@@ -1,28 +1,9 @@
 <!-- App container -->
-<div>
-
- 
-  <!-- Sidebar -->
-  <div>
-
-    
+<div *ngIf="!logged">
+    <app-login></app-login>
   </div>
-
+ 
   <!-- Main content panel -->
-  <div>
-    <app-main>
-        <router-outlet></router-outlet>
-    </app-main>
-  </div>
-
- 
+  <div *ngIf="logged">
+    <nalej-main></nalej-main>
 </div>
-
-
-
-
-
-
- 
-
-

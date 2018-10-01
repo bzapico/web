@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-main',
+  // tslint:disable-next-line:component-selector
+  selector: 'nalej-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })

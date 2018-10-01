@@ -7,10 +7,14 @@ import { DebugPanelComponent } from './debug-panel/debug-panel.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
+
 export class AppComponent {
+  logged: boolean;
   title = 'nalej';
   modalRef: BsModalRef;
   constructor(private modalService: BsModalService) {
+    this.logged = true;
   }
   openModal() {
     this.modalRef = this.modalService.show(DebugPanelComponent);
