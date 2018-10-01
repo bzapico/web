@@ -7,12 +7,14 @@ import { DebugPanelComponent } from './debug-panel/debug-panel.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ButtonsModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { MainComponent } from './main/main.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DebugPanelComponent
+    DebugPanelComponent,
+    MainComponent
   ],
   entryComponents: [DebugPanelComponent],
   imports: [
