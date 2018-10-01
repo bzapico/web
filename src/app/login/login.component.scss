@@ -69,6 +69,13 @@
       box-shadow: none;
     }
   }
+  button[type="submit"]:disabled {
+    background: #949494; /* Old browsers */
+    background: -moz-linear-gradient(left, #949494 0%, #444444 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #949494 0%,#444444 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #949494 0%,#444444 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#949494', endColorstr='#444444',GradientType=1 ); /* IE6-9 */
+}
   .btn-group-lg > .btn, .btn-lg {
     margin-top: 58px;
     padding: 15px;
