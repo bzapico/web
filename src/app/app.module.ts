@@ -22,8 +22,8 @@ import { HttpModule } from '@angular/http';
   ],
   entryComponents: [DebugPanelComponent],
   imports: [
-    FormsModule,
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     HttpModule,
     ReactiveFormsModule,

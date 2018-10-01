@@ -2,6 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { BsModalService, ModalModule } from 'ngx-bootstrap';
 import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 describe('AppComponent', () => {
@@ -11,7 +12,7 @@ describe('AppComponent', () => {
         AppComponent,
         LoginComponent
       ],
-      imports: [ModalModule.forRoot()],
+      imports: [ModalModule.forRoot(), ReactiveFormsModule],
       providers: [BsModalService]
     }).compileComponents();
   }));
