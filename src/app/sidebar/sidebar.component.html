@@ -3,7 +3,11 @@
     <ul class="nav">
       <li class="nav-title">Nalej</li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a 
+        routerLinkActive="active" 
+        routerLink="/profile" 
+        href="profile" 
+        class="nav-link">
           <div class="profile">
             <div class="avatar-frame">
               <img src="../assets/images/user-img.png" alt="image">
@@ -15,22 +19,34 @@
           <span class="p-arrow">></span>
         </a>
       </li>
-      <li class="nav-item nav-item-page">
-        <a class="nav-link " href="#">
+      <li class="nav-item nav-item-page" [routerLinkActive]="['active']">
+        <a  
+        [routerLink]="['organization']"
+        routerLink="/organization" 
+        href="organization" 
+        class="nav-link">
           <i class="material-icons">group_work</i>
           Organization
           <span class="arrow">></span>
         </a>
       </li>
       <li class="nav-item nav-item-page">
-        <a class="nav-link" href="#">
+        <a         
+        routerLinkActive="active" 
+        routerLink="/resources" 
+        href="resources" 
+        class="nav-link">
           <i class="material-icons">dns</i>
           Resources
           <span class="arrow">></span>
         </a>
       </li>
       <li class="nav-item nav-item-page">
-        <a class="nav-link" href="#">
+        <a         
+        routerLinkActive="active" 
+        routerLink="/applications" 
+        href="applications" 
+        class="nav-link">
           <i class="material-icons">apps</i>
           Applications
           <span class="arrow">></span>
