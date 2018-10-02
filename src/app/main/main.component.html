@@ -1,18 +1,15 @@
-<!-- Sidebar -->
-<div>
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-lg-2 col-md-2 col-sm-2 sidebar">
 
+    </div>
 
-</div>
-
-<!-- Main view container-->
-<div class="main-view">
-  <!-- Component title -->
-  <!-- <header class="header">
-      Component Name
-    </header> -->
-  <!-- Main content panel -->
-  <main class="main-content nalej-bg">  
-    <router-outlet></router-outlet>
-  </main>
-
+    <!-- Main content panel -->
+    <div class="col-lg-10 ml-sm-auto main-view">
+      <main class="main-content nalej-bg">  
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </div>
 </div>
