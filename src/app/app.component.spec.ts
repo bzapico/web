@@ -5,6 +5,7 @@ import { MainComponent } from './main/main.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 describe('AppComponent', () => {
@@ -18,7 +19,8 @@ describe('AppComponent', () => {
       imports: [
         ModalModule.forRoot(),
         RouterTestingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RouterModule
       ],
       providers: [BsModalService]
     }).compileComponents();

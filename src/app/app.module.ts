@@ -14,6 +14,7 @@ import { AuthService } from './services/auth.service';
 import { BackendService } from './services/backend.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { HttpModule } from '@angular/http';
     ReactiveFormsModule,
     ModalModule.forRoot(),
     ButtonsModule.forRoot(),
+    RouterModule
   ],
   exports: [
     LoginComponent
@@ -41,6 +43,7 @@ import { HttpModule } from '@angular/http';
     AuthService,
     appRoutingProviders,
     BackendService,
+
     { provide: ErrorHandler,
       useClass: ErrorHandlerService }
     ],
