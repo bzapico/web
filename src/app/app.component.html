@@ -1,15 +1,9 @@
-<!-- <nav class="navbar navbar-dark bg-dark mb-5">
-  <a class="navbar-brand" href="/">NALEJ</a>
-</nav>
-
-<div class="jumbotron">
-  <h1>NALEJ APP</h1>
-  <p>
-    Provisional landing to Nalej app
-  </p>
-  <button type="button" class="btn btn-outline-primary" (click)="openModal()">Open debug panel</button>
+<!-- App container -->
+<div *ngIf="!logged">
+  <app-login></app-login>
 </div>
 
-  -->
-
-<app-login></app-login>
+<!-- Main content panel -->
+<div *ngIf="logged">
+  <nalej-main></nalej-main>
+</div>
