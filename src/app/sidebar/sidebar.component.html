@@ -6,11 +6,11 @@
         <a 
         routerLinkActive="active" 
         routerLink="/profile" 
-        href="profile" 
         class="nav-link">
           <div class="profile">
             <div class="avatar-frame">
-              <img src="../assets/images/user-img.png" alt="image">
+                <i class="material-icons">person</i>
+              <!-- <img src="../assets/images/user-img.png" alt="image"> -->
             </div>
             <p class="name">John Doe</p>
             <p class="type">Owner</p>
@@ -19,11 +19,10 @@
           <span class="p-arrow">></span>
         </a>
       </li>
-      <li class="nav-item nav-item-page" [routerLinkActive]="['active']">
-        <a  
-        [routerLink]="['organization']"
+      <li class="nav-item nav-item-page">
+        <a
+        routerLinkActive="active" 
         routerLink="/organization" 
-        href="organization" 
         class="nav-link">
           <i class="material-icons">group_work</i>
           Organization
@@ -34,7 +33,6 @@
         <a         
         routerLinkActive="active" 
         routerLink="/resources" 
-        href="resources" 
         class="nav-link">
           <i class="material-icons">dns</i>
           Resources
@@ -45,7 +43,6 @@
         <a         
         routerLinkActive="active" 
         routerLink="/applications" 
-        href="applications" 
         class="nav-link">
           <i class="material-icons">apps</i>
           Applications

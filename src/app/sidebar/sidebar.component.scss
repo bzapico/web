@@ -126,13 +126,10 @@
                 /* Saf3+, Chrome */
                 border-radius: 50%;
                 /* Opera 10.5, IE 9 */
-                img {
-                    width: 118px;
-                    height: 118px;
-                    -webkit-border-radius: 50%;
-                    /* Saf3+, Chrome */
-                    border-radius: 50%;
-                    /* Opera 10.5, IE 9 */
+                i {
+                    font-size: 100px;
+                    margin: 0 auto;
+                    margin-left: 6px;
                 }
             }
         }
