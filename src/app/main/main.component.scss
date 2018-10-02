@@ -4,7 +4,6 @@
     float:            right;
     // width:            calc(100% - 313px);
     height: 100vh;
-
     // .main-content{
     //     padding: 127px 75px 106px 75px;
     //     min-height: 847px;
@@ -39,7 +38,6 @@
     top: 0;
     bottom: 0;
     left: 0;
-    // width: 313px;
     display: block;
     z-index: 1;
     color: #fff;
@@ -48,10 +46,8 @@
     background-position: center center;
     padding-right: 0;
     padding-left: 0;
+    width: 313px;
 }
-
-
-
 .main-view{
     max-height: 100%;
     height: 100vh;
