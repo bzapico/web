@@ -14,7 +14,7 @@ export class AppComponent {
   title = 'nalej';
   modalRef: BsModalRef;
   constructor(private modalService: BsModalService) {
-    this.logged = true;
+    this.logged = false;
   }
   openModal() {
     this.modalRef = this.modalService.show(DebugPanelComponent);
