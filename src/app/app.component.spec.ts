@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 describe('AppComponent', () => {
@@ -14,7 +15,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         MainComponent,
-        LoginComponent
+        LoginComponent,
+        SidebarComponent
       ],
       imports: [
         ModalModule.forRoot(),
