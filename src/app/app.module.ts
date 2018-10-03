@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { DebugPanelComponent } from './debug-panel/debug-panel.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ButtonsModule } from 'ngx-bootstrap';
+import { SidebarComponent } from './sidebar/sidebar.component';
 import { MainComponent } from './main/main.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
@@ -21,6 +22,7 @@ import { RouterModule } from '@angular/router';
   declarations: [
     AppComponent,
     DebugPanelComponent,
+    SidebarComponent,
     MainComponent,
     LoginComponent
   ],
