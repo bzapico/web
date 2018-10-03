@@ -41,10 +41,18 @@
     list-style: none;
     position: relative;
     .active {
-        border-left: 10px solid #0937FF !important;
-        position: absolute;
         left: 0;
         z-index: 10;
+        position: relative;
+        &::before {
+            content: "";
+            height: 71px;
+            width: 10px;
+            display: block;
+            position: absolute;
+            top: 0;
+            background-color: #0937FF;
+        }
     }
 }
 .sidebar {
@@ -60,7 +68,6 @@
     .nav-item {
         position: relative;
         margin: 0;
-        border-left: 10px solid transparent;
         .nav-item-page {
             height: 71px;
         }
