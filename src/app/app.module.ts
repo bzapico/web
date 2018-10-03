@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { ErrorHandlerService } from './services/error-handler.service';
-import { routing, appRoutingProviders } from './app.routing';
+import { routes } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { DebugPanelComponent } from './debug-panel/debug-panel.component';
@@ -29,23 +29,23 @@ import { RouterModule } from '@angular/router';
   entryComponents: [DebugPanelComponent],
   imports: [
     BrowserModule,
-    routing,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     HttpModule,
-    ReactiveFormsModule,
+    RouterModule,
+    // NGX-BOOTSTRAP
     ModalModule.forRoot(),
     ButtonsModule.forRoot(),
-    RouterModule
+    // ROUTES
+    routes,
   ],
   exports: [
     LoginComponent
    ],
   providers: [
     AuthService,
-    appRoutingProviders,
     BackendService,
-
     { provide: ErrorHandler,
       useClass: ErrorHandlerService }
     ],
