@@ -5,6 +5,19 @@
     // width:            calc(100% - 313px);
     height: 100vh;
     max-height: 100%;
+    // .main-content{
+    //     padding: 127px 75px 106px 75px;
+    //     min-height: 847px;
+    // }
+    // .header{
+    //     font-size: 32px;
+    //     margin-left: 70px;
+    //     margin-top: 41px;
+
+    //     .title{
+    //         margin-top: 10px;
+    //     }
+    // }
 }
 .nalej-bg {
     background-color: #F5F5F5;
@@ -20,6 +33,20 @@
     font-weight: 200;
     background-size: cover;
     background-position: center center;
+    padding-right: 0;
+    padding-left: 0;
+    // width: 313px;
+}
+.main-view{
+    max-height: 100%;
+    height: 100vh;
+    -webkit-transition-property: top,bottom,width;
+    transition-property: top,bottom, width;
+    -webkit-transition-duration: .2s,.2s, .35s;
+    transition-duration: .2s,.2s, .35s;
+    -webkit-transition-timing-function: linear,linear,ease;
+    transition-timing-function: linear,linear,ease;
+    -webkit-overflow-scrolling: touch;
 }
 
 

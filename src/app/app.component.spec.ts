@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { OrganizationComponent } from './organization/organization.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 describe('AppComponent', () => {
@@ -16,7 +17,8 @@ describe('AppComponent', () => {
         AppComponent,
         MainComponent,
         LoginComponent,
-        OrganizationComponent
+        OrganizationComponent,
+        SidebarComponent
       ],
       imports: [
         ModalModule.forRoot(),
