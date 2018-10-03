@@ -1,5 +1,6 @@
 .sidebar {
     padding: 0;
+    width: 313px;
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -46,7 +47,7 @@
         position: relative;
         &::before {
             content: "";
-            height: 71px;
+            height: 67px;
             width: 10px;
             display: block;
             position: absolute;
