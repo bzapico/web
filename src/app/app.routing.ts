@@ -9,28 +9,24 @@ import { AuthGuard } from './guards/auth.guard';
 import { OrganizationComponent } from './organization/organization.component';
 
 const appRoutes: Routes = [
-
-    {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
-    },
     {
         path: 'login',
-        outlet: 'login',
         component: LoginComponent
     },
     {
-        path: 'app',
+        path: '',
         component: MainComponent,
-        outlet: 'login',
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        children: [{
+            path: 'organization',
+            component: OrganizationComponent,
+            canActivate: [AuthGuard]
+        }]
     },
     {
-        path: 'app/organization',
-        component: OrganizationComponent,
-        outlet: 'main',
-        canActivate: [AuthGuard]
+        path: '',
+        redirectTo: 'organization',
+        pathMatch: 'full'
     },
     // otherwise redirect to home
     {
