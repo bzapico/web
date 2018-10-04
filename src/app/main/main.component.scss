@@ -2,10 +2,10 @@
     background-color:#F5F5F5;
     position:         relative;
     float:            right;
-    // width:            calc(100% - 313px);
+    width:            calc(100% - 313px);
+    padding-left:0px;
+    padding-right:0px;
     height: 100vh;
-    max-height: 100%;
-
 }
 .nalej-bg {
     background-color: #F5F5F5;
@@ -23,18 +23,7 @@
     background-position: center center;
     padding-right: 0;
     padding-left: 0;
-    // width: 313px;
 }
-.main-view{
-    max-height: 100%;
-    height: 100vh;
-    -webkit-transition-property: top,bottom,width;
-    transition-property: top,bottom, width;
-    -webkit-transition-duration: .2s,.2s, .35s;
-    transition-duration: .2s,.2s, .35s;
-    -webkit-transition-timing-function: linear,linear,ease;
-    transition-timing-function: linear,linear,ease;
-    -webkit-overflow-scrolling: touch;
-}
+
 
 

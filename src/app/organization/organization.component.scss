@@ -104,6 +104,17 @@
     text-align: center;
     margin: 45px auto;
     padding: 30px;
+
+    i {
+        font-size: 40px;
+        margin: -8px -6px;
+    }
+}
+.panel-card{    
+    height: 590px;
+}
+.subs-btn{
+    display: none;
 }
 button {
     margin: 0 auto;
