@@ -1,18 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
-
-$nalejcolor: #0937FF;
-
-$colors: (
-  primary: #0937FF,
-  light: #949494
-);
-
-@function colors($colors-name){
-  @return map-get($colors, $colors-name)
-}
+@import '~bootstrap/scss/bootstrap-reboot';
+@import '~bootstrap/scss/bootstrap-grid';
 
 *{
   font-family: 'Aldrich', sans-serif;
-
 }
