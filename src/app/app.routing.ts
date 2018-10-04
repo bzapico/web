@@ -1,14 +1,29 @@
 // tslint:disable-next-line:eofline
 import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, provideRoutes } from '@angular/router';
+
+
 import { LoginComponent } from './login/login.component';
-import { OrganizationComponent } from './organization/organization.component';
+import { MainComponent } from './main/main.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const appRoutes: Routes = [
-    {path: 'login', component: LoginComponent},
-    {path: 'organization', component: OrganizationComponent},
+    {
+        path: '',
+        component: MainComponent,
+        canActivate: [AuthGuard]
+
+    },
+    {
+        path: 'login',
+        component: LoginComponent
+    },
+    // otherwise redirect to home
+    {
+        path: '**',
+        redirectTo: ''
+    }
 ];
 
-export const appRoutingProviders: any[] = [];
-export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes, {useHash: true});
+export const routes: ModuleWithProviders = RouterModule.forRoot(appRoutes, {useHash: true});
 

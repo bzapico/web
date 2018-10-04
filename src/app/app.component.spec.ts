@@ -21,12 +21,11 @@ describe('AppComponent', () => {
         SidebarComponent
       ],
       imports: [
-        ModalModule.forRoot(),
         RouterTestingModule,
         ReactiveFormsModule,
         RouterModule
       ],
-      providers: [BsModalService]
+      providers: []
     }).compileComponents();
   }));
   it('should create the app', async(() => {

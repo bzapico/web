@@ -1,6 +1,4 @@
-import { Component, TemplateRef } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { DebugPanelComponent } from './debug-panel/debug-panel.component';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +7,11 @@ import { DebugPanelComponent } from './debug-panel/debug-panel.component';
 })
 
 
-export class AppComponent {
-  logged: boolean;
-  title = 'nalej';
-  modalRef: BsModalRef;
-  constructor(private modalService: BsModalService) {
-    this.logged = true;
+export class AppComponent implements OnInit {
+  constructor() {
   }
-  openModal() {
-    this.modalRef = this.modalService.show(DebugPanelComponent);
-    this.modalRef.content.closeBtnName = 'Close';
+  ngOnInit(): void {
+    // So far we need mocked up views until we have the backend integration ready
+    // localStorage.setItem(LocalStorageKeys.loginMock, 'true');
   }
 }
