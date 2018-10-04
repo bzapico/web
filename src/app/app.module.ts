@@ -16,6 +16,7 @@ import { BackendService } from './services/backend.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { RouterModule } from '@angular/router';
     DebugPanelComponent,
     SidebarComponent,
     MainComponent,
-    LoginComponent
+    LoginComponent,
+    UserInfoComponent
   ],
   entryComponents: [DebugPanelComponent],
   imports: [
