@@ -4,6 +4,7 @@ import { DebugPanelComponent } from './debug-panel/debug-panel.component';
 import { NotificationsService } from './services/notifications.service';
 import { NotificationsComponent } from './notifications/notifications.component';
 
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
   styleUrls: ['./app.component.scss'],
   providers: [ NotificationsComponent ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'nalej';
   modalRef: BsModalRef;
 
@@ -19,10 +20,11 @@ export class AppComponent {
     private modalService: BsModalService,
     private notificationsService: NotificationsService
     ) {
+
   }
-  openModal() {
-    this.modalRef = this.modalService.show(DebugPanelComponent);
-    this.modalRef.content.closeBtnName = 'Close';
+  ngOnInit(): void {
+    // So far we need mocked up views until we have the backend integration ready
+    // localStorage.setItem(LocalStorageKeys.loginMock, 'true');
   }
   add(): void {
     this.notificationsService.add({

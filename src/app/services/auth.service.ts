@@ -1,70 +1,90 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import * as jwt_decode from 'jwt-decode';
+import { Backend } from '../definitions/interfaces/backend';
+import { BackendService } from './backend.service';
+import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { MockupBackendService } from './mockup-backend.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Observable, of } from 'rxjs';
+import { ResponseOptions } from '@angular/http';
+import { Router } from '@angular/router';
 
-export const TOKEN_NAME: string = 'access_token';
+
+/**
+ * Service that enables authentication in the platform
+ */
+
 @Injectable()
 export class AuthService {
+  /**
+   * Backend reference
+   */
+  backend: Backend;
+  /**
+   * Jwt Helper service reference
+   */
+  jwtHelper: JwtHelperService;
 
-  private isMocked: boolean = true;
-  private url: string = 'api/auth';
-  private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-  constructor(private http: HttpClient) { }
-
-  getToken(): string {
-    return localStorage.getItem(TOKEN_NAME);
-  }
-
-  setToken(token: string): void {
-    localStorage.setItem(TOKEN_NAME, token);
-  }
-
-  getTokenExpirationDate(token: string): Date {
-    const decoded = jwt_decode(token) as any;
-
-    if (decoded.exp === undefined) return null;
-
-    const date = new Date(0); 
-    date.setUTCSeconds(decoded.exp);
-    return date;
-  }
-
-  isTokenExpired(token?: string): boolean {
-    if(!token) token = this.getToken();
-    if(!token) return true;
-
-    const date = this.getTokenExpirationDate(token);
-    if(date === undefined) return false;
-    return !(date.valueOf() > new Date().valueOf());
-  }
-
-  login(user): Promise<string> | boolean {
-
-    if (!this.isMocked) { // auth service is not mocked
-      if (user.email === 'test@test.com' && user.password === 'password') {
-        return this.http
-          .post(`${this.url}/login`, JSON.stringify(user), { headers: this.headers })
-          .toPromise()
-          .then(res => (res as any).text());
-      } else {
-        return false;
-      }
-    } else { // auth service is mocked
-      if (user.email === 'test@test.com' && user.password === 'password') {
-        localStorage.setItem('access_token', 'test_token');
-        return true;
-      } else {
-        return false;
-      }
+  constructor(
+    private mockupBackend: MockupBackendService,
+    private backendService: BackendService,
+    private router: Router
+  ) {
+    const mock = localStorage.getItem(LocalStorageKeys.loginMock) || null;
+    // check which backend is required (fake or real)
+    if (mock === 'true') {
+      this.backend = mockupBackend;
+    } else {
+      this.backend = backendService;
     }
+    this.jwtHelper = new JwtHelperService();
   }
 
+  /**
+   * Request to login into the platform
+   * @param email String containing user email
+   * @param password String that holds the user password
+   */
+  login(email: string, password: string): Observable<any> {
+    let complete;
+    let jwtToken;
+    this.backend.login(email, password)
+      .subscribe(response => {
+        if (response && response._body) {
+          jwtToken = JSON.parse(response._body);
+          const jwtTokenData =  this.jwtHelper.decodeToken(jwtToken.jwt);
+          localStorage.setItem(LocalStorageKeys.jwt, JSON.stringify(jwtToken.jwt));
+          localStorage.setItem(LocalStorageKeys.jwtData, JSON.stringify(jwtTokenData));
+          complete = jwtTokenData;
+        }
+      }, error => {
+        complete = error;
+      });
+      return of (complete);
+  }
+  /**
+   * Request to logout the platform
+   */
   logout() {
-    localStorage.removeItem(TOKEN_NAME);
+    this.backend.logout()
+      .subscribe(response => {
+        // remove JWT token from local storage to log user out
+        localStorage.removeItem(LocalStorageKeys.jwt);
+        localStorage.removeItem(LocalStorageKeys.jwtData);
+      }, error => {
+        console.log(error); // TODO: substitute with notification service messaging system
+      });
+  }
+  
+  /**
+   * Helper function that checks if the user is authenticated assesting if JWT Token is valid
+   */
+  isAuth(): boolean {
+    const jwtToken = JSON.parse(localStorage.getItem(LocalStorageKeys.jwt)) || null;
+    if (jwtToken !== null) {
+      return !this.jwtHelper.isTokenExpired(jwtToken);
+    }
+    return false;
   }
 
-  public get loggedIn(): boolean {
-    return (this.getToken() !== null);
-  }
+
 }

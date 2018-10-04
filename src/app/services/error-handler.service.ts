@@ -49,7 +49,7 @@ export class ErrorHandlerService implements ErrorHandler {
             console.log('Network Authentication Required, the user needs to authenticate to gain network access');
             break;
         default :
-            console.log(error.message);
+            console.log(error);
             break;
     }
   }

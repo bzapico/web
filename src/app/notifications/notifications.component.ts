@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { LocalStorageKeys } from '../definitions/local-storage-keys';
+import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { BackendService } from '../services/backend.service';
-import { Backend } from '../definitions/backend';
+import { Backend } from '../definitions/interfaces/backend';
 import { NotificationsService } from '../services/notifications.service';
 
 @Component({

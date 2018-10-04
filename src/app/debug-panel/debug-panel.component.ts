@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { LocalStorageKeys } from '../definitions/local-storage-keys';
+import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
 /**
  * Interface for the objects that will be listed in the debug panel

@@ -5,7 +5,6 @@
 @import '~node_modules/bootstrap/scss/bootstrap';.alert-title {
     font-weight: bold;
 }
-
 @font-face {
   font-family: 'Aldrich';
   src: '../assets/fonts/Aldrich-Regular.ttf';
@@ -13,6 +12,18 @@
 @font-face {
   font-family: 'Open Sans';
   src: '../assets/fonts/OpenSans-Regular.ttf';
+}
+$nalejcolor: #0937FF;
+$colors: (
+  primary: #0937FF,
+  light: #949494
+);
+@function colors($colors-name){
+  @return map-get($colors, $colors-name)
+}
+
+*{
+  font-family: 'Aldrich', sans-serif;
 }
 
 html, body{
@@ -22,7 +33,6 @@ html, body{
     overflow-x: hidden;
     font-family: 'Aldrich', sans-serif;
 }
-
 .alert-message {
     -ms-word-wrap: break-word;
     word-wrap: break-word;
@@ -159,5 +169,4 @@ html, body{
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
     filter: alpha(opacity=40);
 }
-
 
