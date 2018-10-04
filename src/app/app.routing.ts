@@ -9,18 +9,28 @@ import { AuthGuard } from './guards/auth.guard';
 import { OrganizationComponent } from './organization/organization.component';
 
 const appRoutes: Routes = [
+
     {
         path: '',
-        component: MainComponent,
-        canActivate: [AuthGuard]
+        redirectTo: 'login',
+        pathMatch: 'full'
     },
     {
         path: 'login',
+        outlet: 'login',
         component: LoginComponent
     },
     {
-        path: 'organization',
-        component: OrganizationComponent
+        path: 'app',
+        component: MainComponent,
+        outlet: 'login',
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'app/organization',
+        component: OrganizationComponent,
+        outlet: 'main',
+        canActivate: [AuthGuard]
     },
     // otherwise redirect to home
     {
@@ -29,5 +39,5 @@ const appRoutes: Routes = [
     }
 ];
 
-export const routes: ModuleWithProviders = RouterModule.forRoot(appRoutes, {useHash: true});
+export const routes: ModuleWithProviders = RouterModule.forRoot(appRoutes, { useHash: true });
 
