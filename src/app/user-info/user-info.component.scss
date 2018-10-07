@@ -1,18 +1,217 @@
-p {
-    font-size: 200px;
+.modal-background{
+    height: 100%;
+    width: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.2);
+    position: absolute;
+    z-index: 10;
+}
+.modal-card {
+    max-width: 501px;
+    max-height: 706px;
+    width: 30%;
+    height: 70%;
+    background-color: #fff;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    // left: calc(50% - 313px) ;
+    left: 40%;
+    z-index: 11;
+    transform: translateX(-50%);
+    transform: translateY(-50%);
+    padding: 4.5%;
+    min-height: 150px;
+}
+.nalej-form-title{
+    font-size: 1em;
+    display: inline;
+    button span {
+       color: #888888;
+    }
+}
+.buttons {
+    padding: 5em;
 }
 .avatar-frame {
     border: 2px solid #707070;
     margin: 0 auto;
     width: 118px;
     height: 118px;
+    position: relative;
     -webkit-border-radius: 50%;
     /* Saf3+, Chrome */
     border-radius: 50%;
     /* Opera 10.5, IE 9 */
-    i {
+    > i {
         font-size: 100px;
         margin: 0 auto;
         margin-left: 6px;
+    }
+    .edit-button {       
+        right: 0;
+        position: absolute;
+        top: 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #0937FF;
+        background-image: linear-gradient(-85deg, #051C80, #0937FF);
+        border-color: #051C80;
+        i {
+            font-size: 1.3em;
+            margin: 6px 0;
+            color: white;
+        }
+    }
+}
+.form-user {
+    position: relative;
+}
+.form-group {
+    margin: 40px 0;
+}
+
+input {
+    padding: 21px;
+    border: 2px solid #EEEEEE;
+    color: #949494;
+    text-align: center;
+    caret-color: #0937FF;
+    margin: -2px;
+    font-size: .9em;
+}
+.roles {
+    h4 {
+        font-size: .9em;
+    }
+}
+.cntr {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .btn-radio {
+        cursor: pointer;
+        display: inline-block;
+        // float: left;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    .btn-radio:not(:first-child) {
+        margin-left: 20px;
+    }
+    @media screen and (max-width: 480px) {
+        .btn-radio {
+            display: block;
+            float: none;
+        }
+        .btn-radio:not(:first-child) {
+            margin-left: 0;
+            margin-top: 15px;
+        }
+    }
+    .btn-radio svg {
+        fill: none;
+        vertical-align: middle;
+    }
+    .btn-radio svg circle {
+        stroke-width: 2;
+        stroke: #c8ccd4;
+    }
+    .btn-radio svg path {
+        stroke: #0937FF;
+    }
+    .btn-radio svg path.inner {
+        stroke-width: 6;
+        stroke-dasharray: 19;
+        stroke-dashoffset: 19;
+    }
+    .btn-radio svg path.outer {
+        stroke-width: 2;
+        stroke-dasharray: 57;
+        stroke-dashoffset: 57;
+    }
+    .btn-radio input {
+        display: none;
+    }
+    .btn-radio input:checked + svg path {
+        transition: all 0.4s ease;
+    }
+    .btn-radio input:checked + svg path.inner {
+        stroke-dashoffset: 38;
+        transition-delay: 0.3s;
+    }
+    .btn-radio input:checked + svg path.outer {
+        stroke-dashoffset: 0;
+    }
+    span {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: .8em;
+        color: #949494;
+        margin-left: 5px;
+    }
+}
+
+.btn-primary {
+    width: 112px;
+    font-size: .7em;
+    text-align: center;
+    color: #fff;
+    background-color: #0937FF;
+    background-image: linear-gradient(-85deg, #051C80, #0937FF);
+    border-color: #051C80;
+    border: 0px;
+    border-radius: 5px;
+    padding: 11px;
+    height: 47px;
+    text-indent: -4px;
+    
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+}
+.btn-sec {
+    border: 0px;
+    border-radius: 5px;
+    width: 112px;
+    font-size: .7em;
+    text-align: center;
+    color: #fff;
+    background: #ff437d; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #ff437d 1%, #802222 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #ff437d 1%,#802222 100%); /* Chrome10
+    5,Safari5.1-6 */
+    background: linear-gradient(135deg, #ff437d 1%,#802222 100%); 
+    padding: 11px;
+    height: 47px;
+    float: right;
+    &:focus {
+        outline: none;
+        box-shadow: none;
+        }
+}
+
+@media screen and (max-width: 1280px) {
+
+    .avatar-frame {
+        width: 90px;
+        height: 90px;
+        > i {
+            font-size: 80px;
+            margin: 0 auto;
+            margin-left: 4px;
+        }
+    }
+    .avatar-frame .edit-button{
+        right: -15px;
+        top: -13px;
+    }
+    .modal-card{
+        padding: 3.5%;
+    }
+    .buttons {
+        padding: 1em 3em;
     }
 }

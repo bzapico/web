@@ -1,55 +1,112 @@
-<div>
-  <div class="container-fluid">
-    <div class="row">
-      <p>modal view</p>
-
-      <div class="card nalej-form-container">
-        <!-- Title -->
-        <h3 class="nalej-form-title">Info user</h3>
-
-        <div class="avatar-frame">
-            <i class="material-icons">person</i>
-        </div>
-        <!-- Form container -->
-        <form #f="ngForm" class="nalej-form">
-          <!-- Form fields -->
-          <div class="nalej-form-field">
-            <input 
-            [(ngModel)]="name" 
-            name="name" 
-            type="text" 
-            placeholder="Name" 
-            required>
-          </div>
-          <div class="nalej-form-field">
-              <input 
-              [(ngModel)]="organization" 
-              name="organization" 
-              type="text" 
-              placeholder="Organization" 
-              required>
-            </div>
-          <div class="nalej-form-field">
-            <input 
-            [(ngModel)]="email" 
-            name="email" 
-            type="text" 
-            placeholder="Email" 
-            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"
-            required>
-          </div>
-          <!-- Form actions -->
-          <div>
-            <button class="btn btn-primary btn-md nalej-form-button" [disabled]="!f.valid">
-              Resset Password
-            </button>
-            <button class="btn btn-primary btn-md nalej-form-button">
-              Delete User
-            </button>
-          </div>
-        </form>
-      </div>
-
+<div class="modal-background"></div>
+<div class="modal-card">
+  <h3 class="nalej-form-title">Info user</h3>
+  <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  <div class="avatar-frame">
+    <button class="edit-button">
+      <i class="material-icons">
+        edit
+      </i>
+    </button>
+    <i class="material-icons">person</i>
+  </div>
+  <form #f="ngForm" class="form-user">
+    <div class="form-group">
+      <input 
+      [(ngModel)]="name" 
+      name="name" 
+      type="text" 
+      class="form-control" 
+      placeholder="Name" 
+      required>
+      <input 
+      [(ngModel)]="organization" 
+      name="organization" 
+      type="text" 
+      class="form-control" 
+      placeholder="Organization"
+      required>
+      <input 
+      [(ngModel)]="email" 
+      name="email" 
+      type="text" 
+      class="form-control" 
+      placeholder="Email" 
+      pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"
+      required>
     </div>
+  </form>
+  <div class="roles">
+    <h4>Roles*</h4>
+    <!-- <div class="btn-group">
+      <div class="btn-group">
+        <label class="btn" [(ngModel)]="radioModel" btnRadio="Admin" tabindex="0" role="button">
+          Admin
+        </label>
+        <label class="btn" [(ngModel)]="radioModel" btnRadio="Operator" tabindex="0" role="button">
+          Operator
+        </label>
+        <label class="btn " [(ngModel)]="radioModel" btnRadio="Developer" tabindex="0" role="button">
+          Developer
+        </label>
+        <div class="btn-group" btnRadioGroup [(ngModel)]="radioModel">
+          <label class="btn btn-success" btnRadio="Left" tabindex="0" r ole="button">
+            <input type="radio" value="1">
+          </label>
+          <label class="btn btn-success" btnRadio="Middle" tabindex="0" role="button">
+            Middle
+          </label>
+          <label class="btn btn-success" btnRadio="Right" tabindex="0" role="button">
+            Right
+          </label>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="cntr">
+      <label for="rdo-1" class="btn-radio">
+        <input type="radio" id="rdo-1" name="radio-grp">
+        <svg width="20px" height="20px" viewBox="0 0 20 20">
+          <circle cx="10" cy="10" r="9"></circle>
+          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"
+            class="inner"></path>
+          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"
+            class="outer"></path>
+        </svg>
+        <span>Admin</span>
+      </label>
+      <label for="rdo-2" class="btn-radio">
+        <input type="radio" id="rdo-2" name="radio-grp">
+        <svg width="20px" height="20px" viewBox="0 0 20 20">
+          <circle cx="10" cy="10" r="9"></circle>
+          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"
+            class="inner"></path>
+          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"
+            class="outer"></path>
+        </svg>
+        <span>Operator</span>
+      </label>
+      <label for="rdo-3" class="btn-radio">
+        <input type="radio" id="rdo-3" name="radio-grp">
+        <svg width="20px" height="20px" viewBox="0 0 20 20">
+          <circle cx="10" cy="10" r="9"></circle>
+          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"
+            class="inner"></path>
+          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"
+            class="outer"></path>
+        </svg>
+        <span>Developer</span>
+      </label>
+    </div>
+  </div>
+  <div class="buttons fixed-bottom">
+    <button class="btn btn-primary btn-md mb-2">
+      Resset Password
+    </button>
+    <button class="btn btn-sec btn-md  mb-2">
+      Delete User
+    </button>
   </div>
 </div>
