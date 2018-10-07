@@ -1,14 +1,15 @@
 .org-panel{
-    padding: 56px 75px 106px 75px;
+    //  padding: 56px 75px 106px 75px;
+    padding: 4%;
+    height: 100vh;
+
 }
-.img-frame {
-    margin: 0 auto;
-    display: table;
-    i {
-        color: #949494;
-        margin: 0 auto;
-        font-size: 143px;
-    }
+// .comp-header {
+//     padding: 41px 73px 0;
+// }
+.row-st{
+    // height: 32vh;
+    margin-bottom: 37px;
 }
 .card {
     -webkit-box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
@@ -16,67 +17,57 @@
     box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
     border-radius: 10px;
     border: 0;
-    padding: 36px;
-    margin: 0 10px 40px 0;
-    overflow: hidden;
+    overflow: scroll;
 }
 .card-header {
     background: none;
 }
 .card-title {
     text-transform: uppercase;
-    margin-bottom: 40px;
 }
-.btn-primary {
-    width: 257px;
-    color: #fff;
-    background-color: #0937FF;
-    background-image: linear-gradient(-85deg, #051C80, #0937FF);
-    border-color: #051C80;
-    border: 0px;
-    border-radius: 5px;
+.card-resume {
+ padding: 20px 0;
+}
+.panel-card{    
+    height: 100%;
+    padding: 4%;
     
-    &:focus {
-      outline: none;
-      box-shadow: none;
+}
+.img-frame {
+    margin: 0 auto;
+    display: table;
+    margin-bottom: 10px;
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    img {
+        width: 100%;
+    }
+    i {
+        color: #949494;
+        margin: 0 auto;
+        font-size: 8rem;
     }
 }
-.btn-group-lg > .btn, .btn-lg {
-    padding: 15px;
-    font-size: 14px;
-}
-.role, .subscription, .subs-plan {
-    color:  #0937FF !important;
+.companyname {
+    font-size: .9em;
+    text-align: center;
 }
 .subscription {
-    font-size: 10px;
+    font-size: .6em;
     text-align: center;
     display: block;
 }
 .users{
     color: #949494;
-    font-size: 12px;
+    font-size: .7em;
     text-align: center;
     display: block;
-}
-.companyname {
-    font-size: 14px;   
-    text-align: center;
-}
-.checksub{
-    font-size: 14px; 
-    color: #949494;  
-    text-align: center;
-    margin-bottom: 50px;
-    margin-top: 113px;
-}
-.subs-plan,  .material-icons{
-    text-align: center;
+
 }
 .table {
     td {
-      padding: 27px 0px;
-      vertical-align: top;
+      vertical-align: middle;
       border-top: 1px solid #dee2e6;
       color: #949494;
     }
@@ -87,29 +78,53 @@
     tbody tr:first-child td {
       border: none;
     }
+    .row-name {
+        width: 20%;
+    }
+    .row-role {
+        width: 30%;
+    }
+    .row-email {
+        width: 45%;
+    }
+    .row-info {
+        width: 5%;
+    }
+}
+.role, .subscription, .subs-plan {
+    color:  #0937FF !important;
+}
+.checksub{
+    font-size: .9em;
+    color: #949494;  
+    text-align: center;
+    margin-bottom: 0px;
 }
 .info-btn {
     height: 32px;
     width:32px;
     border-radius: 50%;
-    font-size: 18px;
+    font-size: 1em;
+}
+.card-subs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .subs-v {
     height: 87px;
     width:87px;
     border-radius: 50%;
-    font-size: 18px;
+    font-size: 1em;
     text-align: center;
-    margin: 45px auto;
-    padding: 30px;
-
+    margin: 0 auto;
     i {
-        font-size: 40px;
-        margin: -8px -6px;
+        font-size: 2.2em;
+        margin: 25px;
     }
 }
-.panel-card{    
-    height: 590px;
+.subs-plan {
+    text-align: center;
 }
 .subs-btn{
     display: none;
@@ -117,22 +132,38 @@
 button {
     margin: 0 auto;
 }
-.row-name {
-    width: 20%;
-}
-.row-email {
-    width: 45%;
-}
-.row-role {
-    width: 30%;
-}
-.row-info {
-    width: 5%;
-}
-// .add-user {
-//     margin: 0 auto;
-//     width: 257px;
-// }
-.page {
-    padding: 41px 73px 0;
+
+@media screen and (max-width:1300px){
+    table tr {
+        font-size: .7em;
+    }
+    .row-st {
+        max-height: 206px;
+        margin-bottom: 24px;
+    }
+    .img-frame {
+        width: 80px;
+        height: 80px;
+    }
+    .row-st {
+        height: 26vh;
+    }
+    h5 {
+        font-size: 0.7em;
+    }
+    h2{
+        font-size: 1.5rem;
+    }
+    .info-btn {
+        height: 25px;
+        width: 25px;
+    }
+    .subs-v {
+        height: 70px;
+        width: 70px;
+    }
+    .subs-v i {
+        margin: 18px;
+    }
+
 }
