@@ -1,75 +1,140 @@
-<div class="container-fluid org-panel">
-  <h2 class="comp-header">Organization</h2>
-  <!-- Organization info -->
-  <div class="row row-st">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="card justify-content-center card-resume">
-        <div class="img-frame">
-          <img src="../assets/images/group.png" alt="company-pic">
-          <!-- <i class="material-icons">group_work</i> -->
-        </div>
-        <h3 class="companyname">Nike corp.</h3>
-        <span class="subscription">Premium subscription active</span>
-        <span class="users">15 users</span>
+<!-- Component title -->
+<div class="row row-title mb-4">
+  <div class="col-lg-12">
+    <h2>Organization</h2>
+  </div>
+</div>
+<!-- Organization info card -->
+<div class="row row-info mb-5">
+  <div class="col-lg-12 h-100">
+    <div class="card py-3 h-100">
+      <div class="hidden-img-fix"></div>
+      <div class="company-img">
+        <img 
+          class="p-2 d-lg-block d-sm-none d-xs-none" src="../assets/images/group.png" 
+          alt="company-pic">
+      </div>
+      <div class="company-info text-center my-2">
+        <h3 class="company-name">Nike corp.</h3>
+        <span class="subscription blue">Premium subscription active</span>
+        <span class="users d-block">15 users</span>
       </div>
     </div>
   </div>
-
-  <!-- Members panel -->
-  <div class="row row-nd">
-    <div class="col-lg-8 col-md-8 col-sm-12">
-      <div class="card panel-card">
-        <h5 class="card-title">Members</h5>
+</div>
+<!-- Members panel card-->
+<div class="row row-main">
+  <div class="col-lg-8 col-md-8 col-sm-12 h-100">
+    <div class="card h-100 p-4">
+      <div class="card-title-h">
+        <h5 class="text-uppercase">Members</h5>
+      </div>
+      <div class="table-h">
         <table class="table table-responsive">
           <thead>
             <tr>
-              <th scope="col" class="row-name">Name</th>
-              <th scope="col" class="row-role">Role</th>
-              <th scope="col" class="row-email">Email</th>
-              <th scope="col" class="row-info"></th>
+              <th 
+                scope="col" 
+                class="row-name">
+                Name
+              </th>
+              <th 
+                scope="col" 
+                class="row-role">
+                Role
+              </th>
+              <th 
+                scope="col" 
+                class="row-email">
+                Email
+              </th>
+              <th 
+                scope="col" 
+                class="row-info-btn">
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Jonh Doe</td>
-              <td class="role">Owner</td>
+              <td class="blue">Owner</td>
               <td>john.doe@mail.com</td>
-              <td><button class="btn info-btn btn-primary"><span class="i-info">i</span></button></td>
+              <td>
+                <button class="btn info-btn btn-primary">
+                  <span class="i-info">i</span>
+                </button>
+              </td>
             </tr>
             <tr>
               <td>Jonh Doe</td>
-              <td class="role">Owner</td>
+              <td class="blue">Owner</td>
               <td>john.doe@mail.com</td>
-              <td><button class="btn info-btn btn-primary"><span class="i-info">i</span></button></td>
+              <td>
+                <button class="btn info-btn btn-primary">
+                  <span class="i-info">i</span>
+                </button>
+              </td>
             </tr>
             <tr>
               <td>Jonh Doe</td>
-              <td class="role">Owner</td>
+              <td class="blue">Owner</td>
               <td>john.doe@mail.com</td>
-              <td><button class="btn info-btn btn-primary"><span class="i-info">i</span></button></td>
+              <td>
+                <button class="btn info-btn btn-primary">
+                  <span class="i-info">i</span>
+                </button>
+              </td>
             </tr>
             <tr>
               <td>Jonh Doe</td>
-              <td class="role">Owner</td>
+              <td class="blue">Owner</td>
               <td>john.doe@mail.com</td>
-              <td><button class="btn info-btn btn-primary"><span class="i-info">i</span></button></td>
+              <td>
+                <button class="btn info-btn btn-primary">
+                  <span class="i-info">i</span>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Jonh Doe</td>
+              <td class="blue">Owner</td>
+              <td>john.doe@mail.com</td>
+              <td>
+                <button class="btn info-btn btn-primary">
+                  <span class="i-info">i</span>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Jonh Doe</td>
+              <td class="blue">Owner</td>
+              <td>john.doe@mail.com</td>
+              <td>
+                <button class="btn info-btn btn-primary">
+                  <span class="i-info">i</span>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
-        <button class="btn btn-lg btn-primary add-user">Add user</button>
+        <div class="no-elements">
+          <p class="d-none">There are not elements in this list</p>
+        </div>
+      </div>
+      <div class="mx-auto btn-h m-3 mt-5">
+        <button class="btn btn-lg btn-primary align-bottom">Add user</button>
       </div>
     </div>
-
-    <!-- Subscription panel -->
-    <div class="col-lg-4 col-md-4 col-sm-12">
-      <div class="card panel-card card-subs">
-        <h5 class="card-title">Subscription</h5>
-        <div class="btn-primary subs-v">
-          <i class="material-icons">check</i></div>
-        <h2 class="subs-plan">Free</h2>
-        <p class="checksub">Check all our subscription modes and payments</p>
-        <button class="btn btn-lg btn-primary subs-btn">Change subscription</button>
-      </div>
+  </div>
+  <!-- Subscription panel card -->
+  <div class="col-lg-4 col-md-4 col-sm-12 h-100">
+    <div class="card subs-card h-100 p-4">
+      <h5 class="text-uppercase">Subscription</h5>
+      <div class="btn-primary subs-v">
+        <i class="material-icons">check</i></div>
+      <h2 class="text-center blue">Free</h2>
+      <p class="subs-check text-center">Check all our subscription modes and payments</p>
+      <button class="btn btn-lg btn-primary d-none">Change subscription</button>
     </div>
   </div>
 </div>

@@ -1,15 +1,14 @@
-.org-panel{
-    //  padding: 56px 75px 106px 75px;
-    padding: 4%;
-    height: 100vh;
-
+.blue {
+    color:  #0937FF !important;
 }
-// .comp-header {
-//     padding: 41px 73px 0;
-// }
-.row-st{
-    // height: 32vh;
-    margin-bottom: 37px;
+.row-title{
+    height: 4%;
+}
+.row-info{
+    height: 25%
+}
+.row-main{
+    height: 57%;
 }
 .card {
     -webkit-box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
@@ -17,51 +16,42 @@
     box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
     border-radius: 10px;
     border: 0;
-    overflow: scroll;
 }
-.card-header {
-    background: none;
+.hidden-img-fix {
+    height: 32%; 
 }
-.card-title {
-    text-transform: uppercase;
-}
-.card-resume {
- padding: 20px 0;
-}
-.panel-card{    
-    height: 100%;
-    padding: 36px 28px;
-}
-.img-frame {
+.company-img {
     margin: 0 auto;
-    display: table;
-    margin-bottom: 10px;
-    width: 112px;
-    height: 112px;
+    height: 50%;
     border-radius: 50%;
     img {
-        width: 100%;
-    }
-    i {
-        color: #949494;
-        margin: 0 auto;
-        font-size: 8rem;
+        height: 100%;
     }
 }
-.companyname {
-    font-size: .9em;
-    text-align: center;
+.company-name {
+    font-size: 1em;
+}
+.company-info {
+    height: 43%;
 }
 .subscription {
-    font-size: .6em;
-    text-align: center;
-    display: block;
+    font-size: .8em;
 }
 .users{
     color: #949494;
-    font-size: .7em;
-    text-align: center;
-    display: block;
+    font-size: .8em;
+}
+.card-title-h{
+    height: 4%;
+    margin-left: 9px;
+    margin-bottom: 8%;
+}
+.table-h{
+    height: 80%;
+    overflow: scroll;
+}
+.btn-h{
+    height: 9%;
 }
 .table {
     td {
@@ -70,7 +60,6 @@
       color: #949494;
     }
     thead th {
-      border: none;
       border: none;
     }
     tbody tr:first-child td {
@@ -89,15 +78,7 @@
         width: 5%;
     }
 }
-.role, .subscription, .subs-plan {
-    color:  #0937FF !important;
-}
-.checksub{
-    font-size: .9em;
-    color: #949494;  
-    text-align: center;
-    margin-bottom: 0px;
-}
+
 .info-btn {
     height: 32px;
     width:32px;
@@ -110,7 +91,7 @@
     top: 5px;
     left: 13px;
 }
-.card-subs{
+.subs-card{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -127,33 +108,16 @@
         margin: 25px;
     }
 }
-.subs-plan {
-    text-align: center;
+.subs-check {
+    font-size: .9em;
+    color: #949494;  
 }
-.subs-btn{
-    display: none;
-}
-button {
-    margin: 0 auto;
-}
-
-@media screen and (max-width:1300px){
+@media screen and (max-width:1500px){
     table tr {
-        font-size: .7em;
-    }
-    .row-st {
-        max-height: 206px;
-        margin-bottom: 24px;
-    }
-    .img-frame {
-        width: 80px;
-        height: 80px;
-    }
-    .row-st {
-        height: 26vh;
+        font-size: .8em;
     }
     h5 {
-        font-size: 0.7em;
+        font-size: 0.8em;
     }
     h2{
         font-size: 1.5rem;
@@ -173,6 +137,12 @@ button {
         font-size: 1em;
         top: 2px;
         left: 10px;
+    }
+    .company-img{
+        display: none;
+    }
+    .hidden-img-fix {
+        height: 17%;
     }
 
 }

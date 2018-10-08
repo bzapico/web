@@ -1,14 +1,9 @@
 .main-view {
     background-color:#F5F5F5;
-    position:         relative;
-    float:            right;
-    width:            calc(100% - 313px);
-    padding-left:0px;
-    padding-right:0px;
+    position: relative;
+    float: right;
+    width: calc(100% - 313px);
     height: 100vh;
-}
-.nalej-bg {
-    background-color: #F5F5F5;
 }
 .sidebar {
     position: fixed;
@@ -24,6 +19,5 @@
     padding-right: 0;
     padding-left: 0;
 }
-
 
 
