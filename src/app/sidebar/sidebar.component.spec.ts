@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SidebarComponent } from './sidebar.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ModalModule, BsModalService } from 'ngx-bootstrap';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
@@ -9,9 +10,13 @@ describe('SidebarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        ModalModule.forRoot(),
         RouterTestingModule
       ],
-      declarations: [ SidebarComponent ]
+      declarations: [ SidebarComponent ],
+      providers: [
+        BsModalService
+      ]
     })
     .compileComponents();
   }));
