@@ -30,8 +30,7 @@
 }
 .panel-card{    
     height: 100%;
-    padding: 4%;
-    
+    padding: 36px 28px;
 }
 .img-frame {
     margin: 0 auto;
@@ -63,7 +62,6 @@
     font-size: .7em;
     text-align: center;
     display: block;
-
 }
 .table {
     td {
@@ -104,12 +102,18 @@
     height: 32px;
     width:32px;
     border-radius: 50%;
-    font-size: 1em;
+    position: relative;
+}
+.i-info{
+    font-size: 1.2em;
+    position: absolute;
+    top: 5px;
+    left: 13px;
 }
 .card-subs{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .subs-v {
     height: 87px;
@@ -164,6 +168,11 @@ button {
     }
     .subs-v i {
         margin: 18px;
+    }
+    .i-info{
+        font-size: 1em;
+        top: 2px;
+        left: 10px;
     }
 
 }
