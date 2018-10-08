@@ -5,10 +5,11 @@
     height: 4%;
 }
 .row-info{
-    height: 25%
+    height: 29%;
+    margin-bottom: 2.2rem;
 }
 .row-main{
-    height: 57%;
+    height: 54%;
 }
 .card {
     -webkit-box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
@@ -19,20 +20,20 @@
 }
 .hidden-img-fix {
     height: 32%; 
+    display: none;
 }
 .company-img {
-    margin: 0 auto;
     height: 50%;
     border-radius: 50%;
+    display: block;
     img {
-        height: 100%;
+        height: 112px;
+        width: 112px;
+       
     }
 }
 .company-name {
     font-size: 1em;
-}
-.company-info {
-    height: 43%;
 }
 .subscription {
     font-size: .8em;
@@ -91,11 +92,11 @@
     top: 5px;
     left: 13px;
 }
-.subs-card{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+// .subs-card{
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+// }
 .subs-v {
     height: 87px;
     width:87px;
@@ -142,7 +143,20 @@
         display: none;
     }
     .hidden-img-fix {
-        height: 17%;
+        height: 11%;
+    }
+    .hidden-img-fix {
+        display: block;
     }
 
+}
+@media screen and (max-height:920px){
+
+    .company-img {
+        display: none;
+        height: 0;
+    }
+    .company-img img{
+        display: none;
+    }
 }
