@@ -74,7 +74,7 @@ export class AuthService {
         console.log(error); // TODO: substitute with notification service messaging system
       });
   }
-  
+
   /**
    * Helper function that checks if the user is authenticated assesting if JWT Token is valid
    */
