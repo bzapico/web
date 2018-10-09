@@ -139,7 +139,7 @@
 }
 .logout-btn {
     width:112px;
-    padding: 0.7em;
+    font-size: .8em;
     color: #fff;
     background: #ff437d; /* Old browsers */
     background: -moz-linear-gradient(-45deg, #ff437d 0%, #802222 100%); /* FF3.6-15 */
@@ -155,7 +155,7 @@
 }
 .logout {
     position: fixed;
-    bottom: 0;
+    bottom: 26px;
 }
 .lo-btn {
     position: relative;
