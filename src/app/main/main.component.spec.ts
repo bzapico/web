@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { OrganizationComponent } from '../organization/organization.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ModalModule, BsModalService } from 'ngx-bootstrap';
+import { AuthService } from '../services/auth.service';
 
 describe('MainComponent', () => {
   let component: MainComponent;
@@ -21,7 +22,8 @@ describe('MainComponent', () => {
         RouterTestingModule
       ],
       providers: [
-        BsModalService
+        BsModalService,
+        AuthService
       ]
     })
     .compileComponents();

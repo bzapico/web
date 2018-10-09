@@ -5,6 +5,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DebugPanelComponent } from '../debug-panel/debug-panel.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -30,7 +31,8 @@ export class SidebarComponent implements OnInit {
   constructor(
     backendService: BackendService,
     mockupBackendService: MockupBackendService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private auth: AuthService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.sidebarMock) || null;
     // check which backend is required (fake or real)
@@ -68,5 +70,12 @@ export class SidebarComponent implements OnInit {
   openDebugPanel() {
     this.modalRef = this.modalService.show(DebugPanelComponent);
     this.modalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+   * Cleans the credentials and leads to login page
+   */
+  logout() {
+    this.auth.logout();
   }
 }
