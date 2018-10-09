@@ -12,7 +12,7 @@ import { OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss'],
   providers: [ NotificationsComponent ]
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'nalej';
   modalRef: BsModalRef;
 

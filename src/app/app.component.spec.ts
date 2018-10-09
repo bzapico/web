@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { OrganizationComponent } from './organization/organization.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 
 describe('AppComponent', () => {
@@ -25,9 +26,11 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         ReactiveFormsModule,
-        RouterModule
+        RouterModule,
+        AlertModule,
+        ModalModule.forRoot()
       ],
-      providers: []
+      providers: [BsModalService]
     }).compileComponents();
   }));
   it('should create the app', async(() => {
