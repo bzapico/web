@@ -1,18 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
-$nalejcolor: #0937FF;
-
-$colors: (
-  primary: #0937FF,
-  light: #949494
-);
-
-@function colors($colors-name){
-  @return map-get($colors, $colors-name)
-}
-
 *{
   font-family: 'Aldrich', sans-serif;
+}
 
+.btn-primary {
+  width: 257px;
+  color: #fff;
+  background-color: #0937FF;
+  background-image: linear-gradient(-85deg, #051C80, #0937FF);
+  border-color: #051C80;
+  border: 0px;
+  border-radius: 5px;
+  
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+button[type="submit"]:disabled {
+  background: #949494; /* Old browsers */
+  background: -moz-linear-gradient(left, #949494 0%, #444444 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #949494 0%,#444444 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #949494 0%,#444444 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#949494', endColorstr='#444444',GradientType=1 ); /* IE6-9 */
+}
+.btn-group-lg > .btn, .btn-lg {
+  // margin-top: 58px;
+  padding: 15px;
+  font-size: 14px;
 }
