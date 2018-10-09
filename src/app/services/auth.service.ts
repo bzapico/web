@@ -70,6 +70,7 @@ export class AuthService {
         // remove JWT token from local storage to log user out
         localStorage.removeItem(LocalStorageKeys.jwt);
         localStorage.removeItem(LocalStorageKeys.jwtData);
+        this.router.navigate(['login']);
       }, error => {
         console.log(error); // TODO: substitute with notification service messaging system
       });
