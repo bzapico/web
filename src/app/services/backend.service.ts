@@ -16,4 +16,7 @@ export class BackendService implements Backend {
   logout() {
     throw new Error('Method not implemented.');
   }
+  getUserProfileInfo(userId: string) {
+    throw new Error('Method not implemented.');
+  }
 }

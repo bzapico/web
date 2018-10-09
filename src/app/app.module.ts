@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { OrganizationComponent } from './organization/organization.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { UserInfoComponent } from './user-info/user-info.component';
     SidebarComponent,
     MainComponent,
     LoginComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    OrganizationComponent
   ],
   entryComponents: [DebugPanelComponent],
   imports: [

@@ -15,7 +15,8 @@ export const AvailableComponents = {
   organization: 'Organization',
   resources: 'Resources',
   apps: 'Apps',
-  profile: 'Profile'
+  profile: 'Profile',
+  sidebar: 'Sidebar'
 };
 
 @Component({
@@ -54,6 +55,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.profile,
       mock: localStorage.getItem(LocalStorageKeys.profileMock) === 'false' ? 'false' : 'true'
     });
+    this.components.push({
+      name: AvailableComponents.sidebar,
+      mock: localStorage.getItem(LocalStorageKeys.sidebarMock) === 'false' ? 'false' : 'true'
+    });
   }
 
   /**
@@ -77,6 +82,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.profile:
         localStorage.setItem(LocalStorageKeys.profileMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.sidebar:
+        localStorage.setItem(LocalStorageKeys.sidebarMock, componentMockOption.mock);
       break;
       default:
         console.log('Selected option not registered as available component');

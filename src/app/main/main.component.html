@@ -1,15 +1,13 @@
-<div class="container-fluid">
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <nalej-sidebar></nalej-sidebar>
+<!-- Sidebar -->
+<div class="sidebar">
+  <nalej-sidebar></nalej-sidebar>
+</div>
+
+<!-- Main content panel -->
+<div class="container-fluid main-view">
+  <div class="row h-100">
+    <div class="col-lg-12 p-5">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-  <!-- Main content panel -->
-  <!-- <div class="container-fluid"> -->
-  <div class="col-lg-12 px-0 main-view">
-    <main class="main-content nalej-bg">
-      <router-outlet name="main"></router-outlet>
-      <user-info></user-info>
-    </main>
-  </div>
-  <!-- </div> -->
 </div>
