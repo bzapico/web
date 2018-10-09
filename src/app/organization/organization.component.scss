@@ -57,7 +57,7 @@
 .table {
     td {
       vertical-align: middle;
-      border-top: 1px solid #dee2e6;
+      border-top: 0.8px solid #EEEEEE;
       color: #949494;
     }
     thead th {
@@ -89,8 +89,8 @@
 .i-info{
     font-size: 1.2em;
     position: absolute;
-    top: 5px;
-    left: 13px;
+    top: 6px;
+    left: 7px;
 }
 // .subs-card{
 //     display: flex;
@@ -136,8 +136,8 @@
     }
     .i-info{
         font-size: 1em;
-        top: 2px;
-        left: 10px;
+        top: 4px;
+        left: 5px;
     }
     .company-img{
         display: none;
