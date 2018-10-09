@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
-import { mockJwtToken } from '../utils/mocks';
+import { mockJwtToken, mockUserProfileInfo } from '../utils/mocks';
 
 
 
@@ -34,6 +34,20 @@ export class MockupBackendService implements Backend {
    */
   logout() {
     return of (new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+  /**
+   * Simulates get profile info
+   * @param userId String containing the user identificator - used to replicate expected backend behavior
+   */
+  getUserProfileInfo(userId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({
+        name: mockUserProfileInfo.name,
+        email: mockUserProfileInfo.email,
+        role: mockUserProfileInfo.role
+      }),
       status: 200
     })));
   }

@@ -6,17 +6,27 @@ import { Routes, RouterModule, provideRoutes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { AuthGuard } from './guards/auth.guard';
+import { OrganizationComponent } from './organization/organization.component';
 
 const appRoutes: Routes = [
     {
-        path: '',
-        component: MainComponent,
-        canActivate: [AuthGuard]
-
-    },
-    {
         path: 'login',
         component: LoginComponent
+    },
+    {
+        path: '',
+        component: MainComponent,
+        canActivate: [AuthGuard],
+        children: [{
+            path: 'organization',
+            component: OrganizationComponent,
+            canActivate: [AuthGuard]
+        }]
+    },
+    {
+        path: '',
+        redirectTo: 'organization',
+        pathMatch: 'full'
     },
     // otherwise redirect to home
     {
@@ -25,5 +35,5 @@ const appRoutes: Routes = [
     }
 ];
 
-export const routes: ModuleWithProviders = RouterModule.forRoot(appRoutes, {useHash: true});
+export const routes: ModuleWithProviders = RouterModule.forRoot(appRoutes, { useHash: true });
 

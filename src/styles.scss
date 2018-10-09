@@ -1,27 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "~bootstrap/dist/css/bootstrap.css";
-//  @import '../assets/scss/_reboot.scss';
-@import '~node_modules/bootstrap/scss/bootstrap';.alert-title {
-    font-weight: bold;
-}
-@font-face {
-  font-family: 'Aldrich';
-  src: '../assets/fonts/Aldrich-Regular.ttf';
-}
-@font-face {
-  font-family: 'Open Sans';
-  src: '../assets/fonts/OpenSans-Regular.ttf';
-}
-$nalejcolor: #0937FF;
-$colors: (
-  primary: #0937FF,
-  light: #949494
-);
-@function colors($colors-name){
-  @return map-get($colors, $colors-name)
-}
-
 *{
   font-family: 'Aldrich', sans-serif;
 }

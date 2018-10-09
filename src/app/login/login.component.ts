@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(response => {
         this.router.navigate([
-          '/'
+          '/organization'
         ]);
       }, error => console.log(error));
   }

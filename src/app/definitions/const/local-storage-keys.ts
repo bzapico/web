@@ -6,5 +6,7 @@ export const LocalStorageKeys = {
     profileMock: 'profile_mock',
     notificationsMock: 'notifications_mock',
     jwt: 'jwt',
-    jwtData: 'jwt_data'
+    jwtData: 'jwt_data',
+    sidebarMock: 'sidebar_mock',
+    userId: 'userId'
 };

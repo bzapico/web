@@ -1,7 +1,7 @@
 <div class="sidebar">
   <nav class="sidebar-nav">
     <ul class="nav">
-      <li class="nav-title">Nalej</li>
+      <li class="nav-title" (click)="openDebugPanel()">Nalej</li>
       <li class="nav-item">
         <a 
         routerLinkActive="active" 
@@ -11,9 +11,9 @@
             <div class="avatar-frame">
                 <i class="material-icons">person</i>
             </div>
-            <p class="name">John Doe</p>
-            <p class="type">Owner</p>
-            <p class="email">john.doe@mail.com</p>
+            <p class="name">{{name}}</p>
+            <p class="type">{{role}}</p>
+            <p class="email">{{email}}</p>
           </div>
         </a>
       </li>

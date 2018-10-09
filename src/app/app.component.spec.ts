@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { OrganizationComponent } from './organization/organization.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 
@@ -18,7 +19,8 @@ describe('AppComponent', () => {
         MainComponent,
         LoginComponent,
         SidebarComponent,
-        NotificationsComponent
+        NotificationsComponent,
+        OrganizationComponent,
       ],
       imports: [
         RouterTestingModule,
