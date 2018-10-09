@@ -30,7 +30,9 @@ import { OrganizationComponent } from './organization/organization.component';
     UserInfoComponent,
     OrganizationComponent
   ],
-  entryComponents: [DebugPanelComponent],
+  entryComponents: [
+    DebugPanelComponent,
+    UserInfoComponent],
   imports: [
     BrowserModule,
     FormsModule,

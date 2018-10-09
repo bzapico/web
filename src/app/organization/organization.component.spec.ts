@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OrganizationComponent } from './organization.component';
+import { ButtonsModule, BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 describe('OrganizationComponent', () => {
   let component: OrganizationComponent;
@@ -8,7 +10,15 @@ describe('OrganizationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrganizationComponent ]
+      declarations: [ OrganizationComponent ],
+      imports: [
+        FormsModule,
+        ButtonsModule,
+        ModalModule.forRoot(),
+      ],
+      providers: [
+        BsModalRef,
+        BsModalService]
     })
     .compileComponents();
   }));

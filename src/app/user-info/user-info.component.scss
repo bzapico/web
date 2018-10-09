@@ -1,26 +1,36 @@
-.modal-background{
-    height: 100%;
-    width: 100%;
-    background-color: rgba($color: #000000, $alpha: 0.2);
-    position: absolute;
-    z-index: 10;
+.modal {
+    top: 15% !important;
+}
+.modal-dialog {
+    max-width: 500px;
+    margin: 14em auto;
+}
+.modal-content {
+    border: 0;
 }
 .modal-card {
-    max-width: 501px;
-    max-height: 706px;
-    width: 30%;
-    height: 70%;
-    background-color: #fff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
     border-radius: 10px;
-    position: absolute;
-    top: 50%;
-    // left: calc(50% - 313px) ;
-    left: 40%;
-    z-index: 11;
-    transform: translateX(-50%);
-    transform: translateY(-50%);
-    padding: 4.5%;
-    min-height: 150px;
+    background-clip: padding-box;
+    border: 0;
+    border-radius: 10px;
+    outline: 0;
+    padding: 4rem;
+}
+.modal-header {
+    border: none;
+}
+.modal-header {
+    padding-bottom: 0;
+}
+.close {
+    &:focus {
+        outline: none;
+    }
 }
 .nalej-form-title{
     font-size: 1em;
@@ -29,30 +39,26 @@
        color: #888888;
     }
 }
-.buttons {
-    padding: 5em;
-}
 .avatar-frame {
     border: 2px solid #707070;
     margin: 0 auto;
-    width: 118px;
-    height: 118px;
+    width: 112px;
+    height: 112px;
     position: relative;
-    -webkit-border-radius: 50%;
-    /* Saf3+, Chrome */
     border-radius: 50%;
-    /* Opera 10.5, IE 9 */
+
     > i {
         font-size: 100px;
         margin: 0 auto;
-        margin-left: 6px;
+        margin-left: 4px;
+        color:#707070;
     }
     .edit-button {       
         right: 0;
         position: absolute;
         top: 0;
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
         background-color: #0937FF;
         background-image: linear-gradient(-85deg, #051C80, #0937FF);
@@ -70,15 +76,20 @@
 .form-group {
     margin: 40px 0;
 }
-
 input {
     padding: 21px;
     border: 2px solid #EEEEEE;
     color: #949494;
     text-align: center;
     caret-color: #0937FF;
-    margin: -2px;
+    margin: -3px 0;
     font-size: .9em;
+    &:checked {
+        outline: none;
+    }
+}
+input::placeholder {
+    color:#949494;
 }
 .roles {
     h4 {
@@ -93,8 +104,6 @@ input {
     .btn-radio {
         cursor: pointer;
         display: inline-block;
-        // float: left;
-        -webkit-user-select: none;
         user-select: none;
     }
     .btn-radio:not(:first-child) {
@@ -156,17 +165,9 @@ input {
 .btn-primary {
     width: 112px;
     font-size: .7em;
-    text-align: center;
-    color: #fff;
-    background-color: #0937FF;
-    background-image: linear-gradient(-85deg, #051C80, #0937FF);
-    border-color: #051C80;
-    border: 0px;
-    border-radius: 5px;
     padding: 11px;
     height: 47px;
     text-indent: -4px;
-    
     &:focus {
       outline: none;
       box-shadow: none;
@@ -190,11 +191,10 @@ input {
     &:focus {
         outline: none;
         box-shadow: none;
-        }
+    }
 }
 
-@media screen and (max-width: 1280px) {
-
+@media screen and (max-width: 1300px) {
     .avatar-frame {
         width: 90px;
         height: 90px;
@@ -209,7 +209,7 @@ input {
         top: -13px;
     }
     .modal-card{
-        padding: 3.5%;
+        padding: 3em;
     }
     .buttons {
         padding: 1em 3em;

@@ -1,70 +1,52 @@
-<div class="modal-background"></div>
 <div class="modal-card">
-  <h3 class="nalej-form-title">Info user</h3>
-  <button type="button" class="close" aria-label="Close">
+  <!-- Header -->
+  <div class="modal-header">
+    <h3 class="nalej-form-title">Info user1</h3>
+    <button 
+      type="button" 
+      class="close" 
+      aria-label="Close"
+      (click)="bsModalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
-  <div class="avatar-frame">
-    <button class="edit-button">
-      <i class="material-icons">
-        edit
-      </i>
-    </button>
-    <i class="material-icons">person</i>
   </div>
-  <form #f="ngForm" class="form-user">
-    <div class="form-group">
-      <input 
-      [(ngModel)]="name" 
-      name="name" 
-      type="text" 
-      class="form-control" 
-      placeholder="Name" 
-      required>
-      <input 
-      [(ngModel)]="organization" 
-      name="organization" 
-      type="text" 
-      class="form-control" 
-      placeholder="Organization"
-      required>
-      <input 
-      [(ngModel)]="email" 
-      name="email" 
-      type="text" 
-      class="form-control" 
-      placeholder="Email" 
-      pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"
-      required>
+  <!-- Body -->
+  <div class="modal-body">
+    <div class="avatar-frame">
+      <button class="edit-button">
+        <i class="material-icons">edit</i>
+      </button>
+      <i class="material-icons">person</i>
     </div>
-  </form>
-  <div class="roles">
-    <h4>Roles*</h4>
-    <!-- <div class="btn-group">
-      <div class="btn-group">
-        <label class="btn" [(ngModel)]="radioModel" btnRadio="Admin" tabindex="0" role="button">
-          Admin
-        </label>
-        <label class="btn" [(ngModel)]="radioModel" btnRadio="Operator" tabindex="0" role="button">
-          Operator
-        </label>
-        <label class="btn " [(ngModel)]="radioModel" btnRadio="Developer" tabindex="0" role="button">
-          Developer
-        </label>
-        <div class="btn-group" btnRadioGroup [(ngModel)]="radioModel">
-          <label class="btn btn-success" btnRadio="Left" tabindex="0" r ole="button">
-            <input type="radio" value="1">
-          </label>
-          <label class="btn btn-success" btnRadio="Middle" tabindex="0" role="button">
-            Middle
-          </label>
-          <label class="btn btn-success" btnRadio="Right" tabindex="0" role="button">
-            Right
-          </label>
-        </div>
+    <form #f="ngForm" class="form-user">
+      <div class="form-group">
+        <input 
+          [(ngModel)]="name" 
+          name="name" 
+          type="text" 
+          class="form-control" 
+          placeholder="Name" 
+          required>
+        <input 
+          [(ngModel)]="organization" 
+          name="organization" 
+          type="text" 
+          class="form-control" 
+          placeholder="Organization"
+          required>
+        <input 
+          [(ngModel)]="email" 
+          name="email" 
+          type="text" 
+          class="form-control" 
+          placeholder="Email" 
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"
+          required>
       </div>
-    </div> -->
-
+    </form>
+  <!-- Roles radio buttons -->
+  <div class="roles py-4">
+    <h4>Roles*</h4>
     <div class="cntr">
       <label for="rdo-1" class="btn-radio">
         <input type="radio" id="rdo-1" name="radio-grp">
@@ -101,12 +83,14 @@
       </label>
     </div>
   </div>
-  <div class="buttons fixed-bottom">
-    <button class="btn btn-primary btn-md mb-2">
+  <!-- Option buttons -->
+  <div class="buttons">
+    <button class="btn btn-primary btn-md">
       Resset Password
     </button>
-    <button class="btn btn-sec btn-md  mb-2">
+    <button class="btn btn-sec btn-md">
       Delete User
     </button>
+  </div>
   </div>
 </div>
