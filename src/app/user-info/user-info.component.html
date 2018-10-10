@@ -21,6 +21,7 @@
     <form #f="ngForm" class="form-user">
       <div class="form-group">
         <input 
+          disabled
           [(ngModel)]="name" 
           name="name" 
           type="text" 
@@ -28,6 +29,7 @@
           placeholder="Name" 
           required>
         <input 
+          disabled
           [(ngModel)]="organization" 
           name="organization" 
           type="text" 
@@ -35,6 +37,7 @@
           placeholder="Organization"
           required>
         <input 
+          disabled
           [(ngModel)]="email" 
           name="email" 
           type="text" 
@@ -60,7 +63,7 @@
         <span class="align-bottom">Admin</span>
       </label>
       <label for="rdo-2" class="btn-radio">
-        <input type="radio" id="rdo-2" name="radio-grp">
+        <input disabled type="radio" id="rdo-2" name="radio-grp">
         <svg width="20px" height="20px" viewBox="0 0 20 20">
           <circle cx="10" cy="10" r="9"></circle>
           <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"
@@ -71,7 +74,7 @@
         <span class="align-bottom">Operator</span>
       </label>
       <label for="rdo-3" class="btn-radio">
-        <input type="radio" id="rdo-3" name="radio-grp">
+        <input disabled type="radio" id="rdo-3" name="radio-grp">
         <svg width="20px" height="20px" viewBox="0 0 20 20">
           <circle cx="10" cy="10" r="9"></circle>
           <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"
@@ -84,7 +87,7 @@
     </div>
   </div>
   <!-- Option buttons -->
-  <div class="buttons">
+  <div class="buttons d-flex flex-row justify-content-between">
     <button class="btn btn-primary btn-md">
       <span class="align-bottom">Resset Password</span>
     </button>

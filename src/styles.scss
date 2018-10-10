@@ -4,7 +4,7 @@
 *{
   font-family: 'Aldrich', sans-serif;
 }
-
+/* Button styles */
 .btn-primary {
   width: 257px;
   color: #fff;
@@ -24,10 +24,39 @@ button[type="submit"]:disabled {
   background: -moz-linear-gradient(left, #949494 0%, #444444 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(left, #949494 0%,#444444 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to right, #949494 0%,#444444 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#949494', endColorstr='#444444',GradientType=1 ); /* IE6-9 */
 }
 .btn-group-lg > .btn, .btn-lg {
-  // margin-top: 58px;
   padding: 15px;
   font-size: 14px;
+}
+
+/* User-component modal view */
+.modal {
+  top: 17vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-dialog {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.modal-content {
+  border: 0;
+  border-radius: 10px;
+}
+@media screen and (max-height: 800px) {
+  .modal {
+    top: 0 !important;
+  }
+  .modal-card {
+    padding: 3rem !important;
+  }
+  .modal-dialog {
+    max-width: 475px;
+    margin: 2vh auto;
+  }
+  .buttons {
+    padding: 0 !important;
+}
 }

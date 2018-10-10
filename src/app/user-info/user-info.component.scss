@@ -1,22 +1,4 @@
-.modal {
-    top: 15% !important;
-}
-.modal-dialog {
-    max-width: 500px;
-    margin: 14em auto;
-}
-.modal-content {
-    border: 0;
-    border-radius: 10px;
-}
 .modal-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    pointer-events: auto;
-    border-radius: 10px;
-    background-clip: padding-box;
     border: 0;
     border-radius: 10px;
     outline: 0;
@@ -68,6 +50,9 @@
             color: white;
         }
     }
+}
+.form-control:disabled, .form-control[readonly] {
+   background-color: white; 
 }
 .form-user {
     position: relative;
@@ -198,6 +183,9 @@ input {
         box-shadow: none;
     }
 }
+.buttons {
+    padding: 1em 0;
+}
 
 @media screen and (max-width: 1300px) {
     .avatar-frame {
@@ -215,8 +203,5 @@ input {
     }
     .modal-card{
         padding: 3em;
-    }
-    .buttons {
-        padding: 1em 3em;
     }
 }
