@@ -26,5 +26,3 @@ export class BackendService implements Backend {
     throw new Error('Method not implemented.');
   }
 }
-
-}
