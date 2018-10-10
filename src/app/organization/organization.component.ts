@@ -10,7 +10,7 @@ import { NotificationsService } from '../services/notifications.service';
 export class OrganizationComponent implements OnInit {
 
   constructor(
-    private notSer: NotificationsService
+    private notificationService: NotificationsService
   ) { }
 
   ngOnInit() {
@@ -20,10 +20,10 @@ export class OrganizationComponent implements OnInit {
    * Opens the notifications service view that holds the notifications component
    */
   addUser() {
-    this.notSer.add({
+    this.notificationService.add({
       message: 'This option is not available at this moment',
       type: 'info',
-      timeout: 5000});
+      });
   }
 
 }

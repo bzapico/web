@@ -46,6 +46,7 @@ html, body{
   .alert-message {
     -ms-word-wrap: break-word;
     word-wrap: break-word;
+    padding: 1em;
     a, label {
       color: #ffffff;
     }
@@ -53,6 +54,10 @@ html, body{
       color: #949494;
       text-decoration: none;
     }
+  }
+  .alert-dismissible .close {
+    padding: 1rem 1.2em;
+    outline: none;
   }
   
   .alert-close-button {
@@ -88,7 +93,7 @@ html, body{
       position: relative;
       overflow: hidden;
       margin: 0 0 6px;
-      padding: 15px 15px 15px 50px;
+      padding: 17px 15px 15px 50px;
       // width: 700px;
       border: 0px;
       -moz-border-radius: 10px 10px 10px 10px;
@@ -169,7 +174,7 @@ html, body{
   .alert-icon {
     position: absolute;
     left: 1em;
-    top: auto;
+    top: 1em;
     font-weight: normal;
     color: #ffffffba;
   }
