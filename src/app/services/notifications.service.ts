@@ -23,8 +23,6 @@ export class NotificationsService {
   */
 
   add(notificationInstance: Notification) {
-    notificationInstance.id = this.uuidv4();
-    console.log(notificationInstance);
     this._notifications.push(notificationInstance);
   }
 
@@ -38,9 +36,10 @@ export class NotificationsService {
    * onClosed() will show close button to the right of the alert for dismiss option
    */
   onClosed(dismissedNotification) {
+    console.log(dismissedNotification);
     const index = this._notifications.map(x => x.id).indexOf(dismissedNotification.id);
     if (index !== -1) {
-      this._notifications.splice(index);
+      this._notifications.splice(index, 1);
     }
   }
 

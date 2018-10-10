@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { NotificationsService } from '../services/notifications.service';
-import { mockNotification } from '../utils/mocks';
 
 /**
  * Interface for the objects that will be listed in the debug panel
@@ -113,9 +112,10 @@ export class DebugPanelComponent implements OnInit {
    */
   spamNotification(): void {
     this.notificationsService.add({
+      id: this.notificationsService.uuidv4(),
       message: 'Test notification',
       type: 'info',
-      timeout: 5000
+      timeout: 1000
     });
   }
 
