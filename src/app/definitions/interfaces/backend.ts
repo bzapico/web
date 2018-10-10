@@ -5,4 +5,5 @@ export interface Backend {
     logout();
     getUserProfileInfo(userId: string);
     getOrganizationInfo(organizationId: string);
+    getOrganizationUsers(organizationId: string);
 }

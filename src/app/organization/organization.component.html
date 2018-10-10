@@ -15,9 +15,9 @@
           alt="company-pic">
       </div>
       <div class="company-info text-center my-2">
-        <h3 class="company-name my-2">Nike corp.</h3>
-        <span class="subscription blue">Premium subscription active</span>
-        <span class="users d-block">15 users</span>
+        <h3 class="company-name my-2">{{organizationName}}</h3>
+        <span class="subscription blue">{{subscriptionType}}</span>
+        <span class="users d-block">{{usersCount}}</span>
       </div>
     </div>
   </div>
@@ -30,7 +30,9 @@
         <h5 class="text-uppercase">Members</h5>
       </div>
       <div class="table-h">
-        <table class="table ">
+        <table 
+          *ngIf="usersCount > 0"
+          class="table">
           <thead>
             <tr>
               <th 
@@ -55,78 +57,80 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Jonh Doe</td>
-              <td class="blue">Owner</td>
-              <td>john.doe@mail.com</td>
-              <td>
-                <button class="btn info-btn btn-primary">
-                  <i class="material-icons i-info">
-                    edit
-                  </i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Jonh Doe</td>
-              <td class="blue">Owner</td>
-              <td>john.doe@mail.com</td>
-              <td>
-                <button class="btn info-btn btn-primary">
+            <div *ngFor="let user of users">
+              <tr>
+                <td>Jonh Doe</td>
+                <td class="blue">Owner</td>
+                <td>john.doe@mail.com</td>
+                <td>
+                  <button class="btn info-btn btn-primary">
                     <i class="material-icons i-info">
-                        edit
-                      </i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Jonh Doe</td>
-              <td class="blue">Owner</td>
-              <td>john.doe@mail.com</td>
-              <td>
-                <button class="btn info-btn btn-primary">
-                    <i class="material-icons i-info">
-                        edit
-                      </i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Jonh Doe</td>
-              <td class="blue">Owner</td>
-              <td>john.doe@mail.com</td>
-              <td>
-                <button class="btn info-btn btn-primary">
-                    <i class="material-icons i-info">
-                        edit
-                      </i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Jonh Doe</td>
-              <td class="blue">Owner</td>
-              <td>john.doe@mail.com</td>
-              <td>
-                <button class="btn info-btn btn-primary">
-                    <i class="material-icons i-info">
-                        edit
-                      </i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Jonh Doe</td>
-              <td class="blue">Owner</td>
-              <td>john.doe@mail.com</td>
-              <td>
-                <button class="btn info-btn btn-primary">
-                    <i class="material-icons i-info">
-                        edit
-                      </i>
-                </button>
-              </td>
-            </tr>
+                      edit
+                    </i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Jonh Doe</td>
+                <td class="blue">Owner</td>
+                <td>john.doe@mail.com</td>
+                <td>
+                  <button class="btn info-btn btn-primary">
+                      <i class="material-icons i-info">
+                          edit
+                        </i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Jonh Doe</td>
+                <td class="blue">Owner</td>
+                <td>john.doe@mail.com</td>
+                <td>
+                  <button class="btn info-btn btn-primary">
+                      <i class="material-icons i-info">
+                          edit
+                        </i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Jonh Doe</td>
+                <td class="blue">Owner</td>
+                <td>john.doe@mail.com</td>
+                <td>
+                  <button class="btn info-btn btn-primary">
+                      <i class="material-icons i-info">
+                          edit
+                        </i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Jonh Doe</td>
+                <td class="blue">Owner</td>
+                <td>john.doe@mail.com</td>
+                <td>
+                  <button class="btn info-btn btn-primary">
+                      <i class="material-icons i-info">
+                          edit
+                        </i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Jonh Doe</td>
+                <td class="blue">Owner</td>
+                <td>john.doe@mail.com</td>
+                <td>
+                  <button class="btn info-btn btn-primary">
+                      <i class="material-icons i-info">
+                          edit
+                        </i>
+                  </button>
+                </td>
+              </tr>
+            </div>
           </tbody>
         </table>
         <div class="no-elements">
