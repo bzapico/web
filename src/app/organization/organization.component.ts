@@ -16,11 +16,10 @@ export class OrganizationComponent implements OnInit {
    */
   backend: Backend;
   /**
-   * Models that hold organization name, subscription type, users list and number of users
+   * Models that hold organization name, subscription type and the users list
    */
   organizationName: string;
   subscriptionType: string;
-  usersCount: number;
   users: any[];
 
 
@@ -38,7 +37,7 @@ export class OrganizationComponent implements OnInit {
     }
     this.organizationName = 'Loading...';
     this.subscriptionType = 'Free subscription';
-    this.usersCount = 0;
+    this.users = [];
   }
 
   ngOnInit() {
@@ -50,14 +49,15 @@ export class OrganizationComponent implements OnInit {
           .subscribe(response => {
             if (response && response._body) {
               const data = JSON.parse(response._body);
-              this.organizationName = data.organizationName;
+              this.organizationName = data.name;
             }
           });
         this.backend.getOrganizationUsers(organizationId)
           .subscribe(response => {
             if (response && response._body) {
               const data = JSON.parse(response._body);
-              this.users = data.users;
+              console.log(data);
+              this.users = data;
             }
           });
       }

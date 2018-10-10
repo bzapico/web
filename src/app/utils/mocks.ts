@@ -9,3 +9,40 @@ export const mockUserProfileInfo = {
     email: 'john.doe@mail.com',
     role: 'Owner'
 };
+
+export const mockOrganizationInfo = {
+    name: 'Nike'
+};
+
+export const mockUserList = [
+    {
+        name: 'John Doe',
+        email: 'johndoe@mail.com',
+        role: 'Owner'
+    },
+    {
+        name: 'John Doe',
+        email: 'johndoe@mail.com',
+        role: 'Owner'
+    },
+    {
+        name: 'John Doe',
+        email: 'johndoe@mail.com',
+        role: 'Owner'
+    },
+    {
+        name: 'John Doe',
+        email: 'johndoe@mail.com',
+        role: 'Owner'
+    },
+    {
+        name: 'John Doe',
+        email: 'johndoe@mail.com',
+        role: 'Owner'
+    },
+    {
+        name: 'John Doe',
+        email: 'johndoe@mail.com',
+        role: 'Owner'
+    },
+];
