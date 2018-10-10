@@ -22,7 +22,6 @@ export class OrganizationComponent implements OnInit {
   subscriptionType: string;
   users: any[];
 
-<<<<<<< HEAD
 
 
   constructor(
@@ -40,9 +39,6 @@ export class OrganizationComponent implements OnInit {
     this.subscriptionType = 'Free subscription';
     this.users = [];
   }
-=======
-  constructor() {}
->>>>>>> 190aded7b18fd00baa41e494eaeee032cef5ca39
 
   ngOnInit() {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
