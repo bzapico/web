@@ -17,6 +17,12 @@ export class UserInfoComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
+  /**
+   * Models that hold user name, organization company name and user email
+   */
+  userName: string;
+  organizationCompanyName: string;
+  userEmail: string;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -30,10 +36,33 @@ export class UserInfoComponent implements OnInit {
       } else {
         this.backend = backendService;
       }
+      this.userName = 'John Doe';
+      this.organizationCompanyName = 'Nike. Org';
+      this.userEmail = 'john@doe.com';
 
      }
 
   ngOnInit() {
+    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+    if (jwtData !== null) {
+      const userInfoMock = JSON.parse(jwtData).userInfoMock;
+      if (userInfoMock !== null) {
+        this.backend. getUserInfo(userInfoMock)
+          .subscribe(response => {
+            if (response && response._body) {
+              const data = JSON.parse(response._body);
+              this.organizationCompanyName = data.organizationCompanyName;
+            }
+          });
+        this.backend. getUserInfo(userInfoMock)
+          .subscribe(response => {
+            if (response && response._body) {
+              const data = JSON.parse(response._body);
+              this.userName = data.userName;
+            }
+          });
+      }
+    }
   }
 
 }
