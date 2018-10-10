@@ -46,4 +46,9 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
+
+  getOrganizationInfo(organizationId: string) {
+    throw new Error('Method not implemented.');
+  }
+
 }
