@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { NotificationsService } from '../services/notifications.service';
+import { mockNotification } from '../utils/mocks';
 
 /**
  * Interface for the objects that will be listed in the debug panel
@@ -33,7 +35,10 @@ export class DebugPanelComponent implements OnInit {
   components: ComponentMockOption[] = [];
   notificationsMock: any;
 
-  constructor(public bsModalRef: BsModalRef) {
+  constructor(
+    public bsModalRef: BsModalRef,
+    private notificationsService: NotificationsService
+    ) {
     this.notificationsMock = (localStorage.getItem(LocalStorageKeys.notificationsMock) === 'true' ? true : false);
    }
 
@@ -101,6 +106,10 @@ export class DebugPanelComponent implements OnInit {
         console.log('Selected option not registered as available component');
     }
 
+  }
+
+  spamNotification(): void {
+    this.notificationsService.add(mockNotification);
   }
 
 }

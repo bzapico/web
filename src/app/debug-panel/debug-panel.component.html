@@ -15,6 +15,7 @@
 </div>
 <!-- Body -->
 <div class="modal-body">
+  <h5 class="mb-3">Backend control</h5>
   <div *ngIf="components.length">
     <div
       class="row"
@@ -46,6 +47,12 @@
       </div>
     </div>
   </div>
+  <hr/>
+  <h5 class="mb-3">Notifications</h5>
+  <div 
+    class="btn btn-outline-primary offset-6"
+    (click)="spamNotification()"
+    >Spam test notification</div>
 </div>
 <!-- Footer -->
 <div class="modal-footer">
