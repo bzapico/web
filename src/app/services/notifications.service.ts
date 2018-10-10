@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-
 export interface Notification {
   message: string;
   type?: string;
@@ -16,7 +15,12 @@ export class NotificationsService {
 
   constructor() {
     this._notifications = [];
+    // this._notifications.push({message: 'This option is not available at this moment', type: 'warning',  timeout: 5000});
    }
+
+  /**
+  * add()
+  */
 
   add(notificationInstance: Notification) {
 
@@ -31,12 +35,13 @@ export class NotificationsService {
   get notifications() {
     return this._notifications;
   }
+  /**
+   * onClosed() will show close button to the right of the alert for dismiss option
+   */
 
   onClosed(dismissedNotifications) {
     console.log(dismissedNotifications);
 
   }
-
-
 
 }
