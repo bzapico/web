@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { NotificationsService } from '../services/notifications.service';
 
 /**
  * Interface for the objects that will be listed in the debug panel
@@ -16,6 +17,7 @@ export const AvailableComponents = {
   resources: 'Resources',
   apps: 'Apps',
   profile: 'Profile',
+  notifications: 'Notifications',
   sidebar: 'Sidebar'
 };
 
@@ -30,8 +32,14 @@ export class DebugPanelComponent implements OnInit {
    * List of components available to mock up
    */
   components: ComponentMockOption[] = [];
+  notificationsMock: any;
 
-  constructor(public bsModalRef: BsModalRef) { }
+  constructor(
+    public bsModalRef: BsModalRef,
+    private notificationsService: NotificationsService
+    ) {
+    this.notificationsMock = (localStorage.getItem(LocalStorageKeys.notificationsMock) === 'true' ? true : false);
+   }
 
   ngOnInit() {
     // Load values from localStorage and populate options list
@@ -54,6 +62,10 @@ export class DebugPanelComponent implements OnInit {
     this.components.push({
       name: AvailableComponents.profile,
       mock: localStorage.getItem(LocalStorageKeys.profileMock) === 'false' ? 'false' : 'true'
+    });
+    this.components.push({
+      name: AvailableComponents.notifications,
+      mock: localStorage.getItem(LocalStorageKeys.notificationsMock) === 'false' ? 'false' : 'true'
     });
     this.components.push({
       name: AvailableComponents.sidebar,
@@ -83,6 +95,9 @@ export class DebugPanelComponent implements OnInit {
       case AvailableComponents.profile:
         localStorage.setItem(LocalStorageKeys.profileMock, componentMockOption.mock);
       break;
+      case AvailableComponents.notifications:
+        localStorage.setItem(LocalStorageKeys.notificationsMock, componentMockOption.mock);
+      break;
       case AvailableComponents.sidebar:
         localStorage.setItem(LocalStorageKeys.sidebarMock, componentMockOption.mock);
       break;
@@ -90,6 +105,18 @@ export class DebugPanelComponent implements OnInit {
         console.log('Selected option not registered as available component');
     }
 
+  }
+
+  /**
+   * Adds a new notification to notificationsService list so it can be displayed on screen
+   */
+  spamNotification(): void {
+    this.notificationsService.add({
+      id: this.notificationsService.uuidv4(),
+      message: 'Test notification',
+      type: 'info',
+      timeout: 1000
+    });
   }
 
 }
