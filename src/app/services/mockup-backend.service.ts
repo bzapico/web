@@ -4,12 +4,17 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { mockJwtToken, mockUserProfileInfo } from '../utils/mocks';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class MockupBackendService implements Backend {
 
-  constructor() { }
+
+  constructor() {
+
+  }
 
   /**
    * Simulates the login request
