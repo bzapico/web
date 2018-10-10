@@ -46,4 +46,8 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
+
+  getUserInfo(userInfoMock: string) {
+    throw new Error('Method not implemented.');
+  }
 }

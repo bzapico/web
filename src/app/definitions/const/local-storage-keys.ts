@@ -7,5 +7,6 @@ export const LocalStorageKeys = {
     jwt: 'jwt',
     jwtData: 'jwt_data',
     sidebarMock: 'sidebar_mock',
-    userId: 'userId'
+    userId: 'userId',
+    userInfoMock: 'userInfo_mock'
 };
