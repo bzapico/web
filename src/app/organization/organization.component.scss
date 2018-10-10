@@ -49,7 +49,7 @@
 }
 .table-h{
     height: 80%;
-    overflow: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 }
 .btn-h{
@@ -93,11 +93,6 @@
     top: 6px;
     left: 7px;
 }
-// .subs-card{
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-between;
-// }
 .subs-v {
     height: 87px;
     width:87px;
@@ -113,6 +108,11 @@
 .subs-check {
     font-size: .9em;
     color: #949494;  
+}
+.no-elements {
+    height: 80%;
+    text-align: center;
+    padding-top: 2em;
 }
 @media screen and (max-width:1500px){
     table tr {

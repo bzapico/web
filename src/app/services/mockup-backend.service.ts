@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
-import { mockJwtToken, mockUserProfileInfo } from '../utils/mocks';
+import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo } from '../utils/mocks';
 
 
 
@@ -51,4 +51,19 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
+
+  getOrganizationInfo(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockOrganizationInfo),
+      status: 200
+    })));
+  }
+
+  getOrganizationUsers(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockUserList),
+      status: 200
+    })));
+  }
+
 }

@@ -17,16 +17,17 @@ const appRoutes: Routes = [
         path: '',
         component: MainComponent,
         canActivate: [AuthGuard],
-        children: [{
-            path: 'organization',
-            component: OrganizationComponent,
-            canActivate: [AuthGuard]
+        children: [
+            {
+                path: '',
+                redirectTo: 'organization',
+                pathMatch: 'full'
+            },
+            {
+                path: 'organization',
+                component: OrganizationComponent,
+                canActivate: [AuthGuard]
         }]
-    },
-    {
-        path: '',
-        redirectTo: 'organization',
-        pathMatch: 'full'
     },
     // otherwise redirect to home
     {
