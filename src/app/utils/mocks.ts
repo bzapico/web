@@ -9,9 +9,3 @@ export const mockUserProfileInfo = {
     email: 'john.doe@mail.com',
     role: 'Owner'
 };
-
-export const mockNotification = {
-    message: 'Test notification',
-    type: 'info',
-    timeout: 2500
-};

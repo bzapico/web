@@ -108,8 +108,15 @@ export class DebugPanelComponent implements OnInit {
 
   }
 
+  /**
+   * Adds a new notification to notificationsService list so it can be displayed on screen
+   */
   spamNotification(): void {
-    this.notificationsService.add(mockNotification);
+    this.notificationsService.add({
+      message: 'Test notification',
+      type: 'info',
+      timeout: 5000
+    });
   }
 
 }

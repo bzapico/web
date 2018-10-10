@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 export interface Notification {
+  id?: string;
   message: string;
   type?: string;
   timeout?: number;
@@ -15,33 +16,44 @@ export class NotificationsService {
 
   constructor() {
     this._notifications = [];
-    // this._notifications.push({message: 'This option is not available at this moment', type: 'warning',  timeout: 5000});
-   }
+  }
 
   /**
   * add()
   */
 
   add(notificationInstance: Notification) {
+    notificationInstance.id = this.uuidv4();
+    console.log(notificationInstance);
+    this._notifications.push(notificationInstance);
+  }
 
-    if (this._notifications.length < 5) {
-      this.notifications.push(notificationInstance);
-    } else if (this._notifications.length === 5) {
-      this.notifications.push(notificationInstance);
-      this.notifications.shift();
-      }
-    }
-
+  /**
+   * Get notifications list
+   */
   get notifications() {
     return this._notifications;
   }
   /**
    * onClosed() will show close button to the right of the alert for dismiss option
    */
+  onClosed(dismissedNotification) {
+    const index = this._notifications.map(x => x.id).indexOf(dismissedNotification.id);
+    if (index !== -1) {
+      this._notifications.splice(index);
+    }
+  }
 
-  onClosed(dismissedNotifications) {
-    console.log(dismissedNotifications);
-
+  /**
+   * Generates UUID v4
+   * https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+   */
+  uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      // tslint:disable-next-line:no-bitwise
+      const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
   }
 
 }
