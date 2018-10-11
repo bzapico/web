@@ -72,11 +72,11 @@ export class UserInfoComponent implements OnInit {
               this.userId = data.email;
             }
           });
-          this.backend.getOrganizationUsers(this.userId)
+          this.backend.getOrganizationInfo(this.userId)
           .subscribe(response => {
             if (response && response._body) {
               const data = JSON.parse(response._body);
-              this.organizationCompanyName = mockOrganizationInfo.name;
+              this.organizationCompanyName = data.name;
             }
           });
       }
