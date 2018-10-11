@@ -151,38 +151,24 @@ input {
         margin-left: 5px;
       }
 }
-
-.btn-primary {
-    width: 120px;
-    font-size: 0.8em;
-    padding: 11px;
-    height: 47px;
-    text-indent: -7px;
-    &:focus {
-      outline: none;
-      box-shadow: none;
-    }
-}
-.btn-sec {
+.btn-md {
     border: 0px;
     border-radius: 5px;
     width: 120px;
     font-size: 0.8em;
     text-align: center;
     color: #fff;
-    background: #ff437d; /* Old browsers */
-    background: -moz-linear-gradient(-45deg, #ff437d 1%, #802222 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #ff437d 1%,#802222 100%); /* Chrome10
-    5,Safari5.1-6 */
-    background: linear-gradient(135deg, #ff437d 1%,#802222 100%); 
     padding: 11px;
     height: 47px;
-    float: right;
     &:focus {
         outline: none;
         box-shadow: none;
     }
 }
+.btn-primary {
+    text-indent: -7px;
+}
+
 .buttons {
     padding: 1em 0;
 }
