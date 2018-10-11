@@ -4,7 +4,7 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { UserRoles } from '../definitions/const/user-roles';
+import { mockOrganizationInfo } from '../utils/mocks';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -36,8 +36,6 @@ export class UserInfoComponent implements OnInit {
   organizationCompanyName: string;
   userId: string;
   role: string;
-  roles: Array<string>;
-
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -51,10 +49,10 @@ export class UserInfoComponent implements OnInit {
       } else {
         this.backend = backendService;
       }
-      this.title = 'Info User1';
-      this.userName = 'John Doe';
-      this.organizationCompanyName = 'Nike. Org';
-      this.userId = 'john@doe.com';
+      this.title = 'Info User';
+      this.userName = 'Loading ...'; // Default initialization
+      this.organizationCompanyName = 'Loading ...'; // Default initialization
+      this.userId = 'Loading ...'; // Default initialization
       this.buttonDeleteUser = 'Delete User';
       this.buttonRessetPassword = 'Resset Password';
      }
@@ -63,18 +61,22 @@ export class UserInfoComponent implements OnInit {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       const jwtJson = JSON.parse(jwtData);
-      // if (jwtJson.userId) {
         this.userId = jwtJson.UserId;
-      // }
-      // if (jwtJson.role) {
         this.role = jwtJson.Rolename;
-      // }
       if (this.userId !== null) {
         this.backend.getUserProfileInfo(this.userId)
           .subscribe(response => {
             if (response && response._body) {
               const data = JSON.parse(response._body);
               this.userName = data.name;
+              this.userId = data.email;
+            }
+          });
+          this.backend.getOrganizationUsers(this.userId)
+          .subscribe(response => {
+            if (response && response._body) {
+              const data = JSON.parse(response._body);
+              this.organizationCompanyName = mockOrganizationInfo.name;
             }
           });
       }
