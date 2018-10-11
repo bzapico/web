@@ -18,11 +18,24 @@ export class UserInfoComponent implements OnInit {
    */
   backend: Backend;
   /**
-   * Models that hold user name, organization company name and user email
+   * Dialog title
+   */
+  title: string;
+  /**
+   * Text for the resset password action button
+   */
+  buttonRessetPassword: string;
+  /**
+   * Text for the delete user action button
+   */
+  buttonDeleteUser: string;
+  /**
+   * Models that hold user name, organization company name, user email and role selection
    */
   userName: string;
   organizationCompanyName: string;
   userEmail: string;
+  roleSelected: string;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -36,10 +49,12 @@ export class UserInfoComponent implements OnInit {
       } else {
         this.backend = backendService;
       }
+      this.title = 'Info User1';
       this.userName = 'John Doe';
       this.organizationCompanyName = 'Nike. Org';
       this.userEmail = 'john@doe.com';
-
+      this.buttonDeleteUser = 'Delete User';
+      this.buttonRessetPassword = 'Resset Password';
      }
 
   ngOnInit() {
@@ -47,14 +62,14 @@ export class UserInfoComponent implements OnInit {
     if (jwtData !== null) {
       const userInfoMock = JSON.parse(jwtData).userInfoMock;
       if (userInfoMock !== null) {
-        this.backend. getUserInfo(userInfoMock)
+        this.backend.getUserInfo(userInfoMock)
           .subscribe(response => {
             if (response && response._body) {
               const data = JSON.parse(response._body);
               this.organizationCompanyName = data.organizationCompanyName;
             }
           });
-        this.backend. getUserInfo(userInfoMock)
+        this.backend.getUserInfo(userInfoMock)
           .subscribe(response => {
             if (response && response._body) {
               const data = JSON.parse(response._body);
@@ -63,6 +78,9 @@ export class UserInfoComponent implements OnInit {
           });
       }
     }
+  }
+  checkUserRole(radioButtonRole) {
+    this.roleSelected = radioButtonRole;
   }
 
 }

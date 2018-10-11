@@ -10,3 +10,12 @@ export const LocalStorageKeys = {
     userId: 'userId',
     userInfoMock: 'userInfo_mock'
 };
+
+/**
+ * Predefined user roles
+ */
+export const UserRoles = {
+    admin: 'Admin',
+    operator: 'Operator',
+    developer: 'Developer'
+};
