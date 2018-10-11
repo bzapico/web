@@ -83,7 +83,6 @@ export class UserInfoComponent implements OnInit {
     }
   }
   checkUserRole(buttonRole) {
-    console.log(this.role);
     if (buttonRole === this.role) {
       return true;
     }

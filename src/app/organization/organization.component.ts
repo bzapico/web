@@ -62,7 +62,6 @@ export class OrganizationComponent implements OnInit {
           .subscribe(response => {
             if (response && response._body) {
               const data = JSON.parse(response._body);
-              console.log(data);
               this.users = data;
             }
           });
