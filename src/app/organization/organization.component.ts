@@ -73,7 +73,11 @@ export class OrganizationComponent implements OnInit {
    * Opens the modal view that holds the user info component
    */
   openUserInfo() {
-    this.modalRef = this.modalService.show(UserInfoComponent);
+    const initialState = {
+      organizationName: this.organizationName
+    };
+
+    this.modalRef = this.modalService.show(UserInfoComponent, { initialState });
     this.modalRef.content.closeBtnName = 'Close';
   }
 

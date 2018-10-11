@@ -33,9 +33,10 @@ export class UserInfoComponent implements OnInit {
    * Models that hold user name, organization company name, user email/ID and role selection
    */
   userName: string;
-  organizationCompanyName: string;
+  organizationName: string;
   userId: string;
   role: string;
+
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -51,13 +52,13 @@ export class UserInfoComponent implements OnInit {
       }
       this.title = 'Info User';
       this.userName = 'Loading ...'; // Default initialization
-      this.organizationCompanyName = 'Loading ...'; // Default initialization
       this.userId = 'Loading ...'; // Default initialization
       this.buttonDeleteUser = 'Delete User';
       this.buttonRessetPassword = 'Resset Password';
      }
 
   ngOnInit() {
+    console.log(this.organizationName, 'log de organization');
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       const jwtJson = JSON.parse(jwtData);
@@ -70,13 +71,6 @@ export class UserInfoComponent implements OnInit {
               const data = JSON.parse(response._body);
               this.userName = data.name;
               this.userId = data.email;
-            }
-          });
-          this.backend.getOrganizationInfo(this.userId)
-          .subscribe(response => {
-            if (response && response._body) {
-              const data = JSON.parse(response._body);
-              this.organizationCompanyName = data.name;
             }
           });
       }

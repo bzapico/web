@@ -13,7 +13,7 @@
   <!-- Body -->
   <div class="modal-body">
     <div class="avatar-frame">
-      <button class="edit-button">
+      <button class="edit-button d-none">
         <i class="material-icons">edit</i>
       </button>
       <i class="material-icons">person</i>
@@ -30,7 +30,7 @@
           required>
         <input 
           disabled
-          [(ngModel)]="organizationCompanyName" 
+          [(ngModel)]="organizationName" 
           name="organization" 
           type="text" 
           class="form-control" 
@@ -38,7 +38,7 @@
           required>
         <input 
           disabled
-          [(ngModel)]="userEmail" 
+          [(ngModel)]="userId" 
           name="email" 
           type="text" 
           class="form-control" 
