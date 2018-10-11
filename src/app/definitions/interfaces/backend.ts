@@ -5,4 +5,6 @@ export interface Backend {
     logout();
     getUserProfileInfo(userId: string);
     getUserInfo(userInfoMock: string);
+    getOrganizationInfo(organizationId: string);
+    getOrganizationUsers(organizationId: string);
 }

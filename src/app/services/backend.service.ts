@@ -22,4 +22,10 @@ export class BackendService implements Backend {
   getUserInfo(userInfoMock: string) {
     throw new Error('Method not implemented.');
   }
+  getOrganizationInfo(organizationId: string) {
+    throw new Error('Method not implemented.');
+  }
+  getOrganizationUsers(organizationId: string) {
+    throw new Error('Method not implemented.');
+  }
 }

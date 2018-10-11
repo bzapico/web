@@ -1,17 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { NotificationsService } from './services/notifications.service';
+
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-
-
 export class AppComponent implements OnInit {
-  constructor() {
+  title = 'nalej';
+  modalRef: BsModalRef;
+
+  constructor(
+    private modalService: BsModalService,
+    private notificationsService: NotificationsService
+    ) {
+
   }
   ngOnInit(): void {
-    // So far we need mocked up views until we have the backend integration ready
-    // localStorage.setItem(LocalStorageKeys.loginMock, 'true');
+
   }
+
 }

@@ -15,9 +15,9 @@
           alt="company-pic">
       </div>
       <div class="company-info text-center my-2">
-        <h3 class="company-name my-2">Nike corp.</h3>
-        <span class="subscription blue">Premium subscription active</span>
-        <span class="users d-block">15 users</span>
+        <h3 class="company-name my-2">{{organizationName}}</h3>
+        <span class="subscription blue">{{subscriptionType}}</span>
+        <span class="users d-block">{{users.length}} users</span>
       </div>
     </div>
   </div>
@@ -30,7 +30,9 @@
         <h5 class="text-uppercase">Members</h5>
       </div>
       <div class="table-h">
-        <table class="table ">
+        <table 
+          *ngIf="users && users.length > 0"
+          class="table">
           <thead>
             <tr>
               <th 
@@ -55,70 +57,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Jonh Doe</td>
-              <td class="blue">Owner</td>
-              <td>john.doe@mail.com</td>
-              <td>
-                <button class="btn info-btn btn-primary" (click)="openUserInfo()">
-                  <i class="material-icons i-info">
-                    edit
-                  </i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Jonh Doe</td>
-              <td class="blue">Owner</td>
-              <td>john.doe@mail.com</td>
-              <td>
-                <button class="btn info-btn btn-primary" (click)="openUserInfo()">
-                  <i class="material-icons i-info">
-                    edit
-                  </i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Jonh Doe</td>
-              <td class="blue">Owner</td>
-              <td>john.doe@mail.com</td>
-              <td>
-                <button class="btn info-btn btn-primary" (click)="openUserInfo()">
-                  <i class="material-icons i-info">
-                    edit
-                  </i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Jonh Doe</td>
-              <td class="blue">Owner</td>
-              <td>john.doe@mail.com</td>
-              <td>
-                <button class="btn info-btn btn-primary" (click)="openUserInfo()">
-                  <i class="material-icons i-info">
-                    edit
-                  </i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Jonh Doe</td>
-              <td class="blue">Owner</td>
-              <td>john.doe@mail.com</td>
-              <td>
-                <button class="btn info-btn btn-primary" (click)="openUserInfo()">
-                  <i class="material-icons i-info">
-                    edit
-                  </i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Jonh Doe</td>
-              <td class="blue">Owner</td>
-              <td>john.doe@mail.com</td>
+            <tr *ngFor="let user of users">
+              <td>{{user.name}}</td>
+              <td class="blue">{{user.role}}</td>
+              <td>{{user.email}}</td>
               <td>
                 <button class="btn info-btn btn-primary" (click)="openUserInfo()">
                   <i class="material-icons i-info">
@@ -129,12 +71,14 @@
             </tr>
           </tbody>
         </table>
-        <div class="no-elements">
-          <p class="d-none">There are not elements in this list</p>
+        <div
+          *ngIf="users && users.length === 0"
+          class="no-elements d-flex justify-content-center align-items-center">
+          <p>There are not registered users in this organization<br>Click on "add user" button to start adding new users </p>
         </div>
       </div>
       <div class="mx-auto btn-h m-3 mt-5">
-        <button class="btn btn-lg btn-primary align-bottom">Add user</button>
+        <button class="btn btn-lg btn-primary align-bottom" (click)="addUser()">Add user</button>
       </div>
     </div>
   </div>

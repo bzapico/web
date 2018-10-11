@@ -2,14 +2,19 @@ import { Injectable } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
-import { mockJwtToken, mockUserProfileInfo } from '../utils/mocks';
+import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo } from '../utils/mocks';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MockupBackendService implements Backend {
 
-  constructor() { }
+
+  constructor() {
+
+  }
 
   /**
    * Simulates the login request
@@ -50,4 +55,18 @@ export class MockupBackendService implements Backend {
   getUserInfo(userInfoMock: string) {
     throw new Error('Method not implemented.');
   }
+  getOrganizationInfo(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockOrganizationInfo),
+      status: 200
+    })));
+  }
+
+  getOrganizationUsers(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockUserList),
+      status: 200
+    })));
+  }
+
 }
