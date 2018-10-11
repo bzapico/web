@@ -44,10 +44,8 @@ export class UserInfoComponent implements OnInit {
     backendService: BackendService,
     mockupBackendService: MockupBackendService,
     ) {
-      const mock = 'true';
-      //const mock = localStorage.getItem(LocalStorageKeys.userInfoMock) || null;
+      const mock = localStorage.getItem(LocalStorageKeys.userInfoMock) || null;
       // check which backend is required (fake or real)
-
       if (mock && mock === 'true') {
         this.backend = mockupBackendService;
       } else {
