@@ -52,9 +52,6 @@ export class MockupBackendService implements Backend {
     })));
   }
 
-  getUserInfo(userInfoMock: string) {
-    throw new Error('Method not implemented.');
-  }
   getOrganizationInfo(organizationId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockOrganizationInfo),

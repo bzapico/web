@@ -115,7 +115,7 @@ export class DebugPanelComponent implements OnInit {
       id: this.notificationsService.uuidv4(),
       message: 'Test notification',
       type: 'info',
-      timeout: 1000
+      timeout: 10000
     });
   }
 

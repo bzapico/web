@@ -12,12 +12,3 @@ export const LocalStorageKeys = {
     userInfoMock: 'userInfo_mock'
 };
 
-/**
- * Predefined user roles
- */
-export const UserRoles = {
-    admin: 'Admin',
-    operator: 'Operator',
-    developer: 'Developer',
-    userId: 'userId'
-};

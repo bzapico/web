@@ -45,7 +45,7 @@ button[type="submit"]:disabled {
   padding: 15px;
   font-size: 14px;
 }
-button.close:hover span{
+.alert > button.close:hover span{
     color:white;
 }
 
