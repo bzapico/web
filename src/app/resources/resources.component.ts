@@ -11,5 +11,10 @@ export class ResourcesComponent implements OnInit {
 
   ngOnInit() {
   }
+  /**
+   * Opens the modal view that holds the edit cluster component
+   */
+  editCluster() {
+  }
 
 }
