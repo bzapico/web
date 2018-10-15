@@ -1,0 +1,38 @@
+###
+# Web
+###
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    cluster: management
+    component: web
+  name: web
+  namespace: nalej
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      cluster: management
+      component: web
+  template:
+    metadata:
+      labels:
+        cluster: management
+        component: web
+    spec:
+      containers:
+      - name: web
+        image: nalej/web:VERSION
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http-port
+          containerPort: 80
+        - name: https-port
+          containerPort: 443
+        securityContext:
+          runAsUser: 2000
+      imagePullSecrets:
+      - name: myregistrykey
