@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private modalService: BsModalService,
-    private notificationsService: NotificationsService
+    public notificationsService: NotificationsService
     ) {
 
   }
