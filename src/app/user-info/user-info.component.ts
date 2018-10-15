@@ -58,7 +58,6 @@ export class UserInfoComponent implements OnInit {
      }
 
   ngOnInit() {
-    console.log(this.organizationName, 'log de organization');
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       const jwtJson = JSON.parse(jwtData);
