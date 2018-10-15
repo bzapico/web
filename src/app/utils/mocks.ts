@@ -47,6 +47,69 @@ export const mockUserList = [
     },
 ];
 
+export const mockClusterList = [
+    {
+        name: 'Cluster1',
+        id: '0800200c9a66',
+        nodes: '10',
+        description: 'Ny Cluster',
+        type: 'Kubernetes',
+        status: 'Running',
+        tags: 'ny, edge',
+        multitenant: 'All'
+    },
+    {
+        name: 'Cluster1',
+        id: '0800200c9a66',
+        nodes: '10',
+        description: 'Ny Cluster',
+        type: 'Kubernetes',
+        status: 'Running',
+        tags: 'ny, edge',
+        multitenant: 'All'
+    },
+    {
+        name: 'Cluster1',
+        id: '0800200c9a66',
+        nodes: '10',
+        description: 'Ny Cluster',
+        type: 'Kubernetes',
+        status: 'Running',
+        tags: 'ny, edge',
+        multitenant: 'All'
+    },
+    {
+        name: 'Cluster1',
+        id: '0800200c9a66',
+        nodes: '10',
+        description: 'Ny Cluster',
+        type: 'Kubernetes',
+        status: 'Running',
+        tags: 'ny, edge',
+        multitenant: 'All'
+    },
+    {
+        name: 'Cluster1',
+        id: '0800200c9a66',
+        nodes: '10',
+        description: 'Ny Cluster',
+        type: 'Kubernetes',
+        status: 'Error',
+        tags: 'ny, edge',
+        multitenant: 'No'
+    },
+    {
+        name: 'Cluster1',
+        id: '0800200c9a66',
+        nodes: '10',
+        description: 'Ny Cluster',
+        type: 'Kubernetes',
+        status: 'Running',
+        tags: 'ny, edge',
+        multitenant: 'All'
+    }
+];
+
 export const mockClusterChart = [
     {
         'name': 'CPU LOAD',

@@ -49,34 +49,28 @@
                   <p class="text-uppercase text-center grey">Cluster 1</p>
                 </div>
                 <div class="box">
-                    <ngx-charts-pie-grid
-                    [view]="view"
-                    [scheme]="colorScheme"
-                    [results]="mockClusterChart"
-                    (select)="onSelect($event)">
-                    </ngx-charts-pie-grid>
-                    <p class="blue text-center nodes-run">All nodes running</p>
-                    <p class="text-uppercase text-center grey">Cluster 1</p>
-                  </div>
-     
-                  <div class="box">
-                      <ngx-charts-pie-grid
-                      [view]="view"
-                      [scheme]="colorScheme"
-                      [results]="mockClusterChart"
-                      (select)="onSelect($event)">
-                      </ngx-charts-pie-grid>
-                      <p class="blue text-center nodes-run">All nodes running</p>
-                      <p class="text-uppercase text-center grey">Cluster 1</p>
-                    </div>
-         
-     
+                  <ngx-charts-pie-grid
+                  [view]="view"
+                  [scheme]="colorScheme"
+                  [results]="mockClusterChart"
+                  (select)="onSelect($event)">
+                  </ngx-charts-pie-grid>
+                  <p class="blue text-center nodes-run">All nodes running</p>
+                  <p class="text-uppercase text-center grey">Cluster 1</p>
+                </div>
+                <div class="box">
+                  <ngx-charts-pie-grid
+                  [view]="view"
+                  [scheme]="colorScheme"
+                  [results]="mockClusterChart"
+                  (select)="onSelect($event)">
+                  </ngx-charts-pie-grid>
+                  <p class="blue text-center nodes-run">All nodes running</p>
+                  <p class="text-uppercase text-center grey">Cluster 1</p>
+                </div>
               </div>
             </slide>
-
-
           </carousel>
-
       </div>
     </div>
     <!-- Node status timeline info card -->
@@ -115,6 +109,7 @@
         </div>
         <div class="table-h">
           <table 
+            *ngIf="clusters && clusters.length > 0"
             class="table">
             <thead>
               <tr>
@@ -166,7 +161,7 @@
               </tr>
             </thead>
             <tbody>
-              <!-- <tr *ngFor="let cluster of clusters">
+              <tr *ngFor="let cluster of clusters">
                 <td class="blue">{{cluster.name}}</td>
                 <td>{{cluster.id}}</td>
                 <td class="blue">{{cluster.nodel}}</td>
@@ -182,9 +177,9 @@
                     </i>
                   </button>
                 </td>
-              </tr> -->
+              </tr>
 
-              <tr>
+              <!-- <tr>
                 <td class="blue">Cluster1</td>
                 <td>0800200c9a66</td>
                 <td class="blue">10</td>
@@ -285,7 +280,7 @@
                       </i>
                     </button>
                   </td>
-                </tr>
+              </tr> -->
 
             </tbody>
           </table>

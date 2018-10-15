@@ -25,7 +25,7 @@ export class BackendService implements Backend {
   getOrganizationUsers(organizationId: string) {
     throw new Error('Method not implemented.');
   }
-  getClustersCharts() {
+  getClustersCharts(clusterId: string, cluster: any) {
     throw new Error('Method not implemented.');
   }
   addUser(organizationId: string, user: any) {

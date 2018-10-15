@@ -9,6 +9,7 @@ export const LocalStorageKeys = {
     jwt: 'jwt',
     jwtData: 'jwt_data',
     userId: 'userId',
-    userInfoMock: 'userInfo_mock'
+    userInfoMock: 'userInfo_mock',
+    clusterId: 'clusterId'
 };
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
-import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo, mockClusterChart, mockResetPasword  } from '../utils/mocks';
+import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList  } from '../utils/mocks';
 
 @Injectable({
   providedIn: 'root'
@@ -61,9 +61,9 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
-  getClustersCharts() {
+  getClustersCharts(clusterId: string) {
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockClusterChart),
+      body: JSON.stringify(mockClusterList),
       status: 200
     })));
   }
