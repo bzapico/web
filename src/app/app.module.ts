@@ -21,6 +21,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { OrganizationComponent } from './organization/organization.component';
+import { ResourcesComponent } from './resources/resources.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { OrganizationComponent } from './organization/organization.component';
     MainComponent,
     LoginComponent,
     UserInfoComponent,
-    OrganizationComponent
+    OrganizationComponent,
+    ResourcesComponent
   ],
   entryComponents: [
     DebugPanelComponent,
