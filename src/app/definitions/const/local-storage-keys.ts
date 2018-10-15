@@ -8,5 +8,7 @@ export const LocalStorageKeys = {
     notificationsMock: 'notifications_mock',
     jwt: 'jwt',
     jwtData: 'jwt_data',
-    userId: 'userId'
+    userId: 'userId',
+    userInfoMock: 'userInfo_mock'
 };
+

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { UserInfoComponent } from '../user-info/user-info.component';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
@@ -22,9 +24,13 @@ export class OrganizationComponent implements OnInit {
   subscriptionType: string;
   users: any[];
 
-
+  /**
+   * Reference for the service that allows the user info component
+   */
+  modalRef: BsModalRef;
 
   constructor(
+    private modalService: BsModalService,
     backendService: BackendService,
     mockupBackendService: MockupBackendService,
   ) {
@@ -56,12 +62,23 @@ export class OrganizationComponent implements OnInit {
           .subscribe(response => {
             if (response && response._body) {
               const data = JSON.parse(response._body);
-              console.log(data);
               this.users = data;
             }
           });
       }
     }
+  }
+
+  /**
+   * Opens the modal view that holds the user info component
+   */
+  openUserInfo() {
+    const initialState = {
+      organizationName: this.organizationName
+    };
+
+    this.modalRef = this.modalService.show(UserInfoComponent, { initialState });
+    this.modalRef.content.closeBtnName = 'Close';
   }
 
 }
