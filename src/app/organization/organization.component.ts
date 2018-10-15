@@ -5,6 +5,8 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { mockUserProfileInfo } from '../utils/mocks';
+import { NotificationsService } from '../services/notifications.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -18,8 +20,9 @@ export class OrganizationComponent implements OnInit {
    */
   backend: Backend;
   /**
-   * Models that hold organization name, subscription type and the users list
+   * Models that hold organization id, name, subscription type and the users list
    */
+  organizationId: string;
   organizationName: string;
   subscriptionType: string;
   users: any[];
@@ -31,8 +34,9 @@ export class OrganizationComponent implements OnInit {
 
   constructor(
     private modalService: BsModalService,
-    backendService: BackendService,
-    mockupBackendService: MockupBackendService,
+    private backendService: BackendService,
+    private mockupBackendService: MockupBackendService,
+    private notificationsService: NotificationsService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.organizationMock) || null;
     // check which backend is required (fake or real)
@@ -49,16 +53,16 @@ export class OrganizationComponent implements OnInit {
   ngOnInit() {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
-      const organizationId = JSON.parse(jwtData).organizationId;
-      if (organizationId !== null) {
-        this.backend.getOrganizationInfo(organizationId)
+      this.organizationId = JSON.parse(jwtData).OrganizationId;
+      if (this.organizationId !== null) {
+        this.backend.getOrganizationInfo(this.organizationId)
           .subscribe(response => {
             if (response && response._body) {
               const data = JSON.parse(response._body);
               this.organizationName = data.name;
             }
           });
-        this.backend.getOrganizationUsers(organizationId)
+        this.backend.getOrganizationUsers(this.organizationId)
           .subscribe(response => {
             if (response && response._body) {
               const data = JSON.parse(response._body);
@@ -81,4 +85,27 @@ export class OrganizationComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
   }
 
+  addUser() {
+    this.backend.addUser(this.organizationId, mockUserProfileInfo)
+      .subscribe(response => {
+        this.notificationsService.add({
+          message: 'User added successfully'
+        });
+        this.updateUserList();
+      });
+  }
+
+  updateUserList() {
+    console.log(this.organizationId);
+    if (this.organizationId != null) {
+      this.backend.getOrganizationUsers(this.organizationId)
+      .subscribe(response => {
+        console.log(response);
+        if (response && response._body) {
+          const data = JSON.parse(response._body);
+          this.users = data;
+        }
+      });
+    }
+  }
 }

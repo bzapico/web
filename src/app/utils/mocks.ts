@@ -1,8 +1,8 @@
 
 export const mockJwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
     // tslint:disable-next-line:max-line-length
-    '.eyJVc2VySUQiOiIxMjM0NTY3ODkwIiwiUHJpbWl0aXZlcyI6WyIwIiwiMSIsIjIiLCIzIl0sIlJvbGVuYW1lIjoiT3duZXIiLCJFeHBpcmVzQXQiOjEyMzM4NTcyNzEyNzQzfQ' +
-    '.RcoS3D2fr9ofJFzPqX9DDWp-UWoOZQjg0x9uYn2D1p8';
+    '.eyJVc2VySWQiOiJqb2huLmRvZUBtYWlsLmNvbSIsIk9yZ2FuaXphdGlvbklkIjoiMjE0MzQ2NTQzNDM0MyIsIlByaW1pdGl2ZXMiOlsiMCIsIjEiLCIyIiwiMyJdLCJSb2xlbmFtZSI6Ik93bmVyIiwiRXhwaXJlc0F0IjoxMjMzODU3MjcxMjc0M30' +
+    '.kF9ac17V9mWoWMYjhHyc9GD8hGw6wRT6wwNgdUJ1v4c';
 
 export const mockUserProfileInfo = {
     name: 'John Doe',
@@ -47,3 +47,4 @@ export const mockUserList = [
     },
 ];
 
+export const mockResetPasword = 'NEW_PASSWORD_1234';
