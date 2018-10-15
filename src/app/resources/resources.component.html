@@ -12,9 +12,19 @@
         <div class="card-title-c">
           <h5 class="text-uppercase">Summary</h5>
         </div>
-        <div class="d-flex p-2 flex-row justify-content-around align-items-center">
-            <div class="p-2 align-self-center">Flex item 1</div>
-            <div class="p-2 align-self-center">Flex item 2</div>
+        <div class="d-flex p-2 flex-row justify-content-around">
+          <div class="p-2">
+            <div class="p-2 circle">
+              <span class="circle-number">3</span>
+            </div>
+            <p class="circle-name text-center text-uppercase pt-3">Cluster</p>
+          </div> 
+          <div class="p-2">
+            <div class="p-2 circle">
+              <span class="circle-number">11</span>
+            </div>
+            <p class="circle-name text-center text-uppercase pt-3">Nodes</p>
+          </div>
         </div>
       </div>
     </div>
@@ -25,6 +35,48 @@
           <h5 class="text-uppercase d-inline">Clusters</h5>
           <p class="d-inline cluster-number">5 clusters</p>
         </div>
+        <carousel>
+            <slide>
+              <div alt="first slide" class="tres">              
+                <div class="box">
+                  <ngx-charts-pie-grid
+                  [view]="view"
+                  [scheme]="colorScheme"
+                  [results]="mockClusterChart"
+                  (select)="onSelect($event)">
+                  </ngx-charts-pie-grid>
+                  <p class="blue text-center nodes-run">All nodes running</p>
+                  <p class="text-uppercase text-center grey">Cluster 1</p>
+                </div>
+                <div class="box">
+                    <ngx-charts-pie-grid
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="mockClusterChart"
+                    (select)="onSelect($event)">
+                    </ngx-charts-pie-grid>
+                    <p class="blue text-center nodes-run">All nodes running</p>
+                    <p class="text-uppercase text-center grey">Cluster 1</p>
+                  </div>
+     
+                  <div class="box">
+                      <ngx-charts-pie-grid
+                      [view]="view"
+                      [scheme]="colorScheme"
+                      [results]="mockClusterChart"
+                      (select)="onSelect($event)">
+                      </ngx-charts-pie-grid>
+                      <p class="blue text-center nodes-run">All nodes running</p>
+                      <p class="text-uppercase text-center grey">Cluster 1</p>
+                    </div>
+         
+     
+              </div>
+            </slide>
+
+
+          </carousel>
+
       </div>
     </div>
     <!-- Node status timeline info card -->
@@ -32,6 +84,23 @@
       <div class="card p-4 h-100">
         <div class="card-title-c">
           <h5 class="text-uppercase">Node status timeline</h5>
+        </div>
+        <div>
+            <!-- <ngx-charts-line-chart
+              [view]="view"
+              [scheme]="colorScheme"
+              [results]="multi"
+              [gradient]="gradient"
+              [xAxis]="showXAxis"
+              [yAxis]="showYAxis"
+              [legend]="showLegend"
+              [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel"
+              [xAxisLabel]="xAxisLabel"
+              [yAxisLabel]="yAxisLabel"
+              [autoScale]="autoScale"
+              (select)="onSelect($event)">
+            </ngx-charts-line-chart> -->
         </div>
       </div>
     </div>

@@ -6,4 +6,5 @@ export interface Backend {
     getUserProfileInfo(userId: string);
     getOrganizationInfo(organizationId: string);
     getOrganizationUsers(organizationId: string);
+    getClustersCharts();
 }

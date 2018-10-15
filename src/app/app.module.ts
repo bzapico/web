@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { ErrorHandlerService } from './services/error-handler.service';
 import { routes } from './app.routing';
@@ -6,7 +8,7 @@ import { routes } from './app.routing';
 import { AppComponent } from './app.component';
 import { DebugPanelComponent } from './debug-panel/debug-panel.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { ButtonsModule } from 'ngx-bootstrap';
+import { ButtonsModule, CarouselModule } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { NotificationsComponent } from './notifications/notifications.component';
@@ -41,6 +43,8 @@ import { ResourcesComponent } from './resources/resources.component';
     UserInfoComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    NgxChartsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -51,6 +55,7 @@ import { ResourcesComponent } from './resources/resources.component';
     ButtonsModule.forRoot(),
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
+    CarouselModule.forRoot(),
     // ROUTES
     routes
   ],

@@ -1,6 +1,9 @@
 .blue {
     color:  #0937FF !important;
 }
+.grey{
+    color: #949494;
+}
 .row-title{
     height: 4%;
 }
@@ -90,7 +93,9 @@
     left: 7px;
 }
 .status-dot:before {
-    content:"\A";
+    content:
+    \A
+    ;
     width:10px;
     height:10px;
     border-radius:50%;
@@ -99,7 +104,9 @@
     margin:0 10px 0 0;
 }
 .status-dot-error:before {
-    content:"\A";
+    content:
+    \A
+    ;
     width:10px;
     height:10px;
     border-radius:50%;
@@ -109,3 +116,37 @@
 
 }
 
+.circle {
+    width:125px;
+    height: 125px;
+    border: 1px solid #949494;
+    border-radius: 50%;
+    position: relative;
+}
+.circle-number{
+    font-size: 1.7em;
+    position: absolute;
+    top: 45px;
+    left: 50px;
+}
+.circle-name{
+    font-size: 1.2em;
+    color:#949494;
+}
+.tres {
+    height: 100%;
+    width:100%;
+    background-color: yellowgreen;
+}
+.box{
+    width: 29%;
+    height: 100%;
+    margin: 0 2%;
+    border: 1px solid blue;
+    float: left;
+
+}
+.nodes-run{
+    font-size: .8em;
+    margin-bottom: 0;
+}
