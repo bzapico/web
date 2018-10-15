@@ -45,27 +45,27 @@ export class UserInfoComponent implements OnInit {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
-    ) {
-      const mock = localStorage.getItem(LocalStorageKeys.userInfoMock) || null;
-      // check which backend is required (fake or real)
-      if (mock && mock === 'true') {
-        this.backend = mockupBackendService;
-      } else {
-        this.backend = backendService;
-      }
-      this.title = 'Info User';
-      this.userName = 'Loading ...'; // Default initialization
-      this.userId = 'Loading ...'; // Default initialization
-      this.buttonDeleteUser = 'Delete User';
-      this.buttonRessetPassword = 'Resset Password';
-     }
+  ) {
+    const mock = localStorage.getItem(LocalStorageKeys.userInfoMock) || null;
+    // check which backend is required (fake or real)
+    if (mock && mock === 'true') {
+      this.backend = mockupBackendService;
+    } else {
+      this.backend = backendService;
+    }
+    this.title = 'Info User';
+    this.userName = 'Loading ...'; // Default initialization
+    this.userId = 'Loading ...'; // Default initialization
+    this.buttonDeleteUser = 'Delete User';
+    this.buttonRessetPassword = 'Resset Password';
+  }
 
   ngOnInit() {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       const jwtJson = JSON.parse(jwtData);
-        this.userId = jwtJson.UserId;
-        this.role = jwtJson.Rolename;
+      this.userId = jwtJson.UserId;
+      this.role = jwtJson.Rolename;
       if (this.userId !== null) {
         this.backend.getUserProfileInfo(this.userId)
           .subscribe(response => {
@@ -78,6 +78,7 @@ export class UserInfoComponent implements OnInit {
       }
     }
   }
+
   checkUserRole(buttonRole) {
     if (buttonRole === this.role) {
       return true;
@@ -86,13 +87,27 @@ export class UserInfoComponent implements OnInit {
   }
 
   deleteUser() {
-    this.backend.deleteUser(this.organizationId, this.userId)
-      .subscribe(response => {
-        this.notificationsService.add({
-          message: 'User ' + this.userId + ' has been deleted'
+    if (this.organizationId !== null && this.userId !== null) {
+      this.backend.deleteUser(this.organizationId, this.userId)
+        .subscribe(response => {
+          this.notificationsService.add({
+            message: 'User ' + this.userId + ' has been deleted'
+          });
+          this.bsModalRef.hide();
         });
-        this.bsModalRef.hide();
-      });
+    }
+  }
+
+  resetPassword() {
+    if (this.organizationId !== null && this.userId !== null) {
+      this.backend.resetPassword(this.organizationId, this.userId)
+        .subscribe(response => {
+          this.notificationsService.add({
+            message: 'Your new password is ' + response._body
+          });
+          this.bsModalRef.hide();
+        });
+    }
   }
 
 }
