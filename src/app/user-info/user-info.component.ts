@@ -4,7 +4,8 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { mockOrganizationInfo } from '../utils/mocks';
+import { mockOrganizationInfo, mockUserList } from '../utils/mocks';
+import { NotificationsService } from '../services/notifications.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -30,9 +31,10 @@ export class UserInfoComponent implements OnInit {
    */
   buttonDeleteUser: string;
   /**
-   * Models that hold user name, organization company name, user email/ID and role selection
+   * Models that hold user name, organization id, name, user email/ID and role selection
    */
   userName: string;
+  organizationId: string;
   organizationName: string;
   userId: string;
   role: string;
@@ -40,8 +42,9 @@ export class UserInfoComponent implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
-    backendService: BackendService,
-    mockupBackendService: MockupBackendService,
+    private backendService: BackendService,
+    private mockupBackendService: MockupBackendService,
+    private notificationsService: NotificationsService
     ) {
       const mock = localStorage.getItem(LocalStorageKeys.userInfoMock) || null;
       // check which backend is required (fake or real)
@@ -80,6 +83,16 @@ export class UserInfoComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  deleteUser() {
+    this.backend.deleteUser(this.organizationId, this.userId)
+      .subscribe(response => {
+        this.notificationsService.add({
+          message: 'User ' + this.userId + ' has been deleted'
+        });
+        this.bsModalRef.hide();
+      });
   }
 
 }

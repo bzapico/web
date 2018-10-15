@@ -78,11 +78,13 @@ export class OrganizationComponent implements OnInit {
    */
   openUserInfo() {
     const initialState = {
-      organizationName: this.organizationName
+      organizationName: this.organizationName,
+      organizatinoId: this.organizationId
     };
 
     this.modalRef = this.modalService.show(UserInfoComponent, { initialState });
     this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
 
   addUser() {
@@ -96,11 +98,9 @@ export class OrganizationComponent implements OnInit {
   }
 
   updateUserList() {
-    console.log(this.organizationId);
     if (this.organizationId != null) {
       this.backend.getOrganizationUsers(this.organizationId)
       .subscribe(response => {
-        console.log(response);
         if (response && response._body) {
           const data = JSON.parse(response._body);
           this.users = data;

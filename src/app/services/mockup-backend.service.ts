@@ -71,10 +71,11 @@ export class MockupBackendService implements Backend {
     })));
   }
   deleteUser(organizationId: string, userId: string) {
-    const index = mockUserList.map(x => x.email).indexOf(userId);
-    if (index !== -1) {
-      mockUserList.splice(index, 1);
-    }
+    // const index = mockUserList.map(x => x.email).indexOf(userId);
+    // if (index !== -1) {
+    //   mockUserList.splice(index, 1);
+    // }
+    mockUserList.pop();
     return of (new Response(new ResponseOptions({
       status: 200
     })));
