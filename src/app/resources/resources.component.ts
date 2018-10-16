@@ -47,7 +47,7 @@ export class ResourcesComponent implements OnInit {
    * Charts
    */
 
-  view: any[] = [200, 150];
+  // view: any[] = [200, 150];
 
   // options
   showXAxis = true;

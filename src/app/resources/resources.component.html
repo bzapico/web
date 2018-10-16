@@ -1,9 +1,9 @@
 <!-- Component title -->
 <div class="row row-title mb-4">
-    <div class="col-lg-12">
-      <h2>Resources</h2>
-    </div>
+  <div class="col-lg-12">
+    <h2>Resources</h2>
   </div>
+</div>
 
   <div class="row row-info">
     <!-- Summary info card -->
@@ -12,7 +12,7 @@
         <div class="card-title-c">
           <h5 class="text-uppercase">Summary</h5>
         </div>
-        <div class="d-flex p-2 flex-row justify-content-around">
+        <div class="d-flex p-2 flex-row justify-content-around h-100">
           <div class="p-2">
             <div class="p-2 circle">
               <span class="circle-number">3</span>
@@ -35,8 +35,50 @@
           <h5 class="text-uppercase d-inline">Clusters</h5>
           <p class="d-inline cluster-number">5 clusters</p>
         </div>
+        <div class="cluster-carousel d-flex flex-row">
         <carousel>
-            <slide>
+          <slide>
+            <div alt="first slide" class="tres">              
+              <div class="box">
+
+                  <ngx-charts-pie-grid
+                  class="donut-chart"
+                  [view]="view"
+                  [scheme]="colorScheme"
+                  [results]="mockClusterChart"
+                  (select)="onSelect($event)">
+                  </ngx-charts-pie-grid>
+
+                <p class="blue text-center nodes-run">All nodes running</p>
+                <p class="text-uppercase text-center grey ">Cluster 1</p>
+
+              </div>
+
+              <div class="box">
+                <!-- <ngx-charts-pie-grid
+                class="donut-chart"
+                [view]="view"
+                [scheme]="colorScheme"
+                [results]="mockClusterChart"
+                (select)="onSelect($event)">
+                </ngx-charts-pie-grid> -->
+                <p class="blue text-center nodes-run">All nodes running</p>
+                <p class="text-uppercase text-center grey ">Cluster 1</p>
+              </div>
+              <div class="box">
+                <!-- <ngx-charts-pie-grid
+                class="donut-chart"
+                [view]="view"
+                [scheme]="colorScheme"
+                [results]="mockClusterChart"
+                (select)="onSelect($event)">
+                </ngx-charts-pie-grid> -->
+                <p class="blue text-center nodes-run">All nodes running</p>
+                <p class="text-uppercase text-center grey ">Cluster 1</p>
+              </div>
+            </div>
+          </slide>
+          <slide>
               <div alt="first slide" class="tres">              
                 <div class="box">
                   <!-- <ngx-charts-pie-grid
@@ -47,7 +89,7 @@
                   (select)="onSelect($event)">
                   </ngx-charts-pie-grid> -->
                   <p class="blue text-center nodes-run">All nodes running</p>
-                  <p class="text-uppercase text-center grey">Cluster 1</p>
+                  <p class="text-uppercase text-center grey ">Cluster 1qq</p>
                 </div>
                 <div class="box">
                   <!-- <ngx-charts-pie-grid
@@ -58,7 +100,7 @@
                   (select)="onSelect($event)">
                   </ngx-charts-pie-grid> -->
                   <p class="blue text-center nodes-run">All nodes running</p>
-                  <p class="text-uppercase text-center grey">Cluster 1</p>
+                  <p class="text-uppercase text-center grey">Cluster 1qq</p>
                 </div>
                 <div class="box">
                   <!-- <ngx-charts-pie-grid
@@ -69,48 +111,12 @@
                   (select)="onSelect($event)">
                   </ngx-charts-pie-grid> -->
                   <p class="blue text-center nodes-run">All nodes running</p>
-                  <p class="text-uppercase text-center grey">Cluster 1</p>
+                  <p class="text-uppercase text-center grey">Cluster qq</p>
                 </div>
               </div>
             </slide>
-            <slide>
-                <div alt="first slide" class="tres">              
-                  <div class="box">
-                    <!-- <ngx-charts-pie-grid
-                    class="donut-chart"
-                    [view]="view"
-                    [scheme]="colorScheme"
-                    [results]="mockClusterChart"
-                    (select)="onSelect($event)">
-                    </ngx-charts-pie-grid> -->
-                    <p class="blue text-center nodes-run">All nodes running</p>
-                    <p class="text-uppercase text-center grey">Cluster 1qq</p>
-                  </div>
-                  <div class="box">
-                    <!-- <ngx-charts-pie-grid
-                    class="donut-chart"
-                    [view]="view"
-                    [scheme]="colorScheme"
-                    [results]="mockClusterChart"
-                    (select)="onSelect($event)">
-                    </ngx-charts-pie-grid> -->
-                    <p class="blue text-center nodes-run">All nodes running</p>
-                    <p class="text-uppercase text-center grey">Cluster 1qq</p>
-                  </div>
-                  <div class="box">
-                    <!-- <ngx-charts-pie-grid
-                    class="donut-chart"
-                    [view]="view"
-                    [scheme]="colorScheme"
-                    [results]="mockClusterChart"
-                    (select)="onSelect($event)">
-                    </ngx-charts-pie-grid> -->
-                    <p class="blue text-center nodes-run">All nodes running</p>
-                    <p class="text-uppercase text-center grey">Cluster qq</p>
-                  </div>
-                </div>
-              </slide>
           </carousel>
+        </div>
       </div>
     </div>
     <!-- Node status timeline info card -->
@@ -206,7 +212,10 @@
                 <td class="blue">{{cluster.nodes}}</td>
                 <td>{{cluster.description}}</td>
                 <td>{{cluster.type}}</td>
-                <td class="status-dot">{{cluster.status}}</td>
+                <td [ngClass]="{
+                  'status-dot':cluster.status === 'Running',
+                  'status-dot-error':cluster.status === 'Error'
+                }">{{cluster.status}}</td>
                 <td>{{cluster.tags}}</td>
                 <td>{{cluster.multitenant}}</td>
                 <td>

@@ -111,9 +111,15 @@
     margin:0 10px 0 0;
 }
 
+// Summary circles
 .circle {
-    width:125px;
-    height: 125px;
+    // width:125px;
+    // height: 125px;
+    // border: 1px solid #949494;
+    // border-radius: 50%;
+    // position: relative;
+    width: 80%;
+    height: width;
     border: 1px solid #949494;
     border-radius: 50%;
     position: relative;
@@ -131,23 +137,27 @@
 .tres {
     height: 100%;
     width:100%;
-    background-color: yellowgreen;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
 }
-.box{
-    width: 29%;
-    height: 100%;
-    margin: 0 2%;
-    border: 1px solid blue;
-    float: left;
-
-}
-.donut-chart {
-    display: table;
-    width: 100%;
-    margin: 0 auto;
-}
+// Cluster sliders
 .nodes-run{
     font-size: .8em;
     margin-bottom: 0;
 }
+.box{
+    margin: 0 2%;
+    border: 1px solid blue;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
 
+}
+// Cluster charts
+.donut-chart {
+    display: flex;
+    max-width: 200px;
+    background-color: yellow;
+}

@@ -219,9 +219,13 @@ button[type="submit"]:disabled {
 
 
 // carousel indicators
+.cluster-carousel{
+  width: 90%;
+  margin: 0 auto;
+}
 
 .carousel-indicators {
-  top: 175px;
+  bottom: 0;
   position: absolute;
   right: 0;
   left: 0;
@@ -271,20 +275,17 @@ button[type="submit"]:disabled {
 
 .carousel-control-prev, .carousel-control-next {
   position: absolute;
-  top: 75px;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2%;
-  color: black;
-  text-align: center;
+  top: 40%;
+  bottom: 40%;
+  width: 3%;
+  color: #fff;
+  opacity: 1;
 }
 .carousel-control-prev-icon, .carousel-control-next-icon {
   display: inline-block;
   width: 10px;
   height: 20px;
-
+  background-image: none;
 }
 .carousel-control-next-icon:before {
   content: '\e315'; 
@@ -297,4 +298,28 @@ button[type="submit"]:disabled {
   font-family: 'Material Icons'; 
   color: black;
   font-size: 26px;
+  left: -14px;
+  position: absolute;
+  bottom: 0;
+}
+
+
+// Cluster charts
+.ngx-charts {
+  float: left;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: -21px;
+  /* background-color: pink; */
+}
+.ngx-charts .label {
+  font-size: 12px;
+  font-weight: normal;
+  display: none;
+}
+.pie-grid .percent-label {
+  font-size: 16px;
+  font-weight: 400;
+  display: block;
 }
