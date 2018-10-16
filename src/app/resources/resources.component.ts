@@ -5,11 +5,22 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { NotificationsService } from '../services/notifications.service';
+import { CarouselConfig } from 'ngx-bootstrap/carousel';
 
 @Component({
   selector: 'app-resources',
   templateUrl: './resources.component.html',
-  styleUrls: ['./resources.component.scss']
+  styleUrls: ['./resources.component.scss'],
+   providers: [
+    { provide:
+      CarouselConfig,
+      useValue: {
+        interval: 150000,
+        noPause: false,
+        showIndicators: true
+      }
+    }
+  ]
 })
 export class ResourcesComponent implements OnInit {
   /**
@@ -35,9 +46,6 @@ export class ResourcesComponent implements OnInit {
   /**
    * Charts
    */
-
-  single: any[];
-  multi: any[];
 
   view: any[] = [200, 150];
 
@@ -78,6 +86,9 @@ export class ResourcesComponent implements OnInit {
     this.clusterMultitenant = 'Loading ...'; // Default initialization
     this.clusters = [];
 
+  /**
+   * Mocked Charts
+   */
     Object.assign(this, {mockClusterChart});
    }
 

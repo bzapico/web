@@ -216,3 +216,85 @@ button[type="submit"]:disabled {
   background-color: #000000;
   opacity: 0.4;
 }
+
+
+// carousel indicators
+
+.carousel-indicators {
+  top: 175px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 15;
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+  margin-right: 15%;
+  margin-left: 15%;
+  list-style: none;
+}
+.carousel-indicators .active {
+  background-color: #0937FF;
+}
+.carousel-indicators li {
+  position: relative;
+  flex: 0 1 auto;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  margin-right: 5px;
+  margin-left: 5px;
+  text-indent: -999px;
+  cursor: pointer;
+  background-color:#949494;
+}
+.carousel-indicators li::before {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  display: inline-block;
+  content:'\A';
+  width:10px;
+  height:10px;
+  border-radius:50%;
+}
+.carousel-indicators li::after {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  display: inline-block;
+  content:'\A';
+  width:10px;
+  height:10px;
+  border-radius:50%;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  position: absolute;
+  top: 75px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2%;
+  color: black;
+  text-align: center;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  display: inline-block;
+  width: 10px;
+  height: 20px;
+
+}
+.carousel-control-next-icon:before {
+  content: '\e315'; 
+  font-family: 'Material Icons'; 
+  color: black;
+  font-size: 26px;
+}
+.carousel-control-prev-icon:before {
+  content: '\e314'; 
+  font-family: 'Material Icons'; 
+  color: black;
+  font-size: 26px;
+}

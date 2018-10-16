@@ -93,9 +93,7 @@
     left: 7px;
 }
 .status-dot:before {
-    content:
-    \A
-    ;
+    content:'\A';
     width:10px;
     height:10px;
     border-radius:50%;
@@ -104,16 +102,13 @@
     margin:0 10px 0 0;
 }
 .status-dot-error:before {
-    content:
-    \A
-    ;
+    content:'\A';
     width:10px;
     height:10px;
     border-radius:50%;
     background: #F25272;
     display:inline-block;
     margin:0 10px 0 0;
-
 }
 
 .circle {
@@ -146,7 +141,13 @@
     float: left;
 
 }
+.donut-chart {
+    display: table;
+    width: 100%;
+    margin: 0 auto;
+}
 .nodes-run{
     font-size: .8em;
     margin-bottom: 0;
 }
+
