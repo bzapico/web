@@ -1,4 +1,3 @@
-
 export const mockJwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
     // tslint:disable-next-line:max-line-length
     '.eyJVc2VySWQiOiJqb2huLmRvZUBtYWlsLmNvbSIsIk9yZ2FuaXphdGlvbklkIjoiMjE0MzQ2NTQzNDM0MyIsIlByaW1pdGl2ZXMiOlsiMCIsIjEiLCIyIiwiMyJdLCJSb2xlbmFtZSI6Ik93bmVyIiwiRXhwaXJlc0F0IjoxMjMzODU3MjcxMjc0M30' +
@@ -46,7 +45,9 @@ export const mockUserList = [
         role: 'Owner'
     },
 ];
-
+/**
+ * Mocked clusters list
+ */
 export const mockClusterList = [
     {
         name: 'Cluster1',
@@ -110,6 +111,9 @@ export const mockClusterList = [
     }
 ];
 
+/**
+ * Mocked clusters Chart
+ */
 export const mockClusterChart = [
     {
         'name': 'CPU LOAD',
@@ -125,6 +129,9 @@ export const mockClusterChart = [
     // }
 ];
 
+/**
+ * Mocked nodes list
+ */
 export const mockNodesChart = [
     {
         'name': 'Dominican Republic',
@@ -162,4 +169,5 @@ export const mockNodesChart = [
         ]
       },
 ];
+
 export const mockResetPasword = 'NEW_PASSWORD_1234';

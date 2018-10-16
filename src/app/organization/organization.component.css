@@ -1,0 +1,185 @@
+.blue {
+  color: #0937FF !important;
+}
+
+.row-title {
+  height: 4%;
+}
+
+.row-info {
+  height: 29%;
+  margin-bottom: 2.2rem;
+}
+
+.row-main {
+  height: 54%;
+}
+
+.card {
+  -webkit-box-shadow: 0px 16px 50px 2px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 16px 50px 2px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+  border: 0;
+}
+
+.hidden-img-fix {
+  height: 32%;
+  display: none;
+}
+
+.company-img {
+  height: 50%;
+  border-radius: 50%;
+  display: block;
+}
+
+.company-img img {
+  height: 112px;
+  width: 112px;
+}
+
+.company-name {
+  font-size: 1em;
+}
+
+.subscription {
+  font-size: .8em;
+}
+
+.users {
+  color: #949494;
+  font-size: .8em;
+}
+
+.card-title-h {
+  height: 4%;
+  margin-left: 9px;
+  margin-bottom: 8%;
+}
+
+.table-h {
+  height: 80%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.btn-h {
+  height: 9%;
+}
+
+.table td {
+  vertical-align: middle;
+  border-top: 0.8px solid #EEEEEE;
+  color: #949494;
+}
+
+.table thead th {
+  border: none;
+}
+
+.table tbody tr:first-child td {
+  border: none;
+}
+
+.table .row-name {
+  width: 20%;
+}
+
+.table .row-role {
+  width: 30%;
+}
+
+.table .row-email {
+  width: 45%;
+}
+
+.table .row-info {
+  width: 5%;
+}
+
+.info-btn {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.i-info {
+  font-size: 1.2em;
+  position: absolute;
+  top: 6px;
+  left: 7px;
+}
+
+.subs-v {
+  height: 87px;
+  width: 87px;
+  border-radius: 50%;
+  font-size: 1em;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.subs-v i {
+  font-size: 2.2em;
+  margin: 25px;
+}
+
+.subs-check {
+  font-size: .9em;
+  color: #949494;
+}
+
+.no-elements {
+  height: 80%;
+  text-align: center;
+  padding-top: 2em;
+}
+
+@media screen and (max-width: 1500px) {
+  table tr {
+    font-size: .8em;
+  }
+  h5 {
+    font-size: 0.8em;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  .info-btn {
+    height: 25px;
+    width: 25px;
+  }
+  .subs-v {
+    height: 70px;
+    width: 70px;
+  }
+  .subs-v i {
+    margin: 18px;
+  }
+  .i-info {
+    font-size: 1em;
+    top: 4px;
+    left: 5px;
+  }
+  .company-img {
+    display: none;
+  }
+  .hidden-img-fix {
+    height: 11%;
+  }
+  .hidden-img-fix {
+    display: block;
+  }
+}
+
+@media screen and (max-height: 920px) {
+  .company-img {
+    display: none;
+    height: 0;
+  }
+  .company-img img {
+    display: none;
+  }
+}
+/*# sourceMappingURL=organization.component.css.map */

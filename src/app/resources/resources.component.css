@@ -1,0 +1,173 @@
+.blue {
+  color: #0937FF !important;
+}
+
+.grey {
+  color: #949494;
+}
+
+.row-title {
+  height: 4%;
+}
+
+.row-info {
+  height: 29%;
+  margin-bottom: 2.2rem;
+}
+
+.row-main {
+  height: 54%;
+}
+
+.card {
+  -webkit-box-shadow: 0px 16px 50px 2px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 16px 50px 2px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+  border: 0;
+}
+
+.card-title-h {
+  height: 4%;
+  margin-left: 9px;
+  margin-bottom: 70px;
+}
+
+.cluster-number {
+  float: right;
+  color: #949494;
+}
+
+.table-h {
+  height: 80%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.table td {
+  padding: 1.2rem;
+  vertical-align: middle;
+  font-size: .9em;
+  border-top: 0.8px solid #EEEEEE;
+  color: #949494;
+}
+
+.table thead th {
+  border: none;
+  font-size: .9em;
+  padding: 0 1.2rem;
+}
+
+.table tbody tr:first-child td {
+  border: none;
+}
+
+.table .row-name {
+  width: 10%;
+}
+
+.table .row-id {
+  width: 15%;
+}
+
+.table .row-nodes {
+  width: 10%;
+}
+
+.table .row-description {
+  width: 10%;
+}
+
+.table .row-types {
+  width: 10%;
+}
+
+.table .row-status {
+  width: 10%;
+  padding-left: 2%;
+}
+
+.table .row-tags {
+  width: 10%;
+}
+
+.table .row-multitenant {
+  width: 10%;
+}
+
+.table .row-edit {
+  width: 5%;
+}
+
+.info-btn {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.i-info {
+  font-size: 1.2em;
+  position: absolute;
+  top: 6px;
+  left: 7px;
+}
+
+.status-dot:before {
+  content: \A;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #0937FF;
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+
+.status-dot-error:before {
+  content: \A;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #F25272;
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+
+.circle {
+  width: 125px;
+  height: 125px;
+  border: 1px solid #949494;
+  border-radius: 50%;
+  position: relative;
+}
+
+.circle-number {
+  font-size: 1.7em;
+  position: absolute;
+  top: 45px;
+  left: 50px;
+}
+
+.circle-name {
+  font-size: 1.2em;
+  color: #949494;
+}
+
+.tres {
+  height: 100%;
+  width: 100%;
+  background-color: yellowgreen;
+}
+
+.box {
+  width: 29%;
+  height: 100%;
+  margin: 0 2%;
+  border: 1px solid blue;
+  float: left;
+}
+
+.nodes-run {
+  font-size: .8em;
+  margin-bottom: 0;
+}
+/*# sourceMappingURL=resources.component.css.map */

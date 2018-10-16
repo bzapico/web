@@ -108,8 +108,7 @@
           <h5 class="text-uppercase">Clusters</h5>
         </div>
         <div class="table-h">
-          <table 
-            *ngIf="clusters && clusters.length > 0"
+          <table  *ngIf="clusters && clusters.length > 0"
             class="table">
             <thead>
               <tr>
@@ -164,11 +163,11 @@
               <tr *ngFor="let cluster of clusters">
                 <td class="blue">{{cluster.name}}</td>
                 <td>{{cluster.id}}</td>
-                <td class="blue">{{cluster.nodel}}</td>
+                <td class="blue">{{cluster.nodes}}</td>
                 <td>{{cluster.description}}</td>
                 <td>{{cluster.type}}</td>
                 <td class="status-dot">{{cluster.status}}</td>
-                <td>{{cluster.tag}}</td>
+                <td>{{cluster.tags}}</td>
                 <td>{{cluster.multitenant}}</td>
                 <td>
                   <button class="btn info-btn btn-primary" (click)="editCluster()">

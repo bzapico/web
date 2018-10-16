@@ -4,10 +4,7 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { mockClusterList } from '../utils/mocks';
 import { NotificationsService } from '../services/notifications.service';
-
-
 
 @Component({
   selector: 'app-resources',
@@ -19,6 +16,10 @@ export class ResourcesComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
+   /**
+   * Cluster information
+   */
+  clusterInfo: string;
   /**
    * Models that hold cluster ID, name, nodes, description, type, status and multitenant
    */
@@ -30,7 +31,7 @@ export class ResourcesComponent implements OnInit {
   clusterStatus: string;
   clusterMultitenant: string;
   clusters: any[];
-  
+
   /**
    * Charts
    */
@@ -75,7 +76,6 @@ export class ResourcesComponent implements OnInit {
     this.clusterType = 'Loading ...'; // Default initialization
     this.clusterStatus = 'Loading ...'; // Default initialization
     this.clusterMultitenant = 'Loading ...'; // Default initialization
-    this.clusterId = 'Loading ...'; // Default initialization
     this.clusters = [];
 
     Object.assign(this, {mockClusterChart});
@@ -88,13 +88,13 @@ export class ResourcesComponent implements OnInit {
   ngOnInit() {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
-      const jwtJson = JSON.parse(jwtData);
-      this.clusterId = jwtJson.ClusterId;
-      if (this.clusterId !== null) {
-        this.backend.getUserProfileInfo(this.clusterId)
+       this.clusterInfo = JSON.parse(jwtData).ClusterInfo;
+      if (this.clusterInfo !== null) {
+        this.backend.getClustersList(this.clusterInfo)
           .subscribe(response => {
             if (response && response._body) {
               const data = JSON.parse(response._body);
+              this.clusters = data;
               this.clusterName = data.name;
               this.clusterId = data.id;
               this.clusterNodes = data.nodes;

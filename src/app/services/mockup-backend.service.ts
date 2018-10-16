@@ -61,7 +61,7 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
-  getClustersCharts(clusterId: string) {
+  getClustersList(clusterInfo: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockClusterList),
       status: 200
