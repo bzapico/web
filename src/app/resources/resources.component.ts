@@ -50,19 +50,17 @@ export class ResourcesComponent implements OnInit {
   // view: any[] = [200, 150];
 
   // options
-  showXAxis = true;
-  showYAxis = true;
+
   gradient = true;
-  showLegend = true;
-  showXAxisLabel = true;
-  showYAxisLabel = true;
+  showLegend = false;
+  doughnut = true;
 
   colorScheme = {
-    domain: ['#0937FF']
+    domain: ['#0937FF', '#051c80',  '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
   // line, area
-  autoScale = true;
+  autoScale = false;
 
   constructor(
     private backendService: BackendService,

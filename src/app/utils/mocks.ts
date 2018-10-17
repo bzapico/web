@@ -117,7 +117,7 @@ export const mockClusterList = [
 export const mockClusterChart = [
     {
         'name': 'CPU LOAD',
-        'value': 8940000
+        'value': 5000000
     },
     // {
     //     'name': 'STORAGE',

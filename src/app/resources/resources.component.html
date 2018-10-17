@@ -4,34 +4,29 @@
     <h2>Resources</h2>
   </div>
 </div>
-
 <div class="row row-info">
   <!-- Summary info card -->
-
   <div class="col-lg-4 h-100">
     <div class="card p-4 h-100">
-
       <div class="card-title-c">
         <h5 class="text-uppercase">Summary</h5>
       </div>
-
-      <div class="d-flex flex-col justify-content-around">
-        <div class="p-2 circle">
-          <span>3</span>
+      <div class="d-flex flex-col justify-content-around align-center">
+        <div>
+          <div class="p-2 circle">
+            <span>3</span>
+          </div>
+          <p class="circle-name text-center text-uppercase mt-3">Cluster</p>
         </div>
-        <div class="p-2 circle">
-          <span>11</span>
+        <div>
+          <div class="p-2 circle">
+            <span>11</span>
+          </div>
+          <p class="circle-name text-center text-uppercase mt-3">Nodes</p>
         </div>
       </div>
-
-      <div class="d-flex flex-col justify-content-around mt-3">
-        <p class="circle-name text-center text-uppercase ">Cluster</p>
-        <p class="circle-name text-center text-uppercase ">Nodes</p>
-      </div>
-
     </div>
   </div>
-
   <!-- Clusters info card -->
   <div class="col-lg-4 h-100">
     <div class="card p-4 h-100">
@@ -39,85 +34,107 @@
         <h5 class="text-uppercase d-inline">Clusters</h5>
         <p class="d-inline cluster-number">5 clusters</p>
       </div>
-      <div class="cluster-carousel d-flex flex-row">
-        <carousel>
-          <slide>
-            <div alt="first slide" class="tres">
-              <div class="box">
 
-                <ngx-charts-pie-grid class="donut-chart" [view]="view" [scheme]="colorScheme" [results]="mockClusterChart"
+      <carousel class="h-100 bg-warning">
+        <slide>
+          <div class="slide-box">
+
+            <div class="box">
+              <div class="donut-chart bg-dark">
+                <ngx-charts-pie-chart
+                  [scheme]="colorScheme" 
+                  [results]="mockClusterChart" 
+                  [doughnut]= "doughnut"
+                  [gradient]="gradient"
                   (select)="onSelect($event)">
-                </ngx-charts-pie-grid>
-
-                <p class="blue text-center nodes-run">All nodes running</p>
-                <p class="text-uppercase text-center grey ">Cluster 1</p>
-
+                </ngx-charts-pie-chart>
+                <div class="donut-number">10/10</div>
               </div>
-
-              <div class="box">
-                <!-- <ngx-charts-pie-grid
-                class="donut-chart"
-                [view]="view"
-                [scheme]="colorScheme"
-                [results]="mockClusterChart"
-                (select)="onSelect($event)">
-                </ngx-charts-pie-grid> -->
-                <p class="blue text-center nodes-run">All nodes running</p>
-                <p class="text-uppercase text-center grey ">Cluster 1</p>
-              </div>
-              <div class="box">
-                <!-- <ngx-charts-pie-grid
-                class="donut-chart"
-                [view]="view"
-                [scheme]="colorScheme"
-                [results]="mockClusterChart"
-                (select)="onSelect($event)">
-                </ngx-charts-pie-grid> -->
-                <p class="blue text-center nodes-run">All nodes running</p>
-                <p class="text-uppercase text-center grey ">Cluster 1</p>
-              </div>
+              <p class="blue  nodes-run">All nodes running</p>
+              <p class="text-uppercase ">Cluster 1</p>
             </div>
-          </slide>
-          <slide>
-            <div alt="first slide" class="tres">
-              <div class="box">
-                <!-- <ngx-charts-pie-grid
-                  class="donut-chart"
-                  [view]="view"
-                  [scheme]="colorScheme"
-                  [results]="mockClusterChart"
+            <div class="box">
+              <div class="donut-chart">
+                <ngx-charts-pie-chart
+                  [scheme]="colorScheme" 
+                  [results]="mockClusterChart" 
+                  [doughnut]= "doughnut"
+                  [gradient]="gradient"
                   (select)="onSelect($event)">
-                  </ngx-charts-pie-grid> -->
-                <p class="blue text-center nodes-run">All nodes running</p>
-                <p class="text-uppercase text-center grey ">Cluster 1qq</p>
+                </ngx-charts-pie-chart>
+                <div class="donut-number">10/10</div>
               </div>
-              <div class="box">
-                <!-- <ngx-charts-pie-grid
-                  class="donut-chart"
-                  [view]="view"
-                  [scheme]="colorScheme"
-                  [results]="mockClusterChart"
-                  (select)="onSelect($event)">
-                  </ngx-charts-pie-grid> -->
-                <p class="blue text-center nodes-run">All nodes running</p>
-                <p class="text-uppercase text-center grey">Cluster 1qq</p>
-              </div>
-              <div class="box">
-                <!-- <ngx-charts-pie-grid
-                  class="donut-chart"
-                  [view]="view"
-                  [scheme]="colorScheme"
-                  [results]="mockClusterChart"
-                  (select)="onSelect($event)">
-                  </ngx-charts-pie-grid> -->
-                <p class="blue text-center nodes-run">All nodes running</p>
-                <p class="text-uppercase text-center grey">Cluster qq</p>
-              </div>
+              <p class="blue  nodes-run">All nodes running</p>
+              <p class="text-uppercase ">Cluster 1</p>
             </div>
-          </slide>
-        </carousel>
-      </div>
+            <div class="box">
+              <div class="donut-chart">
+                <ngx-charts-pie-chart
+                  [scheme]="colorScheme" 
+                  [results]="mockClusterChart"
+                  [doughnut]= "doughnut"
+                  [gradient]="gradient" 
+                  (select)="onSelect($event)">
+                </ngx-charts-pie-chart>
+                <div class="donut-number">10/10</div>
+              </div>
+              <p class="blue  nodes-run">All nodes running</p>
+              <p class="text-uppercase ">Cluster 1</p>
+            </div>
+
+          </div>
+        </slide>
+
+        <slide>
+          <div class="slide-box">
+            <div class="box">
+              <div class="donut-chart">
+                <ngx-charts-pie-chart
+                  [scheme]="colorScheme" 
+                  [results]="mockClusterChart" 
+                  [doughnut]= "doughnut"
+                  [gradient]="gradient"
+                  (select)="onSelect($event)">
+                </ngx-charts-pie-chart>
+                <div class="donut-number">10/10</div>
+              </div>
+              <p class="blue  nodes-run">All nodes running</p>
+              <p class="text-uppercase ">Cluster** 1</p>
+            </div>
+            <div class="box">
+              <div class="donut-chart">
+                <ngx-charts-pie-chart
+                  [scheme]="colorScheme" 
+                  [results]="mockClusterChart"
+                  [doughnut]= "doughnut"
+                  [gradient]="gradient" 
+                  (select)="onSelect($event)">
+                </ngx-charts-pie-chart>
+                <div class="donut-number">10/10</div>
+              </div>
+              <p class="blue  nodes-run">All nodes running</p>
+              <p class="text-uppercase ">Cluster** 1</p>
+            </div>
+            <div class="box">
+              <div class="donut-chart">
+                <ngx-charts-pie-chart
+                  [scheme]="colorScheme" 
+                  [results]="mockClusterChart"
+                  [doughnut]= "doughnut"
+                  [gradient]="gradient" 
+                  (select)="onSelect($event)">
+                </ngx-charts-pie-chart>
+                <div class="donut-number">10/10</div>
+              </div>
+              <p class="blue  nodes-run">All nodes running</p>
+              <p class="text-uppercase ">Cluster** 1</p>
+            </div>
+          </div>
+
+        </slide>
+      </carousel>
     </div>
+
   </div>
   <!-- Node status timeline info card -->
   <div class="col-lg-4 h-100">
