@@ -113,26 +113,50 @@
 
 // Summary circles
 .circle {
-    // width:125px;
-    // height: 125px;
-    // border: 1px solid #949494;
-    // border-radius: 50%;
-    // position: relative;
-    width: 80%;
-    height: width;
-    border: 1px solid #949494;
-    border-radius: 50%;
-    position: relative;
+    width:50%;
+    max-width: 150px;
+    max-height: 150px;
 }
-.circle-number{
+.circle:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height:0;
+    padding-bottom: 100%;
+    border: 1px solid #949494; 
+    -moz-border-radius: 50%; 
+    -webkit-border-radius: 50%; 
+    border-radius: 50%;
+}
+.circle span {
+    float:left;
+    width:100%;
+    padding-top:50%;
+    line-height:1em;
+    margin-top:-0.5em;
+    text-align:center;
+    color:black;
     font-size: 1.7em;
-    position: absolute;
-    top: 45px;
-    left: 50px;
 }
 .circle-name{
     font-size: 1.2em;
     color:#949494;
+}
+@media screen and (max-width:1500px){
+    .circle {
+        max-width: 80px;
+        max-height: 80px;
+    }
+    .circle span {
+        font-size: 1em !important;
+    }
+    .circle:after {
+        padding-bottom: 93% !important;
+    }
+    .circle-name{
+        font-size: 1em !important;
+        margin-top: 1em;
+    }
 }
 .tres {
     height: 100%;
@@ -141,6 +165,7 @@
     display: flex;
     flex-direction: row;
 }
+
 // Cluster sliders
 .nodes-run{
     font-size: .8em;
@@ -153,7 +178,6 @@
     display: flex;
     flex-direction: column;
     min-height: 200px;
-
 }
 // Cluster charts
 .donut-chart {

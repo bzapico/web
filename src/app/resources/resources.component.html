@@ -5,49 +5,49 @@
   </div>
 </div>
 
-  <div class="row row-info">
-    <!-- Summary info card -->
-    <div class="col-lg-4 h-100">
-      <div class="card p-4 h-100">
-        <div class="card-title-c">
-          <h5 class="text-uppercase">Summary</h5>
+<div class="row row-info">
+  <!-- Summary info card -->
+
+  <div class="col-lg-4 h-100">
+    <div class="card p-4 h-100">
+
+      <div class="card-title-c">
+        <h5 class="text-uppercase">Summary</h5>
+      </div>
+
+      <div class="d-flex flex-col justify-content-around">
+        <div class="p-2 circle">
+          <span>3</span>
         </div>
-        <div class="d-flex p-2 flex-row justify-content-around h-100">
-          <div class="p-2">
-            <div class="p-2 circle">
-              <span class="circle-number">3</span>
-            </div>
-            <p class="circle-name text-center text-uppercase pt-3">Cluster</p>
-          </div> 
-          <div class="p-2">
-            <div class="p-2 circle">
-              <span class="circle-number">11</span>
-            </div>
-            <p class="circle-name text-center text-uppercase pt-3">Nodes</p>
-          </div>
+        <div class="p-2 circle">
+          <span>11</span>
         </div>
       </div>
+
+      <div class="d-flex flex-col justify-content-around mt-3">
+        <p class="circle-name text-center text-uppercase ">Cluster</p>
+        <p class="circle-name text-center text-uppercase ">Nodes</p>
+      </div>
+
     </div>
-    <!-- Clusters info card -->
-    <div class="col-lg-4 h-100">
-      <div class="card p-4 h-100">
-        <div class="card-title-c">
-          <h5 class="text-uppercase d-inline">Clusters</h5>
-          <p class="d-inline cluster-number">5 clusters</p>
-        </div>
-        <div class="cluster-carousel d-flex flex-row">
+  </div>
+
+  <!-- Clusters info card -->
+  <div class="col-lg-4 h-100">
+    <div class="card p-4 h-100">
+      <div class="card-title-c">
+        <h5 class="text-uppercase d-inline">Clusters</h5>
+        <p class="d-inline cluster-number">5 clusters</p>
+      </div>
+      <div class="cluster-carousel d-flex flex-row">
         <carousel>
           <slide>
-            <div alt="first slide" class="tres">              
+            <div alt="first slide" class="tres">
               <div class="box">
 
-                  <ngx-charts-pie-grid
-                  class="donut-chart"
-                  [view]="view"
-                  [scheme]="colorScheme"
-                  [results]="mockClusterChart"
+                <ngx-charts-pie-grid class="donut-chart" [view]="view" [scheme]="colorScheme" [results]="mockClusterChart"
                   (select)="onSelect($event)">
-                  </ngx-charts-pie-grid>
+                </ngx-charts-pie-grid>
 
                 <p class="blue text-center nodes-run">All nodes running</p>
                 <p class="text-uppercase text-center grey ">Cluster 1</p>
@@ -79,54 +79,54 @@
             </div>
           </slide>
           <slide>
-              <div alt="first slide" class="tres">              
-                <div class="box">
-                  <!-- <ngx-charts-pie-grid
+            <div alt="first slide" class="tres">
+              <div class="box">
+                <!-- <ngx-charts-pie-grid
                   class="donut-chart"
                   [view]="view"
                   [scheme]="colorScheme"
                   [results]="mockClusterChart"
                   (select)="onSelect($event)">
                   </ngx-charts-pie-grid> -->
-                  <p class="blue text-center nodes-run">All nodes running</p>
-                  <p class="text-uppercase text-center grey ">Cluster 1qq</p>
-                </div>
-                <div class="box">
-                  <!-- <ngx-charts-pie-grid
-                  class="donut-chart"
-                  [view]="view"
-                  [scheme]="colorScheme"
-                  [results]="mockClusterChart"
-                  (select)="onSelect($event)">
-                  </ngx-charts-pie-grid> -->
-                  <p class="blue text-center nodes-run">All nodes running</p>
-                  <p class="text-uppercase text-center grey">Cluster 1qq</p>
-                </div>
-                <div class="box">
-                  <!-- <ngx-charts-pie-grid
-                  class="donut-chart"
-                  [view]="view"
-                  [scheme]="colorScheme"
-                  [results]="mockClusterChart"
-                  (select)="onSelect($event)">
-                  </ngx-charts-pie-grid> -->
-                  <p class="blue text-center nodes-run">All nodes running</p>
-                  <p class="text-uppercase text-center grey">Cluster qq</p>
-                </div>
+                <p class="blue text-center nodes-run">All nodes running</p>
+                <p class="text-uppercase text-center grey ">Cluster 1qq</p>
               </div>
-            </slide>
-          </carousel>
-        </div>
+              <div class="box">
+                <!-- <ngx-charts-pie-grid
+                  class="donut-chart"
+                  [view]="view"
+                  [scheme]="colorScheme"
+                  [results]="mockClusterChart"
+                  (select)="onSelect($event)">
+                  </ngx-charts-pie-grid> -->
+                <p class="blue text-center nodes-run">All nodes running</p>
+                <p class="text-uppercase text-center grey">Cluster 1qq</p>
+              </div>
+              <div class="box">
+                <!-- <ngx-charts-pie-grid
+                  class="donut-chart"
+                  [view]="view"
+                  [scheme]="colorScheme"
+                  [results]="mockClusterChart"
+                  (select)="onSelect($event)">
+                  </ngx-charts-pie-grid> -->
+                <p class="blue text-center nodes-run">All nodes running</p>
+                <p class="text-uppercase text-center grey">Cluster qq</p>
+              </div>
+            </div>
+          </slide>
+        </carousel>
       </div>
     </div>
-    <!-- Node status timeline info card -->
-    <div class="col-lg-4 h-100">
-      <div class="card p-4 h-100">
-        <div class="card-title-c">
-          <h5 class="text-uppercase">Node status timeline</h5>
-        </div>
-        <div>
-            <!-- <ngx-charts-line-chart
+  </div>
+  <!-- Node status timeline info card -->
+  <div class="col-lg-4 h-100">
+    <div class="card p-4 h-100">
+      <div class="card-title-c">
+        <h5 class="text-uppercase">Node status timeline</h5>
+      </div>
+      <div>
+        <!-- <ngx-charts-line-chart
               [view]="view"
               [scheme]="colorScheme"
               [results]="multi"
@@ -141,93 +141,74 @@
               [autoScale]="autoScale"
               (select)="onSelect($event)">
             </ngx-charts-line-chart> -->
-        </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Clusters panel card-->
-  <div class="row row-main">
-    <div class="col-lg-12 col-md-12 col-sm-12 h-100">
-      <div class="card h-100 p-4">
-        <div class="card-title-h">
-          <h5 class="text-uppercase">Clusters</h5>
-        </div>
-        <div class="table-h">
-          <table  *ngIf="clusters && clusters.length > 0"
-            class="table">
-            <thead>
-              <tr>
-                <th 
-                  scope="col" 
-                  class="row-name">
-                  Name
-                </th>
-                <th 
-                  scope="col" 
-                  class="row-id">
-                  ID
-                </th>
-                <th 
-                  scope="col" 
-                  class="row-nodes">
-                  Nodes
-                </th>
-                <th 
-                  scope="col" 
-                  class="row-description">
-                  Description
-                </th>
-                <th 
-                  scope="col" 
-                  class="row-types">
-                  Types
-                </th>
-                <th 
-                  scope="col" 
-                  class="row-status">
-                  Status
-                </th>
-                <th 
-                  scope="col" 
-                  class="row-tags">
-                  Tags
-                </th>
-                <th 
-                  scope="col" 
-                  class="row-multitenant">
-                  Multitenant
-                </th>
-                <th 
-                  scope="col" 
-                  class="row-edit">
-                  Edit
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let cluster of clusters">
-                <td class="blue">{{cluster.name}}</td>
-                <td>{{cluster.id}}</td>
-                <td class="blue">{{cluster.nodes}}</td>
-                <td>{{cluster.description}}</td>
-                <td>{{cluster.type}}</td>
-                <td [ngClass]="{
+<!-- Clusters panel card-->
+<div class="row row-main">
+  <div class="col-lg-12 col-md-12 col-sm-12 h-100">
+    <div class="card h-100 p-4">
+      <div class="card-title-h">
+        <h5 class="text-uppercase">Clusters</h5>
+      </div>
+      <div class="table-h">
+        <table *ngIf="clusters && clusters.length > 0" class="table">
+          <thead>
+            <tr>
+              <th scope="col" class="row-name">
+                Name
+              </th>
+              <th scope="col" class="row-id">
+                ID
+              </th>
+              <th scope="col" class="row-nodes">
+                Nodes
+              </th>
+              <th scope="col" class="row-description">
+                Description
+              </th>
+              <th scope="col" class="row-types">
+                Types
+              </th>
+              <th scope="col" class="row-status">
+                Status
+              </th>
+              <th scope="col" class="row-tags">
+                Tags
+              </th>
+              <th scope="col" class="row-multitenant">
+                Multitenant
+              </th>
+              <th scope="col" class="row-edit">
+                Edit
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cluster of clusters">
+              <td class="blue">{{cluster.name}}</td>
+              <td>{{cluster.id}}</td>
+              <td class="blue">{{cluster.nodes}}</td>
+              <td>{{cluster.description}}</td>
+              <td>{{cluster.type}}</td>
+              <td [ngClass]="{
                   'status-dot':cluster.status === 'Running',
                   'status-dot-error':cluster.status === 'Error'
                 }">{{cluster.status}}</td>
-                <td>{{cluster.tags}}</td>
-                <td>{{cluster.multitenant}}</td>
-                <td>
-                  <button class="btn info-btn btn-primary" (click)="editCluster()">
-                    <i class="material-icons i-info">
-                      edit
-                    </i>
-                  </button>
-                </td>
-              </tr>
+              <td>{{cluster.tags}}</td>
+              <td>{{cluster.multitenant}}</td>
+              <td>
+                <button class="btn info-btn btn-primary" (click)="editCluster()">
+                  <i class="material-icons i-info">
+                    edit
+                  </i>
+                </button>
+              </td>
+            </tr>
 
-              <!-- <tr>
+            <!-- <tr>
                 <td class="blue">Cluster1</td>
                 <td>0800200c9a66</td>
                 <td class="blue">10</td>
@@ -330,9 +311,9 @@
                   </td>
               </tr> -->
 
-            </tbody>
-          </table>
-        </div>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+</div>

@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,EAAE,CAAC;EACC,UAAU,EAAE,IAAI;EAChB,aAAa,EAAE,IAAI;EACnB,MAAM,EAAE,CAAC;EACT,UAAU,EAAE,GAAG,CAAC,KAAK,CAAC,kBAAkB;CACzC",
-    "sources": [
-        "debug-panel.component.scss"
-    ],
-    "names": [],
-    "file": "debug-panel.component.css"
-}
