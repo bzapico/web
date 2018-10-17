@@ -1,8 +1,8 @@
 # Nalej
 
-Nalej management cluster UI
+Nalej UI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.1.
+
 
 ## Requirements
 
@@ -31,9 +31,9 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Documentation
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Compodoc is the integrated library that automates the documentation generation. To update the documentation just run `npm run compodoc` and the updated version will be available to serve it in `documentation` folder ([http-server](https://www.npmjs.com/package/http-server) could be used for this purpose).
 
 ## Further help
 
