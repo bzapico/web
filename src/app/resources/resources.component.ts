@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { mockClusterChart } from '../utils/mocks';
+import { mockClusterChart, mockNodesChart } from '../utils/mocks';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
@@ -44,23 +44,23 @@ export class ResourcesComponent implements OnInit {
   clusters: any[];
 
   /**
-   * Charts
+   * Pie Chart options
    */
-
-  // view: any[] = [200, 150];
-
-  // options
-
-  gradient = true;
-  showLegend = false;
+  gradient = false;
   doughnut = true;
-
   colorScheme = {
-    domain: ['#0937FF', '#051c80',  '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#0937FF', '#051c80']
   };
+  /**
+   * Line Chart options
+   * */
 
-  // line, area
-  autoScale = false;
+  showXAxis = true;
+  showYAxis = true;
+  showXAxisLabel = true;
+  showYAxisLabel = true;
+
+
 
   constructor(
     private backendService: BackendService,
@@ -87,7 +87,7 @@ export class ResourcesComponent implements OnInit {
   /**
    * Mocked Charts
    */
-    Object.assign(this, {mockClusterChart});
+    Object.assign(this, {mockClusterChart, mockNodesChart});
    }
 
   onSelect(event) {

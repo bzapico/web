@@ -1,17 +1,17 @@
 .blue {
     color:  #0937FF !important;
 }
-.grey{
+.grey {
     color: #949494;
 }
-.row-title{
+.row-title {
     height: 4%;
 }
-.row-info{
+.row-info {
     height: 29%;
     margin-bottom: 2.2rem;
 }
-.row-main{
+.row-main {
     height: 54%;
 }
 .card {
@@ -20,17 +20,20 @@
     box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
     border-radius: 10px;
     border: 0;
+    overflow: hidden;
 }
-.card-title-h{
+.card-title-h {
     height: 4%;
     margin-left: 9px;
     margin-bottom: 70px;
 }
-.cluster-number{
+.cluster-number {
     float: right;
     color: #949494;
 }
-.table-h{
+
+/* - - - Cluster table card - - - */
+.table-h {
     height: 80%;
     overflow-y: auto;
     overflow-x: hidden;
@@ -86,7 +89,7 @@
     border-radius: 50%;
     position: relative;
 }
-.i-info{
+.i-info {
     font-size: 1.2em;
     position: absolute;
     top: 6px;
@@ -111,7 +114,7 @@
     margin:0 10px 0 0;
 }
 
-// Summary circles
+/* - - - Summary card circles - - - */
 .circle {
     width:112px;
     height: 112px;
@@ -130,10 +133,11 @@
     top: 38px;
     left: 44px;
 }
-.circle-name{
+.circle-name {
     font-size: 1.2em;
     color:#949494;
 }
+/* - - - Medias Summary card circles - - - */
 @media screen and (max-width:1500px){
     .circle {
         margin-top: 0;
@@ -145,7 +149,7 @@
         top: 21px;
         left: 26px;
     }
-    .circle-name{
+    .circle-name {
         font-size: 1em !important;
         margin-top: 1em;
     }
@@ -163,20 +167,21 @@
     .circle-name{
         margin-top: 2em !important;
     }
+    .carousel {
+        padding-top: 2em;
+    }
 }
 
+/* - - - Cluster card Slider - - - */
 .slide-box {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
-// Cluster sliders
-.nodes-run{
+.nodes-run {
     font-size: .8em;
 }
-.box{
-    // border: 1px solid blue;
-    // height: 200px;
+.box {
     width: 27%;
     display: inline-flex;
     flex-direction: column;
@@ -187,17 +192,32 @@
     width: 100%;
     text-align: center;
     position: relative;
-    // background-color: pink;
-    // height: 120px;
-    // width: 120px;
-    // display: inline-flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // align-self: center;
 }
-.donut-number{
-    color: pink;
+.donut-number {
     position: absolute;
     top: 43%;
     left: 36%;
 }
+/* - - - Media Cluster card Slider - - - */
+@media screen and (max-width:1500px){
+    .slide-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .box {
+      width: 90%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+    .donut-number {
+      display: inline;
+    }
+}
+/* - - - Node Status card - - - */
+
+/* - - - Media Node Status card - - - */
+
+  

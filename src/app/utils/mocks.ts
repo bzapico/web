@@ -116,17 +116,13 @@ export const mockClusterList = [
  */
 export const mockClusterChart = [
     {
-        'name': 'CPU LOAD',
+        'name': 'Clusters',
         'value': 5000000
     },
-    // {
-    //     'name': 'STORAGE',
-    //     'value': 5000000
-    // },
-    // {
-    //     'name': 'STORAGE',
-    //     'value': 5000000
-    // }
+    {
+        'name': 'None',
+        'value': 3000000
+    }
 ];
 
 /**
@@ -134,37 +130,49 @@ export const mockClusterChart = [
  */
 export const mockNodesChart = [
     {
-        'name': 'Dominican Republic',
+        'name': 'Nodes Running',
         'series': [
           {
-            'value': 2390,
-            'name': '2016-09-13T00:45:49.946Z',
-            'min': 2283,
-            'max': 2497
+            'value': 39,
+            'name': '-6h',
+            'min': 28,
+            'max': 49
           },
           {
-            'value': 3791,
-            'name': '2016-09-14T22:53:57.309Z',
-            'min': 3663,
-            'max': 3919
+            'value': 79,
+            'name': '-5h',
+            'min': 66,
+            'max': 91
           },
           {
-            'value': 4749,
-            'name': '2016-09-14T04:20:27.185Z',
-            'min': 4356,
-            'max': 5142
+            'value': 74,
+            'name': '-4h',
+            'min': 35,
+            'max': 14
           },
           {
-            'value': 3966,
-            'name': '2016-09-21T04:52:40.898Z',
-            'min': 3766,
-            'max': 4166
+            'value': 96,
+            'name': '-3h',
+            'min': 76,
+            'max': 16
           },
           {
-            'value': 6736,
-            'name': '2016-09-23T22:20:28.506Z',
-            'min': 6453,
-            'max': 7019
+            'value': 73,
+            'name': '-2h',
+            'min': 45,
+            'max': 100
+          },
+          {
+            'value': 73,
+            'name': '-1h',
+            'min': 45,
+            'max': 100
+          },
+          {
+            'value': 73,
+            'name': 'Now',
+            'min': 45,
+            'max': 100
           }
         ]
       },

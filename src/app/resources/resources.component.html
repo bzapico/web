@@ -32,15 +32,13 @@
     <div class="card p-4 h-100">
       <div class="card-title-c">
         <h5 class="text-uppercase d-inline">Clusters</h5>
-        <p class="d-inline cluster-number">5 clusters</p>
+        <p class="d-inline cluster-number">6 clusters</p>
       </div>
-
-      <carousel class="h-100 bg-warning">
+      <carousel class="h-100">
         <slide>
           <div class="slide-box">
-
             <div class="box">
-              <div class="donut-chart bg-dark">
+              <div class="donut-chart">
                 <ngx-charts-pie-chart
                   [scheme]="colorScheme" 
                   [results]="mockClusterChart" 
@@ -48,9 +46,9 @@
                   [gradient]="gradient"
                   (select)="onSelect($event)">
                 </ngx-charts-pie-chart>
-                <div class="donut-number">10/10</div>
+                <div class="donut-number">5/6</div>
               </div>
-              <p class="blue  nodes-run">All nodes running</p>
+              <p class="blue nodes-run mb-0">All nodes running</p>
               <p class="text-uppercase ">Cluster 1</p>
             </div>
             <div class="box">
@@ -62,9 +60,9 @@
                   [gradient]="gradient"
                   (select)="onSelect($event)">
                 </ngx-charts-pie-chart>
-                <div class="donut-number">10/10</div>
+                <div class="donut-number">5/6</div>
               </div>
-              <p class="blue  nodes-run">All nodes running</p>
+              <p class="blue nodes-run mb-0">All nodes running</p>
               <p class="text-uppercase ">Cluster 1</p>
             </div>
             <div class="box">
@@ -76,15 +74,13 @@
                   [gradient]="gradient" 
                   (select)="onSelect($event)">
                 </ngx-charts-pie-chart>
-                <div class="donut-number">10/10</div>
+                <div class="donut-number">5/6</div>
               </div>
-              <p class="blue  nodes-run">All nodes running</p>
+              <p class="blue nodes-run mb-0">All nodes running</p>
               <p class="text-uppercase ">Cluster 1</p>
             </div>
-
           </div>
         </slide>
-
         <slide>
           <div class="slide-box">
             <div class="box">
@@ -96,10 +92,24 @@
                   [gradient]="gradient"
                   (select)="onSelect($event)">
                 </ngx-charts-pie-chart>
-                <div class="donut-number">10/10</div>
+                <div class="donut-number">5/6</div>
               </div>
-              <p class="blue  nodes-run">All nodes running</p>
-              <p class="text-uppercase ">Cluster** 1</p>
+              <p class="blue nodes-run mb-0">All nodes running</p>
+              <p class="text-uppercase ">Cluster 1</p>
+            </div>
+            <div class="box">
+              <div class="donut-chart">
+                <ngx-charts-pie-chart
+                  [scheme]="colorScheme" 
+                  [results]="mockClusterChart" 
+                  [doughnut]= "doughnut"
+                  [gradient]="gradient"
+                  (select)="onSelect($event)">
+                </ngx-charts-pie-chart>
+                <div class="donut-number">5/6</div>
+              </div>
+              <p class="blue nodes-run mb-0">All nodes running</p>
+              <p class="text-uppercase ">Cluster 1</p>
             </div>
             <div class="box">
               <div class="donut-chart">
@@ -110,31 +120,15 @@
                   [gradient]="gradient" 
                   (select)="onSelect($event)">
                 </ngx-charts-pie-chart>
-                <div class="donut-number">10/10</div>
+                <div class="donut-number">5/6</div>
               </div>
-              <p class="blue  nodes-run">All nodes running</p>
-              <p class="text-uppercase ">Cluster** 1</p>
-            </div>
-            <div class="box">
-              <div class="donut-chart">
-                <ngx-charts-pie-chart
-                  [scheme]="colorScheme" 
-                  [results]="mockClusterChart"
-                  [doughnut]= "doughnut"
-                  [gradient]="gradient" 
-                  (select)="onSelect($event)">
-                </ngx-charts-pie-chart>
-                <div class="donut-number">10/10</div>
-              </div>
-              <p class="blue  nodes-run">All nodes running</p>
-              <p class="text-uppercase ">Cluster** 1</p>
+              <p class="blue nodes-run mb-0">All nodes running</p>
+              <p class="text-uppercase ">Cluster 1</p>
             </div>
           </div>
-
         </slide>
       </carousel>
     </div>
-
   </div>
   <!-- Node status timeline info card -->
   <div class="col-lg-4 h-100">
@@ -142,27 +136,23 @@
       <div class="card-title-c">
         <h5 class="text-uppercase">Node status timeline</h5>
       </div>
-      <div>
-        <!-- <ngx-charts-line-chart
-              [view]="view"
-              [scheme]="colorScheme"
-              [results]="multi"
-              [gradient]="gradient"
-              [xAxis]="showXAxis"
-              [yAxis]="showYAxis"
-              [legend]="showLegend"
-              [showXAxisLabel]="showXAxisLabel"
-              [showYAxisLabel]="showYAxisLabel"
-              [xAxisLabel]="xAxisLabel"
-              [yAxisLabel]="yAxisLabel"
-              [autoScale]="autoScale"
-              (select)="onSelect($event)">
-            </ngx-charts-line-chart> -->
+      <div class="bg-warning h-100">
+        <ngx-charts-line-chart
+        class="h-100"
+          [scheme]="colorScheme"
+          [results]="mockNodesChart"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [gradient]="gradient" 
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [autoScale]="autoScale"
+          (select)="onSelect($event)">
+        </ngx-charts-line-chart>
       </div>
     </div>
   </div>
 </div>
-
 <!-- Clusters panel card-->
 <div class="row row-main">
   <div class="col-lg-12 col-md-12 col-sm-12 h-100">
@@ -210,10 +200,12 @@
               <td class="blue">{{cluster.nodes}}</td>
               <td>{{cluster.description}}</td>
               <td>{{cluster.type}}</td>
-              <td [ngClass]="{
-                  'status-dot':cluster.status === 'Running',
-                  'status-dot-error':cluster.status === 'Error'
-                }">{{cluster.status}}</td>
+              <td 
+                [ngClass]=
+                "{'status-dot':cluster.status === 'Running',
+                'status-dot-error':cluster.status === 'Error'}">
+                {{cluster.status}}
+              </td>
               <td>{{cluster.tags}}</td>
               <td>{{cluster.multitenant}}</td>
               <td>
@@ -224,110 +216,6 @@
                 </button>
               </td>
             </tr>
-
-            <!-- <tr>
-                <td class="blue">Cluster1</td>
-                <td>0800200c9a66</td>
-                <td class="blue">10</td>
-                <td>Ny Cluster</td>
-                <td>Kubernetes</td>
-                <td class="status-dot">Running</td>
-                <td>ny, edge</td>
-                <td>All</td>
-                <td>
-                  <button class="btn info-btn btn-primary">
-                    <i class="material-icons i-info">
-                      edit
-                    </i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td class="blue">Cluster1</td>
-                <td>0800200c9a66</td>
-                <td class="blue">10</td>
-                <td>Ny Cluster</td>
-                <td>Kubernetes</td>
-                <td class="status-dot">Running</td>
-                <td>ny, edge</td>
-                <td>All</td>
-                <td>
-                  <button class="btn info-btn btn-primary">
-                    <i class="material-icons i-info">
-                      edit
-                    </i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td class="blue">Cluster1</td>
-                <td>0800200c9a66</td>
-                <td class="blue">10</td>
-                <td>Ny Cluster</td>
-                <td>Kubernetes</td>
-                <td class="status-dot">Running</td>
-                <td>ny, edge</td>
-                <td>All</td>
-                <td>
-                  <button class="btn info-btn btn-primary">
-                    <i class="material-icons i-info">
-                      edit
-                    </i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td class="blue">Cluster1</td>
-                <td>0800200c9a66</td>
-                <td class="blue">10</td>
-                <td>Ny Cluster</td>
-                <td>Kubernetes</td>
-                <td class="status-dot-error">Error</td>
-                <td>ny, edge</td>
-                <td>All</td>
-                <td>
-                  <button class="btn info-btn btn-primary">
-                    <i class="material-icons i-info">
-                      edit
-                    </i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td class="blue">Cluster1</td>
-                <td>0800200c9a66</td>
-                <td class="blue">10</td>
-                <td>Ny Cluster</td>
-                <td>Kubernetes</td>
-                <td class="status-dot">Running</td>
-                <td>ny, edge</td>
-                <td>All</td>
-                <td>
-                  <button class="btn info-btn btn-primary">
-                    <i class="material-icons i-info">
-                      edit
-                    </i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                  <td class="blue">Cluster1</td>
-                  <td>0800200c9a66</td>
-                  <td class="blue">10</td>
-                  <td>Ny Cluster</td>
-                  <td>Kubernetes</td>
-                  <td class="status-dot">Running</td>
-                  <td>ny, edge</td>
-                  <td>All</td>
-                  <td>
-                    <button class="btn info-btn btn-primary">
-                      <i class="material-icons i-info">
-                        edit
-                      </i>
-                    </button>
-                  </td>
-              </tr> -->
-
           </tbody>
         </table>
       </div>
