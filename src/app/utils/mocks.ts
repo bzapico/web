@@ -92,7 +92,7 @@ export const mockClusterList = [
     {
         name: 'Cluster1',
         id: '0800200c9a66',
-        nodes: '10',
+        nodes: '8',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Error',
@@ -116,12 +116,12 @@ export const mockClusterList = [
  */
 export const mockClusterChart = [
     {
-        'name': 'Clusters',
-        'value': 5000000
+        'name': 'Running',
+        'value': 5
     },
     {
-        'name': 'None',
-        'value': 3000000
+        'name': 'Error',
+        'value': 1
     }
 ];
 
@@ -145,9 +145,9 @@ export const mockNodesChart = [
             'max': 91
           },
           {
-            'value': 74,
+            'value': 23,
             'name': '-4h',
-            'min': 35,
+            'min': 3,
             'max': 14
           },
           {
@@ -170,7 +170,7 @@ export const mockNodesChart = [
           },
           {
             'value': 73,
-            'name': 'Now',
+            'name': 'now',
             'min': 45,
             'max': 100
           }

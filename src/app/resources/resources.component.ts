@@ -6,6 +6,8 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { NotificationsService } from '../services/notifications.service';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
+import { LineChartComponent } from '@swimlane/ngx-charts';
+import { bypassSanitizationTrustResourceUrl } from '@angular/core/src/sanitization/bypass';
 
 @Component({
   selector: 'app-resources',
@@ -46,19 +48,38 @@ export class ResourcesComponent implements OnInit {
   /**
    * Pie Chart options
    */
-  gradient = false;
+  gradient = true;
   doughnut = true;
   colorScheme = {
-    domain: ['#0937FF', '#051c80']
+    domain: ['#0937FF', '#949494']
   };
+
   /**
    * Line Chart options
-   * */
-
+   */
   showXAxis = true;
-  showYAxis = true;
-  showXAxisLabel = true;
+  showYAxis = false;
+  showXAxisLabel = false;
   showYAxisLabel = true;
+  showGridLines = false;
+  showRefLines = true;
+  showRefLabels = false;
+  schemeType = 'ordinal';
+  rangeFillOpacity = 0.0;
+  referenceLines = [{
+    name: 'xline',
+    value: 0
+  }];
+  customColors = [
+    {
+      name: 'Running',
+      value: '#0000ff'
+    },
+    {
+      name: 'error',
+      value: '#00ff00'
+    }
+];
 
 
 
@@ -89,10 +110,6 @@ export class ResourcesComponent implements OnInit {
    */
     Object.assign(this, {mockClusterChart, mockNodesChart});
    }
-
-  onSelect(event) {
-    console.log(event);
-  }
 
   ngOnInit() {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;

@@ -12,6 +12,20 @@ html, body {
   overflow-x: hidden;
   font-family: 'Aldrich', sans-serif;
 }
+.blue {
+  color:  #0937FF !important;
+}
+.grey {
+  color: #949494;
+}
+a {
+  color:  #0937FF;
+  text-decoration: none;
+}
+a:hover {
+  color:  #0937FF;
+  text-decoration: none;
+}
 
 /* - - - Button styles - - - */
 
@@ -191,6 +205,12 @@ button[type="submit"]:disabled {
 }
 
 /* - - - Resources - Cluster card - Carousel - - - */
+.carousel-big {
+  display: block;
+}
+.carousel-small {
+  display: none;
+}
 .carousel-indicators {
   bottom: 0;
   position: absolute;
@@ -259,6 +279,9 @@ button[type="submit"]:disabled {
   font-family: 'Material Icons'; 
   color: black;
   font-size: 26px;
+  bottom: 10px;
+  position: absolute;
+  right: -14px;
 }
 .carousel-control-prev-icon:before {
   content: '\e314'; 
@@ -267,7 +290,7 @@ button[type="submit"]:disabled {
   font-size: 26px;
   left: -14px;
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
 }
 /* - - - Resources - Cluster card - Charts - - - */
 .ngx-charts .label {
@@ -277,7 +300,9 @@ button[type="submit"]:disabled {
   font-size: 1em;
   display: block;
 }
-
+.ngx-charts text { 
+  fill: #949494; 
+}
 /* - - - Medias - Resources - Cluster card - Carousel - - - */
 @media screen and (min-width:2560px){
   .carousel {
@@ -285,5 +310,13 @@ button[type="submit"]:disabled {
   }
   .carousel-indicators {
     bottom: -41px;
+  }
+}
+@media screen and (max-width:1500px){
+  .carousel-big {
+    display: none;
+  }
+  .carousel-small {
+    display: block;
   }
 }
