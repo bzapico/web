@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditClusterComponent } from './edit-cluster.component';
+import { FormsModule } from '@angular/forms';
+import { ButtonsModule, BsModalRef } from 'ngx-bootstrap';
 
 describe('EditClusterComponent', () => {
   let component: EditClusterComponent;
@@ -8,7 +10,9 @@ describe('EditClusterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditClusterComponent ]
+      declarations: [ EditClusterComponent ],
+      imports: [FormsModule, ButtonsModule],
+      providers: [BsModalRef]
     })
     .compileComponents();
   }));

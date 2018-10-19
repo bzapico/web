@@ -1,3 +1,50 @@
-<p>
-  edit-cluster works!
-</p>
+<div class="modal-card">
+    <!-- Header -->
+    <div class="modal-header">
+      <h3 class="nalej-form-title">{{title}}</h3>
+      <button 
+        type="button" 
+        class="close" 
+        aria-label="Close"
+        (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- Body -->
+    <div class="modal-body">
+      <form #f="ngForm" class="form-cluster">
+        <div class="form-group">
+          <input 
+            disabled
+            [(ngModel)]="clusterName" 
+            name="name" 
+            type="text" 
+            class="form-control" 
+            placeholder="Cluster Name" 
+            required>
+          <input 
+            disabled
+            [(ngModel)]="clusterDescription" 
+            name="organization" 
+            type="text" 
+            class="form-control" 
+            placeholder="Description"
+            required>
+          <input 
+            disabled
+            [(ngModel)]="clusterTags" 
+            name="email" 
+            type="text" 
+            class="form-control" 
+            placeholder="Tags" 
+            required>
+        </div>
+      </form>
+    <!-- Option buttons -->
+    <div class="buttons d-flex flex-row justify-content-between">
+      <button class="btn btn-primary btn-md" (click)="saveClusterChanges()">
+        <span class="align-bottom">{{buttonSave}}</span>
+      </button>
+    </div>
+    </div>
+  </div>

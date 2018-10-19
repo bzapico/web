@@ -1,0 +1,82 @@
+.modal-card {
+    border: 0;
+    border-radius: 10px;
+    outline: 0;
+    padding: 4rem;
+}
+.modal-header {
+    padding-bottom: 0;
+    border: none;
+}
+.close {
+    font-weight: 200;
+    &:focus {
+        outline: none;
+    }
+}
+.nalej-form-title{
+    font-size: 1em;
+    display: inline;
+    button span {
+       color: #888888;
+    }
+}
+.form-control:disabled, .form-control[readonly] {
+   background-color: white; 
+}
+.form-cluster {
+    position: relative;
+}
+.form-group {
+    margin: 40px 0;
+}
+input {
+    padding: 22px;
+    border: 2px solid #EEEEEE;
+    color: #949494;
+    text-align: center;
+    caret-color: #0937FF;
+    margin: -3px 0;
+    font-size: .9em;
+    &:checked {
+      outline: none;
+    }
+    &::placeholder {
+      color: #949494;
+    }
+    &:-webkit-autofill {
+      background-color: #fff !important;
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+    }
+}
+.disabled {
+    path {
+    stroke:  #c8ccd4 !important;
+    }
+}
+
+.btn-md {
+    border: 0px;
+    border-radius: 5px;
+    width: 120px;
+    font-size: 0.8em;
+    text-align: center;
+    color: #fff;
+    padding: 11px;
+    height: 47px;
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+.btn-primary {
+    text-indent: -7px;
+}
+.buttons {
+    padding: 1em 0;
+}
+@media screen and (max-width: 1300px) {
+    .modal-card{
+        padding: 3em;
+    }
+}
