@@ -3,6 +3,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ResourcesComponent } from './resources.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { ButtonsModule, ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 describe('ResourcesComponent', () => {
   let component: ResourcesComponent;
@@ -11,7 +13,18 @@ describe('ResourcesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ResourcesComponent ],
-      imports: [ NgxChartsModule, CarouselModule, BrowserAnimationsModule ]
+      imports: [
+        NgxChartsModule,
+        CarouselModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ButtonsModule,
+        ModalModule.forRoot(),
+      ],
+      providers: [
+        BsModalRef,
+        BsModalService
+      ]
     })
     .compileComponents();
   }));
