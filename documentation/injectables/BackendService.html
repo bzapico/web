@@ -104,6 +104,9 @@
                             <li>
                                 <a href="#resetPassword">resetPassword</a>
                             </li>
+                            <li>
+                                <a href="#saveClusterChanges">saveClusterChanges</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -778,6 +781,75 @@
                 </tr>
             </tbody>
         </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="saveClusterChanges"></a>
+                        <span class="name">
+                            <b>
+                            saveClusterChanges
+                            </b>
+                            <a href="#saveClusterChanges"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>saveClusterChanges(clusterId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/services/backend.service.ts:40</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>clusterId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 </section>
 
 
@@ -822,6 +894,9 @@ export class BackendService implements Backend {
     throw new Error(&#x27;Method not implemented.&#x27;);
   }
   resetPassword(organizationId: string, userId: string) {
+    throw new Error(&#x27;Method not implemented.&#x27;);
+  }
+  saveClusterChanges(clusterId: string) {
     throw new Error(&#x27;Method not implemented.&#x27;);
   }
 }
