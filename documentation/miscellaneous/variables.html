@@ -63,16 +63,25 @@
                             <a href="#AvailableComponents" title="src/app/debug-panel/debug-panel.component.ts"><b>AvailableComponents</b>&nbsp;&nbsp;&nbsp;(src/.../debug-panel.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#environment" title="src/environments/environment.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
+                            <a href="#environment" title="src/environments/environment.prod.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</a>
                         </li>
                         <li>
-                            <a href="#environment" title="src/environments/environment.prod.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</a>
+                            <a href="#environment" title="src/environments/environment.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
                         </li>
                         <li>
                             <a href="#LocalStorageKeys" title="src/app/definitions/const/local-storage-keys.ts"><b>LocalStorageKeys</b>&nbsp;&nbsp;&nbsp;(src/.../local-storage-keys.ts)</a>
                         </li>
                         <li>
+                            <a href="#mockClusterChart" title="src/app/utils/mocks.ts"><b>mockClusterChart</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#mockClusterList" title="src/app/utils/mocks.ts"><b>mockClusterList</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
+                        </li>
+                        <li>
                             <a href="#mockJwtToken" title="src/app/utils/mocks.ts"><b>mockJwtToken</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#mockNodesChart" title="src/app/utils/mocks.ts"><b>mockNodesChart</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
                         </li>
                         <li>
                             <a href="#mockOrganizationInfo" title="src/app/utils/mocks.ts"><b>mockOrganizationInfo</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
@@ -145,45 +154,6 @@
             </tbody>
         </table>
 </section>
-    <h3>src/environments/environment.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="environment"></a>
-                        <span class="name">
-                            <b>
-                            environment
-                            </b>
-                            <a href="#environment"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>environment:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
-  production: false
-}</code>
-                        </td>
-                    </tr>
-
-
-            </tbody>
-        </table>
-</section>
     <h3>src/environments/environment.prod.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
@@ -215,6 +185,45 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
   production: true
+}</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/environments/environment.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="environment"></a>
+                        <span class="name">
+                            <b>
+                            environment
+                            </b>
+                            <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>environment:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+  production: false
 }</code>
                         </td>
                     </tr>
@@ -263,7 +272,9 @@
     jwt: &#x27;jwt&#x27;,
     jwtData: &#x27;jwt_data&#x27;,
     userId: &#x27;userId&#x27;,
-    userInfoMock: &#x27;userInfo_mock&#x27;
+    userInfoMock: &#x27;userInfo_mock&#x27;,
+    clusterId: &#x27;clusterId&#x27;,
+    clusterInfo: &#x27;clusterInfo&#x27;
 }</code>
                         </td>
                     </tr>
@@ -275,6 +286,156 @@
     <h3>src/app/utils/mocks.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mockClusterChart"></a>
+                        <span class="name">
+                            <b>
+                            mockClusterChart
+                            </b>
+                            <a href="#mockClusterChart"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>mockClusterChart:     <code>[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+    {
+        &#x27;name&#x27;: &#x27;Running&#x27;,
+        &#x27;value&#x27;: 5
+    },
+    {
+        &#x27;name&#x27;: &#x27;Error&#x27;,
+        &#x27;value&#x27;: 1
+    }
+]</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Mocked clusters Chart</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mockClusterList"></a>
+                        <span class="name">
+                            <b>
+                            mockClusterList
+                            </b>
+                            <a href="#mockClusterList"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>mockClusterList:     <code>[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+    {
+        name: &#x27;Cluster1&#x27;,
+        id: &#x27;0800200c9a66&#x27;,
+        nodes: &#x27;10&#x27;,
+        description: &#x27;Ny Cluster&#x27;,
+        type: &#x27;Kubernetes&#x27;,
+        status: &#x27;Running&#x27;,
+        tags: &#x27;ny, edge&#x27;,
+        multitenant: &#x27;All&#x27;
+    },
+    {
+        name: &#x27;Cluster1&#x27;,
+        id: &#x27;0800200c9a66&#x27;,
+        nodes: &#x27;10&#x27;,
+        description: &#x27;Ny Cluster&#x27;,
+        type: &#x27;Kubernetes&#x27;,
+        status: &#x27;Running&#x27;,
+        tags: &#x27;ny, edge&#x27;,
+        multitenant: &#x27;All&#x27;
+    },
+    {
+        name: &#x27;Cluster1&#x27;,
+        id: &#x27;0800200c9a66&#x27;,
+        nodes: &#x27;10&#x27;,
+        description: &#x27;Ny Cluster&#x27;,
+        type: &#x27;Kubernetes&#x27;,
+        status: &#x27;Running&#x27;,
+        tags: &#x27;ny, edge&#x27;,
+        multitenant: &#x27;All&#x27;
+    },
+    {
+        name: &#x27;Cluster1&#x27;,
+        id: &#x27;0800200c9a66&#x27;,
+        nodes: &#x27;10&#x27;,
+        description: &#x27;Ny Cluster&#x27;,
+        type: &#x27;Kubernetes&#x27;,
+        status: &#x27;Running&#x27;,
+        tags: &#x27;ny, edge&#x27;,
+        multitenant: &#x27;All&#x27;
+    },
+    {
+        name: &#x27;Cluster1&#x27;,
+        id: &#x27;0800200c9a66&#x27;,
+        nodes: &#x27;8&#x27;,
+        description: &#x27;Ny Cluster&#x27;,
+        type: &#x27;Kubernetes&#x27;,
+        status: &#x27;Error&#x27;,
+        tags: &#x27;ny, edge&#x27;,
+        multitenant: &#x27;No&#x27;
+    },
+    {
+        name: &#x27;Cluster1&#x27;,
+        id: &#x27;0800200c9a66&#x27;,
+        nodes: &#x27;10&#x27;,
+        description: &#x27;Ny Cluster&#x27;,
+        type: &#x27;Kubernetes&#x27;,
+        status: &#x27;Running&#x27;,
+        tags: &#x27;ny, edge&#x27;,
+        multitenant: &#x27;All&#x27;
+    }
+]</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Mocked clusters list</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
@@ -302,6 +463,94 @@
                         </td>
                     </tr>
 
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mockNodesChart"></a>
+                        <span class="name">
+                            <b>
+                            mockNodesChart
+                            </b>
+                            <a href="#mockNodesChart"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>mockNodesChart:     <code>[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+    {
+        &#x27;name&#x27;: &#x27;Nodes Running&#x27;,
+        &#x27;series&#x27;: [
+          {
+            &#x27;value&#x27;: 39,
+            &#x27;name&#x27;: &#x27;-6h&#x27;,
+            &#x27;min&#x27;: 28,
+            &#x27;max&#x27;: 49
+          },
+          {
+            &#x27;value&#x27;: 79,
+            &#x27;name&#x27;: &#x27;-5h&#x27;,
+            &#x27;min&#x27;: 66,
+            &#x27;max&#x27;: 91
+          },
+          {
+            &#x27;value&#x27;: 23,
+            &#x27;name&#x27;: &#x27;-4h&#x27;,
+            &#x27;min&#x27;: 3,
+            &#x27;max&#x27;: 14
+          },
+          {
+            &#x27;value&#x27;: 96,
+            &#x27;name&#x27;: &#x27;-3h&#x27;,
+            &#x27;min&#x27;: 76,
+            &#x27;max&#x27;: 16
+          },
+          {
+            &#x27;value&#x27;: 73,
+            &#x27;name&#x27;: &#x27;-2h&#x27;,
+            &#x27;min&#x27;: 45,
+            &#x27;max&#x27;: 100
+          },
+          {
+            &#x27;value&#x27;: 73,
+            &#x27;name&#x27;: &#x27;-1h&#x27;,
+            &#x27;min&#x27;: 45,
+            &#x27;max&#x27;: 100
+          },
+          {
+            &#x27;value&#x27;: 73,
+            &#x27;name&#x27;: &#x27;now&#x27;,
+            &#x27;min&#x27;: 45,
+            &#x27;max&#x27;: 100
+          }
+        ]
+      },
+]</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Mocked nodes list</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
