@@ -50,6 +50,7 @@ export class EditClusterComponent implements OnInit {
       this.clusterName = 'Loading...'; // Default initialization
       this.clusterDescription = 'Loading...'; // Default initialization
       this.clusterTags = 'Loading...'; // Default initialization
+      this.clusterId = 'Loading ...'; // Default initialization
       this.buttonSave = 'Save';
   }
 
@@ -57,10 +58,10 @@ export class EditClusterComponent implements OnInit {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       const jwtJson = JSON.parse(jwtData);
-      this.clusterId = jwtJson.clusterId;
-      this.clusterName = jwtJson.clusterName;
-      this.clusterDescription = jwtJson.clusterDescription;
-      this.clusterTags = jwtJson.clusterTags;
+      this.clusterId = jwtJson.ClusterId;
+      this.clusterName = jwtJson.ClusterName;
+      this.clusterDescription = jwtJson.ClusterDescription;
+      this.clusterTags = jwtJson.ClusterTags;
       if (this.clusterName !== null) {
         this.backend.getUserProfileInfo(this.clusterName)
           .subscribe(response => {
@@ -81,7 +82,7 @@ export class EditClusterComponent implements OnInit {
       this.backend.saveClusterChanges(this.clusterId)
         .subscribe(response => {
           this.notificationsService.add({
-            message: 'Saved changes '
+            message: 'The cluster ' + this.clusterId + ' has been edited'
           });
           this.bsModalRef.hide();
         });
