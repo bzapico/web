@@ -5,7 +5,6 @@ import { of, Observable } from 'rxjs';
 import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterId } from '../utils/mocks';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -63,7 +62,12 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
-
+  getClustersList(clusterInfo: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockClusterList),
+      status: 200
+    })));
+  }
   addUser(organizationId: string, user: any) {
     mockUserList.push(user);
     return of (new Response(new ResponseOptions({

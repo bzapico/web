@@ -11,6 +11,7 @@ export const LocalStorageKeys = {
     userId: 'userId',
     userInfoMock: 'userInfo_mock',
     clusterId: 'clusterId',
-    clusterIdMock: 'clusterId_mock'
+    clusterIdMock: 'clusterId_mock',
+    clusterInfo: 'clusterInfo'
 };
 
