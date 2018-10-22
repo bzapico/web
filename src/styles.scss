@@ -28,7 +28,6 @@ a:hover {
 }
 
 /* - - - Button styles - - - */
-
 .btn-primary {
   width: 257px;
   color: #fff;
@@ -311,6 +310,12 @@ button[type="submit"]:disabled {
   .carousel-indicators {
     bottom: -41px;
   }
+  .carousel-small{
+    display: none;
+  }
+  .carousel-big {
+      display: block;
+  }
 }
 @media screen and (max-width:1500px){
   .carousel-big {
@@ -318,5 +323,31 @@ button[type="submit"]:disabled {
   }
   .carousel-small {
     display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .carousel-control-prev, .carousel-control-next {
+    bottom: 31%;
+  }
+  .nodes-run{
+    line-height: 1em;
+  }
+  .donut-number {
+    top: 44% !important;
+    left: 36% !important;
+  }
+  .carousel-indicators {
+    bottom: 16px;
+  }
+  .donut-chart{
+    max-width: 100px;
+  }
+  .cluster-info{
+    max-width: 200px;
+  }
+  .cluster-info:first-child p{
+  line-height: .6rem !important;
   }
 }
