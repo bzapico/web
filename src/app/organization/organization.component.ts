@@ -7,7 +7,6 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { mockUserProfileInfo } from '../utils/mocks';
 import { NotificationsService } from '../services/notifications.service';
-import { EditClusterComponent } from '../edit-cluster/edit-cluster.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -27,11 +26,6 @@ export class OrganizationComponent implements OnInit {
   organizationName: string;
   subscriptionType: string;
   users: any[];
-
-  // TODO deleted from here and place it where it belongs
-  clusterName: string;
-  clusterDescription: string;
-  clusterTags: string;
 
   /**
    * Reference for the service that allows the user info component
@@ -92,14 +86,6 @@ export class OrganizationComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
-  /**
-   * Opens the modal view that holds the edit cluster component TODO**
-   */
-  openEditCluster() {
-    this.modalRef = this.modalService.show(EditClusterComponent);
-    this.modalRef.content.closeBtnName = 'Close';
-  }
-
   addUser() {
     this.backend.addUser(this.organizationId, mockUserProfileInfo)
       .subscribe(response => {

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
-import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterId } from '../utils/mocks';
+// tslint:disable-next-line:max-line-length
+import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterId, mockClusterList } from '../utils/mocks';
 
 
 @Injectable({

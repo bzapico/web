@@ -6,6 +6,8 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { NotificationsService } from '../services/notifications.service';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
+import { EditClusterComponent } from '../edit-cluster/edit-cluster.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-resources',
@@ -32,13 +34,14 @@ export class ResourcesComponent implements OnInit {
    */
   clusterInfo: string;
   /**
-   * Models that hold cluster ID, name, nodes, description, type, status and multitenant
+   * Models that hold cluster ID, name, nodes, description, type, status, tags and multitenant
    */
   clusterId: string;
   clusterName: string;
   clusterNodes: string;
   clusterDescription: string;
   clusterType: string;
+  clusterTags: string;
   clusterStatus: string;
   clusterMultitenant: string;
   clusters: any[];
@@ -55,6 +58,9 @@ export class ResourcesComponent implements OnInit {
   /**
    * Line Chart options
    */
+  mockClusterChart: any;
+  mockNodesChart: any;
+  autoScale: any;
   showXAxis = true;
   showYAxis = false;
   showXAxisLabel = false;
@@ -80,12 +86,14 @@ export class ResourcesComponent implements OnInit {
       value: '#00ff00'
     }
 ];
-  mockClusterChart: any;
-  mockNodesChart: any;
-  autoScale: any;
 
+  /**
+   * Reference for the service that allows the user info component
+   */
+  modalRef: BsModalRef;
 
   constructor(
+    private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
@@ -136,9 +144,11 @@ export class ResourcesComponent implements OnInit {
     }
   }
   /**
-   * Opens the modal view that holds the edit cluster component
+   * Opens the modal view that holds the edit cluster component TODO**
    */
-  editCluster() {
+  openEditCluster() {
+    this.modalRef = this.modalService.show(EditClusterComponent);
+    this.modalRef.content.closeBtnName = 'Close';
   }
 
 }
