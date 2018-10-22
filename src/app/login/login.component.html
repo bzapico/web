@@ -5,7 +5,7 @@
       [formGroup]="loginForm"
       #f="ngForm"
       class="form-login"
-      (ngSubmit)="f.form.valid && onSubmit(f)">
+      (ngSubmit)="f.form.valid && onSubmit()">
           <h2 class="form-login-heading" (click)="openDebugPanel()">Nalej</h2>
           <div class="card">
               <h5 class="card-title">Log in</h5>

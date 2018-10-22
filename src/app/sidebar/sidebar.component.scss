@@ -1,5 +1,4 @@
 .sidebar {
-    padding: 0;
     width: 313px;
     display: flex;
     -ms-flex-direction: column;
@@ -141,13 +140,8 @@
     width:112px;
     font-size: .8em;
     color: #fff;
-    background: #ff437d; /* Old browsers */
-    background: -moz-linear-gradient(-45deg, #ff437d 0%, #802222 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #ff437d 0%,#802222 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, #ff437d 0%,#802222 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     border: 0px;
     border-radius: 5px;
-
     &:focus {
         outline: none;
         box-shadow: none;

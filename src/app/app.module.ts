@@ -19,6 +19,7 @@ import { BackendService } from './services/backend.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { UserInfoComponent } from './user-info/user-info.component';
 import { OrganizationComponent } from './organization/organization.component';
 
 
@@ -30,9 +31,12 @@ import { OrganizationComponent } from './organization/organization.component';
     SidebarComponent,
     MainComponent,
     LoginComponent,
+    UserInfoComponent,
     OrganizationComponent
   ],
-  entryComponents: [DebugPanelComponent],
+  entryComponents: [
+    DebugPanelComponent,
+    UserInfoComponent],
   imports: [
     BrowserModule,
     FormsModule,

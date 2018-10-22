@@ -25,4 +25,13 @@ export class BackendService implements Backend {
   getOrganizationUsers(organizationId: string) {
     throw new Error('Method not implemented.');
   }
+  addUser(organizationId: string, user: any) {
+    throw new Error('Method not implemented.');
+  }
+  deleteUser(organizationId: string, userId: string) {
+    throw new Error('Method not implemented.');
+  }
+  resetPassword(organizationId: string, userId: string) {
+    throw new Error('Method not implemented.');
+  }
 }
