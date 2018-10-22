@@ -51,7 +51,7 @@ export const mockUserList = [
 export const mockClusterList = [
     {
         name: 'Cluster1',
-        id: '0800200c9a66',
+        id: '1',
         nodes: '10',
         description: 'Ny Cluster',
         type: 'Kubernetes',
@@ -60,8 +60,8 @@ export const mockClusterList = [
         multitenant: 'All'
     },
     {
-        name: 'Cluster1',
-        id: '0800200c9a66',
+        name: 'Cluster2',
+        id: '2',
         nodes: '10',
         description: 'Ny Cluster',
         type: 'Kubernetes',
@@ -70,8 +70,8 @@ export const mockClusterList = [
         multitenant: 'All'
     },
     {
-        name: 'Cluster1',
-        id: '0800200c9a66',
+        name: 'Cluster3',
+        id: '3',
         nodes: '10',
         description: 'Ny Cluster',
         type: 'Kubernetes',
@@ -80,8 +80,8 @@ export const mockClusterList = [
         multitenant: 'All'
     },
     {
-        name: 'Cluster1',
-        id: '0800200c9a66',
+        name: 'Cluster4',
+        id: '4',
         nodes: '10',
         description: 'Ny Cluster',
         type: 'Kubernetes',
@@ -90,8 +90,8 @@ export const mockClusterList = [
         multitenant: 'All'
     },
     {
-        name: 'Cluster1',
-        id: '0800200c9a66',
+        name: 'Cluster5',
+        id: '5',
         nodes: '8',
         description: 'Ny Cluster',
         type: 'Kubernetes',
@@ -100,8 +100,8 @@ export const mockClusterList = [
         multitenant: 'No'
     },
     {
-        name: 'Cluster1',
-        id: '0800200c9a66',
+        name: 'Cluster6',
+        id: '6',
         nodes: '10',
         description: 'Ny Cluster',
         type: 'Kubernetes',
@@ -179,11 +179,3 @@ export const mockNodesChart = [
 ];
 
 export const mockResetPasword = 'NEW_PASSWORD_1234';
-
-export const mockClusterId = [
-    {
-        name: 'Cluster 1',
-        description: 'Ny Cluster',
-        tags: 'ny, edge'
-    }
-];

@@ -39,7 +39,7 @@ export class EditClusterComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.clusterIdMock) || null;
+    const mock = localStorage.getItem(LocalStorageKeys.clusterEditMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
@@ -55,38 +55,21 @@ export class EditClusterComponent implements OnInit {
   }
 
   ngOnInit() {
-    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
-    if (jwtData !== null) {
-      const jwtJson = JSON.parse(jwtData);
-      this.clusterId = jwtJson.ClusterId;
-      this.clusterName = jwtJson.ClusterName;
-      this.clusterDescription = jwtJson.ClusterDescription;
-      this.clusterTags = jwtJson.ClusterTags;
-      if (this.clusterName !== null) {
-        this.backend.getUserProfileInfo(this.clusterName)
-          .subscribe(response => {
-            if (response && response._body) {
-              const data = JSON.parse(response._body);
-              this.clusterDescription = data.description;
-              this.clusterName = data.name;
-              this.clusterTags = data.tags;
-              // this.clusterId = data.name;
-            }
-          });
-      }
-    }
   }
 
   saveClusterChanges() {
     if (this.clusterId !== null) {
-      this.backend.saveClusterChanges(this.clusterId)
+      this.backend.saveClusterChanges(this.clusterId, {
+        newClusterName: this.clusterName,
+        newClusterDescription: this.clusterDescription,
+        newClusterTags: this.clusterTags
+      })
         .subscribe(response => {
           this.notificationsService.add({
-            message: 'The cluster ' + this.clusterId + ' has been edited'
+            message: 'The cluster ' + this.clusterName + ' has been edited'
           });
           this.bsModalRef.hide();
         });
     }
   }
-
 }

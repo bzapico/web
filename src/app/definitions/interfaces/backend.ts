@@ -10,5 +10,5 @@ export interface Backend {
     addUser(organizationId: string, user: any);
     deleteUser(organizationId: string, userId: string);
     resetPassword(organizationId: string, userId: string);
-    saveClusterChanges(clusterId: string);
+    saveClusterChanges(clusterId: string, changes: any);
 }

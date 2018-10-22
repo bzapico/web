@@ -54,6 +54,16 @@ export class ResourcesComponent implements OnInit {
   colorScheme = {
     domain: ['#0937FF', '#949494']
   };
+  customColors = [
+    {
+      name: 'Running',
+      value: '#0000ff'
+    },
+    {
+      name: 'error',
+      value: '#00ff00'
+    }
+  ];
 
   /**
    * Line Chart options
@@ -76,16 +86,6 @@ export class ResourcesComponent implements OnInit {
       value: 0
     }
   ];
-  customColors = [
-    {
-      name: 'Running',
-      value: '#0000ff'
-    },
-    {
-      name: 'error',
-      value: '#00ff00'
-    }
-];
 
   /**
    * Reference for the service that allows the user info component
@@ -97,7 +97,6 @@ export class ResourcesComponent implements OnInit {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
-
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.resourcesMock) || null;
     // check which backend is required (fake or real)
@@ -112,6 +111,7 @@ export class ResourcesComponent implements OnInit {
     this.clusterDescription = 'Loading ...'; // Default initialization
     this.clusterType = 'Loading ...'; // Default initialization
     this.clusterStatus = 'Loading ...'; // Default initialization
+    this.clusterTags = 'Loading ...'; // Default initialization
     this.clusterMultitenant = 'Loading ...'; // Default initialization
     this.clusters = [];
 
@@ -143,12 +143,36 @@ export class ResourcesComponent implements OnInit {
       }
     }
   }
+
   /**
-   * Opens the modal view that holds the edit cluster component TODO**
+   * Opens the modal view that holds the edit cluster component
    */
-  openEditCluster() {
-    this.modalRef = this.modalService.show(EditClusterComponent);
+  openEditCluster(cluster) {
+    const initialState = {
+      clusterId: cluster.id,
+      clusterName: cluster.name,
+      clusterDescription: cluster.description,
+      clusterTags: cluster.tags
+    };
+
+    this.modalRef = this.modalService.show(EditClusterComponent, { initialState });
     this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { console.log(reason); this.updateClusterList();
+    });
   }
 
+  /**
+   * Requests backend for an update of the cluster list and refreshes the clusters list
+   */
+  updateClusterList() {
+    if (this.clusterInfo != null) {
+      this.backend.getClustersList(this.clusterInfo)
+      .subscribe(response => {
+        if (response && response._body) {
+          const data = JSON.parse(response._body);
+          this.clusters = data;
+        }
+      });
+    }
+  }
 }
