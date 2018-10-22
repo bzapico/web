@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { AuthGuard } from './guards/auth.guard';
 import { OrganizationComponent } from './organization/organization.component';
+import { ResourcesComponent } from './resources/resources.component';
 
 const appRoutes: Routes = [
     {
@@ -27,7 +28,13 @@ const appRoutes: Routes = [
                 path: 'organization',
                 component: OrganizationComponent,
                 canActivate: [AuthGuard]
-        }]
+            },
+            {
+                path: 'resources',
+                component: ResourcesComponent,
+                canActivate: [AuthGuard]
+            },
+        ]
     },
     // otherwise redirect to home
     {

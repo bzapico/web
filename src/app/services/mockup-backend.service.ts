@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
-import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo, mockResetPasword } from '../utils/mocks';
-
-
+import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList  } from '../utils/mocks';
 
 @Injectable({
   providedIn: 'root'
@@ -63,7 +61,12 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
-
+  getClustersList(clusterInfo: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockClusterList),
+      status: 200
+    })));
+  }
   addUser(organizationId: string, user: any) {
     mockUserList.push(user);
     return of (new Response(new ResponseOptions({

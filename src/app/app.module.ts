@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { ErrorHandlerService } from './services/error-handler.service';
 import { routes } from './app.routing';
@@ -6,7 +8,7 @@ import { routes } from './app.routing';
 import { AppComponent } from './app.component';
 import { DebugPanelComponent } from './debug-panel/debug-panel.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { ButtonsModule } from 'ngx-bootstrap';
+import { ButtonsModule, CarouselModule } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { NotificationsComponent } from './notifications/notifications.component';
@@ -21,6 +23,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { OrganizationComponent } from './organization/organization.component';
+import { ResourcesComponent } from './resources/resources.component';
 
 
 @NgModule({
@@ -32,13 +35,16 @@ import { OrganizationComponent } from './organization/organization.component';
     MainComponent,
     LoginComponent,
     UserInfoComponent,
-    OrganizationComponent
+    OrganizationComponent,
+    ResourcesComponent
   ],
   entryComponents: [
     DebugPanelComponent,
     UserInfoComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    NgxChartsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -49,6 +55,7 @@ import { OrganizationComponent } from './organization/organization.component';
     ButtonsModule.forRoot(),
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
+    CarouselModule.forRoot(),
     // ROUTES
     routes
   ],

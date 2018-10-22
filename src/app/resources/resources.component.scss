@@ -1,0 +1,291 @@
+
+.row-title {
+    height: 4%;
+}
+.row-info {
+    height: 29%;
+    margin-bottom: 2.2rem;
+}
+.row-main {
+    height: 54%;
+}
+.card {
+    -webkit-box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
+    -moz-box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
+    box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
+    border-radius: 10px;
+    border: 0;
+    overflow: hidden;
+}
+.card-title-h {
+    height: 4%;
+    margin-left: 9px;
+    margin-bottom: 70px;
+}
+.cluster-number {
+    float: right;
+    color: #949494;
+}
+
+/* - - - Cluster table card - - - */
+.table-h {
+    height: 80%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.table {
+    td {
+        padding: 1.2rem;
+        vertical-align: middle;
+        font-size:  .9em;
+        border-top: 0.8px solid #EEEEEE;
+        color: #949494;
+    }
+    thead th {
+        border: none;
+        font-size:  .9em;
+        padding: 0 1.2rem;
+        font-weight: 200;
+    }
+    tbody tr:first-child td {
+      border: none;
+    }
+    .row-name {
+        width: 10%;
+    }
+    .row-id {
+        width: 15%;
+    }
+    .row-nodes {
+        width: 10%;
+    }
+    .row-description {
+        width: 10%;
+    }
+    .row-types {
+        width: 10%;
+    }
+    .row-status {
+        width: 10%;
+        padding-left: 2%;
+    }
+    .row-tags {
+        width: 10%;
+    }
+    .row-multitenant {
+        width: 10%;
+    }
+    .row-edit {
+        width: 5%;
+    }
+}
+.info-btn {
+    height: 32px;
+    width:32px;
+    border-radius: 50%;
+    position: relative;
+}
+.i-info {
+    font-size: 1.2em;
+    position: absolute;
+    top: 6px;
+    left: 7px;
+}
+.status-dot:before {
+    content:'\A';
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background: #0937FF;
+    display:inline-block;
+    margin:0 10px 0 0;
+}
+.status-dot-error:before {
+    content:'\A';
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background: #F25272;
+    display:inline-block;
+    margin:0 10px 0 0;
+}
+/* - - - Medias Cluster table card - - - */
+@media screen and (max-width:1500px){
+    .card-title-h {
+        margin-bottom: 57px;
+    }
+    .card-title-h h5, .card-title-c h5 {
+        font-size: 1em;
+    }
+    .table td {
+        padding: .6rem 1rem;
+    }
+    .status-dot:before {
+        margin: 0 23px;
+    }
+    .status-dot-error:before {
+        margin: 0 23px;
+    }
+}
+
+/* - - - Summary card circles - - - */
+.circle {
+    width:112px;
+    height: 112px;
+    border: 1px solid #949494; 
+    -moz-border-radius: 50%; 
+    -webkit-border-radius: 50%; 
+    border-radius: 50%;
+    position: relative;
+    margin-top: 2em;
+}
+.circle span {
+    text-align: center;
+    color: black;
+    font-size: 1.7em;
+}
+.circle-name {
+    font-size: 1.2em;
+    color:#949494;
+}
+/* - - - Medias Summary card circles - - - */
+@media screen and (max-width:1500px){
+    .circle {
+        margin-top: 0;
+        max-width: 65px;
+        max-height: 65px;
+    }
+    .circle span {
+        font-size: 1em !important;
+        top: 21px;
+        left: 25px;
+    }
+    .circle-name {
+        font-size: 1em !important;
+        margin-top: 1em;
+    }
+    .table td {
+        padding: .6rem 1rem;
+    }
+}
+@media screen and (min-width:2560px){
+    .circle {
+        margin-top: 3em;
+        min-width: 140px;
+        min-height: 140px;
+    }
+    .circle span {
+        top: 54px;
+        left: 58px;
+    }
+    .circle-name{
+        margin-top: 2em !important;
+    }
+    .carousel {
+        padding-top: 2em;
+    }
+}
+
+/* - - - Cluster card Slider - - - */
+.slide-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.nodes-run {
+    font-size: .8em;
+}
+.box {
+    width: 27%;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.donut-chart {
+    width: 100%;
+    height: 60%;
+    text-align: center;
+    position: relative;
+}
+.donut-number {
+    position: absolute;
+    top: 47%;
+    left: 38%;
+}
+
+/* - - - Media Cluster card Slider - - - */
+@media screen and (max-width:1500px){
+    .card-clus {   
+        padding-bottom: .5em !important;
+    }
+    .cluster-number {
+        margin-bottom: 0;
+    }
+    .slide-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .box {
+      width: 90%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+    .donut-number {
+        display: inline;
+    }
+    .nodes-run{
+        display: inline;
+    }
+}
+@media screen and (min-width:2560px){
+    .box {
+        width: 31%;
+    }
+    .donut-chart {
+        height: 100%;
+    }
+    .donut-number {
+        top: 44%;
+        left: 43%;
+    }
+}
+/* - - - Node Status card - - - */
+.box-line-chart {
+    display: flex;
+    flex-direction: row;
+}
+.line-chart {
+    width:90%;
+    position: relative;
+}
+.bottom-line{
+    position: absolute;
+    bottom: 19px;
+    left: 0;
+    height: 1px;
+    width: 97%;
+    background-color: #EEEEEE;
+}
+.y-axis-line-chart {
+    width:10%;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+}
+
+/* - - - Media Node Status card - - - */
+@media screen and (max-width:1500px){
+    .y-axis-line-chart {
+        width:15%;
+    }
+    .y-axis-line-chart span {
+        font-size: .8em;
+    }
+
+}
+
+  
