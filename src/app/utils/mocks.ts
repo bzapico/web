@@ -48,3 +48,11 @@ export const mockUserList = [
 ];
 
 export const mockResetPasword = 'NEW_PASSWORD_1234';
+
+export const mockClusterId = [
+    {
+        name: 'Cluster 1',
+        description: 'Ny Cluster',
+        tags: 'ny, edge'
+    }
+];

@@ -7,7 +7,8 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
 @Component({
-  selector: 'app-edit-cluster',
+  // tslint:disable-next-line:component-selector
+  selector: 'edit-cluster',
   templateUrl: './edit-cluster.component.html',
   styleUrls: ['./edit-cluster.component.scss']
 })
@@ -27,6 +28,7 @@ export class EditClusterComponent implements OnInit {
   /**
    * Models that hold cluster name, cluster description and cluster tags
    */
+  clusterId: string;
   clusterName: string;
   clusterDescription: string;
   clusterTags: string;
@@ -37,7 +39,7 @@ export class EditClusterComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.userInfoMock) || null;
+    const mock = localStorage.getItem(LocalStorageKeys.clusterIdMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
@@ -55,6 +57,7 @@ export class EditClusterComponent implements OnInit {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       const jwtJson = JSON.parse(jwtData);
+      this.clusterId = jwtJson.clusterId;
       this.clusterName = jwtJson.clusterName;
       this.clusterDescription = jwtJson.clusterDescription;
       this.clusterTags = jwtJson.clusterTags;
@@ -66,6 +69,7 @@ export class EditClusterComponent implements OnInit {
               this.clusterDescription = data.description;
               this.clusterName = data.name;
               this.clusterTags = data.tags;
+              // this.clusterId = data.name;
             }
           });
       }
@@ -73,7 +77,15 @@ export class EditClusterComponent implements OnInit {
   }
 
   saveClusterChanges() {
-
+    if (this.clusterId !== null) {
+      this.backend.saveClusterChanges(this.clusterId)
+        .subscribe(response => {
+          this.notificationsService.add({
+            message: 'Saved changes '
+          });
+          this.bsModalRef.hide();
+        });
+    }
   }
 
 }

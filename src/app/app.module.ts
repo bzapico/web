@@ -38,7 +38,9 @@ import { EditClusterComponent } from './edit-cluster/edit-cluster.component';
   ],
   entryComponents: [
     DebugPanelComponent,
-    UserInfoComponent],
+    UserInfoComponent,
+    EditClusterComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,

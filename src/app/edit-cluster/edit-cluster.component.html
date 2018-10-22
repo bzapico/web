@@ -15,7 +15,6 @@
       <form #f="ngForm" class="form-cluster">
         <div class="form-group">
           <input 
-            disabled
             [(ngModel)]="clusterName" 
             name="name" 
             type="text" 
@@ -23,26 +22,24 @@
             placeholder="Cluster Name" 
             required>
           <input 
-            disabled
             [(ngModel)]="clusterDescription" 
-            name="organization" 
+            name="description" 
             type="text" 
             class="form-control" 
             placeholder="Description"
             required>
           <input 
-            disabled
             [(ngModel)]="clusterTags" 
-            name="email" 
+            name="tags" 
             type="text" 
             class="form-control" 
             placeholder="Tags" 
             required>
         </div>
       </form>
-    <!-- Option buttons -->
-    <div class="buttons d-flex flex-row justify-content-between">
-      <button class="btn btn-primary btn-md" (click)="saveClusterChanges()">
+    <!-- Option button -->
+    <div class="buttons d-flex flex-row justify-content-center mt-5">
+      <button class="btn btn-primary btn-md mt-5" (click)="saveClusterChanges()">
         <span class="align-bottom">{{buttonSave}}</span>
       </button>
     </div>

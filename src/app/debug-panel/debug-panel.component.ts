@@ -19,7 +19,8 @@ export const AvailableComponents = {
   profile: 'Profile',
   notifications: 'Notifications',
   sidebar: 'Sidebar',
-  userinfo: 'User Info'
+  userinfo: 'User Info',
+  editcluster: 'Edit Cluster'
 };
 
 @Component({
@@ -76,6 +77,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.userinfo,
       mock: localStorage.getItem(LocalStorageKeys.userInfoMock) === 'false' ? 'false' : 'true'
     });
+    this.components.push({
+      name: AvailableComponents.editcluster,
+      mock: localStorage.getItem(LocalStorageKeys.clusterIdMock) === 'false' ? 'false' : 'true'
+    });
   }
 
   /**
@@ -108,6 +113,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.userinfo:
         localStorage.setItem(LocalStorageKeys.userInfoMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.editcluster:
+        localStorage.setItem(LocalStorageKeys.clusterIdMock, componentMockOption.mock);
       break;
       default:
         console.log('Selected option not registered as available component');

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
-import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo, mockResetPasword } from '../utils/mocks';
+import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterId } from '../utils/mocks';
 
 
 
@@ -83,6 +83,20 @@ export class MockupBackendService implements Backend {
   resetPassword(organizationId: string, userId: string) {
     return of (new Response(new ResponseOptions({
       body: mockResetPasword,
+      status: 200
+    })));
+  }
+   /**
+   * Simulates save cluster changes
+   * @param clusterId String containing the cluster identificator - used to replicate expected backend behavior
+   */
+  saveClusterChanges(clusterId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({
+        name: mockClusterId,
+        description: mockClusterId,
+        tags: mockClusterId
+      }),
       status: 200
     })));
   }
