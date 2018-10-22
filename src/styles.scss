@@ -322,7 +322,6 @@ button[type="submit"]:disabled {
     display: none;
   }
   .carousel-small {
-    display: block;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -330,6 +329,9 @@ button[type="submit"]:disabled {
   }
   .carousel-control-prev, .carousel-control-next {
     bottom: 31%;
+  }
+  .slide-box{
+    width: 269px;
   }
   .nodes-run{
     line-height: 1em;
