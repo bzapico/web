@@ -6,8 +6,6 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { NotificationsService } from '../services/notifications.service';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
-import { LineChartComponent } from '@swimlane/ngx-charts';
-import { bypassSanitizationTrustResourceUrl } from '@angular/core/src/sanitization/bypass';
 
 @Component({
   selector: 'app-resources',
@@ -17,7 +15,7 @@ import { bypassSanitizationTrustResourceUrl } from '@angular/core/src/sanitizati
     { provide:
       CarouselConfig,
       useValue: {
-        interval: 150000,
+        interval: 0,
         noPause: false,
         showIndicators: true
       }
@@ -85,8 +83,6 @@ export class ResourcesComponent implements OnInit {
   mockClusterChart: any;
   mockNodesChart: any;
   autoScale: any;
-
-
 
 
   constructor(
