@@ -263,6 +263,15 @@
 }
 .line-chart {
     width:90%;
+    position: relative;
+}
+.bottom-line{
+    position: absolute;
+    bottom: 19px;
+    left: 0;
+    height: 1px;
+    width: 97%;
+    background-color: #EEEEEE;
 }
 .y-axis-line-chart {
     width:10%;

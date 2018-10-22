@@ -60,16 +60,18 @@ export class ResourcesComponent implements OnInit {
   showXAxis = true;
   showYAxis = false;
   showXAxisLabel = false;
-  showYAxisLabel = true;
+  showYAxisLabel = false;
   showGridLines = false;
   showRefLines = true;
-  showRefLabels = false;
+  showRefLabels = true;
   schemeType = 'ordinal';
   rangeFillOpacity = 0.0;
-  referenceLines = [{
-    name: 'xline',
-    value: 0
-  }];
+  referenceLines = [
+    {
+      name: 'xline',
+      value: 0
+    }
+  ];
   customColors = [
     {
       name: 'Running',
