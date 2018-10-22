@@ -82,6 +82,10 @@ export class ResourcesComponent implements OnInit {
       value: '#00ff00'
     }
 ];
+  mockClusterChart: any;
+  mockNodesChart: any;
+  autoScale: any;
+
 
 
 
