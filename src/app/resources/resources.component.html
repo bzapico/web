@@ -14,13 +14,13 @@
       <div class="d-flex flex-col justify-content-around align-center">
         <div>
           <div class="circle d-flex flex-row justify-content-center align-center">
-            <span class="align-self-center mt-1">6</span>
+            <span class="align-self-center mt-1">{{clustersCount}}</span>
           </div>
           <p class="circle-name text-center text-uppercase mt-3">Cluster</p>
         </div>
         <div>
           <div class="circle d-flex flex-row justify-content-center align-center">
-            <span class="align-self-center mt-1">12</span>
+            <span class="align-self-center mt-1">{{nodesCount}}</span>
           </div>
           <p class="circle-name text-center text-uppercase mt-3">Nodes</p>
         </div>
@@ -32,7 +32,7 @@
     <div class="card card-clus p-4 h-100">
       <div class="card-title-c">
         <h5 class="text-uppercase d-inline">Clusters</h5>
-        <p class="d-inline cluster-number">6 clusters</p>
+        <p class="d-inline cluster-number">{{clustersCount}}</p>
       </div>
       <!-- Carousel big -->
       <carousel class="h-75 carousel-big">

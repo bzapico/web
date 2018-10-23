@@ -178,4 +178,15 @@ export const mockNodesChart = [
       },
 ];
 
+/**
+ * Mocked new password
+ */
 export const mockResetPasword = 'NEW_PASSWORD_1234';
+
+/**
+ * Mock resources summary containing total clusters and nodes
+ */
+export const mockResourcesSummary = {
+    totalClusters: 10,
+    totalNodes: 60
+};

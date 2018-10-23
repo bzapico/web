@@ -27,21 +27,24 @@ export class ResourcesComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
-   /**
-   * Cluster information
-   */
-  clusterInfo: string;
+
   /**
-   * Models that hold cluster ID, name, nodes, description, type, status and multitenant
+   * Model that hold organization ID
    */
-  clusterId: string;
-  clusterName: string;
-  clusterNodes: string;
-  clusterDescription: string;
-  clusterType: string;
-  clusterStatus: string;
-  clusterMultitenant: string;
+  organizationId: string;
+
+  /**
+   * List of available clusters
+   */
   clusters: any[];
+  /**
+   * Count of total nodes
+   */
+  nodesCount: number;
+  /**
+   * Count of total clusters
+   */
+  clustersCount: number;
 
   /**
    * Pie Chart options
@@ -98,14 +101,12 @@ export class ResourcesComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-    this.clusterName = 'Loading ...'; // Default initialization
-    this.clusterId = 'Loading ...'; // Default initialization
-    this.clusterNodes = 'Loading ...'; // Default initialization
-    this.clusterDescription = 'Loading ...'; // Default initialization
-    this.clusterType = 'Loading ...'; // Default initialization
-    this.clusterStatus = 'Loading ...'; // Default initialization
-    this.clusterMultitenant = 'Loading ...'; // Default initialization
+
+    // Default initialization
+
     this.clusters = [];
+    this.nodesCount = 0;
+    this.clustersCount = 0;
 
   /**
    * Mocked Charts
@@ -116,20 +117,21 @@ export class ResourcesComponent implements OnInit {
   ngOnInit() {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
-       this.clusterInfo = JSON.parse(jwtData).ClusterInfo;
-      if (this.clusterInfo !== null) {
-        this.backend.getClustersList(this.clusterInfo)
+      this.organizationId = JSON.parse(jwtData).OrganizationId;
+      if (this.organizationId !== null) {
+        this.backend.getResourcesSummary(this.organizationId)
+        .subscribe(response => {
+          if (response && response._body) {
+            const data = JSON.parse(response._body);
+            this.clustersCount = data['totalClusters'];
+            this.nodesCount = data['totalNodes'];
+          }
+        });
+        this.backend.getClusters(this.organizationId)
           .subscribe(response => {
             if (response && response._body) {
               const data = JSON.parse(response._body);
               this.clusters = data;
-              this.clusterName = data.name;
-              this.clusterId = data.id;
-              this.clusterNodes = data.nodes;
-              this.clusterDescription = data.description;
-              this.clusterType = data.type;
-              this.clusterStatus = data.status;
-              this.clusterMultitenant = data.multitenant;
             }
           });
       }
