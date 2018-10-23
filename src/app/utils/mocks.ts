@@ -52,7 +52,8 @@ export const mockClusterList = [
     {
         name: 'Cluster1',
         id: '0800200c9a66',
-        nodes: '10',
+        totalNodes: '10',
+        runningNodes: '6',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Running',
@@ -60,9 +61,10 @@ export const mockClusterList = [
         multitenant: 'All'
     },
     {
-        name: 'Cluster1',
+        name: 'Cluster2',
         id: '0800200c9a66',
-        nodes: '10',
+        totalNodes: '10',
+        runningNodes: '6',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Running',
@@ -70,9 +72,10 @@ export const mockClusterList = [
         multitenant: 'All'
     },
     {
-        name: 'Cluster1',
+        name: 'Cluster3',
         id: '0800200c9a66',
-        nodes: '10',
+        totalNodes: '10',
+        runningNodes: '6',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Running',
@@ -80,9 +83,10 @@ export const mockClusterList = [
         multitenant: 'All'
     },
     {
-        name: 'Cluster1',
+        name: 'Cluster4',
         id: '0800200c9a66',
-        nodes: '10',
+        totalNodes: '10',
+        runningNodes: '6',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Running',
@@ -90,9 +94,10 @@ export const mockClusterList = [
         multitenant: 'All'
     },
     {
-        name: 'Cluster1',
+        name: 'Cluster5',
         id: '0800200c9a66',
-        nodes: '8',
+        totalNodes: '10',
+        runningNodes: '6',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Error',
@@ -100,9 +105,10 @@ export const mockClusterList = [
         multitenant: 'No'
     },
     {
-        name: 'Cluster1',
+        name: 'Cluster6',
         id: '0800200c9a66',
-        nodes: '10',
+        totalNodes: '10',
+        runningNodes: '6',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Running',
@@ -116,12 +122,12 @@ export const mockClusterList = [
  */
 export const mockClusterChart = [
     {
-        'name': 'Running',
-        'value': 5
+        name: 'Running',
+        value: 5
     },
     {
-        'name': 'Error',
-        'value': 1
+        name: 'Error',
+        value: 1
     }
 ];
 

@@ -4,7 +4,8 @@
 export interface ClusterInfo {
   name: string;
   id?: string;
-  nodes: string;
+  totalNodes: string;
+  runningNodes: string;
   description: string;
   status: string;
   type: string;

@@ -131,6 +131,7 @@ export class ResourcesComponent implements OnInit {
           .subscribe(response => {
             if (response && response._body) {
               const data = JSON.parse(response._body);
+              console.log(data);
               this.clusters = data;
             }
           });
@@ -141,6 +142,22 @@ export class ResourcesComponent implements OnInit {
    * Opens the modal view that holds the edit cluster component
    */
   editCluster() {
+  }
+
+  generateClusterChartData(running: number, total: number): any[] {
+    return [
+      {
+        name: 'Running',
+        value: running
+      },
+      {
+        name: 'Stopped',
+        value: total - running
+      }];
+
+  }
+  checkSlide (index: number) {
+    return index % 3;
   }
 
 }

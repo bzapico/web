@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
-import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary  } from '../utils/mocks';
+import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo,
+         mockResetPasword, mockClusterList, mockResourcesSummary  } from '../utils/mocks';
 
 @Injectable({
   providedIn: 'root'

@@ -36,13 +36,32 @@
       </div>
       <!-- Carousel big -->
       <carousel class="h-75 carousel-big">
-        <slide>
+            <slide *ngFor="let cluster of clusters; let i = index">
+                <div class="slide-box">
+                    <div class="box">
+                      <div class="donut-chart">
+                        <ngx-charts-pie-chart
+                          [scheme]="colorScheme" 
+                          [results]="mockClusterChart" 
+                          [doughnut]= "doughnut"
+                          [gradient]="gradient"
+                          [schemeType]="schemeType"
+                          >
+                        </ngx-charts-pie-chart>
+                        <div class="donut-number">{{cluster.runningNodes}}/{{cluster.totalNodes}}</div>
+                      </div>
+                      <p *ngIf="cluster.runningNodes === cluster.totalNodes" class="blue nodes-run mb-0">All nodes running</p>
+                      <p class="text-uppercase grey">{{cluster.name}}</p>
+                    </div>
+                </div>
+            </slide>
+        <!-- <slide>
           <div class="slide-box">
             <div class="box">
               <div class="donut-chart">
                 <ngx-charts-pie-chart
                   [scheme]="colorScheme" 
-                  [results]="mockClusterChart" 
+                  [results]="generateClusterChartData(cluster.runningNodes, cluster.totalNodes)" 
                   [doughnut]= "doughnut"
                   [gradient]="gradient"
                   [schemeType]="schemeType"
@@ -128,7 +147,7 @@
               <p class="text-uppercase  grey">Cluster 6</p>
             </div>
           </div>
-        </slide>
+        </slide> -->
       </carousel>
       <!-- Carousel small -->
       <carousel class="h-75 carousel-small">
@@ -256,7 +275,7 @@
             <tr *ngFor="let cluster of clusters">
               <td><a routerLink="/clusters" routerLinkActive="active" class="blue">{{cluster.name}}</a></td>
               <td>{{cluster.id}}</td>
-              <td><a routerLink="/nodes" routerLinkActive="active" class="blue">{{cluster.nodes}}</a></td>  
+              <td><a routerLink="/nodes" routerLinkActive="active" class="blue">{{cluster.totalNodes}}</a></td>  
               <td>{{cluster.description}}</td>
               <td>{{cluster.type}}</td>
               <td 
