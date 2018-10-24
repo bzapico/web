@@ -37,10 +37,17 @@ export class ResourcesComponent implements OnInit {
    * List of available clusters
    */
   clusters: any[];
+
+  /**
+   * Clusters list chuncked in sub-lists of 3 elements (required to show top component slider)
+   */
+  chunckedClusters: any[];
+
   /**
    * Count of total nodes
    */
   nodesCount: number;
+
   /**
    * Count of total clusters
    */
@@ -105,6 +112,7 @@ export class ResourcesComponent implements OnInit {
     // Default initialization
 
     this.clusters = [];
+    this.chunckedClusters = [];
     this.nodesCount = 0;
     this.clustersCount = 0;
 
@@ -131,8 +139,8 @@ export class ResourcesComponent implements OnInit {
           .subscribe(response => {
             if (response && response._body) {
               const data = JSON.parse(response._body);
-              console.log(data);
               this.clusters = data;
+              this.chunckedClusters = this.chunkClusterList(3, this.clusters);
             }
           });
       }
@@ -143,7 +151,6 @@ export class ResourcesComponent implements OnInit {
    */
   editCluster() {
   }
-
   generateClusterChartData(running: number, total: number): any[] {
     return [
       {
@@ -156,8 +163,14 @@ export class ResourcesComponent implements OnInit {
       }];
 
   }
-  checkSlide (index: number) {
-    return index % 3;
+  chunkClusterList(chunks, clusterList) {
+    let i, j, chunkedArray;
+    const resultChunkArray = [];
+    const chunk = chunks;
+    for (i = 0, j = clusterList.length; i < j; i += chunk) {
+      chunkedArray = clusterList.slice(i, i + chunk);
+      resultChunkArray.push(chunkedArray);
+    }
+    return resultChunkArray;
   }
-
 }

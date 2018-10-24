@@ -114,6 +114,17 @@ export const mockClusterList = [
         status: 'Running',
         tags: 'ny, edge',
         multitenant: 'All'
+    },
+    {
+        name: 'Cluster7',
+        id: '0800200c9a66',
+        totalNodes: '10',
+        runningNodes: '3',
+        description: 'Ny Cluster',
+        type: 'Kubernetes',
+        status: 'Running',
+        tags: 'ny, edge',
+        multitenant: 'All'
     }
 ];
 

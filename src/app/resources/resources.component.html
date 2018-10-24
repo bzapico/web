@@ -35,33 +35,69 @@
         <p class="d-inline cluster-number">{{clustersCount}}</p>
       </div>
       <!-- Carousel big -->
-      <carousel class="h-75 carousel-big">
-            <slide *ngFor="let cluster of clusters; let i = index">
-                <div class="slide-box">
-                    <div class="box">
-                      <div class="donut-chart">
-                        <ngx-charts-pie-chart
-                          [scheme]="colorScheme" 
-                          [results]="mockClusterChart" 
-                          [doughnut]= "doughnut"
-                          [gradient]="gradient"
-                          [schemeType]="schemeType"
-                          >
-                        </ngx-charts-pie-chart>
-                        <div class="donut-number">{{cluster.runningNodes}}/{{cluster.totalNodes}}</div>
-                      </div>
-                      <p *ngIf="cluster.runningNodes === cluster.totalNodes" class="blue nodes-run mb-0">All nodes running</p>
-                      <p class="text-uppercase grey">{{cluster.name}}</p>
-                    </div>
+      <carousel class="h-75 carousel-big"> 
+        <slide *ngFor="let clusterGroup of chunckedClusters; let i = index">
+            <div class="slide-box">
+                <div class="box" *ngIf="clusterGroup[0]">
+                  <div class="donut-chart">
+                    <ngx-charts-pie-chart
+                      [scheme]="colorScheme" 
+                      [results]="generateClusterChartData(clusterGroup[0].runningNodes, clusterGroup[0].totalNodes)" 
+                      [doughnut]= "doughnut"
+                      [gradient]="gradient"
+                      [schemeType]="schemeType"
+                      [animations]="false"
+                      >
+                    </ngx-charts-pie-chart>
+                    <div class="donut-number">{{clusterGroup[0].runningNodes}}/{{clusterGroup[0].totalNodes}}</div>
+                  </div>
+                  <p *ngIf="clusterGroup[0].runningNodes === clusterGroup[0].totalNodes" class="blue nodes-run mb-0">All nodes running</p>
+                  <p *ngIf="clusterGroup[0].runningNodes !== clusterGroup[0].totalNodes" class="blue nodes-run mb-0">{{clusterGroup[0].runningNodes}} nodes running</p>
+                  <p class="text-uppercase grey">{{clusterGroup[0].name}}</p>
                 </div>
-            </slide>
+                <div class="box" *ngIf="clusterGroup[1]">
+                  <div class="donut-chart">
+                    <ngx-charts-pie-chart
+                      [scheme]="colorScheme" 
+                      [results]="generateClusterChartData(clusterGroup[1].runningNodes, clusterGroup[1].totalNodes)" 
+                      [doughnut]= "doughnut"
+                      [gradient]="gradient"
+                      [schemeType]="schemeType"
+                      [animations]="false"
+                      >
+                    </ngx-charts-pie-chart>
+                    <div class="donut-number">{{clusterGroup[1].runningNodes}}/{{clusterGroup[1].totalNodes}}</div>
+                  </div>
+                  <p *ngIf="clusterGroup[1].runningNodes === clusterGroup[1].totalNodes" class="blue nodes-run mb-0">All nodes running</p>
+                  <p *ngIf="clusterGroup[1].runningNodes !== clusterGroup[1].totalNodes" class="blue nodes-run mb-0">{{clusterGroup[1].runningNodes}} nodes running</p>
+                  <p class="text-uppercase grey">{{clusterGroup[1].name}}</p>
+                </div>
+                <div class="box" *ngIf="clusterGroup[2]">
+                  <div class="donut-chart">
+                    <ngx-charts-pie-chart
+                      [scheme]="colorScheme" 
+                      [results]="generateClusterChartData(clusterGroup[2].runningNodes, clusterGroup[0].totalNodes)" 
+                      [doughnut]= "doughnut"
+                      [gradient]="gradient"
+                      [schemeType]="schemeType"
+                      [animations]="false"
+                      >
+                    </ngx-charts-pie-chart>
+                    <div class="donut-number">{{clusterGroup[2].runningNodes}}/{{clusterGroup[2].totalNodes}}</div>
+                  </div>
+                  <p *ngIf="clusterGroup[2].runningNodes === clusterGroup[2].totalNodes" class="blue nodes-run mb-0">All nodes running</p>
+                  <p *ngIf="clusterGroup[2].runningNodes !== clusterGroup[2].totalNodes" class="blue nodes-run mb-0">{{clusterGroup[2].runningNodes}} nodes running</p>
+                  <p class="text-uppercase grey">{{clusterGroup[2].name}}</p>
+                </div>
+            </div>
+        </slide>
         <!-- <slide>
           <div class="slide-box">
             <div class="box">
               <div class="donut-chart">
                 <ngx-charts-pie-chart
                   [scheme]="colorScheme" 
-                  [results]="generateClusterChartData(cluster.runningNodes, cluster.totalNodes)" 
+                  [results]="mockClusterChart" 
                   [doughnut]= "doughnut"
                   [gradient]="gradient"
                   [schemeType]="schemeType"
