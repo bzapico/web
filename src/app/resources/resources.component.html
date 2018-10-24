@@ -32,7 +32,7 @@
     <div class="card card-clus p-4 h-100">
       <div class="card-title-c">
         <h5 class="text-uppercase d-inline">Clusters</h5>
-        <p class="d-inline cluster-number">{{clustersCount}}</p>
+        <p class="d-inline cluster-number">{{clustersCount}} available</p>
       </div>
       <!-- Carousel big -->
       <carousel class="h-75 carousel-big"> 
@@ -42,11 +42,11 @@
                   <div class="donut-chart">
                     <ngx-charts-pie-chart
                       [scheme]="colorScheme" 
-                      [results]="generateClusterChartData(clusterGroup[0].runningNodes, clusterGroup[0].totalNodes)" 
+                      [results]="pieChartsData[0+i*3]" 
                       [doughnut]= "doughnut"
                       [gradient]="gradient"
                       [schemeType]="schemeType"
-                      [animations]="false"
+                      [explodeSlices]="false"
                       >
                     </ngx-charts-pie-chart>
                     <div class="donut-number">{{clusterGroup[0].runningNodes}}/{{clusterGroup[0].totalNodes}}</div>
@@ -59,11 +59,11 @@
                   <div class="donut-chart">
                     <ngx-charts-pie-chart
                       [scheme]="colorScheme" 
-                      [results]="generateClusterChartData(clusterGroup[1].runningNodes, clusterGroup[1].totalNodes)" 
+                      [results]="pieChartsData[1+i*3]" 
                       [doughnut]= "doughnut"
                       [gradient]="gradient"
                       [schemeType]="schemeType"
-                      [animations]="false"
+                      [explodeSlices]="false"
                       >
                     </ngx-charts-pie-chart>
                     <div class="donut-number">{{clusterGroup[1].runningNodes}}/{{clusterGroup[1].totalNodes}}</div>
@@ -76,11 +76,11 @@
                   <div class="donut-chart">
                     <ngx-charts-pie-chart
                       [scheme]="colorScheme" 
-                      [results]="generateClusterChartData(clusterGroup[2].runningNodes, clusterGroup[0].totalNodes)" 
+                      [results]="pieChartsData[2+i*3]" 
                       [doughnut]= "doughnut"
                       [gradient]="gradient"
                       [schemeType]="schemeType"
-                      [animations]="false"
+                      [explodeSlices]="false"
                       >
                     </ngx-charts-pie-chart>
                     <div class="donut-number">{{clusterGroup[2].runningNodes}}/{{clusterGroup[2].totalNodes}}</div>
@@ -91,139 +91,27 @@
                 </div>
             </div>
         </slide>
-        <!-- <slide>
-          <div class="slide-box">
-            <div class="box">
-              <div class="donut-chart">
-                <ngx-charts-pie-chart
-                  [scheme]="colorScheme" 
-                  [results]="mockClusterChart" 
-                  [doughnut]= "doughnut"
-                  [gradient]="gradient"
-                  [schemeType]="schemeType"
-                  >
-                </ngx-charts-pie-chart>
-                <div class="donut-number">5/6</div>
-              </div>
-              <p class="blue nodes-run mb-0">All nodes running</p>
-              <p class="text-uppercase grey">Cluster 1</p>
-            </div>
-            <div class="box">
-              <div class="donut-chart">
-                <ngx-charts-pie-chart
-                  [scheme]="colorScheme" 
-                  [results]="mockClusterChart" 
-                  [doughnut]= "doughnut"
-                  [gradient]="gradient"
-                  >
-                </ngx-charts-pie-chart>
-                <div class="donut-number">5/6</div>
-              </div>
-              <p class="blue nodes-run mb-0">All nodes running</p>
-              <p class="text-uppercase  grey">Cluster 2</p>
-            </div>
-            <div class="box">
-              <div class="donut-chart">
-                <ngx-charts-pie-chart
-                  [scheme]="colorScheme" 
-                  [results]="mockClusterChart"
-                  [doughnut]= "doughnut"
-                  [gradient]="gradient" 
-                  >
-                </ngx-charts-pie-chart>
-                <div class="donut-number">5/6</div>
-              </div>
-              <p class="blue nodes-run mb-0">All nodes running</p>
-              <p class="text-uppercase  grey">Cluster 3</p>
-            </div>
-          </div>
-        </slide>
-        <slide >
-          <div class="slide-box">
-            <div class="box">
-              <div class="donut-chart">
-                <ngx-charts-pie-chart
-                  [scheme]="colorScheme" 
-                  [results]="mockClusterChart" 
-                  [doughnut]= "doughnut"
-                  [gradient]="gradient"
-                  >
-                </ngx-charts-pie-chart>
-                <div class="donut-number">5/6</div>
-              </div>
-              <p class="blue nodes-run mb-0">All nodes running</p>
-              <p class="text-uppercase  grey">Cluster 4</p>
-            </div>
-            <div class="box">
-              <div class="donut-chart">
-                <ngx-charts-pie-chart
-                  [scheme]="colorScheme" 
-                  [results]="mockClusterChart" 
-                  [doughnut]= "doughnut"
-                  [gradient]="gradient"
-                  >
-                </ngx-charts-pie-chart>
-                <div class="donut-number">5/6</div>
-              </div>
-              <p class="blue nodes-run mb-0">All nodes running</p>
-              <p class="text-uppercase grey">Cluster 5</p>
-            </div>
-            <div class="box">
-              <div class="donut-chart">
-                <ngx-charts-pie-chart
-                  [scheme]="colorScheme" 
-                  [results]="mockClusterChart"
-                  [doughnut]= "doughnut"
-                  [gradient]="gradient" 
-                 >
-                </ngx-charts-pie-chart>
-                <div class="donut-number">5/6</div>
-              </div>
-              <p class="blue nodes-run mb-0">All nodes running</p>
-              <p class="text-uppercase  grey">Cluster 6</p>
-            </div>
-          </div>
-        </slide> -->
       </carousel>
       <!-- Carousel small -->
       <carousel class="h-75 carousel-small">
-          <slide>
+          <slide *ngFor="let cluster of clusters; let i = index">
             <div class="slide-box">
               <div class="box">
                 <div class="donut-chart">
                   <ngx-charts-pie-chart
                     [scheme]="colorScheme" 
-                    [results]="mockClusterChart" 
+                    [results]="pieChartsData[i]" 
                     [doughnut]= "doughnut"
                     [gradient]="gradient"
                     [schemeType]="schemeType"
                     >
                   </ngx-charts-pie-chart>
-                  <div class="donut-number">6/6</div>
+                  <div class="donut-number">{{cluster.runningNodes}}/{{cluster.totalNodes}}</div>
                 </div>
                 <div class="cluster-info">
-                  <p class="nodes-run mb-0 blue">All nodes running</p>
-                  <p class="text-uppercase grey">Cluster 1</p>
-                </div>
-              </div>
-            </div>
-          </slide>
-          <slide>
-            <div class="slide-box">
-              <div class="box">
-                <div class="donut-chart">
-                  <ngx-charts-pie-chart
-                    [scheme]="colorScheme" 
-                    [results]="mockClusterChart" 
-                    [doughnut]= "doughnut"
-                    [gradient]="gradient"
-                    >
-                  </ngx-charts-pie-chart>
-                  <div class="donut-number">5/6</div>
-                </div>
-                <div class="cluster-info">
-                  <p class="nodes-run mb-0 blue">All nodes running</p>
-                  <p class="text-uppercase grey">Cluster 1</p>
+                  <p *ngIf="cluster.runningNodes === cluster.totalNodes" class="nodes-run mb-0 blue">All nodes running</p>
+                  <p *ngIf="cluster.runningNodes !== cluster.totalNodes" class="nodes-run mb-0 blue">{{cluster.runningNodes}} nodes running</p>
+                  <p class="text-uppercase grey">{{cluster.name}}</p>
                 </div>
               </div>
             </div>

@@ -53,7 +53,7 @@ export const mockClusterList = [
         name: 'Cluster1',
         id: '0800200c9a66',
         totalNodes: '10',
-        runningNodes: '6',
+        runningNodes: '1',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Running',
@@ -64,7 +64,7 @@ export const mockClusterList = [
         name: 'Cluster2',
         id: '0800200c9a66',
         totalNodes: '10',
-        runningNodes: '6',
+        runningNodes: '2',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Running',
@@ -75,7 +75,7 @@ export const mockClusterList = [
         name: 'Cluster3',
         id: '0800200c9a66',
         totalNodes: '10',
-        runningNodes: '6',
+        runningNodes: '3',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Running',
@@ -86,7 +86,7 @@ export const mockClusterList = [
         name: 'Cluster4',
         id: '0800200c9a66',
         totalNodes: '10',
-        runningNodes: '6',
+        runningNodes: '4',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Running',
@@ -97,7 +97,7 @@ export const mockClusterList = [
         name: 'Cluster5',
         id: '0800200c9a66',
         totalNodes: '10',
-        runningNodes: '6',
+        runningNodes: '5',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Error',
@@ -119,7 +119,7 @@ export const mockClusterList = [
         name: 'Cluster7',
         id: '0800200c9a66',
         totalNodes: '10',
-        runningNodes: '3',
+        runningNodes: '7',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Running',
@@ -204,6 +204,6 @@ export const mockResetPasword = 'NEW_PASSWORD_1234';
  * Mock resources summary containing total clusters and nodes
  */
 export const mockResourcesSummary = {
-    totalClusters: 10,
-    totalNodes: 60
+    totalClusters: mockClusterList.length,
+    totalNodes: mockClusterList.length * 10
 };

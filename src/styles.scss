@@ -207,6 +207,9 @@ button[type="submit"]:disabled {
 
 .carousel-big {
   display: block;
+  div {
+    height: 100%;
+  }
 }
 .carousel-small {
   display: none;
@@ -311,6 +314,9 @@ button[type="submit"]:disabled {
   .carousel-indicators {
     bottom: -41px;
   }
+  .donut-number {
+    top: 47%;
+  }
   .carousel-small{
     display: none;
   }
@@ -339,7 +345,7 @@ button[type="submit"]:disabled {
   }
   .donut-number {
     top: 44% !important;
-    left: 36% !important;
+    left: 33% !important;
   }
   .carousel-indicators {
     bottom: 16px;

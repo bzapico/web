@@ -43,6 +43,8 @@ export class ResourcesComponent implements OnInit {
    */
   chunckedClusters: any[];
 
+  pieChartsData: any[];
+
   /**
    * Count of total nodes
    */
@@ -115,6 +117,7 @@ export class ResourcesComponent implements OnInit {
     this.chunckedClusters = [];
     this.nodesCount = 0;
     this.clustersCount = 0;
+    this.pieChartsData = [];
 
   /**
    * Mocked Charts
@@ -141,6 +144,7 @@ export class ResourcesComponent implements OnInit {
               const data = JSON.parse(response._body);
               this.clusters = data;
               this.chunckedClusters = this.chunkClusterList(3, this.clusters);
+              this.updatePieChartsData(this.clusters, this.pieChartsData);
             }
           });
       }
@@ -150,6 +154,14 @@ export class ResourcesComponent implements OnInit {
    * Opens the modal view that holds the edit cluster component
    */
   editCluster() {
+  }
+  updatePieChartsData (clusterList, pieChartsData) {
+    for (let i = 0; i < pieChartsData.length; i++) {
+      pieChartsData.pop();
+    }
+    clusterList.forEach(element => {
+      pieChartsData.push(this.generateClusterChartData(element.runningNodes, element.totalNodes));
+    });
   }
   generateClusterChartData(running: number, total: number): any[] {
     return [
