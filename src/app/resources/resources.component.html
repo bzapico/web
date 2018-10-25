@@ -68,11 +68,21 @@
                     </ngx-charts-pie-chart>
                     <div class="donut-number">{{clusterGroup[1].runningNodes}}/{{clusterGroup[1].totalNodes}}</div>
                   </div>
-                  <p *ngIf="clusterGroup[1].runningNodes === clusterGroup[1].totalNodes" class="blue nodes-run mb-0">All nodes running</p>
-                  <p *ngIf="clusterGroup[1].runningNodes !== clusterGroup[1].totalNodes" class="blue nodes-run mb-0">{{clusterGroup[1].runningNodes}} nodes running</p>
+                  <p
+                    *ngIf="clusterGroup[1].runningNodes === clusterGroup[1].totalNodes"
+                    class="blue nodes-run mb-0">
+                    All nodes running
+                  </p>
+                  <p
+                    *ngIf="clusterGroup[1].runningNodes !== clusterGroup[1].totalNodes"
+                    class="blue nodes-run mb-0">
+                    {{clusterGroup[1].runningNodes}} nodes running
+                  </p>
                   <p class="text-uppercase grey">{{clusterGroup[1].name}}</p>
                 </div>
-                <div class="box" *ngIf="clusterGroup[2]">
+                <div
+                  class="box"
+                  *ngIf="clusterGroup[2]">
                   <div class="donut-chart">
                     <ngx-charts-pie-chart
                       [scheme]="colorScheme" 
@@ -85,8 +95,16 @@
                     </ngx-charts-pie-chart>
                     <div class="donut-number">{{clusterGroup[2].runningNodes}}/{{clusterGroup[2].totalNodes}}</div>
                   </div>
-                  <p *ngIf="clusterGroup[2].runningNodes === clusterGroup[2].totalNodes" class="blue nodes-run mb-0">All nodes running</p>
-                  <p *ngIf="clusterGroup[2].runningNodes !== clusterGroup[2].totalNodes" class="blue nodes-run mb-0">{{clusterGroup[2].runningNodes}} nodes running</p>
+                  <p
+                    *ngIf="clusterGroup[2].runningNodes === clusterGroup[2].totalNodes"
+                    class="blue nodes-run mb-0">
+                    All nodes running
+                  </p>
+                  <p
+                    *ngIf="clusterGroup[2].runningNodes !== clusterGroup[2].totalNodes"
+                    class="blue nodes-run mb-0">
+                    {{clusterGroup[2].runningNodes}} nodes running
+                  </p>
                   <p class="text-uppercase grey">{{clusterGroup[2].name}}</p>
                 </div>
             </div>
@@ -109,8 +127,16 @@
                   <div class="donut-number">{{cluster.runningNodes}}/{{cluster.totalNodes}}</div>
                 </div>
                 <div class="cluster-info">
-                  <p *ngIf="cluster.runningNodes === cluster.totalNodes" class="nodes-run mb-0 blue">All nodes running</p>
-                  <p *ngIf="cluster.runningNodes !== cluster.totalNodes" class="nodes-run mb-0 blue">{{cluster.runningNodes}} nodes running</p>
+                  <p
+                    *ngIf="cluster.runningNodes === cluster.totalNodes"
+                    class="nodes-run mb-0 blue">
+                    All nodes running
+                  </p>
+                  <p
+                    *ngIf="cluster.runningNodes !== cluster.totalNodes" 
+                    class="nodes-run mb-0 blue">
+                    {{cluster.runningNodes}} nodes running
+                  </p>
                   <p class="text-uppercase grey">{{cluster.name}}</p>
                 </div>
               </div>
@@ -197,9 +223,9 @@
           </thead>
           <tbody>
             <tr *ngFor="let cluster of clusters">
-              <td><a routerLink="/clusters" routerLinkActive="active" class="blue">{{cluster.name}}</a></td>
+              <td><a routerLink="/{{cluster.id}}/cluster" routerLinkActive="active" class="blue">{{cluster.name}}</a></td>
               <td>{{cluster.id}}</td>
-              <td><a routerLink="/nodes" routerLinkActive="active" class="blue">{{cluster.totalNodes}}</a></td>  
+              <td><a routerLink="/{{cluster.id}}/cluster" routerLinkActive="active" class="blue">{{cluster.totalNodes}}</a></td>  
               <td>{{cluster.description}}</td>
               <td>{{cluster.type}}</td>
               <td 
