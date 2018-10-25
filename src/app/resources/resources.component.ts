@@ -27,21 +27,36 @@ export class ResourcesComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
-   /**
-   * Cluster information
-   */
-  clusterInfo: string;
+
   /**
-   * Models that hold cluster ID, name, nodes, description, type, status and multitenant
+   * Model that hold organization ID
    */
-  clusterId: string;
-  clusterName: string;
-  clusterNodes: string;
-  clusterDescription: string;
-  clusterType: string;
-  clusterStatus: string;
-  clusterMultitenant: string;
+  organizationId: string;
+
+  /**
+   * List of available clusters
+   */
   clusters: any[];
+
+  /**
+   * Clusters list chuncked in sub-lists of 3 elements (required to show top component slider)
+   */
+  chunckedClusters: any[];
+
+  /**
+   * Array containing charts data in the required format for NGX-Charts library rendering
+   */
+  pieChartsData: any[];
+
+  /**
+   * Count of total nodes
+   */
+  nodesCount: number;
+
+  /**
+   * Count of total clusters
+   */
+  clustersCount: number;
 
   /**
    * Pie Chart options
@@ -79,7 +94,10 @@ export class ResourcesComponent implements OnInit {
       name: 'error',
       value: '#00ff00'
     }
-];
+  ];
+  /**
+   * NGX-Charts object-assign required object references (for rendering)
+   */
   mockClusterChart: any;
   mockNodesChart: any;
   autoScale: any;
@@ -98,14 +116,14 @@ export class ResourcesComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-    this.clusterName = 'Loading ...'; // Default initialization
-    this.clusterId = 'Loading ...'; // Default initialization
-    this.clusterNodes = 'Loading ...'; // Default initialization
-    this.clusterDescription = 'Loading ...'; // Default initialization
-    this.clusterType = 'Loading ...'; // Default initialization
-    this.clusterStatus = 'Loading ...'; // Default initialization
-    this.clusterMultitenant = 'Loading ...'; // Default initialization
+
+    // Default initialization
+
     this.clusters = [];
+    this.chunckedClusters = [];
+    this.nodesCount = 0;
+    this.clustersCount = 0;
+    this.pieChartsData = [];
 
   /**
    * Mocked Charts
@@ -114,22 +132,28 @@ export class ResourcesComponent implements OnInit {
    }
 
   ngOnInit() {
+    // Get User data from localStorage
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
-       this.clusterInfo = JSON.parse(jwtData).ClusterInfo;
-      if (this.clusterInfo !== null) {
-        this.backend.getClustersList(this.clusterInfo)
+      this.organizationId = JSON.parse(jwtData).OrganizationId;
+      if (this.organizationId !== null) {
+        // Requests top card summary data
+        this.backend.getResourcesSummary(this.organizationId)
+        .subscribe(response => {
+          if (response && response._body) {
+            const data = JSON.parse(response._body);
+            this.clustersCount = data['totalClusters'];
+            this.nodesCount = data['totalNodes'];
+          }
+        });
+        // Requests an updated clusters list
+        this.backend.getClusters(this.organizationId)
           .subscribe(response => {
             if (response && response._body) {
               const data = JSON.parse(response._body);
               this.clusters = data;
-              this.clusterName = data.name;
-              this.clusterId = data.id;
-              this.clusterNodes = data.nodes;
-              this.clusterDescription = data.description;
-              this.clusterType = data.type;
-              this.clusterStatus = data.status;
-              this.clusterMultitenant = data.multitenant;
+              this.chunckedClusters = this.chunkClusterList(3, this.clusters);
+              this.updatePieChartsData(this.clusters, this.pieChartsData);
             }
           });
       }
@@ -140,5 +164,51 @@ export class ResourcesComponent implements OnInit {
    */
   editCluster() {
   }
+  /**
+   * Updates the pieChartsData with latest changes
+   * @param clusterList Array containing the cluster list that sources the chart values
+   * @param pieChartsData Array that contains sub-arrays that hold each chart labels and values
+   */
+  updatePieChartsData (clusterList, pieChartsData) {
+    for (let i = 0; i < pieChartsData.length; i++) {
+      pieChartsData.pop();
+    }
+    clusterList.forEach(element => {
+      pieChartsData.push(this.generateClusterChartData(element.runningNodes, element.totalNodes));
+    });
+  }
+  /**
+   * Generates the NGX-Chart required JSON object for pie chart rendering
+   * @param running Number of running nodes in a cluster
+   * @param total Number of total nodes in a cluster
+   * @returns anonym array with the required object structure for pie chart rendering
+   */
+  generateClusterChartData(running: number, total: number): any[] {
+    return [
+      {
+        name: 'Running',
+        value: running
+      },
+      {
+        name: 'Stopped',
+        value: total - running
+      }];
 
+  }
+  /**
+   * Slits the cluster list into chunks (number of elements defined by the chunks parameter)
+   * @param chunks Number of elements per chunk
+   * @param clusterList Array containing the available clusters
+   * @returns chunked array
+   */
+  chunkClusterList(chunks, clusterList) {
+    let i, j, chunkedArray;
+    const resultChunkArray = [];
+    const chunk = chunks;
+    for (i = 0, j = clusterList.length; i < j; i += chunk) {
+      chunkedArray = clusterList.slice(i, i + chunk);
+      resultChunkArray.push(chunkedArray);
+    }
+    return resultChunkArray;
+  }
 }

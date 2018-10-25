@@ -191,6 +191,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    height: 100%!important;
 }
 .nodes-run {
     font-size: .8em;
@@ -210,7 +211,7 @@
 }
 .donut-number {
     position: absolute;
-    top: 47%;
+    top: 42%;
     left: 38%;
 }
 
@@ -236,6 +237,7 @@
     }
     .donut-number {
         display: inline;
+        left: 33%;
     }
     .nodes-run{
         display: inline;
@@ -250,7 +252,7 @@
     }
     .donut-number {
         top: 44%;
-        left: 43%;
+        left: 45%;
     }
 }
 /* - - - Node Status card - - - */

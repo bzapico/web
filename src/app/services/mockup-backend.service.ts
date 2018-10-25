@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
-import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList  } from '../utils/mocks';
+import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo,
+         mockResetPasword, mockClusterList, mockResourcesSummary  } from '../utils/mocks';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,10 @@ export class MockupBackendService implements Backend {
 
   constructor() {
   }
+
+  /********************
+   * Login
+   ********************/
 
   /**
    * Simulates the login request
@@ -33,6 +38,10 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
+  /********************
+   * Organization
+   ********************/
+
   /**
    * Simulates get profile info
    * @param userId String containing the user identificator - used to replicate expected backend behavior
@@ -61,18 +70,14 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
-  getClustersList(clusterInfo: string) {
-    return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockClusterList),
-      status: 200
-    })));
-  }
+
   addUser(organizationId: string, user: any) {
     mockUserList.push(user);
     return of (new Response(new ResponseOptions({
       status: 200
     })));
   }
+
   deleteUser(organizationId: string, userId: string) {
     // const index = mockUserList.map(x => x.email).indexOf(userId);
     // if (index !== -1) {
@@ -83,9 +88,28 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
+
   resetPassword(organizationId: string, userId: string) {
     return of (new Response(new ResponseOptions({
       body: mockResetPasword,
+      status: 200
+    })));
+  }
+
+  /********************
+   * Resources
+   ********************/
+
+  getResourcesSummary(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockResourcesSummary),
+      status: 200
+    })));
+  }
+
+  getClusters(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockClusterList),
       status: 200
     })));
   }
