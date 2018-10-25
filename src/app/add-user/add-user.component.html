@@ -19,14 +19,14 @@
             name="name" 
             type="text" 
             class="form-control" 
-            placeholder="Name" 
+            placeholder="Name*" 
             required>
           <input 
             [(ngModel)]="email" 
             name="email" 
             type="text" 
             class="form-control" 
-            placeholder="Email" 
+            placeholder="Email*" 
             pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"
             required>
           <input 
@@ -34,14 +34,14 @@
             name="password" 
             type="password" 
             class="form-control" 
-            placeholder="Password" 
+            placeholder="Password*" 
             required>
           <input 
             [(ngModel)]="passwordConfirm" 
             name="passwordConfirm" 
             type="password" 
             class="form-control" 
-            placeholder="Confirm password" 
+            placeholder="Confirm password*" 
             required>
         </div>
       </form>
@@ -51,7 +51,6 @@
       <div class="cntr">
         <label for="rdo-1" class="btn-radio disabled">
           <input 
-            disabled 
             type="radio" 
             id="rdo-1" 
             name="radio-grp">
@@ -70,7 +69,6 @@
         </label>
         <label for="rdo-2" class="btn-radio">
           <input 
-            disabled 
             type="radio" 
             id="rdo-2" 
             name="radio-grp">
@@ -89,7 +87,6 @@
         </label>
         <label for="rdo-3" class="btn-radio">
           <input 
-            disabled 
             type="radio" 
             id="rdo-3" 
             name="radio-grp">
