@@ -7,6 +7,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { mockUserProfileInfo } from '../utils/mocks';
 import { NotificationsService } from '../services/notifications.service';
+import { AddUserComponent } from '../add-user/add-user.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -88,13 +89,16 @@ export class OrganizationComponent implements OnInit {
   }
 
   addUser() {
-    this.backend.addUser(this.organizationId, mockUserProfileInfo)
-      .subscribe(response => {
-        this.notificationsService.add({
-          message: 'User added successfully'
-        });
-        this.updateUserList();
-      });
+    this.modalRef = this.modalService.show(AddUserComponent);
+    this.modalRef.content.closeBtnName = 'Close';
+    // this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
+    // this.backend.addUser(this.organizationId, mockUserProfileInfo)
+    //   .subscribe(response => {
+    //     this.notificationsService.add({
+    //       message: 'User added successfully'
+    //     });
+    //     this.updateUserList();
+    //   });
   }
 
   updateUserList() {

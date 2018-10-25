@@ -24,6 +24,7 @@ import { RouterModule } from '@angular/router';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { OrganizationComponent } from './organization/organization.component';
 import { ResourcesComponent } from './resources/resources.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 
 @NgModule({
@@ -36,11 +37,14 @@ import { ResourcesComponent } from './resources/resources.component';
     LoginComponent,
     UserInfoComponent,
     OrganizationComponent,
-    ResourcesComponent
+    ResourcesComponent,
+    AddUserComponent
   ],
   entryComponents: [
     DebugPanelComponent,
-    UserInfoComponent],
+    UserInfoComponent,
+    AddUserComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
