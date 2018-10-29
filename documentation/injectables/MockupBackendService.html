@@ -249,7 +249,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/services/mockup-backend.service.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/services/mockup-backend.service.ts:91</a></div>
                             </td>
                         </tr>
 
@@ -330,7 +330,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/services/mockup-backend.service.ts:129</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/services/mockup-backend.service.ts:136</a></div>
                             </td>
                         </tr>
 
@@ -537,7 +537,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/services/mockup-backend.service.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/services/mockup-backend.service.ts:129</a></div>
                             </td>
                         </tr>
 
@@ -804,7 +804,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/services/mockup-backend.service.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/services/mockup-backend.service.ts:101</a></div>
                             </td>
                         </tr>
 
@@ -885,7 +885,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/services/mockup-backend.service.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/services/mockup-backend.service.ts:117</a></div>
                             </td>
                         </tr>
 
@@ -1043,18 +1043,25 @@ export class MockupBackendService implements Backend {
   }
 
   addUser(organizationId: string, user: any) {
-    mockUserList.push(user);
-    return of (new Response(new ResponseOptions({
-      status: 200
-    })));
+    const index &#x3D; mockUserList.map(x &#x3D;&gt; x.email).indexOf(user.email);
+    if (index &#x3D;&#x3D;&#x3D; -1) {
+      mockUserList.push(user);
+      return of (new Response(new ResponseOptions({
+        status: 200
+      })));
+    } else {
+      return of (new Response(new ResponseOptions({
+        status: 403,
+        body: user.email + &#x27; is already in use&#x27;
+      })));
+    }
   }
 
   deleteUser(organizationId: string, userId: string) {
-    // const index &#x3D; mockUserList.map(x &#x3D;&gt; x.email).indexOf(userId);
-    // if (index !&#x3D;&#x3D; -1) {
-    //   mockUserList.splice(index, 1);
-    // }
-    mockUserList.pop();
+    const index &#x3D; mockUserList.map(x &#x3D;&gt; x.email).indexOf(userId);
+    if (index !&#x3D;&#x3D; -1) {
+      mockUserList.splice(index, 1);
+    }
     return of (new Response(new ResponseOptions({
       status: 200
     })));
