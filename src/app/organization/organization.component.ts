@@ -87,7 +87,6 @@ export class OrganizationComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
-
   addUser() {
     this.modalRef = this.modalService.show(AddUserComponent);
     this.modalRef.content.closeBtnName = 'Close';

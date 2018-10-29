@@ -1,4 +1,5 @@
 export const LocalStorageKeys = {
+    // Mocked views
     loginMock: 'login_mock',
     organizationMock: 'organization_mock',
     resourcesMock: 'resources_mock',
@@ -6,11 +7,12 @@ export const LocalStorageKeys = {
     profileMock: 'profile_mock',
     sidebarMock: 'sidebar_mock',
     notificationsMock: 'notifications_mock',
+    userInfoMock: 'user_info_mock',
+    clusterEditMock: 'cluster_edit_mock',
+
+    // Data
     jwt: 'jwt',
     jwtData: 'jwt_data',
-    userId: 'userId',
-    userInfoMock: 'userInfo_mock',
-    clusterId: 'clusterId',
-    clusterInfo: 'clusterInfo'
+    userId: 'user_id',
 };
 

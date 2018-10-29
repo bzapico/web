@@ -148,7 +148,8 @@
   profile: &#x27;Profile&#x27;,
   notifications: &#x27;Notifications&#x27;,
   sidebar: &#x27;Sidebar&#x27;,
-  userinfo: &#x27;User Info&#x27;
+  userinfo: &#x27;User Info&#x27;,
+  editcluster: &#x27;Edit Cluster&#x27;
 }</code>
                         </td>
                     </tr>
@@ -265,6 +266,7 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
+    // Mocked views
     loginMock: &#x27;login_mock&#x27;,
     organizationMock: &#x27;organization_mock&#x27;,
     resourcesMock: &#x27;resources_mock&#x27;,
@@ -272,12 +274,13 @@
     profileMock: &#x27;profile_mock&#x27;,
     sidebarMock: &#x27;sidebar_mock&#x27;,
     notificationsMock: &#x27;notifications_mock&#x27;,
+    userInfoMock: &#x27;user_info_mock&#x27;,
+    clusterEditMock: &#x27;cluster_edit_mock&#x27;,
+
+    // Data
     jwt: &#x27;jwt&#x27;,
     jwtData: &#x27;jwt_data&#x27;,
-    userId: &#x27;userId&#x27;,
-    userInfoMock: &#x27;userInfo_mock&#x27;,
-    clusterId: &#x27;clusterId&#x27;,
-    clusterInfo: &#x27;clusterInfo&#x27;
+    userId: &#x27;user_id&#x27;,
 }</code>
                         </td>
                     </tr>
@@ -367,7 +370,7 @@
                             <i>Default value : </i><code>[
     {
         name: &#x27;Cluster1&#x27;,
-        id: &#x27;0800200c9a66&#x27;,
+        id: &#x27;0800200c9a61&#x27;,
         totalNodes: &#x27;10&#x27;,
         runningNodes: &#x27;1&#x27;,
         description: &#x27;Ny Cluster&#x27;,
@@ -378,7 +381,7 @@
     },
     {
         name: &#x27;Cluster2&#x27;,
-        id: &#x27;0800200c9a66&#x27;,
+        id: &#x27;0800200c9a62&#x27;,
         totalNodes: &#x27;10&#x27;,
         runningNodes: &#x27;2&#x27;,
         description: &#x27;Ny Cluster&#x27;,
@@ -389,7 +392,7 @@
     },
     {
         name: &#x27;Cluster3&#x27;,
-        id: &#x27;0800200c9a66&#x27;,
+        id: &#x27;0800200c9a63&#x27;,
         totalNodes: &#x27;10&#x27;,
         runningNodes: &#x27;3&#x27;,
         description: &#x27;Ny Cluster&#x27;,
@@ -400,7 +403,7 @@
     },
     {
         name: &#x27;Cluster4&#x27;,
-        id: &#x27;0800200c9a66&#x27;,
+        id: &#x27;0800200c9a64&#x27;,
         totalNodes: &#x27;10&#x27;,
         runningNodes: &#x27;4&#x27;,
         description: &#x27;Ny Cluster&#x27;,
@@ -411,7 +414,7 @@
     },
     {
         name: &#x27;Cluster5&#x27;,
-        id: &#x27;0800200c9a66&#x27;,
+        id: &#x27;0800200c9a65&#x27;,
         totalNodes: &#x27;10&#x27;,
         runningNodes: &#x27;5&#x27;,
         description: &#x27;Ny Cluster&#x27;,
@@ -433,7 +436,7 @@
     },
     {
         name: &#x27;Cluster7&#x27;,
-        id: &#x27;0800200c9a66&#x27;,
+        id: &#x27;0800200c9a67&#x27;,
         totalNodes: &#x27;10&#x27;,
         runningNodes: &#x27;7&#x27;,
         description: &#x27;Ny Cluster&#x27;,
