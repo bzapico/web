@@ -34,7 +34,7 @@ export class BackendService implements Backend {
   resetPassword(organizationId: string, userId: string) {
     throw new Error('Method not implemented.');
   }
-  saveClusterChanges(clusterId: string, changes: any) {
+  saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
     throw new Error('Method not implemented.');
   }
   getResourcesSummary(organizationId: string) {

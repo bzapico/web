@@ -152,16 +152,7 @@ export class ResourcesComponent implements OnInit {
             this.nodesCount = data['totalNodes'];
           }
         });
-        // Requests an updated clusters list
-        this.backend.getClusters(this.organizationId)
-          .subscribe(response => {
-            if (response && response._body) {
-              const data = JSON.parse(response._body);
-              this.clusters = data;
-              this.chunckedClusters = this.chunkClusterList(3, this.clusters);
-              this.updatePieChartsData(this.clusters, this.pieChartsData);
-            }
-          });
+        this.updateClusterList();
       }
     }
   }
@@ -171,6 +162,7 @@ export class ResourcesComponent implements OnInit {
    */
   openEditCluster(cluster) {
     const initialState = {
+      organizationId: this.organizationId,
       clusterId: cluster.id,
       clusterName: cluster.name,
       clusterDescription: cluster.description,
@@ -179,7 +171,8 @@ export class ResourcesComponent implements OnInit {
 
     this.modalRef = this.modalService.show(EditClusterComponent, { initialState });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { console.log(reason);
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateClusterList();
     });
   }
   /**
@@ -228,5 +221,20 @@ export class ResourcesComponent implements OnInit {
       resultChunkArray.push(chunkedArray);
     }
     return resultChunkArray;
+  }
+  /**
+   * Requests an updated list of available clusters to update the current one
+   */
+  updateClusterList() {
+    // Requests an updated clusters list
+    this.backend.getClusters(this.organizationId)
+    .subscribe(response => {
+      if (response && response._body) {
+        const data = JSON.parse(response._body);
+        this.clusters = data;
+        this.chunckedClusters = this.chunkClusterList(3, this.clusters);
+        this.updatePieChartsData(this.clusters, this.pieChartsData);
+      }
+    });
   }
 }

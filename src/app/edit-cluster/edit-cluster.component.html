@@ -6,7 +6,7 @@
         type="button" 
         class="close" 
         aria-label="Close"
-        (click)="bsModalRef.hide()">
+        (click)="discardChanges(f)">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -38,9 +38,12 @@
         </div>
       </form>
     <!-- Option button -->
-    <div class="buttons d-flex flex-row justify-content-center mt-5">
-      <button class="btn btn-primary btn-md mt-5" (click)="saveClusterChanges()">
-        <span class="align-bottom">{{buttonSave}}</span>
+    <div class="buttons d-flex flex-row justify-content-between mt-5">
+      <button class="btn btn-primary btn-md mt-5" (click)="saveClusterChanges(f)">
+        <span class="align-bottom">Save</span>
+      </button>
+      <button class="btn btn-red btn-md mt-5" (click)="discardChanges(f)">
+          <span class="align-bottom">Discard</span>
       </button>
     </div>
     </div>

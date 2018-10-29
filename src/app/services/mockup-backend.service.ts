@@ -107,16 +107,16 @@ export class MockupBackendService implements Backend {
    * Simulates save cluster changes
    * @param clusterId String containing the cluster identificator - used to replicate expected backend behavior
    */
-  saveClusterChanges(clusterId: string, changes: any) {
-      const index = mockClusterList.map(x => x.id).indexOf(clusterId);
-  if (index !== -1) {
-    mockClusterList[index].name = changes.newClusterName;
-    mockClusterList[index].description = changes.newClusterDescription;
-    mockClusterList[index].tags = changes.newClusterTags;
-  }
-  return of (new Response(new ResponseOptions({
-    status: 200
-  })));
+  saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
+    const index = mockClusterList.map(x => x.id).indexOf(clusterId);
+    if (index !== -1) {
+      mockClusterList[index].name = changes.newClusterName;
+      mockClusterList[index].description = changes.newClusterDescription;
+      mockClusterList[index].tags = changes.newClusterTags;
+    }
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
   }
 
   getResourcesSummary(organizationId: string) {

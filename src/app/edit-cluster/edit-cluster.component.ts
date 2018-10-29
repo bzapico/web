@@ -17,13 +17,11 @@ export class EditClusterComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
+
   /**
-   * Text for the save button
+   * Models that hold organization id, cluster id, name, description and tags
    */
-  buttonSave: string;
-  /**
-   * Models that hold cluster name, cluster description and cluster tags
-   */
+  organizationId: string;
   clusterId: string;
   clusterName: string;
   clusterDescription: string;
@@ -46,15 +44,18 @@ export class EditClusterComponent implements OnInit {
       this.clusterDescription = 'Loading...'; // Default initialization
       this.clusterTags = 'Loading...'; // Default initialization
       this.clusterId = 'Loading ...'; // Default initialization
-      this.buttonSave = 'Save';
   }
 
   ngOnInit() {
   }
 
-  saveClusterChanges() {
-    if (this.clusterId !== null) {
-      this.backend.saveClusterChanges(this.clusterId, {
+  /**
+   * Request to save the cluster data modifications
+   * @param form Form object reference
+   */
+  saveClusterChanges(form) {
+    if (this.organizationId !== null && this.clusterId !== null) {
+      this.backend.saveClusterChanges(this.organizationId, this.clusterId, {
         newClusterName: this.clusterName,
         newClusterDescription: this.clusterDescription,
         newClusterTags: this.clusterTags
@@ -65,6 +66,23 @@ export class EditClusterComponent implements OnInit {
           });
           this.bsModalRef.hide();
         });
+    }
+  }
+
+  /**
+   * Checks if the form has been modified before discarding changes
+   * @param form Form object reference
+   */
+  discardChanges(form) {
+    if (form.dirty) {
+      const discard = confirm('Discard changes?');
+      if (discard) {
+        this.bsModalRef.hide();
+      } else {
+        // Do nothing
+      }
+    } else {
+      this.bsModalRef.hide();
     }
   }
 }

@@ -51,7 +51,7 @@ export const mockUserList = [
 export const mockClusterList = [
     {
         name: 'Cluster1',
-        id: '0800200c9a66',
+        id: '0800200c9a61',
         totalNodes: '10',
         runningNodes: '1',
         description: 'Ny Cluster',
@@ -62,7 +62,7 @@ export const mockClusterList = [
     },
     {
         name: 'Cluster2',
-        id: '0800200c9a66',
+        id: '0800200c9a62',
         totalNodes: '10',
         runningNodes: '2',
         description: 'Ny Cluster',
@@ -73,7 +73,7 @@ export const mockClusterList = [
     },
     {
         name: 'Cluster3',
-        id: '0800200c9a66',
+        id: '0800200c9a63',
         totalNodes: '10',
         runningNodes: '3',
         description: 'Ny Cluster',
@@ -84,7 +84,7 @@ export const mockClusterList = [
     },
     {
         name: 'Cluster4',
-        id: '0800200c9a66',
+        id: '0800200c9a64',
         totalNodes: '10',
         runningNodes: '4',
         description: 'Ny Cluster',
@@ -95,7 +95,7 @@ export const mockClusterList = [
     },
     {
         name: 'Cluster5',
-        id: '0800200c9a66',
+        id: '0800200c9a65',
         totalNodes: '10',
         runningNodes: '5',
         description: 'Ny Cluster',
@@ -117,7 +117,7 @@ export const mockClusterList = [
     },
     {
         name: 'Cluster7',
-        id: '0800200c9a66',
+        id: '0800200c9a67',
         totalNodes: '10',
         runningNodes: '7',
         description: 'Ny Cluster',

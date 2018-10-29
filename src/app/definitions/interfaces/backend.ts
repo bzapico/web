@@ -12,7 +12,7 @@ export interface Backend {
     deleteUser(organizationId: string, userId: string);
     resetPassword(organizationId: string, userId: string);
     // Resources
-    saveClusterChanges(clusterId: string, changes: any);
+    saveClusterChanges(organizationId: string, clusterId: string, changes: any);
     getClusters(organizationId: string);
     getResourcesSummary(organizationId: string);
 }
