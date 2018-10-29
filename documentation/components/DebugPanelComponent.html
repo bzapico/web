@@ -177,7 +177,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -258,7 +258,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -296,7 +296,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:95</a></div>
                             </td>
                         </tr>
 
@@ -368,7 +368,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:129</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:137</a></div>
                             </td>
                         </tr>
 
@@ -421,7 +421,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:41</a></div>
                             </td>
                         </tr>
 
@@ -460,7 +460,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -500,7 +500,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -535,7 +535,8 @@ export const AvailableComponents &#x3D; {
   notifications: &#x27;Notifications&#x27;,
   sidebar: &#x27;Sidebar&#x27;,
   userinfo: &#x27;User Info&#x27;,
-  editcluster: &#x27;Edit Cluster&#x27;
+  editcluster: &#x27;EditCluster&#x27;,
+  addUser: &#x27;Add User&#x27;
 };
 
 @Component({
@@ -596,6 +597,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.editcluster,
       mock: localStorage.getItem(LocalStorageKeys.clusterEditMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
+    this.components.push({
+      name: AvailableComponents.addUser,
+      mock: localStorage.getItem(LocalStorageKeys.addUserMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
   }
 
   /**
@@ -632,6 +637,9 @@ export class DebugPanelComponent implements OnInit {
       case AvailableComponents.editcluster:
         localStorage.setItem(LocalStorageKeys.clusterEditMock, componentMockOption.mock);
       break;
+      case AvailableComponents.addUser:
+      localStorage.setItem(LocalStorageKeys.addUserMock, componentMockOption.mock);
+    break;
       default:
         console.log(&#x27;Selected option not registered as available component&#x27;);
     }
