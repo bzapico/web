@@ -77,10 +77,13 @@ export class OrganizationComponent implements OnInit {
   /**
    * Opens the modal view that holds the user info component
    */
-  openUserInfo() {
+  openUserInfo(user) {
     const initialState = {
       organizationName: this.organizationName,
-      organizatinoId: this.organizationId
+      organizatinoId: this.organizationId,
+      userName: user.name,
+      userId: user.email,
+      role: user.role
     };
 
     this.modalRef = this.modalService.show(UserInfoComponent, { initialState });
