@@ -51,6 +51,26 @@
         }
     }
 }
+.form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 14px;
+    font-size: 0.9em;
+    text-align: center;
+    border-radius: 5px;
+    &:focus {
+      z-index: 2;
+      border-color: #0937FF;
+      outline: none;
+      box-shadow: none;
+      &::placeholder {
+        color: white;
+      }
+    }
+  }
 .form-control:disabled, .form-control[readonly] {
    background-color: white; 
 }
@@ -66,7 +86,7 @@ input {
     color: #949494;
     text-align: center;
     caret-color: #0937FF;
-    margin: 3px 0;
+    margin: -3px 0;
     font-size: .9em;
     &:checked {
       outline: none;

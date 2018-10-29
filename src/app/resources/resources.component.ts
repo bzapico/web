@@ -207,7 +207,7 @@ export class ResourcesComponent implements OnInit {
     }
 
   /**
-   * Slits the cluster list into chunks (number of elements defined by the chunks parameter)
+   * Splits the cluster list into chunks (number of elements defined by the chunks parameter)
    * @param chunks Number of elements per chunk
    * @param clusterList Array containing the available clusters
    * @returns chunked array
