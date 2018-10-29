@@ -16,8 +16,15 @@ export class AddUserComponent implements OnInit {
    */
   backend: Backend;
 
+  /**
+   * Models that hold organization id, user role, name, email and password
+   */
   organizationId: string;
   userRole: string;
+  userName: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -25,7 +32,6 @@ export class AddUserComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    this.organizationId = '';
     this.userRole = null;
     this.backend = mockupBackendService;
   }
@@ -33,6 +39,10 @@ export class AddUserComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Requests to add a new user
+   * @param form Form with the user input data
+   */
   addUser(form) {
     const user = {
       name: form.value.name,
@@ -69,10 +79,18 @@ export class AddUserComponent implements OnInit {
     }
   }
 
+  /**
+   * Changes the new user role
+   * @param newRole New user role
+   */
   changeRole(newRole) {
     this.userRole = newRole;
   }
 
+  /**
+   * Validates user data
+   * @param form Form with user data
+   */
   isFormValid(form) {
     if (this.userRole === null) {
       return false;

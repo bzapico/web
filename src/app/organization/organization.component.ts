@@ -92,7 +92,7 @@ export class OrganizationComponent implements OnInit {
   }
   addUser() {
     const initialState = {
-      organizatinoId: this.organizationId
+      organizationId: this.organizationId
     };
     this.modalRef = this.modalService.show(AddUserComponent, {initialState});
     this.modalRef.content.closeBtnName = 'Close';
