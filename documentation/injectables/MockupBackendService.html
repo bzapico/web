@@ -84,13 +84,16 @@
                                 <a href="#deleteUser">deleteUser</a>
                             </li>
                             <li>
-                                <a href="#getClustersList">getClustersList</a>
+                                <a href="#getClusters">getClusters</a>
                             </li>
                             <li>
                                 <a href="#getOrganizationInfo">getOrganizationInfo</a>
                             </li>
                             <li>
                                 <a href="#getOrganizationUsers">getOrganizationUsers</a>
+                            </li>
+                            <li>
+                                <a href="#getResourcesSummary">getResourcesSummary</a>
                             </li>
                             <li>
                                 <a href="#getUserProfileInfo">getUserProfileInfo</a>
@@ -130,7 +133,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/services/mockup-backend.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/services/mockup-backend.service.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -165,7 +168,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/services/mockup-backend.service.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/services/mockup-backend.service.ts:74</a></div>
                             </td>
                         </tr>
 
@@ -246,7 +249,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/services/mockup-backend.service.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/services/mockup-backend.service.ts:81</a></div>
                             </td>
                         </tr>
 
@@ -309,25 +312,25 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="getClustersList"></a>
+                        <a name="getClusters"></a>
                         <span class="name">
                             <b>
-                            getClustersList
+                            getClusters
                             </b>
-                            <a href="#getClustersList"><span class="icon ion-ios-link"></span></a>
+                            <a href="#getClusters"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>getClustersList(clusterInfo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getClusters(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/services/mockup-backend.service.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/services/mockup-backend.service.ts:110</a></div>
                             </td>
                         </tr>
 
@@ -347,7 +350,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>clusterInfo</td>
+                                                        <td>organizationId</td>
                                                         <td>
                                                                     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                                         </td>
@@ -396,7 +399,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/services/mockup-backend.service.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/services/mockup-backend.service.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -465,13 +468,86 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/services/mockup-backend.service.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/services/mockup-backend.service.ts:67</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getResourcesSummary"></a>
+                        <span class="name">
+                            <b>
+                            getResourcesSummary
+                            </b>
+                            <a href="#getResourcesSummary"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getResourcesSummary(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/services/mockup-backend.service.ts:103</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><hr>
+<p>Resources</p>
+<hr>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -534,14 +610,16 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/services/mockup-backend.service.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/services/mockup-backend.service.ts:49</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Simulates get profile info</p>
+                            <div class="io-description"><hr>
+<p>Organization</p>
+<hr>
 </div>
 
                             <div class="io-description">
@@ -552,7 +630,6 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -567,10 +644,6 @@
                                                     </td>
                                                     
 
-                                                        <td>
-                                                                <code><p>String containing the user identificator - used to replicate expected backend behavior</p>
-</code>
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -610,14 +683,16 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/services/mockup-backend.service.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/services/mockup-backend.service.ts:25</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Simulates the login request</p>
+                            <div class="io-description"><hr>
+<p>Login</p>
+<hr>
 </div>
 
                             <div class="io-description">
@@ -628,7 +703,6 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -643,10 +717,6 @@
                                                     </td>
                                                     
 
-                                                        <td>
-                                                                <code><p>String containing the user email</p>
-</code>
-                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>password</td>
@@ -659,10 +729,6 @@
                                                     </td>
                                                     
 
-                                                        <td>
-                                                                <code><p>String that holds the user password</p>
-</code>
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -702,7 +768,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/services/mockup-backend.service.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/services/mockup-backend.service.ts:36</a></div>
                             </td>
                         </tr>
 
@@ -742,7 +808,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/services/mockup-backend.service.ts:88</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/services/mockup-backend.service.ts:92</a></div>
                             </td>
                         </tr>
 
@@ -888,9 +954,8 @@
 import { Backend } from &#x27;../definitions/interfaces/backend&#x27;;
 import { Response, ResponseOptions } from &#x27;@angular/http&#x27;;
 import { of, Observable } from &#x27;rxjs&#x27;;
-// tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterId, mockClusterList } from &#x27;../utils/mocks&#x27;;
-
+import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo,
+         mockResetPasword, mockClusterList, mockResourcesSummary  } from &#x27;../utils/mocks&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;
@@ -899,6 +964,10 @@ export class MockupBackendService implements Backend {
 
   constructor() {
   }
+
+  /********************
+   * Login
+   ********************/
 
   /**
    * Simulates the login request
@@ -921,6 +990,10 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
+  /********************
+   * Organization
+   ********************/
+
   /**
    * Simulates get profile info
    * @param userId String containing the user identificator - used to replicate expected backend behavior
@@ -949,18 +1022,14 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
-  getClustersList(clusterInfo: string) {
-    return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockClusterList),
-      status: 200
-    })));
-  }
+
   addUser(organizationId: string, user: any) {
     mockUserList.push(user);
     return of (new Response(new ResponseOptions({
       status: 200
     })));
   }
+
   deleteUser(organizationId: string, userId: string) {
     // const index &#x3D; mockUserList.map(x &#x3D;&gt; x.email).indexOf(userId);
     // if (index !&#x3D;&#x3D; -1) {
@@ -971,6 +1040,7 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
+
   resetPassword(organizationId: string, userId: string) {
     return of (new Response(new ResponseOptions({
       body: mockResetPasword,
@@ -988,6 +1058,24 @@ export class MockupBackendService implements Backend {
         description: mockClusterId,
         tags: mockClusterId
       }),
+      status: 200
+    })));
+  }
+
+  /********************
+   * Resources
+   ********************/
+
+  getResourcesSummary(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockResourcesSummary),
+      status: 200
+    })));
+  }
+
+  getClusters(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockClusterList),
       status: 200
     })));
   }

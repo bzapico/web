@@ -25,9 +25,6 @@ export class BackendService implements Backend {
   getOrganizationUsers(organizationId: string) {
     throw new Error('Method not implemented.');
   }
-  getClustersList(clusterInfo: string) {
-    throw new Error('Method not implemented.');
-  }
   addUser(organizationId: string, user: any) {
     throw new Error('Method not implemented.');
   }
@@ -38,6 +35,12 @@ export class BackendService implements Backend {
     throw new Error('Method not implemented.');
   }
   saveClusterChanges(clusterId: string, changes: any) {
+    throw new Error('Method not implemented.');
+  }
+  getResourcesSummary(organizationId: string) {
+    throw new Error('Method not implemented.');
+  }
+  getClusters(organizationId: string) {
     throw new Error('Method not implemented.');
   }
 }

@@ -51,8 +51,9 @@ export const mockUserList = [
 export const mockClusterList = [
     {
         name: 'Cluster1',
-        id: '1',
-        nodes: '10',
+        id: '0800200c9a66',
+        totalNodes: '10',
+        runningNodes: '1',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Running',
@@ -61,8 +62,9 @@ export const mockClusterList = [
     },
     {
         name: 'Cluster2',
-        id: '2',
-        nodes: '10',
+        id: '0800200c9a66',
+        totalNodes: '10',
+        runningNodes: '2',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Running',
@@ -71,8 +73,9 @@ export const mockClusterList = [
     },
     {
         name: 'Cluster3',
-        id: '3',
-        nodes: '10',
+        id: '0800200c9a66',
+        totalNodes: '10',
+        runningNodes: '3',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Running',
@@ -81,8 +84,9 @@ export const mockClusterList = [
     },
     {
         name: 'Cluster4',
-        id: '4',
-        nodes: '10',
+        id: '0800200c9a66',
+        totalNodes: '10',
+        runningNodes: '4',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Running',
@@ -91,8 +95,9 @@ export const mockClusterList = [
     },
     {
         name: 'Cluster5',
-        id: '5',
-        nodes: '8',
+        id: '0800200c9a66',
+        totalNodes: '10',
+        runningNodes: '5',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Error',
@@ -101,8 +106,20 @@ export const mockClusterList = [
     },
     {
         name: 'Cluster6',
-        id: '6',
-        nodes: '10',
+        id: '0800200c9a66',
+        totalNodes: '10',
+        runningNodes: '6',
+        description: 'Ny Cluster',
+        type: 'Kubernetes',
+        status: 'Running',
+        tags: 'ny, edge',
+        multitenant: 'All'
+    },
+    {
+        name: 'Cluster7',
+        id: '0800200c9a66',
+        totalNodes: '10',
+        runningNodes: '7',
         description: 'Ny Cluster',
         type: 'Kubernetes',
         status: 'Running',
@@ -116,12 +133,12 @@ export const mockClusterList = [
  */
 export const mockClusterChart = [
     {
-        'name': 'Running',
-        'value': 5
+        name: 'Running',
+        value: 5
     },
     {
-        'name': 'Error',
-        'value': 1
+        name: 'Error',
+        value: 1
     }
 ];
 
@@ -178,4 +195,15 @@ export const mockNodesChart = [
       },
 ];
 
+/**
+ * Mocked new password
+ */
 export const mockResetPasword = 'NEW_PASSWORD_1234';
+
+/**
+ * Mock resources summary containing total clusters and nodes
+ */
+export const mockResourcesSummary = {
+    totalClusters: mockClusterList.length,
+    totalNodes: mockClusterList.length * 10
+};

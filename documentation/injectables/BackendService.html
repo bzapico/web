@@ -84,13 +84,16 @@
                                 <a href="#deleteUser">deleteUser</a>
                             </li>
                             <li>
-                                <a href="#getClustersList">getClustersList</a>
+                                <a href="#getClusters">getClusters</a>
                             </li>
                             <li>
                                 <a href="#getOrganizationInfo">getOrganizationInfo</a>
                             </li>
                             <li>
                                 <a href="#getOrganizationUsers">getOrganizationUsers</a>
+                            </li>
+                            <li>
+                                <a href="#getResourcesSummary">getResourcesSummary</a>
                             </li>
                             <li>
                                 <a href="#getUserProfileInfo">getUserProfileInfo</a>
@@ -165,7 +168,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/services/backend.service.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/services/backend.service.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -246,7 +249,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/services/backend.service.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/services/backend.service.ts:31</a></div>
                             </td>
                         </tr>
 
@@ -309,25 +312,25 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="getClustersList"></a>
+                        <a name="getClusters"></a>
                         <span class="name">
                             <b>
-                            getClustersList
+                            getClusters
                             </b>
-                            <a href="#getClustersList"><span class="icon ion-ios-link"></span></a>
+                            <a href="#getClusters"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>getClustersList(clusterInfo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getClusters(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/services/backend.service.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/services/backend.service.ts:40</a></div>
                             </td>
                         </tr>
 
@@ -347,7 +350,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>clusterInfo</td>
+                                                        <td>organizationId</td>
                                                         <td>
                                                                     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                                         </td>
@@ -466,6 +469,75 @@
                         <tr>
                             <td class="col-md-4">
                                     <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/services/backend.service.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getResourcesSummary"></a>
+                        <span class="name">
+                            <b>
+                            getResourcesSummary
+                            </b>
+                            <a href="#getResourcesSummary"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getResourcesSummary(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/services/backend.service.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -722,7 +794,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/services/backend.service.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/services/backend.service.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -884,9 +956,6 @@ export class BackendService implements Backend {
   getOrganizationUsers(organizationId: string) {
     throw new Error(&#x27;Method not implemented.&#x27;);
   }
-  getClustersList(clusterInfo: string) {
-    throw new Error(&#x27;Method not implemented.&#x27;);
-  }
   addUser(organizationId: string, user: any) {
     throw new Error(&#x27;Method not implemented.&#x27;);
   }
@@ -897,6 +966,12 @@ export class BackendService implements Backend {
     throw new Error(&#x27;Method not implemented.&#x27;);
   }
   saveClusterChanges(clusterId: string) {
+    throw new Error(&#x27;Method not implemented.&#x27;);
+}
+  getResourcesSummary(organizationId: string) {
+    throw new Error(&#x27;Method not implemented.&#x27;);
+  }
+  getClusters(organizationId: string) {
     throw new Error(&#x27;Method not implemented.&#x27;);
   }
 }
