@@ -4,6 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
+import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
 @Component({
   selector: 'app-add-user',
@@ -33,7 +34,15 @@ export class AddUserComponent implements OnInit {
     private notificationsService: NotificationsService
   ) {
     this.userRole = null;
-    this.backend = mockupBackendService;
+    const mock = localStorage.getItem(LocalStorageKeys.addUserMock) || null;
+    console.log(mock);
+    // check which backend is required (fake or real)
+    if (mock && mock === 'true') {
+      this.backend = mockupBackendService;
+    } else {
+      this.backend = backendService;
+    }
+
   }
 
   ngOnInit() {
