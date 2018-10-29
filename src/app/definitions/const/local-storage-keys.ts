@@ -9,6 +9,7 @@ export const LocalStorageKeys = {
     notificationsMock: 'notifications_mock',
     userInfoMock: 'user_info_mock',
     clusterEditMock: 'cluster_edit_mock',
+    addUserMock: 'add_user_mock',
 
     // Data
     jwt: 'jwt',

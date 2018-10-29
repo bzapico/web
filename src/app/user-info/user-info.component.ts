@@ -53,7 +53,7 @@ export class UserInfoComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-    this.title = 'Info User';
+    this.title = 'User info';
     this.userName = 'Loading ...'; // Default initialization
     this.userId = 'Loading ...'; // Default initialization
     this.buttonDeleteUser = 'Delete User';
@@ -61,22 +61,6 @@ export class UserInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
-    if (jwtData !== null) {
-      const jwtJson = JSON.parse(jwtData);
-      this.userId = jwtJson.UserId;
-      this.role = jwtJson.Rolename;
-      if (this.userId !== null) {
-        this.backend.getUserProfileInfo(this.userId)
-          .subscribe(response => {
-            if (response && response._body) {
-              const data = JSON.parse(response._body);
-              this.userName = data.name;
-              this.userId = data.email;
-            }
-          });
-      }
-    }
   }
 
   checkUserRole(buttonRole) {

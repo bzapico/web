@@ -38,7 +38,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>UserInfoComponent</li>
+  <li>AddUserComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/user-info/user-info.component.ts</code>
+    <code>src/app/add-user/add-user.component.ts</code>
 </p>
 
 
@@ -91,19 +91,19 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>user-info</code></td>
+                <td class="col-md-9"><code>app-add-user</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>user-info.component.scss</code></td>
+                <td class="col-md-9"><code>add-user.component.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./user-info.component.html</code></td>
+                <td class="col-md-9"><code>./add-user.component.html</code></td>
             </tr>
 
 
@@ -131,28 +131,22 @@
                                 <a href="#bsModalRef">bsModalRef</a>
                             </li>
                             <li>
-                                <a href="#buttonDeleteUser">buttonDeleteUser</a>
-                            </li>
-                            <li>
-                                <a href="#buttonRessetPassword">buttonRessetPassword</a>
+                                <a href="#email">email</a>
                             </li>
                             <li>
                                 <a href="#organizationId">organizationId</a>
                             </li>
                             <li>
-                                <a href="#organizationName">organizationName</a>
+                                <a href="#password">password</a>
                             </li>
                             <li>
-                                <a href="#role">role</a>
-                            </li>
-                            <li>
-                                <a href="#title">title</a>
-                            </li>
-                            <li>
-                                <a href="#userId">userId</a>
+                                <a href="#passwordConfirm">passwordConfirm</a>
                             </li>
                             <li>
                                 <a href="#userName">userName</a>
+                            </li>
+                            <li>
+                                <a href="#userRole">userRole</a>
                             </li>
                         </ul>
                     </td>
@@ -167,16 +161,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#checkUserRole">checkUserRole</a>
+                                <a href="#addUser">addUser</a>
                             </li>
                             <li>
-                                <a href="#deleteUser">deleteUser</a>
+                                <a href="#changeRole">changeRole</a>
+                            </li>
+                            <li>
+                                <a href="#discardChanges">discardChanges</a>
+                            </li>
+                            <li>
+                                <a href="#isFormValid">isFormValid</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit">ngOnInit</a>
-                            </li>
-                            <li>
-                                <a href="#resetPassword">resetPassword</a>
                             </li>
                         </ul>
                     </td>
@@ -201,7 +198,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/user-info/user-info.component.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/add-user/add-user.component.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -288,31 +285,33 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="checkUserRole"></a>
+                        <a name="addUser"></a>
                         <span class="name">
                             <b>
-                            checkUserRole
+                            addUser
                             </b>
-                            <a href="#checkUserRole"><span class="icon ion-ios-link"></span></a>
+                            <a href="#addUser"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>checkUserRole(buttonRole: )</code>
+<code>addUser(form: )</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/user-info/user-info.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/add-user/add-user.component.ts:55</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Requests to add a new user</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -321,17 +320,22 @@
                                             <tr>
                                                 <td>Name</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>buttonRole</td>
+                                                        <td>form</td>
                                                     
                                                     <td>
                                                             No
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>Form with the user input data</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -339,7 +343,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
                                 <div class="io-description">
@@ -353,36 +357,214 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="deleteUser"></a>
+                        <a name="changeRole"></a>
                         <span class="name">
                             <b>
-                            deleteUser
+                            changeRole
                             </b>
-                            <a href="#deleteUser"><span class="icon ion-ios-link"></span></a>
+                            <a href="#changeRole"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>deleteUser()</code>
+<code>changeRole(newRole: )</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/user-info/user-info.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/add-user/add-user.component.ts:95</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Changes the new user role</p>
+</div>
 
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>newRole</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>New user role</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="discardChanges"></a>
+                        <span class="name">
+                            <b>
+                            discardChanges
+                            </b>
+                            <a href="#discardChanges"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>discardChanges(form: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/add-user/add-user.component.ts:78</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Checks if the form has been modified before discarding changes</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>form</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Form object reference</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isFormValid"></a>
+                        <span class="name">
+                            <b>
+                            isFormValid
+                            </b>
+                            <a href="#isFormValid"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>isFormValid(form: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/add-user/add-user.component.ts:103</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Validates user data</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>form</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Form with user data</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -409,45 +591,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/user-info/user-info.component.ts:63</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="resetPassword"></a>
-                        <span class="name">
-                            <b>
-                            resetPassword
-                            </b>
-                            <a href="#resetPassword"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>resetPassword()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/user-info/user-info.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/add-user/add-user.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -497,7 +641,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/user-info/user-info.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/add-user/add-user.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -538,7 +682,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/user-info/user-info.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/add-user/add-user.component.ts:31</a></div>
                             </td>
                         </tr>
 
@@ -549,18 +693,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="buttonDeleteUser"></a>
+                        <a name="email"></a>
                         <span class="name">
                             <b>
-                            buttonDeleteUser
+                            email
                             </b>
-                            <a href="#buttonDeleteUser"><span class="icon ion-ios-link"></span></a>
+                            <a href="#email"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>buttonDeleteUser:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <code>email:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                     </td>
                 </tr>
@@ -572,56 +716,10 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/user-info/user-info.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/add-user/add-user.component.ts:26</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Text for the delete user action button</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="buttonRessetPassword"></a>
-                        <span class="name">
-                            <b>
-                            buttonRessetPassword
-                            </b>
-                            <a href="#buttonRessetPassword"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>buttonRessetPassword:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/user-info/user-info.component.ts:28</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Text for the resset password action button</p>
-</div>
-                    </td>
-                </tr>
 
             </tbody>
         </table>
@@ -652,115 +750,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/user-info/user-info.component.ts:37</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="organizationName"></a>
-                        <span class="name">
-                            <b>
-                            organizationName
-                            </b>
-                            <a href="#organizationName"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>organizationName:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/user-info/user-info.component.ts:38</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="role"></a>
-                        <span class="name">
-                            <b>
-                            role
-                            </b>
-                            <a href="#role"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>role:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/user-info/user-info.component.ts:40</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="title"></a>
-                        <span class="name">
-                            <b>
-                            title
-                            </b>
-                            <a href="#title"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>title:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/user-info/user-info.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/add-user/add-user.component.ts:23</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Dialog title</p>
+                        <div class="io-description"><p>Models that hold organization id, user role, name, email and password</p>
 </div>
                     </td>
                 </tr>
@@ -771,18 +767,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="userId"></a>
+                        <a name="password"></a>
                         <span class="name">
                             <b>
-                            userId
+                            password
                             </b>
-                            <a href="#userId"><span class="icon ion-ios-link"></span></a>
+                            <a href="#password"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>userId:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <code>password:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                     </td>
                 </tr>
@@ -794,7 +790,41 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/user-info/user-info.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/add-user/add-user.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="passwordConfirm"></a>
+                        <span class="name">
+                            <b>
+                            passwordConfirm
+                            </b>
+                            <a href="#passwordConfirm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>passwordConfirm:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/add-user/add-user.component.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -828,16 +858,44 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/user-info/user-info.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/add-user/add-user.component.ts:25</a></div>
                             </td>
                         </tr>
 
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Models that hold user name, organization id, name, user email/ID and role selection</p>
-</div>
+                        <a name="userRole"></a>
+                        <span class="name">
+                            <b>
+                            userRole
+                            </b>
+                            <a href="#userRole"><span class="icon ion-ios-link"></span></a>
+                        </span>
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>userRole:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/add-user/add-user.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
 
             </tbody>
         </table>
@@ -848,46 +906,33 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { BsModalRef } from &#x27;ngx-bootstrap/modal&#x27;;
 import { Backend } from &#x27;../definitions/interfaces/backend&#x27;;
+import { BsModalRef } from &#x27;ngx-bootstrap&#x27;;
 import { BackendService } from &#x27;../services/backend.service&#x27;;
 import { MockupBackendService } from &#x27;../services/mockup-backend.service&#x27;;
-import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
-import { mockOrganizationInfo, mockUserList } from &#x27;../utils/mocks&#x27;;
 import { NotificationsService } from &#x27;../services/notifications.service&#x27;;
+import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
 
 @Component({
-  // tslint:disable-next-line:component-selector
-  selector: &#x27;user-info&#x27;,
-  templateUrl: &#x27;./user-info.component.html&#x27;,
-  styleUrls: [&#x27;./user-info.component.scss&#x27;]
+  selector: &#x27;app-add-user&#x27;,
+  templateUrl: &#x27;./add-user.component.html&#x27;,
+  styleUrls: [&#x27;./add-user.component.scss&#x27;]
 })
-export class UserInfoComponent implements OnInit {
+export class AddUserComponent implements OnInit {
   /**
    * Backend reference
    */
   backend: Backend;
-  /**
-   * Dialog title
-   */
-  title: string;
-  /**
-   * Text for the resset password action button
-   */
-  buttonRessetPassword: string;
-  /**
-   * Text for the delete user action button
-   */
-  buttonDeleteUser: string;
-  /**
-   * Models that hold user name, organization id, name, user email/ID and role selection
-   */
-  userName: string;
-  organizationId: string;
-  organizationName: string;
-  userId: string;
-  role: string;
 
+  /**
+   * Models that hold organization id, user role, name, email and password
+   */
+  organizationId: string;
+  userRole: string;
+  userName: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -895,52 +940,87 @@ export class UserInfoComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    const mock &#x3D; localStorage.getItem(LocalStorageKeys.userInfoMock) || null;
+    this.userRole &#x3D; null;
+    const mock &#x3D; localStorage.getItem(LocalStorageKeys.addUserMock) || null;
+    console.log(mock);
     // check which backend is required (fake or real)
     if (mock &amp;&amp; mock &#x3D;&#x3D;&#x3D; &#x27;true&#x27;) {
       this.backend &#x3D; mockupBackendService;
     } else {
       this.backend &#x3D; backendService;
     }
-    this.title &#x3D; &#x27;User info&#x27;;
-    this.userName &#x3D; &#x27;Loading ...&#x27;; // Default initialization
-    this.userId &#x3D; &#x27;Loading ...&#x27;; // Default initialization
-    this.buttonDeleteUser &#x3D; &#x27;Delete User&#x27;;
-    this.buttonRessetPassword &#x3D; &#x27;Resset Password&#x27;;
+
   }
 
   ngOnInit() {
   }
 
-  checkUserRole(buttonRole) {
-    if (buttonRole &#x3D;&#x3D;&#x3D; this.role) {
-      return true;
-    }
-    return false;
+  /**
+   * Requests to add a new user
+   * @param form Form with the user input data
+   */
+  addUser(form) {
+    const user &#x3D; {
+      name: form.value.name,
+      email: form.value.email,
+      password: form.value.password,
+      role: this.userRole
+    };
+    this.backend.addUser(this.organizationId, user)
+      .subscribe(response &#x3D;&gt; {
+        if (!response._body) {
+          this.notificationsService.add({message: user.email + &#x27; created successfully&#x27;});
+          this.bsModalRef.hide();
+        } else {
+          // Error
+          this.notificationsService.add({message: response._body});
+        }
+      });
   }
 
-  deleteUser() {
-    if (this.organizationId !&#x3D;&#x3D; null &amp;&amp; this.userId !&#x3D;&#x3D; null) {
-      this.backend.deleteUser(this.organizationId, this.userId)
-        .subscribe(response &#x3D;&gt; {
-          this.notificationsService.add({
-            message: &#x27;User &#x27; + this.userId + &#x27; has been deleted&#x27;
-          });
-          this.bsModalRef.hide();
-        });
+  /**
+   * Checks if the form has been modified before discarding changes
+   * @param form Form object reference
+   */
+  discardChanges(form) {
+    if (form.dirty) {
+      const discard &#x3D; confirm(&#x27;Discard changes?&#x27;);
+      if (discard) {
+        this.bsModalRef.hide();
+      } else {
+        // Do nothing
+      }
+    } else {
+      this.bsModalRef.hide();
     }
   }
 
-  resetPassword() {
-    if (this.organizationId !&#x3D;&#x3D; null &amp;&amp; this.userId !&#x3D;&#x3D; null) {
-      this.backend.resetPassword(this.organizationId, this.userId)
-        .subscribe(response &#x3D;&gt; {
-          this.notificationsService.add({
-            message: &#x27;Your new password is &#x27; + response._body
-          });
-          this.bsModalRef.hide();
-        });
+  /**
+   * Changes the new user role
+   * @param newRole New user role
+   */
+  changeRole(newRole) {
+    this.userRole &#x3D; newRole;
+  }
+
+  /**
+   * Validates user data
+   * @param form Form with user data
+   */
+  isFormValid(form) {
+    if (this.userRole &#x3D;&#x3D;&#x3D; null) {
+      return false;
     }
+
+    if (!form.valid) {
+      return false;
+    }
+
+    if (form.value.password !&#x3D;&#x3D; form.value.passwordConfirm) {
+      return false;
+    }
+
+    return true;
   }
 
 }
@@ -949,133 +1029,131 @@ export class UserInfoComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;modal-card&quot;&gt;
-  &lt;!-- Header --&gt;
-  &lt;div class&#x3D;&quot;modal-header&quot;&gt;
-    &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;{{title}}&lt;/h3&gt;
-    &lt;button 
-      type&#x3D;&quot;button&quot; 
-      class&#x3D;&quot;close&quot; 
-      aria-label&#x3D;&quot;Close&quot;
-      (click)&#x3D;&quot;bsModalRef.hide()&quot;&gt;
-      &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
-    &lt;/button&gt;
-  &lt;/div&gt;
-  &lt;!-- Body --&gt;
-  &lt;div class&#x3D;&quot;modal-body&quot;&gt;
-    &lt;div class&#x3D;&quot;avatar-frame&quot;&gt;
-      &lt;button class&#x3D;&quot;edit-button d-none&quot;&gt;
-        &lt;i class&#x3D;&quot;material-icons&quot;&gt;edit&lt;/i&gt;
+    &lt;!-- Header --&gt;
+    &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+      &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;Add user&lt;/h3&gt;
+      &lt;button 
+        type&#x3D;&quot;button&quot; 
+        class&#x3D;&quot;close&quot; 
+        aria-label&#x3D;&quot;Close&quot;
+        (click)&#x3D;&quot;discardChanges(f)&quot;&gt;
+        &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
       &lt;/button&gt;
-      &lt;i class&#x3D;&quot;material-icons&quot;&gt;person&lt;/i&gt;
     &lt;/div&gt;
-    &lt;form #f&#x3D;&quot;ngForm&quot; class&#x3D;&quot;form-user&quot;&gt;
-      &lt;div class&#x3D;&quot;form-group&quot;&gt;
-        &lt;input 
-          disabled
-          [(ngModel)]&#x3D;&quot;userName&quot; 
-          name&#x3D;&quot;name&quot; 
-          type&#x3D;&quot;text&quot; 
-          class&#x3D;&quot;form-control&quot; 
-          placeholder&#x3D;&quot;Name&quot; 
-          required&gt;
-        &lt;input 
-          disabled
-          [(ngModel)]&#x3D;&quot;organizationName&quot; 
-          name&#x3D;&quot;organization&quot; 
-          type&#x3D;&quot;text&quot; 
-          class&#x3D;&quot;form-control&quot; 
-          placeholder&#x3D;&quot;Organization&quot;
-          required&gt;
-        &lt;input 
-          disabled
-          [(ngModel)]&#x3D;&quot;userId&quot; 
-          name&#x3D;&quot;email&quot; 
-          type&#x3D;&quot;text&quot; 
-          class&#x3D;&quot;form-control&quot; 
-          placeholder&#x3D;&quot;Email&quot; 
-          pattern&#x3D;&quot;^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$&quot;
-          required&gt;
+    &lt;!-- Body --&gt;
+    &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+     &lt;form #f&#x3D;&quot;ngForm&quot; class&#x3D;&quot;form-user&quot;&gt;
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;input 
+            [(ngModel)]&#x3D;&quot;userName&quot; 
+            name&#x3D;&quot;name&quot; 
+            type&#x3D;&quot;text&quot; 
+            class&#x3D;&quot;form-control&quot; 
+            placeholder&#x3D;&quot;Name*&quot; 
+            required&gt;
+          &lt;input 
+            [(ngModel)]&#x3D;&quot;email&quot; 
+            name&#x3D;&quot;email&quot; 
+            type&#x3D;&quot;text&quot; 
+            class&#x3D;&quot;form-control&quot; 
+            placeholder&#x3D;&quot;Email*&quot; 
+            pattern&#x3D;&quot;^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$&quot;
+            required&gt;
+          &lt;input 
+            [(ngModel)]&#x3D;&quot;password&quot; 
+            name&#x3D;&quot;password&quot; 
+            type&#x3D;&quot;password&quot; 
+            class&#x3D;&quot;form-control&quot; 
+            placeholder&#x3D;&quot;Password*&quot; 
+            required&gt;
+          &lt;input 
+            [(ngModel)]&#x3D;&quot;passwordConfirm&quot; 
+            name&#x3D;&quot;passwordConfirm&quot; 
+            type&#x3D;&quot;password&quot; 
+            class&#x3D;&quot;form-control&quot; 
+            placeholder&#x3D;&quot;Confirm password*&quot; 
+            required&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+    &lt;!-- Roles radio buttons --&gt;
+    &lt;div class&#x3D;&quot;roles py-4&quot;&gt;
+      &lt;h4&gt;Roles*&lt;/h4&gt;
+      &lt;div class&#x3D;&quot;cntr&quot;&gt;
+        &lt;label for&#x3D;&quot;rdo-1&quot; class&#x3D;&quot;btn-radio&quot;&gt;
+          &lt;input 
+            type&#x3D;&quot;radio&quot; 
+            id&#x3D;&quot;rdo-1&quot; 
+            name&#x3D;&quot;radio-grp&quot;
+            (change)&#x3D;&quot;changeRole(&#x27;Owner&#x27;)&quot;
+            &gt;
+          &lt;svg width&#x3D;&quot;20px&quot; height&#x3D;&quot;20px&quot; viewBox&#x3D;&quot;0 0 20 20&quot;&gt;
+            &lt;circle 
+              cx&#x3D;&quot;10&quot; 
+              cy&#x3D;&quot;10&quot; 
+              r&#x3D;&quot;9&quot;&gt;
+            &lt;/circle&gt;
+            &lt;path d&#x3D;&quot;M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z&quot;
+              class&#x3D;&quot;inner&quot;&gt;&lt;/path&gt;
+            &lt;path d&#x3D;&quot;M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z&quot;
+              class&#x3D;&quot;outer&quot;&gt;&lt;/path&gt;
+          &lt;/svg&gt;
+          &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Owner&lt;/span&gt;
+        &lt;/label&gt;
+        &lt;label for&#x3D;&quot;rdo-2&quot; class&#x3D;&quot;btn-radio&quot;&gt;
+          &lt;input 
+            type&#x3D;&quot;radio&quot; 
+            id&#x3D;&quot;rdo-2&quot; 
+            name&#x3D;&quot;radio-grp&quot;
+            (change)&#x3D;&quot;changeRole(&#x27;Operator&#x27;)&quot;
+            &gt;
+          &lt;svg width&#x3D;&quot;20px&quot; height&#x3D;&quot;20px&quot; viewBox&#x3D;&quot;0 0 20 20&quot;&gt;
+            &lt;circle 
+              cx&#x3D;&quot;10&quot; 
+              cy&#x3D;&quot;10&quot; 
+              r&#x3D;&quot;9&quot;&gt;
+            &lt;/circle&gt;
+            &lt;path d&#x3D;&quot;M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z&quot;
+              class&#x3D;&quot;inner&quot;&gt;&lt;/path&gt;
+            &lt;path d&#x3D;&quot;M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z&quot;
+              class&#x3D;&quot;outer&quot;&gt;&lt;/path&gt;
+          &lt;/svg&gt;
+          &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Operator&lt;/span&gt;
+        &lt;/label&gt;
+        &lt;label for&#x3D;&quot;rdo-3&quot; class&#x3D;&quot;btn-radio&quot;&gt;
+          &lt;input 
+            type&#x3D;&quot;radio&quot; 
+            id&#x3D;&quot;rdo-3&quot; 
+            name&#x3D;&quot;radio-grp&quot;
+            (change)&#x3D;&quot;changeRole(&#x27;Developer&#x27;)&quot;
+            &gt;
+          &lt;svg width&#x3D;&quot;20px&quot; height&#x3D;&quot;20px&quot; viewBox&#x3D;&quot;0 0 20 20&quot;&gt;
+            &lt;circle 
+              cx&#x3D;&quot;10&quot; 
+              cy&#x3D;&quot;10&quot; 
+              r&#x3D;&quot;9&quot;&gt;
+            &lt;/circle&gt;
+            &lt;path d&#x3D;&quot;M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z&quot;
+              class&#x3D;&quot;inner&quot;&gt;
+            &lt;/path&gt;
+            &lt;path d&#x3D;&quot;M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z&quot;
+              class&#x3D;&quot;outer&quot;&gt;
+            &lt;/path&gt;
+          &lt;/svg&gt;
+          &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Developer&lt;/span&gt;
+        &lt;/label&gt;
       &lt;/div&gt;
-    &lt;/form&gt;
-  &lt;!-- Roles radio buttons --&gt;
-  &lt;div class&#x3D;&quot;roles py-4&quot;&gt;
-    &lt;h4&gt;Roles*&lt;/h4&gt;
-    &lt;div class&#x3D;&quot;cntr&quot;&gt;
-      &lt;label for&#x3D;&quot;rdo-1&quot; class&#x3D;&quot;btn-radio disabled&quot;&gt;
-        &lt;input 
-          [checked]&#x3D;&quot;checkUserRole(&#x27;Owner&#x27;)&quot; 
-          disabled 
-          type&#x3D;&quot;radio&quot; 
-          id&#x3D;&quot;rdo-1&quot; 
-          name&#x3D;&quot;radio-grp&quot;&gt;
-        &lt;svg width&#x3D;&quot;20px&quot; height&#x3D;&quot;20px&quot; viewBox&#x3D;&quot;0 0 20 20&quot;&gt;
-          &lt;circle 
-            cx&#x3D;&quot;10&quot; 
-            cy&#x3D;&quot;10&quot; 
-            r&#x3D;&quot;9&quot;&gt;
-          &lt;/circle&gt;
-          &lt;path d&#x3D;&quot;M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z&quot;
-            class&#x3D;&quot;inner&quot;&gt;&lt;/path&gt;
-          &lt;path d&#x3D;&quot;M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z&quot;
-            class&#x3D;&quot;outer&quot;&gt;&lt;/path&gt;
-        &lt;/svg&gt;
-        &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Owner&lt;/span&gt;
-      &lt;/label&gt;
-      &lt;label for&#x3D;&quot;rdo-2&quot; class&#x3D;&quot;btn-radio&quot;&gt;
-        &lt;input 
-          [checked]&#x3D;&quot;checkUserRole(&#x27;Operator&#x27;)&quot; 
-          disabled 
-          type&#x3D;&quot;radio&quot; 
-          id&#x3D;&quot;rdo-2&quot; 
-          name&#x3D;&quot;radio-grp&quot;&gt;
-        &lt;svg width&#x3D;&quot;20px&quot; height&#x3D;&quot;20px&quot; viewBox&#x3D;&quot;0 0 20 20&quot;&gt;
-          &lt;circle 
-            cx&#x3D;&quot;10&quot; 
-            cy&#x3D;&quot;10&quot; 
-            r&#x3D;&quot;9&quot;&gt;
-          &lt;/circle&gt;
-          &lt;path d&#x3D;&quot;M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z&quot;
-            class&#x3D;&quot;inner&quot;&gt;&lt;/path&gt;
-          &lt;path d&#x3D;&quot;M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z&quot;
-            class&#x3D;&quot;outer&quot;&gt;&lt;/path&gt;
-        &lt;/svg&gt;
-        &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Operator&lt;/span&gt;
-      &lt;/label&gt;
-      &lt;label for&#x3D;&quot;rdo-3&quot; class&#x3D;&quot;btn-radio&quot;&gt;
-        &lt;input 
-          [checked]&#x3D;&quot;checkUserRole(&#x27;Developer&#x27;)&quot; 
-          disabled 
-          type&#x3D;&quot;radio&quot; 
-          id&#x3D;&quot;rdo-3&quot; 
-          name&#x3D;&quot;radio-grp&quot;&gt;
-        &lt;svg width&#x3D;&quot;20px&quot; height&#x3D;&quot;20px&quot; viewBox&#x3D;&quot;0 0 20 20&quot;&gt;
-          &lt;circle 
-            cx&#x3D;&quot;10&quot; 
-            cy&#x3D;&quot;10&quot; 
-            r&#x3D;&quot;9&quot;&gt;
-          &lt;/circle&gt;
-          &lt;path d&#x3D;&quot;M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z&quot;
-            class&#x3D;&quot;inner&quot;&gt;
-          &lt;/path&gt;
-          &lt;path d&#x3D;&quot;M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z&quot;
-            class&#x3D;&quot;outer&quot;&gt;
-          &lt;/path&gt;
-        &lt;/svg&gt;
-        &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Developer&lt;/span&gt;
-      &lt;/label&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;!-- Option buttons --&gt;
-  &lt;div class&#x3D;&quot;buttons d-flex flex-row justify-content-between&quot;&gt;
-    &lt;button class&#x3D;&quot;btn btn-primary btn-md&quot; (click)&#x3D;&quot;resetPassword()&quot;&gt;
-      &lt;span class&#x3D;&quot;align-bottom&quot;&gt;{{buttonRessetPassword}}&lt;/span&gt;
-    &lt;/button&gt;
-    &lt;button class&#x3D;&quot;btn btn-red btn-md&quot; (click)&#x3D;&quot;deleteUser()&quot;&gt;
-      &lt;span class&#x3D;&quot;align-bottom&quot;&gt;{{buttonDeleteUser}}&lt;/span&gt;
-    &lt;/button&gt;
-  &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+    &lt;!-- Option buttons --&gt;
+    &lt;div class&#x3D;&quot;buttons d-flex flex-row justify-content-between&quot;&gt;
+      &lt;button class&#x3D;&quot;btn btn-primary btn-md&quot; (click)&#x3D;&quot;addUser(f)&quot; [disabled]&#x3D;&quot;!isFormValid(f)&quot;&gt;
+        &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Save&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;button class&#x3D;&quot;btn btn-red btn-md&quot; (click)&#x3D;&quot;discardChanges(f)&quot;&gt;
+        &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Discard&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -1103,10 +1181,10 @@ export class UserInfoComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <!-- Header -->  <div class="modal-header">    <h3 class="nalej-form-title">{{title}}</h3>    <button       type="button"       class="close"       aria-label="Close"      (click)="bsModalRef.hide()">      <span aria-hidden="true">&times;</span>    </button>  </div>  <!-- Body -->  <div class="modal-body">    <div class="avatar-frame">      <button class="edit-button d-none">        <i class="material-icons">edit</i>      </button>      <i class="material-icons">person</i>    </div>    <form #f="ngForm" class="form-user">      <div class="form-group">        <input           disabled          [(ngModel)]="userName"           name="name"           type="text"           class="form-control"           placeholder="Name"           required>        <input           disabled          [(ngModel)]="organizationName"           name="organization"           type="text"           class="form-control"           placeholder="Organization"          required>        <input           disabled          [(ngModel)]="userId"           name="email"           type="text"           class="form-control"           placeholder="Email"           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"          required>      </div>    </form>  <!-- Roles radio buttons -->  <div class="roles py-4">    <h4>Roles*</h4>    <div class="cntr">      <label for="rdo-1" class="btn-radio disabled">        <input           [checked]="checkUserRole(\'Owner\')"           disabled           type="radio"           id="rdo-1"           name="radio-grp">        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner"></path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer"></path>        </svg>        <span class="align-bottom">Owner</span>      </label>      <label for="rdo-2" class="btn-radio">        <input           [checked]="checkUserRole(\'Operator\')"           disabled           type="radio"           id="rdo-2"           name="radio-grp">        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner"></path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer"></path>        </svg>        <span class="align-bottom">Operator</span>      </label>      <label for="rdo-3" class="btn-radio">        <input           [checked]="checkUserRole(\'Developer\')"           disabled           type="radio"           id="rdo-3"           name="radio-grp">        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner">          </path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer">          </path>        </svg>        <span class="align-bottom">Developer</span>      </label>    </div>  </div>  <!-- Option buttons -->  <div class="buttons d-flex flex-row justify-content-between">    <button class="btn btn-primary btn-md" (click)="resetPassword()">      <span class="align-bottom">{{buttonRessetPassword}}</span>    </button>    <button class="btn btn-red btn-md" (click)="deleteUser()">      <span class="align-bottom">{{buttonDeleteUser}}</span>    </button>  </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Add user</h3>      <button         type="button"         class="close"         aria-label="Close"        (click)="discardChanges(f)">        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">     <form #f="ngForm" class="form-user">        <div class="form-group">          <input             [(ngModel)]="userName"             name="name"             type="text"             class="form-control"             placeholder="Name*"             required>          <input             [(ngModel)]="email"             name="email"             type="text"             class="form-control"             placeholder="Email*"             pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"            required>          <input             [(ngModel)]="password"             name="password"             type="password"             class="form-control"             placeholder="Password*"             required>          <input             [(ngModel)]="passwordConfirm"             name="passwordConfirm"             type="password"             class="form-control"             placeholder="Confirm password*"             required>        </div>      </form>    <!-- Roles radio buttons -->    <div class="roles py-4">      <h4>Roles*</h4>      <div class="cntr">        <label for="rdo-1" class="btn-radio">          <input             type="radio"             id="rdo-1"             name="radio-grp"            (change)="changeRole(\'Owner\')"            >          <svg width="20px" height="20px" viewBox="0 0 20 20">            <circle               cx="10"               cy="10"               r="9">            </circle>            <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"              class="inner"></path>            <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"              class="outer"></path>          </svg>          <span class="align-bottom">Owner</span>        </label>        <label for="rdo-2" class="btn-radio">          <input             type="radio"             id="rdo-2"             name="radio-grp"            (change)="changeRole(\'Operator\')"            >          <svg width="20px" height="20px" viewBox="0 0 20 20">            <circle               cx="10"               cy="10"               r="9">            </circle>            <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"              class="inner"></path>            <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"              class="outer"></path>          </svg>          <span class="align-bottom">Operator</span>        </label>        <label for="rdo-3" class="btn-radio">          <input             type="radio"             id="rdo-3"             name="radio-grp"            (change)="changeRole(\'Developer\')"            >          <svg width="20px" height="20px" viewBox="0 0 20 20">            <circle               cx="10"               cy="10"               r="9">            </circle>            <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"              class="inner">            </path>            <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"              class="outer">            </path>          </svg>          <span class="align-bottom">Developer</span>        </label>      </div>    </div>    <!-- Option buttons -->    <div class="buttons d-flex flex-row justify-content-between">      <button class="btn btn-primary btn-md" (click)="addUser(f)" [disabled]="!isFormValid(f)">        <span class="align-bottom">Save</span>      </button>      <button class="btn btn-red btn-md" (click)="discardChanges(f)">        <span class="align-bottom">Discard</span>      </button>    </div>    </div>  </div></div>'
     var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'UserInfoComponent'};
+    var ACTUAL_COMPONENT = {'name': 'AddUserComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -1140,7 +1218,7 @@ export class UserInfoComponent implements OnInit {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'UserInfoComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'AddUserComponent.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
