@@ -18,10 +18,6 @@ export class EditClusterComponent implements OnInit {
    */
   backend: Backend;
   /**
-   * Dialog title
-   */
-  title: string;
-  /**
    * Text for the save button
    */
   buttonSave: string;
@@ -46,7 +42,6 @@ export class EditClusterComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-      this.title = 'Edit Cluster 1';
       this.clusterName = 'Loading...'; // Default initialization
       this.clusterDescription = 'Loading...'; // Default initialization
       this.clusterTags = 'Loading...'; // Default initialization
