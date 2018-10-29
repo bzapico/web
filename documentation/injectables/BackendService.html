@@ -868,7 +868,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>saveClusterChanges(clusterId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, changes: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>saveClusterChanges(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, clusterId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, changes: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
@@ -894,6 +894,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
                                                 <tr>
                                                         <td>clusterId</td>
                                                         <td>
@@ -977,7 +989,7 @@ export class BackendService implements Backend {
   resetPassword(organizationId: string, userId: string) {
     throw new Error(&#x27;Method not implemented.&#x27;);
   }
-  saveClusterChanges(clusterId: string, changes: any) {
+  saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
     throw new Error(&#x27;Method not implemented.&#x27;);
   }
   getResourcesSummary(organizationId: string) {

@@ -878,7 +878,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>saveClusterChanges(clusterId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, changes: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>saveClusterChanges(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, clusterId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, changes: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
@@ -908,6 +908,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
                                                 <tr>
                                                         <td>clusterId</td>
                                                         <td>
@@ -1064,16 +1076,16 @@ export class MockupBackendService implements Backend {
    * Simulates save cluster changes
    * @param clusterId String containing the cluster identificator - used to replicate expected backend behavior
    */
-  saveClusterChanges(clusterId: string, changes: any) {
-      const index &#x3D; mockClusterList.map(x &#x3D;&gt; x.id).indexOf(clusterId);
-  if (index !&#x3D;&#x3D; -1) {
-    mockClusterList[index].name &#x3D; changes.newClusterName;
-    mockClusterList[index].description &#x3D; changes.newClusterDescription;
-    mockClusterList[index].tags &#x3D; changes.newClusterTags;
-  }
-  return of (new Response(new ResponseOptions({
-    status: 200
-  })));
+  saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
+    const index &#x3D; mockClusterList.map(x &#x3D;&gt; x.id).indexOf(clusterId);
+    if (index !&#x3D;&#x3D; -1) {
+      mockClusterList[index].name &#x3D; changes.newClusterName;
+      mockClusterList[index].description &#x3D; changes.newClusterDescription;
+      mockClusterList[index].tags &#x3D; changes.newClusterTags;
+    }
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
   }
 
   getResourcesSummary(organizationId: string) {

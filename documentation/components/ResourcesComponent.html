@@ -231,6 +231,9 @@
                                 <a href="#openEditCluster">openEditCluster</a>
                             </li>
                             <li>
+                                <a href="#updateClusterList">updateClusterList</a>
+                            </li>
+                            <li>
                                 <a href="#updatePieChartsData">updatePieChartsData</a>
                             </li>
                         </ul>
@@ -361,7 +364,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/app/resources/resources.component.ts:222</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/app/resources/resources.component.ts:215</a></div>
                             </td>
                         </tr>
 
@@ -447,7 +450,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/app/resources/resources.component.ts:204</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/app/resources/resources.component.ts:197</a></div>
                             </td>
                         </tr>
 
@@ -578,7 +581,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/app/resources/resources.component.ts:172</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/app/resources/resources.component.ts:163</a></div>
                             </td>
                         </tr>
 
@@ -627,6 +630,46 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="updateClusterList"></a>
+                        <span class="name">
+                            <b>
+                            updateClusterList
+                            </b>
+                            <a href="#updateClusterList"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>updateClusterList()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/app/resources/resources.component.ts:228</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Requests an updated list of available clusters to update the current one</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="updatePieChartsData"></a>
                         <span class="name">
                             <b>
@@ -645,7 +688,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/app/resources/resources.component.ts:190</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/app/resources/resources.component.ts:183</a></div>
                             </td>
                         </tr>
 
@@ -1823,16 +1866,7 @@ export class ResourcesComponent implements OnInit {
             this.nodesCount &#x3D; data[&#x27;totalNodes&#x27;];
           }
         });
-        // Requests an updated clusters list
-        this.backend.getClusters(this.organizationId)
-          .subscribe(response &#x3D;&gt; {
-            if (response &amp;&amp; response._body) {
-              const data &#x3D; JSON.parse(response._body);
-              this.clusters &#x3D; data;
-              this.chunckedClusters &#x3D; this.chunkClusterList(3, this.clusters);
-              this.updatePieChartsData(this.clusters, this.pieChartsData);
-            }
-          });
+        this.updateClusterList();
       }
     }
   }
@@ -1842,6 +1876,7 @@ export class ResourcesComponent implements OnInit {
    */
   openEditCluster(cluster) {
     const initialState &#x3D; {
+      organizationId: this.organizationId,
       clusterId: cluster.id,
       clusterName: cluster.name,
       clusterDescription: cluster.description,
@@ -1850,7 +1885,8 @@ export class ResourcesComponent implements OnInit {
 
     this.modalRef &#x3D; this.modalService.show(EditClusterComponent, { initialState });
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
-    this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; { console.log(reason);
+    this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; {
+      this.updateClusterList();
     });
   }
   /**
@@ -1899,6 +1935,21 @@ export class ResourcesComponent implements OnInit {
       resultChunkArray.push(chunkedArray);
     }
     return resultChunkArray;
+  }
+  /**
+   * Requests an updated list of available clusters to update the current one
+   */
+  updateClusterList() {
+    // Requests an updated clusters list
+    this.backend.getClusters(this.organizationId)
+    .subscribe(response &#x3D;&gt; {
+      if (response &amp;&amp; response._body) {
+        const data &#x3D; JSON.parse(response._body);
+        this.clusters &#x3D; data;
+        this.chunckedClusters &#x3D; this.chunkClusterList(3, this.clusters);
+        this.updatePieChartsData(this.clusters, this.pieChartsData);
+      }
+    });
   }
 }
 </code></pre>
