@@ -6,6 +6,8 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { NotificationsService } from '../services/notifications.service';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
+import { EditClusterComponent } from '../edit-cluster/edit-cluster.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-resources',
@@ -66,6 +68,16 @@ export class ResourcesComponent implements OnInit {
   colorScheme = {
     domain: ['#0937FF', '#949494']
   };
+  customColors = [
+    {
+      name: 'Running',
+      value: '#0000ff'
+    },
+    {
+      name: 'error',
+      value: '#00ff00'
+    }
+  ];
 
   /**
    * Line Chart options
@@ -85,16 +97,6 @@ export class ResourcesComponent implements OnInit {
       value: 0
     }
   ];
-  customColors = [
-    {
-      name: 'Running',
-      value: '#0000ff'
-    },
-    {
-      name: 'error',
-      value: '#00ff00'
-    }
-  ];
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
@@ -102,12 +104,16 @@ export class ResourcesComponent implements OnInit {
   mockNodesChart: any;
   autoScale: any;
 
+  /**
+   * Reference for the service that allows the user info component
+   */
+  modalRef: BsModalRef;
 
   constructor(
+    private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
-
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.resourcesMock) || null;
     // check which backend is required (fake or real)
@@ -146,23 +152,28 @@ export class ResourcesComponent implements OnInit {
             this.nodesCount = data['totalNodes'];
           }
         });
-        // Requests an updated clusters list
-        this.backend.getClusters(this.organizationId)
-          .subscribe(response => {
-            if (response && response._body) {
-              const data = JSON.parse(response._body);
-              this.clusters = data;
-              this.chunckedClusters = this.chunkClusterList(3, this.clusters);
-              this.updatePieChartsData(this.clusters, this.pieChartsData);
-            }
-          });
+        this.updateClusterList();
       }
     }
   }
+
   /**
    * Opens the modal view that holds the edit cluster component
    */
-  editCluster() {
+  openEditCluster(cluster) {
+    const initialState = {
+      organizationId: this.organizationId,
+      clusterId: cluster.id,
+      clusterName: cluster.name,
+      clusterDescription: cluster.description,
+      clusterTags: cluster.tags
+    };
+
+    this.modalRef = this.modalService.show(EditClusterComponent, { initialState });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateClusterList();
+    });
   }
   /**
    * Updates the pieChartsData with latest changes
@@ -193,8 +204,8 @@ export class ResourcesComponent implements OnInit {
         name: 'Stopped',
         value: total - running
       }];
+    }
 
-  }
   /**
    * Slits the cluster list into chunks (number of elements defined by the chunks parameter)
    * @param chunks Number of elements per chunk
@@ -210,5 +221,20 @@ export class ResourcesComponent implements OnInit {
       resultChunkArray.push(chunkedArray);
     }
     return resultChunkArray;
+  }
+  /**
+   * Requests an updated list of available clusters to update the current one
+   */
+  updateClusterList() {
+    // Requests an updated clusters list
+    this.backend.getClusters(this.organizationId)
+    .subscribe(response => {
+      if (response && response._body) {
+        const data = JSON.parse(response._body);
+        this.clusters = data;
+        this.chunckedClusters = this.chunkClusterList(3, this.clusters);
+        this.updatePieChartsData(this.clusters, this.pieChartsData);
+      }
+    });
   }
 }

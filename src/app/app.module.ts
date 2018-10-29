@@ -23,6 +23,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { OrganizationComponent } from './organization/organization.component';
+import { EditClusterComponent } from './edit-cluster/edit-cluster.component';
 import { ResourcesComponent } from './resources/resources.component';
 
 
@@ -36,11 +37,14 @@ import { ResourcesComponent } from './resources/resources.component';
     LoginComponent,
     UserInfoComponent,
     OrganizationComponent,
+    EditClusterComponent,
     ResourcesComponent
   ],
   entryComponents: [
     DebugPanelComponent,
-    UserInfoComponent],
+    UserInfoComponent,
+    EditClusterComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

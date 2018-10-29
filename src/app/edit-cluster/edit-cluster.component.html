@@ -1,0 +1,50 @@
+<div class="modal-card">
+    <!-- Header -->
+    <div class="modal-header">
+      <h3 class="nalej-form-title">Edit {{clusterName}}</h3>
+      <button 
+        type="button" 
+        class="close" 
+        aria-label="Close"
+        (click)="discardChanges(f)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- Body -->
+    <div class="modal-body">
+      <form #f="ngForm" class="form-cluster">
+        <div class="form-group">
+          <input 
+            [(ngModel)]="clusterName" 
+            name="name" 
+            type="text" 
+            class="form-control" 
+            placeholder="Cluster Name" 
+            required>
+          <input 
+            [(ngModel)]="clusterDescription" 
+            name="description" 
+            type="text" 
+            class="form-control" 
+            placeholder="Description"
+            required>
+          <input 
+            [(ngModel)]="clusterTags" 
+            name="tags" 
+            type="text" 
+            class="form-control" 
+            placeholder="Tags" 
+            required>
+        </div>
+      </form>
+    <!-- Option button -->
+    <div class="buttons d-flex flex-row justify-content-between mt-5">
+      <button class="btn btn-primary btn-md mt-5" (click)="saveClusterChanges(f)">
+        <span class="align-bottom">Save</span>
+      </button>
+      <button class="btn btn-red btn-md mt-5" (click)="discardChanges(f)">
+          <span class="align-bottom">Discard</span>
+      </button>
+    </div>
+    </div>
+    </div>
