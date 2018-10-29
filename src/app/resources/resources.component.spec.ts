@@ -5,6 +5,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ButtonsModule, ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ResourcesComponent', () => {
   let component: ResourcesComponent;
@@ -20,6 +21,7 @@ describe('ResourcesComponent', () => {
         FormsModule,
         ButtonsModule,
         ModalModule.forRoot(),
+        RouterTestingModule
       ],
       providers: [
         BsModalRef,

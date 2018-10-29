@@ -310,7 +310,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/definitions/interfaces/backend.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/definitions/interfaces/backend.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -517,7 +517,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/definitions/interfaces/backend.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/definitions/interfaces/backend.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -848,14 +848,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>saveClusterChanges(clusterId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>saveClusterChanges(clusterId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, changes: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/definitions/interfaces/backend.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/definitions/interfaces/backend.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -878,6 +878,18 @@
                                                         <td>clusterId</td>
                                                         <td>
                                                                     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>changes</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                                         </td>
                                                     
                                                     <td>
@@ -923,6 +935,7 @@ export interface Backend {
     deleteUser(organizationId: string, userId: string);
     resetPassword(organizationId: string, userId: string);
     // Resources
+    saveClusterChanges(clusterId: string, changes: any);
     getClusters(organizationId: string);
     getResourcesSummary(organizationId: string);
 }

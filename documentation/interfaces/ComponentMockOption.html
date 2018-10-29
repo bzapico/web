@@ -249,7 +249,7 @@ export class DebugPanelComponent implements OnInit {
     });
     this.components.push({
       name: AvailableComponents.editcluster,
-      mock: localStorage.getItem(LocalStorageKeys.clusterIdMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+      mock: localStorage.getItem(LocalStorageKeys.clusterEditMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
   }
 
@@ -285,7 +285,7 @@ export class DebugPanelComponent implements OnInit {
         localStorage.setItem(LocalStorageKeys.userInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.editcluster:
-        localStorage.setItem(LocalStorageKeys.clusterIdMock, componentMockOption.mock);
+        localStorage.setItem(LocalStorageKeys.clusterEditMock, componentMockOption.mock);
       break;
       default:
         console.log(&#x27;Selected option not registered as available component&#x27;);
