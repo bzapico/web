@@ -74,18 +74,25 @@ export class MockupBackendService implements Backend {
   }
 
   addUser(organizationId: string, user: any) {
-    mockUserList.push(user);
-    return of (new Response(new ResponseOptions({
-      status: 200
-    })));
+    const index = mockUserList.map(x => x.email).indexOf(user.email);
+    if (index === -1) {
+      mockUserList.push(user);
+      return of (new Response(new ResponseOptions({
+        status: 200
+      })));
+    } else {
+      return of (new Response(new ResponseOptions({
+        status: 403,
+        body: user.email + ' is already in use'
+      })));
+    }
   }
 
   deleteUser(organizationId: string, userId: string) {
-    // const index = mockUserList.map(x => x.email).indexOf(userId);
-    // if (index !== -1) {
-    //   mockUserList.splice(index, 1);
-    // }
-    mockUserList.pop();
+    const index = mockUserList.map(x => x.email).indexOf(userId);
+    if (index !== -1) {
+      mockUserList.splice(index, 1);
+    }
     return of (new Response(new ResponseOptions({
       status: 200
     })));

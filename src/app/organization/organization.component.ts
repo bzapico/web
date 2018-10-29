@@ -88,16 +88,13 @@ export class OrganizationComponent implements OnInit {
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
   addUser() {
-    this.modalRef = this.modalService.show(AddUserComponent);
+    const initialState = {
+      organizatinoId: this.organizationId
+    };
+    this.modalRef = this.modalService.show(AddUserComponent, {initialState});
     this.modalRef.content.closeBtnName = 'Close';
-    // this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
-    // this.backend.addUser(this.organizationId, mockUserProfileInfo)
-    //   .subscribe(response => {
-    //     this.notificationsService.add({
-    //       message: 'User added successfully'
-    //     });
-    //     this.updateUserList();
-    //   });
+    this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
+
   }
 
   updateUserList() {
