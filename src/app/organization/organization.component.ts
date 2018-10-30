@@ -5,9 +5,9 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { mockUserProfileInfo } from '../utils/mocks';
 import { NotificationsService } from '../services/notifications.service';
 import { AddUserComponent } from '../add-user/add-user.component';
+import { EditUserComponent } from '../edit-user/edit-user.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -90,6 +90,25 @@ export class OrganizationComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
+  /**
+   * Opens the modal view that holds the user info and editable component
+   */
+  openEditUser(user) {
+    const initialState = {
+      organizationName: this.organizationName,
+      organizatinoId: this.organizationId,
+      userName: user.name,
+      userId: user.email,
+      userRole: user.role
+    };
+
+    this.modalRef = this.modalService.show(EditUserComponent, { initialState });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
+  }
+  /**
+   * Opens the modal view that holds add user component
+   */
   addUser() {
     const initialState = {
       organizationId: this.organizationId
@@ -97,9 +116,10 @@ export class OrganizationComponent implements OnInit {
     this.modalRef = this.modalService.show(AddUserComponent, {initialState});
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
-
   }
-
+  /**
+   * Requests an updated list of users to update the current one
+   */
   updateUserList() {
     if (this.organizationId != null) {
       this.backend.getOrganizationUsers(this.organizationId)

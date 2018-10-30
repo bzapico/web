@@ -8,6 +8,7 @@ export const LocalStorageKeys = {
     sidebarMock: 'sidebar_mock',
     notificationsMock: 'notifications_mock',
     userInfoMock: 'user_info_mock',
+    userEditMock: 'user_edit_mock',
     clusterEditMock: 'cluster_edit_mock',
     addUserMock: 'add_user_mock',
 

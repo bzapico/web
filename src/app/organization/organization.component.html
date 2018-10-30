@@ -54,6 +54,10 @@
                 scope="col" 
                 class="row-info-btn">
               </th>
+              <th 
+                scope="col" 
+                class="row-info-btn">
+            </th>
             </tr>
           </thead>
           <tbody>
@@ -61,9 +65,14 @@
               <td>{{user.name}}</td>
               <td class="blue">{{user.role}}</td>
               <td>{{user.email}}</td>
-              <td>
+              <td class="row-info-btn">
                 <button class="btn info-btn btn-primary" (click)="openUserInfo(user)">
-                  <i class="material-icons i-info">
+                  <span class="i-info">i</span>
+                </button>
+              </td>
+              <td>
+                <button class="btn info-btn btn-primary" (click)="openEditUser(user)">
+                  <i class="material-icons i-edit">
                     edit
                   </i>
                 </button>

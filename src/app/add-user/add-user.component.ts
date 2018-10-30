@@ -18,7 +18,7 @@ export class AddUserComponent implements OnInit {
   backend: Backend;
 
   /**
-   * Models that hold organization id, user role, name, email and password
+   * Models that hold organization id, user role, name and email
    */
   organizationId: string;
   userRole: string;
