@@ -118,7 +118,7 @@ export class MockupBackendService implements Backend {
    * Simulates save user changes
    * @param userId String containing the user identificator - used to replicate expected backend behavior
    */
-  saveUserChanges(userId: string, changes: any) {
+  saveUserChanges(organizationId: string, userId: string, changes: any) {
     const index = mockClusterList.map(x => x.id).indexOf(userId);
     if (index !== -1) {
       mockUserList[index].name = changes.newUserName;
