@@ -24,6 +24,10 @@ export class EditUserComponent implements OnInit {
   userName: string;
   userId: string;
   email: string;
+  /**
+   * Holds the status of the role (if it has been modified)
+   */
+  roleDirty: boolean;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -38,6 +42,7 @@ export class EditUserComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
+    this.roleDirty = false;
   }
 
   ngOnInit() {
@@ -74,6 +79,7 @@ export class EditUserComponent implements OnInit {
    * @param newRole New user role
    */
   changeRole(newRole) {
+    this.roleDirty = true;
     this.userRole = newRole;
   }
   /**
@@ -84,7 +90,7 @@ export class EditUserComponent implements OnInit {
     if (this.userId !== null) {
       this.backend.saveUserChanges(this.organizationId, this.userId, {
         newUserName: this.userName,
-        newUserEmail: this.email,
+        newUserEmail: this.userId,
         newUserRole: this.userRole
       })
         .subscribe(response => {
