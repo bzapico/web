@@ -39,7 +39,6 @@ export class UserInfoComponent implements OnInit {
   userId: string;
   role: string;
 
-
   constructor(
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
@@ -63,13 +62,19 @@ export class UserInfoComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   *  Checks the role of current user
+   */
   checkUserRole(buttonRole) {
     if (buttonRole === this.role) {
       return true;
     }
     return false;
   }
-
+  /**
+   *  Upon confirmation, deletes user
+   * @param userId A user to be deleted
+   */
   deleteUser() {
     if (this.organizationId !== null && this.userId !== null) {
       this.backend.deleteUser(this.organizationId, this.userId)
@@ -81,7 +86,9 @@ export class UserInfoComponent implements OnInit {
         });
     }
   }
-
+  /**
+   *  Upon confirmation, ressets the password
+   */
   resetPassword() {
     if (this.organizationId !== null && this.userId !== null) {
       this.backend.resetPassword(this.organizationId, this.userId)

@@ -99,7 +99,7 @@ export class OrganizationComponent implements OnInit {
       organizatinoId: this.organizationId,
       userName: user.name,
       userId: user.email,
-      role: user.role
+      userRole: user.role
     };
 
     this.modalRef = this.modalService.show(EditUserComponent, { initialState });

@@ -5,6 +5,7 @@ import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
+import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-edit-user',
@@ -22,6 +23,7 @@ export class EditUserComponent implements OnInit {
   organizationId: string;
   userRole: string;
   userName: string;
+  userId: string;
   email: string;
 
   constructor(
@@ -59,7 +61,15 @@ export class EditUserComponent implements OnInit {
       this.bsModalRef.hide();
     }
   }
-
+  /**
+   *  Checks the role of current user
+   */
+  checkUserRole(buttonRole) {
+    if (buttonRole === this.userRole) {
+      return true;
+    }
+    return false;
+  }
   /**
    * Changes the new user role
    * @param newRole New user role
@@ -69,23 +79,23 @@ export class EditUserComponent implements OnInit {
   }
 
   /**
-   * Validates user data
-   * @param form Form with user data
+   * Request to save the user data modifications
+   * @param f Form object reference
    */
-  isFormValid(form) {
-    if (this.userRole === null) {
-      return false;
+  saveUserChanges(f) {
+    if (this.organizationId !== null && this.userId !== null) {
+      this.backend.saveClusterChanges(this.organizationId, this.userId, {
+        newUserName: this.userName,
+        newUserEmail: this.email,
+        newUserRole: this.userRole
+      })
+        .subscribe(response => {
+          this.notificationsService.add({
+            message: 'The user ' + this.userName + ' has been edited'
+          });
+          this.bsModalRef.hide();
+        });
     }
-
-    if (!form.valid) {
-      return false;
-    }
-
-    if (form.value.password !== form.value.passwordConfirm) {
-      return false;
-    }
-
-    return true;
   }
 
 }
