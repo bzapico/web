@@ -5,7 +5,6 @@ import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
-import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-edit-user',
@@ -77,14 +76,13 @@ export class EditUserComponent implements OnInit {
   changeRole(newRole) {
     this.userRole = newRole;
   }
-
   /**
    * Request to save the user data modifications
    * @param f Form object reference
    */
   saveUserChanges(f) {
-    if (this.organizationId !== null && this.userId !== null) {
-      this.backend.saveClusterChanges(this.organizationId, this.userId, {
+    if (this.userId !== null) {
+      this.backend.saveUserChanges(this.userId, {
         newUserName: this.userName,
         newUserEmail: this.email,
         newUserRole: this.userRole
