@@ -38,7 +38,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>OrganizationComponent</li>
+  <li>EditUserComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/organization/organization.component.ts</code>
+    <code>src/app/edit-user/edit-user.component.ts</code>
 </p>
 
 
@@ -91,19 +91,19 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>organization</code></td>
+                <td class="col-md-9"><code>app-edit-user</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>organization.component.scss</code></td>
+                <td class="col-md-9"><code>edit-user.component.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./organization.component.html</code></td>
+                <td class="col-md-9"><code>./edit-user.component.html</code></td>
             </tr>
 
 
@@ -127,19 +127,20 @@
                                 <a href="#backend">backend</a>
                             </li>
                             <li>
-                                <a href="#modalRef">modalRef</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#bsModalRef">bsModalRef</a>
+                            </li>
+                            <li>
+                                <a href="#email">email</a>
                             </li>
                             <li>
                                 <a href="#organizationId">organizationId</a>
                             </li>
                             <li>
-                                <a href="#organizationName">organizationName</a>
+                                <a href="#userName">userName</a>
                             </li>
                             <li>
-                                <a href="#subscriptionType">subscriptionType</a>
-                            </li>
-                            <li>
-                                <a href="#users">users</a>
+                                <a href="#userRole">userRole</a>
                             </li>
                         </ul>
                     </td>
@@ -154,19 +155,16 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#addUser">addUser</a>
+                                <a href="#changeRole">changeRole</a>
+                            </li>
+                            <li>
+                                <a href="#discardChanges">discardChanges</a>
+                            </li>
+                            <li>
+                                <a href="#isFormValid">isFormValid</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit">ngOnInit</a>
-                            </li>
-                            <li>
-                                <a href="#openEditUser">openEditUser</a>
-                            </li>
-                            <li>
-                                <a href="#openUserInfo">openUserInfo</a>
-                            </li>
-                            <li>
-                                <a href="#updateUserList">updateUserList</a>
                             </li>
                         </ul>
                     </td>
@@ -186,12 +184,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(modalService: BsModalService, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>)</code>
+<code>constructor(bsModalRef: BsModalRef, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/organization/organization.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/edit-user/edit-user.component.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -209,10 +207,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>modalService</td>
+                                                        <td>bsModalRef</td>
                                                   
                                                         <td>
-                                                                    <code>BsModalService</code>
+                                                                    <code>BsModalRef</code>
                                                         </td>
                                                   
                                                     <td>
@@ -278,38 +276,214 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="addUser"></a>
+                        <a name="changeRole"></a>
                         <span class="name">
                             <b>
-                            addUser
+                            changeRole
                             </b>
-                            <a href="#addUser"><span class="icon ion-ios-link"></span></a>
+                            <a href="#changeRole"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>addUser()</code>
+<code>changeRole(newRole: )</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/organization/organization.component.ts:112</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/edit-user/edit-user.component.ts:67</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Opens the modal view that holds add user component</p>
+                            <div class="io-description"><p>Changes the new user role</p>
 </div>
 
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>newRole</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>New user role</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="discardChanges"></a>
+                        <span class="name">
+                            <b>
+                            discardChanges
+                            </b>
+                            <a href="#discardChanges"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>discardChanges(form: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/edit-user/edit-user.component.ts:50</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Checks if the form has been modified before discarding changes</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>form</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Form object reference</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isFormValid"></a>
+                        <span class="name">
+                            <b>
+                            isFormValid
+                            </b>
+                            <a href="#isFormValid"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>isFormValid(form: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/edit-user/edit-user.component.ts:75</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Validates user data</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>form</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Form with user data</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -336,187 +510,13 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/organization/organization.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/edit-user/edit-user.component.ts:42</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="openEditUser"></a>
-                        <span class="name">
-                            <b>
-                            openEditUser
-                            </b>
-                            <a href="#openEditUser"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>openEditUser(user: )</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/organization/organization.component.ts:96</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Opens the modal view that holds the user info and editable component</p>
-</div>
-
-                            <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>user</td>
-                                                    
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                                <div class="io-description">
-                                    
-                                </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="openUserInfo"></a>
-                        <span class="name">
-                            <b>
-                            openUserInfo
-                            </b>
-                            <a href="#openUserInfo"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>openUserInfo(user: )</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/organization/organization.component.ts:80</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Opens the modal view that holds the user info component</p>
-</div>
-
-                            <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>user</td>
-                                                    
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                                <div class="io-description">
-                                    
-                                </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="updateUserList"></a>
-                        <span class="name">
-                            <b>
-                            updateUserList
-                            </b>
-                            <a href="#updateUserList"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>updateUserList()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/organization/organization.component.ts:123</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Requests an updated list of users to update the current one</p>
-</div>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -560,7 +560,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/organization/organization.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/edit-user/edit-user.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -577,18 +577,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="modalRef"></a>
+                        <a name="bsModalRef"></a>
                         <span class="name">
                             <b>
-                            modalRef
+                                <span class="modifier">Public</span>
+                            bsModalRef
                             </b>
-                            <a href="#modalRef"><span class="icon ion-ios-link"></span></a>
+                            <a href="#bsModalRef"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>modalRef:     <code>BsModalRef</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>bsModalRef:     <code>BsModalRef</code>
 </code>
                     </td>
                 </tr>
@@ -600,16 +601,44 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/organization/organization.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/edit-user/edit-user.component.ts:28</a></div>
                             </td>
                         </tr>
 
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Reference for the service that allows the user info component</p>
-</div>
+                        <a name="email"></a>
+                        <span class="name">
+                            <b>
+                            email
+                            </b>
+                            <a href="#email"><span class="icon ion-ios-link"></span></a>
+                        </span>
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>email:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/edit-user/edit-user.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
 
             </tbody>
         </table>
@@ -640,13 +669,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/organization/organization.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/edit-user/edit-user.component.ts:22</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Models that hold organization id, name, subscription type and the users list</p>
+                        <div class="io-description"><p>Models that hold organization id, user role, name, email and password</p>
 </div>
                     </td>
                 </tr>
@@ -657,18 +686,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="organizationName"></a>
+                        <a name="userName"></a>
                         <span class="name">
                             <b>
-                            organizationName
+                            userName
                             </b>
-                            <a href="#organizationName"><span class="icon ion-ios-link"></span></a>
+                            <a href="#userName"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>organizationName:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <code>userName:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                     </td>
                 </tr>
@@ -680,7 +709,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/organization/organization.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/edit-user/edit-user.component.ts:24</a></div>
                             </td>
                         </tr>
 
@@ -691,18 +720,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="subscriptionType"></a>
+                        <a name="userRole"></a>
                         <span class="name">
                             <b>
-                            subscriptionType
+                            userRole
                             </b>
-                            <a href="#subscriptionType"><span class="icon ion-ios-link"></span></a>
+                            <a href="#userRole"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>subscriptionType:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <code>userRole:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                     </td>
                 </tr>
@@ -714,41 +743,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/organization/organization.component.ts:28</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="users"></a>
-                        <span class="name">
-                            <b>
-                            users
-                            </b>
-                            <a href="#users"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>users:     <code>any[]</code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>any[]</code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/organization/organization.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/edit-user/edit-user.component.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -762,246 +757,211 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { BsModalRef, BsModalService } from &#x27;ngx-bootstrap&#x27;;
-import { UserInfoComponent } from &#x27;../user-info/user-info.component&#x27;;
 import { Backend } from &#x27;../definitions/interfaces/backend&#x27;;
+import { BsModalRef } from &#x27;ngx-bootstrap&#x27;;
+import { NotificationsService } from &#x27;../services/notifications.service&#x27;;
+import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
 import { BackendService } from &#x27;../services/backend.service&#x27;;
 import { MockupBackendService } from &#x27;../services/mockup-backend.service&#x27;;
-import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
-import { NotificationsService } from &#x27;../services/notifications.service&#x27;;
-import { AddUserComponent } from &#x27;../add-user/add-user.component&#x27;;
-import { EditUserComponent } from &#x27;../edit-user/edit-user.component&#x27;;
 
 @Component({
-  // tslint:disable-next-line:component-selector
-  selector: &#x27;organization&#x27;,
-  templateUrl: &#x27;./organization.component.html&#x27;,
-  styleUrls: [&#x27;./organization.component.scss&#x27;]
+  selector: &#x27;app-edit-user&#x27;,
+  templateUrl: &#x27;./edit-user.component.html&#x27;,
+  styleUrls: [&#x27;./edit-user.component.scss&#x27;]
 })
-export class OrganizationComponent implements OnInit {
+export class EditUserComponent implements OnInit {
   /**
    * Backend reference
    */
   backend: Backend;
   /**
-   * Models that hold organization id, name, subscription type and the users list
+   * Models that hold organization id, user role, name, email and password
    */
   organizationId: string;
-  organizationName: string;
-  subscriptionType: string;
-  users: any[];
-
-  /**
-   * Reference for the service that allows the user info component
-   */
-  modalRef: BsModalRef;
+  userRole: string;
+  userName: string;
+  email: string;
 
   constructor(
-    private modalService: BsModalService,
+    public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    const mock &#x3D; localStorage.getItem(LocalStorageKeys.organizationMock) || null;
+    const mock &#x3D; localStorage.getItem(LocalStorageKeys.userInfoMock) || null;
     // check which backend is required (fake or real)
     if (mock &amp;&amp; mock &#x3D;&#x3D;&#x3D; &#x27;true&#x27;) {
       this.backend &#x3D; mockupBackendService;
     } else {
       this.backend &#x3D; backendService;
     }
-    this.organizationName &#x3D; &#x27;Loading...&#x27;;
-    this.subscriptionType &#x3D; &#x27;Free subscription&#x27;;
-    this.users &#x3D; [];
   }
 
   ngOnInit() {
-    const jwtData &#x3D; localStorage.getItem(LocalStorageKeys.jwtData) || null;
-    if (jwtData !&#x3D;&#x3D; null) {
-      this.organizationId &#x3D; JSON.parse(jwtData).OrganizationId;
-      if (this.organizationId !&#x3D;&#x3D; null) {
-        this.backend.getOrganizationInfo(this.organizationId)
-          .subscribe(response &#x3D;&gt; {
-            if (response &amp;&amp; response._body) {
-              const data &#x3D; JSON.parse(response._body);
-              this.organizationName &#x3D; data.name;
-            }
-          });
-        this.backend.getOrganizationUsers(this.organizationId)
-          .subscribe(response &#x3D;&gt; {
-            if (response &amp;&amp; response._body) {
-              const data &#x3D; JSON.parse(response._body);
-              this.users &#x3D; data;
-            }
-          });
+  }
+
+
+  /**
+   * Checks if the form has been modified before discarding changes
+   * @param form Form object reference
+   */
+  discardChanges(form) {
+    if (form.dirty) {
+      const discard &#x3D; confirm(&#x27;Discard changes?&#x27;);
+      if (discard) {
+        this.bsModalRef.hide();
+      } else {
+        // Do nothing
       }
+    } else {
+      this.bsModalRef.hide();
     }
   }
 
   /**
-   * Opens the modal view that holds the user info component
+   * Changes the new user role
+   * @param newRole New user role
    */
-  openUserInfo(user) {
-    const initialState &#x3D; {
-      organizationName: this.organizationName,
-      organizatinoId: this.organizationId,
-      userName: user.name,
-      userId: user.email,
-      role: user.role
-    };
+  changeRole(newRole) {
+    this.userRole &#x3D; newRole;
+  }
 
-    this.modalRef &#x3D; this.modalService.show(UserInfoComponent, { initialState });
-    this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
-    this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; { this.updateUserList(); });
-  }
   /**
-   * Opens the modal view that holds the user info and editable component
+   * Validates user data
+   * @param form Form with user data
    */
-  openEditUser(user) {
-    const initialState &#x3D; {
-      organizationName: this.organizationName,
-      organizatinoId: this.organizationId,
-      userName: user.name,
-      userId: user.email,
-      role: user.role
-    };
-
-    this.modalRef &#x3D; this.modalService.show(EditUserComponent, { initialState });
-    this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
-    this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; { this.updateUserList(); });
-  }
-  /**
-   * Opens the modal view that holds add user component
-   */
-  addUser() {
-    const initialState &#x3D; {
-      organizationId: this.organizationId
-    };
-    this.modalRef &#x3D; this.modalService.show(AddUserComponent, {initialState});
-    this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
-    this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; { this.updateUserList(); });
-  }
-  /**
-   * Requests an updated list of users to update the current one
-   */
-  updateUserList() {
-    if (this.organizationId !&#x3D; null) {
-      this.backend.getOrganizationUsers(this.organizationId)
-      .subscribe(response &#x3D;&gt; {
-        if (response &amp;&amp; response._body) {
-          const data &#x3D; JSON.parse(response._body);
-          this.users &#x3D; data;
-        }
-      });
+  isFormValid(form) {
+    if (this.userRole &#x3D;&#x3D;&#x3D; null) {
+      return false;
     }
+
+    if (!form.valid) {
+      return false;
+    }
+
+    if (form.value.password !&#x3D;&#x3D; form.value.passwordConfirm) {
+      return false;
+    }
+
+    return true;
   }
+
 }
+
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;!-- Component title --&gt;
-&lt;div class&#x3D;&quot;row row-title mb-4&quot;&gt;
-  &lt;div class&#x3D;&quot;col-lg-12&quot;&gt;
-    &lt;h2&gt;Organization&lt;/h2&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;modal-card&quot;&gt;
+  &lt;!-- Header --&gt;
+  &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+    &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;Edit user&lt;/h3&gt;
+    &lt;button 
+      type&#x3D;&quot;button&quot; 
+      class&#x3D;&quot;close&quot; 
+      aria-label&#x3D;&quot;Close&quot;
+      (click)&#x3D;&quot;discardChanges(f)&quot;&gt;
+      &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+    &lt;/button&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-&lt;!-- Organization info card --&gt;
-&lt;div class&#x3D;&quot;row row-info&quot;&gt;
-  &lt;div class&#x3D;&quot;col-lg-12 h-100&quot;&gt;
-    &lt;div class&#x3D;&quot;card py-3 h-100 d-flex flex-col justify-content-center&quot;&gt;
-      &lt;div class&#x3D;&quot;hidden-img-fix&quot;&gt;&lt;/div&gt;
-      &lt;div class&#x3D;&quot;company-img flex-col d-flex justify-content-center align-items-center mt-2&quot;&gt;
-        &lt;img 
-          class&#x3D;&quot;&quot; src&#x3D;&quot;../assets/images/group.png&quot; 
-          alt&#x3D;&quot;company-pic&quot; &gt;
+  &lt;!-- Body --&gt;
+  &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+   &lt;form #f&#x3D;&quot;ngForm&quot; class&#x3D;&quot;form-user&quot;&gt;
+      &lt;div class&#x3D;&quot;form-group&quot;&gt;
+        &lt;input 
+          [(ngModel)]&#x3D;&quot;userName&quot; 
+          name&#x3D;&quot;name&quot; 
+          type&#x3D;&quot;text&quot; 
+          class&#x3D;&quot;form-control&quot; 
+          placeholder&#x3D;&quot;Name*&quot; 
+          required&gt;
+        &lt;input 
+          [(ngModel)]&#x3D;&quot;userId&quot; 
+          name&#x3D;&quot;email&quot; 
+          type&#x3D;&quot;text&quot; 
+          class&#x3D;&quot;form-control&quot; 
+          placeholder&#x3D;&quot;Email*&quot; 
+          pattern&#x3D;&quot;^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$&quot;
+          required&gt;
       &lt;/div&gt;
-      &lt;div class&#x3D;&quot;company-info text-center my-2&quot;&gt;
-        &lt;h3 class&#x3D;&quot;company-name my-2&quot;&gt;{{organizationName}}&lt;/h3&gt;
-        &lt;span class&#x3D;&quot;subscription blue&quot;&gt;{{subscriptionType}}&lt;/span&gt;
-        &lt;span class&#x3D;&quot;users d-block&quot;&gt;{{users.length}} users&lt;/span&gt;
-      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;!-- Roles radio buttons --&gt;
+  &lt;div class&#x3D;&quot;roles py-4&quot;&gt;
+    &lt;h4&gt;Roles*&lt;/h4&gt;
+    &lt;div class&#x3D;&quot;cntr&quot;&gt;
+      &lt;label for&#x3D;&quot;rdo-1&quot; class&#x3D;&quot;btn-radio&quot;&gt;
+        &lt;input 
+          type&#x3D;&quot;radio&quot; 
+          id&#x3D;&quot;rdo-1&quot; 
+          name&#x3D;&quot;radio-grp&quot;
+          (change)&#x3D;&quot;changeRole(&#x27;Owner&#x27;)&quot;
+          &gt;
+        &lt;svg width&#x3D;&quot;20px&quot; height&#x3D;&quot;20px&quot; viewBox&#x3D;&quot;0 0 20 20&quot;&gt;
+          &lt;circle 
+            cx&#x3D;&quot;10&quot; 
+            cy&#x3D;&quot;10&quot; 
+            r&#x3D;&quot;9&quot;&gt;
+          &lt;/circle&gt;
+          &lt;path d&#x3D;&quot;M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z&quot;
+            class&#x3D;&quot;inner&quot;&gt;&lt;/path&gt;
+          &lt;path d&#x3D;&quot;M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z&quot;
+            class&#x3D;&quot;outer&quot;&gt;&lt;/path&gt;
+        &lt;/svg&gt;
+        &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Owner&lt;/span&gt;
+      &lt;/label&gt;
+      &lt;label for&#x3D;&quot;rdo-2&quot; class&#x3D;&quot;btn-radio&quot;&gt;
+        &lt;input 
+          type&#x3D;&quot;radio&quot; 
+          id&#x3D;&quot;rdo-2&quot; 
+          name&#x3D;&quot;radio-grp&quot;
+          (change)&#x3D;&quot;changeRole(&#x27;Operator&#x27;)&quot;
+          &gt;
+        &lt;svg width&#x3D;&quot;20px&quot; height&#x3D;&quot;20px&quot; viewBox&#x3D;&quot;0 0 20 20&quot;&gt;
+          &lt;circle 
+            cx&#x3D;&quot;10&quot; 
+            cy&#x3D;&quot;10&quot; 
+            r&#x3D;&quot;9&quot;&gt;
+          &lt;/circle&gt;
+          &lt;path d&#x3D;&quot;M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z&quot;
+            class&#x3D;&quot;inner&quot;&gt;&lt;/path&gt;
+          &lt;path d&#x3D;&quot;M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z&quot;
+            class&#x3D;&quot;outer&quot;&gt;&lt;/path&gt;
+        &lt;/svg&gt;
+        &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Operator&lt;/span&gt;
+      &lt;/label&gt;
+      &lt;label for&#x3D;&quot;rdo-3&quot; class&#x3D;&quot;btn-radio&quot;&gt;
+        &lt;input 
+          type&#x3D;&quot;radio&quot; 
+          id&#x3D;&quot;rdo-3&quot; 
+          name&#x3D;&quot;radio-grp&quot;
+          (change)&#x3D;&quot;changeRole(&#x27;Developer&#x27;)&quot;
+          &gt;
+        &lt;svg width&#x3D;&quot;20px&quot; height&#x3D;&quot;20px&quot; viewBox&#x3D;&quot;0 0 20 20&quot;&gt;
+          &lt;circle 
+            cx&#x3D;&quot;10&quot; 
+            cy&#x3D;&quot;10&quot; 
+            r&#x3D;&quot;9&quot;&gt;
+          &lt;/circle&gt;
+          &lt;path d&#x3D;&quot;M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z&quot;
+            class&#x3D;&quot;inner&quot;&gt;
+          &lt;/path&gt;
+          &lt;path d&#x3D;&quot;M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z&quot;
+            class&#x3D;&quot;outer&quot;&gt;
+          &lt;/path&gt;
+        &lt;/svg&gt;
+        &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Developer&lt;/span&gt;
+      &lt;/label&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-&lt;!-- Members panel card--&gt;
-&lt;div class&#x3D;&quot;row row-main&quot;&gt;
-  &lt;div class&#x3D;&quot;col-lg-8 col-md-8 col-sm-12 h-100&quot;&gt;
-    &lt;div class&#x3D;&quot;card h-100 p-4&quot;&gt;
-      &lt;div class&#x3D;&quot;card-title-h&quot;&gt;
-        &lt;h5 class&#x3D;&quot;text-uppercase&quot;&gt;Members&lt;/h5&gt;
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;table-h&quot;&gt;
-        &lt;table 
-          *ngIf&#x3D;&quot;users &amp;&amp; users.length &gt; 0&quot;
-          class&#x3D;&quot;table&quot;&gt;
-          &lt;thead&gt;
-            &lt;tr&gt;
-              &lt;th 
-                scope&#x3D;&quot;col&quot; 
-                class&#x3D;&quot;row-name&quot;&gt;
-                Name
-              &lt;/th&gt;
-              &lt;th 
-                scope&#x3D;&quot;col&quot; 
-                class&#x3D;&quot;row-role&quot;&gt;
-                Role
-              &lt;/th&gt;
-              &lt;th 
-                scope&#x3D;&quot;col&quot; 
-                class&#x3D;&quot;row-email&quot;&gt;
-                Email
-              &lt;/th&gt;
-              &lt;th 
-                scope&#x3D;&quot;col&quot; 
-                class&#x3D;&quot;row-info-btn&quot;&gt;
-              &lt;/th&gt;
-              &lt;th 
-              scope&#x3D;&quot;col&quot; 
-              class&#x3D;&quot;row-info-btn&quot;&gt;
-            &lt;/th&gt;
-            &lt;/tr&gt;
-          &lt;/thead&gt;
-          &lt;tbody&gt;
-            &lt;tr *ngFor&#x3D;&quot;let user of users&quot;&gt;
-              &lt;td&gt;{{user.name}}&lt;/td&gt;
-              &lt;td class&#x3D;&quot;blue&quot;&gt;{{user.role}}&lt;/td&gt;
-              &lt;td&gt;{{user.email}}&lt;/td&gt;
-              &lt;td&gt;
-                &lt;button class&#x3D;&quot;btn info-btn btn-primary&quot; (click)&#x3D;&quot;openUserInfo(user)&quot;&gt;
-                  &lt;span class&#x3D;&quot;i-info&quot;&gt;i&lt;/span&gt;
-                &lt;/button&gt;
-              &lt;/td&gt;
-              &lt;td&gt;
-                &lt;button class&#x3D;&quot;btn info-btn btn-primary&quot; (click)&#x3D;&quot;openEditUser(user)&quot;&gt;
-                  &lt;i class&#x3D;&quot;material-icons i-edit&quot;&gt;
-                    edit
-                  &lt;/i&gt;
-                &lt;/button&gt;
-              &lt;/td&gt;
-            &lt;/tr&gt;
-          &lt;/tbody&gt;
-        &lt;/table&gt;
-        &lt;div
-          *ngIf&#x3D;&quot;users &amp;&amp; users.length &#x3D;&#x3D;&#x3D; 0&quot;
-          class&#x3D;&quot;no-elements d-flex justify-content-center align-items-center&quot;&gt;
-          &lt;p&gt;There are not registered users in this organization&lt;br&gt;Click on &quot;add user&quot; button to start adding new users &lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;mx-auto btn-h m-3 mt-5&quot;&gt;
-        &lt;button class&#x3D;&quot;btn btn-lg btn-primary align-bottom&quot; (click)&#x3D;&quot;addUser()&quot;&gt;Add user&lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+  &lt;!-- Option buttons --&gt;
+  &lt;div class&#x3D;&quot;buttons d-flex flex-row justify-content-between&quot;&gt;
+    &lt;button class&#x3D;&quot;btn btn-primary btn-md&quot; (click)&#x3D;&quot;addUser(f)&quot; [disabled]&#x3D;&quot;!isFormValid(f)&quot;&gt;
+      &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Save&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;button class&#x3D;&quot;btn btn-red btn-md&quot; (click)&#x3D;&quot;discardChanges(f)&quot;&gt;
+      &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Discard&lt;/span&gt;
+    &lt;/button&gt;
   &lt;/div&gt;
-  &lt;!-- Subscription panel card --&gt;
-  &lt;div class&#x3D;&quot;col-lg-4 col-md-4 col-sm-12 h-100&quot;&gt;
-    &lt;div class&#x3D;&quot;card flex-col d-flex justify-content-between h-100 p-4&quot;&gt;
-      &lt;h5 class&#x3D;&quot;text-uppercase&quot;&gt;Subscription&lt;/h5&gt;
-      &lt;div class&#x3D;&quot;btn-primary subs-v&quot;&gt;
-        &lt;i class&#x3D;&quot;material-icons&quot;&gt;check&lt;/i&gt;&lt;/div&gt;
-      &lt;h2 class&#x3D;&quot;text-center blue&quot;&gt;Free&lt;/h2&gt;
-      &lt;p class&#x3D;&quot;subs-check text-center&quot;&gt;Check all our subscription modes and payments&lt;/p&gt;
-      &lt;button class&#x3D;&quot;btn btn-lg btn-primary d-none&quot;&gt;Change subscription&lt;/button&gt;
-    &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
     </div>
@@ -1031,10 +991,10 @@ export class OrganizationComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Component title --><div class="row row-title mb-4">  <div class="col-lg-12">    <h2>Organization</h2>  </div></div><!-- Organization info card --><div class="row row-info">  <div class="col-lg-12 h-100">    <div class="card py-3 h-100 d-flex flex-col justify-content-center">      <div class="hidden-img-fix"></div>      <div class="company-img flex-col d-flex justify-content-center align-items-center mt-2">        <img           class="" src="../assets/images/group.png"           alt="company-pic" >      </div>      <div class="company-info text-center my-2">        <h3 class="company-name my-2">{{organizationName}}</h3>        <span class="subscription blue">{{subscriptionType}}</span>        <span class="users d-block">{{users.length}} users</span>      </div>    </div>  </div></div><!-- Members panel card--><div class="row row-main">  <div class="col-lg-8 col-md-8 col-sm-12 h-100">    <div class="card h-100 p-4">      <div class="card-title-h">        <h5 class="text-uppercase">Members</h5>      </div>      <div class="table-h">        <table           *ngIf="users && users.length > 0"          class="table">          <thead>            <tr>              <th                 scope="col"                 class="row-name">                Name              </th>              <th                 scope="col"                 class="row-role">                Role              </th>              <th                 scope="col"                 class="row-email">                Email              </th>              <th                 scope="col"                 class="row-info-btn">              </th>              <th               scope="col"               class="row-info-btn">            </th>            </tr>          </thead>          <tbody>            <tr *ngFor="let user of users">              <td>{{user.name}}</td>              <td class="blue">{{user.role}}</td>              <td>{{user.email}}</td>              <td>                <button class="btn info-btn btn-primary" (click)="openUserInfo(user)">                  <span class="i-info">i</span>                </button>              </td>              <td>                <button class="btn info-btn btn-primary" (click)="openEditUser(user)">                  <i class="material-icons i-edit">                    edit                  </i>                </button>              </td>            </tr>          </tbody>        </table>        <div          *ngIf="users && users.length === 0"          class="no-elements d-flex justify-content-center align-items-center">          <p>There are not registered users in this organization<br>Click on "add user" button to start adding new users </p>        </div>      </div>      <div class="mx-auto btn-h m-3 mt-5">        <button class="btn btn-lg btn-primary align-bottom" (click)="addUser()">Add user</button>      </div>    </div>  </div>  <!-- Subscription panel card -->  <div class="col-lg-4 col-md-4 col-sm-12 h-100">    <div class="card flex-col d-flex justify-content-between h-100 p-4">      <h5 class="text-uppercase">Subscription</h5>      <div class="btn-primary subs-v">        <i class="material-icons">check</i></div>      <h2 class="text-center blue">Free</h2>      <p class="subs-check text-center">Check all our subscription modes and payments</p>      <button class="btn btn-lg btn-primary d-none">Change subscription</button>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <!-- Header -->  <div class="modal-header">    <h3 class="nalej-form-title">Edit user</h3>    <button       type="button"       class="close"       aria-label="Close"      (click)="discardChanges(f)">      <span aria-hidden="true">&times;</span>    </button>  </div>  <!-- Body -->  <div class="modal-body">   <form #f="ngForm" class="form-user">      <div class="form-group">        <input           [(ngModel)]="userName"           name="name"           type="text"           class="form-control"           placeholder="Name*"           required>        <input           [(ngModel)]="userId"           name="email"           type="text"           class="form-control"           placeholder="Email*"           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"          required>      </div>    </form>  <!-- Roles radio buttons -->  <div class="roles py-4">    <h4>Roles*</h4>    <div class="cntr">      <label for="rdo-1" class="btn-radio">        <input           type="radio"           id="rdo-1"           name="radio-grp"          (change)="changeRole(\'Owner\')"          >        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner"></path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer"></path>        </svg>        <span class="align-bottom">Owner</span>      </label>      <label for="rdo-2" class="btn-radio">        <input           type="radio"           id="rdo-2"           name="radio-grp"          (change)="changeRole(\'Operator\')"          >        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner"></path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer"></path>        </svg>        <span class="align-bottom">Operator</span>      </label>      <label for="rdo-3" class="btn-radio">        <input           type="radio"           id="rdo-3"           name="radio-grp"          (change)="changeRole(\'Developer\')"          >        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner">          </path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer">          </path>        </svg>        <span class="align-bottom">Developer</span>      </label>    </div>  </div>  <!-- Option buttons -->  <div class="buttons d-flex flex-row justify-content-between">    <button class="btn btn-primary btn-md" (click)="addUser(f)" [disabled]="!isFormValid(f)">      <span class="align-bottom">Save</span>    </button>    <button class="btn btn-red btn-md" (click)="discardChanges(f)">      <span class="align-bottom">Discard</span>    </button>  </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'OrganizationComponent'};
+    var ACTUAL_COMPONENT = {'name': 'EditUserComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -1068,7 +1028,7 @@ export class OrganizationComponent implements OnInit {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'OrganizationComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'EditUserComponent.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

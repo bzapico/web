@@ -87,11 +87,18 @@
     border-radius: 50%;
     position: relative;
 }
-.i-info{
+.i-edit{
     font-size: 1.2em;
     position: absolute;
     top: 6px;
     left: 7px;
+}
+.i-info{
+    font-size: 1.6em;
+    font-weight: 700;
+    position: absolute;
+    top: 0px;
+    left: 12px;
 }
 .subs-v {
     height: 87px;
@@ -135,10 +142,15 @@
     .subs-v i {
         margin: 18px;
     }
-    .i-info{
+    .i-edit{
         font-size: 1em;
         top: 4px;
         left: 5px;
+    }
+    .i-info{
+        font-size: 1.2em;
+        top: 2px;
+        left: 10px;
     }
     .company-img{
         display: none;

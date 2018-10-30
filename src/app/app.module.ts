@@ -48,7 +48,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     DebugPanelComponent,
     UserInfoComponent,
     AddUserComponent,
-    EditClusterComponent
+    EditClusterComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
