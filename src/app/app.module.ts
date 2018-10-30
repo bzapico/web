@@ -26,6 +26,7 @@ import { OrganizationComponent } from './organization/organization.component';
 import { EditClusterComponent } from './edit-cluster/edit-cluster.component';
 import { ResourcesComponent } from './resources/resources.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { AddUserComponent } from './add-user/add-user.component';
     ResourcesComponent,
     AddUserComponent,
     EditClusterComponent,
+    EditUserComponent,
   ],
   entryComponents: [
     DebugPanelComponent,
