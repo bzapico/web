@@ -20,28 +20,28 @@ export const mockUserList = [
         role: 'Owner'
     },
     {
-        name: 'John Doe',
-        email: 'johndoe@mail.com',
+        name: 'Jack Doe',
+        email: 'jackdoe@mail.com',
         role: 'Owner'
     },
     {
-        name: 'John Doe',
-        email: 'johndoe@mail.com',
+        name: 'James Doe',
+        email: 'jamesdoe@mail.com',
         role: 'Owner'
     },
     {
-        name: 'John Doe',
-        email: 'johndoe@mail.com',
+        name: 'Jimmy Doe',
+        email: 'jimmydoe@mail.com',
         role: 'Owner'
     },
     {
-        name: 'John Doe',
-        email: 'johndoe@mail.com',
+        name: 'Josh Doe',
+        email: 'joshdoe@mail.com',
         role: 'Owner'
     },
     {
-        name: 'John Doe',
-        email: 'johndoe@mail.com',
+        name: 'Mike Doe',
+        email: 'mikedoe@mail.com',
         role: 'Owner'
     },
 ];

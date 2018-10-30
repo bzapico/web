@@ -20,6 +20,7 @@ export const AvailableComponents = {
   notifications: 'Notifications',
   sidebar: 'Sidebar',
   userinfo: 'User Info',
+  userEdit: 'User Edit',
   editcluster: 'EditCluster',
   addUser: 'Add User'
 };
@@ -79,6 +80,10 @@ export class DebugPanelComponent implements OnInit {
       mock: localStorage.getItem(LocalStorageKeys.userInfoMock) === 'false' ? 'false' : 'true'
     });
     this.components.push({
+      name: AvailableComponents.userEdit,
+      mock: localStorage.getItem(LocalStorageKeys.userEditMock) === 'false' ? 'false' : 'true'
+    });
+    this.components.push({
       name: AvailableComponents.editcluster,
       mock: localStorage.getItem(LocalStorageKeys.clusterEditMock) === 'false' ? 'false' : 'true'
     });
@@ -118,6 +123,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.userinfo:
         localStorage.setItem(LocalStorageKeys.userInfoMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.userEdit:
+        localStorage.setItem(LocalStorageKeys.userEditMock, componentMockOption.mock);
       break;
       case AvailableComponents.editcluster:
         localStorage.setItem(LocalStorageKeys.clusterEditMock, componentMockOption.mock);
