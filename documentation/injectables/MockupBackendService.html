@@ -984,7 +984,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>saveUserChanges(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, changes: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>saveUserChanges(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, changes: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
@@ -1013,6 +1013,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                        </td>
+                                                </tr>
                                                 <tr>
                                                         <td>userId</td>
                                                         <td>
@@ -1186,8 +1200,8 @@ export class MockupBackendService implements Backend {
    * Simulates save user changes
    * @param userId String containing the user identificator - used to replicate expected backend behavior
    */
-  saveUserChanges(userId: string, changes: any) {
-    const index &#x3D; mockClusterList.map(x &#x3D;&gt; x.id).indexOf(userId);
+  saveUserChanges(organizationId: string, userId: string, changes: any) {
+    const index &#x3D; mockUserList.map(x &#x3D;&gt; x.email).indexOf(userId);
     if (index !&#x3D;&#x3D; -1) {
       mockUserList[index].name &#x3D; changes.newUserName;
       mockUserList[index].email &#x3D; changes.newUserEmail;

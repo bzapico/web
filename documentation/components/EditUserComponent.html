@@ -137,6 +137,9 @@
                                 <a href="#organizationId">organizationId</a>
                             </li>
                             <li>
+                                <a href="#roleDirty">roleDirty</a>
+                            </li>
+                            <li>
                                 <a href="#userId">userId</a>
                             </li>
                             <li>
@@ -195,7 +198,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/edit-user/edit-user.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/edit-user/edit-user.component.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -300,7 +303,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/edit-user/edit-user.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/edit-user/edit-user.component.ts:81</a></div>
                             </td>
                         </tr>
 
@@ -372,7 +375,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/edit-user/edit-user.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/edit-user/edit-user.component.ts:71</a></div>
                             </td>
                         </tr>
 
@@ -439,7 +442,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/edit-user/edit-user.component.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/edit-user/edit-user.component.ts:56</a></div>
                             </td>
                         </tr>
 
@@ -511,7 +514,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/edit-user/edit-user.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/edit-user/edit-user.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -549,7 +552,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/edit-user/edit-user.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/edit-user/edit-user.component.ts:89</a></div>
                             </td>
                         </tr>
 
@@ -674,7 +677,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/edit-user/edit-user.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/edit-user/edit-user.component.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -749,6 +752,46 @@
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Models that hold organization id, user role, name, email and password</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="roleDirty"></a>
+                        <span class="name">
+                            <b>
+                            roleDirty
+                            </b>
+                            <a href="#roleDirty"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>roleDirty:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/edit-user/edit-user.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Holds the status of the role (if it has been modified)</p>
 </div>
                     </td>
                 </tr>
@@ -889,6 +932,10 @@ export class EditUserComponent implements OnInit {
   userName: string;
   userId: string;
   email: string;
+  /**
+   * Holds the status of the role (if it has been modified)
+   */
+  roleDirty: boolean;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -903,6 +950,7 @@ export class EditUserComponent implements OnInit {
     } else {
       this.backend &#x3D; backendService;
     }
+    this.roleDirty &#x3D; false;
   }
 
   ngOnInit() {
@@ -939,6 +987,7 @@ export class EditUserComponent implements OnInit {
    * @param newRole New user role
    */
   changeRole(newRole) {
+    this.roleDirty &#x3D; true;
     this.userRole &#x3D; newRole;
   }
   /**
@@ -947,9 +996,9 @@ export class EditUserComponent implements OnInit {
    */
   saveUserChanges(f) {
     if (this.userId !&#x3D;&#x3D; null) {
-      this.backend.saveUserChanges(this.userId, {
+      this.backend.saveUserChanges(this.organizationId, this.userId, {
         newUserName: this.userName,
-        newUserEmail: this.email,
+        newUserEmail: this.userId,
         newUserRole: this.userRole
       })
         .subscribe(response &#x3D;&gt; {
@@ -992,7 +1041,7 @@ export class EditUserComponent implements OnInit {
           required&gt;
         &lt;input 
           [(ngModel)]&#x3D;&quot;userId&quot; 
-          name&#x3D;&quot;email&quot; 
+          name&#x3D;&quot;userId&quot; 
           type&#x3D;&quot;text&quot; 
           class&#x3D;&quot;form-control&quot; 
           placeholder&#x3D;&quot;Email*&quot; 
@@ -1073,7 +1122,7 @@ export class EditUserComponent implements OnInit {
   &lt;/div&gt;
   &lt;!-- Option buttons --&gt;
   &lt;div class&#x3D;&quot;buttons d-flex flex-row justify-content-between&quot;&gt;
-    &lt;button class&#x3D;&quot;btn btn-primary btn-md&quot; (click)&#x3D;&quot;saveUserChanges(f)&quot; [disabled]&#x3D;&quot;!f.valid || !f.dirty&quot;&gt;
+    &lt;button class&#x3D;&quot;btn btn-primary btn-md&quot; (click)&#x3D;&quot;saveUserChanges(f)&quot; [disabled]&#x3D;&quot;!f.valid || !f.dirty &amp;&amp; !roleDirty&quot;&gt;
       &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Save&lt;/span&gt;
     &lt;/button&gt;
     &lt;button class&#x3D;&quot;btn btn-red btn-md&quot; (click)&#x3D;&quot;discardChanges(f)&quot;&gt;
@@ -1109,7 +1158,7 @@ export class EditUserComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <!-- Header -->  <div class="modal-header">    <h3 class="nalej-form-title">Edit user</h3>    <button       type="button"       class="close"       aria-label="Close"      (click)="discardChanges(f)">      <span aria-hidden="true">&times;</span>    </button>  </div>  <!-- Body -->  <div class="modal-body">   <form #f="ngForm" class="form-user">      <div class="form-group">        <input           [(ngModel)]="userName"           name="name"           type="text"           class="form-control"           placeholder="Name*"           required>        <input           [(ngModel)]="userId"           name="email"           type="text"           class="form-control"           placeholder="Email*"           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"          required>      </div>    </form>  <!-- Roles radio buttons -->  <div class="roles py-4">    <h4>Roles*</h4>    <div class="cntr">      <label for="rdo-1" class="btn-radio">        <input           [checked]="checkUserRole(\'Owner\')"           type="radio"           id="rdo-1"           name="radio-grp"          (change)="changeRole(\'Owner\')"          >        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner"></path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer"></path>        </svg>        <span class="align-bottom">Owner</span>      </label>      <label for="rdo-2" class="btn-radio">        <input           [checked]="checkUserRole(\'Operator\')"           type="radio"           id="rdo-2"           name="radio-grp"          (change)="changeRole(\'Operator\')"          >        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner"></path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer"></path>        </svg>        <span class="align-bottom">Operator</span>      </label>      <label for="rdo-3" class="btn-radio">        <input           [checked]="checkUserRole(\'Developer\')"           type="radio"           id="rdo-3"           name="radio-grp"          (change)="changeRole(\'Developer\')"          >        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner">          </path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer">          </path>        </svg>        <span class="align-bottom">Developer</span>      </label>    </div>  </div>  <!-- Option buttons -->  <div class="buttons d-flex flex-row justify-content-between">    <button class="btn btn-primary btn-md" (click)="saveUserChanges(f)" [disabled]="!f.valid || !f.dirty">      <span class="align-bottom">Save</span>    </button>    <button class="btn btn-red btn-md" (click)="discardChanges(f)">      <span class="align-bottom">Discard</span>    </button>  </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <!-- Header -->  <div class="modal-header">    <h3 class="nalej-form-title">Edit user</h3>    <button       type="button"       class="close"       aria-label="Close"      (click)="discardChanges(f)">      <span aria-hidden="true">&times;</span>    </button>  </div>  <!-- Body -->  <div class="modal-body">   <form #f="ngForm" class="form-user">      <div class="form-group">        <input           [(ngModel)]="userName"           name="name"           type="text"           class="form-control"           placeholder="Name*"           required>        <input           [(ngModel)]="userId"           name="userId"           type="text"           class="form-control"           placeholder="Email*"           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"          required>      </div>    </form>  <!-- Roles radio buttons -->  <div class="roles py-4">    <h4>Roles*</h4>    <div class="cntr">      <label for="rdo-1" class="btn-radio">        <input           [checked]="checkUserRole(\'Owner\')"           type="radio"           id="rdo-1"           name="radio-grp"          (change)="changeRole(\'Owner\')"          >        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner"></path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer"></path>        </svg>        <span class="align-bottom">Owner</span>      </label>      <label for="rdo-2" class="btn-radio">        <input           [checked]="checkUserRole(\'Operator\')"           type="radio"           id="rdo-2"           name="radio-grp"          (change)="changeRole(\'Operator\')"          >        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner"></path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer"></path>        </svg>        <span class="align-bottom">Operator</span>      </label>      <label for="rdo-3" class="btn-radio">        <input           [checked]="checkUserRole(\'Developer\')"           type="radio"           id="rdo-3"           name="radio-grp"          (change)="changeRole(\'Developer\')"          >        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner">          </path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer">          </path>        </svg>        <span class="align-bottom">Developer</span>      </label>    </div>  </div>  <!-- Option buttons -->  <div class="buttons d-flex flex-row justify-content-between">    <button class="btn btn-primary btn-md" (click)="saveUserChanges(f)" [disabled]="!f.valid || !f.dirty && !roleDirty">      <span class="align-bottom">Save</span>    </button>    <button class="btn btn-red btn-md" (click)="discardChanges(f)">      <span class="align-bottom">Discard</span>    </button>  </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'EditUserComponent'};

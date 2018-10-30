@@ -944,7 +944,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>saveUserChanges(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, changes: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>saveUserChanges(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, changes: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
@@ -970,6 +970,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
                                                 <tr>
                                                         <td>userId</td>
                                                         <td>
@@ -1030,7 +1042,7 @@ export interface Backend {
     addUser(organizationId: string, user: any);
     deleteUser(organizationId: string, userId: string);
     resetPassword(organizationId: string, userId: string);
-    saveUserChanges(userId: string, changes: any);
+    saveUserChanges(organizationId: string, userId: string, changes: any);
     // Resources
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);
     getClusters(organizationId: string);
