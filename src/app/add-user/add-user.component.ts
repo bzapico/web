@@ -35,7 +35,6 @@ export class AddUserComponent implements OnInit {
   ) {
     this.userRole = null;
     const mock = localStorage.getItem(LocalStorageKeys.addUserMock) || null;
-    console.log(mock);
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
