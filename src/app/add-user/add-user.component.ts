@@ -26,7 +26,13 @@ export class AddUserComponent implements OnInit {
   email: string;
   password: string;
   passwordConfirm: string;
-
+  /**
+   * Models that removes the possibility for the user to close the modal by clicking outside the content card
+   */
+  config = {
+    backdrop: 'static',
+    ignoreBackdropClick: true
+  };
   constructor(
     public bsModalRef: BsModalRef,
     private backendService: BackendService,

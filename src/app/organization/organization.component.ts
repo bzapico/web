@@ -32,6 +32,13 @@ export class OrganizationComponent implements OnInit {
    * Reference for the service that allows the user info component
    */
   modalRef: BsModalRef;
+    /**
+   * Models that removes the possibility for the user to close the modal by clicking outside the content card
+   */
+  config = {
+    backdrop: 'static',
+    ignoreBackdropClick: false
+  };
 
   constructor(
     private modalService: BsModalService,
