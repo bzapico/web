@@ -5,7 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { mockClusterChart, mockNodesChart } from '../utils/mocks';
+import { mockClusterChart } from '../utils/mocks';
 
 @Component({
   selector: 'app-cluster',
@@ -17,6 +17,12 @@ export class ClusterComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
+
+  /**
+   * Model that hold organization ID
+   */
+  organizationId: string;
+
   /**
    * List of available clusters
    */
@@ -107,6 +113,86 @@ export class ClusterComponent implements OnInit {
    }
 
   ngOnInit() {
+     // Get User data from localStorage
+     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+     if (jwtData !== null) {
+       this.organizationId = JSON.parse(jwtData).OrganizationId;
+       if (this.organizationId !== null) {
+         // Requests top card summary data
+         this.backend.getResourcesSummary(this.organizationId)
+         .subscribe(response => {
+           if (response && response._body) {
+             const data = JSON.parse(response._body);
+             this.clustersCount = data['totalClusters'];
+             this.nodesCount = data['totalNodes'];
+           }
+         });
+         this.updateNodesList();
+       }
+     }
+  }
+  /**
+   * Updates the pieChartsData with latest changes
+   * @param clusterList Array containing the cluster list that sources the chart values
+   * @param pieChartsData Array that contains sub-arrays that hold each chart labels and values
+   */
+  updatePieChartsData (clusterList, pieChartsData) {
+    for (let i = 0; i < pieChartsData.length; i++) {
+      pieChartsData.pop();
+    }
+    clusterList.forEach(element => {
+      pieChartsData.push(this.generateClusterChartData(element.runningNodes, element.totalNodes));
+    });
+  }
+   /**
+   * Generates the NGX-Chart required JSON object for pie chart rendering
+   * @param running Number of running nodes in a cluster
+   * @param total Number of total nodes in a cluster
+   * @returns anonym array with the required object structure for pie chart rendering
+   */
+  generateClusterChartData(running: number, total: number): any[] {
+    return [
+      {
+        name: 'Running',
+        value: running
+      },
+      {
+        name: 'Stopped',
+        value: total - running
+      }];
+    }
+
+
+  /**
+   * Splits the cluster list into chunks (number of elements defined by the chunks parameter)
+   * @param chunks Number of elements per chunk
+   * @param clusterList Array containing the available clusters
+   * @returns chunked array
+   */
+  chunkClusterList(chunks, clusterList) {
+    let i, j, chunkedArray;
+    const resultChunkArray = [];
+    const chunk = chunks;
+    for (i = 0, j = clusterList.length; i < j; i += chunk) {
+      chunkedArray = clusterList.slice(i, i + chunk);
+      resultChunkArray.push(chunkedArray);
+    }
+    return resultChunkArray;
+  }
+   /**
+   * Requests an updated list of available nodes to update the current one
+   */
+  updateNodesList() {
+    // Requests an updated nodes list
+    this.backend.getNodes(this.organizationId)
+    .subscribe(response => {
+      if (response && response._body) {
+        const data = JSON.parse(response._body);
+        this.nodes = data;
+        this.chunckedClusters = this.chunkClusterList(3, this.nodes);
+        this.updatePieChartsData(this.clusters, this.pieChartsData);
+      }
+    });
   }
 
 }

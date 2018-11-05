@@ -10,28 +10,32 @@
       <div class="card p-4 h-100">
         <div class="card-title-c">
           <h5 class="text-uppercase">Cluster 1</h5>
-          <p class="d-inline cluster-number">{{clustersCount}} available</p>
+          <p class="d-inline cluster-number blue">{{clustersCount}} available</p>
         </div>
         <!-- Cluster pie chart -->
-        <div class="box" >
-            <div class="donut-chart">
-              <ngx-charts-pie-chart
-                [scheme]="colorScheme" 
-                [results]="pieChartsData[0+i*3]" 
-                [doughnut]= "doughnut"
-                [gradient]="gradient"
-                [schemeType]="schemeType"
-                [explodeSlices]="false"
-                >
-              </ngx-charts-pie-chart>
-              <div class="donut-number">{{clusterGroup[0].runningNodes}}/{{clusterGroup[0].totalNodes}}</div>
+        <div *ngFor="let clusterGroup of chunckedClusters; let i = index">
+          <div class="slide-box">
+            <div class="box" *ngIf="clusterGroup[0]">
+              <div class="donut-chart">
+                <ngx-charts-pie-chart
+                  [scheme]="colorScheme" 
+                  [results]="pieChartsData[0+i*3]" 
+                  [doughnut]= "doughnut"
+                  [gradient]="gradient"
+                  [schemeType]="schemeType"
+                  [explodeSlices]="false"
+                  >
+                </ngx-charts-pie-chart>
+                <div class="donut-number">{{clusterGroup[0].runningNodes}}/{{clusterGroup[0].totalNodes}}</div>
+              </div>
+              <p *ngIf="clusterGroup[0].runningNodes === clusterGroup[0].totalNodes" class="blue nodes-run mb-0">All nodes running</p>
+              <p *ngIf="clusterGroup[0].runningNodes !== clusterGroup[0].totalNodes" class="blue nodes-run mb-0">{{clusterGroup[0].runningNodes}} nodes running</p>
+              <p class="text-uppercase grey">{{clusterGroup[0].name}}</p>
             </div>
-            <p *ngIf="clusterGroup[0].runningNodes === clusterGroup[0].totalNodes" class="blue nodes-run mb-0">All nodes running</p>
-            <p *ngIf="clusterGroup[0].runningNodes !== clusterGroup[0].totalNodes" class="blue nodes-run mb-0">{{clusterGroup[0].runningNodes}} nodes running</p>
-            <p class="text-uppercase grey">{{clusterGroup[0].name}}</p>
           </div>
         </div>
       </div>
+    </div>
  
     <!-- Summary cluster info card -->
     <div class="col-lg-9 h-100">

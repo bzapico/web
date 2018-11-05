@@ -165,4 +165,11 @@ export class MockupBackendService implements Backend {
     })));
   }
 
+  getNodes(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockClusterList),
+      status: 200
+    })));
+  }
+
 }

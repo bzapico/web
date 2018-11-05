@@ -15,5 +15,6 @@ export interface Backend {
     // Resources
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);
     getClusters(organizationId: string);
+    getNodes(organizationId: string);
     getResourcesSummary(organizationId: string);
 }

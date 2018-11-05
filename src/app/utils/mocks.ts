@@ -207,3 +207,44 @@ export const mockResourcesSummary = {
     totalClusters: mockClusterList.length,
     totalNodes: mockClusterList.length * 10
 };
+
+/**
+ * Mocked nodes list
+ */
+export const mockNodesList = [
+    {
+        id: '0800200c9a61',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    },
+    {
+        id: '0800200c9a61',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    },
+    {
+        id: '0800200c9a61',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    },
+    {
+        id: '0800200c9a61',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Error',
+    },
+    {
+        id: '0800200c9a61',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    }
+];
