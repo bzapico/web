@@ -19,10 +19,14 @@ export class ClusterComponent implements OnInit {
   backend: Backend;
 
   /**
-   * Model that hold organization ID and the cluster name
+   * Model that hold organization ID
    */
   organizationId: string;
-  clusterName: string;
+
+  /**
+   * Model that hold cluster ID
+   */
+  clusterId: string;
 
   /**
    * List of available clusters
@@ -100,7 +104,6 @@ export class ClusterComponent implements OnInit {
     this.nodesCount = 0;
     this.clustersCount = 0;
     this.pieChartsData = [];
-    this.clusterName = 'Loading...';
 
   /**
    * Mocked Charts
@@ -121,12 +124,20 @@ export class ClusterComponent implements OnInit {
              const data = JSON.parse(response._body);
              this.clustersCount = data['totalClusters'];
              this.nodesCount = data['totalNodes'];
-             this.clusterName = data.name;
            }
          });
          this.updateNodesList();
        }
      }
+    //  this.backend.getClusterDetail(this.clusterId)
+    //  .subscribe(response => {
+    //    if (response && response._body) {
+    //      const data = JSON.parse(response._body);
+    //     //  this.clusterData = data;
+    //    }
+    //  });
+
+
   }
   /**
    * Updates the pieChartsData with latest changes
@@ -164,7 +175,7 @@ export class ClusterComponent implements OnInit {
    */
   updateNodesList() {
     // Requests an updated nodes list
-    this.backend.getNodes(this.organizationId)
+    this.backend.getNodes(this.clusterId)
     .subscribe(response => {
       if (response && response._body) {
         const data = JSON.parse(response._body);
