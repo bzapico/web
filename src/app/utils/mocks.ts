@@ -246,5 +246,26 @@ export const mockNodeList = [
         credentials: 'Private',
         tags: 'ny, edge',
         status: 'Running',
+    },
+    {
+        id: '0800200c9a65',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Error',
+    },
+    {
+        id: '0800200c9a65',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    },
+    {
+        id: '0800200c9a65',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
     }
 ];

@@ -5,7 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { mockClusterChart } from '../utils/mocks';
+import { mockClusterChart, mockNodesChart } from '../utils/mocks';
 
 @Component({
   selector: 'app-cluster',
@@ -19,9 +19,10 @@ export class ClusterComponent implements OnInit {
   backend: Backend;
 
   /**
-   * Model that hold organization ID
+   * Model that hold organization ID and the cluster name
    */
   organizationId: string;
+  clusterName: string;
 
   /**
    * List of available clusters
@@ -32,11 +33,6 @@ export class ClusterComponent implements OnInit {
    * List of available nodes
    */
   nodes: any[];
-
-  /**
-   * Clusters list chuncked in sub-lists of 3 elements (required to show top component slider)
-   */
-  chunckedClusters: any[];
 
   /**
    * Array containing charts data in the required format for NGX-Charts library rendering
@@ -101,15 +97,15 @@ export class ClusterComponent implements OnInit {
 
     this.clusters = [];
     this.nodes = [];
-    this.chunckedClusters = [];
     this.nodesCount = 0;
     this.clustersCount = 0;
     this.pieChartsData = [];
+    this.clusterName = 'Loading...';
 
   /**
    * Mocked Charts
    */
-    Object.assign(this, {mockClusterChart});
+    Object.assign(this, {mockClusterChart, mockNodesChart});
    }
 
   ngOnInit() {
@@ -125,6 +121,7 @@ export class ClusterComponent implements OnInit {
              const data = JSON.parse(response._body);
              this.clustersCount = data['totalClusters'];
              this.nodesCount = data['totalNodes'];
+             this.clusterName = data.name;
            }
          });
          this.updateNodesList();
@@ -162,23 +159,6 @@ export class ClusterComponent implements OnInit {
       }];
     }
 
-
-  /**
-   * Splits the cluster list into chunks (number of elements defined by the chunks parameter)
-   * @param chunks Number of elements per chunk
-   * @param clusterList Array containing the available clusters
-   * @returns chunked array
-   */
-  chunkClusterList(chunks, clusterList) {
-    let i, j, chunkedArray;
-    const resultChunkArray = [];
-    const chunk = chunks;
-    for (i = 0, j = clusterList.length; i < j; i += chunk) {
-      chunkedArray = clusterList.slice(i, i + chunk);
-      resultChunkArray.push(chunkedArray);
-    }
-    return resultChunkArray;
-  }
    /**
    * Requests an updated list of available nodes to update the current one
    */
@@ -189,7 +169,6 @@ export class ClusterComponent implements OnInit {
       if (response && response._body) {
         const data = JSON.parse(response._body);
         this.nodes = data;
-        this.chunckedClusters = this.chunkClusterList(3, this.nodes);
         this.updatePieChartsData(this.clusters, this.pieChartsData);
       }
     });

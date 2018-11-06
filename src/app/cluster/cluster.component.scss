@@ -32,7 +32,6 @@
     float: right;
     width: 50%;
     margin-top: 2em;
-    background-color: paleturquoise;
     td {
         padding: 1.2rem;
         vertical-align: middle;
@@ -150,6 +149,7 @@
     font-size: 1.2em;
     color:#949494;
 }
+
 /* - - - Medias Summary card cluster - - - */
 @media screen and (max-width:1500px){
     .circle {
@@ -196,7 +196,7 @@
     font-size: .8em;
 }
 .box {
-    width: 27%;
+    width: 90%;
     display: inline-flex;
     flex-direction: column;
     justify-content: space-around;
@@ -222,25 +222,10 @@
     .cluster-number {
         margin-bottom: 0;
     }
-    .slide-box {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .box {
-      width: 90%;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-    }
     .donut-number {
         display: inline;
         left: 33%;
     }
-    // .nodes-run{
-    //     display: inline;
-    // }
 }
 @media screen and (min-width:2560px){
     .box {

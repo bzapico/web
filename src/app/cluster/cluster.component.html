@@ -15,22 +15,24 @@
       <!-- Cluster pie chart -->
       <div>
         <div class="pie-box">
-          <div class="box" >
-            <div class="donut-chart">
+          <div 
+            class="box"
+            >
+            <div class="donut-chart bg-secondary">
               <ngx-charts-pie-chart
                 [scheme]="colorScheme" 
-                [results]="pieChartsData[0+i*3]" 
+                [results]="pieChartsData" 
                 [doughnut]= "doughnut"
                 [gradient]="gradient"
                 [schemeType]="schemeType"
                 [explodeSlices]="false"
                 >
               </ngx-charts-pie-chart>
-              <div class="donut-number"></div>
+              <div class="donut-number">{{runningNodes}}/{{totalNodes}}</div>
             </div>
-            <p class="blue nodes-run mb-0">All nodes running</p>
-            <p  class="blue nodes-run mb-0"> nodes running</p>
-            <p class="text-uppercase grey"></p>
+            <p *ngIf="runningNodes === totalNodes"  class="blue nodes-run mb-0">All nodes running</p>
+            <p  *ngIf="runningNodes !== totalNodes"  class="blue nodes-run mb-0">{{runningNodes}} nodes </p>
+            <p class="text-uppercase grey">Cluster 1</p>
           </div>
         </div>
       </div>
@@ -41,7 +43,7 @@
   <div class="col-lg-9 h-100">
     <div class="card card-clus p-4 h-100">
       <div class="card-title-c">
-        <h5 class="text-uppercase d-inline">SUMMARY</h5>
+        <h5 class="text-uppercase d-inline">SUMMARY {{clusterName}}</h5>
       </div>
       <div class="d-flex flex-col justify-content-around align-center">
         <div>
