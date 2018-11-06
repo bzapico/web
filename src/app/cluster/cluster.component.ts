@@ -29,6 +29,11 @@ export class ClusterComponent implements OnInit {
   clusterId: string;
 
   /**
+   * Model that hold cluster data
+   */
+  clusterData: any[];
+
+  /**
    * List of available clusters
    */
   clusters: any[];
@@ -104,6 +109,7 @@ export class ClusterComponent implements OnInit {
     this.nodesCount = 0;
     this.clustersCount = 0;
     this.pieChartsData = [];
+    this.clusterData = [];
 
   /**
    * Mocked Charts
@@ -133,11 +139,9 @@ export class ClusterComponent implements OnInit {
     //  .subscribe(response => {
     //    if (response && response._body) {
     //      const data = JSON.parse(response._body);
-    //     //  this.clusterData = data;
+    //      this.clusterData = data;
     //    }
     //  });
-
-
   }
   /**
    * Updates the pieChartsData with latest changes
