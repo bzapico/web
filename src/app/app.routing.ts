@@ -36,10 +36,9 @@ const appRoutes: Routes = [
                 canActivate: [AuthGuard]
             },
             {
-                path: 'cluster/:name',
+                path: 'resources/cluster/:name',
                 component: ClusterComponent,
-                canActivate: [AuthGuard]
-            },
+            }
         ]
     },
     // otherwise redirect to home

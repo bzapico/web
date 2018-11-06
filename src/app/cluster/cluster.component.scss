@@ -1,4 +1,3 @@
-
 .row-title {
     height: 4%;
 }
@@ -28,57 +27,70 @@
     font-size: 0.8em;
 }
 
+/* - - - Summary cluster card - - - */
+.cluster-summary {
+    float: right;
+    width: 50%;
+    margin-top: 2em;
+    background-color: paleturquoise;
+    td {
+        padding: 1.2rem;
+        vertical-align: middle;
+        font-size:  .9em;
+        border: none;
+        margin-left: 20%;
+        text-align: right;
+    }
+    th {
+        border: none;
+        font-size:  .9em;
+        font-weight: 200;
+    }
+    tr {
+        line-height: 0.1px;
+        border: none;
+    } 
+}
+
 /* - - - Cluster table card - - - */
 .table-h {
     height: 80%;
     overflow-y: auto;
     overflow-x: hidden;
-}
-.table {
-    td {
-        padding: 1.2rem;
-        vertical-align: middle;
-        font-size:  .9em;
-        border-top: 0.8px solid #EEEEEE;
-        color: #949494;
-    }
-    thead th {
+    .table {
+        td {
+            padding: 1.2rem;
+            vertical-align: middle;
+            font-size:  .9em;
+            border-top: 0.8px solid #EEEEEE;
+            color: #949494;
+        }
+        thead th {
+            border: none;
+            font-size:  .9em;
+            padding: 0 1.2rem;
+            font-weight: 200;
+        }
+        tbody tr:first-child td {
         border: none;
-        font-size:  .9em;
-        padding: 0 1.2rem;
-        font-weight: 200;
+        }
+        .row-ip {
+            width: 20%;
+        }
+        .row-ip {
+            width: 20%;
+        }
+        .row-credentials {
+            width: 20%;
+        }
+        .row-tags {
+            width: 20%;
+        }
+        .row-status {
+            width: 18%;
+            padding-left: 2%;
+        }
     }
-    tbody tr:first-child td {
-      border: none;
-    }
-    .row-ip {
-        width: 20%;
-    }
-    .row-ip {
-        width: 20%;
-    }
-    .row-credentials {
-        width: 20%;
-    }
-    .row-tags {
-        width: 20%;
-    }
-    .row-status {
-        width: 18%;
-        padding-left: 2%;
-    }
-}
-.info-btn {
-    height: 32px;
-    width:32px;
-    border-radius: 50%;
-    position: relative;
-}
-.i-info {
-    font-size: 1.2em;
-    position: absolute;
-    top: 6px;
-    left: 7px;
 }
 .status-dot:before {
     content:'\A';
@@ -98,6 +110,7 @@
     display:inline-block;
     margin:0 10px 0 0;
 }
+
 /* - - - Medias Cluster table card - - - */
 @media screen and (max-width:1500px){
     .card-title-h {
@@ -106,7 +119,7 @@
     .card-title-h h5, .card-title-c h5 {
         font-size: 1em;
     }
-    .table td {
+    .table-h .table td {
         padding: .6rem 1rem;
     }
     .status-dot:before {
@@ -137,7 +150,7 @@
     font-size: 1.2em;
     color:#949494;
 }
-/* - - - Medias Summary card circles - - - */
+/* - - - Medias Summary card cluster - - - */
 @media screen and (max-width:1500px){
     .circle {
         margin-top: 0;
@@ -172,8 +185,8 @@
     }
 }
 
-/* - - - Cluster card Slider - - - */
-.slide-box {
+/* - - - Cluster - - - */
+.pie-box {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -225,9 +238,9 @@
         display: inline;
         left: 33%;
     }
-    .nodes-run{
-        display: inline;
-    }
+    // .nodes-run{
+    //     display: inline;
+    // }
 }
 @media screen and (min-width:2560px){
     .box {
@@ -241,39 +254,3 @@
         left: 45%;
     }
 }
-/* - - - Node Status card - - - */
-.box-line-chart {
-    display: flex;
-    flex-direction: row;
-}
-.line-chart {
-    width:90%;
-    position: relative;
-}
-.bottom-line{
-    position: absolute;
-    bottom: 19px;
-    left: 0;
-    height: 1px;
-    width: 97%;
-    background-color: #EEEEEE;
-}
-.y-axis-line-chart {
-    width:10%;
-    display: flex;
-    flex-direction:column;
-    justify-content: space-between;
-}
-
-/* - - - Media Node Status card - - - */
-@media screen and (max-width:1500px){
-    .y-axis-line-chart {
-        width:15%;
-    }
-    .y-axis-line-chart span {
-        font-size: .8em;
-    }
-
-}
-
-  

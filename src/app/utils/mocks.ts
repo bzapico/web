@@ -211,37 +211,37 @@ export const mockResourcesSummary = {
 /**
  * Mocked nodes list
  */
-export const mockNodesList = [
+export const mockNodeList = [
     {
-        id: '0800200c9a61',
-        ip: '100.022.0125',
+        id: '0800200c9a69',
+        ip: '100.022.0129',
         credentials: 'Private',
         tags: 'ny, edge',
         status: 'Running',
     },
     {
-        id: '0800200c9a61',
-        ip: '100.022.0125',
+        id: '0800200c9a68',
+        ip: '100.022.0128',
         credentials: 'Private',
         tags: 'ny, edge',
         status: 'Running',
     },
     {
-        id: '0800200c9a61',
-        ip: '100.022.0125',
+        id: '0800200c9a67',
+        ip: '100.022.0127',
         credentials: 'Private',
         tags: 'ny, edge',
         status: 'Running',
     },
     {
-        id: '0800200c9a61',
-        ip: '100.022.0125',
-        credentials: 'Private',
+        id: '0800200c9a66',
+        ip: '100.022.0126',
+        credentials: 'Public',
         tags: 'ny, edge',
         status: 'Error',
     },
     {
-        id: '0800200c9a61',
+        id: '0800200c9a65',
         ip: '100.022.0125',
         credentials: 'Private',
         tags: 'ny, edge',

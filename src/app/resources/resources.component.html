@@ -225,7 +225,7 @@
             <tr *ngFor="let cluster of clusters">
               <td>
                 <a 
-                  [routerLink]="['/cluster/', cluster.name]" 
+                  [routerLink]="['cluster', cluster.name]" 
                   routerLinkActive="active" 
                   class="blue">{{cluster.name}}
                 </a>
@@ -233,7 +233,7 @@
               <td>{{cluster.id}}</td>
               <td>
                 <a 
-                  [routerLink]="['/cluster/', cluster.name]" 
+                  [routerLink]="['cluster', cluster.name]" 
                   routerLinkActive="active" 
                   class="blue">{{cluster.totalNodes}}
                 </a>
@@ -264,3 +264,4 @@
     </div>
   </div>
 </div>
+
