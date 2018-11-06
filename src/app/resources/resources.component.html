@@ -223,9 +223,21 @@
           </thead>
           <tbody>
             <tr *ngFor="let cluster of clusters">
-              <td><a routerLink="/{{cluster.id}}/cluster" routerLinkActive="active" class="blue">{{cluster.name}}</a></td>
+              <td>
+                <a 
+                  [routerLink]="['/cluster/', cluster.name]" 
+                  routerLinkActive="active" 
+                  class="blue">{{cluster.name}}
+                </a>
+              </td>
               <td>{{cluster.id}}</td>
-              <td><a routerLink="/{{cluster.id}}/cluster" routerLinkActive="active" class="blue">{{cluster.totalNodes}}</a></td>  
+              <td>
+                <a 
+                  [routerLink]="['/cluster/', cluster.name]" 
+                  routerLinkActive="active" 
+                  class="blue">{{cluster.totalNodes}}
+                </a>
+              </td>  
               <td>{{cluster.description}}</td>
               <td>{{cluster.type}}</td>
               <td 
@@ -237,10 +249,12 @@
               <td>{{cluster.tags}}</td>
               <td>{{cluster.multitenant}}</td>
               <td>
-                <button class="btn info-btn btn-primary" (click)="openEditCluster(cluster)">
-                  <i class="material-icons i-info">
-                    edit
-                  </i>
+                <button 
+                  class="btn info-btn btn-primary" 
+                  (click)="openEditCluster(cluster)">
+                    <i class="material-icons i-info">
+                      edit
+                    </i>
                 </button>
               </td>
             </tr>
