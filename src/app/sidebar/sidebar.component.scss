@@ -1,5 +1,4 @@
 .sidebar {
-    width: 313px;
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -155,8 +154,37 @@
     position: relative;
 }
 
-@media screen and (max-width:1500px){
+@media screen and (max-width:1300px){
    .avatar-frame {
        display: none;
     }
+    .sidebar .nav-item .nav-link {
+        font-size: 15px;
+      }
+      .nav .active::before {
+        height: 62px;
+      }
+      .sidebar {
+        .nav-item {
+          .profile {
+            .name {
+              font-size: 21px;
+            }
+            .email {
+              font-size: 15px;
+            }
+            .type {
+              font-size: 16px;
+            }
+          }
+          .nav-link .arrow {
+            margin-right: 13px;
+          }
+        }
+        .nav-title {
+          padding: 40px 18px;
+          font-size: 13px;
+          letter-spacing: 26px;
+        }
+      }
 }

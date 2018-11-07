@@ -207,10 +207,15 @@ button[type="submit"]:disabled {
 
 .carousel-big {
   display: block;
-  div {
+  div
+  {
     height: 100%;
   }
 }
+// .carousel-big:first-child div {
+//     height: 100%;
+//   }
+
 .carousel-small {
   display: none;
 }
