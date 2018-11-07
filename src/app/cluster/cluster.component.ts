@@ -44,11 +44,6 @@ export class ClusterComponent implements OnInit {
   nodes: any[];
 
   /**
-   * Array containing charts data in the required format for NGX-Charts library rendering
-   */
-  pieChartsData: any[];
-
-  /**
    * Count of total nodes
    */
   nodesCount: number;
@@ -103,12 +98,10 @@ export class ClusterComponent implements OnInit {
     }
 
     // Default initialization
-
     this.clusters = [];
     this.nodes = [];
     this.nodesCount = 0;
     this.clustersCount = 0;
-    this.pieChartsData = [];
     this.clusterData = [];
 
   /**
@@ -143,19 +136,6 @@ export class ClusterComponent implements OnInit {
     //    }
     //  });
   }
-  /**
-   * Updates the pieChartsData with latest changes
-   * @param clusterList Array containing the cluster list that sources the chart values
-   * @param pieChartsData Array that contains sub-arrays that hold each chart labels and values
-   */
-  updatePieChartsData (clusterList, pieChartsData) {
-    for (let i = 0; i < pieChartsData.length; i++) {
-      pieChartsData.pop();
-    }
-    clusterList.forEach(element => {
-      pieChartsData.push(this.generateClusterChartData(element.runningNodes, element.totalNodes));
-    });
-  }
    /**
    * Generates the NGX-Chart required JSON object for pie chart rendering
    * @param running Number of running nodes in a cluster
@@ -184,7 +164,6 @@ export class ClusterComponent implements OnInit {
       if (response && response._body) {
         const data = JSON.parse(response._body);
         this.nodes = data;
-        this.updatePieChartsData(this.clusters, this.pieChartsData);
       }
     });
   }

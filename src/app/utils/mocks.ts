@@ -269,3 +269,20 @@ export const mockNodeList = [
         status: 'Running',
     }
 ];
+
+/**
+ * Mocked clusters detail
+ */
+export const mockClusterDetail = [
+    {
+        name: 'Cluster1',
+        id: '0800200c9a61',
+        totalNodes: '10',
+        runningNodes: '1',
+        description: 'Ny Cluster',
+        type: 'Kubernetes',
+        status: 'Running',
+        tags: 'ny, edge',
+        multitenant: 'All'
+    }
+];
