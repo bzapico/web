@@ -24,7 +24,7 @@ RUN $(npm bin)/ng build --prod
 
 FROM nginx:1.13.3-alpine
 
-#COPY components/web/nginx/default.conf /etc/nginx/conf.d/
+#COPY components/web/nginx/nalej_web.conf /etc/nginx/conf.d/
 
 ## Remove default nginx website
 RUN rm -rf /usr/share/nginx/html/*
