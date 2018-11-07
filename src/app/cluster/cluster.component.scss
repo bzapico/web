@@ -46,6 +46,7 @@
 .circle-name {
     font-size: 1.2em;
     color:#949494;
+    margin-top: 1.2em;
 }
 .cluster-summary {
     float: right;
@@ -73,7 +74,7 @@
 /* - - - Medias Summary Cluster card - - - */
 @media screen and (max-width:1500px){
     .circle {
-        margin-top: 0;
+        margin: 0 .5em;
         max-width: 65px;
         max-height: 65px;
     }
@@ -84,13 +85,16 @@
     }
     .circle-name {
         font-size: 1em !important;
-        margin-top: 1em;
+        margin-top: .4em;
     }
     .table td {
         padding: .6rem 1rem;
     }
     .cluster-summary {
         padding: 0;
+    }
+    .summary-space {
+        margin-top: 0.7em;
     }
 }
 @media screen and (min-width:2560px){
@@ -104,7 +108,7 @@
         left: 58px;
     }
     .circle-name{
-        margin-top: 2em !important;
+        margin-top: 3em !important;
     }
     .cluster-summary {
         padding: 4em 3em 0 3em;
@@ -212,11 +216,12 @@
     height: 70%;
     text-align: center;
     position: relative;
+    padding-top: .9em;
 }
 .donut-number {
     position: absolute;
-    top: 43%;
-    left: 45%;
+    top: 50%;
+    left: 46%;
 }
 
 /* - - - Media Cluster card pie chart- - - */
@@ -234,8 +239,11 @@
         height: 85%;
     }
     .donut-number {
-        top: 40% !important;
+        top: 55% !important;
         left: 36% !important;
+    }
+    .nodes-run-node {
+        font-size: .8em;
     }
 }
 @media screen and (min-width:2560px){
@@ -247,7 +255,7 @@
         height: 100%;
     }
     .donut-number {
-        top: 45%;
+        top: 49%;
         left: 42%;
     }
 }
