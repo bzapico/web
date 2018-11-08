@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 // tslint:disable-next-line:max-line-length
 import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo,
-         mockResetPasword, mockClusterList, mockResourcesSummary  } from '../utils/mocks';
+         mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsList  } from '../utils/mocks';
 
 @Injectable({
   providedIn: 'root'
@@ -165,4 +165,19 @@ export class MockupBackendService implements Backend {
     })));
   }
 
-}
+
+
+  /********************
+   * Appications
+   ********************/
+
+  /**
+   * Simulates get apps list
+   */
+    getApps(organizationId: string) {
+      return of (new Response(new ResponseOptions({
+        body: JSON.stringify(mockAppsList),
+        status: 200
+      })));
+    }
+  }

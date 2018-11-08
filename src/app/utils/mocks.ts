@@ -209,7 +209,7 @@ export const mockResourcesSummary = {
 };
 
 /**
- * Mocked app list
+ * Mocked App list
  */
 export const mockAppsList = [
     {
@@ -255,7 +255,7 @@ export const mockAppsList = [
 ];
 
 /**
- * Mocked app list
+ * Mocked Apps status timeline
  */
 export const mockAppChart = [
     {

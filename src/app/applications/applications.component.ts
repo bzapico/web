@@ -4,9 +4,11 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { mockAppChart, mockAppPieChart } from '../utils/mocks';
+import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
 @Component({
-  selector: 'app-applications',
+  // tslint:disable-next-line:component-selector
+  selector: 'applications',
   templateUrl: './applications.component.html',
   styleUrls: ['./applications.component.scss']
 })
@@ -21,7 +23,7 @@ export class ApplicationsComponent implements OnInit {
    */
   organizationId: string;
 
-   /**
+  /**
    * List of available apps
    */
   apps: any[];
@@ -75,6 +77,16 @@ export class ApplicationsComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
+    const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
+    // check which backend is required (fake or real)
+    if (mock && mock === 'true') {
+      this.backend = mockupBackendService;
+    } else {
+      this.backend = backendService;
+    }
+
+    // Default initialization
+
 
     this.apps = [];
     /**
@@ -85,7 +97,20 @@ export class ApplicationsComponent implements OnInit {
 
 
   ngOnInit() {
-
-  }
-
+      // Get User data from localStorage
+      const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+      if (jwtData !== null) {
+        this.organizationId = JSON.parse(jwtData).OrganizationId;
+        if (this.organizationId !== null) {
+          // Requests top card summary data
+          this.backend.getApps(this.organizationId)
+          .subscribe(response => {
+            if (response && response._body) {
+              const data = JSON.parse(response._body);
+              this.apps = data;
+            }
+          });
+        }
+      }
+    }
 }
