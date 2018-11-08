@@ -6,7 +6,7 @@
   </div>
   <div class="row row-info">
     <!-- Summary info card -->
-    <div class="col-lg-4 h-100">
+    <div class="col-lg-5 h-100">
       <div class="card p-4 h-100">
         <div class="card-title-c">
           <h5>SUMMARY</h5>
@@ -17,7 +17,7 @@
               <div class="donut-chart">
                 <ngx-charts-pie-chart
                   [scheme]="colorScheme" 
-                  [results]="mockClusterChart" 
+                  [results]="mockAppPieChart" 
                   [doughnut]= "doughnut"
                   [gradient]="gradient"
                   [explodeSlices]="false"
@@ -25,7 +25,7 @@
                 </ngx-charts-pie-chart>
                 <div class="donut-number">4/5</div>
               </div>
-              <p class="blue nodes-run mb-0">All nodes running</p>
+              <p class="blue apps-run mb-0">Apps running</p>
               <p class="grey">DEPLOYED</p>
             </div>
           </div>
@@ -39,7 +39,7 @@
       </div>
     </div>
     <!-- App status timeline info card -->
-    <div class="col-lg-8 h-100">
+    <div class="col-lg-7 h-100">
       <div class="card p-4 h-100">
         <div class="card-title-c">
           <h5>APP STATUS TIMELINE</h5>
@@ -49,7 +49,7 @@
             <div class="bottom-line"></div>
             <ngx-charts-line-chart
               [scheme]="colorScheme"
-              [results]="mockNodesChart"
+              [results]="mockAppChart"
               [xAxis]="showXAxis"
               [yAxis]="showYAxis"
               [gradient]="gradient" 
@@ -109,15 +109,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>App Name</td>
-                <td>321321321</td>
-                <td>Instance of MongoDB</td>  
-                <td>Tag, tag, tag</td>
-                <td>Kubernetes</td>
+              <tr *ngFor="let app of apps">
+                <td>{{app.name}}</td>
+                <td>{{app.id}}</td>
+                <td>{{app.description}}</td>  
+                <td>{{app.tags}}</td>
+                <td>{{app.configuration}}}</td>
                 <td 
                   class="status-dot">
-                 Running
+                {{app.status}}
                 </td>
                   <td class="row-info-btn">
                     <button class="btn info-btn btn-primary">

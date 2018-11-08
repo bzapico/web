@@ -207,3 +207,115 @@ export const mockResourcesSummary = {
     totalClusters: mockClusterList.length,
     totalNodes: mockClusterList.length * 10
 };
+
+/**
+ * Mocked app list
+ */
+export const mockAppsList = [
+    {
+        name: 'App1',
+        id: '0800200c9a61',
+        description: 'MongoDB',
+        tags: 'ny, edge',
+        configuration: 'Kubernetes',
+        service: 'Running',
+    },
+    {
+        name: 'App2',
+        id: '0800200c9a62',
+        description: 'MongoDB',
+        tags: 'ny, edge',
+        configuration: 'Kubernetes',
+        service: 'Running',
+    },
+    {
+        name: 'App3',
+        id: '0800200c9a63',
+        description: 'MongoDB',
+        tags: 'ny, edge',
+        configuration: 'Kubernetes',
+        service: 'Running',
+    },
+    {
+        name: 'App4',
+        id: '0800200c9a64',
+        description: 'MongoDB',
+        tags: 'ny, edge',
+        configuration: 'Kubernetes',
+        service: 'Running',
+    },
+    {
+        name: 'App5',
+        id: '0800200c9a65',
+        description: 'MongoDB',
+        tags: 'ny, edge',
+        configuration: 'Kubernetes',
+        service: 'Running',
+    }
+];
+
+/**
+ * Mocked app list
+ */
+export const mockAppChart = [
+    {
+        'name': 'Apps Running',
+        'series': [
+          {
+            'value': 39,
+            'name': '-6h',
+            'min': 28,
+            'max': 49
+          },
+          {
+            'value': 79,
+            'name': '-5h',
+            'min': 66,
+            'max': 91
+          },
+          {
+            'value': 23,
+            'name': '-4h',
+            'min': 3,
+            'max': 14
+          },
+          {
+            'value': 96,
+            'name': '-3h',
+            'min': 76,
+            'max': 16
+          },
+          {
+            'value': 40,
+            'name': '-2h',
+            'min': 45,
+            'max': 100
+          },
+          {
+            'value': 73,
+            'name': '-1h',
+            'min': 3,
+            'max': 15
+          },
+          {
+            'value': 23,
+            'name': 'now',
+            'min': 45,
+            'max': 100
+          }
+        ]
+      }
+];
+/**
+ * Mocked Apps Pie Chart
+ */
+export const mockAppPieChart = [
+    {
+        name: 'Running',
+        value: 5
+    },
+    {
+        name: 'Error',
+        value: 4
+    }
+];

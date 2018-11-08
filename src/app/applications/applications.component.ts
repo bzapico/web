@@ -3,7 +3,7 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
-import { mockClusterChart, mockNodesChart } from '../utils/mocks';
+import { mockAppChart, mockAppPieChart } from '../utils/mocks';
 
 @Component({
   selector: 'app-applications',
@@ -20,6 +20,12 @@ export class ApplicationsComponent implements OnInit {
    * Model that hold organization ID
    */
   organizationId: string;
+
+   /**
+   * List of available apps
+   */
+  apps: any[];
+
   /**
    * Pie Chart options
    */
@@ -60,24 +66,26 @@ export class ApplicationsComponent implements OnInit {
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
-  mockClusterChart: any;
-  mockNodesChart: any;
+  mockAppChart: any;
+  mockAppPieChart: any;
   autoScale: any;
-
 
   constructor(
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
+
+    this.apps = [];
     /**
    * Mocked Charts
    */
-  Object.assign(this, {mockClusterChart, mockNodesChart});
+  Object.assign(this, {mockAppPieChart, mockAppChart});
 }
 
 
   ngOnInit() {
+
   }
 
 }

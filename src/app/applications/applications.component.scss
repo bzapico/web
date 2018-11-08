@@ -199,7 +199,7 @@
     justify-content: space-around;
     height: 100%!important;
 }
-.nodes-run {
+.apps-run {
     font-size: .8em;
 }
 .box {
@@ -245,7 +245,7 @@
     //     display: inline;
     //     left: 33%;
     // }
-    // .nodes-run{
+    // .apps-run{
     //     display: inline;
     // }
 }
@@ -279,10 +279,11 @@
     background-color: #EEEEEE;
 }
 .y-axis-line-chart {
-    width:10%;
+    width:8%;
     display: flex;
     flex-direction:column;
     justify-content: space-between;
+    text-align: right;
 }
 
 /* - - - Media App Status card - - - */
