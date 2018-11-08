@@ -29,20 +29,20 @@
 
 /* - - - Summary Cluster card - - - */
 .circle {
-    width:112px;
+    width: 112px;
     height: 112px;
-    border: 1px solid #949494; 
-    -moz-border-radius: 50%; 
-    -webkit-border-radius: 50%; 
+    border: 1px solid #949494;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
     border-radius: 50%;
     position: relative;
     margin-top: 2em;
-}
-.circle span {
-    text-align: center;
-    color: black;
-    font-size: 1.7em;
-}
+    span {
+      text-align: center;
+      color: black;
+      font-size: 1.7em;
+    }
+  }
 .circle-name {
     font-size: 1.2em;
     color:#949494;
@@ -73,15 +73,15 @@
 
 /* - - - Medias Summary Cluster card - - - */
 @media screen and (max-width:1500px){
-    .circle {
+    circle {
         margin: 0 .5em;
         max-width: 65px;
         max-height: 65px;
-    }
-    .circle span {
-        font-size: 1em !important;
-        top: 21px;
-        left: 25px;
+        span {
+          font-size: 1em !important;
+          top: 21px;
+          left: 25px;
+        }
     }
     .circle-name {
         font-size: 1em !important;
@@ -102,10 +102,10 @@
         margin-top: 3em;
         min-width: 140px;
         min-height: 140px;
-    }
-    .circle span {
-        top: 54px;
-        left: 58px;
+        span {
+          top: 54px;
+          left: 58px;
+        }
     }
     .circle-name{
         margin-top: 3em !important;
@@ -179,8 +179,11 @@
 @media screen and (max-width:1500px){
     .card-title-h {
         margin-bottom: 57px;
-    }
-    .card-title-h h5, .card-title-c h5 {
+        h5 {
+          font-size: 1em;
+        }
+      }
+    .card-title-c h5 {
         font-size: 1em;
     }
     .table-h .table td {
