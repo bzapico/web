@@ -139,6 +139,11 @@
             </tr>
           </tbody>
         </table>
+        <div
+          *ngIf="nodes && nodes.length === 0"
+          class="no-elements d-flex justify-content-center align-items-center">
+          <p>There are not registered nodes in this cluster</p>
+        </div>
       </div>
     </div>
   </div>
