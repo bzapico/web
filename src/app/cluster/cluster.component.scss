@@ -1,25 +1,15 @@
-.row-title {
-    height: 4%;
+.box-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%!important;
 }
-.row-info {
-    height: 29%;
-    margin-bottom: 2.2rem;
-}
-.row-main {
-    height: 54%;
-}
-.card {
-    -webkit-box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
-    -moz-box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
-    box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
-    border-radius: 10px;
-    border: 0;
-    overflow: hidden;
-}
-.card-title-h {
-    height: 4%;
-    margin-left: 9px;
-    margin-bottom: 70px;
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .cluster-number {
     float: right;
@@ -50,7 +40,6 @@
 }
 .cluster-summary {
     float: right;
-    width: 50%;
     padding: 2em 2em 0 2em;
     td {
         padding: 1.1rem;
@@ -73,9 +62,6 @@
 
 /* - - - Medias Summary Cluster card - - - */
 @media screen and (max-width:1500px){
-    .card {
-        padding: 1.3rem!important;
-    }
     .circle {
         margin: 0 .5em;
         max-width: 65px;
@@ -96,9 +82,6 @@
     .cluster-summary {
         padding: 0;
     }
-    .summary-space {
-        margin-top: 0.7em;
-    }
 }
 @media screen and (min-width:2560px){
     .circle {
@@ -117,7 +100,6 @@
         padding: 4em 3em 0 3em;
     }
 }
-
 
 /* - - - Cluster table card - - - */
 .table-h {
@@ -180,12 +162,6 @@
 
 /* - - - Medias Cluster table card - - - */
 @media screen and (max-width:1500px){
-    .card-title-h {
-        margin-bottom: 57px;
-        h5 {
-          font-size: 1em;
-        }
-      }
     .card-title-c h5 {
         font-size: 1em;
     }
@@ -201,21 +177,8 @@
 }
 
 /* - - - Cluster card pie chart - - - */
-.pie-box {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    height: 100%!important;
-}
 .nodes-run {
     font-size: .8em;
-}
-.box {
-    width: 90%;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
 }
 .donut-chart {
     width: 100%;
@@ -226,7 +189,7 @@
 }
 .donut-number {
     position: absolute;
-    top: 50%;
+    top: 49%;
     left: 46%;
 }
 
@@ -245,23 +208,11 @@
         height: 85%;
     }
     .donut-number {
-        top: 55% !important;
-        left: 36% !important;
+        top: 57%;
+        left: 38%;
+        font-size: .8em;
     }
     .nodes-run-node {
         font-size: .8em;
-    }
-}
-@media screen and (min-width:2560px){
-    .box {
-        width: 31%;
-        min-height: 249px;
-    }
-    .donut-chart {
-        height: 100%;
-    }
-    .donut-number {
-        top: 47% !important;
-        left: 40% !important;
     }
 }
