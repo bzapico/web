@@ -3,16 +3,25 @@ export const mockJwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
     '.eyJVc2VySWQiOiJqb2huLmRvZUBtYWlsLmNvbSIsIk9yZ2FuaXphdGlvbklkIjoiMjE0MzQ2NTQzNDM0MyIsIlByaW1pdGl2ZXMiOlsiMCIsIjEiLCIyIiwiMyJdLCJSb2xlbmFtZSI6Ik93bmVyIiwiRXhwaXJlc0F0IjoxMjMzODU3MjcxMjc0M30' +
     '.kF9ac17V9mWoWMYjhHyc9GD8hGw6wRT6wwNgdUJ1v4c';
 
+/**
+ * Mocked profile info
+ */
 export const mockUserProfileInfo = {
     name: 'John Doe',
     email: 'john.doe@mail.com',
     role: 'Owner'
 };
 
+/**
+ * Mocked organization info
+ */
 export const mockOrganizationInfo = {
     name: 'Nike'
 };
 
+/**
+ * Mocked users list
+ */
 export const mockUserList = [
     {
         name: 'John Doe',
@@ -45,6 +54,7 @@ export const mockUserList = [
         role: 'Owner'
     },
 ];
+
 /**
  * Mocked clusters list
  */
@@ -192,7 +202,7 @@ export const mockNodesChart = [
             'max': 100
           }
         ]
-      },
+    }
 ];
 
 /**
@@ -255,6 +265,68 @@ export const mockAppsList = [
 ];
 
 /**
+ * Mocked nodes list
+ */
+export const mockNodeList = [
+    {
+        id: '0800200c9a69',
+        ip: '100.022.0129',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    },
+    {
+        id: '0800200c9a68',
+        ip: '100.022.0128',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    },
+    {
+        id: '0800200c9a67',
+        ip: '100.022.0127',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    },
+    {
+        id: '0800200c9a66',
+        ip: '100.022.0126',
+        credentials: 'Public',
+        tags: 'ny, edge',
+        status: 'Error',
+    },
+    {
+        id: '0800200c9a65',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    },
+    {
+        id: '0800200c9a65',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Error',
+    },
+    {
+        id: '0800200c9a65',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    },
+    {
+        id: '0800200c9a65',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    }
+];
+
+/**
  * Mocked Apps status timeline
  */
 export const mockAppChart = [
@@ -306,6 +378,7 @@ export const mockAppChart = [
         ]
       }
 ];
+
 /**
  * Mocked Apps Pie Chart
  */
@@ -317,5 +390,22 @@ export const mockAppPieChart = [
     {
         name: 'Error',
         value: 4
+    }
+];
+
+/**
+ *  Mocked clusters detail
+ */
+export const mockClusterDetail = [
+    {
+        name: 'Cluster1',
+        id: '0800200c9a61',
+        totalNodes: '10',
+        runningNodes: '1',
+        description: 'Ny Cluster',
+        type: 'Kubernetes',
+        status: 'Running',
+        tags: 'ny, edge',
+        multitenant: 'All'
     }
 ];

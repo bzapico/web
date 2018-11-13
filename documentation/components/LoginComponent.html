@@ -532,50 +532,48 @@ export class LoginComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;login&quot;&gt;
-  &lt;div class&#x3D;&quot;container&quot;&gt;
-      &lt;!-- Login form --&gt;
-      &lt;form 
-      [formGroup]&#x3D;&quot;loginForm&quot;
-      #f&#x3D;&quot;ngForm&quot;
-      class&#x3D;&quot;form-login&quot;
-      (ngSubmit)&#x3D;&quot;f.form.valid &amp;&amp; onSubmit()&quot;&gt;
-          &lt;h2 class&#x3D;&quot;form-login-heading&quot; (click)&#x3D;&quot;openDebugPanel()&quot;&gt;Nalej&lt;/h2&gt;
-          &lt;div class&#x3D;&quot;card&quot;&gt;
-              &lt;h5 class&#x3D;&quot;card-title&quot;&gt;Log in&lt;/h5&gt;
-              &lt;div class&#x3D;&quot;card-body&quot;&gt;
-                  &lt;!-- Form fields --&gt;
-                  &lt;input 
-                      type&#x3D;&quot;email&quot; 
-                      formControlName&#x3D;&quot;email&quot;
-                      class&#x3D;&quot;form-control&quot; 
-                      placeholder&#x3D;&quot;Email*&quot; 
-                      [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: f.submitted &amp;&amp; loginForm.controls.email.invalid }&quot; 
-                      required&gt;
-                      &lt;div *ngIf&#x3D;&quot;loginForm.controls.email.invalid&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-                        &lt;div *ngIf&#x3D;&quot;loginForm.controls.email.errors.required&quot;&gt;Email is required&lt;/div&gt;
-                        &lt;div *ngIf&#x3D;&quot;loginForm.controls.email.errors.email&quot;&gt;Email must be a valid email address&lt;/div&gt;
-                      &lt;/div&gt;
-                  &lt;input 
-                      type&#x3D;&quot;password&quot; 
-                      formControlName&#x3D;&quot;password&quot;
-                      class&#x3D;&quot;form-control&quot; 
-                      placeholder&#x3D;&quot;Password*&quot;
-                      [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: f.submitted &amp;&amp; loginForm.controls.password.invalid }&quot; 
-                      required&gt;
-                      &lt;div *ngIf&#x3D;&quot;loginForm.controls.password.invalid&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-                        &lt;div *ngIf&#x3D;&quot;loginForm.controls.password.errors.required&quot;&gt;Password is required&lt;/div&gt;
-                        &lt;div *ngIf&#x3D;&quot;loginForm.controls.password.errors.minlength&quot;&gt;Password must be at least 6 characters&lt;/div&gt;
-                      &lt;/div&gt;
-                  &lt;!-- Form actions --&gt;
-                  &lt;button 
-                    class&#x3D;&quot;btn btn-lg btn-primary btn-block&quot; 
-                    type&#x3D;&quot;submit&quot;&gt;
-                    Log in
-                  &lt;/button&gt;
-              &lt;/div&gt;  
-          &lt;/div&gt; 
-      &lt;/form&gt;
-  &lt;/div&gt;
+    &lt;!-- Login form --&gt;
+    &lt;form 
+    [formGroup]&#x3D;&quot;loginForm&quot;
+    #f&#x3D;&quot;ngForm&quot;
+    class&#x3D;&quot;form-login&quot;
+    (ngSubmit)&#x3D;&quot;f.form.valid &amp;&amp; onSubmit()&quot;&gt;
+        &lt;h2 class&#x3D;&quot;form-login-heading&quot; (click)&#x3D;&quot;openDebugPanel()&quot;&gt;Nalej&lt;/h2&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;h5 class&#x3D;&quot;card-title&quot;&gt;Log in&lt;/h5&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;!-- Form fields --&gt;
+                &lt;input 
+                    type&#x3D;&quot;email&quot; 
+                    formControlName&#x3D;&quot;email&quot;
+                    class&#x3D;&quot;form-control&quot; 
+                    placeholder&#x3D;&quot;Email*&quot; 
+                    [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: f.submitted &amp;&amp; loginForm.controls.email.invalid }&quot; 
+                    required&gt;
+                    &lt;div *ngIf&#x3D;&quot;loginForm.controls.email.invalid&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                    &lt;div *ngIf&#x3D;&quot;loginForm.controls.email.errors.required&quot;&gt;Email is required&lt;/div&gt;
+                    &lt;div *ngIf&#x3D;&quot;loginForm.controls.email.errors.email&quot;&gt;Email must be a valid email address&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;input 
+                    type&#x3D;&quot;password&quot; 
+                    formControlName&#x3D;&quot;password&quot;
+                    class&#x3D;&quot;form-control&quot; 
+                    placeholder&#x3D;&quot;Password*&quot;
+                    [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: f.submitted &amp;&amp; loginForm.controls.password.invalid }&quot; 
+                    required&gt;
+                    &lt;div *ngIf&#x3D;&quot;loginForm.controls.password.invalid&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                    &lt;div *ngIf&#x3D;&quot;loginForm.controls.password.errors.required&quot;&gt;Password is required&lt;/div&gt;
+                    &lt;div *ngIf&#x3D;&quot;loginForm.controls.password.errors.minlength&quot;&gt;Password must be at least 6 characters&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;!-- Form actions --&gt;
+                &lt;button 
+                class&#x3D;&quot;btn btn-lg btn-primary btn-block&quot; 
+                type&#x3D;&quot;submit&quot;&gt;
+                Log in
+                &lt;/button&gt;
+            &lt;/div&gt;  
+        &lt;/div&gt; 
+    &lt;/form&gt;
 &lt;/div&gt;</code></pre>
     </div>
 
@@ -604,8 +602,8 @@ export class LoginComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="login">  <div class="container">      <!-- Login form -->      <form       [formGroup]="loginForm"      #f="ngForm"      class="form-login"      (ngSubmit)="f.form.valid && onSubmit()">          <h2 class="form-login-heading" (click)="openDebugPanel()">Nalej</h2>          <div class="card">              <h5 class="card-title">Log in</h5>              <div class="card-body">                  <!-- Form fields -->                  <input                       type="email"                       formControlName="email"                      class="form-control"                       placeholder="Email*"                       [ngClass]="{ \'is-invalid\': f.submitted && loginForm.controls.email.invalid }"                       required>                      <div *ngIf="loginForm.controls.email.invalid" class="invalid-feedback">                        <div *ngIf="loginForm.controls.email.errors.required">Email is required</div>                        <div *ngIf="loginForm.controls.email.errors.email">Email must be a valid email address</div>                      </div>                  <input                       type="password"                       formControlName="password"                      class="form-control"                       placeholder="Password*"                      [ngClass]="{ \'is-invalid\': f.submitted && loginForm.controls.password.invalid }"                       required>                      <div *ngIf="loginForm.controls.password.invalid" class="invalid-feedback">                        <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>                        <div *ngIf="loginForm.controls.password.errors.minlength">Password must be at least 6 characters</div>                      </div>                  <!-- Form actions -->                  <button                     class="btn btn-lg btn-primary btn-block"                     type="submit">                    Log in                  </button>              </div>            </div>       </form>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><div class="login">    <!-- Login form -->    <form     [formGroup]="loginForm"    #f="ngForm"    class="form-login"    (ngSubmit)="f.form.valid && onSubmit()">        <h2 class="form-login-heading" (click)="openDebugPanel()">Nalej</h2>        <div class="card">            <h5 class="card-title">Log in</h5>            <div class="card-body">                <!-- Form fields -->                <input                     type="email"                     formControlName="email"                    class="form-control"                     placeholder="Email*"                     [ngClass]="{ \'is-invalid\': f.submitted && loginForm.controls.email.invalid }"                     required>                    <div *ngIf="loginForm.controls.email.invalid" class="invalid-feedback">                    <div *ngIf="loginForm.controls.email.errors.required">Email is required</div>                    <div *ngIf="loginForm.controls.email.errors.email">Email must be a valid email address</div>                    </div>                <input                     type="password"                     formControlName="password"                    class="form-control"                     placeholder="Password*"                    [ngClass]="{ \'is-invalid\': f.submitted && loginForm.controls.password.invalid }"                     required>                    <div *ngIf="loginForm.controls.password.invalid" class="invalid-feedback">                    <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>                    <div *ngIf="loginForm.controls.password.errors.minlength">Password must be at least 6 characters</div>                    </div>                <!-- Form actions -->                <button                 class="btn btn-lg btn-primary btn-block"                 type="submit">                Log in                </button>            </div>          </div>     </form></div></div>'
+    var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginComponent'};
 </script>

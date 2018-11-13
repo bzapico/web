@@ -670,61 +670,59 @@ export class SidebarComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;sidebar&quot;&gt;
-  &lt;nav class&#x3D;&quot;sidebar-nav&quot;&gt;
-    &lt;ul class&#x3D;&quot;nav&quot;&gt;
-      &lt;li class&#x3D;&quot;nav-title&quot; (click)&#x3D;&quot;openDebugPanel()&quot;&gt;Nalej&lt;/li&gt;
-      &lt;li class&#x3D;&quot;nav-item&quot;&gt;
-        &lt;a 
-        routerLinkActive&#x3D;&quot;active&quot; 
-        routerLink&#x3D;&quot;/profile&quot; 
-        class&#x3D;&quot;nav-link&quot;&gt;
-          &lt;div class&#x3D;&quot;profile&quot;&gt;
-            &lt;div class&#x3D;&quot;avatar-frame&quot;&gt;
-                &lt;i class&#x3D;&quot;material-icons&quot;&gt;person&lt;/i&gt;
-            &lt;/div&gt;
-            &lt;p class&#x3D;&quot;name&quot;&gt;{{name}}&lt;/p&gt;
-            &lt;p class&#x3D;&quot;type&quot;&gt;{{role}}&lt;/p&gt;
-            &lt;p class&#x3D;&quot;email&quot;&gt;{{email}}&lt;/p&gt;
+  &lt;ul class&#x3D;&quot;nav&quot;&gt;
+    &lt;li class&#x3D;&quot;nav-title&quot; (click)&#x3D;&quot;openDebugPanel()&quot;&gt;NALEJ&lt;/li&gt;
+    &lt;li class&#x3D;&quot;nav-item&quot;&gt;
+      &lt;a 
+      routerLinkActive&#x3D;&quot;active&quot; 
+      routerLink&#x3D;&quot;/profile&quot; 
+      class&#x3D;&quot;nav-link&quot;&gt;
+        &lt;div class&#x3D;&quot;profile&quot;&gt;
+          &lt;div class&#x3D;&quot;avatar-frame&quot;&gt;
+              &lt;i class&#x3D;&quot;material-icons&quot;&gt;person&lt;/i&gt;
           &lt;/div&gt;
-        &lt;/a&gt;
-      &lt;/li&gt;
-      &lt;li class&#x3D;&quot;nav-item nav-item-page&quot;&gt;
-        &lt;a
-        routerLinkActive&#x3D;&quot;active&quot; 
-        routerLink&#x3D;&quot;/organization&quot; 
-        class&#x3D;&quot;nav-link&quot;&gt;
-          &lt;i class&#x3D;&quot;material-icons&quot;&gt;group_work&lt;/i&gt;
-          Organization
-          &lt;span class&#x3D;&quot;arrow&quot;&gt;&gt;&lt;/span&gt;
-        &lt;/a&gt;
-      &lt;/li&gt;
-      &lt;li class&#x3D;&quot;nav-item nav-item-page&quot;&gt;
-        &lt;a         
-        routerLinkActive&#x3D;&quot;active&quot; 
-        routerLink&#x3D;&quot;/resources&quot; 
-        class&#x3D;&quot;nav-link&quot;&gt;
-          &lt;i class&#x3D;&quot;material-icons&quot;&gt;dns&lt;/i&gt;
-          Resources
-          &lt;span class&#x3D;&quot;arrow&quot;&gt;&gt;&lt;/span&gt;
-        &lt;/a&gt;
-      &lt;/li&gt;
-      &lt;li class&#x3D;&quot;nav-item nav-item-page&quot;&gt;
-        &lt;a         
-        routerLinkActive&#x3D;&quot;active&quot; 
-        routerLink&#x3D;&quot;/applications&quot; 
-        class&#x3D;&quot;nav-link&quot;&gt;
-          &lt;i class&#x3D;&quot;material-icons&quot;&gt;apps&lt;/i&gt;
-          Applications
-          &lt;span class&#x3D;&quot;arrow&quot;&gt;&gt;&lt;/span&gt;
-        &lt;/a&gt;
-      &lt;/li&gt;
-      &lt;li class&#x3D;&quot;d-flex flex-col justify-content-center margin-bottom-auto lo-btn&quot; (click)&#x3D;&quot;logout()&quot;&gt;
-        &lt;button class&#x3D;&quot;btn info-btn logout-btn btn-red logout my-4&quot;&gt;
-          Logout
-        &lt;/button&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/nav&gt;
+          &lt;p class&#x3D;&quot;name&quot;&gt;{{name}}&lt;/p&gt;
+          &lt;p class&#x3D;&quot;type&quot;&gt;{{role}}&lt;/p&gt;
+          &lt;p class&#x3D;&quot;email&quot;&gt;{{email}}&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class&#x3D;&quot;nav-item nav-item-page&quot;&gt;
+      &lt;a
+      routerLinkActive&#x3D;&quot;active&quot; 
+      routerLink&#x3D;&quot;/organization&quot; 
+      class&#x3D;&quot;nav-link&quot;&gt;
+        &lt;i class&#x3D;&quot;material-icons&quot;&gt;group_work&lt;/i&gt;
+        Organization
+        &lt;span class&#x3D;&quot;arrow&quot;&gt;&gt;&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class&#x3D;&quot;nav-item nav-item-page&quot;&gt;
+      &lt;a         
+      routerLinkActive&#x3D;&quot;active&quot; 
+      routerLink&#x3D;&quot;/resources&quot; 
+      class&#x3D;&quot;nav-link&quot;&gt;
+        &lt;i class&#x3D;&quot;material-icons&quot;&gt;dns&lt;/i&gt;
+        Resources
+        &lt;span class&#x3D;&quot;arrow&quot;&gt;&gt;&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class&#x3D;&quot;nav-item nav-item-page&quot;&gt;
+      &lt;a         
+      routerLinkActive&#x3D;&quot;active&quot; 
+      routerLink&#x3D;&quot;/applications&quot; 
+      class&#x3D;&quot;nav-link&quot;&gt;
+        &lt;i class&#x3D;&quot;material-icons&quot;&gt;apps&lt;/i&gt;
+        Applications
+        &lt;span class&#x3D;&quot;arrow&quot;&gt;&gt;&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class&#x3D;&quot;d-flex flex-col justify-content-center margin-bottom-auto lo-btn&quot; (click)&#x3D;&quot;logout()&quot;&gt;
+      &lt;button class&#x3D;&quot;btn info-btn logout-btn btn-red logout my-4&quot;&gt;
+        Logout
+      &lt;/button&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
     </div>
 
@@ -753,8 +751,8 @@ export class SidebarComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="sidebar">  <nav class="sidebar-nav">    <ul class="nav">      <li class="nav-title" (click)="openDebugPanel()">Nalej</li>      <li class="nav-item">        <a         routerLinkActive="active"         routerLink="/profile"         class="nav-link">          <div class="profile">            <div class="avatar-frame">                <i class="material-icons">person</i>            </div>            <p class="name">{{name}}</p>            <p class="type">{{role}}</p>            <p class="email">{{email}}</p>          </div>        </a>      </li>      <li class="nav-item nav-item-page">        <a        routerLinkActive="active"         routerLink="/organization"         class="nav-link">          <i class="material-icons">group_work</i>          Organization          <span class="arrow">></span>        </a>      </li>      <li class="nav-item nav-item-page">        <a                 routerLinkActive="active"         routerLink="/resources"         class="nav-link">          <i class="material-icons">dns</i>          Resources          <span class="arrow">></span>        </a>      </li>      <li class="nav-item nav-item-page">        <a                 routerLinkActive="active"         routerLink="/applications"         class="nav-link">          <i class="material-icons">apps</i>          Applications          <span class="arrow">></span>        </a>      </li>      <li class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn" (click)="logout()">        <button class="btn info-btn logout-btn btn-red logout my-4">          Logout        </button>      </li>    </ul>  </nav></div></div>'
-    var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><div class="sidebar">  <ul class="nav">    <li class="nav-title" (click)="openDebugPanel()">NALEJ</li>    <li class="nav-item">      <a       routerLinkActive="active"       routerLink="/profile"       class="nav-link">        <div class="profile">          <div class="avatar-frame">              <i class="material-icons">person</i>          </div>          <p class="name">{{name}}</p>          <p class="type">{{role}}</p>          <p class="email">{{email}}</p>        </div>      </a>    </li>    <li class="nav-item nav-item-page">      <a      routerLinkActive="active"       routerLink="/organization"       class="nav-link">        <i class="material-icons">group_work</i>        Organization        <span class="arrow">></span>      </a>    </li>    <li class="nav-item nav-item-page">      <a               routerLinkActive="active"       routerLink="/resources"       class="nav-link">        <i class="material-icons">dns</i>        Resources        <span class="arrow">></span>      </a>    </li>    <li class="nav-item nav-item-page">      <a               routerLinkActive="active"       routerLink="/applications"       class="nav-link">        <i class="material-icons">apps</i>        Applications        <span class="arrow">></span>      </a>    </li>    <li class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn" (click)="logout()">      <button class="btn info-btn logout-btn btn-red logout my-4">        Logout      </button>    </li>  </ul></div></div>'
+    var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SidebarComponent'};
 </script>
