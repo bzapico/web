@@ -179,12 +179,6 @@
     .table-h .table td {
         padding: .6rem 1rem;
     }
-    .status-dot:before {
-        margin: 0 23px;
-    }
-    .status-dot-error:before {
-        margin: 0 23px;
-    }
 }
 
 /* - - - Cluster card pie chart - - - */
@@ -200,8 +194,9 @@
 }
 .donut-number {
     position: absolute;
-    top: 49%;
+    top: 44%;
     left: 46%;
+    height: 22px;
 }
 
 /* - - - Media Cluster card pie chart- - - */
@@ -234,9 +229,5 @@
     }
     .donut-chart {
         height: 100%;
-    }
-    .donut-number {
-        top: 44%;
-        left: 45%;
     }
 }

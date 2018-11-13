@@ -100,6 +100,16 @@
     .status-dot-error:before {
         margin: 0 23px;
     }
+    .info-btn {
+        height: 25px;
+        width: 25px;
+    }
+    .i-info {
+        font-size: 1em;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+    }
 }
 
 /* - - - Summary card circles - - - */
@@ -109,6 +119,7 @@
     justify-content: space-around;
     align-items: center;
     height: 100%;
+    margin-top: 1em;
 }
 .summary-box {
     display: flex;
@@ -125,7 +136,7 @@
     -webkit-border-radius: 50%;
     border-radius: 50%;
     position: relative;
-    margin-top: 2em;
+    margin: 0 auto;
     span {
       text-align: center;
       color: black;
@@ -155,6 +166,9 @@
     .table td {
         padding: .6rem 1rem;
     }
+    .summary-card {
+        margin-top: 0em;
+    }
 }
 @media screen and (min-width:2560px){
     .circle {
@@ -177,6 +191,7 @@
 .nodes-run {
     font-size: .8em;
     margin-top: -1em;
+    cursor: pointer;
 }
 .box {
     width: 27%;
@@ -191,10 +206,13 @@
     text-align: center;
     position: relative;
 }
-.donut-number {
-    position: absolute;
-    top: 42%;
-    left: 36%;
+.carousel-big{
+    .donut-number {
+        position: absolute;
+        top: 44%;
+        left: 35%;
+        height: 22px;
+    }
 }
 .card-clus { 
     padding: 1.5rem 1.5rem 0 1.5rem;
@@ -202,9 +220,6 @@
 
 /* - - - Media Cluster card Slider - - - */
 @media screen and (max-width:1500px){
-    // .card-clus {   
-    //     padding-bottom: .5em !important;
-    // }
     .cluster-number {
         margin-bottom: 0;
         font-size: 0.8em;
@@ -227,6 +242,7 @@
     }
     .carousel-small{
         .donut-number {
+            position: absolute;
             top: 45%;
             left: 36%;
             font-size: .8em;
@@ -242,8 +258,7 @@
       }
     .carousel-big{
         .donut-number {
-            top: 43%;
-            left: 40%;
+            left: 41%;
         }
     }
 }
@@ -251,9 +266,10 @@
 .box-line-chart {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 .line-chart {
-    width:90%;
+    width:93%;
     position: relative;
 }
 .bottom-line{
@@ -265,20 +281,10 @@
     background-color: #EEEEEE;
 }
 .y-axis-line-chart {
-    width:10%;
+    font-size: .8em;
     display: flex;
     flex-direction:column;
     justify-content: space-between;
-}
-
-/* - - - Media Node Status card - - - */
-@media screen and (max-width:1500px){
-    .y-axis-line-chart {
-        width:15%;
-    }
-    .y-axis-line-chart span {
-        font-size: .8em;
-    }
 }
 
   
