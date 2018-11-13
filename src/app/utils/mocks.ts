@@ -207,3 +207,82 @@ export const mockResourcesSummary = {
     totalClusters: mockClusterList.length,
     totalNodes: mockClusterList.length * 10
 };
+
+/**
+ * Mocked nodes list
+ */
+export const mockNodeList = [
+    {
+        id: '0800200c9a69',
+        ip: '100.022.0129',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    },
+    {
+        id: '0800200c9a68',
+        ip: '100.022.0128',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    },
+    {
+        id: '0800200c9a67',
+        ip: '100.022.0127',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    },
+    {
+        id: '0800200c9a66',
+        ip: '100.022.0126',
+        credentials: 'Public',
+        tags: 'ny, edge',
+        status: 'Error',
+    },
+    {
+        id: '0800200c9a65',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    },
+    {
+        id: '0800200c9a65',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Error',
+    },
+    {
+        id: '0800200c9a65',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    },
+    {
+        id: '0800200c9a65',
+        ip: '100.022.0125',
+        credentials: 'Private',
+        tags: 'ny, edge',
+        status: 'Running',
+    }
+];
+
+/**
+ * Mocked clusters detail
+ */
+export const mockClusterDetail = [
+    {
+        name: 'Cluster1',
+        id: '0800200c9a61',
+        totalNodes: '10',
+        runningNodes: '1',
+        description: 'Ny Cluster',
+        type: 'Kubernetes',
+        status: 'Running',
+        tags: 'ny, edge',
+        multitenant: 'All'
+    }
+];

@@ -1,0 +1,232 @@
+.box-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%!important;
+}
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cluster-number {
+    float: right;
+    color: #949494;
+    font-size: 0.8em;
+}
+/* - - - Summary Cluster card - - - */
+.circle {
+    width: 112px;
+    height: 112px;
+    border: 1px solid #949494;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    position: relative;
+    span {
+      text-align: center;
+      color: black;
+      font-size: 1.7em;
+    }
+  }
+.circles-box{
+    margin-left: 2em;
+    flex-direction: row;   
+}
+.circle-space{
+   padding-left: 3em;
+   padding-right: 5em;
+}
+.circle-name {
+    font-size: 1.2em;
+    color:#949494;
+    margin-top: 1.2em;
+}
+.cluster-summary {
+    width: 70%;
+    td {
+        padding: 1.1rem;
+        vertical-align: middle;
+        font-size:  .9em;
+        border: none;
+        margin-left: 20%;
+        text-align: right;
+    }
+    th {
+        padding: 1.1rem;
+        border: none;
+        font-size:  .9em;
+        font-weight: 200;
+    }
+    tr {
+        line-height: 0.1px;
+        border: none;
+    } 
+}
+
+/* - - - Medias Summary Cluster card - - - */
+@media screen and (max-width:1500px){
+    .circle {
+        margin: 0 .5em;
+        max-width: 65px;
+        max-height: 65px;
+        span {
+          font-size: 1em !important;
+          top: 21px;
+          left: 25px;
+        }
+      }
+    .circle-name {
+        font-size: 1em !important;
+        margin-top: .4em !important;
+    }
+    .circle-space{
+        padding-left: 1em;
+        padding-right: 3em;
+     }
+
+    .table td {
+        padding: .6rem 1rem;
+    }
+    .cluster-summary{
+    margin-bottom: 0;
+    }
+    .cluster-summary th {
+        padding: 0;
+    }
+}
+@media screen and (min-width:2560px){
+    .circle {
+        margin-top: 3em;
+        min-width: 140px;
+        min-height: 140px;
+        span {
+          top: 54px;
+          left: 58px;
+        }
+    }
+    .circle-name{
+        margin-top: 3em !important;
+    }
+    .cluster-summary {
+        padding: 4em 3em 0 3em;
+    }
+}
+
+/* - - - Cluster table card - - - */
+.table-h {
+    height: 80%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    .table {
+        td {
+            padding: 1.2rem;
+            vertical-align: middle;
+            font-size:  .9em;
+            border-top: 0.8px solid #EEEEEE;
+            color: #949494;
+        }
+        thead th {
+            border: none;
+            font-size:  .9em;
+            padding: 0 1.2rem;
+            font-weight: 200;
+        }
+        tbody tr:first-child td {
+        border: none;
+        }
+        .row-ip {
+            width: 20%;
+        }
+        .row-ip {
+            width: 20%;
+        }
+        .row-credentials {
+            width: 20%;
+        }
+        .row-tags {
+            width: 20%;
+        }
+        .row-status {
+            width: 18%;
+            padding-left: 2%;
+        }
+    }
+}
+.status-dot:before {
+    content:'\A';
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background: #0937FF;
+    display:inline-block;
+    margin:0 10px 0 0;
+}
+.status-dot-error:before {
+    content:'\A';
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background: #F25272;
+    display:inline-block;
+    margin:0 10px 0 0;
+}
+
+/* - - - Medias Cluster table card - - - */
+@media screen and (max-width:1500px){
+    .card-title-c h5 {
+        font-size: 1em;
+    }
+    .table-h .table td {
+        padding: .6rem 1rem;
+    }
+    .status-dot:before {
+        margin: 0 23px;
+    }
+    .status-dot-error:before {
+        margin: 0 23px;
+    }
+}
+
+/* - - - Cluster card pie chart - - - */
+.nodes-run {
+    font-size: .8em;
+}
+.donut-chart {
+    width: 100%;
+    height: 70%;
+    text-align: center;
+    position: relative;
+    padding-top: .9em;
+}
+.donut-number {
+    position: absolute;
+    top: 49%;
+    left: 46%;
+}
+
+/* - - - Media Cluster card pie chart- - - */
+@media screen and (max-width:1500px){
+    .card-clus {   
+        padding-bottom: .5em !important;
+    }
+    .cluster-number {
+        margin-bottom: 0;
+    }
+    .box {
+        height: 116px;
+    }
+    .donut-chart {
+        height: 85%;
+    }
+    .donut-number {
+        top: 57%;
+        left: 38%;
+        font-size: .8em;
+    }
+    .nodes-run-node {
+        font-size: .8em;
+    }
+}

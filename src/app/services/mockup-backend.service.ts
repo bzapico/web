@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 // tslint:disable-next-line:max-line-length
 import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo,
-         mockResetPasword, mockClusterList, mockResourcesSummary  } from '../utils/mocks';
+         mockResetPasword, mockClusterList, mockResourcesSummary, mockNodeList  } from '../utils/mocks';
 
 @Injectable({
   providedIn: 'root'
@@ -159,6 +159,20 @@ export class MockupBackendService implements Backend {
   }
 
   getClusters(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockClusterList),
+      status: 200
+    })));
+  }
+
+  getNodes(clusterId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockNodeList),
+      status: 200
+    })));
+  }
+
+  getClusterDetail(clusterId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockClusterList),
       status: 200
