@@ -8,6 +8,7 @@ import { MainComponent } from './main/main.component';
 import { AuthGuard } from './guards/auth.guard';
 import { OrganizationComponent } from './organization/organization.component';
 import { ResourcesComponent } from './resources/resources.component';
+import { ApplicationsComponent } from './applications/applications.component';
 import { ClusterComponent } from './cluster/cluster.component';
 
 const appRoutes: Routes = [
@@ -38,6 +39,11 @@ const appRoutes: Routes = [
             {
                 path: 'resources/cluster/:id',
                 component: ClusterComponent,
+            },
+            {
+                path: 'applications',
+                component: ApplicationsComponent,
+                canActivate: [AuthGuard]
             }
         ]
     },

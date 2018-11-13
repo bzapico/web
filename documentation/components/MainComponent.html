@@ -232,15 +232,12 @@ export class MainComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;!-- Sidebar --&gt;
-&lt;div class&#x3D;&quot;sidebar&quot;&gt;
-  &lt;nalej-sidebar&gt;&lt;/nalej-sidebar&gt;
-&lt;/div&gt;
-
-&lt;!-- Main content panel --&gt;
-&lt;div class&#x3D;&quot;container-fluid main-view&quot;&gt;
-  &lt;div class&#x3D;&quot;row h-100&quot;&gt;
-    &lt;div class&#x3D;&quot;col-lg-12 p-5&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+  &lt;div class&#x3D;&quot;row&quot;&gt;
+    &lt;div class&#x3D;&quot;col-2 side&quot;&gt;
+      &lt;nalej-sidebar&gt;&lt;/nalej-sidebar&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;col-10 main-view&quot;&gt;
       &lt;router-outlet&gt;&lt;/router-outlet&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -272,8 +269,8 @@ export class MainComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Sidebar --><div class="sidebar">  <nalej-sidebar></nalej-sidebar></div><!-- Main content panel --><div class="container-fluid main-view">  <div class="row h-100">    <div class="col-lg-12 p-5">      <router-outlet></router-outlet>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <div class="row">    <div class="col-2 side">      <nalej-sidebar></nalej-sidebar>    </div>    <div class="col-10 main-view">      <router-outlet></router-outlet>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MainComponent'};
 </script>
