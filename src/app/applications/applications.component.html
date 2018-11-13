@@ -5,15 +5,15 @@
     </div>
   </div>
   <div class="row row-info">
-    <!-- Summary info card -->
+    <!-- Summary app info card -->
     <div class="col-lg-5 h-100">
       <div class="card p-4 h-100">
         <div class="card-title-c">
           <h5>SUMMARY</h5>
         </div>
-        <div class="d-flex flex-col justify-content-around align-center">
-          <div class="slide-box">
-            <div class="box">
+        <div class="summary-card">
+          <div  class="bg-success">
+            <div class="deployed-box">
               <div class="donut-chart">
                 <ngx-charts-pie-chart
                   [scheme]="colorScheme" 
@@ -25,12 +25,12 @@
                 </ngx-charts-pie-chart>
                 <div class="donut-number">4/5</div>
               </div>
-              <p class="blue apps-run mb-0">Apps running</p>
-              <p class="grey">DEPLOYED</p>
+              <p class="blue text-center apps-run mb-0">Apps running</p>
+              <p class="grey text-center">DEPLOYED</p>
             </div>
           </div>
-          <div>
-            <div class="circle d-flex flex-row justify-content-center align-center">
+          <div class="bg-success">
+            <div class="circle summary-box">
               <span class="align-self-center mt-1">20</span>
             </div>
             <p class="circle-name text-center mt-3">REGISTERED</p>

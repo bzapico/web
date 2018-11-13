@@ -129,12 +129,16 @@
               <div class="cluster-info">
                 <p
                   *ngIf="cluster.runningNodes === cluster.totalNodes"
-                  class="nodes-run mb-0 blue">
+                  class="nodes-run mb-0 blue"
+                  [routerLink]="['cluster', cluster.id]" 
+                  routerLinkActive="active" >
                   All nodes running
                 </p>
                 <p
                   *ngIf="cluster.runningNodes !== cluster.totalNodes" 
-                  class="nodes-run mb-0 blue">
+                  class="nodes-run mb-0 blue"
+                  [routerLink]="['cluster', cluster.id]" 
+                  routerLinkActive="active" >
                   {{cluster.runningNodes}} nodes running
                 </p>
                 <p class="text-uppercase grey">{{cluster.name}}</p>
