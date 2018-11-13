@@ -110,7 +110,6 @@
     align-items: center;
     height: 100%;
 }
-
 .summary-box {
     display: flex;
     flex-direction: row;
@@ -118,7 +117,6 @@
     align-content: center;
     height: 100%;
 }
-
 .circle {
     width: 112px;
     height: 112px;
@@ -141,7 +139,7 @@
 /* - - - Medias Summary card circles - - - */
 @media screen and (max-width:1500px){
     .circle {
-        margin-top: 0;
+        margin-top: 2em;
         max-width: 65px;
         max-height: 65px;
         span {
@@ -160,7 +158,6 @@
 }
 @media screen and (min-width:2560px){
     .circle {
-        margin-top: 3em;
         min-width: 140px;
         min-height: 140px;
         span {
@@ -168,9 +165,6 @@
           left: 58px;
         }
       }
-    .circle-name{
-        margin-top: 2em !important;
-    }
 }
 
 /* - - - Cluster card Slider - - - */
