@@ -5,7 +5,6 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { MockupBackendService } from './mockup-backend.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, of } from 'rxjs';
-import { ResponseOptions } from '@angular/http';
 import { Router } from '@angular/router';
 
 
@@ -49,6 +48,7 @@ export class AuthService {
     let jwtToken;
     this.backend.login(email, password)
       .subscribe(response => {
+        console.log(response);
         if (response && response._body) {
           jwtToken = JSON.parse(response._body);
           const jwtTokenData =  this.jwtHelper.decodeToken(jwtToken.jwt);

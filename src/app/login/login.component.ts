@@ -55,5 +55,6 @@ export class LoginComponent implements OnInit {
   openDebugPanel() {
     this.modalRef = this.modalService.show(DebugPanelComponent);
     this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { location.reload(); });
   }
 }

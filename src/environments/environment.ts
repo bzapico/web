@@ -3,8 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: getBaseUrl()
 };
+
+function getBaseUrl() {
+  return document.location.href.substring(0, document.location.href.indexOf('#'));
+}
 
 /*
  * For easier debugging in development mode, you can import the following file
