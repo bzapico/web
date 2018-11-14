@@ -2,25 +2,47 @@
     <!-- Header -->
     <div class="modal-header">
       <h3 class="nalej-form-title">SIG Application</h3>
-      <!-- <button 
-        type="button" 
-        class="close" 
-        aria-label="Close"
-        (click)="bsModalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button> -->
     </div>
     <!-- Body -->
     <div class="modal-body">
-      <h4>Services</h4>
+      <h4 class="grey">Services</h4>
       <div class="graph">
 
       </div>
-      <div class="table">
-
+      <div class="">
+        <table class="table app-summary">
+          <tr>
+            <th class="grey">
+              Name
+            </th>
+            <td>SIG Application</td>
+          </tr>
+          <tr>
+            <th class="grey">
+              Description
+            </th>
+            <td>Instance of MongoDB</td> 
+          </tr>
+          <tr>
+            <th class="grey">
+              Id
+            </th>
+            <td>123456789</td>
+          </tr>
+          <tr>
+            <th class="grey">
+              Configuration
+            </th>
+            <td>Kubernetes</td>
+          </tr>
+          <tr>
+            <th class="grey">
+              Tags
+            </th>
+            <td>Tags, tag, tags</td>
+          </tr>
+        </table>
       </div>
-
-
     <!-- Option buttons -->
     <div class="buttons d-flex flex-row justify-content-center">
       <button class="btn btn-primary btn-lg" (click)="bsModalRef.hide()">
