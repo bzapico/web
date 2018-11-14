@@ -17,6 +17,10 @@ export class EditUserComponent implements OnInit {
    */
   backend: Backend;
   /**
+   * Dialog title
+   */
+  title: string;
+  /**
    * Models that hold organization id, user role, name, email and password
    */
   organizationId: string;
