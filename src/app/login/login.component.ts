@@ -20,6 +20,10 @@ export class LoginComponent implements OnInit {
    * Reference for the service that allows to open debug panel
    */
   modalRef: BsModalRef;
+  /**
+   * Holds the error message
+   */
+  errorMessage: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,6 +38,7 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
+    this.errorMessage = '';
   }
 
   /**
@@ -43,10 +48,15 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(response => {
-        this.router.navigate([
-          '/organization'
-        ]);
-      }, error => console.log(error));
+        this.errorMessage = '';
+        if (response.token) {
+          this.router.navigate([
+            '/organization'
+          ]);
+        }
+      }, error => {
+        this.errorMessage = error.statusText;
+      });
   }
 
   /**

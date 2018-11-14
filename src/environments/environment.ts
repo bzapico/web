@@ -4,11 +4,13 @@
 
 export const environment = {
   production: false,
-  apiUrl: getBaseUrl()
+  // hardcoded local environment API ip address
+  apiUrl: 'http://192.168.99.100'
 };
 
 function getBaseUrl() {
-  return document.location.href.substring(0, document.location.href.indexOf('#'));
+  const chunks = document.location.href.split(':');
+  return chunks[0] + ':' + chunks[1];
 }
 
 /*

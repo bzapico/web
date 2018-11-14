@@ -4,7 +4,8 @@ import { BackendService } from './backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { MockupBackendService } from './mockup-backend.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Observable, of } from 'rxjs';
+import { Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 
@@ -43,24 +44,19 @@ export class AuthService {
    * @param email String containing user email
    * @param password String that holds the user password
    */
-  login(email: string, password: string): Observable<any> {
-    let complete;
-    let jwtToken;
-    this.backend.login(email, password)
-      .subscribe(response => {
-        console.log(response);
-        if (response && response._body) {
-          jwtToken = JSON.parse(response._body);
-          const jwtTokenData =  this.jwtHelper.decodeToken(jwtToken.jwt);
-          localStorage.setItem(LocalStorageKeys.jwt, JSON.stringify(jwtToken.jwt));
-          localStorage.setItem(LocalStorageKeys.jwtData, JSON.stringify(jwtTokenData));
-          complete = jwtTokenData;
-        }
-      }, error => {
-        complete = error;
-      });
-      return of (complete);
+  login (email: string, password: string): Observable<any> {
+    return this.backend.login(email, password).pipe(map(response => {
+      if (response.status === 404 || response.status === 500) {
+        return response;
+      }
+      const jwtTokenData =  this.jwtHelper.decodeToken(response.token);
+      localStorage.setItem(LocalStorageKeys.jwt, JSON.stringify(response));
+      localStorage.setItem(LocalStorageKeys.jwtData, JSON.stringify(jwtTokenData));
+      localStorage.setItem(LocalStorageKeys.refreshToken, JSON.stringify(response.refresh_token));
+      return response;
+    }));
   }
+
   /**
    * Request to logout the platform
    */
@@ -70,9 +66,8 @@ export class AuthService {
         // remove JWT token from local storage to log user out
         localStorage.removeItem(LocalStorageKeys.jwt);
         localStorage.removeItem(LocalStorageKeys.jwtData);
+        localStorage.removeItem(LocalStorageKeys.refreshToken);
         this.router.navigate(['login']);
-      }, error => {
-        console.log(error); // TODO: substitute with notification service messaging system
       });
   }
 

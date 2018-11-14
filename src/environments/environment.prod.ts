@@ -3,5 +3,6 @@ export const environment = {
   apiUrl: getBaseUrl
 };
 function getBaseUrl() {
-  return document.location.href.substring(0, document.location.href.indexOf('#'));
+  const chunks = document.location.href.split(':');
+  return chunks[0] + ':' + chunks[1];
 }

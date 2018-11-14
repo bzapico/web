@@ -1,29 +1,52 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Backend } from '../definitions/interfaces/backend';
+import { Response, ResponseOptions } from '@angular/http';
 
-const API_URL = environment.apiUrl + 'v1/';
+/**
+ * URL of the public API
+ */
+const API_URL = environment.apiUrl + ':31404/v1/';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class BackendService implements Backend {
-
   constructor(
     private http: Http) {
-      console.log(API_URL);
   }
 
   // POST '/login'
+  /**
+   * Request to log into the app
+   * @param email User Id / email
+   * @param password string containing the user password
+   */
   login(email: string, password: string): Observable<any> {
-    return this.http.post(API_URL + 'login', {username: email, password: password}).pipe(map(response => response.json()));
+    return this.http.post(
+      // URL
+      environment.apiUrl + ':30210/v1/login',
+      // LOAD
+      {
+        username: email,
+        password: password
+      }
+    ).pipe(
+        map(response => response.json())
+      );
   }
+
+  /**
+   * Emulates a request to log out
+   */
   logout() {
-    throw new Error('Method not implemented.');
+    return of (new Response(new ResponseOptions({
+      status: 200
+    })));
   }
   getUserProfileInfo(userId: string) {
     throw new Error('Method not implemented.');
