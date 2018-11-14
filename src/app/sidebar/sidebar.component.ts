@@ -6,6 +6,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DebugPanelComponent } from '../debug-panel/debug-panel.component';
 import { AuthService } from '../services/auth.service';
+import { EditUserComponent } from '../edit-user/edit-user.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -18,16 +19,25 @@ export class SidebarComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
+
   /**
    * Models that hold user name, role and email on sidebar
    */
   name: string;
   role: string;
   email: string;
+
   /**
-   * Reference for the service that allows to open debug panel
+   * Models that hold user id, name and the users list
+   */
+  userId: string;
+  users: any[];
+
+  /**
+   * Reference for the service that allows to open debug panel and profile modal view
    */
   modalRef: BsModalRef;
+
   constructor(
     backendService: BackendService,
     mockupBackendService: MockupBackendService,
@@ -44,6 +54,7 @@ export class SidebarComponent implements OnInit {
     this.name = 'Loading ...'; // Default initialization
     this.role = 'Loading ...'; // Default initialization
     this.email = 'Loading ...'; // Default initialization
+    this.users = [];
    }
 
   ngOnInit() {
@@ -70,6 +81,35 @@ export class SidebarComponent implements OnInit {
   openDebugPanel() {
     this.modalRef = this.modalService.show(DebugPanelComponent);
     this.modalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+   * Opens the modal view that holds the user info and editable component
+   */
+  openEditUser() {
+    const initialState = {
+      userName: this.name,
+      userId: this.email,
+      userRole: this.role
+    };
+
+    this.modalRef = this.modalService.show(EditUserComponent, { initialState });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { this.updateProfileUser(); });
+  }
+   /**
+   * Requests an updated profile users to update the current one
+   */
+  updateProfileUser() {
+    if (this.userId != null) {
+      this.backend.getUserProfileInfo(this.userId)
+      .subscribe(response => {
+        if (response && response._body) {
+          const data = JSON.parse(response._body);
+          this.users = data;
+        }
+      });
+    }
   }
 
   /**

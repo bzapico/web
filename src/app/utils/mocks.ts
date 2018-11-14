@@ -7,8 +7,8 @@ export const mockJwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
  * Mocked profile info
  */
 export const mockUserProfileInfo = {
-    name: 'John Doe',
-    email: 'john.doe@mail.com',
+    name: 'Celia Toth',
+    email: 'toth.c@mail.com',
     role: 'Owner'
 };
 
@@ -24,33 +24,38 @@ export const mockOrganizationInfo = {
  */
 export const mockUserList = [
     {
-        name: 'John Doe',
-        email: 'johndoe@mail.com',
+        name: 'Celia Toth',
+        email: 'toth.c@mail.com',
         role: 'Owner'
     },
     {
-        name: 'Jack Doe',
-        email: 'jackdoe@mail.com',
+        name: 'Sara Doe',
+        email: 'saradoe@mail.com',
         role: 'Owner'
     },
     {
-        name: 'James Doe',
-        email: 'jamesdoe@mail.com',
+        name: 'Dave Smith',
+        email: 'davesmith@mail.com',
         role: 'Owner'
     },
     {
-        name: 'Jimmy Doe',
-        email: 'jimmydoe@mail.com',
+        name: 'James Jameson',
+        email: 'jamesjameson@mail.com',
         role: 'Owner'
     },
     {
-        name: 'Josh Doe',
-        email: 'joshdoe@mail.com',
+        name: 'Ellen Martin',
+        email: 'ellen.martin@mail.com',
         role: 'Owner'
     },
     {
-        name: 'Mike Doe',
-        email: 'mikedoe@mail.com',
+        name: 'Josh Peterson',
+        email: 'josh.peterson@mail.com',
+        role: 'Owner'
+    },
+    {
+        name: 'Mike Slashis',
+        email: 'mikeslashis@mail.com',
         role: 'Owner'
     },
 ];
