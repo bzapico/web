@@ -31,7 +31,7 @@ export class SidebarComponent implements OnInit {
    * Models that hold user id, name and the users list
    */
   userId: string;
-  users: any[];
+  profile: any[];
 
   /**
    * Reference for the service that allows to open debug panel and profile modal view
@@ -54,23 +54,15 @@ export class SidebarComponent implements OnInit {
     this.name = 'Loading ...'; // Default initialization
     this.role = 'Loading ...'; // Default initialization
     this.email = 'Loading ...'; // Default initialization
-    this.users = [];
+    this.profile = [];
    }
 
   ngOnInit() {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
-      const userId = JSON.parse(jwtData).userId;
+      const userId = JSON.parse(jwtData).UserId;
       if (userId !== null) {
-        this.backend.getUserProfileInfo(userId)
-          .subscribe(response => {
-            if (response && response._body) {
-              const data = JSON.parse(response._body);
-              this.name = data.name;
-              this.email = data.email;
-              this.role = data.role;
-            }
-          });
+        this.updateProfileUser(userId);
       }
     }
   }
@@ -90,26 +82,28 @@ export class SidebarComponent implements OnInit {
     const initialState = {
       userName: this.name,
       userId: this.email,
-      userRole: this.role
+      userRole: this.role,
+      title: 'Edit profile'
     };
 
     this.modalRef = this.modalService.show(EditUserComponent, { initialState });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { this.updateProfileUser(); });
+    this.modalService.onHide.subscribe((reason: string) => { this.updateProfileUser(initialState.userId); });
   }
+
    /**
-   * Requests an updated profile users to update the current one
+   * Requests an updated profile user to update the current one
    */
-  updateProfileUser() {
-    if (this.userId != null) {
-      this.backend.getUserProfileInfo(this.userId)
-      .subscribe(response => {
-        if (response && response._body) {
-          const data = JSON.parse(response._body);
-          this.users = data;
-        }
-      });
-    }
+  updateProfileUser(userId) {
+    this.backend.getUserProfileInfo(userId)
+    .subscribe(response => {
+      if (response && response._body) {
+        const data = JSON.parse(response._body);
+        this.name = data.name;
+        this.email = data.email;
+        this.role = data.role;
+      }
+    });
   }
 
   /**

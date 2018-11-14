@@ -296,7 +296,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/organization/organization.component.ts:112</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/organization/organization.component.ts:113</a></div>
                             </td>
                         </tr>
 
@@ -508,7 +508,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/organization/organization.component.ts:123</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/organization/organization.component.ts:124</a></div>
                             </td>
                         </tr>
 
@@ -846,7 +846,7 @@ export class OrganizationComponent implements OnInit {
       organizatinoId: this.organizationId,
       userName: user.name,
       userId: user.email,
-      role: user.role
+      role: user.role,
     };
 
     this.modalRef &#x3D; this.modalService.show(UserInfoComponent, { initialState });
@@ -862,7 +862,8 @@ export class OrganizationComponent implements OnInit {
       organizatinoId: this.organizationId,
       userName: user.name,
       userId: user.email,
-      userRole: user.role
+      userRole: user.role,
+      title: &#x27;Edit user&#x27;
     };
 
     this.modalRef &#x3D; this.modalService.show(EditUserComponent, { initialState });
@@ -964,7 +965,7 @@ export class OrganizationComponent implements OnInit {
           &lt;tbody&gt;
             &lt;tr *ngFor&#x3D;&quot;let user of users&quot;&gt;
               &lt;td&gt;{{user.name}}&lt;/td&gt;
-              &lt;td class&#x3D;&quot;blue&quot;&gt;{{user.role}}&lt;/td&gt;
+              &lt;td class&#x3D;&quot;blue&quot; (click)&#x3D;&quot;openUserInfo(user)&quot;&gt;{{user.role}}&lt;/td&gt;
               &lt;td&gt;{{user.email}}&lt;/td&gt;
               &lt;td class&#x3D;&quot;row-info-btn&quot;&gt;
                 &lt;button class&#x3D;&quot;btn info-btn btn-primary&quot; (click)&#x3D;&quot;openUserInfo(user)&quot;&gt;
@@ -1033,7 +1034,7 @@ export class OrganizationComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Component title --><div class="row row-title mb-4">  <div class="col-lg-12">    <h2>Organization</h2>  </div></div><!-- Organization info card --><div class="row row-info">  <div class="col-lg-12 h-100">    <div class="card py-3 h-100 d-flex flex-col justify-content-center">      <div class="hidden-img-fix"></div>      <div class="company-img flex-col d-flex justify-content-center align-items-center mt-2">        <img           class="" src="../assets/images/group.png"           alt="company-pic" >      </div>      <div class="company-info text-center my-2">        <h3 class="company-name my-2">{{organizationName}}</h3>        <span class="subscription blue">{{subscriptionType}}</span>        <span class="users d-block">{{users.length}} users</span>      </div>    </div>  </div></div><!-- Members panel card--><div class="row row-main">  <div class="col-lg-8 col-md-8 col-sm-12 h-100">    <div class="card h-100 p-4">      <div class="card-title-h">        <h5>MEMBERS</h5>      </div>      <div class="table-h">        <table           *ngIf="users && users.length > 0"          class="table">          <thead>            <tr>              <th                 scope="col"                 class="row-name">                Name              </th>              <th                 scope="col"                 class="row-role">                Role              </th>              <th                 scope="col"                 class="row-email">                Email              </th>              <th                 scope="col"                 class="row-info-btn">              </th>              <th                 scope="col"                 class="row-info-btn">            </th>            </tr>          </thead>          <tbody>            <tr *ngFor="let user of users">              <td>{{user.name}}</td>              <td class="blue">{{user.role}}</td>              <td>{{user.email}}</td>              <td class="row-info-btn">                <button class="btn info-btn btn-primary" (click)="openUserInfo(user)">                  <span class="i-info">i</span>                </button>              </td>              <td>                <button class="btn info-btn btn-primary" (click)="openEditUser(user)">                  <i class="material-icons i-edit">                    edit                  </i>                </button>              </td>            </tr>          </tbody>        </table>        <div          *ngIf="users && users.length === 0"          class="no-elements d-flex justify-content-center align-items-center">          <p>There are not registered users in this organization<br>Click on "add user" button to start adding new users </p>        </div>      </div>      <div class="mx-auto btn-h m-3 mt-5">        <button class="btn btn-lg btn-primary align-bottom" (click)="addUser()">Add user</button>      </div>    </div>  </div>  <!-- Subscription panel card -->  <div class="col-lg-4 col-md-4 col-sm-12 h-100">    <div class="card flex-col d-flex justify-content-between h-100 p-4">      <div class="card-title-h">        <h5>SUBSCRIPTION</h5>      </div>      <div class="btn-primary subs-v">        <i class="material-icons">check</i></div>      <h2 class="text-center blue">Free</h2>      <p class="subs-check text-center">Check all our subscription modes and payments</p>      <button class="btn btn-lg btn-primary d-none">Change subscription</button>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- Component title --><div class="row row-title mb-4">  <div class="col-lg-12">    <h2>Organization</h2>  </div></div><!-- Organization info card --><div class="row row-info">  <div class="col-lg-12 h-100">    <div class="card py-3 h-100 d-flex flex-col justify-content-center">      <div class="hidden-img-fix"></div>      <div class="company-img flex-col d-flex justify-content-center align-items-center mt-2">        <img           class="" src="../assets/images/group.png"           alt="company-pic" >      </div>      <div class="company-info text-center my-2">        <h3 class="company-name my-2">{{organizationName}}</h3>        <span class="subscription blue">{{subscriptionType}}</span>        <span class="users d-block">{{users.length}} users</span>      </div>    </div>  </div></div><!-- Members panel card--><div class="row row-main">  <div class="col-lg-8 col-md-8 col-sm-12 h-100">    <div class="card h-100 p-4">      <div class="card-title-h">        <h5>MEMBERS</h5>      </div>      <div class="table-h">        <table           *ngIf="users && users.length > 0"          class="table">          <thead>            <tr>              <th                 scope="col"                 class="row-name">                Name              </th>              <th                 scope="col"                 class="row-role">                Role              </th>              <th                 scope="col"                 class="row-email">                Email              </th>              <th                 scope="col"                 class="row-info-btn">              </th>              <th                 scope="col"                 class="row-info-btn">            </th>            </tr>          </thead>          <tbody>            <tr *ngFor="let user of users">              <td>{{user.name}}</td>              <td class="blue" (click)="openUserInfo(user)">{{user.role}}</td>              <td>{{user.email}}</td>              <td class="row-info-btn">                <button class="btn info-btn btn-primary" (click)="openUserInfo(user)">                  <span class="i-info">i</span>                </button>              </td>              <td>                <button class="btn info-btn btn-primary" (click)="openEditUser(user)">                  <i class="material-icons i-edit">                    edit                  </i>                </button>              </td>            </tr>          </tbody>        </table>        <div          *ngIf="users && users.length === 0"          class="no-elements d-flex justify-content-center align-items-center">          <p>There are not registered users in this organization<br>Click on "add user" button to start adding new users </p>        </div>      </div>      <div class="mx-auto btn-h m-3 mt-5">        <button class="btn btn-lg btn-primary align-bottom" (click)="addUser()">Add user</button>      </div>    </div>  </div>  <!-- Subscription panel card -->  <div class="col-lg-4 col-md-4 col-sm-12 h-100">    <div class="card flex-col d-flex justify-content-between h-100 p-4">      <div class="card-title-h">        <h5>SUBSCRIPTION</h5>      </div>      <div class="btn-primary subs-v">        <i class="material-icons">check</i></div>      <h2 class="text-center blue">Free</h2>      <p class="subs-check text-center">Check all our subscription modes and payments</p>      <button class="btn btn-lg btn-primary d-none">Change subscription</button>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'OrganizationComponent'};

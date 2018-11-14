@@ -3,7 +3,7 @@ import { Backend } from '../definitions/interfaces/backend';
 import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsList, mockNodeList  } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsList, mockNodeList  } from '../utils/mocks';
 
 @Injectable({
   providedIn: 'root'
@@ -48,12 +48,10 @@ export class MockupBackendService implements Backend {
    * @param userId String containing the user identificator - used to replicate expected backend behavior
    */
   getUserProfileInfo(userId: string) {
+    const index = mockUserList.map(x => x.email).indexOf(userId);
+    if (index !== -1) {}
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify({
-        name: mockUserProfileInfo.name,
-        email: mockUserProfileInfo.email,
-        role: mockUserProfileInfo.role
-      }),
+      body: JSON.stringify(mockUserList[index]),
       status: 200
     })));
   }
@@ -163,8 +161,6 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
-
-
 
   /********************
    * Appications

@@ -4,15 +4,6 @@ export const mockJwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
     '.kF9ac17V9mWoWMYjhHyc9GD8hGw6wRT6wwNgdUJ1v4c';
 
 /**
- * Mocked profile info
- */
-export const mockUserProfileInfo = {
-    name: 'Celia Toth',
-    email: 'toth.c@mail.com',
-    role: 'Owner'
-};
-
-/**
  * Mocked organization info
  */
 export const mockOrganizationInfo = {
@@ -39,8 +30,8 @@ export const mockUserList = [
         role: 'Owner'
     },
     {
-        name: 'James Jameson',
-        email: 'jamesjameson@mail.com',
+        name: 'John Doe',
+        email: 'john.doe@mail.com',
         role: 'Owner'
     },
     {
