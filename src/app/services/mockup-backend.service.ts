@@ -4,8 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo,
-         mockResetPasword, mockClusterList, mockResourcesSummary, mockNodeList  } from '../utils/mocks';
+import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsList, mockNodeList  } from '../utils/mocks';
 
 @Injectable({
   providedIn: 'root'
@@ -170,6 +169,25 @@ export class MockupBackendService implements Backend {
     })));
   }
 
+
+
+  /********************
+   * Appications
+   ********************/
+
+  /**
+   * Simulates get apps list
+   */
+  getApps(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockAppsList),
+      status: 200
+    })));
+  }
+
+  /**
+   * Simulates get nodes list
+   */
   getNodes(clusterId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockNodeList),
@@ -177,11 +195,13 @@ export class MockupBackendService implements Backend {
     })));
   }
 
+  /**
+   * Simulates get cluster details
+   */
   getClusterDetail(clusterId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockClusterList),
       status: 200
     })));
   }
-
 }

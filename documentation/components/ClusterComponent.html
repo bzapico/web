@@ -1285,12 +1285,11 @@ export class ClusterComponent implements OnInit {
   &lt;div class&#x3D;&quot;col-lg-3 h-100&quot;&gt;
     &lt;div class&#x3D;&quot;card p-4 h-100&quot;&gt;
       &lt;div class&#x3D;&quot;card-title-c&quot;&gt;
-        &lt;h5 class&#x3D;&quot;text-uppercase d-inline&quot;&gt;Cluster 1&lt;/h5&gt;
-        &lt;p class&#x3D;&quot;d-inline cluster-number blue&quot;&gt;4 available&lt;/p&gt;
+        &lt;h5 class&#x3D;&quot;d-inline&quot;&gt;CLUSTER 1&lt;/h5&gt;
+        &lt;p class&#x3D;&quot;d-inline cluster-number grey&quot;&gt;5 available&lt;/p&gt;
       &lt;/div&gt;
       &lt;!-- Cluster pie chart --&gt;
-      &lt;div&gt;
-        &lt;div class&#x3D;&quot;pie-box&quot;&gt;
+        &lt;div class&#x3D;&quot;box-card&quot;&gt;
           &lt;div class&#x3D;&quot;box&quot;&gt;
             &lt;div class&#x3D;&quot;donut-chart&quot;&gt;
               &lt;ngx-charts-pie-chart
@@ -1298,41 +1297,40 @@ export class ClusterComponent implements OnInit {
                 [results]&#x3D;&quot;mockClusterChart&quot; 
                 [doughnut]&#x3D; &quot;doughnut&quot;
                 [gradient]&#x3D;&quot;gradient&quot;
-                [schemeType]&#x3D;&quot;schemeType&quot;
                 [explodeSlices]&#x3D;&quot;false&quot;
                 &gt;
               &lt;/ngx-charts-pie-chart&gt;
               &lt;div class&#x3D;&quot;donut-number&quot;&gt;4/5&lt;/div&gt;
             &lt;/div&gt;
-            &lt;p *ngIf&#x3D;&quot;runningNodes &#x3D;&#x3D;&#x3D; totalNodes&quot;  class&#x3D;&quot;blue nodes-run mb-0&quot;&gt;All nodes running&lt;/p&gt;
-            &lt;p  *ngIf&#x3D;&quot;runningNodes !&#x3D;&#x3D; totalNodes&quot;  class&#x3D;&quot;blue nodes-run mb-0&quot;&gt;{{runningNodes}} nodes &lt;/p&gt;
-            &lt;p class&#x3D;&quot;text-uppercase grey&quot;&gt;Cluster 1&lt;/p&gt;
+            &lt;p class&#x3D;&quot;blue nodes-run mb-0&quot;&gt;4 nodes &lt;/p&gt;
+            &lt;p class&#x3D;&quot;grey nodes-run-node&quot;&gt;NODES&lt;/p&gt;
           &lt;/div&gt;
         &lt;/div&gt;
-      &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;!-- Summary cluster info card --&gt;
   &lt;div class&#x3D;&quot;col-lg-9 h-100&quot;&gt;
     &lt;div class&#x3D;&quot;card card-clus p-4 h-100&quot;&gt;
       &lt;div class&#x3D;&quot;card-title-c&quot;&gt;
-        &lt;h5 class&#x3D;&quot;text-uppercase d-inline&quot;&gt;SUMMARY Cluster 1&lt;/h5&gt;
+        &lt;h5 class&#x3D;&quot;d-inline&quot;&gt;SUMMARY CLUSTER 1&lt;/h5&gt;
       &lt;/div&gt;
-      &lt;div class&#x3D;&quot;d-flex flex-col justify-content-around align-center&quot;&gt;
-        &lt;div&gt;
-          &lt;div class&#x3D;&quot;circle d-flex flex-row justify-content-center align-center&quot;&gt;
-            &lt;span class&#x3D;&quot;align-self-center mt-1&quot;&gt;{{clustersCount}}&lt;/span&gt;
+      &lt;div class&#x3D;&quot;box-card&quot;&gt;
+        &lt;div class&#x3D;&quot;box circles-box mt-4&quot;&gt;
+          &lt;div class&#x3D;&quot;box circle-space&quot;&gt;
+            &lt;div class&#x3D;&quot;box circle&quot;&gt;
+              &lt;span class&#x3D;&quot;align-self-center mt-1&quot;&gt;{{clustersCount}}&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;p class&#x3D;&quot;circle-name text-center&quot;&gt;CPU LOAD&lt;/p&gt;
           &lt;/div&gt;
-          &lt;p class&#x3D;&quot;circle-name text-center text-uppercase mt-3&quot;&gt;CPU Load&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div&gt;
-          &lt;div class&#x3D;&quot;circle d-flex flex-row justify-content-center align-center&quot;&gt;
-            &lt;span class&#x3D;&quot;align-self-center mt-1&quot;&gt;3Tb&lt;/span&gt;
+          &lt;div class&#x3D;&quot;box&quot;&gt;
+            &lt;div class&#x3D;&quot;box circle&quot;&gt;
+              &lt;span class&#x3D;&quot;align-self-center mt-1&quot;&gt;3Tb&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;p class&#x3D;&quot;circle-name text-center&quot;&gt;STORAGE&lt;/p&gt;
           &lt;/div&gt;
-          &lt;p class&#x3D;&quot;circle-name text-center text-uppercase mt-3&quot;&gt;Storage&lt;/p&gt;
         &lt;/div&gt;
-        &lt;div class&#x3D;&quot;cluster-summary&quot;&gt;
-          &lt;table class&#x3D;&quot;table&quot;&gt;
+        &lt;div class&#x3D;&quot;box flex-grow-1&quot;&gt;
+          &lt;table class&#x3D;&quot;table cluster-summary&quot;&gt;
             &lt;tr&gt;
               &lt;th class&#x3D;&quot;grey&quot;&gt;
                 id
@@ -1368,17 +1366,17 @@ export class ClusterComponent implements OnInit {
   &lt;div class&#x3D;&quot;col-lg-12 col-md-12 col-sm-12 h-100&quot;&gt;
     &lt;div class&#x3D;&quot;card h-100 p-4&quot;&gt;
       &lt;div class&#x3D;&quot;card-title-h&quot;&gt;
-        &lt;h5 class&#x3D;&quot;text-uppercase&quot;&gt;
+        &lt;h5&gt;
           &lt;a 
             [routerLink]&#x3D;&quot;[&#x27;/resources&#x27;]&quot; 
             routerLinkActive&#x3D;&quot;active&quot; 
             class&#x3D;&quot;blue&quot;&gt;
-            clusters
+            CLUSTER
           &lt;/a&gt;
           &lt;span class&#x3D;&quot;grey&quot;&gt;
-             &gt; cluster 1 &gt; 
+             &gt; CLUSTER 1 &gt; 
           &lt;/span&gt;
-          nodes
+          NODES
         &lt;/h5&gt;
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;table-h&quot;&gt;
@@ -1417,6 +1415,11 @@ export class ClusterComponent implements OnInit {
             &lt;/tr&gt;
           &lt;/tbody&gt;
         &lt;/table&gt;
+        &lt;div
+          *ngIf&#x3D;&quot;nodes &amp;&amp; nodes.length &#x3D;&#x3D;&#x3D; 0&quot;
+          class&#x3D;&quot;no-elements d-flex justify-content-center align-items-center&quot;&gt;
+          &lt;p&gt;There are not registered nodes in this cluster&lt;/p&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -1448,8 +1451,8 @@ export class ClusterComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Component title --><div class="row row-title mb-4">  <div class="col-lg-12">    <h2>Resources</h2>  </div></div><!-- Cluster info card --><div class="row row-info">  <div class="col-lg-3 h-100">    <div class="card p-4 h-100">      <div class="card-title-c">        <h5 class="text-uppercase d-inline">Cluster 1</h5>        <p class="d-inline cluster-number blue">4 available</p>      </div>      <!-- Cluster pie chart -->      <div>        <div class="pie-box">          <div class="box">            <div class="donut-chart">              <ngx-charts-pie-chart                [scheme]="colorScheme"                 [results]="mockClusterChart"                 [doughnut]= "doughnut"                [gradient]="gradient"                [schemeType]="schemeType"                [explodeSlices]="false"                >              </ngx-charts-pie-chart>              <div class="donut-number">4/5</div>            </div>            <p *ngIf="runningNodes === totalNodes"  class="blue nodes-run mb-0">All nodes running</p>            <p  *ngIf="runningNodes !== totalNodes"  class="blue nodes-run mb-0">{{runningNodes}} nodes </p>            <p class="text-uppercase grey">Cluster 1</p>          </div>        </div>      </div>    </div>  </div>  <!-- Summary cluster info card -->  <div class="col-lg-9 h-100">    <div class="card card-clus p-4 h-100">      <div class="card-title-c">        <h5 class="text-uppercase d-inline">SUMMARY Cluster 1</h5>      </div>      <div class="d-flex flex-col justify-content-around align-center">        <div>          <div class="circle d-flex flex-row justify-content-center align-center">            <span class="align-self-center mt-1">{{clustersCount}}</span>          </div>          <p class="circle-name text-center text-uppercase mt-3">CPU Load</p>        </div>        <div>          <div class="circle d-flex flex-row justify-content-center align-center">            <span class="align-self-center mt-1">3Tb</span>          </div>          <p class="circle-name text-center text-uppercase mt-3">Storage</p>        </div>        <div class="cluster-summary">          <table class="table">            <tr>              <th class="grey">                id              </th>              <td>21321321321</td>            </tr>            <tr>              <th class="grey">                types              </th>              <td>Kubernetes</td>             </tr>            <tr>              <th class="grey">                Tags              </th>              <td>Tags</td>            </tr>            <tr>              <th class="grey">                Multitenant              </th>              <td>All</td>            </tr>          </table>        </div>      </div>    </div>  </div></div><!-- Nodes panel card--><div class="row row-main">  <div class="col-lg-12 col-md-12 col-sm-12 h-100">    <div class="card h-100 p-4">      <div class="card-title-h">        <h5 class="text-uppercase">          <a             [routerLink]="[\'/resources\']"             routerLinkActive="active"             class="blue">            clusters          </a>          <span class="grey">             > cluster 1 >           </span>          nodes        </h5>      </div>      <div class="table-h">        <table *ngIf="nodes && nodes.length > 0" class="table">          <thead>            <tr>              <th scope="col" class="row-id">                ID              </th>              <th scope="col" class="row-ip">                IP              </th>              <th scope="col" class="row-credentials">                Credentials              </th>              <th scope="col" class="row-tags">                Tags              </th>              <th scope="col" class="row-status">                Status              </th>            </tr>          </thead>          <tbody>            <tr *ngFor="let node of nodes">              <td>{{node.id}}</td>              <td>{{node.ip}}</td>                <td>{{node.credentials}}</td>              <td>{{node.tags}}</td>              <td               [ngClass]=              "{\'status-dot\':node.status === \'Running\',              \'status-dot-error\':node.status === \'Error\'}">              {{node.status}}            </td>            </tr>          </tbody>        </table>      </div>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><!-- Component title --><div class="row row-title mb-4">  <div class="col-lg-12">    <h2>Resources</h2>  </div></div><!-- Cluster info card --><div class="row row-info">  <div class="col-lg-3 h-100">    <div class="card p-4 h-100">      <div class="card-title-c">        <h5 class="d-inline">CLUSTER 1</h5>        <p class="d-inline cluster-number grey">5 available</p>      </div>      <!-- Cluster pie chart -->        <div class="box-card">          <div class="box">            <div class="donut-chart">              <ngx-charts-pie-chart                [scheme]="colorScheme"                 [results]="mockClusterChart"                 [doughnut]= "doughnut"                [gradient]="gradient"                [explodeSlices]="false"                >              </ngx-charts-pie-chart>              <div class="donut-number">4/5</div>            </div>            <p class="blue nodes-run mb-0">4 nodes </p>            <p class="grey nodes-run-node">NODES</p>          </div>        </div>    </div>  </div>  <!-- Summary cluster info card -->  <div class="col-lg-9 h-100">    <div class="card card-clus p-4 h-100">      <div class="card-title-c">        <h5 class="d-inline">SUMMARY CLUSTER 1</h5>      </div>      <div class="box-card">        <div class="box circles-box mt-4">          <div class="box circle-space">            <div class="box circle">              <span class="align-self-center mt-1">{{clustersCount}}</span>            </div>            <p class="circle-name text-center">CPU LOAD</p>          </div>          <div class="box">            <div class="box circle">              <span class="align-self-center mt-1">3Tb</span>            </div>            <p class="circle-name text-center">STORAGE</p>          </div>        </div>        <div class="box flex-grow-1">          <table class="table cluster-summary">            <tr>              <th class="grey">                id              </th>              <td>21321321321</td>            </tr>            <tr>              <th class="grey">                types              </th>              <td>Kubernetes</td>             </tr>            <tr>              <th class="grey">                Tags              </th>              <td>Tags</td>            </tr>            <tr>              <th class="grey">                Multitenant              </th>              <td>All</td>            </tr>          </table>        </div>      </div>    </div>  </div></div><!-- Nodes panel card--><div class="row row-main">  <div class="col-lg-12 col-md-12 col-sm-12 h-100">    <div class="card h-100 p-4">      <div class="card-title-h">        <h5>          <a             [routerLink]="[\'/resources\']"             routerLinkActive="active"             class="blue">            CLUSTER          </a>          <span class="grey">             > CLUSTER 1 >           </span>          NODES        </h5>      </div>      <div class="table-h">        <table *ngIf="nodes && nodes.length > 0" class="table">          <thead>            <tr>              <th scope="col" class="row-id">                ID              </th>              <th scope="col" class="row-ip">                IP              </th>              <th scope="col" class="row-credentials">                Credentials              </th>              <th scope="col" class="row-tags">                Tags              </th>              <th scope="col" class="row-status">                Status              </th>            </tr>          </thead>          <tbody>            <tr *ngFor="let node of nodes">              <td>{{node.id}}</td>              <td>{{node.ip}}</td>                <td>{{node.credentials}}</td>              <td>{{node.tags}}</td>              <td               [ngClass]=              "{\'status-dot\':node.status === \'Running\',              \'status-dot-error\':node.status === \'Error\'}">              {{node.status}}            </td>            </tr>          </tbody>        </table>        <div          *ngIf="nodes && nodes.length === 0"          class="no-elements d-flex justify-content-center align-items-center">          <p>There are not registered nodes in this cluster</p>        </div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ClusterComponent'};
 </script>
