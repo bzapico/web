@@ -12,7 +12,7 @@ describe('UserInfoComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ UserInfoComponent ],
       imports: [FormsModule, ButtonsModule],
-      providers: [BsModalRef]
+      providers: [ BsModalRef ]
     })
     .compileComponents();
   }));

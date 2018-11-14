@@ -5,6 +5,8 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { mockAppChart, mockAppPieChart } from '../utils/mocks';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { AppsInfoComponent } from '../apps-info/apps-info.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -13,20 +15,31 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
   styleUrls: ['./applications.component.scss']
 })
 export class ApplicationsComponent implements OnInit {
-   /**
+  /**
    * Backend reference
    */
   backend: Backend;
 
   /**
-   * Model that hold organization ID
+   * Model that hold organization ID, name, id, description, type, configuration and services
    */
   organizationId: string;
+  appName: string;
+  appId: string;
+  appDescription: string;
+  appType: string;
+  appConfiguration: string;
+  appServices: string;
 
   /**
    * List of available apps
    */
   apps: any[];
+
+  /**
+   * Reference for the service that allows the user info component
+   */
+  modalRef: BsModalRef;
 
   /**
    * Pie Chart options
@@ -65,6 +78,7 @@ export class ApplicationsComponent implements OnInit {
       value: 0
     }
   ];
+
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
@@ -73,6 +87,7 @@ export class ApplicationsComponent implements OnInit {
   autoScale: any;
 
   constructor(
+    private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
@@ -86,15 +101,13 @@ export class ApplicationsComponent implements OnInit {
     }
 
     // Default initialization
-
-
     this.apps = [];
-    /**
+
+  /**
    * Mocked Charts
    */
   Object.assign(this, {mockAppPieChart, mockAppChart});
-}
-
+  }
 
   ngOnInit() {
       // Get User data from localStorage
@@ -113,4 +126,23 @@ export class ApplicationsComponent implements OnInit {
         }
       }
     }
+
+  /**
+   * Opens the modal view that holds the apps info component
+   */
+  openAppsInfo() {
+    const initialState = {
+      appName: this.appName,
+      organizatinoId: this.organizationId,
+      appId: this.appId,
+      appDescription: this.appDescription,
+      appType: this.appType,
+      appConfiguration: this.appConfiguration,
+      appServices: this.appServices
+    };
+
+    this.modalRef = this.modalService.show(AppsInfoComponent, { initialState });
+    this.modalRef.content.closeBtnName = 'Close';
+    // this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
+  }
 }

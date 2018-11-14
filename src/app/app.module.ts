@@ -55,7 +55,8 @@ import { ClusterComponent } from './cluster/cluster.component';
     UserInfoComponent,
     AddUserComponent,
     EditClusterComponent,
-    EditUserComponent
+    EditUserComponent,
+    AppsInfoComponent
   ],
   imports: [
     BrowserModule,

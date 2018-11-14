@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 
 export interface Backend {
+  getApps(organizationId: string): any;
     // Login
     login(email: string, password: string): Observable<any>;
     logout();
@@ -17,7 +18,7 @@ export interface Backend {
     getClusters(organizationId: string);
     getNodes(clusterId: string);
     getResourcesSummary(organizationId: string);
-    //Applications
+    // Applications
     getApps(organizationId: string);
     getClusterDetail(clusterId: string);
 }

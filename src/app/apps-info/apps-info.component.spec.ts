@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppsInfoComponent } from './apps-info.component';
+import { BsModalRef } from 'ngx-bootstrap';
 
 describe('AppsInfoComponent', () => {
   let component: AppsInfoComponent;
@@ -8,7 +9,8 @@ describe('AppsInfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppsInfoComponent ]
+      declarations: [ AppsInfoComponent ],
+      providers: [ BsModalRef ]
     })
     .compileComponents();
   }));
