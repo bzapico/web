@@ -3,8 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // hardcoded local environment API ip address
+  apiUrl: 'http://192.168.99.100'
 };
+
+function getBaseUrl() {
+  const chunks = document.location.href.split(':');
+  return chunks[0] + ':' + chunks[1];
+}
 
 /*
  * For easier debugging in development mode, you can import the following file
