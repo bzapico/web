@@ -99,37 +99,53 @@ button[type="submit"]:disabled {
     color:white;
 }
 
-/* - - - User-component modal view - - - */
-.modal {
-  top: 17vh;
-  display: flex;
+/* - - - Modal window styles - - - */
+
+.modal.fade {
+  display: flex !important;
   justify-content: center;
   align-items: center;
 }
 .modal-dialog {
-  max-width: 500px;
-  margin: 0 auto;
+  vertical-align: middle;
+  width: 500px;
 }
 .modal-content {
   border: 0;
   border-radius: 10px;
 }
-@media screen and (max-height: 800px) {
-  .modal {
-    top: 0 !important;
-  }
-  .modal-card {
-    padding: 3rem !important;
-  }
-  .modal-dialog {
-    max-width: 475px;
-    margin: 2vh auto;
-  }
-  .buttons {
-    padding: 0 !important;
+.modal-card {
+  border: 0;
+  border-radius: 10px;
+  outline: 0;
+  padding: 4rem;
+}
+.modal-header {
+  padding-bottom: 0;
+  border: none;
+}
+.close {
+  font-weight: 200;
+  &:focus {
+      outline: none;
   }
 }
+.nalej-form-title{
+  font-size: 1em;
+  display: inline;
+  button span {
+     color: #888888;
+  }
+}
+@media screen and (max-width: 1300px) {
+    .modal-card {
+      padding: 2rem;
+    }
+    .modal-dialog {
+      margin: 1.5rem auto;
+    }
 
+}
 /* - - - Alerts view - - - */
 .alert-close-button {
   position: relative;
@@ -241,7 +257,7 @@ button[type="submit"]:disabled {
   opacity: 0.4;
 }
 
-/* - - - Resources - Cluster card - Carousel - - - */
+/* - - -+ Carousel - - - */
 
 .carousel-big {
   display: block;
@@ -341,7 +357,7 @@ button[type="submit"]:disabled {
   }
 }
 
-/* - - - Resources - Cluster card - Charts - - - */
+/* - - -  Charts - - - */
 .ngx-charts .label {
   display: none;
 }
@@ -352,7 +368,7 @@ button[type="submit"]:disabled {
 .ngx-charts text { 
   fill: #949494; 
 }
-/* - - - Medias - Resources - Cluster card - Carousel - - - */
+/* - - - Medias Charts and Carousel - - - */
 @media screen and (min-width:2560px){
   .carousel-small{
     display: none;
