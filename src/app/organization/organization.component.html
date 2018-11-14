@@ -27,7 +27,7 @@
   <div class="col-lg-8 col-md-8 col-sm-12 h-100">
     <div class="card h-100 p-4">
       <div class="card-title-h">
-        <h5 class="text-uppercase">Members</h5>
+        <h5>MEMBERS</h5>
       </div>
       <div class="table-h">
         <table 
@@ -63,7 +63,7 @@
           <tbody>
             <tr *ngFor="let user of users">
               <td>{{user.name}}</td>
-              <td class="blue">{{user.role}}</td>
+              <td class="blue" (click)="openUserInfo(user)">{{user.role}}</td>
               <td>{{user.email}}</td>
               <td class="row-info-btn">
                 <button class="btn info-btn btn-primary" (click)="openUserInfo(user)">
@@ -94,7 +94,9 @@
   <!-- Subscription panel card -->
   <div class="col-lg-4 col-md-4 col-sm-12 h-100">
     <div class="card flex-col d-flex justify-content-between h-100 p-4">
-      <h5 class="text-uppercase">Subscription</h5>
+      <div class="card-title-h">
+        <h5>SUBSCRIPTION</h5>
+      </div>
       <div class="btn-primary subs-v">
         <i class="material-icons">check</i></div>
       <h2 class="text-center blue">Free</h2>

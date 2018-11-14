@@ -1,27 +1,3 @@
-
-.row-title {
-    height: 4%;
-}
-.row-info {
-    height: 29%;
-    margin-bottom: 2.2rem;
-}
-.row-main {
-    height: 54%;
-}
-.card {
-    -webkit-box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
-    -moz-box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
-    box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
-    border-radius: 10px;
-    border: 0;
-    overflow: hidden;
-}
-.card-title-h {
-    height: 4%;
-    margin-left: 9px;
-    margin-bottom: 70px;
-}
 .cluster-number {
     float: right;
     color: #949494;
@@ -109,12 +85,10 @@
     display:inline-block;
     margin:0 10px 0 0;
 }
+
 /* - - - Medias Cluster table card - - - */
 @media screen and (max-width:1500px){
-    .card-title-h {
-        margin-bottom: 57px;
-    }
-    .card-title-h h5, .card-title-c h5 {
+    .card-title-c h5 {
         font-size: 1em;
     }
     .table td {
@@ -126,24 +100,49 @@
     .status-dot-error:before {
         margin: 0 23px;
     }
+    .info-btn {
+        height: 25px;
+        width: 25px;
+    }
+    .i-info {
+        font-size: 1em;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+    }
 }
 
 /* - - - Summary card circles - - - */
+.summary-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    margin-top: 1em;
+}
+.summary-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+}
 .circle {
-    width:112px;
+    width: 112px;
     height: 112px;
-    border: 1px solid #949494; 
-    -moz-border-radius: 50%; 
-    -webkit-border-radius: 50%; 
+    border: 1px solid #949494;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
     border-radius: 50%;
     position: relative;
-    margin-top: 2em;
-}
-.circle span {
-    text-align: center;
-    color: black;
-    font-size: 1.7em;
-}
+    margin: 0 auto;
+    span {
+      text-align: center;
+      color: black;
+      font-size: 1.7em;
+    }
+  }
 .circle-name {
     font-size: 1.2em;
     color:#949494;
@@ -151,39 +150,35 @@
 /* - - - Medias Summary card circles - - - */
 @media screen and (max-width:1500px){
     .circle {
-        margin-top: 0;
+        margin-top: 2em;
         max-width: 65px;
         max-height: 65px;
-    }
-    .circle span {
-        font-size: 1em !important;
-        top: 21px;
-        left: 25px;
-    }
+        span {
+          font-size: 1em !important;
+          top: 21px;
+          left: 25px;
+        }
+      }
     .circle-name {
         font-size: 1em !important;
-        margin-top: 1em;
+        margin-top: 0.6em !important;
     }
     .table td {
         padding: .6rem 1rem;
     }
+    .summary-card {
+        margin-top: 0em;
+    }
 }
 @media screen and (min-width:2560px){
     .circle {
-        margin-top: 3em;
         min-width: 140px;
         min-height: 140px;
-    }
-    .circle span {
-        top: 54px;
-        left: 58px;
-    }
-    .circle-name{
-        margin-top: 2em !important;
-    }
-    .carousel {
-        padding-top: 2em;
-    }
+        span {
+          top: 54px;
+          left: 58px;
+        }
+      }
 }
 
 /* - - - Cluster card Slider - - - */
@@ -195,6 +190,8 @@
 }
 .nodes-run {
     font-size: .8em;
+    margin-top: -1em;
+    cursor: pointer;
 }
 .box {
     width: 27%;
@@ -205,28 +202,33 @@
 }
 .donut-chart {
     width: 100%;
-    height: 60%;
+    height: 68%;
     text-align: center;
     position: relative;
 }
-.donut-number {
-    position: absolute;
-    top: 42%;
-    left: 38%;
+.carousel-big{
+    .donut-number {
+        position: absolute;
+        top: 44%;
+        left: 35%;
+        height: 22px;
+    }
 }
+.card-clus { 
+    padding: 1.5rem 1.5rem 0 1.5rem;
+}       
 
 /* - - - Media Cluster card Slider - - - */
 @media screen and (max-width:1500px){
-    .card-clus {   
-        padding-bottom: .5em !important;
-    }
     .cluster-number {
         margin-bottom: 0;
+        font-size: 0.8em;
     }
     .slide-box {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      width: 269px;
     }
     .box {
       width: 90%;
@@ -235,33 +237,39 @@
       justify-content: center;
       align-items: center;
     }
-    .donut-number {
-        display: inline;
-        left: 33%;
-    }
     .nodes-run{
         display: inline;
+    }
+    .carousel-small{
+        .donut-number {
+            position: absolute;
+            top: 45%;
+            left: 36%;
+            font-size: .8em;
+        }
     }
 }
 @media screen and (min-width:2560px){
     .box {
         width: 31%;
     }
-    .donut-chart {
-        height: 100%;
-    }
-    .donut-number {
-        top: 44%;
-        left: 45%;
+    .slide-box{
+        padding-top: 2em;
+      }
+    .carousel-big{
+        .donut-number {
+            left: 41%;
+        }
     }
 }
 /* - - - Node Status card - - - */
 .box-line-chart {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 .line-chart {
-    width:90%;
+    width:93%;
     position: relative;
 }
 .bottom-line{
@@ -273,21 +281,10 @@
     background-color: #EEEEEE;
 }
 .y-axis-line-chart {
-    width:10%;
+    font-size: .8em;
     display: flex;
     flex-direction:column;
     justify-content: space-between;
-}
-
-/* - - - Media Node Status card - - - */
-@media screen and (max-width:1500px){
-    .y-axis-line-chart {
-        width:15%;
-    }
-    .y-axis-line-chart span {
-        font-size: .8em;
-    }
-
 }
 
   
