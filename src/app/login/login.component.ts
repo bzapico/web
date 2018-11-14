@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DebugPanelComponent } from '../debug-panel/debug-panel.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-login',
@@ -50,9 +51,29 @@ export class LoginComponent implements OnInit {
       .subscribe(response => {
         this.errorMessage = '';
         if (response.token) {
-          this.router.navigate([
-            '/organization'
-          ]);
+          const jwtHelper: JwtHelperService = new JwtHelperService();
+          const jwtTokenData = jwtHelper.decodeToken(response.token);
+          switch (jwtTokenData.role) {
+            case 'Owner':
+              this.router.navigate([
+                '/organization'
+              ]);
+            break;
+            case 'Developer':
+              this.router.navigate([
+                '/applications'
+              ]);
+            break;
+            case 'Operator':
+              this.router.navigate([
+                '/resources'
+              ]);
+            break;
+            default:
+              this.router.navigate([
+                '/applications'
+              ]);
+          }
         }
       }, error => {
         this.errorMessage = error.statusText;
