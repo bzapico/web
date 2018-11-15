@@ -27,7 +27,7 @@ export class MockupBackendService implements Backend {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify({
         token: mockJwtToken,
-        refresh_token: 'xxxxxxxxxxxxxxxxxxxxxx'
+        refresh_token: '018e42cf-9acb-4b4c-8804-6c54334d6947'
       }),
       status: 200
     })))

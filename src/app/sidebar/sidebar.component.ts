@@ -60,7 +60,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
-      const userId = JSON.parse(jwtData).UserId;
+      const userId = JSON.parse(jwtData).userID;
       if (userId !== null) {
         this.updateProfileUser(userId);
       }
