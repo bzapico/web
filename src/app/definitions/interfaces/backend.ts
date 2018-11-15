@@ -5,7 +5,7 @@ export interface Backend {
     login(email: string, password: string): Observable<any>;
     logout();
     // Organization
-    getUserProfileInfo(userId: string);
+    getUserProfileInfo(organizationId: string, userId: string);
     getOrganizationInfo(organizationId: string);
     getOrganizationUsers(organizationId: string);
     addUser(organizationId: string, user: any);

@@ -54,21 +54,15 @@ export class OrganizationComponent implements OnInit {
   ngOnInit() {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
-      this.organizationId = JSON.parse(jwtData).OrganizationId;
+      this.organizationId = JSON.parse(jwtData).organizationID;
       if (this.organizationId !== null) {
         this.backend.getOrganizationInfo(this.organizationId)
           .subscribe(response => {
-            if (response && response._body) {
-              const data = JSON.parse(response._body);
-              this.organizationName = data.name;
-            }
+              this.organizationName = response.name;
           });
         this.backend.getOrganizationUsers(this.organizationId)
           .subscribe(response => {
-            if (response && response._body) {
-              const data = JSON.parse(response._body);
-              this.users = data;
-            }
+              this.users = response.users;
           });
       }
     }
