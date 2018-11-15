@@ -51,6 +51,7 @@ export class BackendService implements Backend {
     })));
   }
 
+  // GET 'users/{organization_id}/{email}/info
   getUserProfileInfo(organizationId: string, userId: string) {
     return this.get(
       API_URL + 'users/' + organizationId + '/' + userId + '/info'
@@ -62,13 +63,18 @@ export class BackendService implements Backend {
       API_URL + 'organization/' + organizationId
     );
   }
+  // GET 'users/{organization_id}/list
   getOrganizationUsers(organizationId: string) {
     return this.get(
       API_URL + 'users/' + organizationId + '/list'
     );
   }
+
   addUser(organizationId: string, user: any) {
-    throw new Error('Method not implemented.');
+    return this.post(
+      API_URL + 'users/' + organizationId + '/add',
+      user
+    );
   }
   deleteUser(organizationId: string, userId: string) {
     throw new Error('Method not implemented.');
@@ -109,5 +115,23 @@ export class BackendService implements Backend {
     return this.http.get(url, {
       headers: headers
     });
+  }
+
+  post(url: string, load?: any) {
+    const jwt = localStorage.getItem(LocalStorageKeys.jwt) || null;
+    if (jwt !== null) {
+      this.authToken = JSON.parse(jwt).token;
+    }
+    // Set Authorization headers
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', this.authToken);
+    console.log(headers);
+    return this.http.post(
+      url,
+      load,
+      {
+        headers: headers
+      }
+      );
   }
 }

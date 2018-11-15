@@ -58,7 +58,6 @@ export class OrganizationComponent implements OnInit {
       if (this.organizationId !== null) {
         this.backend.getOrganizationInfo(this.organizationId)
           .subscribe(response => {
-              console.log(response);
               this.organizationName = response.name;
           });
         this.backend.getOrganizationUsers(this.organizationId)
@@ -120,10 +119,7 @@ export class OrganizationComponent implements OnInit {
     if (this.organizationId != null) {
       this.backend.getOrganizationUsers(this.organizationId)
       .subscribe(response => {
-        if (response && response._body) {
-          const data = JSON.parse(response._body);
-          this.users = data;
-        }
+          this.users = response.users;
       });
     }
   }
