@@ -30,9 +30,5 @@ spec:
         ports:
         - name: http-port
           containerPort: 80
-        - name: https-port
-          containerPort: 443
-        securityContext:
-          runAsUser: 2000
       imagePullSecrets:
       - name: myregistrykey
