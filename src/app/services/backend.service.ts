@@ -4,7 +4,8 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Backend } from '../definitions/interfaces/backend';
 import { Response, ResponseOptions } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
 /**
  * URL of the public API
@@ -16,8 +17,11 @@ const API_URL = environment.apiUrl + ':31404/v1/';
 })
 
 export class BackendService implements Backend {
+
+  authToken: string;
   constructor(
     private http: HttpClient) {
+
   }
 
   // POST '/login'
@@ -46,14 +50,22 @@ export class BackendService implements Backend {
       status: 200
     })));
   }
-  getUserProfileInfo(userId: string) {
-    throw new Error('Method not implemented.');
+
+  getUserProfileInfo(organizationId: string, userId: string) {
+    return this.get(
+      API_URL + 'users/' + organizationId + '/' + userId + '/info'
+    );
   }
+  // GET '/organization/{organization_id}'
   getOrganizationInfo(organizationId: string) {
-    throw new Error('Method not implemented.');
+    return this.get(
+      API_URL + 'organization/' + organizationId
+    );
   }
   getOrganizationUsers(organizationId: string) {
-    throw new Error('Method not implemented.');
+    return this.get(
+      API_URL + 'users/' + organizationId + '/list'
+    );
   }
   addUser(organizationId: string, user: any) {
     throw new Error('Method not implemented.');
@@ -84,5 +96,18 @@ export class BackendService implements Backend {
   }
   getClusterDetail(clusterId: string) {
     throw new Error('Method not implemented.');
+  }
+
+  get(url: string) {
+    const jwt = localStorage.getItem(LocalStorageKeys.jwt) || null;
+    if (jwt !== null) {
+      this.authToken = JSON.parse(jwt).token;
+    }
+    // Set Authorization headers
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', this.authToken);
+    return this.http.get(url, {
+      headers: headers
+    });
   }
 }
