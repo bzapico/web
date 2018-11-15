@@ -28,10 +28,10 @@ export class SidebarComponent implements OnInit {
   email: string;
 
   /**
-   * Models that hold user id, name and the users list
+   * Models that hold user id and organizationId
    */
   userId: string;
-  profile: any[];
+  organizationId: string;
 
   /**
    * Reference for the service that allows to open debug panel and profile modal view
@@ -54,15 +54,15 @@ export class SidebarComponent implements OnInit {
     this.name = 'Loading ...'; // Default initialization
     this.role = 'Loading ...'; // Default initialization
     this.email = 'Loading ...'; // Default initialization
-    this.profile = [];
    }
 
   ngOnInit() {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       const userId = JSON.parse(jwtData).userID;
-      if (userId !== null) {
-        this.updateProfileUser(userId);
+      this.organizationId = JSON.parse(jwtData).organizationID;
+      if (userId !== null && this.organizationId !== null) {
+        this.updateProfileUser(this.organizationId, userId);
       }
     }
   }
@@ -89,21 +89,18 @@ export class SidebarComponent implements OnInit {
 
     this.modalRef = this.modalService.show(EditUserComponent, { initialState });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { this.updateProfileUser(initialState.userId); });
+    this.modalService.onHide.subscribe((reason: string) => { this.updateProfileUser(this.organizationId, initialState.userId); });
   }
 
    /**
    * Requests an updated profile user to update the current one
    */
-  updateProfileUser(userId) {
-    this.backend.getUserProfileInfo(userId)
+  updateProfileUser(organizationId, userId) {
+    this.backend.getUserProfileInfo(organizationId, userId)
     .subscribe(response => {
-      if (response && response._body) {
-        const data = JSON.parse(response._body);
-        this.name = data.name;
-        this.email = data.email;
-        this.role = data.role;
-      }
+        this.name = response.name;
+        this.email = response.email;
+        this.role = response.role_name;
     });
   }
 
