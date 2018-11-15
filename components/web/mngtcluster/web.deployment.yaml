@@ -25,10 +25,10 @@ spec:
     spec:
       containers:
       - name: web
-        image: nalej/web:VERSION
+        image: nalejregistry.azurecr.io/nalej/web:VERSION
         imagePullPolicy: IfNotPresent
         ports:
         - name: http-port
           containerPort: 80
       imagePullSecrets:
-      - name: myregistrykey
+      - name: nalej-registry
