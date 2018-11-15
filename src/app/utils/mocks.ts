@@ -17,37 +17,37 @@ export const mockUserList = [
     {
         name: 'Celia Toth',
         email: 'toth.c@mail.com',
-        role: 'Owner'
+        role_name: 'Owner'
     },
     {
         name: 'Sara Doe',
         email: 'saradoe@mail.com',
-        role: 'Owner'
+        role_name: 'Owner'
     },
     {
         name: 'Dave Smith',
         email: 'davesmith@mail.com',
-        role: 'Owner'
+        role_name: 'Owner'
     },
     {
         name: 'John Doe',
         email: 'john.doe@mail.com',
-        role: 'Owner'
+        role_name: 'Owner'
     },
     {
         name: 'Ellen Martin',
         email: 'ellen.martin@mail.com',
-        role: 'Owner'
+        role_name: 'Owner'
     },
     {
         name: 'Josh Peterson',
         email: 'josh.peterson@mail.com',
-        role: 'Owner'
+        role_name: 'Owner'
     },
     {
         name: 'Mike Slashis',
         email: 'mikeslashis@mail.com',
-        role: 'Owner'
+        role_name: 'Owner'
     },
 ];
 

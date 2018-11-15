@@ -52,27 +52,36 @@ export class MockupBackendService implements Backend {
    * Simulates get profile info
    * @param userId String containing the user identificator - used to replicate expected backend behavior
    */
-  getUserProfileInfo(userId: string) {
+  getUserProfileInfo(organizationId: string, userId: string) {
     const index = mockUserList.map(x => x.email).indexOf(userId);
     if (index !== -1) {}
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockUserList[index]),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response => response.json())
+    );
   }
 
   getOrganizationInfo(organizationId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockOrganizationInfo),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response => response.json())
+    );
   }
 
   getOrganizationUsers(organizationId: string) {
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockUserList),
+      body: JSON.stringify({ users: mockUserList }),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response => response.json())
+    );
   }
 
   /**
