@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Backend } from '../definitions/interfaces/backend';
 import { Response, ResponseOptions } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 /**
  * URL of the public API
@@ -17,7 +17,7 @@ const API_URL = environment.apiUrl + ':31404/v1/';
 
 export class BackendService implements Backend {
   constructor(
-    private http: Http) {
+    private http: HttpClient) {
   }
 
   // POST '/login'
@@ -35,9 +35,7 @@ export class BackendService implements Backend {
         username: email,
         password: password
       }
-    ).pipe(
-        map(response => response.json())
-      );
+    );
   }
 
   /**

@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { EditUserComponent } from './edit-user.component';
 import { FormsModule } from '@angular/forms';
 import { ButtonsModule, BsModalRef } from 'ngx-bootstrap';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('EditUserComponent', () => {
   let component: EditUserComponent;
@@ -12,6 +13,7 @@ describe('EditUserComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ EditUserComponent ],
       imports: [
+        HttpClientTestingModule,
         FormsModule,
         ButtonsModule
       ],

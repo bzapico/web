@@ -4,6 +4,7 @@ import { ClusterComponent } from './cluster.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ClusterComponent', () => {
   let component: ClusterComponent;
@@ -13,6 +14,7 @@ describe('ClusterComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ClusterComponent ],
       imports: [
+        HttpClientTestingModule,
         NgxChartsModule,
         RouterTestingModule,
         BrowserAnimationsModule,

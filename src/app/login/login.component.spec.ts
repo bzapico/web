@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BsModalService, ModalModule } from 'ngx-bootstrap';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -15,6 +16,7 @@ describe('LoginComponent', () => {
       declarations: [ LoginComponent ],
       imports: [
         ModalModule.forRoot(),
+        HttpClientTestingModule,
         ReactiveFormsModule,
         RouterTestingModule
       ],
