@@ -798,7 +798,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>getUserProfileInfo(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getUserProfileInfo(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
 
@@ -824,6 +824,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
                                                 <tr>
                                                         <td>userId</td>
                                                         <td>
@@ -1252,7 +1264,7 @@ export interface Backend {
     login(email: string, password: string): Observable&lt;any&gt;;
     logout();
     // Organization
-    getUserProfileInfo(userId: string);
+    getUserProfileInfo(organizationId: string, userId: string);
     getOrganizationInfo(organizationId: string);
     getOrganizationUsers(organizationId: string);
     addUser(organizationId: string, user: any);
