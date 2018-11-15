@@ -5,6 +5,7 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { mockUserProfileInfo } from '../utils/mocks';
 import { NotificationsService } from '../services/notifications.service';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { EditUserComponent } from '../edit-user/edit-user.component';
@@ -117,10 +118,9 @@ export class OrganizationComponent implements OnInit {
     this.modalRef = this.modalService.show(AddUserComponent, {initialState});
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
+
   }
-  /**
-   * Requests an updated list of users to update the current one
-   */
+
   updateUserList() {
     if (this.organizationId != null) {
       this.backend.getOrganizationUsers(this.organizationId)

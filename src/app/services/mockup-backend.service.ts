@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
 import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsList, mockNodeList  } from '../utils/mocks';
 
@@ -25,10 +26,14 @@ export class MockupBackendService implements Backend {
   login(email: string, password: string): Observable<any> {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify({
-        jwt: mockJwtToken
+        token: mockJwtToken,
+        refresh_token: 'xxxxxxxxxxxxxxxxxxxxxx'
       }),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response => response.json())
+    );
   }
   /**
    * Simulates the logout request

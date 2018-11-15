@@ -32,6 +32,7 @@
                     <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>
                     <div *ngIf="loginForm.controls.password.errors.minlength">Password must be at least 6 characters</div>
                     </div>
+                <div class="text-danger text-center mt-1" *ngIf="errorMessage.length>0"><small>Email or password incorrect</small></div>
                 <!-- Form actions -->
                 <button 
                 class="btn btn-lg btn-primary btn-block" 
