@@ -60,6 +60,9 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#API_URL" title="src/app/services/backend.service.ts"><b>API_URL</b>&nbsp;&nbsp;&nbsp;(src/.../backend.service.ts)</a>
+                        </li>
+                        <li>
                             <a href="#AvailableComponents" title="src/app/debug-panel/debug-panel.component.ts"><b>AvailableComponents</b>&nbsp;&nbsp;&nbsp;(src/.../debug-panel.component.ts)</a>
                         </li>
                         <li>
@@ -111,9 +114,6 @@
                             <a href="#mockUserList" title="src/app/utils/mocks.ts"><b>mockUserList</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
                         </li>
                         <li>
-                            <a href="#mockUserProfileInfo" title="src/app/utils/mocks.ts"><b>mockUserProfileInfo</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
-                        </li>
-                        <li>
                             <a href="#routes" title="src/app/app.routing.ts"><b>routes</b>&nbsp;&nbsp;&nbsp;(src/.../app.routing.ts)</a>
                         </li>
                         <li>
@@ -126,6 +126,43 @@
     </table>
 </section>
 
+    <h3>src/app/services/backend.service.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="API_URL"></a>
+                        <span class="name">
+                            <b>
+                            API_URL
+                            </b>
+                            <a href="#API_URL"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>API_URL:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>environment.apiUrl + &#x27;:31404/v1/&#x27;</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>URL of the public API</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
     <h3>src/app/debug-panel/debug-panel.component.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
@@ -205,7 +242,8 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
-  production: true
+  production: true,
+  apiUrl: getBaseUrl
 }</code>
                         </td>
                     </tr>
@@ -244,7 +282,9 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
-  production: false
+  production: false,
+  // hardcoded local environment API ip address
+  apiUrl: &#x27;http://192.168.99.100&#x27;
 }</code>
                         </td>
                     </tr>
@@ -300,6 +340,7 @@
     jwt: &#x27;jwt&#x27;,
     jwtData: &#x27;jwt_data&#x27;,
     userId: &#x27;user_id&#x27;,
+    refreshToken: &#x27;refresh_token&#x27;
 }</code>
                         </td>
                     </tr>
@@ -770,8 +811,8 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>&#x27;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9&#x27; +
     // tslint:disable-next-line:max-line-length
-    &#x27;.eyJVc2VySWQiOiJqb2huLmRvZUBtYWlsLmNvbSIsIk9yZ2FuaXphdGlvbklkIjoiMjE0MzQ2NTQzNDM0MyIsIlByaW1pdGl2ZXMiOlsiMCIsIjEiLCIyIiwiMyJdLCJSb2xlbmFtZSI6Ik93bmVyIiwiRXhwaXJlc0F0IjoxMjMzODU3MjcxMjc0M30&#x27; +
-    &#x27;.kF9ac17V9mWoWMYjhHyc9GD8hGw6wRT6wwNgdUJ1v4c&#x27;</code>
+    &#x27;.eyJhY2Nlc3MiOlsiT1JHIl0sImV4cCI6MTU0MjI4Njg2MywiaWF0IjoxNTQyMjc2MDYzLCJpc3MiOiJhdXRoeCIsImp0aSI6IjI1OTA5ZDNkLTJlODMtNDlmMC04ZmQzLTFlYmZiNTYxMTNhMSIsIm5iZiI6IjE1NDIyNzYwNjMiLCJvcmdhbml6YXRpb25JRCI6IjdhZDFhN2E4LWU0YjEtNDc5OC05MDcxLWU0NTY5MDhmYWQxMyIsInJvbGUiOiJPd25lciIsInVzZXJJRCI6ImpvaG4uZG9lQG1haWwuY29tIn0&#x27; +
+    &#x27;.MeCoZ_UdYiMlduG-ik63rHHqHztQrK7dgIEWceW0VRk&#x27;</code>
                         </td>
                     </tr>
 
@@ -1117,33 +1158,38 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>[
     {
+        name: &#x27;Celia Toth&#x27;,
+        email: &#x27;toth.c@mail.com&#x27;,
+        role: &#x27;Owner&#x27;
+    },
+    {
+        name: &#x27;Sara Doe&#x27;,
+        email: &#x27;saradoe@mail.com&#x27;,
+        role: &#x27;Owner&#x27;
+    },
+    {
+        name: &#x27;Dave Smith&#x27;,
+        email: &#x27;davesmith@mail.com&#x27;,
+        role: &#x27;Owner&#x27;
+    },
+    {
         name: &#x27;John Doe&#x27;,
-        email: &#x27;johndoe@mail.com&#x27;,
+        email: &#x27;john.doe@mail.com&#x27;,
         role: &#x27;Owner&#x27;
     },
     {
-        name: &#x27;Jack Doe&#x27;,
-        email: &#x27;jackdoe@mail.com&#x27;,
+        name: &#x27;Ellen Martin&#x27;,
+        email: &#x27;ellen.martin@mail.com&#x27;,
         role: &#x27;Owner&#x27;
     },
     {
-        name: &#x27;James Doe&#x27;,
-        email: &#x27;jamesdoe@mail.com&#x27;,
+        name: &#x27;Josh Peterson&#x27;,
+        email: &#x27;josh.peterson@mail.com&#x27;,
         role: &#x27;Owner&#x27;
     },
     {
-        name: &#x27;Jimmy Doe&#x27;,
-        email: &#x27;jimmydoe@mail.com&#x27;,
-        role: &#x27;Owner&#x27;
-    },
-    {
-        name: &#x27;Josh Doe&#x27;,
-        email: &#x27;joshdoe@mail.com&#x27;,
-        role: &#x27;Owner&#x27;
-    },
-    {
-        name: &#x27;Mike Doe&#x27;,
-        email: &#x27;mikedoe@mail.com&#x27;,
+        name: &#x27;Mike Slashis&#x27;,
+        email: &#x27;mikeslashis@mail.com&#x27;,
         role: &#x27;Owner&#x27;
     },
 ]</code>
@@ -1153,50 +1199,6 @@
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Mocked users list</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="mockUserProfileInfo"></a>
-                        <span class="name">
-                            <b>
-                            mockUserProfileInfo
-                            </b>
-                            <a href="#mockUserProfileInfo"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>mockUserProfileInfo:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
-    name: &#x27;John Doe&#x27;,
-    email: &#x27;john.doe@mail.com&#x27;,
-    role: &#x27;Owner&#x27;
-}</code>
-                        </td>
-                    </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Mocked profile info</p>
 </div>
                     </td>
                 </tr>

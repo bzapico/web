@@ -124,6 +124,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#errorMessage">errorMessage</a>
+                            </li>
+                            <li>
                                 <a href="#loginForm">loginForm</a>
                             </li>
                             <li>
@@ -173,7 +176,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/login/login.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/login/login.component.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -278,7 +281,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/login/login.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/login/login.component.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -316,7 +319,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/login/login.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/login/login.component.ts:49</a></div>
                             </td>
                         </tr>
 
@@ -357,7 +360,7 @@ If credentials are correct, JWT Token would be stored in localStorage</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/login/login.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/login/login.component.ts:86</a></div>
                             </td>
                         </tr>
 
@@ -386,6 +389,46 @@ If credentials are correct, JWT Token would be stored in localStorage</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="errorMessage"></a>
+                        <span class="name">
+                            <b>
+                            errorMessage
+                            </b>
+                            <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>errorMessage:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/login/login.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Holds the error message</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="loginForm"></a>
                         <span class="name">
                             <b>
@@ -409,7 +452,7 @@ If credentials are correct, JWT Token would be stored in localStorage</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/login/login.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/login/login.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -449,7 +492,7 @@ If credentials are correct, JWT Token would be stored in localStorage</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/login/login.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/login/login.component.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -474,6 +517,7 @@ import { AuthService } from &#x27;../services/auth.service&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { BsModalService, BsModalRef } from &#x27;ngx-bootstrap&#x27;;
 import { DebugPanelComponent } from &#x27;../debug-panel/debug-panel.component&#x27;;
+import { JwtHelperService } from &#x27;@auth0/angular-jwt&#x27;;
 
 @Component({
   selector: &#x27;app-login&#x27;,
@@ -490,6 +534,10 @@ export class LoginComponent implements OnInit {
    * Reference for the service that allows to open debug panel
    */
   modalRef: BsModalRef;
+  /**
+   * Holds the error message
+   */
+  errorMessage: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -504,6 +552,7 @@ export class LoginComponent implements OnInit {
       email: [&#x27;&#x27;, Validators.compose([Validators.required, Validators.email])],
       password: [&#x27;&#x27;, Validators.compose([Validators.required, Validators.minLength(6)])]
     });
+    this.errorMessage &#x3D; &#x27;&#x27;;
   }
 
   /**
@@ -513,10 +562,35 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(response &#x3D;&gt; {
-        this.router.navigate([
-          &#x27;/organization&#x27;
-        ]);
-      }, error &#x3D;&gt; console.log(error));
+        this.errorMessage &#x3D; &#x27;&#x27;;
+        if (response.token) {
+          const jwtHelper: JwtHelperService &#x3D; new JwtHelperService();
+          const jwtTokenData &#x3D; jwtHelper.decodeToken(response.token);
+          switch (jwtTokenData.role) {
+            case &#x27;Owner&#x27;:
+              this.router.navigate([
+                &#x27;/organization&#x27;
+              ]);
+            break;
+            case &#x27;Developer&#x27;:
+              this.router.navigate([
+                &#x27;/applications&#x27;
+              ]);
+            break;
+            case &#x27;Operator&#x27;:
+              this.router.navigate([
+                &#x27;/resources&#x27;
+              ]);
+            break;
+            default:
+              this.router.navigate([
+                &#x27;/applications&#x27;
+              ]);
+          }
+        }
+      }, error &#x3D;&gt; {
+        this.errorMessage &#x3D; error.statusText;
+      });
   }
 
   /**
@@ -525,6 +599,7 @@ export class LoginComponent implements OnInit {
   openDebugPanel() {
     this.modalRef &#x3D; this.modalService.show(DebugPanelComponent);
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
+    this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; { location.reload(); });
   }
 }
 </code></pre>
@@ -565,6 +640,7 @@ export class LoginComponent implements OnInit {
                     &lt;div *ngIf&#x3D;&quot;loginForm.controls.password.errors.required&quot;&gt;Password is required&lt;/div&gt;
                     &lt;div *ngIf&#x3D;&quot;loginForm.controls.password.errors.minlength&quot;&gt;Password must be at least 6 characters&lt;/div&gt;
                     &lt;/div&gt;
+                &lt;div class&#x3D;&quot;text-danger text-center mt-1&quot; *ngIf&#x3D;&quot;errorMessage.length&gt;0&quot;&gt;&lt;small&gt;Email or password incorrect&lt;/small&gt;&lt;/div&gt;
                 &lt;!-- Form actions --&gt;
                 &lt;button 
                 class&#x3D;&quot;btn btn-lg btn-primary btn-block&quot; 
@@ -602,7 +678,7 @@ export class LoginComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="login">    <!-- Login form -->    <form     [formGroup]="loginForm"    #f="ngForm"    class="form-login"    (ngSubmit)="f.form.valid && onSubmit()">        <h2 class="form-login-heading" (click)="openDebugPanel()">Nalej</h2>        <div class="card">            <h5 class="card-title">Log in</h5>            <div class="card-body">                <!-- Form fields -->                <input                     type="email"                     formControlName="email"                    class="form-control"                     placeholder="Email*"                     [ngClass]="{ \'is-invalid\': f.submitted && loginForm.controls.email.invalid }"                     required>                    <div *ngIf="loginForm.controls.email.invalid" class="invalid-feedback">                    <div *ngIf="loginForm.controls.email.errors.required">Email is required</div>                    <div *ngIf="loginForm.controls.email.errors.email">Email must be a valid email address</div>                    </div>                <input                     type="password"                     formControlName="password"                    class="form-control"                     placeholder="Password*"                    [ngClass]="{ \'is-invalid\': f.submitted && loginForm.controls.password.invalid }"                     required>                    <div *ngIf="loginForm.controls.password.invalid" class="invalid-feedback">                    <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>                    <div *ngIf="loginForm.controls.password.errors.minlength">Password must be at least 6 characters</div>                    </div>                <!-- Form actions -->                <button                 class="btn btn-lg btn-primary btn-block"                 type="submit">                Log in                </button>            </div>          </div>     </form></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="login">    <!-- Login form -->    <form     [formGroup]="loginForm"    #f="ngForm"    class="form-login"    (ngSubmit)="f.form.valid && onSubmit()">        <h2 class="form-login-heading" (click)="openDebugPanel()">Nalej</h2>        <div class="card">            <h5 class="card-title">Log in</h5>            <div class="card-body">                <!-- Form fields -->                <input                     type="email"                     formControlName="email"                    class="form-control"                     placeholder="Email*"                     [ngClass]="{ \'is-invalid\': f.submitted && loginForm.controls.email.invalid }"                     required>                    <div *ngIf="loginForm.controls.email.invalid" class="invalid-feedback">                    <div *ngIf="loginForm.controls.email.errors.required">Email is required</div>                    <div *ngIf="loginForm.controls.email.errors.email">Email must be a valid email address</div>                    </div>                <input                     type="password"                     formControlName="password"                    class="form-control"                     placeholder="Password*"                    [ngClass]="{ \'is-invalid\': f.submitted && loginForm.controls.password.invalid }"                     required>                    <div *ngIf="loginForm.controls.password.invalid" class="invalid-feedback">                    <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>                    <div *ngIf="loginForm.controls.password.errors.minlength">Password must be at least 6 characters</div>                    </div>                <div class="text-danger text-center mt-1" *ngIf="errorMessage.length>0"><small>Email or password incorrect</small></div>                <!-- Form actions -->                <button                 class="btn btn-lg btn-primary btn-block"                 type="submit">                Log in                </button>            </div>          </div>     </form></div></div>'
     var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginComponent'};

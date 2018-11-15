@@ -3,6 +3,7 @@ import { SidebarComponent } from './sidebar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ModalModule, BsModalService } from 'ngx-bootstrap';
 import { AuthService } from '../services/auth.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
@@ -12,6 +13,7 @@ describe('SidebarComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         ModalModule.forRoot(),
+        HttpClientTestingModule,
         RouterTestingModule
       ],
       declarations: [ SidebarComponent ],

@@ -1,26 +1,3 @@
-.modal-card {
-    border: 0;
-    border-radius: 10px;
-    outline: 0;
-    padding: 4rem;
-}
-.modal-header {
-    padding-bottom: 0;
-    border: none;
-}
-.close {
-    font-weight: 200;
-    &:focus {
-        outline: none;
-    }
-}
-.nalej-form-title{
-    font-size: 18px;
-    display: inline;
-    button span {
-       color: #888888;
-    }
-}
 .form-control {
     position: relative;
     height: auto;
@@ -74,7 +51,6 @@ input {
     stroke:  #c8ccd4 !important;
     }
 }
-
 .btn-md {
     border: 0px;
     border-radius: 5px;
@@ -95,8 +71,9 @@ input {
 .buttons {
     padding: 8em 0 0 0;
 }
+
 @media screen and (max-width: 1300px) {
-    .modal-card{
-        padding: 3em;
+    .buttons {
+        padding: 0;
     }
 }

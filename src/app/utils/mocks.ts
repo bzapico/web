@@ -1,16 +1,7 @@
 export const mockJwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
     // tslint:disable-next-line:max-line-length
-    '.eyJVc2VySWQiOiJqb2huLmRvZUBtYWlsLmNvbSIsIk9yZ2FuaXphdGlvbklkIjoiMjE0MzQ2NTQzNDM0MyIsIlByaW1pdGl2ZXMiOlsiMCIsIjEiLCIyIiwiMyJdLCJSb2xlbmFtZSI6Ik93bmVyIiwiRXhwaXJlc0F0IjoxMjMzODU3MjcxMjc0M30' +
-    '.kF9ac17V9mWoWMYjhHyc9GD8hGw6wRT6wwNgdUJ1v4c';
-
-/**
- * Mocked profile info
- */
-export const mockUserProfileInfo = {
-    name: 'John Doe',
-    email: 'john.doe@mail.com',
-    role: 'Owner'
-};
+    '.eyJhY2Nlc3MiOlsiT1JHIl0sImV4cCI6MTU0MjI4Njg2MywiaWF0IjoxNTQyMjc2MDYzLCJpc3MiOiJhdXRoeCIsImp0aSI6IjI1OTA5ZDNkLTJlODMtNDlmMC04ZmQzLTFlYmZiNTYxMTNhMSIsIm5iZiI6IjE1NDIyNzYwNjMiLCJvcmdhbml6YXRpb25JRCI6IjdhZDFhN2E4LWU0YjEtNDc5OC05MDcxLWU0NTY5MDhmYWQxMyIsInJvbGUiOiJPd25lciIsInVzZXJJRCI6ImpvaG4uZG9lQG1haWwuY29tIn0' +
+    '.MeCoZ_UdYiMlduG-ik63rHHqHztQrK7dgIEWceW0VRk';
 
 /**
  * Mocked organization info
@@ -24,33 +15,38 @@ export const mockOrganizationInfo = {
  */
 export const mockUserList = [
     {
+        name: 'Celia Toth',
+        email: 'toth.c@mail.com',
+        role: 'Owner'
+    },
+    {
+        name: 'Sara Doe',
+        email: 'saradoe@mail.com',
+        role: 'Owner'
+    },
+    {
+        name: 'Dave Smith',
+        email: 'davesmith@mail.com',
+        role: 'Owner'
+    },
+    {
         name: 'John Doe',
-        email: 'johndoe@mail.com',
+        email: 'john.doe@mail.com',
         role: 'Owner'
     },
     {
-        name: 'Jack Doe',
-        email: 'jackdoe@mail.com',
+        name: 'Ellen Martin',
+        email: 'ellen.martin@mail.com',
         role: 'Owner'
     },
     {
-        name: 'James Doe',
-        email: 'jamesdoe@mail.com',
+        name: 'Josh Peterson',
+        email: 'josh.peterson@mail.com',
         role: 'Owner'
     },
     {
-        name: 'Jimmy Doe',
-        email: 'jimmydoe@mail.com',
-        role: 'Owner'
-    },
-    {
-        name: 'Josh Doe',
-        email: 'joshdoe@mail.com',
-        role: 'Owner'
-    },
-    {
-        name: 'Mike Doe',
-        email: 'mikedoe@mail.com',
+        name: 'Mike Slashis',
+        email: 'mikeslashis@mail.com',
         role: 'Owner'
     },
 ];
