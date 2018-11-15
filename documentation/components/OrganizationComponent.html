@@ -508,15 +508,13 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/organization/organization.component.ts:124</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/organization/organization.component.ts:123</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Requests an updated list of users to update the current one</p>
-</div>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -880,10 +878,9 @@ export class OrganizationComponent implements OnInit {
     this.modalRef &#x3D; this.modalService.show(AddUserComponent, {initialState});
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
     this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; { this.updateUserList(); });
+
   }
-  /**
-   * Requests an updated list of users to update the current one
-   */
+
   updateUserList() {
     if (this.organizationId !&#x3D; null) {
       this.backend.getOrganizationUsers(this.organizationId)

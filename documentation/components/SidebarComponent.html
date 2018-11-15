@@ -299,7 +299,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/sidebar/sidebar.component.ts:112</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/sidebar/sidebar.component.ts:113</a></div>
                             </td>
                         </tr>
 
@@ -417,7 +417,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/sidebar/sidebar.component.ts:81</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/sidebar/sidebar.component.ts:82</a></div>
                             </td>
                         </tr>
 
@@ -457,7 +457,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/sidebar/sidebar.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/sidebar/sidebar.component.ts:98</a></div>
                             </td>
                         </tr>
 
@@ -839,7 +839,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     const jwtData &#x3D; localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !&#x3D;&#x3D; null) {
-      const userId &#x3D; JSON.parse(jwtData).UserId;
+      const userId &#x3D; JSON.parse(jwtData).userID;
       if (userId !&#x3D;&#x3D; null) {
         this.updateProfileUser(userId);
       }
@@ -852,6 +852,7 @@ export class SidebarComponent implements OnInit {
   openDebugPanel() {
     this.modalRef &#x3D; this.modalService.show(DebugPanelComponent);
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
+    this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; { location.reload(); });
   }
 
   /**

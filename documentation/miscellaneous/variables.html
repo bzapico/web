@@ -60,6 +60,9 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#API_URL" title="src/app/services/backend.service.ts"><b>API_URL</b>&nbsp;&nbsp;&nbsp;(src/.../backend.service.ts)</a>
+                        </li>
+                        <li>
                             <a href="#AvailableComponents" title="src/app/debug-panel/debug-panel.component.ts"><b>AvailableComponents</b>&nbsp;&nbsp;&nbsp;(src/.../debug-panel.component.ts)</a>
                         </li>
                         <li>
@@ -123,6 +126,43 @@
     </table>
 </section>
 
+    <h3>src/app/services/backend.service.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="API_URL"></a>
+                        <span class="name">
+                            <b>
+                            API_URL
+                            </b>
+                            <a href="#API_URL"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>API_URL:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>environment.apiUrl + &#x27;:31404/v1/&#x27;</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>URL of the public API</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
     <h3>src/app/debug-panel/debug-panel.component.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
@@ -202,7 +242,8 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
-  production: true
+  production: true,
+  apiUrl: getBaseUrl
 }</code>
                         </td>
                     </tr>
@@ -241,7 +282,9 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
-  production: false
+  production: false,
+  // hardcoded local environment API ip address
+  apiUrl: &#x27;http://192.168.99.100&#x27;
 }</code>
                         </td>
                     </tr>
@@ -297,6 +340,7 @@
     jwt: &#x27;jwt&#x27;,
     jwtData: &#x27;jwt_data&#x27;,
     userId: &#x27;user_id&#x27;,
+    refreshToken: &#x27;refresh_token&#x27;
 }</code>
                         </td>
                     </tr>
@@ -767,8 +811,8 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>&#x27;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9&#x27; +
     // tslint:disable-next-line:max-line-length
-    &#x27;.eyJVc2VySWQiOiJqb2huLmRvZUBtYWlsLmNvbSIsIk9yZ2FuaXphdGlvbklkIjoiMjE0MzQ2NTQzNDM0MyIsIlByaW1pdGl2ZXMiOlsiMCIsIjEiLCIyIiwiMyJdLCJSb2xlbmFtZSI6Ik93bmVyIiwiRXhwaXJlc0F0IjoxMjMzODU3MjcxMjc0M30&#x27; +
-    &#x27;.kF9ac17V9mWoWMYjhHyc9GD8hGw6wRT6wwNgdUJ1v4c&#x27;</code>
+    &#x27;.eyJhY2Nlc3MiOlsiT1JHIl0sImV4cCI6MTU0MjI4Njg2MywiaWF0IjoxNTQyMjc2MDYzLCJpc3MiOiJhdXRoeCIsImp0aSI6IjI1OTA5ZDNkLTJlODMtNDlmMC04ZmQzLTFlYmZiNTYxMTNhMSIsIm5iZiI6IjE1NDIyNzYwNjMiLCJvcmdhbml6YXRpb25JRCI6IjdhZDFhN2E4LWU0YjEtNDc5OC05MDcxLWU0NTY5MDhmYWQxMyIsInJvbGUiOiJPd25lciIsInVzZXJJRCI6ImpvaG4uZG9lQG1haWwuY29tIn0&#x27; +
+    &#x27;.MeCoZ_UdYiMlduG-ik63rHHqHztQrK7dgIEWceW0VRk&#x27;</code>
                         </td>
                     </tr>
 
