@@ -303,7 +303,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/add-user/add-user.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/add-user/add-user.component.ts:54</a></div>
                             </td>
                         </tr>
 
@@ -375,7 +375,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/add-user/add-user.component.ts:95</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/add-user/add-user.component.ts:89</a></div>
                             </td>
                         </tr>
 
@@ -447,7 +447,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/add-user/add-user.component.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/add-user/add-user.component.ts:72</a></div>
                             </td>
                         </tr>
 
@@ -519,7 +519,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/add-user/add-user.component.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/add-user/add-user.component.ts:97</a></div>
                             </td>
                         </tr>
 
@@ -591,7 +591,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/add-user/add-user.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/add-user/add-user.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -942,7 +942,6 @@ export class AddUserComponent implements OnInit {
   ) {
     this.userRole &#x3D; null;
     const mock &#x3D; localStorage.getItem(LocalStorageKeys.addUserMock) || null;
-    console.log(mock);
     // check which backend is required (fake or real)
     if (mock &amp;&amp; mock &#x3D;&#x3D;&#x3D; &#x27;true&#x27;) {
       this.backend &#x3D; mockupBackendService;
@@ -964,17 +963,12 @@ export class AddUserComponent implements OnInit {
       name: form.value.name,
       email: form.value.email,
       password: form.value.password,
-      role: this.userRole
+      role_name: this.userRole
     };
     this.backend.addUser(this.organizationId, user)
       .subscribe(response &#x3D;&gt; {
-        if (!response._body) {
-          this.notificationsService.add({message: user.email + &#x27; created successfully&#x27;});
-          this.bsModalRef.hide();
-        } else {
-          // Error
-          this.notificationsService.add({message: response._body});
-        }
+        this.notificationsService.add({message: user.email + &#x27; created successfully&#x27;});
+        this.bsModalRef.hide();
       });
   }
 

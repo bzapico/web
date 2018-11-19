@@ -990,7 +990,7 @@ export class EditUserComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    const mock &#x3D; localStorage.getItem(LocalStorageKeys.userInfoMock) || null;
+    const mock &#x3D; localStorage.getItem(LocalStorageKeys.userEditMock) || null;
     // check which backend is required (fake or real)
     if (mock &amp;&amp; mock &#x3D;&#x3D;&#x3D; &#x27;true&#x27;) {
       this.backend &#x3D; mockupBackendService;
@@ -1043,10 +1043,10 @@ export class EditUserComponent implements OnInit {
    */
   saveUserChanges(f) {
     if (this.userId !&#x3D;&#x3D; null) {
-      this.backend.saveUserChanges(this.organizationId, this.userId, {
-        newUserName: this.userName,
-        newUserEmail: this.userId,
-        newUserRole: this.userRole
+      this.backend.saveUserChanges(this.organizationId, {
+        name: this.userName,
+        email: this.userId,
+        role_name: this.userRole
       })
         .subscribe(response &#x3D;&gt; {
           this.notificationsService.add({

@@ -35,7 +35,6 @@ export class AddUserComponent implements OnInit {
   ) {
     this.userRole = null;
     const mock = localStorage.getItem(LocalStorageKeys.addUserMock) || null;
-    console.log(mock);
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
@@ -57,17 +56,12 @@ export class AddUserComponent implements OnInit {
       name: form.value.name,
       email: form.value.email,
       password: form.value.password,
-      role: this.userRole
+      role_name: this.userRole
     };
     this.backend.addUser(this.organizationId, user)
       .subscribe(response => {
-        if (!response._body) {
-          this.notificationsService.add({message: user.email + ' created successfully'});
-          this.bsModalRef.hide();
-        } else {
-          // Error
-          this.notificationsService.add({message: response._body});
-        }
+        this.notificationsService.add({message: user.email + ' created successfully'});
+        this.bsModalRef.hide();
       });
   }
 
