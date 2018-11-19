@@ -29,6 +29,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { ApplicationsComponent } from './applications/applications.component';
 import { ClusterComponent } from './cluster/cluster.component';
+import { UpdateEventsService } from './services/update-events.service';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { ClusterComponent } from './cluster/cluster.component';
     AuthService,
     BackendService,
     { provide: ErrorHandler,
-      useClass: ErrorHandlerService }
+      useClass: ErrorHandlerService },
+    UpdateEventsService
     ],
   bootstrap: [AppComponent]
 })

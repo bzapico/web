@@ -8,6 +8,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { NotificationsService } from '../services/notifications.service';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { EditUserComponent } from '../edit-user/edit-user.component';
+import { UpdateEventsService } from '../services/update-events.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -37,7 +38,8 @@ export class OrganizationComponent implements OnInit {
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private updateService: UpdateEventsService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.organizationMock) || null;
     // check which backend is required (fake or real)
@@ -66,6 +68,14 @@ export class OrganizationComponent implements OnInit {
           });
       }
     }
+    this.updateService.changesOnUserList.subscribe(
+      result => {
+      this.backend.getOrganizationUsers(this.organizationId)
+        .subscribe(response => {
+          this.users = response.users;
+        });
+      }
+    );
   }
 
   /**

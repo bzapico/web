@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
@@ -7,6 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DebugPanelComponent } from '../debug-panel/debug-panel.component';
 import { AuthService } from '../services/auth.service';
 import { EditUserComponent } from '../edit-user/edit-user.component';
+import { UpdateEventsService } from '../services/update-events.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -15,6 +16,9 @@ import { EditUserComponent } from '../edit-user/edit-user.component';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+
+
+  @Output() updateUserInfo = new EventEmitter<boolean>();
   /**
    * Backend reference
    */
@@ -42,7 +46,8 @@ export class SidebarComponent implements OnInit {
     backendService: BackendService,
     mockupBackendService: MockupBackendService,
     private modalService: BsModalService,
-    private auth: AuthService
+    private auth: AuthService,
+    private updateService: UpdateEventsService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.sidebarMock) || null;
     // check which backend is required (fake or real)
@@ -89,7 +94,10 @@ export class SidebarComponent implements OnInit {
 
     this.modalRef = this.modalService.show(EditUserComponent, { initialState });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { this.updateProfileUser(this.organizationId, initialState.userId); });
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateProfileUser(this.organizationId, initialState.userId);
+      this.updateService.changesOnUserList.next();
+    });
   }
 
    /**

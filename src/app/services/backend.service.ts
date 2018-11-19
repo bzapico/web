@@ -85,6 +85,7 @@ export class BackendService implements Backend {
   saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
     throw new Error('Method not implemented.');
   }
+  // POST 'users/{organization_id}/update
   saveUserChanges(organizationId: string, user: any) {
     return this.post(
       API_URL + 'users/' + organizationId + '/update',
