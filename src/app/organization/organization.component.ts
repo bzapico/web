@@ -8,6 +8,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { NotificationsService } from '../services/notifications.service';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { EditUserComponent } from '../edit-user/edit-user.component';
+import { UpdateEventsService } from '../services/update-events.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -37,7 +38,8 @@ export class OrganizationComponent implements OnInit {
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private updateService: UpdateEventsService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.organizationMock) || null;
     // check which backend is required (fake or real)
@@ -58,16 +60,22 @@ export class OrganizationComponent implements OnInit {
       if (this.organizationId !== null) {
         this.backend.getOrganizationInfo(this.organizationId)
           .subscribe(response => {
-              console.log(response);
               this.organizationName = response.name;
           });
         this.backend.getOrganizationUsers(this.organizationId)
           .subscribe(response => {
-              console.log(response, 'organization users');
               this.users = response.users;
           });
       }
     }
+    this.updateService.changesOnUserList.subscribe(
+      result => {
+      this.backend.getOrganizationUsers(this.organizationId)
+        .subscribe(response => {
+          this.users = response.users;
+        });
+      }
+    );
   }
 
   /**
@@ -79,7 +87,7 @@ export class OrganizationComponent implements OnInit {
       organizatinoId: this.organizationId,
       userName: user.name,
       userId: user.email,
-      role: user.role,
+      role: user.role_name,
     };
 
     this.modalRef = this.modalService.show(UserInfoComponent, { initialState });
@@ -92,10 +100,10 @@ export class OrganizationComponent implements OnInit {
   openEditUser(user) {
     const initialState = {
       organizationName: this.organizationName,
-      organizatinoId: this.organizationId,
+      organizationId: this.organizationId,
       userName: user.name,
       userId: user.email,
-      userRole: user.role,
+      userRole: user.role_name,
       title: 'Edit user'
     };
 
@@ -120,10 +128,7 @@ export class OrganizationComponent implements OnInit {
     if (this.organizationId != null) {
       this.backend.getOrganizationUsers(this.organizationId)
       .subscribe(response => {
-        if (response && response._body) {
-          const data = JSON.parse(response._body);
-          this.users = data;
-        }
+          this.users = response.users;
       });
     }
   }
