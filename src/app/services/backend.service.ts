@@ -85,8 +85,12 @@ export class BackendService implements Backend {
   saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
     throw new Error('Method not implemented.');
   }
-  saveUserChanges(organizationId: string, userId: string, changes: any) {
-    throw new Error('Method not implemented.');
+  saveUserChanges(organizationId: string, user: any) {
+    return this.post(
+      API_URL + 'users/' + organizationId + '/update',
+      user
+    );
+
   }
   getResourcesSummary(organizationId: string) {
     throw new Error('Method not implemented.');
@@ -112,9 +116,11 @@ export class BackendService implements Backend {
     // Set Authorization headers
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', this.authToken);
-    return this.http.get(url, {
-      headers: headers
-    });
+    return this.http.get(
+      url,
+      {
+        headers: headers
+      });
   }
 
   post(url: string, load?: any) {

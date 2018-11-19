@@ -77,7 +77,7 @@ export class OrganizationComponent implements OnInit {
       organizatinoId: this.organizationId,
       userName: user.name,
       userId: user.email,
-      role: user.role,
+      role: user.role_name,
     };
 
     this.modalRef = this.modalService.show(UserInfoComponent, { initialState });
@@ -90,10 +90,10 @@ export class OrganizationComponent implements OnInit {
   openEditUser(user) {
     const initialState = {
       organizationName: this.organizationName,
-      organizatinoId: this.organizationId,
+      organizationId: this.organizationId,
       userName: user.name,
       userId: user.email,
-      userRole: user.role,
+      userRole: user.role_name,
       title: 'Edit user'
     };
 
