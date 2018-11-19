@@ -29,8 +29,10 @@ export class AddUserComponent implements OnInit {
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
+
+
   config = {
-    backdrop: 'static',
+    backdrop: false,
     ignoreBackdropClick: true
   };
   constructor(

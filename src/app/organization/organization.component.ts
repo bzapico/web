@@ -97,7 +97,7 @@ export class OrganizationComponent implements OnInit {
       role: user.role_name,
     };
 
-    this.modalRef = this.modalService.show(UserInfoComponent, { initialState });
+    this.modalRef = this.modalService.show(UserInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
@@ -114,7 +114,7 @@ export class OrganizationComponent implements OnInit {
       title: 'Edit user'
     };
 
-    this.modalRef = this.modalService.show(EditUserComponent, { initialState });
+    this.modalRef = this.modalService.show(EditUserComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
@@ -123,9 +123,10 @@ export class OrganizationComponent implements OnInit {
    */
   addUser() {
     const initialState = {
-      organizationId: this.organizationId
+      organizationId: this.organizationId,
+
     };
-    this.modalRef = this.modalService.show(AddUserComponent, {initialState});
+    this.modalRef = this.modalService.show(AddUserComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
 
