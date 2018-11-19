@@ -80,7 +80,8 @@ export class UserInfoComponent implements OnInit {
       this.backend.deleteUser(this.organizationId, this.userId)
         .subscribe(response => {
           this.notificationsService.add({
-            message: 'User ' + this.userId + ' has been deleted'
+            message: 'User ' + this.userId + ' has been deleted',
+            timeout: 10000
           });
           this.bsModalRef.hide();
         });
@@ -94,7 +95,8 @@ export class UserInfoComponent implements OnInit {
       this.backend.resetPassword(this.organizationId, this.userId)
         .subscribe(response => {
           this.notificationsService.add({
-            message: 'Your new password is ' + response._body
+            message: 'Your new password is ' + response._body,
+            timeout: 10000
           });
           this.bsModalRef.hide();
         });
