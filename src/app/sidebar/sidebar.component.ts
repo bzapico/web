@@ -17,8 +17,6 @@ import { UpdateEventsService } from '../services/update-events.service';
 })
 export class SidebarComponent implements OnInit {
 
-
-  @Output() updateUserInfo = new EventEmitter<boolean>();
   /**
    * Backend reference
    */
