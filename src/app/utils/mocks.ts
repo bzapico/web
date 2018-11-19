@@ -56,80 +56,26 @@ export const mockUserList = [
  */
 export const mockClusterList = [
     {
+        organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+        cluster_id: '0800200c9a61',
         name: 'Cluster1',
-        id: '0800200c9a61',
-        totalNodes: '10',
-        runningNodes: '1',
         description: 'Ny Cluster',
-        type: 'Kubernetes',
+        total_nodes: '10',
+        running_nodes: '1',
+        cluster_type: 'Kubernetes',
         status: 'Running',
-        tags: 'ny, edge',
+        labels: 'ny, edge',
         multitenant: 'All'
-    },
-    {
+    }, {
+        organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+        cluster_id: '0800200c9a61',
         name: 'Cluster2',
-        id: '0800200c9a62',
-        totalNodes: '10',
-        runningNodes: '2',
         description: 'Ny Cluster',
-        type: 'Kubernetes',
+        total_nodes: '10',
+        running_nodes: '2',
+        cluster_type: 'Kubernetes',
         status: 'Running',
-        tags: 'ny, edge',
-        multitenant: 'All'
-    },
-    {
-        name: 'Cluster3',
-        id: '0800200c9a63',
-        totalNodes: '10',
-        runningNodes: '3',
-        description: 'Ny Cluster',
-        type: 'Kubernetes',
-        status: 'Running',
-        tags: 'ny, edge',
-        multitenant: 'All'
-    },
-    {
-        name: 'Cluster4',
-        id: '0800200c9a64',
-        totalNodes: '10',
-        runningNodes: '4',
-        description: 'Ny Cluster',
-        type: 'Kubernetes',
-        status: 'Running',
-        tags: 'ny, edge',
-        multitenant: 'All'
-    },
-    {
-        name: 'Cluster5',
-        id: '0800200c9a65',
-        totalNodes: '10',
-        runningNodes: '5',
-        description: 'Ny Cluster',
-        type: 'Kubernetes',
-        status: 'Error',
-        tags: 'ny, edge',
-        multitenant: 'No'
-    },
-    {
-        name: 'Cluster6',
-        id: '0800200c9a66',
-        totalNodes: '10',
-        runningNodes: '6',
-        description: 'Ny Cluster',
-        type: 'Kubernetes',
-        status: 'Running',
-        tags: 'ny, edge',
-        multitenant: 'All'
-    },
-    {
-        name: 'Cluster7',
-        id: '0800200c9a67',
-        totalNodes: '10',
-        runningNodes: '7',
-        description: 'Ny Cluster',
-        type: 'Kubernetes',
-        status: 'Running',
-        tags: 'ny, edge',
+        labels: 'ny, edge',
         multitenant: 'All'
     }
 ];
@@ -210,8 +156,8 @@ export const mockResetPasword = 'NEW_PASSWORD_1234';
  * Mock resources summary containing total clusters and nodes
  */
 export const mockResourcesSummary = {
-    totalClusters: mockClusterList.length,
-    totalNodes: mockClusterList.length * 10
+    total_clusters: mockClusterList.length,
+    total_nodes: mockClusterList.length * 10
 };
 
 /**

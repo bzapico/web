@@ -142,16 +142,13 @@ export class ResourcesComponent implements OnInit {
     // Get User data from localStorage
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
-      this.organizationId = JSON.parse(jwtData).OrganizationId;
+      this.organizationId = JSON.parse(jwtData).organizationID;
       if (this.organizationId !== null) {
         // Requests top card summary data
         this.backend.getResourcesSummary(this.organizationId)
-        .subscribe(response => {
-          if (response && response._body) {
-            const data = JSON.parse(response._body);
-            this.clustersCount = data['totalClusters'];
-            this.nodesCount = data['totalNodes'];
-          }
+        .subscribe(summary => {
+            this.clustersCount = summary['total_clusters'] || 0 ;
+            this.nodesCount = summary['total_nodes'] || 0;
         });
         this.updateClusterList();
       }
@@ -186,7 +183,7 @@ export class ResourcesComponent implements OnInit {
       pieChartsData.pop();
     }
     clusterList.forEach(element => {
-      pieChartsData.push(this.generateClusterChartData(element.runningNodes, element.totalNodes));
+      pieChartsData.push(this.generateClusterChartData(element.running_nodes, element.total_nodes));
     });
   }
   /**
@@ -212,7 +209,7 @@ export class ResourcesComponent implements OnInit {
    * @param chunks Number of elements per chunk
    * @param clusterList Array containing the available clusters
    * @returns chunked array
-   */
+    */
   chunkClusterList(chunks, clusterList) {
     let i, j, chunkedArray;
     const resultChunkArray = [];
@@ -229,13 +226,11 @@ export class ResourcesComponent implements OnInit {
   updateClusterList() {
     // Requests an updated clusters list
     this.backend.getClusters(this.organizationId)
-    .subscribe(response => {
-      if (response && response._body) {
-        const data = JSON.parse(response._body);
-        this.clusters = data;
+    .subscribe(clusters => {
+        console.log(clusters);
+        this.clusters = clusters;
         this.chunckedClusters = this.chunkClusterList(3, this.clusters);
         this.updatePieChartsData(this.clusters, this.pieChartsData);
-      }
     });
   }
 }

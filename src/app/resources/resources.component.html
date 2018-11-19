@@ -49,18 +49,18 @@
                   [explodeSlices]="false"
                   >
                 </ngx-charts-pie-chart>
-                <div class="donut-number">{{clusterGroup[0].runningNodes}}/{{clusterGroup[0].totalNodes}}</div>
+                <div class="donut-number">{{clusterGroup[0].running_nodes}}/{{clusterGroup[0].total_nodes}}</div>
               </div>
               <p 
-                *ngIf="clusterGroup[0].runningNodes === clusterGroup[0].totalNodes" 
+                *ngIf="clusterGroup[0].running_nodes === clusterGroup[0].total_nodes" 
                 class="blue nodes-run mb-0"                   
-                [routerLink]="['cluster', cluster.id]" 
+                [routerLink]="['cluster', cluster.cluster_id]" 
                 routerLinkActive="active"
               >All nodes running</p>
               <p 
-                *ngIf="clusterGroup[0].runningNodes !== clusterGroup[0].totalNodes" 
+                *ngIf="clusterGroup[0].running_nodes !== clusterGroup[0].total_nodes" 
                 class="blue nodes-run mb-0"
-              >{{clusterGroup[0].runningNodes}} nodes running</p>
+              >{{clusterGroup[0].running_nodes}} nodes running</p>
               <p class="text-uppercase grey">{{clusterGroup[0].name}}</p>
             </div>
             <div class="box" *ngIf="clusterGroup[1]">
@@ -74,19 +74,19 @@
                   [explodeSlices]="false"
                   >
                 </ngx-charts-pie-chart>
-                <div class="donut-number">{{clusterGroup[1].runningNodes}}/{{clusterGroup[1].totalNodes}}</div>
+                <div class="donut-number">{{clusterGroup[1].running_nodes}}/{{clusterGroup[1].total_nodes}}</div>
               </div>
               <p
-                *ngIf="clusterGroup[1].runningNodes === clusterGroup[1].totalNodes"
+                *ngIf="clusterGroup[1].running_nodes === clusterGroup[1].total_nodes"
                 class="blue nodes-run mb-0"
-                [routerLink]="['cluster', cluster.id]" 
+                [routerLink]="['cluster', cluster.cluster_id]" 
                 routerLinkActive="active">
                 All nodes running
               </p>
               <p
-                *ngIf="clusterGroup[1].runningNodes !== clusterGroup[1].totalNodes"
+                *ngIf="clusterGroup[1].running_nodes !== clusterGroup[1].total_nodes"
                 class="blue nodes-run mb-0">
-                {{clusterGroup[1].runningNodes}} nodes running
+                {{clusterGroup[1].running_nodes}} nodes running
               </p>
               <p class="text-uppercase grey">{{clusterGroup[1].name}}</p>
             </div>
@@ -103,19 +103,19 @@
                   [explodeSlices]="false"
                   >
                 </ngx-charts-pie-chart>
-                <div class="donut-number">{{clusterGroup[2].runningNodes}}/{{clusterGroup[2].totalNodes}}</div>
+                <div class="donut-number">{{clusterGroup[2].running_nodes}}/{{clusterGroup[2].total_nodes}}</div>
               </div>
               <p
-                *ngIf="clusterGroup[2].runningNodes === clusterGroup[2].totalNodes"
+                *ngIf="clusterGroup[2].running_nodes === clusterGroup[2].total_nodes"
                 class="blue nodes-run mb-0"
-                [routerLink]="['cluster', cluster.id]" 
+                [routerLink]="['cluster', cluster.cluster_id]" 
                 routerLinkActive="active">
                 All nodes running
               </p>
               <p
-                *ngIf="clusterGroup[2].runningNodes !== clusterGroup[2].totalNodes"
+                *ngIf="clusterGroup[2].running_nodes !== clusterGroup[2].total_nodes"
                 class="blue nodes-run mb-0">
-                {{clusterGroup[2].runningNodes}} nodes running
+                {{clusterGroup[2].running_nodes}} nodes running
               </p>
               <p class="text-uppercase grey">{{clusterGroup[2].name}}</p>
             </div>
@@ -136,22 +136,22 @@
                   [schemeType]="schemeType"
                   >
                 </ngx-charts-pie-chart>
-                <div class="donut-number">{{cluster.runningNodes}}/{{cluster.totalNodes}}</div>
+                <div class="donut-number">{{cluster.running_nodes}}/{{cluster.total_nodes}}</div>
               </div>
               <div class="cluster-info">
                 <p
-                  *ngIf="cluster.runningNodes === cluster.totalNodes"
+                  *ngIf="cluster.running_nodes === cluster.total_nodes"
                   class="nodes-run mb-0 blue"
-                  [routerLink]="['cluster', cluster.id]" 
+                  [routerLink]="['cluster', cluster.cluster_id]" 
                   routerLinkActive="active" >
                   All nodes running
                 </p>
                 <p
-                  *ngIf="cluster.runningNodes !== cluster.totalNodes" 
+                  *ngIf="cluster.running_nodes !== cluster.total_nodes" 
                   class="nodes-run mb-0 blue"
-                  [routerLink]="['cluster', cluster.id]" 
+                  [routerLink]="['cluster', cluster.cluster_id]" 
                   routerLinkActive="active" >
-                  {{cluster.runningNodes}} nodes running
+                  {{cluster.running_nodes}} nodes running
                 </p>
                 <p class="text-uppercase grey">{{cluster.name}}</p>
               </div>
@@ -241,28 +241,28 @@
             <tr *ngFor="let cluster of clusters">
               <td>
                 <a 
-                  [routerLink]="['cluster', cluster.id]" 
+                  [routerLink]="['cluster', cluster.cluster_id]" 
                   routerLinkActive="active" 
                   class="blue">{{cluster.name}}
                 </a>
               </td>
-              <td>{{cluster.id}}</td>
+              <td>{{cluster.cluster_id}}</td>
               <td>
                 <a 
-                  [routerLink]="['cluster', cluster.id]" 
+                  [routerLink]="['cluster', cluster.cluster_id]" 
                   routerLinkActive="active" 
-                  class="blue">{{cluster.totalNodes}}
+                  class="blue">{{cluster.total_nodes}}
                 </a>
               </td>  
               <td>{{cluster.description}}</td>
-              <td>{{cluster.type}}</td>
+              <td>{{cluster.cluster_type}}</td>
               <td 
                 [ngClass]=
                 "{'status-dot':cluster.status === 'Running',
                 'status-dot-error':cluster.status === 'Error'}">
                 {{cluster.status}}
               </td>
-              <td>{{cluster.tags}}</td>
+              <td>{{cluster.labels}}</td>
               <td>{{cluster.multitenant}}</td>
               <td>
                 <button 
