@@ -125,7 +125,6 @@ export class BackendService implements Backend {
     // Set Authorization headers
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', this.authToken);
-    console.log(headers);
     return this.http.post(
       url,
       load,

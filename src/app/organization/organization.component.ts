@@ -62,7 +62,6 @@ export class OrganizationComponent implements OnInit {
           });
         this.backend.getOrganizationUsers(this.organizationId)
           .subscribe(response => {
-              console.log(response, 'organization users');
               this.users = response.users;
           });
       }

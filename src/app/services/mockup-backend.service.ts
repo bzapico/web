@@ -85,7 +85,7 @@ export class MockupBackendService implements Backend {
   }
 
   /**
-  * Simulates add user
+  * Simulates adding a user
   */
   addUser(organizationId: string, user: any) {
     const index = mockUserList.map(x => x.email).indexOf(user.email);
