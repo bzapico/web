@@ -9,6 +9,7 @@ import { CarouselConfig } from 'ngx-bootstrap/carousel';
 import { EditClusterComponent } from '../edit-cluster/edit-cluster.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
+
 @Component({
   selector: 'app-resources',
   templateUrl: './resources.component.html',

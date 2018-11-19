@@ -1,7 +1,7 @@
 <div class="modal-card">
   <!-- Header -->
   <div class="modal-header">
-    <h3 class="nalej-form-title">Edit user</h3>
+    <h3 class="nalej-form-title">{{title}}</h3>
     <button 
       type="button" 
       class="close" 
@@ -21,6 +21,14 @@
           class="form-control" 
           placeholder="Name*" 
           required>
+        <input 
+          [(ngModel)]="userId" 
+          name="userId" 
+          type="text" 
+          class="form-control bg-light-grey" 
+          placeholder="Email*" 
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"
+          disabled>
       </div>
     </form>
   <!-- Roles radio buttons -->

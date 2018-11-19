@@ -1,57 +1,55 @@
 <div class="sidebar">
-  <nav class="sidebar-nav">
-    <ul class="nav">
-      <li class="nav-title" (click)="openDebugPanel()">Nalej</li>
-      <li class="nav-item">
-        <a 
+  <ul class="nav">
+    <li class="nav-title" (click)="openDebugPanel()">NALEJ</li>
+    <li class="nav-item">
+      <a 
         routerLinkActive="active" 
         routerLink="/profile" 
         class="nav-link">
-          <div class="profile">
-            <div class="avatar-frame">
-                <i class="material-icons">person</i>
-            </div>
-            <p class="name">{{name}}</p>
-            <p class="type">{{role}}</p>
-            <p class="email">{{email}}</p>
+        <div class="profile" (click)="openEditUser()">
+          <div class="avatar-frame">
+              <i class="material-icons">person</i>
           </div>
-        </a>
-      </li>
-      <li class="nav-item nav-item-page">
-        <a
-        routerLinkActive="active" 
-        routerLink="/organization" 
-        class="nav-link">
-          <i class="material-icons">group_work</i>
-          Organization
-          <span class="arrow">></span>
-        </a>
-      </li>
-      <li class="nav-item nav-item-page">
-        <a         
-        routerLinkActive="active" 
-        routerLink="/resources" 
-        class="nav-link">
-          <i class="material-icons">dns</i>
-          Resources
-          <span class="arrow">></span>
-        </a>
-      </li>
-      <li class="nav-item nav-item-page">
-        <a         
-        routerLinkActive="active" 
-        routerLink="/applications" 
-        class="nav-link">
-          <i class="material-icons">apps</i>
-          Applications
-          <span class="arrow">></span>
-        </a>
-      </li>
-      <li class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn" (click)="logout()">
-        <button class="btn info-btn logout-btn btn-red logout my-4">
-          Logout
-        </button>
-      </li>
-    </ul>
-  </nav>
+          <p class="name">{{name}}</p>
+          <p class="type">{{role}}</p>
+          <p class="email">{{email}}</p>
+        </div>
+      </a>
+    </li>
+    <li class="nav-item nav-item-page">
+      <a
+      routerLinkActive="active" 
+      routerLink="/organization" 
+      class="nav-link">
+        <i class="material-icons">group_work</i>
+        Organization
+        <span class="arrow">></span>
+      </a>
+    </li>
+    <li class="nav-item nav-item-page">
+      <a         
+      routerLinkActive="active" 
+      routerLink="/resources" 
+      class="nav-link">
+        <i class="material-icons">dns</i>
+        Resources
+        <span class="arrow">></span>
+      </a>
+    </li>
+    <li class="nav-item nav-item-page">
+      <a         
+      routerLinkActive="active" 
+      routerLink="/applications" 
+      class="nav-link">
+        <i class="material-icons">apps</i>
+        Applications
+        <span class="arrow">></span>
+      </a>
+    </li>
+    <li class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn" (click)="logout()">
+      <button class="btn info-btn logout-btn btn-red logout my-4">
+        Logout
+      </button>
+    </li>
+  </ul>
 </div>

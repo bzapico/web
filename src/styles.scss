@@ -4,27 +4,68 @@
 * {
   font-family: 'Aldrich', sans-serif;
 }
-
 html, body {
   margin: 0px;
   height: 100%;
-  min-height: 100vh;
   overflow-x: hidden;
   font-family: 'Aldrich', sans-serif;
+  box-sizing: border-box;
 }
 .blue {
-  color:  #0937FF !important;
+  color: #0937FF !important;
 }
 .grey {
   color: #949494;
 }
-a {
-  color:  #0937FF;
-  text-decoration: none;
+.bg-light-grey {
+  background-color: #ededed!important;
 }
-a:hover {
-  color:  #0937FF;
+a {
+  color: #0937FF;
   text-decoration: none;
+  &:hover {
+    color: #0937FF;
+    text-decoration: none;
+  }
+}
+/* - - - Card styles - - - */
+.card {
+  -webkit-box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
+  -moz-box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
+  box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
+  border-radius: 10px;
+  border: 0;
+  overflow: hidden;
+}
+.card-title-h {
+  height: 4%;
+  margin-left: 9px;
+  margin-bottom: 70px;
+}
+.row-title {
+  height: 4%;
+}
+.row-info {
+  height: 29%;
+  margin-bottom: 2.2rem;
+}
+.row-main {
+  height: 54%;
+}
+@media screen and (max-width:1500px){
+  .card {
+      padding: 1.3rem!important;
+  }
+  .card-title-h {
+    margin-bottom: 57px;
+    h5 {
+      font-size: 1em;
+    }
+  }
+    .row-info {
+      height: 31%;
+      margin-bottom: 1.9rem;
+  }
 }
 
 /* - - - Button styles - - - */
@@ -61,37 +102,53 @@ button[type="submit"]:disabled {
     color:white;
 }
 
-/* - - - User-component modal view - - - */
-.modal {
-  top: 17vh;
-  display: flex;
+/* - - - Modal window styles - - - */
+
+.modal.fade {
+  display: flex !important;
   justify-content: center;
   align-items: center;
 }
 .modal-dialog {
-  max-width: 500px;
-  margin: 0 auto;
+  vertical-align: middle;
+  width: 500px;
 }
 .modal-content {
   border: 0;
   border-radius: 10px;
 }
-@media screen and (max-height: 800px) {
-  .modal {
-    top: 0 !important;
-  }
-  .modal-card {
-    padding: 3rem !important;
-  }
-  .modal-dialog {
-    max-width: 475px;
-    margin: 2vh auto;
-  }
-  .buttons {
-    padding: 0 !important;
+.modal-card {
+  border: 0;
+  border-radius: 10px;
+  outline: 0;
+  padding: 4rem;
+}
+.modal-header {
+  padding-bottom: 0;
+  border: none;
+}
+.close {
+  font-weight: 200;
+  &:focus {
+      outline: none;
   }
 }
+.nalej-form-title{
+  font-size: 1em;
+  display: inline;
+  button span {
+     color: #888888;
+  }
+}
+@media screen and (max-width: 1300px) {
+    .modal-card {
+      padding: 2rem;
+    }
+    .modal-dialog {
+      margin: 1.5rem auto;
+    }
 
+}
 /* - - - Alerts view - - - */
 .alert-close-button {
   position: relative;
@@ -203,11 +260,12 @@ button[type="submit"]:disabled {
   opacity: 0.4;
 }
 
-/* - - - Resources - Cluster card - Carousel - - - */
+/* - - -+ Carousel - - - */
 
 .carousel-big {
   display: block;
-  div {
+  div
+  {
     height: 100%;
   }
 }
@@ -227,41 +285,41 @@ button[type="submit"]:disabled {
   margin-left: 15%;
   list-style: none;
   margin-bottom: 0;
-}
-.carousel-indicators .active {
-  background-color: #0937FF;
-}
-.carousel-indicators li {
-  position: relative;
-  flex: 0 1 auto;
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  margin-right: 5px;
-  margin-left: 5px;
-  text-indent: -999px;
-  cursor: pointer;
-  background-color:#949494;
-}
-.carousel-indicators li::before {
-  position: absolute;
-  top: -10px;
-  left: 0;
-  display: inline-block;
-  content:'\A';
-  width:10px;
-  height:10px;
-  border-radius:50%;
-}
-.carousel-indicators li::after {
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  display: inline-block;
-  content:'\A';
-  width:10px;
-  height:10px;
-  border-radius:50%;
+  .active {
+    background-color: #0937FF;
+  }
+  li {
+    position: relative;
+    flex: 0 1 auto;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-left: 5px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #949494;
+    &::before {
+      position: absolute;
+      top: -10px;
+      left: 0;
+      display: inline-block;
+      content: '\A';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    &::after {
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      display: inline-block;
+      content: '\A';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+  }
 }
 .carousel-control-prev, .carousel-control-next {
   position: absolute;
@@ -271,31 +329,38 @@ button[type="submit"]:disabled {
   color: #fff;
   opacity: 1;
 }
-.carousel-control-prev-icon, .carousel-control-next-icon {
+.carousel-control-prev-icon {
   display: inline-block;
   width: 10px;
   height: 20px;
   background-image: none;
+  &:before {
+    content: '\e314';
+    font-family: 'Material Icons';
+    color: black;
+    font-size: 26px;
+    left: -14px;
+    position: absolute;
+    bottom: 10px;
+  }
 }
-.carousel-control-next-icon:before {
-  content: '\e315'; 
-  font-family: 'Material Icons'; 
-  color: black;
-  font-size: 26px;
-  bottom: 10px;
-  position: absolute;
-  right: -14px;
+.carousel-control-next-icon {
+  display: inline-block;
+  width: 10px;
+  height: 20px;
+  background-image: none;
+  &:before {
+    content: '\e315';
+    font-family: 'Material Icons';
+    color: black;
+    font-size: 26px;
+    bottom: 10px;
+    position: absolute;
+    right: -14px;
+  }
 }
-.carousel-control-prev-icon:before {
-  content: '\e314'; 
-  font-family: 'Material Icons'; 
-  color: black;
-  font-size: 26px;
-  left: -14px;
-  position: absolute;
-  bottom: 10px;
-}
-/* - - - Resources - Cluster card - Charts - - - */
+
+/* - - -  Charts - - - */
 .ngx-charts .label {
   display: none;
 }
@@ -306,22 +371,16 @@ button[type="submit"]:disabled {
 .ngx-charts text { 
   fill: #949494; 
 }
-/* - - - Medias - Resources - Cluster card - Carousel - - - */
+/* - - - Medias Charts and Carousel - - - */
 @media screen and (min-width:2560px){
-  .carousel {
-      padding-top: 2em;
-  }
-  .carousel-indicators {
-    bottom: -41px;
-  }
-  .donut-number {
-    top: 47%;
-  }
   .carousel-small{
     display: none;
   }
-  .carousel-big {
-      display: block;
+  .donut-chart{
+    height: 100%;
+    .ngx-charts {
+        max-height: 213px;
+    }
   }
 }
 @media screen and (max-width:1500px){
@@ -337,26 +396,20 @@ button[type="submit"]:disabled {
   .carousel-control-prev, .carousel-control-next {
     bottom: 31%;
   }
-  .slide-box{
-    width: 269px;
-  }
   .nodes-run{
     line-height: 1em;
   }
-  .donut-number {
-    top: 44% !important;
-    left: 33% !important;
-  }
   .carousel-indicators {
-    bottom: 16px;
+    bottom: 21px;
   }
-  .donut-chart{
+  .donut-chart {
     max-width: 100px;
   }
-  .cluster-info{
+  .cluster-info {
     max-width: 200px;
-  }
-  .cluster-info:first-child p{
-  line-height: .6rem !important;
+    &:first-child p {
+      line-height: .6rem !important;
+    }
   }
 }
+

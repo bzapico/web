@@ -28,6 +28,9 @@ import { EditClusterComponent } from './edit-cluster/edit-cluster.component';
 import { ResourcesComponent } from './resources/resources.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { ApplicationsComponent } from './applications/applications.component';
+import { ClusterComponent } from './cluster/cluster.component';
+import { UpdateEventsService } from './services/update-events.service';
 
 
 @NgModule({
@@ -44,6 +47,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     AddUserComponent,
     EditClusterComponent,
     EditUserComponent,
+    ApplicationsComponent,
+    ClusterComponent,
   ],
   entryComponents: [
     DebugPanelComponent,
@@ -78,7 +83,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     AuthService,
     BackendService,
     { provide: ErrorHandler,
-      useClass: ErrorHandlerService }
+      useClass: ErrorHandlerService },
+    UpdateEventsService
     ],
   bootstrap: [AppComponent]
 })

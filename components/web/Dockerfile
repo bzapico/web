@@ -22,9 +22,9 @@ RUN $(npm bin)/ng build --prod
 
 ### STAGE 2: Setup ###
 
-FROM nginx:1.13.3-alpine
+FROM nginx:1.15.6-alpine
 
-#COPY components/web/nginx/default.conf /etc/nginx/conf.d/
+COPY components/web/nginx/nalej_web.conf /etc/nginx/conf.d/
 
 ## Remove default nginx website
 RUN rm -rf /usr/share/nginx/html/*
@@ -32,4 +32,3 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /ng-app/dist /usr/share/nginx/html
 
 CMD ["nginx", "-g", "daemon off;"]
-

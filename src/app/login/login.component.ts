@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DebugPanelComponent } from '../debug-panel/debug-panel.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,10 @@ export class LoginComponent implements OnInit {
    * Reference for the service that allows to open debug panel
    */
   modalRef: BsModalRef;
+  /**
+   * Holds the error message
+   */
+  errorMessage: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,6 +39,7 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
+    this.errorMessage = '';
   }
 
   /**
@@ -43,10 +49,35 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(response => {
-        this.router.navigate([
-          '/organization'
-        ]);
-      }, error => console.log(error));
+        this.errorMessage = '';
+        if (response.token) {
+          const jwtHelper: JwtHelperService = new JwtHelperService();
+          const jwtTokenData = jwtHelper.decodeToken(response.token);
+          switch (jwtTokenData.role) {
+            case 'Owner':
+              this.router.navigate([
+                '/organization'
+              ]);
+            break;
+            case 'Developer':
+              this.router.navigate([
+                '/applications'
+              ]);
+            break;
+            case 'Operator':
+              this.router.navigate([
+                '/resources'
+              ]);
+            break;
+            default:
+              this.router.navigate([
+                '/applications'
+              ]);
+          }
+        }
+      }, error => {
+        this.errorMessage = error.statusText;
+      });
   }
 
   /**
@@ -55,5 +86,6 @@ export class LoginComponent implements OnInit {
   openDebugPanel() {
     this.modalRef = this.modalService.show(DebugPanelComponent);
     this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { location.reload(); });
   }
 }
