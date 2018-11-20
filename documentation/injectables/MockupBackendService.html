@@ -346,7 +346,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/app/services/mockup-backend.service.ts:192</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/app/services/mockup-backend.service.ts:198</a></div>
                             </td>
                         </tr>
 
@@ -419,7 +419,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/app/services/mockup-backend.service.ts:212</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/app/services/mockup-backend.service.ts:218</a></div>
                             </td>
                         </tr>
 
@@ -490,7 +490,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/app/services/mockup-backend.service.ts:178</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/app/services/mockup-backend.service.ts:181</a></div>
                             </td>
                         </tr>
 
@@ -559,7 +559,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/app/services/mockup-backend.service.ts:202</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="208" class="link-to-prism">src/app/services/mockup-backend.service.ts:208</a></div>
                             </td>
                         </tr>
 
@@ -1454,11 +1454,11 @@ export class MockupBackendService implements Backend {
    * @param clusterId String containing the cluster identificator - used to replicate expected backend behavior
    */
   saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
-    const index &#x3D; mockClusterList.map(x &#x3D;&gt; x.id).indexOf(clusterId);
+    const index &#x3D; mockClusterList.map(x &#x3D;&gt; x.cluster_id).indexOf(clusterId);
     if (index !&#x3D;&#x3D; -1) {
       mockClusterList[index].name &#x3D; changes.newClusterName;
       mockClusterList[index].description &#x3D; changes.newClusterDescription;
-      mockClusterList[index].tags &#x3D; changes.newClusterTags;
+      mockClusterList[index].labels &#x3D; changes.newClusterTags;
     }
     return of(new Response(new ResponseOptions({
       status: 200
@@ -1469,14 +1469,20 @@ export class MockupBackendService implements Backend {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockResourcesSummary),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response &#x3D;&gt; response.json())
+    );
   }
 
   getClusters(organizationId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockClusterList),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response &#x3D;&gt; response.json())
+    );
   }
 
   /********************

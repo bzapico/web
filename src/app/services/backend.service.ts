@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Backend } from '../definitions/interfaces/backend';
 import { Response, ResponseOptions } from '@angular/http';
@@ -120,10 +119,14 @@ export class BackendService implements Backend {
 
   }
   getResourcesSummary(organizationId: string) {
-    throw new Error('Method not implemented.');
+    return this.get(
+      API_URL + 'resources/' + organizationId + '/summary'
+    );
   }
   getClusters(organizationId: string) {
-    throw new Error('Method not implemented.');
+    return this.get(
+      API_URL + 'clusters/' + organizationId + '/list'
+    );
   }
   getApps(organizationId: string) {
     throw new Error('Method not implemented.');
