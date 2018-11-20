@@ -1,10 +1,10 @@
 .app-summary {
+    margin: 5em 0;
+
     td {
-        padding: 1.1rem;
-        vertical-align: middle;
+        padding: 1.1rem 0;
         font-size:  .9em;
         border: none;
-        margin-left: 20%;
         text-align: right;
     }
     th {
@@ -21,4 +21,7 @@
 .btn-primary {
     text-indent: -7px;
 }
+// .graph {
+//     height: 100px;
+// }
 

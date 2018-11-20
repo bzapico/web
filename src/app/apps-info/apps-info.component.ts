@@ -25,7 +25,9 @@ export class AppsInfoComponent implements OnInit {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
-  ) { }
+  ) {
+    this.title = 'SIG Application';
+  }
 
   ngOnInit() {
   }
