@@ -16,7 +16,7 @@ export class AppsInfoComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
-  
+
   /**
    * Dialog title
    */

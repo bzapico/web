@@ -157,11 +157,11 @@ export class MockupBackendService implements Backend {
    * @param clusterId String containing the cluster identificator - used to replicate expected backend behavior
    */
   saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
-    const index = mockClusterList.map(x => x.id).indexOf(clusterId);
+    const index = mockClusterList.map(x => x.cluster_id).indexOf(clusterId);
     if (index !== -1) {
       mockClusterList[index].name = changes.newClusterName;
       mockClusterList[index].description = changes.newClusterDescription;
-      mockClusterList[index].tags = changes.newClusterTags;
+      mockClusterList[index].labels = changes.newClusterTags;
     }
     return of(new Response(new ResponseOptions({
       status: 200
@@ -172,14 +172,20 @@ export class MockupBackendService implements Backend {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockResourcesSummary),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response => response.json())
+    );
   }
 
   getClusters(organizationId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockClusterList),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response => response.json())
+    );
   }
 
   /********************

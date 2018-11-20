@@ -294,7 +294,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/edit-cluster/edit-cluster.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/edit-cluster/edit-cluster.component.ts:77</a></div>
                             </td>
                         </tr>
 
@@ -782,7 +782,8 @@ export class EditClusterComponent implements OnInit {
       })
         .subscribe(response &#x3D;&gt; {
           this.notificationsService.add({
-            message: &#x27;The cluster &#x27; + this.clusterName + &#x27; has been edited&#x27;
+            message: &#x27;The cluster &#x27; + this.clusterName + &#x27; has been edited&#x27;,
+            timeout: 10000
           });
           this.bsModalRef.hide();
         });
@@ -811,6 +812,7 @@ export class EditClusterComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;modal-card&quot;&gt;
+&lt;div class&#x3D;&quot;modal-content&quot;&gt;
     &lt;!-- Header --&gt;
     &lt;div class&#x3D;&quot;modal-header&quot;&gt;
       &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;Edit {{clusterName}}&lt;/h3&gt;
@@ -859,7 +861,8 @@ export class EditClusterComponent implements OnInit {
       &lt;/button&gt;
     &lt;/div&gt;
     &lt;/div&gt;
-    &lt;/div&gt;</code></pre>
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -887,7 +890,7 @@ export class EditClusterComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Edit {{clusterName}}</h3>      <button         type="button"         class="close"         aria-label="Close"        (click)="discardChanges(f)">        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <form #f="ngForm" class="form-cluster">        <div class="form-group">          <input             [(ngModel)]="clusterName"             name="name"             type="text"             class="form-control"             placeholder="Cluster Name"             required>          <input             [(ngModel)]="clusterDescription"             name="description"             type="text"             class="form-control"             placeholder="Description"            required>          <input             [(ngModel)]="clusterTags"             name="tags"             type="text"             class="form-control"             placeholder="Tags"             required>        </div>      </form>    <!-- Option button -->    <div class="buttons d-flex flex-row justify-content-between mt-5">      <button class="btn btn-primary btn-md mt-5" (click)="saveClusterChanges(f)">        <span class="align-bottom">Save</span>      </button>      <button class="btn btn-red btn-md mt-5" (click)="discardChanges(f)">          <span class="align-bottom">Discard</span>      </button>    </div>    </div>    </div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card"><div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Edit {{clusterName}}</h3>      <button         type="button"         class="close"         aria-label="Close"        (click)="discardChanges(f)">        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <form #f="ngForm" class="form-cluster">        <div class="form-group">          <input             [(ngModel)]="clusterName"             name="name"             type="text"             class="form-control"             placeholder="Cluster Name"             required>          <input             [(ngModel)]="clusterDescription"             name="description"             type="text"             class="form-control"             placeholder="Description"            required>          <input             [(ngModel)]="clusterTags"             name="tags"             type="text"             class="form-control"             placeholder="Tags"             required>        </div>      </form>    <!-- Option button -->    <div class="buttons d-flex flex-row justify-content-between mt-5">      <button class="btn btn-primary btn-md mt-5" (click)="saveClusterChanges(f)">        <span class="align-bottom">Save</span>      </button>      <button class="btn btn-red btn-md mt-5" (click)="discardChanges(f)">          <span class="align-bottom">Discard</span>      </button>    </div>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AppsInfoComponent', 'selector': 'app-apps-info'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'EditClusterComponent'};

@@ -890,7 +890,7 @@ export class SidebarComponent implements OnInit {
       title: &#x27;Edit profile&#x27;
     };
 
-    this.modalRef &#x3D; this.modalService.show(EditUserComponent, { initialState });
+    this.modalRef &#x3D; this.modalService.show(EditUserComponent, { initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
     this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; {
       this.updateProfileUser(this.organizationId, initialState.userId);
