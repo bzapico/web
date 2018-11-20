@@ -99,7 +99,8 @@ export class EditUserComponent implements OnInit {
       })
         .subscribe(response => {
           this.notificationsService.add({
-            message: 'The user ' + this.userName + ' has been edited'
+            message: 'The user ' + this.userName + ' has been edited',
+            timeout: 10000
           });
           this.bsModalRef.hide();
         });

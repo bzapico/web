@@ -170,7 +170,7 @@ export class ResourcesComponent implements OnInit {
       clusterTags: cluster.tags
     };
 
-    this.modalRef = this.modalService.show(EditClusterComponent, { initialState });
+    this.modalRef = this.modalService.show(EditClusterComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
       this.updateClusterList();
