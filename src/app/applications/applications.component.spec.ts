@@ -5,6 +5,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CarouselModule, BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ApplicationsComponent', () => {
   let component: ApplicationsComponent;
@@ -14,6 +15,7 @@ describe('ApplicationsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ApplicationsComponent ],
       imports: [
+        HttpClientTestingModule,
         NgxChartsModule,
         CarouselModule,
         BrowserAnimationsModule,

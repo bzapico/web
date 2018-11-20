@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserInfoComponent } from './user-info.component';
 import { ButtonsModule, BsModalRef } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('UserInfoComponent', () => {
   let component: UserInfoComponent;
@@ -11,7 +12,11 @@ describe('UserInfoComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ UserInfoComponent ],
-      imports: [FormsModule, ButtonsModule],
+      imports: [
+        ButtonsModule,
+        HttpClientTestingModule,
+        FormsModule,
+        ButtonsModule],
       providers: [ BsModalRef ]
     })
     .compileComponents();

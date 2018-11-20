@@ -5,9 +5,10 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { mockUserProfileInfo } from '../utils/mocks';
 import { NotificationsService } from '../services/notifications.service';
 import { AddUserComponent } from '../add-user/add-user.component';
+import { EditUserComponent } from '../edit-user/edit-user.component';
+import { UpdateEventsService } from '../services/update-events.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -37,7 +38,8 @@ export class OrganizationComponent implements OnInit {
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private updateService: UpdateEventsService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.organizationMock) || null;
     // check which backend is required (fake or real)
@@ -54,24 +56,26 @@ export class OrganizationComponent implements OnInit {
   ngOnInit() {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
-      this.organizationId = JSON.parse(jwtData).OrganizationId;
+      this.organizationId = JSON.parse(jwtData).organizationID;
       if (this.organizationId !== null) {
         this.backend.getOrganizationInfo(this.organizationId)
           .subscribe(response => {
-            if (response && response._body) {
-              const data = JSON.parse(response._body);
-              this.organizationName = data.name;
-            }
+              this.organizationName = response.name;
           });
         this.backend.getOrganizationUsers(this.organizationId)
           .subscribe(response => {
-            if (response && response._body) {
-              const data = JSON.parse(response._body);
-              this.users = data;
-            }
+              this.users = response.users;
           });
       }
     }
+    this.updateService.changesOnUserList.subscribe(
+      result => {
+      this.backend.getOrganizationUsers(this.organizationId)
+        .subscribe(response => {
+          this.users = response.users;
+        });
+      }
+    );
   }
 
   /**
@@ -83,13 +87,33 @@ export class OrganizationComponent implements OnInit {
       organizatinoId: this.organizationId,
       userName: user.name,
       userId: user.email,
-      role: user.role
+      role: user.role_name,
     };
 
     this.modalRef = this.modalService.show(UserInfoComponent, { initialState });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
+  /**
+   * Opens the modal view that holds the user info and editable component
+   */
+  openEditUser(user) {
+    const initialState = {
+      organizationName: this.organizationName,
+      organizationId: this.organizationId,
+      userName: user.name,
+      userId: user.email,
+      userRole: user.role_name,
+      title: 'Edit user'
+    };
+
+    this.modalRef = this.modalService.show(EditUserComponent, { initialState });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
+  }
+  /**
+   * Opens the modal view that holds add user component
+   */
   addUser() {
     const initialState = {
       organizationId: this.organizationId
@@ -104,10 +128,7 @@ export class OrganizationComponent implements OnInit {
     if (this.organizationId != null) {
       this.backend.getOrganizationUsers(this.organizationId)
       .subscribe(response => {
-        if (response && response._body) {
-          const data = JSON.parse(response._body);
-          this.users = data;
-        }
+          this.users = response.users;
       });
     }
   }

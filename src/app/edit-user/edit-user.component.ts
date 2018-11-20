@@ -17,6 +17,10 @@ export class EditUserComponent implements OnInit {
    */
   backend: Backend;
   /**
+   * Dialog title
+   */
+  title: string;
+  /**
    * Models that hold organization id, user role, name, email and password
    */
   organizationId: string;
@@ -35,7 +39,7 @@ export class EditUserComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.userInfoMock) || null;
+    const mock = localStorage.getItem(LocalStorageKeys.userEditMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
@@ -88,10 +92,10 @@ export class EditUserComponent implements OnInit {
    */
   saveUserChanges(f) {
     if (this.userId !== null) {
-      this.backend.saveUserChanges(this.organizationId, this.userId, {
-        newUserName: this.userName,
-        newUserEmail: this.userId,
-        newUserRole: this.userRole
+      this.backend.saveUserChanges(this.organizationId, {
+        name: this.userName,
+        email: this.userId,
+        role_name: this.userRole
       })
         .subscribe(response => {
           this.notificationsService.add({

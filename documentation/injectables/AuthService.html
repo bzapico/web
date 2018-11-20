@@ -222,7 +222,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/services/auth.service.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/services/auth.service.ts:77</a></div>
                             </td>
                         </tr>
 
@@ -354,7 +354,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/services/auth.service.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/services/auth.service.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -471,8 +471,8 @@ import { BackendService } from &#x27;./backend.service&#x27;;
 import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
 import { MockupBackendService } from &#x27;./mockup-backend.service&#x27;;
 import { JwtHelperService } from &#x27;@auth0/angular-jwt&#x27;;
-import { Observable, of } from &#x27;rxjs&#x27;;
-import { ResponseOptions } from &#x27;@angular/http&#x27;;
+import { Observable} from &#x27;rxjs&#x27;;
+import { map } from &#x27;rxjs/operators&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 
 
@@ -511,23 +511,19 @@ export class AuthService {
    * @param email String containing user email
    * @param password String that holds the user password
    */
-  login(email: string, password: string): Observable&lt;any&gt; {
-    let complete;
-    let jwtToken;
-    this.backend.login(email, password)
-      .subscribe(response &#x3D;&gt; {
-        if (response &amp;&amp; response._body) {
-          jwtToken &#x3D; JSON.parse(response._body);
-          const jwtTokenData &#x3D;  this.jwtHelper.decodeToken(jwtToken.jwt);
-          localStorage.setItem(LocalStorageKeys.jwt, JSON.stringify(jwtToken.jwt));
-          localStorage.setItem(LocalStorageKeys.jwtData, JSON.stringify(jwtTokenData));
-          complete &#x3D; jwtTokenData;
-        }
-      }, error &#x3D;&gt; {
-        complete &#x3D; error;
-      });
-      return of (complete);
+  login (email: string, password: string): Observable&lt;any&gt; {
+    return this.backend.login(email, password).pipe(map(response &#x3D;&gt; {
+      if (response.status &#x3D;&#x3D;&#x3D; 404 || response.status &#x3D;&#x3D;&#x3D; 500) {
+        return response;
+      }
+      const jwtTokenData &#x3D;  this.jwtHelper.decodeToken(response.token);
+      localStorage.setItem(LocalStorageKeys.jwt, JSON.stringify(response));
+      localStorage.setItem(LocalStorageKeys.jwtData, JSON.stringify(jwtTokenData));
+      localStorage.setItem(LocalStorageKeys.refreshToken, JSON.stringify(response.refresh_token));
+      return response;
+    }));
   }
+
   /**
    * Request to logout the platform
    */
@@ -537,9 +533,8 @@ export class AuthService {
         // remove JWT token from local storage to log user out
         localStorage.removeItem(LocalStorageKeys.jwt);
         localStorage.removeItem(LocalStorageKeys.jwtData);
+        localStorage.removeItem(LocalStorageKeys.refreshToken);
         this.router.navigate([&#x27;login&#x27;]);
-      }, error &#x3D;&gt; {
-        console.log(error); // TODO: substitute with notification service messaging system
       });
   }
 

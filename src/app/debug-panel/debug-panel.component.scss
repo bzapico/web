@@ -4,3 +4,26 @@ hr {
     border: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
+
+  .btn {
+    padding: 0.1rem 0.6rem;
+  }
+
+  @media screen and (max-width: 1300px) {
+    .debug-panel{
+      .modal-footer{
+        display: none;
+      }
+      h5, .h5 {
+        font-size: 1.2rem;
+      }
+      h4, .h4 {
+        font-size: 1rem;
+        font-weight: 800;
+      }
+      hr {
+        margin-top: 0rem;
+        margin-bottom: 0.4rem;
+    }
+  }
+}

@@ -10,6 +10,7 @@ import { OrganizationComponent } from './organization/organization.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 
 describe('AppComponent', () => {
@@ -24,6 +25,7 @@ describe('AppComponent', () => {
         OrganizationComponent,
       ],
       imports: [
+        HttpClientTestingModule,
         RouterTestingModule,
         ReactiveFormsModule,
         RouterModule,

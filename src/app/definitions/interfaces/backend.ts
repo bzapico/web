@@ -6,13 +6,13 @@ export interface Backend {
     login(email: string, password: string): Observable<any>;
     logout();
     // Organization
-    getUserProfileInfo(userId: string);
+    getUserProfileInfo(organizationId: string, userId: string);
     getOrganizationInfo(organizationId: string);
     getOrganizationUsers(organizationId: string);
     addUser(organizationId: string, user: any);
     deleteUser(organizationId: string, userId: string);
     resetPassword(organizationId: string, userId: string);
-    saveUserChanges(organizationId: string, userId: string, changes: any);
+    saveUserChanges(organizationId: string, changes: any);
     // Resources
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);
     getClusters(organizationId: string);

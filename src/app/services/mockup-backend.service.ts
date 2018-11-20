@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserProfileInfo, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsList, mockNodeList  } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsList, mockNodeList  } from '../utils/mocks';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class MockupBackendService implements Backend {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify({
         token: mockJwtToken,
-        refresh_token: 'xxxxxxxxxxxxxxxxxxxxxx'
+        refresh_token: '018e42cf-9acb-4b4c-8804-6c54334d6947'
       }),
       status: 200
     })))
@@ -52,33 +52,40 @@ export class MockupBackendService implements Backend {
    * Simulates get profile info
    * @param userId String containing the user identificator - used to replicate expected backend behavior
    */
-  getUserProfileInfo(userId: string) {
+  getUserProfileInfo(organizationId: string, userId: string) {
+    const index = mockUserList.map(x => x.email).indexOf(userId);
+    if (index !== -1) {}
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify({
-        name: mockUserProfileInfo.name,
-        email: mockUserProfileInfo.email,
-        role: mockUserProfileInfo.role
-      }),
+      body: JSON.stringify(mockUserList[index]),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response => response.json())
+    );
   }
 
   getOrganizationInfo(organizationId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockOrganizationInfo),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response => response.json())
+    );
   }
 
   getOrganizationUsers(organizationId: string) {
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockUserList),
+      body: JSON.stringify({ users: mockUserList }),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response => response.json())
+    );
   }
 
   /**
-  * Simulates add user
+  * Simulates adding a user
   */
   addUser(organizationId: string, user: any) {
     const index = mockUserList.map(x => x.email).indexOf(user.email);
@@ -86,12 +93,16 @@ export class MockupBackendService implements Backend {
       mockUserList.push(user);
       return of (new Response(new ResponseOptions({
         status: 200
-      })));
+      }))).pipe(
+        map(response => response.json())
+      );
     } else {
       return of (new Response(new ResponseOptions({
         status: 403,
         body: user.email + ' is already in use'
-      })));
+      }))).pipe(
+        map(response => response.json())
+      );
     }
   }
 
@@ -122,16 +133,18 @@ export class MockupBackendService implements Backend {
    * Simulates save user changes
    * @param userId String containing the user identificator - used to replicate expected backend behavior
    */
-  saveUserChanges(organizationId: string, userId: string, changes: any) {
-    const index = mockUserList.map(x => x.email).indexOf(userId);
+  saveUserChanges(organizationId: string, user: any) {
+    const index = mockUserList.map(x => x.email).indexOf(user.email);
     if (index !== -1) {
-      mockUserList[index].name = changes.newUserName;
-      mockUserList[index].email = changes.newUserEmail;
-      mockUserList[index].role = changes.newUserRole;
+      mockUserList[index].name = user.name;
+      mockUserList[index].email = user.email;
+      mockUserList[index].role_name = user.role_name;
     }
     return of(new Response(new ResponseOptions({
       status: 200
-    })));
+    }))).pipe(
+      map(response => response.json())
+    );
   }
 
 
@@ -168,8 +181,6 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
-
-
 
   /********************
    * Appications

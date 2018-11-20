@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ButtonsModule, ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ResourcesComponent', () => {
   let component: ResourcesComponent;
@@ -15,6 +16,7 @@ describe('ResourcesComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ResourcesComponent ],
       imports: [
+        HttpClientTestingModule,
         NgxChartsModule,
         CarouselModule,
         BrowserAnimationsModule,
