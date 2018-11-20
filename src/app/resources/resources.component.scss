@@ -182,6 +182,27 @@
 }
 
 /* - - - Cluster card Slider - - - */
+
+// slide animations
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1 1s ease-in-out;}
+}
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1 1s ease-in-out;}
+}
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
 .slide-box {
     display: flex;
     flex-direction: row;
