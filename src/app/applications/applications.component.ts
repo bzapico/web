@@ -24,12 +24,12 @@ export class ApplicationsComponent implements OnInit {
    * Model that hold organization ID, name, id, description, type, configuration and services
    */
   organizationId: string;
-  appName: string;
-  appId: string;
-  appDescription: string;
-  appType: string;
-  appConfiguration: string;
-  appServices: string;
+  // appName: string;
+  // appId: string;
+  // appDescription: string;
+  // appType: string;
+  // appConfiguration: string;
+  // appServices: string;
 
   /**
    * List of available apps
@@ -132,16 +132,16 @@ export class ApplicationsComponent implements OnInit {
    */
   openAppsInfo(app) {
     const initialState = {
-      appName: this.appName,
       organizatinoId: this.organizationId,
-      appId: this.appId,
-      appDescription: this.appDescription,
-      appType: this.appType,
-      appConfiguration: this.appConfiguration,
-      appServices: this.appServices
+      appName: app.appName,
+      appId: app.appId,
+      appDescription: app.appDescription,
+      appType: app.appType,
+      appConfiguration: app.appConfiguration,
+      appServices: app.appServices
     };
 
-    this.modalRef = this.modalService.show(AppsInfoComponent, { initialState });
+    this.modalRef = this.modalService.show(AppsInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     // this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
