@@ -62,7 +62,8 @@ export class EditClusterComponent implements OnInit {
       })
         .subscribe(response => {
           this.notificationsService.add({
-            message: 'The cluster ' + this.clusterName + ' has been edited'
+            message: 'The cluster ' + this.clusterName + ' has been edited',
+            timeout: 10000
           });
           this.bsModalRef.hide();
         });

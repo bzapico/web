@@ -37,7 +37,7 @@
       <!-- Carousel big -->
       <carousel class="h-75 carousel-big"> 
         <slide *ngFor="let clusterGroup of chunckedClusters; let i = index">
-          <div class="slide-box">
+          <div class="slide-box animated fadeIn">
             <div class="box" *ngIf="clusterGroup[0]">
               <div class="donut-chart">
                 <ngx-charts-pie-chart
@@ -124,7 +124,7 @@
       </carousel>
       <!-- Carousel small -->
       <carousel class="h-75 carousel-small">
-        <slide *ngFor="let cluster of clusters; let i = index">
+        <slide *ngFor="let cluster of clusters; let i = index" class="animated fadeIn">
           <div class="slide-box">
             <div class="box">
               <div class="donut-chart">

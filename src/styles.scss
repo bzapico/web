@@ -103,7 +103,6 @@ button[type="submit"]:disabled {
 }
 
 /* - - - Modal window styles - - - */
-
 .modal.fade {
   display: flex !important;
   justify-content: center;
@@ -145,7 +144,7 @@ button[type="submit"]:disabled {
       padding: 2rem;
     }
     .modal-dialog {
-      margin: 1.5rem auto;
+      margin: 0.5rem auto;
     }
 
 }
@@ -260,8 +259,7 @@ button[type="submit"]:disabled {
   opacity: 0.4;
 }
 
-/* - - -+ Carousel - - - */
-
+/* - - - Carousel - - - */
 .carousel-big {
   display: block;
   div

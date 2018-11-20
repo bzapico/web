@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxChartsModule} from '@swimlane/ngx-charts';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { ErrorHandlerService } from './services/error-handler.service';
 import { routes } from './app.routing';
@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { BackendService } from './services/backend.service';
 import { HttpClientModule } from '@angular/common/http';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { UserInfoComponent } from './user-info/user-info.component';
@@ -74,6 +75,7 @@ import { UpdateEventsService } from './services/update-events.service';
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
     CarouselModule.forRoot(),
+    TooltipModule.forRoot(),
     // ROUTES
     routes
   ],

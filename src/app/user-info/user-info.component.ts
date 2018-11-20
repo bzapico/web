@@ -18,18 +18,22 @@ export class UserInfoComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
+
   /**
    * Dialog title
    */
   title: string;
+
   /**
    * Text for the resset password action button
    */
   buttonRessetPassword: string;
+
   /**
    * Text for the delete user action button
    */
   buttonDeleteUser: string;
+
   /**
    * Models that hold user name, organization id, name, user email/ID and role selection
    */
@@ -71,6 +75,7 @@ export class UserInfoComponent implements OnInit {
     }
     return false;
   }
+
   /**
    *  Upon confirmation, deletes user
    * @param userId A user to be deleted
@@ -80,12 +85,14 @@ export class UserInfoComponent implements OnInit {
       this.backend.deleteUser(this.organizationId, this.userId)
         .subscribe(response => {
           this.notificationsService.add({
-            message: 'User ' + this.userId + ' has been deleted'
+            message: 'User ' + this.userId + ' has been deleted',
+            timeout: 10000
           });
           this.bsModalRef.hide();
         });
     }
   }
+
   /**
    *  Upon confirmation, ressets the password
    */
@@ -94,7 +101,8 @@ export class UserInfoComponent implements OnInit {
       this.backend.resetPassword(this.organizationId, this.userId)
         .subscribe(response => {
           this.notificationsService.add({
-            message: 'Your new password is ' + response._body
+            message: 'Your new password is ' + response._body,
+            timeout: 10000
           });
           this.bsModalRef.hide();
         });
