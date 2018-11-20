@@ -35,7 +35,9 @@
         <p class="d-inline cluster-number">{{clustersCount}} available</p>
       </div>
       <!-- Carousel big -->
-      <carousel class="h-75 carousel-big"> 
+      <carousel 
+        *ngIf="clusters.length > 0" 
+        class="h-75 carousel-big"> 
         <slide *ngFor="let clusterGroup of chunckedClusters; let i = index">
           <div class="slide-box">
             <div class="box" *ngIf="clusterGroup[0]">
@@ -54,7 +56,7 @@
               <p 
                 *ngIf="clusterGroup[0].running_nodes === clusterGroup[0].total_nodes" 
                 class="blue nodes-run mb-0"                   
-                [routerLink]="['cluster', cluster.cluster_id]" 
+                [routerLink]="['cluster', clusterGroup[0].cluster_id]" 
                 routerLinkActive="active"
               >All nodes running</p>
               <p 
@@ -79,7 +81,7 @@
               <p
                 *ngIf="clusterGroup[1].running_nodes === clusterGroup[1].total_nodes"
                 class="blue nodes-run mb-0"
-                [routerLink]="['cluster', cluster.cluster_id]" 
+                [routerLink]="['cluster', clusterGroup[1].cluster_id]" 
                 routerLinkActive="active">
                 All nodes running
               </p>
@@ -108,7 +110,7 @@
               <p
                 *ngIf="clusterGroup[2].running_nodes === clusterGroup[2].total_nodes"
                 class="blue nodes-run mb-0"
-                [routerLink]="['cluster', cluster.cluster_id]" 
+                [routerLink]="['cluster', clusterGroup[2].cluster_id]" 
                 routerLinkActive="active">
                 All nodes running
               </p>
@@ -123,7 +125,9 @@
         </slide>
       </carousel>
       <!-- Carousel small -->
-      <carousel class="h-75 carousel-small">
+      <carousel 
+        *ngIf="clusters && clusters.length > 0" 
+        class="h-75 carousel-small">
         <slide *ngFor="let cluster of clusters; let i = index">
           <div class="slide-box">
             <div class="box">
@@ -159,6 +163,11 @@
           </div>
         </slide>
       </carousel>
+      <div 
+        *ngIf="clusters.length === 0"
+        class="no-clusters d-flex justify-content-center align-items-center">
+        No available clusters detected
+      </div>
     </div>
   </div>
   <!-- Node status timeline info card -->
@@ -276,6 +285,11 @@
             </tr>
           </tbody>
         </table>
+        <div 
+          *ngIf="clusters.length === 0"
+          class="no-clusters d-flex justify-content-center align-items-center">
+            No available clusters detected
+      </div>
       </div>
     </div>
   </div>

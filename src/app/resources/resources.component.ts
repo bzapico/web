@@ -182,9 +182,11 @@ export class ResourcesComponent implements OnInit {
     for (let i = 0; i < pieChartsData.length; i++) {
       pieChartsData.pop();
     }
-    clusterList.forEach(element => {
-      pieChartsData.push(this.generateClusterChartData(element.running_nodes, element.total_nodes));
-    });
+    if (clusterList && clusterList.length > 0) {
+      clusterList.forEach(element => {
+        pieChartsData.push(this.generateClusterChartData(element.running_nodes, element.total_nodes));
+      });
+    }
   }
   /**
    * Generates the NGX-Chart required JSON object for pie chart rendering
@@ -227,8 +229,11 @@ export class ResourcesComponent implements OnInit {
     // Requests an updated clusters list
     this.backend.getClusters(this.organizationId)
     .subscribe(clusters => {
-        console.log(clusters);
-        this.clusters = clusters;
+        if (clusters.length) {
+          this.clusters = clusters;
+        } else {
+          this.clusters = [];
+        }
         this.chunckedClusters = this.chunkClusterList(3, this.clusters);
         this.updatePieChartsData(this.clusters, this.pieChartsData);
     });
