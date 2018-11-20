@@ -98,6 +98,7 @@ export class ResourcesComponent implements OnInit {
       value: 0
     }
   ];
+
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
@@ -173,6 +174,7 @@ export class ResourcesComponent implements OnInit {
       this.updateClusterList();
     });
   }
+
   /**
    * Updates the pieChartsData with latest changes
    * @param clusterList Array containing the cluster list that sources the chart values
@@ -188,6 +190,7 @@ export class ResourcesComponent implements OnInit {
       });
     }
   }
+
   /**
    * Generates the NGX-Chart required JSON object for pie chart rendering
    * @param running Number of running nodes in a cluster
@@ -203,8 +206,9 @@ export class ResourcesComponent implements OnInit {
       {
         name: 'Stopped',
         value: total - running
-      }];
-    }
+      }
+    ];
+  }
 
   /**
    * Splits the cluster list into chunks (number of elements defined by the chunks parameter)
@@ -222,6 +226,7 @@ export class ResourcesComponent implements OnInit {
     }
     return resultChunkArray;
   }
+
   /**
    * Requests an updated list of available clusters to update the current one
    */

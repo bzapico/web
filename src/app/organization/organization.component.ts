@@ -21,6 +21,7 @@ export class OrganizationComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
+
   /**
    * Models that hold organization id, name, subscription type and the users list
    */
@@ -33,13 +34,6 @@ export class OrganizationComponent implements OnInit {
    * Reference for the service that allows the user info component
    */
   modalRef: BsModalRef;
-    /**
-   * Models that removes the possibility for the user to close the modal by clicking outside the content card
-   */
-  config = {
-    backdrop: 'static',
-    ignoreBackdropClick: false
-  };
 
   constructor(
     private modalService: BsModalService,
@@ -101,6 +95,7 @@ export class OrganizationComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
+
   /**
    * Opens the modal view that holds the user info and editable component
    */
@@ -118,6 +113,7 @@ export class OrganizationComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
+
   /**
    * Opens the modal view that holds add user component
    */
@@ -132,6 +128,9 @@ export class OrganizationComponent implements OnInit {
 
   }
 
+  /**
+   * Updates the user list with latest changes
+   */
   updateUserList() {
     if (this.organizationId != null) {
       this.backend.getOrganizationUsers(this.organizationId)

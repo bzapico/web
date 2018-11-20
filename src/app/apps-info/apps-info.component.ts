@@ -3,7 +3,6 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
-import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
 @Component({
@@ -29,26 +28,27 @@ export class AppsInfoComponent implements OnInit {
   id: string;
   description: string;
   tags: string;
+  type: string;
   configuration: string;
   service: string;
 
   constructor(
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
-    private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private mockupBackendService: MockupBackendService
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.userInfoMock) || null;
+    const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
     } else {
       this.backend = backendService;
     }
-    this.title = 'SIG Application';
+    this.title = 'App info';
     this.name = 'Loading ...'; // Default initialization
     this.id = 'Loading ...'; // Default initialization
     this.tags = 'Loading ...'; // Default initialization
+    this.type = 'Loading ...'; // Default initialization
     this.configuration = 'Loading ...'; // Default initialization
     this.service = 'Loading ...'; // Default initialization
   }

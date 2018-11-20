@@ -13,7 +13,6 @@ describe('UserInfoComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ UserInfoComponent ],
       imports: [
-        ButtonsModule,
         HttpClientTestingModule,
         FormsModule,
         ButtonsModule],

@@ -259,7 +259,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/resources/resources.component.ts:111</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/resources/resources.component.ts:112</a></div>
                             </td>
                         </tr>
 
@@ -364,7 +364,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/app/resources/resources.component.ts:215</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/app/resources/resources.component.ts:219</a></div>
                             </td>
                         </tr>
 
@@ -450,7 +450,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/app/resources/resources.component.ts:197</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/app/resources/resources.component.ts:200</a></div>
                             </td>
                         </tr>
 
@@ -543,7 +543,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/resources/resources.component.ts:141</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/app/resources/resources.component.ts:142</a></div>
                             </td>
                         </tr>
 
@@ -581,7 +581,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/app/resources/resources.component.ts:161</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/app/resources/resources.component.ts:162</a></div>
                             </td>
                         </tr>
 
@@ -648,7 +648,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/app/resources/resources.component.ts:228</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/app/resources/resources.component.ts:233</a></div>
                             </td>
                         </tr>
 
@@ -688,7 +688,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/app/resources/resources.component.ts:181</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/app/resources/resources.component.ts:183</a></div>
                             </td>
                         </tr>
 
@@ -785,7 +785,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/resources/resources.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/resources/resources.component.ts:107</a></div>
                             </td>
                         </tr>
 
@@ -1140,7 +1140,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/resources/resources.component.ts:104</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/resources/resources.component.ts:105</a></div>
                             </td>
                         </tr>
 
@@ -1180,7 +1180,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/resources/resources.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/resources/resources.component.ts:106</a></div>
                             </td>
                         </tr>
 
@@ -1214,7 +1214,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/resources/resources.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/resources/resources.component.ts:112</a></div>
                             </td>
                         </tr>
 
@@ -1812,6 +1812,7 @@ export class ResourcesComponent implements OnInit {
       value: 0
     }
   ];
+
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
@@ -1887,6 +1888,7 @@ export class ResourcesComponent implements OnInit {
       this.updateClusterList();
     });
   }
+
   /**
    * Updates the pieChartsData with latest changes
    * @param clusterList Array containing the cluster list that sources the chart values
@@ -1902,6 +1904,7 @@ export class ResourcesComponent implements OnInit {
       });
     }
   }
+
   /**
    * Generates the NGX-Chart required JSON object for pie chart rendering
    * @param running Number of running nodes in a cluster
@@ -1917,8 +1920,9 @@ export class ResourcesComponent implements OnInit {
       {
         name: &#x27;Stopped&#x27;,
         value: total - running
-      }];
-    }
+      }
+    ];
+  }
 
   /**
    * Splits the cluster list into chunks (number of elements defined by the chunks parameter)
@@ -1936,6 +1940,7 @@ export class ResourcesComponent implements OnInit {
     }
     return resultChunkArray;
   }
+
   /**
    * Requests an updated list of available clusters to update the current one
    */

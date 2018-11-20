@@ -21,15 +21,9 @@ export class ApplicationsComponent implements OnInit {
   backend: Backend;
 
   /**
-   * Model that hold organization ID, name, id, description, type, configuration and services
+   * Model that hold organization ID
    */
   organizationId: string;
-  // appName: string;
-  // appId: string;
-  // appDescription: string;
-  // appType: string;
-  // appConfiguration: string;
-  // appServices: string;
 
   /**
    * List of available apps
@@ -133,12 +127,13 @@ export class ApplicationsComponent implements OnInit {
   openAppsInfo(app) {
     const initialState = {
       organizatinoId: this.organizationId,
-      appName: app.appName,
-      appId: app.appId,
-      appDescription: app.appDescription,
-      appType: app.appType,
-      appConfiguration: app.appConfiguration,
-      appServices: app.appServices
+      name: app.name,
+      id: app.id,
+      description: app.description,
+      type: app.type,
+      tags: app.tags,
+      configuration: app.configuration,
+      services: app.services
     };
 
     this.modalRef = this.modalService.show(AppsInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
