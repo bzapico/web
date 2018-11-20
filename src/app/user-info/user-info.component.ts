@@ -18,18 +18,22 @@ export class UserInfoComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
+
   /**
    * Dialog title
    */
   title: string;
+
   /**
    * Text for the resset password action button
    */
   buttonRessetPassword: string;
+
   /**
    * Text for the delete user action button
    */
   buttonDeleteUser: string;
+
   /**
    * Models that hold user name, organization id, name, user email/ID and role selection
    */
@@ -71,6 +75,7 @@ export class UserInfoComponent implements OnInit {
     }
     return false;
   }
+
   /**
    *  Upon confirmation, deletes user
    * @param userId A user to be deleted
@@ -87,6 +92,7 @@ export class UserInfoComponent implements OnInit {
         });
     }
   }
+
   /**
    *  Upon confirmation, ressets the password
    */
