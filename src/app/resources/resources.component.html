@@ -39,7 +39,7 @@
         *ngIf="clusters.length > 0" 
         class="h-75 carousel-big"> 
         <slide *ngFor="let clusterGroup of chunckedClusters; let i = index">
-          <div class="slide-box">
+          <div class="slide-box animated fadeIn">
             <div class="box" *ngIf="clusterGroup[0]">
               <div class="donut-chart">
                 <ngx-charts-pie-chart
@@ -128,7 +128,9 @@
       <carousel 
         *ngIf="clusters && clusters.length > 0" 
         class="h-75 carousel-small">
-        <slide *ngFor="let cluster of clusters; let i = index">
+        <slide 
+          class="animated fadeIn"
+          *ngFor="let cluster of clusters; let i = index">
           <div class="slide-box">
             <div class="box">
               <div class="donut-chart">

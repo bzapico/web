@@ -21,7 +21,6 @@ export class NotificationsService {
   /**
   * add()
   */
-
   add(notificationInstance: Notification) {
     this._notifications.push(notificationInstance);
   }
@@ -32,6 +31,7 @@ export class NotificationsService {
   get notifications() {
     return this._notifications;
   }
+
   /**
    * onClosed() will show close button to the right of the alert for dismiss option
    */
