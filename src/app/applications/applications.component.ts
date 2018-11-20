@@ -130,7 +130,7 @@ export class ApplicationsComponent implements OnInit {
   /**
    * Opens the modal view that holds the apps info component
    */
-  openAppsInfo() {
+  openAppsInfo(app) {
     const initialState = {
       appName: this.appName,
       organizatinoId: this.organizationId,
