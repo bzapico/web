@@ -6,6 +6,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { mockClusterChart, mockNodesChart } from '../utils/mocks';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cluster',
@@ -87,7 +88,8 @@ export class ClusterComponent implements OnInit {
   constructor(
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private route: ActivatedRoute
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.clusterMock) || null;
     // check which backend is required (fake or real)
@@ -111,30 +113,29 @@ export class ClusterComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.clusterId = params['clusterId']; // (+) converts string 'id' to a number
+   });
      // Get User data from localStorage
      const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
      if (jwtData !== null) {
-       this.organizationId = JSON.parse(jwtData).OrganizationId;
+       this.organizationId = JSON.parse(jwtData).organizationID;
        if (this.organizationId !== null) {
          // Requests top card summary data
          this.backend.getResourcesSummary(this.organizationId)
-         .subscribe(response => {
-           if (response && response._body) {
-             const data = JSON.parse(response._body);
-             this.clustersCount = data['totalClusters'];
-             this.nodesCount = data['totalNodes'];
-           }
-         });
+          .subscribe(summary => {
+            console.log(summary);
+            this.clustersCount = summary['total_clusters'];
+            this.nodesCount = summary['total_nodes'];
+          });
          this.updateNodesList();
        }
      }
-    //  this.backend.getClusterDetail(this.clusterId)
-    //  .subscribe(response => {
-    //    if (response && response._body) {
-    //      const data = JSON.parse(response._body);
-    //      this.clusterData = data;
-    //    }
-    //  });
+     this.backend.getClusterDetail(this.organizationId, this.clusterId)
+      .subscribe(cluster => {
+        console.log('getClusterDetail', cluster);
+        this.clusterData = cluster;
+      });
   }
    /**
    * Generates the NGX-Chart required JSON object for pie chart rendering
@@ -159,12 +160,9 @@ export class ClusterComponent implements OnInit {
    */
   updateNodesList() {
     // Requests an updated nodes list
-    this.backend.getNodes(this.clusterId)
-    .subscribe(response => {
-      if (response && response._body) {
-        const data = JSON.parse(response._body);
-        this.nodes = data;
-      }
+    this.backend.getNodes(this.organizationId, this.clusterId)
+    .subscribe(nodes => {
+      this.nodes = nodes;
     });
   }
 

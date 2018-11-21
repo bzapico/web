@@ -9,8 +9,8 @@
   <div class="col-lg-3 h-100">
     <div class="card p-4 h-100">
       <div class="card-title-c">
-        <h5 class="d-inline">CLUSTER 1</h5>
-        <p class="d-inline cluster-number grey">5 available</p>
+        <h5 class="d-inline text-uppercase">{{clusterData.name}}</h5>
+        <p class="d-inline cluster-number grey">STATUS</p>
       </div>
       <!-- Cluster pie chart -->
         <div class="box-card">
@@ -59,25 +59,25 @@
               <th class="grey">
                 id
               </th>
-              <td>21321321321</td>
+              <td>{{clusterData.cluster_id}}</td>
             </tr>
             <tr>
               <th class="grey">
                 types
               </th>
-              <td>Kubernetes</td> 
+              <td>{{clusterData.cluster_type}}</td> 
             </tr>
             <tr>
               <th class="grey">
                 Tags
               </th>
-              <td>Tags</td>
+              <td>{{clusterData.labels}}</td>
             </tr>
             <tr>
               <th class="grey">
                 Multitenant
               </th>
-              <td>All</td>
+              <td>{{clusterData.multitenant}}</td>
             </tr>
           </table>
         </div>
@@ -97,8 +97,8 @@
             class="blue">
             CLUSTER
           </a>
-          <span class="grey">
-             > CLUSTER 1 > 
+          <span class="grey text-uppercase">
+             > {{clusterData.name}} > 
           </span>
           NODES
         </h5>

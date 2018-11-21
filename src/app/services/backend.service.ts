@@ -131,10 +131,10 @@ export class BackendService implements Backend {
   getApps(organizationId: string) {
     throw new Error('Method not implemented.');
   }
-  getNodes(clusterId: string) {
+  getNodes(organizationId: string, clusterId: string) {
     throw new Error('Method not implemented.');
   }
-  getClusterDetail(clusterId: string) {
+  getClusterDetail(organizationId: string, clusterId: string) {
     throw new Error('Method not implemented.');
   }
 
