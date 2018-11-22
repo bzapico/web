@@ -264,7 +264,7 @@
                                                     
 
                                                         <td>
-                                                                <code><p>Organization identificator</p>
+                                                                <code><p>Organization identifier</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -403,7 +403,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/app/services/backend.service.ts:145</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/app/services/backend.service.ts:171</a></div>
                             </td>
                         </tr>
 
@@ -479,7 +479,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/app/services/backend.service.ts:131</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/services/backend.service.ts:141</a></div>
                             </td>
                         </tr>
 
@@ -541,20 +541,22 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>getClusterDetail(clusterId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getClusterDetail(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, clusterId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/services/backend.service.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/app/services/backend.service.ts:161</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Requests to get the detail of an specific cluster</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -564,9 +566,26 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
                                                 <tr>
                                                         <td>clusterId</td>
                                                         <td>
@@ -578,6 +597,10 @@
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>Cluster identifier</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -585,7 +608,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                             </div>
                                 <div class="io-description">
@@ -617,13 +640,15 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/app/services/backend.service.ts:126</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/services/backend.service.ts:136</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Requests to get the cluster list for an specific organization</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -633,6 +658,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -647,6 +673,10 @@
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -679,20 +709,22 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>getNodes(clusterId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getNodes(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, clusterId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/services/backend.service.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/app/services/backend.service.ts:150</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Requests to get the list of nodes for an specific cluster</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -702,9 +734,26 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
                                                 <tr>
                                                         <td>clusterId</td>
                                                         <td>
@@ -716,6 +765,10 @@
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>Cluster identifier</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -723,7 +776,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                             </div>
                                 <div class="io-description">
@@ -789,7 +842,7 @@
                                                     
 
                                                         <td>
-                                                                <code><p>Organization identificator</p>
+                                                                <code><p>Organization identifier</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -865,7 +918,7 @@
                                                     
 
                                                         <td>
-                                                                <code><p>Organization identificator</p>
+                                                                <code><p>Organization identifier</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -907,13 +960,15 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/services/backend.service.ts:121</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/app/services/backend.service.ts:126</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Requests to get the resources summary for an specific organization</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -923,6 +978,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -937,6 +993,10 @@
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -1200,7 +1260,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/app/services/backend.service.ts:165</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/app/services/backend.service.ts:191</a></div>
                             </td>
                         </tr>
 
@@ -1500,7 +1560,7 @@
                                                     
 
                                                         <td>
-                                                                <code><p>Organization identificator</p>
+                                                                <code><p>Organization identifier</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -1658,7 +1718,7 @@ export class BackendService implements Backend {
   // GET &#x27;/organization/{organization_id}&#x27;
   /**
    * Requests to get an specific organization information
-   * @param organizationId Organization identificator
+   * @param organizationId Organization identifier
    */
   getOrganizationInfo(organizationId: string) {
     return this.get(
@@ -1668,7 +1728,7 @@ export class BackendService implements Backend {
   // GET &#x27;users/{organization_id}/list
   /**
    * Requests a list of the users that belong to a specific organization
-   * @param organizationId Organization identificator
+   * @param organizationId Organization identifier
    */
   getOrganizationUsers(organizationId: string) {
     return this.get(
@@ -1678,7 +1738,7 @@ export class BackendService implements Backend {
   // POST &#x27;users/{organizationId}/add&#x27;
   /**
    * Requests to add a new user
-   * @param organizationId Organization identificator
+   * @param organizationId Organization identifier
    * @param user New user data
    */
   addUser(organizationId: string, user: any) {
@@ -1699,7 +1759,7 @@ export class BackendService implements Backend {
   // POST &#x27;users/{organization_id}/update
   /**
    * Requests to update an specific user
-   * @param organizationId Organization identificator
+   * @param organizationId Organization identifier
    * @param user Object containing user data
    */
   saveUserChanges(organizationId: string, user: any) {
@@ -1709,11 +1769,21 @@ export class BackendService implements Backend {
     );
 
   }
+  // GET &#x27;resources/{organization_id}/summary&#x27;
+  /**
+   * Requests to get the resources summary for an specific organization
+   * @param organizationId Organization identifier
+   */
   getResourcesSummary(organizationId: string) {
     return this.get(
       API_URL + &#x27;resources/&#x27; + organizationId + &#x27;/summary&#x27;
     );
   }
+  // GET &#x27;clusters/{organization_id}/list&#x27;
+  /**
+   * Requests to get the cluster list for an specific organization
+   * @param organizationId Organization identifier
+   */
   getClusters(organizationId: string) {
     return this.get(
       API_URL + &#x27;clusters/&#x27; + organizationId + &#x27;/list&#x27;
@@ -1722,11 +1792,27 @@ export class BackendService implements Backend {
   getApps(organizationId: string) {
     throw new Error(&#x27;Method not implemented.&#x27;);
   }
-  getNodes(clusterId: string) {
-    throw new Error(&#x27;Method not implemented.&#x27;);
+  // GET &#x27;nodes/{organization_id}/{cluster_id}/list&#x27;
+  /**
+   * Requests to get the list of nodes for an specific cluster
+   * @param organizationId Organization identifier
+   * @param clusterId Cluster identifier
+   */
+  getNodes(organizationId: string, clusterId: string) {
+    return this.get(
+      API_URL + &#x27;nodes/&#x27; + organizationId + &#x27;/&#x27; + clusterId + &#x27;/list&#x27;
+    );
   }
-  getClusterDetail(clusterId: string) {
-    throw new Error(&#x27;Method not implemented.&#x27;);
+  // GET &#x27;clusters/{organization_id}/{cluster_id}/info&#x27;
+  /**
+   * Requests to get the detail of an specific cluster
+   * @param organizationId Organization identifier
+   * @param clusterId Cluster identifier
+   */
+  getClusterDetail(organizationId: string, clusterId: string) {
+    return this.get(
+      API_URL + &#x27;clusters/&#x27; + organizationId + &#x27;/&#x27; + clusterId + &#x27;/info&#x27;
+    );
   }
 
   /**

@@ -205,20 +205,27 @@ export class MockupBackendService implements Backend {
   /**
    * Simulates get nodes list
    */
-  getNodes(clusterId: string) {
+  getNodes(organizationId: string, clusterId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockNodeList),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response => response.json())
+    );
   }
 
   /**
    * Simulates get cluster details
    */
-  getClusterDetail(clusterId: string) {
+  getClusterDetail(organizationId: string, clusterId: string) {
+    const index = mockClusterList.map(x => x.cluster_id).indexOf(clusterId);
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockClusterList),
+      body: JSON.stringify(mockClusterList[index]),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response => response.json())
+    );
   }
 }
