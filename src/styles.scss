@@ -140,6 +140,7 @@ button[type="submit"]:disabled {
   }
 }
 @media screen and (max-width: 1300px) {
+ /* Target devices narrower than 1300px. */
     .modal-card {
       padding: 2rem;
     }
@@ -371,6 +372,7 @@ button[type="submit"]:disabled {
 }
 /* - - - Medias Charts and Carousel - - - */
 @media screen and (min-width:2560px){
+  /* Target devices narrower than 2560px. */
   .carousel-small{
     display: none;
   }
@@ -382,6 +384,7 @@ button[type="submit"]:disabled {
   }
 }
 @media screen and (max-width:1500px){
+  /* Target devices narrower than 1500px */
   .carousel-big {
     display: none;
   }

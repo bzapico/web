@@ -6,6 +6,7 @@
     align-items: center;
     height: 100%;
     margin-top: 1em;
+    background-color:aquamarine;
 }
 .summary-box {
     display: flex;
@@ -23,9 +24,11 @@
     height: 100%;
     max-width: 156px;
     align-items: center;
+    background-color: aqua;
 }
 .fix-top{
     margin-top: 6px;
+    background-color: antiquewhite;
 }
 .donut-chart {
     width: 100%;
@@ -130,10 +133,12 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    background-color: coral;
 }
 .line-chart {
     width:93%;
     position: relative;
+    background-color: aquamarine;
 }
 .bottom-line{
     position: absolute;
@@ -161,6 +166,7 @@
     height: 80%;
     overflow-y: auto;
     overflow-x: hidden;
+    background-color: aquamarine;
 }
 .table {
     td {
