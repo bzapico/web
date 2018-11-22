@@ -15,6 +15,7 @@ export const AvailableComponents = {
   login: 'Login',
   organization: 'Organization',
   resources: 'Resources',
+  cluster: 'Cluster',
   apps: 'Apps',
   profile: 'Profile',
   notifications: 'Notifications',
@@ -59,7 +60,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.resources,
       mock: localStorage.getItem(LocalStorageKeys.resourcesMock) === 'false' ? 'false' : 'true'
     });
-    this.components.push({
+     this.components.push({
+      name: AvailableComponents.cluster,
+      mock: localStorage.getItem(LocalStorageKeys.clusterMock) === 'false' ? 'false' : 'true'
+    });   this.components.push({
       name: AvailableComponents.apps,
       mock: localStorage.getItem(LocalStorageKeys.appsMock) === 'false' ? 'false' : 'true'
     });
@@ -108,6 +112,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.resources:
         localStorage.setItem(LocalStorageKeys.resourcesMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.cluster:
+        localStorage.setItem(LocalStorageKeys.clusterMock, componentMockOption.mock);
       break;
       case AvailableComponents.apps:
         localStorage.setItem(LocalStorageKeys.appsMock, componentMockOption.mock);

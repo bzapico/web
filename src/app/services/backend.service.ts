@@ -67,7 +67,7 @@ export class BackendService implements Backend {
   // GET '/organization/{organization_id}'
   /**
    * Requests to get an specific organization information
-   * @param organizationId Organization identificator
+   * @param organizationId Organization identifier
    */
   getOrganizationInfo(organizationId: string) {
     return this.get(
@@ -77,7 +77,7 @@ export class BackendService implements Backend {
   // GET 'users/{organization_id}/list
   /**
    * Requests a list of the users that belong to a specific organization
-   * @param organizationId Organization identificator
+   * @param organizationId Organization identifier
    */
   getOrganizationUsers(organizationId: string) {
     return this.get(
@@ -87,7 +87,7 @@ export class BackendService implements Backend {
   // POST 'users/{organizationId}/add'
   /**
    * Requests to add a new user
-   * @param organizationId Organization identificator
+   * @param organizationId Organization identifier
    * @param user New user data
    */
   addUser(organizationId: string, user: any) {
@@ -108,7 +108,7 @@ export class BackendService implements Backend {
   // POST 'users/{organization_id}/update
   /**
    * Requests to update an specific user
-   * @param organizationId Organization identificator
+   * @param organizationId Organization identifier
    * @param user Object containing user data
    */
   saveUserChanges(organizationId: string, user: any) {
@@ -118,11 +118,21 @@ export class BackendService implements Backend {
     );
 
   }
+  // GET 'resources/{organization_id}/summary'
+  /**
+   * Requests to get the resources summary for an specific organization
+   * @param organizationId Organization identifier
+   */
   getResourcesSummary(organizationId: string) {
     return this.get(
       API_URL + 'resources/' + organizationId + '/summary'
     );
   }
+  // GET 'clusters/{organization_id}/list'
+  /**
+   * Requests to get the cluster list for an specific organization
+   * @param organizationId Organization identifier
+   */
   getClusters(organizationId: string) {
     return this.get(
       API_URL + 'clusters/' + organizationId + '/list'
@@ -131,11 +141,27 @@ export class BackendService implements Backend {
   getApps(organizationId: string) {
     throw new Error('Method not implemented.');
   }
-  getNodes(clusterId: string) {
-    throw new Error('Method not implemented.');
+  // GET 'nodes/{organization_id}/{cluster_id}/list'
+  /**
+   * Requests to get the list of nodes for an specific cluster
+   * @param organizationId Organization identifier
+   * @param clusterId Cluster identifier
+   */
+  getNodes(organizationId: string, clusterId: string) {
+    return this.get(
+      API_URL + 'nodes/' + organizationId + '/' + clusterId + '/list'
+    );
   }
-  getClusterDetail(clusterId: string) {
-    throw new Error('Method not implemented.');
+  // GET 'clusters/{organization_id}/{cluster_id}/info'
+  /**
+   * Requests to get the detail of an specific cluster
+   * @param organizationId Organization identifier
+   * @param clusterId Cluster identifier
+   */
+  getClusterDetail(organizationId: string, clusterId: string) {
+    return this.get(
+      API_URL + 'clusters/' + organizationId + '/' + clusterId + '/info'
+    );
   }
 
   /**

@@ -412,14 +412,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>getClusterDetail(clusterId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getClusterDetail(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, clusterId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/app/services/mockup-backend.service.ts:218</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/app/services/mockup-backend.service.ts:221</a></div>
                             </td>
                         </tr>
 
@@ -440,6 +440,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
                                                 <tr>
                                                         <td>clusterId</td>
                                                         <td>
@@ -552,7 +564,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>getNodes(clusterId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getNodes(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, clusterId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
 
@@ -580,6 +592,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
                                                 <tr>
                                                         <td>clusterId</td>
                                                         <td>
@@ -1502,21 +1526,28 @@ export class MockupBackendService implements Backend {
   /**
    * Simulates get nodes list
    */
-  getNodes(clusterId: string) {
+  getNodes(organizationId: string, clusterId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockNodeList),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response &#x3D;&gt; response.json())
+    );
   }
 
   /**
    * Simulates get cluster details
    */
-  getClusterDetail(clusterId: string) {
+  getClusterDetail(organizationId: string, clusterId: string) {
+    const index &#x3D; mockClusterList.map(x &#x3D;&gt; x.cluster_id).indexOf(clusterId);
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockClusterList),
+      body: JSON.stringify(mockClusterList[index]),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response &#x3D;&gt; response.json())
+    );
   }
 }
 </code></pre>

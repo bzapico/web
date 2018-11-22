@@ -37,7 +37,7 @@ const appRoutes: Routes = [
                 canActivate: [AuthGuard]
             },
             {
-                path: 'resources/cluster/:id',
+                path: 'resources/cluster/:clusterId',
                 component: ClusterComponent,
             },
             {
