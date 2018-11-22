@@ -133,7 +133,6 @@ export class ClusterComponent implements OnInit {
      }
      this.backend.getClusterDetail(this.organizationId, this.clusterId)
       .subscribe(cluster => {
-        console.log('getClusterDetail', cluster);
         this.clusterData = cluster;
       });
   }
