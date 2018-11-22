@@ -2,13 +2,13 @@
  * Interface that defines the Cluster info needed for creating the Cluster object instance
  */
 export interface ClusterInfo {
-  name: string;
-  id?: string;
-  totalNodes: string;
-  runningNodes: string;
-  description: string;
-  status: string;
-  type: string;
-  tags: string;
-  multitenant: string;
+  name?: string;
+  cluster_id?: string;
+  total_nodes?: string;
+  running_nodes?: string;
+  description?: string;
+  status?: string;
+  cluster_type?: string;
+  labels?: string;
+  multitenant?: string;
 }

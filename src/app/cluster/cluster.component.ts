@@ -7,6 +7,7 @@ import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { mockClusterChart, mockNodesChart } from '../utils/mocks';
 import { ActivatedRoute } from '@angular/router';
+import { ClusterInfo } from '../definitions/interfaces/cluster-info';
 
 @Component({
   selector: 'app-cluster',
@@ -32,7 +33,7 @@ export class ClusterComponent implements OnInit {
   /**
    * Model that hold cluster data
    */
-  clusterData: any[];
+  clusterData: ClusterInfo;
 
   /**
    * List of available clusters
@@ -104,7 +105,7 @@ export class ClusterComponent implements OnInit {
     this.nodes = [];
     this.nodesCount = 0;
     this.clustersCount = 0;
-    this.clusterData = [];
+    this.clusterData = {};
 
   /**
    * Mocked Charts
