@@ -461,7 +461,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BrowserModule } from &#x27;@angular/platform-browser&#x27;;
 import { BrowserAnimationsModule } from &#x27;@angular/platform-browser/animations&#x27;;
-import { NgxChartsModule } from &#x27;@swimlane/ngx-charts&#x27;;
+import { NgxChartsModule} from &#x27;@swimlane/ngx-charts&#x27;;
 import { NgModule, ErrorHandler } from &#x27;@angular/core&#x27;;
 import { ErrorHandlerService } from &#x27;./services/error-handler.service&#x27;;
 import { routes } from &#x27;./app.routing&#x27;;
@@ -480,6 +480,7 @@ import { LoginComponent } from &#x27;./login/login.component&#x27;;
 import { AuthService } from &#x27;./services/auth.service&#x27;;
 import { BackendService } from &#x27;./services/backend.service&#x27;;
 import { HttpClientModule } from &#x27;@angular/common/http&#x27;;
+import { TooltipModule } from &#x27;ngx-bootstrap/tooltip&#x27;;
 import { HttpModule } from &#x27;@angular/http&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
 import { UserInfoComponent } from &#x27;./user-info/user-info.component&#x27;;
@@ -532,6 +533,7 @@ import { UpdateEventsService } from &#x27;./services/update-events.service&#x27;
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
     CarouselModule.forRoot(),
+    TooltipModule.forRoot(),
     // ROUTES
     routes
   ],
