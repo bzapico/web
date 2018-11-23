@@ -82,7 +82,7 @@
           <h5>DEPLOYED APP LIST</h5>
         </div>
         <div class="table-h">
-          <table class="table">
+          <table *ngIf="loadedData && apps && apps.length > 0"  class="table">
             <thead>
               <tr>
                 <th scope="col" class="row-name">
@@ -127,6 +127,29 @@
               </tr>
             </tbody>
           </table>
+          <div 
+          *ngIf="loadedData && apps.length === 0"
+          class="no-apps d-flex justify-content-center align-items-center">
+            No available applications detected
+        </div>
+        <!-- Loader -->
+        <div class="nalej-loader-container" *ngIf="!loadedData">
+          <div class="loader">
+            <svg 
+              class="circular" 
+              viewBox="25 25 50 50">
+              <circle 
+                class="path" 
+                cx="50" 
+                cy="50" 
+                r="20" 
+                fill="none" 
+                stroke-width="2" 
+                stroke-miterlimit="10"/>
+            </svg>
+          </div>
+        </div>
+
         </div>
       </div>
     </div>

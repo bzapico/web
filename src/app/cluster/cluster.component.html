@@ -103,7 +103,7 @@
         </h5>
       </div>
       <div class="table-h">
-        <table *ngIf="nodes && nodes.length > 0" class="table">
+        <table *ngIf="loadedData && nodes && nodes.length > 0" class="table">
           <thead>
             <tr>
               <th scope="col" class="row-id">
@@ -139,9 +139,26 @@
           </tbody>
         </table>
         <div
-          *ngIf="nodes && nodes.length === 0"
+          *ngIf="loadedData && nodes && nodes.length === 0"
           class="no-elements d-flex justify-content-center align-items-center">
           <p>There are not registered nodes in this cluster</p>
+        </div>
+        <!-- Loader -->
+        <div class="nalej-loader-container" *ngIf="!loadedData">
+          <div class="loader">
+            <svg 
+              class="circular" 
+              viewBox="25 25 50 50">
+              <circle 
+                class="path" 
+                cx="50" 
+                cy="50" 
+                r="20" 
+                fill="none" 
+                stroke-width="2" 
+                stroke-miterlimit="10"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>

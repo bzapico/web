@@ -35,10 +35,26 @@
                 <div class="text-danger text-center mt-1" *ngIf="errorMessage.length>0"><small>Email or password incorrect</small></div>
                 <!-- Form actions -->
                 <button 
-                class="btn btn-lg btn-primary btn-block" 
-                type="submit">
-                Log in
+                    *ngIf="!loginRequest"
+                    class="btn btn-lg btn-primary btn-block" 
+                    type="submit">
+                    Log in
                 </button>
+                <!-- Loader -->
+                <div *ngIf="loginRequest" class="loader loader-position">
+                    <svg 
+                        class="circular" 
+                        viewBox="25 25 50 50">
+                        <circle 
+                        class="path" 
+                        cx="50" 
+                        cy="50" 
+                        r="20" 
+                        fill="none" 
+                        stroke-width="2" 
+                        stroke-miterlimit="10"/>
+                    </svg>
+                </div>
             </div>  
         </div> 
     </form>
