@@ -127,7 +127,7 @@
       <!-- Carousel small -->
       <carousel 
         *ngIf="clusters && clusters.length > 0" 
-        class="h-75 carousel-small">
+        class="carousel-small">
         <slide 
           class="animated fadeIn"
           *ngFor="let cluster of clusters; let i = index">
@@ -179,7 +179,7 @@
         <h5 class="text-uppercase">Node status timeline</h5>
       </div>
       <div class=" h-100 box-line-chart">
-        <div class="line-chart h-100">
+        <div class="line-chart">
           <div class="bottom-line"></div>
           <ngx-charts-line-chart
             [scheme]="colorScheme"

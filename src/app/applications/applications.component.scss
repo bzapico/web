@@ -6,7 +6,6 @@
     align-items: center;
     height: 100%;
     margin-top: 1em;
-    background-color:aquamarine;
 }
 .summary-box {
     display: flex;
@@ -24,11 +23,9 @@
     height: 100%;
     max-width: 156px;
     align-items: center;
-    background-color: aqua;
 }
 .fix-top{
     margin-top: 6px;
-    background-color: antiquewhite;
 }
 .donut-chart {
     width: 100%;
@@ -105,6 +102,7 @@
     }
     .summary-card {
         margin-top: 0em;
+        height: 82%;
     }
 }
 @media screen and (min-width:2560px){
@@ -133,12 +131,11 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: coral;
 }
 .line-chart {
     width:93%;
+    height: 100%;
     position: relative;
-    background-color: aquamarine;
 }
 .bottom-line{
     position: absolute;
@@ -159,6 +156,10 @@
     .y-axis-line-chart span {
         font-size: .8em;
     }
+    .line-chart {
+        height: 90%;
+    }
+
 }
 
 /* - - - Deployed app list card - - - */
@@ -166,7 +167,6 @@
     height: 80%;
     overflow-y: auto;
     overflow-x: hidden;
-    background-color: aquamarine;
 }
 .table {
     td {
