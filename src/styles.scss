@@ -53,6 +53,18 @@ a {
     padding-top: 100%;
   }
 }
+
+@media screen and (max-width:1500px){
+  .loader {
+    top: 25%;
+  }
+}
+@media screen and (min-width:2560px){
+  .loader {
+    top: 100%;
+  }
+}
+
 .nalej-loader-container {
   display: block;
   position: relative;
