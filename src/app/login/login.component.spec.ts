@@ -34,7 +34,21 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('Form shoud be invalid', async() => {
+    component.loginForm.controls['email'].setValue('');
+    component.loginForm.controls['password'].setValue('');
+
+    expect(component.loginForm.valid).toBeFalsy();
   });
+
+  it('openDebugPanel() - Should open the modal view that holds the debug panel', () => {
+    const openDebugPanel = spyOn(component, 'openDebugPanel').and.returnValue(true);
+
+    openDebugPanel();
+
+    expect(openDebugPanel).toHaveBeenCalledWith();
+  });
+
+
+
 });

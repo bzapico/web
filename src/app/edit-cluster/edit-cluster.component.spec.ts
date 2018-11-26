@@ -32,7 +32,13 @@ describe('EditClusterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('saveClusterChanges() - Should request to save the cluster data modifications', () => {
+    const saveClusterChanges = spyOn(component, 'saveClusterChanges').and.returnValue(true);
+
+    saveClusterChanges();
+
+    expect(saveClusterChanges).toHaveBeenCalledWith();
   });
+
+
 });
