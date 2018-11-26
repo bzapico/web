@@ -20,7 +20,8 @@ describe('OrganizationComponent', () => {
       ],
       providers: [
         BsModalRef,
-        BsModalService]
+        BsModalService
+      ]
     })
     .compileComponents();
   }));
@@ -31,7 +32,40 @@ describe('OrganizationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('openUserInfo() - Should open User Info Modal view', () => {
+    const openUserInfo = spyOn(component, 'openUserInfo').and.returnValue(true);
+    const user = {};
+
+    openUserInfo(user);
+
+    expect(openUserInfo).toHaveBeenCalledWith(user);
   });
+
+  it('openEditUser() - Should open Edit User Modal view', () => {
+    const openEditUser = spyOn(component, 'openEditUser').and.returnValue(true);
+    const user = {};
+
+    openEditUser(user);
+
+    expect(openEditUser).toHaveBeenCalledWith(user);
+  });
+
+  it('addUser() - Should open Add User Modal view', () => {
+    const addUser = spyOn(component, 'addUser').and.returnValue(true);
+    const user = {};
+
+    addUser(user);
+
+    expect(addUser).toHaveBeenCalledWith(user);
+  });
+
+  it('updateUserList() - Should open Add User Modal view', () => {
+    const updateUserList = spyOn(component, 'updateUserList').and.returnValue(true);
+    const user = {};
+
+    updateUserList(user);
+
+    expect(updateUserList).toHaveBeenCalledWith(user);
+  });
+
 });
