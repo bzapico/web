@@ -24,9 +24,24 @@ export class ApplicationsComponent implements OnInit {
   organizationId: string;
 
   /**
-   * List of available apps
+   * List of available app instances
    */
-  apps: any[];
+  instances: any[];
+
+  /**
+   * List of registered apps
+   */
+  registered: any[];
+
+  /**
+   * Number of running instances
+   */
+  countRunning: number;
+
+  /**
+   * Number of registered apps
+   */
+  countRegistered: number;
 
   /**
    * Pie Chart options
@@ -68,8 +83,8 @@ export class ApplicationsComponent implements OnInit {
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
-  mockAppChart: any;
-  mockAppPieChart: any;
+  instancesTimelineChart: any;
+  instancesPieChart: any;
   autoScale: any;
 
   constructor(
@@ -86,31 +101,69 @@ export class ApplicationsComponent implements OnInit {
     }
 
     // Default initialization
-
-
-    this.apps = [];
+    this.instances = [];
+    this.registered = [];
+    this.countRegistered = 0;
     /**
-   * Mocked Charts
-   */
-  Object.assign(this, {mockAppPieChart, mockAppChart});
+     * Mocked Charts
+     */
+    Object.assign(this, {mockAppChart, mockAppPieChart});
 }
-
 
   ngOnInit() {
       // Get User data from localStorage
       const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
       if (jwtData !== null) {
-        this.organizationId = JSON.parse(jwtData).OrganizationId;
-        if (this.organizationId !== null) {
-          // Requests top card summary data
-          this.backend.getApps(this.organizationId)
-          .subscribe(response => {
-            if (response && response._body) {
-              const data = JSON.parse(response._body);
-              this.apps = data;
-            }
-          });
-        }
+        this.organizationId = JSON.parse(jwtData).organizationID;
+          this.updateAppInstances(this.organizationId);
+          this.updateRegisteredInstances(this.organizationId);
       }
+  }
+
+  updateAppInstances(organizationId: string) {
+    if (organizationId !== null) {
+      // Requests top card summary data
+      this.backend.getApps(this.organizationId)
+      .subscribe(apps => {
+          this.instances = apps;
+          this.updatePieChartStats(apps);
+      });
+    }
+  }
+  updateRegisteredInstances(organizationId: string) {
+    if (organizationId !== null) {
+      // Requests top card summary data
+      this.backend.getRegisteredApps(this.organizationId)
+      .subscribe(registered => {
+          this.registered = registered;
+      });
+    } 
+  }
+  updatePieChartStats(instances: any[]) {
+    let running = 0;
+    instances.forEach(app => {
+      if (app.status_name === 'Running') {
+        running += 1;
+      }
+    });
+    this.countRunning = running;
+    this.instancesPieChart = this.generateSummaryChartData(this.countRunning, instances.length - 1);
+  }
+  /**
+   * Generates the NGX-Chart required JSON object for pie chart rendering
+   * @param running Number of running nodes in a cluster
+   * @param total Number of total nodes in a cluster
+   * @returns anonym array with the required object structure for pie chart rendering
+   */
+  generateSummaryChartData(running: number, total: number): any[] {
+    return [
+      {
+        name: 'Running',
+        value: running
+      },
+      {
+        name: 'Stopped',
+        value: total - running
+      }];
     }
 }

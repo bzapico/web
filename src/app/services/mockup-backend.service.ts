@@ -199,7 +199,10 @@ export class MockupBackendService implements Backend {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockAppsList),
       status: 200
-    })));
+    })))
+    .pipe(
+      map(response => response.json())
+    );
   }
 
   /**
