@@ -39,7 +39,40 @@ describe('ResourcesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('openEditCluster() - Should open the modal view that holds the edit cluster component', () => {
+    const openEditCluster = spyOn(component, 'openEditCluster').and.returnValue(true);
+    const clusters = {};
+
+    openEditCluster(clusters);
+
+    expect(openEditCluster).toHaveBeenCalledWith(clusters);
   });
+
+  it('updatePieChartsData() - Should open the modal view that holds the edit cluster component', () => {
+    const updatePieChartsData = spyOn(component, 'updatePieChartsData').and.returnValue(true);
+    const clusters = {};
+
+    updatePieChartsData(clusters);
+
+    expect(updatePieChartsData).toHaveBeenCalledWith(clusters);
+  });
+
+  it('generateClusterChartData() - Should open the modal view that holds the edit cluster component', () => {
+    const generateClusterChartData = spyOn(component, 'generateClusterChartData').and.returnValue(true);
+    const clusters = {};
+
+    generateClusterChartData(clusters);
+
+    expect(generateClusterChartData).toHaveBeenCalledWith(clusters);
+  });
+
+  it('updateClusterList() - Should requests an updated list of available clusters to update the current one', () => {
+    const updateClusterList = spyOn(component, 'updateClusterList').and.returnValue(true);
+    const clusters = {};
+
+    updateClusterList(clusters);
+
+    expect(updateClusterList).toHaveBeenCalledWith(clusters);
+  });
+
 });

@@ -30,7 +30,12 @@ describe('EditUserComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('saveUserChanges() - Should request to save the user data modifications', () => {
+    const saveUserChanges = spyOn(component, 'saveUserChanges').and.returnValue(true);
+
+    saveUserChanges();
+
+    expect(saveUserChanges).toHaveBeenCalledWith();
   });
+
 });
