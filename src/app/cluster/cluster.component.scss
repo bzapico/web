@@ -3,13 +3,15 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    height: 100%!important;
+    height: 100%;
 }
 .box {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    margin-top: .5rem;
 }
 .cluster-number {
     float: right;
@@ -33,7 +35,8 @@
   }
 .circles-box{
     margin-right: 2em;
-    flex-direction: row;   
+    flex-direction: row;  
+    width: 40%;
 }
 .circle-space{
    padding-left: 3em;
@@ -46,7 +49,7 @@
 }
 .cluster-summary {
     margin-bottom: 0.5rem;
-    width: 70%;
+    margin-right: 3em;
     td {
         padding: 1.1rem;
         vertical-align: middle;
@@ -90,15 +93,27 @@
         padding-left: 1em;
         padding-right: 3em;
      }
-
-    .table td {
-        padding: .6rem 1rem;
-    }
-    .cluster-summary{
-    margin-bottom: 0;
+     .circles-box{
+        margin-right: 2em;
+        flex-direction: row;  
     }
     .cluster-summary th {
-        padding: 0;
+        padding: 0.1rem;
+        font-size: .8em;
+        vertical-align: inherit;
+    }
+    .cluster-summary{
+        margin-bottom: 0;
+    }
+
+    .cluster-summary td{
+        padding: 0.75rem;
+    }
+    .box-card {
+        height: 82% !important;
+    }
+    .box{
+        margin-top: 0;
     }
 }
 @media screen and (min-width:2560px){
@@ -210,9 +225,6 @@
     }
     .cluster-number {
         margin-bottom: 0;
-    }
-    .box {
-        height: 116px;
     }
     .donut-chart {
         height: 85%;

@@ -11,6 +11,9 @@ html, body {
   font-family: 'Aldrich', sans-serif;
   box-sizing: border-box;
 }
+h5 {
+  margin-bottom: 0 !important;
+}
 .blue {
   color: #0937FF !important;
 }
@@ -143,6 +146,7 @@ button[type="submit"]:disabled {
   }
 }
 @media screen and (max-width: 1300px) {
+ /* Target devices narrower than 1300px. */
     .modal-card {
       padding: 2rem;
     }
@@ -374,6 +378,7 @@ button[type="submit"]:disabled {
 }
 /* - - - Medias Charts and Carousel - - - */
 @media screen and (min-width:2560px){
+  /* Target devices narrower than 2560px. */
   .carousel-small{
     display: none;
   }
@@ -385,6 +390,7 @@ button[type="submit"]:disabled {
   }
 }
 @media screen and (max-width:1500px){
+  /* Target devices narrower than 1500px */
   .carousel-big {
     display: none;
   }
@@ -393,15 +399,26 @@ button[type="submit"]:disabled {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    height: 85%;
+    margin-bottom: 3%;
   }
-  .carousel-control-prev, .carousel-control-next {
-    bottom: 31%;
+
+  .carousel-control-prev-icon {
+    &:before {
+      bottom: -10px;
+    }
+  }
+  .carousel-control-next-icon {
+    &:before {
+      bottom: -10px;
+    }
   }
   .nodes-run{
     line-height: 1em;
   }
   .carousel-indicators {
-    bottom: 21px;
+
+bottom: 10px;
   }
   .donut-chart {
     max-width: 100px;
