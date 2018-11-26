@@ -78,10 +78,7 @@ export class OrganizationComponent implements OnInit {
           .subscribe(response => {
               this.organizationName = response.name;
           });
-        this.backend.getOrganizationUsers(this.organizationId)
-          .subscribe(response => {
-              this.users = response.users;
-          });
+          this.updateUserList();
       }
     }
     this.updateService.changesOnUserList.subscribe(
@@ -142,19 +139,22 @@ export class OrganizationComponent implements OnInit {
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
 
+  /**
+   * Requests an updated list of available users to update the current one
+   */
   updateUserList() {
-    if (this.organizationId != null) {
-      this.backend.getOrganizationUsers(this.organizationId)
-      .subscribe(response => {
+    // Requests an updated users list
+    this.backend.getOrganizationUsers(this.organizationId)
+    .subscribe(response => {
+        if (response.users.length) {
           this.users = response.users;
-        }, error => {
+        } else {
           this.users = [];
-        }, complete => {
-          if (!this.loadedData) {
-            this.loadedData = true;
-      }
+        }
+        if (!this.loadedData) {
+          this.loadedData = true;
+        }
     });
-    }
   }
 }
 
