@@ -24,6 +24,11 @@ export class ApplicationsComponent implements OnInit {
   organizationId: string;
 
   /**
+   * Loaded Data status
+   */
+  loadedData: boolean;
+
+  /**
    * List of available apps
    */
   apps: any[];
@@ -65,6 +70,7 @@ export class ApplicationsComponent implements OnInit {
       value: 0
     }
   ];
+
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
@@ -86,10 +92,10 @@ export class ApplicationsComponent implements OnInit {
     }
 
     // Default initialization
-
-
+    this.loadedData = false;
     this.apps = [];
-    /**
+
+  /**
    * Mocked Charts
    */
   Object.assign(this, {mockAppPieChart, mockAppChart});

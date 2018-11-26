@@ -26,6 +26,11 @@ export class LoginComponent implements OnInit {
    */
   errorMessage: string;
 
+  /**
+   * Loaded Data for login request status
+   */
+  loginRequest: boolean;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -40,6 +45,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
     this.errorMessage = '';
+    this.loginRequest = false;
   }
 
   /**
@@ -47,6 +53,7 @@ export class LoginComponent implements OnInit {
    * If credentials are correct, JWT Token would be stored in localStorage
    */
   onSubmit() {
+    this.loginRequest = true;
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(response => {
         this.errorMessage = '';
@@ -76,6 +83,7 @@ export class LoginComponent implements OnInit {
           }
         }
       }, error => {
+        this.loginRequest = false;
         this.errorMessage = error.statusText;
       });
   }
