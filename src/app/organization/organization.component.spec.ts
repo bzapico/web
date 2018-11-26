@@ -32,7 +32,7 @@ describe('OrganizationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('openUserInfo() - Should open User Info Modal view', () => {
+  it('openUserInfo() - Should open User Info Modal view that holds the user info component', () => {
     const openUserInfo = spyOn(component, 'openUserInfo').and.returnValue(true);
     const user = {};
 
@@ -41,7 +41,7 @@ describe('OrganizationComponent', () => {
     expect(openUserInfo).toHaveBeenCalledWith(user);
   });
 
-  it('openEditUser() - Should open Edit User Modal view', () => {
+  it('openEditUser() - Should open Edit User Modal view that holds the user info and editable component', () => {
     const openEditUser = spyOn(component, 'openEditUser').and.returnValue(true);
     const user = {};
 
@@ -50,7 +50,7 @@ describe('OrganizationComponent', () => {
     expect(openEditUser).toHaveBeenCalledWith(user);
   });
 
-  it('addUser() - Should open Add User Modal view', () => {
+  it('addUser() - Should open Add User Modal view that holds add user component', () => {
     const addUser = spyOn(component, 'addUser').and.returnValue(true);
     const user = {};
 
@@ -59,7 +59,7 @@ describe('OrganizationComponent', () => {
     expect(addUser).toHaveBeenCalledWith(user);
   });
 
-  it('updateUserList() - Should open Add User Modal view', () => {
+  it('updateUserList() - Should request an updated list of available users to update the current one', () => {
     const updateUserList = spyOn(component, 'updateUserList').and.returnValue(true);
     const user = {};
 
