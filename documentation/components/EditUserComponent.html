@@ -1,0 +1,1275 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>nalej-web-ui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">nalej-web-ui documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>EditUserComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/edit-user/edit-user.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-edit-user</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>edit-user.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./edit-user.component.html</code></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#backend">backend</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#bsModalRef">bsModalRef</a>
+                            </li>
+                            <li>
+                                <a href="#email">email</a>
+                            </li>
+                            <li>
+                                <a href="#organizationId">organizationId</a>
+                            </li>
+                            <li>
+                                <a href="#roleDirty">roleDirty</a>
+                            </li>
+                            <li>
+                                <a href="#title">title</a>
+                            </li>
+                            <li>
+                                <a href="#userId">userId</a>
+                            </li>
+                            <li>
+                                <a href="#userName">userName</a>
+                            </li>
+                            <li>
+                                <a href="#userRole">userRole</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#changeRole">changeRole</a>
+                            </li>
+                            <li>
+                                <a href="#checkUserRole">checkUserRole</a>
+                            </li>
+                            <li>
+                                <a href="#discardChanges">discardChanges</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#saveUserChanges">saveUserChanges</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(bsModalRef: BsModalRef, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/edit-user/edit-user.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>bsModalRef</td>
+                                                  
+                                                        <td>
+                                                                    <code>BsModalRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>mockupBackendService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/MockupBackendService.html" target="_self" >MockupBackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>notificationsService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/NotificationsService.html" target="_self" >NotificationsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="changeRole"></a>
+                        <span class="name">
+                            <b>
+                            changeRole
+                            </b>
+                            <a href="#changeRole"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>changeRole(newRole: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/edit-user/edit-user.component.ts:85</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Changes the new user role</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>newRole</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>New user role</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checkUserRole"></a>
+                        <span class="name">
+                            <b>
+                            checkUserRole
+                            </b>
+                            <a href="#checkUserRole"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>checkUserRole(buttonRole: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/edit-user/edit-user.component.ts:75</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Checks the role of current user</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>buttonRole</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="discardChanges"></a>
+                        <span class="name">
+                            <b>
+                            discardChanges
+                            </b>
+                            <a href="#discardChanges"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>discardChanges(form: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/edit-user/edit-user.component.ts:60</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Checks if the form has been modified before discarding changes</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>form</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Form object reference</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/edit-user/edit-user.component.ts:52</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="saveUserChanges"></a>
+                        <span class="name">
+                            <b>
+                            saveUserChanges
+                            </b>
+                            <a href="#saveUserChanges"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>saveUserChanges(f: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/edit-user/edit-user.component.ts:93</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Request to save the user data modifications</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>f</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Form object reference</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="backend"></a>
+                        <span class="name">
+                            <b>
+                            backend
+                            </b>
+                            <a href="#backend"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>backend:     <code><a href="../interfaces/Backend.html" target="_self" >Backend</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/Backend.html" target="_self" >Backend</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/edit-user/edit-user.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Backend reference</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bsModalRef"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            bsModalRef
+                            </b>
+                            <a href="#bsModalRef"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>bsModalRef:     <code>BsModalRef</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>BsModalRef</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/edit-user/edit-user.component.ts:37</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="email"></a>
+                        <span class="name">
+                            <b>
+                            email
+                            </b>
+                            <a href="#email"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>email:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/edit-user/edit-user.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="organizationId"></a>
+                        <span class="name">
+                            <b>
+                            organizationId
+                            </b>
+                            <a href="#organizationId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>organizationId:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/edit-user/edit-user.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Models that hold organization id, user role, name, email and password</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="roleDirty"></a>
+                        <span class="name">
+                            <b>
+                            roleDirty
+                            </b>
+                            <a href="#roleDirty"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>roleDirty:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/edit-user/edit-user.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Holds the status of the role (if it has been modified)</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="title"></a>
+                        <span class="name">
+                            <b>
+                            title
+                            </b>
+                            <a href="#title"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>title:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/edit-user/edit-user.component.ts:22</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Dialog title</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userId"></a>
+                        <span class="name">
+                            <b>
+                            userId
+                            </b>
+                            <a href="#userId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>userId:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/edit-user/edit-user.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userName"></a>
+                        <span class="name">
+                            <b>
+                            userName
+                            </b>
+                            <a href="#userName"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>userName:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/edit-user/edit-user.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userRole"></a>
+                        <span class="name">
+                            <b>
+                            userRole
+                            </b>
+                            <a href="#userRole"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>userRole:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/edit-user/edit-user.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Backend } from &#x27;../definitions/interfaces/backend&#x27;;
+import { BsModalRef } from &#x27;ngx-bootstrap&#x27;;
+import { NotificationsService } from &#x27;../services/notifications.service&#x27;;
+import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
+import { BackendService } from &#x27;../services/backend.service&#x27;;
+import { MockupBackendService } from &#x27;../services/mockup-backend.service&#x27;;
+
+@Component({
+  selector: &#x27;app-edit-user&#x27;,
+  templateUrl: &#x27;./edit-user.component.html&#x27;,
+  styleUrls: [&#x27;./edit-user.component.scss&#x27;]
+})
+export class EditUserComponent implements OnInit {
+  /**
+   * Backend reference
+   */
+  backend: Backend;
+  /**
+   * Dialog title
+   */
+  title: string;
+  /**
+   * Models that hold organization id, user role, name, email and password
+   */
+  organizationId: string;
+  userRole: string;
+  userName: string;
+  userId: string;
+  email: string;
+  /**
+   * Holds the status of the role (if it has been modified)
+   */
+  roleDirty: boolean;
+
+  constructor(
+    public bsModalRef: BsModalRef,
+    private backendService: BackendService,
+    private mockupBackendService: MockupBackendService,
+    private notificationsService: NotificationsService
+  ) {
+    const mock &#x3D; localStorage.getItem(LocalStorageKeys.userEditMock) || null;
+    // check which backend is required (fake or real)
+    if (mock &amp;&amp; mock &#x3D;&#x3D;&#x3D; &#x27;true&#x27;) {
+      this.backend &#x3D; mockupBackendService;
+    } else {
+      this.backend &#x3D; backendService;
+    }
+    this.roleDirty &#x3D; false;
+  }
+
+  ngOnInit() {
+  }
+
+
+  /**
+   * Checks if the form has been modified before discarding changes
+   * @param form Form object reference
+   */
+  discardChanges(form) {
+    if (form.dirty) {
+      const discard &#x3D; confirm(&#x27;Discard changes?&#x27;);
+      if (discard) {
+        this.bsModalRef.hide();
+      } else {
+        // Do nothing
+      }
+    } else {
+      this.bsModalRef.hide();
+    }
+  }
+  /**
+   *  Checks the role of current user
+   */
+  checkUserRole(buttonRole) {
+    if (buttonRole &#x3D;&#x3D;&#x3D; this.userRole) {
+      return true;
+    }
+    return false;
+  }
+  /**
+   * Changes the new user role
+   * @param newRole New user role
+   */
+  changeRole(newRole) {
+    this.roleDirty &#x3D; true;
+    this.userRole &#x3D; newRole;
+  }
+  /**
+   * Request to save the user data modifications
+   * @param f Form object reference
+   */
+  saveUserChanges(f) {
+    if (this.userId !&#x3D;&#x3D; null) {
+      this.backend.saveUserChanges(this.organizationId, {
+        name: this.userName,
+        email: this.userId,
+        role_name: this.userRole
+      })
+        .subscribe(response &#x3D;&gt; {
+          this.notificationsService.add({
+            message: &#x27;The user &#x27; + this.userName + &#x27; has been edited&#x27;,
+            timeout: 10000
+          });
+          this.bsModalRef.hide();
+        });
+    }
+  }
+
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;modal-card&quot;&gt;
+  &lt;!-- Header --&gt;
+  &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+    &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;{{title}}&lt;/h3&gt;
+    &lt;button 
+      type&#x3D;&quot;button&quot; 
+      class&#x3D;&quot;close&quot; 
+      aria-label&#x3D;&quot;Close&quot;
+      (click)&#x3D;&quot;discardChanges(f)&quot;&gt;
+      &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;!-- Body --&gt;
+  &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+   &lt;form #f&#x3D;&quot;ngForm&quot; class&#x3D;&quot;form-user&quot;&gt;
+      &lt;div class&#x3D;&quot;form-group&quot;&gt;
+        &lt;input 
+          [(ngModel)]&#x3D;&quot;userName&quot; 
+          name&#x3D;&quot;name&quot; 
+          type&#x3D;&quot;text&quot; 
+          class&#x3D;&quot;form-control&quot; 
+          placeholder&#x3D;&quot;Name*&quot; 
+          required&gt;
+        &lt;input 
+          [(ngModel)]&#x3D;&quot;userId&quot; 
+          name&#x3D;&quot;userId&quot; 
+          type&#x3D;&quot;text&quot; 
+          class&#x3D;&quot;form-control bg-light-grey&quot; 
+          placeholder&#x3D;&quot;Email*&quot; 
+          pattern&#x3D;&quot;^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$&quot;
+          disabled&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;!-- Roles radio buttons --&gt;
+  &lt;div class&#x3D;&quot;roles py-4&quot;&gt;
+    &lt;h4&gt;Roles*&lt;/h4&gt;
+    &lt;div class&#x3D;&quot;cntr&quot;&gt;
+      &lt;label for&#x3D;&quot;rdo-1&quot; class&#x3D;&quot;btn-radio&quot;&gt;
+        &lt;input 
+          [checked]&#x3D;&quot;checkUserRole(&#x27;Owner&#x27;)&quot; 
+          type&#x3D;&quot;radio&quot; 
+          id&#x3D;&quot;rdo-1&quot; 
+          name&#x3D;&quot;radio-grp&quot;
+          (change)&#x3D;&quot;changeRole(&#x27;Owner&#x27;)&quot;
+          &gt;
+        &lt;svg width&#x3D;&quot;20px&quot; height&#x3D;&quot;20px&quot; viewBox&#x3D;&quot;0 0 20 20&quot;&gt;
+          &lt;circle 
+            cx&#x3D;&quot;10&quot; 
+            cy&#x3D;&quot;10&quot; 
+            r&#x3D;&quot;9&quot;&gt;
+          &lt;/circle&gt;
+          &lt;path d&#x3D;&quot;M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z&quot;
+            class&#x3D;&quot;inner&quot;&gt;&lt;/path&gt;
+          &lt;path d&#x3D;&quot;M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z&quot;
+            class&#x3D;&quot;outer&quot;&gt;&lt;/path&gt;
+        &lt;/svg&gt;
+        &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Owner&lt;/span&gt;
+      &lt;/label&gt;
+      &lt;label for&#x3D;&quot;rdo-2&quot; class&#x3D;&quot;btn-radio&quot;&gt;
+        &lt;input 
+          [checked]&#x3D;&quot;checkUserRole(&#x27;Operator&#x27;)&quot; 
+          type&#x3D;&quot;radio&quot; 
+          id&#x3D;&quot;rdo-2&quot; 
+          name&#x3D;&quot;radio-grp&quot;
+          (change)&#x3D;&quot;changeRole(&#x27;Operator&#x27;)&quot;
+          &gt;
+        &lt;svg width&#x3D;&quot;20px&quot; height&#x3D;&quot;20px&quot; viewBox&#x3D;&quot;0 0 20 20&quot;&gt;
+          &lt;circle 
+            cx&#x3D;&quot;10&quot; 
+            cy&#x3D;&quot;10&quot; 
+            r&#x3D;&quot;9&quot;&gt;
+          &lt;/circle&gt;
+          &lt;path d&#x3D;&quot;M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z&quot;
+            class&#x3D;&quot;inner&quot;&gt;&lt;/path&gt;
+          &lt;path d&#x3D;&quot;M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z&quot;
+            class&#x3D;&quot;outer&quot;&gt;&lt;/path&gt;
+        &lt;/svg&gt;
+        &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Operator&lt;/span&gt;
+      &lt;/label&gt;
+      &lt;label for&#x3D;&quot;rdo-3&quot; class&#x3D;&quot;btn-radio&quot;&gt;
+        &lt;input 
+          [checked]&#x3D;&quot;checkUserRole(&#x27;Developer&#x27;)&quot; 
+          type&#x3D;&quot;radio&quot; 
+          id&#x3D;&quot;rdo-3&quot; 
+          name&#x3D;&quot;radio-grp&quot;
+          (change)&#x3D;&quot;changeRole(&#x27;Developer&#x27;)&quot;
+          &gt;
+        &lt;svg width&#x3D;&quot;20px&quot; height&#x3D;&quot;20px&quot; viewBox&#x3D;&quot;0 0 20 20&quot;&gt;
+          &lt;circle 
+            cx&#x3D;&quot;10&quot; 
+            cy&#x3D;&quot;10&quot; 
+            r&#x3D;&quot;9&quot;&gt;
+          &lt;/circle&gt;
+          &lt;path d&#x3D;&quot;M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z&quot;
+            class&#x3D;&quot;inner&quot;&gt;
+          &lt;/path&gt;
+          &lt;path d&#x3D;&quot;M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z&quot;
+            class&#x3D;&quot;outer&quot;&gt;
+          &lt;/path&gt;
+        &lt;/svg&gt;
+        &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Developer&lt;/span&gt;
+      &lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- Option buttons --&gt;
+  &lt;div class&#x3D;&quot;buttons d-flex flex-row justify-content-between&quot;&gt;
+    &lt;button class&#x3D;&quot;btn btn-primary btn-md&quot; (click)&#x3D;&quot;saveUserChanges(f)&quot; [disabled]&#x3D;&quot;!f.valid || !f.dirty &amp;&amp; !roleDirty&quot;&gt;
+      &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Save&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;button class&#x3D;&quot;btn btn-red btn-md&quot; (click)&#x3D;&quot;discardChanges(f)&quot;&gt;
+      &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Discard&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <!-- Header -->  <div class="modal-header">    <h3 class="nalej-form-title">{{title}}</h3>    <button       type="button"       class="close"       aria-label="Close"      (click)="discardChanges(f)">      <span aria-hidden="true">&times;</span>    </button>  </div>  <!-- Body -->  <div class="modal-body">   <form #f="ngForm" class="form-user">      <div class="form-group">        <input           [(ngModel)]="userName"           name="name"           type="text"           class="form-control"           placeholder="Name*"           required>        <input           [(ngModel)]="userId"           name="userId"           type="text"           class="form-control bg-light-grey"           placeholder="Email*"           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"          disabled>      </div>    </form>  <!-- Roles radio buttons -->  <div class="roles py-4">    <h4>Roles*</h4>    <div class="cntr">      <label for="rdo-1" class="btn-radio">        <input           [checked]="checkUserRole(\'Owner\')"           type="radio"           id="rdo-1"           name="radio-grp"          (change)="changeRole(\'Owner\')"          >        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner"></path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer"></path>        </svg>        <span class="align-bottom">Owner</span>      </label>      <label for="rdo-2" class="btn-radio">        <input           [checked]="checkUserRole(\'Operator\')"           type="radio"           id="rdo-2"           name="radio-grp"          (change)="changeRole(\'Operator\')"          >        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner"></path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer"></path>        </svg>        <span class="align-bottom">Operator</span>      </label>      <label for="rdo-3" class="btn-radio">        <input           [checked]="checkUserRole(\'Developer\')"           type="radio"           id="rdo-3"           name="radio-grp"          (change)="changeRole(\'Developer\')"          >        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner">          </path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer">          </path>        </svg>        <span class="align-bottom">Developer</span>      </label>    </div>  </div>  <!-- Option buttons -->  <div class="buttons d-flex flex-row justify-content-between">    <button class="btn btn-primary btn-md" (click)="saveUserChanges(f)" [disabled]="!f.valid || !f.dirty && !roleDirty">      <span class="align-bottom">Save</span>    </button>    <button class="btn btn-red btn-md" (click)="discardChanges(f)">      <span class="align-bottom">Discard</span>    </button>  </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AppsInfoComponent', 'selector': 'app-apps-info'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'EditUserComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'EditUserComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <script src="../js/menu-wc.js"></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
