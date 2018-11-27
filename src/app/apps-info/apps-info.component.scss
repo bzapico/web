@@ -1,5 +1,8 @@
 .app-summary {
     margin: 5em 0;
+    background-color: bisque;
+    overflow:scroll;
+    height: 57px;
 
     td {
         padding: 1.1rem 0;
@@ -21,7 +24,8 @@
 .btn-primary {
     text-indent: -7px;
 }
-// .graph {
-//     height: 100px;
-// }
+.graph {
+    height: 100px;
+    background-color: aquamarine;
+}
 
