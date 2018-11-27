@@ -66,10 +66,10 @@
                             <a href="#AvailableComponents" title="src/app/debug-panel/debug-panel.component.ts"><b>AvailableComponents</b>&nbsp;&nbsp;&nbsp;(src/.../debug-panel.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#environment" title="src/environments/environment.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
+                            <a href="#environment" title="src/environments/environment.prod.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</a>
                         </li>
                         <li>
-                            <a href="#environment" title="src/environments/environment.prod.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</a>
+                            <a href="#environment" title="src/environments/environment.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
                         </li>
                         <li>
                             <a href="#LocalStorageKeys" title="src/app/definitions/const/local-storage-keys.ts"><b>LocalStorageKeys</b>&nbsp;&nbsp;&nbsp;(src/.../local-storage-keys.ts)</a>
@@ -81,7 +81,7 @@
                             <a href="#mockAppPieChart" title="src/app/utils/mocks.ts"><b>mockAppPieChart</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
                         </li>
                         <li>
-                            <a href="#mockAppsList" title="src/app/utils/mocks.ts"><b>mockAppsList</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
+                            <a href="#mockAppsInstancesList" title="src/app/utils/mocks.ts"><b>mockAppsInstancesList</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
                         </li>
                         <li>
                             <a href="#mockClusterChart" title="src/app/utils/mocks.ts"><b>mockClusterChart</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
@@ -103,6 +103,9 @@
                         </li>
                         <li>
                             <a href="#mockOrganizationInfo" title="src/app/utils/mocks.ts"><b>mockOrganizationInfo</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#mockRegisteredAppsList" title="src/app/utils/mocks.ts"><b>mockRegisteredAppsList</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
                         </li>
                         <li>
                             <a href="#mockResetPasword" title="src/app/utils/mocks.ts"><b>mockResetPasword</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
@@ -213,6 +216,46 @@
             </tbody>
         </table>
 </section>
+    <h3>src/environments/environment.prod.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="environment"></a>
+                        <span class="name">
+                            <b>
+                            environment
+                            </b>
+                            <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>environment:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+  production: true,
+  apiUrl: getBaseUrl
+}</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
     <h3>src/environments/environment.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
@@ -246,46 +289,6 @@
   production: false,
   // hardcoded local environment API ip address
   apiUrl: &#x27;http://192.168.99.100&#x27;
-}</code>
-                        </td>
-                    </tr>
-
-
-            </tbody>
-        </table>
-</section>
-    <h3>src/environments/environment.prod.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="environment"></a>
-                        <span class="name">
-                            <b>
-                            environment
-                            </b>
-                            <a href="#environment"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>environment:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
-  production: true,
-  apiUrl: getBaseUrl
 }</code>
                         </td>
                     </tr>
@@ -494,18 +497,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="mockAppsList"></a>
+                        <a name="mockAppsInstancesList"></a>
                         <span class="name">
                             <b>
-                            mockAppsList
+                            mockAppsInstancesList
                             </b>
-                            <a href="#mockAppsList"><span class="icon ion-ios-link"></span></a>
+                            <a href="#mockAppsInstancesList"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>mockAppsList:     <code>[]</code>
+                        <code>mockAppsInstancesList:     <code>[]</code>
 </code>
                     </td>
                 </tr>
@@ -519,44 +522,412 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>[
     {
+        organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+        app_descriptor_id: &#x27;app_descriptor_id_2&#x27;,
+        app_instance_id: &#x27;0800200c9a62&#x27;,
+        name: &#x27;UI - Tableau&#x27;,
+        description: &#x27;Instance of Tableau&#x27;,
+        configuration_options: {
+            option1: &#x27;value1&#x27;,
+            option2: &#x27;value2&#x27;,
+            option3: &#x27;value3&#x27;
+        },
+        environment_variables: {
+            var1: &#x27;value1&#x27;,
+            var2: &#x27;value2&#x27;,
+            var3: &#x27;value3&#x27;
+        },
+        labels: {
+            lab1: &#x27;label1&#x27;,
+            lab2: &#x27;label2&#x27;,
+            lab3: &#x27;label3&#x27;
+        },
+        rules: [
+            {
+                organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+                app_descriptor_id: &#x27;app_descriptor_id_2&#x27;,
+                rule_id: &#x27;rule_id_2&#x27;,
+                name: &#x27;rule2&#x27;,
+                source_service_id: &#x27;service_id_1&#x27;,
+                source_port: &#x27;1234&#x27;,
+                access_name: &#x27;root&#x27;,
+                auth_services: [
+                    &#x27;auth_service1&#x27;,
+                    &#x27;auth_service2&#x27;,
+                    &#x27;auth_service3&#x27;
+                ],
+                device_groups: [
+                    &#x27;device_group1&#x27;,
+                    &#x27;device_group2&#x27;,
+                    &#x27;device_group3&#x27;,
+                ],
+            }
+        ],
+        groups: [
+            {
+                organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+                app_instance_id: &#x27;app_instance_id_2&#x27;,
+                app_descriptor_id: &#x27;app_descriptor_id_2&#x27;,
+                service_group_id: &#x27;service_group_id_2&#x27;,
+                name: &#x27;group_2&#x27;,
+                description: &#x27;Databases&#x27;,
+                service_instances: [
+                    &#x27;service_id_1&#x27;,
+                    &#x27;service_id_5&#x27;
+                ],
+                policy_name: &#x27;recursive&#x27;
+            }
+        ],
+        services: [
+            {
+                organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+                app_instance_id: &#x27;app_instance_id_2&#x27;,
+                app_descriptor_id: &#x27;app_descriptor_id_2&#x27;,
+                service_id: &#x27;service_id_2&#x27;,
+                name: &#x27;Service 2&#x27;,
+                description: &#x27;Great service&#x27;,
+                type_name: &#x27;DB&#x27;,
+                image: &#x27;https://urlofservice:8080/&#x27;,
+                credentials: {},
+                specs: {},
+                storage: [
+                    &#x27;storage_restriction_1&#x27;,
+                    &#x27;storage_restriction_2&#x27;
+                ],
+                exposed_ports: [
+                    &#x27;8080&#x27;,
+                    &#x27;4300&#x27;,
+                    &#x27;23422&#x27;
+                ],
+                environment_variables: {
+                    var1: &#x27;value1&#x27;,
+                    var2: &#x27;value2&#x27;,
+                    var3: &#x27;value3&#x27;
+                },
+                configs: [
+                    {
+                        name: &#x27;db config&#x27;,
+                        port: &#x27;12312&#x27;
+                    }
+                ],
+                labels: {
+                    lab1: &#x27;label1&#x27;,
+                    lab2: &#x27;label2&#x27;,
+                    lab3: &#x27;label3&#x27;
+                },
+                deploy_after: [
+                    &#x27;service_id_1&#x27;
+                ],
+                status_name: &#x27;Running&#x27;
+            }
+        ],
+        status_name: &#x27;Running&#x27;,
+    },
+    {
+        organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+        app_descriptor_id: &#x27;app_descriptor_id_3&#x27;,
+        app_instance_id: &#x27;0800200c9a63&#x27;,
+        name: &#x27;UI - Grafana&#x27;,
+        description: &#x27;Grafana dashboard&#x27;,
+        configuration_options: {
+            option1: &#x27;value1&#x27;,
+            option2: &#x27;value2&#x27;,
+            option3: &#x27;value3&#x27;
+        },
+        environment_variables: {
+            var1: &#x27;value1&#x27;,
+            var2: &#x27;value2&#x27;,
+            var3: &#x27;value3&#x27;
+        },
+        labels: {
+            lab1: &#x27;label1&#x27;,
+            lab2: &#x27;label2&#x27;,
+            lab3: &#x27;label3&#x27;
+        },
+        rules: [
+            {
+                organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+                app_descriptor_id: &#x27;app_descriptor_id_3&#x27;,
+                rule_id: &#x27;rule_id_3&#x27;,
+                name: &#x27;rule3&#x27;,
+                source_service_id: &#x27;service_id_1&#x27;,
+                source_port: &#x27;1234&#x27;,
+                access_name: &#x27;root&#x27;,
+                auth_services: [
+                    &#x27;auth_service1&#x27;,
+                    &#x27;auth_service2&#x27;,
+                    &#x27;auth_service3&#x27;
+                ],
+                device_groups: [
+                    &#x27;device_group1&#x27;,
+                    &#x27;device_group2&#x27;,
+                    &#x27;device_group3&#x27;,
+                ],
+            }
+        ],
+        groups: [
+            {
+                organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+                app_instance_id: &#x27;app_instance_id_3&#x27;,
+                app_descriptor_id: &#x27;app_descriptor_id_3&#x27;,
+                service_group_id: &#x27;service_group_id_3&#x27;,
+                name: &#x27;group_3&#x27;,
+                description: &#x27;Databases&#x27;,
+                service_instances: [
+                    &#x27;service_id_1&#x27;,
+                    &#x27;service_id_3&#x27;
+                ],
+                policy_name: &#x27;recursive&#x27;
+            }
+        ],
+        services: [
+            {
+                organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+                app_instance_id: &#x27;app_instance_id_3&#x27;,
+                app_descriptor_id: &#x27;app_descriptor_id_3&#x27;,
+                service_id: &#x27;service_id_3&#x27;,
+                name: &#x27;Service 3&#x27;,
+                description: &#x27;Great service&#x27;,
+                type_name: &#x27;DB&#x27;,
+                image: &#x27;https://urlofservice:8080/&#x27;,
+                credentials: {},
+                specs: {},
+                storage: [
+                    &#x27;storage_restriction_1&#x27;,
+                    &#x27;storage_restriction_2&#x27;
+                ],
+                exposed_ports: [
+                    &#x27;8080&#x27;,
+                    &#x27;4300&#x27;,
+                    &#x27;23422&#x27;
+                ],
+                environment_variables: {
+                    var1: &#x27;value1&#x27;,
+                    var2: &#x27;value2&#x27;,
+                    var3: &#x27;value3&#x27;
+                },
+                configs: [
+                    {
+                        name: &#x27;db config&#x27;,
+                        port: &#x27;12312&#x27;
+                    }
+                ],
+                labels: {
+                    lab1: &#x27;label1&#x27;,
+                    lab2: &#x27;label2&#x27;,
+                    lab3: &#x27;label3&#x27;
+                },
+                deploy_after: [
+                    &#x27;service_id_1&#x27;
+                ],
+                status_name: &#x27;Running&#x27;
+            }
+        ],
+        status_name: &#x27;Running&#x27;,
+    },
+    {
+        organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+        app_descriptor_id: &#x27;app_descriptor_id_4&#x27;,
+        app_instance_id: &#x27;0800200c9a64&#x27;,
         name: &#x27;Assets Application&#x27;,
-        id: &#x27;0800200c9a61&#x27;,
-        description: &#x27;Instance of MongoDB&#x27;,
-        tags: &#x27;ny, edge&#x27;,
-        configuration: &#x27;Kubernetes&#x27;,
-        service: &#x27;Running&#x27;,
+        description: &#x27;Instance of Cassandra&#x27;,
+        configuration_options: {
+            option1: &#x27;value1&#x27;,
+            option2: &#x27;value2&#x27;,
+            option3: &#x27;value3&#x27;
+        },
+        environment_variables: {
+            var1: &#x27;value1&#x27;,
+            var2: &#x27;value2&#x27;,
+            var3: &#x27;value3&#x27;
+        },
+        labels: {
+            lab1: &#x27;label1&#x27;,
+            lab2: &#x27;label2&#x27;,
+            lab3: &#x27;label3&#x27;
+        },
+        rules: [
+            {
+                organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+                app_descriptor_id: &#x27;app_descriptor_id_4&#x27;,
+                rule_id: &#x27;rule_id_4&#x27;,
+                name: &#x27;rule4&#x27;,
+                source_service_id: &#x27;service_id_1&#x27;,
+                source_port: &#x27;1234&#x27;,
+                access_name: &#x27;root&#x27;,
+                auth_services: [
+                    &#x27;auth_service1&#x27;,
+                    &#x27;auth_service2&#x27;,
+                    &#x27;auth_service3&#x27;
+                ],
+                device_groups: [
+                    &#x27;device_group1&#x27;,
+                    &#x27;device_group2&#x27;,
+                    &#x27;device_group3&#x27;,
+                ],
+            }
+        ],
+        groups: [
+            {
+                organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+                app_instance_id: &#x27;app_instance_id_4&#x27;,
+                app_descriptor_id: &#x27;app_descriptor_id_4&#x27;,
+                service_group_id: &#x27;service_group_id_4&#x27;,
+                name: &#x27;group_4&#x27;,
+                description: &#x27;Databases&#x27;,
+                service_instances: [
+                    &#x27;service_id_1&#x27;,
+                    &#x27;service_id_4&#x27;
+                ],
+                policy_name: &#x27;recursive&#x27;
+            }
+        ],
+        services: [
+            {
+                organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+                app_instance_id: &#x27;app_instance_id_4&#x27;,
+                app_descriptor_id: &#x27;app_descriptor_id_4&#x27;,
+                service_id: &#x27;service_id_4&#x27;,
+                name: &#x27;Service 4&#x27;,
+                description: &#x27;Great service&#x27;,
+                type_name: &#x27;DB&#x27;,
+                image: &#x27;https://urlofservice:8080/&#x27;,
+                credentials: {},
+                specs: {},
+                storage: [
+                    &#x27;storage_restriction_1&#x27;,
+                    &#x27;storage_restriction_2&#x27;
+                ],
+                exposed_ports: [
+                    &#x27;8080&#x27;,
+                    &#x27;4300&#x27;,
+                    &#x27;23422&#x27;
+                ],
+                environment_variables: {
+                    var1: &#x27;value1&#x27;,
+                    var2: &#x27;value2&#x27;,
+                    var3: &#x27;value3&#x27;
+                },
+                configs: [
+                    {
+                        name: &#x27;db config&#x27;,
+                        port: &#x27;12312&#x27;
+                    }
+                ],
+                labels: {
+                    lab1: &#x27;label1&#x27;,
+                    lab2: &#x27;label2&#x27;,
+                    lab3: &#x27;label3&#x27;
+                },
+                deploy_after: [
+                    &#x27;service_id_1&#x27;
+                ],
+                status_name: &#x27;Running&#x27;
+            }
+        ],
+        status_name: &#x27;Running&#x27;,
     },
     {
-        name: &#x27;SIG Application&#x27;,
-        id: &#x27;0800200c9a62&#x27;,
+        organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+        app_descriptor_id: &#x27;app_descriptor_id_5&#x27;,
+        app_instance_id: &#x27;0800200c9a65&#x27;,
+        name: &#x27;Assets Application&#x27;,
         description: &#x27;Instance of MongoDB&#x27;,
-        tags: &#x27;ny, edge&#x27;,
-        configuration: &#x27;NativeDocker&#x27;,
-        service: &#x27;Running&#x27;,
-    },
-    {
-        name: &#x27;Engine App&#x27;,
-        id: &#x27;0800200c9a63&#x27;,
-        description: &#x27;Instance of MongoDB&#x27;,
-        tags: &#x27;ny, edge&#x27;,
-        configuration: &#x27;Kubernetes&#x27;,
-        service: &#x27;Running&#x27;,
-    },
-    {
-        name: &#x27;Darby App&#x27;,
-        id: &#x27;0800200c9a64&#x27;,
-        description: &#x27;Instance of MongoDB&#x27;,
-        tags: &#x27;ny, edge&#x27;,
-        configuration: &#x27;NativeDocker&#x27;,
-        service: &#x27;Running&#x27;,
-    },
-    {
-        name: &#x27;Darby App&#x27;,
-        id: &#x27;0800200c9a65&#x27;,
-        description: &#x27;Instance of MongoDB&#x27;,
-        tags: &#x27;ny, edge&#x27;,
-        configuration: &#x27;Kubernetes&#x27;,
-        service: &#x27;Running&#x27;,
+        configuration_options: {
+            option1: &#x27;value1&#x27;,
+            option2: &#x27;value2&#x27;,
+            option3: &#x27;value3&#x27;
+        },
+        environment_variables: {
+            var1: &#x27;value1&#x27;,
+            var2: &#x27;value2&#x27;,
+            var3: &#x27;value3&#x27;
+        },
+        labels: {
+            lab1: &#x27;label1&#x27;,
+            lab2: &#x27;label2&#x27;,
+            lab3: &#x27;label3&#x27;
+        },
+        rules: [
+            {
+                organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+                app_descriptor_id: &#x27;app_descriptor_id_5&#x27;,
+                rule_id: &#x27;rule_id_5&#x27;,
+                name: &#x27;rule5&#x27;,
+                source_service_id: &#x27;service_id_1&#x27;,
+                source_port: &#x27;1234&#x27;,
+                access_name: &#x27;root&#x27;,
+                auth_services: [
+                    &#x27;auth_service1&#x27;,
+                    &#x27;auth_service2&#x27;,
+                    &#x27;auth_service3&#x27;
+                ],
+                device_groups: [
+                    &#x27;device_group1&#x27;,
+                    &#x27;device_group2&#x27;,
+                    &#x27;device_group3&#x27;,
+                ],
+            }
+        ],
+        groups: [
+            {
+                organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+                app_instance_id: &#x27;app_instance_id_5&#x27;,
+                app_descriptor_id: &#x27;app_descriptor_id_5&#x27;,
+                service_group_id: &#x27;service_group_id_5&#x27;,
+                name: &#x27;group_5&#x27;,
+                description: &#x27;Databases&#x27;,
+                service_instances: [
+                    &#x27;service_id_1&#x27;,
+                    &#x27;service_id_5&#x27;
+                ],
+                policy_name: &#x27;recursive&#x27;
+            }
+        ],
+        services: [
+            {
+                organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
+                app_instance_id: &#x27;app_instance_id_5&#x27;,
+                app_descriptor_id: &#x27;app_descriptor_id_5&#x27;,
+                service_id: &#x27;service_id_5&#x27;,
+                name: &#x27;Service 5&#x27;,
+                description: &#x27;Great service&#x27;,
+                type_name: &#x27;DB&#x27;,
+                image: &#x27;https://urlofservice:8080/&#x27;,
+                credentials: {},
+                specs: {},
+                storage: [
+                    &#x27;storage_restriction_1&#x27;,
+                    &#x27;storage_restriction_2&#x27;
+                ],
+                exposed_ports: [
+                    &#x27;8080&#x27;,
+                    &#x27;4300&#x27;,
+                    &#x27;23422&#x27;
+                ],
+                environment_variables: {
+                    var1: &#x27;value1&#x27;,
+                    var2: &#x27;value2&#x27;,
+                    var3: &#x27;value3&#x27;
+                },
+                configs: [
+                    {
+                        name: &#x27;db config&#x27;,
+                        port: &#x27;12312&#x27;
+                    }
+                ],
+                labels: {
+                    lab1: &#x27;label1&#x27;,
+                    lab2: &#x27;label2&#x27;,
+                    lab3: &#x27;label3&#x27;
+                },
+                deploy_after: [
+                    &#x27;service_id_1&#x27;
+                ],
+                status_name: &#x27;Running&#x27;
+            }
+        ],
+        status_name: &#x27;Running&#x27;,
     }
 ]</code>
                         </td>
@@ -1076,6 +1447,56 @@
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Mocked organization info</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mockRegisteredAppsList"></a>
+                        <span class="name">
+                            <b>
+                            mockRegisteredAppsList
+                            </b>
+                            <a href="#mockRegisteredAppsList"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>mockRegisteredAppsList:     <code>[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+    {
+        app_descriptor_id: &#x27;16143613421&#x27;,
+        name: &#x27;Registered1&#x27;,
+        description: &#x27;Registered1 app description&#x27;
+    }, {
+        app_descriptor_id: &#x27;16143613422&#x27;,
+        name: &#x27;Registered2&#x27;,
+        description: &#x27;Registered app description&#x27;
+    }
+]</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Mocked registered apps list (descriptors) - fields still not defined</p>
 </div>
                     </td>
                 </tr>

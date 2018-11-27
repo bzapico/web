@@ -44,6 +44,12 @@ export class ApplicationsComponent implements OnInit {
   countRegistered: number;
 
   /**
+   * Charts references
+   */
+  mockAppChart: any;
+  mockAppPieChart: any;
+
+  /**
    * Pie Chart options
    */
   gradient = true;
@@ -181,7 +187,7 @@ export class ApplicationsComponent implements OnInit {
         value: total - running
       }];
   }
-  
+
   /**
    * Parse to string labels map
    * @param labels Key-value map that contains the labels
