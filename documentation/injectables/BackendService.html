@@ -101,13 +101,19 @@
                                 <a href="#get">get</a>
                             </li>
                             <li>
-                                <a href="#getApps">getApps</a>
+                                <a href="#getAppDescriptor">getAppDescriptor</a>
+                            </li>
+                            <li>
+                                <a href="#getAppInstance">getAppInstance</a>
                             </li>
                             <li>
                                 <a href="#getClusterDetail">getClusterDetail</a>
                             </li>
                             <li>
                                 <a href="#getClusters">getClusters</a>
+                            </li>
+                            <li>
+                                <a href="#getInstances">getInstances</a>
                             </li>
                             <li>
                                 <a href="#getNodes">getNodes</a>
@@ -117,6 +123,9 @@
                             </li>
                             <li>
                                 <a href="#getOrganizationUsers">getOrganizationUsers</a>
+                            </li>
+                            <li>
+                                <a href="#getRegisteredApps">getRegisteredApps</a>
                             </li>
                             <li>
                                 <a href="#getResourcesSummary">getResourcesSummary</a>
@@ -230,7 +239,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/services/backend.service.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/services/backend.service.ts:97</a></div>
                             </td>
                         </tr>
 
@@ -322,7 +331,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/services/backend.service.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/services/backend.service.ts:103</a></div>
                             </td>
                         </tr>
 
@@ -403,7 +412,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/app/services/backend.service.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/app/services/backend.service.ts:228</a></div>
                             </td>
                         </tr>
 
@@ -461,31 +470,33 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="getApps"></a>
+                        <a name="getAppDescriptor"></a>
                         <span class="name">
                             <b>
-                            getApps
+                            getAppDescriptor
                             </b>
-                            <a href="#getApps"><span class="icon ion-ios-link"></span></a>
+                            <a href="#getAppDescriptor"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>getApps(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getAppDescriptor(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, descriptorId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/services/backend.service.ts:141</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/app/services/backend.service.ts:191</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Requests application descriptor (registered app) info</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -495,6 +506,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -509,6 +521,26 @@
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>descriptorId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Descriptor identifier</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -516,7 +548,99 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getAppInstance"></a>
+                        <span class="name">
+                            <b>
+                            getAppInstance
+                            </b>
+                            <a href="#getAppInstance"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getAppInstance(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, instanceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/app/services/backend.service.ts:180</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Requests application instance info</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>instanceId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Instance identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                             </div>
                                 <div class="io-description">
@@ -548,7 +672,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/app/services/backend.service.ts:161</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/app/services/backend.service.ts:218</a></div>
                             </td>
                         </tr>
 
@@ -640,7 +764,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/services/backend.service.ts:136</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/services/backend.service.ts:144</a></div>
                             </td>
                         </tr>
 
@@ -698,6 +822,77 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="getInstances"></a>
+                        <span class="name">
+                            <b>
+                            getInstances
+                            </b>
+                            <a href="#getInstances"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getInstances(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/app/services/backend.service.ts:159</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Applications</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="getNodes"></a>
                         <span class="name">
                             <b>
@@ -716,14 +911,14 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/app/services/backend.service.ts:150</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/app/services/backend.service.ts:207</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Requests to get the list of nodes for an specific cluster</p>
+                            <div class="io-description"><p>Cluster</p>
 </div>
 
                             <div class="io-description">
@@ -734,7 +929,6 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -749,10 +943,6 @@
                                                     </td>
                                                     
 
-                                                        <td>
-                                                                <code><p>Organization identifier</p>
-</code>
-                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>clusterId</td>
@@ -765,10 +955,6 @@
                                                     </td>
                                                     
 
-                                                        <td>
-                                                                <code><p>Cluster identifier</p>
-</code>
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -808,7 +994,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/services/backend.service.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/services/backend.service.ts:76</a></div>
                             </td>
                         </tr>
 
@@ -884,7 +1070,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/services/backend.service.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/services/backend.service.ts:86</a></div>
                             </td>
                         </tr>
 
@@ -892,6 +1078,82 @@
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Requests a list of the users that belong to a specific organization</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getRegisteredApps"></a>
+                        <span class="name">
+                            <b>
+                            getRegisteredApps
+                            </b>
+                            <a href="#getRegisteredApps"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getRegisteredApps(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/app/services/backend.service.ts:169</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Requests registered applications list (descriptors)</p>
 </div>
 
                             <div class="io-description">
@@ -960,14 +1222,14 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/app/services/backend.service.ts:126</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/services/backend.service.ts:134</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Requests to get the resources summary for an specific organization</p>
+                            <div class="io-description"><p>Resources</p>
 </div>
 
                             <div class="io-description">
@@ -978,7 +1240,6 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -993,10 +1254,6 @@
                                                     </td>
                                                     
 
-                                                        <td>
-                                                                <code><p>Organization identifier</p>
-</code>
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -1036,14 +1293,14 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/services/backend.service.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/services/backend.service.ts:66</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Requests to get an specific user information</p>
+                            <div class="io-description"><p>Organization</p>
 </div>
 
                             <div class="io-description">
@@ -1054,7 +1311,6 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1069,10 +1325,6 @@
                                                     </td>
                                                     
 
-                                                        <td>
-                                                                <code><p>Organization identifier</p>
-</code>
-                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>userId</td>
@@ -1085,10 +1337,6 @@
                                                     </td>
                                                     
 
-                                                        <td>
-                                                                <code><p>User identifier (email)</p>
-</code>
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -1260,7 +1508,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/app/services/backend.service.ts:191</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="248" class="link-to-prism">src/app/services/backend.service.ts:248</a></div>
                             </td>
                         </tr>
 
@@ -1352,7 +1600,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/services/backend.service.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/services/backend.service.ts:106</a></div>
                             </td>
                         </tr>
 
@@ -1433,7 +1681,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/services/backend.service.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/services/backend.service.ts:109</a></div>
                             </td>
                         </tr>
 
@@ -1526,7 +1774,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/services/backend.service.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/services/backend.service.ts:118</a></div>
                             </td>
                         </tr>
 
@@ -1704,6 +1952,10 @@ export class BackendService implements Backend {
     })));
   }
 
+  /**
+   * Organization
+   */
+
   // GET &#x27;users/{organization_id}/{email}/info
   /**
    * Requests to get an specific user information
@@ -1767,8 +2019,12 @@ export class BackendService implements Backend {
       API_URL + &#x27;users/&#x27; + organizationId + &#x27;/update&#x27;,
       user
     );
-
   }
+
+  /**
+   * Resources
+   */
+
   // GET &#x27;resources/{organization_id}/summary&#x27;
   /**
    * Requests to get the resources summary for an specific organization
@@ -1789,9 +2045,58 @@ export class BackendService implements Backend {
       API_URL + &#x27;clusters/&#x27; + organizationId + &#x27;/list&#x27;
     );
   }
-  getApps(organizationId: string) {
-    throw new Error(&#x27;Method not implemented.&#x27;);
+
+  /**
+   * Applications
+   */
+
+  // GET &#x27;apps/inst/{organization_id}/list&#x27;
+  /**
+   * Requests application instances list
+   * @param organizationId Organization identifier
+   */
+  getInstances(organizationId: string) {
+    return this.get(
+      API_URL + &#x27;apps/inst/&#x27; + organizationId + &#x27;/list&#x27;
+    );
   }
+  // GET &#x27;apps/desc/{organization_id}/list&#x27;
+  /**
+   * Requests registered applications list (descriptors)
+   * @param organizationId Organization identifier
+   */
+  getRegisteredApps(organizationId: string) {
+    return this.get(
+      API_URL + &#x27;apps/desc/&#x27; + organizationId + &#x27;/list&#x27;
+    );
+  }
+  // GET &#x27;apps/inst/{organization_id}/{app_instance_id}/get&#x27;
+  /**
+   * Requests application instance info
+   * @param organizationId Organization identifier
+   * @param instanceId Instance identifier
+   */
+  getAppInstance(organizationId: string, instanceId: string) {
+    return this.get(
+      API_URL + &#x27;apps/inst/&#x27; + organizationId + &#x27;/&#x27; + instanceId + &#x27;/get&#x27;
+    );
+  }
+  // GET &#x27;apps/inst/{organization_id}/{app_descriptor_id}/get&#x27;
+  /**
+   * Requests application descriptor (registered app) info
+   * @param organizationId Organization identifier
+   * @param descriptorId Descriptor identifier
+   */
+  getAppDescriptor(organizationId: string, descriptorId: string) {
+    return this.get(
+      API_URL + &#x27;apps/desc/&#x27; + organizationId + &#x27;/&#x27; + descriptorId + &#x27;/get&#x27;
+    );
+  }
+
+  /**
+   * Cluster
+   */
+
   // GET &#x27;nodes/{organization_id}/{cluster_id}/list&#x27;
   /**
    * Requests to get the list of nodes for an specific cluster

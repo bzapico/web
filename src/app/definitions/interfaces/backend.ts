@@ -16,8 +16,11 @@ export interface Backend {
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);
     getClusters(organizationId: string);
     getNodes(organizationId: string, clusterId: string);
+    getClusterDetail(organizationId: string, clusterId: string);
     getResourcesSummary(organizationId: string);
     // Applications
-    getApps(organizationId: string);
-    getClusterDetail(organizationId: string, clusterId: string);
+    getInstances(organizationId: string);
+    getRegisteredApps(organizationId: string);
+    getAppInstance(organizationId: string, instanceId: string);
+    getAppDescriptor(organizationId: string, descriptorId: string);
 }

@@ -17,13 +17,13 @@
               <div class="donut-chart">
                 <ngx-charts-pie-chart
                   [scheme]="colorScheme" 
-                  [results]="mockAppPieChart" 
+                  [results]="instancesPieChart" 
                   [doughnut]= "doughnut"
                   [gradient]="gradient"
                   [explodeSlices]="false"
                   >
                 </ngx-charts-pie-chart>
-                <div class="donut-number">4/5</div>
+                <div class="donut-number">{{countRunning}}/{{instances.length}}</div>
               </div>
               <p class="blue text-center apps-run mb-0">Apps running</p>
               <p class="circle-name grey text-center">DEPLOYED</p>
@@ -31,7 +31,7 @@
           </div>
           <div class="fix-top">
             <div class="circle summary-box">
-              <span class="align-self-center mt-1">20</span>
+              <span class="align-self-center mt-1">{{registered.length}}</span>
             </div>
             <p class="circle-name text-center mt-3">REGISTERED</p>
           </div>
@@ -82,7 +82,7 @@
           <h5>DEPLOYED APP LIST</h5>
         </div>
         <div class="table-h">
-          <table *ngIf="loadedData && apps && apps.length > 0"  class="table">
+          <table *ngIf="loadedData && instances && instances.length > 0"  class="table">
             <thead>
               <tr>
                 <th scope="col" class="row-name">
@@ -97,11 +97,8 @@
                 <th scope="col" class="row-tags">
                   Tags
                 </th>
-                <th scope="col" class="row-configuration">
-                  Configuration
-                </th>
                 <th scope="col" class="row-status">
-                  Service Groups
+                  Status
                 </th>
                 <th scope="col" class="row-info">
                   Info
@@ -109,15 +106,16 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let app of apps">
+              <tr *ngFor="let app of instances">
                 <td>{{app.name}}</td>
-                <td>{{app.id}}</td>
+                <td>{{app.app_instance_id}}</td>
                 <td>{{app.description}}</td>  
-                <td>{{app.tags}}</td>
-                <td>{{app.configuration}}</td>
+                <td style="max-width: 16rem">{{labelsToString(app.labels)}}</td>
                 <td 
-                  class="status-dot">
-                {{app.service}}
+                [ngClass]=
+                  "{'status-dot':app.status_name === 'Running',
+                  'status-dot-error':app.status_name === 'Error'}">
+                {{app.status_name}}
                 </td>
                   <td class="row-info-btn">
                     <button class="btn info-btn btn-primary">
@@ -128,7 +126,7 @@
             </tbody>
           </table>
           <div 
-          *ngIf="loadedData && apps.length === 0"
+          *ngIf="loadedData && instances.length === 0"
           class="no-apps d-flex justify-content-center align-items-center">
             No available applications detected
         </div>
