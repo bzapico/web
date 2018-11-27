@@ -37,6 +37,11 @@ export class ResourcesComponent implements OnInit {
   organizationId: string;
 
   /**
+   * Loaded Data status
+   */
+  loadedData: boolean;
+
+  /**
    * List of available clusters
    */
   clusters: any[];
@@ -126,7 +131,7 @@ export class ResourcesComponent implements OnInit {
     }
 
     // Default initialization
-
+    this.loadedData = false;
     this.clusters = [];
     this.chunckedClusters = [];
     this.nodesCount = 0;
@@ -238,6 +243,9 @@ export class ResourcesComponent implements OnInit {
           this.clusters = clusters;
         } else {
           this.clusters = [];
+        }
+        if (!this.loadedData) {
+          this.loadedData = true;
         }
         this.chunckedClusters = this.chunkClusterList(3, this.clusters);
         this.updatePieChartsData(this.clusters, this.pieChartsData);

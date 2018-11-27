@@ -127,7 +127,7 @@
       <!-- Carousel small -->
       <carousel 
         *ngIf="clusters && clusters.length > 0" 
-        class="h-75 carousel-small">
+        class="carousel-small">
         <slide 
           class="animated fadeIn"
           *ngFor="let cluster of clusters; let i = index">
@@ -179,7 +179,7 @@
         <h5 class="text-uppercase">Node status timeline</h5>
       </div>
       <div class=" h-100 box-line-chart">
-        <div class="line-chart h-100">
+        <div class="line-chart">
           <div class="bottom-line"></div>
           <ngx-charts-line-chart
             [scheme]="colorScheme"
@@ -213,10 +213,10 @@
   <div class="col-lg-12 col-md-12 col-sm-12 h-100">
     <div class="card h-100 p-4">
       <div class="card-title-h">
-        <h5 class="text-uppercase">Clusters</h5>
+        <h5>CLUSTERS</h5>
       </div>
       <div class="table-h">
-        <table *ngIf="clusters && clusters.length > 0" class="table">
+        <table *ngIf="loadedData && clusters && clusters.length > 0" class="table">
           <thead>
             <tr>
               <th scope="col" class="row-name">
@@ -288,10 +288,27 @@
           </tbody>
         </table>
         <div 
-          *ngIf="clusters.length === 0"
+          *ngIf="loadedData && clusters.length === 0"
           class="no-clusters d-flex justify-content-center align-items-center">
             No available clusters detected
-      </div>
+        </div>
+        <!-- Loader -->
+        <div class="nalej-loader-container" *ngIf="!loadedData">
+          <div class="loader">
+            <svg 
+              class="circular" 
+              viewBox="25 25 50 50">
+              <circle 
+                class="path" 
+                cx="50" 
+                cy="50" 
+                r="20" 
+                fill="none" 
+                stroke-width="2" 
+                stroke-miterlimit="10"/>
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
   </div>

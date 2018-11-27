@@ -251,46 +251,429 @@ export const mockResourcesSummary = {
 /**
  * Mocked App list
  */
-export const mockAppsList = [
+export const mockAppsInstancesList = [
     {
+        organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+        app_descriptor_id: 'app_descriptor_id_2',
+        app_instance_id: '0800200c9a62',
+        name: 'UI - Tableau',
+        description: 'Instance of Tableau',
+        configuration_options: {
+            option1: 'value1',
+            option2: 'value2',
+            option3: 'value3'
+        },
+        environment_variables: {
+            var1: 'value1',
+            var2: 'value2',
+            var3: 'value3'
+        },
+        labels: {
+            lab1: 'label1',
+            lab2: 'label2',
+            lab3: 'label3'
+        },
+        rules: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_2',
+                rule_id: 'rule_id_2',
+                name: 'rule2',
+                source_service_id: 'service_id_1',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    'auth_service1',
+                    'auth_service2',
+                    'auth_service3'
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            }
+        ],
+        groups: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_2',
+                app_descriptor_id: 'app_descriptor_id_2',
+                service_group_id: 'service_group_id_2',
+                name: 'group_2',
+                description: 'Databases',
+                service_instances: [
+                    'service_id_1',
+                    'service_id_5'
+                ],
+                policy_name: 'recursive'
+            }
+        ],
+        services: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_2',
+                app_descriptor_id: 'app_descriptor_id_2',
+                service_id: 'service_id_2',
+                name: 'Service 2',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    'service_id_1'
+                ],
+                status_name: 'Running'
+            }
+        ],
+        status_name: 'Running',
+    },
+    {
+        organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+        app_descriptor_id: 'app_descriptor_id_3',
+        app_instance_id: '0800200c9a63',
+        name: 'UI - Grafana',
+        description: 'Grafana dashboard',
+        configuration_options: {
+            option1: 'value1',
+            option2: 'value2',
+            option3: 'value3'
+        },
+        environment_variables: {
+            var1: 'value1',
+            var2: 'value2',
+            var3: 'value3'
+        },
+        labels: {
+            lab1: 'label1',
+            lab2: 'label2',
+            lab3: 'label3'
+        },
+        rules: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_3',
+                rule_id: 'rule_id_3',
+                name: 'rule3',
+                source_service_id: 'service_id_1',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    'auth_service1',
+                    'auth_service2',
+                    'auth_service3'
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            }
+        ],
+        groups: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_3',
+                app_descriptor_id: 'app_descriptor_id_3',
+                service_group_id: 'service_group_id_3',
+                name: 'group_3',
+                description: 'Databases',
+                service_instances: [
+                    'service_id_1',
+                    'service_id_3'
+                ],
+                policy_name: 'recursive'
+            }
+        ],
+        services: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_3',
+                app_descriptor_id: 'app_descriptor_id_3',
+                service_id: 'service_id_3',
+                name: 'Service 3',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    'service_id_1'
+                ],
+                status_name: 'Running'
+            }
+        ],
+        status_name: 'Running',
+    },
+    {
+        organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+        app_descriptor_id: 'app_descriptor_id_4',
+        app_instance_id: '0800200c9a64',
         name: 'Assets Application',
-        id: '0800200c9a61',
-        description: 'Instance of MongoDB',
-        tags: 'ny, edge',
-        configuration: 'Kubernetes',
-        service: 'Running',
+        description: 'Instance of Cassandra',
+        configuration_options: {
+            option1: 'value1',
+            option2: 'value2',
+            option3: 'value3'
+        },
+        environment_variables: {
+            var1: 'value1',
+            var2: 'value2',
+            var3: 'value3'
+        },
+        labels: {
+            lab1: 'label1',
+            lab2: 'label2',
+            lab3: 'label3'
+        },
+        rules: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_4',
+                rule_id: 'rule_id_4',
+                name: 'rule4',
+                source_service_id: 'service_id_1',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    'auth_service1',
+                    'auth_service2',
+                    'auth_service3'
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            }
+        ],
+        groups: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_4',
+                app_descriptor_id: 'app_descriptor_id_4',
+                service_group_id: 'service_group_id_4',
+                name: 'group_4',
+                description: 'Databases',
+                service_instances: [
+                    'service_id_1',
+                    'service_id_4'
+                ],
+                policy_name: 'recursive'
+            }
+        ],
+        services: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_4',
+                app_descriptor_id: 'app_descriptor_id_4',
+                service_id: 'service_id_4',
+                name: 'Service 4',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    'service_id_1'
+                ],
+                status_name: 'Running'
+            }
+        ],
+        status_name: 'Running',
     },
     {
-        name: 'SIG Application',
-        id: '0800200c9a62',
+        organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+        app_descriptor_id: 'app_descriptor_id_5',
+        app_instance_id: '0800200c9a65',
+        name: 'Assets Application',
         description: 'Instance of MongoDB',
-        tags: 'ny, edge',
-        configuration: 'NativeDocker',
-        service: 'Running',
-    },
+        configuration_options: {
+            option1: 'value1',
+            option2: 'value2',
+            option3: 'value3'
+        },
+        environment_variables: {
+            var1: 'value1',
+            var2: 'value2',
+            var3: 'value3'
+        },
+        labels: {
+            lab1: 'label1',
+            lab2: 'label2',
+            lab3: 'label3'
+        },
+        rules: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_5',
+                rule_id: 'rule_id_5',
+                name: 'rule5',
+                source_service_id: 'service_id_1',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    'auth_service1',
+                    'auth_service2',
+                    'auth_service3'
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            }
+        ],
+        groups: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_5',
+                app_descriptor_id: 'app_descriptor_id_5',
+                service_group_id: 'service_group_id_5',
+                name: 'group_5',
+                description: 'Databases',
+                service_instances: [
+                    'service_id_1',
+                    'service_id_5'
+                ],
+                policy_name: 'recursive'
+            }
+        ],
+        services: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_5',
+                app_descriptor_id: 'app_descriptor_id_5',
+                service_id: 'service_id_5',
+                name: 'Service 5',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    'service_id_1'
+                ],
+                status_name: 'Running'
+            }
+        ],
+        status_name: 'Running',
+    }
+];
+
+/**
+ * Mocked registered apps list (descriptors) - fields still not defined
+ */
+export const mockRegisteredAppsList = [
     {
-        name: 'Engine App',
-        id: '0800200c9a63',
-        description: 'Instance of MongoDB',
-        tags: 'ny, edge',
-        configuration: 'Kubernetes',
-        service: 'Running',
-    },
-    {
-        name: 'Darby App',
-        id: '0800200c9a64',
-        description: 'Instance of MongoDB',
-        tags: 'ny, edge',
-        configuration: 'NativeDocker',
-        service: 'Running',
-    },
-    {
-        name: 'Darby App',
-        id: '0800200c9a65',
-        description: 'Instance of MongoDB',
-        tags: 'ny, edge',
-        configuration: 'Kubernetes',
-        service: 'Running',
+        app_descriptor_id: '16143613421',
+        name: 'Registered1',
+        description: 'Registered1 app description'
+    }, {
+        app_descriptor_id: '16143613422',
+        name: 'Registered2',
+        description: 'Registered app description'
     }
 ];
 

@@ -11,11 +11,17 @@ html, body {
   font-family: 'Aldrich', sans-serif;
   box-sizing: border-box;
 }
+h5 {
+  margin-bottom: 0 !important;
+}
 .blue {
   color: #0937FF !important;
 }
 .grey {
   color: #949494;
+}
+.red {
+  color: #F25272;
 }
 .bg-light-grey {
   background-color: #ededed!important;
@@ -28,6 +34,96 @@ a {
     text-decoration: none;
   }
 }
+/* - - - Loader - - - */
+.loader {
+  margin: 0 auto;
+  width: 60px;
+  position: absolute;
+  display: block;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  -webkit-transform: translate3d(0, -50%, 0);
+  -moz-transform: translate3d(0, -50%, 0);
+  -o-transform: translate3d(0, -50%, 0);
+  -ms-transform: translate3d(0, -50%, 0);
+  transform: translate3d(0, -50%, 0);
+  text-align: center;
+  top: 50%;
+  &:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
+}
+
+@media screen and (max-width:1500px){
+  .loader {
+    top: 25%;
+  }
+}
+@media screen and (min-width:2560px){
+  .loader {
+    top: 100%;
+  }
+}
+
+.nalej-loader-container {
+  display: block;
+  position: relative;
+  min-height: 15em !important;
+  min-width: 5em !important;
+}
+.circular {
+  animation: rotate 2s linear infinite;
+  height: 100%;
+  transform-origin: center center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  animation: dash 1.5s ease-in-out infinite, color 2s ease-in-out infinite;
+  stroke-linecap: round;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+@keyframes color {
+  100%,
+  0% {
+    stroke: #0937FF;
+  }
+  50% {
+    stroke: #ff437d;
+  }
+  100% {
+    stroke: #0937FF;
+  }
+}
+
 /* - - - Card styles - - - */
 .card {
   -webkit-box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
@@ -140,6 +236,7 @@ button[type="submit"]:disabled {
   }
 }
 @media screen and (max-width: 1300px) {
+ /* Target devices narrower than 1300px. */
     .modal-card {
       padding: 2rem;
     }
@@ -371,6 +468,7 @@ button[type="submit"]:disabled {
 }
 /* - - - Medias Charts and Carousel - - - */
 @media screen and (min-width:2560px){
+  /* Target devices narrower than 2560px. */
   .carousel-small{
     display: none;
   }
@@ -382,6 +480,7 @@ button[type="submit"]:disabled {
   }
 }
 @media screen and (max-width:1500px){
+  /* Target devices narrower than 1500px */
   .carousel-big {
     display: none;
   }
@@ -390,15 +489,26 @@ button[type="submit"]:disabled {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    height: 85%;
+    margin-bottom: 3%;
   }
-  .carousel-control-prev, .carousel-control-next {
-    bottom: 31%;
+
+  .carousel-control-prev-icon {
+    &:before {
+      bottom: -10px;
+    }
+  }
+  .carousel-control-next-icon {
+    &:before {
+      bottom: -10px;
+    }
   }
   .nodes-run{
     line-height: 1em;
   }
   .carousel-indicators {
-    bottom: 21px;
+
+bottom: 10px;
   }
   .donut-chart {
     max-width: 100px;

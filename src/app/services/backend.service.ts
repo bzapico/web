@@ -53,6 +53,10 @@ export class BackendService implements Backend {
     })));
   }
 
+  /**
+   * Organization
+   */
+
   // GET 'users/{organization_id}/{email}/info
   /**
    * Requests to get an specific user information
@@ -67,7 +71,7 @@ export class BackendService implements Backend {
   // GET '/organization/{organization_id}'
   /**
    * Requests to get an specific organization information
-   * @param organizationId Organization identificator
+   * @param organizationId Organization identifier
    */
   getOrganizationInfo(organizationId: string) {
     return this.get(
@@ -77,7 +81,7 @@ export class BackendService implements Backend {
   // GET 'users/{organization_id}/list
   /**
    * Requests a list of the users that belong to a specific organization
-   * @param organizationId Organization identificator
+   * @param organizationId Organization identifier
    */
   getOrganizationUsers(organizationId: string) {
     return this.get(
@@ -87,7 +91,7 @@ export class BackendService implements Backend {
   // POST 'users/{organizationId}/add'
   /**
    * Requests to add a new user
-   * @param organizationId Organization identificator
+   * @param organizationId Organization identifier
    * @param user New user data
    */
   addUser(organizationId: string, user: any) {
@@ -108,7 +112,7 @@ export class BackendService implements Backend {
   // POST 'users/{organization_id}/update
   /**
    * Requests to update an specific user
-   * @param organizationId Organization identificator
+   * @param organizationId Organization identifier
    * @param user Object containing user data
    */
   saveUserChanges(organizationId: string, user: any) {
@@ -116,26 +120,105 @@ export class BackendService implements Backend {
       API_URL + 'users/' + organizationId + '/update',
       user
     );
-
   }
+
+  /**
+   * Resources
+   */
+
+  // GET 'resources/{organization_id}/summary'
+  /**
+   * Requests to get the resources summary for an specific organization
+   * @param organizationId Organization identifier
+   */
   getResourcesSummary(organizationId: string) {
     return this.get(
       API_URL + 'resources/' + organizationId + '/summary'
     );
   }
+  // GET 'clusters/{organization_id}/list'
+  /**
+   * Requests to get the cluster list for an specific organization
+   * @param organizationId Organization identifier
+   */
   getClusters(organizationId: string) {
     return this.get(
       API_URL + 'clusters/' + organizationId + '/list'
     );
   }
-  getApps(organizationId: string) {
-    throw new Error('Method not implemented.');
+
+  /**
+   * Applications
+   */
+
+  // GET 'apps/inst/{organization_id}/list'
+  /**
+   * Requests application instances list
+   * @param organizationId Organization identifier
+   */
+  getInstances(organizationId: string) {
+    return this.get(
+      API_URL + 'apps/inst/' + organizationId + '/list'
+    );
   }
-  getNodes(clusterId: string) {
-    throw new Error('Method not implemented.');
+  // GET 'apps/desc/{organization_id}/list'
+  /**
+   * Requests registered applications list (descriptors)
+   * @param organizationId Organization identifier
+   */
+  getRegisteredApps(organizationId: string) {
+    return this.get(
+      API_URL + 'apps/desc/' + organizationId + '/list'
+    );
   }
-  getClusterDetail(clusterId: string) {
-    throw new Error('Method not implemented.');
+  // GET 'apps/inst/{organization_id}/{app_instance_id}/get'
+  /**
+   * Requests application instance info
+   * @param organizationId Organization identifier
+   * @param instanceId Instance identifier
+   */
+  getAppInstance(organizationId: string, instanceId: string) {
+    return this.get(
+      API_URL + 'apps/inst/' + organizationId + '/' + instanceId + '/get'
+    );
+  }
+  // GET 'apps/inst/{organization_id}/{app_descriptor_id}/get'
+  /**
+   * Requests application descriptor (registered app) info
+   * @param organizationId Organization identifier
+   * @param descriptorId Descriptor identifier
+   */
+  getAppDescriptor(organizationId: string, descriptorId: string) {
+    return this.get(
+      API_URL + 'apps/desc/' + organizationId + '/' + descriptorId + '/get'
+    );
+  }
+
+  /**
+   * Cluster
+   */
+
+  // GET 'nodes/{organization_id}/{cluster_id}/list'
+  /**
+   * Requests to get the list of nodes for an specific cluster
+   * @param organizationId Organization identifier
+   * @param clusterId Cluster identifier
+   */
+  getNodes(organizationId: string, clusterId: string) {
+    return this.get(
+      API_URL + 'nodes/' + organizationId + '/' + clusterId + '/list'
+    );
+  }
+  // GET 'clusters/{organization_id}/{cluster_id}/info'
+  /**
+   * Requests to get the detail of an specific cluster
+   * @param organizationId Organization identifier
+   * @param clusterId Cluster identifier
+   */
+  getClusterDetail(organizationId: string, clusterId: string) {
+    return this.get(
+      API_URL + 'clusters/' + organizationId + '/' + clusterId + '/info'
+    );
   }
 
   /**

@@ -102,6 +102,7 @@
     }
     .summary-card {
         margin-top: 0em;
+        height: 82%;
     }
 }
 @media screen and (min-width:2560px){
@@ -133,6 +134,7 @@
 }
 .line-chart {
     width:93%;
+    height: 100%;
     position: relative;
 }
 .bottom-line{
@@ -154,6 +156,10 @@
     .y-axis-line-chart span {
         font-size: .8em;
     }
+    .line-chart {
+        height: 90%;
+    }
+
 }
 
 /* - - - Deployed app list card - - - */
@@ -234,6 +240,9 @@
     background: #F25272;
     display:inline-block;
     margin:0 10px 0 0;
+}
+.no-apps {
+    height: 70%;
 }
 /* - - - Medias Deployed app list card - - - */
 @media screen and (max-width:1500px){

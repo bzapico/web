@@ -31,7 +31,7 @@
       </div>
       <div class="table-h">
         <table 
-          *ngIf="users && users.length > 0"
+          *ngIf="loadedData && users && users.length > 0"
           class="table">
           <thead>
             <tr>
@@ -81,9 +81,26 @@
           </tbody>
         </table>
         <div
-          *ngIf="users && users.length === 0"
+          *ngIf="loadedData && users && users.length === 0"
           class="no-elements d-flex justify-content-center align-items-center">
           <p>There are not registered users in this organization<br>Click on "add user" button to start adding new users </p>
+        </div>
+        <!-- Loader -->
+        <div class="nalej-loader-container" *ngIf="!loadedData">
+          <div class="loader">
+            <svg 
+              class="circular" 
+              viewBox="25 25 50 50">
+              <circle 
+                class="path" 
+                cx="50" 
+                cy="50" 
+                r="20" 
+                fill="none" 
+                stroke-width="2" 
+                stroke-miterlimit="10"/>
+            </svg>
+          </div>
         </div>
       </div>
       <div class="mx-auto btn-h m-3 mt-5">

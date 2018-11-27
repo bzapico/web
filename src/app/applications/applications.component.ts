@@ -26,9 +26,35 @@ export class ApplicationsComponent implements OnInit {
   organizationId: string;
 
   /**
-   * List of available apps
+   * Loaded Data status
    */
-  apps: any[];
+  loadedData: boolean;
+
+  /**
+   * List of available apps instances
+   */
+  instances: any[];
+
+  /**
+   * List of registered apps
+   */
+  registered: any[];
+
+  /**
+   * Number of running instances
+   */
+  countRunning: number;
+
+  /**
+   * Number of registered apps
+   */
+  countRegistered: number;
+
+  /**
+   * Charts references
+   */
+  mockAppChart: any;
+  mockAppPieChart: any;
 
   /**
    * Reference for the service that allows the user info component
@@ -76,8 +102,8 @@ export class ApplicationsComponent implements OnInit {
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
-  mockAppChart: any;
-  mockAppPieChart: any;
+  instancesTimelineChart: any;
+  instancesPieChart: any;
   autoScale: any;
 
   constructor(
@@ -87,7 +113,7 @@ export class ApplicationsComponent implements OnInit {
     private notificationsService: NotificationsService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
-    // check which backend is required (fake or real)
+    // Check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
     } else {
@@ -95,31 +121,57 @@ export class ApplicationsComponent implements OnInit {
     }
 
     // Default initialization
-    this.apps = [];
-
-  /**
-   * Mocked Charts
-   */
-  Object.assign(this, {mockAppPieChart, mockAppChart});
-  }
+    this.instances = [];
+    this.registered = [];
+    this.countRegistered = 0;
+    this.loadedData = false;
+    /**
+     * Charts reference init
+     */
+    Object.assign(this, {mockAppChart, mockAppPieChart});
+}
 
   ngOnInit() {
       // Get User data from localStorage
       const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
       if (jwtData !== null) {
-        this.organizationId = JSON.parse(jwtData).OrganizationId;
-        if (this.organizationId !== null) {
-          // Requests top card summary data
-          this.backend.getApps(this.organizationId)
-          .subscribe(response => {
-            if (response && response._body) {
-              const data = JSON.parse(response._body);
-              this.apps = data;
-            }
-          });
-        }
+        this.organizationId = JSON.parse(jwtData).organizationID;
+          this.updateAppInstances(this.organizationId);
+          this.updateRegisteredInstances(this.organizationId);
       }
+  }
+
+  /**
+   * Updates instances array
+   * @param organizationId Organization identifier
+   */
+  updateAppInstances(organizationId: string) {
+    if (organizationId !== null) {
+      // Request to get apps instances
+      this.backend.getInstances(this.organizationId)
+      .subscribe(instances => {
+          this.instances = instances;
+          this.updatePieChartStats(instances);
+          if (!this.loadedData) {
+            this.loadedData = true;
+          }
+      });
     }
+  }
+
+  /**
+   * Updates registered apps array
+   * @param organizationId Organization identifier
+   */
+  updateRegisteredInstances(organizationId: string) {
+    if (organizationId !== null) {
+      // Request to get registered apps
+      this.backend.getRegisteredApps(this.organizationId)
+      .subscribe(registered => {
+          this.registered = registered;
+      });
+    }
+  }
 
   /**
    * Opens the modal view that holds the apps info component
@@ -139,5 +191,46 @@ export class ApplicationsComponent implements OnInit {
     this.modalRef = this.modalService.show(AppsInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     // this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
+  }
+
+  /**
+   * Updates pie chart status
+   * @param instances Array of instance objects
+   */
+  updatePieChartStats(instances: any[]) {
+    let running = 0;
+    instances.forEach(app => {
+      if (app.status_name === 'Running') {
+        running += 1;
+      }
+    });
+    this.countRunning = running;
+    this.instancesPieChart = this.generateSummaryChartData(this.countRunning, instances.length - 1);
+  }
+
+  /**
+   * Generates the NGX-Chart required JSON object for pie chart rendering
+   * @param running Number of running nodes in a cluster
+   * @param total Number of total nodes in a cluster
+   * @returns anonym array with the required object structure for pie chart rendering
+   */
+  generateSummaryChartData(running: number, total: number): any[] {
+    return [
+      {
+        name: 'Running',
+        value: running
+      },
+      {
+        name: 'Stopped',
+        value: total - running
+      }];
+  }
+
+  /**
+   * Parse to string labels map
+   * @param labels Key-value map that contains the labels
+   */
+  labelsToString(labels: any) {
+    return JSON.stringify(labels);
   }
 }
