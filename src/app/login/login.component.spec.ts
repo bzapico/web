@@ -14,6 +14,7 @@ describe('LoginComponent', () => {
   let fixture: ComponentFixture<LoginComponent>;
   let de: DebugElement;
   let el: HTMLElement;
+  let service: AuthService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -43,6 +44,10 @@ describe('LoginComponent', () => {
     el = de.nativeElement;
   });
 
+  afterEach(() => {
+    service = null;
+  });
+
   it('onSubmit() - It should be submitted to true', async() => {
     component.onSubmit();
 
@@ -66,6 +71,12 @@ describe('LoginComponent', () => {
     expect(component.loginForm.valid).toBeFalsy();
   });
 
+  it('onSubmit() - Should return false when the user is not authenticated', () => {
+    localStorage.setItem('jwtToken', '12345');
+
+    expect(component.onSubmit()).toBeFalsy();
+  });
+
   it('openDebugPanel() - Should open the modal view that holds the debug panel', () => {
     const openDebugPanel = spyOn(component, 'openDebugPanel').and.returnValue(true);
 
@@ -73,6 +84,8 @@ describe('LoginComponent', () => {
 
     expect(openDebugPanel).toHaveBeenCalledWith();
   });
+
+
 
 
 

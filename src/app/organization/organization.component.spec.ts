@@ -4,10 +4,15 @@ import { OrganizationComponent } from './organization.component';
 import { ButtonsModule, BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+
 
 describe('OrganizationComponent', () => {
   let component: OrganizationComponent;
   let fixture: ComponentFixture<OrganizationComponent>;
+  let de: DebugElement;
+  let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -29,7 +34,11 @@ describe('OrganizationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(OrganizationComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
+
+    de = fixture.debugElement;
+    el = de.nativeElement;
   });
 
   it('openUserInfo() - Should open User Info Modal view that holds the user info component', () => {
@@ -66,6 +75,15 @@ describe('OrganizationComponent', () => {
     updateUserList(user);
 
     expect(updateUserList).toHaveBeenCalledWith(user);
+  });
+
+  it('It should render organization name', () => {
+    component.organizationName = 'nike';
+    fixture.detectChanges();
+
+    de.query(By.css('.company-name'));
+
+    expect(el.innerText).toContain('nike');
   });
 
 });
