@@ -26,6 +26,11 @@ export class ClusterComponent implements OnInit {
   organizationId: string;
 
   /**
+   * Loaded Data status
+   */
+  loadedData: boolean;
+
+  /**
    * Model that hold cluster ID
    */
   clusterId: string;
@@ -101,6 +106,7 @@ export class ClusterComponent implements OnInit {
     }
 
     // Default initialization
+    this.loadedData = false;
     this.clusters = [];
     this.nodes = [];
     this.nodesCount = 0;
@@ -163,6 +169,9 @@ export class ClusterComponent implements OnInit {
     this.backend.getNodes(this.organizationId, this.clusterId)
     .subscribe(nodes => {
       this.nodes = nodes;
+      if (!this.loadedData) {
+        this.loadedData = true;
+      }
     });
   }
 

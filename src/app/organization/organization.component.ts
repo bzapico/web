@@ -21,6 +21,7 @@ export class OrganizationComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
+
   /**
    * Models that hold organization id, name, subscription type and the users list
    */
@@ -30,10 +31,16 @@ export class OrganizationComponent implements OnInit {
   users: any[];
 
   /**
+   * Loaded Data status
+   */
+  loadedData: boolean;
+
+  /**
    * Reference for the service that allows the user info component
    */
   modalRef: BsModalRef;
-    /**
+
+  /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
   config = {
@@ -55,6 +62,8 @@ export class OrganizationComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
+    // Default initialization
+    this.loadedData = false;
     this.organizationName = 'Loading...';
     this.subscriptionType = 'Free subscription';
     this.users = [];
@@ -69,10 +78,7 @@ export class OrganizationComponent implements OnInit {
           .subscribe(response => {
               this.organizationName = response.name;
           });
-        this.backend.getOrganizationUsers(this.organizationId)
-          .subscribe(response => {
-              this.users = response.users;
-          });
+          this.updateUserList();
       }
     }
     this.updateService.changesOnUserList.subscribe(
@@ -101,6 +107,7 @@ export class OrganizationComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
+
   /**
    * Opens the modal view that holds the user info and editable component
    */
@@ -118,26 +125,36 @@ export class OrganizationComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
+
   /**
    * Opens the modal view that holds add user component
    */
   addUser() {
     const initialState = {
       organizationId: this.organizationId,
-
     };
+
     this.modalRef = this.modalService.show(AddUserComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
-
   }
 
+  /**
+   * Requests an updated list of available users to update the current one
+   */
   updateUserList() {
-    if (this.organizationId != null) {
-      this.backend.getOrganizationUsers(this.organizationId)
-      .subscribe(response => {
+    // Requests an updated users list
+    this.backend.getOrganizationUsers(this.organizationId)
+    .subscribe(response => {
+        if (response.users.length) {
           this.users = response.users;
-      });
-    }
+        } else {
+          this.users = [];
+        }
+        if (!this.loadedData) {
+          this.loadedData = true;
+        }
+    });
   }
 }
+

@@ -24,7 +24,12 @@ export class ApplicationsComponent implements OnInit {
   organizationId: string;
 
   /**
-   * List of available app instances
+   * Loaded Data status
+   */
+  loadedData: boolean;
+
+  /**
+   * List of available apps instances
    */
   instances: any[];
 
@@ -86,6 +91,7 @@ export class ApplicationsComponent implements OnInit {
       value: 0
     }
   ];
+
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
@@ -110,6 +116,7 @@ export class ApplicationsComponent implements OnInit {
     this.instances = [];
     this.registered = [];
     this.countRegistered = 0;
+    this.loadedData = false;
     /**
      * Charts reference init
      */
