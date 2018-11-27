@@ -251,7 +251,7 @@ export const mockResourcesSummary = {
 /**
  * Mocked App list
  */
-export const mockAppsList = [
+export const mockAppsInstancesList = [
     {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         app_descriptor_id: 'app_descriptor_id_1',
@@ -321,6 +321,16 @@ export const mockAppsList = [
         groups: [],
         services: [],
         status_name: 'Running',
+    }
+];
+
+export const mockRegisteredAppsList = [
+    {
+        name: 'Registered1',
+        description: 'Registered1 app description'
+    }, {
+        name: 'Registered2',
+        description: 'Registered app description'
     }
 ];
 

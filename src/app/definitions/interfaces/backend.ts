@@ -18,6 +18,7 @@ export interface Backend {
     getNodes(organizationId: string, clusterId: string);
     getResourcesSummary(organizationId: string);
     // Applications
-    getApps(organizationId: string);
+    getInstances(organizationId: string);
+    getRegisteredApps(organizationId: string);
     getClusterDetail(organizationId: string, clusterId: string);
 }

@@ -138,8 +138,25 @@ export class BackendService implements Backend {
       API_URL + 'clusters/' + organizationId + '/list'
     );
   }
-  getApps(organizationId: string) {
-    throw new Error('Method not implemented.');
+  // GET 'apps/inst/{organization_id}/list'
+  /**
+   * Requests application instances list
+   * @param organizationId Organization identifier
+   */
+  getInstances(organizationId: string) {
+    return this.get(
+      API_URL + 'apps/inst/' + organizationId + '/list'
+    );
+  }
+  // GET 'apps/desc/{organization_id}/list'
+  /**
+   * Requests registered applications list (descriptors)
+   * @param organizationId Organization identifier
+   */
+  getRegisteredApps(organizationId: string) {
+    return this.get(
+      API_URL + 'apps/desc/' + organizationId + '/list'
+    );
   }
   // GET 'nodes/{organization_id}/{cluster_id}/list'
   /**

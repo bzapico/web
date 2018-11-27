@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsList, mockNodeList  } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList  } from '../utils/mocks';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +50,7 @@ export class MockupBackendService implements Backend {
 
   /**
    * Simulates get profile info
-   * @param userId String containing the user identificator - used to replicate expected backend behavior
+   * @param userId String containing the user identifier - used to replicate expected backend behavior
    */
   getUserProfileInfo(organizationId: string, userId: string) {
     const index = mockUserList.map(x => x.email).indexOf(userId);
@@ -64,6 +64,10 @@ export class MockupBackendService implements Backend {
     );
   }
 
+  /**
+   * Simulates to request organization info
+   * @param organizationId Organization identifier
+   */
   getOrganizationInfo(organizationId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockOrganizationInfo),
@@ -74,6 +78,10 @@ export class MockupBackendService implements Backend {
     );
   }
 
+  /**
+   * Simulates to get organization users list
+   * @param organizationId Organization identifier
+   */
   getOrganizationUsers(organizationId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify({ users: mockUserList }),
@@ -131,7 +139,7 @@ export class MockupBackendService implements Backend {
 
   /**
    * Simulates save user changes
-   * @param userId String containing the user identificator - used to replicate expected backend behavior
+   * @param userId String containing the user identifier - used to replicate expected backend behavior
    */
   saveUserChanges(organizationId: string, user: any) {
     const index = mockUserList.map(x => x.email).indexOf(user.email);
@@ -154,7 +162,7 @@ export class MockupBackendService implements Backend {
 
   /**
    * Simulates save cluster changes
-   * @param clusterId String containing the cluster identificator - used to replicate expected backend behavior
+   * @param clusterId String containing the cluster identifier - used to replicate expected backend behavior
    */
   saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
     const index = mockClusterList.map(x => x.cluster_id).indexOf(clusterId);
@@ -168,6 +176,10 @@ export class MockupBackendService implements Backend {
     })));
   }
 
+  /**
+   * Simulates to request resources summary data
+   * @param organizationId Organization identifier
+   */
   getResourcesSummary(organizationId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockResourcesSummary),
@@ -178,6 +190,10 @@ export class MockupBackendService implements Backend {
     );
   }
 
+  /**
+   * Simulates to requrest clusters list
+   * @param organizationId Organization identifier
+   */
   getClusters(organizationId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockClusterList),
@@ -189,21 +205,39 @@ export class MockupBackendService implements Backend {
   }
 
   /********************
-   * Appications
+   * Applications
    ********************/
 
   /**
-   * Simulates get apps list
+   * Simulates to request application instances
+   * @param organizationId Organization identifier
    */
-  getApps(organizationId: string) {
+  getInstances(organizationId: string) {
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockAppsList),
+      body: JSON.stringify(mockAppsInstancesList),
       status: 200
     })))
     .pipe(
       map(response => response.json())
     );
   }
+  /**
+   * Simulates to get registered apps list
+   * @param organizationId Organization identifier
+   */
+  getRegisteredApps(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockRegisteredAppsList),
+      status: 200
+    })))
+    .pipe(
+      map(response => response.json())
+    );
+  }
+
+  /********************
+   * Cluster
+   ********************/
 
   /**
    * Simulates get nodes list

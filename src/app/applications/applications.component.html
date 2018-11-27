@@ -112,7 +112,9 @@
                 <td>{{app.description}}</td>  
                 <td>{{app.labels}}</td>
                 <td 
-                  class="status-dot">
+                [ngClass]=
+                  "{'status-dot':app.status_name === 'Running',
+                  'status-dot-error':app.status_name === 'Error'}">
                 {{app.status_name}}
                 </td>
                   <td class="row-info-btn">

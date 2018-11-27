@@ -93,7 +93,7 @@ export class ApplicationsComponent implements OnInit {
     private notificationsService: NotificationsService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
-    // check which backend is required (fake or real)
+    // Check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
     } else {
@@ -105,7 +105,7 @@ export class ApplicationsComponent implements OnInit {
     this.registered = [];
     this.countRegistered = 0;
     /**
-     * Mocked Charts
+     * Charts reference init
      */
     Object.assign(this, {mockAppChart, mockAppPieChart});
 }
@@ -122,22 +122,23 @@ export class ApplicationsComponent implements OnInit {
 
   updateAppInstances(organizationId: string) {
     if (organizationId !== null) {
-      // Requests top card summary data
-      this.backend.getApps(this.organizationId)
-      .subscribe(apps => {
-          this.instances = apps;
-          this.updatePieChartStats(apps);
+      // Request to get apps instances
+      this.backend.getInstances(this.organizationId)
+      .subscribe(instances => {
+          this.instances = instances;
+          this.updatePieChartStats(instances);
       });
     }
   }
+
   updateRegisteredInstances(organizationId: string) {
     if (organizationId !== null) {
-      // Requests top card summary data
+      // Request to get registered apps
       this.backend.getRegisteredApps(this.organizationId)
       .subscribe(registered => {
           this.registered = registered;
       });
-    } 
+    }
   }
   updatePieChartStats(instances: any[]) {
     let running = 0;
