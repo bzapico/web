@@ -82,7 +82,7 @@
           <h5>DEPLOYED APP LIST</h5>
         </div>
         <div class="table-h">
-          <table *ngIf="loadedData && apps && apps.length > 0"  class="table">
+          <table *ngIf="loadedData && instances && instances.length > 0"  class="table">
             <thead>
               <tr>
                 <th scope="col" class="row-name">
@@ -126,7 +126,7 @@
             </tbody>
           </table>
           <div 
-          *ngIf="loadedData && apps.length === 0"
+          *ngIf="loadedData && instances.length === 0"
           class="no-apps d-flex justify-content-center align-items-center">
             No available applications detected
         </div>

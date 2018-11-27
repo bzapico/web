@@ -142,8 +142,12 @@ export class ApplicationsComponent implements OnInit {
       // Request to get apps instances
       this.backend.getInstances(this.organizationId)
       .subscribe(instances => {
+          console.log(instances);
           this.instances = instances;
           this.updatePieChartStats(instances);
+          if (!this.loadedData) {
+            this.loadedData = true;
+          }
       });
     }
   }
