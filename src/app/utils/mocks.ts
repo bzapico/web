@@ -269,9 +269,9 @@ export const mockAppsInstancesList = [
     {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         app_descriptor_id: 'app_descriptor_id_2',
-        app_instance_id: '0800200c9a61',
-        name: 'Assets Application',
-        description: 'Instance of MongoDB',
+        app_instance_id: '0800200c9a62',
+        name: 'Grafana',
+        description: 'UI Dashboard',
         configuration_options: 'option1 option2',
         environment_variables: '$APP2',
         labels: 'ny, edge',
@@ -283,9 +283,9 @@ export const mockAppsInstancesList = [
     {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         app_descriptor_id: 'app_descriptor_id_3',
-        app_instance_id: '0800200c9a61',
-        name: 'Assets Application',
-        description: 'Instance of MongoDB',
+        app_instance_id: '0800200c9a63',
+        name: 'Cassandra',
+        description: 'Instance of Cassandra',
         configuration_options: 'option1 option2',
         environment_variables: '$APP3',
         labels: 'ny, edge',
@@ -297,9 +297,9 @@ export const mockAppsInstancesList = [
     {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         app_descriptor_id: 'app_descriptor_id_4',
-        app_instance_id: '0800200c9a61',
-        name: 'Assets Application',
-        description: 'Instance of MongoDB',
+        app_instance_id: '0800200c9a64',
+        name: 'MySQL',
+        description: 'Instance of MySQL',
         configuration_options: 'option1 option2',
         environment_variables: '$APP4',
         labels: 'ny, edge',
@@ -311,7 +311,7 @@ export const mockAppsInstancesList = [
     {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         app_descriptor_id: 'app_descriptor_id_5',
-        app_instance_id: '0800200c9a61',
+        app_instance_id: '0800200c9a65',
         name: 'Assets Application',
         description: 'Instance of MongoDB',
         configuration_options: 'option1 option2',
@@ -323,7 +323,9 @@ export const mockAppsInstancesList = [
         status_name: 'Running',
     }
 ];
-
+/**
+ * Mocked registered apps list (descriptors) - fields still not defined
+ */
 export const mockRegisteredAppsList = [
     {
         name: 'Registered1',
