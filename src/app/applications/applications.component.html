@@ -23,7 +23,7 @@
                   [explodeSlices]="false"
                   >
                 </ngx-charts-pie-chart>
-                <div class="donut-number">{{countRunning}}/{{instances.length-1}}</div>
+                <div class="donut-number">{{countRunning}}/{{instances.length}}</div>
               </div>
               <p class="blue text-center apps-run mb-0">Apps running</p>
               <p class="circle-name grey text-center">DEPLOYED</p>
@@ -110,7 +110,7 @@
                 <td>{{app.name}}</td>
                 <td>{{app.app_instance_id}}</td>
                 <td>{{app.description}}</td>  
-                <td>{{app.labels}}</td>
+                <td style="max-width: 16rem">{{labelsToString(app.labels)}}</td>
                 <td 
                 [ngClass]=
                   "{'status-dot':app.status_name === 'Running',

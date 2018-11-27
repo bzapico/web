@@ -54,7 +54,6 @@ export class MockupBackendService implements Backend {
    */
   getUserProfileInfo(organizationId: string, userId: string) {
     const index = mockUserList.map(x => x.email).indexOf(userId);
-    if (index !== -1) {}
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockUserList[index]),
       status: 200
@@ -228,6 +227,27 @@ export class MockupBackendService implements Backend {
   getRegisteredApps(organizationId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockRegisteredAppsList),
+      status: 200
+    })))
+    .pipe(
+      map(response => response.json())
+    );
+  }
+  getAppInstance (organizationId: string, instanceId: string) {
+    const index = mockAppsInstancesList.map(x => x.app_instance_id).indexOf(instanceId);
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockAppsInstancesList[index]),
+      status: 200
+    })))
+    .pipe(
+      map(response => response.json())
+    );
+  }
+
+  getAppDescriptor (organizationId: string, descriptorId: string) {
+    const index = mockRegisteredAppsList.map(x => x.app_descriptor_id).indexOf(descriptorId);
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockRegisteredAppsList[index]),
       status: 200
     })))
     .pipe(

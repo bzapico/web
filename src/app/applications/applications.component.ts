@@ -120,6 +120,10 @@ export class ApplicationsComponent implements OnInit {
       }
   }
 
+  /**
+   * Updates instances array
+   * @param organizationId Organization identifier
+   */
   updateAppInstances(organizationId: string) {
     if (organizationId !== null) {
       // Request to get apps instances
@@ -131,6 +135,10 @@ export class ApplicationsComponent implements OnInit {
     }
   }
 
+  /**
+   * Updates registered apps array
+   * @param organizationId Organization identifier
+   */
   updateRegisteredInstances(organizationId: string) {
     if (organizationId !== null) {
       // Request to get registered apps
@@ -140,6 +148,11 @@ export class ApplicationsComponent implements OnInit {
       });
     }
   }
+
+  /**
+   * Updates pie chart status
+   * @param instances Array of instance objects
+   */
   updatePieChartStats(instances: any[]) {
     let running = 0;
     instances.forEach(app => {
@@ -150,6 +163,7 @@ export class ApplicationsComponent implements OnInit {
     this.countRunning = running;
     this.instancesPieChart = this.generateSummaryChartData(this.countRunning, instances.length - 1);
   }
+
   /**
    * Generates the NGX-Chart required JSON object for pie chart rendering
    * @param running Number of running nodes in a cluster
@@ -166,5 +180,13 @@ export class ApplicationsComponent implements OnInit {
         name: 'Stopped',
         value: total - running
       }];
-    }
+  }
+  
+  /**
+   * Parse to string labels map
+   * @param labels Key-value map that contains the labels
+   */
+  labelsToString(labels: any) {
+    return JSON.stringify(labels);
+  }
 }

@@ -53,6 +53,10 @@ export class BackendService implements Backend {
     })));
   }
 
+  /**
+   * Organization
+   */
+
   // GET 'users/{organization_id}/{email}/info
   /**
    * Requests to get an specific user information
@@ -116,8 +120,12 @@ export class BackendService implements Backend {
       API_URL + 'users/' + organizationId + '/update',
       user
     );
-
   }
+
+  /**
+   * Resources
+   */
+
   // GET 'resources/{organization_id}/summary'
   /**
    * Requests to get the resources summary for an specific organization
@@ -138,6 +146,11 @@ export class BackendService implements Backend {
       API_URL + 'clusters/' + organizationId + '/list'
     );
   }
+
+  /**
+   * Applications
+   */
+
   // GET 'apps/inst/{organization_id}/list'
   /**
    * Requests application instances list
@@ -158,6 +171,33 @@ export class BackendService implements Backend {
       API_URL + 'apps/desc/' + organizationId + '/list'
     );
   }
+  // GET 'apps/inst/{organization_id}/{app_instance_id}/get'
+  /**
+   * Requests application instance info
+   * @param organizationId Organization identifier
+   * @param instanceId Instance identifier
+   */
+  getAppInstance(organizationId: string, instanceId: string) {
+    return this.get(
+      API_URL + 'apps/inst/' + organizationId + '/' + instanceId + '/get'
+    );
+  }
+  // GET 'apps/inst/{organization_id}/{app_descriptor_id}/get'
+  /**
+   * Requests application descriptor (registered app) info
+   * @param organizationId Organization identifier
+   * @param descriptorId Descriptor identifier
+   */
+  getAppDescriptor(organizationId: string, descriptorId: string) {
+    return this.get(
+      API_URL + 'apps/desc/' + organizationId + '/' + descriptorId + '/get'
+    );
+  }
+
+  /**
+   * Cluster
+   */
+
   // GET 'nodes/{organization_id}/{cluster_id}/list'
   /**
    * Requests to get the list of nodes for an specific cluster
