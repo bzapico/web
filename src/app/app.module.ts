@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxChartsModule} from '@swimlane/ngx-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { ErrorHandlerService } from './services/error-handler.service';
 import { routes } from './app.routing';
@@ -64,6 +65,7 @@ import { UpdateEventsService } from './services/update-events.service';
     BrowserModule,
     BrowserAnimationsModule,
     NgxChartsModule,
+    NgxGraphModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
