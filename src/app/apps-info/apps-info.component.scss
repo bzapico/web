@@ -1,9 +1,10 @@
+#scrolltable { 
+    margin: 4em 0; 
+    height: 300px; 
+    overflow: scroll; 
+}
 .app-summary {
-    margin: 5em 0;
     background-color: bisque;
-    overflow:scroll;
-    height: 57px;
-
     td {
         padding: 1.1rem 0;
         font-size:  .9em;
@@ -15,12 +16,18 @@
         border: none;
         font-size:  .9em;
         font-weight: 200;
+        width: 63%;
     }
     tr {
         line-height: 0.1px;
         border: none;
     } 
+    thead > tr, tbody{
+        display:block;
+        width: 100%;
+    }
 }
+
 .btn-primary {
     text-indent: -7px;
 }
@@ -29,6 +36,7 @@
     background-color: aquamarine;
 }
 .chart-container {
+    display: none;
     position: absolute;
     top: 50%;
     left: 50%;
