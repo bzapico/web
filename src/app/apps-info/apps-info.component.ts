@@ -4,6 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import * as shape from 'd3-shape';
 
 @Component({
   selector: 'app-apps-info',
@@ -40,15 +41,19 @@ export class AppsInfoComponent implements OnInit {
   /**
    * Graph options
    */
-  legend: boolean;
+  showlegend: boolean;
   graphData: any;
   orientation: string;
   curve: any;
   autoZoom: boolean;
   autoCenter: boolean;
-  colorScheme = {
-    domain: ['#6C86F7']
-  };
+  enableZoom: boolean;
+  colorScheme: any;
+  view: any[];
+  width: number;
+  height: number;
+  draggingEnabled: boolean;
+
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -70,46 +75,48 @@ export class AppsInfoComponent implements OnInit {
     this.configuration = 'Loading ...'; // Default initialization
     this.service = 'Loading ...'; // Default initialization
 
-
-
-    this.legend = false;
-    this.orientation = 'TB';
-    this.curve = 'curveLinear';
-    this.autoZoom = false;
-    this.autoCenter = false;
+    // Graph initialization
+    this.showlegend = false;
+    this.orientation = 'LR';
+    this.curve = shape.curveLinear;
+    this.autoZoom = true;
+    this.autoCenter = true;
+    this.enableZoom = false;
+    this.draggingEnabled = false;
+    this.view = [400, 250];
+    this.colorScheme = {
+      domain: ['#6C86F7']
+    };
 
     this.graphData = {
       nodes: [
         {
-          id: 'start',
-          label: 'start'
+          id: 'mongo',
+          label: 'mongo'
         }, {
           id: '1',
-          label: 'Query ThreatConnect',
+          label: 'Q',
         }, {
           id: '2',
-          label: 'Query XForce',
+          label: 'F',
         }, {
           id: '3',
-          label: 'Format Results'
+          label: 'R'
         }, {
           id: '4',
-          label: 'Search Splunk'
-        }, {
-          id: '5',
-          label: 'Block LDAP'
+          label: 'S'
         }, {
           id: '6',
-          label: 'Email Results'
+          label: 'E'
         }
       ],
       links: [
         {
-          source: 'start',
+          source: 'mongo',
           target: '1',
           label: 'links to'
         }, {
-          source: 'start',
+          source: 'mongo',
           target: '2'
         }, {
           source: '1',
@@ -121,16 +128,10 @@ export class AppsInfoComponent implements OnInit {
         }, {
           source: '2',
           target: '6'
-        }, {
-          source: '3',
-          target: '5'
         }
       ]
-
-};
-
+    };
   }
-
 
   ngOnInit() {
   }
