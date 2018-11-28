@@ -18,6 +18,26 @@ export class AppsInfoComponent implements OnInit {
   backend: Backend;
 
   /**
+   * Loaded Data status
+   */
+  loadedData: boolean;
+
+  /**
+   * Model that hold organization ID
+   */
+  organizationId: string;
+
+  /**
+   * Model that hold organization ID
+   */
+  instanceId: string;
+
+  /**
+   * List of available apps instances
+   */
+  instances: any[];
+
+  /**
    * Dialog title
    */
   title: string;
@@ -67,13 +87,16 @@ export class AppsInfoComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
+
+    // Default initialization
+    this.loadedData = false;
     this.title = 'App info';
-    this.name = 'Loading ...'; // Default initialization
-    this.id = 'Loading ...'; // Default initialization
-    this.tags = 'Loading ...'; // Default initialization
-    this.type = 'Loading ...'; // Default initialization
-    this.configuration = 'Loading ...'; // Default initialization
-    this.service = 'Loading ...'; // Default initialization
+    this.name = 'Loading ...';
+    this.id = 'Loading ...';
+    this.tags = 'Loading ...';
+    this.type = 'Loading ...';
+    this.configuration = 'Loading ...';
+    this.service = 'Loading ...';
 
     // Graph initialization
     this.showlegend = false;
@@ -134,6 +157,25 @@ export class AppsInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+     // Get User data from localStorage
+     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+     if (jwtData !== null) {
+       this.organizationId = JSON.parse(jwtData).organizationID;
+         this.updateAppInstance(this.organizationId, this.instanceId);
+     }
+  }
+
+  updateAppInstance(organizationId: string, instanceId: string) {
+    if (organizationId !== null) {
+      // Request to get apps instances
+      this.backend.getAppInstance(this.organizationId, this.instanceId)
+      .subscribe(instances => {
+          this.instances = instances;
+          if (!this.loadedData) {
+            this.loadedData = true;
+          }
+      });
+    }
   }
 
 }

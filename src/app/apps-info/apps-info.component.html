@@ -8,6 +8,7 @@
       <!-- Body -->
       <div class="modal-body">
         <h3 class="services-title">Services</h3>
+        <!-- Service Graph -->
         <div class="graph">
           <div  class="graph-click-fix"></div>
             <ngx-graph
@@ -54,14 +55,26 @@
             </ng-template>
           </ngx-graph>
         </div>
-        
+        <!-- Deployed app table -->
         <div id="scrolltable">
-          <table class="table app-summary">
+          <table class="table app-summary" >
             <tr>
               <th class="grey">
                 Name
               </th>
               <td>{{name}}</td>
+            </tr>
+            <tr>
+              <th class="grey">
+                App Instance Id
+              </th>
+              <td>{{app_instance_id}}</td>
+            </tr>
+            <tr>
+              <th class="grey">
+                App descriptor Id
+              </th>
+              <td>{{app_descriptor_id}}</td> 
             </tr>
             <tr>
               <th class="grey">
@@ -71,15 +84,51 @@
             </tr>
             <tr>
               <th class="grey">
-                Id
+                Instance
               </th>
-              <td>{{id}}</td>
+              <td>{{configuration}}</td>
             </tr>
             <tr>
               <th class="grey">
-                Configuration
+                Configuration Options
               </th>
-              <td>{{configuration}}</td>
+              <td>{{configuration_options}}</td>
+            </tr>
+            <tr>
+              <th class="grey">
+                Enviroment Variables
+              </th>
+              <td>{{enviroment_variables}}</td>
+            </tr>
+            <tr>
+              <th class="grey">
+                Tags
+              </th>
+              <td>{{labels}}</td>
+            </tr>
+            <tr>
+              <th class="grey">
+                Rules
+              </th>
+              <td>{{rules}}</td>
+            </tr>
+            <tr>
+              <th class="grey">
+                Groups
+              </th>
+              <td>{{groups}}</td> 
+            </tr>
+            <tr>
+              <th class="grey">
+                Services
+              </th>
+              <td>{{services}}</td>
+            </tr>
+            <tr>
+              <th class="grey">
+                Status_name
+              </th>
+              <td>{{status_name}}</td>
             </tr>
             <tr>
               <th class="grey">
@@ -87,42 +136,30 @@
               </th>
               <td>{{tags}}</td>
             </tr>
-    
-    
-            <tr>
-              <th class="grey">
-                Name
-              </th>
-              <td>{{name}}</td>
-            </tr>
-            <tr>
-              <th class="grey">
-                Description
-              </th>
-              <td>{{description}}</td> 
-            </tr>
-            <tr>
-              <th class="grey">
-                Id
-              </th>
-              <td>{{id}}</td>
-            </tr>
-            <tr>
-              <th class="grey">
-                Configuration
-              </th>
-              <td>{{configuration}}</td>
-            </tr>
-            <tr>
-              <th class="grey">
-                Tags
-              </th>
-              <td>{{tags}}</td>
-            </tr>
-
           </table>
+          <div 
+            class="no-apps d-flex justify-content-center align-items-center">
+              No available applications detected
+          </div>
+          <!-- Loader -->
+          <div class="nalej-loader-container" *ngIf="!loadedData">
+            <div class="loader">
+              <svg 
+                class="circular" 
+                viewBox="25 25 50 50">
+                <circle 
+                  class="path" 
+                  cx="50" 
+                  cy="50" 
+                  r="20" 
+                  fill="none" 
+                  stroke-width="2" 
+                  stroke-miterlimit="10"/>
+              </svg>
+            </div>
+          </div>
         </div>
-      <!-- Option buttons -->
+      <!-- Option button -->
       <div class="buttons d-flex flex-row justify-content-center">
         <button class="btn btn-primary btn-lg" (click)="bsModalRef.hide()">
           <span class="align-bottom">Close</span>

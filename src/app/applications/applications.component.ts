@@ -178,14 +178,8 @@ export class ApplicationsComponent implements OnInit {
    */
   openAppsInfo(app) {
     const initialState = {
-      organizatinoId: this.organizationId,
-      name: app.name,
-      id: app.id,
-      description: app.description,
-      type: app.type,
-      tags: app.tags,
-      configuration: app.configuration,
-      services: app.services
+      organizationId: this.organizationId,
+      instances: app.app_instance_id
     };
 
     this.modalRef = this.modalService.show(AppsInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
