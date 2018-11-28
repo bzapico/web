@@ -107,15 +107,20 @@
             </thead>
             <tbody>
               <tr *ngFor="let app of instances">
-                <td>{{app.name}}</td>
+                <td class="text-capitalize">{{app.name}}</td>
                 <td>{{app.app_instance_id}}</td>
                 <td>{{app.description}}</td>  
-                <td style="max-width: 16rem">{{labelsToString(app.labels)}}</td>
+                <td>
+                  <button *ngFor="let label of labelsToString(app.labels)" class="btn-sm btn-outline-primary" disabled>
+                      {{label[0]}}: {{label[1]}}
+                  </button>
+                </td>
                 <td 
-                [ngClass]=
-                  "{'status-dot':app.status_name === 'Running',
-                  'status-dot-error':app.status_name === 'Error'}">
-                {{app.status_name}}
+                  class="text-lowercase"
+                  [ngClass]=
+                    "{'status-dot':app.status_name === 'RUNNING',
+                    'status-dot-error':app.status_name === 'ERROR'}">
+                  {{app.status_name}}
                 </td>
                   <td class="row-info-btn">
                     <button class="btn info-btn btn-primary">

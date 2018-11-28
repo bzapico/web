@@ -5,6 +5,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { mockAppChart, mockAppPieChart } from '../utils/mocks';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { ApplicationInstance } from '../definitions/interfaces/application-instance';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -37,6 +38,8 @@ export class ApplicationsComponent implements OnInit {
    * List of registered apps
    */
   registered: any[];
+
+  labels: any[];
 
   /**
    * Number of running instances
@@ -115,6 +118,7 @@ export class ApplicationsComponent implements OnInit {
     // Default initialization
     this.instances = [];
     this.registered = [];
+    this.labels = [];
     this.countRegistered = 0;
     this.loadedData = false;
     /**
@@ -141,9 +145,10 @@ export class ApplicationsComponent implements OnInit {
     if (organizationId !== null) {
       // Request to get apps instances
       this.backend.getInstances(this.organizationId)
-      .subscribe(instances => {
-          this.instances = instances;
-          this.updatePieChartStats(instances);
+      .subscribe(response => {
+          this.instances = response.instances;
+          // fullfill blabla
+          this.updatePieChartStats(this.instances);
           if (!this.loadedData) {
             this.loadedData = true;
           }
@@ -159,8 +164,8 @@ export class ApplicationsComponent implements OnInit {
     if (organizationId !== null) {
       // Request to get registered apps
       this.backend.getRegisteredApps(this.organizationId)
-      .subscribe(registered => {
-          this.registered = registered;
+      .subscribe(response => {
+          this.registered = response.descriptors;
       });
     }
   }
@@ -171,13 +176,15 @@ export class ApplicationsComponent implements OnInit {
    */
   updatePieChartStats(instances: any[]) {
     let running = 0;
-    instances.forEach(app => {
-      if (app.status_name === 'Running') {
-        running += 1;
-      }
-    });
-    this.countRunning = running;
-    this.instancesPieChart = this.generateSummaryChartData(this.countRunning, instances.length - 1);
+    if (instances) {
+      instances.forEach(app => {
+        if (app.status_name === 'RUNNING') {
+          running += 1;
+        }
+      });
+      this.countRunning = running;
+      this.instancesPieChart = this.generateSummaryChartData(this.countRunning, instances.length - 1);
+    }
   }
 
   /**
@@ -203,6 +210,9 @@ export class ApplicationsComponent implements OnInit {
    * @param labels Key-value map that contains the labels
    */
   labelsToString(labels: any) {
-    return JSON.stringify(labels);
+    return Object.entries(labels);
+  }
+
+  fullfilDataModelGaps(instance: ApplicationInstance) {
   }
 }

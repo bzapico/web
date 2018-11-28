@@ -8,6 +8,7 @@ import { NotificationsService } from '../services/notifications.service';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
 import { EditClusterComponent } from '../edit-cluster/edit-cluster.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { Cluster } from '../definitions/interfaces/cluster';
 
 
 @Component({
@@ -236,17 +237,39 @@ export class ResourcesComponent implements OnInit {
   updateClusterList() {
     // Requests an updated clusters list
     this.backend.getClusters(this.organizationId)
-    .subscribe(clusters => {
-        if (clusters.length) {
-          this.clusters = clusters;
+    .subscribe(response => {
+        if (response.clusters.length) {
+          this.clusters = response.clusters;
         } else {
           this.clusters = [];
         }
         if (!this.loadedData) {
           this.loadedData = true;
         }
+        this.clusters.forEach(cluster => {
+          this.fulfillDataModelGaps(cluster);
+        });
+
         this.chunckedClusters = this.chunkClusterList(3, this.clusters);
         this.updatePieChartsData(this.clusters, this.pieChartsData);
     });
+  }
+
+  fulfillDataModelGaps(cluster: Cluster) {
+    if (!cluster.name) {
+      cluster.name = '-';
+    }
+    if (!cluster.description) {
+      cluster.description = '-';
+    }
+    if (!cluster.total_nodes) {
+      cluster.total_nodes = '0';
+    }
+    if (!cluster.running_nodes) {
+      cluster.running_nodes = '0';
+    }
+    if (!cluster.labels) {
+      cluster.labels = '-';
+    }
   }
 }

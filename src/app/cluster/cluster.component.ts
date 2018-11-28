@@ -7,7 +7,7 @@ import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { mockClusterChart, mockNodesChart } from '../utils/mocks';
 import { ActivatedRoute } from '@angular/router';
-import { ClusterInfo } from '../definitions/interfaces/cluster-info';
+import { Cluster } from '../definitions/interfaces/cluster';
 
 @Component({
   selector: 'app-cluster',
@@ -38,7 +38,7 @@ export class ClusterComponent implements OnInit {
   /**
    * Model that hold cluster data
    */
-  clusterData: ClusterInfo;
+  clusterData: Cluster;
 
   /**
    * List of available clusters
@@ -131,7 +131,6 @@ export class ClusterComponent implements OnInit {
          // Requests top card summary data
          this.backend.getResourcesSummary(this.organizationId)
           .subscribe(summary => {
-            console.log(summary);
             this.clustersCount = summary['total_clusters'];
             this.nodesCount = summary['total_nodes'];
           });
@@ -140,6 +139,7 @@ export class ClusterComponent implements OnInit {
      }
      this.backend.getClusterDetail(this.organizationId, this.clusterId)
       .subscribe(cluster => {
+        this.fulfillDataModelGaps(cluster);
         this.clusterData = cluster;
       });
   }
@@ -167,12 +167,39 @@ export class ClusterComponent implements OnInit {
   updateNodesList() {
     // Requests an updated nodes list
     this.backend.getNodes(this.organizationId, this.clusterId)
-    .subscribe(nodes => {
-      this.nodes = nodes;
+    .subscribe(response => {
+      this.nodes = response.nodes;
       if (!this.loadedData) {
         this.loadedData = true;
       }
     });
   }
+
+  /**
+   * Parse to string labels map
+   * @param labels Key-value map that contains the labels
+   */
+  labelsToString(labels: any) {
+    return Object.entries(labels);
+  }
+
+  fulfillDataModelGaps(cluster: Cluster) {
+    if (!cluster.name) {
+      cluster.name = '-';
+    }
+    if (!cluster.description) {
+      cluster.description = '-';
+    }
+    if (!cluster.total_nodes) {
+      cluster.total_nodes = '0';
+    }
+    if (!cluster.running_nodes) {
+      cluster.running_nodes = '0';
+    }
+    if (!cluster.labels) {
+      cluster.labels = '-';
+    }
+  }
+
 
 }
