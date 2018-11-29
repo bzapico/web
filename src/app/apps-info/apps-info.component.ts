@@ -35,23 +35,12 @@ export class AppsInfoComponent implements OnInit {
   /**
    * List of available apps instances
    */
-  instances: any[];
+  instance: any;
 
   /**
    * Dialog title
    */
   title: string;
-
-  /**
-   * Models that hold app name, organization id, app description, app tags, app configuration, app service
-   */
-  name: string;
-  id: string;
-  description: string;
-  tags: string;
-  type: string;
-  configuration: string;
-  service: string;
 
   /**
    * NGX-Grpahs object-assign required object references (for rendering)
@@ -74,7 +63,6 @@ export class AppsInfoComponent implements OnInit {
   height: number;
   draggingEnabled: boolean;
 
-
   constructor(
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
@@ -91,16 +79,10 @@ export class AppsInfoComponent implements OnInit {
     // Default initialization
     this.loadedData = false;
     this.title = 'App info';
-    this.name = 'Loading ...';
-    this.id = 'Loading ...';
-    this.tags = 'Loading ...';
-    this.type = 'Loading ...';
-    this.configuration = 'Loading ...';
-    this.service = 'Loading ...';
 
     // Graph initialization
     this.showlegend = false;
-    this.orientation = 'LR';
+    this.orientation = 'TB';
     this.curve = shape.curveLinear;
     this.autoZoom = true;
     this.autoCenter = true;
@@ -112,70 +94,52 @@ export class AppsInfoComponent implements OnInit {
     };
 
     this.graphData = {
-      nodes: [
-        {
-          id: 'mongo',
-          label: 'mongo'
-        }, {
-          id: '1',
-          label: 'Q',
-        }, {
-          id: '2',
-          label: 'F',
-        }, {
-          id: '3',
-          label: 'R'
-        }, {
-          id: '4',
-          label: 'S'
-        }, {
-          id: '6',
-          label: 'E'
-        }
-      ],
-      links: [
-        {
-          source: 'mongo',
-          target: '1',
-          label: 'links to'
-        }, {
-          source: 'mongo',
-          target: '2'
-        }, {
-          source: '1',
-          target: '3',
-          label: 'related to'
-        }, {
-          source: '2',
-          target: '4'
-        }, {
-          source: '2',
-          target: '6'
-        }
-      ]
+      nodes: [],
+      links: []
     };
+
   }
 
   ngOnInit() {
-     // Get User data from localStorage
-     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
-     if (jwtData !== null) {
-       this.organizationId = JSON.parse(jwtData).organizationID;
-         this.updateAppInstance(this.organizationId, this.instanceId);
-     }
-  }
-
-  updateAppInstance(organizationId: string, instanceId: string) {
-    if (organizationId !== null) {
-      // Request to get apps instances
-      this.backend.getAppInstance(this.organizationId, this.instanceId)
-      .subscribe(instances => {
-          this.instances = instances;
-          if (!this.loadedData) {
-            this.loadedData = true;
-          }
+     if (this.organizationId !== null) {
+      this.backend.getAppInstance(this.organizationId,  this.instanceId)
+      .subscribe(instance => {
+          this.instance = instance;
+          this.toGraphData(instance);
       });
     }
+  }
+
+/**
+ * Transforms the data needed to create the grapho
+ * @param instance instance object
+ */
+  toGraphData(instance) {
+    instance.services.forEach(service => {
+      const node = {
+        id: service.service_id,
+        label: service.name
+      };
+      this.graphData.nodes.push(node);
+    });
+    instance.rules.forEach(rule => {
+      rule.auth_services.forEach(linkedService => {
+        const link = {
+          source: rule.source_service_id,
+          target: linkedService
+        };
+        this.graphData.links.push(link);
+      });
+    });
+  }
+
+/**
+ * Transforms objects to arrays to be parsed to string and performed in the view
+ * @param object Key-value map that contains the object
+ */
+  objectToString(object: any) {
+
+    return Object.entries(object);
   }
 
 }

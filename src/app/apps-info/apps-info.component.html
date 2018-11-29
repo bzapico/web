@@ -26,10 +26,7 @@
             <ng-template #nodeTemplate let-node>
               <svg:g 
                 class="node"
-                ngx-tooltip
-                [tooltipPlacement]="'top'"
-                [tooltipType]="'tooltip'"
-                [tooltipTitle]="node.label">
+              >
                 <svg:rect 
                 [attr.width]="node.width" 
                 [attr.height]="node.height" 
@@ -57,92 +54,112 @@
         </div>
         <!-- Deployed app table -->
         <div id="scrolltable">
+            <!-- *ngIf="loadedData && instance && instance.length > 0"  -->
           <table class="table app-summary" >
             <tr>
               <th class="grey">
                 Name
               </th>
-              <td>{{name}}</td>
+              <td>{{instance.name}}</td>
             </tr>
             <tr>
               <th class="grey">
-                App Instance Id
+                Instance Id
               </th>
-              <td>{{app_instance_id}}</td>
+              <td>{{instance.app_instance_id}}</td>
             </tr>
             <tr>
               <th class="grey">
-                App descriptor Id
+                Descriptor Id
               </th>
-              <td>{{app_descriptor_id}}</td> 
+              <td>{{instance.app_descriptor_id}}</td> 
             </tr>
             <tr>
               <th class="grey">
                 Description
               </th>
-              <td>{{description}}</td> 
-            </tr>
-            <tr>
-              <th class="grey">
-                Instance
-              </th>
-              <td>{{configuration}}</td>
+              <td>{{instance.description}}</td> 
             </tr>
             <tr>
               <th class="grey">
                 Configuration Options
               </th>
-              <td>{{configuration_options}}</td>
+              <td *ngFor="let option of objectToString(instance.configuration_options)">
+                {{option[0]}}: {{option[1]}}</td>
             </tr>
             <tr>
               <th class="grey">
-                Enviroment Variables
+                Environment Variables
               </th>
-              <td>{{enviroment_variables}}</td>
+              <td *ngFor="let variable of objectToString(instance.environment_variables)">
+                  {{variable[0]}}: {{variable[1]}}
+              </td>
+              <br>         
             </tr>
             <tr>
               <th class="grey">
                 Tags
               </th>
-              <td>{{labels}}</td>
+
+             
+              <td *ngFor="let label of objectToString(instance.labels)">
+                {{label[0]}}: {{label[1]}}</td>
             </tr>
+
+
+
             <tr>
               <th class="grey">
                 Rules
               </th>
-              <td>{{rules}}</td>
+              <td *ngFor="let rule of instance.rules">
+                <p *ngFor="let field of objectToString(rule)">
+                    {{field[0]}}: {{field[1]}}
+                </p>
+                <br>
+              </td>
             </tr>
+<!-- TODO -->
+            <tr>
+              <th class="grey">
+                Rules
+              </th>
+              <td *ngFor="let rule of instance.rules">
+                <p>
+                    ID: {{rule.rule_id}}
+                </p>
+                <br>
+              </td>
+            </tr>
+
+
+
             <tr>
               <th class="grey">
                 Groups
               </th>
-              <td>{{groups}}</td> 
+              <td>{{instance.groups}}</td> 
             </tr>
             <tr>
               <th class="grey">
                 Services
               </th>
-              <td>{{services}}</td>
+              <td>{{instance.services}}</td>
             </tr>
             <tr>
               <th class="grey">
-                Status_name
+                Status
               </th>
-              <td>{{status_name}}</td>
-            </tr>
-            <tr>
-              <th class="grey">
-                Tags
-              </th>
-              <td>{{tags}}</td>
+              <td>{{instance.status_name}}</td>
             </tr>
           </table>
-          <div 
+          <!-- <div  *ngIf="loadedData && instance.length === 0"
             class="no-apps d-flex justify-content-center align-items-center">
               No available applications detected
-          </div>
+          </div> -->
           <!-- Loader -->
-          <div class="nalej-loader-container" *ngIf="!loadedData">
+
+          <!-- <div class="nalej-loader-container" *ngIf="!loadedData">
             <div class="loader">
               <svg 
                 class="circular" 
@@ -157,7 +174,8 @@
                   stroke-miterlimit="10"/>
               </svg>
             </div>
-          </div>
+          </div> -->
+
         </div>
       <!-- Option button -->
       <div class="buttons d-flex flex-row justify-content-center">
