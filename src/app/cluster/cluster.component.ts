@@ -85,6 +85,7 @@ export class ClusterComponent implements OnInit {
   mockClusterChart: any;
   mockNodesChart: any;
   autoScale: any;
+  clusterPieChart: any;
 
   /**
    * Reference for the service that allows the user info component
@@ -139,8 +140,9 @@ export class ClusterComponent implements OnInit {
      }
      this.backend.getClusterDetail(this.organizationId, this.clusterId)
       .subscribe(cluster => {
-        this.fulfillDataModelGaps(cluster);
+        this.preventEmptyFields(cluster);
         this.clusterData = cluster;
+        this.clusterPieChart = this.generateSummaryChartData(this.clusterData.running_nodes, this.clusterData.total_nodes);
       });
   }
    /**
@@ -180,10 +182,14 @@ export class ClusterComponent implements OnInit {
    * @param labels Key-value map that contains the labels
    */
   labelsToString(labels: any) {
+    if (labels === '-') {
+      return ;
+    }
+
     return Object.entries(labels);
   }
 
-  fulfillDataModelGaps(cluster: Cluster) {
+  preventEmptyFields(cluster: Cluster) {
     if (!cluster.name) {
       cluster.name = '-';
     }
@@ -191,15 +197,31 @@ export class ClusterComponent implements OnInit {
       cluster.description = '-';
     }
     if (!cluster.total_nodes) {
-      cluster.total_nodes = '0';
+      cluster.total_nodes = 0;
     }
     if (!cluster.running_nodes) {
-      cluster.running_nodes = '0';
+      cluster.running_nodes = 0;
     }
     if (!cluster.labels) {
       cluster.labels = '-';
     }
   }
-
+  /**
+   * Generates the NGX-Chart required JSON object for pie chart rendering
+   * @param running Number of running nodes in a cluster
+   * @param total Number of total nodes in a cluster
+   * @returns anonym array with the required object structure for pie chart rendering
+   */
+  generateSummaryChartData(running: number, total: number): any[] {
+    return [
+      {
+        name: 'Running',
+        value: running
+      },
+      {
+        name: 'Stopped',
+        value: total - running
+      }];
+  }
 
 }

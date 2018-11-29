@@ -4,8 +4,8 @@
 export interface Cluster {
   name?: string;
   cluster_id?: string;
-  total_nodes?: string;
-  running_nodes?: string;
+  total_nodes?: number;
+  running_nodes?: number;
   description?: string;
   status_name?: string;
   cluster_type_name?: string;

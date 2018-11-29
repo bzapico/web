@@ -183,7 +183,7 @@ export class ApplicationsComponent implements OnInit {
         }
       });
       this.countRunning = running;
-      this.instancesPieChart = this.generateSummaryChartData(this.countRunning, instances.length - 1);
+      this.instancesPieChart = this.generateSummaryChartData(this.countRunning, instances.length);
     }
   }
 
@@ -213,6 +213,15 @@ export class ApplicationsComponent implements OnInit {
     return Object.entries(labels);
   }
 
-  fullfilDataModelGaps(instance: ApplicationInstance) {
+  preventEmptyFields(instance: ApplicationInstance) {
+    if (!instance.description) {
+      instance.description = '-';
+    }
+    if (!instance.labels) {
+      instance.labels = '-';
+    }
+    if (!instance.status_name) {
+      instance.status_name = '-';
+    }
   }
 }

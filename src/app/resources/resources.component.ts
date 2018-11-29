@@ -247,7 +247,7 @@ export class ResourcesComponent implements OnInit {
           this.loadedData = true;
         }
         this.clusters.forEach(cluster => {
-          this.fulfillDataModelGaps(cluster);
+          this.preventEmptyFields(cluster);
         });
 
         this.chunckedClusters = this.chunkClusterList(3, this.clusters);
@@ -255,7 +255,7 @@ export class ResourcesComponent implements OnInit {
     });
   }
 
-  fulfillDataModelGaps(cluster: Cluster) {
+  preventEmptyFields(cluster: Cluster) {
     if (!cluster.name) {
       cluster.name = '-';
     }
@@ -263,10 +263,10 @@ export class ResourcesComponent implements OnInit {
       cluster.description = '-';
     }
     if (!cluster.total_nodes) {
-      cluster.total_nodes = '0';
+      cluster.total_nodes = 0;
     }
     if (!cluster.running_nodes) {
-      cluster.running_nodes = '0';
+      cluster.running_nodes = 0;
     }
     if (!cluster.labels) {
       cluster.labels = '-';

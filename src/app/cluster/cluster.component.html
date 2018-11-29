@@ -37,7 +37,7 @@
               <div class="donut-chart">
                 <ngx-charts-pie-chart
                   [scheme]="colorScheme" 
-                  [results]="mockClusterChart" 
+                  [results]="clusterPieChart" 
                   [doughnut]= "doughnut"
                   [gradient]="gradient"
                   [explodeSlices]="false"
@@ -73,7 +73,7 @@
               <td *ngIf="clusterData.labels === '-'"> No </td>
               <td *ngIf="clusterData.labels !== '-'">
                 <button *ngFor="let label of labelsToString(clusterData.labels)" class="btn-sm btn-outline-primary" disabled>
-                  <span *ngIf="label[1]!== '-'">{{label[0]}}#{{label[1]}}</span>  
+                  <span *ngIf="label[1]!== '-'">{{label[0]}}: {{label[1]}}</span>  
                 </button>
               </td>
             </tr>
@@ -133,7 +133,8 @@
               <td>{{node.node_id}}</td>
               <td>{{node.ip}}</td>  
               <td class="text-lowercase">{{node.state_name}}</td>
-              <td>
+              <td *ngIf="node.labels === '-'"> no </td>
+              <td *ngIf="node.labels !== '-'">
                   <button *ngFor="let label of labelsToString(node.labels)" class="btn-sm btn-outline-primary" disabled>
                       {{label[0]}}: {{label[1]}}
                   </button>
