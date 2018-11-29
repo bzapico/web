@@ -210,6 +210,9 @@ export class ApplicationsComponent implements OnInit {
    * @param labels Key-value map that contains the labels
    */
   labelsToString(labels: any) {
+    if (!labels || labels === '-') {
+      return ;
+    }
     return Object.entries(labels);
   }
 

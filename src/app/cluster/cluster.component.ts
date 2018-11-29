@@ -182,7 +182,7 @@ export class ClusterComponent implements OnInit {
    * @param labels Key-value map that contains the labels
    */
   labelsToString(labels: any) {
-    if (labels === '-') {
+    if (!labels || labels === '-') {
       return ;
     }
 
