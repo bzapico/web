@@ -1,8 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppsInfoComponent } from './apps-info.component';
-import { BsModalRef, ButtonsModule } from 'ngx-bootstrap';
+import { BsModalRef, ButtonsModule, BsModalService } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NgxGraphModule } from '@swimlane/ngx-graph';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AppsInfoComponent', () => {
   let component: AppsInfoComponent;
@@ -14,8 +16,13 @@ describe('AppsInfoComponent', () => {
       imports: [
         ButtonsModule,
         HttpClientTestingModule,
+        BrowserAnimationsModule,
+        NgxGraphModule
       ],
-      providers: [ BsModalRef ]
+      providers: [
+        BsModalRef,
+        BsModalService
+      ]
     })
     .compileComponents();
   }));
