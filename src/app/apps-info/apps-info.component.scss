@@ -1,29 +1,33 @@
-#scrolltable { 
-    margin: 4em 0; 
-    height: 200px; 
-    overflow: scroll; 
-
-    background-color: aqua;
-    display: table;
+#scrolltable {
+    margin: 4em 0;
+    height: 200px;
+    // background-color: aqua;
+    overflow: scroll;
+    // display: table;
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(0, 0, 0, 0.5);
+      -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    }
 }
-.services-title{
+.services-title {
     font-size: .9em;
     color: #949494;
 }
+
 .app-summary {
     td {
         padding: 0.2em;
-
         font-size:  .9em;
         border: none;
-        text-align: right;
-    }
-    th {
-        padding: 0.2em;
-
-        border: none;
-        font-size:  .9em;
-        font-weight: 200;
+        width: 100%;
+        p {
+            margin-bottom: 0rem;
+        }
     }
     tr {
         border: none;
