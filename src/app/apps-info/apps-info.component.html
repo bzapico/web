@@ -9,7 +9,6 @@
         <div class="modal-body">
           <h3 class="services-title">Services</h3>
           <!-- Service Graph -->
-          <!-- Service Graph -->
           <div class="graph">
             <div  class="graph-click-fix"></div>
               <ngx-graph
@@ -25,9 +24,7 @@
                 [curve]="curve"
                 [enableZoom]="enableZoom">
               <ng-template #nodeTemplate let-node>
-                <svg:g 
-                  class="node"
-                >
+                <svg:g class="node">
                   <svg:rect 
                   [attr.width]="node.width" 
                   [attr.height]="node.height" 
@@ -55,7 +52,6 @@
           </div>
           <!-- Deployed app table -->
           <div id="scrolltable" class="scrollable">
-            <!-- *ngIf="loadedData && instance && instance.length > 0"  -->
             <table class="table app-summary">
               <tr>
                 <td class="grey">Name</td>
@@ -120,9 +116,13 @@
                   <div *ngFor="let rule of instance.rules">
                     <p>ID: {{rule.rule_id}}</p>
                     <p>Name: {{rule.name}}</p>
-                    <p class="bg-success"
-                    *ngFor="let service of instance.rules.auth_services">
-                    Service: {{service}}</p>
+                    <tr>
+                      <td> Service: </td>
+                      <td>
+                        <span class="d-block" *ngFor="let service of rule.auth_services">{{service}}</span> 
+                        <br>
+                      </td>
+                    </tr>
                   </div>
                 </td>
               </tr>
@@ -134,9 +134,14 @@
                 <td></td>
                 <td class="text-right">
                   <div *ngFor="let group of instance.groups">
-                    <p>ID: {{group.service_group_id}}</p>
                     <p>Name: {{group.name}}</p>
-                    <p>Services: {{group.service_instances}}</p>
+                    <tr>
+                      <td>Services:</td>
+                      <td>
+                        <span class="d-block" *ngFor="let service of group.service_instances">{{service}}</span> 
+                        <br>
+                      </td>
+                    </tr>
                   </div>
                 </td>
               </tr>
@@ -150,7 +155,8 @@
                   <div *ngFor="let service of instance.services">
                     <p>ID: {{service.service_id}}</p>
                     <p>Name: {{service.name}}</p>
-                    <p>Description: {{service.description}}</p>
+                    <p>Status: {{service.status_name}}</p>
+                    <br>
                   </div>
                 </td>
               </tr>
@@ -159,29 +165,6 @@
                 <td class="text-right">{{instance.status_name}}</td>
               </tr>
             </table>
-            <!-- <div  *ngIf="loadedData && instance.length === 0"
-              class="no-apps d-flex justify-content-center align-items-center">
-                No available applications detected
-            </div> -->
-            <!-- Loader -->
-  
-            <!-- <div class="nalej-loader-container" *ngIf="!loadedData">
-              <div class="loader">
-                <svg 
-                  class="circular" 
-                  viewBox="25 25 50 50">
-                  <circle 
-                    class="path" 
-                    cx="50" 
-                    cy="50" 
-                    r="20" 
-                    fill="none" 
-                    stroke-width="2" 
-                    stroke-miterlimit="10"/>
-                </svg>
-              </div>
-            </div> -->
-  
           </div>
           <!-- Option button -->
           <div class="buttons d-flex flex-row justify-content-center">
