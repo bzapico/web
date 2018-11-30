@@ -138,8 +138,9 @@ export class AppsInfoComponent implements OnInit {
  * @param object Key-value map that contains the object
  */
   objectToString(object: any) {
-
+    console.log(Object.entries(object));
     return Object.entries(object);
+
   }
 
 }

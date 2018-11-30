@@ -365,7 +365,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/app/applications/applications.component.ts:217</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/app/applications/applications.component.ts:211</a></div>
                             </td>
                         </tr>
 
@@ -458,7 +458,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/app/applications/applications.component.ts:233</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">src/app/applications/applications.component.ts:227</a></div>
                             </td>
                         </tr>
 
@@ -715,7 +715,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/app/applications/applications.component.ts:200</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/app/applications/applications.component.ts:194</a></div>
                             </td>
                         </tr>
 
@@ -2060,14 +2060,8 @@ export class ApplicationsComponent implements OnInit {
    */
   openAppsInfo(app) {
     const initialState &#x3D; {
-      organizatinoId: this.organizationId,
-      name: app.name,
-      id: app.id,
-      description: app.description,
-      type: app.type,
-      tags: app.tags,
-      configuration: app.configuration,
-      services: app.services
+      organizationId: this.organizationId,
+      instanceId: app.app_instance_id
     };
 
     this.modalRef &#x3D; this.modalService.show(AppsInfoComponent, { initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
