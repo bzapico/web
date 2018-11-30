@@ -7,164 +7,183 @@
         </div>
         <!-- Body -->
         <div class="modal-body">
-          <h3 class="services-title">Services</h3>
-          <!-- Service Graph -->
-          <div class="graph">
-            <div  class="graph-click-fix"></div>
+          <div *ngIf="loadedData">
+            <!-- Service Graph -->
+            <h3 class="services-title">Services</h3>
+            <div class="graph">
+              <div class="graph-click-fix"></div>
               <ngx-graph
-                class="chart-container"
-                [view]="view"
-                [legend]="showLegend"
-                [links]="graphData.links"
-                [nodes]="graphData.nodes"
-                [scheme]="colorScheme"
-                [orientation]="orientation"
-                [autoZoom]="autoZoom"
-                [autoCenter]="autoCenter"
-                [curve]="curve"
-                [enableZoom]="enableZoom">
-              <ng-template #nodeTemplate let-node>
-                <svg:g class="node">
-                  <svg:rect 
-                  [attr.width]="node.width" 
-                  [attr.height]="node.height" 
-                  [attr.fill]="node.options.color" 
-                  rx="14" 
-                  ry="14"/>
-                  <svg:text 
-                    alignment-baseline="central" 
-                    [attr.x]="10" 
-                    [attr.y]="node.height / 2">
-                    {{node.label}}
-                </svg:text>
-                </svg:g>
-              </ng-template>
-              <ng-template #linkTemplate let-link>
-                <svg:g class="edge">
-                  <svg:path
-                    class="line"
-                    d="M 0,30 h100"
-                    >
-                  </svg:path>
-                </svg:g>
-              </ng-template>
-            </ngx-graph>
-          </div>
-          <!-- Deployed app table -->
-          <div id="scrolltable" class="scrollable">
-            <table class="table app-summary">
-              <tr>
-                <td class="grey">Name</td>
-                <td class="text-right">{{instance.name}}</td>
-              </tr>
-              <tr>
-                <td class="grey">Instance Id</td>
-                <td class="text-right">{{instance.app_instance_id}}</td>
-              </tr>
-              <tr>
-                <td class="grey">Descriptor Id</td>
-                <td class="text-right">{{instance.app_descriptor_id}}</td>
-              </tr>
-              <tr>
-                <td class="grey">Description</td>
-                <td class="text-right">{{instance.description}}</td>
-              </tr>
-              <tr>
-                <td class="grey" colspan="2">Configuration Options</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td class="text-right">
-                  <p *ngFor="let option of objectToString(instance.configuration_options)">
-                    {{option[0]}}: {{option[1]}}
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td class="grey" colspan="2">Environment Variables</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td class="text-right">
-                  <p *ngFor="let variable of objectToString(instance.environment_variables)">
-                    {{variable[0]}}: {{variable[1]}}
-                  </p>
-                </td>
-                <br>
-              </tr>
-              <tr>
-                <td class="grey">Tags</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td class="text-right">
-                  <p *ngFor="let label of objectToString(instance.labels)">
-                    {{label[0]}}: {{label[1]}}
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td class="grey">Rules</td>              
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td class="text-right">
-                  <div *ngFor="let rule of instance.rules">
-                    <p>ID: {{rule.rule_id}}</p>
-                    <p>Name: {{rule.name}}</p>
-                    <tr>
-                      <td> Service: </td>
-                      <td>
-                        <span class="d-block" *ngFor="let service of rule.auth_services">{{service}}</span> 
-                        <br>
-                      </td>
-                    </tr>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="grey">Groups</td>              
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td class="text-right">
-                  <div *ngFor="let group of instance.groups">
-                    <p>Name: {{group.name}}</p>
-                    <tr>
-                      <td>Services:</td>
-                      <td>
-                        <span class="d-block" *ngFor="let service of group.service_instances">{{service}}</span> 
-                        <br>
-                      </td>
-                    </tr>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="grey">Services</td>              
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td class="text-right">
-                  <div *ngFor="let service of instance.services">
-                    <p>ID: {{service.service_id}}</p>
-                    <p>Name: {{service.name}}</p>
-                    <p>Status: {{service.status_name}}</p>
-                    <br>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="grey">Status</td>
-                <td class="text-right">{{instance.status_name}}</td>
-              </tr>
-            </table>
+                  class="chart-container"
+                  [view]="view"
+                  [legend]="showLegend"
+                  [links]="graphData.links"
+                  [nodes]="graphData.nodes"
+                  [scheme]="colorScheme"
+                  [orientation]="orientation"
+                  [autoZoom]="autoZoom"
+                  [autoCenter]="autoCenter"
+                  [curve]="curve"
+                  [enableZoom]="enableZoom">
+                <ng-template #nodeTemplate let-node>
+                  <svg:g class="node">
+                    <svg:rect 
+                    [attr.width]="node.width" 
+                    [attr.height]="node.height" 
+                    [attr.fill]="node.options.color" 
+                    rx="14" 
+                    ry="14"/>
+                    <svg:text 
+                      alignment-baseline="central" 
+                      [attr.x]="10" 
+                      [attr.y]="node.height / 2">
+                      {{node.label}}
+                  </svg:text>
+                  </svg:g>
+                </ng-template>
+                <ng-template #linkTemplate let-link>
+                  <svg:g class="edge">
+                    <svg:path
+                      class="line"
+                      d="M 0,30 h100"
+                      >
+                    </svg:path>
+                  </svg:g>
+                </ng-template>
+              </ngx-graph>
+            </div>
+            <!-- Deployed app table -->
+            <div id="scrolltable" class="scrollable">
+              <table class="table app-summary">
+                <tr>
+                  <td class="grey">Name</td>
+                  <td class="text-right">{{instance.name}}</td>
+                </tr>
+                <tr>
+                  <td class="grey">Instance Id</td>
+                  <td class="text-right">{{instance.app_instance_id}}</td>
+                </tr>
+                <tr>
+                  <td class="grey">Descriptor Id</td>
+                  <td class="text-right">{{instance.app_descriptor_id}}</td>
+                </tr>
+                <tr>
+                  <td class="grey">Description</td>
+                  <td class="text-right">{{instance.description}}</td>
+                </tr>
+                <tr>
+                  <td class="grey" colspan="2">Configuration Options</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="text-right">
+                    <p *ngFor="let option of objectToString(instance.configuration_options)">
+                      {{option[0]}}: {{option[1]}}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="grey" colspan="2">Environment Variables</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="text-right">
+                    <p *ngFor="let variable of objectToString(instance.environment_variables)">
+                      {{variable[0]}}: {{variable[1]}}
+                    </p>
+                  </td>
+                  <br>
+                </tr>
+                <tr>
+                  <td class="grey">Tags</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="text-right">
+                    <p *ngFor="let label of objectToString(instance.labels)">
+                      {{label[0]}}: {{label[1]}}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="grey">Rules</td>              
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="text-right">
+                    <div *ngFor="let rule of instance.rules">
+                      <p>ID: {{rule.rule_id}}</p>
+                      <p>Name: {{rule.name}}</p>
+                      <tr>
+                        <td> Service: </td>
+                        <td>
+                          <span class="d-block" *ngFor="let service of rule.auth_services">{{service}}</span> 
+                          <br>
+                        </td>
+                      </tr>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="grey">Groups</td>              
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="text-right">
+                    <div *ngFor="let group of instance.groups">
+                      <p>Name: {{group.name}}</p>
+                      <tr>
+                        <td>Services:</td>
+                        <td>
+                          <span class="d-block" *ngFor="let service of group.service_instances">{{service}}</span> 
+                          <br>
+                        </td>
+                      </tr>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="grey">Services</td>              
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="text-right">
+                    <div *ngFor="let service of instance.services">
+                      <p>ID: {{service.service_id}}</p>
+                      <p>Name: {{service.name}}</p>
+                      <p>Status: {{service.status_name}}</p>
+                      <br>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="grey">Status</td>
+                  <td class="text-right">{{instance.status_name}}</td>
+                </tr>
+              </table>
+            </div>
+          </div> 
+          <!-- Loader -->           
+          <div class="nalej-loader-container" *ngIf="!loadedData">
+            <div class="loader">
+              <svg 
+                class="circular" 
+                viewBox="25 25 50 50">
+                <circle 
+                  class="path" 
+                  cx="50" 
+                  cy="50" 
+                  r="20" 
+                  fill="none" 
+                  stroke-width="2" 
+                  stroke-miterlimit="10"/>
+              </svg>
+            </div>
           </div>
           <!-- Option button -->
           <div class="buttons d-flex flex-row justify-content-center">

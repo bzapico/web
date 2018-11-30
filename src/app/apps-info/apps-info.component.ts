@@ -78,7 +78,7 @@ export class AppsInfoComponent implements OnInit {
     }
 
     // Default initialization
-    this.loadedData = false;
+    this.loadedData = true;
     this.title = 'App info';
 
     // Graph initialization
