@@ -5,6 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import * as shape from 'd3-shape';
+import { mockAppsInstancesList } from '../utils/mocks';
 
 @Component({
   selector: 'app-apps-info',
@@ -97,6 +98,8 @@ export class AppsInfoComponent implements OnInit {
       nodes: [],
       links: []
     };
+    this.instance = mockAppsInstancesList
+    ; // Initialization to avoid null in view
 
   }
 
@@ -104,6 +107,7 @@ export class AppsInfoComponent implements OnInit {
      if (this.organizationId !== null) {
       this.backend.getAppInstance(this.organizationId,  this.instanceId)
       .subscribe(instance => {
+        console.log(instance);
           this.instance = instance;
           this.toGraphData(instance);
       });
@@ -138,9 +142,10 @@ export class AppsInfoComponent implements OnInit {
  * @param object Key-value map that contains the object
  */
   objectToString(object: any) {
-    console.log(Object.entries(object));
+    if (!object) {
+      return['test1', 'test2'];
+    }
     return Object.entries(object);
-
   }
 
 }
