@@ -69,11 +69,11 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="grey">Instance Id</td>
+                  <td class="grey">Instance id</td>
                   <td class="text-right">{{instance.app_instance_id}}</td>
                 </tr>
                 <tr>
-                  <td class="grey">Descriptor Id</td>
+                  <td class="grey">Descriptor id</td>
                   <td class="text-right">{{instance.app_descriptor_id}}</td>
                 </tr>
                 <tr>
@@ -83,7 +83,7 @@
               </table>
               <table class="table app-summary">
                 <tr>
-                  <td class="grey" colspan="2">Configuration Options</td>
+                  <td class="grey" colspan="2">Configuration options</td>
                   <td></td>
                 </tr>
                 <tr *ngFor="let option of objectToString(instance.configuration_options)">
@@ -91,7 +91,7 @@
                   <td class="text-right">{{option[1]}}</td>
                 </tr>
                 <tr>
-                  <td class="grey" colspan="2">Environment Variables</td>
+                  <td class="grey" colspan="2">Environment variables</td>
                   <td></td>
                 </tr>
                 <tr *ngFor="let variable of objectToString(instance.environment_variables)">
@@ -120,7 +120,7 @@
                       <td class="text-right">{{rule.name}}</td>
                     </tr>
                     <tr>
-                      <td class="text-right">ID</td>
+                      <td class="text-right">Id</td>
                       <td class="text-right">{{rule.rule_id}}</td>
                     </tr>
                     <tr>
@@ -146,7 +146,7 @@
                       <td class="text-right">{{group.name}}</td>
                     </tr>
                     <tr>
-                      <td class="text-right">Service</td>
+                      <td class="text-right">Services</td>
                       <div *ngFor="let group of instance.groups">
                         <td class="d-block text-right" *ngFor="let service of group.service_instances">{{service}}</td>
                       </div>
@@ -168,7 +168,7 @@
                       <td class="text-right">{{service.name}}</td>
                     </tr>
                     <tr>
-                      <td class="text-right">ID</td>
+                      <td class="text-right">Id</td>
                       <td class="text-right">{{service.service_id}}</td>
                     </tr>
                     <tr>
