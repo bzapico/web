@@ -107,7 +107,6 @@ export class AppsInfoComponent implements OnInit {
      if (this.organizationId !== null) {
       this.backend.getAppInstance(this.organizationId,  this.instanceId)
       .subscribe(instance => {
-        console.log(instance);
           this.instance = instance;
           this.toGraphData(instance);
           if (!this.loadedData) {
