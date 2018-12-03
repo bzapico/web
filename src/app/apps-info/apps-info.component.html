@@ -59,6 +59,10 @@
                   <td class="text-right">{{instance.name}}</td>
                 </tr>
                 <tr>
+                    <td class="grey">Description</td>
+                    <td class="text-right">{{instance.description}}</td>
+                  </tr>
+                <tr>
                   <td class="grey">Status</td>
                   <td 
                     class="text-right" 
@@ -76,12 +80,16 @@
                   <td class="grey">Descriptor id</td>
                   <td class="text-right">{{instance.app_descriptor_id}}</td>
                 </tr>
-                <tr>
-                  <td class="grey">Description</td>
-                  <td class="text-right">{{instance.description}}</td>
-                </tr>
               </table>
               <table class="table app-summary">
+                <tr>
+                  <td class="grey">Labels</td>
+                  <td></td>
+                </tr>
+                <tr *ngFor="let label of objectToString(instance.labels)">
+                  <td class="text-right">{{label[0]}}</td>
+                  <td class="text-right">{{label[1]}}</td>
+                </tr>
                 <tr>
                   <td class="grey" colspan="2">Configuration options</td>
                   <td></td>
@@ -98,13 +106,35 @@
                   <td class="text-right">{{variable[0]}}</td>
                   <td class="text-right">{{variable[1]}}</td>
                 </tr>
+              </table>
+              <table class="table app-summary">
                 <tr>
-                  <td class="grey">Tags</td>
+                  <td class="grey">Services</td>             
                   <td></td>
                 </tr>
-                <tr *ngFor="let label of objectToString(instance.labels)">
-                  <td class="text-right">{{label[0]}}</td>
-                  <td class="text-right">{{label[1]}}</td>
+                <tr colspan="2">
+                  <td></td>
+                  <div *ngFor="let service of instance.services">
+                    <tr>
+                      <td class="text-right">Name</td>
+                      <td class="text-right">{{service.name}}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right">Id</td>
+                      <td class="text-right">{{service.service_id}}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right">Status</td>
+                      <td 
+                        class="text-right" 
+                        [ngClass]= 
+                        "{'blue':instance.status_name === 'Running',
+                        'red':instance.status_namee === 'Error'}"> 
+                        {{service.status_name}}
+                      </td>
+                    </tr>
+                    <br>
+                  </div>
                 </tr>
               </table>
               <table class="table app-summary">
@@ -155,36 +185,7 @@
                   </div>
                 </tr>
               </table>     
-              <table class="table app-summary">
-                <tr>
-                  <td class="grey">Services</td>             
-                  <td></td>
-                </tr>
-                <tr colspan="2">
-                  <td></td>
-                  <div *ngFor="let service of instance.services">
-                    <tr>
-                      <td class="text-right">Name</td>
-                      <td class="text-right">{{service.name}}</td>
-                    </tr>
-                    <tr>
-                      <td class="text-right">Id</td>
-                      <td class="text-right">{{service.service_id}}</td>
-                    </tr>
-                    <tr>
-                      <td class="text-right">Status</td>
-                      <td 
-                        class="text-right" 
-                        [ngClass]= 
-                        "{'blue':instance.status_name === 'Running',
-                        'red':instance.status_namee === 'Error'}"> 
-                        {{service.status_name}}
-                      </td>
-                    </tr>
-                    <br>
-                  </div>
-                </tr>
-              </table>
+
             </div>
           </div> 
           <!-- Loader -->           
