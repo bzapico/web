@@ -59,6 +59,12 @@
                   <td class="text-right">{{instance.name}}</td>
                 </tr>
                 <tr>
+                  <td class="grey">Status</td>
+                  <td class="text-right" [ngClass]=
+                  "{'blue':instance.status_name === 'Running',
+                  'red':instance.status_namee === 'Error'}">{{instance.status_name}}</td>
+                </tr>
+                <tr>
                   <td class="grey">Instance Id</td>
                   <td class="text-right">{{instance.app_instance_id}}</td>
                 </tr>
@@ -141,10 +147,6 @@
                 <tr *ngFor="let service of instance.services">
                   <td class="text-right">Status</td>
                   <td class="text-right"> {{service.status_name}}
-                </tr>
-                <tr>
-                  <td class="grey">Status</td>
-                  <td class="text-right">{{instance.status_name}}</td>
                 </tr>
               </table>
             </div>
