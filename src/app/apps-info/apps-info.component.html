@@ -60,9 +60,13 @@
                 </tr>
                 <tr>
                   <td class="grey">Status</td>
-                  <td class="text-right" [ngClass]=
-                  "{'blue':instance.status_name === 'Running',
-                  'red':instance.status_namee === 'Error'}">{{instance.status_name}}</td>
+                  <td 
+                    class="text-right" 
+                    [ngClass]= 
+                    "{'blue':instance.status_name === 'Running',
+                    'red':instance.status_namee === 'Error'}">
+                    {{instance.status_name}}
+                  </td>
                 </tr>
                 <tr>
                   <td class="grey">Instance Id</td>
@@ -76,6 +80,8 @@
                   <td class="grey">Description</td>
                   <td class="text-right">{{instance.description}}</td>
                 </tr>
+              </table>
+              <table class="table app-summary">
                 <tr>
                   <td class="grey" colspan="2">Configuration Options</td>
                   <td></td>
@@ -100,53 +106,83 @@
                   <td class="text-right">{{label[0]}}</td>
                   <td class="text-right">{{label[1]}}</td>
                 </tr>
+              </table>
+              <table class="table app-summary">
                 <tr>
-                  <td class="grey">Rules</td>              
+                  <td class="grey">Rules</td>             
                   <td></td>
                 </tr>
-                <tr *ngFor="let rule of instance.rules">
-                  <td class="text-right">ID</td>
-                  <td class="text-right">{{rule.rule_id}}</td>
-                </tr>
-                <tr *ngFor="let rule of instance.rules">
-                  <td class="text-right">Name</td>
-                  <td class="text-right">{{rule.name}}</td>
-                </tr>
-                <tr>
-                  <td class="text-right">Service</td>
+                <tr colspan="2">
+                  <td></td>
                   <div *ngFor="let rule of instance.rules">
-                    <td class="d-block text-right" *ngFor="let service of rule.auth_services">{{service}}</td>
+                    <tr>
+                      <td class="text-right">Name</td>
+                      <td class="text-right">{{rule.name}}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right">ID</td>
+                      <td class="text-right">{{rule.rule_id}}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right">Relations</td>
+                      <div *ngFor="let rule of instance.rules">
+                        <td class="d-block text-right" *ngFor="let relation of rule.auth_services">{{relation}}</td>
+                      </div>
+                    </tr>
+                    <br>
                   </div>
                 </tr>
+              </table>
+              <table class="table app-summary">
                 <tr>
-                  <td class="grey">Groups</td>              
+                  <td class="grey">Groups</td>     
                   <td></td>
                 </tr>
-                <tr *ngFor="let group of instance.groups">
-                  <td class="text-right">Name</td>
-                  <td class="text-right">{{group.name}}</td>
-                </tr>
-                <tr>
-                  <td class="text-right">Service</td>
+                <tr colspan="2">
+                  <td></td>
                   <div *ngFor="let group of instance.groups">
-                    <td class="d-block text-right" *ngFor="let service of group.service_instances">{{service}}</td>
+                    <tr>
+                      <td class="text-right">Name</td>
+                      <td class="text-right">{{group.name}}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right">Service</td>
+                      <div *ngFor="let group of instance.groups">
+                        <td class="d-block text-right" *ngFor="let service of group.service_instances">{{service}}</td>
+                      </div>
+                    </tr>
+                    <br>
                   </div>
                 </tr>
+              </table>     
+              <table class="table app-summary">
                 <tr>
-                  <td class="grey">Services</td>              
+                  <td class="grey">Services</td>             
                   <td></td>
                 </tr>
-                <tr *ngFor="let service of instance.services">
-                  <td class="text-right">ID</td>
-                  <td class="text-right">{{service.service_id}}
-                </tr>
-                <tr *ngFor="let service of instance.services">
-                  <td class="text-right">Name</td>
-                  <td class="text-right">{{service.name}}
-                </tr>
-                <tr *ngFor="let service of instance.services">
-                  <td class="text-right">Status</td>
-                  <td class="text-right"> {{service.status_name}}
+                <tr colspan="2">
+                  <td></td>
+                  <div *ngFor="let service of instance.services">
+                    <tr>
+                      <td class="text-right">Name</td>
+                      <td class="text-right">{{service.name}}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right">ID</td>
+                      <td class="text-right">{{service.service_id}}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right">Status</td>
+                      <td 
+                        class="text-right" 
+                        [ngClass]= 
+                        "{'blue':instance.status_name === 'Running',
+                        'red':instance.status_namee === 'Error'}"> 
+                        {{service.status_name}}
+                      </td>
+                    </tr>
+                    <br>
+                  </div>
                 </tr>
               </table>
             </div>

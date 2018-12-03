@@ -20,11 +20,12 @@
 }
 
 .app-summary {
+    margin-bottom: 0;
     td {
         padding: 0.2em;
         font-size:  .9em;
         border: none;
-        width: 100%;
+        // width: 100%;
         p {
             margin-bottom: 0rem;
         }
