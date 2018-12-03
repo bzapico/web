@@ -74,92 +74,73 @@
                   <td class="grey" colspan="2">Configuration Options</td>
                   <td></td>
                 </tr>
-                <tr>
-                  <td></td>
-                  <td class="text-right">
-                    <p *ngFor="let option of objectToString(instance.configuration_options)">
-                      {{option[0]}}: {{option[1]}}
-                    </p>
-                  </td>
+                <tr *ngFor="let option of objectToString(instance.configuration_options)">
+                  <td class="text-right">{{option[0]}}</td>
+                  <td class="text-right">{{option[1]}}</td>
                 </tr>
                 <tr>
                   <td class="grey" colspan="2">Environment Variables</td>
                   <td></td>
                 </tr>
-                <tr>
-                  <td></td>
-                  <td class="text-right">
-                    <p *ngFor="let variable of objectToString(instance.environment_variables)">
-                      {{variable[0]}}: {{variable[1]}}
-                    </p>
-                  </td>
-                  <br>
+                <tr *ngFor="let variable of objectToString(instance.environment_variables)">
+                  <td class="text-right">{{variable[0]}}</td>
+                  <td class="text-right">{{variable[1]}}</td>
                 </tr>
                 <tr>
                   <td class="grey">Tags</td>
                   <td></td>
                 </tr>
-                <tr>
-                  <td></td>
-                  <td class="text-right">
-                    <p *ngFor="let label of objectToString(instance.labels)">
-                      {{label[0]}}: {{label[1]}}
-                    </p>
-                  </td>
+                <tr *ngFor="let label of objectToString(instance.labels)">
+                  <td class="text-right">{{label[0]}}</td>
+                  <td class="text-right">{{label[1]}}</td>
                 </tr>
                 <tr>
                   <td class="grey">Rules</td>              
                   <td></td>
                 </tr>
+                <tr *ngFor="let rule of instance.rules">
+                  <td class="text-right">ID</td>
+                  <td class="text-right">{{rule.rule_id}}</td>
+                </tr>
+                <tr *ngFor="let rule of instance.rules">
+                  <td class="text-right">Name</td>
+                  <td class="text-right">{{rule.name}}</td>
+                </tr>
                 <tr>
-                  <td></td>
-                  <td class="text-right">
-                    <div *ngFor="let rule of instance.rules">
-                      <p>ID: {{rule.rule_id}}</p>
-                      <p>Name: {{rule.name}}</p>
-                      <tr>
-                        <td> Service: </td>
-                        <td>
-                          <span class="d-block" *ngFor="let service of rule.auth_services">{{service}}</span> 
-                          <br>
-                        </td>
-                      </tr>
-                    </div>
-                  </td>
+                  <td class="text-right">Service</td>
+                  <div *ngFor="let rule of instance.rules">
+                    <td class="d-block text-right" *ngFor="let service of rule.auth_services">{{service}}</td>
+                  </div>
                 </tr>
                 <tr>
                   <td class="grey">Groups</td>              
                   <td></td>
                 </tr>
+                <tr *ngFor="let group of instance.groups">
+                  <td class="text-right">Name</td>
+                  <td class="text-right">{{group.name}}</td>
+                </tr>
                 <tr>
-                  <td></td>
-                  <td class="text-right">
-                    <div *ngFor="let group of instance.groups">
-                      <p>Name: {{group.name}}</p>
-                      <tr>
-                        <td>Services:</td>
-                        <td>
-                          <span class="d-block" *ngFor="let service of group.service_instances">{{service}}</span> 
-                          <br>
-                        </td>
-                      </tr>
-                    </div>
-                  </td>
+                  <td class="text-right">Service</td>
+                  <div *ngFor="let group of instance.groups">
+                    <td class="d-block text-right" *ngFor="let service of group.service_instances">{{service}}</td>
+                  </div>
                 </tr>
                 <tr>
                   <td class="grey">Services</td>              
                   <td></td>
                 </tr>
-                <tr>
-                  <td></td>
-                  <td class="text-right">
-                    <div *ngFor="let service of instance.services">
-                      <p>ID: {{service.service_id}}</p>
-                      <p>Name: {{service.name}}</p>
-                      <p>Status: {{service.status_name}}</p>
-                      <br>
-                    </div>
-                  </td>
+                <tr *ngFor="let service of instance.services">
+                  <td class="text-right">ID</td>
+                  <td class="text-right">{{service.service_id}}
+                </tr>
+                <tr *ngFor="let service of instance.services">
+                  <td class="text-right">Name</td>
+                  <td class="text-right">{{service.name}}
+                </tr>
+                <tr *ngFor="let service of instance.services">
+                  <td class="text-right">Status</td>
+                  <td class="text-right"> {{service.status_name}}
                 </tr>
                 <tr>
                   <td class="grey">Status</td>
