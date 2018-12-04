@@ -6,6 +6,8 @@ import { NotificationsService } from '../services/notifications.service';
 import { mockAppChart, mockAppPieChart } from '../utils/mocks';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { ApplicationInstance } from '../definitions/interfaces/application-instance';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { AppsInfoComponent } from '../apps-info/apps-info.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -64,6 +66,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   appsChart: any;
 
   /**
+   * Reference for the service that allows the user info component
+   */
+  modalRef: BsModalRef;
+
+  /**
    * Pie Chart options
    */
   gradient = true;
@@ -109,6 +116,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   autoScale: any;
 
   constructor(
+    private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
@@ -144,7 +152,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           this.refreshIntervalRef = setInterval(() => {
             this.updateAppInstances(this.organizationId);
             this.updateRegisteredInstances(this.organizationId);
-          }, 10000); // Refresh each 60 seconds
+          }, 60000); // Refresh each 60 seconds
       }
   }
 
@@ -186,6 +194,20 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Opens the modal view that holds the apps info component
+   */
+  openAppsInfo(app) {
+    const initialState = {
+      organizationId: this.organizationId,
+      instanceId: app.app_instance_id
+    };
+
+    this.modalRef = this.modalService.show(AppsInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    // this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
+  }
+
+  /**
    * Updates pie chart status
    * @param instances Array of instance objects
    */
@@ -202,6 +224,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Updates timeline chart
+   * @param instances Instances array
+   */
   updateRunningAppsLineChart(instances) {
     let runningAppsCount = 0;
     instances.forEach(instance => {
@@ -253,6 +279,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     return Object.entries(labels);
   }
 
+  /**
+   * Fulfill nulls to avoid data binding failure
+   * @param instance Application instance
+   */
   preventEmptyFields(instance: ApplicationInstance) {
     if (!instance.description) {
       instance.description = '-';

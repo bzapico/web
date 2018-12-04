@@ -75,7 +75,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Holds the reference of the interval that refreshes the lists
    */
-  refreshIntervalRef:  NodeJS.Timer;
+  refreshIntervalRef: any;
 
   /**
    * Pie Chart options
@@ -114,6 +114,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       value: 0
     }
   ];
+
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
@@ -215,6 +216,10 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Updates nodes timeline with new data
+   * @param runningNodesCount New running nodes count
+   */
   updateNodesStatusLineChart(runningNodesCount) {
     const now = new Date(Date.now());
     const entry = {
@@ -245,8 +250,9 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       {
         name: 'Stopped',
         value: total - running
-      }];
-    }
+      }
+    ];
+  }
 
   /**
    * Splits the cluster list into chunks (number of elements defined by the chunks parameter)
@@ -292,6 +298,10 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Fulfill gaps in cluster object to avoid data binding failure
+   * @param cluster Cluster object
+   */
   preventEmptyFields(cluster: Cluster) {
     if (!cluster.name) {
       cluster.name = '-';

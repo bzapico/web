@@ -35,6 +35,7 @@ export class MockupBackendService implements Backend {
       map(response => response.json())
     );
   }
+
   /**
    * Simulates the logout request
    */
@@ -220,6 +221,7 @@ export class MockupBackendService implements Backend {
       map(response => response.json())
     );
   }
+
   /**
    * Simulates to get registered apps list
    * @param organizationId Organization identifier
@@ -233,6 +235,7 @@ export class MockupBackendService implements Backend {
       map(response => response.json())
     );
   }
+
   getAppInstance (organizationId: string, instanceId: string) {
     const index = mockAppsInstancesList.map(x => x.app_instance_id).indexOf(instanceId);
     return of (new Response(new ResponseOptions({

@@ -269,12 +269,35 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable&lt;boolean&gt; | Promise&lt;boolean&gt; | boolean {
     const jwtToken &#x3D; JSON.parse(localStorage.getItem(LocalStorageKeys.jwt)) || null;
+    const jwtData &#x3D; JSON.parse(localStorage.getItem(LocalStorageKeys.jwtData)) || null;
+    let role;
+    if (jwtData) {
+      role &#x3D; jwtData.role;
+    }
     if (jwtToken &#x3D;&#x3D;&#x3D; null
       // || this.jwtHelper.isTokenExpired(jwtToken) unable to generate a mockup jwt with the right expiracy date
       ) {
       this.router.navigate([&#x27;login&#x27;]);
       return false;
     }
+
+    if (
+      role &amp;&amp;
+      role &#x3D;&#x3D;&#x3D; &#x27;Developer&#x27; &amp;&amp; !(
+      next.routeConfig.path &#x3D;&#x3D;&#x3D; &#x27;applications&#x27; ||
+      next.routeConfig.path &#x3D;&#x3D;&#x3D; &#x27;&#x27;)
+    ) {
+      alert(&#x27;Unauthorized&#x27;);
+      return false;
+    }
+    // if (
+    //   role &#x3D;&#x3D;&#x3D; &#x27;Operator&#x27; &amp;&amp; !(
+    //   next.routeConfig.path &#x3D;&#x3D;&#x3D; &#x27;resources&#x27; ||
+    //   next.routeConfig.path &#x3D;&#x3D;&#x3D; &#x27;&#x27;)
+    // ) {
+    //   alert(&#x27;Unauthorized&#x27;);
+    //   return false;
+    // }
 
     return true;
   }
