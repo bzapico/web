@@ -223,5 +223,32 @@ export class ClusterComponent implements OnInit {
         value: total - running
       }];
   }
+    /**
+   * Checks if the cluster status requires an special css class
+   * @param status Cluster status name
+   * @param className CSS class name
+   */
+  classStatusCheck(status: string, className: string): boolean {
+    switch (status) {
+      case 'Running': {
+        if (className === 'Running') {
+          return true;
+        }
+        break;
+      }
+      case 'Error': {
+        if (className === 'Error') {
+          return true;
+        }
+        break;
+      }
+     default: {
+        if (className === 'Process') {
+          return true;
+        }
+        return false;
+      }
+    }
+  }
 
 }

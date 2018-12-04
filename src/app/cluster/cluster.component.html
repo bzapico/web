@@ -142,8 +142,9 @@
               <td 
               class="text-lowercase"
               [ngClass]=
-              "{'status-dot':node.status_name === 'RUNNING',
-              'status-dot-error':node.status_name === 'ERROR'}">
+              "{'status-dot':classStatusCheck(node.status_name, 'Running'),
+              'status-dot-error':classStatusCheck(node.status_name, 'Error'),
+              'status-dot-process':classStatusCheck(node.status_name, 'Process')}">
               {{node.status_name}}
             </td>
             </tr>

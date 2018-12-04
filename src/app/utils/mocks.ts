@@ -668,60 +668,54 @@ export const mockRegisteredAppsList = [
  */
 export const mockNodeList = [
     {
-        id: '0800200c9a69',
+        node_id: '0800200c9a69',
         ip: '100.022.0129',
         credentials: 'Private',
-        tags: 'ny, edge',
-        status: 'Running',
+        labels: {lab1:  'lab1'},
+        status_name: 'Running',
+        state_name: 'Unregistered',
+
     },
     {
-        id: '0800200c9a68',
+        node_id: '0800200c9a68',
         ip: '100.022.0128',
         credentials: 'Private',
-        tags: 'ny, edge',
-        status: 'Running',
-    },
-    {
-        id: '0800200c9a67',
+        labels: {lab8:  'lab8'},
+        status_name: 'Running',
+        state_name: 'Unregistered',
+
+    },    {
+        node_id: '0800200c9a67',
         ip: '100.022.0127',
         credentials: 'Private',
-        tags: 'ny, edge',
-        status: 'Running',
-    },
-    {
-        id: '0800200c9a66',
+        labels: {lab1:  'lab1'},
+        status_name: 'Running',
+        state_name: 'Unregistered',
+
+    },    {
+        node_id: '0800200c9a66',
         ip: '100.022.0126',
-        credentials: 'Public',
-        tags: 'ny, edge',
-        status: 'Error',
-    },
-    {
-        id: '0800200c9a65',
+        credentials: 'Private',
+        labels: {lab1:  'lab1'},
+        status_name: 'Running',
+        state_name: 'Unregistered',
+
+    },    {
+        node_id: '0800200c9a65',
         ip: '100.022.0125',
         credentials: 'Private',
-        tags: 'ny, edge',
-        status: 'Running',
-    },
-    {
-        id: '0800200c9a65',
-        ip: '100.022.0125',
+        labels: {lab1:  'lab1'},
+        status_name: 'Running',
+        state_name: 'Unregistered',
+
+    },    {
+        node_id: '0800200c9a64',
+        ip: '100.022.0123',
         credentials: 'Private',
-        tags: 'ny, edge',
-        status: 'Error',
-    },
-    {
-        id: '0800200c9a65',
-        ip: '100.022.0125',
-        credentials: 'Private',
-        tags: 'ny, edge',
-        status: 'Running',
-    },
-    {
-        id: '0800200c9a65',
-        ip: '100.022.0125',
-        credentials: 'Private',
-        tags: 'ny, edge',
-        status: 'Running',
+        labels: {lab1:  'lab1'},
+        status_name: 'Running',
+        state_name: 'Unregistered',
+
     }
 ];
 

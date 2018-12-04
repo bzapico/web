@@ -291,7 +291,7 @@ export class ResourcesComponent implements OnInit {
         }
         break;
       }
-      default: {
+     default: {
         if (className === 'Process') {
           return true;
         }
