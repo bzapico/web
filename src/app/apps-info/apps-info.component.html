@@ -51,143 +51,109 @@
                 </ng-template>
               </ngx-graph>
             </div>
-            <!-- Deployed app table -->
-            <div id="scrolltable" class="scrollable">
-              <table class="table app-summary">
-                <tr>
-                  <td class="grey">Name</td>
-                  <td class="text-right">{{instance.name}}</td>
-                </tr>
-                <tr>
-                    <td class="grey">Description</td>
-                    <td class="text-right">{{instance.description}}</td>
-                  </tr>
-                <tr>
-                  <td class="grey">Status</td>
-                  <td 
-                    class="text-right" 
-                    [ngClass]= 
-                    "{'blue':instance.status_name === 'Running',
-                    'red':instance.status_namee === 'Error'}">
-                    {{instance.status_name}}
-                  </td>
-                </tr>
-                <tr>
-                  <td class="grey">Instance id</td>
-                  <td class="text-right">{{instance.app_instance_id}}</td>
-                </tr>
-                <tr>
-                  <td class="grey">Descriptor id</td>
-                  <td class="text-right">{{instance.app_descriptor_id}}</td>
-                </tr>
-              </table>
-              <table class="table app-summary">
-                <tr>
-                  <td class="grey">Labels</td>
-                  <td></td>
-                </tr>
-                <tr *ngFor="let label of objectToString(instance.labels)">
-                  <td class="text-right">{{label[0]}}</td>
-                  <td class="text-right">{{label[1]}}</td>
-                </tr>
-                <tr>
-                  <td class="grey" colspan="2">Configuration options</td>
-                  <td></td>
-                </tr>
-                <tr *ngFor="let option of objectToString(instance.configuration_options)">
-                  <td class="text-right">{{option[0]}}</td>
-                  <td class="text-right">{{option[1]}}</td>
-                </tr>
-                <tr>
-                  <td class="grey" colspan="2">Environment variables</td>
-                  <td></td>
-                </tr>
-                <tr *ngFor="let variable of objectToString(instance.environment_variables)">
-                  <td class="text-right">{{variable[0]}}</td>
-                  <td class="text-right">{{variable[1]}}</td>
-                </tr>
-              </table>
-              <table class="table app-summary">
-                <tr>
-                  <td class="grey">Services</td>             
-                  <td></td>
-                </tr>
-                <tr colspan="2">
-                  <td></td>
-                  <div *ngFor="let service of instance.services">
-                    <tr>
-                      <td class="text-right">Name</td>
-                      <td class="text-right">{{service.name}}</td>
-                    </tr>
-                    <tr>
-                      <td class="text-right">Id</td>
-                      <td class="text-right">{{service.service_id}}</td>
-                    </tr>
-                    <tr>
-                      <td class="text-right">Status</td>
-                      <td 
-                        class="text-right" 
-                        [ngClass]= 
-                        "{'blue':instance.status_name === 'Running',
-                        'red':instance.status_namee === 'Error'}"> 
-                        {{service.status_name}}
-                      </td>
-                    </tr>
-                    <br>
+            <!-- Deployed app info grid -->
+            <div id="scroll-app-info">
+              <div class="row">
+                <div class="col-sm grey">Name</div>
+                <div class="col-sm text-right">{{instance.name}}</div>
+              </div>
+              <div class="row">
+                <div class="col-sm grey">Status</div>
+                <div class="col-sm text-right" [ngClass]= 
+                  "{'blue':instance.status_name === 'Running',
+                  'red':instance.status_namee === 'Error'}">{{instance.status_name}}
                   </div>
-                </tr>
-              </table>
-              <table class="table app-summary">
-                <tr>
-                  <td class="grey">Rules</td>             
-                  <td></td>
-                </tr>
-                <tr colspan="2">
-                  <td></td>
-                  <div *ngFor="let rule of instance.rules">
-                    <tr>
-                      <td class="text-right">Name</td>
-                      <td class="text-right">{{rule.name}}</td>
-                    </tr>
-                    <tr>
-                      <td class="text-right">Id</td>
-                      <td class="text-right">{{rule.rule_id}}</td>
-                    </tr>
-                    <tr>
-                      <td class="text-right">Relations</td>
-                      <div *ngFor="let rule of instance.rules">
-                        <td class="d-block text-right" *ngFor="let relation of rule.auth_services">{{relation}}</td>
-                      </div>
-                    </tr>
-                    <br>
-                  </div>
-                </tr>
-              </table>
-              <table class="table app-summary">
-                <tr>
-                  <td class="grey">Groups</td>     
-                  <td></td>
-                </tr>
-                <tr colspan="2">
-                  <td></td>
-                  <div *ngFor="let group of instance.groups">
-                    <tr>
-                      <td class="text-right">Name</td>
-                      <td class="text-right">{{group.name}}</td>
-                    </tr>
-                    <tr>
-                      <td class="text-right">Services</td>
-                      <div *ngFor="let group of instance.groups">
-                        <td class="d-block text-right" *ngFor="let service of group.service_instances">{{service}}</td>
-                      </div>
-                    </tr>
-                    <br>
-                  </div>
-                </tr>
-              </table>     
-
-            </div>
-          </div> 
+              </div>
+              <div class="row">
+                <div class="col-sm grey">Instance id</div>
+                <div class="col-sm text-right">{{instance.app_instance_id}}</div>
+              </div>
+              <div class="row">
+                <div class="col-sm grey">Descriptor id</div>
+                <div class="col-sm text-right">{{instance.app_descriptor_id}}</div>
+              </div>
+              <div class="row">
+                <div class="col-sm grey">Tags</div>
+              </div>
+              <div class="row" *ngFor="let label of objectToString(instance.labels)">
+                <div class="col-sm text-right">{{label[0]}}</div>
+                <div class="col-sm text-right">{{label[1]}}</div>
+              </div>
+              <div class="row">
+                <div class="col-sm grey">Configuration options</div>
+              </div>
+              <div class="row" *ngFor="let option of objectToString(instance.configuration_options)">
+                <div class="col-sm text-right">{{option[0]}}</div>
+                <div class="col-sm text-right">{{option[1]}}</div>
+              </div>
+              <div class="row">
+                <div class="col-sm grey">Environment variables</div>
+              </div>
+              <div class="row" *ngFor="let variable of objectToString(instance.environment_variables)">
+                <div class="col-sm text-right">
+                  {{variable[0]}}
+                </div>
+                <div class="col-sm text-right">
+                  {{variable[1]}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm grey">Services</div>
+              </div>
+              <div *ngFor="let service of instance.services">
+                <div class="row">
+                  <div class="col-sm text-right grey">Name</div>
+                  <div class="col-sm text-right">{{service.name}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-sm text-right grey">Id</div>
+                  <div class="col-sm text-right">{{service.service_id}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-sm text-right grey">Status</div>
+                  <div class="col-sm text-right" [ngClass]= 
+                  "{'blue':instance.status_name === 'Running',
+                  'red':instance.status_namee === 'Error'}"> 
+                  {{service.status_name}}</div>
+                </div>
+                <br>
+              </div>
+              <div class="row">
+                <div class="col-sm grey">Rules</div>
+              </div>
+              <div *ngFor="let rule of instance.rules">
+                <div class="row">
+                  <div class="col-sm text-right grey">Name</div>
+                  <div class="col-sm text-right">{{rule.name}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-sm text-right grey">Id</div>
+                  <div class="col-sm text-right">{{rule.rule_id}}</div>
+                </div>
+                <div class="row" *ngFor="let relation of rule.auth_services; let i = index">
+                  <div *ngIf="i === 0" class="col-sm text-right grey" >Relations</div>
+                  <div *ngIf="i !== 0" class="col-sm"></div>
+                  <div class="col-sm text-right">{{relation}}</div>
+                </div>
+                <br>
+              </div>
+              <div class="row">
+                <div class="col-sm grey">Groups</div>
+              </div>
+              <div *ngFor="let group of instance.groups">
+                <div class="row">
+                  <div class="col-sm text-right grey">Name</div>
+                  <div class="col-sm text-right">{{group.name}}</div>
+                </div>
+                <div class="row" *ngFor="let service of group.service_instances; let i = index">
+                  <div *ngIf="i === 0" class="col-sm text-right grey" >Services</div>
+                  <div *ngIf="i !== 0" class="col-sm"></div>
+                  <div class="col-sm text-right">{{service}}</div>
+                  <br>
+                </div>
+              </div>    
+            </div>     
+          <div> 
           <!-- Loader -->           
           <div class="nalej-loader-container" *ngIf="!loadedData">
             <div class="loader">

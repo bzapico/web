@@ -1,9 +1,9 @@
-#scrolltable {
+#scroll-app-info {
     margin: 4em 0;
     height: 200px;
-    // background-color: aqua;
-    overflow: scroll;
-    // display: table;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-size:  .9em;
     &::-webkit-scrollbar {
       -webkit-appearance: none;
       width: 8px;
@@ -18,36 +18,13 @@
     font-size: .9em;
     color: #949494;
 }
-
-.app-summary {
-    margin-bottom: 0;
-    td {
-        padding: 0.2em;
-        font-size:  .9em;
-        border: none;
-        // width: 100%;
-        p {
-            margin-bottom: 0rem;
-        }
-    }
-    tr {
-        border: none;
-    } 
-    tbody{
-        display:table;
-        width: 100%;
-    }
-}
-
 .btn-primary {
     text-indent: -7px;
 }
-
 .graph {
     height: 250px;
     position: relative;
     display: block;
-    // margin: 0 0 0 85px;
     .chart-container {
         position: absolute;
         top: 50%;
