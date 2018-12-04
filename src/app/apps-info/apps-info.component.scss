@@ -7,6 +7,7 @@
     &::-webkit-scrollbar {
       -webkit-appearance: none;
       width: 8px;
+      margin-left: 2px;
     }
     &::-webkit-scrollbar-thumb {
       border-radius: 5px;
@@ -22,6 +23,7 @@
     text-indent: -7px;
 }
 .graph {
+    background-color: #f9f9f9;
     height: 250px;
     position: relative;
     display: block;
@@ -40,7 +42,7 @@
     }
     .edge {
         path {
-          stroke: #949494;
+          stroke: #CDCDCD;
         }
     }
     .graph-click-fix {

@@ -84,7 +84,7 @@ export class AppsInfoComponent implements OnInit {
     // Graph initialization
     this.showlegend = false;
     this.orientation = 'TB';
-    this.curve = shape.curveLinear;
+    this.curve = shape.curveBundle;
     this.autoZoom = true;
     this.autoCenter = true;
     this.enableZoom = false;

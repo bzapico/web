@@ -43,6 +43,7 @@
                 <ng-template #linkTemplate let-link>
                   <svg:g class="edge">
                     <svg:path
+                      stroke-width="2"
                       class="line"
                       d="M 0,30 h100"
                       >
@@ -62,7 +63,7 @@
                 <div class="col-sm text-right" [ngClass]= 
                   "{'blue':instance.status_name === 'Running',
                   'red':instance.status_namee === 'Error'}">{{instance.status_name}}
-                  </div>
+                </div>
               </div>
               <div class="row">
                 <div class="col-sm grey">Instance id</div>
@@ -79,6 +80,7 @@
                 <div class="col-sm text-right">{{label[0]}}</div>
                 <div class="col-sm text-right">{{label[1]}}</div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-sm grey">Configuration options</div>
               </div>
@@ -86,6 +88,7 @@
                 <div class="col-sm text-right">{{option[0]}}</div>
                 <div class="col-sm text-right">{{option[1]}}</div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-sm grey">Environment variables</div>
               </div>
@@ -97,6 +100,7 @@
                   {{variable[1]}}
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-sm grey">Services</div>
               </div>
