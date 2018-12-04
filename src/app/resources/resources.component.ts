@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { mockClusterChart, mockNodesChart } from '../utils/mocks';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
@@ -26,7 +26,7 @@ import { Cluster } from '../definitions/interfaces/cluster';
     }
   ]
 })
-export class ResourcesComponent implements OnInit {
+export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Backend reference
    */
@@ -58,6 +58,11 @@ export class ResourcesComponent implements OnInit {
   pieChartsData: any[];
 
   /**
+   * Array containing charts data in the required format for NGX-Charts library rendering
+   */
+  nodesChart: any[];
+
+  /**
    * Count of total nodes
    */
   nodesCount: number;
@@ -66,6 +71,11 @@ export class ResourcesComponent implements OnInit {
    * Count of total clusters
    */
   clustersCount: number;
+
+  /**
+   * Holds the reference of the interval that refreshes the lists
+   */
+  refreshIntervalRef:  NodeJS.Timer;
 
   /**
    * Pie Chart options
@@ -137,6 +147,7 @@ export class ResourcesComponent implements OnInit {
     this.nodesCount = 0;
     this.clustersCount = 0;
     this.pieChartsData = [];
+    this.nodesChart = [{'name': 'Running nodes', 'series': []}];
 
   /**
    * Mocked Charts
@@ -157,8 +168,16 @@ export class ResourcesComponent implements OnInit {
             this.nodesCount = summary['total_nodes'] || 0;
         });
         this.updateClusterList();
+        this.refreshIntervalRef = setInterval(() => {
+          //  Request cluster list
+          this.updateClusterList();
+        }, 60000); // Update each 60 seconds
       }
     }
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.refreshIntervalRef);
   }
 
   /**
@@ -194,6 +213,21 @@ export class ResourcesComponent implements OnInit {
         pieChartsData.push(this.generateClusterChartData(element.running_nodes, element.total_nodes));
       });
     }
+  }
+
+  updateNodesStatusLineChart(runningNodesCount) {
+    const now = new Date(Date.now());
+    const entry = {
+      'value': runningNodesCount,
+      'name':  now.getHours() + ':' + now.getMinutes()
+    };
+
+    if (this.nodesChart[0].series.length > 5) {
+      // Removes first element
+      this.nodesChart[0].series.shift();
+    }
+    this.nodesChart[0].series.push(entry);
+    this.nodesChart = [...this.nodesChart];
   }
 
   /**
@@ -238,6 +272,7 @@ export class ResourcesComponent implements OnInit {
     // Requests an updated clusters list
     this.backend.getClusters(this.organizationId)
     .subscribe(response => {
+      let runningNodesCount = 0;
         if (response.clusters.length) {
           this.clusters = response.clusters;
         } else {
@@ -248,10 +283,12 @@ export class ResourcesComponent implements OnInit {
         }
         this.clusters.forEach(cluster => {
           this.preventEmptyFields(cluster);
+          runningNodesCount += cluster.running_nodes / cluster.total_nodes * 100;
         });
 
         this.chunckedClusters = this.chunkClusterList(3, this.clusters);
         this.updatePieChartsData(this.clusters, this.pieChartsData);
+        this.updateNodesStatusLineChart(runningNodesCount);
     });
   }
 

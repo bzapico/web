@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
@@ -13,7 +13,7 @@ import { ApplicationInstance } from '../definitions/interfaces/application-insta
   templateUrl: './applications.component.html',
   styleUrls: ['./applications.component.scss']
 })
-export class ApplicationsComponent implements OnInit {
+export class ApplicationsComponent implements OnInit, OnDestroy {
    /**
    * Backend reference
    */
@@ -52,10 +52,16 @@ export class ApplicationsComponent implements OnInit {
   countRegistered: number;
 
   /**
+   * Interval reference
+   */
+  refreshIntervalRef: any;
+
+  /**
    * Charts references
    */
   mockAppChart: any;
   mockAppPieChart: any;
+  appsChart: any;
 
   /**
    * Pie Chart options
@@ -121,6 +127,7 @@ export class ApplicationsComponent implements OnInit {
     this.labels = [];
     this.countRegistered = 0;
     this.loadedData = false;
+    this.appsChart = [{name: 'Running apps', series: []}];
     /**
      * Charts reference init
      */
@@ -134,7 +141,15 @@ export class ApplicationsComponent implements OnInit {
         this.organizationId = JSON.parse(jwtData).organizationID;
           this.updateAppInstances(this.organizationId);
           this.updateRegisteredInstances(this.organizationId);
+          this.refreshIntervalRef = setInterval(() => {
+            this.updateAppInstances(this.organizationId);
+            this.updateRegisteredInstances(this.organizationId);
+          }, 10000); // Refresh each 60 seconds
       }
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.refreshIntervalRef);
   }
 
   /**
@@ -148,6 +163,7 @@ export class ApplicationsComponent implements OnInit {
       .subscribe(response => {
           this.instances = response.instances || [];
           this.updatePieChartStats(this.instances);
+          this.updateRunningAppsLineChart(this.instances);
           if (!this.loadedData) {
             this.loadedData = true;
           }
@@ -184,6 +200,28 @@ export class ApplicationsComponent implements OnInit {
       this.countRunning = running;
       this.instancesPieChart = this.generateSummaryChartData(this.countRunning, instances.length);
     }
+  }
+
+  updateRunningAppsLineChart(instances) {
+    let runningAppsCount = 0;
+    instances.forEach(instance => {
+      if (instance.status_name.toLowerCase() === 'running') {
+        runningAppsCount += 1;
+      }
+    });
+
+    const now = new Date(Date.now());
+    const entry = {
+      'value': runningAppsCount / instances.length * 100,
+      'name':  now.getHours() + ':' + now.getMinutes()
+    };
+
+    if (this.appsChart[0].series.length > 5) {
+      // Removes first element
+      this.appsChart[0].series.shift();
+    }
+    this.appsChart[0].series.push(entry);
+    this.appsChart = [...this.appsChart];
   }
 
   /**
