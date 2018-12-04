@@ -213,7 +213,7 @@ export class MockupBackendService implements Backend {
    */
   getInstances(organizationId: string) {
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockAppsInstancesList),
+      body: JSON.stringify({instances: mockAppsInstancesList}),
       status: 200
     })))
     .pipe(
@@ -226,7 +226,7 @@ export class MockupBackendService implements Backend {
    */
   getRegisteredApps(organizationId: string) {
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockRegisteredAppsList),
+      body: JSON.stringify({descriptors: mockRegisteredAppsList}),
       status: 200
     })))
     .pipe(

@@ -146,8 +146,7 @@ export class ApplicationsComponent implements OnInit {
       // Request to get apps instances
       this.backend.getInstances(this.organizationId)
       .subscribe(response => {
-          this.instances = response.instances;
-          // fullfill blabla
+          this.instances = response.instances || [];
           this.updatePieChartStats(this.instances);
           if (!this.loadedData) {
             this.loadedData = true;
@@ -165,7 +164,7 @@ export class ApplicationsComponent implements OnInit {
       // Request to get registered apps
       this.backend.getRegisteredApps(this.organizationId)
       .subscribe(response => {
-          this.registered = response.descriptors;
+          this.registered = response.descriptors || [];
       });
     }
   }

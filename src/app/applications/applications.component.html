@@ -14,7 +14,9 @@
         <div class="summary-card">
           <div>
             <div class="deployed-box">
-              <div class="donut-chart">
+              <div 
+                *ngIf="instances.length >0"
+                class="donut-chart">
                 <ngx-charts-pie-chart
                   [scheme]="colorScheme" 
                   [results]="instancesPieChart" 
@@ -25,8 +27,9 @@
                 </ngx-charts-pie-chart>
                 <div class="donut-number">{{countRunning}}/{{instances.length}}</div>
               </div>
-              <p class="blue text-center apps-run mb-0">Apps running</p>
-              <p class="circle-name grey text-center">DEPLOYED</p>
+              <p *ngIf="instances.length > 0" class="blue text-center apps-run mb-0">Apps running</p>
+              <p *ngIf="instances.length === 0" class="circle-name grey text-center">NO APPS DEPLOYED</p>
+              <p *ngIf="instances.length > 0" class="circle-name grey text-center">DEPLOYED</p>
             </div>
           </div>
           <div class="fix-top">
@@ -131,7 +134,7 @@
             </tbody>
           </table>
           <div 
-          *ngIf="loadedData && instances.length === 0"
+          *ngIf="loadedData && instances && instances.length === 0"
           class="no-apps d-flex justify-content-center align-items-center">
             No available applications detected
         </div>
