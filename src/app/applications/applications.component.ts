@@ -5,6 +5,8 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { mockAppChart, mockAppPieChart } from '../utils/mocks';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { AppsInfoComponent } from '../apps-info/apps-info.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -13,7 +15,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
   styleUrls: ['./applications.component.scss']
 })
 export class ApplicationsComponent implements OnInit {
-   /**
+  /**
    * Backend reference
    */
   backend: Backend;
@@ -53,6 +55,11 @@ export class ApplicationsComponent implements OnInit {
    */
   mockAppChart: any;
   mockAppPieChart: any;
+
+  /**
+   * Reference for the service that allows the user info component
+   */
+  modalRef: BsModalRef;
 
   /**
    * Pie Chart options
@@ -100,6 +107,7 @@ export class ApplicationsComponent implements OnInit {
   autoScale: any;
 
   constructor(
+    private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
@@ -163,6 +171,20 @@ export class ApplicationsComponent implements OnInit {
           this.registered = registered;
       });
     }
+  }
+
+  /**
+   * Opens the modal view that holds the apps info component
+   */
+  openAppsInfo(app) {
+    const initialState = {
+      organizationId: this.organizationId,
+      instanceId: app.app_instance_id
+    };
+
+    this.modalRef = this.modalService.show(AppsInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    // this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
 
   /**

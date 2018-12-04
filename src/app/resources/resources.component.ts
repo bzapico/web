@@ -103,6 +103,7 @@ export class ResourcesComponent implements OnInit {
       value: 0
     }
   ];
+
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
@@ -210,8 +211,9 @@ export class ResourcesComponent implements OnInit {
       {
         name: 'Stopped',
         value: total - running
-      }];
-    }
+      }
+    ];
+  }
 
   /**
    * Splits the cluster list into chunks (number of elements defined by the chunks parameter)

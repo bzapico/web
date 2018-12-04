@@ -1,26 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ApplicationsComponent } from './applications.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { CarouselModule, BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
+import { AppsInfoComponent } from './apps-info.component';
+import { BsModalRef, ButtonsModule, BsModalService } from 'ngx-bootstrap';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('ApplicationsComponent', () => {
-  let component: ApplicationsComponent;
-  let fixture: ComponentFixture<ApplicationsComponent>;
+describe('AppsInfoComponent', () => {
+  let component: AppsInfoComponent;
+  let fixture: ComponentFixture<AppsInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ApplicationsComponent ],
+      declarations: [ AppsInfoComponent, ],
       imports: [
+        ButtonsModule,
         HttpClientTestingModule,
-        NgxChartsModule,
-        CarouselModule,
         BrowserAnimationsModule,
-        RouterTestingModule,
-        ModalModule.forRoot()
+        NgxGraphModule,
+        RouterTestingModule
       ],
       providers: [
         BsModalRef,
@@ -31,7 +30,7 @@ describe('ApplicationsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ApplicationsComponent);
+    fixture = TestBed.createComponent(AppsInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
