@@ -195,7 +195,7 @@ export class MockupBackendService implements Backend {
    */
   getClusters(organizationId: string) {
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockClusterList),
+      body: JSON.stringify({clusters: mockClusterList}),
       status: 200
     })))
     .pipe(

@@ -85,6 +85,15 @@
     display:inline-block;
     margin:0 10px 0 0;
 }
+.status-dot-process:before {
+    content:'\A';
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background: #FFC40D;
+    display:inline-block;
+    margin:0 10px 0 0;
+}
 
 /* - - - Medias Cluster table card - - - */
 @media screen and (max-width:1500px){
