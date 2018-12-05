@@ -194,13 +194,10 @@
     .row-description {
         width: 15%;
     }
-    .row-status {
-        width: 16%;
-    }
     .row-tags {
         width: 15%;
     }
-    .row-configuration {
+    .row-status {
         width: 16%;
     }
     .row-info {
@@ -209,6 +206,9 @@
 }
 .row-info-btn {
     padding-right: 0.3em;
+}
+.btn-outline-primary {
+    margin:1px;
 }
 .info-btn {
     height: 32px;

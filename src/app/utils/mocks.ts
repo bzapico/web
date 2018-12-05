@@ -257,7 +257,9 @@ export const mockAppsInstancesList = [
         labels: {
             lab1: 'label1',
             lab2: 'label2',
-            lab3: 'label3'
+            lab3: 'label3',
+            lab4: 'label1',
+            lab5: 'label2'
         },
         rules: [
             {
