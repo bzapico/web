@@ -16,10 +16,9 @@
         <div class="box-card">
           <h3 
             class="text-center text-uppercase"
-            [ngClass]="{
-              'blue': clusterData.status_name === 'RUNNING',
-              'red': clusterData.status_name === 'ERROR'
-            }">
+            [ngClass]="{'blue':classStatusCheck(clusterData.status_name, 'running'),
+            'red':classStatusCheck(clusterData.status_name, 'error'),
+            'orange':classStatusCheck(clusterData.status_name, 'process')}">
             {{clusterData.status_name}}
           </h3>
         </div>
