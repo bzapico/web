@@ -294,4 +294,31 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       instance.status_name = '-';
     }
   }
+  /**
+   * Checks if the cluster status requires an special css class
+   * @param status Cluster status name
+   * @param className CSS class name
+   */
+  classStatusCheck(status: string, className: string): boolean {
+    switch (status.toLowerCase()) {
+      case 'running': {
+        if (className.toLowerCase() === 'running') {
+          return true;
+        }
+        break;
+      }
+      case 'error': {
+        if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
+     default: {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        return false;
+      }
+    }
+  }
 }

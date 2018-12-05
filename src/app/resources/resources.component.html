@@ -269,9 +269,9 @@
               <td 
                 class="text-lowercase"
                 [ngClass]=
-                "{'status-dot': classStatusCheck (cluster.status_name, 'Running'),
-                'status-dot-error': classStatusCheck (cluster.status_name, 'Error'),
-                'status-dot-process': classStatusCheck (cluster.status_name, 'Process')}">
+                "{'status-dot': classStatusCheck (cluster.status_name, 'running'),
+                'status-dot-error': classStatusCheck (cluster.status_name, 'error'),
+                'status-dot-process': classStatusCheck (cluster.status_name, 'process')}">
                 {{cluster.status_name}}
               </td>
               <td class="text-lowercase">
