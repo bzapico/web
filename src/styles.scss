@@ -475,12 +475,6 @@ button[type="submit"]:disabled {
   .carousel-small{
     display: none;
   }
-  .donut-chart{
-    height: 100%;
-    .ngx-charts {
-        max-height: 213px;
-    }
-  }
 }
 @media screen and (max-width:1500px){
   /* Target devices narrower than 1500px */
@@ -495,7 +489,6 @@ button[type="submit"]:disabled {
     height: 85%;
     margin-bottom: 3%;
   }
-
   .carousel-control-prev-icon {
     &:before {
       bottom: -10px;
@@ -510,11 +503,7 @@ button[type="submit"]:disabled {
     line-height: 1em;
   }
   .carousel-indicators {
-
-bottom: 10px;
-  }
-  .donut-chart {
-    max-width: 100px;
+    bottom: 10px;
   }
   .cluster-info {
     max-width: 200px;
