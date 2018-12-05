@@ -64,7 +64,10 @@ export const mockClusterList = [
         running_nodes: '0',
         cluster_type_name: 'Kubernetes',
         status_name: 'Running',
-        labels: 'ny, edge',
+        labels: {
+            lab1: 'label1',
+            lab2: 'label2'
+        },
         multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -75,7 +78,12 @@ export const mockClusterList = [
         running_nodes: '2',
         cluster_type_name: 'Kubernetes',
         status_name: 'Running',
-        labels: 'ny, edge',
+        labels: {
+            lab1: 'label1',
+            lab2: 'label2',
+            lab3: 'label3',
+            lab4: 'label4'
+        },
         multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -97,7 +105,10 @@ export const mockClusterList = [
         running_nodes: '4',
         cluster_type_name: 'Kubernetes',
         status_name: 'Running',
-        labels: 'ny, edge',
+        labels: {
+            lab1: 'label1',
+            lab2: 'label2'
+        },
         multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -119,7 +130,11 @@ export const mockClusterList = [
         running_nodes: '6',
         cluster_type_name: 'Kubernetes',
         status_name: 'Running',
-        labels: 'ny, edge',
+        labels: {
+            lab1: 'label1',
+            lab2: 'label2',
+            lab3: 'label3'
+        },
         multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -130,7 +145,10 @@ export const mockClusterList = [
         running_nodes: '7',
         cluster_type_name: 'Kubernetes',
         status_name: 'Running',
-        labels: 'ny, edge',
+        labels: {
+            lab1: 'label1',
+            lab2: 'label2'
+        },
         multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -141,7 +159,11 @@ export const mockClusterList = [
         running_nodes: '8',
         cluster_type_name: 'Kubernetes',
         status_name: 'Running',
-        labels: 'ny, edge',
+        labels: {
+            lab1: 'label1',
+            lab2: 'label2',
+            lab3: 'label3'
+        },
         multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -152,7 +174,10 @@ export const mockClusterList = [
         running_nodes: '9',
         cluster_type_name: 'Kubernetes',
         status_name: 'Running',
-        labels: 'ny, edge',
+        labels: {
+            lab1: 'label1',
+            lab2: 'label2'
+        },
         multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -163,7 +188,10 @@ export const mockClusterList = [
         running_nodes: '10',
         cluster_type_name: 'Kubernetes',
         status_name: 'Running',
-        labels: 'ny, edge',
+        labels: {
+            lab1: 'label1',
+            lab2: 'label2'
+        },
         multitenant_support: 'All'
     }
 ];

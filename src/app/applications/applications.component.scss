@@ -159,7 +159,6 @@
     .line-chart {
         height: 90%;
     }
-
 }
 
 /* - - - Deployed app list card - - - */
@@ -185,30 +184,9 @@
     tbody tr:first-child td {
       border: none;
     }
-    // .row-name {
-    //     width: 15%;
-    // }
-    // .row-id {
-    //     width: 15%;
-    // }
-    // .row-description {
-    //     width: 15%;
-    // }
-    // .row-tags {
-    //     width: 15%;
-    // }
-    // .row-status {
-    //     width: 16%;
-    // }
-    // .row-info {
-    //     width: 7%;
-    // }
 }
 .row-info-btn {
     padding-right: 0.3em;
-}
-.btn-outline-primary {
-    margin:1px;
 }
 .info-btn {
     height: 32px;
