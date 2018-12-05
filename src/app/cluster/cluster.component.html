@@ -16,10 +16,9 @@
         <div class="box-card">
           <h3 
             class="text-center text-uppercase"
-            [ngClass]="{
-              'blue': clusterData.status_name === 'RUNNING',
-              'red': clusterData.status_name === 'ERROR'
-            }">
+            [ngClass]="{'blue':classStatusCheck(clusterData.status_name, 'running'),
+            'red':classStatusCheck(clusterData.status_name, 'error'),
+            'orange':classStatusCheck(clusterData.status_name, 'process')}">
             {{clusterData.status_name}}
           </h3>
         </div>
@@ -142,9 +141,9 @@
               <td 
               class="text-lowercase"
               [ngClass]=
-              "{'status-dot':classStatusCheck(node.status_name, 'Running'),
-              'status-dot-error':classStatusCheck(node.status_name, 'Error'),
-              'status-dot-process':classStatusCheck(node.status_name, 'Process')}">
+              "{'status-dot':classStatusCheck(node.status_name, 'running'),
+              'status-dot-error':classStatusCheck(node.status_name, 'error'),
+              'status-dot-process':classStatusCheck(node.status_name, 'process')}">
               {{node.status_name}}
             </td>
             </tr>

@@ -89,7 +89,7 @@ export class AppsInfoComponent implements OnInit {
     this.autoCenter = true;
     this.enableZoom = false;
     this.draggingEnabled = false;
-    this.view = [400, 250];
+    this.view = [350, 250];
     this.colorScheme = {
       domain: ['#6C86F7']
     };
@@ -128,15 +128,19 @@ export class AppsInfoComponent implements OnInit {
       };
       this.graphData.nodes.push(node);
     });
-    instance.rules.forEach(rule => {
-      rule.auth_services.forEach(linkedService => {
-        const link = {
-          source: rule.source_service_id,
-          target: linkedService
-        };
-        this.graphData.links.push(link);
+    if (instance.rules) {
+      instance.rules.forEach(rule => {
+        if (rule.auth_services) {
+          rule.auth_services.forEach(linkedService => {
+            const link = {
+              source: rule.source_service_id,
+              target: linkedService
+            };
+            this.graphData.links.push(link);
+          });
+        }
       });
-    });
+    }
   }
 
 /**
@@ -145,7 +149,7 @@ export class AppsInfoComponent implements OnInit {
  */
   objectToString(object: any) {
     if (!object) {
-      return['test1', 'test2'];
+      return ['--'];
     }
     return Object.entries(object);
   }

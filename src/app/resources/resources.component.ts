@@ -222,9 +222,13 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   updateNodesStatusLineChart(runningNodesCount) {
     const now = new Date(Date.now());
+    let minutes: any = now.getMinutes();
+    if (minutes < 10) {
+      minutes = '0' + now.getMinutes();
+    }
     const entry = {
       'value': runningNodesCount,
-      'name':  now.getHours() + ':' + now.getMinutes()
+      'name':  now.getHours() + ':' + minutes
     };
 
     if (this.nodesChart[0].series.length > 5) {
@@ -325,21 +329,21 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * @param className CSS class name
    */
   classStatusCheck(status: string, className: string): boolean {
-    switch (status) {
-      case 'Running': {
-        if (className === 'Running') {
+    switch (status.toLowerCase()) {
+      case 'running': {
+        if (className.toLowerCase() === 'running') {
           return true;
         }
         break;
       }
-      case 'Error': {
-        if (className === 'Error') {
+      case 'error': {
+        if (className.toLowerCase() === 'error') {
           return true;
         }
         break;
       }
      default: {
-        if (className === 'Process') {
+        if (className.toLowerCase() === 'process') {
           return true;
         }
         return false;

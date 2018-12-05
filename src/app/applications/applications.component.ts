@@ -237,9 +237,13 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     });
 
     const now = new Date(Date.now());
+    let minutes: any = now.getMinutes();
+      if (minutes < 10) {
+        minutes = '0' + now.getMinutes();
+      }
     const entry = {
       'value': runningAppsCount / instances.length * 100,
-      'name':  now.getHours() + ':' + now.getMinutes()
+      'name':  now.getHours() + ':' + minutes
     };
 
     if (this.appsChart[0].series.length > 5) {
@@ -292,6 +296,33 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     }
     if (!instance.status_name) {
       instance.status_name = '-';
+    }
+  }
+  /**
+   * Checks if the cluster status requires an special css class
+   * @param status Cluster status name
+   * @param className CSS class name
+   */
+  classStatusCheck(status: string, className: string): boolean {
+    switch (status.toLowerCase()) {
+      case 'running': {
+        if (className.toLowerCase() === 'running') {
+          return true;
+        }
+        break;
+      }
+      case 'error': {
+        if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
+     default: {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        return false;
+      }
     }
   }
 }

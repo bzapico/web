@@ -121,8 +121,9 @@
                 <td 
                   class="text-lowercase"
                   [ngClass]=
-                    "{'status-dot':app.status_name === 'RUNNING',
-                    'status-dot-error':app.status_name === 'ERROR'}">
+                  "{'status-dot':classStatusCheck(app.status_name, 'running'),
+                  'status-dot-error':classStatusCheck(app.status_name, 'error'),
+                  'status-dot-process':classStatusCheck(app.status_name, 'process')}">
                   {{app.status_name}}
                 </td>
                   <td class="row-info-btn">
