@@ -13,7 +13,7 @@
             <div class="graph">
               <div class="graph-click-fix"></div>
               <ngx-graph
-                  class="chart-container"
+                  class="chart-container ml-4"
                   [view]="view"
                   [legend]="showLegend"
                   [links]="graphData.links"
@@ -58,21 +58,25 @@
                 <div class="col-sm grey">Name</div>
                 <div class="col-sm text-right">{{instance.name}}</div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-sm grey">Status</div>
-                <div class="col-sm text-right" [ngClass]= 
+                <div class="col-sm text-right text-lowercase" [ngClass]= 
                   "{'blue':instance.status_name === 'Running',
                   'red':instance.status_namee === 'Error'}">{{instance.status_name}}
                 </div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-sm grey">Instance id</div>
                 <div class="col-sm text-right">{{instance.app_instance_id}}</div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-sm grey">Descriptor id</div>
                 <div class="col-sm text-right">{{instance.app_descriptor_id}}</div>
               </div>
+              <br>
               <div class="row">
                 <div class="col-sm grey">Tags</div>
               </div>
@@ -143,6 +147,10 @@
               </div>
               <div class="row">
                 <div class="col-sm grey">Groups</div>
+              </div>
+              <div *ngIf="!instance.groups || instance.groups.length === 0" class="row">
+                <div class="col-sm text-right grey">-</div>
+                <div class="col-sm text-right">-</div>
               </div>
               <div *ngFor="let group of instance.groups">
                 <div class="row">
