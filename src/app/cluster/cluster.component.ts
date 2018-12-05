@@ -229,6 +229,7 @@ export class ClusterComponent implements OnInit {
    * @param className CSS class name
    */
   classStatusCheck(status: string, className: string): boolean {
+    status = status || '';
     switch (status.toLowerCase()) {
       case 'running': {
         if (className.toLowerCase() === 'running') {
