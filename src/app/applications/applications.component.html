@@ -14,7 +14,9 @@
         <div class="summary-card">
           <div>
             <div class="deployed-box">
-              <div class="donut-chart">
+              <div 
+                *ngIf="instances.length >0"
+                class="donut-chart">
                 <ngx-charts-pie-chart
                   [scheme]="colorScheme" 
                   [results]="instancesPieChart" 
@@ -25,8 +27,9 @@
                 </ngx-charts-pie-chart>
                 <div class="donut-number">{{countRunning}}/{{instances.length}}</div>
               </div>
-              <p class="blue text-center apps-run mb-0">Apps running</p>
-              <p class="circle-name grey text-center">DEPLOYED</p>
+              <p *ngIf="instances.length > 0" class="blue text-center apps-run mb-0">Apps running</p>
+              <p *ngIf="instances.length === 0" class="circle-name grey text-center">NO APPS DEPLOYED</p>
+              <p *ngIf="instances.length > 0" class="circle-name grey text-center">DEPLOYED</p>
             </div>
           </div>
           <div class="fix-top">
@@ -49,7 +52,7 @@
             <div class="bottom-line"></div>
             <ngx-charts-line-chart
               [scheme]="colorScheme"
-              [results]="mockAppChart"
+              [results]="appsChart"
               [xAxis]="showXAxis"
               [yAxis]="showYAxis"
               [gradient]="gradient" 
@@ -107,15 +110,20 @@
             </thead>
             <tbody>
               <tr *ngFor="let app of instances">
-                <td>{{app.name}}</td>
+                <td class="text-capitalize">{{app.name}}</td>
                 <td>{{app.app_instance_id}}</td>
                 <td>{{app.description}}</td>  
-                <td style="max-width: 16rem">{{labelsToString(app.labels)}}</td>
+                <td>
+                  <button *ngFor="let label of labelsToString(app.labels)" class="btn-sm btn-outline-primary" disabled>
+                      {{label[0]}}: {{label[1]}}
+                  </button>
+                </td>
                 <td 
-                [ngClass]=
-                  "{'status-dot':app.status_name === 'Running',
-                  'status-dot-error':app.status_name === 'Error'}">
-                {{app.status_name}}
+                  class="text-lowercase"
+                  [ngClass]=
+                    "{'status-dot':app.status_name === 'RUNNING',
+                    'status-dot-error':app.status_name === 'ERROR'}">
+                  {{app.status_name}}
                 </td>
                   <td class="row-info-btn">
                     <button class="btn info-btn btn-primary" (click)="openAppsInfo(app)">
@@ -126,7 +134,7 @@
             </tbody>
           </table>
           <div 
-          *ngIf="loadedData && instances.length === 0"
+          *ngIf="loadedData && instances && instances.length === 0"
           class="no-apps d-flex justify-content-center align-items-center">
             No available applications detected
         </div>

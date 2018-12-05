@@ -62,10 +62,10 @@ export const mockClusterList = [
         description: 'Ny Cluster',
         total_nodes: '10',
         running_nodes: '1',
-        cluster_type: 'Kubernetes',
-        status: 'Running',
+        cluster_type_name: 'Kubernetes',
+        status_name: 'Running',
         labels: 'ny, edge',
-        multitenant: 'All'
+        multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         cluster_id: '0800200c9a62',
@@ -73,10 +73,10 @@ export const mockClusterList = [
         description: 'Ny Cluster',
         total_nodes: '10',
         running_nodes: '2',
-        cluster_type: 'Kubernetes',
-        status: 'Running',
+        cluster_type_name: 'Kubernetes',
+        status_name: 'Running',
         labels: 'ny, edge',
-        multitenant: 'All'
+        multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         cluster_id: '0800200c9a63',
@@ -84,10 +84,10 @@ export const mockClusterList = [
         description: 'Ny Cluster',
         total_nodes: '10',
         running_nodes: '3',
-        cluster_type: 'Kubernetes',
-        status: 'Error',
+        cluster_type_name: 'Kubernetes',
+        status_name: 'Error',
         labels: 'ny, edge',
-        multitenant: 'All'
+        multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         cluster_id: '0800200c9a64',
@@ -95,10 +95,10 @@ export const mockClusterList = [
         description: 'Ny Cluster',
         total_nodes: '10',
         running_nodes: '4',
-        cluster_type: 'Kubernetes',
-        status: 'Running',
+        cluster_type_name: 'Kubernetes',
+        status_name: 'Running',
         labels: 'ny, edge',
-        multitenant: 'All'
+        multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         cluster_id: '0800200c9a65',
@@ -106,10 +106,10 @@ export const mockClusterList = [
         description: 'Ny Cluster',
         total_nodes: '10',
         running_nodes: '5',
-        cluster_type: 'Kubernetes',
-        status: 'Running',
+        cluster_type_name: 'Kubernetes',
+        status_name: 'Running',
         labels: 'ny, edge',
-        multitenant: 'All'
+        multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         cluster_id: '0800200c9a66',
@@ -117,10 +117,10 @@ export const mockClusterList = [
         description: 'Ny Cluster',
         total_nodes: '10',
         running_nodes: '6',
-        cluster_type: 'Kubernetes',
-        status: 'Running',
+        cluster_type_name: 'Kubernetes',
+        status_name: 'Running',
         labels: 'ny, edge',
-        multitenant: 'All'
+        multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         cluster_id: '0800200c9a67',
@@ -128,10 +128,10 @@ export const mockClusterList = [
         description: 'Ny Cluster',
         total_nodes: '10',
         running_nodes: '7',
-        cluster_type: 'Kubernetes',
-        status: 'Running',
+        cluster_type_name: 'Kubernetes',
+        status_name: 'Running',
         labels: 'ny, edge',
-        multitenant: 'All'
+        multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         cluster_id: '0800200c9a68',
@@ -139,10 +139,10 @@ export const mockClusterList = [
         description: 'Ny Cluster',
         total_nodes: '10',
         running_nodes: '8',
-        cluster_type: 'Kubernetes',
-        status: 'Running',
+        cluster_type_name: 'Kubernetes',
+        status_name: 'Running',
         labels: 'ny, edge',
-        multitenant: 'All'
+        multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         cluster_id: '0800200c9a69',
@@ -150,10 +150,10 @@ export const mockClusterList = [
         description: 'Ny Cluster',
         total_nodes: '10',
         running_nodes: '9',
-        cluster_type: 'Kubernetes',
-        status: 'Running',
+        cluster_type_name: 'Kubernetes',
+        status_name: 'Running',
         labels: 'ny, edge',
-        multitenant: 'All'
+        multitenant_support: 'All'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         cluster_id: '0800200c9a70',
@@ -161,10 +161,10 @@ export const mockClusterList = [
         description: 'Ny Cluster',
         total_nodes: '10',
         running_nodes: '10',
-        cluster_type: 'Kubernetes',
-        status: 'Running',
+        cluster_type_name: 'Kubernetes',
+        status_name: 'Running',
         labels: 'ny, edge',
-        multitenant: 'All'
+        multitenant_support: 'All'
     }
 ];
 
@@ -191,45 +191,31 @@ export const mockNodesChart = [
         'series': [
           {
             'value': 39,
-            'name': '-6h',
-            'min': 28,
-            'max': 49
+            'name': '-6h'
           },
           {
             'value': 79,
-            'name': '-5h',
-            'min': 66,
-            'max': 91
+            'name': '-5h'
           },
           {
             'value': 23,
-            'name': '-4h',
-            'min': 3,
-            'max': 14
+            'name': '-4h'
           },
           {
             'value': 96,
-            'name': '-3h',
-            'min': 76,
-            'max': 16
+            'name': '-3h'
           },
           {
             'value': 73,
-            'name': '-2h',
-            'min': 45,
-            'max': 100
+            'name': '-2h'
           },
           {
             'value': 73,
-            'name': '-1h',
-            'min': 45,
-            'max': 100
+            'name': '-1h'
           },
           {
             'value': 73,
-            'name': 'now',
-            'min': 45,
-            'max': 100
+            'name': 'now'
           }
         ]
     }
@@ -1378,60 +1364,54 @@ export const mockRegisteredAppsList = [
  */
 export const mockNodeList = [
     {
-        id: '0800200c9a69',
+        node_id: '0800200c9a69',
         ip: '100.022.0129',
         credentials: 'Private',
-        tags: 'ny, edge',
-        status: 'Running',
+        labels: {lab1:  'lab1'},
+        status_name: 'Running',
+        state_name: 'Unregistered',
+
     },
     {
-        id: '0800200c9a68',
+        node_id: '0800200c9a68',
         ip: '100.022.0128',
         credentials: 'Private',
-        tags: 'ny, edge',
-        status: 'Running',
-    },
-    {
-        id: '0800200c9a67',
+        labels: {lab8:  'lab8'},
+        status_name: 'Running',
+        state_name: 'Unregistered',
+
+    },    {
+        node_id: '0800200c9a67',
         ip: '100.022.0127',
         credentials: 'Private',
-        tags: 'ny, edge',
-        status: 'Running',
-    },
-    {
-        id: '0800200c9a66',
+        labels: {lab1:  'lab1'},
+        status_name: 'Running',
+        state_name: 'Unregistered',
+
+    },    {
+        node_id: '0800200c9a66',
         ip: '100.022.0126',
-        credentials: 'Public',
-        tags: 'ny, edge',
-        status: 'Error',
-    },
-    {
-        id: '0800200c9a65',
+        credentials: 'Private',
+        labels: {lab1:  'lab1'},
+        status_name: 'Running',
+        state_name: 'Unregistered',
+
+    },    {
+        node_id: '0800200c9a65',
         ip: '100.022.0125',
         credentials: 'Private',
-        tags: 'ny, edge',
-        status: 'Running',
-    },
-    {
-        id: '0800200c9a65',
-        ip: '100.022.0125',
+        labels: {lab1:  'lab1'},
+        status_name: 'Running',
+        state_name: 'Unregistered',
+
+    },    {
+        node_id: '0800200c9a64',
+        ip: '100.022.0123',
         credentials: 'Private',
-        tags: 'ny, edge',
-        status: 'Error',
-    },
-    {
-        id: '0800200c9a65',
-        ip: '100.022.0125',
-        credentials: 'Private',
-        tags: 'ny, edge',
-        status: 'Running',
-    },
-    {
-        id: '0800200c9a65',
-        ip: '100.022.0125',
-        credentials: 'Private',
-        tags: 'ny, edge',
-        status: 'Running',
+        labels: {lab1:  'lab1'},
+        status_name: 'Running',
+        state_name: 'Unregistered',
+
     }
 ];
 
@@ -1444,45 +1424,31 @@ export const mockAppChart = [
         'series': [
           {
             'value': 39,
-            'name': '-6h',
-            'min': 28,
-            'max': 49
+            'name': '-6h'
           },
           {
             'value': 79,
-            'name': '-5h',
-            'min': 66,
-            'max': 91
+            'name': '-5h'
           },
           {
             'value': 23,
-            'name': '-4h',
-            'min': 3,
-            'max': 14
+            'name': '-4h'
           },
           {
             'value': 96,
-            'name': '-3h',
-            'min': 76,
-            'max': 16
+            'name': '-3h'
           },
           {
             'value': 40,
-            'name': '-2h',
-            'min': 45,
-            'max': 100
+            'name': '-2h'
           },
           {
             'value': 73,
-            'name': '-1h',
-            'min': 3,
-            'max': 15
+            'name': '-1h'
           },
           {
             'value': 23,
-            'name': 'now',
-            'min': 45,
-            'max': 100
+            'name': 'now'
           }
         ]
       }
@@ -1515,6 +1481,6 @@ export const mockClusterDetail = [
         type: 'Kubernetes',
         status: 'Running',
         tags: 'ny, edge',
-        multitenant: 'All'
+        multitenant_support: 'All'
     }
 ];

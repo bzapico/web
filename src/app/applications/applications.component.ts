@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { mockAppChart, mockAppPieChart } from '../utils/mocks';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { ApplicationInstance } from '../definitions/interfaces/application-instance';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AppsInfoComponent } from '../apps-info/apps-info.component';
 
@@ -14,8 +15,8 @@ import { AppsInfoComponent } from '../apps-info/apps-info.component';
   templateUrl: './applications.component.html',
   styleUrls: ['./applications.component.scss']
 })
-export class ApplicationsComponent implements OnInit {
-  /**
+export class ApplicationsComponent implements OnInit, OnDestroy {
+   /**
    * Backend reference
    */
   backend: Backend;
@@ -40,6 +41,8 @@ export class ApplicationsComponent implements OnInit {
    */
   registered: any[];
 
+  labels: any[];
+
   /**
    * Number of running instances
    */
@@ -51,10 +54,16 @@ export class ApplicationsComponent implements OnInit {
   countRegistered: number;
 
   /**
+   * Interval reference
+   */
+  refreshIntervalRef: any;
+
+  /**
    * Charts references
    */
   mockAppChart: any;
   mockAppPieChart: any;
+  appsChart: any;
 
   /**
    * Reference for the service that allows the user info component
@@ -123,8 +132,10 @@ export class ApplicationsComponent implements OnInit {
     // Default initialization
     this.instances = [];
     this.registered = [];
+    this.labels = [];
     this.countRegistered = 0;
     this.loadedData = false;
+    this.appsChart = [{name: 'Running apps', series: []}];
     /**
      * Charts reference init
      */
@@ -138,7 +149,15 @@ export class ApplicationsComponent implements OnInit {
         this.organizationId = JSON.parse(jwtData).organizationID;
           this.updateAppInstances(this.organizationId);
           this.updateRegisteredInstances(this.organizationId);
+          this.refreshIntervalRef = setInterval(() => {
+            this.updateAppInstances(this.organizationId);
+            this.updateRegisteredInstances(this.organizationId);
+          }, 60000); // Refresh each 60 seconds
       }
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.refreshIntervalRef);
   }
 
   /**
@@ -149,9 +168,10 @@ export class ApplicationsComponent implements OnInit {
     if (organizationId !== null) {
       // Request to get apps instances
       this.backend.getInstances(this.organizationId)
-      .subscribe(instances => {
-          this.instances = instances;
-          this.updatePieChartStats(instances);
+      .subscribe(response => {
+          this.instances = response.instances || [];
+          this.updatePieChartStats(this.instances);
+          this.updateRunningAppsLineChart(this.instances);
           if (!this.loadedData) {
             this.loadedData = true;
           }
@@ -167,8 +187,8 @@ export class ApplicationsComponent implements OnInit {
     if (organizationId !== null) {
       // Request to get registered apps
       this.backend.getRegisteredApps(this.organizationId)
-      .subscribe(registered => {
-          this.registered = registered;
+      .subscribe(response => {
+          this.registered = response.descriptors || [];
       });
     }
   }
@@ -193,13 +213,41 @@ export class ApplicationsComponent implements OnInit {
    */
   updatePieChartStats(instances: any[]) {
     let running = 0;
-    instances.forEach(app => {
-      if (app.status_name === 'Running') {
-        running += 1;
+    if (instances) {
+      instances.forEach(app => {
+        if (app.status_name === 'RUNNING') {
+          running += 1;
+        }
+      });
+      this.countRunning = running;
+      this.instancesPieChart = this.generateSummaryChartData(this.countRunning, instances.length);
+    }
+  }
+
+  /**
+   * Updates timeline chart
+   * @param instances Instances array
+   */
+  updateRunningAppsLineChart(instances) {
+    let runningAppsCount = 0;
+    instances.forEach(instance => {
+      if (instance.status_name.toLowerCase() === 'running') {
+        runningAppsCount += 1;
       }
     });
-    this.countRunning = running;
-    this.instancesPieChart = this.generateSummaryChartData(this.countRunning, instances.length - 1);
+
+    const now = new Date(Date.now());
+    const entry = {
+      'value': runningAppsCount / instances.length * 100,
+      'name':  now.getHours() + ':' + now.getMinutes()
+    };
+
+    if (this.appsChart[0].series.length > 5) {
+      // Removes first element
+      this.appsChart[0].series.shift();
+    }
+    this.appsChart[0].series.push(entry);
+    this.appsChart = [...this.appsChart];
   }
 
   /**
@@ -225,6 +273,25 @@ export class ApplicationsComponent implements OnInit {
    * @param labels Key-value map that contains the labels
    */
   labelsToString(labels: any) {
-    return JSON.stringify(labels);
+    if (!labels || labels === '-') {
+      return ;
+    }
+    return Object.entries(labels);
+  }
+
+  /**
+   * Fulfill nulls to avoid data binding failure
+   * @param instance Application instance
+   */
+  preventEmptyFields(instance: ApplicationInstance) {
+    if (!instance.description) {
+      instance.description = '-';
+    }
+    if (!instance.labels) {
+      instance.labels = '-';
+    }
+    if (!instance.status_name) {
+      instance.status_name = '-';
+    }
   }
 }

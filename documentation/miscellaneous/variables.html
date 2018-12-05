@@ -66,10 +66,10 @@
                             <a href="#AvailableComponents" title="src/app/debug-panel/debug-panel.component.ts"><b>AvailableComponents</b>&nbsp;&nbsp;&nbsp;(src/.../debug-panel.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#environment" title="src/environments/environment.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
+                            <a href="#environment" title="src/environments/environment.prod.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</a>
                         </li>
                         <li>
-                            <a href="#environment" title="src/environments/environment.prod.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</a>
+                            <a href="#environment" title="src/environments/environment.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
                         </li>
                         <li>
                             <a href="#LocalStorageKeys" title="src/app/definitions/const/local-storage-keys.ts"><b>LocalStorageKeys</b>&nbsp;&nbsp;&nbsp;(src/.../local-storage-keys.ts)</a>
@@ -216,6 +216,46 @@
             </tbody>
         </table>
 </section>
+    <h3>src/environments/environment.prod.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="environment"></a>
+                        <span class="name">
+                            <b>
+                            environment
+                            </b>
+                            <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>environment:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+  production: true,
+  apiUrl: getBaseUrl
+}</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
     <h3>src/environments/environment.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
@@ -249,46 +289,6 @@
   production: false,
   // hardcoded local environment API ip address
   apiUrl: &#x27;http://192.168.99.100&#x27;
-}</code>
-                        </td>
-                    </tr>
-
-
-            </tbody>
-        </table>
-</section>
-    <h3>src/environments/environment.prod.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="environment"></a>
-                        <span class="name">
-                            <b>
-                            environment
-                            </b>
-                            <a href="#environment"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>environment:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
-  production: true,
-  apiUrl: getBaseUrl
 }</code>
                         </td>
                     </tr>
@@ -389,45 +389,31 @@
         &#x27;series&#x27;: [
           {
             &#x27;value&#x27;: 39,
-            &#x27;name&#x27;: &#x27;-6h&#x27;,
-            &#x27;min&#x27;: 28,
-            &#x27;max&#x27;: 49
+            &#x27;name&#x27;: &#x27;-6h&#x27;
           },
           {
             &#x27;value&#x27;: 79,
-            &#x27;name&#x27;: &#x27;-5h&#x27;,
-            &#x27;min&#x27;: 66,
-            &#x27;max&#x27;: 91
+            &#x27;name&#x27;: &#x27;-5h&#x27;
           },
           {
             &#x27;value&#x27;: 23,
-            &#x27;name&#x27;: &#x27;-4h&#x27;,
-            &#x27;min&#x27;: 3,
-            &#x27;max&#x27;: 14
+            &#x27;name&#x27;: &#x27;-4h&#x27;
           },
           {
             &#x27;value&#x27;: 96,
-            &#x27;name&#x27;: &#x27;-3h&#x27;,
-            &#x27;min&#x27;: 76,
-            &#x27;max&#x27;: 16
+            &#x27;name&#x27;: &#x27;-3h&#x27;
           },
           {
             &#x27;value&#x27;: 40,
-            &#x27;name&#x27;: &#x27;-2h&#x27;,
-            &#x27;min&#x27;: 45,
-            &#x27;max&#x27;: 100
+            &#x27;name&#x27;: &#x27;-2h&#x27;
           },
           {
             &#x27;value&#x27;: 73,
-            &#x27;name&#x27;: &#x27;-1h&#x27;,
-            &#x27;min&#x27;: 3,
-            &#x27;max&#x27;: 15
+            &#x27;name&#x27;: &#x27;-1h&#x27;
           },
           {
             &#x27;value&#x27;: 23,
-            &#x27;name&#x27;: &#x27;now&#x27;,
-            &#x27;min&#x27;: 45,
-            &#x27;max&#x27;: 100
+            &#x27;name&#x27;: &#x27;now&#x27;
           }
         ]
       }
@@ -1724,7 +1710,7 @@
         type: &#x27;Kubernetes&#x27;,
         status: &#x27;Running&#x27;,
         tags: &#x27;ny, edge&#x27;,
-        multitenant: &#x27;All&#x27;
+        multitenant_support: &#x27;All&#x27;
     }
 ]</code>
                         </td>
@@ -1774,10 +1760,10 @@
         description: &#x27;Ny Cluster&#x27;,
         total_nodes: &#x27;10&#x27;,
         running_nodes: &#x27;1&#x27;,
-        cluster_type: &#x27;Kubernetes&#x27;,
-        status: &#x27;Running&#x27;,
+        cluster_type_name: &#x27;Kubernetes&#x27;,
+        status_name: &#x27;Running&#x27;,
         labels: &#x27;ny, edge&#x27;,
-        multitenant: &#x27;All&#x27;
+        multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
         cluster_id: &#x27;0800200c9a62&#x27;,
@@ -1785,10 +1771,10 @@
         description: &#x27;Ny Cluster&#x27;,
         total_nodes: &#x27;10&#x27;,
         running_nodes: &#x27;2&#x27;,
-        cluster_type: &#x27;Kubernetes&#x27;,
-        status: &#x27;Running&#x27;,
+        cluster_type_name: &#x27;Kubernetes&#x27;,
+        status_name: &#x27;Running&#x27;,
         labels: &#x27;ny, edge&#x27;,
-        multitenant: &#x27;All&#x27;
+        multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
         cluster_id: &#x27;0800200c9a63&#x27;,
@@ -1796,10 +1782,10 @@
         description: &#x27;Ny Cluster&#x27;,
         total_nodes: &#x27;10&#x27;,
         running_nodes: &#x27;3&#x27;,
-        cluster_type: &#x27;Kubernetes&#x27;,
-        status: &#x27;Error&#x27;,
+        cluster_type_name: &#x27;Kubernetes&#x27;,
+        status_name: &#x27;Error&#x27;,
         labels: &#x27;ny, edge&#x27;,
-        multitenant: &#x27;All&#x27;
+        multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
         cluster_id: &#x27;0800200c9a64&#x27;,
@@ -1807,10 +1793,10 @@
         description: &#x27;Ny Cluster&#x27;,
         total_nodes: &#x27;10&#x27;,
         running_nodes: &#x27;4&#x27;,
-        cluster_type: &#x27;Kubernetes&#x27;,
-        status: &#x27;Running&#x27;,
+        cluster_type_name: &#x27;Kubernetes&#x27;,
+        status_name: &#x27;Running&#x27;,
         labels: &#x27;ny, edge&#x27;,
-        multitenant: &#x27;All&#x27;
+        multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
         cluster_id: &#x27;0800200c9a65&#x27;,
@@ -1818,10 +1804,10 @@
         description: &#x27;Ny Cluster&#x27;,
         total_nodes: &#x27;10&#x27;,
         running_nodes: &#x27;5&#x27;,
-        cluster_type: &#x27;Kubernetes&#x27;,
-        status: &#x27;Running&#x27;,
+        cluster_type_name: &#x27;Kubernetes&#x27;,
+        status_name: &#x27;Running&#x27;,
         labels: &#x27;ny, edge&#x27;,
-        multitenant: &#x27;All&#x27;
+        multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
         cluster_id: &#x27;0800200c9a66&#x27;,
@@ -1829,10 +1815,10 @@
         description: &#x27;Ny Cluster&#x27;,
         total_nodes: &#x27;10&#x27;,
         running_nodes: &#x27;6&#x27;,
-        cluster_type: &#x27;Kubernetes&#x27;,
-        status: &#x27;Running&#x27;,
+        cluster_type_name: &#x27;Kubernetes&#x27;,
+        status_name: &#x27;Running&#x27;,
         labels: &#x27;ny, edge&#x27;,
-        multitenant: &#x27;All&#x27;
+        multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
         cluster_id: &#x27;0800200c9a67&#x27;,
@@ -1840,10 +1826,10 @@
         description: &#x27;Ny Cluster&#x27;,
         total_nodes: &#x27;10&#x27;,
         running_nodes: &#x27;7&#x27;,
-        cluster_type: &#x27;Kubernetes&#x27;,
-        status: &#x27;Running&#x27;,
+        cluster_type_name: &#x27;Kubernetes&#x27;,
+        status_name: &#x27;Running&#x27;,
         labels: &#x27;ny, edge&#x27;,
-        multitenant: &#x27;All&#x27;
+        multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
         cluster_id: &#x27;0800200c9a68&#x27;,
@@ -1851,10 +1837,10 @@
         description: &#x27;Ny Cluster&#x27;,
         total_nodes: &#x27;10&#x27;,
         running_nodes: &#x27;8&#x27;,
-        cluster_type: &#x27;Kubernetes&#x27;,
-        status: &#x27;Running&#x27;,
+        cluster_type_name: &#x27;Kubernetes&#x27;,
+        status_name: &#x27;Running&#x27;,
         labels: &#x27;ny, edge&#x27;,
-        multitenant: &#x27;All&#x27;
+        multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
         cluster_id: &#x27;0800200c9a69&#x27;,
@@ -1862,10 +1848,10 @@
         description: &#x27;Ny Cluster&#x27;,
         total_nodes: &#x27;10&#x27;,
         running_nodes: &#x27;9&#x27;,
-        cluster_type: &#x27;Kubernetes&#x27;,
-        status: &#x27;Running&#x27;,
+        cluster_type_name: &#x27;Kubernetes&#x27;,
+        status_name: &#x27;Running&#x27;,
         labels: &#x27;ny, edge&#x27;,
-        multitenant: &#x27;All&#x27;
+        multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
         cluster_id: &#x27;0800200c9a70&#x27;,
@@ -1873,10 +1859,10 @@
         description: &#x27;Ny Cluster&#x27;,
         total_nodes: &#x27;10&#x27;,
         running_nodes: &#x27;10&#x27;,
-        cluster_type: &#x27;Kubernetes&#x27;,
-        status: &#x27;Running&#x27;,
+        cluster_type_name: &#x27;Kubernetes&#x27;,
+        status_name: &#x27;Running&#x27;,
         labels: &#x27;ny, edge&#x27;,
-        multitenant: &#x27;All&#x27;
+        multitenant_support: &#x27;All&#x27;
     }
 ]</code>
                         </td>
@@ -1951,60 +1937,54 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>[
     {
-        id: &#x27;0800200c9a69&#x27;,
+        node_id: &#x27;0800200c9a69&#x27;,
         ip: &#x27;100.022.0129&#x27;,
         credentials: &#x27;Private&#x27;,
-        tags: &#x27;ny, edge&#x27;,
-        status: &#x27;Running&#x27;,
+        labels: {lab1:  &#x27;lab1&#x27;},
+        status_name: &#x27;Running&#x27;,
+        state_name: &#x27;Unregistered&#x27;,
+
     },
     {
-        id: &#x27;0800200c9a68&#x27;,
+        node_id: &#x27;0800200c9a68&#x27;,
         ip: &#x27;100.022.0128&#x27;,
         credentials: &#x27;Private&#x27;,
-        tags: &#x27;ny, edge&#x27;,
-        status: &#x27;Running&#x27;,
-    },
-    {
-        id: &#x27;0800200c9a67&#x27;,
+        labels: {lab8:  &#x27;lab8&#x27;},
+        status_name: &#x27;Running&#x27;,
+        state_name: &#x27;Unregistered&#x27;,
+
+    },    {
+        node_id: &#x27;0800200c9a67&#x27;,
         ip: &#x27;100.022.0127&#x27;,
         credentials: &#x27;Private&#x27;,
-        tags: &#x27;ny, edge&#x27;,
-        status: &#x27;Running&#x27;,
-    },
-    {
-        id: &#x27;0800200c9a66&#x27;,
+        labels: {lab1:  &#x27;lab1&#x27;},
+        status_name: &#x27;Running&#x27;,
+        state_name: &#x27;Unregistered&#x27;,
+
+    },    {
+        node_id: &#x27;0800200c9a66&#x27;,
         ip: &#x27;100.022.0126&#x27;,
-        credentials: &#x27;Public&#x27;,
-        tags: &#x27;ny, edge&#x27;,
-        status: &#x27;Error&#x27;,
-    },
-    {
-        id: &#x27;0800200c9a65&#x27;,
+        credentials: &#x27;Private&#x27;,
+        labels: {lab1:  &#x27;lab1&#x27;},
+        status_name: &#x27;Running&#x27;,
+        state_name: &#x27;Unregistered&#x27;,
+
+    },    {
+        node_id: &#x27;0800200c9a65&#x27;,
         ip: &#x27;100.022.0125&#x27;,
         credentials: &#x27;Private&#x27;,
-        tags: &#x27;ny, edge&#x27;,
-        status: &#x27;Running&#x27;,
-    },
-    {
-        id: &#x27;0800200c9a65&#x27;,
-        ip: &#x27;100.022.0125&#x27;,
+        labels: {lab1:  &#x27;lab1&#x27;},
+        status_name: &#x27;Running&#x27;,
+        state_name: &#x27;Unregistered&#x27;,
+
+    },    {
+        node_id: &#x27;0800200c9a64&#x27;,
+        ip: &#x27;100.022.0123&#x27;,
         credentials: &#x27;Private&#x27;,
-        tags: &#x27;ny, edge&#x27;,
-        status: &#x27;Error&#x27;,
-    },
-    {
-        id: &#x27;0800200c9a65&#x27;,
-        ip: &#x27;100.022.0125&#x27;,
-        credentials: &#x27;Private&#x27;,
-        tags: &#x27;ny, edge&#x27;,
-        status: &#x27;Running&#x27;,
-    },
-    {
-        id: &#x27;0800200c9a65&#x27;,
-        ip: &#x27;100.022.0125&#x27;,
-        credentials: &#x27;Private&#x27;,
-        tags: &#x27;ny, edge&#x27;,
-        status: &#x27;Running&#x27;,
+        labels: {lab1:  &#x27;lab1&#x27;},
+        status_name: &#x27;Running&#x27;,
+        state_name: &#x27;Unregistered&#x27;,
+
     }
 ]</code>
                         </td>
@@ -2052,45 +2032,31 @@
         &#x27;series&#x27;: [
           {
             &#x27;value&#x27;: 39,
-            &#x27;name&#x27;: &#x27;-6h&#x27;,
-            &#x27;min&#x27;: 28,
-            &#x27;max&#x27;: 49
+            &#x27;name&#x27;: &#x27;-6h&#x27;
           },
           {
             &#x27;value&#x27;: 79,
-            &#x27;name&#x27;: &#x27;-5h&#x27;,
-            &#x27;min&#x27;: 66,
-            &#x27;max&#x27;: 91
+            &#x27;name&#x27;: &#x27;-5h&#x27;
           },
           {
             &#x27;value&#x27;: 23,
-            &#x27;name&#x27;: &#x27;-4h&#x27;,
-            &#x27;min&#x27;: 3,
-            &#x27;max&#x27;: 14
+            &#x27;name&#x27;: &#x27;-4h&#x27;
           },
           {
             &#x27;value&#x27;: 96,
-            &#x27;name&#x27;: &#x27;-3h&#x27;,
-            &#x27;min&#x27;: 76,
-            &#x27;max&#x27;: 16
+            &#x27;name&#x27;: &#x27;-3h&#x27;
           },
           {
             &#x27;value&#x27;: 73,
-            &#x27;name&#x27;: &#x27;-2h&#x27;,
-            &#x27;min&#x27;: 45,
-            &#x27;max&#x27;: 100
+            &#x27;name&#x27;: &#x27;-2h&#x27;
           },
           {
             &#x27;value&#x27;: 73,
-            &#x27;name&#x27;: &#x27;-1h&#x27;,
-            &#x27;min&#x27;: 45,
-            &#x27;max&#x27;: 100
+            &#x27;name&#x27;: &#x27;-1h&#x27;
           },
           {
             &#x27;value&#x27;: 73,
-            &#x27;name&#x27;: &#x27;now&#x27;,
-            &#x27;min&#x27;: 45,
-            &#x27;max&#x27;: 100
+            &#x27;name&#x27;: &#x27;now&#x27;
           }
         ]
     }

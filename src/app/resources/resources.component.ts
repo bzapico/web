@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { mockClusterChart, mockNodesChart } from '../utils/mocks';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
@@ -8,6 +8,7 @@ import { NotificationsService } from '../services/notifications.service';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
 import { EditClusterComponent } from '../edit-cluster/edit-cluster.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { Cluster } from '../definitions/interfaces/cluster';
 
 
 @Component({
@@ -25,7 +26,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
     }
   ]
 })
-export class ResourcesComponent implements OnInit {
+export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Backend reference
    */
@@ -57,6 +58,11 @@ export class ResourcesComponent implements OnInit {
   pieChartsData: any[];
 
   /**
+   * Array containing charts data in the required format for NGX-Charts library rendering
+   */
+  nodesChart: any[];
+
+  /**
    * Count of total nodes
    */
   nodesCount: number;
@@ -65,6 +71,11 @@ export class ResourcesComponent implements OnInit {
    * Count of total clusters
    */
   clustersCount: number;
+
+  /**
+   * Holds the reference of the interval that refreshes the lists
+   */
+  refreshIntervalRef: any;
 
   /**
    * Pie Chart options
@@ -137,6 +148,7 @@ export class ResourcesComponent implements OnInit {
     this.nodesCount = 0;
     this.clustersCount = 0;
     this.pieChartsData = [];
+    this.nodesChart = [{'name': 'Running nodes', 'series': []}];
 
   /**
    * Mocked Charts
@@ -157,8 +169,16 @@ export class ResourcesComponent implements OnInit {
             this.nodesCount = summary['total_nodes'] || 0;
         });
         this.updateClusterList();
+        this.refreshIntervalRef = setInterval(() => {
+          //  Request cluster list
+          this.updateClusterList();
+        }, 60000); // Update each 60 seconds
       }
     }
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.refreshIntervalRef);
   }
 
   /**
@@ -194,6 +214,25 @@ export class ResourcesComponent implements OnInit {
         pieChartsData.push(this.generateClusterChartData(element.running_nodes, element.total_nodes));
       });
     }
+  }
+
+  /**
+   * Updates nodes timeline with new data
+   * @param runningNodesCount New running nodes count
+   */
+  updateNodesStatusLineChart(runningNodesCount) {
+    const now = new Date(Date.now());
+    const entry = {
+      'value': runningNodesCount,
+      'name':  now.getHours() + ':' + now.getMinutes()
+    };
+
+    if (this.nodesChart[0].series.length > 5) {
+      // Removes first element
+      this.nodesChart[0].series.shift();
+    }
+    this.nodesChart[0].series.push(entry);
+    this.nodesChart = [...this.nodesChart];
   }
 
   /**
@@ -238,17 +277,74 @@ export class ResourcesComponent implements OnInit {
   updateClusterList() {
     // Requests an updated clusters list
     this.backend.getClusters(this.organizationId)
-    .subscribe(clusters => {
-        if (clusters.length) {
-          this.clusters = clusters;
+    .subscribe(response => {
+      let runningNodesCount = 0;
+        if (response.clusters.length) {
+          this.clusters = response.clusters;
         } else {
           this.clusters = [];
         }
         if (!this.loadedData) {
           this.loadedData = true;
         }
+        this.clusters.forEach(cluster => {
+          this.preventEmptyFields(cluster);
+          runningNodesCount += cluster.running_nodes / cluster.total_nodes * 100;
+        });
+
         this.chunckedClusters = this.chunkClusterList(3, this.clusters);
         this.updatePieChartsData(this.clusters, this.pieChartsData);
+        this.updateNodesStatusLineChart(runningNodesCount);
     });
   }
+
+  /**
+   * Fulfill gaps in cluster object to avoid data binding failure
+   * @param cluster Cluster object
+   */
+  preventEmptyFields(cluster: Cluster) {
+    if (!cluster.name) {
+      cluster.name = '-';
+    }
+    if (!cluster.description) {
+      cluster.description = '-';
+    }
+    if (!cluster.total_nodes) {
+      cluster.total_nodes = 0;
+    }
+    if (!cluster.running_nodes) {
+      cluster.running_nodes = 0;
+    }
+    if (!cluster.labels) {
+      cluster.labels = '-';
+    }
+  }
+  /**
+   * Checks if the cluster status requires an special css class
+   * @param status Cluster status name
+   * @param className CSS class name
+   */
+  classStatusCheck(status: string, className: string): boolean {
+    switch (status) {
+      case 'Running': {
+        if (className === 'Running') {
+          return true;
+        }
+        break;
+      }
+      case 'Error': {
+        if (className === 'Error') {
+          return true;
+        }
+        break;
+      }
+     default: {
+        if (className === 'Process') {
+          return true;
+        }
+        return false;
+      }
+    }
+  }
+
 }
