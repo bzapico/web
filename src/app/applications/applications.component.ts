@@ -237,9 +237,13 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     });
 
     const now = new Date(Date.now());
+    let minutes: any = now.getMinutes();
+      if (minutes < 10) {
+        minutes = '0' + now.getMinutes();
+      }
     const entry = {
       'value': runningAppsCount / instances.length * 100,
-      'name':  now.getHours() + ':' + now.getMinutes()
+      'name':  now.getHours() + ':' + minutes
     };
 
     if (this.appsChart[0].series.length > 5) {

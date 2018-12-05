@@ -222,9 +222,13 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   updateNodesStatusLineChart(runningNodesCount) {
     const now = new Date(Date.now());
+    let minutes: any = now.getMinutes();
+    if (minutes < 10) {
+      minutes = '0' + now.getMinutes();
+    }
     const entry = {
       'value': runningNodesCount,
-      'name':  now.getHours() + ':' + now.getMinutes()
+      'name':  now.getHours() + ':' + minutes
     };
 
     if (this.nodesChart[0].series.length > 5) {
