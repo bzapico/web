@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
         }
       }, error => {
         this.loginRequest = false;
-        this.errorMessages.push(error.statusText);
+        this.errorMessages.push(error.error.message);
       });
   }
 
