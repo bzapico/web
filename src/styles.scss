@@ -35,11 +35,12 @@ a {
   }
 }
 .error-message{
-  font-size: 0.9em;
+  width: 95%;
+  margin: 0 auto;
+  font-size: 0.7em;
   color: #F25272;
   text-align: center;
   height: 20px;
-  background-color: #051c80;
 }
 /* - - - Loader - - - */
 .loader {
@@ -156,9 +157,6 @@ a {
   height: 54%;
 }
 @media screen and (max-width:1500px){
-  .card {
-      padding: 1.3rem!important;
-  }
   .card-title-h {
     margin-bottom: 57px;
     h5 {
