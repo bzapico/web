@@ -1,3 +1,20 @@
+#scroll-table {
+    margin: 4em 0;
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size:  .9em;
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 8px;
+      margin-left: 2px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(0, 0, 0, 0.5);
+      -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    }
+}
 .orange {
     color:  #FFC40D;
 }
@@ -52,7 +69,6 @@
 }
 .cluster-summary {
     margin-bottom: 0.5rem;
-    margin-right: 3em;
     td {
         padding: 1.1rem;
         vertical-align: middle;
@@ -106,7 +122,7 @@
         vertical-align: inherit;
     }
     .cluster-summary{
-        margin-bottom: 0;
+        margin-bottom: 10px;
     }
 
     .cluster-summary td{
@@ -118,6 +134,7 @@
     .box{
         margin-top: 0;
     }
+
 }
 @media screen and (min-width:2560px){
     .circle {
@@ -218,16 +235,16 @@
     margin-top: -1em;
 }
 .donut-chart {
-    width: 100%;
-    height: 70%;
+    height: 85%;
     text-align: center;
     position: relative;
 }
 .donut-number {
     position: absolute;
-    top: 44%;
-    left: 46%;
-    height: 22px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
 }
 
 /* - - - Media Cluster card pie chart- - - */
@@ -242,8 +259,6 @@
         height: 85%;
     }
     .donut-number {
-        top: 43%;
-        left: 38%;
         font-size: .8em;
     }
     .nodes-run-node {
@@ -255,7 +270,4 @@
         font-size: 1em;
         margin-top: 0em;
     }
-    .donut-chart {
-        height: 100%;
-    }
-}
+} 
