@@ -12,7 +12,7 @@
         <h5 class="d-inline text-uppercase">{{clusterData.name}}</h5>
         <p class="d-inline cluster-number grey">STATUS</p>
       </div>
-      <!-- Cluster pie chart -->
+      <!-- Cluster card -->
         <div class="box-card">
           <h3 
             class="text-center text-uppercase"
@@ -43,15 +43,14 @@
                   >
                 </ngx-charts-pie-chart>
                 <div class="donut-number">
-                  {{clusterData.running_nodes}}/
-                  {{clusterData.total_nodes}}
+                  {{clusterData.running_nodes}}/{{clusterData.total_nodes}}
                 </div>
               </div>
               <p class="blue nodes-run mb-0">{{clusterData.running_nodes}} running</p>
               <p class="grey nodes-run-node">NODES</p>
             </div> 
         </div>
-        <div class="box flex-grow-1">
+        <div class="box flex-grow-1"  id="scroll-table">
           <table class="table cluster-summary">
             <tr>
               <th class="grey">
@@ -109,37 +108,37 @@
       <div class="table-h">
         <table *ngIf="loadedData && nodes && nodes.length > 0" class="table">
           <thead>
-            <tr>
-              <th scope="col" class="row-id">
+            <tr class="row">
+              <th scope="col" class="row-id col-3">
                 ID
               </th>
-              <th scope="col" class="row-ip">
+              <th scope="col" class="row-ip col-2">
                 IP
               </th>
-              <th scope="col" class="row-credentials">
+              <th scope="col" class="row-credentials col-2">
                 State
               </th>
-              <th scope="col" class="row-tags">
+              <th scope="col" class="row-tags col-3">
                 Tags
               </th>
-              <th scope="col" class="row-status">
+              <th scope="col" class="row-status col-2 text-center">
                 Status
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let node of nodes">
-              <td>{{node.node_id}}</td>
-              <td>{{node.ip}}</td>  
-              <td class="text-lowercase">{{node.state_name}}</td>
-              <td *ngIf="node.labels === '-'"> no </td>
-              <td *ngIf="node.labels !== '-'">
+            <tr *ngFor="let node of nodes" class="row">
+              <td class="col-3">{{node.node_id}}</td>
+              <td class="col-2">{{node.ip}}</td>  
+              <td class="text-lowercase col-2">{{node.state_name}}</td>
+              <td class="col-3" *ngIf="node.labels === '-'"> no </td>
+              <td class="col-3"*ngIf="node.labels !== '-'">
                   <button *ngFor="let label of labelsToString(node.labels)" class="btn-sm btn-outline-primary" disabled>
                       {{label[0]}}: {{label[1]}}
                   </button>
               </td>
               <td 
-              class="text-lowercase"
+              class="text-lowercase col-2 text-center"
               [ngClass]=
               "{'status-dot':classStatusCheck(node.status_name, 'running'),
               'status-dot-error':classStatusCheck(node.status_name, 'error'),
