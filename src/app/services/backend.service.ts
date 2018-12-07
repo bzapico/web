@@ -24,7 +24,6 @@ export class BackendService implements Backend {
   authToken: string;
   constructor(
     private http: HttpClient) {
-    console.log(API_URL);
   }
 
   // POST '/login'
