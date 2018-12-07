@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AddUserComponent } from './add-user.component';
 import { FormsModule } from '@angular/forms';
-import { ButtonsModule, BsModalRef } from 'ngx-bootstrap';
+import { ButtonsModule, BsModalRef, TooltipModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AddUserComponent', () => {
@@ -14,7 +14,8 @@ describe('AddUserComponent', () => {
       imports: [
         FormsModule,
         ButtonsModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        TooltipModule
       ],
       providers: [
         BsModalRef,

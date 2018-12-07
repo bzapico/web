@@ -1,6 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { BsModalService, ModalModule } from 'ngx-bootstrap';
+import { BsModalService, ModalModule, TooltipModule } from 'ngx-bootstrap';
 import { MainComponent } from './main/main.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login/login.component';
@@ -30,6 +30,7 @@ describe('AppComponent', () => {
         ReactiveFormsModule,
         RouterModule,
         AlertModule,
+        TooltipModule,
         ModalModule.forRoot()
       ],
       providers: [BsModalService]
