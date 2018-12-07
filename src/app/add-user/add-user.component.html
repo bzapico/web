@@ -116,13 +116,15 @@
     </div>
 
     <!-- Error messages -->
-    <div 
-      tooltip = "{{arrayToString(errorMessages)}}"
-      placement = "bottom"
-      *ngIf="errorMessages.length > 0"
-      class="w-100 text-center red">
-      {{formatValidationOutput(errorMessages).msg}}
+    <div class="error-message">
+        <div 
+        tooltip = "{{arrayToString(errorMessages)}}"
+        placement = "bottom"
+        *ngIf="errorMessages.length > 0">
+        {{formatValidationOutput(errorMessages).msg}}
+      </div>
     </div>
+    
 
     <!-- Option buttons -->
     <div class="buttons d-flex flex-row justify-content-between">

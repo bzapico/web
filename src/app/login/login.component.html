@@ -5,10 +5,11 @@
     #f="ngForm"
     class="form-login"
     (ngSubmit)="f.form.valid && onSubmit()">
-        <h2 class="form-login-heading" (click)="openDebugPanel()">Nalej</h2>
+        <h2 class="form-login-heading" (click)="openDebugPanel()">NALEJ</h2>
         <div class="card">
-            <h5 class="card-title">Log in</h5>
+
             <div class="card-body">
+                    <h5 class="card-title">Log in</h5>
                 <!-- Form fields -->
                 <input 
                     type="email" 
@@ -25,12 +26,13 @@
                     required>
 
                 <!-- Error messages -->
-                <div 
-                    tooltip = "{{arrayToString(errorMessages)}}"
-                    placement = "bottom"
-                    *ngIf="errorMessages.length > 0"
-                    class="w-100 text-center red">
-                    {{formatValidationOutput(errorMessages).msg}}
+                <div class="error-message">
+                    <div 
+                        tooltip = "{{arrayToString(errorMessages)}}"
+                        placement = "bottom"
+                        *ngIf="errorMessages.length > 0">
+                        {{formatValidationOutput(errorMessages).msg}}
+                    </div>
                 </div>
 
                 <!-- Form actions -->
