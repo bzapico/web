@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
@@ -22,9 +22,9 @@ export class LoginComponent implements OnInit {
    */
   modalRef: BsModalRef;
   /**
-   * Holds the error message
+   * Holds the error messages
    */
-  errorMessage: string;
+  errorMessages: string[];
 
   /**
    * Loaded Data for login request status
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
-    this.errorMessage = '';
+    this.errorMessages = [];
     this.loginRequest = false;
   }
 
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
     this.loginRequest = true;
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(response => {
-        this.errorMessage = '';
+        this.errorMessages = [];
         if (response.token) {
           const jwtHelper: JwtHelperService = new JwtHelperService();
           const jwtTokenData = jwtHelper.decodeToken(response.token);
@@ -84,7 +84,9 @@ export class LoginComponent implements OnInit {
         }
       }, error => {
         this.loginRequest = false;
-        this.errorMessage = error.statusText;
+        this.errorMessages.push(
+          error.error.message.charAt(0).toUpperCase() +
+          error.error.message.slice(1)); // Capitalize first letter of error msg
       });
   }
 
@@ -95,5 +97,64 @@ export class LoginComponent implements OnInit {
     this.modalRef = this.modalService.show(DebugPanelComponent);
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { location.reload(); });
+  }
+  /**
+   * Validates user data
+   * @param form Form with user data
+   */
+  checkFormFields(form: FormGroup) {
+    this.errorMessages = [];
+    if (form.controls.email.invalid) {
+      if (form.controls.email.errors.required) {
+        this.errorMessages.push('Email is required');
+      }
+      if (form.controls.email.errors.email) {
+        this.errorMessages.push('Email must be a valid email address');
+      }
+    }
+    if (form.controls.password.invalid) {
+      if (form.controls.password.errors.required) {
+        this.errorMessages.push('Password is required');
+      }
+      if (form.controls.password.errors.minlength) {
+        this.errorMessages.push('Password must have more than 6 characters');
+      }
+    }
+  }
+
+  /**
+  * Outputs the error messages in the required format, showing the first one
+  * @param errors String containing the errors
+  */
+  formatValidationOutput(errors: string[]) {
+    if (this.errorMessages.length === 1) {
+      return {
+        msg: this.errorMessages[0],
+        errors: this.errorMessages
+      };
+    } else if (this.errorMessages.length > 0) {
+      return {
+        msg: this.errorMessages[0] + ' +' + (this.errorMessages.length - 1) + ' errors',
+        errors: this.errorMessages
+      };
+    } else {
+      return {
+        msg: '',
+        errors: this.errorMessages
+      };
+    }
+  }
+
+  /**
+   * Another string definition of an array
+   * @param array Array of elements
+   */
+  arrayToString(array: any[]): string {
+    let msg = '';
+    array.forEach(element => {
+      msg = msg + element.toLowerCase() + ', ';
+    });
+    msg = msg.slice(0, msg.length - 2);
+    return msg;
   }
 }
