@@ -9,7 +9,8 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 /**
  * URL of the public API
  */
-const API_URL = environment.apiUrl + ':31404/v1/';
+// const API_URL = environment.apiUrl + ':31404/v1/';
+const API_URL = environment.apiUrl + '/v1/';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,6 @@ export class BackendService implements Backend {
   authToken: string;
   constructor(
     private http: HttpClient) {
-
   }
 
   // POST '/login'
@@ -35,7 +35,8 @@ export class BackendService implements Backend {
   login(email: string, password: string): Observable<any> {
     return this.http.post(
       // URL
-      environment.apiUrl + ':30210/v1/login',
+      // environment.apiUrl + ':30210/v1/login',
+      API_URL + 'login',
       // LOAD
       {
         username: email,

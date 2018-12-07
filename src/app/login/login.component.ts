@@ -84,9 +84,11 @@ export class LoginComponent implements OnInit {
         }
       }, error => {
         this.loginRequest = false;
-        this.errorMessages.push(
-          error.error.message.charAt(0).toUpperCase() +
-          error.error.message.slice(1)); // Capitalize first letter of error msg
+        if (error.error && error.error.message) {
+          this.errorMessages.push(
+            error.error.message.charAt(0).toUpperCase() +
+            error.error.message.slice(1)); // Capitalize first letter of error msg
+        }
       });
   }
 

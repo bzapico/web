@@ -152,7 +152,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>environment.apiUrl + &#x27;:31404/v1/&#x27;</code>
+                            <i>Default value : </i><code>environment.apiUrl + &#x27;/v1/&#x27;</code>
                         </td>
                     </tr>
 
@@ -247,7 +247,7 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
   production: true,
-  apiUrl: getBaseUrl
+  apiUrl: getBaseUrl()
 }</code>
                         </td>
                     </tr>
@@ -288,7 +288,8 @@
                             <i>Default value : </i><code>{
   production: false,
   // hardcoded local environment API ip address
-  apiUrl: &#x27;http://192.168.99.100&#x27;
+  // apiUrl: &#x27;http://192.168.99.100&#x27;
+  apiUrl: getBaseUrl()
 }</code>
                         </td>
                     </tr>
@@ -345,7 +346,8 @@
     jwt: &#x27;jwt&#x27;,
     jwtData: &#x27;jwt_data&#x27;,
     userId: &#x27;user_id&#x27;,
-    refreshToken: &#x27;refresh_token&#x27;
+    refreshToken: &#x27;refresh_token&#x27;,
+    url: &#x27;url&#x27;
 }</code>
                         </td>
                     </tr>
@@ -526,7 +528,9 @@
         labels: {
             lab1: &#x27;label1&#x27;,
             lab2: &#x27;label2&#x27;,
-            lab3: &#x27;label3&#x27;
+            lab3: &#x27;label3&#x27;,
+            lab4: &#x27;label1&#x27;,
+            lab5: &#x27;label2&#x27;
         },
         rules: [
             {
@@ -1758,11 +1762,14 @@
         cluster_id: &#x27;0800200c9a61&#x27;,
         name: &#x27;Cluster1&#x27;,
         description: &#x27;Ny Cluster&#x27;,
-        total_nodes: &#x27;10&#x27;,
-        running_nodes: &#x27;1&#x27;,
+        total_nodes: &#x27;1&#x27;,
+        running_nodes: &#x27;0&#x27;,
         cluster_type_name: &#x27;Kubernetes&#x27;,
         status_name: &#x27;Running&#x27;,
-        labels: &#x27;ny, edge&#x27;,
+        labels: {
+            lab1: &#x27;label1&#x27;,
+            lab2: &#x27;label2&#x27;
+        },
         multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
@@ -1773,7 +1780,12 @@
         running_nodes: &#x27;2&#x27;,
         cluster_type_name: &#x27;Kubernetes&#x27;,
         status_name: &#x27;Running&#x27;,
-        labels: &#x27;ny, edge&#x27;,
+        labels: {
+            lab1: &#x27;label1&#x27;,
+            lab2: &#x27;label2&#x27;,
+            lab3: &#x27;label3&#x27;,
+            lab4: &#x27;label4&#x27;
+        },
         multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
@@ -1795,7 +1807,10 @@
         running_nodes: &#x27;4&#x27;,
         cluster_type_name: &#x27;Kubernetes&#x27;,
         status_name: &#x27;Running&#x27;,
-        labels: &#x27;ny, edge&#x27;,
+        labels: {
+            lab1: &#x27;label1&#x27;,
+            lab2: &#x27;label2&#x27;
+        },
         multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
@@ -1817,7 +1832,11 @@
         running_nodes: &#x27;6&#x27;,
         cluster_type_name: &#x27;Kubernetes&#x27;,
         status_name: &#x27;Running&#x27;,
-        labels: &#x27;ny, edge&#x27;,
+        labels: {
+            lab1: &#x27;label1&#x27;,
+            lab2: &#x27;label2&#x27;,
+            lab3: &#x27;label3&#x27;
+        },
         multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
@@ -1828,7 +1847,10 @@
         running_nodes: &#x27;7&#x27;,
         cluster_type_name: &#x27;Kubernetes&#x27;,
         status_name: &#x27;Running&#x27;,
-        labels: &#x27;ny, edge&#x27;,
+        labels: {
+            lab1: &#x27;label1&#x27;,
+            lab2: &#x27;label2&#x27;
+        },
         multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
@@ -1839,7 +1861,11 @@
         running_nodes: &#x27;8&#x27;,
         cluster_type_name: &#x27;Kubernetes&#x27;,
         status_name: &#x27;Running&#x27;,
-        labels: &#x27;ny, edge&#x27;,
+        labels: {
+            lab1: &#x27;label1&#x27;,
+            lab2: &#x27;label2&#x27;,
+            lab3: &#x27;label3&#x27;
+        },
         multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
@@ -1850,7 +1876,10 @@
         running_nodes: &#x27;9&#x27;,
         cluster_type_name: &#x27;Kubernetes&#x27;,
         status_name: &#x27;Running&#x27;,
-        labels: &#x27;ny, edge&#x27;,
+        labels: {
+            lab1: &#x27;label1&#x27;,
+            lab2: &#x27;label2&#x27;
+        },
         multitenant_support: &#x27;All&#x27;
     }, {
         organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
@@ -1861,7 +1890,10 @@
         running_nodes: &#x27;10&#x27;,
         cluster_type_name: &#x27;Kubernetes&#x27;,
         status_name: &#x27;Running&#x27;,
-        labels: &#x27;ny, edge&#x27;,
+        labels: {
+            lab1: &#x27;label1&#x27;,
+            lab2: &#x27;label2&#x27;
+        },
         multitenant_support: &#x27;All&#x27;
     }
 ]</code>

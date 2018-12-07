@@ -231,7 +231,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   updateRunningAppsLineChart(instances) {
     let runningAppsCount = 0;
     instances.forEach(instance => {
-      if (instance.status_name.toLowerCase() === 'running') {
+      if (instance && instance.status_name.toLowerCase() === 'running') {
         runningAppsCount += 1;
       }
     });
