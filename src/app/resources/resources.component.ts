@@ -283,7 +283,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.backend.getClusters(this.organizationId)
     .subscribe(response => {
       let runningNodesCount = 0;
-        if (response.clusters.length) {
+        if (response.clusters && response.clusters.length) {
           this.clusters = response.clusters;
         } else {
           this.clusters = [];
