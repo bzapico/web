@@ -61,7 +61,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     AddUserComponent,
     EditClusterComponent,
     EditUserComponent,
-    AppsInfoComponent
+    AppsInfoComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
