@@ -44,12 +44,10 @@ export class UserInfoComponent implements OnInit {
   userId: string;
   role: string;
 
-  /**
-   * Reference for the service that allows the user info component
-   */
-  bsModalRef: BsModalRef;
+
 
   constructor(
+    public bsModalRef: BsModalRef,
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
@@ -87,20 +85,25 @@ export class UserInfoComponent implements OnInit {
    * @param userId A user to be deleted
    */
   deleteUser() {
-    if (this.organizationId !== null && this.userId !== null) {
-      this.backend.deleteUser(this.organizationId, this.userId)
-        .subscribe(response => {
-          this.notificationsService.add({
-            message: 'User ' + this.userId + ' has been deleted',
-            timeout: 10000
+    const deleteConfirm = confirm('Delete user?');
+    if (deleteConfirm) {
+      if (this.organizationId !== null && this.userId !== null) {
+        this.backend.deleteUser(this.organizationId, this.userId)
+          .subscribe(response => {
+            this.notificationsService.add({
+              message: 'User ' + this.userId + ' has been deleted',
+              timeout: 10000
+            });
+            this.bsModalRef.hide();
+          }, error => {
+            this.notificationsService.add({
+              message: error.error.message,
+              timeout: 10000
+            });
           });
-          this.bsModalRef.hide();
-        }, error => {
-          this.notificationsService.add({
-            message: error.error.message,
-            timeout: 10000
-          });
-        });
+      }
+    } else {
+      // Do nothing
     }
   }
 
@@ -129,7 +132,7 @@ export class UserInfoComponent implements OnInit {
       organizationId: this.organizationId,
     };
 
-    this.bsModalRef = this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.bsModalRef.content.closeBtnName = 'Close';
+    // this.bsModalRef = this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    // this.bsModalRef.content.closeBtnName = 'Close';
   }
 }

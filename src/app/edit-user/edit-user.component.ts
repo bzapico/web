@@ -37,11 +37,6 @@ export class EditUserComponent implements OnInit {
    */
   roleDirty: boolean;
 
-  /**
-   * Reference for the service that allows the user info component
-   */
-  modalRef: BsModalRef;
-
   constructor(
     private modalService: BsModalService,
     public bsModalRef: BsModalRef,
@@ -127,8 +122,8 @@ export class EditUserComponent implements OnInit {
       organizationId: this.organizationId,
     };
 
-    this.modalRef = this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.modalRef.content.closeBtnName = 'Close';
+    // this.modalRef = this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    // this.modalRef.content.closeBtnName = 'Close';
     // this.modalService.onHide.subscribe(response => {
     //   this.notificationsService.add({
     //     message: 'Your new password is ' + response._body,

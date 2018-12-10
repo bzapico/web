@@ -3,6 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { Observable } from 'rxjs';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { mockJwtToken } from '../utils/mocks';
 
 @Injectable({
   providedIn: 'root'
@@ -18,16 +19,20 @@ export class AuthGuard implements CanActivate {
     const jwtToken = JSON.parse(localStorage.getItem(LocalStorageKeys.jwt)) || null;
     const jwtData = JSON.parse(localStorage.getItem(LocalStorageKeys.jwtData)) || null;
     let role;
+    // Set role
     if (jwtData) {
       role = jwtData.role;
     }
+    // Check jwtToken expiracy
     if (jwtToken === null
-      // || this.jwtHelper.isTokenExpired(jwtToken) unable to generate a mockup jwt with the right expiracy date
+      || (jwtToken.token !== mockJwtToken
+          && this.jwtHelper.isTokenExpired(jwtToken.token)
+          )
       ) {
       this.router.navigate(['login']);
       return false;
     }
-
+    // Check user role access
     if (
       role &&
       role === 'Developer' && !(
@@ -37,14 +42,15 @@ export class AuthGuard implements CanActivate {
       alert('Unauthorized');
       return false;
     }
-    // if (
-    //   role === 'Operator' && !(
-    //   next.routeConfig.path === 'resources' ||
-    //   next.routeConfig.path === '')
-    // ) {
-    //   alert('Unauthorized');
-    //   return false;
-    // }
+    // Check user role access
+    if (
+      role === 'Operator' && !(
+      next.routeConfig.path === 'resources' ||
+      next.routeConfig.path === '')
+    ) {
+      alert('Unauthorized');
+      return false;
+    }
 
     return true;
   }
