@@ -112,24 +112,7 @@ export class UserInfoComponent implements OnInit {
     }
   }
 
-/* TODO */
   /**
-   *  Upon confirmation, resets the password
-   */
-  resetPassword() {
-    if (this.organizationId !== null && this.userId !== null) {
-      this.backend.resetPassword(this.organizationId, this.userId)
-      .subscribe(response => {
-        this.notificationsService.add({
-          message: 'Your new password is ' + response._body,
-          timeout: 10000
-        });
-        this.bsModalRef.hide();
-      });
-    }
-  }
-
-   /**
    * Opens the modal view that holds change password editable component
    */
   openChangePassword() {
@@ -137,7 +120,6 @@ export class UserInfoComponent implements OnInit {
       organizationId: this.organizationId,
       userId: this.userId
     };
-
     this.bsPasswordModalRef =
       this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.bsPasswordModalRef.content.closeBtnName = 'Close';

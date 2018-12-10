@@ -5,6 +5,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { Backend } from '../definitions/interfaces/backend';
 import { FormGroup } from '@angular/forms';
+import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
 @Component({
   selector: 'app-change-password',
@@ -36,13 +37,13 @@ export class ChangePasswordComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    // const mock = localStorage.getItem(LocalStorageKeys.passwordMock) || null;
+    const mock = localStorage.getItem(LocalStorageKeys.passwordMock) || null;
     // check which backend is required (fake or real)
-    // if (mock && mock === 'true') {
-    //   this.backend = mockupBackendService;
-    // } else {
-    //   this.backend = backendService;
-    // }
+    if (mock && mock === 'true') {
+      this.backend = mockupBackendService;
+    } else {
+      this.backend = backendService;
+    }
   }
 
   ngOnInit() {
