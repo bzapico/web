@@ -45,8 +45,9 @@ export class UserInfoComponent implements OnInit {
   role: string;
 
 
+
   constructor(
-    private bsModalRef: BsModalRef,
+    public bsModalRef: BsModalRef,
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
