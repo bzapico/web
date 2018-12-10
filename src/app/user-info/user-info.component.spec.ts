@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserInfoComponent } from './user-info.component';
-import { ButtonsModule, BsModalRef } from 'ngx-bootstrap';
+import { ButtonsModule, BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -15,8 +15,13 @@ describe('UserInfoComponent', () => {
       imports: [
         HttpClientTestingModule,
         FormsModule,
-        ButtonsModule],
-      providers: [ BsModalRef ]
+        ButtonsModule,
+        ModalModule.forRoot(),
+      ],
+      providers: [
+        BsModalRef,
+        BsModalService
+      ]
     })
     .compileComponents();
   }));
