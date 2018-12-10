@@ -6,6 +6,8 @@ import { ButtonsModule, BsModalRef } from 'ngx-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
+import { By } from '@angular/platform-browser';
+
 describe('EditClusterComponent', () => {
   let component: EditClusterComponent;
   let fixture: ComponentFixture<EditClusterComponent>;
@@ -29,6 +31,7 @@ describe('EditClusterComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(EditClusterComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 
@@ -40,5 +43,12 @@ describe('EditClusterComponent', () => {
     expect(saveClusterChanges).toHaveBeenCalledWith();
   });
 
+  it('Close button - Should discard the cluster data modifications', () => {
+    const button = fixture.debugElement.query(By.css('.close'));
+
+    button.triggerEventHandler('click', null);
+
+    expect(component.discardChanges).toBeDefined();
+  });
 
 });

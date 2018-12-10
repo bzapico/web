@@ -4,6 +4,7 @@ import { EditUserComponent } from './edit-user.component';
 import { FormsModule } from '@angular/forms';
 import { ButtonsModule, BsModalRef } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { By } from '@angular/platform-browser';
 
 describe('EditUserComponent', () => {
   let component: EditUserComponent;
@@ -36,6 +37,14 @@ describe('EditUserComponent', () => {
     saveUserChanges();
 
     expect(saveUserChanges).toHaveBeenCalledWith();
+  });
+
+  it('Discard button - Should discard the user data modifications', () => {
+    const button = fixture.debugElement.query(By.css('.close'));
+
+    button.triggerEventHandler('click', null);
+
+    expect(component.discardChanges).toBeDefined();
   });
 
 });
