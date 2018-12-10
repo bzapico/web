@@ -16,7 +16,7 @@ describe('UserInfoComponent', () => {
         HttpClientTestingModule,
         FormsModule,
         ButtonsModule],
-      providers: [BsModalRef]
+      providers: [ BsModalRef ]
     })
     .compileComponents();
   }));

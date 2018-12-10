@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OrganizationComponent } from './organization.component';
-import { ButtonsModule, BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
+import { ButtonsModule, BsModalRef, BsModalService, ModalModule, TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
@@ -21,6 +21,7 @@ describe('OrganizationComponent', () => {
         HttpClientTestingModule,
         FormsModule,
         ButtonsModule,
+        TooltipModule,
         ModalModule.forRoot(),
       ],
       providers: [

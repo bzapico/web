@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxChartsModule} from '@swimlane/ngx-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { ErrorHandlerService } from './services/error-handler.service';
 import { routes } from './app.routing';
@@ -28,6 +29,7 @@ import { EditClusterComponent } from './edit-cluster/edit-cluster.component';
 import { ResourcesComponent } from './resources/resources.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { AppsInfoComponent } from './apps-info/apps-info.component';
 import { ApplicationsComponent } from './applications/applications.component';
 import { ClusterComponent } from './cluster/cluster.component';
 import { UpdateEventsService } from './services/update-events.service';
@@ -47,6 +49,7 @@ import { UpdateEventsService } from './services/update-events.service';
     AddUserComponent,
     EditClusterComponent,
     EditUserComponent,
+    AppsInfoComponent,
     ApplicationsComponent,
     ClusterComponent,
   ],
@@ -55,12 +58,14 @@ import { UpdateEventsService } from './services/update-events.service';
     UserInfoComponent,
     AddUserComponent,
     EditClusterComponent,
-    EditUserComponent
+    EditUserComponent,
+    AppsInfoComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     NgxChartsModule,
+    NgxGraphModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

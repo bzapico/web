@@ -38,12 +38,14 @@ export class DebugPanelComponent implements OnInit {
    */
   components: ComponentMockOption[] = [];
   notificationsMock: any;
+  url: string;
 
   constructor(
     public bsModalRef: BsModalRef,
     private notificationsService: NotificationsService
     ) {
     this.notificationsMock = (localStorage.getItem(LocalStorageKeys.notificationsMock) === 'true' ? true : false);
+    this.url = localStorage.getItem(LocalStorageKeys.url) || '';
    }
 
   ngOnInit() {
@@ -156,6 +158,10 @@ export class DebugPanelComponent implements OnInit {
       type: 'info',
       timeout: 10000
     });
+  }
+  urlChange($event) {
+    this.url = $event;
+    localStorage.setItem(LocalStorageKeys.url, this.url);
   }
 
 }

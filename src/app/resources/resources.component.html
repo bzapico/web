@@ -178,12 +178,17 @@
       <div class="card-title-c">
         <h5 class="text-uppercase">Node status timeline</h5>
       </div>
-      <div class=" h-100 box-line-chart">
+      <div 
+        *ngIf="nodesCount === 0"
+        class=" h-100 box-line-chart d-flex justify-content-center align-items-center text-center">
+        No available nodes detected
+      </div>
+      <div *ngIf="nodesCount > 0" class=" h-100 box-line-chart">
         <div class="line-chart">
           <div class="bottom-line"></div>
           <ngx-charts-line-chart
             [scheme]="colorScheme"
-            [results]="mockNodesChart"
+            [results]="nodesChart"
             [xAxis]="showXAxis"
             [yAxis]="showYAxis"
             [gradient]="gradient" 
@@ -237,9 +242,6 @@
               <th scope="col" class="row-status">
                 Status
               </th>
-              <th scope="col" class="row-tags">
-                Tags
-              </th>
               <th scope="col" class="row-multitenant">
                 Multitenant
               </th>
@@ -254,7 +256,7 @@
                 <a 
                   [routerLink]="['cluster', cluster.cluster_id]" 
                   routerLinkActive="active" 
-                  class="blue">{{cluster.name}}
+                  class="blue text-capitalize">{{cluster.name}}
                 </a>
               </td>
               <td>{{cluster.cluster_id}}</td>
@@ -266,15 +268,20 @@
                 </a>
               </td>  
               <td>{{cluster.description}}</td>
-              <td>{{cluster.cluster_type}}</td>
-              <td 
-                [ngClass]=
-                "{'status-dot':cluster.status === 'Running',
-                'status-dot-error':cluster.status === 'Error'}">
-                {{cluster.status}}
+              <td class="text-lowercase">
+                {{cluster.cluster_type_name}}
               </td>
-              <td>{{cluster.labels}}</td>
-              <td>{{cluster.multitenant}}</td>
+              <td 
+                class="text-lowercase"
+                [ngClass]=
+                "{'status-dot': classStatusCheck (cluster.status_name, 'running'),
+                'status-dot-error': classStatusCheck (cluster.status_name, 'error'),
+                'status-dot-process': classStatusCheck (cluster.status_name, 'process')}">
+                {{cluster.status_name}}
+              </td>
+              <td class="text-lowercase">
+                {{cluster.multitenant_support}}
+              </td>
               <td>
                 <button 
                   class="btn info-btn btn-primary" 

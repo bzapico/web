@@ -12,15 +12,14 @@
         <h5 class="d-inline text-uppercase">{{clusterData.name}}</h5>
         <p class="d-inline cluster-number grey">STATUS</p>
       </div>
-      <!-- Cluster pie chart -->
+      <!-- Cluster card -->
         <div class="box-card">
           <h3 
             class="text-center text-uppercase"
-            [ngClass]="{
-              'blue': clusterData.status === 'Running',
-              'red': clusterData.status === 'Error'
-            }">
-            {{clusterData.status}}
+            [ngClass]="{'blue':classStatusCheck(clusterData.status_name, 'running'),
+            'red':classStatusCheck(clusterData.status_name, 'error'),
+            'orange':classStatusCheck(clusterData.status_name, 'process')}">
+            {{clusterData.status_name}}
           </h3>
         </div>
     </div>
@@ -29,7 +28,7 @@
   <div class="col-lg-9 h-100">
     <div class="card card-clus p-4 h-100">
       <div class="card-title-c">
-        <h5 class="d-inline">SUMMARY CLUSTER 1</h5>
+        <h5 class="d-inline text-uppercase">SUMMARY</h5>
       </div>
       <div class="box-card">
         <div class="box circles-box ">
@@ -37,22 +36,21 @@
               <div class="donut-chart">
                 <ngx-charts-pie-chart
                   [scheme]="colorScheme" 
-                  [results]="mockClusterChart" 
+                  [results]="clusterPieChart" 
                   [doughnut]= "doughnut"
                   [gradient]="gradient"
                   [explodeSlices]="false"
                   >
                 </ngx-charts-pie-chart>
                 <div class="donut-number">
-                  {{clusterData.running_nodes}}/
-                  {{clusterData.total_nodes}}
+                  {{clusterData.running_nodes}}/{{clusterData.total_nodes}}
                 </div>
               </div>
               <p class="blue nodes-run mb-0">{{clusterData.running_nodes}} running</p>
               <p class="grey nodes-run-node">NODES</p>
             </div> 
         </div>
-        <div class="box flex-grow-1">
+        <div class="box flex-grow-1"  id="scroll-table">
           <table class="table cluster-summary">
             <tr>
               <th class="grey">
@@ -64,19 +62,24 @@
               <th class="grey">
                 types
               </th>
-              <td>{{clusterData.cluster_type}}</td> 
+              <td class="text-capitalize">{{clusterData.cluster_type_name}}</td> 
             </tr>
             <tr>
               <th class="grey">
                 Tags
               </th>
-              <td>{{clusterData.labels}}</td>
+              <td *ngIf="clusterData.labels === '-'"> No </td>
+              <td *ngIf="clusterData.labels !== '-'">
+                <button *ngFor="let label of labelsToString(clusterData.labels)" class="btn-sm btn-outline-primary" disabled>
+                  <span *ngIf="label[1]!== '-'">{{label[0]}}: {{label[1]}}</span>  
+                </button>
+              </td>
             </tr>
             <tr>
               <th class="grey">
                 Multitenant
               </th>
-              <td>{{clusterData.multitenant}}</td>
+              <td>{{clusterData.multitenant_support}}</td>
             </tr>
           </table>
         </div>
@@ -105,35 +108,42 @@
       <div class="table-h">
         <table *ngIf="loadedData && nodes && nodes.length > 0" class="table">
           <thead>
-            <tr>
-              <th scope="col" class="row-id">
+            <tr class="row">
+              <th scope="col" class="row-id col-3">
                 ID
               </th>
-              <th scope="col" class="row-ip">
+              <th scope="col" class="row-ip col-2">
                 IP
               </th>
-              <th scope="col" class="row-credentials">
-                Credentials
+              <th scope="col" class="row-credentials col-2">
+                State
               </th>
-              <th scope="col" class="row-tags">
+              <th scope="col" class="row-tags col-3">
                 Tags
               </th>
-              <th scope="col" class="row-status">
+              <th scope="col" class="row-status col-2 text-center">
                 Status
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let node of nodes">
-              <td>{{node.id}}</td>
-              <td>{{node.ip}}</td>  
-              <td>{{node.credentials}}</td>
-              <td>{{node.tags}}</td>
+            <tr *ngFor="let node of nodes" class="row">
+              <td class="col-3">{{node.node_id}}</td>
+              <td class="col-2">{{node.ip}}</td>  
+              <td class="text-lowercase col-2">{{node.state_name}}</td>
+              <td class="col-3" *ngIf="node.labels === '-'"> no </td>
+              <td class="col-3"*ngIf="node.labels !== '-'">
+                  <button *ngFor="let label of labelsToString(node.labels)" class="btn-sm btn-outline-primary" disabled>
+                      {{label[0]}}: {{label[1]}}
+                  </button>
+              </td>
               <td 
+              class="text-lowercase col-2 text-center"
               [ngClass]=
-              "{'status-dot':node.status === 'Running',
-              'status-dot-error':node.status === 'Error'}">
-              {{node.status}}
+              "{'status-dot':classStatusCheck(node.status_name, 'running'),
+              'status-dot-error':classStatusCheck(node.status_name, 'error'),
+              'status-dot-process':classStatusCheck(node.status_name, 'process')}">
+              {{node.status_name}}
             </td>
             </tr>
           </tbody>

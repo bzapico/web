@@ -939,7 +939,9 @@ export class SidebarComponent implements OnInit {
         &lt;/div&gt;
       &lt;/a&gt;
     &lt;/li&gt;
-    &lt;li class&#x3D;&quot;nav-item nav-item-page&quot;&gt;
+    &lt;li 
+      *ngIf&#x3D;&quot;role &#x3D;&#x3D;&#x3D; &#x27;Owner&#x27;&quot; 
+      class&#x3D;&quot;nav-item nav-item-page&quot;&gt;
       &lt;a
       routerLinkActive&#x3D;&quot;active&quot; 
       routerLink&#x3D;&quot;/organization&quot; 
@@ -949,7 +951,9 @@ export class SidebarComponent implements OnInit {
         &lt;span class&#x3D;&quot;arrow&quot;&gt;&gt;&lt;/span&gt;
       &lt;/a&gt;
     &lt;/li&gt;
-    &lt;li class&#x3D;&quot;nav-item nav-item-page&quot;&gt;
+    &lt;li
+      *ngIf&#x3D;&quot;role &#x3D;&#x3D;&#x3D; &#x27;Owner&#x27; || role &#x3D;&#x3D;&#x3D; &#x27;Operator&#x27;&quot;
+      class&#x3D;&quot;nav-item nav-item-page&quot;&gt;
       &lt;a         
       routerLinkActive&#x3D;&quot;active&quot; 
       routerLink&#x3D;&quot;/resources&quot; 
@@ -959,7 +963,9 @@ export class SidebarComponent implements OnInit {
         &lt;span class&#x3D;&quot;arrow&quot;&gt;&gt;&lt;/span&gt;
       &lt;/a&gt;
     &lt;/li&gt;
-    &lt;li class&#x3D;&quot;nav-item nav-item-page&quot;&gt;
+    &lt;li 
+      *ngIf&#x3D;&quot;role &#x3D;&#x3D;&#x3D; &#x27;Owner&#x27; || role &#x3D;&#x3D;&#x3D; &#x27;Developer&#x27;&quot; 
+      class&#x3D;&quot;nav-item nav-item-page&quot;&gt;
       &lt;a         
       routerLinkActive&#x3D;&quot;active&quot; 
       routerLink&#x3D;&quot;/applications&quot; 
@@ -1003,8 +1009,8 @@ export class SidebarComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="sidebar">  <ul class="nav">    <li class="nav-title" (click)="openDebugPanel()">NALEJ</li>    <li class="nav-item">      <a         routerLinkActive="active"         routerLink="/profile"         class="nav-link">        <div class="profile" (click)="openEditUser()">          <div class="avatar-frame">              <i class="material-icons">person</i>          </div>          <p class="name">{{name}}</p>          <p class="type">{{role}}</p>          <p class="email">{{email}}</p>        </div>      </a>    </li>    <li class="nav-item nav-item-page">      <a      routerLinkActive="active"       routerLink="/organization"       class="nav-link">        <i class="material-icons">group_work</i>        Organization        <span class="arrow">></span>      </a>    </li>    <li class="nav-item nav-item-page">      <a               routerLinkActive="active"       routerLink="/resources"       class="nav-link">        <i class="material-icons">dns</i>        Resources        <span class="arrow">></span>      </a>    </li>    <li class="nav-item nav-item-page">      <a               routerLinkActive="active"       routerLink="/applications"       class="nav-link">        <i class="material-icons">apps</i>        Applications        <span class="arrow">></span>      </a>    </li>    <li class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn" (click)="logout()">      <button class="btn info-btn logout-btn btn-red logout my-4">        Logout      </button>    </li>  </ul></div></div>'
-    var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><div class="sidebar">  <ul class="nav">    <li class="nav-title" (click)="openDebugPanel()">NALEJ</li>    <li class="nav-item">      <a         routerLinkActive="active"         routerLink="/profile"         class="nav-link">        <div class="profile" (click)="openEditUser()">          <div class="avatar-frame">              <i class="material-icons">person</i>          </div>          <p class="name">{{name}}</p>          <p class="type">{{role}}</p>          <p class="email">{{email}}</p>        </div>      </a>    </li>    <li       *ngIf="role === \'Owner\'"       class="nav-item nav-item-page">      <a      routerLinkActive="active"       routerLink="/organization"       class="nav-link">        <i class="material-icons">group_work</i>        Organization        <span class="arrow">></span>      </a>    </li>    <li      *ngIf="role === \'Owner\' || role === \'Operator\'"      class="nav-item nav-item-page">      <a               routerLinkActive="active"       routerLink="/resources"       class="nav-link">        <i class="material-icons">dns</i>        Resources        <span class="arrow">></span>      </a>    </li>    <li       *ngIf="role === \'Owner\' || role === \'Developer\'"       class="nav-item nav-item-page">      <a               routerLinkActive="active"       routerLink="/applications"       class="nav-link">        <i class="material-icons">apps</i>        Applications        <span class="arrow">></span>      </a>    </li>    <li class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn" (click)="logout()">      <button class="btn info-btn logout-btn btn-red logout my-4">        Logout      </button>    </li>  </ul></div></div>'
+    var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AppsInfoComponent', 'selector': 'app-apps-info'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SidebarComponent'};
 </script>

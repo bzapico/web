@@ -9,7 +9,8 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 /**
  * URL of the public API
  */
-const API_URL = environment.apiUrl + ':31404/v1/';
+// const API_URL = environment.apiUrl + ':31404/v1/';
+const API_URL = environment.apiUrl + '/v1/';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,6 @@ export class BackendService implements Backend {
   authToken: string;
   constructor(
     private http: HttpClient) {
-
   }
 
   // POST '/login'
@@ -35,7 +35,8 @@ export class BackendService implements Backend {
   login(email: string, password: string): Observable<any> {
     return this.http.post(
       // URL
-      environment.apiUrl + ':30210/v1/login',
+      // environment.apiUrl + ':30210/v1/login',
+      API_URL + 'login',
       // LOAD
       {
         username: email,
@@ -52,6 +53,10 @@ export class BackendService implements Backend {
       status: 200
     })));
   }
+
+  /**
+   * Organization
+   */
 
   // GET 'users/{organization_id}/{email}/info
   /**
@@ -116,8 +121,12 @@ export class BackendService implements Backend {
       API_URL + 'users/' + organizationId + '/update',
       user
     );
-
   }
+
+  /**
+   * Resources
+   */
+
   // GET 'resources/{organization_id}/summary'
   /**
    * Requests to get the resources summary for an specific organization
@@ -138,9 +147,58 @@ export class BackendService implements Backend {
       API_URL + 'clusters/' + organizationId + '/list'
     );
   }
-  getApps(organizationId: string) {
-    throw new Error('Method not implemented.');
+
+  /**
+   * Applications
+   */
+
+  // GET 'apps/inst/{organization_id}/list'
+  /**
+   * Requests application instances list
+   * @param organizationId Organization identifier
+   */
+  getInstances(organizationId: string) {
+    return this.get(
+      API_URL + 'apps/inst/' + organizationId + '/list'
+    );
   }
+  // GET 'apps/desc/{organization_id}/list'
+  /**
+   * Requests registered applications list (descriptors)
+   * @param organizationId Organization identifier
+   */
+  getRegisteredApps(organizationId: string) {
+    return this.get(
+      API_URL + 'apps/desc/' + organizationId + '/list'
+    );
+  }
+  // GET 'apps/inst/{organization_id}/{app_instance_id}/get'
+  /**
+   * Requests application instance info
+   * @param organizationId Organization identifier
+   * @param instanceId Instance identifier
+   */
+  getAppInstance(organizationId: string, instanceId: string) {
+    return this.get(
+      API_URL + 'apps/inst/' + organizationId + '/' + instanceId + '/get'
+    );
+  }
+  // GET 'apps/inst/{organization_id}/{app_descriptor_id}/get'
+  /**
+   * Requests application descriptor (registered app) info
+   * @param organizationId Organization identifier
+   * @param descriptorId Descriptor identifier
+   */
+  getAppDescriptor(organizationId: string, descriptorId: string) {
+    return this.get(
+      API_URL + 'apps/desc/' + organizationId + '/' + descriptorId + '/get'
+    );
+  }
+
+  /**
+   * Cluster
+   */
+
   // GET 'nodes/{organization_id}/{cluster_id}/list'
   /**
    * Requests to get the list of nodes for an specific cluster

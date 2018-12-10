@@ -1,3 +1,5 @@
+import { LocalStorageKeys } from "src/app/definitions/const/local-storage-keys";
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -5,12 +7,27 @@
 export const environment = {
   production: false,
   // hardcoded local environment API ip address
-  apiUrl: 'http://192.168.99.100'
+  // apiUrl: 'http://192.168.99.100'
+  apiUrl: getBaseUrl()
 };
 
 function getBaseUrl() {
-  const chunks = document.location.href.split(':');
-  return chunks[0] + ':' + chunks[1];
+  const url = localStorage.getItem(LocalStorageKeys.url);
+  if (url && url !== '') {
+    return url;
+  }
+  const index = document.location.href.lastIndexOf(':');
+  if (index !== -1
+      && index > 5) { // Avoid first ':'
+    const chunks = document.location.href.split(':');
+    return chunks[0] + ':' + chunks[1] + ':443'; // Remove everything after ":port_number"
+  } else {
+    const hashIndex = document.location.href.indexOf('#');
+    if (hashIndex !== -1) {
+      const chunks = document.location.href.split('#');
+      return chunks[0]; // Remove everything after ":port_number"
+    }
+  }
 }
 
 /*

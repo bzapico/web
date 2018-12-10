@@ -17,6 +17,7 @@ export const LocalStorageKeys = {
     jwt: 'jwt',
     jwtData: 'jwt_data',
     userId: 'user_id',
-    refreshToken: 'refresh_token'
+    refreshToken: 'refresh_token',
+    url: 'url'
 };
 

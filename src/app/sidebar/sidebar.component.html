@@ -16,7 +16,9 @@
         </div>
       </a>
     </li>
-    <li class="nav-item nav-item-page">
+    <li 
+      *ngIf="role === 'Owner'" 
+      class="nav-item nav-item-page">
       <a
       routerLinkActive="active" 
       routerLink="/organization" 
@@ -26,7 +28,9 @@
         <span class="arrow">></span>
       </a>
     </li>
-    <li class="nav-item nav-item-page">
+    <li
+      *ngIf="role === 'Owner' || role === 'Operator'"
+      class="nav-item nav-item-page">
       <a         
       routerLinkActive="active" 
       routerLink="/resources" 
@@ -36,7 +40,9 @@
         <span class="arrow">></span>
       </a>
     </li>
-    <li class="nav-item nav-item-page">
+    <li 
+      *ngIf="role === 'Owner' || role === 'Developer'" 
+      class="nav-item nav-item-page">
       <a         
       routerLinkActive="active" 
       routerLink="/applications" 

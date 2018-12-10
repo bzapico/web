@@ -34,6 +34,14 @@ a {
     text-decoration: none;
   }
 }
+.error-message{
+  width: 95%;
+  margin: 0 auto;
+  font-size: 0.8em;
+  color: #F25272;
+  text-align: center;
+  height: 20px;
+}
 /* - - - Loader - - - */
 .loader {
   margin: 0 auto;
@@ -149,9 +157,6 @@ a {
   height: 54%;
 }
 @media screen and (max-width:1500px){
-  .card {
-      padding: 1.3rem!important;
-  }
   .card-title-h {
     margin-bottom: 57px;
     h5 {
@@ -165,6 +170,9 @@ a {
 }
 
 /* - - - Button styles - - - */
+.btn-outline-primary {
+  margin:1px;
+}
 .btn-primary {
   width: 257px;
   color: #fff;
@@ -472,12 +480,6 @@ button[type="submit"]:disabled {
   .carousel-small{
     display: none;
   }
-  .donut-chart{
-    height: 100%;
-    .ngx-charts {
-        max-height: 213px;
-    }
-  }
 }
 @media screen and (max-width:1500px){
   /* Target devices narrower than 1500px */
@@ -492,7 +494,6 @@ button[type="submit"]:disabled {
     height: 85%;
     margin-bottom: 3%;
   }
-
   .carousel-control-prev-icon {
     &:before {
       bottom: -10px;
@@ -507,11 +508,7 @@ button[type="submit"]:disabled {
     line-height: 1em;
   }
   .carousel-indicators {
-
-bottom: 10px;
-  }
-  .donut-chart {
-    max-width: 100px;
+    bottom: 10px;
   }
   .cluster-info {
     max-width: 200px;
@@ -520,4 +517,3 @@ bottom: 10px;
     }
   }
 }
-

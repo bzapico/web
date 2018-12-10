@@ -4,7 +4,7 @@ import { LoginComponent } from './login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { BsModalService, ModalModule } from 'ngx-bootstrap';
+import { BsModalService, ModalModule, TooltipModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -24,7 +24,8 @@ describe('LoginComponent', () => {
         HttpClientTestingModule,
         ReactiveFormsModule,
         RouterTestingModule,
-        FormsModule
+        FormsModule,
+        TooltipModule
       ],
       providers: [
         AuthService,

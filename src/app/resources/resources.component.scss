@@ -85,6 +85,15 @@
     display:inline-block;
     margin:0 10px 0 0;
 }
+.status-dot-process:before {
+    content:'\A';
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background: #FFC40D;
+    display:inline-block;
+    margin:0 10px 0 0;
+}
 
 /* - - - Medias Cluster table card - - - */
 @media screen and (max-width:1500px){
@@ -170,6 +179,9 @@
         margin-top: 0em;
         height: 82%;
     }
+    .donut-chart {
+        max-width: 100px;
+      }
 }
 @media screen and (min-width:2560px){
     .circle {
@@ -211,7 +223,6 @@
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn;
 }
-
 .slide-box {
     display: flex;
     flex-direction: row;
@@ -236,13 +247,19 @@
     text-align: center;
     position: relative;
 }
+.donut-number {
+    display: inline-table;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+}
 .carousel-big{
     .donut-number {
-        position: absolute;
-        top: 44%;
-        left: 35%;
-        height: 22px;
+        margin: 3px 0;
     }
+
 }
 .card-clus { 
     padding: 1.5rem 1.5rem 0 1.5rem;
@@ -277,9 +294,6 @@
     }
     .carousel-small{
         .donut-number {
-            position: absolute;
-            top: 45%;
-            left: 36%;
             font-size: .8em;
         }
         .donut-chart {
@@ -294,11 +308,6 @@
     .slide-box{
         padding-top: 2em;
       }
-    .carousel-big{
-        .donut-number {
-            left: 41%;
-        }
-    }
 }
 /* - - - Node Status card - - - */
 .box-line-chart {
