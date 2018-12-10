@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { mockOrganizationInfo, mockUserList } from '../utils/mocks';
 import { NotificationsService } from '../services/notifications.service';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -25,9 +26,9 @@ export class UserInfoComponent implements OnInit {
   title: string;
 
   /**
-   * Text for the resset password action button
+   * Text for the change password action button
    */
-  buttonRessetPassword: string;
+  buttonChangePassword: string;
 
   /**
    * Text for the delete user action button
@@ -43,8 +44,13 @@ export class UserInfoComponent implements OnInit {
   userId: string;
   role: string;
 
+  /**
+   * Reference for the service that allows the user info component
+   */
+  bsModalRef: BsModalRef;
+
   constructor(
-    public bsModalRef: BsModalRef,
+    private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
@@ -60,7 +66,7 @@ export class UserInfoComponent implements OnInit {
     this.userName = 'Loading ...'; // Default initialization
     this.userId = 'Loading ...'; // Default initialization
     this.buttonDeleteUser = 'Delete User';
-    this.buttonRessetPassword = 'Resset Password';
+    this.buttonChangePassword = 'Change Password';
   }
 
   ngOnInit() {
@@ -98,20 +104,32 @@ export class UserInfoComponent implements OnInit {
     }
   }
 
+/* TODO */
   /**
-   *  Upon confirmation, ressets the password
+   *  Upon confirmation, resets the password
    */
   resetPassword() {
     if (this.organizationId !== null && this.userId !== null) {
       this.backend.resetPassword(this.organizationId, this.userId)
-        .subscribe(response => {
-          this.notificationsService.add({
-            message: 'Your new password is ' + response._body,
-            timeout: 10000
-          });
-          this.bsModalRef.hide();
+      .subscribe(response => {
+        this.notificationsService.add({
+          message: 'Your new password is ' + response._body,
+          timeout: 10000
         });
+        this.bsModalRef.hide();
+      });
     }
   }
 
+   /**
+   * Opens the modal view that holds change password editable component
+   */
+  openChangePassword() {
+    const initialState = {
+      organizationId: this.organizationId,
+    };
+
+    this.bsModalRef = this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
 }

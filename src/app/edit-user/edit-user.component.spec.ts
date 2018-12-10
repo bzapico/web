@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditUserComponent } from './edit-user.component';
 import { FormsModule } from '@angular/forms';
-import { ButtonsModule, BsModalRef } from 'ngx-bootstrap';
+import { ButtonsModule, BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
 
@@ -16,10 +16,12 @@ describe('EditUserComponent', () => {
       imports: [
         HttpClientTestingModule,
         FormsModule,
-        ButtonsModule
+        ButtonsModule,
+        ModalModule.forRoot(),
       ],
       providers: [
-        BsModalRef
+        BsModalRef,
+        BsModalService
       ]
     })
     .compileComponents();
