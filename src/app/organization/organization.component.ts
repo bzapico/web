@@ -89,7 +89,7 @@ export class OrganizationComponent implements OnInit {
   openUserInfo(user) {
     const initialState = {
       organizationName: this.organizationName,
-      organizatinoId: this.organizationId,
+      organizationId: this.organizationId,
       userName: user.name,
       userId: user.email,
       role: user.role_name,

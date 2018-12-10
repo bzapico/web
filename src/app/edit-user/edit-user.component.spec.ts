@@ -4,6 +4,7 @@ import { EditUserComponent } from './edit-user.component';
 import { FormsModule } from '@angular/forms';
 import { ButtonsModule, BsModalRef } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { By } from '@angular/platform-browser';
 
 describe('EditUserComponent', () => {
   let component: EditUserComponent;
@@ -30,7 +31,20 @@ describe('EditUserComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('saveUserChanges() - Should request to save the user data modifications', () => {
+    const saveUserChanges = spyOn(component, 'saveUserChanges').and.returnValue(true);
+
+    saveUserChanges();
+
+    expect(saveUserChanges).toHaveBeenCalledWith();
   });
+
+  it('Discard button - Should discard the user data modifications', () => {
+    const button = fixture.debugElement.query(By.css('.close'));
+
+    button.triggerEventHandler('click', null);
+
+    expect(component.discardChanges).toBeDefined();
+  });
+
 });

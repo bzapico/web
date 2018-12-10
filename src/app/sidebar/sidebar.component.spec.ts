@@ -31,7 +31,38 @@ describe('SidebarComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('openDebugPanel() - Should open the modal view that holds the debug panel', () => {
+    const openDebugPanel = spyOn(component, 'openDebugPanel').and.returnValue(true);
+
+    openDebugPanel();
+
+    expect(openDebugPanel).toHaveBeenCalledWith();
   });
+
+  it('openEditUser() - Should open the modal view that holds the user info and editable component', () => {
+    const openEditUser = spyOn(component, 'openEditUser').and.returnValue(true);
+
+    openEditUser();
+
+    expect(openEditUser).toHaveBeenCalledWith();
+  });
+
+  it('updateProfileUser() - Should request an updated profile user to update the current one', () => {
+    const updateProfileUser = spyOn(component, 'updateProfileUser').and.returnValue(true);
+    const nodes = {};
+
+    updateProfileUser(nodes);
+
+    expect(updateProfileUser).toHaveBeenCalledWith(nodes);
+  });
+
+  it('logout() - Should clean the credentials and leads to login page', () => {
+    const logout = spyOn(component, 'logout').and.returnValue(true);
+
+    logout();
+
+    expect(logout).toHaveBeenCalledWith();
+  });
+
+
 });

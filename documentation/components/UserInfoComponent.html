@@ -451,7 +451,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/user-info/user-info.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/user-info/user-info.component.ts:104</a></div>
                             </td>
                         </tr>
 
@@ -944,6 +944,11 @@ export class UserInfoComponent implements OnInit {
             timeout: 10000
           });
           this.bsModalRef.hide();
+        }, error &#x3D;&gt; {
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 10000
+          });
         });
     }
   }
