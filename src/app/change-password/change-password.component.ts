@@ -23,7 +23,8 @@ export class ChangePasswordComponent implements OnInit {
    */
   userId: string;
   password: string;
-  passwordConfirm: string;
+  newPassword: string;
+  confirmNewPassword: string;
   organizationId: string;
 
   /**
