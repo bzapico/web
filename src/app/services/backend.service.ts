@@ -55,6 +55,21 @@ export class BackendService implements Backend {
   }
 
   /**
+   * Sidebar
+   */
+  /**
+   * Request to change the user password
+   * @param organizationId Organization identifier
+   * @param passwordChange Object containing the old password, the email and the new password
+   */
+  resetPassword(organizationId: string, passwordChange: any) {
+    return this.post(
+      API_URL + 'users/' + organizationId + '/change',
+      passwordChange
+    );
+  }
+
+  /**
    * Organization
    */
 
@@ -113,9 +128,7 @@ export class BackendService implements Backend {
       userId
     );
   }
-  resetPassword(organizationId: string, userId: string) {
-    throw new Error('Method not implemented.');
-  }
+
   saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
     throw new Error('Method not implemented.');
   }

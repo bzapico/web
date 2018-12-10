@@ -10,7 +10,7 @@ export interface Backend {
     getOrganizationUsers(organizationId: string);
     addUser(organizationId: string, user: any);
     deleteUser(organizationId: string, userId: string);
-    resetPassword(organizationId: string, userId: string);
+    resetPassword(organizationId: string, changePassword: any);
     saveUserChanges(organizationId: string, changes: any);
     // Resources
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);

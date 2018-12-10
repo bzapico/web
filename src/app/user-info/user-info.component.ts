@@ -44,6 +44,11 @@ export class UserInfoComponent implements OnInit {
   userId: string;
   role: string;
 
+  /**
+   * Change password modal window reference
+   */
+  bsPasswordModalRef: BsModalRef;
+
 
 
   constructor(
@@ -130,9 +135,12 @@ export class UserInfoComponent implements OnInit {
   openChangePassword() {
     const initialState = {
       organizationId: this.organizationId,
+      userId: this.userId
     };
 
-    // this.bsModalRef = this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    // this.bsModalRef.content.closeBtnName = 'Close';
+    this.bsPasswordModalRef =
+      this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.bsPasswordModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.hide();
   }
 }
