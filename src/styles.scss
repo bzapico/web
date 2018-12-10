@@ -147,6 +147,7 @@ a {
   border-radius: 10px;
   border: 0;
   overflow: hidden;
+  padding: 1.5rem;
 }
 .card-title-h {
   height: 4%;
@@ -463,7 +464,6 @@ button[type="submit"]:disabled {
     right: -14px;
   }
 }
-
 /* - - -  Charts - - - */
 .ngx-charts .label {
   display: none;
@@ -518,3 +518,4 @@ button[type="submit"]:disabled {
     }
   }
 }
+

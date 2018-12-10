@@ -228,10 +228,10 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     }
     const entry = {
       'value': runningNodesCount,
-      'name':  now.getHours() + ':' + minutes
+      'name':  now.getHours() + ':' + now.getSeconds()
     };
 
-    if (this.nodesChart[0].series.length > 5) {
+    if (this.nodesChart[0].series.length > 4) {
       // Removes first element
       this.nodesChart[0].series.shift();
     }
