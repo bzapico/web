@@ -25,9 +25,9 @@ export class UserInfoComponent implements OnInit {
   title: string;
 
   /**
-   * Text for the resset password action button
+   * Text for the change password action button
    */
-  buttonRessetPassword: string;
+  buttonChangePassword: string;
 
   /**
    * Text for the delete user action button
@@ -60,7 +60,7 @@ export class UserInfoComponent implements OnInit {
     this.userName = 'Loading ...'; // Default initialization
     this.userId = 'Loading ...'; // Default initialization
     this.buttonDeleteUser = 'Delete User';
-    this.buttonRessetPassword = 'Resset Password';
+    this.buttonChangePassword = 'Change Password';
   }
 
   ngOnInit() {
@@ -94,7 +94,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   /**
-   *  Upon confirmation, ressets the password
+   *  Upon confirmation, resets the password
    */
   resetPassword() {
     if (this.organizationId !== null && this.userId !== null) {
