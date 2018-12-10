@@ -26,6 +26,19 @@
     <hr/>
     <h5 class="mb-3">Backend control</h5>
     <div *ngIf="components.length">
+      <div class="d-flex justify-content-center align-items-center">
+          <div
+            class="btn btn-outline-primary mb-3"
+            (click)="changeAll('false')"
+            >All real
+          </div>
+          <div
+            class="btn btn-outline-primary mb-3"
+            (click)="changeAll('true')"
+            >All mock
+          </div>
+      </div>
+      <hr/>
       <div
         class="row"
         *ngFor="let item of components; let index = index">

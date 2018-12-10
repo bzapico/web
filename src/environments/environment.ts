@@ -1,4 +1,4 @@
-import { LocalStorageKeys } from "src/app/definitions/const/local-storage-keys";
+import { LocalStorageKeys } from 'src/app/definitions/const/local-storage-keys';
 
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
