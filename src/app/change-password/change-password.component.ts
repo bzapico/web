@@ -23,13 +23,13 @@ export class ChangePasswordComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.clusterEditMock) || null;
+    // const mock = localStorage.getItem(LocalStorageKeys.passwordMock) || null;
     // check which backend is required (fake or real)
-    if (mock && mock === 'true') {
-      this.backend = mockupBackendService;
-    } else {
-      this.backend = backendService;
-    }
+    // if (mock && mock === 'true') {
+    //   this.backend = mockupBackendService;
+    // } else {
+    //   this.backend = backendService;
+    // }
   }
 
   ngOnInit() {
