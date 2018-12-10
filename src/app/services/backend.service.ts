@@ -101,6 +101,12 @@ export class BackendService implements Backend {
       user
     );
   }
+  // POST 'users/{organizationId}/delete'
+  /**
+   * Requests to delete the provided userId user
+   * @param organizationId Organization identifier
+   * @param userId User identifier
+   */
   deleteUser(organizationId: string, userId: string) {
     return this.post(
       API_URL + 'users/' + organizationId + '/delete',
