@@ -37,6 +37,11 @@ export class EditUserComponent implements OnInit {
    */
   roleDirty: boolean;
 
+  /**
+   * Change password modal window reference
+   */
+  bsPasswordModalRef: BsModalRef;
+
   constructor(
     private modalService: BsModalService,
     public bsModalRef: BsModalRef,
@@ -120,17 +125,12 @@ export class EditUserComponent implements OnInit {
   openChangePassword() {
     const initialState = {
       organizationId: this.organizationId,
+      userId: this.userId
     };
-
-    // this.modalRef = this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    // this.modalRef.content.closeBtnName = 'Close';
-    // this.modalService.onHide.subscribe(response => {
-    //   this.notificationsService.add({
-    //     message: 'Your new password is ' + response._body,
-    //     timeout: 10000
-    //   });
-    //   this.bsModalRef.hide();
-    // });
+    this.bsPasswordModalRef =
+      this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.bsPasswordModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.hide();
   }
 }
 

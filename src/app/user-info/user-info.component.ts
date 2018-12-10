@@ -44,6 +44,11 @@ export class UserInfoComponent implements OnInit {
   userId: string;
   role: string;
 
+  /**
+   * Change password modal window reference
+   */
+  bsPasswordModalRef: BsModalRef;
+
 
 
   constructor(
@@ -107,32 +112,17 @@ export class UserInfoComponent implements OnInit {
     }
   }
 
-/* TODO */
   /**
-   *  Upon confirmation, resets the password
-   */
-  resetPassword() {
-    if (this.organizationId !== null && this.userId !== null) {
-      this.backend.resetPassword(this.organizationId, this.userId)
-      .subscribe(response => {
-        this.notificationsService.add({
-          message: 'Your new password is ' + response._body,
-          timeout: 10000
-        });
-        this.bsModalRef.hide();
-      });
-    }
-  }
-
-   /**
    * Opens the modal view that holds change password editable component
    */
   openChangePassword() {
     const initialState = {
       organizationId: this.organizationId,
+      userId: this.userId
     };
-
-    // this.bsModalRef = this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    // this.bsModalRef.content.closeBtnName = 'Close';
+    this.bsPasswordModalRef =
+      this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.bsPasswordModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.hide();
   }
 }

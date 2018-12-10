@@ -4,8 +4,8 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { Backend } from '../definitions/interfaces/backend';
-import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup } from '@angular/forms';
+import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
 @Component({
   selector: 'app-change-password',
@@ -19,11 +19,17 @@ export class ChangePasswordComponent implements OnInit {
   backend: Backend;
 
   /**
-   * Models that hold organization id, user role, name and email
+   * Models that hold organization id, user id, and passwords
    */
+  userId: string;
   password: string;
-  passwordConfirm: string;
+  newPassword: string;
+  confirmNewPassword: string;
+  organizationId: string;
 
+  /**
+   * Holds the error messages
+   */
   errorMessages: string[];
 
   constructor(
@@ -32,13 +38,13 @@ export class ChangePasswordComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    // const mock = localStorage.getItem(LocalStorageKeys.passwordMock) || null;
+    const mock = localStorage.getItem(LocalStorageKeys.passwordMock) || null;
     // check which backend is required (fake or real)
-    // if (mock && mock === 'true') {
-    //   this.backend = mockupBackendService;
-    // } else {
-    //   this.backend = backendService;
-    // }
+    if (mock && mock === 'true') {
+      this.backend = mockupBackendService;
+    } else {
+      this.backend = backendService;
+    }
   }
 
   ngOnInit() {
@@ -46,10 +52,24 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   /**
-   * Request to save the password data modifications
+   * Request to save changes in the user password
+   * @param form Form containing the user input
    */
-  saveNewPassword() {
-
+  saveNewPassword(form: FormGroup) {
+    const passwordChange = {
+      email: this.userId,
+      password: form.value.password,
+      new_password: form.value.newPassword
+    };
+    this.backend.resetPassword(this.organizationId, passwordChange)
+      .subscribe(response => {
+        this.notificationsService.add({message: 'Password changed successfully'});
+        this.bsModalRef.hide();
+      }, error => {
+        if (error && error.error && error.error.message) {
+          this.errorMessages.push(error.error.message);
+        }
+      });
   }
 
   /**
@@ -69,7 +89,7 @@ export class ChangePasswordComponent implements OnInit {
     }
   }
 
-    /**
+  /**
    * Validates user data
    * @param form Form with user data
    */
@@ -94,6 +114,9 @@ export class ChangePasswordComponent implements OnInit {
     }
     if (form.controls.newPassword.value !== form.controls.confirmNewPassword.value) {
       this.errorMessages.push('New password and confirm password are not the same one');
+    }
+    if (this.errorMessages.length === 0) {
+      this.saveNewPassword(form);
     }
   }
 
