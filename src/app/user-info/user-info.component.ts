@@ -89,6 +89,11 @@ export class UserInfoComponent implements OnInit {
             timeout: 10000
           });
           this.bsModalRef.hide();
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 10000
+          });
         });
     }
   }

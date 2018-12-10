@@ -102,7 +102,10 @@ export class BackendService implements Backend {
     );
   }
   deleteUser(organizationId: string, userId: string) {
-    throw new Error('Method not implemented.');
+    return this.post(
+      API_URL + 'users/' + organizationId + '/delete',
+      userId
+    );
   }
   resetPassword(organizationId: string, userId: string) {
     throw new Error('Method not implemented.');
