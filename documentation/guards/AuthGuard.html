@@ -121,7 +121,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/guards/auth.guard.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/guards/auth.guard.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -186,7 +186,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/guards/auth.guard.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/guards/auth.guard.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -256,6 +256,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { Observable } from &#x27;rxjs&#x27;;
 import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
 import { JwtHelperService } from &#x27;@auth0/angular-jwt&#x27;;
+import { mockJwtToken } from &#x27;../utils/mocks&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;
@@ -271,16 +272,20 @@ export class AuthGuard implements CanActivate {
     const jwtToken &#x3D; JSON.parse(localStorage.getItem(LocalStorageKeys.jwt)) || null;
     const jwtData &#x3D; JSON.parse(localStorage.getItem(LocalStorageKeys.jwtData)) || null;
     let role;
+    // Set role
     if (jwtData) {
       role &#x3D; jwtData.role;
     }
+    // Check jwtToken expiracy
     if (jwtToken &#x3D;&#x3D;&#x3D; null
-      // || this.jwtHelper.isTokenExpired(jwtToken) unable to generate a mockup jwt with the right expiracy date
+      || (jwtToken.token !&#x3D;&#x3D; mockJwtToken
+          &amp;&amp; this.jwtHelper.isTokenExpired(jwtToken.token)
+          )
       ) {
       this.router.navigate([&#x27;login&#x27;]);
       return false;
     }
-
+    // Check user role access
     if (
       role &amp;&amp;
       role &#x3D;&#x3D;&#x3D; &#x27;Developer&#x27; &amp;&amp; !(
@@ -290,14 +295,15 @@ export class AuthGuard implements CanActivate {
       alert(&#x27;Unauthorized&#x27;);
       return false;
     }
-    // if (
-    //   role &#x3D;&#x3D;&#x3D; &#x27;Operator&#x27; &amp;&amp; !(
-    //   next.routeConfig.path &#x3D;&#x3D;&#x3D; &#x27;resources&#x27; ||
-    //   next.routeConfig.path &#x3D;&#x3D;&#x3D; &#x27;&#x27;)
-    // ) {
-    //   alert(&#x27;Unauthorized&#x27;);
-    //   return false;
-    // }
+    // Check user role access
+    if (
+      role &#x3D;&#x3D;&#x3D; &#x27;Operator&#x27; &amp;&amp; !(
+      next.routeConfig.path &#x3D;&#x3D;&#x3D; &#x27;resources&#x27; ||
+      next.routeConfig.path &#x3D;&#x3D;&#x3D; &#x27;&#x27;)
+    ) {
+      alert(&#x27;Unauthorized&#x27;);
+      return false;
+    }
 
     return true;
   }

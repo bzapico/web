@@ -1262,7 +1262,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>resetPassword(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>resetPassword(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, changePassword: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
@@ -1301,9 +1301,9 @@
 
                                                 </tr>
                                                 <tr>
-                                                        <td>userId</td>
+                                                        <td>changePassword</td>
                                                         <td>
-                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                                         </td>
                                                     
                                                     <td>
@@ -1521,7 +1521,7 @@ export interface Backend {
     getOrganizationUsers(organizationId: string);
     addUser(organizationId: string, user: any);
     deleteUser(organizationId: string, userId: string);
-    resetPassword(organizationId: string, userId: string);
+    resetPassword(organizationId: string, changePassword: any);
     saveUserChanges(organizationId: string, changes: any);
     // Resources
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);
