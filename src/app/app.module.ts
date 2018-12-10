@@ -33,6 +33,7 @@ import { AppsInfoComponent } from './apps-info/apps-info.component';
 import { ApplicationsComponent } from './applications/applications.component';
 import { ClusterComponent } from './cluster/cluster.component';
 import { UpdateEventsService } from './services/update-events.service';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { UpdateEventsService } from './services/update-events.service';
     AppsInfoComponent,
     ApplicationsComponent,
     ClusterComponent,
+    ChangePasswordComponent,
   ],
   entryComponents: [
     DebugPanelComponent,
