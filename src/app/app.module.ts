@@ -35,6 +35,7 @@ import { ClusterComponent } from './cluster/cluster.component';
 import { UpdateEventsService } from './services/update-events.service';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { MainPipe } from './pipes/main-pipe.module';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     HttpClientModule,
     HttpModule,
     RouterModule,
+    MainPipe,
     // NGX-BOOTSTRAP
     ModalModule.forRoot(),
     ButtonsModule.forRoot(),

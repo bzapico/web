@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ResourcesComponent } from './resources.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxChartsModule, TooltipModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ButtonsModule, ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap';
@@ -26,8 +26,9 @@ describe('ResourcesComponent', () => {
         BrowserAnimationsModule,
         FormsModule,
         ButtonsModule,
+        TooltipModule,
         ModalModule.forRoot(),
-        RouterTestingModule
+        RouterTestingModule,
       ],
       providers: [
         BsModalRef,
