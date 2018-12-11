@@ -1,7 +1,7 @@
 <div class="debug-panel">
   <!-- Header -->
 <div class="modal-header">
-    <h4 class="modal-title pull-left">
+    <h4 class="modal-title pull-left mb-3">
       Debug panel
     </h4>
     <button
@@ -16,8 +16,29 @@
   </div>
   <!-- Body -->
   <div class="modal-body">
+      <h5 class="mb-3">Backend URL</h5>
+      <input 
+        class="w-100 form-control mb-3"
+        type="text"
+        [ngModel]="url"
+        (ngModelChange)="urlChange($event)"
+        >
+    <hr/>
     <h5 class="mb-3">Backend control</h5>
     <div *ngIf="components.length">
+      <div class="d-flex justify-content-center align-items-center">
+          <div
+            class="btn btn-outline-primary mb-3"
+            (click)="changeAll('false')"
+            >All real
+          </div>
+          <div
+            class="btn btn-outline-primary mb-3"
+            (click)="changeAll('true')"
+            >All mock
+          </div>
+      </div>
+      <hr/>
       <div
         class="row"
         *ngFor="let item of components; let index = index">
@@ -55,12 +76,6 @@
       (click)="spamNotification()"
       >Spam test notification
     </div>
-    <h5 class="mb-3">Backend URL</h5>
-    <input 
-      type="text"
-      [ngModel]="url"
-      (ngModelChange)="urlChange($event)"
-      >
   </div>
   <!-- Footer -->
   <div class="modal-footer">

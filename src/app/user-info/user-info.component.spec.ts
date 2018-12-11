@@ -54,13 +54,4 @@ describe('UserInfoComponent', () => {
     expect(deleteUser).toHaveBeenCalledWith(mockUserObj);
   });
 
-  it('resetPassword() - Should check the role of current user', () => {
-    const resetPassword = spyOn(component, 'resetPassword').and.returnValue(true);
-    const password = {};
-
-    resetPassword(password);
-
-    expect(resetPassword).toHaveBeenCalledWith(password);
-  });
-
 });

@@ -149,6 +149,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#changeAll">changeAll</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                             <li>
@@ -246,6 +249,78 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="changeAll"></a>
+                        <span class="name">
+                            <b>
+                            changeAll
+                            </b>
+                            <a href="#changeAll"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>changeAll(newValue: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:106</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Modifies all components mocks values</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>newValue</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>new mock value</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="ngOnInit"></a>
                         <span class="name">
                             <b>
@@ -302,7 +377,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:129</a></div>
                             </td>
                         </tr>
 
@@ -374,7 +449,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:154</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:177</a></div>
                             </td>
                         </tr>
 
@@ -414,7 +489,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:162</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:185</a></div>
                             </td>
                         </tr>
 
@@ -720,6 +795,29 @@ export class DebugPanelComponent implements OnInit {
   }
 
   /**
+   * Modifies all components mocks values
+   * @param newValue new mock value
+   */
+  changeAll(newValue) {
+    this.components.forEach(component &#x3D;&gt; {
+      component.mock &#x3D; newValue;
+    });
+    // Persist values on localStorage
+    localStorage.setItem(LocalStorageKeys.loginMock, newValue);
+    localStorage.setItem(LocalStorageKeys.organizationMock, newValue);
+    localStorage.setItem(LocalStorageKeys.resourcesMock, newValue);
+    localStorage.setItem(LocalStorageKeys.clusterMock, newValue);
+    localStorage.setItem(LocalStorageKeys.appsMock, newValue);
+    localStorage.setItem(LocalStorageKeys.profileMock, newValue);
+    localStorage.setItem(LocalStorageKeys.notificationsMock, newValue);
+    localStorage.setItem(LocalStorageKeys.sidebarMock, newValue);
+    localStorage.setItem(LocalStorageKeys.userInfoMock, newValue);
+    localStorage.setItem(LocalStorageKeys.userEditMock, newValue);
+    localStorage.setItem(LocalStorageKeys.clusterEditMock, newValue);
+    localStorage.setItem(LocalStorageKeys.addUserMock, newValue);
+  }
+
+  /**
    * Persist the modifications on the local storage
    * @param componentMockOption Object containing the selected option name and mock value
    */
@@ -792,7 +890,7 @@ export class DebugPanelComponent implements OnInit {
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;debug-panel&quot;&gt;
   &lt;!-- Header --&gt;
 &lt;div class&#x3D;&quot;modal-header&quot;&gt;
-    &lt;h4 class&#x3D;&quot;modal-title pull-left&quot;&gt;
+    &lt;h4 class&#x3D;&quot;modal-title pull-left mb-3&quot;&gt;
       Debug panel
     &lt;/h4&gt;
     &lt;button
@@ -807,8 +905,29 @@ export class DebugPanelComponent implements OnInit {
   &lt;/div&gt;
   &lt;!-- Body --&gt;
   &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+      &lt;h5 class&#x3D;&quot;mb-3&quot;&gt;Backend URL&lt;/h5&gt;
+      &lt;input 
+        class&#x3D;&quot;w-100 form-control mb-3&quot;
+        type&#x3D;&quot;text&quot;
+        [ngModel]&#x3D;&quot;url&quot;
+        (ngModelChange)&#x3D;&quot;urlChange($event)&quot;
+        &gt;
+    &lt;hr/&gt;
     &lt;h5 class&#x3D;&quot;mb-3&quot;&gt;Backend control&lt;/h5&gt;
     &lt;div *ngIf&#x3D;&quot;components.length&quot;&gt;
+      &lt;div class&#x3D;&quot;d-flex justify-content-center align-items-center&quot;&gt;
+          &lt;div
+            class&#x3D;&quot;btn btn-outline-primary mb-3&quot;
+            (click)&#x3D;&quot;changeAll(&#x27;false&#x27;)&quot;
+            &gt;All real
+          &lt;/div&gt;
+          &lt;div
+            class&#x3D;&quot;btn btn-outline-primary mb-3&quot;
+            (click)&#x3D;&quot;changeAll(&#x27;true&#x27;)&quot;
+            &gt;All mock
+          &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;hr/&gt;
       &lt;div
         class&#x3D;&quot;row&quot;
         *ngFor&#x3D;&quot;let item of components; let index &#x3D; index&quot;&gt;
@@ -846,12 +965,6 @@ export class DebugPanelComponent implements OnInit {
       (click)&#x3D;&quot;spamNotification()&quot;
       &gt;Spam test notification
     &lt;/div&gt;
-    &lt;h5 class&#x3D;&quot;mb-3&quot;&gt;Backend URL&lt;/h5&gt;
-    &lt;input 
-      type&#x3D;&quot;text&quot;
-      [ngModel]&#x3D;&quot;url&quot;
-      (ngModelChange)&#x3D;&quot;urlChange($event)&quot;
-      &gt;
   &lt;/div&gt;
   &lt;!-- Footer --&gt;
   &lt;div class&#x3D;&quot;modal-footer&quot;&gt;
@@ -891,7 +1004,7 @@ export class DebugPanelComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="debug-panel">  <!-- Header --><div class="modal-header">    <h4 class="modal-title pull-left">      Debug panel    </h4>    <button      type="button"      class="close pull-right"      aria-label="Close"      (click)="bsModalRef.hide()">      <span aria-hidden="true">        &times;      </span>    </button>  </div>  <!-- Body -->  <div class="modal-body">    <h5 class="mb-3">Backend control</h5>    <div *ngIf="components.length">      <div        class="row"        *ngFor="let item of components; let index = index">        <!-- Option name -->        <span class="col-3">          {{item.name}}        </span>        <!-- Option buttons -->          <div           class="btn-group offset-5"          btnRadioGroup          [(ngModel)]="components[index].mock"          (click)="optionChange(components[index])">          <label            class="btn btn-outline-primary"            btnRadio="false"            tabindex="0"            role="button">            Real          </label>          <label            class="btn btn-outline-primary"            btnRadio="true"            tabindex="0"            role="button">            Mock          </label>        </div>      </div>    </div>    <hr/>    <h5 class="mb-3">Notifications</h5>    <div       class="btn btn-outline-primary offset-6 mb-3"      (click)="spamNotification()"      >Spam test notification    </div>    <h5 class="mb-3">Backend URL</h5>    <input       type="text"      [ngModel]="url"      (ngModelChange)="urlChange($event)"      >  </div>  <!-- Footer -->  <div class="modal-footer">    <button      type="button"      class="btn btn-default"      (click)="bsModalRef.hide()">      Close    </button>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="debug-panel">  <!-- Header --><div class="modal-header">    <h4 class="modal-title pull-left mb-3">      Debug panel    </h4>    <button      type="button"      class="close pull-right"      aria-label="Close"      (click)="bsModalRef.hide()">      <span aria-hidden="true">        &times;      </span>    </button>  </div>  <!-- Body -->  <div class="modal-body">      <h5 class="mb-3">Backend URL</h5>      <input         class="w-100 form-control mb-3"        type="text"        [ngModel]="url"        (ngModelChange)="urlChange($event)"        >    <hr/>    <h5 class="mb-3">Backend control</h5>    <div *ngIf="components.length">      <div class="d-flex justify-content-center align-items-center">          <div            class="btn btn-outline-primary mb-3"            (click)="changeAll(\'false\')"            >All real          </div>          <div            class="btn btn-outline-primary mb-3"            (click)="changeAll(\'true\')"            >All mock          </div>      </div>      <hr/>      <div        class="row"        *ngFor="let item of components; let index = index">        <!-- Option name -->        <span class="col-3">          {{item.name}}        </span>        <!-- Option buttons -->          <div           class="btn-group offset-5"          btnRadioGroup          [(ngModel)]="components[index].mock"          (click)="optionChange(components[index])">          <label            class="btn btn-outline-primary"            btnRadio="false"            tabindex="0"            role="button">            Real          </label>          <label            class="btn btn-outline-primary"            btnRadio="true"            tabindex="0"            role="button">            Mock          </label>        </div>      </div>    </div>    <hr/>    <h5 class="mb-3">Notifications</h5>    <div       class="btn btn-outline-primary offset-6 mb-3"      (click)="spamNotification()"      >Spam test notification    </div>  </div>  <!-- Footer -->  <div class="modal-footer">    <button      type="button"      class="btn btn-default"      (click)="bsModalRef.hide()">      Close    </button>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AppsInfoComponent', 'selector': 'app-apps-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DebugPanelComponent'};

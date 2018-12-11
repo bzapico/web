@@ -64,7 +64,6 @@ export class AddUserComponent implements OnInit {
    * @param form Form with the user input data
    */
   addUser(form) {
-    console.log(form);
     if (this.errorMessages.length === 0) {
       const user = {
         name: form.value.name,

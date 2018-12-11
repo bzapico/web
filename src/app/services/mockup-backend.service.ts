@@ -130,9 +130,9 @@ export class MockupBackendService implements Backend {
   /**
   * Simulates reset password
   */
-  resetPassword(organizationId: string, userId: string) {
+  resetPassword(organizationId: string, passwordChange: any) {
     return of (new Response(new ResponseOptions({
-      body: mockResetPasword,
+      body: passwordChange,
       status: 200
     })));
   }

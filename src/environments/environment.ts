@@ -1,4 +1,4 @@
-import { LocalStorageKeys } from "src/app/definitions/const/local-storage-keys";
+import { LocalStorageKeys } from 'src/app/definitions/const/local-storage-keys';
 
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
@@ -25,7 +25,7 @@ function getBaseUrl() {
     const hashIndex = document.location.href.indexOf('#');
     if (hashIndex !== -1) {
       const chunks = document.location.href.split('#');
-      return chunks[0]; // Remove everything after ":port_number"
+      return chunks[0].slice(0, chunks[0].length - 2); //  // Returns the required url chunk
     }
   }
 }

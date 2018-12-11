@@ -87,7 +87,8 @@ export class SidebarComponent implements OnInit {
       userName: this.name,
       userId: this.email,
       userRole: this.role,
-      title: 'Edit profile'
+      title: 'Edit profile',
+      organizationId: this.organizationId
     };
 
     this.modalRef = this.modalService.show(EditUserComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });

@@ -270,6 +270,29 @@ export class DebugPanelComponent implements OnInit {
   }
 
   /**
+   * Modifies all components mocks values
+   * @param newValue new mock value
+   */
+  changeAll(newValue) {
+    this.components.forEach(component &#x3D;&gt; {
+      component.mock &#x3D; newValue;
+    });
+    // Persist values on localStorage
+    localStorage.setItem(LocalStorageKeys.loginMock, newValue);
+    localStorage.setItem(LocalStorageKeys.organizationMock, newValue);
+    localStorage.setItem(LocalStorageKeys.resourcesMock, newValue);
+    localStorage.setItem(LocalStorageKeys.clusterMock, newValue);
+    localStorage.setItem(LocalStorageKeys.appsMock, newValue);
+    localStorage.setItem(LocalStorageKeys.profileMock, newValue);
+    localStorage.setItem(LocalStorageKeys.notificationsMock, newValue);
+    localStorage.setItem(LocalStorageKeys.sidebarMock, newValue);
+    localStorage.setItem(LocalStorageKeys.userInfoMock, newValue);
+    localStorage.setItem(LocalStorageKeys.userEditMock, newValue);
+    localStorage.setItem(LocalStorageKeys.clusterEditMock, newValue);
+    localStorage.setItem(LocalStorageKeys.addUserMock, newValue);
+  }
+
+  /**
    * Persist the modifications on the local storage
    * @param componentMockOption Object containing the selected option name and mock value
    */
