@@ -223,66 +223,69 @@
       <div class="table-h">
         <table *ngIf="loadedData && clusters && clusters.length > 0" class="table">
           <thead>
-            <tr>
-              <th scope="col" class="row-name">
+            <tr class="row">
+              <th scope="col" class="col-2">
                 Name
               </th>
-              <th scope="col" class="row-id">
+              <th scope="col" class="col-2">
                 ID
               </th>
-              <th scope="col" class="row-nodes">
+              <th scope="col" class="col-1 text-center">
                 Nodes
               </th>
-              <th scope="col" class="row-description">
+              <th scope="col" class="col-2 text-center">
                 Description
               </th>
-              <th scope="col" class="row-types">
+              <th scope="col" class="col-2 text-center">
                 Types
               </th>
-              <th scope="col" class="row-status">
+              <th scope="col" class="col-1">
                 Status
               </th>
-              <th scope="col" class="row-multitenant">
+              <th scope="col" class="col-1 text-center">
                 Multitenant
               </th>
-              <th scope="col" class="row-edit">
+              <th scope="col" class="col-1 text-center">
                 Edit
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let cluster of clusters">
-              <td>
+            <tr *ngFor="let cluster of clusters" class="row">
+              <td class="col-2">
                 <a 
                   [routerLink]="['cluster', cluster.cluster_id]" 
                   routerLinkActive="active" 
-                  class="blue text-capitalize">{{cluster.name}}
+                  class="blue text-capitalize col-1">{{cluster.name}}
                 </a>
               </td>
-              <td>{{cluster.cluster_id}}</td>
-              <td>
+              <td class="col-2">{{cluster.cluster_id}}</td>
+              <td class="col-1 text-center">
                 <a 
                   [routerLink]="['cluster', cluster.cluster_id]" 
                   routerLinkActive="active" 
-                  class="blue">{{cluster.total_nodes}}
+                  class="blue col-1">{{cluster.total_nodes}}
                 </a>
               </td>  
-              <td>{{cluster.description}}</td>
-              <td class="text-lowercase">
+              <td class="col-2 text-center">{{cluster.description}}</td>
+              <td class="text-lowercase col-2 text-center">
                 {{cluster.cluster_type_name}}
               </td>
-              <td 
-                class="text-lowercase"
+              <td class="text-lowercase col-1"
                 [ngClass]=
                 "{'status-dot': classStatusCheck (cluster.status_name, 'running'),
                 'status-dot-error': classStatusCheck (cluster.status_name, 'error'),
                 'status-dot-process': classStatusCheck (cluster.status_name, 'process')}">
-                {{cluster.status_name}}
+                <span tooltip= "{{cluster.status_name}}" class="tooltip-fix">
+                </span>
+                <span class="status-name-fix">
+                  {{cluster.status_name}}
+                </span>
               </td>
-              <td class="text-lowercase">
+              <td class="text-lowercase col-1 text-center">
                 {{cluster.multitenant_support}}
               </td>
-              <td>
+              <td class="col-1 text-center">
                 <button 
                   class="btn info-btn btn-primary" 
                   (click)="openEditCluster(cluster)">

@@ -1,18 +1,19 @@
-.cluster-number {
-    float: right;
-    color: #949494;
-}
-
 /* - - - Cluster table card - - - */
 .table-h {
     height: 80%;
     overflow-y: auto;
     overflow-x: hidden;
 }
+.tooltip-fix {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 16%;
+    left: 40%;
+}
 .table {
     td {
         padding: 1.2rem;
-        vertical-align: middle;
         font-size:  .9em;
         border-top: 0.8px solid #EEEEEE;
         color: #949494;
@@ -20,39 +21,14 @@
     thead th {
         border: none;
         font-size:  .9em;
-        padding: 0 1.2rem;
+        // padding: 0 1.2rem;
         font-weight: 200;
+    }
+    thead th:first-child {
+        padding: 12px 0 0px 33px;
     }
     tbody tr:first-child td {
       border: none;
-    }
-    .row-name {
-        width: 10%;
-    }
-    .row-id {
-        width: 15%;
-    }
-    .row-nodes {
-        width: 10%;
-    }
-    .row-description {
-        width: 10%;
-    }
-    .row-types {
-        width: 10%;
-    }
-    .row-status {
-        width: 10%;
-        padding-left: 2%;
-    }
-    .row-tags {
-        width: 10%;
-    }
-    .row-multitenant {
-        width: 10%;
-    }
-    .row-edit {
-        width: 5%;
     }
 }
 .info-btn {
@@ -100,6 +76,9 @@
     .card-title-c h5 {
         font-size: 1em;
     }
+    h2 {
+        font-size: 1.5rem;
+    }
     .table td {
         padding: .6rem 1rem;
     }
@@ -118,6 +97,9 @@
         position: absolute;
         top: 5px;
         left: 5px;
+    }
+    .status-name-fix {
+        display: none;
     }
 }
 
@@ -191,7 +173,7 @@
           top: 54px;
           left: 58px;
         }
-      }
+    }
 }
 
 /* - - - Cluster card Slider - - - */
@@ -253,7 +235,10 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-
+}
+.cluster-number {
+    float: right;
+    color: #949494;
 }
 .carousel-big{
     .donut-number {
@@ -308,7 +293,7 @@
     }
     .slide-box{
         padding-top: 2em;
-      }
+    }
 }
 /* - - - Node Status card - - - */
 .box-line-chart {
