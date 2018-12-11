@@ -34,6 +34,7 @@ import { ApplicationsComponent } from './applications/applications.component';
 import { ClusterComponent } from './cluster/cluster.component';
 import { UpdateEventsService } from './services/update-events.service';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ApplicationsComponent,
     ClusterComponent,
     ChangePasswordComponent,
+    TruncatePipe,
   ],
   entryComponents: [
     DebugPanelComponent,
