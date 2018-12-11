@@ -445,6 +445,7 @@ button[type="submit"]:disabled {
   width: 10px;
   height: 20px;
   background-image: none;
+  cursor: pointer;
   &:before {
     content: '\e314';
     font-family: 'Material Icons';
@@ -460,6 +461,7 @@ button[type="submit"]:disabled {
   width: 10px;
   height: 20px;
   background-image: none;
+  cursor: pointer;
   &:before {
     content: '\e315';
     font-family: 'Material Icons';
