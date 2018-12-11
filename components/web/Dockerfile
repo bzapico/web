@@ -18,7 +18,7 @@ RUN mkdir src
 COPY src/ src/.
 RUN ls .
 
-RUN $(npm bin)/ng build --prod
+RUN $(npm bin)/ng build
 
 ### STAGE 2: Setup ###
 
