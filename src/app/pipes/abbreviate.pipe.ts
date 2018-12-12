@@ -6,9 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class AbbreviatePipe implements PipeTransform {
 
   transform(value: string, args: string[]): string {
-    const limit = args.length > 0 ? parseInt(args[0], 10) : 20;
-    const trail = args.length > 1 ? args[1] : '...';
-    return value.length > limit ? value.substring(0, limit) + trail : value;
-   }
+    const NUM_TOTAL_CHARS = 8;
+    const LAST_CHUNK_LENTH = NUM_TOTAL_CHARS - 2;
+    const abbstring = value.slice(0, 1) + '...' + value.slice(value.length - LAST_CHUNK_LENTH, value.length - 1);
 
+    return abbstring;
+  }
 }

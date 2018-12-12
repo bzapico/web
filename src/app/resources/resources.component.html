@@ -63,10 +63,7 @@
                 *ngIf="clusterGroup[0].running_nodes !== clusterGroup[0].total_nodes" 
                 class="blue nodes-run mb-0"
               >{{clusterGroup[0].running_nodes}} nodes running</p>
-              <!-- <p class="text-uppercase grey">{{clusterGroup[0].name}}</p> -->
-              <!-- <p class="text-uppercase grey">{{clusterGroup[0].name | abbreviate:[4, '...'] }}</p> -->
-              <p class="text-uppercase grey"> {{ (clusterGroup[0].name.length>1)? (clusterGroup[0].name | slice:0:1)+'...':(clusterGroup[0].name) }}{{ (clusterGroup[0].name.length>8)? (clusterGroup[0].name | slice:-8)+'':(clusterGroup[0].name) }}</p>
-            
+              <p class="text-uppercase grey">{{clusterGroup[0].name | abbreviate}}</p>
             </div>
             <div class="box" *ngIf="clusterGroup[1]">
               <div class="donut-chart">
@@ -93,8 +90,7 @@
                 class="blue nodes-run mb-0">
                 {{clusterGroup[1].running_nodes}} nodes running
               </p>
-              <!-- <p class="text-uppercase grey">{{clusterGroup[1].name}}</p> -->
-              <p class="text-uppercase grey"> {{ (clusterGroup[1].name.length>1)? (clusterGroup[1].name | slice:0:1)+'...':(clusterGroup[1].name) }}{{ (clusterGroup[1].name.length>8)? (clusterGroup[1].name | slice:-8)+'':(clusterGroup[1].name) }}</p>
+              <p class="text-uppercase grey">{{clusterGroup[1].name | abbreviate}}</p>
             </div>
             <div
               class="box"
@@ -123,8 +119,7 @@
                 class="blue nodes-run mb-0">
                 {{clusterGroup[2].running_nodes}} nodes running
               </p>
-              <!-- <p class="text-uppercase grey">{{clusterGroup[2].name}}</p> -->
-              <p class="text-uppercase grey"> {{ (clusterGroup[2].name.length>1)? (clusterGroup[2].name | slice:0:1)+'...':(clusterGroup[2].name) }}{{ (clusterGroup[2].name.length>8)? (clusterGroup[2].name | slice:-8)+'':(clusterGroup[2].name) }}</p>
+              <p class="text-uppercase grey">{{clusterGroup[2].name | abbreviate}}</p>
             </div>
           </div>
         </slide>
@@ -261,9 +256,7 @@
                 <a 
                   [routerLink]="['cluster', cluster.cluster_id]" 
                   routerLinkActive="active" 
-                  class="blue text-capitalize col-1">
-                  {{ (cluster.name.length>8)? (cluster.name | slice:0:8)+'...':(cluster.name) }}{{ (cluster.name.length>8)? (cluster.name | slice:-8)+'':(cluster.name) }}
-                  <!-- {{cluster.name}} -->
+                  class="blue text-capitalize col-1">{{cluster.name}}
                 </a>
               </td>
               <td class="col-2">{{cluster.cluster_id}}</td>
