@@ -502,6 +502,10 @@ button[type="submit"]:disabled {
     align-items: center;
     height: 85%;
     padding-bottom: 28px;
+    .cluster-info {
+      max-width: 150px;
+      margin-right: 1em;
+    }
   }
   .carousel-control-prev-icon {
     &:before {
@@ -520,10 +524,10 @@ button[type="submit"]:disabled {
     bottom: 10px;
   }
   .cluster-info {
-    max-width: 200px;
     &:first-child p {
       line-height: .6rem !important;
     }
   }
+  
 }
 

@@ -159,7 +159,8 @@
                   routerLinkActive="active" >
                   {{cluster.running_nodes}} nodes running
                 </p>
-                <p class="text-uppercase grey">{{cluster.name}}</p>
+                <p *ngIf="cluster.name.length > 26" class="text-uppercase grey">{{cluster.name | slice: 0:25}}...</p>
+                <p *ngIf="cluster.name.length < 26" class="text-uppercase grey">{{cluster.name}}</p>
               </div>
             </div>
           </div>
@@ -256,7 +257,7 @@
                 <a 
                   [routerLink]="['cluster', cluster.cluster_id]" 
                   routerLinkActive="active" 
-                  class="blue text-capitalize col-1">{{cluster.name}}
+                  class="blue text-capitalize col-1">{{cluster.name | truncate}}
                 </a>
               </td>
               <td class="col-2">{{cluster.cluster_id}}</td>
