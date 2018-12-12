@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ClusterComponent } from './cluster.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxChartsModule, TooltipModule } from '@swimlane/ngx-charts';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -11,8 +11,8 @@ import { DebugElement } from '@angular/core';
 describe('ClusterComponent', () => {
   let component: ClusterComponent;
   let fixture: ComponentFixture<ClusterComponent>;
-  let de: DebugElement;
-  let el: HTMLElement;
+  // let de: DebugElement;
+  // let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,6 +21,7 @@ describe('ClusterComponent', () => {
         HttpClientTestingModule,
         NgxChartsModule,
         RouterTestingModule,
+        TooltipModule,
         BrowserAnimationsModule,
       ]
     })

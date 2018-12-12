@@ -9,6 +9,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { TruncatePipe } from '../pipes/truncate.pipe';
+import { AbbreviatePipe } from '../pipes/abbreviate.pipe';
 
 describe('ResourcesComponent', () => {
   let component: ResourcesComponent;
@@ -26,10 +28,11 @@ describe('ResourcesComponent', () => {
         BrowserAnimationsModule,
         FormsModule,
         ButtonsModule,
-        TooltipModule,
+        TruncatePipe,
+        AbbreviatePipe,
         ModalModule.forRoot(),
         RouterTestingModule,
-        TooltipModule,
+        TooltipModule
       ],
       providers: [
         BsModalRef,

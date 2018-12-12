@@ -38,7 +38,6 @@ import { AbbreviatePipe } from './pipes/abbreviate.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +78,6 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     HttpClientModule,
     HttpModule,
     RouterModule,
-    MainPipe,
     // NGX-BOOTSTRAP
     ModalModule.forRoot(),
     ButtonsModule.forRoot(),
