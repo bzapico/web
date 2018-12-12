@@ -2362,10 +2362,10 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     }
     const entry &#x3D; {
       &#x27;value&#x27;: runningNodesCount,
-      &#x27;name&#x27;:  now.getHours() + &#x27;:&#x27; + minutes
+      &#x27;name&#x27;:  now.getHours() + &#x27;:&#x27; + now.getSeconds()
     };
 
-    if (this.nodesChart[0].series.length &gt; 5) {
+    if (this.nodesChart[0].series.length &gt; 4) {
       // Removes first element
       this.nodesChart[0].series.shift();
     }
@@ -2499,7 +2499,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 &lt;div class&#x3D;&quot;row row-info&quot;&gt;
   &lt;!-- Summary info card --&gt;
   &lt;div class&#x3D;&quot;col-lg-4 h-100&quot;&gt;
-    &lt;div class&#x3D;&quot;card p-4 h-100&quot;&gt;
+    &lt;div class&#x3D;&quot;card h-100&quot;&gt;
       &lt;div class&#x3D;&quot;card-title-c&quot;&gt;
         &lt;h5 class&#x3D;&quot;text-uppercase&quot;&gt;Summary&lt;/h5&gt;
       &lt;/div&gt;
@@ -2555,7 +2555,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
                 *ngIf&#x3D;&quot;clusterGroup[0].running_nodes !&#x3D;&#x3D; clusterGroup[0].total_nodes&quot; 
                 class&#x3D;&quot;blue nodes-run mb-0&quot;
               &gt;{{clusterGroup[0].running_nodes}} nodes running&lt;/p&gt;
-              &lt;p class&#x3D;&quot;text-uppercase grey&quot;&gt;{{clusterGroup[0].name}}&lt;/p&gt;
+              &lt;p class&#x3D;&quot;text-uppercase grey&quot;&gt;{{clusterGroup[0].name | abbreviate}}&lt;/p&gt;
             &lt;/div&gt;
             &lt;div class&#x3D;&quot;box&quot; *ngIf&#x3D;&quot;clusterGroup[1]&quot;&gt;
               &lt;div class&#x3D;&quot;donut-chart&quot;&gt;
@@ -2582,7 +2582,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
                 class&#x3D;&quot;blue nodes-run mb-0&quot;&gt;
                 {{clusterGroup[1].running_nodes}} nodes running
               &lt;/p&gt;
-              &lt;p class&#x3D;&quot;text-uppercase grey&quot;&gt;{{clusterGroup[1].name}}&lt;/p&gt;
+              &lt;p class&#x3D;&quot;text-uppercase grey&quot;&gt;{{clusterGroup[1].name | abbreviate}}&lt;/p&gt;
             &lt;/div&gt;
             &lt;div
               class&#x3D;&quot;box&quot;
@@ -2611,7 +2611,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
                 class&#x3D;&quot;blue nodes-run mb-0&quot;&gt;
                 {{clusterGroup[2].running_nodes}} nodes running
               &lt;/p&gt;
-              &lt;p class&#x3D;&quot;text-uppercase grey&quot;&gt;{{clusterGroup[2].name}}&lt;/p&gt;
+              &lt;p class&#x3D;&quot;text-uppercase grey&quot;&gt;{{clusterGroup[2].name | abbreviate}}&lt;/p&gt;
             &lt;/div&gt;
           &lt;/div&gt;
         &lt;/slide&gt;
@@ -2651,7 +2651,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
                   routerLinkActive&#x3D;&quot;active&quot; &gt;
                   {{cluster.running_nodes}} nodes running
                 &lt;/p&gt;
-                &lt;p class&#x3D;&quot;text-uppercase grey&quot;&gt;{{cluster.name}}&lt;/p&gt;
+                &lt;p *ngIf&#x3D;&quot;cluster.name.length &gt; 26&quot; class&#x3D;&quot;text-uppercase grey&quot;&gt;{{cluster.name | slice: 0:25}}...&lt;/p&gt;
+                &lt;p *ngIf&#x3D;&quot;cluster.name.length &lt; 26&quot; class&#x3D;&quot;text-uppercase grey&quot;&gt;{{cluster.name}}&lt;/p&gt;
               &lt;/div&gt;
             &lt;/div&gt;
           &lt;/div&gt;
@@ -2666,7 +2667,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   &lt;/div&gt;
   &lt;!-- Node status timeline info card --&gt;
   &lt;div class&#x3D;&quot;col-lg-4 h-100&quot;&gt;
-    &lt;div class&#x3D;&quot;card p-4 h-100&quot;&gt;
+    &lt;div class&#x3D;&quot;card h-100 node-timeline&quot;&gt;
       &lt;div class&#x3D;&quot;card-title-c&quot;&gt;
         &lt;h5 class&#x3D;&quot;text-uppercase&quot;&gt;Node status timeline&lt;/h5&gt;
       &lt;/div&gt;
@@ -2708,73 +2709,76 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 &lt;!-- Clusters panel card--&gt;
 &lt;div class&#x3D;&quot;row row-main&quot;&gt;
   &lt;div class&#x3D;&quot;col-lg-12 col-md-12 col-sm-12 h-100&quot;&gt;
-    &lt;div class&#x3D;&quot;card h-100 p-4&quot;&gt;
+    &lt;div class&#x3D;&quot;card h-100 &quot;&gt;
       &lt;div class&#x3D;&quot;card-title-h&quot;&gt;
         &lt;h5&gt;CLUSTERS&lt;/h5&gt;
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;table-h&quot;&gt;
         &lt;table *ngIf&#x3D;&quot;loadedData &amp;&amp; clusters &amp;&amp; clusters.length &gt; 0&quot; class&#x3D;&quot;table&quot;&gt;
           &lt;thead&gt;
-            &lt;tr&gt;
-              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;row-name&quot;&gt;
+            &lt;tr class&#x3D;&quot;row&quot;&gt;
+              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;col-2&quot;&gt;
                 Name
               &lt;/th&gt;
-              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;row-id&quot;&gt;
+              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;col-2&quot;&gt;
                 ID
               &lt;/th&gt;
-              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;row-nodes&quot;&gt;
+              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;col-1 text-center&quot;&gt;
                 Nodes
               &lt;/th&gt;
-              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;row-description&quot;&gt;
+              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;col-2 text-center&quot;&gt;
                 Description
               &lt;/th&gt;
-              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;row-types&quot;&gt;
+              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;col-2 text-center&quot;&gt;
                 Types
               &lt;/th&gt;
-              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;row-status&quot;&gt;
+              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;col-1&quot;&gt;
                 Status
               &lt;/th&gt;
-              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;row-multitenant&quot;&gt;
+              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;col-1 text-center&quot;&gt;
                 Multitenant
               &lt;/th&gt;
-              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;row-edit&quot;&gt;
+              &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;col-1 text-center&quot;&gt;
                 Edit
               &lt;/th&gt;
             &lt;/tr&gt;
           &lt;/thead&gt;
           &lt;tbody&gt;
-            &lt;tr *ngFor&#x3D;&quot;let cluster of clusters&quot;&gt;
-              &lt;td&gt;
+            &lt;tr *ngFor&#x3D;&quot;let cluster of clusters&quot; class&#x3D;&quot;row&quot;&gt;
+              &lt;td class&#x3D;&quot;col-2&quot;&gt;
                 &lt;a 
                   [routerLink]&#x3D;&quot;[&#x27;cluster&#x27;, cluster.cluster_id]&quot; 
                   routerLinkActive&#x3D;&quot;active&quot; 
-                  class&#x3D;&quot;blue text-capitalize&quot;&gt;{{cluster.name}}
+                  class&#x3D;&quot;blue text-capitalize col-1&quot;&gt;{{cluster.name | truncate}}
                 &lt;/a&gt;
               &lt;/td&gt;
-              &lt;td&gt;{{cluster.cluster_id}}&lt;/td&gt;
-              &lt;td&gt;
+              &lt;td class&#x3D;&quot;col-2&quot;&gt;{{cluster.cluster_id}}&lt;/td&gt;
+              &lt;td class&#x3D;&quot;col-1 text-center&quot;&gt;
                 &lt;a 
                   [routerLink]&#x3D;&quot;[&#x27;cluster&#x27;, cluster.cluster_id]&quot; 
                   routerLinkActive&#x3D;&quot;active&quot; 
-                  class&#x3D;&quot;blue&quot;&gt;{{cluster.total_nodes}}
+                  class&#x3D;&quot;blue col-1&quot;&gt;{{cluster.total_nodes}}
                 &lt;/a&gt;
               &lt;/td&gt;  
-              &lt;td&gt;{{cluster.description}}&lt;/td&gt;
-              &lt;td class&#x3D;&quot;text-lowercase&quot;&gt;
+              &lt;td class&#x3D;&quot;col-2 text-center&quot;&gt;{{cluster.description}}&lt;/td&gt;
+              &lt;td class&#x3D;&quot;text-lowercase col-2 text-center&quot;&gt;
                 {{cluster.cluster_type_name}}
               &lt;/td&gt;
-              &lt;td 
-                class&#x3D;&quot;text-lowercase&quot;
+              &lt;td class&#x3D;&quot;text-lowercase col-1&quot;
                 [ngClass]&#x3D;
                 &quot;{&#x27;status-dot&#x27;: classStatusCheck (cluster.status_name, &#x27;running&#x27;),
                 &#x27;status-dot-error&#x27;: classStatusCheck (cluster.status_name, &#x27;error&#x27;),
                 &#x27;status-dot-process&#x27;: classStatusCheck (cluster.status_name, &#x27;process&#x27;)}&quot;&gt;
-                {{cluster.status_name}}
+                &lt;span tooltip&#x3D; &quot;{{cluster.status_name}}&quot; class&#x3D;&quot;tooltip-fix&quot;&gt;
+                &lt;/span&gt;
+                &lt;span class&#x3D;&quot;status-name-fix&quot;&gt;
+                  {{cluster.status_name}}
+                &lt;/span&gt;
               &lt;/td&gt;
-              &lt;td class&#x3D;&quot;text-lowercase&quot;&gt;
+              &lt;td class&#x3D;&quot;text-lowercase col-1 text-center&quot;&gt;
                 {{cluster.multitenant_support}}
               &lt;/td&gt;
-              &lt;td&gt;
+              &lt;td class&#x3D;&quot;col-1 text-center&quot;&gt;
                 &lt;button 
                   class&#x3D;&quot;btn info-btn btn-primary&quot; 
                   (click)&#x3D;&quot;openEditCluster(cluster)&quot;&gt;
@@ -2841,7 +2845,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Component title --><div class="row row-title mb-4">  <div class="col-lg-12">    <h2>Resources</h2>  </div></div><div class="row row-info">  <!-- Summary info card -->  <div class="col-lg-4 h-100">    <div class="card p-4 h-100">      <div class="card-title-c">        <h5 class="text-uppercase">Summary</h5>      </div>      <div class="summary-card">        <div>          <div class="circle summary-box">            <span class="align-self-center mt-1">{{clustersCount}}</span>          </div>          <p class="circle-name text-center text-uppercase mt-3">Cluster</p>        </div>        <div>          <div class="circle summary-box">            <span class="align-self-center mt-1">{{nodesCount}}</span>          </div>          <p class="circle-name text-center text-uppercase mt-3">Nodes</p>        </div>      </div>    </div>  </div>  <!-- Clusters info card -->  <div class="col-lg-4 h-100">    <div class="card card-clus h-100">      <div class="card-title-c">        <h5 class="text-uppercase d-inline">Clusters</h5>        <p class="d-inline cluster-number">{{clustersCount}} available</p>      </div>      <!-- Carousel big -->      <carousel         *ngIf="clusters.length > 0"         class="h-75 carousel-big">         <slide *ngFor="let clusterGroup of chunckedClusters; let i = index">          <div class="slide-box animated fadeIn">            <div class="box" *ngIf="clusterGroup[0]">              <div class="donut-chart">                <ngx-charts-pie-chart                  [scheme]="colorScheme"                   [results]="pieChartsData[0+i*3]"                   [doughnut]= "doughnut"                  [gradient]="gradient"                  [schemeType]="schemeType"                  [explodeSlices]="false"                  >                </ngx-charts-pie-chart>                <div class="donut-number">{{clusterGroup[0].running_nodes}}/{{clusterGroup[0].total_nodes}}</div>              </div>              <p                 *ngIf="clusterGroup[0].running_nodes === clusterGroup[0].total_nodes"                 class="blue nodes-run mb-0"                                   [routerLink]="[\'cluster\', clusterGroup[0].cluster_id]"                 routerLinkActive="active"              >All nodes running</p>              <p                 *ngIf="clusterGroup[0].running_nodes !== clusterGroup[0].total_nodes"                 class="blue nodes-run mb-0"              >{{clusterGroup[0].running_nodes}} nodes running</p>              <p class="text-uppercase grey">{{clusterGroup[0].name}}</p>            </div>            <div class="box" *ngIf="clusterGroup[1]">              <div class="donut-chart">                <ngx-charts-pie-chart                  [scheme]="colorScheme"                   [results]="pieChartsData[1+i*3]"                   [doughnut]= "doughnut"                  [gradient]="gradient"                  [schemeType]="schemeType"                  [explodeSlices]="false"                  >                </ngx-charts-pie-chart>                <div class="donut-number">{{clusterGroup[1].running_nodes}}/{{clusterGroup[1].total_nodes}}</div>              </div>              <p                *ngIf="clusterGroup[1].running_nodes === clusterGroup[1].total_nodes"                class="blue nodes-run mb-0"                [routerLink]="[\'cluster\', clusterGroup[1].cluster_id]"                 routerLinkActive="active">                All nodes running              </p>              <p                *ngIf="clusterGroup[1].running_nodes !== clusterGroup[1].total_nodes"                class="blue nodes-run mb-0">                {{clusterGroup[1].running_nodes}} nodes running              </p>              <p class="text-uppercase grey">{{clusterGroup[1].name}}</p>            </div>            <div              class="box"              *ngIf="clusterGroup[2]">              <div class="donut-chart">                <ngx-charts-pie-chart                  [scheme]="colorScheme"                   [results]="pieChartsData[2+i*3]"                   [doughnut]= "doughnut"                  [gradient]="gradient"                  [schemeType]="schemeType"                  [explodeSlices]="false"                  >                </ngx-charts-pie-chart>                <div class="donut-number">{{clusterGroup[2].running_nodes}}/{{clusterGroup[2].total_nodes}}</div>              </div>              <p                *ngIf="clusterGroup[2].running_nodes === clusterGroup[2].total_nodes"                class="blue nodes-run mb-0"                [routerLink]="[\'cluster\', clusterGroup[2].cluster_id]"                 routerLinkActive="active">                All nodes running              </p>              <p                *ngIf="clusterGroup[2].running_nodes !== clusterGroup[2].total_nodes"                class="blue nodes-run mb-0">                {{clusterGroup[2].running_nodes}} nodes running              </p>              <p class="text-uppercase grey">{{clusterGroup[2].name}}</p>            </div>          </div>        </slide>      </carousel>      <!-- Carousel small -->      <carousel         *ngIf="clusters && clusters.length > 0"         class="carousel-small">        <slide           class="animated fadeIn"          *ngFor="let cluster of clusters; let i = index">          <div class="slide-box">            <div class="box">              <div class="donut-chart">                <ngx-charts-pie-chart                  [scheme]="colorScheme"                   [results]="pieChartsData[i]"                   [doughnut]= "doughnut"                  [gradient]="gradient"                  [schemeType]="schemeType"                  >                </ngx-charts-pie-chart>                <div class="donut-number">{{cluster.running_nodes}}/{{cluster.total_nodes}}</div>              </div>              <div class="cluster-info">                <p                  *ngIf="cluster.running_nodes === cluster.total_nodes"                  class="nodes-run mb-0 blue"                  [routerLink]="[\'cluster\', cluster.cluster_id]"                   routerLinkActive="active" >                  All nodes running                </p>                <p                  *ngIf="cluster.running_nodes !== cluster.total_nodes"                   class="nodes-run mb-0 blue"                  [routerLink]="[\'cluster\', cluster.cluster_id]"                   routerLinkActive="active" >                  {{cluster.running_nodes}} nodes running                </p>                <p class="text-uppercase grey">{{cluster.name}}</p>              </div>            </div>          </div>        </slide>      </carousel>      <div         *ngIf="clusters.length === 0"        class="no-clusters d-flex justify-content-center align-items-center">        No available clusters detected      </div>    </div>  </div>  <!-- Node status timeline info card -->  <div class="col-lg-4 h-100">    <div class="card p-4 h-100">      <div class="card-title-c">        <h5 class="text-uppercase">Node status timeline</h5>      </div>      <div         *ngIf="nodesCount === 0"        class=" h-100 box-line-chart d-flex justify-content-center align-items-center text-center">        No available nodes detected      </div>      <div *ngIf="nodesCount > 0" class=" h-100 box-line-chart">        <div class="line-chart">          <div class="bottom-line"></div>          <ngx-charts-line-chart            [scheme]="colorScheme"            [results]="nodesChart"            [xAxis]="showXAxis"            [yAxis]="showYAxis"            [gradient]="gradient"             [showXAxisLabel]="showXAxisLabel"            [showYAxisLabel]="showYAxisLabel"            [autoScale]="autoScale"            [showGridLines]="showGridLines"            [showRefLines]="showRefLines"            [schemeType]="schemeType"            [customColors]="customColors"            [rangeFillOpacity]="rangeFillOpacity"            [referenceLines]="referenceLines"            [showRefLabels]="showRefLabels"            >          </ngx-charts-line-chart>        </div>        <div class="y-axis-line-chart">          <span class="grey">100%</span>          <span class="grey mb-4">0%</span>        </div>        </div>    </div>  </div></div><!-- Clusters panel card--><div class="row row-main">  <div class="col-lg-12 col-md-12 col-sm-12 h-100">    <div class="card h-100 p-4">      <div class="card-title-h">        <h5>CLUSTERS</h5>      </div>      <div class="table-h">        <table *ngIf="loadedData && clusters && clusters.length > 0" class="table">          <thead>            <tr>              <th scope="col" class="row-name">                Name              </th>              <th scope="col" class="row-id">                ID              </th>              <th scope="col" class="row-nodes">                Nodes              </th>              <th scope="col" class="row-description">                Description              </th>              <th scope="col" class="row-types">                Types              </th>              <th scope="col" class="row-status">                Status              </th>              <th scope="col" class="row-multitenant">                Multitenant              </th>              <th scope="col" class="row-edit">                Edit              </th>            </tr>          </thead>          <tbody>            <tr *ngFor="let cluster of clusters">              <td>                <a                   [routerLink]="[\'cluster\', cluster.cluster_id]"                   routerLinkActive="active"                   class="blue text-capitalize">{{cluster.name}}                </a>              </td>              <td>{{cluster.cluster_id}}</td>              <td>                <a                   [routerLink]="[\'cluster\', cluster.cluster_id]"                   routerLinkActive="active"                   class="blue">{{cluster.total_nodes}}                </a>              </td>                <td>{{cluster.description}}</td>              <td class="text-lowercase">                {{cluster.cluster_type_name}}              </td>              <td                 class="text-lowercase"                [ngClass]=                "{\'status-dot\': classStatusCheck (cluster.status_name, \'running\'),                \'status-dot-error\': classStatusCheck (cluster.status_name, \'error\'),                \'status-dot-process\': classStatusCheck (cluster.status_name, \'process\')}">                {{cluster.status_name}}              </td>              <td class="text-lowercase">                {{cluster.multitenant_support}}              </td>              <td>                <button                   class="btn info-btn btn-primary"                   (click)="openEditCluster(cluster)">                    <i class="material-icons i-info">                      edit                    </i>                </button>              </td>            </tr>          </tbody>        </table>        <div           *ngIf="loadedData && clusters.length === 0"          class="no-clusters d-flex justify-content-center align-items-center">            No available clusters detected        </div>        <!-- Loader -->        <div class="nalej-loader-container" *ngIf="!loadedData">          <div class="loader">            <svg               class="circular"               viewBox="25 25 50 50">              <circle                 class="path"                 cx="50"                 cy="50"                 r="20"                 fill="none"                 stroke-width="2"                 stroke-miterlimit="10"/>            </svg>          </div>        </div>      </div>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- Component title --><div class="row row-title mb-4">  <div class="col-lg-12">    <h2>Resources</h2>  </div></div><div class="row row-info">  <!-- Summary info card -->  <div class="col-lg-4 h-100">    <div class="card h-100">      <div class="card-title-c">        <h5 class="text-uppercase">Summary</h5>      </div>      <div class="summary-card">        <div>          <div class="circle summary-box">            <span class="align-self-center mt-1">{{clustersCount}}</span>          </div>          <p class="circle-name text-center text-uppercase mt-3">Cluster</p>        </div>        <div>          <div class="circle summary-box">            <span class="align-self-center mt-1">{{nodesCount}}</span>          </div>          <p class="circle-name text-center text-uppercase mt-3">Nodes</p>        </div>      </div>    </div>  </div>  <!-- Clusters info card -->  <div class="col-lg-4 h-100">    <div class="card card-clus h-100">      <div class="card-title-c">        <h5 class="text-uppercase d-inline">Clusters</h5>        <p class="d-inline cluster-number">{{clustersCount}} available</p>      </div>      <!-- Carousel big -->      <carousel         *ngIf="clusters.length > 0"         class="h-75 carousel-big">         <slide *ngFor="let clusterGroup of chunckedClusters; let i = index">          <div class="slide-box animated fadeIn">            <div class="box" *ngIf="clusterGroup[0]">              <div class="donut-chart">                <ngx-charts-pie-chart                  [scheme]="colorScheme"                   [results]="pieChartsData[0+i*3]"                   [doughnut]= "doughnut"                  [gradient]="gradient"                  [schemeType]="schemeType"                  [explodeSlices]="false"                  >                </ngx-charts-pie-chart>                <div class="donut-number">{{clusterGroup[0].running_nodes}}/{{clusterGroup[0].total_nodes}}</div>              </div>              <p                 *ngIf="clusterGroup[0].running_nodes === clusterGroup[0].total_nodes"                 class="blue nodes-run mb-0"                                   [routerLink]="[\'cluster\', clusterGroup[0].cluster_id]"                 routerLinkActive="active"              >All nodes running</p>              <p                 *ngIf="clusterGroup[0].running_nodes !== clusterGroup[0].total_nodes"                 class="blue nodes-run mb-0"              >{{clusterGroup[0].running_nodes}} nodes running</p>              <p class="text-uppercase grey">{{clusterGroup[0].name | abbreviate}}</p>            </div>            <div class="box" *ngIf="clusterGroup[1]">              <div class="donut-chart">                <ngx-charts-pie-chart                  [scheme]="colorScheme"                   [results]="pieChartsData[1+i*3]"                   [doughnut]= "doughnut"                  [gradient]="gradient"                  [schemeType]="schemeType"                  [explodeSlices]="false"                  >                </ngx-charts-pie-chart>                <div class="donut-number">{{clusterGroup[1].running_nodes}}/{{clusterGroup[1].total_nodes}}</div>              </div>              <p                *ngIf="clusterGroup[1].running_nodes === clusterGroup[1].total_nodes"                class="blue nodes-run mb-0"                [routerLink]="[\'cluster\', clusterGroup[1].cluster_id]"                 routerLinkActive="active">                All nodes running              </p>              <p                *ngIf="clusterGroup[1].running_nodes !== clusterGroup[1].total_nodes"                class="blue nodes-run mb-0">                {{clusterGroup[1].running_nodes}} nodes running              </p>              <p class="text-uppercase grey">{{clusterGroup[1].name | abbreviate}}</p>            </div>            <div              class="box"              *ngIf="clusterGroup[2]">              <div class="donut-chart">                <ngx-charts-pie-chart                  [scheme]="colorScheme"                   [results]="pieChartsData[2+i*3]"                   [doughnut]= "doughnut"                  [gradient]="gradient"                  [schemeType]="schemeType"                  [explodeSlices]="false"                  >                </ngx-charts-pie-chart>                <div class="donut-number">{{clusterGroup[2].running_nodes}}/{{clusterGroup[2].total_nodes}}</div>              </div>              <p                *ngIf="clusterGroup[2].running_nodes === clusterGroup[2].total_nodes"                class="blue nodes-run mb-0"                [routerLink]="[\'cluster\', clusterGroup[2].cluster_id]"                 routerLinkActive="active">                All nodes running              </p>              <p                *ngIf="clusterGroup[2].running_nodes !== clusterGroup[2].total_nodes"                class="blue nodes-run mb-0">                {{clusterGroup[2].running_nodes}} nodes running              </p>              <p class="text-uppercase grey">{{clusterGroup[2].name | abbreviate}}</p>            </div>          </div>        </slide>      </carousel>      <!-- Carousel small -->      <carousel         *ngIf="clusters && clusters.length > 0"         class="carousel-small">        <slide           class="animated fadeIn"          *ngFor="let cluster of clusters; let i = index">          <div class="slide-box">            <div class="box">              <div class="donut-chart">                <ngx-charts-pie-chart                  [scheme]="colorScheme"                   [results]="pieChartsData[i]"                   [doughnut]= "doughnut"                  [gradient]="gradient"                  [schemeType]="schemeType"                  >                </ngx-charts-pie-chart>                <div class="donut-number">{{cluster.running_nodes}}/{{cluster.total_nodes}}</div>              </div>              <div class="cluster-info">                <p                  *ngIf="cluster.running_nodes === cluster.total_nodes"                  class="nodes-run mb-0 blue"                  [routerLink]="[\'cluster\', cluster.cluster_id]"                   routerLinkActive="active" >                  All nodes running                </p>                <p                  *ngIf="cluster.running_nodes !== cluster.total_nodes"                   class="nodes-run mb-0 blue"                  [routerLink]="[\'cluster\', cluster.cluster_id]"                   routerLinkActive="active" >                  {{cluster.running_nodes}} nodes running                </p>                <p *ngIf="cluster.name.length > 26" class="text-uppercase grey">{{cluster.name | slice: 0:25}}...</p>                <p *ngIf="cluster.name.length < 26" class="text-uppercase grey">{{cluster.name}}</p>              </div>            </div>          </div>        </slide>      </carousel>      <div         *ngIf="clusters.length === 0"        class="no-clusters d-flex justify-content-center align-items-center">        No available clusters detected      </div>    </div>  </div>  <!-- Node status timeline info card -->  <div class="col-lg-4 h-100">    <div class="card h-100 node-timeline">      <div class="card-title-c">        <h5 class="text-uppercase">Node status timeline</h5>      </div>      <div         *ngIf="nodesCount === 0"        class=" h-100 box-line-chart d-flex justify-content-center align-items-center text-center">        No available nodes detected      </div>      <div *ngIf="nodesCount > 0" class=" h-100 box-line-chart">        <div class="line-chart">          <div class="bottom-line"></div>          <ngx-charts-line-chart            [scheme]="colorScheme"            [results]="nodesChart"            [xAxis]="showXAxis"            [yAxis]="showYAxis"            [gradient]="gradient"             [showXAxisLabel]="showXAxisLabel"            [showYAxisLabel]="showYAxisLabel"            [autoScale]="autoScale"            [showGridLines]="showGridLines"            [showRefLines]="showRefLines"            [schemeType]="schemeType"            [customColors]="customColors"            [rangeFillOpacity]="rangeFillOpacity"            [referenceLines]="referenceLines"            [showRefLabels]="showRefLabels"            >          </ngx-charts-line-chart>        </div>        <div class="y-axis-line-chart">          <span class="grey">100%</span>          <span class="grey mb-4">0%</span>        </div>        </div>    </div>  </div></div><!-- Clusters panel card--><div class="row row-main">  <div class="col-lg-12 col-md-12 col-sm-12 h-100">    <div class="card h-100 ">      <div class="card-title-h">        <h5>CLUSTERS</h5>      </div>      <div class="table-h">        <table *ngIf="loadedData && clusters && clusters.length > 0" class="table">          <thead>            <tr class="row">              <th scope="col" class="col-2">                Name              </th>              <th scope="col" class="col-2">                ID              </th>              <th scope="col" class="col-1 text-center">                Nodes              </th>              <th scope="col" class="col-2 text-center">                Description              </th>              <th scope="col" class="col-2 text-center">                Types              </th>              <th scope="col" class="col-1">                Status              </th>              <th scope="col" class="col-1 text-center">                Multitenant              </th>              <th scope="col" class="col-1 text-center">                Edit              </th>            </tr>          </thead>          <tbody>            <tr *ngFor="let cluster of clusters" class="row">              <td class="col-2">                <a                   [routerLink]="[\'cluster\', cluster.cluster_id]"                   routerLinkActive="active"                   class="blue text-capitalize col-1">{{cluster.name | truncate}}                </a>              </td>              <td class="col-2">{{cluster.cluster_id}}</td>              <td class="col-1 text-center">                <a                   [routerLink]="[\'cluster\', cluster.cluster_id]"                   routerLinkActive="active"                   class="blue col-1">{{cluster.total_nodes}}                </a>              </td>                <td class="col-2 text-center">{{cluster.description}}</td>              <td class="text-lowercase col-2 text-center">                {{cluster.cluster_type_name}}              </td>              <td class="text-lowercase col-1"                [ngClass]=                "{\'status-dot\': classStatusCheck (cluster.status_name, \'running\'),                \'status-dot-error\': classStatusCheck (cluster.status_name, \'error\'),                \'status-dot-process\': classStatusCheck (cluster.status_name, \'process\')}">                <span tooltip= "{{cluster.status_name}}" class="tooltip-fix">                </span>                <span class="status-name-fix">                  {{cluster.status_name}}                </span>              </td>              <td class="text-lowercase col-1 text-center">                {{cluster.multitenant_support}}              </td>              <td class="col-1 text-center">                <button                   class="btn info-btn btn-primary"                   (click)="openEditCluster(cluster)">                    <i class="material-icons i-info">                      edit                    </i>                </button>              </td>            </tr>          </tbody>        </table>        <div           *ngIf="loadedData && clusters.length === 0"          class="no-clusters d-flex justify-content-center align-items-center">            No available clusters detected        </div>        <!-- Loader -->        <div class="nalej-loader-container" *ngIf="!loadedData">          <div class="loader">            <svg               class="circular"               viewBox="25 25 50 50">              <circle                 class="path"                 cx="50"                 cy="50"                 r="20"                 fill="none"                 stroke-width="2"                 stroke-miterlimit="10"/>            </svg>          </div>        </div>      </div>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AppsInfoComponent', 'selector': 'app-apps-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ResourcesComponent'};
