@@ -82,6 +82,9 @@ a {
   .loader {
     top: 25%;
   }
+  .hide {
+    display: none  !important;
+  }
 }
 @media screen and (min-width:2560px){
   .loader {
