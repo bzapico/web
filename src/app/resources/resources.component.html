@@ -63,7 +63,7 @@
                 *ngIf="clusterGroup[0].running_nodes !== clusterGroup[0].total_nodes" 
                 class="blue nodes-run mb-0"
               >{{clusterGroup[0].running_nodes}} nodes running</p>
-              <p class="text-uppercase grey">{{clusterGroup[0].name | abbreviate}}</p>
+              <p class="text-uppercase grey" tooltip="{{clusterGroup[0].name}}">{{clusterGroup[0].name | abbreviate}}</p>
             </div>
             <div class="box" *ngIf="clusterGroup[1]">
               <div class="donut-chart">
@@ -90,7 +90,7 @@
                 class="blue nodes-run mb-0">
                 {{clusterGroup[1].running_nodes}} nodes running
               </p>
-              <p class="text-uppercase grey">{{clusterGroup[1].name | abbreviate}}</p>
+              <p class="text-uppercase grey" tooltip="{{clusterGroup[1].name}}">{{clusterGroup[1].name | abbreviate}}</p>
             </div>
             <div
               class="box"
@@ -119,7 +119,7 @@
                 class="blue nodes-run mb-0">
                 {{clusterGroup[2].running_nodes}} nodes running
               </p>
-              <p class="text-uppercase grey">{{clusterGroup[2].name | abbreviate}}</p>
+              <p class="text-uppercase grey" tooltip="{{clusterGroup[2].name}}">{{clusterGroup[2].name | abbreviate}}</p>
             </div>
           </div>
         </slide>
@@ -159,8 +159,8 @@
                   routerLinkActive="active" >
                   {{cluster.running_nodes}} nodes running
                 </p>
-                <p *ngIf="cluster.name.length > 26" class="text-uppercase grey">{{cluster.name | slice: 0:25}}...</p>
-                <p *ngIf="cluster.name.length < 26" class="text-uppercase grey">{{cluster.name}}</p>
+                <p *ngIf="cluster.name.length > 26" class="text-uppercase grey" tooltip="{{cluster.name}}">{{cluster.name | slice: 0:25}}...</p>
+                <p *ngIf="cluster.name.length < 26" class="text-uppercase grey" tooltip="{{cluster.name}}">{{cluster.name}}</p>
               </div>
             </div>
           </div>
@@ -257,7 +257,7 @@
                 <a 
                   [routerLink]="['cluster', cluster.cluster_id]" 
                   routerLinkActive="active" 
-                  class="blue text-capitalize col-1">{{cluster.name | truncate}}
+                  class="blue text-capitalize col-1" tooltip="{{cluster.name}}">{{cluster.name | truncate}}
                 </a>
               </td>
               <td class="col-2">{{cluster.cluster_id}}</td>
