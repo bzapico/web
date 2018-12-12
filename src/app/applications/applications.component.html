@@ -128,8 +128,12 @@
                   [ngClass]=
                   "{'status-dot':classStatusCheck(app.status_name, 'running'),
                   'status-dot-error':classStatusCheck(app.status_name, 'error'),
-                  'status-dot-process':classStatusCheck(app.status_name, 'process')}">
-                  {{app.status_name}}
+                  'status-dot-process':classStatusCheck(app.status_name, 'process')}"> 
+                  <span tooltip="{{app.status_name | lowercase}}" class="tooltip-fix">
+                  </span>
+                  <span class="status-name-fix">
+                    {{app.status_name}}
+                  </span>
                 </td>
                   <td class="row-info-btn col-1 text-center">
                     <button class="btn info-btn btn-primary" (click)="openAppsInfo(app)">

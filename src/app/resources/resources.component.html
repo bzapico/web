@@ -277,7 +277,7 @@
                 "{'status-dot': classStatusCheck (cluster.status_name, 'running'),
                 'status-dot-error': classStatusCheck (cluster.status_name, 'error'),
                 'status-dot-process': classStatusCheck (cluster.status_name, 'process')}">
-                <span tooltip= "{{cluster.status_name}}" class="tooltip-fix">
+                <span tooltip= "{{cluster.status_name | lowercase}}" class="tooltip-fix">
                 </span>
                 <span class="status-name-fix">
                   {{cluster.status_name}}
