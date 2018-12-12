@@ -19,7 +19,7 @@ function getBaseUrl() {
     const hashIndex = document.location.href.indexOf('#');
     if (hashIndex !== -1) {
       const chunks = document.location.href.split('#');
-      return chunks[0].slice(0, chunks[0].length - 2); // Returns the required url chunk
+      return chunks[0].slice(0, chunks[0].length - 1); // Returns the required url chunk
     }
   }
 }

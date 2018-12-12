@@ -90,7 +90,7 @@ build: dep local
 # Local compilation
 local:
 	$(info >>> Building ...)
-	npm build --prod
+	npm build
 
 yaml:
 	$(info >>> Creating K8s files)
