@@ -79,6 +79,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     HttpClientModule,
     HttpModule,
     RouterModule,
+    MainPipe,
     // NGX-BOOTSTRAP
     ModalModule.forRoot(),
     ButtonsModule.forRoot(),

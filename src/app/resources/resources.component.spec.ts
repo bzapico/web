@@ -26,6 +26,7 @@ describe('ResourcesComponent', () => {
         BrowserAnimationsModule,
         FormsModule,
         ButtonsModule,
+        TooltipModule,
         ModalModule.forRoot(),
         RouterTestingModule,
         TooltipModule,
