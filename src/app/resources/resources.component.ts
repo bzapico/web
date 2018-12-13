@@ -78,6 +78,12 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   refreshIntervalRef: any;
 
   /**
+   * Hold request error message or undefined
+   */
+  requestError: string;
+
+
+  /**
    * Pie Chart options
    */
   gradient = true;
@@ -149,6 +155,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.clustersCount = 0;
     this.pieChartsData = [];
     this.nodesChart = [{'name': 'Running nodes', 'series': []}];
+    this.requestError = '';
 
   /**
    * Mocked Charts
@@ -299,6 +306,9 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         this.chunckedClusters = this.chunkClusterList(3, this.clusters);
         this.updatePieChartsData(this.clusters, this.pieChartsData);
         this.updateNodesStatusLineChart(runningNodesCount);
+    }, errorResponse => {
+      this.loadedData = true;
+      this.requestError = errorResponse.error.message;
     });
   }
 

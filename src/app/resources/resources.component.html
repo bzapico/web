@@ -297,10 +297,17 @@
           </tr>
         </tbody>
       </table>
+      <!-- No info to show -->
       <div 
-        *ngIf="loadedData && clusters.length === 0"
+        *ngIf="loadedData && clusters.length === 0 && !requestError"
         class="no-clusters d-flex justify-content-center align-items-center">
           No available clusters detected
+      </div>
+       <!-- Requested error -->
+       <div
+        *ngIf="loadedData && requestError"
+        class="no-elements d-flex justify-content-center align-items-center">
+        <p>{{requestError}}</p>
       </div>
       <!-- Loader -->
       <div class="nalej-loader-container" *ngIf="!loadedData">

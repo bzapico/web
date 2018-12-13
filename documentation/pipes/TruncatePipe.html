@@ -182,7 +182,7 @@ export class TruncatePipe implements PipeTransform {
    */
     transform(value: string): string {
     const NUM_TOTAL_CHARS &#x3D; 13;
-    if (value.length &gt; NUM_TOTAL_CHARS) {
+    if (value &amp;&amp; value.length &gt; NUM_TOTAL_CHARS) {
       return value.substring(0, NUM_TOTAL_CHARS) + &#x27;...&#x27;;
     } else {
       return value;

@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
-
 @font-face {
   font-family: 'Aldrich';
   src: url('./assets/fonts/Aldrich-Regular.ttf');
@@ -545,4 +544,11 @@ button[type="submit"]:disabled {
   }
   
 }
+/* - - -  No elements in a table - - - */
+.no-elements {
+  height: 80%;
+  text-align: center;
+  padding-top: 2em;
+}
+
 

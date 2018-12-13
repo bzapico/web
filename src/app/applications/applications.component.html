@@ -142,10 +142,17 @@
             </tr>
           </tbody>
         </table>
+         <!-- No info to show -->
         <div 
-          *ngIf="loadedData && instances && instances.length === 0"
+          *ngIf="loadedData && instances && instances.length === 0 && !requestError"
           class="no-apps d-flex justify-content-center align-items-center">
           No available applications detected
+        </div>
+         <!-- Requested error -->
+        <div
+          *ngIf="loadedData && requestError"
+          class="no-elements d-flex justify-content-center align-items-center">
+          <p>{{requestError}}</p>
         </div>
         <!-- Loader -->
         <div class="nalej-loader-container" *ngIf="!loadedData">

@@ -79,10 +79,17 @@
           </tr>
         </tbody>
       </table>
+      <!-- No info to show -->
       <div
-        *ngIf="loadedData && users && users.length === 0"
+        *ngIf="loadedData && users && users.length === 0 && !requestError"
         class="no-elements d-flex justify-content-center align-items-center">
         <p>There are not registered users in this organization<br>Click on "add user" button to start adding new users </p>
+      </div>
+      <!-- Requested error -->
+      <div
+        *ngIf="loadedData && requestError"
+        class="no-elements d-flex justify-content-center align-items-center">
+        <p>{{requestError}}</p>
       </div>
       <!-- Loader -->
       <div class="nalej-loader-container" *ngIf="!loadedData">

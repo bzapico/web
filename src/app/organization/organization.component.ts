@@ -40,6 +40,11 @@ export class OrganizationComponent implements OnInit {
    */
   modalRef: BsModalRef;
 
+  /**
+   * Hold request error message or undefined
+   */
+  requestError: string;
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -59,6 +64,7 @@ export class OrganizationComponent implements OnInit {
     this.organizationName = 'Loading...';
     this.subscriptionType = 'Free subscription';
     this.users = [];
+    this.requestError = '';
   }
 
   ngOnInit() {
@@ -146,7 +152,10 @@ export class OrganizationComponent implements OnInit {
         if (!this.loadedData) {
           this.loadedData = true;
         }
-    });
+    }, errorResponse => {
+        this.loadedData = true;
+        this.requestError = errorResponse.error.message;
+      });
   }
 }
 

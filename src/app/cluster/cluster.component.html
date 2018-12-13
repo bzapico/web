@@ -154,10 +154,17 @@
           </tr>
         </tbody>
       </table>
+      <!-- No info to show -->
       <div
-        *ngIf="loadedData && nodes && nodes.length === 0"
+        *ngIf="loadedData && nodes && nodes.length === 0 && !requestError"
         class="no-elements d-flex justify-content-center align-items-center">
         <p>There are not registered nodes in this cluster</p>
+      </div>
+       <!-- Requested error -->
+      <div
+        *ngIf="loadedData && requestError"
+        class="no-elements d-flex justify-content-center align-items-center">
+        <p>{{requestError}}</p>
       </div>
       <!-- Loader -->
       <div class="nalej-loader-container" *ngIf="!loadedData">
