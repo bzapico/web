@@ -15,7 +15,8 @@
         clear: both;
     }
     tbody {
-        height: 80%;
+        // height: 80%;
+        height: 285px;
         overflow-y: auto;
         width: 100%;
         td {
@@ -120,6 +121,18 @@
     }
     .status-name-fix {
         display: none;
+    }
+    .table-fixed {
+        tbody {
+            height: 143px;
+        }
+    }
+}
+@media screen and (min-width:2560px){
+    .table-fixed {
+        tbody {
+            height: 455px;
+        }
     }
 }
 
