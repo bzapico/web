@@ -51,12 +51,12 @@
             </th>
             <th 
               scope="col" 
-              class="col-1">
+              class="col-2">
             </th>
-            <th 
+            <!-- <th 
               scope="col" 
               class="col-1">
-          </th>
+          </th> -->
           </tr>
         </thead>
         <tbody>
@@ -64,14 +64,14 @@
             <td class="col-3">{{user.name}}</td>
             <td class="blue col-2" (click)="openUserInfo(user)">{{user.role_name}}</td>
             <td class="col-5">{{user.email}}</td>
-            <td class="col-1">
-              <button class="btn info-btn btn-primary" (click)="openUserInfo(user)">
-                <span class="i-info" tooltip="Info">i</span>
+            <td class="col-2">
+              <button class="btn info-btn info-btn-fix btn-primary" (click)="openUserInfo(user)">
+                <span class="i-info" tooltip="Info" placement="left">i</span>
               </button>
-            </td>
-            <td class="col-1">
+            <!-- </td>
+            <td class="col-1"> -->
               <button class="btn info-btn btn-primary" (click)="openEditUser(user)">
-                <i class="material-icons i-edit"  tooltip="Edit">
+                <i class="material-icons i-edit"  tooltip="Edit" placement="left">
                   edit
                 </i>
               </button>

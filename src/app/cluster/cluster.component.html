@@ -145,9 +145,9 @@
               "{'status-dot':classStatusCheck(node.status_name, 'running'),
               'status-dot-error':classStatusCheck(node.status_name, 'error'),
               'status-dot-process':classStatusCheck(node.status_name, 'process')}">
-              <span tooltip= "{{node.status_name | lowercase}}" class="">
+              <span tooltip= "{{node.status_name | lowercase}}" class="tooltip-fix" placement="auto">
               </span>
-              <span class="status-name-fix">
+              <span class="hide">
                 {{node.status_name}}
               </span>
             </td>

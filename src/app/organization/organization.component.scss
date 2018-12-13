@@ -74,6 +74,9 @@
     border-radius: 50%;
     position: relative;
 }
+.info-btn-fix{
+    margin-right: 1em;
+}
 .i-edit{
     font-size: 1.2em;
     position: absolute;
@@ -151,6 +154,9 @@
         tbody {
             height: 94px;
         }
+    }
+    .card-title-h {
+        margin-bottom: 30px;
     }
 }
 @media screen and (min-width:2560px){

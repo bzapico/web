@@ -38,14 +38,6 @@
         border: none;
     }
 }
-
-.tooltip-fix {
-    height: 20px;
-    width: 20px;
-    position: absolute;
-    top: 16%;
-    left: 40%;
-}
 .info-btn {
     height: 32px;
     width:32px;
@@ -118,9 +110,6 @@
         position: absolute;
         top: 5px;
         left: 5px;
-    }
-    .status-name-fix {
-        display: none;
     }
     .table-fixed {
         tbody {

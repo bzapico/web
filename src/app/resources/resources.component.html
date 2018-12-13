@@ -239,7 +239,7 @@
             <th scope="col" class="col-2 text-center">
               Types
             </th>
-            <th scope="col" class="col-1">
+            <th scope="col" class="col-1 text-center">
               Status
             </th>
             <th scope="col" class="col-1 text-center">
@@ -271,14 +271,14 @@
             <td class="text-lowercase col-2 text-center">
               {{cluster.cluster_type_name}}
             </td>
-            <td class="text-lowercase col-1"
+            <td class="text-lowercase col-1 text-center"
               [ngClass]=
               "{'status-dot': classStatusCheck (cluster.status_name, 'running'),
               'status-dot-error': classStatusCheck (cluster.status_name, 'error'),
               'status-dot-process': classStatusCheck (cluster.status_name, 'process')}">
-              <span tooltip= "{{cluster.status_name | lowercase}}" class="tooltip-fix">
+              <span tooltip= "{{cluster.status_name | lowercase}}" class="tooltip-fix" placement="auto">
               </span>
-              <span class="status-name-fix">
+              <span class="hide">
                 {{cluster.status_name}}
               </span>
             </td>

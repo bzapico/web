@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { TruncatePipe } from '../pipes/truncate.pipe';
+import { AbbreviatePipe } from '../pipes/abbreviate.pipe';
 
 describe('ClusterComponent', () => {
   let component: ClusterComponent;
@@ -17,7 +19,11 @@ describe('ClusterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ClusterComponent ],
+      declarations: [
+        ClusterComponent,
+        TruncatePipe,
+        AbbreviatePipe,
+       ],
       imports: [
         HttpClientTestingModule,
         NgxChartsModule,
@@ -35,15 +41,15 @@ describe('ClusterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('generateClusterChartData() - Shoud generate the NGX-Chart required JSON object for pie chart rendering', () => {
+  // it('generateClusterChartData() - Shoud generate the NGX-Chart required JSON object for pie chart rendering', () => {
 
-    // const generateClusterChartData = spyOn(component, 'generateClusterChartData').and.returnValue(true);
-    // const data = {};
+  //   const generateClusterChartData = spyOn(component, 'generateClusterChartData').and.returnValue(true);
+  //   const data = {};
 
-    // generateClusterChartData(data);
+  //   generateClusterChartData(data);
 
-    // expect(component.generateClusterChartData).toBe(data);
-  });
+  //   expect(component.generateClusterChartData).toBe(data);
+  // });
 
   it('updateNodesList() - Should requests an updated list of available nodes to update the current one', () => {
     const updateNodesList = spyOn(component, 'updateNodesList').and.returnValue(true);
@@ -54,14 +60,14 @@ describe('ClusterComponent', () => {
     expect(updateNodesList).toHaveBeenCalledWith(nodes);
   });
 
-  it('It should render cluster status', () => {
-    // classStatusCheck(node.status_name, 'error')
-    // component.node.statusName = 20;
+  // it('It should render cluster status', () => {
+  //   classStatusCheck(node.status_name, 'error')
+  //   component.node.statusName = 20;
 
-    // el = de.nativeElement;
-    // de = fixture.debugElement.query(By.css('.status-dot-error'));
+  //   el = de.nativeElement;
+  //   de = fixture.debugElement.query(By.css('.status-dot-error'));
 
-    // expect(el.innerText).toContain(20);
-  });
+  //   expect(el.innerText).toContain(20);
+  // });
 
 });

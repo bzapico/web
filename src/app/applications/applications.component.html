@@ -128,9 +128,9 @@
                 "{'status-dot':classStatusCheck(app.status_name, 'running'),
                 'status-dot-error':classStatusCheck(app.status_name, 'error'),
                 'status-dot-process':classStatusCheck(app.status_name, 'process')}"> 
-                <span tooltip="{{app.status_name | lowercase}}" class="tooltip-fix">
+                <span tooltip="{{app.status_name | lowercase}}" class="tooltip-fix" placement="auto">
                 </span>
-                <span class="status-name-fix">
+                <span class="hide">
                   {{app.status_name}}
                 </span>
               </td>

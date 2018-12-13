@@ -185,9 +185,15 @@ export class AbbreviatePipe implements PipeTransform {
   transform(value: string): string {
     const NUM_TOTAL_CHARS &#x3D; 8;
     const LAST_CHUNK_LENGTH &#x3D; NUM_TOTAL_CHARS - 2;
-    const abbstring &#x3D; value.slice(0, 1) + &#x27;...&#x27; + value.slice(value.length - LAST_CHUNK_LENGTH, value.length);
+    let abbstring;
 
-    return abbstring;
+    abbstring &#x3D; value.slice(0, 1) + &#x27;...&#x27; + value.slice(value.length - LAST_CHUNK_LENGTH, value.length);
+
+    if (value.length &lt;&#x3D; NUM_TOTAL_CHARS) {
+      return value;
+    } else {
+      return abbstring;
+    }
   }
 }
 </code></pre>
