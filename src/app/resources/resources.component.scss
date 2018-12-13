@@ -93,6 +93,11 @@
     h2 {
         font-size: 1.5rem;
     }
+    .table-fixed {
+        tbody {
+            height: 72%;
+        }
+    }
     .status-dot, 
     .status-dot-error, 
     .status-dot-process {

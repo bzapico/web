@@ -170,7 +170,7 @@
         width: 100%;
         td {
             float: left;
-            padding: 1.2rem 0;
+            padding: 0.75rem;
             font-size: .9em;
             border-top: 0.8px solid #EEEEEE;
             color: #949494;
@@ -220,8 +220,10 @@
     .card-title-c h5 {
         font-size: 1em;
     }
-    .table-h .table td {
-        padding: .6rem 1rem;
+    .table-fixed {
+        tbody {
+            height: 72%;
+        }
     }
     .status-dot, 
     .status-dot-error, 
