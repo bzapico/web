@@ -1,23 +1,3 @@
-#scroll-table {
-    margin: 4em 0;
-    height: 200px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    font-size:  .9em;
-    &::-webkit-scrollbar {
-      -webkit-appearance: none;
-      width: 8px;
-      margin-left: 2px;
-    }
-    &::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background-color: rgba(0, 0, 0, 0.5);
-      -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
-    }
-}
-.orange {
-    color:  #FFC40D;
-}
 .box-card {
     display: flex;
     flex-direction: row;
@@ -67,6 +47,23 @@
     color:#949494;
     margin-top: 1.2em;
 }
+#scroll-table {
+    margin: 4em 0;
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size:  .9em;
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 8px;
+      margin-left: 2px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(0, 0, 0, 0.5);
+      -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    }
+}
 .cluster-summary {
     margin-bottom: 0.5rem;
     td {
@@ -103,7 +100,7 @@
           top: 21px;
           left: 25px;
         }
-      }
+    }
     .circle-name {
         font-size: 1em !important;
         margin-top: .4em !important;
@@ -151,44 +148,43 @@
     }
 }
 
-/* - - - Cluster table card - - - */
-.table-h {
+/* - - - Nodes table card - - - */
+.table-fixed {
+    width: 100%;
     height: 80%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    .table {
+    thead {
+        background-color: white;
+    }
+    thead, tbody, tr, td, th {
+        display: block;
+    }
+    tr:after {
+        content: ' ';
+        display: block;
+        visibility: hidden;
+        clear: both;
+    }
+    tbody {
+        height: 80%;
+        overflow-y: auto;
+        width: 100%;
         td {
-            padding: 1.2rem;
-            vertical-align: middle;
-            font-size:  .9em;
+            float: left;
+            padding: 1.2rem 0;
+            font-size: .9em;
             border-top: 0.8px solid #EEEEEE;
             color: #949494;
         }
-        thead th {
-            border: none;
-            font-size:  .9em;
-            padding: 0 1.2rem;
-            font-weight: 200;
-        }
-        tbody tr:first-child td {
+    }
+    thead th {
+        float: left;
+        height: 44px;
         border: none;
-        }
-        .row-ip {
-            width: 20%;
-        }
-        .row-ip {
-            width: 20%;
-        }
-        .row-credentials {
-            width: 20%;
-        }
-        .row-tags {
-            width: 20%;
-        }
-        .row-status {
-            width: 18%;
-            padding-left: 2%;
-        }
+        font-size: .9em;
+        font-weight: 200;
+    }
+    tbody tr:first-child td {
+        border: none;
     }
 }
 .status-dot:before {
@@ -227,12 +223,13 @@
     .table-h .table td {
         padding: .6rem 1rem;
     }
-    .status-dot:before {
-        margin: 0 23px;
+    .status-dot, 
+    .status-dot-error, 
+    .status-dot-process {
+        text-align: center;
     }
-    .status-dot-error:before {
-        margin: 0 23px;
-    }
+    .status-dot:before, 
+    .status-dot-error:before, 
     .status-dot-process:before {
         margin: 0 23px;
     }
