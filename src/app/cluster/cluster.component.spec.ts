@@ -41,15 +41,15 @@ describe('ClusterComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('generateClusterChartData() - Shoud generate the NGX-Chart required JSON object for pie chart rendering', () => {
+  it('generateClusterChartData() - Shoud generate the NGX-Chart required JSON object for pie chart rendering', () => {
 
-  //   const generateClusterChartData = spyOn(component, 'generateClusterChartData').and.returnValue(true);
-  //   const data = {};
+    // const generateClusterChartData = spyOn(component, 'generateClusterChartData').and.returnValue(true);
+    // const data = {};
 
-  //   generateClusterChartData(data);
+    // generateClusterChartData(data);
 
-  //   expect(component.generateClusterChartData).toBe(data);
-  // });
+    // expect(component.generateClusterChartData).toBe(data);
+  });
 
   it('updateNodesList() - Should requests an updated list of available nodes to update the current one', () => {
     const updateNodesList = spyOn(component, 'updateNodesList').and.returnValue(true);
