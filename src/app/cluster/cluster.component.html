@@ -133,22 +133,25 @@
               <td class="text-lowercase col-2">{{node.state_name}}</td>
               <td class="col-3" *ngIf="node.labels === '-'"> no </td>
               <td class="col-3"*ngIf="node.labels !== '-'">
-                  <button *ngFor="let label of labelsToString(node.labels)" class="btn-sm btn-outline-primary" disabled>
-                      {{label[0]}}: {{label[1]}}
+                  <button 
+                    *ngFor="let label of labelsToString(node.labels)" 
+                    class="btn-sm btn-outline-primary" 
+                    disabled>
+                    {{label[0]}}: {{label[1]}}
                   </button>
               </td>
               <td 
-              class="text-lowercase col-2 text-center"
-              [ngClass]=
-              "{'status-dot':classStatusCheck(node.status_name, 'running'),
-              'status-dot-error':classStatusCheck(node.status_name, 'error'),
-              'status-dot-process':classStatusCheck(node.status_name, 'process')}">
-              <span tooltip= "{{node.status_name | lowercase}}" class="tooltip-fix">
-              </span>
-              <span class="status-name-fix">
-                {{node.status_name}}
-              </span>
-            </td>
+                class="text-lowercase col-2 text-center"
+                [ngClass]=
+                "{'status-dot':classStatusCheck(node.status_name, 'running'),
+                'status-dot-error':classStatusCheck(node.status_name, 'error'),
+                'status-dot-process':classStatusCheck(node.status_name, 'process')}">
+                <span tooltip= "{{node.status_name | lowercase}}" class="">
+                </span>
+                <span class="status-name-fix">
+                  {{node.status_name}}
+                </span>
+              </td>
             </tr>
           </tbody>
         </table>

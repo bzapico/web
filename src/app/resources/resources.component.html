@@ -221,104 +221,102 @@
       <div class="card-title-h">
         <h5>CLUSTERS</h5>
       </div>
-      <div class="table-h">
-        <table *ngIf="loadedData && clusters && clusters.length > 0" class="table">
-          <thead>
-            <tr class="row">
-              <th scope="col" class="col-2">
-                Name
-              </th>
-              <th scope="col" class="col-2">
-                ID
-              </th>
-              <th scope="col" class="col-1 text-center">
-                Nodes
-              </th>
-              <th scope="col" class="col-2 text-center">
-                Description
-              </th>
-              <th scope="col" class="col-2 text-center">
-                Types
-              </th>
-              <th scope="col" class="col-1">
-                Status
-              </th>
-              <th scope="col" class="col-1 text-center">
-                Multitenant
-              </th>
-              <th scope="col" class="col-1 text-center">
-                Edit
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let cluster of clusters" class="row">
-              <td class="col-2">
-                <a 
-                  [routerLink]="['cluster', cluster.cluster_id]" 
-                  routerLinkActive="active" 
-                  class="blue text-capitalize text-left col-1">{{cluster.name}}
-                </a>
-              </td>
-              <td class="col-2">{{cluster.cluster_id}}</td>
-              <td class="col-1 text-center">
-                <a 
-                  [routerLink]="['cluster', cluster.cluster_id]" 
-                  routerLinkActive="active" 
-                  class="blue col-1">{{cluster.total_nodes}}
-                </a>
-              </td>  
-              <td class="col-2 text-center">{{cluster.description}}</td>
-              <td class="text-lowercase col-2 text-center">
-                {{cluster.cluster_type_name}}
-              </td>
-              <td class="text-lowercase col-1"
-                [ngClass]=
-                "{'status-dot': classStatusCheck (cluster.status_name, 'running'),
-                'status-dot-error': classStatusCheck (cluster.status_name, 'error'),
-                'status-dot-process': classStatusCheck (cluster.status_name, 'process')}">
-                <span tooltip= "{{cluster.status_name | lowercase}}" class="tooltip-fix">
-                </span>
-                <span class="status-name-fix">
-                  {{cluster.status_name}}
-                </span>
-              </td>
-              <td class="text-lowercase col-1 text-center">
-                {{cluster.multitenant_support}}
-              </td>
-              <td class="col-1 text-center">
-                <button 
-                  class="btn info-btn btn-primary" 
-                  (click)="openEditCluster(cluster)">
-                    <i class="material-icons i-info">
-                      edit
-                    </i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div 
-          *ngIf="loadedData && clusters.length === 0"
-          class="no-clusters d-flex justify-content-center align-items-center">
-            No available clusters detected
-        </div>
-        <!-- Loader -->
-        <div class="nalej-loader-container" *ngIf="!loadedData">
-          <div class="loader">
-            <svg 
-              class="circular" 
-              viewBox="25 25 50 50">
-              <circle 
-                class="path" 
-                cx="50" 
-                cy="50" 
-                r="20" 
-                fill="none" 
-                stroke-width="2" 
-                stroke-miterlimit="10"/>
-            </svg>
-          </div>
+      <table *ngIf="loadedData && clusters && clusters.length > 0" class="table table-fixed">
+        <thead>
+          <tr>
+            <th scope="col" class="col-2">
+              Name
+            </th>
+            <th scope="col" class="col-2">
+              ID
+            </th>
+            <th scope="col" class="col-1 text-center">
+              Nodes
+            </th>
+            <th scope="col" class="col-2 text-center">
+              Description
+            </th>
+            <th scope="col" class="col-2 text-center">
+              Types
+            </th>
+            <th scope="col" class="col-1">
+              Status
+            </th>
+            <th scope="col" class="col-1 text-center">
+              Multitenant
+            </th>
+            <th scope="col" class="col-1 text-center">
+              Edit
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cluster of clusters">
+            <td class="col-2">
+              <a 
+                [routerLink]="['cluster', cluster.cluster_id]" 
+                routerLinkActive="active" 
+                class="blue text-capitalize text-left col-1">{{cluster.name}}
+              </a>
+            </td>
+            <td class="col-2">{{cluster.cluster_id}}</td>
+            <td class="col-1 text-center">
+              <a 
+                [routerLink]="['cluster', cluster.cluster_id]" 
+                routerLinkActive="active" 
+                class="blue col-1">{{cluster.total_nodes}}
+              </a>
+            </td>  
+            <td class="col-2 text-center">{{cluster.description}}</td>
+            <td class="text-lowercase col-2 text-center">
+              {{cluster.cluster_type_name}}
+            </td>
+            <td class="text-lowercase col-1"
+              [ngClass]=
+              "{'status-dot': classStatusCheck (cluster.status_name, 'running'),
+              'status-dot-error': classStatusCheck (cluster.status_name, 'error'),
+              'status-dot-process': classStatusCheck (cluster.status_name, 'process')}">
+              <span tooltip= "{{cluster.status_name | lowercase}}" class="tooltip-fix">
+              </span>
+              <span class="status-name-fix">
+                {{cluster.status_name}}
+              </span>
+            </td>
+            <td class="text-lowercase col-1 text-center">
+              {{cluster.multitenant_support}}
+            </td>
+            <td class="col-1 text-center">
+              <button 
+                class="btn info-btn btn-primary" 
+                (click)="openEditCluster(cluster)">
+                  <i class="material-icons i-info">
+                    edit
+                  </i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div 
+        *ngIf="loadedData && clusters.length === 0"
+        class="no-clusters d-flex justify-content-center align-items-center">
+          No available clusters detected
+      </div>
+      <!-- Loader -->
+      <div class="nalej-loader-container" *ngIf="!loadedData">
+        <div class="loader">
+          <svg 
+            class="circular" 
+            viewBox="25 25 50 50">
+            <circle 
+              class="path" 
+              cx="50" 
+              cy="50" 
+              r="20" 
+              fill="none" 
+              stroke-width="2" 
+              stroke-miterlimit="10"/>
+          </svg>
         </div>
       </div>
     </div>
