@@ -22,8 +22,7 @@ TARGET=bin
 
 # Go parameters
 NGCMD=ng
-GOBUILD=$(NGCMD) build
-GOCLEAN=$(NGCMD) clean
+NGCLEAN=$(NGCMD) clean
 NGTEST=$(NGCMD) test
 NGE2E=$(NGCMD) e2e
 
@@ -32,8 +31,6 @@ AZURE_CR=nalejregistry
 DOCKER_REGISTRY=$(AZURE_CR).azurecr.io
 DOCKER_REPO=nalej
 VERSION=$(shell cat .version)
-
-
 
 # Use ldflags to pass commit and branch information
 # TODO: Integrate this into the compilation process
@@ -47,40 +44,29 @@ all: dep build test yaml image
 
 .PHONY: dep
 dep:
-	$(info >>> Updating dependencies...)
+	@echo ">>> Updating dependencies..."
 	npm install
 
 test-all: test test-race test-coverage
 
 .PHONY: test test-e2e
 test:
-	$(info >>> Launching tests...)
+	@echo ">>> Launching tests..."
 	$(NGTEST) --watch=false
 
 test-e2e:
-	$(info >>> Launching End to end tests...)
+	@echo ">>> Launching End-to-end tests..."
 	$(NGE2E)
-
-# Check the codestyle using gometalinter
-.PHONY: checkstyle
-checkstyle:
-	gometalinter --disable-all --enable=golint --enable=vet --enable=errcheck --enable=goconst --vendor ./...
-
-# Run go formatter
-.PHONY: format
-format:
-	$(info >>> Formatting...)
-	gofmt -s -w .
 
 .PHONY: clean
 clean:
-	$(info >>> Cleaning project...)
-	$(GOCLEAN)
-	rm -Rf $(TARGET)
+	@echo ">>> Cleaning project..."
+	$(NGCLEAN)
+	rm -rf $(TARGET)
 
 .PHONY: dev
 dev:
-	$(info >>> Serving project...)
+	@echo ">>> Serving project..."
 	ng serve -o
 
 .PHONY: dep build-all build build-local
@@ -89,11 +75,11 @@ build: dep local
 
 # Local compilation
 local:
-	$(info >>> Building ...)
+	@echo ">>> Building..."
 	npm build
 
 yaml:
-	$(info >>> Creating K8s files)
+	@echo ">>> Creating K8S files..."
 	for app in $(APPS); do \
 		if [ -d components/"$$app"/appcluster ]; then \
 			mkdir -p $(TARGET)/yaml/appcluster ; \
@@ -108,14 +94,11 @@ yaml:
 	done
 
 # Package all images and components
-.PHONY: image image-create-dir create-image
-image: image-create-dir create-image
-
-image-create-dir:
-	mkdir -p $(TARGET)/images
+.PHONY: image create-image
+image: create-image
 
 create-image:
-	$(info >>> Creating images ...)
+	@echo ">>> Creating images..."
 	for app in $(APPS); do \
         echo Create image of app $$app ; \
         if [ -f components/"$$app"/Dockerfile ]; then \
@@ -126,20 +109,21 @@ create-image:
     done
 
 # Publish the image
-publish: image publish-image
+.PHONY: publish az-login az-logout publish-image
+publish: image az-login publish-image az-logout
 
-publish-image:
-	$(info >>> Logging in Azure and Azure Container Registry ...)
+az-login:
+	@echo ">>> Logging in Azure and Azure Container Registry ..."
 	az login
 	az acr login --name $(AZURE_CR)
 
-	$(info >>> Publish images into Azure Container Registry ...)
+az-logout:
+	az logout
+
+publish-image:
+	@echo ">>> Publishing images into Azure Container Registry ..."
 	for app in $(APPS); do \
-	    if [ -f $(TARGET)/images/"$$app"/image.tar ]; then \
-	        docker push $(DOCKER_REGISTRY)/$(DOCKER_REPO)/"$$app":$(VERSION) ; \
-	    else \
-	        echo $$app has no image to be pushed ; \
-	    fi ; \
-   	    echo  Published image of app $$app ; \
-    done ; \
-    az logout ; \
+		if [ -f components/"$$app"/Dockerfile ]; then \
+			docker push $(DOCKER_REGISTRY)/$(DOCKER_REPO)/"$$app":$(VERSION) ; \
+		fi ; \
+    done
