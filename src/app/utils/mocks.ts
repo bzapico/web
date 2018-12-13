@@ -267,9 +267,9 @@ export const mockResourcesSummary = {
  */
 export const mockAppsInstancesList = [
     {
-        organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-        app_descriptor_id: 'app_descriptor_id_2',
-        app_instance_id: '0800200c9a62',
+        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+        app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+        app_instance_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
         name: 'UI - Tableau',
         description: 'Instance of Tableau',
         configuration_options: {
@@ -292,10 +292,10 @@ export const mockAppsInstancesList = [
         rules: [
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_2',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_1',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '1',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
@@ -309,15 +309,15 @@ export const mockAppsInstancesList = [
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_2',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_2',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '2',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
-                    'service_id_1',
-                    'service_id_3',
+                    '1',
+                    '3',
                 ],
                 device_groups: [
                     'device_group1',
@@ -327,15 +327,15 @@ export const mockAppsInstancesList = [
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_2',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_3',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '3',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
-                    'service_id_1',
-                    'service_id_2',
+                    '1',
+                    '2',
                 ],
                 device_groups: [
                     'device_group1',
@@ -345,14 +345,14 @@ export const mockAppsInstancesList = [
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_2',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_4',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '4',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
-                    'service_id_1',
+                    '1',
                 ],
                 device_groups: [
                     'device_group1',
@@ -365,13 +365,13 @@ export const mockAppsInstancesList = [
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_2',
-                app_descriptor_id: 'app_descriptor_id_2',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
                 service_group_id: 'service_group_id_2',
                 name: 'group_2',
                 description: 'Databases',
                 service_instances: [
-                    'service_id_1',
-                    'service_id_5'
+                    '1',
+                    '5'
                 ],
                 policy_name: 'recursive'
             }
@@ -381,8 +381,8 @@ export const mockAppsInstancesList = [
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_1',
                 app_descriptor_id: 'app_descriptor_id_1',
-                service_id: 'service_id_1',
-                name: 'Service 1',
+                service_id: '1',
+                name: 'simple-mysql',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -414,16 +414,16 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_0'
+                    '0'
                 ],
                 status_name: 'Running'
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_2',
-                app_descriptor_id: 'app_descriptor_id_2',
-                service_id: 'service_id_2',
-                name: 'Service 2',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+                service_id: '2',
+                name: 'simple-mysql',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -455,7 +455,7 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_1'
+                    '1'
                 ],
                 status_name: 'Running'
             },
@@ -463,8 +463,8 @@ export const mockAppsInstancesList = [
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_3',
                 app_descriptor_id: 'app_descriptor_id_3',
-                service_id: 'service_id_3',
-                name: 'Service 3',
+                service_id: '3',
+                name: 'simple-wordpress',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -496,7 +496,7 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_2'
+                    '2'
                 ],
                 status_name: 'Running'
             },
@@ -504,8 +504,8 @@ export const mockAppsInstancesList = [
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_4',
                 app_descriptor_id: 'app_descriptor_id_4',
-                service_id: 'service_id_4',
-                name: 'Service 4',
+                service_id: '4',
+                name: 'simple-mysql',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -537,7 +537,7 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_3'
+                    '3'
                 ],
                 status_name: 'Running'
             }
@@ -545,9 +545,9 @@ export const mockAppsInstancesList = [
         status_name: 'Running',
     },
     {
-        organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
         app_descriptor_id: 'app_descriptor_id_3',
-        app_instance_id: '0800200c9a63',
+        app_instance_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
         name: 'UI - Grafana',
         description: 'Grafana dashboard',
         configuration_options: {
@@ -569,9 +569,9 @@ export const mockAppsInstancesList = [
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_descriptor_id: 'app_descriptor_id_3',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_1',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '1',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
@@ -586,14 +586,14 @@ export const mockAppsInstancesList = [
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_descriptor_id: 'app_descriptor_id_3',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_2',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '2',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
-                    'service_id_1',
-                    'service_id_3',
+                    '1',
+                    '3',
                 ],
                 device_groups: [
                     'device_group1',
@@ -604,14 +604,14 @@ export const mockAppsInstancesList = [
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_descriptor_id: 'app_descriptor_id_3',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_3',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '3',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
-                    'service_id_1',
-                    'service_id_2',
+                    '1',
+                    '2',
                 ],
                 device_groups: [
                     'device_group1',
@@ -622,13 +622,13 @@ export const mockAppsInstancesList = [
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_descriptor_id: 'app_descriptor_id_3',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_4',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '4',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
-                    'service_id_1',
+                    '1',
                 ],
                 device_groups: [
                     'device_group1',
@@ -646,8 +646,8 @@ export const mockAppsInstancesList = [
                 name: 'group_3',
                 description: 'Databases',
                 service_instances: [
-                    'service_id_1',
-                    'service_id_5'
+                    '1',
+                    '5'
                 ],
                 policy_name: 'recursive'
             }
@@ -657,8 +657,8 @@ export const mockAppsInstancesList = [
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_1',
                 app_descriptor_id: 'app_descriptor_id_3',
-                service_id: 'service_id_1',
-                name: 'Service 1',
+                service_id: '1',
+                name: 'simple-mysql',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -690,7 +690,7 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_0'
+                    '0'
                 ],
                 status_name: 'Running'
             },
@@ -698,8 +698,8 @@ export const mockAppsInstancesList = [
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_2',
                 app_descriptor_id: 'app_descriptor_id_3',
-                service_id: 'service_id_2',
-                name: 'Service 2',
+                service_id: '2',
+                name: 'simple-mysql',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -731,7 +731,7 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_1'
+                    '1'
                 ],
                 status_name: 'Running'
             },
@@ -739,8 +739,8 @@ export const mockAppsInstancesList = [
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_3',
                 app_descriptor_id: 'app_descriptor_id_3',
-                service_id: 'service_id_3',
-                name: 'Service 3',
+                service_id: '3',
+                name: 'simple-wordpress',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -772,7 +772,7 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_2'
+                    '2'
                 ],
                 status_name: 'Running'
             },
@@ -780,8 +780,8 @@ export const mockAppsInstancesList = [
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_4',
                 app_descriptor_id: 'app_descriptor_id_4',
-                service_id: 'service_id_4',
-                name: 'Service 4',
+                service_id: '4',
+                name: 'simple-wordpress',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -813,7 +813,7 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_3'
+                    '3'
                 ],
                 status_name: 'Running'
             }
@@ -823,7 +823,7 @@ export const mockAppsInstancesList = [
     {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         app_descriptor_id: 'app_descriptor_id_4',
-        app_instance_id: '0800200c9a64',
+        app_instance_id: 'f9641333-3100-4bab-be3e-b0d33c227634',
         name: 'Assets Application',
         description: 'Instance of Cassandra',
         configuration_options: {
@@ -845,9 +845,9 @@ export const mockAppsInstancesList = [
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_descriptor_id: 'app_descriptor_id_4',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_1',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '1',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
@@ -862,14 +862,14 @@ export const mockAppsInstancesList = [
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_descriptor_id: 'app_descriptor_id_4',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_2',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '2',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
-                    'service_id_1',
-                    'service_id_3',
+                    '1',
+                    '3',
                 ],
                 device_groups: [
                     'device_group1',
@@ -880,14 +880,14 @@ export const mockAppsInstancesList = [
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_descriptor_id: 'app_descriptor_id_4',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_3',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '3',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
-                    'service_id_1',
-                    'service_id_2',
+                    '1',
+                    '2',
                 ],
                 device_groups: [
                     'device_group1',
@@ -898,13 +898,13 @@ export const mockAppsInstancesList = [
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_descriptor_id: 'app_descriptor_id_4',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_4',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '4',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
-                    'service_id_1',
+                    '1',
                 ],
                 device_groups: [
                     'device_group1',
@@ -922,8 +922,8 @@ export const mockAppsInstancesList = [
                 name: 'group_2',
                 description: 'Databases',
                 service_instances: [
-                    'service_id_1',
-                    'service_id_5'
+                    '1',
+                    '5'
                 ],
                 policy_name: 'recursive'
             }
@@ -933,8 +933,8 @@ export const mockAppsInstancesList = [
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_1',
                 app_descriptor_id: 'app_descriptor_id_4',
-                service_id: 'service_id_1',
-                name: 'Service 1',
+                service_id: '1',
+                name: 'simple-mysql',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -966,16 +966,16 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_0'
+                    '0'
                 ],
                 status_name: 'Running'
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_2',
-                app_descriptor_id: 'app_descriptor_id_2',
-                service_id: 'service_id_2',
-                name: 'Service 2',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+                service_id: '2',
+                name: 'simple-mysql',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -1007,7 +1007,7 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_1'
+                    '1'
                 ],
                 status_name: 'Running'
             },
@@ -1015,8 +1015,8 @@ export const mockAppsInstancesList = [
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_3',
                 app_descriptor_id: 'app_descriptor_id_3',
-                service_id: 'service_id_3',
-                name: 'Service 3',
+                service_id: '3',
+                name: 'simple-wordpress',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -1048,7 +1048,7 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_2'
+                    '2'
                 ],
                 status_name: 'Running'
             },
@@ -1056,8 +1056,8 @@ export const mockAppsInstancesList = [
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_4',
                 app_descriptor_id: 'app_descriptor_id_4',
-                service_id: 'service_id_4',
-                name: 'Service 4',
+                service_id: '4',
+                name: 'simple-wordpress',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -1089,7 +1089,7 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_3'
+                    '3'
                 ],
                 status_name: 'Running'
             }
@@ -1097,9 +1097,9 @@ export const mockAppsInstancesList = [
         status_name: 'Running',
     },
     {
-        organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
         app_descriptor_id: 'app_descriptor_id_5',
-        app_instance_id: '0800200c9a65',
+        app_instance_id: 'f9641333-3100-4bab-be3e-b0d33c227634',
         name: 'Assets Application',
         description: 'Instance of MongoDB',
         configuration_options: {
@@ -1121,9 +1121,9 @@ export const mockAppsInstancesList = [
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_descriptor_id: 'app_descriptor_id_5',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_1',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '1',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
@@ -1138,14 +1138,14 @@ export const mockAppsInstancesList = [
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_descriptor_id: 'app_descriptor_id_5',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_2',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '2',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
-                    'service_id_1',
-                    'service_id_3',
+                    '1',
+                    '3',
                 ],
                 device_groups: [
                     'device_group1',
@@ -1156,14 +1156,14 @@ export const mockAppsInstancesList = [
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_descriptor_id: 'app_descriptor_id_5',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_3',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '3',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
-                    'service_id_1',
-                    'service_id_2',
+                    '1',
+                    '2',
                 ],
                 device_groups: [
                     'device_group1',
@@ -1174,13 +1174,13 @@ export const mockAppsInstancesList = [
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_descriptor_id: 'app_descriptor_id_5',
-                rule_id: 'rule_id_2',
-                name: 'rule2',
-                source_service_id: 'service_id_4',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '4',
                 source_port: '1234',
                 access_name: 'root',
                 auth_services: [
-                    'service_id_1',
+                    '1',
                 ],
                 device_groups: [
                     'device_group1',
@@ -1198,8 +1198,8 @@ export const mockAppsInstancesList = [
                 name: 'group_2',
                 description: 'Databases',
                 service_instances: [
-                    'service_id_1',
-                    'service_id_5'
+                    '1',
+                    '5'
                 ],
                 policy_name: 'recursive'
             }
@@ -1209,8 +1209,8 @@ export const mockAppsInstancesList = [
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_1',
                 app_descriptor_id: 'app_descriptor_id_1',
-                service_id: 'service_id_1',
-                name: 'Service 1',
+                service_id: '1',
+                name: 'simple-mysql',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -1242,16 +1242,16 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_0'
+                    '0'
                 ],
                 status_name: 'Running'
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_2',
-                app_descriptor_id: 'app_descriptor_id_2',
-                service_id: 'service_id_2',
-                name: 'Service 2',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+                service_id: '2',
+                name: 'simple-mysql',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -1283,7 +1283,7 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_1'
+                    '1'
                 ],
                 status_name: 'Running'
             },
@@ -1291,8 +1291,8 @@ export const mockAppsInstancesList = [
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_3',
                 app_descriptor_id: 'app_descriptor_id_3',
-                service_id: 'service_id_3',
-                name: 'Service 3',
+                service_id: '3',
+                name: 'simple-wordpress',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -1324,7 +1324,7 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_2'
+                    '2'
                 ],
                 status_name: 'Running'
             },
@@ -1332,8 +1332,8 @@ export const mockAppsInstancesList = [
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
                 app_instance_id: 'app_instance_id_4',
                 app_descriptor_id: 'app_descriptor_id_4',
-                service_id: 'service_id_4',
-                name: 'Service 4',
+                service_id: '4',
+                name: 'simple-wordpress',
                 description: 'Great service',
                 type_name: 'DB',
                 image: 'https://urlofservice:8080/',
@@ -1365,7 +1365,7 @@ export const mockAppsInstancesList = [
                     lab3: 'label3'
                 },
                 deploy_after: [
-                    'service_id_3'
+                    '3'
                 ],
                 status_name: 'Running'
             }
