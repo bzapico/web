@@ -76,7 +76,7 @@ build: dep local
 # Local compilation
 local:
 	@echo ">>> Building..."
-	npm build --prod
+	npm build
 
 yaml:
 	@echo ">>> Creating K8S files..."
