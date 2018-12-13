@@ -89,64 +89,63 @@
         <div class="card-title-h">
           <h5>DEPLOYED APP LIST</h5>
         </div>
-        <div class="table-h">
-          <table *ngIf="loadedData && instances && instances.length > 0"  class="table">
-            <thead>
-              <tr class="row">
-                <th scope="col" class="col-2">
-                  Name
-                </th>
-                <th scope="col" class="col-2">
-                  ID
-                </th>
-                <th scope="col" class="col-3">
-                  Description
-                </th>
-                <th scope="col" class="col-2">
-                  Tags
-                </th>
-                <th scope="col" class="col-2 text-center">
-                  Status
-                </th>
-                <th scope="col" class="col-1 text-center">
-                  Info
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let app of instances" class="row">
-                <td class="text-capitalize col-2">{{app.name}}</td>
-                <td class="col-2">{{app.app_instance_id}}</td>
-                <td class="col-3">{{app.description}}</td>  
-                <td class="col-2">
-                  <button *ngFor="let label of labelsToString(app.labels)" class="btn-sm btn-outline-primary" disabled>
-                      {{label[0]}}: {{label[1]}}
+        <table *ngIf="loadedData && instances && instances.length > 0"  class="table table-fixed">
+          <thead>
+            <tr>
+              <th scope="col" class="col-2">
+                Name
+              </th>
+              <th scope="col" class="col-2">
+                ID
+              </th>
+              <th scope="col" class="col-3">
+                Description
+              </th>
+              <th scope="col" class="col-2">
+                Tags
+              </th>
+              <th scope="col" class="col-2 text-center">
+                Status
+              </th>
+              <th scope="col" class="col-1 text-center">
+                Info
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let app of instances">
+              <td class="text-capitalize col-2">{{app.name}}</td>
+              <td class="col-2">{{app.app_instance_id}}</td>
+              <td class="col-3">{{app.description}}</td>  
+              <td class="col-2">
+                <button *ngFor="let label of labelsToString(app.labels)" class="btn-sm btn-outline-primary" disabled>
+                    {{label[0]}}: {{label[1]}}
+                </button>
+              </td>
+              <td 
+                class="text-lowercase col-2 text-center"
+                [ngClass]=
+                "{'status-dot':classStatusCheck(app.status_name, 'running'),
+                'status-dot-error':classStatusCheck(app.status_name, 'error'),
+                'status-dot-process':classStatusCheck(app.status_name, 'process')}"> 
+                <span tooltip="{{app.status_name | lowercase}}" class="tooltip-fix">
+                </span>
+                <span class="status-name-fix">
+                  {{app.status_name}}
+                </span>
+              </td>
+                <td class="row-info-btn col-1 text-center">
+                  <button class="btn info-btn btn-primary" (click)="openAppsInfo(app)">
+                    <span class="i-info">i</span>
                   </button>
                 </td>
-                <td 
-                  class="text-lowercase col-2 text-center"
-                  [ngClass]=
-                  "{'status-dot':classStatusCheck(app.status_name, 'running'),
-                  'status-dot-error':classStatusCheck(app.status_name, 'error'),
-                  'status-dot-process':classStatusCheck(app.status_name, 'process')}"> 
-                  <span tooltip="{{app.status_name | lowercase}}" class="tooltip-fix">
-                  </span>
-                  <span class="status-name-fix">
-                    {{app.status_name}}
-                  </span>
-                </td>
-                  <td class="row-info-btn col-1 text-center">
-                    <button class="btn info-btn btn-primary" (click)="openAppsInfo(app)">
-                      <span class="i-info">i</span>
-                    </button>
-                  </td>
-              </tr>
-            </tbody>
-          </table>
-          <div 
+            </tr>
+          </tbody>
+        </table>
+        <div 
           *ngIf="loadedData && instances && instances.length === 0"
           class="no-apps d-flex justify-content-center align-items-center">
-            No available applications detected
+          No available applications detected
         </div>
         <!-- Loader -->
         <div class="nalej-loader-container" *ngIf="!loadedData">
@@ -164,8 +163,6 @@
                 stroke-miterlimit="10"/>
             </svg>
           </div>
-        </div>
-
         </div>
       </div>
     </div>
