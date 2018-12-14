@@ -196,8 +196,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       organizationId: this.organizationId,
       clusterId: cluster.id,
       clusterName: cluster.name,
-      clusterDescription: cluster.description,
-      clusterTags: cluster.tags
+      clusterDescription: cluster.description
     };
 
     this.modalRef = this.modalService.show(EditClusterComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
