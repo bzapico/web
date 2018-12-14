@@ -52,7 +52,7 @@ dep:
 test-ci:
 	npm install phantomjs-prebuilt karma-phantomjs-launcher
 	@echo ">>> Launching tests..."
-	$(NGTEST)-ci --watch=false
+	$(NGCMD) run nalej:test-ci --watch=false
 
 test:
 	@echo ">>> Launching tests..."
