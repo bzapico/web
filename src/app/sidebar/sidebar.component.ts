@@ -8,6 +8,7 @@ import { DebugPanelComponent } from '../debug-panel/debug-panel.component';
 import { AuthService } from '../services/auth.service';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { UpdateEventsService } from '../services/update-events.service';
+import { Router } from '@angular/router';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -43,6 +44,7 @@ export class SidebarComponent implements OnInit {
   constructor(
     backendService: BackendService,
     mockupBackendService: MockupBackendService,
+    private router: Router,
     private modalService: BsModalService,
     private auth: AuthService,
     private updateService: UpdateEventsService
@@ -95,7 +97,9 @@ export class SidebarComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
       this.updateProfileUser(this.organizationId, initialState.userId);
-      this.updateService.changesOnUserList.next();
+      if (this.router.url === '/organization') {
+        this.updateService.changesOnUserList.next();
+      }
     });
   }
 
