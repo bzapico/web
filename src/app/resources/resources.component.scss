@@ -85,11 +85,7 @@
     h2 {
         font-size: 1.5rem;
     }
-    .table-fixed {
-        tbody {
-            height: 72%;
-        }
-    }
+
     .status-dot, 
     .status-dot-error, 
     .status-dot-process {
@@ -112,7 +108,7 @@
     }
     .table-fixed {
         tbody {
-            height: 143px;
+            height: 143px !important;
         }
     }
 }
@@ -363,7 +359,6 @@
     .box {
         margin: -1em;
     }
-
     .table-fixed tbody{
         height: 197px;
     }
@@ -371,7 +366,6 @@
         margin: 4px 0;
         height: 20px;
     }
-
 }
 
 @media screen and (max-width: 1613px) , screen and (max-height: 917px) {
@@ -401,9 +395,6 @@
     }
     .carousel-indicators {
         margin-bottom: -1em;
-    }
-    .table-fixed tbody{
-        height: 197px;
     }
     .carousel-big .donut-number{
         margin: 4px 0;

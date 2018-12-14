@@ -224,11 +224,6 @@
     .card-title-c h5 {
         font-size: 1em;
     }
-    .table-fixed {
-        tbody {
-            height: 72%;
-        }
-    }
     .status-dot, 
     .status-dot-error, 
     .status-dot-process {
@@ -241,7 +236,7 @@
     }
     .table-fixed {
         tbody {
-            height: 143px;
+            height: 143px !important;
         }
     }
 }
