@@ -504,6 +504,11 @@ button[type="submit"]:disabled {
     display: none;
   }
 }
+@media screen and (max-width:1680px){
+  .carousel-indicators {
+      margin-bottom: -1em;
+  }
+}
 @media screen and (max-width:1613px){
   /* Target devices narrower than 1613px. */
   .carousel-indicators {
@@ -512,8 +517,8 @@ button[type="submit"]:disabled {
   .carousel-big .donut-number {
     margin: 4px 0;
   }
-
 }
+
 @media screen and (max-width:1500px){
   /* Target devices narrower than 1500px */
   .carousel-big {

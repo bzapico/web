@@ -350,6 +350,37 @@
     }
 }
 @media screen and (max-width:1613px){
+    .circle-name {
+        margin-bottom: 0;
+    }
+    .nodes-run {
+        margin-top: -1.3em;
+        line-height: 11px;
+    }
+    .cluster-number {
+        margin-bottom: 0em;
+    }
+    .box {
+        margin: -1em;
+    }
+
+    .table-fixed tbody{
+        height: 197px;
+    }
+    .carousel-big .donut-number{
+        margin: 4px 0;
+        height: 20px;
+    }
+
+}
+
+@media screen and (max-width: 1613px) , screen and (max-height: 917px) {
+    .carousel-indicators {
+        bottom: -1.2em;
+    }
+}
+
+@media screen and (max-width:1680px){
     .summary-card { 
         margin-top: 0em;
     }
@@ -365,17 +396,19 @@
         margin-top: -1.3em;
         line-height: 11px;
     }
-    .cluster-number {
-        margin-bottom: 0em;
-    }
     .box {
         margin: -1em;
     }
     .carousel-indicators {
-        bottom: -0.8em;
+        margin-bottom: -1em;
     }
     .table-fixed tbody{
         height: 197px;
     }
+    .carousel-big .donut-number{
+        margin: 4px 0;
+        height: 20px;
+    }
+
 
 }
