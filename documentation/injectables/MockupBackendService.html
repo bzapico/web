@@ -355,7 +355,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/app/services/mockup-backend.service.ts:250</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="249" class="link-to-prism">src/app/services/mockup-backend.service.ts:249</a></div>
                             </td>
                         </tr>
 
@@ -436,7 +436,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/app/services/mockup-backend.service.ts:239</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="238" class="link-to-prism">src/app/services/mockup-backend.service.ts:238</a></div>
                             </td>
                         </tr>
 
@@ -517,7 +517,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/app/services/mockup-backend.service.ts:281</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="280" class="link-to-prism">src/app/services/mockup-backend.service.ts:280</a></div>
                             </td>
                         </tr>
 
@@ -600,7 +600,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/app/services/mockup-backend.service.ts:197</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">src/app/services/mockup-backend.service.ts:196</a></div>
                             </td>
                         </tr>
 
@@ -676,7 +676,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/app/services/mockup-backend.service.ts:215</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/app/services/mockup-backend.service.ts:214</a></div>
                             </td>
                         </tr>
 
@@ -749,7 +749,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/app/services/mockup-backend.service.ts:268</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="267" class="link-to-prism">src/app/services/mockup-backend.service.ts:267</a></div>
                             </td>
                         </tr>
 
@@ -986,7 +986,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="229" class="link-to-prism">src/app/services/mockup-backend.service.ts:229</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/app/services/mockup-backend.service.ts:228</a></div>
                             </td>
                         </tr>
 
@@ -1062,7 +1062,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/app/services/mockup-backend.service.ts:183</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/app/services/mockup-backend.service.ts:182</a></div>
                             </td>
                         </tr>
 
@@ -1765,9 +1765,8 @@ export class MockupBackendService implements Backend {
   saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
     const index &#x3D; mockClusterList.map(x &#x3D;&gt; x.cluster_id).indexOf(clusterId);
     if (index !&#x3D;&#x3D; -1) {
-      mockClusterList[index].name &#x3D; changes.newClusterName;
-      mockClusterList[index].description &#x3D; changes.newClusterDescription;
-      mockClusterList[index].labels &#x3D; changes.newClusterTags;
+      mockClusterList[index].name &#x3D; changes.name;
+      mockClusterList[index].description &#x3D; changes.description;
     }
     return of(new Response(new ResponseOptions({
       status: 200

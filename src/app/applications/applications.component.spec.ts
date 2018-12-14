@@ -2,10 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ApplicationsComponent } from './applications.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { CarouselModule, BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
+import { CarouselModule, BsModalRef, BsModalService, ModalModule, TooltipModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CommonModule } from '@angular/common';
 
 describe('ApplicationsComponent', () => {
   let component: ApplicationsComponent;
@@ -20,6 +21,8 @@ describe('ApplicationsComponent', () => {
         CarouselModule,
         BrowserAnimationsModule,
         RouterTestingModule,
+        TooltipModule,
+        CommonModule,
         ModalModule.forRoot()
       ],
       providers: [

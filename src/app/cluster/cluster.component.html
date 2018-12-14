@@ -9,8 +9,8 @@
   <div class="col-lg-3 h-100">
     <div class="card p-4 h-100">
       <div class="card-title-c">
-        <h5 class="d-inline text-uppercase">{{clusterData.name}}</h5>
-        <p class="d-inline cluster-number grey">STATUS</p>
+        <h5 class="d-inline text-uppercase">{{clusterData.name | truncate}}</h5>
+        <p class="d-inline cluster-number grey hide">STATUS</p>
       </div>
       <!-- Cluster card -->
         <div class="box-card">
@@ -90,7 +90,7 @@
 <!-- Nodes panel card-->
 <div class="row row-main">
   <div class="col-lg-12 col-md-12 col-sm-12 h-100">
-    <div class="card h-100 p-4">
+    <div class="card h-100">
       <div class="card-title-h">
         <h5>
           <a 
@@ -105,70 +105,82 @@
           NODES
         </h5>
       </div>
-      <div class="table-h">
-        <table *ngIf="loadedData && nodes && nodes.length > 0" class="table">
-          <thead>
-            <tr class="row">
-              <th scope="col" class="row-id col-3">
-                ID
-              </th>
-              <th scope="col" class="row-ip col-2">
-                IP
-              </th>
-              <th scope="col" class="row-credentials col-2">
-                State
-              </th>
-              <th scope="col" class="row-tags col-3">
-                Tags
-              </th>
-              <th scope="col" class="row-status col-2 text-center">
-                Status
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let node of nodes" class="row">
-              <td class="col-3">{{node.node_id}}</td>
-              <td class="col-2">{{node.ip}}</td>  
-              <td class="text-lowercase col-2">{{node.state_name}}</td>
-              <td class="col-3" *ngIf="node.labels === '-'"> no </td>
-              <td class="col-3"*ngIf="node.labels !== '-'">
-                  <button *ngFor="let label of labelsToString(node.labels)" class="btn-sm btn-outline-primary" disabled>
-                      {{label[0]}}: {{label[1]}}
-                  </button>
-              </td>
-              <td 
+      <table *ngIf="loadedData && nodes && nodes.length > 0" class="table table-fixed">
+        <thead>
+          <tr>
+            <th scope="col" class="col-3">
+              ID
+            </th>
+            <th scope="col" class="col-2">
+              IP
+            </th>
+            <th scope="col" class="col-2">
+              State
+            </th>
+            <th scope="col" class="col-3">
+              Tags
+            </th>
+            <th scope="col" class="col-2 text-center">
+              Status
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let node of nodes">
+            <td class="col-3">{{node.node_id}}</td>
+            <td class="col-2">{{node.ip}}</td>  
+            <td class="text-lowercase col-2">{{node.state_name}}</td>
+            <td class="col-3" *ngIf="node.labels === '-'"> no </td>
+            <td class="col-3"*ngIf="node.labels !== '-'">
+                <button 
+                  *ngFor="let label of labelsToString(node.labels)" 
+                  class="btn-sm btn-outline-primary" 
+                  disabled>
+                  {{label[0]}}: {{label[1]}}
+                </button>
+            </td>
+            <td 
               class="text-lowercase col-2 text-center"
               [ngClass]=
               "{'status-dot':classStatusCheck(node.status_name, 'running'),
               'status-dot-error':classStatusCheck(node.status_name, 'error'),
               'status-dot-process':classStatusCheck(node.status_name, 'process')}">
-              {{node.status_name}}
+              <span tooltip= "{{node.status_name | lowercase}}" class="tooltip-fix" placement="auto">
+              </span>
+              <span class="hide">
+                {{node.status_name}}
+              </span>
             </td>
-            </tr>
-          </tbody>
-        </table>
-        <div
-          *ngIf="loadedData && nodes && nodes.length === 0"
-          class="no-elements d-flex justify-content-center align-items-center">
-          <p>There are not registered nodes in this cluster</p>
-        </div>
-        <!-- Loader -->
-        <div class="nalej-loader-container" *ngIf="!loadedData">
-          <div class="loader">
-            <svg 
-              class="circular" 
-              viewBox="25 25 50 50">
-              <circle 
-                class="path" 
-                cx="50" 
-                cy="50" 
-                r="20" 
-                fill="none" 
-                stroke-width="2" 
-                stroke-miterlimit="10"/>
-            </svg>
-          </div>
+          </tr>
+        </tbody>
+      </table>
+      <!-- No info to show -->
+      <div
+        *ngIf="loadedData && nodes && nodes.length === 0 && !requestError"
+        class="no-elements d-flex justify-content-center align-items-center">
+        <p>There are not registered nodes in this cluster</p>
+      </div>
+       <!-- Requested error -->
+      <div
+        *ngIf="loadedData && requestError"
+        class="no-elements d-flex justify-content-center align-items-center">
+        <p>{{requestError}}</p>
+      </div>
+      <!-- Loader -->
+      <div class="nalej-loader-container" *ngIf="!loadedData">
+        <div class="loader">
+          <svg 
+            class="circular" 
+            viewBox="25 25 50 50">
+            <circle 
+              class="path" 
+              cx="50" 
+              cy="50" 
+              r="20" 
+              fill="none" 
+              stroke-width="2" 
+              stroke-miterlimit="10"/>
+          </svg>
         </div>
       </div>
     </div>

@@ -71,6 +71,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   modalRef: BsModalRef;
 
   /**
+   * Hold request error message or undefined
+   */
+  requestError: string;
+
+  /**
    * Pie Chart options
    */
   gradient = true;
@@ -136,6 +141,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.countRegistered = 0;
     this.loadedData = false;
     this.appsChart = [{name: 'Running apps', series: []}];
+    this.requestError = '';
     /**
      * Charts reference init
      */
@@ -175,6 +181,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           if (!this.loadedData) {
             this.loadedData = true;
           }
+      }, errorResponse => {
+        this.loadedData = true;
+        this.requestError = errorResponse.error.message;
       });
     }
   }

@@ -3,24 +3,32 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ClusterComponent } from './cluster.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TooltipModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { TruncatePipe } from '../pipes/truncate.pipe';
+import { AbbreviatePipe } from '../pipes/abbreviate.pipe';
 
 describe('ClusterComponent', () => {
   let component: ClusterComponent;
   let fixture: ComponentFixture<ClusterComponent>;
-  let de: DebugElement;
-  let el: HTMLElement;
+  // let de: DebugElement;
+  // let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ClusterComponent ],
+      declarations: [
+        ClusterComponent,
+        TruncatePipe,
+        AbbreviatePipe,
+       ],
       imports: [
         HttpClientTestingModule,
         NgxChartsModule,
         RouterTestingModule,
+        TooltipModule,
         BrowserAnimationsModule,
       ]
     })
@@ -52,14 +60,14 @@ describe('ClusterComponent', () => {
     expect(updateNodesList).toHaveBeenCalledWith(nodes);
   });
 
-  it('It should render cluster status', () => {
-    // classStatusCheck(node.status_name, 'error')
-    // component.node.statusName = 20;
+  // it('It should render cluster status', () => {
+  //   classStatusCheck(node.status_name, 'error')
+  //   component.node.statusName = 20;
 
-    // el = de.nativeElement;
-    // de = fixture.debugElement.query(By.css('.status-dot-error'));
+  //   el = de.nativeElement;
+  //   de = fixture.debugElement.query(By.css('.status-dot-error'));
 
-    // expect(el.innerText).toContain(20);
-  });
+  //   expect(el.innerText).toContain(20);
+  // });
 
 });

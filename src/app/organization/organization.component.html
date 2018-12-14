@@ -25,86 +25,91 @@
 <!-- Members panel card-->
 <div class="row row-main">
   <div class="col-lg-8 col-md-8 col-sm-12 h-100">
-    <div class="card h-100 p-4">
+    <div class="card h-100">
       <div class="card-title-h">
         <h5>MEMBERS</h5>
       </div>
-      <div class="table-h">
-        <table 
-          *ngIf="loadedData && users && users.length > 0"
-          class="table">
-          <thead>
-            <tr>
-              <th 
-                scope="col" 
-                class="row-name">
-                Name
-              </th>
-              <th 
-                scope="col" 
-                class="row-role">
-                Role
-              </th>
-              <th 
-                scope="col" 
-                class="row-email">
-                Email
-              </th>
-              <th 
-                scope="col" 
-                class="row-info-btn">
-              </th>
-              <th 
-                scope="col" 
-                class="row-info-btn">
+      <table 
+        *ngIf="loadedData && users && users.length > 0"
+        class="table table-fixed">
+        <thead>
+          <tr>
+            <th 
+              scope="col" 
+              class="col-3">
+              Name
             </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let user of users">
-              <td>{{user.name}}</td>
-              <td class="blue" (click)="openUserInfo(user)">{{user.role_name}}</td>
-              <td>{{user.email}}</td>
-              <td class="row-info-btn">
-                <button class="btn info-btn btn-primary" (click)="openUserInfo(user)">
-                  <span class="i-info" tooltip="Info">i</span>
-                </button>
-              </td>
-              <td>
-                <button class="btn info-btn btn-primary" (click)="openEditUser(user)">
-                  <i class="material-icons i-edit"  tooltip="Edit">
-                    edit
-                  </i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div
-          *ngIf="loadedData && users && users.length === 0"
-          class="no-elements d-flex justify-content-center align-items-center">
-          <p>There are not registered users in this organization<br>Click on "add user" button to start adding new users </p>
-        </div>
-        <!-- Loader -->
-        <div class="nalej-loader-container" *ngIf="!loadedData">
-          <div class="loader">
-            <svg 
-              class="circular" 
-              viewBox="25 25 50 50">
-              <circle 
-                class="path" 
-                cx="50" 
-                cy="50" 
-                r="20" 
-                fill="none" 
-                stroke-width="2" 
-                stroke-miterlimit="10"/>
-            </svg>
-          </div>
+            <th 
+              scope="col" 
+              class="col-2">
+              Role
+            </th>
+            <th 
+              scope="col" 
+              class="col-5">
+              Email
+            </th>
+            <th 
+              scope="col" 
+              class="col-2">
+            </th>
+            <!-- <th 
+              scope="col" 
+              class="col-1">
+          </th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td class="col-3">{{user.name}}</td>
+            <td class="blue col-2" (click)="openUserInfo(user)">{{user.role_name}}</td>
+            <td class="col-5">{{user.email}}</td>
+            <td class="col-2">
+              <button class="btn info-btn info-btn-fix btn-primary" (click)="openUserInfo(user)">
+                <span class="i-info" tooltip="Info" placement="left">i</span>
+              </button>
+            <!-- </td>
+            <td class="col-1"> -->
+              <button class="btn info-btn btn-primary" (click)="openEditUser(user)">
+                <i class="material-icons i-edit"  tooltip="Edit" placement="left">
+                  edit
+                </i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- No info to show -->
+      <div
+        *ngIf="loadedData && users && users.length === 0 && !requestError"
+        class="no-elements d-flex justify-content-center align-items-center">
+        <p>There are not registered users in this organization<br>Click on "add user" button to start adding new users </p>
+      </div>
+      <!-- Requested error -->
+      <div
+        *ngIf="loadedData && requestError"
+        class="no-elements d-flex justify-content-center align-items-center">
+        <p>{{requestError}}</p>
+      </div>
+      <!-- Loader -->
+      <div class="nalej-loader-container" *ngIf="!loadedData">
+        <div class="loader">
+          <svg 
+            class="circular" 
+            viewBox="25 25 50 50">
+            <circle 
+              class="path" 
+              cx="50" 
+              cy="50" 
+              r="20" 
+              fill="none" 
+              stroke-width="2" 
+              stroke-miterlimit="10"/>
+          </svg>
         </div>
       </div>
-      <div class="mx-auto btn-h m-3 mt-5">
-        <button class="btn btn-lg btn-primary align-bottom" (click)="addUser()">Add user</button>
+      <div class="add-user-btn">
+        <button class="btn btn-lg btn-primary" (click)="addUser()">Add user</button>
       </div>
     </div>
   </div>

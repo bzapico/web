@@ -78,6 +78,12 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   refreshIntervalRef: any;
 
   /**
+   * Hold request error message or undefined
+   */
+  requestError: string;
+
+
+  /**
    * Pie Chart options
    */
   gradient = true;
@@ -149,6 +155,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.clustersCount = 0;
     this.pieChartsData = [];
     this.nodesChart = [{'name': 'Running nodes', 'series': []}];
+    this.requestError = '';
 
   /**
    * Mocked Charts
@@ -189,8 +196,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       organizationId: this.organizationId,
       clusterId: cluster.id,
       clusterName: cluster.name,
-      clusterDescription: cluster.description,
-      clusterTags: cluster.tags
+      clusterDescription: cluster.description
     };
 
     this.modalRef = this.modalService.show(EditClusterComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
@@ -228,10 +234,10 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     }
     const entry = {
       'value': runningNodesCount,
-      'name':  now.getHours() + ':' + minutes
+      'name':  now.getHours() + ':' + now.getSeconds()
     };
 
-    if (this.nodesChart[0].series.length > 5) {
+    if (this.nodesChart[0].series.length > 4) {
       // Removes first element
       this.nodesChart[0].series.shift();
     }
@@ -299,6 +305,9 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         this.chunckedClusters = this.chunkClusterList(3, this.clusters);
         this.updatePieChartsData(this.clusters, this.pieChartsData);
         this.updateNodesStatusLineChart(runningNodesCount);
+    }, errorResponse => {
+      this.loadedData = true;
+      this.requestError = errorResponse.error.message;
     });
   }
 

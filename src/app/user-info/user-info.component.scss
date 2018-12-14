@@ -152,7 +152,15 @@ input {
     text-indent: -7px;
 }
 .buttons {
-    padding: 1em 0;
+    margin: 40px 0 0;
+    .btn-primary {
+        margin: 0 auto;
+        margin-bottom: 0.5rem;
+    }
+    .btn-red {
+        width: 257px;
+        margin: 0 auto;
+    }
 }
 @media screen and (max-width: 1300px) {
     .avatar-frame {

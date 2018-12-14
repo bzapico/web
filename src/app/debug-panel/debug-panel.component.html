@@ -28,12 +28,12 @@
     <div *ngIf="components.length">
       <div class="d-flex justify-content-center align-items-center">
           <div
-            class="btn btn-outline-primary mb-3"
+            class="btn btn-outline-primary mb-3 small-font"
             (click)="changeAll('false')"
             >All real
           </div>
           <div
-            class="btn btn-outline-primary mb-3"
+            class="btn btn-outline-primary mb-3 small-font"
             (click)="changeAll('true')"
             >All mock
           </div>
@@ -43,7 +43,7 @@
         class="row"
         *ngFor="let item of components; let index = index">
         <!-- Option name -->
-        <span class="col-3">
+        <span class="col-3 small-font">
           {{item.name}}
         </span>
         <!-- Option buttons -->
@@ -53,14 +53,14 @@
           [(ngModel)]="components[index].mock"
           (click)="optionChange(components[index])">
           <label
-            class="btn btn-outline-primary"
+            class="btn btn-outline-primary small-font"
             btnRadio="false"
             tabindex="0"
             role="button">
             Real
           </label>
           <label
-            class="btn btn-outline-primary"
+            class="btn btn-outline-primary small-font"
             btnRadio="true"
             tabindex="0"
             role="button">
@@ -72,7 +72,7 @@
     <hr/>
     <h5 class="mb-3">Notifications</h5>
     <div 
-      class="btn btn-outline-primary offset-6 mb-3"
+      class="btn btn-outline-primary offset-6 mb-3 small-font"
       (click)="spamNotification()"
       >Spam test notification
     </div>

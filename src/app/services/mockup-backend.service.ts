@@ -167,9 +167,8 @@ export class MockupBackendService implements Backend {
   saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
     const index = mockClusterList.map(x => x.cluster_id).indexOf(clusterId);
     if (index !== -1) {
-      mockClusterList[index].name = changes.newClusterName;
-      mockClusterList[index].description = changes.newClusterDescription;
-      mockClusterList[index].labels = changes.newClusterTags;
+      mockClusterList[index].name = changes.name;
+      mockClusterList[index].description = changes.description;
     }
     return of(new Response(new ResponseOptions({
       status: 200
