@@ -47,9 +47,13 @@ dep:
 	@echo ">>> Updating dependencies..."
 	npm install
 
-test-all: test test-race test-coverage
 
-.PHONY: test test-e2e
+.PHONY: test test-e2e test-ci
+test-ci:
+	npm install phantomjs-prebuilt karma-phantomjs-launcher
+	@echo ">>> Launching tests..."
+	$(NGTEST)-ci --watch=false
+
 test:
 	@echo ">>> Launching tests..."
 	$(NGTEST) --watch=false
