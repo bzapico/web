@@ -70,7 +70,7 @@ dev:
 	ng serve -o
 
 .PHONY: dep build-all build build-local
-build-all: dep format build
+build-all: dep build
 build: dep local
 
 # Local compilation
