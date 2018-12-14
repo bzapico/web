@@ -32,32 +32,32 @@ pipeline {
                 }
             }
         }
-        stage("Unit tests") {
-            steps {
-                container("node") {
-                    script {
-                        testStatus = sh(returnStatus: true, script: "make test-ci &> testOutput")
-                        testOutput = readFile("testOutput")
-                        echo testOutput
-                        if (env.CHANGE_ID) {
-                            for (comment in pullRequest.comments) {
-                                if (comment.user == "nalej-jarvis") {
-                                    comment.delete()
-                                }
-                            }
-                            commentContent = "### J.A.R.V.I.S. CI Test results\n\n```\n${testOutput}\n```"
-                            pullRequest.comment(commentContent)
-                            if (testStatus != 0) {
-                                pullRequest.comment("Tests failed. IRIS will be notified. Shame on you...")
-                            }
-                        }
-                        if (testStatus != 0) {
-                        error("Tests failed.")
-                        }
-                    }
-                }
-            }
-        }
+        // stage("Unit tests") {
+        //     steps {
+        //         container("node") {
+        //             script {
+        //                 testStatus = sh(returnStatus: true, script: "make test-ci &> testOutput")
+        //                 testOutput = readFile("testOutput")
+        //                 echo testOutput
+        //                 if (env.CHANGE_ID) {
+        //                     for (comment in pullRequest.comments) {
+        //                         if (comment.user == "nalej-jarvis") {
+        //                             comment.delete()
+        //                         }
+        //                     }
+        //                     commentContent = "### J.A.R.V.I.S. CI Test results\n\n```\n${testOutput}\n```"
+        //                     pullRequest.comment(commentContent)
+        //                     if (testStatus != 0) {
+        //                         pullRequest.comment("Tests failed. IRIS will be notified. Shame on you...")
+        //                     }
+        //                 }
+        //                 if (testStatus != 0) {
+        //                 error("Tests failed.")
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
         stage("Frontend build") {
             steps {
                 container("node") {
