@@ -36,7 +36,7 @@ pipeline {
             steps {
                 container("node") {
                     script {
-                        testStatus = sh(returnStatus: true, script: "make test &> testOutput")
+                        testStatus = sh(returnStatus: true, script: "make test-ci &> testOutput")
                         testOutput = readFile("testOutput")
                         echo testOutput
                         if (env.CHANGE_ID) {
