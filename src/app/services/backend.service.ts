@@ -129,9 +129,6 @@ export class BackendService implements Backend {
     );
   }
 
-  saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
-    throw new Error('Method not implemented.');
-  }
   // POST 'users/{organization_id}/update
   /**
    * Requests to update an specific user
@@ -167,6 +164,20 @@ export class BackendService implements Backend {
   getClusters(organizationId: string) {
     return this.get(
       API_URL + 'clusters/' + organizationId + '/list'
+    );
+  }
+
+  // POST '/v1/clusters/{organization_id}/{cluster_id}/update'
+  /**
+   * Request to modify cluster data
+   * @param organizationId Organization identifier
+   * @param clusterId Cluster identifier
+   * @param changes Object holding cluster changes
+   */
+  saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
+    return this.post(
+      API_URL + 'clusters/' + organizationId + '/' + clusterId + '/update',
+      changes
     );
   }
 

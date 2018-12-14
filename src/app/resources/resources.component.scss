@@ -1,58 +1,41 @@
-.cluster-number {
-    float: right;
-    color: #949494;
-}
-
 /* - - - Cluster table card - - - */
-.table-h {
+.table-fixed {
+    width: 100%;
     height: 80%;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-.table {
-    td {
-        padding: 1.2rem;
-        vertical-align: middle;
-        font-size:  .9em;
-        border-top: 0.8px solid #EEEEEE;
-        color: #949494;
+    thead {
+        background-color: white;
+    }
+    thead, tbody, tr, td, th {
+        display: block;
+    }
+    tr:after {
+        content: ' ';
+        display: block;
+        visibility: hidden;
+        clear: both;
+    }
+    tbody {
+        // height: 80%;
+        height: 285px;
+        overflow-y: auto;
+        width: 100%;
+        td {
+            float: left;
+            padding: 1.2rem 0;
+            font-size: .9em;
+            border-top: 0.8px solid #EEEEEE;
+            color: #949494;
+        }
     }
     thead th {
+        float: left;
+        height: 44px;
         border: none;
-        font-size:  .9em;
-        padding: 0 1.2rem;
+        font-size: .9em;
         font-weight: 200;
     }
     tbody tr:first-child td {
-      border: none;
-    }
-    .row-name {
-        width: 10%;
-    }
-    .row-id {
-        width: 15%;
-    }
-    .row-nodes {
-        width: 10%;
-    }
-    .row-description {
-        width: 10%;
-    }
-    .row-types {
-        width: 10%;
-    }
-    .row-status {
-        width: 10%;
-        padding-left: 2%;
-    }
-    .row-tags {
-        width: 10%;
-    }
-    .row-multitenant {
-        width: 10%;
-    }
-    .row-edit {
-        width: 5%;
+        border: none;
     }
 }
 .info-btn {
@@ -74,7 +57,7 @@
     border-radius:50%;
     background: #0937FF;
     display:inline-block;
-    margin:0 10px 0 0;
+    margin: 0 5px 0 0;
 }
 .status-dot-error:before {
     content:'\A';
@@ -83,7 +66,7 @@
     border-radius:50%;
     background: #F25272;
     display:inline-block;
-    margin:0 10px 0 0;
+    margin: 0 5px 0 0;
 }
 .status-dot-process:before {
     content:'\A';
@@ -92,7 +75,7 @@
     border-radius:50%;
     background: #FFC40D;
     display:inline-block;
-    margin:0 10px 0 0;
+    margin: 0 5px 0 0;
 }
 
 /* - - - Medias Cluster table card - - - */
@@ -100,13 +83,22 @@
     .card-title-c h5 {
         font-size: 1em;
     }
-    .table td {
-        padding: .6rem 1rem;
+    h2 {
+        font-size: 1.5rem;
     }
-    .status-dot:before {
-        margin: 0 23px;
+    .table-fixed {
+        tbody {
+            height: 72%;
+        }
     }
-    .status-dot-error:before {
+    .status-dot, 
+    .status-dot-error, 
+    .status-dot-process {
+        text-align: center;
+    }
+    .status-dot:before, 
+    .status-dot-error:before, 
+    .status-dot-process:before {
         margin: 0 23px;
     }
     .info-btn {
@@ -118,6 +110,18 @@
         position: absolute;
         top: 5px;
         left: 5px;
+    }
+    .table-fixed {
+        tbody {
+            height: 143px;
+        }
+    }
+}
+@media screen and (min-width:2560px){
+    .table-fixed {
+        tbody {
+            height: 455px;
+        }
     }
 }
 
@@ -172,9 +176,6 @@
         font-size: 1em !important;
         margin-top: 0.6em !important;
     }
-    .table td {
-        padding: .6rem 1rem;
-    }
     .summary-card {
         margin-top: 0em;
         height: 82%;
@@ -191,7 +192,7 @@
           top: 54px;
           left: 58px;
         }
-      }
+    }
 }
 
 /* - - - Cluster card Slider - - - */
@@ -253,16 +254,20 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-
+}
+.cluster-number {
+    float: right;
+    color: #949494;
 }
 .carousel-big{
     .donut-number {
-        margin: 3px 0;
+        margin: 6px 0;
+        height: 20px;
     }
-
 }
 .card-clus { 
     padding: 1.5rem 1.5rem 0 1.5rem;
+    height: 100%;
 }       
 .no-clusters {
     height: 70%;
@@ -307,7 +312,7 @@
     }
     .slide-box{
         padding-top: 2em;
-      }
+    }
 }
 /* - - - Node Status card - - - */
 .box-line-chart {
@@ -335,9 +340,12 @@
     justify-content: space-between;
 }
 
-  /* - - - Media Chart line - - - */
 @media screen and (max-width:1500px){
+    .y-axis-line-chart  {
+     display: none;
+    }
     .line-chart {
-        height: 90%;
+        width:100%;
+        height: 120px;
     }
 }

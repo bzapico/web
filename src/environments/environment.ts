@@ -23,9 +23,13 @@ function getBaseUrl() {
     return chunks[0] + ':' + chunks[1] + ':443'; // Remove everything after ":port_number"
   } else {
     const hashIndex = document.location.href.indexOf('#');
+    console.log(document.location.href, 'document.location.href');
     if (hashIndex !== -1) {
       const chunks = document.location.href.split('#');
-      return chunks[0].slice(0, chunks[0].length - 1); //  // Returns the required url chunk
+      console.log(chunks, 'ENV URL CHUNKS');
+      return chunks[0].slice(0, chunks[0].length - 1); // Returns the required url chunk
+    } else {
+      return document.location.href.slice(0, document.location.href.length - 1);
     }
   }
 }

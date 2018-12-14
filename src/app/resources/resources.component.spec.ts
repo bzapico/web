@@ -4,11 +4,13 @@ import { ResourcesComponent } from './resources.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { ButtonsModule, ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { ButtonsModule, ModalModule, BsModalRef, BsModalService, TooltipModule } from 'ngx-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { TruncatePipe } from '../pipes/truncate.pipe';
+import { AbbreviatePipe } from '../pipes/abbreviate.pipe';
 
 describe('ResourcesComponent', () => {
   let component: ResourcesComponent;
@@ -18,7 +20,11 @@ describe('ResourcesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ResourcesComponent ],
+      declarations: [
+        ResourcesComponent,
+        TruncatePipe,
+        AbbreviatePipe,
+      ],
       imports: [
         HttpClientTestingModule,
         NgxChartsModule,
@@ -27,7 +33,8 @@ describe('ResourcesComponent', () => {
         FormsModule,
         ButtonsModule,
         ModalModule.forRoot(),
-        RouterTestingModule
+        RouterTestingModule,
+        TooltipModule
       ],
       providers: [
         BsModalRef,

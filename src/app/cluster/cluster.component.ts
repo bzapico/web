@@ -61,6 +61,11 @@ export class ClusterComponent implements OnInit {
   clustersCount: number;
 
   /**
+   * Hold request error message or undefined
+   */
+  requestError: string;
+
+  /**
    * Pie Chart options
    */
   gradient = true;
@@ -113,6 +118,7 @@ export class ClusterComponent implements OnInit {
     this.nodesCount = 0;
     this.clustersCount = 0;
     this.clusterData = {};
+    this.requestError = '';
 
   /**
    * Mocked Charts
@@ -144,6 +150,7 @@ export class ClusterComponent implements OnInit {
         this.clusterData = cluster;
         this.clusterPieChart = this.generateSummaryChartData(this.clusterData.running_nodes, this.clusterData.total_nodes);
       });
+
   }
    /**
    * Generates the NGX-Chart required JSON object for pie chart rendering
@@ -167,6 +174,7 @@ export class ClusterComponent implements OnInit {
    * Requests an updated list of available nodes to update the current one
    */
   updateNodesList() {
+    this.requestError = ''; // Empty error before requesting new list
     // Requests an updated nodes list
     this.backend.getNodes(this.organizationId, this.clusterId)
     .subscribe(response => {
@@ -174,6 +182,9 @@ export class ClusterComponent implements OnInit {
       if (!this.loadedData) {
         this.loadedData = true;
       }
+    }, errorResponse => {
+      this.loadedData = true;
+      this.requestError = errorResponse.error.message;
     });
   }
 

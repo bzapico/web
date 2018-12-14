@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
-
 @font-face {
   font-family: 'Aldrich';
   src: url('./assets/fonts/Aldrich-Regular.ttf');
@@ -29,6 +28,9 @@ h5 {
 .red {
   color: #F25272;
 }
+.orange {
+  color:  #FFC40D;
+}
 .bg-light-grey {
   background-color: #ededed!important;
 }
@@ -55,6 +57,7 @@ a {
   cursor: pointer;
   margin-right: 5px;
 }
+
 /* - - - Loader - - - */
 .loader {
   margin: 0 auto;
@@ -82,6 +85,16 @@ a {
   .loader {
     top: 25%;
   }
+  .hide {
+    display: none  !important;
+  }
+  .tooltip-fix {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 33%;
+    left: 39%;
+  }
 }
 @media screen and (min-width:2560px){
   .loader {
@@ -89,61 +102,63 @@ a {
   }
 }
 
+/* - - - Loader styles - - - */
 .nalej-loader-container {
   display: block;
   position: relative;
   min-height: 15em !important;
   min-width: 5em !important;
-}
-.circular {
-  animation: rotate 2s linear infinite;
-  height: 100%;
-  transform-origin: center center;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-.path {
-  stroke-dasharray: 1, 200;
-  stroke-dashoffset: 0;
-  animation: dash 1.5s ease-in-out infinite, color 2s ease-in-out infinite;
-  stroke-linecap: round;
-}
-@keyframes rotate {
-  100% {
-    transform: rotate(360deg);
+  .circular {
+    animation: rotate 2s linear infinite;
+    height: 100%;
+    transform-origin: center center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
-}
-@keyframes dash {
-  0% {
+  .path {
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
+    animation: dash 1.5s ease-in-out infinite, color 2s ease-in-out infinite;
+    stroke-linecap: round;
   }
-  50% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -35px;
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
   }
-  100% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -124px;
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -35px;
+    }
+    100% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -124px;
+    }
+  }
+  @keyframes color {
+    100%,
+    0% {
+      stroke: #0937FF;
+    }
+    50% {
+      stroke: #ff437d;
+    }
+    100% {
+      stroke: #0937FF;
+    }
   }
 }
-@keyframes color {
-  100%,
-  0% {
-    stroke: #0937FF;
-  }
-  50% {
-    stroke: #ff437d;
-  }
-  100% {
-    stroke: #0937FF;
-  }
-}
+
 
 /* - - - Card styles - - - */
 .card {
@@ -153,10 +168,9 @@ a {
   border-radius: 10px;
   border: 0;
   overflow: hidden;
+  padding: 1.5rem;
 }
 .card-title-h {
-  height: 4%;
-  margin-left: 9px;
   margin-bottom: 70px;
 }
 .row-title {
@@ -171,7 +185,7 @@ a {
 }
 @media screen and (max-width:1500px){
   .card-title-h {
-    margin-bottom: 57px;
+    margin-bottom: 40px;
     h5 {
       font-size: 1em;
     }
@@ -200,6 +214,8 @@ a {
   }
 }
 .btn-red {
+  color: #fff;
+  border: 0px;
   background: #ff437d; 
   background: -moz-linear-gradient(-45deg, #ff437d 0%, #802222 100%);
   background: -webkit-linear-gradient(-45deg, #ff437d 0%,#802222 100%); 
@@ -266,7 +282,7 @@ button[type="submit"]:disabled {
     }
 
 }
-/* - - - Alerts view - - - */
+/* - - - Alerts styles - - - */
 .alert-close-button {
   position: relative;
   right: -0.3em;
@@ -377,14 +393,7 @@ button[type="submit"]:disabled {
   opacity: 0.4;
 }
 
-/* - - - Carousel - - - */
-.carousel-big {
-  display: block;
-  div
-  {
-    height: 100%;
-  }
-}
+/* - - - Carousel styles- - - */
 .carousel-small {
   display: none;
 }
@@ -450,6 +459,7 @@ button[type="submit"]:disabled {
   width: 10px;
   height: 20px;
   background-image: none;
+  cursor: pointer;
   &:before {
     content: '\e314';
     font-family: 'Material Icons';
@@ -465,6 +475,7 @@ button[type="submit"]:disabled {
   width: 10px;
   height: 20px;
   background-image: none;
+  cursor: pointer;
   &:before {
     content: '\e315';
     font-family: 'Material Icons';
@@ -475,7 +486,6 @@ button[type="submit"]:disabled {
     right: -14px;
   }
 }
-
 /* - - -  Charts - - - */
 .ngx-charts .label {
   display: none;
@@ -505,7 +515,11 @@ button[type="submit"]:disabled {
     justify-content: center;
     align-items: center;
     height: 85%;
-    margin-bottom: 3%;
+    padding-bottom: 28px;
+    .cluster-info {
+      max-width: 150px;
+      margin-right: 1em;
+    }
   }
   .carousel-control-prev-icon {
     &:before {
@@ -524,9 +538,17 @@ button[type="submit"]:disabled {
     bottom: 10px;
   }
   .cluster-info {
-    max-width: 200px;
     &:first-child p {
       line-height: .6rem !important;
     }
   }
+  
 }
+/* - - -  No elements in a table - - - */
+.no-elements {
+  height: 80%;
+  text-align: center;
+  padding-top: 2em;
+}
+
+
