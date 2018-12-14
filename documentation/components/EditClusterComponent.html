@@ -294,7 +294,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/edit-cluster/edit-cluster.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/edit-cluster/edit-cluster.component.ts:82</a></div>
                             </td>
                         </tr>
 
@@ -776,13 +776,18 @@ export class EditClusterComponent implements OnInit {
   saveClusterChanges(form) {
     if (this.organizationId !&#x3D;&#x3D; null &amp;&amp; this.clusterId !&#x3D;&#x3D; null) {
       this.backend.saveClusterChanges(this.organizationId, this.clusterId, {
-        newClusterName: this.clusterName,
-        newClusterDescription: this.clusterDescription,
-        newClusterTags: this.clusterTags
+        name: this.clusterName,
+        description: this.clusterDescription,
       })
         .subscribe(response &#x3D;&gt; {
           this.notificationsService.add({
             message: &#x27;The cluster &#x27; + this.clusterName + &#x27; has been edited&#x27;,
+            timeout: 10000
+          });
+          this.bsModalRef.hide();
+        }, error &#x3D;&gt; {
+          this.notificationsService.add({
+            message: error.error.message,
             timeout: 10000
           });
           this.bsModalRef.hide();
