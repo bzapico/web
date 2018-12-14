@@ -177,8 +177,7 @@
         clear: both;
     }
     tbody {
-        // height: 80%;
-        height: 285px;
+        height: 257px;
         overflow-y: auto;
         width: 100%;
         td {
@@ -278,5 +277,32 @@
             height: 455px;
         }
     }
+}
+@media screen and (max-width:1613px){
+    .table-fixed tbody{
+        height: 197px;
+    }
+    .summary-card { 
+        margin-top: 0em;
+    }
+    .deployed-box{
+        max-width: 121px;
+    }
+    .circle {
+        width: 90px;
+        height: 90px;
+    }
+    .apps-run {
+        margin-top: -2.3em;
+        line-height: 11px;
+    }
+    .donut-number {
+        margin-bottom: 0em;
+        left: 38%;
+    }
+    .fix-top {
+        margin-top: 25px;
+    }
+
 }
 

@@ -169,8 +169,7 @@
         clear: both;
     }
     tbody {
-        // height: 80%;
-        height: 285px;
+        height: 257px;
         overflow-y: auto;
         width: 100%;
         td {
@@ -295,3 +294,8 @@
         margin-top: 0em;
     }
 } 
+@media screen and (max-width:1613px){
+    .table-fixed tbody{
+        height: 197px;
+    }
+}
