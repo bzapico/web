@@ -29,53 +29,55 @@
       <div class="card-title-h">
         <h5>MEMBERS</h5>
       </div>
-      <table 
-        *ngIf="loadedData && users && users.length > 0"
-        class="table table-fixed">
-        <thead>
-          <tr>
-            <th 
-              scope="col" 
-              class="col-3">
-              Name
-            </th>
-            <th 
-              scope="col" 
-              class="col-2">
-              Role
-            </th>
-            <th 
-              scope="col" 
-              class="col-5">
-              Email
-            </th>
-            <th 
-              scope="col" 
-              class="col-2 pl-4 ">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users">
-            <td class="col-3">{{user.name}}</td>
-            <td class="blue col-2" (click)="openUserInfo(user)">{{user.role_name}}</td>
-            <td class="col-5">{{user.email}}</td>
-            <td class="col-2 pl-2">
-              <button class="btn info-btn info-btn-fix btn-primary" (click)="openUserInfo(user)">
-                <span class="i-info" tooltip="Info" placement="left">i</span>
-              </button>
-            <!-- </td>
-            <td class="col-1"> -->
-              <button class="btn info-btn btn-primary" (click)="openEditUser(user)">
-                <i class="material-icons i-edit"  tooltip="Edit" placement="left">
-                  edit
-                </i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-h">
+        <table 
+          *ngIf="loadedData && users && users.length > 0"
+          class="table-responsive table-fixed">
+          <thead>
+            <tr>
+              <th 
+                scope="col" 
+                class="col-3">
+                Name
+              </th>
+              <th 
+                scope="col" 
+                class="col-2">
+                Role
+              </th>
+              <th 
+                scope="col" 
+                class="col-5">
+                Email
+              </th>
+              <th 
+                scope="col" 
+                class="col-2 pl-4 ">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td class="col-3">{{user.name}}</td>
+              <td class="blue col-2" (click)="openUserInfo(user)">{{user.role_name}}</td>
+              <td class="col-5">{{user.email}}</td>
+              <td class="col-2 pl-2">
+                <button class="btn info-btn info-btn-fix btn-primary" (click)="openUserInfo(user)">
+                  <span class="i-info" tooltip="Info" placement="left">i</span>
+                </button>
+              <!-- </td>
+              <td class="col-1"> -->
+                <button class="btn info-btn btn-primary" (click)="openEditUser(user)">
+                  <i class="material-icons i-edit"  tooltip="Edit" placement="left">
+                    edit
+                  </i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <!-- No info to show -->
       <div
         *ngIf="loadedData && users && users.length === 0 && !requestError"

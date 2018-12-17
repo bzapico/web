@@ -177,7 +177,6 @@
         clear: both;
     }
     tbody {
-        height: 257px;
         overflow-y: auto;
         width: 100%;
         td {
@@ -262,20 +261,17 @@
     }
     .table-fixed {
         tbody {
-            height: 143px !important;
         }
     }
 }
 @media screen and (min-width:2560px){
     .table-fixed {
         tbody {
-            height: 455px;
         }
     }
 }
 @media screen and (max-width:1680px){
     .table-fixed tbody{
-        height: 197px;
     }
     .summary-card { 
         margin-top: 0em;
