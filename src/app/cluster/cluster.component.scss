@@ -238,19 +238,8 @@
     .status-dot-process:before {
         margin: 0 23px;
     }
-    .table-fixed {
-        tbody {
-            height: 143px !important;
-        }
-    }
 }
-@media screen and (min-width:2560px){
-    .table-fixed {
-        tbody {
-            height: 455px;
-        }
-    }
-}
+
 /* - - - Cluster card pie chart - - - */
 .nodes-run {
     font-size: .8em;

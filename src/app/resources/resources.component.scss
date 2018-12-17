@@ -112,19 +112,9 @@
         top: 5px;
         left: 5px;
     }
-    .table-fixed {
-        tbody {
-            height: 143px !important;
-        }
-    }
+
 }
-@media screen and (min-width:2560px){
-    .table-fixed {
-        tbody {
-            height: 455px;
-        }
-    }
-}
+
 
 /* - - - Summary card circles - - - */
 .summary-card {
@@ -368,9 +358,7 @@
     .box {
         margin: -1em;
     }
-    .table-fixed tbody{
-        height: 197px;
-    }
+
     .carousel-big .donut-number{
         margin: 4px 0;
         height: 20px;
