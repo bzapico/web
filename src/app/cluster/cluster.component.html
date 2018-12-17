@@ -105,55 +105,58 @@
           NODES
         </h5>
       </div>
-      <table *ngIf="loadedData && nodes && nodes.length > 0" class="table table-fixed">
-        <thead>
-          <tr>
-            <th scope="col" class="col-3">
-              ID
-            </th>
-            <th scope="col" class="col-2">
-              IP
-            </th>
-            <th scope="col" class="col-2">
-              State
-            </th>
-            <th scope="col" class="col-3">
-              Tags
-            </th>
-            <th scope="col" class="col-2 text-center">
-              Status
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let node of nodes">
-            <td class="col-3">{{node.node_id}}</td>
-            <td class="col-2">{{node.ip}}</td>  
-            <td class="text-lowercase col-2">{{node.state_name}}</td>
-            <td class="col-3" *ngIf="node.labels === '-'"> no </td>
-            <td class="col-3"*ngIf="node.labels !== '-'">
-                <button 
-                  *ngFor="let label of labelsToString(node.labels)" 
-                  class="btn-sm btn-outline-primary" 
-                  disabled>
-                  {{label[0]}}: {{label[1]}}
-                </button>
-            </td>
-            <td 
-              class="text-lowercase col-2 text-center"
-              [ngClass]=
-              "{'status-dot':classStatusCheck(node.status_name, 'running'),
-              'status-dot-error':classStatusCheck(node.status_name, 'error'),
-              'status-dot-process':classStatusCheck(node.status_name, 'process')}">
-              <span tooltip= "{{node.status_name | lowercase}}" class="tooltip-fix" placement="auto">
-              </span>
-              <span class="hide">
-                {{node.status_name}}
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-h">
+        <table *ngIf="loadedData && nodes && nodes.length > 0" class="table-responsive table-fixed">
+            <thead>
+              <tr>
+                <th scope="col" class="col-3">
+                  ID
+                </th>
+                <th scope="col" class="col-2">
+                  IP
+                </th>
+                <th scope="col" class="col-2">
+                  State
+                </th>
+                <th scope="col" class="col-3">
+                  Tags
+                </th>
+                <th scope="col" class="col-2 text-center">
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let node of nodes">
+                <td class="col-3">{{node.node_id}}</td>
+                <td class="col-2">{{node.ip}}</td>  
+                <td class="text-lowercase col-2">{{node.state_name}}</td>
+                <td class="col-3" *ngIf="node.labels === '-'"> no </td>
+                <td class="col-3"*ngIf="node.labels !== '-'">
+                    <button 
+                      *ngFor="let label of labelsToString(node.labels)" 
+                      class="btn-sm btn-outline-primary" 
+                      disabled>
+                      {{label[0]}}: {{label[1]}}
+                    </button>
+                </td>
+                <td 
+                  class="text-lowercase col-2 text-center"
+                  [ngClass]=
+                  "{'status-dot':classStatusCheck(node.status_name, 'running'),
+                  'status-dot-error':classStatusCheck(node.status_name, 'error'),
+                  'status-dot-process':classStatusCheck(node.status_name, 'process')}">
+                  <span tooltip= "{{node.status_name | lowercase}}" class="tooltip-fix" placement="auto">
+                  </span>
+                  <span class="hide">
+                    {{node.status_name}}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+
       <!-- No info to show -->
       <div
         *ngIf="loadedData && nodes && nodes.length === 0 && !requestError"

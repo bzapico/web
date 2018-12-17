@@ -1,7 +1,12 @@
 /* - - - Cluster table card - - - */
+.table-h {
+    height: 80%;
+    width: 100%;
+}
 .table-fixed {
     width: 100%;
-    height: 80%;
+    height: 100%;
+    overflow: hidden;
     thead {
         background-color: white;
     }
@@ -15,13 +20,13 @@
         clear: both;
     }
     tbody {
-        // height: 80%;
-        height: 285px;
+        height: 90%;
         overflow-y: auto;
         width: 100%;
         td {
             float: left;
-            padding: 1.2rem 0;
+            // padding: 1.2rem 0;
+            padding: 0.75rem;
             font-size: .9em;
             border-top: 0.8px solid #EEEEEE;
             color: #949494;
@@ -86,11 +91,7 @@
     h2 {
         font-size: 1.5rem;
     }
-    .table-fixed {
-        tbody {
-            height: 72%;
-        }
-    }
+
     .status-dot, 
     .status-dot-error, 
     .status-dot-process {
@@ -111,19 +112,9 @@
         top: 5px;
         left: 5px;
     }
-    .table-fixed {
-        tbody {
-            height: 143px;
-        }
-    }
+
 }
-@media screen and (min-width:2560px){
-    .table-fixed {
-        tbody {
-            height: 455px;
-        }
-    }
-}
+
 
 /* - - - Summary card circles - - - */
 .summary-card {
@@ -234,6 +225,7 @@
     font-size: .8em;
     margin-top: -1em;
     cursor: pointer;
+    text-align: center;
 }
 .box {
     width: 27%;
@@ -348,4 +340,65 @@
         width:100%;
         height: 120px;
     }
+}
+
+@media screen and (max-width:1613px) , screen and (max-height: 1027px){
+    .cluster-number {
+        margin-bottom: 1em;
+    }
+}
+@media screen and (max-width:1613px){
+    .circle-name {
+        margin-bottom: 0;
+    }
+    .nodes-run {
+        margin-top: -1.3em;
+        line-height: 11px;
+    }
+    .box {
+        margin: -1em;
+    }
+
+    .carousel-big .donut-number{
+        margin: 4px 0;
+        height: 20px;
+    }
+}
+
+@media screen and (max-width: 1613px) , screen and (max-height: 917px) {
+    .carousel-indicators {
+        bottom: -1.2em;
+    }
+}
+
+@media screen and (max-width:1680px){
+    .summary-card { 
+        margin-top: 0em;
+    }
+    .circle {
+        width: 90px;
+        height: 90px;
+        margin-top: 10px;
+    }
+    .circle-name {
+        margin-bottom: 0;
+    }
+    .nodes-run {
+        margin-top: -1.3em;
+        line-height: 11px;
+    }
+    .box {
+        margin: -1em;
+    }
+    .carousel-indicators {
+        margin-bottom: -1em;
+    }
+    .carousel-big .donut-number{
+        margin: 4px 0;
+        height: 20px;
+    }
+    .multitenant {
+        padding: 0.75rem 0.2rem;
+        display: inline-grid !important;
+    }  
 }

@@ -118,7 +118,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   instancesTimelineChart: any;
   instancesPieChart: any;
-  autoScale: any;
 
   constructor(
     private modalService: BsModalService,

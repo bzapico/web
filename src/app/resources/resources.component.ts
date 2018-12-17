@@ -126,7 +126,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   mockClusterChart: any;
   mockNodesChart: any;
-  autoScale: any;
 
   /**
    * Reference for the service that allows the user info component
@@ -234,7 +233,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     }
     const entry = {
       'value': runningNodesCount,
-      'name':  now.getHours() + ':' + now.getSeconds()
+      'name':  now.getHours() + ':' + minutes
     };
 
     if (this.nodesChart[0].series.length > 4) {
