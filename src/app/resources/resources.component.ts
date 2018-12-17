@@ -126,7 +126,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   mockClusterChart: any;
   mockNodesChart: any;
-  autoScale: any;
 
   /**
    * Reference for the service that allows the user info component
