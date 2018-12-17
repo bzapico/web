@@ -47,9 +47,12 @@ dep:
 	@echo ">>> Updating dependencies..."
 	npm install
 
-test-all: test test-race test-coverage
 
-.PHONY: test test-e2e
+.PHONY: test test-e2e test-ci
+test-ci:
+	@echo ">>> Launching tests..."
+	$(NGCMD) run nalej:test-ci --watch=false
+
 test:
 	@echo ">>> Launching tests..."
 	$(NGTEST) --watch=false
@@ -70,7 +73,7 @@ dev:
 	ng serve -o
 
 .PHONY: dep build-all build build-local
-build-all: dep format build
+build-all: dep build
 build: dep local
 
 # Local compilation
