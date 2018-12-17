@@ -119,10 +119,16 @@
                 </div>
                 <div class="row">
                   <div class="col-sm text-right grey">Status</div>
-                  <div class="col-sm text-right text-lowercase" [ngClass]= 
-                  "{'blue':instance.status_name === 'Running',
-                  'red':instance.status_namee === 'Error'}"> 
-                  {{service.status_name}}</div>
+                  <div 
+                    class="col-sm text-right text-lowercase" 
+                    [ngClass]= 
+                    "{
+                      'blue': service.status_name === 'running',
+                      'red': service.status_name === 'error',
+                      'orange': service.status_name === 'SERVICE_WAITING'
+                    }"> 
+                    {{service.status_name}}
+                  </div>
                 </div>
                 <br>
               </div>
