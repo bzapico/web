@@ -61,7 +61,7 @@ pipeline {
         stage("Frontend build") {
             steps {
                 container("node") {
-                    sh "make local"
+                    sh "ng build"
                 }
             }
         }
