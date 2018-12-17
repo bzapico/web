@@ -49,7 +49,7 @@
                       >
                     </svg:path>
                   </svg:g>
-        d        </ng-template>
+                </ng-template>
               </ngx-graph>
             </div>
             <!-- Deployed app info grid -->
@@ -163,8 +163,22 @@
                   <div class="col-sm text-right">{{service}}</div>
                   <br>
                 </div>
-              </div>    
-            </div>     
+              </div>  
+              <div class="row">
+                <div class="col-sm grey">Endpoints</div>
+              </div>
+              <div *ngIf="!instance.endpoints || instance.endpoints.length === 0" class="row">
+                <div class="col-sm text-right grey">-</div>
+              </div>
+              <div class="row">
+                <div class="col-9 offset-3 text-right">
+                  <a target="_blank" href="https://github.com/orgs/nalej/dashboard">
+                    {{instance.endpoints}}
+                  </a>
+                </div>
+              </div>
+            </div>  
+          </div>     
           <div> 
           <!-- Loader -->           
           <div class="nalej-loader-container" *ngIf="!loadedData">
