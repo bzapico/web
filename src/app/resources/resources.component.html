@@ -258,7 +258,8 @@
                 <a 
                   [routerLink]="['cluster', cluster.cluster_id]" 
                   routerLinkActive="active" 
-                  class="blue text-capitalize text-left col-1">{{cluster.name}}
+                  class="blue text-capitalize text-left">
+                  {{cluster.name}}
                 </a>
               </td>
               <td class="col-2">{{cluster.cluster_id}}</td>
@@ -266,7 +267,7 @@
                 <a 
                   [routerLink]="['cluster', cluster.cluster_id]" 
                   routerLinkActive="active" 
-                  class="blue col-1">{{cluster.total_nodes}}
+                  class="blue">{{cluster.total_nodes}}
                 </a>
               </td>  
               <td class="col-2 text-center">{{cluster.description}}</td>
