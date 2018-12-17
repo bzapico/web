@@ -283,11 +283,8 @@ export const mockAppsInstancesList = [
             var3: 'value3'
         },
         labels: {
-            lab1: 'label1',
-            lab2: 'label2',
-            lab3: 'label3',
-            lab4: 'label1',
-            lab5: 'label2'
+            app2: 'simple-app',
+            app1: 'web-test',
         },
         rules: [
             {
@@ -561,9 +558,7 @@ export const mockAppsInstancesList = [
             var3: 'value3'
         },
         labels: {
-            lab1: 'label1',
-            lab2: 'label2',
-            lab3: 'label3'
+            app1: 'web-test',
         },
         rules: [
             {
@@ -837,9 +832,8 @@ export const mockAppsInstancesList = [
             var3: 'value3'
         },
         labels: {
-            lab1: 'label1',
-            lab2: 'label2',
-            lab3: 'label3'
+            app2: 'simple-app',
+            app1: 'web-test',
         },
         rules: [
             {
@@ -1113,9 +1107,7 @@ export const mockAppsInstancesList = [
             var3: 'value3'
         },
         labels: {
-            lab1: 'label1',
-            lab2: 'label2',
-            lab3: 'label3'
+            app2: 'simple-app',
         },
         rules: [
             {
