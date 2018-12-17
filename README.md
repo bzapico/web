@@ -42,6 +42,20 @@ Brand new UI Frontend for Nalej.
     
 To see older logs check `CHANGELOG.md` file
 
+Tested and suported resolutions in pixels:
+- 1280 x 720
+- 1280 x 800
+- 1366 x 768
+- 1440 x 900 
+- 1613 x 917
+- 1613 x 1027
+- 1680 x 1027
+- 1920 x 1080
+- 1920 x 1200
+- 2560 x 1440
+- 2560 x 1800
+
+
 ## Requirements
 
 - Node Package Manager (NPM) https://www.npmjs.com/
