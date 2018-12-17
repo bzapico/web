@@ -50,7 +50,6 @@ dep:
 
 .PHONY: test test-e2e test-ci
 test-ci:
-	npm install phantomjs-prebuilt karma-phantomjs-launcher
 	@echo ">>> Launching tests..."
 	$(NGCMD) run nalej:test-ci --watch=false
 
