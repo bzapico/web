@@ -174,6 +174,45 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
+  /**
+   * Simulates to request a list of user roles
+   * @param organizationId Organization id
+   */
+  listRoles(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({roles: [
+        {
+          'organization_id': '2a95fe95-eade-4622-836f-e85d789024bf',
+          'role_id': '268d7644-bb17-48f2-815b-19a8ab6c7e83',
+          'name': 'Owner',
+          'primitives': ['ORG']
+        },
+        {
+          'organization_id': '2a95fe95-eade-4622-836f-e85d789024bf',
+          'role_id': 'a354bf26-2fb4-4d9e-bef0-427e25b52ba7',
+          'name': 'Developer', 'primitives': ['PROFILE', 'APPS']
+        },
+        {
+          'organization_id': '2a95fe95-eade-4622-836f-e85d789024bf',
+          'role_id': 'df00f420-8658-4c2e-8941-0e947aaeffe7',
+          'name': 'Operator',
+          'primitives': ['PROFILE', 'RESOURCES']
+        }]
+      }),
+      status: 200
+    })));
+  }
+  /**
+   * Simulates user role change
+   * @param organizationId Organization id
+   * @param userId User email
+   * @param roleId Role id
+   */
+  changeRole(organizationId: string, userId: string, roleId: string) {
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
 
   /**
    * Simulates to request resources summary data
