@@ -416,7 +416,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '0'
                 ],
-                status_name: 'Running'
+                status_name: 'RUNNING'
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -457,7 +457,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '1'
                 ],
-                status_name: 'Running'
+                status_name: 'RUNNING'
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -498,7 +498,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '2'
                 ],
-                status_name: 'Running'
+                status_name: 'SERVICE_WAITING'
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -539,7 +539,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '3'
                 ],
-                status_name: 'Running'
+                status_name: 'RUNNING'
             }
         ],
         status_name: 'Running',
@@ -692,7 +692,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '0'
                 ],
-                status_name: 'Running'
+                status_name: 'SERVICE_WAITING'
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -733,7 +733,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '1'
                 ],
-                status_name: 'Running'
+                status_name: 'RUNNING'
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -774,7 +774,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '2'
                 ],
-                status_name: 'Running'
+                status_name: 'RUNNING'
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -815,7 +815,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '3'
                 ],
-                status_name: 'Running'
+                status_name: 'RUNNING'
             }
         ],
         status_name: 'Running',
@@ -968,7 +968,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '0'
                 ],
-                status_name: 'Running'
+                status_name: 'SERVICE_WAITING'
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -1009,7 +1009,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '1'
                 ],
-                status_name: 'Running'
+                status_name: 'RUNNING'
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -1050,7 +1050,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '2'
                 ],
-                status_name: 'Running'
+                status_name: 'RUNNING'
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -1091,7 +1091,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '3'
                 ],
-                status_name: 'Running'
+                status_name: 'RUNNING'
             }
         ],
         status_name: 'Running',
@@ -1244,7 +1244,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '0'
                 ],
-                status_name: 'Running'
+                status_name: 'RUNNING'
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -1285,7 +1285,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '1'
                 ],
-                status_name: 'Running'
+                status_name: 'RUNNING'
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -1326,7 +1326,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '2'
                 ],
-                status_name: 'Running'
+                status_name: 'SERVICE_WAITING'
             },
             {
                 organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -1367,7 +1367,7 @@ export const mockAppsInstancesList = [
                 deploy_after: [
                     '3'
                 ],
-                status_name: 'Running'
+                status_name: 'RUNNING'
             }
         ],
         status_name: 'Running',

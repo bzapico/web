@@ -61,9 +61,15 @@
               <br>
               <div class="row">
                 <div class="col-sm grey">Status</div>
-                <div class="col-sm text-right text-lowercase" [ngClass]= 
-                  "{'blue':instance.status_name === 'Running',
-                  'red':instance.status_namee === 'Error'}">{{instance.status_name}}
+                <div 
+                class="col-sm text-right text-lowercase" 
+                [ngClass]= 
+                  "{
+                    'blue':instance.status_name === 'Running',
+                    'red':instance.status_namee === 'Error',
+                    'orange': instance.status_name === 'queued'
+                  }">
+                  {{instance.status_name}}
                 </div>
               </div>
               <br>
@@ -123,8 +129,9 @@
                     class="col-sm text-right text-lowercase" 
                     [ngClass]= 
                     "{
-                      'blue': service.status_name === 'running',
-                      'red': service.status_name === 'error',
+                      'blue': service.status_name === 'RUNNING',
+                      'red': service.status_name === 'ERROR',
+                      'orange': service.status_name === 'QUEUED',
                       'orange': service.status_name === 'SERVICE_WAITING'
                     }"> 
                     {{service.status_name}}
