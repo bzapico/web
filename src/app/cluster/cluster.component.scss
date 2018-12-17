@@ -153,9 +153,13 @@
 }
 
 /* - - - Nodes table card - - - */
+.table-h {
+    height: 80%;
+    width: 100%;
+}
 .table-fixed {
     width: 100%;
-    height: 80%;
+    height: 100%;
     thead {
         background-color: white;
     }
@@ -169,8 +173,7 @@
         clear: both;
     }
     tbody {
-        // height: 80%;
-        height: 285px;
+        height: 90%;
         overflow-y: auto;
         width: 100%;
         td {
@@ -225,11 +228,6 @@
     .card-title-c h5 {
         font-size: 1em;
     }
-    .table-fixed {
-        tbody {
-            height: 72%;
-        }
-    }
     .status-dot, 
     .status-dot-error, 
     .status-dot-process {
@@ -240,19 +238,8 @@
     .status-dot-process:before {
         margin: 0 23px;
     }
-    .table-fixed {
-        tbody {
-            height: 143px;
-        }
-    }
 }
-@media screen and (min-width:2560px){
-    .table-fixed {
-        tbody {
-            height: 455px;
-        }
-    }
-}
+
 /* - - - Cluster card pie chart - - - */
 .nodes-run {
     font-size: .8em;
@@ -295,3 +282,8 @@
         margin-top: 0em;
     }
 } 
+@media screen and (max-width:1613px){
+    .table-fixed tbody{
+        height: 197px;
+    }
+}
