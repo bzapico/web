@@ -56,7 +56,10 @@
         height: 250px;
     }
 }
-
+.endpoint-fix {
+    word-wrap: break-word;
+    text-align: right;
+}
 @media screen and (max-width: 1300px) {
     .graph {
         display: none;

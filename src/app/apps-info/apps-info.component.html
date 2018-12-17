@@ -49,7 +49,7 @@
                       >
                     </svg:path>
                   </svg:g>
-        d        </ng-template>
+                </ng-template>
               </ngx-graph>
             </div>
             <!-- Deployed app info grid -->
@@ -61,9 +61,15 @@
               <br>
               <div class="row">
                 <div class="col-sm grey">Status</div>
-                <div class="col-sm text-right text-lowercase" [ngClass]= 
-                  "{'blue':instance.status_name === 'Running',
-                  'red':instance.status_namee === 'Error'}">{{instance.status_name}}
+                <div 
+                class="col-sm text-right text-lowercase" 
+                [ngClass]= 
+                  "{
+                    'blue':instance.status_name === 'Running',
+                    'red':instance.status_namee === 'Error',
+                    'orange': instance.status_name === 'queued'
+                  }">
+                  {{instance.status_name}}
                 </div>
               </div>
               <br>
@@ -119,10 +125,17 @@
                 </div>
                 <div class="row">
                   <div class="col-sm text-right grey">Status</div>
-                  <div class="col-sm text-right" [ngClass]= 
-                  "{'blue':instance.status_name === 'Running',
-                  'red':instance.status_namee === 'Error'}"> 
-                  {{service.status_name}}</div>
+                  <div 
+                    class="col-sm text-right text-lowercase" 
+                    [ngClass]= 
+                    "{
+                      'blue': service.status_name === 'RUNNING',
+                      'red': service.status_name === 'ERROR',
+                      'orange': service.status_name === 'QUEUED',
+                      'orange': service.status_name === 'SERVICE_WAITING'
+                    }"> 
+                    {{service.status_name}}
+                  </div>
                 </div>
                 <br>
               </div>
@@ -163,8 +176,22 @@
                   <div class="col-sm text-right">{{service}}</div>
                   <br>
                 </div>
-              </div>    
-            </div>     
+              </div>  
+              <div class="row">
+                <div class="col-sm grey">Endpoints</div>
+              </div>
+              <div *ngFor="let service of instance.services">
+                <div *ngIf="service.endpoints && service.endpoints.length > 0">
+                  <div class="row" *ngFor="let endpoint of service.endpoints">
+                    <div class="col-9 offset-3 endpoint-fix">
+                      {{endpoint}}
+                    </div>
+                    <br>
+                  </div>     
+                </div>
+              </div>
+            </div>  
+          </div>     
           <div> 
           <!-- Loader -->           
           <div class="nalej-loader-container" *ngIf="!loadedData">
