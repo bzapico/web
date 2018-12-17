@@ -76,6 +76,7 @@
 }
 .info-btn-fix{
     margin-right: 1em;
+    margin-left: 1em;
 }
 .i-edit{
     font-size: 1.2em;
@@ -142,7 +143,6 @@
     .hidden-img-fix {
         display: block;
     }
-
     .table-fixed {
         tbody {
             height: 94px;
@@ -151,6 +151,7 @@
     .card-title-h {
         margin-bottom: 30px;
     }
+
 }
 @media screen and (min-width:2560px){
     .table-fixed {

@@ -51,12 +51,9 @@
             </th>
             <th 
               scope="col" 
-              class="col-2">
+              class="col-2 pl-4 ">
+              Actions
             </th>
-            <!-- <th 
-              scope="col" 
-              class="col-1">
-          </th> -->
           </tr>
         </thead>
         <tbody>
@@ -64,7 +61,7 @@
             <td class="col-3">{{user.name}}</td>
             <td class="blue col-2" (click)="openUserInfo(user)">{{user.role_name}}</td>
             <td class="col-5">{{user.email}}</td>
-            <td class="col-2">
+            <td class="col-2 pl-2">
               <button class="btn info-btn info-btn-fix btn-primary" (click)="openUserInfo(user)">
                 <span class="i-info" tooltip="Info" placement="left">i</span>
               </button>
