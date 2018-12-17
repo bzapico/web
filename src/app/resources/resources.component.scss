@@ -345,6 +345,12 @@
         height: 120px;
     }
 }
+
+@media screen and (max-width:1613px) , screen and (max-height: 1027px){
+    .cluster-number {
+        margin-bottom: 1em;
+    }
+}
 @media screen and (max-width:1613px){
     .circle-name {
         margin-bottom: 0;
@@ -352,9 +358,6 @@
     .nodes-run {
         margin-top: -1.3em;
         line-height: 11px;
-    }
-    .cluster-number {
-        margin-bottom: 0em;
     }
     .box {
         margin: -1em;
