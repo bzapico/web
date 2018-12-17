@@ -193,7 +193,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   openEditCluster(cluster) {
     const initialState = {
       organizationId: this.organizationId,
-      clusterId: cluster.id,
+      clusterId: cluster.cluster_id,
       clusterName: cluster.name,
       clusterDescription: cluster.description
     };

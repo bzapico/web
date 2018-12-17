@@ -31,6 +31,7 @@ export class EditUserComponent implements OnInit {
   userName: string;
   userId: string;
   email: string;
+  rolesList: any[];
 
   /**
    * Holds the status of the role (if it has been modified)
@@ -60,6 +61,11 @@ export class EditUserComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Query role list
+   this.backend.listRoles(this.organizationId)
+    .subscribe(response => {
+      this.rolesList = response.roles;
+    });
   }
 
   /**
@@ -110,8 +116,23 @@ export class EditUserComponent implements OnInit {
         role_name: this.userRole
       })
       .subscribe(response => {
+        this.backend.changeRole(this.organizationId, this.userId, this.getRoleId(this.userRole)).
+          subscribe(responseRole => {
+            this.notificationsService.add({
+              message: 'The user ' + this.userName + ' has been edited',
+              timeout: 10000
+            });
+            this.bsModalRef.hide();
+          }, error => {
+            this.notificationsService.add({
+              message: 'ERROR: ' + error.error,
+              timeout: 10000
+            });
+            this.bsModalRef.hide();
+          });
+      }, error => {
         this.notificationsService.add({
-          message: 'The user ' + this.userName + ' has been edited',
+          message: 'ERROR: ' + error.error,
           timeout: 10000
         });
         this.bsModalRef.hide();
@@ -131,6 +152,21 @@ export class EditUserComponent implements OnInit {
       this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.bsPasswordModalRef.content.closeBtnName = 'Close';
     this.bsModalRef.hide();
+  }
+
+  /**
+   * Search between roles list to get the required id
+   * @param role Role name
+   */
+  getRoleId(role: string): string {
+    let roleId = '';
+    this.rolesList.forEach(roleObject => {
+      if (roleObject.name === role) {
+        roleId = roleObject.role_id;
+        return roleId;
+      }
+    });
+    return roleId;
   }
 }
 

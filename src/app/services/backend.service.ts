@@ -142,6 +142,28 @@ export class BackendService implements Backend {
     );
   }
 
+  // GET '/v1/roles/{organization_id}/list'
+  /**
+   * Requests to get the user roles list
+   * @param organizationId Organization identifier
+   */
+  listRoles(organizationId: string) {
+    return this.get(
+      API_URL + 'roles/' + organizationId + '/list'
+    );
+  }
+
+  changeRole(organizationId: string, userId: string, roleId: string) {
+    return this.post(
+      API_URL + 'roles/' + organizationId + '/update',
+      {
+        organization_id: organizationId,
+        email: userId,
+        role_id: roleId
+      }
+    );
+  }
+
   /**
    * Resources
    */

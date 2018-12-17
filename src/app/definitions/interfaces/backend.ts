@@ -12,6 +12,8 @@ export interface Backend {
     deleteUser(organizationId: string, userId: string);
     resetPassword(organizationId: string, changePassword: any);
     saveUserChanges(organizationId: string, changes: any);
+    listRoles(organizationId: string);
+    changeRole(organizationId: string, userId: string, roleId: string);
     // Resources
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);
     getClusters(organizationId: string);

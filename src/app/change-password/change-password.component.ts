@@ -113,7 +113,7 @@ export class ChangePasswordComponent implements OnInit {
       }
     }
     if (form.controls.newPassword.value !== form.controls.confirmNewPassword.value) {
-      this.errorMessages.push('New password and confirm password are not the same one');
+      this.errorMessages.push('Set passwords do not match');
     }
     if (this.errorMessages.length === 0) {
       this.saveNewPassword(form);
