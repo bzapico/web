@@ -77,6 +77,9 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   refreshIntervalRef: any;
 
+  /**
+   * Refresh ratio
+   */
   REFRESH_INTERVAL = 20000;
 
   /**
