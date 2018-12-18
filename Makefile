@@ -102,14 +102,7 @@ image: create-image
 
 create-image:
 	@echo ">>> Creating images..."
-	for app in $(APPS); do \
-        echo Create image of app $$app ; \
-        if [ -f components/"$$app"/Dockerfile ]; then \
-            docker build --no-cache -t $(DOCKER_REGISTRY)/$(DOCKER_REPO)/"$$app":$(VERSION) -f components/"$$app"/Dockerfile . ; \
-        else  \
-            echo $$app has no Dockerfile ; \
-        fi ; \
-    done
+	./scripts/docker_build.sh
 
 # Publish the image
 .PHONY: publish az-login az-logout publish-image
