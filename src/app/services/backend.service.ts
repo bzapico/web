@@ -125,7 +125,10 @@ export class BackendService implements Backend {
   deleteUser(organizationId: string, userId: string) {
     return this.post(
       API_URL + 'users/' + organizationId + '/delete',
-      userId
+      {
+        organization_id: organizationId,
+        email: userId
+      }
     );
   }
 
@@ -155,7 +158,7 @@ export class BackendService implements Backend {
 
   changeRole(organizationId: string, userId: string, roleId: string) {
     return this.post(
-      API_URL + 'roles/' + organizationId + '/update',
+      API_URL + 'roles/' + organizationId + '/assign',
       {
         organization_id: organizationId,
         email: userId,

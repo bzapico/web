@@ -59,6 +59,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   refreshIntervalRef: any;
 
   /**
+   * Refresh ratio reference
+   */
+  REFRESH_RATIO = 20000; // 20 seconds
+
+  /**
    * Charts references
    */
   mockAppChart: any;
@@ -139,7 +144,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.labels = [];
     this.countRegistered = 0;
     this.loadedData = false;
-    this.appsChart = [{name: 'Running apps', series: []}];
+    this.appsChart = [{name: 'Running apps %', series: []}];
     this.requestError = '';
     /**
      * Charts reference init
@@ -157,7 +162,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           this.refreshIntervalRef = setInterval(() => {
             this.updateAppInstances(this.organizationId);
             this.updateRegisteredInstances(this.organizationId);
-          }, 60000); // Refresh each 60 seconds
+          }, this.REFRESH_RATIO); // Refresh each 60 seconds
       }
   }
 
@@ -246,12 +251,16 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
     const now = new Date(Date.now());
     let minutes: any = now.getMinutes();
-      if (minutes < 10) {
-        minutes = '0' + now.getMinutes();
-      }
+    let seconds: any = now.getSeconds();
+    if (minutes < 10) {
+      minutes = '0' + now.getMinutes();
+    }
+    if (seconds < 10) {
+      seconds = '0' + now.getSeconds();
+    }
     const entry = {
       'value': runningAppsCount / instances.length * 100,
-      'name':  now.getHours() + ':' + minutes
+      'name':  now.getHours() + ':' + minutes + ':' + seconds
     };
 
     if (this.appsChart[0].series.length > 5) {

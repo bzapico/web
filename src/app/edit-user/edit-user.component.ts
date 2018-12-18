@@ -125,14 +125,14 @@ export class EditUserComponent implements OnInit {
             this.bsModalRef.hide();
           }, error => {
             this.notificationsService.add({
-              message: 'ERROR: ' + error.error,
+              message: 'ERROR: ' + error.error.message,
               timeout: 10000
             });
             this.bsModalRef.hide();
           });
       }, error => {
         this.notificationsService.add({
-          message: 'ERROR: ' + error.error,
+          message: 'ERROR: ' + error.error.message,
           timeout: 10000
         });
         this.bsModalRef.hide();
