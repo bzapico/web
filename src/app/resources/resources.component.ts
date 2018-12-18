@@ -77,6 +77,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   refreshIntervalRef: any;
 
+  REFRESH_INTERVAL = 20000;
+
   /**
    * Hold request error message or undefined
    */
@@ -153,7 +155,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.nodesCount = 0;
     this.clustersCount = 0;
     this.pieChartsData = [];
-    this.nodesChart = [{'name': 'Running nodes', 'series': []}];
+    this.nodesChart = [{'name': 'Running nodes %', 'series': []}];
     this.requestError = '';
 
   /**
@@ -178,7 +180,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         this.refreshIntervalRef = setInterval(() => {
           //  Request cluster list
           this.updateClusterList();
-        }, 60000); // Update each 60 seconds
+        }, this.REFRESH_INTERVAL);
       }
     }
   }
@@ -223,20 +225,24 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 
   /**
    * Updates nodes timeline with new data
-   * @param runningNodesCount New running nodes count
+   * @param runningNodesPercentage New running nodes count
    */
-  updateNodesStatusLineChart(runningNodesCount) {
+  updateNodesStatusLineChart(runningNodesPercentage) {
     const now = new Date(Date.now());
     let minutes: any = now.getMinutes();
+    let seconds: any = now.getSeconds();
     if (minutes < 10) {
       minutes = '0' + now.getMinutes();
     }
+    if (seconds < 10) {
+      seconds = '0' + now.getSeconds();
+    }
     const entry = {
-      'value': runningNodesCount,
-      'name':  now.getHours() + ':' + minutes
+      'value': runningNodesPercentage,
+      'name':  now.getHours() + ':' + minutes + ':' + seconds
     };
 
-    if (this.nodesChart[0].series.length > 4) {
+    if (this.nodesChart[0].series.length > 3) {
       // Removes first element
       this.nodesChart[0].series.shift();
     }
@@ -288,6 +294,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.backend.getClusters(this.organizationId)
     .subscribe(response => {
       let runningNodesCount = 0;
+      let totalNodesCount = 0;
+      let nodesRunningPercentage = 0;
         if (response.clusters && response.clusters.length) {
           this.clusters = response.clusters;
         } else {
@@ -298,12 +306,14 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         }
         this.clusters.forEach(cluster => {
           this.preventEmptyFields(cluster);
-          runningNodesCount += cluster.running_nodes / cluster.total_nodes * 100;
+          runningNodesCount += cluster.running_nodes;
+          totalNodesCount += cluster.total_nodes;
         });
+        nodesRunningPercentage = (runningNodesCount / totalNodesCount) * 100;
 
         this.chunckedClusters = this.chunkClusterList(3, this.clusters);
         this.updatePieChartsData(this.clusters, this.pieChartsData);
-        this.updateNodesStatusLineChart(runningNodesCount);
+        this.updateNodesStatusLineChart(nodesRunningPercentage);
     }, errorResponse => {
       this.loadedData = true;
       this.requestError = errorResponse.error.message;
