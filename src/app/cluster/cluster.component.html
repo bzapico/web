@@ -106,7 +106,7 @@
         </h5>
       </div>
       <div class="table-h">
-        <table *ngIf="loadedData && nodes && nodes.length > 0" class="table-responsive table-fixed">
+        <table *ngIf="loadedData && nodes && nodes.length > 0 && !requestError" class="table-responsive table-fixed">
             <thead>
               <tr>
                 <th scope="col" class="col-3">

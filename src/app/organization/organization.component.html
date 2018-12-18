@@ -31,7 +31,7 @@
       </div>
       <div class="table-h">
         <table 
-          *ngIf="loadedData && users && users.length > 0"
+          *ngIf="loadedData && users && users.length > 0 && !requestError"
           class="table-responsive table-fixed">
           <thead>
             <tr>
