@@ -125,7 +125,10 @@ export class BackendService implements Backend {
   deleteUser(organizationId: string, userId: string) {
     return this.post(
       API_URL + 'users/' + organizationId + '/delete',
-      userId
+      {
+        organization_id: organizationId,
+        email: userId
+      }
     );
   }
 
