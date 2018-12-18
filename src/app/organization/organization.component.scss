@@ -46,7 +46,7 @@
         clear: both;
     }
     tbody {
-        height: 80%;
+        height: 75%;
         overflow-y: auto;
         width: 100%;
         td {
@@ -63,13 +63,14 @@
         border: none;
         font-size: .9em;
         font-weight: 200;
+        padding: 0.75rem;
     }
     tbody tr:first-child td {
         border: none;
     }
 }
 .add-user-btn{
-    margin: 0 auto;
+    margin: 0.75rem auto;
 
 }
 .info-btn {
