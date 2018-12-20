@@ -29,10 +29,8 @@
       <div class="card-title-h">
         <h5>MEMBERS</h5>
       </div>
-      <div class="table-h">
-        <table 
-          *ngIf="loadedData && users && users.length > 0 && !requestError"
-          class="table-responsive table-fixed">
+      <div class="table-h" *ngIf="loadedData && clusters && clusters.length > 0 && !requestError">
+        <table class="table-responsive table-fixed">
           <thead>
             <tr>
               <th 
@@ -69,7 +67,7 @@
               <!-- </td>
               <td class="col-1"> -->
                 <button class="btn info-btn btn-primary" (click)="openEditUser(user)">
-                  <i class="material-icons i-edit"  tooltip="Edit" placement="left">
+                  <i class="material-icons i-edit" tooltip="Edit" placement="left">
                     edit
                   </i>
                 </button>
