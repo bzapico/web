@@ -25,7 +25,6 @@
         width: 100%;
         td {
             float: left;
-            // padding: 1.2rem 0;
             padding: 0.75rem;
             font-size: .9em;
             border-top: 0.8px solid #EEEEEE;
@@ -92,7 +91,6 @@
     h2 {
         font-size: 1.5rem;
     }
-
     .status-dot, 
     .status-dot-error, 
     .status-dot-process {
@@ -113,9 +111,7 @@
         top: 5px;
         left: 5px;
     }
-
 }
-
 
 /* - - - Summary card circles - - - */
 .summary-card {
@@ -172,9 +168,7 @@
         margin-top: 0em;
         height: 82%;
     }
-    .donut-chart {
-        max-width: 100px;
-      }
+
 }
 @media screen and (min-width:2560px){
     .circle {
@@ -220,7 +214,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    height: 100%!important;
+    height: 100%;
 }
 .nodes-run {
     font-size: .8em;
@@ -290,6 +284,9 @@
     .nodes-run{
         display: inline;
     }
+    .donut-chart {
+        max-width: 100px;
+      }
     .carousel-small{
         .donut-number {
             font-size: .8em;
@@ -307,6 +304,7 @@
         padding-top: 2em;
     }
 }
+
 /* - - - Node Status card - - - */
 .box-line-chart {
     display: flex;
@@ -332,74 +330,75 @@
     flex-direction:column;
     justify-content: space-between;
 }
-
+/* - - - Media Node Status card - - - */
 @media screen and (max-width:1500px){
     .y-axis-line-chart  {
      display: none;
     }
     .line-chart {
         width:100%;
-        height: 120px;
     }
 }
 
-@media screen and (max-width:1613px) , screen and (max-height: 1027px){
-    .cluster-number {
-        margin-bottom: 1em;
-    }
+@media screen and (max-width: 1613px), screen and (max-height: 1027px){
+    // .cluster-number {
+    //     margin-bottom: 1em;
+    // }
 }
-@media screen and (max-width:1613px){
-    .circle-name {
-        margin-bottom: 0;
-    }
-    .nodes-run {
-        margin-top: -1.3em;
-        line-height: 11px;
-    }
-    .box {
-        margin: -1em;
-    }
+// @media screen and (min-width:1499px) and (max-width: 1613px){
+//     .circle-name {
+//         margin-bottom: 0;
+//     }
+//     .nodes-run {
+//         margin-top: -1.3em;
+//         line-height: 11px;
+//     }
+//     .box {
+//         margin: -1em;
+//     }
+//     .carousel-big .donut-number{
+//         margin: 4px 0;
+//         height: 20px;
+//     }
+// }
 
-    .carousel-big .donut-number{
-        margin: 4px 0;
-        height: 20px;
-    }
-}
+// @media screen and (max-width: 1613px) , screen and (max-height: 917px) {
+//     .carousel-indicators {
+//         bottom: -1.2em;
+//     }
+// }
 
-@media screen and (max-width: 1613px) , screen and (max-height: 917px) {
-    .carousel-indicators {
-        bottom: -1.2em;
-    }
-}
-
-@media screen and (max-width:1680px){
-    .summary-card { 
-        margin-top: 0em;
-    }
-    .circle {
-        width: 90px;
-        height: 90px;
-        margin-top: 10px;
-    }
-    .circle-name {
-        margin-bottom: 0;
-    }
-    .nodes-run {
-        margin-top: -1.3em;
-        line-height: 11px;
-    }
-    .box {
-        margin: -1em;
-    }
-    .carousel-indicators {
-        margin-bottom: -1em;
-    }
-    .carousel-big .donut-number{
-        margin: 4px 0;
-        height: 20px;
-    }
+@media screen and (max-width:1785px){
     .multitenant {
         padding: 0.75rem 0.2rem;
         display: inline-grid !important;
     }  
+}
+@media screen and (max-width:1680px){
+    // .summary-card { 
+    //     margin-top: 0em;
+    // }
+    // .circle {
+    //     width: 90px;
+    //     height: 90px;
+    //     margin-top: 10px;
+    // }
+    // .circle-name {
+    //     margin-bottom: 0;
+    // }
+    // .nodes-run {
+    //     margin-top: -1.3em;
+    //     line-height: 11px;
+    // }
+    // .box {
+    //     margin: -1em;
+    // }
+    // .carousel-indicators {
+    //     margin-bottom: -1em;
+    // }
+    // .carousel-big .donut-number{
+    //     margin: 4px 0;
+    //     height: 20px;
+    // }
+
 }
