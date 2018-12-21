@@ -71,7 +71,7 @@
 .cluster-summary {
     margin-bottom: 0.5rem;
     td {
-        padding: 1.1rem;
+        padding: 0.2rem;
         vertical-align: middle;
         font-size:  .9em;
         border: none;
@@ -79,13 +79,12 @@
         text-align: right;
     }
     th {
-        padding: 1.1rem;
+        padding: 0.2em;
         border: none;
         font-size:  .9em;
         font-weight: 200;
     }
     tr {
-        line-height: 0.1px;
         border: none;
     } 
 }
@@ -118,16 +117,11 @@
         flex-direction: row;  
     }
     .cluster-summary th {
-        padding: 0.1rem;
         font-size: .8em;
         vertical-align: inherit;
     }
     .cluster-summary{
         margin-bottom: 10px;
-    }
-
-    .cluster-summary td{
-        padding: 0.75rem;
     }
     .box-card {
         height: 82% !important;
@@ -283,8 +277,3 @@
         margin-top: 0em;
     }
 } 
-@media screen and (max-width:1613px){
-    .table-fixed tbody{
-        height: 197px;
-    }
-}
