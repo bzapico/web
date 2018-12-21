@@ -80,7 +80,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Refresh ratio
    */
-  REFRESH_INTERVAL = 200000;
+  REFRESH_INTERVAL = 20000;
 
   /**
    * Hold request error message or undefined
@@ -245,7 +245,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       'name':  now.getHours() + ':' + minutes + ':' + seconds
     };
 
-    if (this.nodesChart[0].series.length > 3) {
+    if (this.nodesChart[0].series.length > 2) {
       // Removes first element
       this.nodesChart[0].series.shift();
     }
