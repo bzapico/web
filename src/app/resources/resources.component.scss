@@ -343,9 +343,9 @@
 }
 
 @media screen and (max-width: 1613px), screen and (max-height: 1027px){
-    // .cluster-number {
-    //     margin-bottom: 1em;
-    // }
+    .cluster-number {
+        margin-bottom: 1em;
+    }
 }
 // @media screen and (min-width:1499px) and (max-width: 1613px){
 //     .circle-name {
@@ -364,11 +364,11 @@
 //     }
 // }
 
-// @media screen and (max-width: 1613px) , screen and (max-height: 917px) {
-//     .carousel-indicators {
-//         bottom: -1.2em;
-//     }
-// }
+@media screen and (max-width: 1613px) , screen and (max-height: 917px) {
+    .carousel-indicators {
+        bottom: -1.2em;
+    }
+}
 
 @media screen and (max-width:1785px){
     .multitenant {
@@ -388,19 +388,19 @@
     .circle-name {
         margin-bottom: 0;
     }
-    // .nodes-run {
-    //     margin-top: -1.3em;
-    //     line-height: 11px;
-    // }
-    // .box {
-    //     margin: -1em;
-    // }
-    // .carousel-indicators {
-    //     margin-bottom: -1em;
-    // }
-    // .carousel-big .donut-number{
-    //     margin: 4px 0;
-    //     height: 20px;
-    // }
+    .nodes-run {
+        margin-top: -1.3em;
+        line-height: 11px;
+    }
+    .box {
+        margin: -1em;
+    }
+    .carousel-indicators {
+        margin-bottom: -1em;
+    }
+    .carousel-big .donut-number{
+        margin: 4px 0;
+        height: 20px;
+    }
 
 }
