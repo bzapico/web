@@ -82,7 +82,9 @@
     display:inline-block;
     margin: 0 5px 0 0;
 }
-
+.card-title-c  p {
+    margin-bottom: 0em;
+}
 /* - - - Medias Cluster table card - - - */
 @media screen and (max-width:1500px){
     .card-title-c h5 {
