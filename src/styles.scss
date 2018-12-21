@@ -80,13 +80,15 @@ a {
     padding-top: 100%;
   }
 }
+@media screen and (max-width:1679px){
+  .hide {
+    display: none  !important;
+  }
+}
 
 @media screen and (max-width:1500px){
   .loader {
     top: 25%;
-  }
-  .hide {
-    display: none  !important;
   }
   .tooltip-fix {
     height: 20px;
