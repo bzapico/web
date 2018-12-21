@@ -49,7 +49,6 @@
                   [gradient]="gradient"
                   [schemeType]="schemeType"
                   [explodeSlices]="false"
-                  class="donut-chart-rel"
                   >
                 </ngx-charts-pie-chart>
                 <div class="donut-number">{{clusterGroup[0].running_nodes}}/{{clusterGroup[0].total_nodes}}</div>
@@ -75,7 +74,6 @@
                   [gradient]="gradient"
                   [schemeType]="schemeType"
                   [explodeSlices]="false"
-                  class="donut-chart-rel"
                   >
                 </ngx-charts-pie-chart>
                 <div class="donut-number">{{clusterGroup[1].running_nodes}}/{{clusterGroup[1].total_nodes}}</div>
@@ -105,7 +103,6 @@
                   [gradient]="gradient"
                   [schemeType]="schemeType"
                   [explodeSlices]="false"
-                  class="donut-chart-rel"
                   >
                 </ngx-charts-pie-chart>
                 <div class="donut-number">{{clusterGroup[2].running_nodes}}/{{clusterGroup[2].total_nodes}}</div>
@@ -162,8 +159,8 @@
                   routerLinkActive="active" >
                   {{cluster.running_nodes}} nodes running
                 </p>
-                <p *ngIf="cluster.name.length > 26" class="text-uppercase grey text-center">{{cluster.name | slice: 0:25}}...</p>
-                <p *ngIf="cluster.name.length < 26" class="text-uppercase grey text-center">{{cluster.name}}</p>
+                <p *ngIf="cluster.name.length > 26" class="text-uppercase grey">{{cluster.name | slice: 0:25}}...</p>
+                <p *ngIf="cluster.name.length < 26" class="text-uppercase grey">{{cluster.name}}</p>
               </div>
             </div>
           </div>
