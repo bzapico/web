@@ -27,9 +27,9 @@
                 </ngx-charts-pie-chart>
                 <div class="donut-number">{{countRunning}}/{{instances.length}}</div>
               </div>
-              <p *ngIf="instances.length > 0" class="blue text-center apps-run mb-0">Apps running</p>
-              <p *ngIf="instances.length === 0" class="circle-name grey text-center">NO APPS DEPLOYED</p>
-              <p *ngIf="instances.length > 0" class="circle-name grey text-center">DEPLOYED</p>
+              <p *ngIf="instances.length === 0" class="blue text-center apps-run mb-0">Apps running</p>
+              <p *ngIf="instances.length > 0" class="circle-name grey text-center">NO APPS DEPLOYED</p>
+              <p *ngIf="instances.length === 0" class="circle-name grey text-center">DEPLOYED</p>
             </div>
           </div>
           <div class="fix-top">
@@ -52,7 +52,7 @@
           class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
           No applications deployed yet
         </div>
-        <div *ngIf="instances.length>0" class="h-100 box-line-chart">
+        <div *ngIf="instances.length > 0" class="h-100 box-line-chart">
           <div class="line-chart">
             <div class="bottom-line"></div>
             <ngx-charts-line-chart
