@@ -403,9 +403,11 @@ button[type="submit"]:disabled {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  .donut-number {
+    margin-top: 0.25em;
+  }
 }
 .donut-number {
-  margin-top: 2px;
   font-size: 0.9em;
   position: absolute;
   left: 50%;
@@ -511,6 +513,15 @@ button[type="submit"]:disabled {
     display: none;
   }
 }
+@media screen and (max-width:1680px){
+  /* Target devices bigger than 1680px. */
+  .carousel-big{
+    .donut-number {
+      margin-top: 0.1em;
+      // background-color: #0937ff;
+    }
+  }
+}
 
 @media screen and (max-width:1500px){
   /* Target devices narrower than 1500px */
@@ -560,7 +571,6 @@ button[type="submit"]:disabled {
       line-height: .6rem !important;
     }
   }
-  
 }
 /* - - -  No elements in a table - - - */
 .no-elements {
