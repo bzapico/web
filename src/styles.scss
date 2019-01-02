@@ -399,6 +399,20 @@ button[type="submit"]:disabled {
 .carousel-small {
   display: none;
 }
+.carousel-big{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.donut-number {
+  margin-top: 2px;
+  font-size: 0.9em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
 .carousel-indicators {
   bottom: 0;
   position: absolute;
@@ -513,6 +527,13 @@ button[type="submit"]:disabled {
     .cluster-info {
       max-width: 150px;
       margin-right: 1em;
+    }
+    .donut-number {
+      font-size: .8em;
+    }
+    .donut-chart {
+      height:100%;
+      max-width: 100px;
     }
   }
   .carousel-control-prev-icon {

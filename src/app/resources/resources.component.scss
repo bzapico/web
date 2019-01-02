@@ -237,23 +237,9 @@
     text-align: center;
     position: relative;
 }
-.donut-number {
-    font-size: 0.9em;
-    display: inline-table;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
 .cluster-number {
     float: right;
     color: #949494;
-}
-.carousel-big{
-    .donut-number {
-        margin: 6px 0;
-        height: 20px;
-    }
 }
 .card-clus { 
     padding: 1.5rem 1.5rem 0 1.5rem;
@@ -286,15 +272,6 @@
     }
     .nodes-run{
         display: inline;
-    }
-    .carousel-small{
-        .donut-number {
-            font-size: .8em;
-        }
-        .donut-chart {
-            height:100%;
-            max-width: 100px;
-        }
     }
 }
 @media screen and (min-width:2560px){
@@ -361,13 +338,4 @@
     .nodes-run {
         margin-top: -2em;
     }
-    .carousel-big {
-        margin-top: -.9em;
-    }
-    .carousel-big{
-        .donut-number {
-            margin: 3px 0;
-        }
-    }
-
 }
