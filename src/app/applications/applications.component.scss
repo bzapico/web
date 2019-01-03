@@ -23,14 +23,13 @@
     height: 100%;
     max-width: 156px;
     align-items: center;
-    background-color: aquamarine;
 }
 .fix-top{
     margin-top: 6px;
 }
 .donut-chart {
     width: 100%;
-    height: 100%;
+    height: 85%;
     text-align: center;
     position: relative;
 }
@@ -58,9 +57,10 @@
     color: black;
     font-size: 1.7em;
 }
-.circle-name {
+.ame {
     font-size: 1.2em;
     color:#949494;
+    line-height: 1em;
 }
 
 /* - - - Medias Summary app card - - - */
@@ -89,6 +89,7 @@
     }
     .donut-chart {
         height: 85%;
+        max-height: 97px;
         max-width: 100px;
     }
     .donut-number {
@@ -294,9 +295,6 @@
     }
     .fix-top {
         margin-top: 25px;
-    }
-    .donut-chart {
-        height: 75%;
     }
 }
 
