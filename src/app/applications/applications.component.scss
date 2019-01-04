@@ -13,22 +13,23 @@
     justify-content: center;
     align-content: center;
     height: 100%;
-    align-items: center;
+    // align-items: center;
 }
 .deployed-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // align-content: center;
     height: 100%;
-    max-width: 156px;
+    // align-content: center;
+    // max-width: 156px;
     // width: 50%;
+    width: 90px;
     background-color: aquamarine;
 }
-.fix-top{
-    margin-top: 6px;
-}
+// .fix-top{
+//     margin-top: 6px;
+// }
 .donut-chart {
     height: 85%;
     text-align: center;
@@ -75,8 +76,6 @@
     }
     .circle span {
         font-size: 1em !important;
-        top: 21px;
-        left: 25px;
     }
     .circle-name {
         font-size: .9em !important;
@@ -100,15 +99,14 @@
     h2 {
         font-size: 1.5rem;
     }
+    .donut-number {
+        font-size: .8em;
+    }
 }
 @media screen and (min-width:2560px){
     .circle {
         min-width: 140px;
         min-height: 140px;
-    }
-    .circle span {
-        top: 54px;
-        left: 58px;
     }
     .carousel {
         padding-top: 2em;
@@ -152,7 +150,6 @@
     .y-axis-line-chart span {
         font-size: .8em;
     }
-
 }
 
 /* - - - Deployed app list table card - - - */
@@ -247,6 +244,7 @@
 .no-apps {
     height: 70%;
 }
+
 /* - - - Medias Deployed app list card - - - */
 @media screen and (max-width:1500px){
     .card-title-h h5, .card-title-c h5 {
@@ -262,10 +260,11 @@
     .status-dot-process:before {
         margin: 0 23px;
     }
-    .fix-top {
-        margin-top: 6px!important;
-    }
+    // .fix-top {
+    //     margin-top: 6px!important;
+    // }
 }
+
 @media screen and (max-width:1680px){
     .summary-card {
         margin-top: 0em;
@@ -282,8 +281,8 @@
         margin-top: -2.3em;
         line-height: 11px;
     }
-    .fix-top {
-        margin-top: 25px;
-    }
+    // .fix-top {
+    //     margin-top: 25px;
+    // }
 }
 
