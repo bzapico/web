@@ -185,9 +185,9 @@ a {
 .row-main {
   height: 54%;
 }
+
 @media screen and (max-width:1500px){
   .card-title-h {
-    margin-bottom: 40px;
     h5 {
       font-size: 1em;
     }
@@ -195,6 +195,12 @@ a {
     .row-info {
       height: 31%;
       margin-bottom: 1.9rem;
+  }
+}
+
+@media screen and (max-width:1680px){
+  .card-title-h {
+    margin-bottom: 40px;
   }
 }
 
@@ -514,10 +520,7 @@ button[type="submit"]:disabled {
 @media screen and (max-width:1613px){
   /* Target devices narrower than 1613px. */
   .carousel-indicators {
-      bottom: -0.8em;
-  }
-  .carousel-big .donut-number {
-    margin: 4px 0;
+    bottom: -0.8em;
   }
 }
 
@@ -559,7 +562,6 @@ button[type="submit"]:disabled {
       line-height: .6rem !important;
     }
   }
-  
 }
 /* - - -  No elements in a table - - - */
 .no-elements {
