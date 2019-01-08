@@ -61,11 +61,13 @@ export class EditUserComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Query role list
-   this.backend.listRoles(this.organizationId)
-    .subscribe(response => {
-      this.rolesList = response.roles;
-    });
+    if (this.userRole && this.userRole === 'Owner') {
+      // Query role list
+      this.backend.listRoles(this.organizationId)
+        .subscribe(response => {
+          this.rolesList = response.roles;
+        });
+      }
   }
 
   /**
@@ -116,6 +118,7 @@ export class EditUserComponent implements OnInit {
         role_name: this.userRole
       })
       .subscribe(response => {
+        if (this.userRole && this.userRole === 'Owner') {
         this.backend.changeRole(this.organizationId, this.userId, this.getRoleId(this.userRole)).
           subscribe(responseRole => {
             this.notificationsService.add({
@@ -130,6 +133,13 @@ export class EditUserComponent implements OnInit {
             });
             this.bsModalRef.hide();
           });
+        } else {
+          this.notificationsService.add({
+            message: 'The user ' + this.userName + ' has been edited',
+            timeout: 10000
+          });
+          this.bsModalRef.hide();
+        }
       }, error => {
         this.notificationsService.add({
           message: 'ERROR: ' + error.error.message,
