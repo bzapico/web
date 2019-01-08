@@ -178,5 +178,16 @@ export class EditUserComponent implements OnInit {
     });
     return roleId;
   }
+
+ /**
+  * Checks it the role is Owner
+  * @param userRole user Role
+  */
+ isOwner(userRole: string): boolean {
+   if (userRole === 'Owner') {
+    return true;
+   }
+   return false;
+ }
 }
 

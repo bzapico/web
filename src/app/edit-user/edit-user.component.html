@@ -42,9 +42,9 @@
       <label 
         for="rdo-3"
         class="btn-radio"           
-        [ngClass]="{'disabled-role': userRole === 'Developer' && userRole === 'Operator'}">
+        [ngClass]="{'disabled-role': !isOwner(userRole)}">
         <input 
-          [attr.disabled]="userRole === 'Developer' && userRole === 'Operator'"
+        [attr.disabled]="userRole !== 'Owner' ? 'true' : null"
           [checked]="checkUserRole('Owner')" 
           type="radio" 
           id="rdo-1" 
@@ -67,9 +67,9 @@
       <label 
         for="rdo-3"
         class="btn-radio"           
-        [ngClass]="{'disabled-role': userRole === 'Developer' && userRole === 'Operator'}">
+        [ngClass]="{'disabled-role': !isOwner(userRole)}">
         <input 
-          [attr.disabled]="userRole === 'Developer' && userRole === 'Operator'"
+          [attr.disabled]="userRole !== 'Owner' ? 'true' : null"
           [checked]="checkUserRole('Operator')" 
           type="radio" 
           id="rdo-2" 
@@ -92,9 +92,9 @@
       <label 
         for="rdo-3"
         class="btn-radio"           
-        [ngClass]="{'disabled-role': userRole === 'Developer'}">
+        [ngClass]="{'disabled-role': !isOwner(userRole)}">
         <input 
-          [attr.disabled]="userRole === 'Developer' && userRole === 'Operator'"
+          [attr.disabled]="userRole !== 'Owner' ? 'true' : null"
           [checked]="checkUserRole('Developer')" 
           type="radio" 
           id="rdo-3" 
