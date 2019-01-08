@@ -406,6 +406,9 @@ button[type="submit"]:disabled {
   .donut-number {
     margin-top: 0.25em;
   }
+  .carousel-indicators {
+    bottom: -0.6em;
+  }
 }
 .donut-number {
   font-size: 0.9em;
@@ -561,10 +564,6 @@ button[type="submit"]:disabled {
   }
   .nodes-run{
     line-height: 1em;
-  }
-  .carousel-indicators {
-    bottom: 10px;
-    margin-bottom: 0em;
   }
   .cluster-info {
     &:first-child p {
