@@ -80,7 +80,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Refresh ratio
    */
-  REFRESH_INTERVAL = 20000;
+  REFRESH_INTERVAL = 2000;
 
   /**
    * Hold request error message or undefined
@@ -235,6 +235,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     let minutes: any = now.getMinutes();
     let seconds: any = now.getSeconds();
     const winwidth = window.innerWidth;
+    const series = this.nodesChart[0].series;
+    let maxValues = 0;
 
     if (minutes < 10) {
       minutes = '0' + now.getMinutes();
@@ -247,24 +249,16 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       'name':  now.getHours() + ':' + minutes + ':' + seconds
     };
     if (winwidth < 1440) {
-      if (this.nodesChart[0].series.length > 2) {
-        // Removes first element
-        this.nodesChart[0].series.shift();
-      }
-      this.nodesChart[0].series.push(entry);
+      maxValues = 2;
     } else if (winwidth >= 1440 && winwidth <= 1800) {
-      if (this.nodesChart[0].series.length > 3) {
-        // Removes first element
-        this.nodesChart[0].series.shift();
-      }
-      this.nodesChart[0].series.push(entry);
+      maxValues = 3;
     } else if (winwidth > 1800) {
-      if (this.nodesChart[0].series.length > 4) {
-        // Removes first element
-        this.nodesChart[0].series.shift();
-      }
-      this.nodesChart[0].series.push(entry);
+      maxValues = 4;
     }
+    if (this.nodesChart[0].series.length > maxValues) {
+      this.nodesChart[0].series = series.slice(series.length - maxValues);
+    }
+    this.nodesChart[0].series.push(entry);
     this.nodesChart = [...this.nodesChart];
   }
 
