@@ -80,7 +80,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Refresh ratio
    */
-  REFRESH_INTERVAL = 200000;
+  REFRESH_INTERVAL = 20000;
 
   /**
    * Hold request error message or undefined
@@ -234,6 +234,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     const now = new Date(Date.now());
     let minutes: any = now.getMinutes();
     let seconds: any = now.getSeconds();
+    const winwidth = window.innerWidth;
+
     if (minutes < 10) {
       minutes = '0' + now.getMinutes();
     }
@@ -244,12 +246,25 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       'value': runningNodesPercentage,
       'name':  now.getHours() + ':' + minutes + ':' + seconds
     };
-
-    if (this.nodesChart[0].series.length > 2) {
-      // Removes first element
-      this.nodesChart[0].series.shift();
+    if (winwidth < 1440) {
+      if (this.nodesChart[0].series.length > 2) {
+        // Removes first element
+        this.nodesChart[0].series.shift();
+      }
+      this.nodesChart[0].series.push(entry);
+    } else if (winwidth >= 1440 && winwidth <= 1800) {
+      if (this.nodesChart[0].series.length > 3) {
+        // Removes first element
+        this.nodesChart[0].series.shift();
+      }
+      this.nodesChart[0].series.push(entry);
+    } else if (winwidth > 1800) {
+      if (this.nodesChart[0].series.length > 4) {
+        // Removes first element
+        this.nodesChart[0].series.shift();
+      }
+      this.nodesChart[0].series.push(entry);
     }
-    this.nodesChart[0].series.push(entry);
     this.nodesChart = [...this.nodesChart];
   }
 
