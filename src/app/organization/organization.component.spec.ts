@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 
 describe('OrganizationComponent', () => {
@@ -22,6 +23,7 @@ describe('OrganizationComponent', () => {
         FormsModule,
         ButtonsModule,
         TooltipModule,
+        RouterTestingModule,
         ModalModule.forRoot(),
       ],
       providers: [

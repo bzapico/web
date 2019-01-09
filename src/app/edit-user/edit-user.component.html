@@ -39,14 +39,19 @@
   <div class="roles py-4">
     <h4>Roles*</h4>
     <div class="cntr">
-      <label for="rdo-1" class="btn-radio">
+      <label 
+        for="radioOwner"
+        class="btn-radio"           
+   
+      >
         <input 
+          [disabled]="userRole === 'Developer' || userRole === 'Operator'"
           [checked]="checkUserRole('Owner')" 
           type="radio" 
-          id="rdo-1" 
+          id="radioOwner" 
           name="radio-grp"
           (change)="changeRole('Owner')"
-          >
+        >
         <svg width="20px" height="20px" viewBox="0 0 20 20">
           <circle 
             cx="10" 
@@ -60,14 +65,19 @@
         </svg>
         <span class="align-bottom">Owner</span>
       </label>
-      <label for="rdo-2" class="btn-radio">
+      <label 
+        for="radioOperator"
+        class="btn-radio"   
+        [ngClass]="{'disabled-role': userRole === 'Operator'}"
+      >
         <input 
+          [disabled]="userRole === 'Developer' || userRole === 'Operator'"
           [checked]="checkUserRole('Operator')" 
           type="radio" 
-          id="rdo-2" 
+          id="radioOperator" 
           name="radio-grp"
           (change)="changeRole('Operator')"
-          >
+        >
         <svg width="20px" height="20px" viewBox="0 0 20 20">
           <circle 
             cx="10" 
@@ -81,14 +91,19 @@
         </svg>
         <span class="align-bottom">Operator</span>
       </label>
-      <label for="rdo-3" class="btn-radio">
+      <label 
+        for="radioDeveloper"
+        class="btn-radio"  
+        [ngClass]="{'disabled-role': userRole === 'Developer'}"
+      >
         <input 
+          [disabled]="userRole === 'Developer' || userRole === 'Operator'"
           [checked]="checkUserRole('Developer')" 
           type="radio" 
-          id="rdo-3" 
+          id="radioDeveloper" 
           name="radio-grp"
           (change)="changeRole('Developer')"
-          >
+        >
         <svg width="20px" height="20px" viewBox="0 0 20 20">
           <circle 
             cx="10" 
