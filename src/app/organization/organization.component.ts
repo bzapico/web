@@ -9,6 +9,7 @@ import { NotificationsService } from '../services/notifications.service';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { UpdateEventsService } from '../services/update-events.service';
+import { Router } from '@angular/router';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -39,6 +40,7 @@ export class OrganizationComponent implements OnInit {
    * Reference for the service that allows the user info component
    */
   modalRef: BsModalRef;
+  modalRefOnHide: any;
 
   /**
    * Hold request error message or undefined
@@ -50,6 +52,7 @@ export class OrganizationComponent implements OnInit {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
+    private router: Router,
     private updateService: UpdateEventsService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.organizationMock) || null;
@@ -103,7 +106,7 @@ export class OrganizationComponent implements OnInit {
 
     this.modalRef = this.modalService.show(UserInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
+    this.modalRefOnHide = this.modalService.onHide.subscribe((reason: string) => {this.updateUserList(); });
   }
 
   /**
@@ -127,7 +130,11 @@ export class OrganizationComponent implements OnInit {
 
     this.modalRef = this.modalService.show(EditUserComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
+    this.modalService.onHide.subscribe((reason: string) => {
+        if (this.router.url === '/organization') {
+        this.updateUserList();
+      }
+    });
   }
 
   /**
