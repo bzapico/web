@@ -399,6 +399,25 @@ button[type="submit"]:disabled {
 .carousel-small {
   display: none;
 }
+.carousel-big{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .donut-number {
+    margin-top: 0.25em;
+  }
+  .carousel-indicators {
+    bottom: -0.6em;
+  }
+}
+.donut-number {
+  font-size: 0.9em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
 .carousel-indicators {
   bottom: 0;
   position: absolute;
@@ -448,44 +467,35 @@ button[type="submit"]:disabled {
     }
   }
 }
+
 .carousel-control-prev, .carousel-control-next {
-  position: absolute;
-  top: 40%;
-  bottom: 40%;
-  width: 3%;
-  color: #fff;
-  opacity: 1;
+  width: 13px;
 }
-.carousel-control-prev-icon {
-  display: inline-block;
-  width: 10px;
-  height: 20px;
-  background-image: none;
-  cursor: pointer;
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  position: relative;
+}
+.carousel-control-prev-icon{
+  background-image:none;
   &:before {
     content: '\e314';
     font-family: 'Material Icons';
     color: black;
     font-size: 26px;
-    left: -14px;
+    left: -6px;
     position: absolute;
-    bottom: 10px;
+    bottom: 8px;
   }
 }
-.carousel-control-next-icon {
-  display: inline-block;
-  width: 10px;
-  height: 20px;
-  background-image: none;
-  cursor: pointer;
+.carousel-control-next-icon{
+  background-image:none;
   &:before {
     content: '\e315';
     font-family: 'Material Icons';
     color: black;
     font-size: 26px;
-    bottom: 10px;
+    bottom: 8px;
     position: absolute;
-    right: -14px;
+    right: -6px;
   }
 }
 /* - - -  Charts - - - */
@@ -507,17 +517,12 @@ button[type="submit"]:disabled {
   }
 }
 @media screen and (max-width:1680px){
-  .carousel-indicators {
-      margin-bottom: -1em;
-  }
-}
-@media screen and (max-width:1613px){
-  /* Target devices narrower than 1613px. */
-  .carousel-indicators {
-      bottom: -0.8em;
-  }
-  .carousel-big .donut-number {
-    margin: 4px 0;
+  /* Target devices bigger than 1680px. */
+  .carousel-big{
+    .donut-number {
+      margin-top: 0.1em;
+      // background-color: #0937ff;
+    }
   }
 }
 
@@ -537,29 +542,34 @@ button[type="submit"]:disabled {
       max-width: 150px;
       margin-right: 1em;
     }
+    .donut-number {
+      font-size: .8em;
+    }
+    .donut-chart {
+      height:100%;
+      max-width: 100px;
+    }
   }
   .carousel-control-prev-icon {
     &:before {
       bottom: -10px;
+      left: -18px;
     }
   }
   .carousel-control-next-icon {
     &:before {
       bottom: -10px;
+      right: -18px;
     }
   }
   .nodes-run{
     line-height: 1em;
-  }
-  .carousel-indicators {
-    bottom: 10px;
   }
   .cluster-info {
     &:first-child p {
       line-height: .6rem !important;
     }
   }
-  
 }
 /* - - -  No elements in a table - - - */
 .no-elements {
@@ -567,5 +577,4 @@ button[type="submit"]:disabled {
   text-align: center;
   padding-top: 2em;
 }
-
 

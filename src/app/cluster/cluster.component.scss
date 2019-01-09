@@ -245,13 +245,6 @@
     text-align: center;
     position: relative;
 }
-.donut-number {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-}
 
 /* - - - Media Cluster card pie chart- - - */
 @media screen and (max-width:1500px){
@@ -263,9 +256,6 @@
     }
     .donut-chart {
         height: 85%;
-    }
-    .donut-number {
-        font-size: .8em;
     }
     .nodes-run-node {
         font-size: .8em;

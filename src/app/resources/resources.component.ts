@@ -234,6 +234,10 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     const now = new Date(Date.now());
     let minutes: any = now.getMinutes();
     let seconds: any = now.getSeconds();
+    const winwidth = window.innerWidth;
+    const series = this.nodesChart[0].series;
+    let numXAxisTimeStamps = 0;
+
     if (minutes < 10) {
       minutes = '0' + now.getMinutes();
     }
@@ -244,10 +248,15 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       'value': runningNodesPercentage,
       'name':  now.getHours() + ':' + minutes + ':' + seconds
     };
-
-    if (this.nodesChart[0].series.length > 3) {
-      // Removes first element
-      this.nodesChart[0].series.shift();
+    if (winwidth < 1440) {
+      numXAxisTimeStamps = 2;
+    } else if (winwidth >= 1440 && winwidth <= 1800) {
+      numXAxisTimeStamps = 3;
+    } else if (winwidth > 1800) {
+      numXAxisTimeStamps = 4;
+    }
+    if (this.nodesChart[0].series.length > numXAxisTimeStamps) {
+      this.nodesChart[0].series = series.slice(series.length - numXAxisTimeStamps);
     }
     this.nodesChart[0].series.push(entry);
     this.nodesChart = [...this.nodesChart];

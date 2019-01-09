@@ -33,11 +33,6 @@
     text-align: center;
     position: relative;
 }
-.donut-number {
-    position: absolute;
-    top: 44%;
-    left: 41%;
-}
 .apps-run {
     font-size: .8em;
     margin-top: -1em;
@@ -90,11 +85,6 @@
         height: 85%;
         max-width: 100px;
     }
-    .donut-number {
-        top: 45%;
-        left: 38%;
-        font-size: .8em;
-    }
     .apps-run {
         margin-top: -3em;
     }
@@ -114,9 +104,6 @@
     .circle span {
         top: 54px;
         left: 58px;
-    }
-    .carousel {
-        padding-top: 2em;
     }
     .apps-run {
         font-size: 1em;
@@ -285,10 +272,6 @@
     .apps-run {
         margin-top: -2.3em;
         line-height: 11px;
-    }
-    .donut-number {
-        margin-bottom: 0em;
-        left: 38%;
     }
     .fix-top {
         margin-top: 25px;
