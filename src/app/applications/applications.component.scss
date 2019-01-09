@@ -23,12 +23,9 @@
     max-width: 156px;
     align-items: center;
 }
+
 .fix-top {
     margin-top: 6px;
-}
-.no-deployed {
-    line-height: 1em;
-    margin-top: -1em;
 }
 .donut-chart {
     width: 100%;
@@ -260,9 +257,6 @@
     .fix-top {
         margin-top: 6px!important;
     }
-    .no-deployed{
-        margin-top: -2em;
-    }
 }
 @media screen and (max-width:1680px){
     .summary-card {
@@ -270,7 +264,6 @@
     }
     .deployed-box{
         max-width: 121px;
-        max-height: 97px;
     }
     .circle {
         width: 90px;
@@ -284,6 +277,9 @@
     }
     .donut-chart {
         height: 75%;
+    }
+    .no-deployed {
+        padding-top: 2em;
     }
 }
 

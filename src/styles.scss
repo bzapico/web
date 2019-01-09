@@ -527,7 +527,6 @@ button[type="submit"]:disabled {
   .carousel-big{
     .donut-number {
       margin-top: 0.1em;
-      // background-color: #0937ff;
     }
   }
 }
@@ -548,13 +547,13 @@ button[type="submit"]:disabled {
       max-width: 150px;
       margin-right: 1em;
     }
-    .donut-number {
-      font-size: .8em;
-    }
     .donut-chart {
       height:100%;
       max-width: 100px;
     }
+  }
+  .donut-number {
+    font-size: .8em;
   }
   .carousel-control-prev-icon {
     &:before {
