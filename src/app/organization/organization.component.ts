@@ -110,12 +110,18 @@ export class OrganizationComponent implements OnInit {
    * Opens the modal view that holds the user info and editable component
    */
   openEditUser(user) {
+    let role = 'Owner';
+    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+    if (jwtData !== null) {
+      role = JSON.parse(jwtData).role;
+    }
     const initialState = {
       organizationName: this.organizationName,
       organizationId: this.organizationId,
       userName: user.name,
       userId: user.email,
-      userRole: user.role_name,
+      userRole: role,
+      userRoleToEdit: user.role_name,
       title: 'Edit user'
     };
 

@@ -6,6 +6,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-user',
@@ -28,10 +29,12 @@ export class EditUserComponent implements OnInit {
    */
   organizationId: string;
   userRole: string;
+  userRoleToEdit: string;
   userName: string;
   userId: string;
   email: string;
   rolesList: any[];
+  temporalRole: string;
 
   /**
    * Holds the status of the role (if it has been modified)
@@ -47,6 +50,7 @@ export class EditUserComponent implements OnInit {
     private modalService: BsModalService,
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
+    private router: Router,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
@@ -61,6 +65,15 @@ export class EditUserComponent implements OnInit {
   }
 
   ngOnInit() {
+// edit
+    if (this.userRoleToEdit) {
+        // this.userRole should be initialized by initial state
+      this.temporalRole = this.userRoleToEdit;
+    } else {
+          // profile
+      this.temporalRole = this.userRole;
+    }
+
     if (this.userRole && this.userRole === 'Owner') {
       // Query role list
       this.backend.listRoles(this.organizationId)
@@ -91,7 +104,7 @@ export class EditUserComponent implements OnInit {
    *  Checks the role of current user
    */
   checkUserRole(buttonRole) {
-    if (buttonRole === this.userRole) {
+    if (buttonRole === this.temporalRole) {
       return true;
     }
     return false;
@@ -103,7 +116,7 @@ export class EditUserComponent implements OnInit {
    */
   changeRole(newRole) {
     this.roleDirty = true;
-    this.userRole = newRole;
+    this.temporalRole = newRole;
   }
 
   /**
@@ -119,13 +132,24 @@ export class EditUserComponent implements OnInit {
       })
       .subscribe(response => {
         if (this.userRole && this.userRole === 'Owner') {
-        this.backend.changeRole(this.organizationId, this.userId, this.getRoleId(this.userRole)).
+          this.backend.changeRole(this.organizationId, this.userId, this.getRoleId(this.temporalRole)).
           subscribe(responseRole => {
             this.notificationsService.add({
               message: 'The user ' + this.userName + ' has been edited',
               timeout: 10000
             });
             this.bsModalRef.hide();
+            if (!this.userRoleToEdit && this.temporalRole === 'Owner') {
+              // no redirection for the owner
+            } else if (!this.userRoleToEdit && this.temporalRole === 'Developer') {
+              this.router.navigate([
+                '/applications'
+              ]);
+            } else if (!this.userRoleToEdit && this.temporalRole === 'Operator') {
+              this.router.navigate([
+                '/resources'
+              ]);
+            }
           }, error => {
             this.notificationsService.add({
               message: 'ERROR: ' + error.error.message,
@@ -183,11 +207,11 @@ export class EditUserComponent implements OnInit {
   * Checks it the role is Owner
   * @param userRole user Role
   */
- isOwner(userRole: string): boolean {
-   if (userRole === 'Owner') {
-    return true;
-   }
-   return false;
- }
+//  isOwner(userRole: string): boolean {
+//    if (userRole === 'Owner') {
+//     return true;
+//    }
+//    return false;
+//  }
 }
 
