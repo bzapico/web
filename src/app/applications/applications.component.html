@@ -1,179 +1,179 @@
 <!-- Component title -->
 <div class="row row-title mb-4">
-    <div class="col-lg-12">
-      <h2>Applications</h2>
-    </div>
+  <div class="col-lg-12">
+    <h2>Applications</h2>
   </div>
-  <div class="row row-info">
-    <!-- Summary app info card -->
-    <div class="col-lg-4 h-100">
-      <div class="card p-4 h-100">
-        <div class="card-title-c">
-          <h5>SUMMARY</h5>
-        </div>
-        <div class="summary-card">
-          <div>
-            <div class="deployed-box">
-              <div 
-                *ngIf="instances.length >0"
-                class="donut-chart">
-                <ngx-charts-pie-chart
-                  [scheme]="colorScheme" 
-                  [results]="instancesPieChart" 
-                  [doughnut]= "doughnut"
-                  [gradient]="gradient"
-                  [explodeSlices]="false"
-                  >
-                </ngx-charts-pie-chart>
-                <div class="donut-number">{{countRunning}}/{{instances.length}}</div>
-              </div>
-              <p *ngIf="instances.length > 0" class="blue text-center apps-run mb-0">Apps running</p>
-              <p *ngIf="instances.length === 0" class="circle-name grey text-center">NO APPS DEPLOYED</p>
-              <p *ngIf="instances.length > 0" class="circle-name grey text-center">DEPLOYED</p>
-            </div>
-          </div>
-          <div class="fix-top">
-            <div class="circle summary-box">
-              <span class="align-self-center mt-1">{{registered.length}}</span>
-            </div>
-            <p class="circle-name text-center mt-3">REGISTERED</p>
-          </div>
-        </div>
+</div>
+<div class="row row-info">
+  <!-- Summary app info card -->
+  <div class="col-lg-4 h-100">
+    <div class="card p-4 h-100">
+      <div class="card-title-c">
+        <h5>SUMMARY</h5>
       </div>
-    </div>
-    <!-- App status timeline info card -->
-    <div class="col-lg-8 h-100">
-      <div class="card p-4 h-100">
-        <div class="card-title-c">
-          <h5>APP STATUS TIMELINE</h5>
-        </div>
-        <div 
-          *ngIf="instances.length === 0" 
-          class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
-          No applications deployed yet
-        </div>
-        <div *ngIf="instances.length>0" class="h-100 box-line-chart">
-          <div class="line-chart">
-            <div class="bottom-line"></div>
-            <ngx-charts-line-chart
-              [scheme]="colorScheme"
-              [results]="appsChart"
-              [xAxis]="showXAxis"
-              [yAxis]="showYAxis"
-              [gradient]="gradient" 
-              [showXAxisLabel]="showXAxisLabel"
-              [showYAxisLabel]="showYAxisLabel"
-              [yScaleMin]="0"
-              [yScaleMax]="100"
-              [showGridLines]="showGridLines"
-              [showRefLines]="showRefLines"
-              [schemeType]="schemeType"
-              [customColors]="customColors"
-              [rangeFillOpacity]="rangeFillOpacity"
-              [referenceLines]="referenceLines"
-              [showRefLabels]="showRefLabels"
-              >
-            </ngx-charts-line-chart>
+      <div class="summary-card">
+        <div>
+          <div class="deployed-box">
+            <div 
+              *ngIf="instances.length >0"
+              class="donut-chart">
+              <ngx-charts-pie-chart
+                [scheme]="colorScheme" 
+                [results]="instancesPieChart" 
+                [doughnut]= "doughnut"
+                [gradient]="gradient"
+                [explodeSlices]="false"
+                >
+              </ngx-charts-pie-chart>
+              <div class="donut-number">{{countRunning}}/{{instances.length}}</div>
+            </div>
+            <p *ngIf="instances.length > 0" class="blue text-center apps-run mb-0">Apps running</p>
+            <p *ngIf="instances.length === 0" class="circle-name grey text-center no-deployed">NO APPS DEPLOYED</p>
+            <p *ngIf="instances.length > 0" class="circle-name grey text-center">DEPLOYED</p>
           </div>
-          <div class="y-axis-line-chart">
-            <span class="grey">100%</span>
-            <span class="grey mb-4">0%</span>
-          </div>  
+        </div>
+        <div class="fix-top">
+          <div class="circle summary-box">
+            <span class="align-self-center mt-1">{{registered.length}}</span>
+          </div>
+          <p class="circle-name text-center mt-3">REGISTERED</p>
         </div>
       </div>
     </div>
   </div>
-  <!-- Deployed app list panel card-->
-  <div class="row row-main">
-    <div class="col-lg-12 col-md-12 col-sm-12 h-100">
-      <div class="card h-100 p-4">
-        <div class="card-title-h">
-          <h5>DEPLOYED APP LIST</h5>
+  <!-- App status timeline info card -->
+  <div class="col-lg-8 h-100">
+    <div class="card p-4 h-100">
+      <div class="card-title-c">
+        <h5>APP STATUS TIMELINE</h5>
+      </div>
+      <div 
+        *ngIf="instances.length === 0" 
+        class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
+        No applications deployed yet
+      </div>
+      <div *ngIf="instances.length>0" class="h-100 box-line-chart">
+        <div class="line-chart">
+          <div class="bottom-line"></div>
+          <ngx-charts-line-chart
+            [scheme]="colorScheme"
+            [results]="appsChart"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [gradient]="gradient" 
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [yScaleMin]="0"
+            [yScaleMax]="100"
+            [showGridLines]="showGridLines"
+            [showRefLines]="showRefLines"
+            [schemeType]="schemeType"
+            [customColors]="customColors"
+            [rangeFillOpacity]="rangeFillOpacity"
+            [referenceLines]="referenceLines"
+            [showRefLabels]="showRefLabels"
+            >
+          </ngx-charts-line-chart>
         </div>
-        <div class="table-h" *ngIf="loadedData && instances && instances.length > 0 && !requestError" >
-          <table class="table-responsive table-fixed">
-            <thead>
-              <tr>
-                <th scope="col" class="col-2">
-                  Name
-                </th>
-                <th scope="col" class="col-2">
-                  ID
-                </th>
-                <th scope="col" class="col-3">
-                  Description
-                </th>
-                <th scope="col" class="col-2">
-                  Tags
-                </th>
-                <th scope="col" class="col-2 text-center">
-                  Status
-                </th>
-                <th scope="col" class="col-1 text-center">
-                  Info
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let app of instances">
-                <td class="text-capitalize col-2">{{app.name}}</td>
-                <td class="col-2">{{app.app_instance_id}}</td>
-                <td class="col-3">{{app.description}}</td>  
-                <td class="col-2">
-                  <button *ngFor="let label of labelsToString(app.labels)" class="btn-sm btn-outline-primary" disabled>
-                      {{label[0]}}: {{label[1]}}
+        <div class="y-axis-line-chart">
+          <span class="grey">100%</span>
+          <span class="grey mb-4">0%</span>
+        </div>  
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Deployed app list panel card-->
+<div class="row row-main">
+  <div class="col-lg-12 col-md-12 col-sm-12 h-100">
+    <div class="card h-100 p-4">
+      <div class="card-title-h">
+        <h5>DEPLOYED APP LIST</h5>
+      </div>
+      <div class="table-h" *ngIf="loadedData && instances && instances.length > 0 && !requestError" >
+        <table class="table-responsive table-fixed">
+          <thead>
+            <tr>
+              <th scope="col" class="col-2">
+                Name
+              </th>
+              <th scope="col" class="col-2">
+                ID
+              </th>
+              <th scope="col" class="col-3">
+                Description
+              </th>
+              <th scope="col" class="col-2">
+                Tags
+              </th>
+              <th scope="col" class="col-2 text-center">
+                Status
+              </th>
+              <th scope="col" class="col-1 text-center">
+                Info
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let app of instances">
+              <td class="text-capitalize col-2">{{app.name}}</td>
+              <td class="col-2">{{app.app_instance_id}}</td>
+              <td class="col-3">{{app.description}}</td>  
+              <td class="col-2">
+                <button *ngFor="let label of labelsToString(app.labels)" class="btn-sm btn-outline-primary" disabled>
+                    {{label[0]}}: {{label[1]}}
+                </button>
+              </td>
+              <td 
+                class="text-lowercase col-2 text-center"
+                [ngClass]=
+                "{'status-dot':classStatusCheck(app.status_name, 'running'),
+                'status-dot-error':classStatusCheck(app.status_name, 'error'),
+                'status-dot-process':classStatusCheck(app.status_name, 'process')}"> 
+                <span tooltip="{{app.status_name | lowercase}}" class="tooltip-fix" placement="auto">
+                </span>
+                <span class="hide">
+                  {{app.status_name}}
+                </span>
+              </td>
+                <td class="row-info-btn col-1 text-center">
+                  <button class="btn info-btn btn-primary" (click)="openAppsInfo(app)">
+                    <span class="i-info">i</span>
                   </button>
                 </td>
-                <td 
-                  class="text-lowercase col-2 text-center"
-                  [ngClass]=
-                  "{'status-dot':classStatusCheck(app.status_name, 'running'),
-                  'status-dot-error':classStatusCheck(app.status_name, 'error'),
-                  'status-dot-process':classStatusCheck(app.status_name, 'process')}"> 
-                  <span tooltip="{{app.status_name | lowercase}}" class="tooltip-fix" placement="auto">
-                  </span>
-                  <span class="hide">
-                    {{app.status_name}}
-                  </span>
-                </td>
-                  <td class="row-info-btn col-1 text-center">
-                    <button class="btn info-btn btn-primary" (click)="openAppsInfo(app)">
-                      <span class="i-info">i</span>
-                    </button>
-                  </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-         <!-- No info to show -->
-        <div 
-          *ngIf="loadedData && instances && instances.length === 0 && !requestError"
-          class="no-apps d-flex justify-content-center align-items-center">
-          No available applications detected
-        </div>
-         <!-- Requested error -->
-        <div
-          *ngIf="loadedData && requestError"
-          class="no-elements d-flex justify-content-center align-items-center">
-          <p>{{requestError}}</p>
-        </div>
-        <!-- Loader -->
-        <div class="nalej-loader-container" *ngIf="!loadedData">
-          <div class="loader">
-            <svg 
-              class="circular" 
-              viewBox="25 25 50 50">
-              <circle 
-                class="path" 
-                cx="50" 
-                cy="50" 
-                r="20" 
-                fill="none" 
-                stroke-width="2" 
-                stroke-miterlimit="10"/>
-            </svg>
-          </div>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+       <!-- No info to show -->
+      <div 
+        *ngIf="loadedData && instances && instances.length === 0 && !requestError"
+        class="no-apps d-flex justify-content-center align-items-center">
+        No available applications detected
+      </div>
+       <!-- Requested error -->
+      <div
+        *ngIf="loadedData && requestError"
+        class="no-elements d-flex justify-content-center align-items-center">
+        <p>{{requestError}}</p>
+      </div>
+      <!-- Loader -->
+      <div class="nalej-loader-container" *ngIf="!loadedData">
+        <div class="loader">
+          <svg 
+            class="circular" 
+            viewBox="25 25 50 50">
+            <circle 
+              class="path" 
+              cx="50" 
+              cy="50" 
+              r="20" 
+              fill="none" 
+              stroke-width="2" 
+              stroke-miterlimit="10"/>
+          </svg>
         </div>
       </div>
     </div>
   </div>
+</div>

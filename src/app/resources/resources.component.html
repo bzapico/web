@@ -159,8 +159,8 @@
                   routerLinkActive="active" >
                   {{cluster.running_nodes}} nodes running
                 </p>
-                <p *ngIf="cluster.name.length > 26" class="text-uppercase grey">{{cluster.name | slice: 0:25}}...</p>
-                <p *ngIf="cluster.name.length < 26" class="text-uppercase grey">{{cluster.name}}</p>
+                <p *ngIf="cluster.name.length > 26" class="text-uppercase grey text-center">{{cluster.name | slice: 0:25}}...</p>
+                <p *ngIf="cluster.name.length < 26" class="text-uppercase grey text-center">{{cluster.name}}</p>
               </div>
             </div>
           </div>
@@ -244,7 +244,7 @@
               <th scope="col" class="col-1 text-center">
                 Status
               </th>
-              <th scope="col" class="col-1 text-center col-padd">
+              <th scope="col" class="col-1 text-center multitenant">
                 Multitenant
               </th>
               <th scope="col" class="col-1 text-center">
@@ -271,7 +271,7 @@
                 </a>
               </td>  
               <td class="col-3 pl-4">{{cluster.description}}</td>
-              <td class="text-lowercase col-1 col-padd">
+              <td class="text-lowercase col-1">
                 {{cluster.cluster_type_name}}
               </td>
               <td class="text-lowercase col-1 text-center"
