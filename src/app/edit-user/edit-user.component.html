@@ -42,15 +42,15 @@
       <label 
         for="rdo-3"
         class="btn-radio"           
-        [ngClass]="{'disabled-role': !isOwner(userRole)}">
+        [ngClass]="{'disabled-role': !isOwner(userRole)}"
+      >
         <input 
-        [attr.disabled]="userRole !== 'Owner' ? 'true' : null"
           [checked]="checkUserRole('Owner')" 
           type="radio" 
           id="rdo-1" 
           name="radio-grp"
           (change)="changeRole('Owner')"
-          >
+        >
         <svg width="20px" height="20px" viewBox="0 0 20 20">
           <circle 
             cx="10" 
@@ -66,16 +66,16 @@
       </label>
       <label 
         for="rdo-3"
-        class="btn-radio"           
-        [ngClass]="{'disabled-role': !isOwner(userRole)}">
+        class="btn-radio"   
+        [ngClass]="{'disabled-role': !isOwner(userRole)}"
+      >
         <input 
-          [attr.disabled]="userRole !== 'Owner' ? 'true' : null"
           [checked]="checkUserRole('Operator')" 
           type="radio" 
           id="rdo-2" 
           name="radio-grp"
           (change)="changeRole('Operator')"
-          >
+        >
         <svg width="20px" height="20px" viewBox="0 0 20 20">
           <circle 
             cx="10" 
@@ -91,16 +91,16 @@
       </label>
       <label 
         for="rdo-3"
-        class="btn-radio"           
-        [ngClass]="{'disabled-role': !isOwner(userRole)}">
+        class="btn-radio"  
+        [ngClass]="{'disabled-role': !isOwner(userRole)}"
+      >
         <input 
-          [attr.disabled]="userRole !== 'Owner' ? 'true' : null"
           [checked]="checkUserRole('Developer')" 
           type="radio" 
           id="rdo-3" 
           name="radio-grp"
           (change)="changeRole('Developer')"
-          >
+        >
         <svg width="20px" height="20px" viewBox="0 0 20 20">
           <circle 
             cx="10" 
