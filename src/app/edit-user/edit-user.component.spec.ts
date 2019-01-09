@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonsModule, BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('EditUserComponent', () => {
   let component: EditUserComponent;
@@ -17,6 +18,7 @@ describe('EditUserComponent', () => {
         HttpClientTestingModule,
         FormsModule,
         ButtonsModule,
+        RouterTestingModule,
         ModalModule.forRoot(),
       ],
       providers: [
