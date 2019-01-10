@@ -409,9 +409,9 @@ button[type="submit"]:disabled {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  .donut-number {
-    margin-top: 0.25em;
-  }
+  // .donut-number {
+  //   margin-top: 0.25em;
+  // }
   .carousel-indicators {
     bottom: -0.6em;
   }
@@ -423,6 +423,7 @@ button[type="submit"]:disabled {
   top: 50%;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
+  background-color: aquamarine;
 }
 .carousel-indicators {
   bottom: 0;
@@ -525,11 +526,11 @@ button[type="submit"]:disabled {
 
 @media screen and (max-width:1680px){
   /* Target devices bigger than 1680px. */
-  .carousel-big{
-    .donut-number {
-      margin-top: 0.1em;
-    }
-  }
+  // .carousel-big{
+  //   .donut-number {
+  //     margin-top: 0.1em;
+  //   }
+  // }
 }
 
 @media screen and (max-width:1500px){

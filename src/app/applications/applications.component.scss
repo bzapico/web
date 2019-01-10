@@ -23,7 +23,6 @@
     max-width: 156px;
     align-items: center;
 }
-
 .fix-top {
     margin-top: 6px;
 }
@@ -58,7 +57,7 @@
 }
 
 /* - - - Medias Summary app card - - - */
-@media screen and (max-width:1500px){
+@media screen and (max-width:1500px) {
     .circle {
         margin-top: 2em;
         max-width: 65px;
@@ -76,7 +75,7 @@
         height: 25px !important;
         width: 25px !important;
     }
-    .i-info{
+    .i-info {
         font-size: 1.2em !important;
         top: 2px !important;
         left: 10px !important;
@@ -96,7 +95,7 @@
         font-size: 1.5rem;
     }
 }
-@media screen and (min-width:2560px){
+@media screen and (min-width:2560px) {
     .circle {
         min-width: 140px;
         min-height: 140px;
@@ -119,8 +118,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
-.line-chart {
     width:93%;
     height: 100%;
     position: relative;
@@ -140,11 +137,10 @@
 }
 
 /* - - - Media App Status card - - - */
-@media screen and (max-width:1500px){
+@media screen and (max-width:1500px) {
     .y-axis-line-chart span {
         font-size: .8em;
     }
-
 }
 
 /* - - - Deployed app list table card - - - */
@@ -202,7 +198,7 @@
     border-radius: 50%;
     position: relative;
 }
-.i-info{
+.i-info {
     font-size: 1.2em;
     font-weight: 700;
     position: absolute;
@@ -240,7 +236,7 @@
     height: 70%;
 }
 /* - - - Medias Deployed app list card - - - */
-@media screen and (max-width:1500px){
+@media screen and (max-width:1500px) {
     .card-title-h h5, .card-title-c h5 {
         font-size: 1em;
     }
@@ -258,7 +254,7 @@
         margin-top: 6px!important;
     }
 }
-@media screen and (max-width:1680px){
+@media screen and (max-width:1680px) {
     .summary-card {
         margin-top: 0em;
     }

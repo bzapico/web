@@ -25,7 +25,6 @@
         width: 100%;
         td {
             float: left;
-            // padding: 1.2rem 0;
             padding: 0.75rem;
             font-size: .9em;
             border-top: 0.8px solid #EEEEEE;
@@ -85,7 +84,7 @@
 }
 
 /* - - - Medias Cluster table card - - - */
-@media screen and (max-width:1500px){
+@media screen and (max-width:1500px) {
     .card-title-c h5 {
         font-size: 1em;
     }
@@ -160,7 +159,7 @@
           top: 21px;
           left: 25px;
         }
-      }
+    }
     .circle-name {
         font-size: 1em !important;
         margin-top: 0.6em !important;
@@ -169,11 +168,9 @@
         margin-top: 0em;
         height: 82%;
     }
-    .donut-chart {
-        max-width: 100px;
-      }
+
 }
-@media screen and (min-width:2560px){
+@media screen and (min-width:2560px) {
     .circle {
         min-width: 140px;
         min-height: 140px;
@@ -237,24 +234,12 @@
     height: 68%;
     text-align: center;
     position: relative;
-}
-.donut-number {
-    display: inline-table;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    background-color: #FFC40D;
 }
 .cluster-number {
     margin-bottom: 0;
     float: right;
     color: #949494;
-}
-.carousel-big{
-    .donut-number {
-        margin: 6px 0;
-        height: 20px;
-    }
 }
 .card-clus { 
     padding: 1.5rem 1.5rem 0 1.5rem;
@@ -265,7 +250,7 @@
 }
 
 /* - - - Media Cluster card Slider - - - */
-@media screen and (max-width:1500px){
+@media screen and (max-width:1500px) {
     .cluster-number {
         margin-bottom: 0;
         font-size: 0.8em;
@@ -285,23 +270,15 @@
       align-items: center;
       height: 100%;
     }
-    .nodes-run{
+    .nodes-run {
         display: inline;
     }
-    .carousel-small{
-        .donut-number {
-            font-size: .8em;
-        }
-        .donut-chart {
-            height:100%;
-        }
-    }
 }
-@media screen and (min-width:2560px){
+@media screen and (min-width:2560px) {
     .box {
         width: 31%;
     }
-    .slide-box{
+    .slide-box {
         padding-top: 2em;
     }
 }
@@ -310,16 +287,13 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
-.line-chart {
+    height: 100%;
     width:93%;
     position: relative;
-    height: 100%;
 }
-.bottom-line{
+.bottom-line {
     position: absolute;
     bottom: 1em;
-    // bottom: 0;
     left: 0;
     height: 1px;
     width: 97%;
@@ -332,15 +306,15 @@
     justify-content: space-between;
 }
 
-@media screen and (max-width:1500px){
+@media screen and (max-width:1500px) {
     .y-axis-line-chart  {
-     display: none;
+        display: none;
     }
-    .line-chart {
-        width:100%;
+    .box-line-chart {
+        width: 100%;
     }
 }
-@media screen and (max-width:1613px){
+@media screen and (max-width:1613px) {
     .circle-name {
         margin-bottom: 0;
     }
@@ -351,13 +325,8 @@
     .box {
         margin: -1em;
     }
-
-    .carousel-big .donut-number{
-        margin: 4px 0;
-        height: 20px;
-    }
 }
-@media screen and (max-width:1680px){
+@media screen and (max-width:1680px) {
     .summary-card { 
         margin-top: 0em;
     }
@@ -376,12 +345,8 @@
     .box {
         margin: -1em;
     }
-    .carousel-big .donut-number{
-        margin: 4px 0;
-        height: 20px;
-    }
 }
-@media screen and (max-width:1720px){
+@media screen and (max-width:1720px) {
     .narrow-col-padding-fix {
         padding: 0.75rem 0.2rem;
         display: inline-grid !important;
