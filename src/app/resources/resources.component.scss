@@ -380,8 +380,10 @@
         margin: 4px 0;
         height: 20px;
     }
-    .multitenant {
+}
+@media screen and (max-width:1720px){
+    .narrow-col-padding-fix {
         padding: 0.75rem 0.2rem;
         display: inline-grid !important;
-    }  
+    } 
 }
