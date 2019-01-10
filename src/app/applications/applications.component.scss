@@ -13,7 +13,6 @@
     justify-content: center;
     align-content: center;
     height: 100%;
-    align-items: center;
 }
 .deployed-box {
     display: flex;
@@ -24,7 +23,8 @@
     max-width: 156px;
     align-items: center;
 }
-.fix-top{
+
+.fix-top {
     margin-top: 6px;
 }
 .donut-chart {
@@ -270,14 +270,16 @@
         height: 90px;
     }
     .apps-run {
-        margin-top: -2.3em;
-        line-height: 11px;
+        line-height: 1em;
     }
     .fix-top {
         margin-top: 25px;
     }
     .donut-chart {
         height: 75%;
+    }
+    .no-deployed {
+        padding-top: 2em;
     }
 }
 

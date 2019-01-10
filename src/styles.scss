@@ -185,9 +185,9 @@ a {
 .row-main {
   height: 54%;
 }
+
 @media screen and (max-width:1500px){
   .card-title-h {
-    margin-bottom: 40px;
     h5 {
       font-size: 1em;
     }
@@ -195,6 +195,12 @@ a {
     .row-info {
       height: 31%;
       margin-bottom: 1.9rem;
+  }
+}
+
+@media screen and (max-width:1680px){
+  .card-title-h {
+    margin-bottom: 40px;
   }
 }
 
@@ -522,7 +528,6 @@ button[type="submit"]:disabled {
   .carousel-big{
     .donut-number {
       margin-top: 0.1em;
-      // background-color: #0937ff;
     }
   }
 }
@@ -543,13 +548,13 @@ button[type="submit"]:disabled {
       max-width: 150px;
       margin-right: 1em;
     }
-    .donut-number {
-      font-size: .8em;
-    }
     .donut-chart {
       height:100%;
       max-width: 100px;
     }
+  }
+  .donut-number {
+    font-size: .8em;
   }
   .carousel-control-prev-icon {
     &:before {
