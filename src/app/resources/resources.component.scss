@@ -221,6 +221,13 @@
     cursor: pointer;
     text-align: center;
 }
+.carousel-big {
+    .nodes-run {
+        position: absolute;
+        bottom: 2.5em;
+        margin-bottom: 0.3em;
+    }
+}
 .box {
     width: 27%;
     display: inline-flex;

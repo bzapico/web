@@ -80,7 +80,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Refresh ratio
    */
-  REFRESH_INTERVAL = 20000;
+  REFRESH_INTERVAL = 200000;
 
   /**
    * Hold request error message or undefined
