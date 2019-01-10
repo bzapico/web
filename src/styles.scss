@@ -42,7 +42,7 @@ a {
     text-decoration: none;
   }
 }
-.error-message{
+.error-message {
   width: 95%;
   margin: 0 auto;
   font-size: 0.8em;
@@ -80,13 +80,13 @@ a {
     padding-top: 100%;
   }
 }
-@media screen and (max-width:1679px){
+@media screen and (max-width:1679px) {
   .hide {
     display: none  !important;
   }
 }
 
-@media screen and (max-width:1500px){
+@media screen and (max-width:1500px) {
   .loader {
     top: 25%;
   }
@@ -98,7 +98,7 @@ a {
     left: 39%;
   }
 }
-@media screen and (min-width:2560px){
+@media screen and (min-width:2560px) {
   .loader {
     top: 100%;
   }
@@ -186,19 +186,19 @@ a {
   height: 54%;
 }
 
-@media screen and (max-width:1500px){
+@media screen and (max-width:1500px) {
   .card-title-h {
     h5 {
       font-size: 1em;
     }
   }
-    .row-info {
-      height: 31%;
-      margin-bottom: 1.9rem;
+  .row-info {
+    height: 31%;
+    margin-bottom: 1.9rem;
   }
 }
 
-@media screen and (max-width:1680px){
+@media screen and (max-width:1680px) {
   .card-title-h {
     margin-bottom: 40px;
   }
@@ -240,7 +240,7 @@ button[type="submit"]:disabled {
   font-size: 14px;
 }
 .alert > button.close:hover span {
-    color:white;
+  color:white;
 }
 
 /* - - - Modal window styles - - - */
@@ -270,14 +270,14 @@ button[type="submit"]:disabled {
 .close {
   font-weight: 200;
   &:focus {
-      outline: none;
+    outline: none;
   }
 }
 .nalej-form-title{
   font-size: 1em;
   display: inline;
   button span {
-     color: #888888;
+    color: #888888;
   }
 }
 @media screen and (max-width: 1300px) {
@@ -288,7 +288,6 @@ button[type="submit"]:disabled {
     .modal-dialog {
       margin: 0.5rem auto;
     }
-
 }
 /* - - - Alerts styles - - - */
 .alert-close-button {
@@ -405,13 +404,13 @@ button[type="submit"]:disabled {
 .carousel-small {
   display: none;
 }
-.carousel-big{
+.carousel-big {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // .donut-number {
-  //   margin-top: 0.25em;
-  // }
+  .donut-number {
+    margin-top: 0.25em;
+  }
   .carousel-indicators {
     bottom: -0.6em;
   }
@@ -423,7 +422,6 @@ button[type="submit"]:disabled {
   top: 50%;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
-  background-color: aquamarine;
 }
 .carousel-indicators {
   bottom: 0;
@@ -481,7 +479,7 @@ button[type="submit"]:disabled {
 .carousel-control-prev-icon, .carousel-control-next-icon {
   position: relative;
 }
-.carousel-control-prev-icon{
+.carousel-control-prev-icon {
   background-image:none;
   &:before {
     content: '\e314';
@@ -493,7 +491,7 @@ button[type="submit"]:disabled {
     bottom: 8px;
   }
 }
-.carousel-control-next-icon{
+.carousel-control-next-icon {
   background-image:none;
   &:before {
     content: '\e315';
@@ -517,23 +515,14 @@ button[type="submit"]:disabled {
   fill: #949494; 
 }
 /* - - - Medias Charts and Carousel - - - */
-@media screen and (min-width:2560px){
+@media screen and (min-width:2560px) {
   /* Target devices bigger than 2560px. */
   .carousel-small{
     display: none;
   }
 }
 
-@media screen and (max-width:1680px){
-  /* Target devices bigger than 1680px. */
-  // .carousel-big{
-  //   .donut-number {
-  //     margin-top: 0.1em;
-  //   }
-  // }
-}
-
-@media screen and (max-width:1500px){
+@media screen and (max-width:1500px) {
   /* Target devices narrower than 1500px */
   .carousel-big {
     display: none;
@@ -569,7 +558,7 @@ button[type="submit"]:disabled {
       right: -18px;
     }
   }
-  .nodes-run{
+  .nodes-run {
     line-height: 1em;
   }
   .cluster-info {

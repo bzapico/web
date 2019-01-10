@@ -87,7 +87,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   requestError: string;
 
-
   /**
    * Pie Chart options
    */

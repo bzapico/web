@@ -39,87 +39,87 @@
         *ngIf="clusters.length > 0" 
         class="h-75 carousel-big"> 
         <slide *ngFor="let clusterGroup of chunckedClusters; let i = index">
-          <div class="slide-box animated fadeIn">
-            <div class="box" *ngIf="clusterGroup[0]">
-              <div class="donut-chart">
-                <ngx-charts-pie-chart
-                  [scheme]="colorScheme" 
-                  [results]="pieChartsData[0+i*3]" 
-                  [doughnut]= "doughnut"
-                  [gradient]="gradient"
-                  [schemeType]="schemeType"
-                  [explodeSlices]="false"
-                  >
-                </ngx-charts-pie-chart>
-                <div class="donut-number">{{clusterGroup[0].running_nodes}}/{{clusterGroup[0].total_nodes}}</div>
+          <div class="d-block w-100">
+            <div class="slide-box animated fadeIn">
+              <div class="box" *ngIf="clusterGroup[0]">
+                <div class="donut-chart">
+                  <ngx-charts-pie-chart
+                    [scheme]="colorScheme" 
+                    [results]="pieChartsData[0+i*3]" 
+                    [doughnut]= "doughnut"
+                    [gradient]="gradient"
+                    [schemeType]="schemeType"
+                    [explodeSlices]="false"
+                    >
+                  </ngx-charts-pie-chart>
+                  <div class="donut-number">{{clusterGroup[0].running_nodes}}/{{clusterGroup[0].total_nodes}}</div>
+                </div>
+                <p 
+                  *ngIf="clusterGroup[0].running_nodes === clusterGroup[0].total_nodes" 
+                  class="blue nodes-run mb-0"                   
+                  [routerLink]="['cluster', clusterGroup[0].cluster_id]" 
+                  routerLinkActive="active"
+                >All nodes running</p>
+                <p 
+                  *ngIf="clusterGroup[0].running_nodes !== clusterGroup[0].total_nodes" 
+                  class="blue nodes-run mb-0"
+                >{{clusterGroup[0].running_nodes}} nodes running</p>
+                <p class="text-uppercase grey text-center">{{clusterGroup[0].name | abbreviate}}</p>
               </div>
-              <p 
-                *ngIf="clusterGroup[0].running_nodes === clusterGroup[0].total_nodes" 
-                class="blue nodes-run mb-0"                   
-                [routerLink]="['cluster', clusterGroup[0].cluster_id]" 
-                routerLinkActive="active"
-              >All nodes running</p>
-              <p 
-                *ngIf="clusterGroup[0].running_nodes !== clusterGroup[0].total_nodes" 
-                class="blue nodes-run mb-0"
-              >{{clusterGroup[0].running_nodes}} nodes running</p>
-              <p class="text-uppercase grey text-center">{{clusterGroup[0].name | abbreviate}}</p>
-            </div>
-            <div class="box" *ngIf="clusterGroup[1]">
-              <div class="donut-chart">
-                <ngx-charts-pie-chart
-                  [scheme]="colorScheme" 
-                  [results]="pieChartsData[1+i*3]" 
-                  [doughnut]= "doughnut"
-                  [gradient]="gradient"
-                  [schemeType]="schemeType"
-                  [explodeSlices]="false"
-                  >
-                </ngx-charts-pie-chart>
-                <div class="donut-number">{{clusterGroup[1].running_nodes}}/{{clusterGroup[1].total_nodes}}</div>
+              <div class="box" *ngIf="clusterGroup[1]">
+                <div class="donut-chart">
+                  <ngx-charts-pie-chart
+                    [scheme]="colorScheme" 
+                    [results]="pieChartsData[1+i*3]" 
+                    [doughnut]= "doughnut"
+                    [gradient]="gradient"
+                    [schemeType]="schemeType"
+                    [explodeSlices]="false"
+                    >
+                  </ngx-charts-pie-chart>
+                  <div class="donut-number">{{clusterGroup[1].running_nodes}}/{{clusterGroup[1].total_nodes}}</div>
+                </div>
+                <p
+                  *ngIf="clusterGroup[1].running_nodes === clusterGroup[1].total_nodes"
+                  class="blue nodes-run mb-0"
+                  [routerLink]="['cluster', clusterGroup[1].cluster_id]" 
+                  routerLinkActive="active">
+                  All nodes running
+                </p>
+                <p
+                  *ngIf="clusterGroup[1].running_nodes !== clusterGroup[1].total_nodes"
+                  class="blue nodes-run mb-0">
+                  {{clusterGroup[1].running_nodes}} nodes running
+                </p>
+                <p class="text-uppercase grey text-center">{{clusterGroup[1].name | abbreviate}}</p>
               </div>
-              <p
-                *ngIf="clusterGroup[1].running_nodes === clusterGroup[1].total_nodes"
-                class="blue nodes-run mb-0"
-                [routerLink]="['cluster', clusterGroup[1].cluster_id]" 
-                routerLinkActive="active">
-                All nodes running
-              </p>
-              <p
-                *ngIf="clusterGroup[1].running_nodes !== clusterGroup[1].total_nodes"
-                class="blue nodes-run mb-0">
-                {{clusterGroup[1].running_nodes}} nodes running
-              </p>
-              <p class="text-uppercase grey text-center">{{clusterGroup[1].name | abbreviate}}</p>
-            </div>
-            <div
-              class="box"
-              *ngIf="clusterGroup[2]">
-              <div class="donut-chart">
-                <ngx-charts-pie-chart
-                  [scheme]="colorScheme" 
-                  [results]="pieChartsData[2+i*3]" 
-                  [doughnut]= "doughnut"
-                  [gradient]="gradient"
-                  [schemeType]="schemeType"
-                  [explodeSlices]="false"
-                  >
-                </ngx-charts-pie-chart>
-                <div class="donut-number">{{clusterGroup[2].running_nodes}}/{{clusterGroup[2].total_nodes}}</div>
+              <div class="box" *ngIf="clusterGroup[2]">
+                <div class="donut-chart">
+                  <ngx-charts-pie-chart
+                    [scheme]="colorScheme" 
+                    [results]="pieChartsData[2+i*3]" 
+                    [doughnut]= "doughnut"
+                    [gradient]="gradient"
+                    [schemeType]="schemeType"
+                    [explodeSlices]="false"
+                    >
+                  </ngx-charts-pie-chart>
+                  <div class="donut-number">{{clusterGroup[2].running_nodes}}/{{clusterGroup[2].total_nodes}}</div>
+                </div>
+                <p
+                  *ngIf="clusterGroup[2].running_nodes === clusterGroup[2].total_nodes"
+                  class="blue nodes-run mb-0"
+                  [routerLink]="['cluster', clusterGroup[2].cluster_id]" 
+                  routerLinkActive="active">
+                  All nodes running
+                </p>
+                <p
+                  *ngIf="clusterGroup[2].running_nodes !== clusterGroup[2].total_nodes"
+                  class="blue nodes-run mb-0">
+                  {{clusterGroup[2].running_nodes}} nodes running
+                </p>
+                <p class="text-uppercase grey text-center">{{clusterGroup[2].name | abbreviate}}</p>
               </div>
-              <p
-                *ngIf="clusterGroup[2].running_nodes === clusterGroup[2].total_nodes"
-                class="blue nodes-run mb-0"
-                [routerLink]="['cluster', clusterGroup[2].cluster_id]" 
-                routerLinkActive="active">
-                All nodes running
-              </p>
-              <p
-                *ngIf="clusterGroup[2].running_nodes !== clusterGroup[2].total_nodes"
-                class="blue nodes-run mb-0">
-                {{clusterGroup[2].running_nodes}} nodes running
-              </p>
-              <p class="text-uppercase grey text-center">{{clusterGroup[2].name | abbreviate}}</p>
             </div>
           </div>
         </slide>
@@ -131,36 +131,38 @@
         <slide 
           class="animated fadeIn"
           *ngFor="let cluster of clusters; let i = index">
-          <div class="slide-box">
-            <div class="box">
-              <div class="donut-chart">
-                <ngx-charts-pie-chart
-                  [scheme]="colorScheme" 
-                  [results]="pieChartsData[i]" 
-                  [doughnut]= "doughnut"
-                  [gradient]="gradient"
-                  [schemeType]="schemeType"
-                  >
-                </ngx-charts-pie-chart>
-                <div class="donut-number">{{cluster.running_nodes}}/{{cluster.total_nodes}}</div>
-              </div>
-              <div class="cluster-info">
-                <p
-                  *ngIf="cluster.running_nodes === cluster.total_nodes"
-                  class="nodes-run mb-0 blue"
-                  [routerLink]="['cluster', cluster.cluster_id]" 
-                  routerLinkActive="active" >
-                  All nodes running
-                </p>
-                <p
-                  *ngIf="cluster.running_nodes !== cluster.total_nodes" 
-                  class="nodes-run mb-0 blue"
-                  [routerLink]="['cluster', cluster.cluster_id]" 
-                  routerLinkActive="active" >
-                  {{cluster.running_nodes}} nodes running
-                </p>
-                <p *ngIf="cluster.name.length > 26" class="text-uppercase grey text-center">{{cluster.name | slice: 0:25}}...</p>
-                <p *ngIf="cluster.name.length < 26" class="text-uppercase grey text-center">{{cluster.name}}</p>
+          <div class="d-block w-100">
+            <div class="slide-box">
+              <div class="box">
+                <div class="donut-chart">
+                  <ngx-charts-pie-chart
+                    [scheme]="colorScheme" 
+                    [results]="pieChartsData[i]" 
+                    [doughnut]= "doughnut"
+                    [gradient]="gradient"
+                    [schemeType]="schemeType"
+                    >
+                  </ngx-charts-pie-chart>
+                  <div class="donut-number">{{cluster.running_nodes}}/{{cluster.total_nodes}}</div>
+                </div>
+                <div class="cluster-info">
+                  <p
+                    *ngIf="cluster.running_nodes === cluster.total_nodes"
+                    class="nodes-run mb-0 blue"
+                    [routerLink]="['cluster', cluster.cluster_id]" 
+                    routerLinkActive="active" >
+                    All nodes running
+                  </p>
+                  <p
+                    *ngIf="cluster.running_nodes !== cluster.total_nodes" 
+                    class="nodes-run mb-0 blue"
+                    [routerLink]="['cluster', cluster.cluster_id]" 
+                    routerLinkActive="active" >
+                    {{cluster.running_nodes}} nodes running
+                  </p>
+                  <p *ngIf="cluster.name.length > 26" class="text-uppercase grey text-center">{{cluster.name | slice: 0:25}}...</p>
+                  <p *ngIf="cluster.name.length < 26" class="text-uppercase grey text-center">{{cluster.name}}</p>
+                </div>
               </div>
             </div>
           </div>
