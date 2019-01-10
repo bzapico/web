@@ -41,7 +41,7 @@
         <slide *ngFor="let clusterGroup of chunckedClusters; let i = index">
           <div class="d-block w-100">
             <div class="slide-box animated fadeIn">
-              <div class="box" *ngIf="clusterGroup[0]">
+              <div  *ngIf="clusterGroup[0]">
                 <div class="donut-chart">
                   <ngx-charts-pie-chart
                     [scheme]="colorScheme" 
@@ -66,7 +66,7 @@
                 >{{clusterGroup[0].running_nodes}} nodes running</p>
                 <p class="text-uppercase grey text-center">{{clusterGroup[0].name | abbreviate}}</p>
               </div>
-              <div class="box" *ngIf="clusterGroup[1]">
+              <div *ngIf="clusterGroup[1]">
                 <div class="donut-chart">
                   <ngx-charts-pie-chart
                     [scheme]="colorScheme" 
@@ -93,7 +93,7 @@
                 </p>
                 <p class="text-uppercase grey text-center">{{clusterGroup[1].name | abbreviate}}</p>
               </div>
-              <div class="box" *ngIf="clusterGroup[2]">
+              <div  *ngIf="clusterGroup[2]">
                 <div class="donut-chart">
                   <ngx-charts-pie-chart
                     [scheme]="colorScheme" 
