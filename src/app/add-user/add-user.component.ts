@@ -80,7 +80,6 @@ export class AddUserComponent implements OnInit {
         }, error => {
           this.notificationsService.add({
             message: 'ERROR: ' + error.error.message + ' already exists',
-            type: 'danger',
             timeout: 10000
           });
         });
