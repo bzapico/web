@@ -80,7 +80,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Refresh ratio
    */
-  REFRESH_INTERVAL = 2000;
+  REFRESH_INTERVAL = 20000;
 
   /**
    * Hold request error message or undefined
@@ -118,12 +118,12 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   showRefLabels = false;
   schemeType = 'ordinal';
   rangeFillOpacity = 0.0;
-  // referenceLines = [
-  //   {
-  //     name: 'xline',
-  //     value: 0
-  //   }
-  // ];
+  referenceLines = [
+    {
+      name: 'xline',
+      value: 0
+    }
+  ];
 
   /**
    * NGX-Charts object-assign required object references (for rendering)

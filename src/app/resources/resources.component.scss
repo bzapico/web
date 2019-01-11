@@ -85,7 +85,7 @@
 
 /* - - - Medias Cluster table card - - - */
 @media screen and (max-width:1500px) {
-    .card-title-c h5 {
+    .card-title-c {
         font-size: 1em;
     }
     h2 {
@@ -294,15 +294,6 @@
     justify-content: center;
     height: 100%;
     width:93%;
-    position: relative;
-}
-.bottom-line {
-    position: absolute;
-    bottom: 1em;
-    left: 0;
-    height: 1px;
-    width: 97%;
-    background-color: #EEEEEE;
 }
 .y-axis-line-chart {
     font-size: .8em;

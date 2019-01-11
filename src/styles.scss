@@ -16,9 +16,6 @@ html, body {
   font-family: 'Aldrich', sans-serif;
   box-sizing: border-box;
 }
-h5 {
-  margin-bottom: 0 !important;
-}
 .blue {
   color: #0937FF !important;
 }
@@ -570,4 +567,25 @@ button[type="submit"]:disabled {
   text-align: center;
   padding-top: 2em;
 }
+.box-line-chart {
+  .ngx-charts {
+    .gridline-path {
+      stroke: transparent!important;
+      stroke-width: 1;
+      fill: none;
+    }
+    .refline-path {
+      stroke: #EEEEEE!important;
+      stroke-width: 1;
+      stroke-dasharray: 0 !important;
+      stroke-dashoffset: 0 !important;
+    }
+    .y {
+      .tick {
+        display: none !important;
+      }
+    }
+  }
+}
+
 

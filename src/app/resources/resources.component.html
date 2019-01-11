@@ -177,8 +177,8 @@
   </div>
   <!-- Node status timeline info card -->
   <div class="col-lg-4 h-100">
-    <div class="card h-100 node-timeline">
-      <div class="card-title-c">
+    <div class="card h-100">
+      <div class="card-title-c mb-1">
         <h5 class="text-uppercase">Node status timeline</h5>
       </div>
       <div 
@@ -187,7 +187,6 @@
         No available nodes detected
       </div>
       <div *ngIf="nodesCount > 0" class="box-line-chart">
-        <!-- <div class="bottom-line"></div> -->
         <ngx-charts-line-chart
           [scheme]="colorScheme"
           [results]="nodesChart"
