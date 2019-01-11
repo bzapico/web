@@ -103,12 +103,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Line Chart options
    */
   showXAxis = true;
-  showYAxis = true;
+  showYAxis = false;
   showXAxisLabel = false;
   showYAxisLabel = false;
-  showGridLines = true;
+  showGridLines = false;
   showRefLines = true;
-  showRefLabels = false;
+  showRefLabels = true;
   schemeType = 'ordinal';
   rangeFillOpacity = 0.0;
   referenceLines = [
