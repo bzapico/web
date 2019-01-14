@@ -25,7 +25,6 @@
         width: 100%;
         td {
             float: left;
-            // padding: 1.2rem 0;
             padding: 0.75rem;
             font-size: .9em;
             border-top: 0.8px solid #EEEEEE;
@@ -85,8 +84,8 @@
 }
 
 /* - - - Medias Cluster table card - - - */
-@media screen and (max-width:1500px){
-    .card-title-c h5 {
+@media screen and (max-width:1500px) {
+    .card-title-c {
         font-size: 1em;
     }
     h2 {
@@ -160,7 +159,7 @@
           top: 21px;
           left: 25px;
         }
-      }
+    }
     .circle-name {
         font-size: 1em !important;
         margin-top: 0.6em !important;
@@ -169,11 +168,9 @@
         margin-top: 0em;
         height: 82%;
     }
-    .donut-chart {
-        max-width: 100px;
-      }
+
 }
-@media screen and (min-width:2560px){
+@media screen and (min-width:2560px) {
     .circle {
         min-width: 140px;
         min-height: 140px;
@@ -221,9 +218,15 @@
 }
 .nodes-run {
     font-size: .8em;
-    margin-top: -1em;
     cursor: pointer;
     text-align: center;
+}
+.carousel-big {
+    .nodes-run {
+        position: absolute;
+        bottom: 2.5em;
+        margin-bottom: 0.3em;
+    }
 }
 .box {
     width: 27%;
@@ -233,28 +236,15 @@
     align-items: center;
 }
 .donut-chart {
-    width: 100%;
-    height: 68%;
+    width: 100px;
+    height: 100px;
     text-align: center;
     position: relative;
-}
-.donut-number {
-    display: inline-table;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
 }
 .cluster-number {
     margin-bottom: 0;
     float: right;
     color: #949494;
-}
-.carousel-big{
-    .donut-number {
-        margin: 6px 0;
-        height: 20px;
-    }
 }
 .card-clus { 
     padding: 1.5rem 1.5rem 0 1.5rem;
@@ -265,7 +255,7 @@
 }
 
 /* - - - Media Cluster card Slider - - - */
-@media screen and (max-width:1500px){
+@media screen and (max-width:1500px) {
     .cluster-number {
         margin-bottom: 0;
         font-size: 0.8em;
@@ -285,23 +275,15 @@
       align-items: center;
       height: 100%;
     }
-    .nodes-run{
+    .nodes-run {
         display: inline;
     }
-    .carousel-small{
-        .donut-number {
-            font-size: .8em;
-        }
-        .donut-chart {
-            height:100%;
-        }
-    }
 }
-@media screen and (min-width:2560px){
+@media screen and (min-width:2560px) {
     .box {
         width: 31%;
     }
-    .slide-box{
+    .slide-box {
         padding-top: 2em;
     }
 }
@@ -310,19 +292,9 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
-.line-chart {
-    width:93%;
-    position: relative;
     height: 100%;
-}
-.bottom-line{
-    position: absolute;
-    bottom: 19px;
-    left: 0;
-    height: 1px;
-    width: 97%;
-    background-color: #EEEEEE;
+    width: 92%;
+    margin-left: 8px;
 }
 .y-axis-line-chart {
     font-size: .8em;
@@ -331,33 +303,22 @@
     justify-content: space-between;
 }
 
-@media screen and (max-width:1500px){
+@media screen and (max-width:1500px) {
     .y-axis-line-chart  {
-     display: none;
+        display: none;
     }
-    .line-chart {
-        width:100%;
-        height: 120px;
+    .box-line-chart {
+        width: 100%;
+        margin-left: 0;
     }
 }
-@media screen and (max-width:1613px){
+@media screen and (max-width:1613px) {
     .circle-name {
         margin-bottom: 0;
     }
-    .nodes-run {
-        margin-top: -1.3em;
-        line-height: 11px;
-    }
-    .box {
-        margin: -1em;
-    }
 
-    .carousel-big .donut-number{
-        margin: 4px 0;
-        height: 20px;
-    }
 }
-@media screen and (max-width:1680px){
+@media screen and (max-width:1680px) {
     .summary-card { 
         margin-top: 0em;
     }
@@ -369,19 +330,10 @@
     .circle-name {
         margin-bottom: 0;
     }
-    .nodes-run {
-        margin-top: -1.3em;
-        line-height: 11px;
-    }
-    .box {
-        margin: -1em;
-    }
-    .carousel-big .donut-number{
-        margin: 4px 0;
-        height: 20px;
-    }
-    .multitenant {
+}
+@media screen and (max-width:1781px) {
+    .narrow-col-padding-fix {
         padding: 0.75rem 0.2rem;
         display: inline-grid !important;
-    }  
+    } 
 }

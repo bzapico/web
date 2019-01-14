@@ -53,28 +53,25 @@
         No applications deployed yet
       </div>
       <div *ngIf="instances.length>0" class="h-100 box-line-chart">
-        <div class="line-chart">
-          <div class="bottom-line"></div>
-          <ngx-charts-line-chart
-            [scheme]="colorScheme"
-            [results]="appsChart"
-            [xAxis]="showXAxis"
-            [yAxis]="showYAxis"
-            [gradient]="gradient" 
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
-            [yScaleMin]="0"
-            [yScaleMax]="100"
-            [showGridLines]="showGridLines"
-            [showRefLines]="showRefLines"
-            [schemeType]="schemeType"
-            [customColors]="customColors"
-            [rangeFillOpacity]="rangeFillOpacity"
-            [referenceLines]="referenceLines"
-            [showRefLabels]="showRefLabels"
-            >
-          </ngx-charts-line-chart>
-        </div>
+        <ngx-charts-line-chart
+          [scheme]="colorScheme"
+          [results]="appsChart"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [gradient]="gradient" 
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [yScaleMin]="0"
+          [yScaleMax]="100"
+          [showGridLines]="showGridLines"
+          [showRefLines]="showRefLines"
+          [schemeType]="schemeType"
+          [customColors]="customColors"
+          [rangeFillOpacity]="rangeFillOpacity"
+          [referenceLines]="referenceLines"
+          [showRefLabels]="showRefLabels"
+          >
+        </ngx-charts-line-chart>
         <div class="y-axis-line-chart">
           <span class="grey">100%</span>
           <span class="grey mb-4">0%</span>

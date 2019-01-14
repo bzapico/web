@@ -87,7 +87,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   requestError: string;
 
-
   /**
    * Pie Chart options
    */
@@ -111,12 +110,12 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Line Chart options
    */
   showXAxis = true;
-  showYAxis = false;
+  showYAxis = true;
   showXAxisLabel = false;
   showYAxisLabel = false;
-  showGridLines = false;
+  showGridLines = true;
   showRefLines = true;
-  showRefLabels = true;
+  showRefLabels = false;
   schemeType = 'ordinal';
   rangeFillOpacity = 0.0;
   referenceLines = [
