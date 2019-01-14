@@ -78,10 +78,17 @@ export class AddUserComponent implements OnInit {
           });
           this.bsModalRef.hide();
         }, error => {
-          this.notificationsService.add({
-            message: 'ERROR: ' + error.error.message + ' already exists',
-            timeout: 10000
-          });
+          if (error.status === 409) {
+            this.notificationsService.add({
+              message: 'ERROR: ' + error.error.message + ' already exists',
+              timeout: 10000
+            });
+          } else {
+              this.notificationsService.add({
+                message: 'ERROR: ' + error.error.message,
+                timeout: 10000
+              });
+            }
         });
     }
   }
