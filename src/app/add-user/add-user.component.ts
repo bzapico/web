@@ -73,8 +73,22 @@ export class AddUserComponent implements OnInit {
       };
       this.backend.addUser(this.organizationId, user)
         .subscribe(response => {
-          this.notificationsService.add({message: user.email + ' created successfully'});
+          this.notificationsService.add({
+            message: 'The user ' + user.email + ' has been created successfully'
+          });
           this.bsModalRef.hide();
+        }, error => {
+          if (error.status === 409) {
+            this.notificationsService.add({
+              message: 'ERROR: ' + error.error.message + ' already exists',
+              timeout: 10000
+            });
+          } else {
+              this.notificationsService.add({
+                message: 'ERROR: ' + error.error.message,
+                timeout: 10000
+              });
+            }
         });
     }
   }
