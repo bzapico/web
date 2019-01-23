@@ -337,3 +337,35 @@
         display: inline-grid !important;
     } 
 }
+
+// Searc box
+.search-box {
+    position: relative;    
+    width: 250px;
+    height: 32px;
+    font-size: .9em;
+
+    input {
+        border: 2px solid #ededed;
+        border-radius: 5px;
+        &:focus {
+            z-index: 2;
+            border-color: #0937FF;
+            outline: none;
+            box-shadow: none;
+            &::placeholder {
+              color: white;
+            }
+        }
+
+    }
+    .input-group-addon { 
+        position: absolute;
+        top: 7px;
+        right: 10px;
+        color: #ededed;
+        &:focus {
+            color: #0937FF;
+        }
+    }
+}

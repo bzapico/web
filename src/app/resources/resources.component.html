@@ -222,6 +222,32 @@
         <h5>CLUSTERS</h5>
       </div>
       <div class="table-h" *ngIf="loadedData && clusters && clusters.length > 0 && !requestError">
+
+        
+        <!-- Search input -->
+        <div class="search-box">
+          <form>
+            <div class="form-group">
+              <div class="input-group">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  name="searchString" 
+                  placeholder="Search..." 
+                  [(ngModel)]="searchString">      
+                  <div class="input-group-addon">
+                    <i class="material-icons">search</i>
+                  </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+
+
+
+
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
@@ -252,7 +278,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let cluster of clusters">
+            <tr *ngFor="let cluster of clusters  | filter : 'name' : searchString; let i = index">
               <td class="col-2">
                 <a 
                   [routerLink]="['cluster', cluster.cluster_id]" 

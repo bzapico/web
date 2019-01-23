@@ -27,6 +27,9 @@ import { Cluster } from '../definitions/interfaces/cluster';
   ]
 })
 export class ResourcesComponent implements OnInit, OnDestroy {
+
+  public searchString: string;
+  
   /**
    * Backend reference
    */
