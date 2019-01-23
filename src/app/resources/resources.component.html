@@ -221,33 +221,36 @@
       <div class="card-title-h">
         <h5>CLUSTERS</h5>
       </div>
-      <div class="table-h" *ngIf="loadedData && clusters && clusters.length > 0 && !requestError">
 
-        
-        <!-- Search input -->
-        <div class="search-box">
-          <form>
-            <div class="form-group">
-              <div class="input-group">
-                <input 
-                  type="text" 
-                  class="form-control" 
-                  name="searchString" 
-                  placeholder="Search..." 
-                  [(ngModel)]="searchString">      
-                  <div class="input-group-addon">
-                    <i class="material-icons">search</i>
-                  </div>
+      <div class="row sorting">
+        <!-- sorting mesages -->
+          <div class="col-9">  
+            <p class="sorting-message">
+              Sorted by Name, descendent. <span class="blue reset-search">Reset</span>
+            </p>
+
+          </div>
+          <!-- Search input -->
+          <div class="col-3">
+            <form>
+              <div class="form-group">
+                <div class="search-box">
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    name="searchString" 
+                    placeholder="Search..." 
+                    [(ngModel)]="searchString">      
+                    <div class="search-icon">
+                      <i class="material-icons">search</i>
+                    </div>
+                </div>
               </div>
-            </div>
-          </form>
-        </div>
-
-
-
-
-
-
+            </form>
+          </div>      
+      </div>
+             
+      <div class="table-h" *ngIf="loadedData && clusters && clusters.length > 0 && !requestError">
         <table class="table-responsive table-fixed">
           <thead>
             <tr>

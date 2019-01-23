@@ -170,7 +170,7 @@ a {
   padding: 1.5rem;
 }
 .card-title-h {
-  margin-bottom: 70px;
+  margin-bottom: 20px;
 }
 .row-title {
   height: 4%;
@@ -195,11 +195,11 @@ a {
   }
 }
 
-@media screen and (max-width:1680px) {
-  .card-title-h {
-    margin-bottom: 40px;
-  }
-}
+// @media screen and (max-width:1680px) {
+//   .card-title-h {
+//     margin-bottom: 40px;
+//   }
+// }
 
 /* - - - Button styles - - - */
 .btn-outline-primary {
