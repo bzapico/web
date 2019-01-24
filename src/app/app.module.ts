@@ -37,6 +37,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { AbbreviatePipe } from './pipes/abbreviate.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
+import { SortByPipe } from './pipes/sort-by.pipe';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     ChangePasswordComponent,
     AbbreviatePipe,
     TruncatePipe,
-    FilterPipe
+    FilterPipe,
+    SortByPipe
   ],
   entryComponents: [
     DebugPanelComponent,
