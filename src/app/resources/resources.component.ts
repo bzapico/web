@@ -27,6 +27,13 @@ import { Cluster } from '../definitions/interfaces/cluster';
   ]
 })
 export class ResourcesComponent implements OnInit, OnDestroy {
+
+  /**
+   * Models that hold the sort info needed to sortBy pipe
+   */
+  sortingName: string;
+  isDesc: boolean;
+
   /**
    * Model that hold the search term in search box
    */
@@ -383,6 +390,19 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         return false;
       }
     }
+  }
+
+  /**
+   *  Sort function to apply sortBy pipe
+   * @param name name param to use sortBy pipe
+   */
+  sort(name: string): void {
+    if (name && this.sortingName !== name) {
+      this.isDesc = false;
+    } else {
+      this.isDesc = !this.isDesc;
+    }
+    this.sortingName = name;
   }
 
 }

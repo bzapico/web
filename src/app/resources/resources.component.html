@@ -254,34 +254,90 @@
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
-              <th scope="col" class="col-2">
-                Name
+              <th 
+                (click)="sort('name')"
+                sortable-column="name" 
+                scope="col" 
+                class="col-2">
+                Name 
+                <i class="material-icons">
+                  expand_more
+                </i>
               </th>
-              <th scope="col" class="col-2">
+              <th 
+                (click)="sort('id')"
+                sortable-column="id" 
+                scope="col" 
+                class="col-2">
                 ID
+                <i class="material-icons">
+                  expand_more
+                </i>
               </th>
-              <th scope="col" class="col-1 text-center">
+              <th 
+                (click)="sort('nodes')" 
+                sortable-column="nodes" 
+                scope="col" 
+                class="col-1 text-center">
                 Nodes
+                <i class="material-icons">
+                  expand_more
+                </i>
               </th>
-              <th scope="col" class="col-3 pl-4">
+              <th 
+                (click)="sort('description')" 
+                sortable-column="description" 
+                scope="col" 
+                class="col-3 pl-4">
                 Description
+                <i class="material-icons">
+                  expand_more
+                </i>
               </th>
-              <th scope="col" class="col-1">
+              <th 
+                (click)="sort('types')" 
+                sortable-column="types" 
+                scope="col" 
+                class="col-1">
                 Types
+                <i class="material-icons">
+                  expand_more
+                </i>
               </th>
-              <th scope="col" class="col-1 text-center">
+              <th 
+                (click)="sort('status')" 
+                sortable-column="status" 
+                scope="col" 
+                class="col-1 text-center">
                 Status
+                <i class="material-icons">
+                  expand_more
+                </i>
               </th>
-              <th scope="col" class="col-1 text-center narrow-col-padding-fix">
+              <th 
+                (click)="sort('multitenant')" 
+                sortable-column="multitenant" 
+                scope="col" 
+                class="col-1 text-center narrow-col-padding-fix">
                 Multitenant
+                <i class="material-icons">
+                  expand_more
+                </i>
               </th>
-              <th scope="col" class="col-1 text-center">
+              <th 
+                scope="col" 
+                class="col-1 text-center">
                 Edit
               </th>
             </tr>
           </thead>
+
+
+
+
           <tbody>
-            <tr *ngFor="let cluster of clusters  | filter : 'name' : searchTerm; let i = index">
+
+            <tr *ngFor="let cluster of  clusters  | sortBy : sortingName : isDesc ">
               <td class="col-2">
                 <a 
                   [routerLink]="['cluster', cluster.cluster_id]" 
@@ -328,6 +384,10 @@
             </tr>
           </tbody>
         </table>
+
+
+
+
       </div>
       <!-- No info to show -->
       <div 
