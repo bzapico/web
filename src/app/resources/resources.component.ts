@@ -27,9 +27,11 @@ import { Cluster } from '../definitions/interfaces/cluster';
   ]
 })
 export class ResourcesComponent implements OnInit, OnDestroy {
+  /**
+   * Model that hold the search term in search box
+   */
+  public searchTerm: string;
 
-  public searchString: string;
-  
   /**
    * Backend reference
    */
