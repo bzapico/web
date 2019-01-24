@@ -31,8 +31,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Models that hold the sort info needed to sortBy pipe
    */
-  sortingName: string;
-  isDesc: boolean;
+  order: string;
+  reverse: boolean;
 
   /**
    * Model that hold the search term in search box
@@ -152,7 +152,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.resourcesMock) || null;
     // check which backend is required (fake or real)
@@ -171,6 +171,10 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.pieChartsData = [];
     this.nodesChart = [{'name': 'Running nodes %', 'series': []}];
     this.requestError = '';
+
+    // SortBy
+    this.order = 'info.name';
+    this.reverse = false;
 
   /**
    * Mocked Charts
@@ -393,16 +397,16 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   *  Sort function to apply sortBy pipe
-   * @param name name param to use sortBy pipe
+   * Example: Use Order pipe in the component
+   *
    */
-  sort(name: string): void {
-    if (name && this.sortingName !== name) {
-      this.isDesc = false;
-    } else {
-      this.isDesc = !this.isDesc;
+
+  setOrder(value: string) {
+    if (this.order === value) {
+      this.reverse = !this.reverse;
     }
-    this.sortingName = name;
+
+    this.order = value;
   }
 
 }

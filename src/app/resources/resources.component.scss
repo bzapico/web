@@ -371,6 +371,7 @@
         }
     }
 }
+// Sorting styles
 .sorting {
     .sorting-message {
         color: #949494;
@@ -378,6 +379,29 @@
         padding: 0.75rem;
         .reset-search{
             cursor: pointer;
+        }
+    }
+}
+
+.table-h {
+    thead th  {
+        cursor: pointer;
+        &.active i {
+          color: #0937FF;
+      
+          span i{
+            visibility: visible;
+          }
+        }
+      }
+    
+    .expand-chevron {
+        position: relative;
+        cursor: pointer;
+        top: 3px;
+        right: 3px;
+        i {
+            font-size: 1.1em;
         }
     }
 }

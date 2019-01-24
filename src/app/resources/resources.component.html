@@ -225,7 +225,7 @@
       <div class="row sorting">
         <!-- sorting mesages -->
           <div class="col-9">  
-            <p class="sorting-message">
+            <p class="setOrdering-message">
               Sorted by Name, descendent. <span class="blue reset-search">Reset</span>
             </p>
 
@@ -249,80 +249,100 @@
             </form>
           </div>      
       </div>
-             
       <div class="table-h" *ngIf="loadedData && clusters && clusters.length > 0 && !requestError">
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
               <th 
-                (click)="sort('name')"
-                sortable-column="name" 
+                (click)="setOrder('name')"
+                [class.active]="order === 'name'" 
                 scope="col" 
                 class="col-2">
                 Name 
-                <i class="material-icons">
-                  expand_more
-                </i>
+                <span class="expand-chevron" [hidden]="reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" [hidden]="!reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
               <th 
-                (click)="sort('id')"
-                sortable-column="id" 
+                (click)="setOrder('id')"
+                [class.active]="order === 'id'" 
                 scope="col" 
                 class="col-2">
                 ID
-                <i class="material-icons">
-                  expand_more
-                </i>
+                <span class="expand-chevron" [hidden]="reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" [hidden]="!reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
               <th 
-                (click)="sort('nodes')" 
-                sortable-column="nodes" 
+                (click)="setOrder('nodes')"
+                [class.active]="order === 'nodes'" 
                 scope="col" 
-                class="col-1 text-center">
-                Nodes
-                <i class="material-icons">
-                  expand_more
-                </i>
+                class="col-1 text-center cabecera">
+                Nodes 
+                <span class="expand-chevron" [hidden]="reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" [hidden]="!reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
               <th 
-                (click)="sort('description')" 
-                sortable-column="description" 
+                (click)="setOrder('description')" 
+                [class.active]="order === 'description'" 
                 scope="col" 
                 class="col-3 pl-4">
                 Description
-                <i class="material-icons">
-                  expand_more
-                </i>
+                <span class="expand-chevron" [hidden]="reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" [hidden]="!reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
               <th 
-                (click)="sort('types')" 
-                sortable-column="types" 
+                (click)="setOrder('types')" 
+                [class.active]="order === 'types'" 
                 scope="col" 
                 class="col-1">
                 Types
-                <i class="material-icons">
-                  expand_more
-                </i>
+                <span class="expand-chevron" [hidden]="reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" [hidden]="!reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
               <th 
-                (click)="sort('status')" 
-                sortable-column="status" 
+                (click)="setOrder('status')" 
+                [class.active]="order === 'status'" 
                 scope="col" 
                 class="col-1 text-center">
                 Status
-                <i class="material-icons">
-                  expand_more
-                </i>
+                <span class="expand-chevron" [hidden]="reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" [hidden]="!reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
               <th 
-                (click)="sort('multitenant')" 
-                sortable-column="multitenant" 
+                (click)="setOrder('multitenant')" 
+                [class.active]="order === 'multitenant'" 
                 scope="col" 
                 class="col-1 text-center narrow-col-padding-fix">
                 Multitenant
-                <i class="material-icons">
-                  expand_more
-                </i>
+                <span class="expand-chevron" [hidden]="reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" [hidden]="!reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
               <th 
                 scope="col" 
@@ -331,13 +351,8 @@
               </th>
             </tr>
           </thead>
-
-
-
-
           <tbody>
-
-            <tr *ngFor="let cluster of  clusters  | sortBy : sortingName : isDesc ">
+            <tr *ngFor="let cluster of clusters | sortBy : order : reverse : 'case-insensitive'">
               <td class="col-2">
                 <a 
                   [routerLink]="['cluster', cluster.cluster_id]" 
@@ -384,10 +399,6 @@
             </tr>
           </tbody>
         </table>
-
-
-
-
       </div>
       <!-- No info to show -->
       <div 
