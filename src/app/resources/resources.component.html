@@ -225,10 +225,13 @@
       <div class="row sorting">
         <!-- sorting mesages -->
           <div class="col-9">  
-            <p class="setOrdering-message">
-              Sorted by Name, descendent. <span class="blue reset-search">Reset</span>
+            
+            <p *ngIf="orderMessage" class="setOrdering-message">
+              Sorted by {{ order }},
+              <span *ngIf="reverse">descendent. </span>
+              <span *ngIf="!reverse">ascendant. </span>
+              <span class="blue reset-search">Reset</span>
             </p>
-
           </div>
           <!-- Search input -->
           <div class="col-3">

@@ -33,6 +33,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   order: string;
   reverse: boolean;
+  orderMessage: boolean;
 
   /**
    * Model that hold the search term in search box
@@ -175,6 +176,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     // SortBy
     this.order = 'info.name';
     this.reverse = false;
+    this.orderMessage = false;
 
   /**
    * Mocked Charts
@@ -404,9 +406,11 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   setOrder(value: string) {
     if (this.order === value) {
       this.reverse = !this.reverse;
+      this.orderMessage = true;
     }
 
     this.order = value;
+    this.orderMessage = true;
   }
 
 }
