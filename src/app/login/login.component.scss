@@ -96,7 +96,9 @@ button[type="submit"]:disabled {
     margin-top: 70px;
     padding-bottom: 10px;
   }
-
+  .card-body {
+    padding: 0;
+  }
 }
 .loader-position{
   top: 25% !important;
