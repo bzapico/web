@@ -225,12 +225,12 @@
       <div class="row sorting">
         <!-- sorting mesages -->
           <div class="col-9">  
-            
-            <p *ngIf="orderMessage" class="setOrdering-message">
+            <p *ngIf="orderMessage" class="sorting-message">
               Sorted by {{ order }},
-              <span *ngIf="reverse">descendent. </span>
-              <span *ngIf="!reverse">ascendant. </span>
-              <span class="blue reset-search">Reset</span>
+              <span *ngIf="reverse">ascendent. </span>
+              <span *ngIf="!reverse">descendant. </span>
+              <span class="blue reset-search" (click)="resetFilters()">Reset</span>
+              <span class="red"> Search Query: {{ searchTerm }}</span>
             </p>
           </div>
           <!-- Search input -->
@@ -258,6 +258,7 @@
             <tr>
               <th 
                 (click)="setOrder('name')"
+                name="filterName"
                 [class.active]="order === 'name'" 
                 scope="col" 
                 class="col-2">
@@ -355,7 +356,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let cluster of clusters | sortBy : order : reverse : 'case-insensitive'">
+            <tr *ngFor="let cluster of clusters | sortBy : order : reverse : 'case-insensitive' | filter: searchTerm">
               <td class="col-2">
                 <a 
                   [routerLink]="['cluster', cluster.cluster_id]" 

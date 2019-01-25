@@ -34,6 +34,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   order: string;
   reverse: boolean;
   orderMessage: boolean;
+  filterName: string;
 
   /**
    * Model that hold the search term in search box
@@ -411,6 +412,13 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 
     this.order = value;
     this.orderMessage = true;
+  }
+
+  /**
+   * Reset filters
+   */
+  resetFilters() {
+    this.filterName = '';
   }
 
 }
