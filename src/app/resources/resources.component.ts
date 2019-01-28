@@ -31,9 +31,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Models that hold the sort info needed to sortBy pipe
    */
-  order: string;
+  sortedBy: string;
   reverse: boolean;
-  orderMessage: boolean;
 
   /**
    * Model that hold the search term in search box
@@ -179,9 +178,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.requestError = '';
 
     // SortBy
-    this.order = 'info.name';
+    this.sortedBy = '';
     this.reverse = false;
-    this.orderMessage = false;
 
     // Filter field
     this.filterField = false;
@@ -409,21 +407,38 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Sortby pipe in the component
    */
-
-  setOrder(value: string) {
-    if (this.order === value) {
+  setOrder(categoryName: string) {
+    if (this.sortedBy === categoryName) {
       this.reverse = !this.reverse;
-      this.orderMessage = true;
+      this.filterField = false;
     }
-    this.order = value;
-    this.orderMessage = true;
+    this.sortedBy = categoryName;
+    this.filterField = true;
   }
+    //   this.searchTerm = false;
 
   /**
    * Reset all the filters fields
    */
   resetFilters() {
     this.filterField = false;
+    this.searchTerm = '';
+    this.sortedBy = '';
   }
 
-}
+  /**
+   * Gets the category headers to add a class
+   * @param categoryName class for the header category
+   */
+    getCategoryCSSClass(categoryName: string) {
+      if (this.sortedBy === '') {
+        return 'default';
+      } else {
+        if (this.sortedBy === categoryName) {
+          return 'enabled';
+        } else if (this.sortedBy !== categoryName) {
+          return 'disabled';
+        }
+      }
+    }
+  }

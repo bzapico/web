@@ -7,10 +7,8 @@ import { Pipe, PipeTransform, Injectable } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   /**
-   *
    * @param items List of items to filter
    * @param term  a string term to compare with every property of the list
-   *
    */
   static filter(items: Array<{ [key: string]: any }>, term: string): Array<{ [key: string]: any }> {
 

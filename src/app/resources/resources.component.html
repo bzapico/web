@@ -221,17 +221,26 @@
       <div class="card-title-h">
         <h5>CLUSTERS</h5>
       </div>
-
       <div class="row sorting">
-        <!-- sorting mesages -->
+        <!-- Sorting mesages -->
           <div class="col-9">  
-            <p *ngIf="orderMessage || filterField" class="sorting-message">
-              Sorted by {{ order }},
+            <p *ngIf="searchTerm && !filterField" class="sorting-message">
+              Filtered by term "{{ searchTerm }}".
+              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+            </p>
+            <p *ngIf="filterField && !searchTerm" class="sorting-message">
+              Sorted by {{ sortedBy }},
               <span *ngIf="reverse">ascendent. </span>
               <span *ngIf="!reverse">descendant. </span>
-              <span class="blue reset-search" (remove)="resetFilters(filterField)">Reset</span>
-              <span class="red"> Search Query: {{ searchTerm }}</span>
+              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
             </p>
+           <p *ngIf="filterField && searchTerm" class="sorting-message">
+              Sorted by {{ sortedBy }}
+              <span *ngIf="reverse">ascendent </span>
+              <span *ngIf="!reverse">descendant </span>
+              and filtered by term "{{ searchTerm }}".
+              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+            </p> 
           </div>
           <!-- Search input -->
           <div class="col-3">
@@ -257,14 +266,8 @@
           <thead>
             <tr>
               <th 
-                (click)="setOrder('name')"
-                name="filterField"
-       
-                [ngClass]= 
-                  "{
-                    'active': order === 'name',
-                    'disabled': order !== 'name'
-                  }"
+                (click)="setOrder('name')"            
+                [ngClass]="getCategoryCSSClass('name')"
                 scope="col" 
                 class="col-2">
                 Name 
@@ -277,7 +280,7 @@
               </th>
               <th 
                 (click)="setOrder('id')"
-                [class.active]="order === 'id'" 
+                [ngClass]="getCategoryCSSClass('id')"
                 scope="col" 
                 class="col-2">
                 ID
@@ -290,7 +293,7 @@
               </th>
               <th 
                 (click)="setOrder('nodes')"
-                [class.active]="order === 'nodes'" 
+                [ngClass]="getCategoryCSSClass('nodes')"
                 scope="col" 
                 class="col-1 text-center cabecera">
                 Nodes 
@@ -303,7 +306,7 @@
               </th>
               <th 
                 (click)="setOrder('description')" 
-                [class.active]="order === 'description'" 
+                [ngClass]="getCategoryCSSClass('description')"
                 scope="col" 
                 class="col-3 pl-4">
                 Description
@@ -316,7 +319,7 @@
               </th>
               <th 
                 (click)="setOrder('types')" 
-                [class.active]="order === 'types'" 
+                [ngClass]="getCategoryCSSClass('types')"
                 scope="col" 
                 class="col-1">
                 Types
@@ -329,7 +332,7 @@
               </th>
               <th 
                 (click)="setOrder('status')" 
-                [class.active]="order === 'status'" 
+                [ngClass]="getCategoryCSSClass('status')"
                 scope="col" 
                 class="col-1 text-center">
                 Status
@@ -342,7 +345,7 @@
               </th>
               <th 
                 (click)="setOrder('multitenant')" 
-                [class.active]="order === 'multitenant'" 
+                [ngClass]="getCategoryCSSClass('multitenant')"
                 scope="col" 
                 class="col-1 text-center narrow-col-padding-fix">
                 Multitenant
@@ -361,7 +364,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let cluster of clusters | sortBy : order : reverse : 'case-insensitive' | filter : searchTerm">
+            <tr *ngFor="let cluster of clusters | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
               <td class="col-2">
                 <a 
                   [routerLink]="['cluster', cluster.cluster_id]" 
@@ -384,9 +387,11 @@
               </td>
               <td class="text-lowercase col-1 text-center"
                 [ngClass]=
-                "{'status-dot': classStatusCheck (cluster.status_name, 'running'),
-                'status-dot-error': classStatusCheck (cluster.status_name, 'error'),
-                'status-dot-process': classStatusCheck (cluster.status_name, 'process')}">
+                  "{
+                  'status-dot': classStatusCheck (cluster.status_name, 'running'),
+                  'status-dot-error': classStatusCheck (cluster.status_name, 'error'),
+                  'status-dot-process': classStatusCheck (cluster.status_name, 'process')
+                  }">
                 <span tooltip= "{{cluster.status_name | lowercase}}" class="tooltip-fix" placement="auto">
                 </span>
                 <span class="hide">
