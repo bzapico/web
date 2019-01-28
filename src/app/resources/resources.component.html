@@ -259,7 +259,12 @@
               <th 
                 (click)="setOrder('name')"
                 name="filterField"
-                [class.active]="order === 'name'" 
+       
+                [ngClass]= 
+                  "{
+                    'active': order === 'name',
+                    'disabled': order !== 'name'
+                  }"
                 scope="col" 
                 class="col-2">
                 Name 

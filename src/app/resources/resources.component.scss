@@ -414,7 +414,13 @@
             visibility: visible;
           }
         }
-      }
+        &.disabled {
+            color: #949494;
+            i {
+                color: #949494;
+            }
+        }
+    }
     
     .expand-chevron {
         position: relative;
