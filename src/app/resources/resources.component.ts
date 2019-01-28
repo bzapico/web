@@ -34,12 +34,16 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   order: string;
   reverse: boolean;
   orderMessage: boolean;
-  filterName: string;
 
   /**
    * Model that hold the search term in search box
    */
-  public searchTerm: string;
+  searchTerm: string;
+
+  /**
+   * Variable to store the value of the filter search text and sortBy pipe
+   */
+  filterField: boolean;
 
   /**
    * Backend reference
@@ -179,10 +183,13 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.reverse = false;
     this.orderMessage = false;
 
-  /**
-   * Mocked Charts
-   */
-    Object.assign(this, {mockClusterChart, mockNodesChart});
+    // Filter field
+    this.filterField = false;
+
+    /**
+     * Mocked Charts
+     */
+      Object.assign(this, {mockClusterChart, mockNodesChart});
    }
 
   ngOnInit() {
@@ -400,8 +407,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Example: Use Order pipe in the component
-   *
+   * Sortby pipe in the component
    */
 
   setOrder(value: string) {
@@ -409,16 +415,15 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       this.reverse = !this.reverse;
       this.orderMessage = true;
     }
-
     this.order = value;
     this.orderMessage = true;
   }
 
   /**
-   * Reset filters
+   * Reset all the filters fields
    */
   resetFilters() {
-    this.filterName = '';
+    this.filterField = false;
   }
 
 }

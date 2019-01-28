@@ -7,7 +7,6 @@ export class SortByPipe implements PipeTransform {
 
   /**
    * Check if a value is a string
-   *
    */
   static isString(value: any) {
     return typeof value === 'string' || value instanceof String;
@@ -15,7 +14,6 @@ export class SortByPipe implements PipeTransform {
 
   /**
    * Sorts values ignoring the case
-   *
    */
   static caseInsensitiveSort(a: any, b: any) {
     if (SortByPipe.isString(a) && SortByPipe.isString(b)) {
@@ -26,7 +24,6 @@ export class SortByPipe implements PipeTransform {
 
   /**
    * Default compare method
-   *
    */
   static defaultCompare(a: any, b: any) {
     if (a === b) {
@@ -43,7 +40,6 @@ export class SortByPipe implements PipeTransform {
 
   /**
    * Parse expression, split into items
-
    */
   static parseExpression(expression: string): string[] {
     expression = expression.replace(/\[(\w+)\]/g, '.$1');
@@ -66,7 +62,6 @@ export class SortByPipe implements PipeTransform {
         object = object[k];
       }
     }
-
     return object;
   }
 
@@ -86,19 +81,15 @@ export class SortByPipe implements PipeTransform {
     if (!value) {
       return value;
     }
-
     if (Array.isArray(expression)) {
       return this.multiExpressionTransform(value, expression, reverse, isCaseInsensitive, comparator);
     }
-
     if (Array.isArray(value)) {
       return this.sortArray(value.slice(), expression, reverse, isCaseInsensitive, comparator);
     }
-
     if (typeof value === 'object') {
       return this.transformObject(Object.assign({}, value), expression, reverse, isCaseInsensitive, comparator);
     }
-
     return value;
   }
 
@@ -107,44 +98,35 @@ export class SortByPipe implements PipeTransform {
    */
   private sortArray(value: any[], expression?: any, reverse?: boolean, isCaseInsensitive?: boolean, comparator?: Function): any[] {
     const isDeepLink = expression && expression.indexOf('.') !== -1;
-
     if (isDeepLink) {
       expression = SortByPipe.parseExpression(expression);
     }
-
     let compareFn: Function;
-
     if (comparator && typeof comparator === 'function') {
       compareFn = comparator;
     } else {
       compareFn = isCaseInsensitive ? SortByPipe.caseInsensitiveSort : SortByPipe.defaultCompare;
     }
-
     const array: any[] = value.sort((a: any, b: any): number => {
       if (!expression) {
         return compareFn(a, b);
       }
-
       if (!isDeepLink) {
         if (a && b) {
           return compareFn(a[expression], b[expression]);
         }
         return compareFn(a, b);
       }
-
       return compareFn(SortByPipe.getValue(a, expression), SortByPipe.getValue(b, expression));
     });
-
     if (reverse) {
       return array.reverse();
     }
-
     return array;
   }
 
   /**
    * Transform Object
-   *
    */
   private transformObject(
     value: any | any[],
@@ -156,24 +138,20 @@ export class SortByPipe implements PipeTransform {
     const parsedExpression = SortByPipe.parseExpression(expression);
     let lastPredicate = parsedExpression.pop();
     let oldValue = SortByPipe.getValue(value, parsedExpression);
-
     if (!Array.isArray(oldValue)) {
       parsedExpression.push(lastPredicate);
       lastPredicate = null;
       oldValue = SortByPipe.getValue(value, parsedExpression);
     }
-
     if (!oldValue) {
       return value;
     }
-
     SortByPipe.setValue(value, this.transform(oldValue, lastPredicate, reverse, isCaseInsensitive), parsedExpression);
     return value;
   }
 
   /**
    * Apply multiple expressions
-   *
    */
   private multiExpressionTransform
   (value: any,
