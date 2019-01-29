@@ -180,9 +180,13 @@ a {
 .row-main {
   height: 54%;
 }
+.card-title-h {
+  margin-bottom: 1em;
+}
 
 @media screen and (max-width:1500px) {
   .card-title-h {
+    margin-bottom: 0em;
     h5 {
       font-size: 1em;
     }
@@ -634,7 +638,7 @@ button[type="submit"]:disabled {
 }
 // Search box
 .search-box {    
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   position: relative; 
   font-size: .9em;
   margin-right: 2em;
@@ -644,11 +648,11 @@ button[type="submit"]:disabled {
   input {
     border: 2px solid #ededed;
     border-radius: 5px;
-    text-indent: 7px;
+    text-indent: 1em;
     background-color: transparent;
     &::placeholder {
       font-size: .9em;
-      color: #949494;
+      color: #ccc;
     }
     &:focus {
       z-index: 2;
@@ -722,7 +726,7 @@ button[type="submit"]:disabled {
     padding: 0 0.75rem;
   }
   .search-box {
-    bottom: 15px;
+    margin-bottom: .2rem;
   }
   .table-h {
     padding-top: 1em;
