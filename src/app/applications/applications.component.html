@@ -87,24 +87,115 @@
       <div class="card-title-h">
         <h5>DEPLOYED APP LIST</h5>
       </div>
+      <div class="row">
+        <!-- Sorting mesages -->
+          <div class="col-9">  
+            <p *ngIf="searchTerm && !filterField" class="sorting-message">
+              Filtered by term "{{ searchTerm }}".
+              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+            </p>
+            <p *ngIf="filterField && !searchTerm" class="sorting-message">
+              Sorted by {{ sortedBy }},
+              <span *ngIf="reverse">ascendent. </span>
+              <span *ngIf="!reverse">descendant. </span>
+              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+            </p>
+            <p *ngIf="filterField && searchTerm" class="sorting-message">
+              Sorted by {{ sortedBy }}
+              <span *ngIf="reverse">ascendent </span>
+              <span *ngIf="!reverse">descendant </span>
+              and filtered by term "{{ searchTerm }}".
+              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+            </p> 
+          </div>
+          <!-- Search input -->
+          <div class="col-3">
+            <form>
+              <div class="search-box">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  name="searchTerm" 
+                  placeholder="Search..." 
+                  [(ngModel)]="searchTerm"> 
+                  <div class="search-icon" *ngIf="searchTerm === ''">
+                    <i class="material-icons">search</i>
+                  </div>     
+                  <div class="close-icon" *ngIf="searchTerm !== ''">
+                    <i class="material-icons" (click)="resetFilters(filterField)">close</i>
+                  </div>
+              </div>
+            </form>
+          </div>      
+      </div>
       <div class="table-h" *ngIf="loadedData && instances && instances.length > 0 && !requestError" >
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
-              <th scope="col" class="col-2">
-                Name
+              <th 
+                (click)="setOrder('name')"            
+                [ngClass]="getCategoryCSSClass('name')"
+                scope="col" 
+                class="col-2">
+                Name 
+                <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'name' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
-              <th scope="col" class="col-2">
+              <th 
+                (click)="setOrder('id')"
+                [ngClass]="getCategoryCSSClass('id')"
+                scope="col" 
+                class="col-2">
                 ID
+                <span class="expand-chevron" *ngIf="sortedBy === 'id' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'id' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
-              <th scope="col" class="col-3">
+              <th 
+                (click)="setOrder('description')" 
+                [ngClass]="getCategoryCSSClass('description')"
+                scope="col" 
+                class="col-3 pl-4">
                 Description
+                <span class="expand-chevron" *ngIf="sortedBy === 'description' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'description' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
-              <th scope="col" class="col-2">
+              <th 
+                (click)="setOrder('tags')" 
+                [ngClass]="getCategoryCSSClass('tags')"
+                scope="col" 
+                class="col-2">
                 Tags
+                <span class="expand-chevron" *ngIf="sortedBy === 'tags' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'tags' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
-              <th scope="col" class="col-2 text-center">
+              <th 
+                (click)="setOrder('status')" 
+                [ngClass]="getCategoryCSSClass('status')"
+                scope="col" 
+                class="col-2 text-center">
                 Status
+                <span class="expand-chevron" *ngIf="sortedBy === 'status' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'status' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
               <th scope="col" class="col-1 text-center">
                 Info
@@ -112,7 +203,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let app of instances">
+            <tr *ngFor="let app of instances | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
               <td class="text-capitalize col-2">{{app.name}}</td>
               <td class="col-2">{{app.app_instance_id}}</td>
               <td class="col-3">{{app.description}}</td>  
