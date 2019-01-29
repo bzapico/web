@@ -12,6 +12,7 @@ import { DebugElement } from '@angular/core';
 import { TruncatePipe } from '../pipes/truncate.pipe';
 import { AbbreviatePipe } from '../pipes/abbreviate.pipe';
 import { FilterPipe } from '../pipes/filter.pipe';
+import { SortByPipe } from '../pipes/sort-by.pipe';
 
 describe('ResourcesComponent', () => {
   let component: ResourcesComponent;
@@ -25,7 +26,8 @@ describe('ResourcesComponent', () => {
         ResourcesComponent,
         TruncatePipe,
         AbbreviatePipe,
-        FilterPipe
+        FilterPipe,
+        SortByPipe
       ],
       imports: [
         HttpClientTestingModule,
