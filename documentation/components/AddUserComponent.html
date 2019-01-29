@@ -387,7 +387,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/app/add-user/add-user.component.ts:168</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/app/add-user/add-user.component.ts:182</a></div>
                             </td>
                         </tr>
 
@@ -463,7 +463,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/add-user/add-user.component.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/add-user/add-user.component.ts:117</a></div>
                             </td>
                         </tr>
 
@@ -535,7 +535,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/add-user/add-user.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/add-user/add-user.component.ts:125</a></div>
                             </td>
                         </tr>
 
@@ -611,7 +611,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/add-user/add-user.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/add-user/add-user.component.ts:100</a></div>
                             </td>
                         </tr>
 
@@ -683,7 +683,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/app/add-user/add-user.component.ts:145</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/app/add-user/add-user.component.ts:159</a></div>
                             </td>
                         </tr>
 
@@ -1230,8 +1230,22 @@ export class AddUserComponent implements OnInit {
       };
       this.backend.addUser(this.organizationId, user)
         .subscribe(response &#x3D;&gt; {
-          this.notificationsService.add({message: user.email + &#x27; created successfully&#x27;});
+          this.notificationsService.add({
+            message: &#x27;The user &#x27; + user.email + &#x27; has been created successfully&#x27;
+          });
           this.bsModalRef.hide();
+        }, error &#x3D;&gt; {
+          if (error.status &#x3D;&#x3D;&#x3D; 409) {
+            this.notificationsService.add({
+              message: &#x27;ERROR: &#x27; + error.error.message + &#x27; already exists&#x27;,
+              timeout: 10000
+            });
+          } else {
+              this.notificationsService.add({
+                message: &#x27;ERROR: &#x27; + error.error.message,
+                timeout: 10000
+              });
+            }
         });
     }
   }
