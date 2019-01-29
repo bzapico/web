@@ -221,7 +221,7 @@
       <div class="card-title-h">
         <h5>CLUSTERS</h5>
       </div>
-      <div class="row sorting">
+      <div class="row">
         <!-- Sorting mesages -->
           <div class="col-9">  
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
@@ -245,18 +245,19 @@
           <!-- Search input -->
           <div class="col-3">
             <form>
-              <div class="form-group">
-                <div class="search-box">
-                  <input 
-                    type="text" 
-                    class="form-control" 
-                    name="searchTerm" 
-                    placeholder="Search..." 
-                    [(ngModel)]="searchTerm">      
-                    <div class="search-icon">
-                      <i class="material-icons">search</i>
-                    </div>
-                </div>
+              <div class="search-box">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  name="searchTerm" 
+                  placeholder="Search..." 
+                  [(ngModel)]="searchTerm"> 
+                  <div class="search-icon" *ngIf="searchTerm === ''">
+                    <i class="material-icons">search</i>
+                  </div>     
+                  <div class="close-icon" *ngIf="searchTerm !== ''">
+                    <i class="material-icons" (click)="resetFilters(filterField)">close</i>
+                  </div>
               </div>
             </form>
           </div>      
@@ -266,14 +267,11 @@
           <thead>
             <tr>
               <th 
-                (click)="setOrder('name'); reverse = !reverse"            
+                (click)="setOrder('name')"            
                 [ngClass]="getCategoryCSSClass('name')"
                 scope="col" 
                 class="col-2">
                 Name 
-                <span class="expand-chevron" *ngIf="!searchTerm && !filterField || sortedBy !== 'name'">
-                  <i class="material-icons">expand_more</i>
-                </span>
                 <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -287,9 +285,6 @@
                 scope="col" 
                 class="col-2">
                 ID
-                <span class="expand-chevron" *ngIf="!searchTerm && !filterField || sortedBy !== 'id'">
-                  <i class="material-icons">expand_more</i>
-                </span>
                 <span class="expand-chevron" *ngIf="sortedBy === 'id' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -303,9 +298,6 @@
                 scope="col" 
                 class="col-1 text-center cabecera">
                 Nodes 
-                <span class="expand-chevron" *ngIf="!searchTerm && !filterField || sortedBy !== 'nodes'">
-                  <i class="material-icons">expand_more</i>
-                </span>
                 <span class="expand-chevron" *ngIf="sortedBy === 'nodes' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -319,9 +311,6 @@
                 scope="col" 
                 class="col-3 pl-4">
                 Description
-                <span class="expand-chevron" *ngIf="!searchTerm && !filterField || sortedBy !== 'description'">
-                  <i class="material-icons">expand_more</i>
-                </span>
                 <span class="expand-chevron" *ngIf="sortedBy === 'description' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -335,9 +324,6 @@
                 scope="col" 
                 class="col-1">
                 Types
-                <span class="expand-chevron" *ngIf="!searchTerm && !filterField || sortedBy !== 'types'">
-                  <i class="material-icons">expand_more</i>
-                </span>
                 <span class="expand-chevron" *ngIf="sortedBy === 'types' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -351,9 +337,6 @@
                 scope="col" 
                 class="col-1 text-center">
                 Status
-                <span class="expand-chevron" *ngIf="!searchTerm && !filterField || sortedBy !== 'status'">
-                  <i class="material-icons">expand_more</i>
-                </span>
                 <span class="expand-chevron" *ngIf="sortedBy === 'status' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -365,11 +348,8 @@
                 (click)="setOrder('multitenant')" 
                 [ngClass]="getCategoryCSSClass('multitenant')"
                 scope="col" 
-                class="col-1 text-center narrow-col-padding-fix">
+                class="col-1 text-center">
                 Multitenant
-                <span class="expand-chevron" *ngIf="!searchTerm && !filterField || sortedBy !== 'multitenant'">
-                  <i class="material-icons">expand_more</i>
-                </span>
                 <span class="expand-chevron" *ngIf="sortedBy === 'multitenant' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -403,7 +383,7 @@
                 </a>
               </td>  
               <td class="col-3 pl-4">{{cluster.description}}</td>
-              <td class="text-lowercase col-1 narrow-col-padding-fix">
+              <td class="text-lowercase col-1">
                 {{cluster.cluster_type_name}}
               </td>
               <td class="text-lowercase col-1 text-center"
