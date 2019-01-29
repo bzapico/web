@@ -180,6 +180,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     // SortBy
     this.sortedBy = '';
     this.reverse = false;
+    this.searchTerm = '';
 
     // Filter field
     this.filterField = false;
