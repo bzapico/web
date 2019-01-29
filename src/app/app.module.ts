@@ -36,6 +36,7 @@ import { UpdateEventsService } from './services/update-events.service';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { AbbreviatePipe } from './pipes/abbreviate.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { DevicesComponent } from './devices/devices.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     ClusterComponent,
     ChangePasswordComponent,
     AbbreviatePipe,
-    TruncatePipe
+    TruncatePipe,
+    DevicesComponent
   ],
   entryComponents: [
     DebugPanelComponent,
