@@ -266,15 +266,18 @@
           <thead>
             <tr>
               <th 
-                (click)="setOrder('name')"            
+                (click)="setOrder('name'); reverse = !reverse"            
                 [ngClass]="getCategoryCSSClass('name')"
                 scope="col" 
                 class="col-2">
                 Name 
-                <span class="expand-chevron" [hidden]="reverse">
+                <span class="expand-chevron" *ngIf="!searchTerm && !filterField || sortedBy !== 'name'">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" [hidden]="!reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'name' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -284,10 +287,13 @@
                 scope="col" 
                 class="col-2">
                 ID
-                <span class="expand-chevron" [hidden]="reverse">
+                <span class="expand-chevron" *ngIf="!searchTerm && !filterField || sortedBy !== 'id'">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" [hidden]="!reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'id' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'id' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -297,10 +303,13 @@
                 scope="col" 
                 class="col-1 text-center cabecera">
                 Nodes 
-                <span class="expand-chevron" [hidden]="reverse">
+                <span class="expand-chevron" *ngIf="!searchTerm && !filterField || sortedBy !== 'nodes'">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" [hidden]="!reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'nodes' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'nodes' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -310,10 +319,13 @@
                 scope="col" 
                 class="col-3 pl-4">
                 Description
-                <span class="expand-chevron" [hidden]="reverse">
+                <span class="expand-chevron" *ngIf="!searchTerm && !filterField || sortedBy !== 'description'">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" [hidden]="!reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'description' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'description' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -323,10 +335,13 @@
                 scope="col" 
                 class="col-1">
                 Types
-                <span class="expand-chevron" [hidden]="reverse">
+                <span class="expand-chevron" *ngIf="!searchTerm && !filterField || sortedBy !== 'types'">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" [hidden]="!reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'types' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'types' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -336,10 +351,13 @@
                 scope="col" 
                 class="col-1 text-center">
                 Status
-                <span class="expand-chevron" [hidden]="reverse">
+                <span class="expand-chevron" *ngIf="!searchTerm && !filterField || sortedBy !== 'status'">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" [hidden]="!reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'status' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'status' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -349,10 +367,13 @@
                 scope="col" 
                 class="col-1 text-center narrow-col-padding-fix">
                 Multitenant
-                <span class="expand-chevron" [hidden]="reverse">
+                <span class="expand-chevron" *ngIf="!searchTerm && !filterField || sortedBy !== 'multitenant'">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" [hidden]="!reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'multitenant' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'multitenant' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
