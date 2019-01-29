@@ -10,6 +10,7 @@ import { OrganizationComponent } from './organization/organization.component';
 import { ResourcesComponent } from './resources/resources.component';
 import { ApplicationsComponent } from './applications/applications.component';
 import { ClusterComponent } from './cluster/cluster.component';
+import { DevicesComponent } from './devices/devices.component';
 
 const appRoutes: Routes = [
     {
@@ -44,7 +45,12 @@ const appRoutes: Routes = [
                 path: 'applications',
                 component: ApplicationsComponent,
                 canActivate: [AuthGuard]
-            }
+            },
+            {
+                path: 'devices',
+                component: DevicesComponent,
+                canActivate: [AuthGuard]
+            },
         ]
     },
     // otherwise redirect to home
