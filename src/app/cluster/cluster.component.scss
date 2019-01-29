@@ -147,49 +147,49 @@
 }
 
 /* - - - Nodes table card - - - */
-.table-h {
-    height: 80%;
-    width: 100%;
-}
-.table-fixed {
-    width: 100%;
-    height: 100%;
-    thead {
-        background-color: white;
-    }
-    thead, tbody, tr, td, th {
-        display: block;
-    }
-    tr:after {
-        content: ' ';
-        display: block;
-        visibility: hidden;
-        clear: both;
-    }
-    tbody {
-        height: 90%;
-        overflow-y: auto;
-        width: 100%;
-        td {
-            float: left;
-            padding: 0.75rem;
-            font-size: .9em;
-            border-top: 0.8px solid #EEEEEE;
-            color: #949494;
-        }
-    }
-    thead th {
-        float: left;
-        height: 44px;
-        border: none;
-        font-size: .9em;
-        font-weight: 200;
-        padding: 0.75rem;
-    }
-    tbody tr:first-child td {
-        border: none;
-    }
-}
+// .table-h {
+//     height: 80%;
+//     width: 100%;
+// }
+// .table-fixed {
+//     width: 100%;
+//     height: 100%;
+//     thead {
+//         background-color: white;
+//     }
+//     thead, tbody, tr, td, th {
+//         display: block;
+//     }
+//     tr:after {
+//         content: ' ';
+//         display: block;
+//         visibility: hidden;
+//         clear: both;
+//     }
+//     tbody {
+//         height: 90%;
+//         overflow-y: auto;
+//         width: 100%;
+//         td {
+//             float: left;
+//             padding: 0.75rem;
+//             font-size: .9em;
+//             border-top: 0.8px solid #EEEEEE;
+//             color: #949494;
+//         }
+//     }
+//     thead th {
+//         float: left;
+//         height: 44px;
+//         border: none;
+//         font-size: .9em;
+//         font-weight: 200;
+//         padding: 0.75rem;
+//     }
+//     tbody tr:first-child td {
+//         border: none;
+//     }
+// }
 .status-dot:before {
     content:'\A';
     width:10px;

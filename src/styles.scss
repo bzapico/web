@@ -580,4 +580,151 @@ button[type="submit"]:disabled {
   }
 }
 
+/* - - -  Table-h - - - */
+.table-h {
+  height: 80%;
+  width: 100%;
+  overflow: hidden;
+}
+.table-fixed {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  thead {
+      background-color: white;
+  }
+  thead, tbody, tr, td, th {
+      display: block;
+  }
+  tr:after {
+      content: ' ';
+      display: block;
+      visibility: hidden;
+      clear: both;
+  }
+  tbody {
+      height: 90%;
+      overflow-y: auto;
+      width: 100%;
+      td {
+          float: left;
+          padding: 0.75rem;
+          font-size: .9em;
+          border-top: 0.8px solid #EEEEEE;
+          color: #949494;
+      }
+  }
+  thead th {
+      float: left;
+      border: none;
+      font-size: .9em;
+      font-weight: 200;
+  }
+  tbody tr:first-child td {
+      border: none;
+  }
+}
+
+/* - - -  Search and sort in tables - - - */
+// Sorting styles
+.sorting-message {
+  color: #949494;
+  font-size: .9em;
+  padding: 0.75rem;
+  margin-bottom: 0;
+  .reset-search{
+      cursor: pointer;
+  }
+}
+// Search box
+.search-box {    
+  margin-bottom: 1rem;
+  position: relative; 
+  font-size: .9em;
+  margin-right: 2em;
+  input {
+      border: 2px solid #ededed;
+      border-radius: 5px;
+      text-indent: 7px;
+      background-color: transparent;
+      &::placeholder {
+          font-size: .9em;
+          color: #949494;
+      }
+      &:focus {
+          z-index: 2;
+          border-color: #0937FF;
+          outline: none;
+          box-shadow: none;
+          &::placeholder {
+              color: white;
+          }
+      }
+  }
+  .search-icon i {
+      position: absolute;
+      top: 7px;
+      right: 23px;
+      color: #ccc;
+      cursor: pointer;
+  }
+  .close-icon i {
+      position: absolute;
+      top: 11px;
+      right: 23px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #0937FF;
+      cursor: pointer;
+  }
+}
+.table-h {
+  thead th  {
+      cursor: pointer;
+      &.default{
+          color: black;
+          i {
+              color: black;
+          }
+      }
+      &.enabled {
+          i {
+          color: #0937FF;
+          }
+          span i{
+              visibility: visible;
+          }
+      }
+      &.disabled {
+          color: #949494;
+          i {
+              color: #949494;
+          }
+      }
+  }
+  .expand-chevron {
+      position: relative;
+      cursor: pointer;
+      top: 3px;
+      right: 3px;
+      i {
+          font-size: 1.1em;
+      }
+  }
+}
+
+@media screen and (max-width:1300px) {
+
+  .sorting-message {
+      padding: 0 0.75rem;
+  }
+  .search-box {
+      bottom: 15px;
+  }
+  .table-h {
+      padding-top: 1em;
+  }
+}
+
+
 
