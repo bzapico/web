@@ -27,23 +27,6 @@ import { Cluster } from '../definitions/interfaces/cluster';
   ]
 })
 export class ResourcesComponent implements OnInit, OnDestroy {
-
-  /**
-   * Models that hold the sort info needed to sortBy pipe
-   */
-  sortedBy: string;
-  reverse: boolean;
-
-  /**
-   * Model that hold the search term in search box
-   */
-  searchTerm: string;
-
-  /**
-   * Variable to store the value of the filter search text and sortBy pipe
-   */
-  filterField: boolean;
-
   /**
    * Backend reference
    */
@@ -152,6 +135,22 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Reference for the service that allows the user info component
    */
   modalRef: BsModalRef;
+
+  /**
+   * Models that hold the sort info needed to sortBy pipe
+   */
+  sortedBy: string;
+  reverse: boolean;
+
+  /**
+   * Model that hold the search term in search box
+   */
+  searchTerm: string;
+
+  /**
+   * Variable to store the value of the filter search text and sortBy pipe
+   */
+  filterField: boolean;
 
   constructor(
     private modalService: BsModalService,
@@ -416,7 +415,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.sortedBy = categoryName;
     this.filterField = true;
   }
-    //   this.searchTerm = false;
 
   /**
    * Reset all the filters fields
