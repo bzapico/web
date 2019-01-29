@@ -7,6 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CommonModule } from '@angular/common';
+import { FilterPipe } from '../pipes/filter.pipe';
+import { SortByPipe } from '../pipes/sort-by.pipe';
+import { FormsModule } from '@angular/forms';
 
 describe('ApplicationsComponent', () => {
   let component: ApplicationsComponent;
@@ -14,7 +17,11 @@ describe('ApplicationsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ApplicationsComponent ],
+      declarations: [
+        ApplicationsComponent,
+        FilterPipe,
+        SortByPipe
+       ],
       imports: [
         HttpClientTestingModule,
         NgxChartsModule,
@@ -23,7 +30,8 @@ describe('ApplicationsComponent', () => {
         RouterTestingModule,
         TooltipModule,
         CommonModule,
-        ModalModule.forRoot()
+        ModalModule.forRoot(),
+        FormsModule,
       ],
       providers: [
         BsModalRef,

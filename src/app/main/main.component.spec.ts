@@ -6,6 +6,9 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ModalModule, BsModalService } from 'ngx-bootstrap';
 import { AuthService } from '../services/auth.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FilterPipe } from '../pipes/filter.pipe';
+import { SortByPipe } from '../pipes/sort-by.pipe';
+import { FormsModule } from '@angular/forms';
 
 describe('MainComponent', () => {
   let component: MainComponent;
@@ -16,12 +19,15 @@ describe('MainComponent', () => {
       declarations: [
         MainComponent,
         OrganizationComponent,
-        SidebarComponent
+        SidebarComponent,
+        FilterPipe,
+        SortByPipe
       ],
       imports: [
         ModalModule.forRoot(),
         HttpClientTestingModule,
-        RouterTestingModule
+        RouterTestingModule,
+        FormsModule
       ],
       providers: [
         BsModalService,
