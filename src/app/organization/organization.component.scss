@@ -105,6 +105,15 @@
     .card-title-h {
         margin-bottom: 30px;
     }
+    .search-box {
+        margin-right: 0em;
+       .search-icon i {
+            right: 7px;
+       }
+       .close-icon i {
+            right: 7px;
+       }
+    }
 
 }
 @media screen and (max-height:920px){
