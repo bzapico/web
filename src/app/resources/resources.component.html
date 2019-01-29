@@ -221,46 +221,46 @@
       <div class="card-title-h">
         <h5>CLUSTERS</h5>
       </div>
-      <div class="row">
+      <div class="row justify-content-between">
         <!-- Sorting mesages -->
-          <div class="col-9">  
-            <p *ngIf="searchTerm && !filterField" class="sorting-message">
-              Filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
-            </p>
-            <p *ngIf="filterField && !searchTerm" class="sorting-message">
-              Sorted by {{ sortedBy }},
-              <span *ngIf="reverse">ascendent. </span>
-              <span *ngIf="!reverse">descendant. </span>
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
-            </p>
-           <p *ngIf="filterField && searchTerm" class="sorting-message">
-              Sorted by {{ sortedBy }}
-              <span *ngIf="reverse">ascendent </span>
-              <span *ngIf="!reverse">descendant </span>
-              and filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
-            </p> 
-          </div>
-          <!-- Search input -->
-          <div class="col-3">
-            <form>
-              <div class="search-box">
-                <input 
-                  type="text" 
-                  class="form-control" 
-                  name="searchTerm" 
-                  placeholder="Search..." 
-                  [(ngModel)]="searchTerm"> 
-                  <div class="search-icon" *ngIf="searchTerm === ''">
-                    <i class="material-icons">search</i>
-                  </div>     
-                  <div class="close-icon" *ngIf="searchTerm !== ''">
-                    <i class="material-icons" (click)="resetFilters(filterField)">close</i>
-                  </div>
-              </div>
-            </form>
-          </div>      
+        <div class="col">  
+          <p *ngIf="searchTerm && !filterField" class="sorting-message">
+            Filtered by term "{{ searchTerm }}".
+            <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+          </p>
+          <p *ngIf="filterField && !searchTerm" class="sorting-message">
+            Sorted by {{ sortedBy }},
+            <span *ngIf="reverse">ascendent. </span>
+            <span *ngIf="!reverse">descendant. </span>
+            <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+          </p>
+          <p *ngIf="filterField && searchTerm" class="sorting-message">
+            Sorted by {{ sortedBy }}
+            <span *ngIf="reverse">ascendent </span>
+            <span *ngIf="!reverse">descendant </span>
+            and filtered by term "{{ searchTerm }}".
+            <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+          </p> 
+        </div>
+        <!-- Search input -->
+        <div class="col-4">
+          <form>
+            <div class="search-box">
+              <input 
+                type="text" 
+                class="form-control" 
+                name="searchTerm" 
+                placeholder="Search..." 
+                [(ngModel)]="searchTerm"> 
+                <div class="search-icon" *ngIf="searchTerm === ''">
+                  <i class="material-icons">search</i>
+                </div>     
+                <div class="close-icon" *ngIf="searchTerm !== ''">
+                  <i class="material-icons" (click)="resetFilters(filterField)">close</i>
+                </div>
+            </div>
+          </form>
+        </div>      
       </div>
       <div class="table-h" *ngIf="loadedData && clusters && clusters.length > 0 && !requestError">
         <table class="table-responsive table-fixed">

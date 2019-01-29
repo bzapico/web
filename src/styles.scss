@@ -638,9 +638,11 @@ button[type="submit"]:disabled {
 }
 // Search box
 .search-box {    
+  width: 325px;
   margin-bottom: 2rem;
   position: relative; 
   font-size: .9em;
+  float: right;
   margin-right: 2em;
   .form-control {
     padding: .375rem 2.1rem 0.375rem 0rem;
@@ -727,6 +729,7 @@ button[type="submit"]:disabled {
   }
   .search-box {
     margin-bottom: .2rem;
+    margin-right: 0em;
   }
   .table-h {
     padding-top: 1em;
