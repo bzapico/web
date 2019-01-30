@@ -39,6 +39,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   registered: any[];
 
+  /**
+   * List of labels
+   */
   labels: any[];
 
   /**
@@ -79,27 +82,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   requestError: string;
 
   /**
-   * Pie Chart options
+   * Line Chart options
    */
   gradient = true;
-  doughnut = true;
   colorScheme = {
     domain: ['#0937FF', '#949494']
   };
-  customColors = [
-    {
-      name: 'Running',
-      value: '#0000ff'
-    },
-    {
-      name: 'error',
-      value: '#00ff00'
-    }
-  ];
-
-  /**
-   * Line Chart options
-   */
   showXAxis = true;
   showYAxis = true;
   showXAxisLabel = false;
@@ -170,9 +158,31 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
     // Tabs
     this.tabs = [
-      { title: 'GROUP 1', content: 'Dynamic content 1' },
-      { title: 'GROUP 2', content: 'Dynamic content 2' },
-      { title: 'GROUP 3', content: 'Dynamic content 3', removable: true }
+      {
+        title: 'GROUP',
+        content: '',
+        active: false,
+        disabled: true
+      },
+      {
+        title: 'ALL',
+        content: '',
+        active: true
+      },
+      {
+        title: 'GROUP 1',
+        content: ''
+      },
+      {
+        title: 'GROUP 2',
+        content: ''
+      },
+      {
+        title:
+        'GROUP 3',
+        content: '',
+        removable: false
+      }
     ];
     /**
      * Charts reference init

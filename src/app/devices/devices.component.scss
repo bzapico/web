@@ -226,19 +226,26 @@
 }
 
 
-
 .nalej-checkbox {
-	padding: 2em;
     cursor: pointer;
 }
 .devices-tab {
-    padding: 2em 0;
-    font-size: .7em;
-    background-color: antiquewhite;
+    margin-bottom: 2em;
+    font-size: .6em;
+    // background-color: antiquewhite;
 }
 .add-group {
-    padding: 2em 0;
-    font-size: .7em;
-    background-color: #949494;
-
+    display: block;
+    padding: 0.55rem 2rem 0.6rem 2rem;
+    border-bottom: 1px solid #ededed;
+    text-align: center;
+    .bigger {
+        font-size: 1em !important;
+    }
+}
+.col-fix-right{
+    padding-right: 0px;
+}
+.col-fix-left {
+    padding-left: 0px;
 }

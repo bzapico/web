@@ -7,26 +7,26 @@
   <div class="row row-info">
     <!-- Summary app info card -->
     <div class="col-lg-4 h-100">
-        <div class="card h-100">
-          <div class="card-title-c">
-            <h5 class="text-uppercase">Summary</h5>
+      <div class="card h-100">
+        <div class="card-title-c">
+          <h5 class="text-uppercase">Summary</h5>
+        </div>
+        <div class="summary-card">
+          <div>
+            <div class="circle summary-box">
+              <span class="align-self-center mt-1">4</span>
+            </div>
+            <p class="circle-name text-center text-uppercase mt-3">Groups</p>
           </div>
-          <div class="summary-card">
-            <div>
-              <div class="circle summary-box">
-                <span class="align-self-center mt-1">4</span>
-              </div>
-              <p class="circle-name text-center text-uppercase mt-3">Groups</p>
+          <div>
+            <div class="circle summary-box">
+              <span class="align-self-center mt-1">10</span>
             </div>
-            <div>
-              <div class="circle summary-box">
-                <span class="align-self-center mt-1">10</span>
-              </div>
-              <p class="circle-name text-center text-uppercase mt-3">Devices</p>
-            </div>
+            <p class="circle-name text-center text-uppercase mt-3">Devices</p>
           </div>
         </div>
       </div>
+    </div>
     <!-- App status timeline info card -->
     <div class="col-lg-8 h-100">
       <div class="card p-4 h-100">
@@ -74,12 +74,10 @@
           <h5>DEVICES</h5>
         </div>
         <!-- Devices tabs -->
-        <div class="row justify-content-around">
-          <div class="col">
+        <div class="row justify-content-around mb-2">
+          <div class="col col-fix-right">
             <div class="devices-tab">
               <tabset>
-                <tab heading="GROUPS" id="tab1" disabled></tab>
-                <tab heading="ALL"></tab>
                 <tab 
                   *ngFor="let tabz of tabs"
                   [heading]="tabz.title"
@@ -95,14 +93,24 @@
               </tabset>
             </div>
           </div>
-          <div class="col-2">
-            <span class="blue add-group" (click)="addNewTab()">
-              + ADD GROUP 
-            </span>
-            <span class="d-none" (click)="tabs = []"  *ngIf="tabs.length">
-              Remove all tabs
-            </span>
+          <div class="col-2 col-fix-left">
+            <div class="devices-tab">
+              <span class="blue add-group" (click)="addNewTab()">
+                <strong class="bigger">+</strong>ADD GROUP 
+              </span>
+            </div>
           </div>
+
+          <!-- <div class="col-2">
+            <div class="devices-tab">
+              <span class="blue add-group d-none" (click)="addNewTab()">
+                + ADD GROUP 
+              </span>
+              <span class="d-none" (click)="tabs = []" *ngIf="tabs.length">
+                Remove all tabs
+              </span>
+            </div>
+          </div> -->
           <!-- col 2 -->
         </div> 
         <!-- row -->
@@ -149,107 +157,91 @@
         </div>
         <div class="table-h" *ngIf="loadedData && instances && instances.length > 0 && !requestError" >
           <table class="table-responsive table-fixed">
-              <thead>
-                <tr>
-                  <th 
-                    (click)="setOrder('name')"            
-                    [ngClass]="getCategoryCSSClass('name')"
-                    scope="col" 
-                    class="col-2">
-                    Name 
-                    <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span class="expand-chevron" *ngIf="sortedBy === 'name' && reverse">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    (click)="setOrder('id')"
-                    [ngClass]="getCategoryCSSClass('id')"
-                    scope="col" 
-                    class="col-2">
-                    ID
-                    <span class="expand-chevron" *ngIf="sortedBy === 'id' && !reverse">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span class="expand-chevron" *ngIf="sortedBy === 'id' && reverse">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    (click)="setOrder('description')" 
-                    [ngClass]="getCategoryCSSClass('description')"
-                    scope="col" 
-                    class="col-3 pl-4">
-                    Description
-                    <span class="expand-chevron" *ngIf="sortedBy === 'description' && !reverse">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span class="expand-chevron" *ngIf="sortedBy === 'description' && reverse">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    (click)="setOrder('tags')" 
-                    [ngClass]="getCategoryCSSClass('tags')"
-                    scope="col" 
-                    class="col-2">
-                    Tags
-                    <span class="expand-chevron" *ngIf="sortedBy === 'tags' && !reverse">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span class="expand-chevron" *ngIf="sortedBy === 'tags' && reverse">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    (click)="setOrder('status')" 
-                    [ngClass]="getCategoryCSSClass('status')"
-                    scope="col" 
-                    class="col-2 text-center">
-                    Status
-                    <span class="expand-chevron" *ngIf="sortedBy === 'status' && !reverse">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span class="expand-chevron" *ngIf="sortedBy === 'status' && reverse">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th scope="col" class="col-1 text-center">
-                    Info
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let app of instances | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-                  <td class="text-capitalize col-2">{{app.name}}</td>
-                  <td class="col-2">{{app.app_instance_id}}</td>
-                  <td class="col-3">{{app.description}}</td>  
-                  <td class="col-2">
-                    <button *ngFor="let label of labelsToString(app.labels)" class="btn-sm btn-outline-primary" disabled>
-                        {{label[0]}}: {{label[1]}}
-                    </button>
-                  </td>
-                  <td 
-                    class="text-lowercase col-2 text-center"
-                    [ngClass]=
-                    "{'status-dot':classStatusCheck(app.status_name, 'running'),
-                    'status-dot-error':classStatusCheck(app.status_name, 'error'),
-                    'status-dot-process':classStatusCheck(app.status_name, 'process')}"> 
-                    <span tooltip="{{app.status_name | lowercase}}" class="tooltip-fix" placement="auto">
-                    </span>
-                    <span class="hide">
-                      {{app.status_name}}
-                    </span>
-                  </td>
-                    <td class="row-info-btn col-1 text-center">
-                      <button class="btn info-btn btn-primary" (click)="openAppsInfo(app)">
-                        <span class="i-info">i</span>
-                      </button>
-                    </td>
-                </tr>
-              </tbody>
+            <thead>
+              <tr>
+                <th 
+                  (click)="setOrder('id')"
+                  [ngClass]="getCategoryCSSClass('id')"
+                  scope="col" 
+                  class="col-2">
+                  ID
+                  <span class="expand-chevron" *ngIf="sortedBy === 'id' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span class="expand-chevron" *ngIf="sortedBy === 'id' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  (click)="setOrder('registeredDate')" 
+                  [ngClass]="getCategoryCSSClass('registeredDate')"
+                  scope="col" 
+                  class="col-2">
+                  Date registered
+                  <span class="expand-chevron" *ngIf="sortedBy === 'registeredDate' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span class="expand-chevron" *ngIf="sortedBy === 'registeredDate' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                (click)="setOrder('status')" 
+                [ngClass]="getCategoryCSSClass('status')"
+                scope="col" 
+                class="col-2 text-center">
+                Status
+                <span class="expand-chevron" *ngIf="sortedBy === 'status' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'status' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
+                </th> 
+                <th 
+                  (click)="setOrder('labels')" 
+                  [ngClass]="getCategoryCSSClass('labels')"
+                  scope="col" 
+                  class="col-5">
+                  Labels
+                  <span class="expand-chevron" *ngIf="sortedBy === 'labels' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span class="expand-chevron" *ngIf="sortedBy === 'labels' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th scope="col" class="col-1 text-center">
+                  Enabled
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let app of instances | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+                <td class="col-2">{{app.app_instance_id}}</td>
+                <td class="col-2">{{app.description}}</td>  
+                <td 
+                  class="text-lowercase col-2 text-center"
+                  [ngClass]=
+                  "{'status-dot':classStatusCheck(app.status_name, 'running'),
+                  'status-dot-error':classStatusCheck(app.status_name, 'error'),
+                  'status-dot-process':classStatusCheck(app.status_name, 'process')}"> 
+                  <span tooltip="{{app.status_name | lowercase}}" class="tooltip-fix" placement="auto">
+                  </span>
+                  <span class="hide">
+                    {{app.status_name}}
+                  </span>
+                </td>
+                <td class="col-5">
+                  <button *ngFor="let label of labelsToString(app.labels)" class="btn-sm btn-outline-primary" disabled>
+                      {{label[0]}}: {{label[1]}}
+                  </button>
+                </td>
+                <td class="row-info-btn col-1 text-center">
+                  <input class="nalej-checkbox" type="checkbox" checked />
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
          <!-- No info to show -->
