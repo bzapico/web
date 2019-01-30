@@ -72,11 +72,11 @@ export const mockClusterList = [
     }, {
         organization_id: 'f7751f83-f619-436f-ade2-005924e346b9',
         cluster_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d2',
-        name: 'Dhs2_k8s_cluster',
-        description: 'Autodiscovered cluster',
+        name: 'Bs2_k8s_cluster',
+        description: 'Autodiscovered a cluster',
         total_nodes: '10',
         running_nodes: '2',
-        cluster_type_name: 'Kubernetes',
+        cluster_type_name: 'aKubernetes',
         status_name: 'Running',
         labels: {
             lab1: 'label1',
@@ -87,12 +87,12 @@ export const mockClusterList = [
         multitenant_support: 'yes'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-        cluster_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d3',
-        name: 'Dhs3_k8s_cluster',
-        description: 'Autodiscovered cluster',
-        total_nodes: '10',
+        cluster_id: '6769d264-4ba7-b221-a7f4f14e481d3',
+        name: 'Chs3_k8s_cluster',
+        description: 'Autodiscovered b cluster',
+        total_nodes: '4',
         running_nodes: '3',
-        cluster_type_name: 'Kubernetes',
+        cluster_type_name: 'bKubernetes',
         status_name: 'Error',
         labels: 'ny, edge',
         multitenant_support: 'yes'
@@ -100,36 +100,36 @@ export const mockClusterList = [
         organization_id: 'f7751f83-f619-436f-ade2-005924e346b9',
         cluster_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d4',
         name: 'Dhs4_k8s_cluster',
-        description: 'Autodiscovered cluster',
-        total_nodes: '10',
+        description: 'Autodiscovered c cluster',
+        total_nodes: '4',
         running_nodes: '4',
-        cluster_type_name: 'Kubernetes',
+        cluster_type_name: 'cKubernetes',
         status_name: 'Running',
         labels: {
             lab1: 'label1',
             lab2: 'label2'
         },
-        multitenant_support: 'yes'
+        multitenant_support: 'no'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
         cluster_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d5',
-        name: 'Dhs5_k8s_cluster',
-        description: 'Autodiscovered cluster',
+        name: 'Ehs5_k8s_cluster',
+        description: 'Autodiscovered d cluster',
         total_nodes: '10',
         running_nodes: '5',
-        cluster_type_name: 'Kubernetes',
+        cluster_type_name: 'dKubernetes',
         status_name: 'Running',
         labels: 'ny, edge',
         multitenant_support: 'yes'
     }, {
         organization_id: 'f7751f83-f619-436f-ade2-005924e346b9',
-        cluster_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d6',
-        name: 'Dhs6_k8s_cluster',
-        description: 'Autodiscovered cluster',
-        total_nodes: '10',
-        running_nodes: '6',
+        cluster_id: '6769d264-4ba7-4cd7-a7f4f14e481d6',
+        name: 'Fhs6_k8s_cluster',
+        description: 'Autodiscovered e cluster',
+        total_nodes: '6',
+        running_nodes: '5',
         cluster_type_name: 'Kubernetes',
-        status_name: 'Running',
+        status_name: 'Error',
         labels: {
             lab1: 'label1',
             lab2: 'label2',
@@ -138,9 +138,9 @@ export const mockClusterList = [
         multitenant_support: 'yes'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-        cluster_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d7',
-        name: 'Dhs7_k8s_cluster',
-        description: 'Autodiscovered cluster',
+        cluster_id: '6769d264-4cd7-b221-a7f4f14e481d7',
+        name: 'Ghs7_k8s_cluster',
+        description: 'Autodiscovered f cluster',
         total_nodes: '10',
         running_nodes: '7',
         cluster_type_name: 'Kubernetes',
@@ -149,14 +149,14 @@ export const mockClusterList = [
             lab1: 'label1',
             lab2: 'label2'
         },
-        multitenant_support: 'yes'
+        multitenant_support: 'no'
     }, {
         organization_id: 'f7751f83-f619-436f-ade2-005924e346b9',
         cluster_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d8',
-        name: 'Dhs8_k8s_cluster',
+        name: 'Hhs8_k8s_cluster',
         description: 'Autodiscovered cluster',
-        total_nodes: '10',
-        running_nodes: '8',
+        total_nodes: '7',
+        running_nodes: '7',
         cluster_type_name: 'Kubernetes',
         status_name: 'Running',
         labels: {
@@ -167,8 +167,8 @@ export const mockClusterList = [
         multitenant_support: 'yes'
     }, {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-        cluster_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d9',
-        name: 'Dhs9_k8s_cluster',
+        cluster_id: '6769d264-a7f4f14e481d9',
+        name: 'Jhs9_k8s_cluster',
         description: 'Autodiscovered cluster',
         total_nodes: '10',
         running_nodes: '9',
@@ -182,10 +182,10 @@ export const mockClusterList = [
     }, {
         organization_id: 'f7751f83-f619-436f-ade2-005924e346b9',
         cluster_id: '0800200c9a70',
-        name: 'Dhs10_k8s_cluster',
+        name: 'Khs10_k8s_cluster',
         description: 'Autodiscovered cluster',
-        total_nodes: '10',
-        running_nodes: '10',
+        total_nodes: '9',
+        running_nodes: '8',
         cluster_type_name: 'Kubernetes',
         status_name: 'Running',
         labels: {

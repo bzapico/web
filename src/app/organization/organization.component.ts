@@ -47,6 +47,22 @@ export class OrganizationComponent implements OnInit {
    */
   requestError: string;
 
+  /**
+   * Models that hold the sort info needed to sortBy pipe
+   */
+  sortedBy: string;
+  reverse: boolean;
+
+  /**
+   * Model that hold the search term in search box
+   */
+  searchTerm: string;
+
+  /**
+   * Variable to store the value of the filter search text and sortBy pipe
+   */
+  filterField: boolean;
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -68,6 +84,14 @@ export class OrganizationComponent implements OnInit {
     this.subscriptionType = 'Free subscription';
     this.users = [];
     this.requestError = '';
+
+    // SortBy
+    this.sortedBy = '';
+    this.reverse = false;
+    this.searchTerm = '';
+
+    // Filter field
+    this.filterField = false;
   }
 
   ngOnInit() {
@@ -170,5 +194,42 @@ export class OrganizationComponent implements OnInit {
         this.requestError = errorResponse.error.message;
       });
   }
-}
+  /**
+   * Sortby pipe in the component
+   */
+  setOrder(categoryName: string) {
+    if (this.sortedBy === categoryName) {
+      this.reverse = !this.reverse;
+      this.filterField = false;
+    }
+    this.sortedBy = categoryName;
+    this.filterField = true;
+  }
+
+  /**
+   * Reset all the filters fields
+   */
+  resetFilters() {
+    this.filterField = false;
+    this.searchTerm = '';
+    this.sortedBy = '';
+  }
+
+  /**
+   * Gets the category headers to add a class
+   * @param categoryName class for the header category
+   */
+    getCategoryCSSClass(categoryName: string) {
+      if (this.sortedBy === '') {
+        return 'default';
+      } else {
+        if (this.sortedBy === categoryName) {
+          return 'enabled';
+        } else if (this.sortedBy !== categoryName) {
+          return 'disabled';
+        }
+      }
+    }
+  }
+
 

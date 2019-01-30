@@ -6,16 +6,15 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TooltipModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 import { TruncatePipe } from '../pipes/truncate.pipe';
 import { AbbreviatePipe } from '../pipes/abbreviate.pipe';
+import { FilterPipe } from '../pipes/filter.pipe';
+import { SortByPipe } from '../pipes/sort-by.pipe';
+import { FormsModule } from '@angular/forms';
 
 describe('ClusterComponent', () => {
   let component: ClusterComponent;
   let fixture: ComponentFixture<ClusterComponent>;
-  // let de: DebugElement;
-  // let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,6 +22,8 @@ describe('ClusterComponent', () => {
         ClusterComponent,
         TruncatePipe,
         AbbreviatePipe,
+        FilterPipe,
+        SortByPipe
        ],
       imports: [
         HttpClientTestingModule,
@@ -30,6 +31,7 @@ describe('ClusterComponent', () => {
         RouterTestingModule,
         TooltipModule,
         BrowserAnimationsModule,
+        FormsModule,
       ]
     })
     .compileComponents();
@@ -41,16 +43,6 @@ describe('ClusterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('generateClusterChartData() - Shoud generate the NGX-Chart required JSON object for pie chart rendering', () => {
-
-    // const generateClusterChartData = spyOn(component, 'generateClusterChartData').and.returnValue(true);
-    // const data = {};
-
-    // generateClusterChartData(data);
-
-    // expect(component.generateClusterChartData).toBe(data);
-  });
-
   it('updateNodesList() - Should requests an updated list of available nodes to update the current one', () => {
     const updateNodesList = spyOn(component, 'updateNodesList').and.returnValue(true);
     const nodes = {};
@@ -60,14 +52,5 @@ describe('ClusterComponent', () => {
     expect(updateNodesList).toHaveBeenCalledWith(nodes);
   });
 
-  // it('It should render cluster status', () => {
-  //   classStatusCheck(node.status_name, 'error')
-  //   component.node.statusName = 20;
-
-  //   el = de.nativeElement;
-  //   de = fixture.debugElement.query(By.css('.status-dot-error'));
-
-  //   expect(el.innerText).toContain(20);
-  // });
 
 });
