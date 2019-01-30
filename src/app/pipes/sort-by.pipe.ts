@@ -7,6 +7,7 @@ export class SortByPipe implements PipeTransform {
 
   /**
    * Check if a value is a string
+   *  @param value value to be checked as a string
    */
   static isString(value: any) {
     return typeof value === 'string' || value instanceof String;
@@ -14,6 +15,8 @@ export class SortByPipe implements PipeTransform {
 
   /**
    * Sorts values ignoring the case
+   * @param a first param to ignore the case
+   * @param b second param to ignore the case
    */
   static caseInsensitiveSort(a: any, b: any) {
     if (SortByPipe.isString(a) && SortByPipe.isString(b)) {
@@ -24,8 +27,11 @@ export class SortByPipe implements PipeTransform {
 
   /**
    * Default compare method
+   * @param a first param to compare
+   * @param b second param to compare
    */
-  static defaultCompare(a: any, b: any) {
+
+   static defaultCompare(a: any, b: any) {
     if (a === b) {
       return 0;
     }
@@ -40,8 +46,9 @@ export class SortByPipe implements PipeTransform {
 
   /**
    * Parse expression, split into items
+   * @param expression expression to be parsed
    */
-  static parseExpression(expression: string): string[] {
+   static parseExpression(expression: string): string[] {
     expression = expression.replace(/\[(\w+)\]/g, '.$1');
     expression = expression.replace(/^\./, '');
     return expression.split('.');
@@ -49,6 +56,8 @@ export class SortByPipe implements PipeTransform {
 
   /**
    * Get value by expression
+   * @param object get ordered nested object elements
+   * @param expression expression to get value by
    */
   static getValue(object: any, expression: string[]) {
     for (let i = 0, n = expression.length; i < n; ++i) {
@@ -67,8 +76,11 @@ export class SortByPipe implements PipeTransform {
 
   /**
    * Set value by expression
+   * @param object set ordered nested object elements
+   * @param value value to be setted
+   * @param expression expression to set value by
    */
-  static setValue(object: any, value: any, expression: string[]) {
+   static setValue(object: any, value: any, expression: string[]) {
     let i;
     for (i = 0; i < expression.length - 1; i++) {
       object = object[expression[i]];
@@ -95,6 +107,10 @@ export class SortByPipe implements PipeTransform {
 
   /**
    * Sort array
+   * @param expressions expression that returns array as it is
+   * @param reverse sort by multiple fields and preserve priority (reversed)
+   * @param isCaseInsensitive order case-insensitively strings
+   * @param comparator order with and change to order with custom comparator function
    */
   private sortArray(value: any[], expression?: any, reverse?: boolean, isCaseInsensitive?: boolean, comparator?: Function): any[] {
     const isDeepLink = expression && expression.indexOf('.') !== -1;
@@ -127,6 +143,10 @@ export class SortByPipe implements PipeTransform {
 
   /**
    * Transform Object
+   * @param expressions expression to be transformed
+   * @param reverse reverse sort by multiple fields and preserve priority (reversed)
+   * @param isCaseInsensitive order case-insensitively strings
+   * @param comparator order with and change to order with custom comparator function
    */
   private transformObject(
     value: any | any[],
@@ -152,6 +172,11 @@ export class SortByPipe implements PipeTransform {
 
   /**
    * Apply multiple expressions
+   * @param value value to be checked
+   * @param expressions expression to be transformed
+   * @param reverse sort by multiple fields and preserve priority (reversed)
+   * @param isCaseInsensitive order case-insensitively strings
+   * @param comparator order with and change to order with custom comparator function
    */
   private multiExpressionTransform
   (value: any,
