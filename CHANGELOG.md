@@ -1,3 +1,8 @@
+## v0.2.0
+
+Overall:
+- Added sorting and filtering capabilities 
+
 ## v0.1.0
 Created the brand new UI Frontend for Nalej. 
 - Sidebar with navigation
