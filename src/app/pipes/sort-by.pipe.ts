@@ -75,7 +75,7 @@ export class SortByPipe implements PipeTransform {
   }
 
   /**
-   * Set value by expression
+   * Setted value by expression
    * @param object set ordered nested object elements
    * @param value value to be setted
    * @param expression expression to set value by
