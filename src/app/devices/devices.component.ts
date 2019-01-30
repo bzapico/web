@@ -13,6 +13,7 @@ import { mockAppChart, mockAppPieChart } from '../utils/mocks';
   styleUrls: ['./devices.component.scss']
 })
 export class DevicesComponent implements OnInit, OnDestroy  {
+  tabs: any[];
   /**
    * Backend reference
    */
@@ -142,11 +143,16 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.loadedData = false;
     this.appsChart = [{name: 'Running apps %', series: []}];
     this.requestError = '';
+    // Tabs
+    this.tabs = [
+      { title: 'Dynamic Title 1', content: 'Dynamic content 1' },
+      { title: 'Dynamic Title 2', content: 'Dynamic content 2' },
+      { title: 'Dynamic Title 3', content: 'Dynamic content 3', removable: true }
+    ];
     /**
      * Charts reference init
      */
     Object.assign(this, {mockAppChart, mockAppPieChart});
-
    }
 
   ngOnInit() {
@@ -308,5 +314,28 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         return false;
       }
     }
+  }
+
+
+ /**
+  * Add tabs functionality
+  */
+  addNewTab(): void {
+    const newTabIndex = this.tabs.length + 1;
+    this.tabs.push({
+      title: `Dynamic Title ${newTabIndex}`,
+      content: `Dynamic content ${newTabIndex}`,
+      disabled: false,
+      removable: true
+    });
+  }
+
+  /**
+   * Remove tabs functionality
+   * @param tab tab to be removed
+   */
+  removeTabHandler(tab: any): void {
+    this.tabs.splice(this.tabs.indexOf(tab), 1);
+    console.log('Remove Tab handler');
   }
 }
