@@ -746,7 +746,8 @@ button[type="submit"]:disabled {
   padding: 0.5rem 2rem;
 }
 .nav-tabs {
-  border-bottom: 1px solid #ededed;
+  // border-bottom: 1px solid red;
+  border-bottom: none;
 }
 .nav-tabs .nav-link {
   &.active {
@@ -758,4 +759,3 @@ button[type="submit"]:disabled {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-

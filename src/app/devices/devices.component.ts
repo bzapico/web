@@ -160,27 +160,21 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.tabs = [
       {
         title: 'GROUP',
-        content: '',
         active: false,
-        disabled: true
+        disabled: true,
       },
       {
         title: 'ALL',
-        content: '',
         active: true
       },
       {
         title: 'GROUP 1',
-        content: ''
       },
       {
         title: 'GROUP 2',
-        content: ''
       },
       {
-        title:
-        'GROUP 3',
-        content: '',
+        title: 'GROUP 3',
         removable: false
       }
     ];

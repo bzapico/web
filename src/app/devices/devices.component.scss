@@ -225,27 +225,25 @@
     }
 }
 
-
 .nalej-checkbox {
     cursor: pointer;
 }
 .devices-tab {
     margin-bottom: 2em;
     font-size: .6em;
-    // background-color: antiquewhite;
+    background-color: antiquewhite;
+    border-bottom: 1px solid red;
 }
 .add-group {
+    background-color: aquamarine;
     display: block;
-    padding: 0.55rem 2rem 0.6rem 2rem;
-    border-bottom: 1px solid #ededed;
+    padding: 0.5rem 2rem;
     text-align: center;
-    .bigger {
-        font-size: 1em !important;
+    i {
+        font-size: 1.6em;
+        margin-right: 10px;
+        vertical-align: middle;
     }
 }
-.col-fix-right{
-    padding-right: 0px;
-}
-.col-fix-left {
-    padding-left: 0px;
-}
+
+

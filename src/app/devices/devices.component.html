@@ -74,9 +74,9 @@
           <h5>DEVICES</h5>
         </div>
         <!-- Devices tabs -->
-        <div class="row justify-content-around mb-2">
-          <div class="col col-fix-right">
-            <div class="devices-tab">
+        <div class="devices-tab">
+          <div class="d-flex">
+            <div class="flex-grow-1">
               <tabset>
                 <tab 
                   *ngFor="let tabz of tabs"
@@ -92,28 +92,36 @@
                 </tab>
               </tabset>
             </div>
-          </div>
-          <div class="col-2 col-fix-left">
-            <div class="devices-tab">
-              <span class="blue add-group" (click)="addNewTab()">
-                <strong class="bigger">+</strong>ADD GROUP 
-              </span>
+            <!-- Add group button -->
+            <div class="flex-shrink-1">
+              <div class="add-group blue">
+                <span (click)="addNewTab()">
+                  <i class="material-icons">add</i>
+                  ADD GROUP 
+                </span>
+              </div>      
             </div>
-          </div>
+            <!-- Add/delete/configuration options -->
+            <div class="flex-shrink-1">
+              <div class="add-group">
+                <span (click)="addNewTab()">
+                  <i class="material-icons">add</i>
+                  ADD GROUP 
+                </span>
+                <span (click)="tabs = []" *ngIf="tabs.length">
+                  <i class="material-icons">delete</i>
+                  DELETE GROUP
+                </span>
+                <span (click)="tabs = []" *ngIf="tabs.length">
+                  <i class="material-icons">settings</i>
+                  CONFIGURATION
+                </span>
+              </div>
+            </div>
+          </div> 
+        </div>        <!-- // end Devices tabs -->
 
-          <!-- <div class="col-2">
-            <div class="devices-tab">
-              <span class="blue add-group d-none" (click)="addNewTab()">
-                + ADD GROUP 
-              </span>
-              <span class="d-none" (click)="tabs = []" *ngIf="tabs.length">
-                Remove all tabs
-              </span>
-            </div>
-          </div> -->
-          <!-- col 2 -->
-        </div> 
-        <!-- row -->
+
         <div class="row justify-content-between">
           <!-- Sorting mesages -->
           <div class="col-9">  
@@ -186,17 +194,17 @@
                   </span>
                 </th>
                 <th 
-                (click)="setOrder('status')" 
-                [ngClass]="getCategoryCSSClass('status')"
-                scope="col" 
-                class="col-2 text-center">
-                Status
-                <span class="expand-chevron" *ngIf="sortedBy === 'status' && !reverse">
-                  <i class="material-icons">expand_more</i>
-                </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'status' && reverse">
-                  <i class="material-icons">expand_less</i>
-                </span>
+                  (click)="setOrder('status')" 
+                  [ngClass]="getCategoryCSSClass('status')"
+                  scope="col" 
+                  class="col-2 text-center">
+                  Status
+                  <span class="expand-chevron" *ngIf="sortedBy === 'status' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span class="expand-chevron" *ngIf="sortedBy === 'status' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
                 </th> 
                 <th 
                   (click)="setOrder('labels')" 
@@ -238,7 +246,12 @@
                   </button>
                 </td>
                 <td class="row-info-btn col-1 text-center">
-                  <input class="nalej-checkbox" type="checkbox" checked />
+                  <!-- <span>
+                    <i class="material-icons grey">check_box_outline_blank</i>
+                  </span> -->
+                  <span>
+                    <i class="material-icons blue">check_box</i>
+                  </span>
                 </td>
               </tr>
             </tbody>
