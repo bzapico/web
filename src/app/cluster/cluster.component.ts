@@ -97,6 +97,22 @@ export class ClusterComponent implements OnInit {
    */
   modalRef: BsModalRef;
 
+  /**
+   * Models that hold the sort info needed to sortBy pipe
+   */
+  sortedBy: string;
+  reverse: boolean;
+
+  /**
+   * Model that hold the search term in search box
+   */
+  searchTerm: string;
+
+  /**
+   * Variable to store the value of the filter search text and sortBy pipe
+   */
+  filterField: boolean;
+
   constructor(
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
@@ -119,6 +135,14 @@ export class ClusterComponent implements OnInit {
     this.clustersCount = 0;
     this.clusterData = {};
     this.requestError = '';
+
+    // SortBy
+    this.sortedBy = '';
+    this.reverse = false;
+    this.searchTerm = '';
+
+    // Filter field
+    this.filterField = false;
 
   /**
    * Mocked Charts
@@ -263,4 +287,40 @@ export class ClusterComponent implements OnInit {
     }
   }
 
-}
+  /**
+   * Sortby pipe in the component
+   */
+  setOrder(categoryName: string) {
+    if (this.sortedBy === categoryName) {
+      this.reverse = !this.reverse;
+      this.filterField = false;
+    }
+    this.sortedBy = categoryName;
+    this.filterField = true;
+  }
+
+  /**
+   * Reset all the filters fields
+   */
+  resetFilters() {
+    this.filterField = false;
+    this.searchTerm = '';
+    this.sortedBy = '';
+  }
+
+  /**
+   * Gets the category headers to add a class
+   * @param categoryName class for the header category
+   */
+    getCategoryCSSClass(categoryName: string) {
+      if (this.sortedBy === '') {
+        return 'default';
+      } else {
+        if (this.sortedBy === categoryName) {
+          return 'enabled';
+        } else if (this.sortedBy !== categoryName) {
+          return 'disabled';
+        }
+      }
+    }
+  }

@@ -221,38 +221,151 @@
       <div class="card-title-h">
         <h5>CLUSTERS</h5>
       </div>
+      <div class="row justify-content-between">
+        <!-- Sorting mesages -->
+        <div class="col">  
+          <p *ngIf="searchTerm && !filterField" class="sorting-message">
+            Filtered by term "{{ searchTerm }}".
+            <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+          </p>
+          <p *ngIf="filterField && !searchTerm" class="sorting-message">
+            Sorted by {{ sortedBy }},
+            <span *ngIf="reverse">ascendant. </span>
+            <span *ngIf="!reverse">descendant. </span>
+            <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+          </p>
+          <p *ngIf="filterField && searchTerm" class="sorting-message">
+            Sorted by {{ sortedBy }}
+            <span *ngIf="reverse">ascendant </span>
+            <span *ngIf="!reverse">descendant </span>
+            and filtered by term "{{ searchTerm }}".
+            <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+          </p> 
+        </div>
+        <!-- Search input -->
+        <div class="col-4">
+          <form>
+            <div class="search-box">
+              <input 
+                type="text" 
+                class="form-control" 
+                name="searchTerm" 
+                placeholder="Search..." 
+                [(ngModel)]="searchTerm"> 
+                <div class="search-icon" *ngIf="searchTerm === ''">
+                  <i class="material-icons">search</i>
+                </div>     
+                <div class="close-icon" *ngIf="searchTerm !== ''">
+                  <i class="material-icons" (click)="resetFilters(filterField)">close</i>
+                </div>
+            </div>
+          </form>
+        </div>      
+      </div>
       <div class="table-h" *ngIf="loadedData && clusters && clusters.length > 0 && !requestError">
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
-              <th scope="col" class="col-2">
-                Name
+              <th 
+                (click)="setOrder('name')"            
+                [ngClass]="getCategoryCSSClass('name')"
+                scope="col" 
+                class="col-2">
+                Name 
+                <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'name' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
-              <th scope="col" class="col-2">
+              <th 
+                (click)="setOrder('id')"
+                [ngClass]="getCategoryCSSClass('id')"
+                scope="col" 
+                class="col-2">
                 ID
+                <span class="expand-chevron" *ngIf="sortedBy === 'id' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'id' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
-              <th scope="col" class="col-1 text-center">
-                Nodes
+              <th 
+                (click)="setOrder('nodes')"
+                [ngClass]="getCategoryCSSClass('nodes')"
+                scope="col" 
+                class="col-1 text-center cabecera">
+                Nodes 
+                <span class="expand-chevron" *ngIf="sortedBy === 'nodes' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'nodes' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
-              <th scope="col" class="col-3 pl-4">
+              <th 
+                (click)="setOrder('description')" 
+                [ngClass]="getCategoryCSSClass('description')"
+                scope="col" 
+                class="col-3 pl-4">
                 Description
+                <span class="expand-chevron" *ngIf="sortedBy === 'description' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'description' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
-              <th scope="col" class="col-1">
+              <th 
+                (click)="setOrder('types')" 
+                [ngClass]="getCategoryCSSClass('types')"
+                scope="col" 
+                class="col-1">
                 Types
+                <span class="expand-chevron" *ngIf="sortedBy === 'types' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'types' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
-              <th scope="col" class="col-1 text-center">
+              <th 
+                (click)="setOrder('status')" 
+                [ngClass]="getCategoryCSSClass('status')"
+                scope="col" 
+                class="col-1 text-center">
                 Status
+                <span class="expand-chevron" *ngIf="sortedBy === 'status' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'status' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
-              <th scope="col" class="col-1 text-center narrow-col-padding-fix">
+              <th 
+                (click)="setOrder('multitenant')" 
+                [ngClass]="getCategoryCSSClass('multitenant')"
+                scope="col" 
+                class="col-1 text-center">
                 Multitenant
+                <span class="expand-chevron" *ngIf="sortedBy === 'multitenant' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'multitenant' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
               </th>
-              <th scope="col" class="col-1 text-center">
+              <th 
+                scope="col" 
+                class="col-1 text-center">
                 Edit
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let cluster of clusters">
+            <tr *ngFor="let cluster of clusters | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
               <td class="col-2">
                 <a 
                   [routerLink]="['cluster', cluster.cluster_id]" 
@@ -270,14 +383,16 @@
                 </a>
               </td>  
               <td class="col-3 pl-4">{{cluster.description}}</td>
-              <td class="text-lowercase col-1 narrow-col-padding-fix">
+              <td class="text-lowercase col-1">
                 {{cluster.cluster_type_name}}
               </td>
               <td class="text-lowercase col-1 text-center"
                 [ngClass]=
-                "{'status-dot': classStatusCheck (cluster.status_name, 'running'),
-                'status-dot-error': classStatusCheck (cluster.status_name, 'error'),
-                'status-dot-process': classStatusCheck (cluster.status_name, 'process')}">
+                  "{
+                  'status-dot': classStatusCheck (cluster.status_name, 'running'),
+                  'status-dot-error': classStatusCheck (cluster.status_name, 'error'),
+                  'status-dot-process': classStatusCheck (cluster.status_name, 'process')
+                  }">
                 <span tooltip= "{{cluster.status_name | lowercase}}" class="tooltip-fix" placement="auto">
                 </span>
                 <span class="hide">

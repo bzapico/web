@@ -7,6 +7,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FilterPipe } from '../pipes/filter.pipe';
+import { SortByPipe } from '../pipes/sort-by.pipe';
 
 
 describe('OrganizationComponent', () => {
@@ -17,7 +19,11 @@ describe('OrganizationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrganizationComponent ],
+      declarations: [
+        OrganizationComponent,
+        FilterPipe,
+        SortByPipe
+       ],
       imports: [
         HttpClientTestingModule,
         FormsModule,
