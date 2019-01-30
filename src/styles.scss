@@ -588,4 +588,24 @@ button[type="submit"]:disabled {
   }
 }
 
+/* - - -  Tab styles - - - */
+.nav-tabs .nav-link.active {
+  color: #0937FF !important;
 
+  // border-color: #dee2e6 #dee2e6 #fff;
+  border-bottom: 3px #0937FF  solid !important;
+}
+.nav-tabs .nav-link {
+  color: #707070 !important;
+
+  // border-color: #dee2e6 #dee2e6 #fff;
+  border-bottom: 1px #dee2e6  solid !important;
+}
+.nav-tabs .nav-link {
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+.nav-tabs .nav-item {
+  margin-bottom: -3px !important;
+}

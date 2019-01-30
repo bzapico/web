@@ -145,9 +145,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.requestError = '';
     // Tabs
     this.tabs = [
-      { title: 'Dynamic Title 1', content: 'Dynamic content 1' },
-      { title: 'Dynamic Title 2', content: 'Dynamic content 2' },
-      { title: 'Dynamic Title 3', content: 'Dynamic content 3', removable: true }
+      { title: 'GROUP 1', content: 'Dynamic content 1' },
+      { title: 'GROUP 2', content: 'Dynamic content 2' },
+      { title: 'GROUP 3', content: 'Dynamic content 3', removable: true }
     ];
     /**
      * Charts reference init
