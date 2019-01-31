@@ -229,27 +229,70 @@
     cursor: pointer;
 }
 
+
+
+/* - - -  Tab styles - - - */
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 2rem;
+  }
+  .nav-tabs {
+    // border-bottom: 1px solid red;
+    border-bottom: none;
+  }
+  .nav-tabs .nav-link {
+    &.active {
+      color: #0937FF !important;
+      border-bottom: 3px #0937FF solid !important;
+    }
+    color: #707070 !important;
+    border: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  
 /* - - - Devices tabs - - - */
-.devices-tab {
+.devices-tab-container {
     margin-bottom: 2em;
     font-size: .6em;
     // background-color: antiquewhite;
     border-bottom: 1px solid #949494;
-    .devices-buttons-container {
-        .devices-button-item {
-            // background-color: aquamarine;
-            display: block;
-            text-align: center;
-            padding: 0.5rem 1rem;
-            float: left;
-        }
+   ul {
+        list-style: none;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        // border-bottom: 1px solid #949494;
+    }
+   li {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.2em;
+        float: left;
+        padding: 0.5rem 2rem;
+        cursor: pointer;
+    }
+    span {
+        display: block;
+        text-decoration: none;
+        display: block;
+        transition: .3s background-color;
+        color: #707070;
+    }
+    span.active {
+        color: #0937FF;
+        border-bottom: 3px #0937FF solid;
+    }
+
+    .devices-button-item {
         i {
-            font-size: 1.6em;
+            font-size: 1.4em;
             margin-right: .2em;
             vertical-align: middle;
-    
+
         }
     }
+
 }
 /* - - -Summary card devices table - - - */
 .summary-devices-table {

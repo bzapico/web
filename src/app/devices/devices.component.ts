@@ -158,27 +158,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.filterField = false;
 
     // Tabs
-    this.tabs = [
-      {
-        title: 'GROUP',
-        active: false,
-        disabled: true,
-      },
-      {
-        title: 'ALL',
-        active: true
-      },
-      {
-        title: 'GROUP 1',
-      },
-      {
-        title: 'GROUP 2',
-      },
-      {
-        title: 'GROUP 3',
-        removable: false
-      }
-    ];
+    this.tabs = [];
     /**
      * Charts reference init
      */
