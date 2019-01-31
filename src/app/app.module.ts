@@ -9,7 +9,7 @@ import { routes } from './app.routing';
 import { AppComponent } from './app.component';
 import { DebugPanelComponent } from './debug-panel/debug-panel.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { ButtonsModule, CarouselModule, TabsModule } from 'ngx-bootstrap';
+import { ButtonsModule, CarouselModule } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { NotificationsComponent } from './notifications/notifications.component';
@@ -91,7 +91,6 @@ import { SortByPipe } from './pipes/sort-by.pipe';
     AlertModule.forRoot(),
     CarouselModule.forRoot(),
     TooltipModule.forRoot(),
-    TabsModule.forRoot(),
     // ROUTES
     routes
   ],

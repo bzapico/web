@@ -256,14 +256,12 @@
 .devices-tab-container {
     margin-bottom: 2em;
     font-size: .6em;
-    // background-color: antiquewhite;
     border-bottom: 1px solid #949494;
    ul {
         list-style: none;
         text-align: center;
         padding: 0;
         margin: 0;
-        // border-bottom: 1px solid #949494;
     }
    li {
         font-family: 'Oswald', sans-serif;
@@ -277,21 +275,24 @@
         text-decoration: none;
         display: block;
         transition: .3s background-color;
-        color: #707070;
     }
     span.active {
         color: #0937FF;
         border-bottom: 3px #0937FF solid;
     }
+    .devices-tab-button {
+        float: right;
+        color: #707070;
+        .devices-button-item {
+            i {
+                font-size: 1.4em;
+                margin-right: .2em;
+                vertical-align: middle;
 
-    .devices-button-item {
-        i {
-            font-size: 1.4em;
-            margin-right: .2em;
-            vertical-align: middle;
-
+            }
         }
     }
+
 
 }
 /* - - -Summary card devices table - - - */
@@ -328,27 +329,27 @@
 }
 
 /* - - - Medias summary card devices table - - - */
-@media screen and (max-width:1779px) and (min-width:1570px){
-    .summary-devices-availability {
-        font-size: 1.2em !important;
-    }
-    .summary-devices-running {
-        font-size: 2em !important;
+@media screen and (max-width:1779px) {
+    .summary-card {
+        .summary-devices-availability {
+            font-size: 1em !important;
+        }
+        .summary-devices-running {
+            font-size: 1em !important;
+        }
     }
 }
 @media screen and (max-width:1570px) {
-    .summary-card {
-        display: none;
-    }
-    .summary-card-small {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        height: 100%;
-        margin-top: 1em;
+    .summary-card{
+        th {
+            display: none;
+        } 
+        td {
+            font-size: .7em;
+        }
     }
 }
+
 /* - - - Close group button - - - */
 .close-group-button {
     height: 39px;
@@ -375,6 +376,14 @@
         display: inline-block;
         position: relative;
         transition: 0.5s;
+    }
+}
+/* - - - Medias close group button - - - */
+@media screen and (max-width:1570px) {
+    .close-group-button {
+        .button {
+            padding: .7em;
+        }
     }
 }
   

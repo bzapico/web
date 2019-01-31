@@ -4,8 +4,8 @@
       <h2>Devices</h2>
     </div>
     <div class="col-lg-5">
-      <div class="close-group-button">
-        <button class="button">
+      <div *ngIf="groupOne" class="close-group-button">
+        <button class="button" (click)="openGroup()">
           <span>GROUP 1<span class="close-trigger">X</span></span>
         </button>
       </div>
@@ -13,7 +13,7 @@
   </div>
   <div class="row row-info">
     <!-- Summary group info card -->
-    <!-- <div class="col-lg-4 h-100">
+    <div *ngIf="!groupOne" class="col-lg-4 h-100">
       <div class="card h-100">
         <div class="card-title-c">
           <h5 class="text-uppercase">Summary</h5>
@@ -33,9 +33,9 @@
           </div>
         </div>
       </div>
-    </div> -->
-
-    <div class="col-lg-4 h-100">
+    </div>
+    <!-- Summary group info card group 1 -->
+    <div *ngIf="groupOne" class="col-lg-4 h-100">
       <div class="card h-100">
         <div class="card-title-c">
           <h5 class="text-uppercase">Summary Group 1</h5>
@@ -52,7 +52,12 @@
               <th class="grey">
                 API Key
               </th>
-              <td class="dark-grey">7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77</td> 
+              <td 
+                class="dark-grey" 
+                tooltip= "API Key" 
+                placement="bottom">
+                7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77
+              </td> 
             </tr>
             <tr>
               <th class="grey">
@@ -62,17 +67,51 @@
             </tr>
           </table>
         </div>
-        <div class="summary-card-small">
-          <div class="summary-devices-availability">ENABLED</div>
-          <div class="summary-devices-running">4</div>
-        </div>
       </div>
     </div>
     <!-- Devices status timeline info card -->
-    <div class="col-lg-8 h-100">
+    <div *ngIf="!groupOne" class="col-lg-8 h-100">
       <div class="card p-4 h-100">
         <div class="card-title-c">
           <h5>DEVICES STATUS TIMELINE</h5>
+        </div>
+        <div 
+          *ngIf="instances.length === 0" 
+          class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
+          No devices deployed yet
+        </div>
+        <div *ngIf="instances.length>0" class="h-100 box-line-chart">
+          <ngx-charts-line-chart
+            [scheme]="colorScheme"
+            [results]="appsChart"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [gradient]="gradient" 
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [yScaleMin]="0"
+            [yScaleMax]="100"
+            [showGridLines]="showGridLines"
+            [showRefLines]="showRefLines"
+            [schemeType]="schemeType"
+            [customColors]="customColors"
+            [rangeFillOpacity]="rangeFillOpacity"
+            [referenceLines]="referenceLines"
+            [showRefLabels]="showRefLabels"
+            >
+          </ngx-charts-line-chart>
+          <div class="y-axis-line-chart">
+            <span class="grey">100%</span>
+            <span class="grey mb-4">0%</span>
+          </div>  
+        </div>
+      </div>
+    </div>
+    <!-- Devices status timeline info card group one -->
+    <div *ngIf="groupOne" class="col-lg-8 h-100">
+      <div class="card p-4 h-100">
+        <div class="card-title-c">
+          <h5>GROUP 1 DEVICES STATUS TIMELINE</h5>
         </div>
         <div 
           *ngIf="instances.length === 0" 
@@ -124,48 +163,43 @@
               <span class="active">ALL</span>
             </li>
             <li class="devices-tab">
-              <span>GROUP 1</span>
+              <span (click)="openGroup()">GROUP 1</span>
             </li>
             <li class="devices-tab">
               <span>GROUP 2</span>
             </li>
-            <li class="devices-tab">
-              <span 
-                (click)="addNewTab()" 
-                class="devices-button-item blue">
-                <i class="material-icons">add</i>
-                ADD GROUP 
-              </span>
-            </li>
-            <li class="devices-tab">
-              <span 
-                (click)="addNewTab()" 
-                class="devices-button-item blue">
-                <i class="material-icons">add</i>
-                ADD GROUP 
-              </span>
-            </li>
-            <li class="devices-tab">
-              <span 
-                class="devices-button-item" 
-                (click)="tabs = []" *ngIf="tabs.length">
-                <i class="material-icons">delete</i>
-                DELETE GROUP
-              </span>
-            </li>
-            <li class="devices-tab">
-              <span 
-                class="devices-button-item" 
-                (click)="tabs = []" 
-                *ngIf="tabs.length">
-                <i class="material-icons">settings</i>
-                CONFIGURATION
-              </span>
-            </li>
+
+            <ul class="devices-tab-button">
+              <li>
+                <span 
+                  (click)="addNewTab()" 
+                  class="devices-button-item blue">
+                  <i class="material-icons">add</i>
+                  ADD GROUP 
+                </span>
+              </li>
+              <li *ngIf="groupOne">
+                <span 
+                  class="devices-button-item" 
+                  (click)="tabs = []" *ngIf="tabs.length">
+                  <i class="material-icons">delete</i>
+                  DELETE GROUP
+                </span>
+              </li>
+              <li *ngIf="groupOne">
+                <span 
+                  class="devices-button-item" 
+                  (click)="tabs = []" 
+                  *ngIf="tabs.length">
+                  <i class="material-icons">settings</i>
+                  CONFIGURATION
+                </span>
+              </li>
+            </ul>
+
           </ul>
-        </div>        <!-- // end Devices tabs -->
-
-
+        </div>       
+         <!-- // end Devices tabs -->
         <div class="row justify-content-between">
           <!-- Sorting mesages -->
           <div class="col-9">  
@@ -207,6 +241,7 @@
             </form>
           </div>      
         </div>
+        <!-- Devices table -->
         <div class="table-h" *ngIf="loadedData && instances && instances.length > 0 && !requestError" >
           <table class="table-responsive table-fixed">
             <thead>
@@ -278,22 +313,33 @@
                   "{'status-dot':classStatusCheck(app.status_name, 'running'),
                   'status-dot-error':classStatusCheck(app.status_name, 'error'),
                   'status-dot-process':classStatusCheck(app.status_name, 'process')}"> 
-                  <span tooltip="{{app.status_name | lowercase}}" class="tooltip-fix" placement="auto">
+                  <span 
+                    tooltip="{{app.status_name | lowercase}}" 
+                    class="tooltip-fix" 
+                    placement="auto">
                   </span>
                   <span class="hide">
                     {{app.status_name}}
                   </span>
                 </td>
                 <td class="col-5">
-                  <button *ngFor="let label of labelsToString(app.labels)" class="btn-sm btn-outline-primary" disabled>
-                      {{label[0]}}: {{label[1]}}
+                  <button 
+                    *ngFor="let label of labelsToString(app.labels)" 
+                    class="btn-sm btn-outline-primary" 
+                    disabled>
+                    {{label[0]}}: {{label[1]}}
                   </button>
                 </td>
                 <td class="row-info-btn col-1 text-center">
-                  <span *ngIf="!checkBox" (click)="enabled()">
+                  <span 
+                    *ngIf="!checkBox" 
+                    (click)="enabled()">
                     <i class="material-icons grey">check_box_outline_blank</i>
                   </span>
-                  <span *ngIf="checkBox"  (click)="enabled()" class="devices-checkbox">
+                  <span 
+                    *ngIf="checkBox"  
+                    (click)="enabled()" 
+                    class="devices-checkbox">
                     <i class="material-icons blue">check_box</i>
                   </span>
                 </td>
@@ -311,7 +357,7 @@
         <div
           *ngIf="loadedData && requestError"
           class="no-elements d-flex justify-content-center align-items-center">
-          <p>{{requestError}}</p>
+          <p>{{ requestError }}</p>
         </div>
         <!-- Loader -->
         <div class="nalej-loader-container" *ngIf="!loadedData">

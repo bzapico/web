@@ -14,6 +14,7 @@ import { mockAppChart, mockAppPieChart } from '../utils/mocks';
 })
 export class DevicesComponent implements OnInit, OnDestroy  {
   checkBox = true;
+  groupOne = false;
   tabs: any[];
   /**
    * Backend reference
@@ -391,5 +392,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   enabled() {
     this.checkBox = !this.checkBox;
+  }
+
+  /**
+   * Open Group
+   */
+  openGroup() {
+    this.groupOne = !this.groupOne;
   }
 }
