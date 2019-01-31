@@ -369,13 +369,13 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   * Add tabs functionality
   */
   addNewTab(): void {
-    const newTabIndex = this.tabs.length + 1;
-    this.tabs.push({
-      title: `Dynamic Title ${newTabIndex}`,
-      content: `Dynamic content ${newTabIndex}`,
-      disabled: false,
-      removable: true
-    });
+    // const newTabIndex = this.tabs.length + 1;
+    // this.tabs.push({
+    //   title: `Dynamic Title ${newTabIndex}`,
+    //   content: `Dynamic content ${newTabIndex}`,
+    //   disabled: false,
+    //   removable: true
+    // });
   }
 
   /**
@@ -383,8 +383,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param tab tab to be removed
    */
   removeTabHandler(tab: any): void {
-    this.tabs.splice(this.tabs.indexOf(tab), 1);
-    console.log('Remove Tab handler');
+    // this.tabs.splice(this.tabs.indexOf(tab), 1);
+    // console.log('Remove Tab handler');
   }
 
   /**

@@ -168,35 +168,34 @@
             <li class="devices-tab">
               <span>GROUP 2</span>
             </li>
-
-            <ul class="devices-tab-button">
+            <ul *ngIf="!groupOne" class="devices-tab-button">
               <li>
-                <span 
-                  (click)="addNewTab()" 
-                  class="devices-button-item blue">
+                <span class="devices-button-item blue">
                   <i class="material-icons">add</i>
                   ADD GROUP 
                 </span>
               </li>
-              <li *ngIf="groupOne">
-                <span 
-                  class="devices-button-item" 
-                  (click)="tabs = []" *ngIf="tabs.length">
+            </ul>
+            <ul *ngIf="groupOne" class="devices-tab-button">
+              <li>
+                <span class="devices-button-item blue">
+                  <i class="material-icons">add</i>
+                  ADD GROUP 
+                </span>
+              </li>
+              <li>
+                <span class="devices-button-item">
                   <i class="material-icons">delete</i>
                   DELETE GROUP
                 </span>
               </li>
-              <li *ngIf="groupOne">
-                <span 
-                  class="devices-button-item" 
-                  (click)="tabs = []" 
-                  *ngIf="tabs.length">
+              <li>
+                <span class="devices-button-item">
                   <i class="material-icons">settings</i>
                   CONFIGURATION
                 </span>
               </li>
             </ul>
-
           </ul>
         </div>       
          <!-- // end Devices tabs -->
