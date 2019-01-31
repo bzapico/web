@@ -5,8 +5,8 @@
     </div>
   </div>
   <div class="row row-info">
-    <!-- Summary app info card -->
-    <div class="col-lg-4 h-100">
+    <!-- Summary group info card -->
+    <!-- <div class="col-lg-4 h-100">
       <div class="card h-100">
         <div class="card-title-c">
           <h5 class="text-uppercase">Summary</h5>
@@ -26,8 +26,42 @@
           </div>
         </div>
       </div>
+    </div> -->
+
+    <div class="col-lg-4 h-100">
+      <div class="card h-100">
+        <div class="card-title-c">
+          <h5 class="text-uppercase">Summary Group 1</h5>
+        </div>
+        <div class="summary-card">
+          <table class="table  summary-devices-table">
+            <tr>
+              <th class="grey">
+                Availability
+              </th>
+              <td class="summary-devices-availability">ENABLED</td>
+            </tr>
+            <tr>
+              <th class="grey">
+                API Key
+              </th>
+              <td class="dark-grey">7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77</td> 
+            </tr>
+            <tr>
+              <th class="grey">
+                Devices
+              </th>
+              <td class="summary-devices-running">4</td>
+            </tr>
+          </table>
+        </div>
+        <div class="summary-card-small">
+          <div class="summary-devices-availability">ENABLED</div>
+          <div class="summary-devices-running">4</div>
+        </div>
+      </div>
     </div>
-    <!-- App status timeline info card -->
+    <!-- Devices status timeline info card -->
     <div class="col-lg-8 h-100">
       <div class="card p-4 h-100">
         <div class="card-title-c">
@@ -66,7 +100,7 @@
       </div>
     </div>
   </div>
-  <!-- Deployed app list panel card-->
+  <!-- Deployed devices list panel card-->
   <div class="row row-main">
     <div class="col-lg-12 col-md-12 col-sm-12 h-100">
       <div class="card h-100 p-4">
@@ -94,8 +128,8 @@
             </div>
             <!-- Add group button -->
             <div class="flex-shrink-1">
-              <div class="add-group blue">
-                <span (click)="addNewTab()">
+              <div class="devices-buttons-container">
+                <span (click)="addNewTab()" class="devices-button-item blue">
                   <i class="material-icons">add</i>
                   ADD GROUP 
                 </span>
@@ -103,16 +137,16 @@
             </div>
             <!-- Add/delete/configuration options -->
             <div class="flex-shrink-1">
-              <div class="add-group">
-                <span (click)="addNewTab()">
+              <div class="devices-buttons-container">
+                <span class="devices-button-item" (click)="addNewTab()">
                   <i class="material-icons">add</i>
                   ADD GROUP 
                 </span>
-                <span (click)="tabs = []" *ngIf="tabs.length">
+                <span class="devices-button-item" (click)="tabs = []" *ngIf="tabs.length">
                   <i class="material-icons">delete</i>
                   DELETE GROUP
                 </span>
-                <span (click)="tabs = []" *ngIf="tabs.length">
+                <span class="devices-button-item" (click)="tabs = []" *ngIf="tabs.length">
                   <i class="material-icons">settings</i>
                   CONFIGURATION
                 </span>
@@ -249,7 +283,7 @@
                   <!-- <span>
                     <i class="material-icons grey">check_box_outline_blank</i>
                   </span> -->
-                  <span>
+                  <span class="devices-checkbox">
                     <i class="material-icons blue">check_box</i>
                   </span>
                 </td>

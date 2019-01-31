@@ -225,25 +225,76 @@
     }
 }
 
-.nalej-checkbox {
+.devices-checkbox {
     cursor: pointer;
 }
+
+/* - - - Devices tabs - - - */
 .devices-tab {
     margin-bottom: 2em;
     font-size: .6em;
     background-color: antiquewhite;
     border-bottom: 1px solid red;
-}
-.add-group {
-    background-color: aquamarine;
-    display: block;
-    padding: 0.5rem 2rem;
-    text-align: center;
-    i {
-        font-size: 1.6em;
-        margin-right: 10px;
-        vertical-align: middle;
+    .devices-buttons-container {
+        .devices-button-item {
+            background-color: aquamarine;
+            display: block;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            float: left;
+        }
+        i {
+            font-size: 1.6em;
+            margin-right: .2em;
+            vertical-align: middle;
+    
+        }
     }
 }
+/* - - -Summary card devices table - - - */
+.summary-devices-table {
+    margin-bottom: -1em;
+    td {
+        padding: 0.2rem;
+        vertical-align: middle;
+        font-size:  .9em;
+        border: none;
+        margin-left: 20%;
+        text-align: right;
+    }
+    th {
+        padding: 0.2em;
+        border: none;
+        font-size:  .9em;
+        font-weight: 200;
+    }
+    tr {
+        border: none;
+    } 
 
+}
+.summary-devices-availability {
+    color: #0937FF;
+    font-size: 1.4em;
+}
+.summary-devices-running {
+    font-size: 3em;
+}
+.summary-card-small {
+    display: none;
+}
+/* - - - Medias summary card devices table - - - */
+@media screen and (max-width:1500px) {
+    .summary-card {
+        display: none;
+    }
+    .summary-card-small {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        height: 100%;
+        margin-top: 1em;
+    }
 
+}
