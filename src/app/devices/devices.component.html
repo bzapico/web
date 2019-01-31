@@ -34,7 +34,7 @@
           <h5 class="text-uppercase">Summary Group 1</h5>
         </div>
         <div class="summary-card">
-          <table class="table  summary-devices-table">
+          <table class="table summary-devices-table">
             <tr>
               <th class="grey">
                 Availability
@@ -280,12 +280,22 @@
                   </button>
                 </td>
                 <td class="row-info-btn col-1 text-center">
-                  <!-- <span>
+                  <!-- <span *ngIf="checkBox" (click)="enabled()">
                     <i class="material-icons grey">check_box_outline_blank</i>
-                  </span> -->
-                  <span class="devices-checkbox">
-                    <i class="material-icons blue">check_box</i>
                   </span>
+                  <span *ngIf="!checkBox"  (click)="enabled()" class="devices-checkbox">
+                    <i class="material-icons blue">check_box</i>
+                  </span> -->
+                  <div class="checkbox-container">
+                    <input 
+                    type="checkbox" 
+                    [(ngModel)]="theCheckbox" 
+                    (click)="toggleVisibility($event)"/>
+                    <span *ngIf="marked"></span>
+                    <span *ngIf="!marked"></span>
+                    <span class="checkmark"></span>
+                  </div>
+
                 </td>
               </tr>
             </tbody>
