@@ -1,7 +1,14 @@
 <!-- Component title -->
 <div class="row row-title mb-4">
-    <div class="col-lg-12">
+    <div class="col-lg-5">
       <h2>Devices</h2>
+    </div>
+    <div class="col-lg-5">
+      <div class="close-group-button">
+        <button class="button">
+          <span>GROUP 1<span class="close-trigger">X</span></span>
+        </button>
+      </div>
     </div>
   </div>
   <div class="row row-info">
@@ -280,22 +287,12 @@
                   </button>
                 </td>
                 <td class="row-info-btn col-1 text-center">
-                  <!-- <span *ngIf="checkBox" (click)="enabled()">
+                  <span *ngIf="!checkBox" (click)="enabled()">
                     <i class="material-icons grey">check_box_outline_blank</i>
                   </span>
-                  <span *ngIf="!checkBox"  (click)="enabled()" class="devices-checkbox">
+                  <span *ngIf="checkBox"  (click)="enabled()" class="devices-checkbox">
                     <i class="material-icons blue">check_box</i>
-                  </span> -->
-                  <div class="checkbox-container">
-                    <input 
-                    type="checkbox" 
-                    [(ngModel)]="theCheckbox" 
-                    (click)="toggleVisibility($event)"/>
-                    <span *ngIf="marked"></span>
-                    <span *ngIf="!marked"></span>
-                    <span class="checkmark"></span>
-                  </div>
-
+                  </span>
                 </td>
               </tr>
             </tbody>

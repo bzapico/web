@@ -13,8 +13,6 @@ import { mockAppChart, mockAppPieChart } from '../utils/mocks';
   styleUrls: ['./devices.component.scss']
 })
 export class DevicesComponent implements OnInit, OnDestroy  {
-  marked = false;
-  theCheckbox = false;
   checkBox = true;
   tabs: any[];
   /**
@@ -407,15 +405,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.tabs.splice(this.tabs.indexOf(tab), 1);
     console.log('Remove Tab handler');
   }
-  enabled() {
-    if (this.checkBox === true) {
-    return false;
-    } else {
-     return true;
-    }
-  }
-  toggleVisibility(e) {
-    this.marked = e.target.checked;
-  }
 
+  /**
+   * Checkbox
+   */
+  enabled() {
+    this.checkBox = !this.checkBox;
+  }
 }
