@@ -39,6 +39,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { DevicesComponent } from './devices/devices.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SortByPipe } from './pipes/sort-by.pipe';
+import { AddDevicesGroupComponent } from './add-devices-group/add-devices-group.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { SortByPipe } from './pipes/sort-by.pipe';
     TruncatePipe,
     DevicesComponent,
     FilterPipe,
-    SortByPipe
+    SortByPipe,
+    AddDevicesGroupComponent
   ],
   entryComponents: [
     DebugPanelComponent,

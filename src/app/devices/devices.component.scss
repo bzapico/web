@@ -246,6 +246,7 @@
         float: left;
         padding: 0.5rem 2rem;
         cursor: pointer;
+        position: relative;
     }
     span {
         display: block;
@@ -253,9 +254,18 @@
         display: block;
         transition: .3s background-color;
     }
-    span.active {
+    span.active{
         color: #0937FF;
-        border-bottom: 3px #0937FF solid;
+    }
+    span.active::before {
+        content: "";
+        height: 5px;
+        width: 100%;
+        display: block;
+        position: absolute; 
+        bottom: -1px;        
+        left: 0;
+        background-color: #0937FF;
     }
     .devices-tab-button {
         float: right;
