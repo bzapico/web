@@ -6,6 +6,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { mockAppChart, mockAppPieChart } from '../utils/mocks';
+import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group.component';
 
 @Component({
   selector: 'app-devices',
@@ -399,5 +400,17 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   openGroup() {
     this.groupOne = !this.groupOne;
+  }
+   /**
+   * Opens the modal view that holds add user component
+   */
+  addUser() {
+    const initialState = {
+      organizationId: this.organizationId,
+    };
+
+    this.modalRef = this.modalService.show(AddDevicesGroupComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    // this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
 }

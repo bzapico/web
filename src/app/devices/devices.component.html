@@ -170,7 +170,7 @@
             </li>
             <ul *ngIf="!groupOne" class="devices-tab-button">
               <li>
-                <span class="devices-button-item blue">
+                <span class="devices-button-item blue" (click)="addUser()">
                   <i class="material-icons">add</i>
                   ADD GROUP 
                 </span>
@@ -178,7 +178,7 @@
             </ul>
             <ul *ngIf="groupOne" class="devices-tab-button">
               <li>
-                <span class="devices-button-item blue">
+                <span class="devices-button-item blue" (click)="addUser()">
                   <i class="material-icons">add</i>
                   ADD GROUP 
                 </span>

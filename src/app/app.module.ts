@@ -74,7 +74,8 @@ import { AddDevicesGroupComponent } from './add-devices-group/add-devices-group.
     EditClusterComponent,
     EditUserComponent,
     AppsInfoComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    AddDevicesGroupComponent
   ],
   imports: [
     BrowserModule,
