@@ -41,6 +41,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { AddDevicesGroupComponent } from './add-devices-group/add-devices-group.component';
 import { GroupConfigurationComponent } from './group-configuration/group-configuration.component';
+import { DeviceGroupCreatedComponent } from './device-group-created/device-group-created.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { GroupConfigurationComponent } from './group-configuration/group-configu
     FilterPipe,
     SortByPipe,
     AddDevicesGroupComponent,
-    GroupConfigurationComponent
+    GroupConfigurationComponent,
+    DeviceGroupCreatedComponent
   ],
   entryComponents: [
     DebugPanelComponent,
