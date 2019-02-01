@@ -80,7 +80,8 @@ import { DeviceGroupCreatedComponent } from './device-group-created/device-group
     AppsInfoComponent,
     ChangePasswordComponent,
     AddDevicesGroupComponent,
-    GroupConfigurationComponent
+    GroupConfigurationComponent,
+    DeviceGroupCreatedComponent
   ],
   imports: [
     BrowserModule,
