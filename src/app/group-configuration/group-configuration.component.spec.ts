@@ -1,5 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
+import { ButtonsModule, BsModalRef, TooltipModule } from 'ngx-bootstrap';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { GroupConfigurationComponent } from './group-configuration.component';
 
 describe('GroupConfigurationComponent', () => {
@@ -8,7 +11,17 @@ describe('GroupConfigurationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GroupConfigurationComponent ]
+      declarations: [ GroupConfigurationComponent ],
+      imports: [
+        FormsModule,
+        ButtonsModule,
+        HttpClientTestingModule,
+        TooltipModule,
+        RouterTestingModule
+      ],
+      providers: [
+        BsModalRef,
+      ]
     })
     .compileComponents();
   }));

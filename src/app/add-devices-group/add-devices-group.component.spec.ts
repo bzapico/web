@@ -1,5 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
+import { ButtonsModule, BsModalRef, TooltipModule, BsModalService, ModalModule } from 'ngx-bootstrap';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AddDevicesGroupComponent } from './add-devices-group.component';
 
 describe('AddDevicesGroupComponent', () => {
@@ -8,7 +11,19 @@ describe('AddDevicesGroupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddDevicesGroupComponent ]
+      declarations: [ AddDevicesGroupComponent ],
+      imports: [
+        FormsModule,
+        ButtonsModule,
+        HttpClientTestingModule,
+        RouterTestingModule,
+        TooltipModule,
+        ModalModule.forRoot(),
+      ],
+      providers: [
+        BsModalRef,
+        BsModalService
+      ]
     })
     .compileComponents();
   }));
