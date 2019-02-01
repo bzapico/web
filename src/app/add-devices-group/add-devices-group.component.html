@@ -26,47 +26,42 @@
       </form>
     <!-- Option checkboxes -->
     <div class="py-4">
-      <h4>Options</h4>
+      <p>Options</p>
       <div class="check-options">
-        <ul>
-          <li>        
-            <p class="grey d-inline">Group device availability</p>
-            <div class="d-inline">
-              <span 
-                *ngIf="!checkBox" 
-                (click)="enabled()">
-                <i class="material-icons grey">check_box_outline_blank</i>
-              </span>
-              <span 
-                *ngIf="checkBox"  
-                (click)="enabled()" 
-                class="devices-checkbox">
-                <i class="material-icons blue">check_box</i>
-              </span>
-            </div>
-          </li>
-          <li>
-            <p class="grey d-inline">Devices enabled by default</p>
-            <div class="d-inline">
-              <span 
-              *ngIf="!checkBox" 
-              (click)="enabled()">
-              <i class="material-icons grey">check_box_outline_blank</i>
-            </span>
-            <span 
-              *ngIf="checkBox"  
-              (click)="enabled()" 
-              class="devices-checkbox">
-              <i class="material-icons blue">check_box</i>
-            </span>
-            </div>
-          </li>
-        </ul>
+        <p class="grey">Group device availability</p>
+        <div class="add-dev-checkbox">
+          <span 
+            *ngIf="!checkBox" 
+            (click)="enabled()">
+            <i class="material-icons grey">check_box_outline_blank</i>
+          </span>
+          <span 
+            *ngIf="checkBox"  
+            (click)="enabled()" 
+            class="devices-checkbox">
+            <i class="material-icons blue">check_box</i>
+          </span>
+        </div>
+        <br>
+        <p class="grey">Devices enabled by default</p>
+        <div class="add-dev-checkbox">
+          <span 
+            *ngIf="!checkBox" 
+            (click)="enabled()">
+            <i class="material-icons grey">check_box_outline_blank</i>
+          </span>
+          <span 
+            *ngIf="checkBox"  
+            (click)="enabled()" 
+            class="devices-checkbox">
+            <i class="material-icons blue">check_box</i>
+          </span>
+        </div>   
       </div>
     </div>
     <!-- Error messages -->
     <div class="error-message">
-        <div 
+      <div 
         tooltip = "{{arrayToString(errorMessages)}}"
         placement = "bottom"
         *ngIf="errorMessages.length > 0">
