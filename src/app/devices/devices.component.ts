@@ -7,6 +7,7 @@ import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { mockAppChart, mockAppPieChart } from '../utils/mocks';
 import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group.component';
+import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
 
 @Component({
   selector: 'app-devices',
@@ -411,6 +412,19 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
     this.modalRef = this.modalService.show(AddDevicesGroupComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    // this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
+    this.modalService.onHide.subscribe((reason: string) => {  });
+  }
+
+   /**
+   * Opens the modal view that holds group configuration component
+   */
+  openGroupConfiguration() {
+    const initialState = {
+      organizationId: this.organizationId,
+    };
+
+    this.modalRef = this.modalService.show(GroupConfigurationComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { });
   }
 }
