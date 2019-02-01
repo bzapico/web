@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup } from '@angular/forms';
+import { DeviceGroupCreatedComponent } from '../device-group-created/device-group-created.component';
 
 @Component({
   selector: 'app-add-devices-group',
@@ -39,8 +40,15 @@ export class AddDevicesGroupComponent implements OnInit {
     backdrop: false,
     ignoreBackdropClick: true
   };
+
+  /**
+   * Device grup modal window reference
+   */
+  bsDeviceGroupModalRef: BsModalRef;
+
   constructor(
     public bsModalRef: BsModalRef,
+    private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
@@ -189,11 +197,23 @@ export class AddDevicesGroupComponent implements OnInit {
     return msg;
   }
 
-   /**
+  /**
    * Checkbox
    */
   enabled() {
     this.checkBox = !this.checkBox;
   }
 
+  /**
+   * Create device group opens the device group created component modal window confirmation
+   */
+  createDeviceGroup() {
+    const initialState = {
+      organizationId: this.organizationId,
+    };
+    this.bsDeviceGroupModalRef =
+      this.modalService.show(DeviceGroupCreatedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.bsDeviceGroupModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.hide();
+  }
 }
