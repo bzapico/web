@@ -77,7 +77,8 @@ import { GroupConfigurationComponent } from './group-configuration/group-configu
     EditUserComponent,
     AppsInfoComponent,
     ChangePasswordComponent,
-    AddDevicesGroupComponent
+    AddDevicesGroupComponent,
+    GroupConfigurationComponent
   ],
   imports: [
     BrowserModule,
