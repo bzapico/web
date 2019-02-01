@@ -1,13 +1,18 @@
 <div class="sidebar">
   <ul class="nav">
-    <li class="nav-title" style="visibility:hidden" (click)="openDebugPanel()">NALEJ</li>
+    <li 
+      class="nav-title" 
+      style="visibility:hidden" 
+      (click)="openDebugPanel()">
+      NALEJ
+    </li>
     <li class="nav-item">
       <a 
         routerLinkActive="active" 
         class="nav-link">
         <div class="profile" (click)="openEditUser()">
           <div class="avatar-frame">
-              <i class="material-icons">person</i>
+            <i class="material-icons">person</i>
           </div>
           <p class="name">{{name}}</p>
           <p class="type">{{role}}</p>
@@ -19,9 +24,9 @@
       *ngIf="role === 'Owner'" 
       class="nav-item nav-item-page">
       <a
-      routerLinkActive="active" 
-      routerLink="/organization" 
-      class="nav-link">
+        routerLinkActive="active" 
+        routerLink="/organization" 
+        class="nav-link">
         <i class="material-icons">group_work</i>
         Organization
         <span class="arrow">></span>
@@ -31,9 +36,9 @@
       *ngIf="role === 'Owner' || role === 'Operator'"
       class="nav-item nav-item-page">
       <a         
-      routerLinkActive="active" 
-      routerLink="/resources" 
-      class="nav-link">
+        routerLinkActive="active" 
+        routerLink="/resources" 
+        class="nav-link">
         <i class="material-icons">dns</i>
         Resources
         <span class="arrow">></span>
@@ -43,10 +48,10 @@
       *ngIf="role === 'Owner' || role === 'Developer'" 
       class="nav-item nav-item-page">
       <a         
-      routerLinkActive="active" 
-      routerLink="/devices" 
-      class="nav-link">
-      <i class="material-icons">device_hub</i>
+        routerLinkActive="active" 
+        routerLink="/devices" 
+        class="nav-link">
+        <i class="material-icons">device_hub</i>
         Devices
         <span class="arrow">></span>
       </a>
@@ -55,15 +60,17 @@
       *ngIf="role === 'Owner' || role === 'Developer'" 
       class="nav-item nav-item-page">
       <a         
-      routerLinkActive="active" 
-      routerLink="/applications" 
-      class="nav-link">
+        routerLinkActive="active" 
+        routerLink="/applications" 
+        class="nav-link">
         <i class="material-icons">apps</i>
         Applications
         <span class="arrow">></span>
       </a>
     </li>
-    <li class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn" (click)="logout()">
+    <li 
+      class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn" 
+      (click)="logout()">
       <button class="btn info-btn logout-btn btn-red logout my-4">
         Logout
       </button>

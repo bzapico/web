@@ -158,8 +158,10 @@
     .sidebar {
         .nav-item {
             .profile {
+      
                 .name {
                     font-size: 21px;
+                    padding: 0;
                 }
                 .email {
                     font-size: 15px;
@@ -175,6 +177,7 @@
         .nav-title {
             font-size: 13px;
             letter-spacing: 26px;
+        
         }
     }
 }
