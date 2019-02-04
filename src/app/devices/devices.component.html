@@ -160,10 +160,12 @@
               <span class="grey">GROUPS</span>
             </li>
             <li class="devices-tab">
-              <span class="active">ALL</span>
+              <span [ngClass]="{active: !groupOne}" >ALL</span>
             </li>
-            <li class="devices-tab">
-              <span (click)="openGroup()">GROUP 1</span>
+            <li 
+              class="devices-tab"
+              (click)="openGroup()">
+              <span [ngClass]="{active: groupOne}">GROUP 1</span>
             </li>
             <li class="devices-tab">
               <span>GROUP 2</span>
