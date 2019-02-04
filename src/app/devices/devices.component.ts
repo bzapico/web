@@ -5,7 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { mockAppChart, mockAppPieChart } from '../utils/mocks';
+import { mockAppChart, mockAppPieChart, mockDevicesChart } from '../utils/mocks';
 import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group.component';
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
 
@@ -66,12 +66,13 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Refresh ratio reference
    */
-  REFRESH_RATIO = 2000000; // 20 seconds
+  REFRESH_RATIO = 2000; // 20 seconds
 
   /**
    * Charts references
    */
   mockAppChart: any;
+  mockDevicesChart: any;
   mockAppPieChart: any;
   appsChart: any;
 
@@ -165,7 +166,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     /**
      * Charts reference init
      */
-    Object.assign(this, {mockAppChart, mockAppPieChart});
+    Object.assign(this, {mockDevicesChart, mockAppPieChart});
    }
 
   ngOnInit() {

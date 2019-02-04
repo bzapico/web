@@ -23,7 +23,11 @@ export const AvailableComponents = {
   userinfo: 'User Info',
   userEdit: 'User Edit',
   editcluster: 'EditCluster',
-  addUser: 'Add User'
+  addUser: 'Add User',
+  devices: 'Devices',
+  addDeviceGroup: 'Add Device Group',
+  configDeviceGroup: 'Configuration Device Group',
+  deviceGroupCreated: 'Device Group Created'
 };
 
 @Component({
@@ -97,6 +101,22 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.addUser,
       mock: localStorage.getItem(LocalStorageKeys.addUserMock) === 'false' ? 'false' : 'true'
     });
+    this.components.push({
+      name: AvailableComponents.devices,
+      mock: localStorage.getItem(LocalStorageKeys.devicesMock) === 'false' ? 'false' : 'true'
+    });
+    this.components.push({
+      name: AvailableComponents.addDeviceGroup,
+      mock: localStorage.getItem(LocalStorageKeys.addDeviceGroupMock) === 'false' ? 'false' : 'true'
+    });
+    this.components.push({
+      name: AvailableComponents.configDeviceGroup,
+      mock: localStorage.getItem(LocalStorageKeys.configDeviceGroupMock) === 'false' ? 'false' : 'true'
+    });
+    this.components.push({
+      name: AvailableComponents.deviceGroupCreated,
+      mock: localStorage.getItem(LocalStorageKeys.deviceGroupCreatedMock) === 'false' ? 'false' : 'true'
+    });
   }
 
   /**
@@ -120,6 +140,10 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.userEditMock, newValue);
     localStorage.setItem(LocalStorageKeys.clusterEditMock, newValue);
     localStorage.setItem(LocalStorageKeys.addUserMock, newValue);
+    localStorage.setItem(LocalStorageKeys.devicesMock, newValue);
+    localStorage.setItem(LocalStorageKeys.addDeviceGroupMock, newValue);
+    localStorage.setItem(LocalStorageKeys.configDeviceGroupMock, newValue);
+    localStorage.setItem(LocalStorageKeys.deviceGroupCreatedMock, newValue);
   }
 
   /**
@@ -163,8 +187,20 @@ export class DebugPanelComponent implements OnInit {
         localStorage.setItem(LocalStorageKeys.clusterEditMock, componentMockOption.mock);
       break;
       case AvailableComponents.addUser:
-      localStorage.setItem(LocalStorageKeys.addUserMock, componentMockOption.mock);
-    break;
+        localStorage.setItem(LocalStorageKeys.addUserMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.devices:
+        localStorage.setItem(LocalStorageKeys.devicesMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.addDeviceGroup:
+        localStorage.setItem(LocalStorageKeys.addDeviceGroupMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.configDeviceGroup:
+        localStorage.setItem(LocalStorageKeys.configDeviceGroupMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.deviceGroupCreated:
+        localStorage.setItem(LocalStorageKeys.deviceGroupCreatedMock, componentMockOption.mock);
+      break;
       default:
         console.log('Selected option not registered as available component');
     }

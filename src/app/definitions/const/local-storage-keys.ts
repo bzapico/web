@@ -13,6 +13,10 @@ export const LocalStorageKeys = {
     clusterEditMock: 'cluster_edit_mock',
     addUserMock: 'add_user_mock',
     passwordMock: 'password_change_mock',
+    devicesMock: 'devices_mock',
+    addDeviceGroupMock: 'add_device_group_mock',
+    configDeviceGroupMock: 'configuration_device_group_mock',
+    deviceGroupCreatedMock: 'device_group_created_mock',
 
     // Data
     jwt: 'jwt',

@@ -1584,3 +1584,43 @@ export const mockClusterDetail = [
         multitenant_support: 'yes'
     }
 ];
+
+
+/**
+ * Mocked Devices status timeline
+ */
+export const mockDevicesChart = [
+    {
+        'name': 'Devices Running',
+        'series': [
+          {
+            'value': 39,
+            'name': '-6h'
+          },
+          {
+            'value': 79,
+            'name': '-5h'
+          },
+          {
+            'value': 23,
+            'name': '-4h'
+          },
+          {
+            'value': 96,
+            'name': '-3h'
+          },
+          {
+            'value': 40,
+            'name': '-2h'
+          },
+          {
+            'value': 73,
+            'name': '-1h'
+          },
+          {
+            'value': 23,
+            'name': 'now'
+          }
+        ]
+      }
+];
