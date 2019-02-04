@@ -135,9 +135,6 @@
 }
 
 /* - - - Deployed app list table card - - - */
-.row-info-btn {
-    padding-right: 0.3em;
-}
 .info-btn {
     height: 32px;
     width:32px;
@@ -232,8 +229,10 @@
 /* - - - Devices tabs - - - */
 .devices-tab-container {
     margin-bottom: 2em;
+    margin-right: 3em;
     font-size: .6em;
     border-bottom: 1px solid #949494;
+    margin-left: 1em;
    ul {
         list-style: none;
         text-align: center;
@@ -242,15 +241,15 @@
     }
    li {
         font-family: 'Oswald', sans-serif;
-        font-size: 1.2em;
+        font-size: 1em;
         float: left;
-        padding: 0.5rem 2rem;
+        padding: 0.5rem 2.5rem;
         cursor: pointer;
         position: relative;
     }
     .devices-tab-title {
         cursor: default;
-        padding-right: 5em;
+        padding-right: 8em;
     }
     span {
         display: block;
@@ -274,6 +273,9 @@
     .devices-tab-button {
         float: right;
         color: #707070;
+        li {
+            padding: 0.5rem 1.5rem;
+        }
         .devices-button-item {
             i {
                 font-size: 1.4em;
@@ -283,7 +285,7 @@
             }
         }
         .devices-button-item-pr {
-            padding-right: 5em;
+            padding-right: 3em;
         }
     }
 }
@@ -345,13 +347,17 @@
     .devices-button-item-pr {
         padding-right: 0em !important;
     }
+    .devices-tab-title {
+        padding-right: 4em !important;
+    }
 }
 
 /* - - - Close group button - - - */
 .close-group-button {
-    height: 39px;
-    width:161px;
-    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
     .button {
         outline: none;
         display: inline-block;
@@ -359,12 +365,13 @@
         border-radius: 50px;
         border:none;
         color: #FFFFFF;
-        font-size: .7em;
-        padding: 1em;
+        font-size: .8em;
+        font-weight: 100;
+        padding-bottom: .5em;
+        padding-top: .6em;
         width:161px;
         transition: all 0.5s;
         cursor: pointer;
-        margin: 5px;
     }
     .button span.close-trigger {
         font-size: 1.2em !important;
@@ -375,12 +382,5 @@
         transition: 0.5s;
     }
 }
-/* - - - Medias close group button - - - */
-@media screen and (max-width:1570px) {
-    .close-group-button {
-        .button {
-            padding: .7em;
-        }
-    }
-}
+
   
