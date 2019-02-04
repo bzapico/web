@@ -135,9 +135,6 @@
 }
 
 /* - - - Deployed app list table card - - - */
-.row-info-btn {
-    padding-right: 0.3em;
-}
 .info-btn {
     height: 32px;
     width:32px;
@@ -242,7 +239,7 @@
     }
    li {
         font-family: 'Oswald', sans-serif;
-        font-size: 1.2em;
+        font-size: 1em;
         float: left;
         padding: 0.5rem 2rem;
         cursor: pointer;
@@ -282,9 +279,9 @@
 
             }
         }
-        .devices-button-item-pr {
-            padding-right: 5em;
-        }
+        // .devices-button-item-pr {
+        //     padding-right: 5em;
+        // }
     }
 }
 /* - - -Summary card devices table - - - */
@@ -349,9 +346,10 @@
 
 /* - - - Close group button - - - */
 .close-group-button {
-    height: 39px;
-    width:161px;
-    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
     .button {
         outline: none;
         display: inline-block;
@@ -366,7 +364,6 @@
         width:161px;
         transition: all 0.5s;
         cursor: pointer;
-        margin: 5px;
     }
     .button span.close-trigger {
         font-size: 1.2em !important;
@@ -377,12 +374,5 @@
         transition: 0.5s;
     }
 }
-/* - - - Medias close group button - - - */
-@media screen and (max-width:1570px) {
-    .close-group-button {
-        .button {
-            padding: .7em;
-        }
-    }
-}
+
   
