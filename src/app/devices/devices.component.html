@@ -22,13 +22,13 @@
       <div class="summary-card">
         <div>
           <div class="circle summary-box">
-            <span class="align-self-center mt-1">4</span>
+            <span class="align-self-center mt-1">{{devicesGroupCount}}</span>
           </div>
           <p class="circle-name text-center text-uppercase mt-3">Groups</p>
         </div>
         <div>
           <div class="circle summary-box">
-            <span class="align-self-center mt-1">10</span>
+            <span class="align-self-center mt-1">{{devicesCount}}</span>
           </div>
           <p class="circle-name text-center text-uppercase mt-3">Devices</p>
         </div>
@@ -64,7 +64,7 @@
             <th class="grey">
               Devices
             </th>
-            <td class="summary-devices-running">4</td>
+            <td class="summary-devices-running">{{devicesCount}}</td>
           </tr>
         </table>
       </div>
@@ -263,15 +263,15 @@
                 </span>
               </th>
               <th 
-                (click)="setOrder('registeredDate')" 
-                [ngClass]="getCategoryCSSClass('registeredDate')"
+                (click)="setOrder('date')" 
+                [ngClass]="getCategoryCSSClass('date')"
                 scope="col" 
                 class="col-2">
                 Date registered
-                <span class="expand-chevron" *ngIf="sortedBy === 'registeredDate' && !reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'date' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'registeredDate' && reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'date' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -313,8 +313,8 @@
               <td 
                 class="text-lowercase col-2 text-center"
                 [ngClass]=
-                "{'status-dot':classStatusCheck(device.status_name, 'running'),
-                'status-dot-error':classStatusCheck(device.status_name, 'error'),
+                "{'status-dot':classStatusCheck(device.status_name, 'conected'),
+                'status-dot-error':classStatusCheck(device.status_name, 'disconected'),
                 'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
                 <span 
                   tooltip="{{device.status_name | lowercase}}" 

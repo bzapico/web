@@ -41,9 +41,19 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   labels: any[];
 
   /**
-   * Number of running devices
+   * Number of conected devices
    */
-  countRunning: number;
+  countConected: number;
+
+  /**
+   * Count of total devices
+   */
+  devicesCount: number;
+
+  /**
+   * Count of total devices groups
+   */
+  devicesGroupCount: number;
 
   /**
    * Interval reference
@@ -147,6 +157,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.devices = [];
     this.labels = [];
     this.loadedData = false;
+    this.devicesCount = 0;
+    this.devicesGroupCount = 0;
     this.devicesChart = [{name: 'Running devices %', series: []}];
     this.requestError = '';
     // SortBy
@@ -169,12 +181,20 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
+      if (this.organizationId !== null) {
+        // Requests top card summary data
+        this.backend.getResourcesSummary(this.organizationId)
+        .subscribe(summary => {
+            this.devicesCount = summary['total_devices'] || 0 ;
+            this.devicesGroupCount = summary['total_devices_group'] || 0 ;
+        });
         this.updateDevices(this.organizationId);
         this.refreshIntervalRef = setInterval(() => {
           this.updateDevices(this.organizationId);
         }, this.REFRESH_RATIO); // Refresh each 60 seconds
     }
   }
+}
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
   }
@@ -189,7 +209,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       this.backend.getDevices(this.organizationId)
       .subscribe(response => {
           this.devices = response.devices || [];
-          this.updateRunningDevicesLineChart(this.devices);
+          this.updateConectedDevicesLineChart(this.devices);
           if (!this.loadedData) {
             this.loadedData = true;
           }
@@ -204,11 +224,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Updates timeline chart
    * @param devices devices array
    */
-  updateRunningDevicesLineChart(devices) {
-    let runningDevicesCount = 0;
+  updateConectedDevicesLineChart(devices) {
+    let conectedDevicesCount = 0;
     devices.forEach(device => {
-      if (device && device.status_name.toLowerCase() === 'running') {
-        runningDevicesCount += 1;
+      if (device && device.status_name.toLowerCase() === 'conected') {
+        conectedDevicesCount += 1;
       }
     });
 
@@ -222,7 +242,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       seconds = '0' + now.getSeconds();
     }
     const entry = {
-      'value': runningDevicesCount / devices.length * 100,
+      'value': conectedDevicesCount / devices.length * 100,
       'name':  now.getHours() + ':' + minutes + ':' + seconds
     };
 
@@ -252,8 +272,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   classStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case 'running': {
-        if (className.toLowerCase() === 'running') {
+      case 'conected': {
+        if (className.toLowerCase() === 'conected') {
           return true;
         }
         break;
