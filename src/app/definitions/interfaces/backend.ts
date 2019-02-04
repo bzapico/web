@@ -25,4 +25,6 @@ export interface Backend {
     getRegisteredApps(organizationId: string);
     getAppInstance(organizationId: string, instanceId: string);
     getAppDescriptor(organizationId: string, descriptorId: string);
+    // Devices
+    getDevices(organizationId: string);
 }

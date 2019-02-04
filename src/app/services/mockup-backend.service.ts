@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList  } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList } from '../utils/mocks';
 
 @Injectable({
   providedIn: 'root'
@@ -326,4 +326,32 @@ export class MockupBackendService implements Backend {
       map(response => response.json())
     );
   }
+
+
+  /********************
+   * Devices
+   ********************/
+
+  /**
+   * Simulates to request devices list
+   * @param organizationId Organization identifier
+   */
+  getDevices(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({mockDevicesList}),
+      status: 200
+    })))
+    .pipe(
+      map(response => response.json())
+    );
+  }
+
+
+
+
+
+
+
+
+
 }

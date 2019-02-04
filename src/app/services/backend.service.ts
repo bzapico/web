@@ -320,4 +320,20 @@ export class BackendService implements Backend {
       }
       );
   }
+
+  /**
+   * Devices
+   */
+
+  // GET: "/v1/device/{organization_id}/list"
+  /**
+   * Requests devices list
+   * @param organizationId Organization identifier
+   */
+  getDevices(organizationId: string) {
+    return this.get(
+      API_URL + 'device/' + organizationId + '/list'
+    );
+  }
+
 }

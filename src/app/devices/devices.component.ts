@@ -5,7 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { mockAppChart, mockAppPieChart, mockDevicesChart } from '../utils/mocks';
+import { mockDevicesChart } from '../utils/mocks';
 import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group.component';
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
 
@@ -39,9 +39,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   instances: any[];
 
   /**
-   * List of registered apps
+   * List of available devices
    */
-  registered: any[];
+  devices: any[];
 
   /**
    * List of labels
@@ -49,14 +49,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   labels: any[];
 
   /**
-   * Number of running instances
+   * Number of running devices
    */
   countRunning: number;
-
-  /**
-   * Number of registered apps
-   */
-  countRegistered: number;
 
   /**
    * Interval reference
@@ -71,10 +66,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Charts references
    */
-  mockAppChart: any;
   mockDevicesChart: any;
-  mockAppPieChart: any;
-  appsChart: any;
+  devicesChart: any;
 
   /**
    * Reference for the service that allows the user info component
@@ -112,8 +105,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
-  instancesTimelineChart: any;
-  instancesPieChart: any;
+  devicesTimelineChart: any;
 
   /**
    * Models that hold the sort info needed to sortBy pipe
@@ -146,11 +138,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
     // Default initialization
     this.instances = [];
-    this.registered = [];
+    this.devices = [];
     this.labels = [];
-    this.countRegistered = 0;
     this.loadedData = false;
-    this.appsChart = [{name: 'Running apps %', series: []}];
+    this.devicesChart = [{name: 'Running devices %', series: []}];
     this.requestError = '';
 
     // SortBy
@@ -166,37 +157,35 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     /**
      * Charts reference init
      */
-    Object.assign(this, {mockDevicesChart, mockAppPieChart});
+    Object.assign(this, { mockDevicesChart });
    }
 
   ngOnInit() {
-        // Get User data from localStorage
-        const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
-        if (jwtData !== null) {
-          this.organizationId = JSON.parse(jwtData).organizationID;
-            this.updateAppInstances(this.organizationId);
-            this.updateRegisteredInstances(this.organizationId);
-            this.refreshIntervalRef = setInterval(() => {
-              this.updateAppInstances(this.organizationId);
-              this.updateRegisteredInstances(this.organizationId);
-            }, this.REFRESH_RATIO); // Refresh each 60 seconds
-        }
+    // Get User data from localStorage
+    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+    if (jwtData !== null) {
+      this.organizationId = JSON.parse(jwtData).organizationID;
+        this.updateDevices(this.organizationId);
+        this.refreshIntervalRef = setInterval(() => {
+          this.updateDevices(this.organizationId);
+        }, this.REFRESH_RATIO); // Refresh each 60 seconds
     }
+  }
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
   }
-/**
-   * Updates instances array
+
+  /**
+   * Updates devices array
    * @param organizationId Organization identifier
    */
-  updateAppInstances(organizationId: string) {
+  updateDevices(organizationId: string) {
     if (organizationId !== null) {
       // Request to get apps instances
-      this.backend.getInstances(this.organizationId)
+      this.backend.getDevices(this.organizationId)
       .subscribe(response => {
-          this.instances = response.instances || [];
-          this.updatePieChartStats(this.instances);
-          this.updateRunningAppsLineChart(this.instances);
+          this.devices = response.devices || [];
+          this.updateRunningDevicesLineChart(this.devices);
           if (!this.loadedData) {
             this.loadedData = true;
           }
@@ -208,44 +197,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Updates registered apps array
-   * @param organizationId Organization identifier
-   */
-  updateRegisteredInstances(organizationId: string) {
-    if (organizationId !== null) {
-      // Request to get registered apps
-      this.backend.getRegisteredApps(this.organizationId)
-      .subscribe(response => {
-          this.registered = response.descriptors || [];
-      });
-    }
-  }
-
-
-  /**
-   * Updates pie chart status
-   * @param instances Array of instance objects
-   */
-  updatePieChartStats(instances: any[]) {
-    let running = 0;
-    if (instances) {
-      instances.forEach(app => {
-        if (app.status_name === 'RUNNING') {
-          running += 1;
-        }
-      });
-      this.countRunning = running;
-      this.instancesPieChart = this.generateSummaryChartData(this.countRunning, instances.length);
-    }
-  }
-
-  /**
    * Updates timeline chart
-   * @param instances Instances array
+   * @param devices devices array
    */
-  updateRunningAppsLineChart(instances) {
+  updateRunningDevicesLineChart(devices) {
     let runningAppsCount = 0;
-    instances.forEach(instance => {
+    devices.forEach(instance => {
       if (instance && instance.status_name.toLowerCase() === 'running') {
         runningAppsCount += 1;
       }
@@ -261,34 +218,16 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       seconds = '0' + now.getSeconds();
     }
     const entry = {
-      'value': runningAppsCount / instances.length * 100,
+      'value': runningAppsCount / devices.length * 100,
       'name':  now.getHours() + ':' + minutes + ':' + seconds
     };
 
-    if (this.appsChart[0].series.length > 5) {
+    if (this.devicesChart[0].series.length > 5) {
       // Removes first element
-      this.appsChart[0].series.shift();
+      this.devicesChart[0].series.shift();
     }
-    this.appsChart[0].series.push(entry);
-    this.appsChart = [...this.appsChart];
-  }
-
-  /**
-   * Generates the NGX-Chart required JSON object for pie chart rendering
-   * @param running Number of running nodes in a cluster
-   * @param total Number of total nodes in a cluster
-   * @returns anonym array with the required object structure for pie chart rendering
-   */
-  generateSummaryChartData(running: number, total: number): any[] {
-    return [
-      {
-        name: 'Running',
-        value: running
-      },
-      {
-        name: 'Stopped',
-        value: total - running
-      }];
+    this.devicesChart[0].series.push(entry);
+    this.devicesChart = [...this.devicesChart];
   }
 
   /**
@@ -329,7 +268,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       }
     }
   }
-
 
   /**
    * Sortby pipe in the component

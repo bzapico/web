@@ -1624,3 +1624,1108 @@ export const mockDevicesChart = [
         ]
       }
 ];
+
+
+/**
+ * Mocked Devices list
+ */
+export const mockDevicesList = [
+    {
+        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+        app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+        app_instance_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+        name: 'UI - Tableau',
+        description: 'Instance of Tableau',
+        configuration_options: {
+            option1: 'value1',
+            option2: 'value2',
+            option3: 'value3'
+        },
+        environment_variables: {
+            var1: 'value1',
+            var2: 'value2',
+            var3: 'value3'
+        },
+        labels: {
+            app2: 'simple-app',
+            app1: 'web-test',
+        },
+        rules: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '1',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '2',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    '1',
+                    '3',
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '3',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    '1',
+                    '2',
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '4',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    '1',
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            }
+        ],
+        groups: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_2',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+                service_group_id: 'service_group_id_2',
+                name: 'group_2',
+                description: 'Databases',
+                service_instances: [
+                    '1',
+                    '5'
+                ],
+                policy_name: 'recursive'
+            }
+        ],
+        services: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_1',
+                app_descriptor_id: 'app_descriptor_id_1',
+                service_id: '1',
+                name: 'simple-mysql',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '0'
+                ],
+                status_name: 'RUNNING'
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_2',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+                service_id: '2',
+                name: 'simple-mysql',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '1'
+                ],
+                status_name: 'RUNNING'
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_3',
+                app_descriptor_id: 'app_descriptor_id_3',
+                service_id: '3',
+                name: 'simple-wordpress',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '2'
+                ],
+                status_name: 'SERVICE_WAITING'
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_4',
+                app_descriptor_id: 'app_descriptor_id_4',
+                service_id: '4',
+                name: 'simple-mysql',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '3'
+                ],
+                status_name: 'RUNNING'
+            }
+        ],
+        status_name: 'Running',
+    },
+    {
+        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+        app_descriptor_id: 'app_descriptor_id_3',
+        app_instance_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+        name: 'UI - Grafana',
+        description: 'Grafana dashboard',
+        configuration_options: {
+            option1: 'value1',
+            option2: 'value2',
+            option3: 'value3'
+        },
+        environment_variables: {
+            var1: 'value1',
+            var2: 'value2',
+            var3: 'value3'
+        },
+        labels: {
+            app1: 'web-test',
+        },
+        rules: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_3',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '1',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_3',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '2',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    '1',
+                    '3',
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_3',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '3',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    '1',
+                    '2',
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_3',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '4',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    '1',
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            }
+        ],
+        groups: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_3',
+                app_descriptor_id: 'app_descriptor_id_3',
+                service_group_id: 'service_group_id_3',
+                name: 'group_3',
+                description: 'Databases',
+                service_instances: [
+                    '1',
+                    '5'
+                ],
+                policy_name: 'recursive'
+            }
+        ],
+        services: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_1',
+                app_descriptor_id: 'app_descriptor_id_3',
+                service_id: '1',
+                name: 'simple-mysql',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '0'
+                ],
+                status_name: 'SERVICE_WAITING'
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_2',
+                app_descriptor_id: 'app_descriptor_id_3',
+                service_id: '2',
+                name: 'simple-mysql',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '1'
+                ],
+                status_name: 'RUNNING'
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_3',
+                app_descriptor_id: 'app_descriptor_id_3',
+                service_id: '3',
+                name: 'simple-wordpress',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '2'
+                ],
+                status_name: 'RUNNING'
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_4',
+                app_descriptor_id: 'app_descriptor_id_4',
+                service_id: '4',
+                name: 'simple-wordpress',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '3'
+                ],
+                status_name: 'RUNNING'
+            }
+        ],
+        status_name: 'Running',
+    },
+    {
+        organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+        app_descriptor_id: 'app_descriptor_id_4',
+        app_instance_id: 'f9641333-3100-4bab-be3e-b0d33c227634',
+        name: 'Assets Application',
+        description: 'Instance of Cassandra',
+        configuration_options: {
+            option1: 'value1',
+            option2: 'value2',
+            option3: 'value3'
+        },
+        environment_variables: {
+            var1: 'value1',
+            var2: 'value2',
+            var3: 'value3'
+        },
+        labels: {
+            app2: 'simple-app',
+            app1: 'web-test',
+        },
+        rules: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_4',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '1',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_4',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '2',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    '1',
+                    '3',
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_4',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '3',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    '1',
+                    '2',
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_4',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '4',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    '1',
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            }
+        ],
+        groups: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_2',
+                app_descriptor_id: 'app_descriptor_id_4',
+                service_group_id: 'service_group_id_2',
+                name: 'group_2',
+                description: 'Databases',
+                service_instances: [
+                    '1',
+                    '5'
+                ],
+                policy_name: 'recursive'
+            }
+        ],
+        services: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_1',
+                app_descriptor_id: 'app_descriptor_id_4',
+                service_id: '1',
+                name: 'simple-mysql',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '0'
+                ],
+                status_name: 'SERVICE_WAITING'
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_2',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+                service_id: '2',
+                name: 'simple-mysql',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '1'
+                ],
+                status_name: 'RUNNING'
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_3',
+                app_descriptor_id: 'app_descriptor_id_3',
+                service_id: '3',
+                name: 'simple-wordpress',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '2'
+                ],
+                status_name: 'RUNNING'
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_4',
+                app_descriptor_id: 'app_descriptor_id_4',
+                service_id: '4',
+                name: 'simple-wordpress',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '3'
+                ],
+                status_name: 'RUNNING'
+            }
+        ],
+        status_name: 'Running',
+    },
+    {
+        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+        app_descriptor_id: 'app_descriptor_id_5',
+        app_instance_id: 'f9641333-3100-4bab-be3e-b0d33c227634',
+        name: 'Assets Application',
+        description: 'Instance of MongoDB',
+        configuration_options: {
+            option1: 'value1',
+            option2: 'value2',
+            option3: 'value3'
+        },
+        environment_variables: {
+            var1: 'value1',
+            var2: 'value2',
+            var3: 'value3'
+        },
+        labels: {
+            app2: 'simple-app',
+        },
+        rules: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_5',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '1',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_5',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '2',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    '1',
+                    '3',
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_5',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '3',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    '1',
+                    '2',
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_descriptor_id: 'app_descriptor_id_5',
+                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
+                name: 'all open',
+                source_service_id: '4',
+                source_port: '1234',
+                access_name: 'root',
+                auth_services: [
+                    '1',
+                ],
+                device_groups: [
+                    'device_group1',
+                    'device_group2',
+                    'device_group3',
+                ],
+            }
+        ],
+        groups: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_2',
+                app_descriptor_id: 'app_descriptor_id_5',
+                service_group_id: 'service_group_id_2',
+                name: 'group_2',
+                description: 'Databases',
+                service_instances: [
+                    '1',
+                    '5'
+                ],
+                policy_name: 'recursive'
+            }
+        ],
+        services: [
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_1',
+                app_descriptor_id: 'app_descriptor_id_1',
+                service_id: '1',
+                name: 'simple-mysql',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '0'
+                ],
+                status_name: 'RUNNING'
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_2',
+                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
+                service_id: '2',
+                name: 'simple-mysql',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '1'
+                ],
+                status_name: 'RUNNING'
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_3',
+                app_descriptor_id: 'app_descriptor_id_3',
+                service_id: '3',
+                name: 'simple-wordpress',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '2'
+                ],
+                status_name: 'SERVICE_WAITING'
+            },
+            {
+                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+                app_instance_id: 'app_instance_id_4',
+                app_descriptor_id: 'app_descriptor_id_4',
+                service_id: '4',
+                name: 'simple-wordpress',
+                description: 'Great service',
+                type_name: 'DB',
+                image: 'https://urlofservice:8080/',
+                credentials: {},
+                specs: {},
+                storage: [
+                    'storage_restriction_1',
+                    'storage_restriction_2'
+                ],
+                exposed_ports: [
+                    '8080',
+                    '4300',
+                    '23422'
+                ],
+                environment_variables: {
+                    var1: 'value1',
+                    var2: 'value2',
+                    var3: 'value3'
+                },
+                configs: [
+                    {
+                        name: 'db config',
+                        port: '12312'
+                    }
+                ],
+                labels: {
+                    lab1: 'label1',
+                    lab2: 'label2',
+                    lab3: 'label3'
+                },
+                deploy_after: [
+                    '3'
+                ],
+                status_name: 'RUNNING'
+            }
+        ],
+        status_name: 'Running',
+    }
+];
