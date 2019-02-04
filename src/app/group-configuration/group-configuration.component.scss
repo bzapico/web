@@ -16,9 +16,11 @@
     text-indent: -7px;
 }
 .buttons {
-    padding: 1em 0;
+    padding-top: 1em;
 }
 .check-options {
+    padding-top: 2em;
+    padding-bottom: 1em;
     p {
         font-size: .9em;
         display: inline-block;
@@ -32,7 +34,8 @@
     .buttons {
         padding: 0;
     }
-    .group-config-small {
-        padding: 2.5em 2em;
+    .check-options {
+        padding-top: 2em;
+        padding-bottom: 2em;
     }
 }
