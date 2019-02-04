@@ -8,6 +8,8 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { mockDevicesChart } from '../utils/mocks';
 import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group.component';
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
+import { Device } from '../definitions/interfaces/device';
+
 
 @Component({
   selector: 'app-devices',
@@ -188,9 +190,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
             this.devicesCount = summary['total_devices'] || 0 ;
             this.devicesGroupCount = summary['total_devices_group'] || 0 ;
         });
-        this.updateDevices(this.organizationId);
+        this.updateDevicesList(this.organizationId);
         this.refreshIntervalRef = setInterval(() => {
-          this.updateDevices(this.organizationId);
+         //  Request devices list
+          this.updateDevicesList(this.organizationId);
         }, this.REFRESH_RATIO); // Refresh each 60 seconds
     }
   }
@@ -200,10 +203,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Updates devices array
+   * Requests an updated list of devices to update the current one
    * @param organizationId Organization identifier
    */
-  updateDevices(organizationId: string) {
+  updateDevicesList(organizationId) {
     if (organizationId !== null) {
       // Request to get devices
       this.backend.getDevices(this.organizationId)
@@ -218,6 +221,56 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         this.requestError = errorResponse.error.message;
       });
     }
+
+      // Requests an updated clusters list
+      // this.backend.getDevices(this.organizationId)
+      // .subscribe(response => {
+      //   let devicesCount = 0;
+      //   let devicesGroupCount = 0;
+      //     if (response.devices && response.devices.length) {
+      //       this.devices = response.clusters;
+      //     } else {
+      //       this.devices = [];
+      //     }
+      //     if (!this.loadedData) {
+      //       this.loadedData = true;
+      //     }
+      //     this.devices => {
+      //       this.preventEmptyFields(devices);
+      //       devicesGroupCount += devices.total_devices_group;
+      //       devicesCount += devices.total_devices;
+      //     });
+      //     this. updateConectedDevicesLineChart(devices);
+      // }, errorResponse => {
+      //   this.loadedData = true;
+      //   this.requestError = errorResponse.error.message;
+      // });
+    }
+
+
+  /**
+   * Fulfill gaps in device object to avoid data binding failure
+   * @param device Device object
+   */
+  preventEmptyFields(device: Device) {
+    if (!device.register_since) {
+      device.register_since = '-';
+    }
+    if (!device.devicesCount) {
+      device.devicesCount = 0;
+    }
+    if (!device.devicesGroupCount) {
+      device.devicesGroupCount = 0;
+    }
+    if (!device.labels) {
+      device.labels = '-';
+    }
+    if (!device.register_since) {
+      device.register_since = '-';
+    }
+    if (!device.enabled) {
+      device.enabled = true;
+    }
   }
 
   /**
@@ -227,7 +280,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   updateConectedDevicesLineChart(devices) {
     let conectedDevicesCount = 0;
     devices.forEach(device => {
-      if (device && device.status_name.toLowerCase() === 'conected') {
+      if (device && device.enabled.toLowerCase() === 'conected') {
         conectedDevicesCount += 1;
       }
     });

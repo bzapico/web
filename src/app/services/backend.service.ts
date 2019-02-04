@@ -336,6 +336,17 @@ export class BackendService implements Backend {
     );
   }
 
+  // GET:  "/v1/device/group/{organization_id}/list"
+  /**
+   * Requests devices group list
+   * @param organizationId Organization identifier
+   */
+  getDevicesGroup(organizationId: string) {
+    return this.get(
+      API_URL + 'device/group/' + organizationId + '/list'
+    );
+  }
+
   // GET: "/v1/device/{organization_id}/list"
   /**
    * Requests to get the devices summary for an specific organization

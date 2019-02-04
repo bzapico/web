@@ -308,21 +308,21 @@
           </thead>
           <tbody>
             <tr *ngFor="let device of devices | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-              <td class="col-2">{{device.device_id}}</td>
-              <td class="col-2">{{device.date_registered}}</td>  
+              <td class="col-2">{{device.device_group_id}}</td>
+              <td class="col-2">{{device.register_since}}</td>  
               <td 
                 class="text-lowercase col-2 text-center"
                 [ngClass]=
-                "{'status-dot':classStatusCheck(device.status_name, 'conected'),
-                'status-dot-error':classStatusCheck(device.status_name, 'disconected'),
-                'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
+                "{'status-dot':classStatusCheck(device.enabled, 'conected'),
+                'status-dot-error':classStatusCheck(device.enabled, 'disconected'),
+                'status-dot-process':classStatusCheck(device.enabled, 'process')}"> 
                 <span 
-                  tooltip="{{device.status_name | lowercase}}" 
+                  tooltip="{{device.enabled | lowercase}}" 
                   class="tooltip-fix" 
                   placement="auto">
                 </span>
                 <span class="hide">
-                  {{device.status_name}}
+                  {{device.enabled}}
                 </span>
               </td>
               <td class="col-5">
