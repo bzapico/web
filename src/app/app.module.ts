@@ -36,8 +36,12 @@ import { UpdateEventsService } from './services/update-events.service';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { AbbreviatePipe } from './pipes/abbreviate.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { DevicesComponent } from './devices/devices.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SortByPipe } from './pipes/sort-by.pipe';
+import { AddDevicesGroupComponent } from './add-devices-group/add-devices-group.component';
+import { GroupConfigurationComponent } from './group-configuration/group-configuration.component';
+import { DeviceGroupCreatedComponent } from './device-group-created/device-group-created.component';
 
 
 @NgModule({
@@ -60,8 +64,12 @@ import { SortByPipe } from './pipes/sort-by.pipe';
     ChangePasswordComponent,
     AbbreviatePipe,
     TruncatePipe,
+    DevicesComponent,
     FilterPipe,
-    SortByPipe
+    SortByPipe,
+    AddDevicesGroupComponent,
+    GroupConfigurationComponent,
+    DeviceGroupCreatedComponent
   ],
   entryComponents: [
     DebugPanelComponent,
@@ -70,7 +78,10 @@ import { SortByPipe } from './pipes/sort-by.pipe';
     EditClusterComponent,
     EditUserComponent,
     AppsInfoComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    AddDevicesGroupComponent,
+    GroupConfigurationComponent,
+    DeviceGroupCreatedComponent
   ],
   imports: [
     BrowserModule,

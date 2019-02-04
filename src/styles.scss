@@ -20,7 +20,10 @@ html, body {
   color: #0937FF !important;
 }
 .grey {
-  color: #949494;
+  color: #949494 !important;
+}
+.dark-grey {
+  color: #707070;
 }
 .red {
   color: #F25272;
@@ -585,7 +588,6 @@ button[type="submit"]:disabled {
 }
 
 /* - - -  Table-h - - - */
-
 .table-fixed {
   width: 100%;
   height: 100%;
@@ -735,6 +737,4 @@ button[type="submit"]:disabled {
     padding-top: 1em;
   }
 }
-
-
 
