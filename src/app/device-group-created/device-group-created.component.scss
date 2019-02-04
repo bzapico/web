@@ -16,11 +16,10 @@
     text-indent: -7px;
 }
 .buttons {
-    padding: 1em 0;
+    padding-top: 1em;
 }
 
 .dev-group-content {
-    padding: 2em 1em;
     .dev-group-modal-header{
         text-align: center;
         padding: 1rem;
@@ -34,7 +33,8 @@
         text-align: center;
     }
     .dev-group-api {
-        padding: 2em 1em;
+        padding-top: 1em;
+        padding-bottom: 2em;
         span {
             text-align: center;
             font-size: .7em;
@@ -47,6 +47,10 @@
 @media screen and (max-width: 1300px) {
     .buttons {
         padding: 0;
+    }
+    .dev-group-api {
+        padding-top: 2em !important;
+        padding-bottom: 3em !important;
     }
 }
 
