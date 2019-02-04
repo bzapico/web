@@ -173,7 +173,7 @@
           </li>
           <ul *ngIf="!groupOne" class="devices-tab-button">
             <li>
-              <span class="devices-button-item blue devices-button-item-pr" (click)="addUser()">
+              <span class="devices-button-item blue devices-button-item-pr" (click)="addGroup()">
                 <i class="material-icons">add</i>
                 ADD GROUP 
               </span>
@@ -181,7 +181,7 @@
           </ul>
           <ul *ngIf="groupOne" class="devices-tab-button">
             <li>
-              <span class="devices-button-item blue" (click)="addUser()">
+              <span class="devices-button-item blue" (click)="addGroup()">
                 <i class="material-icons">add</i>
                 ADD GROUP 
               </span>
@@ -203,7 +203,6 @@
           </ul>
         </ul>
       </div>       
-        <!-- // end Devices tabs -->
       <div class="row justify-content-between">
         <!-- Sorting mesages -->
         <div class="col-9">  

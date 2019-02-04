@@ -1636,8 +1636,8 @@ export const mockDevicesList = [
         name: 'UI - Tableau',
         date_registered: '14/03/2018',
         labels: {
-            type: 'simple-app',
-            os: 'web-test',
+            type: 'phone',
+            os: 'arm',
         },
         status_name: 'Running',
     },
@@ -1647,7 +1647,7 @@ export const mockDevicesList = [
         name: 'UI - Grafana',
         date_registered: '08/02/2019',
         labels: {
-            type: 'web-test',
+            type: 'phone',
         },
         status_name: 'Running',
     },
@@ -1657,8 +1657,8 @@ export const mockDevicesList = [
         name: 'Assets Application',
         date_registered: '20/10/2015',
         labels: {
-            type: 'simple-app',
-            os: 'web-test',
+            type: 'phone',
+            os: 'arm',
         },
         status_name: 'Running',
     },
@@ -1668,7 +1668,7 @@ export const mockDevicesList = [
         name: 'Assets Application',
         date_registered: '15/08/2019',
         labels: {
-            type: 'simple-app',
+            type: 'phone',
         },
         status_name: 'Running',
     }

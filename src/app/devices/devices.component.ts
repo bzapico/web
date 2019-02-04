@@ -15,9 +15,6 @@ import { GroupConfigurationComponent } from '../group-configuration/group-config
   styleUrls: ['./devices.component.scss']
 })
 export class DevicesComponent implements OnInit, OnDestroy  {
-  checkBox = true;
-  groupOne = false;
-  tabs: any[];
   /**
    * Backend reference
    */
@@ -56,7 +53,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Refresh ratio reference
    */
-  REFRESH_RATIO = 2000; // 20 seconds
+  REFRESH_RATIO = 20000; // 20 seconds
 
   /**
    * Charts references
@@ -118,6 +115,21 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   filterField: boolean;
 
+  /**
+   * Checkbox reference
+   */
+  checkBox = true;
+
+  /**
+   * Group one references
+   */
+  groupOne = false;
+
+  /**
+   * Tabs reference
+   */
+  tabs: any[];
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -137,17 +149,15 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.loadedData = false;
     this.devicesChart = [{name: 'Running devices %', series: []}];
     this.requestError = '';
-
     // SortBy
     this.sortedBy = '';
     this.reverse = false;
     this.searchTerm = '';
-
     // Filter field
     this.filterField = false;
-
     // Tabs
     this.tabs = [];
+
     /**
      * Charts reference init
      */
@@ -300,26 +310,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
   }
 
- /**
-  * Add tabs functionality
-  */
-  addNewTab(): void {
-    // const newTabIndex = this.tabs.length + 1;
-    // this.tabs.push({
-    //   title: `Dynamic Title ${newTabIndex}`,
-    //   content: `Dynamic content ${newTabIndex}`,
-    //   disabled: false,
-    //   removable: true
-    // });
-  }
-
   /**
-   * Remove tabs functionality
-   * @param tab tab to be removed
+   * Add tabs functionality
    */
-  removeTabHandler(tab: any): void {
-    // this.tabs.splice(this.tabs.indexOf(tab), 1);
-    // console.log('Remove Tab handler');
+  addNewTab(): void {
   }
 
   /**
@@ -330,15 +324,15 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Open Group
+   * Open the first group created
    */
   openGroup() {
     this.groupOne = !this.groupOne;
   }
    /**
-   * Opens the modal view that holds add user component
+   * Opens the modal view that holds add group component
    */
-  addUser() {
+  addGroup() {
     const initialState = {
       organizationId: this.organizationId,
     };
