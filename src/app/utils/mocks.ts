@@ -1625,60 +1625,85 @@ export const mockDevicesChart = [
       }
 ];
 
-
 /**
- * Mocked Devices list
+ * Mocked devices list
  */
 export const mockDevicesList = [
     {
         organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        device_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        name: 'UI - Tableau',
-        date_registered: '14/03/2018',
+        device_group_id: 'a1',
+        device_id: '3',
+        register_since: '14/03/2018',
         labels: {
             type: 'phone',
             os: 'arm',
         },
-        status_name: 'Conected',
+        enabled: 'Conected',
+        device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3'
     },
     {
         organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        device_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        name: 'UI - Grafana',
-        date_registered: '08/02/2019',
+        device_group_id: 'b2',
+        device_id: '3',
+        register_since: '08/02/2019',
         labels: {
             type: 'phone',
         },
-        status_name: 'Conected',
+        enabled: 'Conected',
+        device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3'
     },
     {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-        device_id: 'f9641333-3100-4bab-be3e-b0d33c227634',
-        name: 'Assets Application',
-        date_registered: '20/10/2015',
+        device_group_id: 'c3',
+        device_id: '3',
+        register_since: '20/10/2015',
         labels: {
             type: 'phone',
             os: 'arm',
         },
-        status_name: 'disconected',
+        enabled: 'disconected',
+        device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3'
     },
     {
         organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        device_id: 'f9641333-3100-4bab-be3e-b0d33c227634',
-        name: 'Assets Application',
-        date_registered: '15/08/2019',
+        device_group_id: 'a1',
+        device_id: '3',
+        register_since: '15/08/2019',
         labels: {
             type: 'phone',
         },
-        status_name: 'Conected',
+        enabled: 'Conected',
+        device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3'
     }
 ];
 
+/**
+ * Mocked devices group list
+ */
+export const mockDevicesGroupList = [
+    {
+        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+        device_group_id: 'a1',
+        update_enabled: '3',
+        enabled: 'enabled',
+        update_device_connectivity: '5',
+        default_device_connectivity: '6',
+    },
+    {
+        organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
+        device_group_id: 'b2',
+        update_enabled: '3',
+        enabled: 'disabled',
+        update_device_connectivity: '5',
+        default_device_connectivity: '6',
+    },
+];
 
 /**
  * Mock devices summary containing total devices
  */
 export const mockDevicesSummary = {
     total_devices: mockDevicesList.length,
-    total_devices_group: mockDevicesList.length * 2
+    total_devices_group: mockDevicesGroupList.length
 };
+
