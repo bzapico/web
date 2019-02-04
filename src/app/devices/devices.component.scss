@@ -248,6 +248,10 @@
         cursor: pointer;
         position: relative;
     }
+    .devices-tab-title {
+        cursor: default;
+        padding-right: 5em;
+    }
     span {
         display: block;
         text-decoration: none;
@@ -277,6 +281,9 @@
                 vertical-align: middle;
 
             }
+        }
+        .devices-button-item-pr {
+            padding-right: 5em;
         }
     }
 }
@@ -331,6 +338,12 @@
         td {
             font-size: .7em;
         }
+    }
+    .devices-tab-container li {
+        padding: 0.5rem 1.5rem;
+    }
+    .devices-button-item-pr {
+        padding-right: 0em !important;
     }
 }
 

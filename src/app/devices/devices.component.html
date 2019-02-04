@@ -156,7 +156,7 @@
         <!-- Devices tabs -->
         <div class="devices-tab-container">
           <ul>
-            <li class="devices-tab">
+            <li class="devices-tab devices-tab-title">
               <span class="grey">GROUPS</span>
             </li>
             <li class="devices-tab">
@@ -170,7 +170,7 @@
             </li>
             <ul *ngIf="!groupOne" class="devices-tab-button">
               <li>
-                <span class="devices-button-item blue" (click)="addUser()">
+                <span class="devices-button-item blue devices-button-item-pr" (click)="addUser()">
                   <i class="material-icons">add</i>
                   ADD GROUP 
                 </span>
@@ -192,7 +192,7 @@
               <li>
                 <span 
                   (click)="openGroupConfiguration()" 
-                  class="devices-button-item">
+                  class="devices-button-item devices-button-item-pr">
                   <i class="material-icons">settings</i>
                   CONFIGURATION
                 </span>
