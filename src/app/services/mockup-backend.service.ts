@@ -338,20 +338,12 @@ export class MockupBackendService implements Backend {
    */
   getDevices(organizationId: string) {
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify({mockDevicesList}),
+      body: JSON.stringify({devices: mockDevicesList}),
       status: 200
     })))
     .pipe(
       map(response => response.json())
     );
   }
-
-
-
-
-
-
-
-
 
 }

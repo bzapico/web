@@ -34,11 +34,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   loadedData: boolean;
 
   /**
-   * List of available apps instances
-   */
-  instances: any[];
-
-  /**
    * List of available devices
    */
   devices: any[];
@@ -129,7 +124,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
+    const mock = localStorage.getItem(LocalStorageKeys.devicesMock) || null;
     // Check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
@@ -137,7 +132,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       this.backend = backendService;
     }
     // Default initialization
-    this.instances = [];
     this.devices = [];
     this.labels = [];
     this.loadedData = false;
@@ -181,7 +175,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   updateDevices(organizationId: string) {
     if (organizationId !== null) {
-      // Request to get apps instances
+      // Request to get devices
       this.backend.getDevices(this.organizationId)
       .subscribe(response => {
           this.devices = response.devices || [];
@@ -201,10 +195,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param devices devices array
    */
   updateRunningDevicesLineChart(devices) {
-    let runningAppsCount = 0;
-    devices.forEach(instance => {
-      if (instance && instance.status_name.toLowerCase() === 'running') {
-        runningAppsCount += 1;
+    let runningDevicesCount = 0;
+    devices.forEach(device => {
+      if (device && device.status_name.toLowerCase() === 'running') {
+        runningDevicesCount += 1;
       }
     });
 
@@ -218,7 +212,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       seconds = '0' + now.getSeconds();
     }
     const entry = {
-      'value': runningAppsCount / devices.length * 100,
+      'value': runningDevicesCount / devices.length * 100,
       'name':  now.getHours() + ':' + minutes + ':' + seconds
     };
 

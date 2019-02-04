@@ -77,14 +77,14 @@
         <h5>DEVICES STATUS TIMELINE</h5>
       </div>
       <div 
-        *ngIf="instances.length === 0" 
+        *ngIf="devices.length === 0" 
         class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
-        No devices deployed yet
+        No devices
       </div>
-      <div *ngIf="instances.length>0" class="h-100 box-line-chart">
+      <div *ngIf="devices.length>0" class="h-100 box-line-chart">
         <ngx-charts-line-chart
           [scheme]="colorScheme"
-          [results]="appsChart"
+          [results]="devicesChart"
           [xAxis]="showXAxis"
           [yAxis]="showYAxis"
           [gradient]="gradient" 
@@ -115,14 +115,14 @@
         <h5>GROUP 1 DEVICES STATUS TIMELINE</h5>
       </div>
       <div 
-        *ngIf="instances.length === 0" 
+        *ngIf="devices.length === 0" 
         class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
         No devices deployed yet
       </div>
-      <div *ngIf="instances.length>0" class="h-100 box-line-chart">
+      <div *ngIf="devices.length > 0" class="h-100 box-line-chart">
         <ngx-charts-line-chart
           [scheme]="colorScheme"
-          [results]="appsChart"
+          [results]="devicesChart"
           [xAxis]="showXAxis"
           [yAxis]="showYAxis"
           [gradient]="gradient" 
@@ -246,7 +246,7 @@
         </div>      
       </div>
       <!-- Devices table -->
-      <div class="table-h" *ngIf="loadedData && instances && instances.length > 0 && !requestError" >
+      <div class="table-h" *ngIf="loadedData && devices && devices.length > 0 && !requestError" >
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
@@ -308,27 +308,27 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let app of instances | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-              <td class="col-2">{{app.app_instance_id}}</td>
-              <td class="col-2">{{app.description}}</td>  
+            <tr *ngFor="let device of devices | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+              <td class="col-2">{{device.device_id}}</td>
+              <td class="col-2">{{device.date_registered}}</td>  
               <td 
                 class="text-lowercase col-2 text-center"
                 [ngClass]=
-                "{'status-dot':classStatusCheck(app.status_name, 'running'),
-                'status-dot-error':classStatusCheck(app.status_name, 'error'),
-                'status-dot-process':classStatusCheck(app.status_name, 'process')}"> 
+                "{'status-dot':classStatusCheck(device.status_name, 'running'),
+                'status-dot-error':classStatusCheck(device.status_name, 'error'),
+                'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
                 <span 
-                  tooltip="{{app.status_name | lowercase}}" 
+                  tooltip="{{device.status_name | lowercase}}" 
                   class="tooltip-fix" 
                   placement="auto">
                 </span>
                 <span class="hide">
-                  {{app.status_name}}
+                  {{device.status_name}}
                 </span>
               </td>
               <td class="col-5">
                 <button 
-                  *ngFor="let label of labelsToString(app.labels)" 
+                  *ngFor="let label of labelsToString(device.labels)" 
                   class="btn-sm btn-outline-primary" 
                   disabled>
                   {{label[0]}}: {{label[1]}}
@@ -353,9 +353,9 @@
       </div>
         <!-- No info to show -->
       <div 
-        *ngIf="loadedData && instances && instances.length === 0 && !requestError"
+        *ngIf="loadedData && devices && devices.length === 0 && !requestError"
         class="no-apps d-flex justify-content-center align-items-center">
-        No available applications detected
+        No available devices detected
       </div>
         <!-- Requested error -->
       <div
