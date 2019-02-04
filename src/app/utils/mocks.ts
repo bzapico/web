@@ -1639,7 +1639,7 @@ export const mockDevicesList = [
             type: 'phone',
             os: 'arm',
         },
-        status_name: 'Running',
+        status_name: 'Conected',
     },
     {
         organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
@@ -1649,7 +1649,7 @@ export const mockDevicesList = [
         labels: {
             type: 'phone',
         },
-        status_name: 'Running',
+        status_name: 'Conected',
     },
     {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -1660,7 +1660,7 @@ export const mockDevicesList = [
             type: 'phone',
             os: 'arm',
         },
-        status_name: 'Running',
+        status_name: 'disconected',
     },
     {
         organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
@@ -1670,6 +1670,15 @@ export const mockDevicesList = [
         labels: {
             type: 'phone',
         },
-        status_name: 'Running',
+        status_name: 'Conected',
     }
 ];
+
+
+/**
+ * Mock devices summary containing total devices
+ */
+export const mockDevicesSummary = {
+    total_devices: mockDevicesList.length,
+    total_devices_group: mockDevicesList.length * 2
+};
