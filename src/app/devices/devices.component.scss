@@ -229,8 +229,10 @@
 /* - - - Devices tabs - - - */
 .devices-tab-container {
     margin-bottom: 2em;
+    margin-right: 3em;
     font-size: .6em;
     border-bottom: 1px solid #949494;
+    margin-left: 1em;
    ul {
         list-style: none;
         text-align: center;
@@ -241,13 +243,13 @@
         font-family: 'Oswald', sans-serif;
         font-size: 1em;
         float: left;
-        padding: 0.5rem 2rem;
+        padding: 0.5rem 2.5rem;
         cursor: pointer;
         position: relative;
     }
     .devices-tab-title {
         cursor: default;
-        padding-right: 5em;
+        padding-right: 8em;
     }
     span {
         display: block;
@@ -271,6 +273,9 @@
     .devices-tab-button {
         float: right;
         color: #707070;
+        li {
+            padding: 0.5rem 1.5rem;
+        }
         .devices-button-item {
             i {
                 font-size: 1.4em;
@@ -279,9 +284,9 @@
 
             }
         }
-        // .devices-button-item-pr {
-        //     padding-right: 5em;
-        // }
+        .devices-button-item-pr {
+            padding-right: 3em;
+        }
     }
 }
 /* - - -Summary card devices table - - - */
@@ -341,6 +346,9 @@
     }
     .devices-button-item-pr {
         padding-right: 0em !important;
+    }
+    .devices-tab-title {
+        padding-right: 4em !important;
     }
 }
 
