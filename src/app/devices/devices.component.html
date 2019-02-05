@@ -41,13 +41,22 @@
       <div class="card-title-c">
         <h5 class="text-uppercase">Summary Group 1</h5>
       </div>
-      <div class="summary-card" *ngFor="let deviceGroup of devices; let i = index">
-        <table class="table summary-devices-table">
+      <div class="summary-card" *ngFor="let deviceGroup of chunckedDevices; let i = index">
+        <table class="table summary-devices-table" *ngIf="deviceGroup[0]">
           <tr>
             <th class="grey">
               Availability
             </th>
-            <td class="summary-devices-availability">ENABLED</td>
+            <td 
+              *ngIf="deviceGroup[0].enabled === 'true'" 
+              class="summary-devices-availability blue">
+              ENABLED
+            </td>
+            <td 
+              *ngIf="deviceGroup[0].enabled === 'false'" 
+              class="summary-devices-availability red">
+              DISABLED
+            </td>
           </tr>
           <tr>
             <th class="grey">
@@ -57,7 +66,7 @@
               class="dark-grey" 
               tooltip= "API Key" 
               placement="bottom">
-              {{deviceGroup.device_api_key}}
+              {{deviceGroup[0].device_api_key}}
             </td> 
           </tr>
           <tr>
@@ -167,9 +176,6 @@
             class="devices-tab"
             (click)="openGroup()">
             <span [ngClass]="{active: groupOne}">GROUP 1</span>
-          </li>
-          <li class="devices-tab">
-            <span>GROUP 2</span>
           </li>
           <ul *ngIf="!groupOne" class="devices-tab-button">
             <li>
@@ -313,16 +319,16 @@
               <td 
                 class="text-lowercase col-2 text-center"
                 [ngClass]=
-                "{'status-dot':classStatusCheck(device.enabled, 'conected'),
-                'status-dot-error':classStatusCheck(device.enabled, 'disconected'),
-                'status-dot-process':classStatusCheck(device.enabled, 'process')}"> 
+                "{'status-dot':classStatusCheck(device.status_name, 'conected'),
+                'status-dot-error':classStatusCheck(device.status_name, 'disconected'),
+                'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
                 <span 
-                  tooltip="{{device.enabled | lowercase}}" 
+                  tooltip="{{device.status_name | lowercase}}" 
                   class="tooltip-fix" 
                   placement="auto">
                 </span>
                 <span class="hide">
-                  {{device.enabled}}
+                  {{device.status_name}}
                 </span>
               </td>
               <td class="col-5">

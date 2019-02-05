@@ -38,6 +38,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   devices: any[];
 
   /**
+   * Devices list chuncked in sub-lists
+   */
+  chunckedDevices: any[];
+
+  /**
    * List of labels
    */
   labels: any[];
@@ -157,6 +162,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
     // Default initialization
     this.devices = [];
+    this.chunckedDevices = [];
     this.labels = [];
     this.loadedData = false;
     this.devicesCount = 0;
@@ -176,7 +182,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
      * Charts reference init
      */
     Object.assign(this, { mockDevicesChart });
-   }
+  }
 
   ngOnInit() {
     // Get User data from localStorage
@@ -195,11 +201,29 @@ export class DevicesComponent implements OnInit, OnDestroy  {
          //  Request devices list
           this.updateDevicesList(this.organizationId);
         }, this.REFRESH_RATIO); // Refresh each 60 seconds
+      }
     }
   }
-}
+
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
+  }
+
+  /**
+   * Splits the devices list into chunks (number of elements defined by the chunks parameter)
+   * @param chunks Number of elements per chunk
+   * @param devicesList Array containing the available devices
+   * @returns chunked array
+    */
+   chunkDevicesList(chunks, devicesList) {
+    let i, j, chunkedArray;
+    const resultChunkArray = [];
+    const chunk = chunks;
+    for (i = 0, j = devicesList.length; i < j; i += chunk) {
+      chunkedArray = devicesList.slice(i, i + chunk);
+      resultChunkArray.push(chunkedArray);
+    }
+    return resultChunkArray;
   }
 
   /**
@@ -216,6 +240,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           if (!this.loadedData) {
             this.loadedData = true;
           }
+          this.chunckedDevices = this.chunkDevicesList(1, this.devices);
       }, errorResponse => {
         this.loadedData = true;
         this.requestError = errorResponse.error.message;
@@ -385,7 +410,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     // tab.active = this.tabs.length === 1 && typeof tab.active === 'undefined';
   }
 
-
   /**
    * Checkbox
    */
@@ -399,7 +423,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   openGroup() {
     this.groupOne = !this.groupOne;
   }
-   /**
+
+  /**
    * Opens the modal view that holds add group component
    */
   addGroup() {
@@ -412,7 +437,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.modalService.onHide.subscribe((reason: string) => {  });
   }
 
-   /**
+  /**
    * Opens the modal view that holds group configuration component
    */
   openGroupConfiguration() {
