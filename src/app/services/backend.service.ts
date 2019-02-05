@@ -362,12 +362,23 @@ export class BackendService implements Backend {
   /**
    * Requests to add a new device group
    * @param organizationId Organization identifier
-   * @param deviceGroup New device group data
+   * @param devicesGroup New device group data
    */
-  createDeviceGroup(organizationId: string, deviceGroup: any) {
+  addDevicesGroup(organizationId: string, devicesGroup: any) {
     return this.post(
       API_URL + 'device/group/' + organizationId + '/add',
-      deviceGroup
+      devicesGroup
+    );
+  }
+
+    // GET "/v1/device/group/{organization_id}/list"
+  /**
+   * Requests a list of the users that belong to a specific organization
+   * @param organizationId Organization identifier
+   */
+  getDevicesGroups(organizationId: string) {
+    return this.get(
+      API_URL + 'device/group/' + organizationId + '/list'
     );
   }
 

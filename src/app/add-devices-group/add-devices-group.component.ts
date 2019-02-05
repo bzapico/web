@@ -50,7 +50,7 @@ export class AddDevicesGroupComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.createDeviceGroupMock) || null;
+    const mock = localStorage.getItem(LocalStorageKeys.addDevicesGroupMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
@@ -69,12 +69,12 @@ export class AddDevicesGroupComponent implements OnInit {
    * Create device group opens the device group created component modal  window confirmation
    * @param form Form object reference
    */
-  createDeviceGroup(form) {
+  addDevicesGroup(form) {
     if (this.errorMessages.length === 0) {
       const groupDevice = {
         name: form.value.name,
       };
-      this.backend.createDeviceGroup(this.organizationId, groupDevice)
+      this.backend.addDevicesGroup(this.organizationId, groupDevice)
       .subscribe(response => {
         const initialState = {
           organizationId: this.organizationId,

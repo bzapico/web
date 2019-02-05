@@ -14,10 +14,9 @@ export const LocalStorageKeys = {
     addUserMock: 'add_user_mock',
     passwordMock: 'password_change_mock',
     devicesMock: 'devices_mock',
-    addDeviceGroupMock: 'add_device_group_mock',
-    configDeviceGroupMock: 'configuration_device_group_mock',
-    deviceGroupCreatedMock: 'device_group_created_mock',
-    createDeviceGroupMock: 'create_device_group_mock',
+    addDevicesGroupMock: 'add_device_group_mock',
+    configDevicesGroupMock: 'configuration_device_group_mock',
+    devicesGroupCreatedMock: 'device_group_created_mock',
 
     // Data
     jwt: 'jwt',

@@ -9,6 +9,7 @@ import { mockDevicesChart } from '../utils/mocks';
 import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group.component';
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
 import { Device } from '../definitions/interfaces/device';
+import { UpdateEventsService } from '../services/update-events.service';
 
 
 @Component({
@@ -156,7 +157,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private updateService: UpdateEventsService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.devicesMock) || null;
     // Check which backend is required (fake or real)
@@ -167,6 +169,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
     // Default initialization
     this.devices = [];
+    this.devicesGroup = [];
     this.chunckedDevices = [];
     this.labels = [];
     this.loadedData = false;
@@ -202,6 +205,14 @@ export class DevicesComponent implements OnInit, OnDestroy  {
             this.devicesGroupCount = summary['total_devices_group'] || 0 ;
         });
         this.updateDevicesList(this.organizationId);
+        this.updateService.changesOnGroupDevicesList.subscribe(
+          result => {
+          this.backend.getDevicesGroups(this.organizationId)
+            .subscribe(response => {
+              this.devicesGroup = response.devicesGroup;
+            });
+          }
+        );
         this.refreshIntervalRef = setInterval(() => {
          //  Request devices list
           this.updateDevicesList(this.organizationId);
@@ -229,6 +240,27 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       resultChunkArray.push(chunkedArray);
     }
     return resultChunkArray;
+  }
+
+  /**
+   * Requests an updated list of available devices group to update the current one
+   */
+  updateDevicesGroupList() {
+    // Requests an updated devices group list
+    this.backend.getDevicesGroups(this.organizationId)
+    .subscribe(response => {
+        if (response.users.length) {
+          this.devicesGroup = response.devicesGroup;
+        } else {
+          this.devicesGroup = [];
+        }
+        if (!this.loadedData) {
+          this.loadedData = true;
+        }
+    }, errorResponse => {
+        this.loadedData = true;
+        this.requestError = errorResponse.error.message;
+      });
   }
 
   /**
@@ -432,7 +464,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Opens the modal view that holds add group component
    */
-  addGroup() {
+  addDevicesGroup() {
     const initialState = {
       organizationId: this.organizationId,
     };

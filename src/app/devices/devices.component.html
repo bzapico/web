@@ -41,19 +41,19 @@
       <div class="card-title-c">
         <h5 class="text-uppercase">Summary Group 1</h5>
       </div>
-      <div class="summary-card" *ngFor="let deviceGroup of chunckedDevices; let i = index">
-        <table class="table summary-devices-table" *ngIf="deviceGroup[0]">
+      <div class="summary-card" *ngFor="let devicesGroup of chunckedDevices; let i = index">
+        <table class="table summary-devices-table" *ngIf="devicesGroup[0]">
           <tr>
             <th class="grey">
               Availability
             </th>
             <td 
-              *ngIf="deviceGroup[0].enabled === 'true'" 
+              *ngIf="devicesGroup[0].enabled === 'true'" 
               class="summary-devices-availability blue">
               ENABLED
             </td>
             <td 
-              *ngIf="deviceGroup[0].enabled === 'false'" 
+              *ngIf="devicesGroup[0].enabled === 'false'" 
               class="summary-devices-availability red">
               DISABLED
             </td>
@@ -66,7 +66,7 @@
               class="dark-grey" 
               tooltip= "API Key" 
               placement="bottom">
-              {{deviceGroup[0].device_api_key}}
+              {{devicesGroup[0].device_api_key}}
             </td> 
           </tr>
           <tr>
@@ -170,16 +170,19 @@
             <span class="grey">GROUPS</span>
           </li>
           <li class="devices-tab">
-            <span [ngClass]="{active: !groupOne}" >ALL</span>
+            <span [ngClass]="{active: !groupOne}">ALL</span>
           </li>
           <li 
+            *ngFor="let group of devicesGroup"
             class="devices-tab"
             (click)="openGroup()">
-            <span [ngClass]="{active: groupOne}">GROUP 1</span>
+            <span [ngClass]="{active: groupOne}">
+              {{group.name}}
+            </span>
           </li>
           <ul *ngIf="!groupOne" class="devices-tab-button">
             <li>
-              <span class="devices-button-item blue devices-button-item-pr" (click)="addGroup()">
+              <span class="devices-button-item blue devices-button-item-pr" (click)="addDevicesGroup()">
                 <i class="material-icons">add</i>
                 ADD GROUP 
               </span>
@@ -187,7 +190,7 @@
           </ul>
           <ul *ngIf="groupOne" class="devices-tab-button">
             <li>
-              <span class="devices-button-item blue" (click)="addGroup()">
+              <span class="devices-button-item blue" (click)="addDevicesGroup()">
                 <i class="material-icons">add</i>
                 ADD GROUP 
               </span>

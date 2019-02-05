@@ -4,7 +4,7 @@
 export interface Device {
   // OrganizationId with the organization identifier.
   organization_id?: string;
-  // DeviceGroupId with the device group identifier.
+  // DevicesGroupId with the device group identifier.
   device_group_id?: string;
   // DeviceId with the device identifier.
   device_id?: string;
