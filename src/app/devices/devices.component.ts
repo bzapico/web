@@ -256,12 +256,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (!device.register_since) {
       device.register_since = '-';
     }
-    if (!device.devicesCount) {
-      device.devicesCount = 0;
-    }
-    if (!device.devicesGroupCount) {
-      device.devicesGroupCount = 0;
-    }
     if (!device.labels) {
       device.labels = '-';
     }
@@ -387,7 +381,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Add tabs functionality
    */
   addNewTab(): void {
+    // this.tabs.push(tab);
+    // tab.active = this.tabs.length === 1 && typeof tab.active === 'undefined';
   }
+
 
   /**
    * Checkbox
