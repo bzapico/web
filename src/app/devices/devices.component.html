@@ -4,9 +4,14 @@
     <h2>Devices</h2>
   </div>
   <div class="col-lg-8">
-    <div *ngIf="groupOne" class="close-group-button">
-      <button class="button" (click)="openGroup()">
-        <span>GROUP 1<span class="close-trigger">X</span></span>
+    <div 
+      *ngFor="let group of devicesGroups"
+      class="close-group-button">
+      <button  
+        *ngIf="activeGroupId === group.device_group_id" 
+        (click)="changeActiveGroup(group.device_group_id)" 
+        class="button">
+        <span>{{group.name}}<span class="close-trigger">X</span></span>
       </button>
     </div>
   </div>
@@ -14,7 +19,7 @@
 </div>
 <div class="row row-info">
   <!-- Summary group info card -->
-  <div *ngIf="!groupOne" class="col-lg-4 h-100">
+  <div *ngIf="activeGroupId === 'ALL'" class="col-lg-4 h-100">
     <div class="card h-100">
       <div class="card-title-c">
         <h5 class="text-uppercase">Summary</h5>
@@ -36,13 +41,13 @@
     </div>
   </div>
   <!-- Summary group info card group 1 -->
-  <div *ngIf="groupOne" class="col-lg-4 h-100">
-    <div class="card h-100">
+  <div *ngIf="activeGroupId !== 'ALL'" class="col-lg-4 h-100">
+    <div  class="card h-100">
       <div class="card-title-c">
-        <h5 class="text-uppercase">Summary Group 1</h5>
+        <h5 class="text-uppercase">Summary group 1</h5>
       </div>
-      <div class="summary-card" *ngFor="let devicesGroup of chunckedDevices; let i = index">
-        <table class="table summary-devices-table" *ngIf="devicesGroup[0]">
+      <div class="summary-card" >
+        <!-- <table class="table summary-devices-table">
           <tr>
             <th class="grey">
               Availability
@@ -66,7 +71,7 @@
               class="dark-grey" 
               tooltip= "API Key" 
               placement="bottom">
-              {{devicesGroup[0].device_api_key}}
+             fsdfsdfsfdsdfsdf
             </td> 
           </tr>
           <tr>
@@ -75,12 +80,12 @@
             </th>
             <td class="summary-devices-running">{{devicesCount}}</td>
           </tr>
-        </table>
+        </table> -->
       </div>
     </div>
   </div>
   <!-- Devices status timeline info card -->
-  <div *ngIf="!groupOne" class="col-lg-8 h-100">
+  <div *ngIf="activeGroupId === 'ALL'" class="col-lg-8 h-100">
     <div class="card p-4 h-100">
       <div class="card-title-c">
         <h5>DEVICES STATUS TIMELINE</h5>
@@ -90,7 +95,7 @@
         class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
         No devices
       </div>
-      <div *ngIf="devices.length>0" class="h-100 box-line-chart">
+      <div *ngIf="devices.length > 0" class="h-100 box-line-chart">
         <ngx-charts-line-chart
           [scheme]="colorScheme"
           [results]="devicesChart"
@@ -118,7 +123,7 @@
     </div>
   </div>
   <!-- Devices status timeline info card group one -->
-  <div *ngIf="groupOne" class="col-lg-8 h-100">
+  <div *ngIf="activeGroupId !== 'ALL'" class="col-lg-8 h-100">
     <div class="card p-4 h-100">
       <div class="card-title-c">
         <h5>GROUP 1 DEVICES STATUS TIMELINE</h5>
@@ -169,18 +174,20 @@
           <li class="devices-tab devices-tab-title">
             <span class="grey">GROUPS</span>
           </li>
-          <li class="devices-tab">
-            <span [ngClass]="{active: !groupOne}">ALL</span>
+          <li 
+            class="devices-tab" 
+            (click)="changeActiveGroup('ALL')">
+            <span [ngClass]="amIactive('ALL')">ALL</span>
           </li>
           <li 
-            *ngFor="let group of devicesGroup"
+            *ngFor="let group of devicesGroups"
             class="devices-tab"
-            (click)="openGroup()">
-            <span [ngClass]="{active: groupOne}">
+            (click)="changeActiveGroup(group.device_group_id)">
+            <span [ngClass]="amIactive(group.device_group_id)">
               {{group.name}}
             </span>
           </li>
-          <ul *ngIf="!groupOne" class="devices-tab-button">
+          <ul class="devices-tab-button" *ngIf="activeGroupId === 'ALL'">
             <li>
               <span class="devices-button-item blue devices-button-item-pr" (click)="addDevicesGroup()">
                 <i class="material-icons">add</i>
@@ -188,7 +195,7 @@
               </span>
             </li>
           </ul>
-          <ul *ngIf="groupOne" class="devices-tab-button">
+          <ul class="devices-tab-button" *ngIf="activeGroupId !== 'ALL'">
             <li>
               <span class="devices-button-item blue" (click)="addDevicesGroup()">
                 <i class="material-icons">add</i>
@@ -317,44 +324,46 @@
           </thead>
           <tbody>
             <tr *ngFor="let device of devices | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-              <td class="col-2">{{device.device_group_id}}</td>
-              <td class="col-2">{{device.register_since}}</td>  
-              <td 
-                class="text-lowercase col-2 text-center"
-                [ngClass]=
-                "{'status-dot':classStatusCheck(device.status_name, 'conected'),
-                'status-dot-error':classStatusCheck(device.status_name, 'disconected'),
-                'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
-                <span 
-                  tooltip="{{device.status_name}}" 
-                  class="tooltip-fix text-capitalize" 
-                  placement="auto">
-                </span>
-                <span class="hide text-capitalize">
-                  {{device.status_name}}
-                </span>
-              </td>
-              <td class="col-5">
-                <button 
-                  *ngFor="let label of labelsToString(device.labels)" 
-                  class="btn-sm btn-outline-primary" 
-                  disabled>
-                  {{label[0]}}: {{label[1]}}
-                </button>
-              </td>
-              <td class="col-1 text-center">
-                <span 
-                  *ngIf="!checkBox" 
-                  (click)="enabled()">
-                  <i class="material-icons grey">check_box_outline_blank</i>
-                </span>
-                <span 
-                  *ngIf="checkBox"  
-                  (click)="enabled()" 
-                  class="devices-checkbox">
-                  <i class="material-icons blue">check_box</i>
-                </span>
-              </td>
+              <span *ngIf="device === activeGroupId || activeGroupId === 'ALL'">
+                <td class="col-2">{{device.device_group_id}}</td>
+                <td class="col-2">{{device.register_since}}</td>  
+                <td 
+                  class="text-lowercase col-2 text-center"
+                  [ngClass]=
+                  "{'status-dot':classStatusCheck(device.status_name, 'connected'),
+                  'status-dot-error':classStatusCheck(device.status_name, 'disconnected'),
+                  'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
+                  <span 
+                    tooltip="{{device.status_name}}" 
+                    class="tooltip-fix text-capitalize" 
+                    placement="auto">
+                  </span>
+                  <span class="hide text-capitalize">
+                    {{device.status_name}}
+                  </span>
+                </td>
+                <td class="col-5">
+                  <button 
+                    *ngFor="let label of labelsToString(device.labels)" 
+                    class="btn-sm btn-outline-primary" 
+                    disabled>
+                    {{label[0]}}: {{label[1]}}
+                  </button>
+                </td>
+                <td class="col-1 text-center">
+                  <span 
+                    *ngIf="!checkBox" 
+                    (click)="enabled()">
+                    <i class="material-icons grey">check_box_outline_blank</i>
+                  </span>
+                  <span 
+                    *ngIf="checkBox"  
+                    (click)="enabled()" 
+                    class="devices-checkbox">
+                    <i class="material-icons blue">check_box</i>
+                  </span>
+                </td>
+              </span>
             </tr>
           </tbody>
         </table>

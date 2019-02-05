@@ -335,8 +335,9 @@ export class MockupBackendService implements Backend {
   /**
    * Simulates to request devices list
    * @param organizationId Organization identifier
+   * @param groupId group identifier
    */
-  getDevices(organizationId: string) {
+  getDevices(organizationId: string, groupId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify({devices: mockDevicesList}),
       status: 200
@@ -377,12 +378,12 @@ export class MockupBackendService implements Backend {
   /**
   * Simulates creating a new device group
   *  @param organizationId Organization identifier
-  *  @param devicesGroup Device Group data
+  *  @param deviceGroupData Device Group data
   */
-  addDevicesGroup(organizationId: string, devicesGroup: any) {
-    const index = mockDevicesGroupList.map(x => x.name).indexOf(devicesGroup.name);
+  addDevicesGroup(organizationId: string, deviceGroupData: any) {
+    const index = mockDevicesGroupList.map(x => x.name).indexOf(deviceGroupData.name);
     if (index === -1) {
-      mockDevicesGroupList.push(devicesGroup);
+      mockDevicesGroupList.push(deviceGroupData);
       return of (new Response(new ResponseOptions({
         status: 200
       }))).pipe(
@@ -391,7 +392,7 @@ export class MockupBackendService implements Backend {
     } else {
       return of (new Response(new ResponseOptions({
         status: 403,
-        body: devicesGroup.name + ' is already in use'
+        body: deviceGroupData.name + ' is already in use'
       }))).pipe(
         map(response => response.json())
       );
@@ -399,10 +400,12 @@ export class MockupBackendService implements Backend {
   }
 
   /**
-  * Simulates delete user
+  * Simulates delete a devices group
+  *  @param organizationId Organization identifier
+  *  @param deviceGroupId Device Group data
   */
-  deleteDevicesGroup(organizationId: string, groupDevice: string) {
-    const index = mockDevicesGroupList.map(x => x.name).indexOf(groupDevice);
+  deleteDevicesGroup(organizationId: string, deviceGroupId: string) {
+    const index = mockDevicesGroupList.map(x => x.name).indexOf(deviceGroupId);
     if (index !== -1) {
       mockDevicesGroupList.splice(index, 1);
     }

@@ -26,9 +26,9 @@ export interface Backend {
     getAppInstance(organizationId: string, instanceId: string);
     getAppDescriptor(organizationId: string, descriptorId: string);
     // Devices
-    getDevices(organizationId: string);
+    getDevices(organizationId: string, groupId: string);
     getDevicesGroup(organizationId: string);
     getDevicesSummary(organizationId: string);
-    addDevicesGroup(organizationId: string, groupDevice: any);
-    deleteDevicesGroup(organizationId: string, groupDevice: any);
+    addDevicesGroup(organizationId: string, deviceGroupData: any);
+    deleteDevicesGroup(organizationId: string, deviceGroupId: any);
 }

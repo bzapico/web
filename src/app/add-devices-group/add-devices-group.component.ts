@@ -71,26 +71,27 @@ export class AddDevicesGroupComponent implements OnInit {
    */
   addDevicesGroup(form) {
     if (this.errorMessages.length === 0) {
-      const groupDevice = {
+      const deviceGroupData = {
         name: form.value.name,
       };
-      this.backend.addDevicesGroup(this.organizationId, groupDevice)
-      .subscribe(response => {
-        const initialState = {
-          organizationId: this.organizationId,
-        };
-        this.bsDeviceGroupModalRef =
-          this.modalService.show(DeviceGroupCreatedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-        this.bsDeviceGroupModalRef.content.closeBtnName = 'Close';
-        this.bsModalRef.hide();
-      }, error => {
-        this.notificationsService.add({
-          message: 'ERROR: ' + error.error.message,
-          timeout: 10000
-        });
-      });
+      // this.backend.addDevicesGroup(this.organizationId, deviceGroupData)
+      // .subscribe(response => {
+      //   const initialState = {
+      //     organizationId: this.organizationId,
+      //   };
+      //   this.bsDeviceGroupModalRef =
+      //     this.modalService.show(DeviceGroupCreatedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+      //   this.bsDeviceGroupModalRef.content.closeBtnName = 'Close';
+      //   this.bsModalRef.hide();
+      // }, error => {
+      //   this.notificationsService.add({
+      //     message: 'ERROR: ' + error.error.message,
+      //     timeout: 10000
+      //   });
+      // });
     }
   }
+
 
   /**
    * Checks if the form has been modified before discarding changes

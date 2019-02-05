@@ -24,9 +24,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   backend: Backend;
 
   /**
-   * Model that hold organization ID
+   * Model that hold organization ID and group ID
    */
   organizationId: string;
+  groupId: string;
 
   /**
    * Loaded Data status
@@ -41,12 +42,22 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * List of available devices group
    */
-  devicesGroup: any[];
+  devicesGroups: any[];
 
   /**
-   * Models that hold group device
+   * Object that holds add device group request
    */
-  groupDevice: string;
+  deviceGroupData: any;
+
+  /**
+   * Models that hold device group id
+   */
+  deviceGroupId: string;
+
+  /**
+   * Models that hold the active group
+   */
+  activeGroupId: string;
 
   /**
    * List of active devices group
@@ -148,16 +159,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   checkBox = true;
 
-  /**
-   * Group one references
-   */
-  groupOne = false;
-
-  /**
-   * Tabs reference
-   */
-  tabs: any[];
-
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -174,8 +175,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
     // Default initialization
     this.devices = [];
-    this.devicesGroup = [];
+    this.devicesGroups = [];
     this.chunckedDevices = [];
+    this.activeGroupId = 'ALL';
     this.labels = [];
     this.loadedData = false;
     this.devicesCount = 0;
@@ -188,8 +190,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.searchTerm = '';
     // Filter field
     this.filterField = false;
-    // Tabs
-    this.tabs = [];
 
     /**
      * Charts reference init
@@ -198,32 +198,108 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   ngOnInit() {
-    // Get User data from localStorage
-    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
-    if (jwtData !== null) {
-      this.organizationId = JSON.parse(jwtData).organizationID;
-      if (this.organizationId !== null) {
-        // Requests top card summary data
-        this.backend.getResourcesSummary(this.organizationId)
-        .subscribe(summary => {
-            this.devicesCount = summary['total_devices'] || 0 ;
-            this.devicesGroupCount = summary['total_devices_group'] || 0 ;
-        });
-        this.updateDevicesList(this.organizationId);
-        this.updateService.changesOnGroupDevicesList.subscribe(
-          result => {
-          this.backend.getDevicesGroup(this.organizationId)
-            .subscribe(response => {
-              this.devicesGroup = response.devicesGroup;
-            });
-          }
-        );
-        this.refreshIntervalRef = setInterval(() => {
-         //  Request devices list
-          this.updateDevicesList(this.organizationId);
-        }, this.REFRESH_RATIO); // Refresh each 60 seconds
+      this.loadedData = true;
+      this.devicesCount = 5 ;
+      this.devicesGroupCount = 6;
+      this.devicesGroups = [
+        {
+            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_group_id: 'a1',
+            update_enabled: '3',
+            enabled: 'enabled',
+            update_device_connectivity: '5',
+            default_device_connectivity: '6',
+            name: 'Group 1'
+        },
+        {
+            organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
+            device_group_id: 'b2',
+            update_enabled: '3',
+            enabled: 'disabled',
+            update_device_connectivity: '5',
+            default_device_connectivity: '6',
+            name: 'Group 2'
+        },
+    ];
+      this.devices = [
+      {
+          organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+          device_group_id: 'a1',
+          device_id: '3',
+          register_since: '14/03/2018',
+          labels: {
+              type: 'phone',
+              os: 'arm',
+          },
+          enabled: 'true',
+          device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
+          status_name: 'Connected'
+      },
+      {
+          organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+          device_group_id: 'b2',
+          device_id: '3',
+          register_since: '08/02/2019',
+          labels: {
+              type: 'phone',
+          },
+          enabled: 'true',
+          device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
+          status_name: 'Connected'
+      },
+      {
+          organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+          device_group_id: 'c3',
+          device_id: '3',
+          register_since: '20/10/2015',
+          labels: {
+              type: 'phone',
+              os: 'arm',
+          },
+          enabled: 'false',
+          device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
+          status_name: 'Disonected'
+      },
+      {
+          organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+          device_group_id: 'a1',
+          device_id: '3',
+          register_since: '15/08/2019',
+          labels: {
+              type: 'phone',
+          },
+          enabled: 'true',
+          device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
+          status_name: 'Connected'
       }
-    }
+  ];
+
+    // Get User data from localStorage
+    // const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+    // if (jwtData !== null) {
+    //   this.organizationId = JSON.parse(jwtData).organizationID;
+    //   if (this.organizationId !== null) {
+    //     // Requests top card summary data
+    //     this.backend.getResourcesSummary(this.organizationId)
+    //     .subscribe(summary => {
+    //         this.devicesCount = summary['total_devices'] || 0 ;
+    //         this.devicesGroupCount = summary['total_devices_group'] || 0 ;
+    //     });
+    //     this.updateDevicesList(this.organizationId);
+    //     this.updateService.changesOnGroupDevicesList.subscribe(
+    //       result => {
+    //       this.backend.getDevicesGroup(this.organizationId)
+    //         .subscribe(response => {
+    //           this.devicesGroup = response.devicesGroup;
+    //         });
+    //       }
+    //     );
+    //     this.refreshIntervalRef = setInterval(() => {
+    //      //  Request devices list
+    //       this.updateDevicesList(this.organizationId);
+    //     }, this.REFRESH_RATIO); // Refresh each 60 seconds
+    //   }
+    // }
   }
 
   ngOnDestroy() {
@@ -232,16 +308,16 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   /**
    *  Upon confirmation, deletes devices group
-   * @param groupDevice A user to be deleted
+   * @param deviceGroupId A group to be deleted
    */
   deleteDevicesGroup() {
     const deleteConfirm = confirm('Delete group?');
     if (deleteConfirm) {
-      if (this.organizationId !== null && this.groupDevice !== null) {
-        this.backend.deleteUser(this.organizationId, this.groupDevice)
+      if (this.organizationId !== null && this.deviceGroupId !== null) {
+        this.backend.deleteUser(this.organizationId, this.deviceGroupId)
           .subscribe(response => {
             this.notificationsService.add({
-              message: 'Group ' + this.groupDevice + ' has been deleted',
+              message: 'Group ' + this.deviceGroupId + ' has been deleted',
               timeout: 10000
             });
             this.modalRef.hide();
@@ -282,9 +358,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.backend.getDevicesGroup(this.organizationId)
     .subscribe(response => {
         if (response.users.length) {
-          this.devicesGroup = response.devicesGroup;
+          this.devicesGroups = response.devicesGroup;
         } else {
-          this.devicesGroup = [];
+          this.devicesGroups = [];
         }
         if (!this.loadedData) {
           this.loadedData = true;
@@ -302,10 +378,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   updateDevicesList(organizationId) {
     if (organizationId !== null) {
       // Request to get devices
-      this.backend.getDevices(this.organizationId)
+      this.backend.getDevices(this.organizationId, this.groupId)
       .subscribe(response => {
           this.devices = response.devices || [];
-          this.updateConectedDevicesLineChart(this.devices);
+          this.updateConnectedDevicesLineChart(this.devices);
           if (!this.loadedData) {
             this.loadedData = true;
           }
@@ -334,7 +410,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       //       devicesGroupCount += devices.total_devices_group;
       //       devicesCount += devices.total_devices;
       //     });
-      //     this. updateConectedDevicesLineChart(devices);
+      //     this. updateConnectedDevicesLineChart(devices);
       // }, errorResponse => {
       //   this.loadedData = true;
       //   this.requestError = errorResponse.error.message;
@@ -365,11 +441,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Updates timeline chart
    * @param devices devices array
    */
-  updateConectedDevicesLineChart(devices) {
-    let conectedDevicesCount = 0;
+  updateConnectedDevicesLineChart(devices) {
+    let connectedDevicesCount = 0;
     devices.forEach(device => {
-      if (device && device.enabled.toLowerCase() === 'conected') {
-        conectedDevicesCount += 1;
+      if (device && device.enabled.toLowerCase() === 'connected') {
+        connectedDevicesCount += 1;
       }
     });
 
@@ -383,7 +459,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       seconds = '0' + now.getSeconds();
     }
     const entry = {
-      'value': conectedDevicesCount / devices.length * 100,
+      'value': connectedDevicesCount / devices.length * 100,
       'name':  now.getHours() + ':' + minutes + ':' + seconds
     };
 
@@ -413,14 +489,14 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   classStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case 'conected': {
-        if (className.toLowerCase() === 'conected') {
+      case 'connected': {
+        if (className.toLowerCase() === 'connected') {
           return true;
         }
         break;
       }
-      case 'error': {
-        if (className.toLowerCase() === 'error') {
+      case 'disconnected': {
+        if (className.toLowerCase() === 'disconnected') {
           return true;
         }
         break;
@@ -472,25 +548,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Add tabs functionality
-   */
-  addNewTab(): void {
-    // this.tabs.push(tab);
-    // tab.active = this.tabs.length === 1 && typeof tab.active === 'undefined';
-  }
-
-  /**
    * Checkbox
    */
   enabled() {
     this.checkBox = !this.checkBox;
-  }
-
-  /**
-   * Open the first group created
-   */
-  openGroup() {
-    this.groupOne = !this.groupOne;
   }
 
   /**
@@ -503,7 +564,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
     this.modalRef = this.modalService.show(AddDevicesGroupComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {  });
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.devicesGroups.push(this.deviceGroupId);
+      });
   }
 
   /**
@@ -517,5 +580,20 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.modalRef = this.modalService.show(GroupConfigurationComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { });
+  }
+
+  /**
+   * Changes active group
+   */
+  changeActiveGroup(deviceGroupId: string) {
+    this.activeGroupId = deviceGroupId;
+  }
+
+  amIactive(deviceGroupId) {
+    if (deviceGroupId === this.activeGroupId) {
+      return 'active';
+    }
+    return '';
+
   }
 }
