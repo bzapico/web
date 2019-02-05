@@ -347,7 +347,7 @@ export class MockupBackendService implements Backend {
   }
 
   /**
-   * Simulates to request devices list
+   * Simulates to request devices group list
    * @param organizationId Organization identifier
    */
   getDevicesGroup(organizationId: string) {
@@ -399,17 +399,15 @@ export class MockupBackendService implements Backend {
   }
 
   /**
-   * Simulates to get devices groups list
-   * @param organizationId Organization identifier
-   */
-  getDevicesGroups(organizationId: string) {
+  * Simulates delete user
+  */
+  deleteDevicesGroup(organizationId: string, groupDevice: string) {
+    const index = mockDevicesGroupList.map(x => x.name).indexOf(groupDevice);
+    if (index !== -1) {
+      mockDevicesGroupList.splice(index, 1);
+    }
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify({ users: mockDevicesGroupList }),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    })));
   }
-
 }

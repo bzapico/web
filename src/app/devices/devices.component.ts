@@ -44,6 +44,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   devicesGroup: any[];
 
   /**
+   * Models that hold group device
+   */
+  groupDevice: string;
+
+  /**
    * List of active devices group
    */
   activeDevicesGroup: any[];
@@ -207,7 +212,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         this.updateDevicesList(this.organizationId);
         this.updateService.changesOnGroupDevicesList.subscribe(
           result => {
-          this.backend.getDevicesGroups(this.organizationId)
+          this.backend.getDevicesGroup(this.organizationId)
             .subscribe(response => {
               this.devicesGroup = response.devicesGroup;
             });
@@ -223,6 +228,33 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
+  }
+
+  /**
+   *  Upon confirmation, deletes devices group
+   * @param groupDevice A user to be deleted
+   */
+  deleteDevicesGroup() {
+    const deleteConfirm = confirm('Delete group?');
+    if (deleteConfirm) {
+      if (this.organizationId !== null && this.groupDevice !== null) {
+        this.backend.deleteUser(this.organizationId, this.groupDevice)
+          .subscribe(response => {
+            this.notificationsService.add({
+              message: 'Group ' + this.groupDevice + ' has been deleted',
+              timeout: 10000
+            });
+            this.modalRef.hide();
+          }, error => {
+            this.notificationsService.add({
+              message: error.error.message,
+              timeout: 10000
+            });
+          });
+      }
+    } else {
+      // Do nothing
+    }
   }
 
   /**
@@ -247,7 +279,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   updateDevicesGroupList() {
     // Requests an updated devices group list
-    this.backend.getDevicesGroups(this.organizationId)
+    this.backend.getDevicesGroup(this.organizationId)
     .subscribe(response => {
         if (response.users.length) {
           this.devicesGroup = response.devicesGroup;

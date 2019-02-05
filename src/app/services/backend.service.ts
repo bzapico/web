@@ -347,14 +347,14 @@ export class BackendService implements Backend {
     );
   }
 
-  // GET: "/v1/device/{organization_id}/list"
+  // **********TODO GET: "/v1/device/{organization_id}/summary"
   /**
    * Requests to get the devices summary for an specific organization
    * @param organizationId Organization identifier
    */
   getDevicesSummary(organizationId: string) {
     return this.get(
-      API_URL + 'device/' + organizationId + '/list'
+      API_URL + 'device/' + organizationId + '/summary'
     );
   }
 
@@ -371,15 +371,19 @@ export class BackendService implements Backend {
     );
   }
 
-    // GET "/v1/device/group/{organization_id}/list"
+  // POST "/v1/device/group/{organization_id}/remove"
   /**
-   * Requests a list of the users that belong to a specific organization
+   * Requests to delete the provided device Group
    * @param organizationId Organization identifier
+   * @param groupDevice devices group identifier
    */
-  getDevicesGroups(organizationId: string) {
-    return this.get(
-      API_URL + 'device/group/' + organizationId + '/list'
+  deleteDevicesGroup(organizationId: string, groupDevice: string) {
+    return this.post(
+      API_URL + 'device/group' + organizationId + '/remove',
+      {
+        organization_id: organizationId,
+        name: groupDevice
+      }
     );
   }
-
 }
