@@ -38,6 +38,16 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   devices: any[];
 
   /**
+   * List of available devices group
+   */
+  devicesGroup: any[];
+
+  /**
+   * List of active devices group
+   */
+  activeDevicesGroup: any[];
+
+  /**
    * Devices list chuncked in sub-lists
    */
   chunckedDevices: any[];
@@ -46,11 +56,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * List of labels
    */
   labels: any[];
-
-  /**
-   * Number of conected devices
-   */
-  countConected: number;
 
   /**
    * Count of total devices

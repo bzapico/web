@@ -1692,6 +1692,7 @@ export const mockDevicesGroupList = [
         enabled: 'enabled',
         update_device_connectivity: '5',
         default_device_connectivity: '6',
+        name: 'Group 1'
     },
     {
         organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
@@ -1700,6 +1701,7 @@ export const mockDevicesGroupList = [
         enabled: 'disabled',
         update_device_connectivity: '5',
         default_device_connectivity: '6',
+        name: 'Group 2'
     },
 ];
 

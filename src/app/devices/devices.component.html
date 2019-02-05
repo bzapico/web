@@ -323,11 +323,11 @@
                 'status-dot-error':classStatusCheck(device.status_name, 'disconected'),
                 'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
                 <span 
-                  tooltip="{{device.status_name | lowercase}}" 
-                  class="tooltip-fix" 
+                  tooltip="{{device.status_name}}" 
+                  class="tooltip-fix text-capitalize" 
                   placement="auto">
                 </span>
-                <span class="hide">
+                <span class="hide text-capitalize">
                   {{device.status_name}}
                 </span>
               </td>

@@ -374,4 +374,28 @@ export class MockupBackendService implements Backend {
     );
   }
 
+  /**
+  * Simulates creating a new device group
+  *  @param organizationId Organization identifier
+  *  @param deviceGroup Device Group data
+  */
+ createDeviceGroup(organizationId: string, deviceGroup: any) {
+  const index = mockDevicesGroupList.map(x => x.name).indexOf(deviceGroup.name);
+  if (index === -1) {
+    mockDevicesGroupList.push(deviceGroup);
+    return of (new Response(new ResponseOptions({
+      status: 200
+    }))).pipe(
+      map(response => response.json())
+    );
+  } else {
+    return of (new Response(new ResponseOptions({
+      status: 403,
+      body: deviceGroup.name + ' is already in use'
+    }))).pipe(
+      map(response => response.json())
+    );
+  }
+}
+
 }
