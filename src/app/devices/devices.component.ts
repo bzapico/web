@@ -18,6 +18,8 @@ import { UpdateEventsService } from '../services/update-events.service';
   styleUrls: ['./devices.component.scss']
 })
 export class DevicesComponent implements OnInit, OnDestroy  {
+
+  groupName: string;
   /**
    * Backend reference
    */
@@ -27,7 +29,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Model that hold organization ID and group ID
    */
   organizationId: string;
-  groupId: string;
 
   /**
    * Loaded Data status
@@ -42,7 +43,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * List of available devices group
    */
-  devicesGroups: any[];
+  groups: any[];
+
+
 
   /**
    * Object that holds add device group request
@@ -175,7 +178,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
     // Default initialization
     this.devices = [];
-    this.devicesGroups = [];
+    this.groups = [];
     this.chunckedDevices = [];
     this.activeGroupId = 'ALL';
     this.labels = [];
@@ -201,7 +204,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       this.loadedData = true;
       this.devicesCount = 5 ;
       this.devicesGroupCount = 6;
-      this.devicesGroups = [
+      this.groups = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'a1',
@@ -358,9 +361,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.backend.getDevicesGroup(this.organizationId)
     .subscribe(response => {
         if (response.users.length) {
-          this.devicesGroups = response.devicesGroup;
+          this.groups = response.devicesGroup;
         } else {
-          this.devicesGroups = [];
+          this.groups = [];
         }
         if (!this.loadedData) {
           this.loadedData = true;
@@ -378,7 +381,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   updateDevicesList(organizationId) {
     if (organizationId !== null) {
       // Request to get devices
-      this.backend.getDevices(this.organizationId, this.groupId)
+      this.backend.getDevices(this.organizationId, 'this.groupId')
       .subscribe(response => {
           this.devices = response.devices || [];
           this.updateConnectedDevicesLineChart(this.devices);
@@ -561,12 +564,21 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     const initialState = {
       organizationId: this.organizationId,
     };
+    let allowHide = true;
+    const randomGroupStringGenerator = 'GROUP ' + this.generateRandomNumber();
 
     this.modalRef = this.modalService.show(AddDevicesGroupComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
-      this.devicesGroups.push(this.deviceGroupId);
-      });
+      if (allowHide === true) {
+        this.groups.push({name: randomGroupStringGenerator, device_group_id: randomGroupStringGenerator});
+        allowHide = false;
+      }
+    });
+  }
+
+  generateRandomNumber() {
+    return Math.floor(Math.random() * (100 - 1) + 1);
   }
 
   /**
@@ -584,16 +596,20 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   /**
    * Changes active group
+   * @param deviceGroupId device group identifier
    */
   changeActiveGroup(deviceGroupId: string) {
     this.activeGroupId = deviceGroupId;
   }
 
+  /**
+   * Checks if the device group is active to show in the tabs
+   * @param deviceGroupId device group identifier
+   */
   amIactive(deviceGroupId) {
     if (deviceGroupId === this.activeGroupId) {
       return 'active';
     }
     return '';
-
   }
 }

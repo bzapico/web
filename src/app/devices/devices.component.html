@@ -5,7 +5,7 @@
   </div>
   <div class="col-lg-8">
     <div 
-      *ngFor="let group of devicesGroups"
+      *ngFor="let group of groups"
       class="close-group-button">
       <button  
         *ngIf="activeGroupId === group.device_group_id" 
@@ -180,7 +180,7 @@
             <span [ngClass]="amIactive('ALL')">ALL</span>
           </li>
           <li 
-            *ngFor="let group of devicesGroups"
+            *ngFor="let group of groups"
             class="devices-tab"
             (click)="changeActiveGroup(group.device_group_id)">
             <span [ngClass]="amIactive(group.device_group_id)">

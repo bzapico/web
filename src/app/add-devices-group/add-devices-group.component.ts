@@ -38,11 +38,6 @@ export class AddDevicesGroupComponent implements OnInit {
     ignoreBackdropClick: true
   };
 
-  /**
-   * Device grup modal window reference
-   */
-  bsDeviceGroupModalRef: BsModalRef;
-
   constructor(
     public bsModalRef: BsModalRef,
     private modalService: BsModalService,
@@ -79,9 +74,9 @@ export class AddDevicesGroupComponent implements OnInit {
       //   const initialState = {
       //     organizationId: this.organizationId,
       //   };
-      //   this.bsDeviceGroupModalRef =
+      //   this.bsModalRef =
       //     this.modalService.show(DeviceGroupCreatedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-      //   this.bsDeviceGroupModalRef.content.closeBtnName = 'Close';
+      //   this.bsModalRef.content.closeBtnName = 'Close';
       //   this.bsModalRef.hide();
       // }, error => {
       //   this.notificationsService.add({
