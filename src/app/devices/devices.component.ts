@@ -67,6 +67,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   activeDevicesGroup: any[];
 
   /**
+   * List of active displayed group
+   */
+  displayedGroups: any[];
+
+  /**
    * Devices list chuncked in sub-lists
    */
   chunckedDevices: any[];
@@ -95,6 +100,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Refresh ratio reference
    */
   REFRESH_RATIO = 20000; // 20 seconds
+
+  /**
+   * Count of num max for displayed groups
+   */
+  DISPLAYED_GROUP_MAX = 3;
 
   /**
    * Charts references
@@ -178,6 +188,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     // Default initialization
     this.devices = [];
     this.groups = [];
+    this.displayedGroups = [];
     this.chunckedDevices = [];
     this.activeGroupId = 'ALL';
     this.labels = [];
@@ -224,7 +235,42 @@ export class DevicesComponent implements OnInit, OnDestroy  {
             name: 'Group 2',
             device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
         },
+        {
+          organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
+          device_group_id: 'c3',
+          update_enabled: '3',
+          enabled: 'disabled',
+          update_device_connectivity: '5',
+          default_device_connectivity: '6',
+          name: 'Group 3',
+          device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
+      },
+      {
+        organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
+        device_group_id: 'd4',
+        update_enabled: '3',
+        enabled: 'disabled',
+        update_device_connectivity: '5',
+        default_device_connectivity: '6',
+        name: 'Group 4',
+        device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
+    },
+    {
+      organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
+      device_group_id: 'f5',
+      update_enabled: '3',
+      enabled: 'disabled',
+      update_device_connectivity: '5',
+      default_device_connectivity: '6',
+      name: 'Group 5',
+      device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
+  },
       ];
+      // Displayed groups initialization with the 3 first elements
+      for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
+        this.displayedGroups.push(this.groups[index]);
+      }
+
       this.devices = [
       {
           organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
@@ -613,5 +659,24 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       return 'active';
     }
     return '';
+  }
+
+  swipeLeft() {
+    const index = this.groups.map(x => x.device_group_id).indexOf(this.displayedGroups[0].device_group_id);
+    // If the element is found and it is not the first element
+    if (index !== -1 && index !== 0) {
+      // Pushes in the beginning of displaye groups array, the rquiered group elment
+      this.displayedGroups.unshift(this.groups[index - 1]);
+      this.displayedGroups.pop();
+    }
+  }
+
+  swipeRight() {
+    const index = this.groups.map(x => x.device_group_id).indexOf(this.displayedGroups[this.DISPLAYED_GROUP_MAX - 1].device_group_id);
+    // If the element is found and if it is not the last element
+    if (index !== -1 && index !== this.groups.length - 1) {
+      this.displayedGroups.shift();
+      this.displayedGroups.push(this.groups[index + 1]);
+    }
   }
 }
