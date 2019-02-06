@@ -9,7 +9,7 @@
       class="close-group-button">
       <button  
         *ngIf="activeGroupId === group.device_group_id" 
-        (click)="changeActiveGroup(group.device_group_id)" 
+        (click)="changeActiveGroup('ALL')"
         class="button">
         <span>{{group.name}}<span class="close-trigger">X</span></span>
       </button>
@@ -185,12 +185,24 @@
             <span [ngClass]="amIactive('ALL')">ALL</span>
           </li>
           <li 
-            *ngFor="let group of groups"
+            *ngIf="groups.length > DISPLAYED_GROUP_MAX" 
+            (click)="swipeLeft()" 
+            class="tabs-arrow" >
+            <i class="material-icons">arrow_left</i>
+          </li>
+          <li 
+            *ngFor="let group of displayedGroups"
             class="devices-tab"
             (click)="changeActiveGroup(group.device_group_id)">
             <span [ngClass]="amIactive(group.device_group_id)">
               {{group.name}}
             </span>
+          </li>
+          <li 
+            *ngIf="groups.length > DISPLAYED_GROUP_MAX" 
+            (click)="swipeRight()"
+            class="tabs-arrow">
+            <i class="material-icons">arrow_right</i>
           </li>
           <ul class="devices-tab-button" *ngIf="activeGroupId === 'ALL'">
             <li>
@@ -376,7 +388,7 @@
         <!-- No info to show -->
       <div 
         *ngIf="loadedData && devices && devices.length === 0 && !requestError"
-        class="no-apps d-flex justify-content-center align-items-center">
+        class="no-devices d-flex justify-content-center align-items-center">
         No available devices detected
       </div>
         <!-- Requested error -->
