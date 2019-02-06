@@ -9,6 +9,7 @@ import { mockDevicesChart } from '../utils/mocks';
 import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group.component';
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
 import { Device } from '../definitions/interfaces/device';
+import { Group } from '../definitions/interfaces/group';
 import { UpdateEventsService } from '../services/update-events.service';
 
 
@@ -45,8 +46,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   groups: any[];
 
-
-
   /**
    * Object that holds add device group request
    */
@@ -78,12 +77,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   labels: any[];
 
   /**
-   * Count of total devices
+   * Count of total devices for summary card
    */
   devicesCount: number;
 
   /**
-   * Count of total devices groups
+   * Count of total devices groups for summary card
    */
   devicesGroupCount: number;
 
@@ -212,7 +211,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
             enabled: 'enabled',
             update_device_connectivity: '5',
             default_device_connectivity: '6',
-            name: 'Group 1'
+            name: 'Group 1',
+            device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
         },
         {
             organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
@@ -221,9 +221,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
             enabled: 'disabled',
             update_device_connectivity: '5',
             default_device_connectivity: '6',
-            name: 'Group 2'
+            name: 'Group 2',
+            device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
         },
-    ];
+      ];
       this.devices = [
       {
           organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
@@ -275,7 +276,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
           status_name: 'Connected'
       }
-  ];
+    ];
 
     // Get User data from localStorage
     // const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
@@ -559,8 +560,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   /**
    * Opens the modal view that holds add group component
+   * @param group group object
    */
-  addDevicesGroup() {
+  addDevicesGroup(group: Group) {
     const initialState = {
       organizationId: this.organizationId,
     };
