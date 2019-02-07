@@ -342,7 +342,7 @@
           <tbody>
             <tr *ngFor="let device of devices | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
               <span *ngIf="device === activeGroupId || activeGroupId === 'ALL'">
-                <td class="col-2">{{device.device_group_id}}</td>
+                <td class="col-2">{{device.device_id}}</td>
                 <td class="col-2">{{device.register_since}}</td>  
                 <td 
                   class="text-lowercase col-2 text-center"

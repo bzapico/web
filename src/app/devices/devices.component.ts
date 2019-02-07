@@ -42,7 +42,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   devices: any[];
 
   /**
-   * List of available devices group
+   * List of available devices groups
    */
   groups: any[];
 
@@ -356,32 +356,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     clearInterval(this.refreshIntervalRef);
   }
 
-  /**
-   *  Upon confirmation, deletes devices group
-   * @param deviceGroupId A group to be deleted
-   */
-  deleteDevicesGroup() {
-    const deleteConfirm = confirm('Delete group?');
-    if (deleteConfirm) {
-      if (this.organizationId !== null && this.deviceGroupId !== null) {
-        this.backend.deleteUser(this.organizationId, this.deviceGroupId)
-          .subscribe(response => {
-            this.notificationsService.add({
-              message: 'Group ' + this.deviceGroupId + ' has been deleted',
-              timeout: 10000
-            });
-            this.modalRef.hide();
-          }, error => {
-            this.notificationsService.add({
-              message: error.error.message,
-              timeout: 10000
-            });
-          });
-      }
-    } else {
-      // Do nothing
-    }
-  }
 
   /**
    * Splits the devices list into chunks (number of elements defined by the chunks parameter)
@@ -605,6 +579,51 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
+   * Changes active group
+   * @param deviceGroupId device group identifier
+   */
+  changeActiveGroup(deviceGroupId: string) {
+    this.activeGroupId = deviceGroupId;
+  }
+
+  /**
+   * Checks if the device group is active to show in the tabs
+   * @param deviceGroupId device group identifier
+   */
+  amIactive(deviceGroupId) {
+    if (deviceGroupId === this.activeGroupId) {
+      return 'active';
+    }
+    // Empty class when is not active
+    return '';
+  }
+
+  /**
+   * Devices tabs group list swipe left arrow button functionality
+   */
+  swipeLeft() {
+    const index = this.groups.map(x => x.device_group_id).indexOf(this.displayedGroups[0].device_group_id);
+    // If the element is found and it is not the first element
+    if (index !== -1 && index !== 0) {
+      // Pushes in the beginning of displaye groups array, the rquiered group elment
+      this.displayedGroups.unshift(this.groups[index - 1]);
+      this.displayedGroups.pop();
+    }
+  }
+
+  /**
+   * Devices tabs group list swipe right arrow button functionality
+   */
+  swipeRight() {
+    const index = this.groups.map(x => x.device_group_id).indexOf(this.displayedGroups[this.DISPLAYED_GROUP_MAX - 1].device_group_id);
+    // If the element is found and if it is not the last element
+    if (index !== -1 && index !== this.groups.length - 1) {
+      this.displayedGroups.shift();
+      this.displayedGroups.push(this.groups[index + 1]);
+    }
+  }
+
+  /**
    * Opens the modal view that holds add group component
    * @param group group object
    */
@@ -630,6 +649,64 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
+   *  Upon confirmation, deletes devices group
+   */
+  deleteDevicesGroup() {
+    const indexActive = this.groups.map(x => x.device_group_id).indexOf(this.activeGroupId);
+    if (indexActive !== -1) {
+      this.groups.splice(indexActive, 1);
+    }
+
+    const indexDisplayed = this.displayedGroups.map(x => x.device_group_id).indexOf(this.activeGroupId);
+    if (indexDisplayed !== -1) {
+      this.displayedGroups.splice(indexDisplayed, 1);
+
+        const theLastElement = this.displayedGroups[this.displayedGroups.length - 1].device_group_id;
+
+      const theLastIndex = this.groups.map(x => x.device_group_id).indexOf(theLastElement);
+
+      if (theLastIndex !== -1 ) {
+        this.displayedGroups.push(theLastIndex);
+         this.groups.indexOf(theLastElement, theLastIndex + 1);
+      }
+
+
+
+
+        const theFirstElement = this.displayedGroups[0].device_group_id;
+
+      
+          this.displayedGroups.unshift(theFirstElement);
+
+        }
+
+
+
+    this.changeActiveGroup('ALL');
+  }
+
+    // const deleteConfirm = confirm('Delete group?');
+    // if (deleteConfirm) {
+    //   if (this.organizationId !== null && this.deviceGroupId !== null) {
+    //     this.backend.deleteDevicesGroup(this.organizationId, this.deviceGroupId)
+    //       .subscribe(response => {
+    //         this.notificationsService.add({
+    //           message: 'Group ' + this.deviceGroupId + ' has been deleted',
+    //           timeout: 10000
+    //         });
+    //         this.modalRef.hide();
+    //       }, error => {
+    //         this.notificationsService.add({
+    //           message: error.error.message,
+    //           timeout: 10000
+    //         });
+    //       });
+    //   }
+    // } else {
+    //   // Do nothing
+    // }
+
+   /**
    * Opens the modal view that holds group configuration component
    */
   openGroupConfiguration() {
@@ -640,43 +717,5 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.modalRef = this.modalService.show(GroupConfigurationComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { });
-  }
-
-  /**
-   * Changes active group
-   * @param deviceGroupId device group identifier
-   */
-  changeActiveGroup(deviceGroupId: string) {
-    this.activeGroupId = deviceGroupId;
-  }
-
-  /**
-   * Checks if the device group is active to show in the tabs
-   * @param deviceGroupId device group identifier
-   */
-  amIactive(deviceGroupId) {
-    if (deviceGroupId === this.activeGroupId) {
-      return 'active';
-    }
-    return '';
-  }
-
-  swipeLeft() {
-    const index = this.groups.map(x => x.device_group_id).indexOf(this.displayedGroups[0].device_group_id);
-    // If the element is found and it is not the first element
-    if (index !== -1 && index !== 0) {
-      // Pushes in the beginning of displaye groups array, the rquiered group elment
-      this.displayedGroups.unshift(this.groups[index - 1]);
-      this.displayedGroups.pop();
-    }
-  }
-
-  swipeRight() {
-    const index = this.groups.map(x => x.device_group_id).indexOf(this.displayedGroups[this.DISPLAYED_GROUP_MAX - 1].device_group_id);
-    // If the element is found and if it is not the last element
-    if (index !== -1 && index !== this.groups.length - 1) {
-      this.displayedGroups.shift();
-      this.displayedGroups.push(this.groups[index + 1]);
-    }
   }
 }
