@@ -16,7 +16,7 @@ pipeline {
             steps { container("node") { stepAngularUnitTests() } }
         }
         stage("Frontend build") {
-            steps { container("node") { stepAngularBuild } }
+            steps { container("node") { stepAngularBuild() } }
         }
         stage("Publish image to Docker") {
             when { branch 'master' }
