@@ -661,29 +661,33 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (indexDisplayed !== -1) {
       this.displayedGroups.splice(indexDisplayed, 1);
 
-        const theLastElement = this.displayedGroups[this.displayedGroups.length - 1].device_group_id;
+      // HASTA AQUI TODO FUNCIONA
 
+      // este es el ultimo elemento del array de la lista de grupos
+      const theLastElement = this.displayedGroups[this.displayedGroups.length - 1].device_group_id;
+
+      // busco en la lista de grupos el que tenga el mismo id para añadirle uno
       const theLastIndex = this.groups.map(x => x.device_group_id).indexOf(theLastElement);
 
       if (theLastIndex !== -1 ) {
+        // añade uno al final
         this.displayedGroups.push(theLastIndex);
          this.groups.indexOf(theLastElement, theLastIndex + 1);
       }
+        console.log('esto es el last index ' + theLastIndex);
 
-
-
-
+        // Scenario 2. hay elementos despues del ultimo elemento? NO - Delete from the beginning/left
         const theFirstElement = this.displayedGroups[0].device_group_id;
+        console.log('el primero id ' + theFirstElement);
 
-      
+          // añade uno al principio
           this.displayedGroups.unshift(theFirstElement);
 
         }
-
-
-
     this.changeActiveGroup('ALL');
   }
+
+
 
     // const deleteConfirm = confirm('Delete group?');
     // if (deleteConfirm) {

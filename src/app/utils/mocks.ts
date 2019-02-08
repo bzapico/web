@@ -1692,7 +1692,8 @@ export const mockDevicesGroupList = [
         enabled: 'enabled',
         update_device_connectivity: '5',
         default_device_connectivity: '6',
-        name: 'Group 1'
+        name: 'Group 1',
+        device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
     },
     {
         organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
@@ -1701,9 +1702,40 @@ export const mockDevicesGroupList = [
         enabled: 'disabled',
         update_device_connectivity: '5',
         default_device_connectivity: '6',
-        name: 'Group 2'
+        name: 'Group 2',
+        device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
     },
-];
+    {
+        organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
+        device_group_id: 'c3',
+        update_enabled: '3',
+        enabled: 'disabled',
+        update_device_connectivity: '5',
+        default_device_connectivity: '6',
+        name: 'Group 3',
+        device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
+    },
+    {
+        organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
+        device_group_id: 'd4',
+        update_enabled: '3',
+        enabled: 'disabled',
+        update_device_connectivity: '5',
+        default_device_connectivity: '6',
+        name: 'Group 4',
+        device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
+    },
+    {
+        organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
+        device_group_id: 'f5',
+        update_enabled: '3',
+        enabled: 'disabled',
+        update_device_connectivity: '5',
+        default_device_connectivity: '6',
+        name: 'Group 5',
+        device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
+    },
+  ];
 
 /**
  * Mock devices summary containing total devices
