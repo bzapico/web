@@ -113,7 +113,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   devicesChart: any;
 
   /**
-   * Reference for the service that allows the user info component
+   * Reference for the service that allows the add group component
    */
   modalRef: BsModalRef;
 
@@ -381,8 +381,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     // Requests an updated devices group list
     this.backend.getDevicesGroup(this.organizationId)
     .subscribe(response => {
-        if (response.users.length) {
-          this.groups = response.devicesGroup;
+        if (response.groups.length) {
+          this.groups = response.groups;
         } else {
           this.groups = [];
         }
@@ -415,31 +415,31 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         this.requestError = errorResponse.error.message;
       });
     }
-
-      // Requests an updated clusters list
-      // this.backend.getDevices(this.organizationId)
-      // .subscribe(response => {
-      //   let devicesCount = 0;
-      //   let devicesGroupCount = 0;
-      //     if (response.devices && response.devices.length) {
-      //       this.devices = response.clusters;
-      //     } else {
-      //       this.devices = [];
-      //     }
-      //     if (!this.loadedData) {
-      //       this.loadedData = true;
-      //     }
-      //     this.devices => {
-      //       this.preventEmptyFields(devices);
-      //       devicesGroupCount += devices.total_devices_group;
-      //       devicesCount += devices.total_devices;
-      //     });
-      //     this. updateConnectedDevicesLineChart(devices);
-      // }, errorResponse => {
-      //   this.loadedData = true;
-      //   this.requestError = errorResponse.error.message;
-      // });
-    }
+  }
+      // Requests an updated devices list
+    //   this.backend.getDevices(this.organizationId, 'this.groupId')
+    //   .subscribe(response => {
+    //     let devicesCount = 0;
+    //     let devicesGroupCount = 0;
+    //       if (response.devices && response.devices.length) {
+    //         this.devices = response.devices;
+    //       } else {
+    //         this.devices = [];
+    //       }
+    //       if (!this.loadedData) {
+    //         this.loadedData = true;
+    //       }
+    //       this.devices => {
+    //         this.preventEmptyFields(this.devices);
+    //         devicesGroupCount += this.devices.total_devices_group;
+    //         devicesCount += this.devices.total_devices;
+    //       });
+    //       this.updateConnectedDevicesLineChart(devices);
+    //   }, errorResponse => {
+    //     this.loadedData = true;
+    //     this.requestError = errorResponse.error.message;
+    //   });
+    // }
 
 
   /**
