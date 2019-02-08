@@ -7,7 +7,7 @@ pipeline {
     }
     stages {
         stage("Variable initialization") {
-            steps { stepVariableInitialization packagePath }
+            steps { stepVariableInitialization env.WORKSPACE }
         }
         stage("Dependency download") {
             steps { container("node") { stepNodeDependencyDownload() } }
@@ -20,7 +20,7 @@ pipeline {
         }
         stage("Publish image to Docker") {
             when { branch 'master' }
-            steps { container("docker") { stepPublishToDocker packagePath, appsList, "nalej" } }
+            steps { container("docker") { stepPublishToDocker env.WORKSPACE, appsList, "nalej" } }
         }
     }
     post {
