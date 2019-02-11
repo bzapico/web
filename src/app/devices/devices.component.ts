@@ -19,8 +19,6 @@ import { UpdateEventsService } from '../services/update-events.service';
   styleUrls: ['./devices.component.scss']
 })
 export class DevicesComponent implements OnInit, OnDestroy  {
-
-  groupName: string;
   /**
    * Backend reference
    */
@@ -60,11 +58,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Models that hold the active group
    */
   activeGroupId: string;
-
-  /**
-   * List of active devices group
-   */
-  activeDevicesGroup: any[];
 
   /**
    * List of active displayed group
@@ -244,27 +237,27 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           default_device_connectivity: '6',
           name: 'Group 3',
           device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
+        },
+        {
+          organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
+          device_group_id: 'd4',
+          update_enabled: '3',
+          enabled: 'disabled',
+          update_device_connectivity: '5',
+          default_device_connectivity: '6',
+          name: 'Group 4',
+          device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
+        },
+        {
+          organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
+          device_group_id: 'f5',
+          update_enabled: '3',
+          enabled: 'disabled',
+          update_device_connectivity: '5',
+          default_device_connectivity: '6',
+          name: 'Group 5',
+          device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
       },
-      {
-        organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
-        device_group_id: 'd4',
-        update_enabled: '3',
-        enabled: 'disabled',
-        update_device_connectivity: '5',
-        default_device_connectivity: '6',
-        name: 'Group 4',
-        device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
-    },
-    {
-      organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
-      device_group_id: 'f5',
-      update_enabled: '3',
-      enabled: 'disabled',
-      update_device_connectivity: '5',
-      default_device_connectivity: '6',
-      name: 'Group 5',
-      device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
-  },
       ];
       // Displayed groups initialization with the 3 first elements
       for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
@@ -661,29 +654,26 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (indexDisplayed !== -1) {
       this.displayedGroups.splice(indexDisplayed, 1);
 
-      // HASTA AQUI TODO FUNCIONA
+      // The last element of displayed groups id
+      const lastElementId = this.displayedGroups[this.displayedGroups.length - 1].device_group_id;
+      // Index of the last displayed group element in groups
+      const indexLastElement = this.groups.map(x => x.device_group_id).indexOf(lastElementId);
 
-      // este es el ultimo elemento del array de la lista de grupos
-      const theLastElement = this.displayedGroups[this.displayedGroups.length - 1].device_group_id;
+      if (indexLastElement !== -1) {
+        if (this.groups[indexLastElement + 1]) {
+          this.displayedGroups.push(this.groups[indexLastElement + 1]);
+        } else {
+          // The first element of displayed groups id
+          const firstElementId = this.displayedGroups[0].device_group_id;
+          // Index of the first displayed group element in groups
+          const indexFirstElement = this.groups.map(x => x.device_group_id).indexOf(firstElementId);
 
-      // busco en la lista de grupos el que tenga el mismo id para añadirle uno
-      const theLastIndex = this.groups.map(x => x.device_group_id).indexOf(theLastElement);
-
-      if (theLastIndex !== -1 ) {
-        // añade uno al final
-        this.displayedGroups.push(theLastIndex);
-         this.groups.indexOf(theLastElement, theLastIndex + 1);
-      }
-        console.log('esto es el last index ' + theLastIndex);
-
-        // Scenario 2. hay elementos despues del ultimo elemento? NO - Delete from the beginning/left
-        const theFirstElement = this.displayedGroups[0].device_group_id;
-        console.log('el primero id ' + theFirstElement);
-
-          // añade uno al principio
-          this.displayedGroups.unshift(theFirstElement);
-
+          if (this.groups[indexFirstElement - 1]) {
+            this.displayedGroups.unshift(this.groups[indexFirstElement - 1]);
+          }
         }
+      }
+    }
     this.changeActiveGroup('ALL');
   }
 
