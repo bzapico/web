@@ -18,14 +18,14 @@
   <div class="col-lg-2"></div>
 </div>
 <!-- Summary and devices status timeline row -->
-<div *ngIf="activeGroupId === 'ALL'"  class="row row-info">
+<div *ngIf="groups.length === 0 ||  activeGroupId === 'ALL'"  class="row row-info">
   <!-- Summary group info card for all -->
   <div class="col-lg-4 h-100">
     <div class="card h-100">
       <div class="card-title-c">
         <h5 class="text-uppercase">Summary</h5>
       </div>
-      <div class="summary-card">
+      <div *ngIf="groups.length > 0" class="summary-card">
         <div>
           <div class="circle summary-box">
             <span class="align-self-center mt-1">{{devicesGroupCount}}</span>
@@ -39,6 +39,11 @@
           <p class="circle-name text-center text-uppercase mt-3">Devices</p>
         </div>
       </div>
+      <div 
+        *ngIf="groups.length === 0"
+        class="summary-card d-flex justify-content-center align-items-center">
+        No available devices detected
+      </div>
     </div>
   </div>
   <!-- Devices status timeline info card for all -->
@@ -48,11 +53,11 @@
         <h5>DEVICES STATUS TIMELINE</h5>
       </div>
       <div 
-        *ngIf="devices.length === 0" 
+        *ngIf="groups.length === 0" 
         class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
         No devices
       </div>
-      <div *ngIf="devices.length > 0" class="h-100 box-line-chart">
+      <div *ngIf="groups.length > 0" class="h-100 box-line-chart">
         <ngx-charts-line-chart
           [scheme]="colorScheme"
           [results]="devicesChart"
@@ -133,11 +138,11 @@
           <h5 class="text-uppercase">{{group.name}} DEVICES STATUS TIMELINE</h5>
         </div>
         <div 
-          *ngIf="devices.length === 0" 
+          *ngIf="groups.length === 0" 
           class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
           No devices deployed yet
         </div>
-        <div *ngIf="devices.length > 0" class="h-100 box-line-chart">
+        <div *ngIf="groups.length > 0" class="h-100 box-line-chart">
           <ngx-charts-line-chart
             [scheme]="colorScheme"
             [results]="devicesChart"
@@ -181,6 +186,7 @@
           </li>
           <li 
             class="devices-tab" 
+          
             (click)="changeActiveGroup('ALL')">
             <span [ngClass]="amIactive('ALL')">ALL</span>
           </li>
@@ -282,8 +288,8 @@
       <!-- Array of arrays -->
 
       <!--  TODO -->
-        <div *ngIf="group === activeGroupId">
-          <div *ngFor="let device of groups">
+        <div *ngIf="devicesGroup === activeGroupId">
+          <div *ngFor="let device of devices">
             <div *ngIf="activeGroupId === device.group || activeGroupId !== 'ALL'">
 
 <p></p>
@@ -293,7 +299,7 @@
         </div>
 
 
-      <div class="table-h" *ngIf="loadedData && devices && devices.length > 0 && !requestError" >
+      <div class="table-h" *ngIf="loadedData && devices && groups.length > 0 && !requestError" >
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
@@ -403,7 +409,7 @@
 
         <!-- No info to show -->
       <div 
-        *ngIf="loadedData && devices && devices.length === 0 && !requestError"
+        *ngIf="loadedData && devices && groups.length === 0 && !requestError"
         class="no-devices d-flex justify-content-center align-items-center">
         No available devices detected
       </div>
