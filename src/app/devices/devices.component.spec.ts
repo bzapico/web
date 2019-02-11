@@ -26,7 +26,7 @@ describe('DevicesComponent', () => {
         NgxChartsModule,
         BrowserAnimationsModule,
         RouterTestingModule,
-        TooltipModule,
+        TooltipModule.forRoot(),
         CommonModule,
         ModalModule.forRoot(),
         FormsModule,
