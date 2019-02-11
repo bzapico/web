@@ -592,6 +592,19 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
+   * Checks if there are less than a maximum number groups in groups list
+   * @param groups groups list identifier
+   */
+  haveIGroups(groups) {
+    if (groups.length > this.DISPLAYED_GROUP_MAX) {
+      return '';
+    }
+    // There are not enough groups
+    return 'opacity';
+  }
+
+
+  /**
    * Devices tabs group list swipe left arrow button functionality
    */
   swipeLeft() {
