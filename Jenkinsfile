@@ -20,7 +20,7 @@ pipeline {
         }
         stage("Publish image to Docker") {
             // when { branch 'master' }
-            steps { container("docker") { stepMultiBuildAndPublishToDocker env.WORKSPACE, appsList, "citesting", "/ng-app/dist", "./dist" } }
+            steps { container("docker") { stepMultiBuildAndPublishToDocker env.WORKSPACE, "web", "citesting", "/ng-app/dist", "./dist" } }
         }
     }
     post {
