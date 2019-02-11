@@ -1,0 +1,111 @@
+# Target directory to store binaries and results
+TARGET=bin
+
+# Go parameters
+NGCMD=ng
+NGCLEAN=$(NGCMD) clean
+NGTEST=$(NGCMD) test
+NGE2E=$(NGCMD) e2e
+
+# Docker configuration
+AZURE_CR=nalejdev
+DOCKER_REGISTRY=$(AZURE_CR).azurecr.io
+DOCKER_REPO=$(shell whoami)
+VERSION=$(shell cat .version)
+
+
+.PHONY: all
+all: dep build test yaml image
+
+.PHONY: dep
+dep:
+	@echo ">>> Updating dependencies..."
+	npm install
+
+
+.PHONY: test test-e2e test-ci
+test-ci:
+	@echo ">>> Launching tests..."
+	$(NGCMD) run nalej:test-ci --watch=false
+
+test:
+	@echo ">>> Launching tests..."
+	$(NGTEST) --watch=false
+
+test-e2e:
+	@echo ">>> Launching End-to-end tests..."
+	$(NGE2E)
+
+.PHONY: clean
+clean:
+	@echo ">>> Cleaning project..."
+	$(NGCLEAN)
+	rm -rf $(TARGET)
+
+.PHONY: dev
+dev:
+	@echo ">>> Serving project..."
+	ng serve -o
+
+.PHONY: dep build-all build build-local
+build-all: dep build
+build: dep local
+
+# Local compilation
+local:
+	@echo ">>> Building..."
+	npm build
+
+yaml:
+	@echo ">>> Creating K8S files..."
+	for app in $(APPS); do \
+		if [ -d components/"$$app"/appcluster ]; then \
+			mkdir -p $(TARGET)/yaml/appcluster ; \
+			cp components/"$$app"/appcluster/*.yaml $(TARGET)/yaml/appcluster/. ; \
+			cd $(TARGET)/yaml/appcluster && find . -type f -name '*.yaml' | xargs sed -i '' 's/VERSION/$(VERSION)/g' && cd - ; \
+		fi ; \
+		if [ -d components/"$$app"/mngtcluster ]; then \
+			mkdir -p $(TARGET)/yaml/mngtcluster ; \
+			cp components/"$$app"/mngtcluster/*.yaml $(TARGET)/yaml/mngtcluster/. ; \
+			cd $(TARGET)/yaml/mngtcluster && find . -type f -name '*.yaml' | xargs sed -i '' 's/VERSION/$(VERSION)/g' && cd - ; \
+		fi ; \
+	done
+
+# Package all images and components
+.PHONY: image create-image
+image: create-image
+
+create-image:
+	@echo ">>> Creating docker images ..."
+	for app in $(APPS); do \
+        echo Create image of app $$app ; \
+        if [ -f components/"$$app"/Dockerfile ]; then \
+			if [ -d components/"$$app"/dockerenv ]; then \
+            	cp -rv components/"$$app"/dockerenv $(TARGET)/linux_amd64/. ; \
+			fi ; \
+            docker build --no-cache -t $(DOCKER_REGISTRY)/$(DOCKER_REPO)/"$$app":$(VERSION) -f components/"$$app"/Dockerfile . ; \
+			echo Built $$app Docker image ; \
+        else  \
+            echo $$app has no Dockerfile ; \
+        fi ; \
+    done
+
+# Publish the image
+.PHONY: publish az-login az-logout publish-image
+publish: image az-login publish-image az-logout
+
+az-login:
+	@echo ">>> Logging in Azure and Azure Container Registry ..."
+	az login
+	az acr login --name $(AZURE_CR)
+
+az-logout:
+	az logout
+
+publish-image:
+	@echo ">>> Publishing images into Azure Container Registry ..."
+	for app in $(APPS); do \
+		if [ -f components/"$$app"/Dockerfile ]; then \
+			docker push $(DOCKER_REGISTRY)/$(DOCKER_REPO)/"$$app":$(VERSION) ; \
+		fi ; \
+    done
