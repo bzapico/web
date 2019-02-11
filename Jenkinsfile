@@ -19,8 +19,8 @@ pipeline {
             steps { container("node") { stepAngularBuild() } }
         }
         stage("Publish image to Docker") {
-            // when { branch 'master' }
-            steps { container("docker") { stepMultiBuildAndPublishToDocker env.WORKSPACE, "web", "/ng-app/dist", "./dist", "citesting" } }
+            when { branch 'master' }
+            steps { container("docker") { stepMultiBuildAndPublishToDocker env.WORKSPACE, "web", "/ng-app/dist", "./dist" } }
         }
     }
     post {
