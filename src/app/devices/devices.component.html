@@ -18,7 +18,7 @@
   <div class="col-lg-2"></div>
 </div>
 <!-- Summary and devices status timeline row -->
-<div *ngIf="groups.length === 0 ||  activeGroupId === 'ALL'"  class="row row-info">
+<div *ngIf="devices.length === 0 ||  activeGroupId === 'ALL'"  class="row row-info">
   <!-- Summary group info card for all -->
   <div class="col-lg-4 h-100">
     <div class="card h-100">
@@ -185,10 +185,15 @@
             <span class="grey">GROUPS</span>
           </li>
           <li 
+            *ngIf="groups.length > 0" 
             class="devices-tab" 
-          
             (click)="changeActiveGroup('ALL')">
             <span [ngClass]="amIactive('ALL')">ALL</span>
+          </li>
+          <li 
+            *ngIf="groups.length === 0" 
+            class="devices-tab">
+            <span class="active">ALL</span>
           </li>
           <li 
             [ngClass]="haveIGroups(groups)"
@@ -200,7 +205,7 @@
             *ngFor="let group of displayedGroups"
             class="devices-tab"
             (click)="changeActiveGroup(group.device_group_id)">
-            <span *ngIf="group.device_group_id" [ngClass]="amIactive(group.device_group_id)">
+            <span *ngIf="displayedGroups.length > 0" [ngClass]="amIactive(group.device_group_id)">
               {{group.name}}
             </span>
           </li>
@@ -210,7 +215,7 @@
             class="tabs-arrow">
             <i class="material-icons">arrow_right</i>
           </li>
-          <ul class="devices-tab-button" *ngIf="activeGroupId === 'ALL'">
+          <ul class="devices-tab-button" *ngIf="activeGroupId === 'ALL' || groups.length === 0">
             <li>
               <span class="devices-button-item blue devices-button-item-pr" (click)="addDevicesGroup()">
                 <i class="material-icons">add</i>
@@ -218,7 +223,7 @@
               </span>
             </li>
           </ul>
-          <ul class="devices-tab-button" *ngIf="activeGroupId !== 'ALL'">
+          <ul class="devices-tab-button" *ngIf="activeGroupId !== 'ALL' && groups.length > 0">
             <li>
               <span class="devices-button-item blue" (click)="addDevicesGroup()">
                 <i class="material-icons">add</i>
@@ -286,17 +291,6 @@
       <!-- Devices table -->
 
       <!-- Array of arrays -->
-
-      <!--  TODO -->
-        <div *ngIf="devicesGroup === activeGroupId">
-          <div *ngFor="let device of devices">
-            <div *ngIf="activeGroupId === device.group || activeGroupId !== 'ALL'">
-
-<p></p>
-
-            </div>
-          </div>
-        </div>
 
 
       <div class="table-h" *ngIf="loadedData && devices && groups.length > 0 && !requestError" >
@@ -406,10 +400,9 @@
           </tbody>
         </table>
       </div>
-
         <!-- No info to show -->
       <div 
-        *ngIf="loadedData && devices && groups.length === 0 && !requestError"
+        *ngIf="loadedData && devices && devices.length === 0 && !requestError"
         class="no-devices d-flex justify-content-center align-items-center">
         No available devices detected
       </div>

@@ -323,7 +323,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     //   this.organizationId = JSON.parse(jwtData).organizationID;
     //   if (this.organizationId !== null) {
     //     // Requests top card summary data
-    //     this.backend.getResourcesSummary(this.organizationId)
+    //     this.backend.getDevicesSummary(this.organizationId)
     //     .subscribe(summary => {
     //         this.devicesCount = summary['total_devices'] || 0 ;
     //         this.devicesGroupCount = summary['total_devices_group'] || 0 ;
@@ -333,7 +333,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     //       result => {
     //       this.backend.getDevicesGroup(this.organizationId)
     //         .subscribe(response => {
-    //           this.devicesGroup = response.devicesGroup;
+    //           this.groups = response.groups;
     //         });
     //       }
     //     );
@@ -589,6 +589,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
     // Empty class when is not active
     return '';
+
   }
 
   /**
@@ -644,10 +645,27 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
       if (allowHide === true) {
-        this.groups.push({name: randomGroupStringGenerator, device_group_id: randomGroupStringGenerator});
+        this.groups.push({
+          name: randomGroupStringGenerator,
+          device_group_id: randomGroupStringGenerator,
+          organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+          device_id: randomGroupStringGenerator,
+          register_since: '14/03/2018',
+          labels: {
+              type: 'phone',
+              os: 'arm',
+          },
+          enabled: 'true',
+          device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
+          status_name: 'Connected'
+        });
+        if (this.displayedGroups.length < this.DISPLAYED_GROUP_MAX  ) {
+          this.displayedGroups.push(this.groups[this.groups.length - 1]);
+        }
         allowHide = false;
       }
     });
+    this.changeActiveGroup('ALL');
   }
 
   generateRandomNumber() {
@@ -662,35 +680,33 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (indexActive !== -1) {
       this.groups.splice(indexActive, 1);
     }
+    if (this.displayedGroups.length > 0 ) {
+      const indexDisplayed = this.displayedGroups.map(x => x.device_group_id).indexOf(this.activeGroupId);
+      if (indexDisplayed !== -1) {
+        // The last element of displayed groups id
+        const lastElementId = this.displayedGroups[this.displayedGroups.length - 1].device_group_id;
+        this.displayedGroups.splice(indexDisplayed, 1);
 
-    const indexDisplayed = this.displayedGroups.map(x => x.device_group_id).indexOf(this.activeGroupId);
-    if (indexDisplayed !== -1) {
-      this.displayedGroups.splice(indexDisplayed, 1);
+        // Index of the last displayed group element in groups
+        const indexLastElement = this.groups.map(x => x.device_group_id).indexOf(lastElementId);
+        if (indexLastElement !== -1) {
+          if (this.groups[indexLastElement + 1]) {
+            this.displayedGroups.push(this.groups[indexLastElement + 1]);
+          } else {
+            // The first element of displayed groups id
+            const firstElementId = this.displayedGroups[0].device_group_id;
+            // Index of the first displayed group element in groups
+            const indexFirstElement = this.groups.map(x => x.device_group_id).indexOf(firstElementId);
 
-      // The last element of displayed groups id
-      const lastElementId = this.displayedGroups[this.displayedGroups.length - 1].device_group_id;
-      // Index of the last displayed group element in groups
-      const indexLastElement = this.groups.map(x => x.device_group_id).indexOf(lastElementId);
-
-      if (indexLastElement !== -1) {
-        if (this.groups[indexLastElement + 1]) {
-          this.displayedGroups.push(this.groups[indexLastElement + 1]);
-        } else {
-          // The first element of displayed groups id
-          const firstElementId = this.displayedGroups[0].device_group_id;
-          // Index of the first displayed group element in groups
-          const indexFirstElement = this.groups.map(x => x.device_group_id).indexOf(firstElementId);
-
-          if (this.groups[indexFirstElement - 1]) {
-            this.displayedGroups.unshift(this.groups[indexFirstElement - 1]);
+            if (this.groups[indexFirstElement - 1]) {
+              this.displayedGroups.unshift(this.groups[indexFirstElement - 1]);
+            }
           }
         }
       }
     }
     this.changeActiveGroup('ALL');
   }
-
-
 
     // const deleteConfirm = confirm('Delete group?');
     // if (deleteConfirm) {
