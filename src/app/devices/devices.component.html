@@ -289,11 +289,7 @@
         </div>      
       </div>
       <!-- Devices table -->
-
-      <!-- Array of arrays -->
-
-
-      <div class="table-h" *ngIf="loadedData && devices && groups.length > 0 && !requestError" >
+      <div class="table-h" *ngIf="loadedData && devices && devices.length > 0 && !requestError" >
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
@@ -355,46 +351,88 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let device of devices | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-              <span *ngIf="device.device_group_id === activeGroupId || activeGroupId === 'ALL'">
-                <td class="col-2">{{device.device_id}}</td>
-                <td class="col-2">{{device.register_since}}</td>  
-                <td 
-                  class="text-lowercase col-2 text-center"
-                  [ngClass]=
-                  "{'status-dot':classStatusCheck(device.status_name, 'connected'),
-                  'status-dot-error':classStatusCheck(device.status_name, 'disconnected'),
-                  'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
-                  <span 
-                    tooltip="{{device.status_name}}" 
-                    class="tooltip-fix text-capitalize" 
-                    placement="auto">
-                  </span>
-                  <span class="hide text-capitalize">
-                    {{device.status_name}}
-                  </span>
-                </td>
-                <td class="col-5">
-                  <button 
-                    *ngFor="let label of labelsToString(device.labels)" 
-                    class="btn-sm btn-outline-primary" 
-                    disabled>
-                    {{label[0]}}: {{label[1]}}
-                  </button>
-                </td>
-                <td class="col-1 text-center">
-                  <span 
-                    *ngIf="!checkBox" 
-                    (click)="enabled()">
-                    <i class="material-icons grey">check_box_outline_blank</i>
-                  </span>
-                  <span 
-                    *ngIf="checkBox"  
-                    (click)="enabled()" 
-                    class="devices-checkbox">
-                    <i class="material-icons blue">check_box</i>
-                  </span>
-                </td>
+            <tr *ngFor="let devicesGroup of devices">
+              <span *ngFor="let device of devicesGroup">
+                <span *ngIf="activeGroupId === 'ALL'">
+                    <td class="col-2">{{device.device_id}}</td>
+                    <td class="col-2">{{device.register_since}}</td>  
+                    <td 
+                      class="text-lowercase col-2 text-center"
+                      [ngClass]=
+                      "{'status-dot':classStatusCheck(device.status_name, 'connected'),
+                      'status-dot-error':classStatusCheck(device.status_name, 'disconnected'),
+                      'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
+                      <span 
+                        tooltip="{{device.status_name}}" 
+                        class="tooltip-fix text-capitalize" 
+                        placement="auto">
+                      </span>
+                      <span class="hide text-capitalize">
+                        {{device.status_name}}
+                      </span>
+                    </td>
+                    <td class="col-5">
+                      <button 
+                        *ngFor="let label of labelsToString(device.labels)" 
+                        class="btn-sm btn-outline-primary" 
+                        disabled>
+                        {{label[0]}}: {{label[1]}}
+                      </button>
+                    </td>
+                    <td class="col-1 text-center">
+                      <span 
+                        *ngIf="!checkBox" 
+                        (click)="enabled()">
+                        <i class="material-icons grey">check_box_outline_blank</i>
+                      </span>
+                      <span 
+                        *ngIf="checkBox"  
+                        (click)="enabled()" 
+                        class="devices-checkbox">
+                        <i class="material-icons blue">check_box</i>
+                      </span>
+                    </td>
+                </span>
+                <span *ngIf="activeGroupId === devicesGroup[0].device_group_id">
+                  <td class="col-2">{{device.device_id}}</td>
+                  <td class="col-2">{{device.register_since}}</td>  
+                  <td 
+                    class="text-lowercase col-2 text-center"
+                    [ngClass]=
+                    "{'status-dot':classStatusCheck(device.status_name, 'connected'),
+                    'status-dot-error':classStatusCheck(device.status_name, 'disconnected'),
+                    'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
+                    <span 
+                      tooltip="{{device.status_name}}" 
+                      class="tooltip-fix text-capitalize" 
+                      placement="auto">
+                    </span>
+                    <span class="hide text-capitalize">
+                      {{device.status_name}}
+                    </span>
+                  </td>
+                  <td class="col-5">
+                    <button 
+                      *ngFor="let label of labelsToString(device.labels)" 
+                      class="btn-sm btn-outline-primary" 
+                      disabled>
+                      {{label[0]}}: {{label[1]}}
+                    </button>
+                  </td>
+                  <td class="col-1 text-center">
+                    <span 
+                      *ngIf="!checkBox" 
+                      (click)="enabled()">
+                      <i class="material-icons grey">check_box_outline_blank</i>
+                    </span>
+                    <span 
+                      *ngIf="checkBox"  
+                      (click)="enabled()" 
+                      class="devices-checkbox">
+                      <i class="material-icons blue">check_box</i>
+                    </span>
+                  </td>
+                </span>
               </span>
             </tr>
           </tbody>
