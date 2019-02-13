@@ -204,317 +204,62 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   ngOnInit() {
-      this.loadedData = true;
-      this.devicesCount = 5 ;
-      this.devicesGroupCount = 6;
-      this.groups = [
-        {
-            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-            device_group_id: 'a1',
-            update_enabled: '3',
-            enabled: 'enabled',
-            update_device_connectivity: '5',
-            default_device_connectivity: '6',
-            name: 'Group 1',
-            device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
-        },
-        {
-            organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
-            device_group_id: 'b2',
-            update_enabled: '3',
-            enabled: 'disabled',
-            update_device_connectivity: '5',
-            default_device_connectivity: '6',
-            name: 'Group 2',
-            device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
-        },
-        {
-          organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
-          device_group_id: 'c3',
-          update_enabled: '3',
-          enabled: 'disabled',
-          update_device_connectivity: '5',
-          default_device_connectivity: '6',
-          name: 'Group 3',
-          device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
-        },
-        {
-          organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
-          device_group_id: 'd4',
-          update_enabled: '3',
-          enabled: 'disabled',
-          update_device_connectivity: '5',
-          default_device_connectivity: '6',
-          name: 'Group 4',
-          device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
-        },
-        {
-          organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
-          device_group_id: 'f5',
-          update_enabled: '3',
-          enabled: 'disabled',
-          update_device_connectivity: '5',
-          default_device_connectivity: '6',
-          name: 'Group 5',
-          device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
-      },
-      ];
-
-      // Displayed groups initialization with the 3 first elements
-      for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
-        this.displayedGroups.push(this.groups[index]);
-      }
-      this.devices = [
-        [
-          {
-            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-            device_group_id: 'a1',
-            device_id: '3',
-            register_since: '14/03/2018',
-            labels: {
-                type: 'phone',
-                os: 'arm',
-            },
-            enabled: 'true',
-            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'Connected'
-          },
-          {
-              organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-              device_group_id: 'a1',
-              device_id: '3',
-              register_since: '08/02/2019',
-              labels: {
-                  type: 'phone',
-              },
-              enabled: 'true',
-              device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-              status_name: 'Connected'
-          }
-        ],
-        [
-        {
-          organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-          device_group_id: 'b2',
-          device_id: '3',
-          register_since: '14/03/2018',
-          labels: {
-              type: 'phone',
-              os: 'arm',
-          },
-          enabled: 'true',
-          device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-          status_name: 'Connected'
-        },
-        {
-            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-            device_group_id: 'b2',
-            device_id: '3',
-            register_since: '08/02/2019',
-            labels: {
-                type: 'phone',
-            },
-            enabled: 'true',
-            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'Connected'
-        },
-        {
-            organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-            device_group_id: 'b2',
-            device_id: '3',
-            register_since: '20/10/2015',
-            labels: {
-                type: 'phone',
-                os: 'arm',
-            },
-            enabled: 'false',
-            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'Disonected'
-        },
-        {
-            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-            device_group_id: 'b2',
-            device_id: '3',
-            register_since: '15/08/2019',
-            labels: {
-                type: 'phone',
-            },
-            enabled: 'true',
-            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'Connected'
-        }
-        ],
-        [
-            {
-              organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-              device_group_id: 'c3',
-              device_id: '3',
-              register_since: '14/03/2018',
-              labels: {
-                  type: 'phone',
-                  os: 'arm',
-              },
-              enabled: 'true',
-              device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-              status_name: 'Disonected'
-            },
-            {
-                organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-                device_group_id: 'c3',
-                device_id: '3',
-                register_since: '08/02/2019',
-                labels: {
-                    type: 'phone',
-                },
-                enabled: 'true',
-                device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-                status_name: 'Disonected'
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                device_group_id: 'c3',
-                device_id: '3',
-                register_since: '20/10/2015',
-                labels: {
-                    type: 'phone',
-                    os: 'arm',
-                },
-                enabled: 'false',
-                device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-                status_name: 'Disonected'
-            },
-            {
-                organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-                device_group_id: 'c3',
-                device_id: '3',
-                register_since: '15/08/2019',
-                labels: {
-                    type: 'phone',
-                },
-                enabled: 'true',
-                device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-                status_name: 'Disonected'
-            }
-          ]
-      ];
-
     // Get User data from localStorage
-    // const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
-    // if (jwtData !== null) {
-    //   this.organizationId = JSON.parse(jwtData).organizationID;
-    //   if (this.organizationId !== null) {
-    //     // Requests top card summary data
-    //     this.backend.getResourcesSummary(this.organizationId)
-    //     .subscribe(summary => {
-    //         this.devicesCount = summary['total_devices'] || 0 ;
-    //         this.devicesGroupCount = summary['total_devices_group'] || 0 ;
-    //     });
-    //     this.updateDevicesList(this.organizationId);
-    //     this.updateService.changesOnGroupDevicesList.subscribe(
-    //       result => {
-    //       this.backend.getDevicesGroup(this.organizationId)
-    //         .subscribe(response => {
-    //           this.devicesGroup = response.devicesGroup;
-    //         });
-    //       }
-    //     );
-    //     this.refreshIntervalRef = setInterval(() => {
-    //      //  Request devices list
-    //       this.updateDevicesList(this.organizationId);
-    //     }, this.REFRESH_RATIO); // Refresh each 60 seconds
-    //   }
-    // }
+    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+    if (jwtData !== null) {
+      this.organizationId = JSON.parse(jwtData).organizationID;
+        this.updateDevicesGroupList(this.organizationId);
+        this.updateDevicesList(this.organizationId);
+        this.refreshIntervalRef = setInterval(() => {
+          this.updateConnectedDevicesLineChart(this.organizationId);
+        },
+        this.REFRESH_RATIO); // Refresh each 60 seconds
+    }
   }
 
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
   }
 
-
-  /**
-   * Splits the devices list into chunks (number of elements defined by the chunks parameter)
-   * @param chunks Number of elements per chunk
-   * @param devicesList Array containing the available devices
-   * @returns chunked array
-    */
-   chunkDevicesList(chunks, devicesList) {
-    let i, j, chunkedArray;
-    const resultChunkArray = [];
-    const chunk = chunks;
-    for (i = 0, j = devicesList.length; i < j; i += chunk) {
-      chunkedArray = devicesList.slice(i, i + chunk);
-      resultChunkArray.push(chunkedArray);
-    }
-    return resultChunkArray;
-  }
-
   /**
    * Requests an updated list of available devices group to update the current one
+   * @param organizationId Organization identifier
    */
-  updateDevicesGroupList() {
-    // Requests an updated devices group list
-    this.backend.getDevicesGroup(this.organizationId)
-    .subscribe(response => {
-        if (response.groups.length) {
-          this.groups = response.groups;
-        } else {
-          this.groups = [];
-        }
-        if (!this.loadedData) {
+  updateDevicesGroupList(organizationId: string) {
+    if (organizationId !== null) {
+      // Requests an updated devices group list
+      this.backend.getDevicesGroup(this.organizationId)
+      .subscribe(response => {
+        this.devices = response.devices || [];
+          if (!this.loadedData) {
+            this.loadedData = true;
+          }
+      }, errorResponse => {
           this.loadedData = true;
-        }
-    }, errorResponse => {
-        this.loadedData = true;
-        this.requestError = errorResponse.error.message;
-      });
+          this.requestError = errorResponse.error.message;
+        });
+    }
   }
 
   /**
    * Requests an updated list of devices to update the current one
-   * @param organizationId Organization identifier
    */
-  updateDevicesList(organizationId) {
+  updateDevicesList(organizationId: string) {
     if (organizationId !== null) {
       // Request to get devices
-      this.backend.getDevices(this.organizationId, 'this.groupId')
+      this.backend.getDevices(this.organizationId, this.deviceGroupId)
       .subscribe(response => {
           this.devices = response.devices || [];
           this.updateConnectedDevicesLineChart(this.devices);
           if (!this.loadedData) {
             this.loadedData = true;
           }
-          this.chunckedDevices = this.chunkDevicesList(1, this.devices);
       }, errorResponse => {
-        this.loadedData = true;
-        this.requestError = errorResponse.error.message;
-      });
+          this.loadedData = true;
+          this.requestError = errorResponse.error.message;
+        });
     }
   }
-      // Requests an updated devices list
-    //   this.backend.getDevices(this.organizationId, 'this.groupId')
-    //   .subscribe(response => {
-    //     let devicesCount = 0;
-    //     let devicesGroupCount = 0;
-    //       if (response.devices && response.devices.length) {
-    //         this.devices = response.devices;
-    //       } else {
-    //         this.devices = [];
-    //       }
-    //       if (!this.loadedData) {
-    //         this.loadedData = true;
-    //       }
-    //       this.devices => {
-    //         this.preventEmptyFields(this.devices);
-    //         devicesGroupCount += this.devices.total_devices_group;
-    //         devicesCount += this.devices.total_devices;
-    //       });
-    //       this.updateConnectedDevicesLineChart(devices);
-    //   }, errorResponse => {
-    //     this.loadedData = true;
-    //     this.requestError = errorResponse.error.message;
-    //   });
-    // }
-
 
   /**
    * Fulfill gaps in device object to avoid data binding failure
