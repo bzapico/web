@@ -208,10 +208,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
-        this.updateDevicesGroupList(this.organizationId);
+        this.updateGroupsList(this.organizationId);
         this.updateDevicesList(this.organizationId);
         this.refreshIntervalRef = setInterval(() => {
-          this.updateConnectedDevicesLineChart(this.organizationId);
+          this.updateGroupsList(this.organizationId);
+          this.updateDevicesList(this.organizationId);
         },
         this.REFRESH_RATIO); // Refresh each 60 seconds
     }
@@ -221,19 +222,36 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     clearInterval(this.refreshIntervalRef);
   }
 
+
+  countDevices() {
+    let temporalCount = 0;
+
+    this.devices.forEach(group => {
+
+      temporalCount = group.length + temporalCount;
+
+    });
+
+    this.devicesCount = temporalCount;
+  }
   /**
    * Requests an updated list of available devices group to update the current one
    * @param organizationId Organization identifier
    */
-  updateDevicesGroupList(organizationId: string) {
+  updateGroupsList(organizationId: string) {
     if (organizationId !== null) {
       // Requests an updated devices group list
-      this.backend.getDevicesGroup(this.organizationId)
+      this.backend.getGroups(this.organizationId)
       .subscribe(response => {
-        this.devices = response.devices || [];
-          if (!this.loadedData) {
-            this.loadedData = true;
+        this.groups = response || [];
+        if (this.displayedGroups.length === 0 && this.groups.length > 0) {
+          for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
+            this.displayedGroups.push(this.groups[index]);
           }
+        }
+        if (!this.loadedData) {
+          this.loadedData = true;
+        }
       }, errorResponse => {
           this.loadedData = true;
           this.requestError = errorResponse.error.message;
@@ -251,6 +269,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       .subscribe(response => {
           this.devices = response.devices || [];
           this.updateConnectedDevicesLineChart(this.devices);
+          this.countDevices();
           if (!this.loadedData) {
             this.loadedData = true;
           }
@@ -286,10 +305,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   updateConnectedDevicesLineChart(devices) {
     let connectedDevicesCount = 0;
-    devices.forEach(device => {
-      if (device && device.enabled.toLowerCase() === 'connected') {
-        connectedDevicesCount += 1;
-      }
+    devices.forEach(group => {
+      group.forEach(device => {
+        if (device && device.enabled.toLowerCase() === 'connected') {
+          connectedDevicesCount += 1;
+        }
+      });
     });
 
     const now = new Date(Date.now());
@@ -393,8 +414,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Checkbox
    */
-  enabled() {
-    this.checkBox = !this.checkBox;
+  enableSwitcher(device) {
+   device.enabled = !device.enabled;
+   // backend call
   }
 
   /**
@@ -429,7 +451,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     // There are not enough groups
     return 'opacity';
   }
-
 
   /**
    * Devices tabs group list swipe left arrow button functionality

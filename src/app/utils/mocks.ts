@@ -1658,69 +1658,69 @@ export const mockDevicesList = [
     ],
     [
         {
-        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        device_group_id: 'b2',
-        device_id: '3',
-        register_since: '14/03/2018',
-        labels: {
-        type: 'phone',
-        os: 'arm',
-        },
-        enabled: 'true',
-        device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-        status_name: 'Connected'
-        },
-        {
-        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        device_group_id: 'b2',
-        device_id: '3',
-        register_since: '08/02/2019',
-        labels: {
-            type: 'phone',
-        },
-        enabled: 'true',
-        device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-        status_name: 'Connected'
+            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_group_id: 'b2',
+            device_id: '3',
+            register_since: '14/03/2018',
+            labels: {
+                type: 'phone',
+                os: 'arm',
+            },
+            enabled: 'true',
+            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
+            status_name: 'Connected'
         },
         {
-        organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-        device_group_id: 'b2',
-        device_id: '3',
-        register_since: '20/10/2015',
-        labels: {
-            type: 'phone',
-            os: 'arm',
-        },
-        enabled: 'false',
-        device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-        status_name: 'Disonected'
+            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_group_id: 'b2',
+            device_id: '3',
+            register_since: '08/02/2019',
+            labels: {
+                type: 'phone',
+            },
+            enabled: 'true',
+            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
+            status_name: 'Connected'
         },
         {
-        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        device_group_id: 'b2',
-        device_id: '3',
-        register_since: '15/08/2019',
-        labels: {
-            type: 'phone',
+            organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
+            device_group_id: 'b2',
+            device_id: '3',
+            register_since: '20/10/2015',
+            labels: {
+                type: 'phone',
+                os: 'arm',
+            },
+            enabled: 'false',
+            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
+            status_name: 'Disonected'
         },
-        enabled: 'true',
-        device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-        status_name: 'Connected'
+        {
+            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_group_id: 'b2',
+            device_id: '3',
+            register_since: '15/08/2019',
+            labels: {
+                type: 'phone',
+            },
+            enabled: 'true',
+            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
+            status_name: 'Connected'
         }
     ],
     [
         {
-        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        device_group_id: 'c3',
-        device_id: '3',
-        register_since: '14/03/2018',
-        labels: {
-            type: 'phone',
-            os: 'arm',
-        },
-        enabled: 'true',
-        device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-        status_name: 'Disonected'
+            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_group_id: 'c3',
+            device_id: '3',
+            register_since: '14/03/2018',
+            labels: {
+                type: 'phone',
+                os: 'arm',
+            },
+            enabled: 'true',
+            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
+            status_name: 'Disonected'
         },
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
@@ -1754,6 +1754,21 @@ export const mockDevicesList = [
             register_since: '15/08/2019',
             labels: {
                 type: 'phone',
+            },
+            enabled: 'true',
+            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
+            status_name: 'Disonected'
+        }
+    ],
+    [
+        {
+            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_group_id: 'd4',
+            device_id: '3',
+            register_since: '14/03/2018',
+            labels: {
+                type: 'phone',
+                os: 'arm',
             },
             enabled: 'true',
             device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
@@ -1805,17 +1820,7 @@ export const mockDevicesGroupList = [
         default_device_connectivity: '6',
         name: 'Group 4',
         device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
-    },
-    {
-        organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
-        device_group_id: 'f5',
-        update_enabled: '3',
-        enabled: 'disabled',
-        update_device_connectivity: '5',
-        default_device_connectivity: '6',
-        name: 'Group 5',
-        device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
-    },
+    }
   ];
 
 /**
@@ -1825,4 +1830,3 @@ export const mockDevicesSummary = {
     total_devices: mockDevicesList.length,
     total_devices_group: mockDevicesGroupList.length
 };
-

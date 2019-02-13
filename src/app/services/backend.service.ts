@@ -342,7 +342,7 @@ export class BackendService implements Backend {
    * Requests devices group list
    * @param organizationId Organization identifier
    */
-  getDevicesGroup(organizationId: string) {
+  getGroups(organizationId: string) {
     return this.get(
       API_URL + 'device/group/' + organizationId + '/list'
     );

@@ -351,9 +351,9 @@ export class MockupBackendService implements Backend {
    * Simulates to request devices group list
    * @param organizationId Organization identifier
    */
-  getDevicesGroup(organizationId: string) {
+  getGroups(organizationId: string) {
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify({devices: mockDevicesGroupList}),
+      body: JSON.stringify(mockDevicesGroupList),
       status: 200
     })))
     .pipe(
