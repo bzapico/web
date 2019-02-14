@@ -511,7 +511,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   swipeLeft() {
     const index = this.groups.map(x => x.device_group_id).indexOf(this.displayedGroups[0].device_group_id);
     // If the element is found and it is not the first element
-    if (index !== -1 && index !== 0) {
+    if (index !== -1 && index > 0) {
       // Pushes in the beginning of displaye groups array, the rquiered group elment
       this.displayedGroups.unshift(this.groups[index - 1]);
       this.displayedGroups.pop();
@@ -523,11 +523,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Devices tabs group list swipe right arrow button functionality
    */
   swipeRight() {
-    const index = this.groups.map(x => x.device_group_id).indexOf(this.displayedGroups[this.DISPLAYED_GROUP_MAX - 1].device_group_id);
+    const index = this.groups.map(x => x.device_group_id).indexOf(this.displayedGroups[this.displayedGroups.length - 1].device_group_id);
     // If the element is found and if it is not the last element
-    if (index !== -1 && index !== this.groups.length - 1) {
-      this.displayedGroups.shift();
+    if (index !== -1 && this.groups[index + 1]) {
       this.displayedGroups.push(this.groups[index + 1]);
+      this.displayedGroups.shift();
     }
     this.updateDisplayedGroupsNamesLength();
   }
@@ -550,6 +550,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       }
       allowHide = false;
     });
+
   }
 
 
@@ -635,6 +636,5 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.displayedGroups.forEach(group => {
       this.displayedGroupsNamesLength += group.name.length;
     });
-    console.log(this.displayedGroupsNamesLength);
   }
 }

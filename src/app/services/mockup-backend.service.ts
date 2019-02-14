@@ -369,15 +369,19 @@ export class MockupBackendService implements Backend {
   *  @param groupData Device Group data
   */
   addGroup(organizationId: string, groupData: Group) {
+    function generateRandomString() {
+      return Math.floor(Math.random() * Math.floor(1000000)).toString();
+    }
     const group: Group = {
         name: groupData.name,
-        device_group_id: 'fbaa8670-1008-ac7a-398a-3c11ac797c77',
+        device_group_id: generateRandomString(),
         organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
         enabled: groupData.enabled,
         default_device_connectivity: groupData.default_device_connectivity,
         device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
     };
     mockGroupList.push(group);
+    console.log('desde el mock ', mockGroupList);
     return of (new Response(new ResponseOptions({
       status: 200
     })))
