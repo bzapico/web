@@ -26,6 +26,10 @@ export class BackendService implements Backend {
     private http: HttpClient) {
   }
 
+  /********************
+   * Login
+   ********************/
+
   // POST '/login'
   /**
    * Request to log into the app
@@ -45,6 +49,10 @@ export class BackendService implements Backend {
     );
   }
 
+  /********************
+   * Logout
+   ********************/
+
   /**
    * Emulates a request to log out
    */
@@ -54,9 +62,9 @@ export class BackendService implements Backend {
     })));
   }
 
-  /**
+  /********************
    * Sidebar
-   */
+   ********************/
   /**
    * Request to change the user password
    * @param organizationId Organization identifier
@@ -69,9 +77,9 @@ export class BackendService implements Backend {
     );
   }
 
-  /**
+  /********************
    * Organization
-   */
+   ********************/
 
   // GET 'users/{organization_id}/{email}/info
   /**
@@ -167,9 +175,9 @@ export class BackendService implements Backend {
     );
   }
 
-  /**
+  /********************
    * Resources
-   */
+   ********************/
 
   // GET 'resources/{organization_id}/summary'
   /**
@@ -206,9 +214,9 @@ export class BackendService implements Backend {
     );
   }
 
-  /**
+  /********************
    * Applications
-   */
+   ********************/
 
   // GET 'apps/inst/{organization_id}/list'
   /**
@@ -253,9 +261,9 @@ export class BackendService implements Backend {
     );
   }
 
-  /**
+  /********************
    * Cluster
-   */
+   ********************/
 
   // GET 'nodes/{organization_id}/{cluster_id}/list'
   /**
@@ -321,9 +329,9 @@ export class BackendService implements Backend {
       );
   }
 
-  /**
+  /********************
    * Devices
-   */
+   ********************/
 
   // GET: /v1/device/{organization_id}/{group_id}/list
   /**
@@ -372,7 +380,7 @@ export class BackendService implements Backend {
       API_URL + 'device/group' + organizationId + '/remove',
       {
         organization_id: organizationId,
-        name: groupId
+        device_group_id: groupId
       }
     );
   }

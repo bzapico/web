@@ -181,7 +181,7 @@
       <!-- Devices tabs -->
       <div class="devices-tab-container">
         <ul>
-          <li class="devices-tab devices-tab-title">
+          <li *ngIf="displayedGroupsNamesLength < maxLabelsLength" class="devices-tab devices-tab-title">
             <span class="grey">GROUPS</span>
           </li>
           <li 

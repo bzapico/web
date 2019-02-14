@@ -392,7 +392,7 @@ export class MockupBackendService implements Backend {
   *  @param groupId Device Group data
   */
   deleteGroup(organizationId: string, groupId: string) {
-    const index = mockGroupList.map(x => x.name).indexOf(groupId);
+    const index = mockGroupList.map(x => x.device_group_id).indexOf(groupId);
     if (index !== -1) {
       mockGroupList.splice(index, 1);
     }

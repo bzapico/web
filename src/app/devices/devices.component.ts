@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
@@ -50,14 +50,15 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   groupData: any;
 
   /**
-   * Models that hold device group id
-   */
-  groupId: string;
-
-  /**
    * Models that hold the active group
    */
   activeGroupId: string;
+
+  /**
+   * Models that keeps the displayed groups names length
+   */
+  displayedGroupsNamesLength: number;
+  maxLabelsLength: number;
 
   /**
    * List of active displayed group
@@ -88,6 +89,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Count of num max for displayed groups
    */
   DISPLAYED_GROUP_MAX = 3;
+
 
   /**
    * Charts references
@@ -178,6 +180,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.devicesCount = 0;
     this.devicesChart = [{name: 'Running devices %', series: []}];
     this.requestError = '';
+    this.maxLabelsLength = 35;
     // SortBy
     this.sortedBy = '';
     this.reverse = false;
@@ -204,24 +207,43 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         },
         this.REFRESH_RATIO); // Refresh each 60 seconds
     }
+    this.updateDisplayedGroupsNamesLength();
   }
 
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
   }
 
-
+  /**
+   * Method that counts the number of devices
+   */
   countDevices() {
     let temporalCount = 0;
-
     this.devices.forEach(group => {
-
       temporalCount = group.length + temporalCount;
-
     });
-
     this.devicesCount = temporalCount;
   }
+
+  /**
+   * Calculates the number of characters needed to hide the title of tabs
+   * @param event to pass in onResize method
+   */
+  @HostListener('window:resize', ['$event'])
+    onResize(event) {
+      if (event.target.innerWidth < 1280) {
+        this.maxLabelsLength = 15;
+      } else if (event.target.innerWidth < 1440) {
+        this.maxLabelsLength = 25;
+      } else if (event.target.innerWidth < 1613) {
+        this.maxLabelsLength = 35;
+      } else if (event.target.innerWidth < 1920) {
+        this.maxLabelsLength = 45;
+      } else {
+        this.maxLabelsLength = 50;
+      }
+    }
+
   /**
    * Requests an updated list of available devices group to update the current one
    * @param organizationId Organization identifier
@@ -237,6 +259,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
             this.displayedGroups.push(this.groups[index]);
           }
         }
+        this.updateDisplayedGroupsNamesLength();
         if (!this.loadedData) {
           this.loadedData = true;
         }
@@ -278,6 +301,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
               }
           }
         }
+        this.updateDisplayedGroupsNamesLength();
         if (!this.loadedData) {
           this.loadedData = true;
         }
@@ -294,7 +318,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   updateDevicesList(organizationId: string) {
     if (organizationId !== null) {
       // Request to get devices
-      this.backend.getDevices(this.organizationId, this.groupId)
+      this.backend.getDevices(this.organizationId, this.activeGroupId)
       .subscribe(response => {
           this.devices = response.devices || [];
           this.updateConnectedDevicesLineChart(this.devices);
@@ -491,6 +515,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       // Pushes in the beginning of displaye groups array, the rquiered group elment
       this.displayedGroups.unshift(this.groups[index - 1]);
       this.displayedGroups.pop();
+      this.updateDisplayedGroupsNamesLength();
     }
   }
 
@@ -504,6 +529,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       this.displayedGroups.shift();
       this.displayedGroups.push(this.groups[index + 1]);
     }
+    this.updateDisplayedGroupsNamesLength();
   }
 
   /**
@@ -531,36 +557,42 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    *  Upon confirmation, deletes devices group
    */
   deleteGroup() {
-    const indexActive = this.groups.map(x => x.device_group_id).indexOf(this.activeGroupId);
-    if (indexActive !== -1) {
-      this.groups.splice(indexActive, 1);
-    }
-    if (this.displayedGroups.length > 0 ) {
-      const indexDisplayed = this.displayedGroups.map(x => x.device_group_id).indexOf(this.activeGroupId);
-      if (indexDisplayed !== -1) {
-        // The last element of displayed groups id
-        const lastElementId = this.displayedGroups[this.displayedGroups.length - 1].device_group_id;
-        this.displayedGroups.splice(indexDisplayed, 1);
-
-        // Index of the last displayed group element in groups
-        const indexLastElement = this.groups.map(x => x.device_group_id).indexOf(lastElementId);
-        if (indexLastElement !== -1) {
-          if (this.groups[indexLastElement + 1]) {
-            this.displayedGroups.push(this.groups[indexLastElement + 1]);
-          } else {
-            // The first element of displayed groups id
-            const firstElementId = this.displayedGroups[0].device_group_id;
-            // Index of the first displayed group element in groups
-            const indexFirstElement = this.groups.map(x => x.device_group_id).indexOf(firstElementId);
-
-            if (this.groups[indexFirstElement - 1]) {
-              this.displayedGroups.unshift(this.groups[indexFirstElement - 1]);
-            }
-          }
-        }
+    const deleteConfirm = confirm('Delete group?');
+    if (deleteConfirm) {
+      const indexActive = this.groups.map(x => x.device_group_id).indexOf(this.activeGroupId);
+      if (indexActive !== -1) {
+        this.backend.deleteGroup(this.organizationId, this.activeGroupId)
+          .subscribe(response => {
+            this.backend.getGroups(this.organizationId)
+              .subscribe(getGroupsResponse => {
+                this.groups = getGroupsResponse;
+                if (this.displayedGroups.length > 0 ) {
+                  const indexDisplayed = this.displayedGroups.map(x => x.device_group_id).indexOf(this.activeGroupId);
+                  if (indexDisplayed !== -1) {
+                    this.displayedGroups.splice(indexDisplayed, 1);
+                    const lastElementId = this.displayedGroups[this.displayedGroups.length - 1].device_group_id;
+                    const indexGroups = this.groups.map(x => x.device_group_id).indexOf(lastElementId);
+                    if (indexGroups !== -1) {
+                      if (this.groups[indexGroups + 1]) {
+                        this.displayedGroups.push(this.groups[indexGroups + 1]);
+                      } else {
+                          const firstElementId = this.displayedGroups[0].device_group_id;
+                          const indexGroupsFirst = this.groups.map(x => x.device_group_id).indexOf(firstElementId);
+                          if (indexGroupsFirst !== -1) {
+                            if (this.groups[indexGroupsFirst - 1]) {
+                              this.displayedGroups.unshift(this.groups[indexGroupsFirst - 1]);
+                            }
+                          }
+                      }
+                    }
+                  }
+              }
+              this.updateDisplayedGroupsNamesLength();
+              });
+          });
       }
+      this.changeActiveGroup('ALL');
     }
-    this.changeActiveGroup('ALL');
   }
 
     // const deleteConfirm = confirm('Delete group?');
@@ -595,5 +627,14 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.modalRef = this.modalService.show(GroupConfigurationComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { });
+  }
+
+
+  updateDisplayedGroupsNamesLength() {
+    this.displayedGroupsNamesLength = 0;
+    this.displayedGroups.forEach(group => {
+      this.displayedGroupsNamesLength += group.name.length;
+    });
+    console.log(this.displayedGroupsNamesLength);
   }
 }
