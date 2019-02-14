@@ -348,17 +348,6 @@ export class BackendService implements Backend {
     );
   }
 
-  // **********TODO GET: "/v1/device/{organization_id}/summary"
-  /**
-   * Requests to get the devices summary for an specific organization
-   * @param organizationId Organization identifier
-   */
-  getDevicesSummary(organizationId: string) {
-    return this.get(
-      API_URL + 'device/' + organizationId + '/summary'
-    );
-  }
-
   // POST "/v1/device/group/{organization_id}/add"
   /**
    * Requests to add a new device group

@@ -1822,11 +1822,3 @@ export const mockDevicesGroupList = [
         device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
     }
   ];
-
-/**
- * Mock devices summary containing total devices
- */
-export const mockDevicesSummary = {
-    total_devices: mockDevicesList.length,
-    total_devices_group: mockDevicesGroupList.length
-};

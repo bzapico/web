@@ -80,11 +80,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   devicesCount: number;
 
   /**
-   * Count of total devices groups for summary card
-   */
-  devicesGroupCount: number;
-
-  /**
    * Interval reference
    */
   refreshIntervalRef: any;
@@ -187,7 +182,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.labels = [];
     this.loadedData = false;
     this.devicesCount = 0;
-    this.devicesGroupCount = 0;
     this.devicesChart = [{name: 'Running devices %', series: []}];
     this.requestError = '';
     // SortBy
