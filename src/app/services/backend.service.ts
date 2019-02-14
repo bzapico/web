@@ -365,14 +365,14 @@ export class BackendService implements Backend {
   /**
    * Requests to delete the provided device Group
    * @param organizationId Organization identifier
-   * @param deviceGroupId devices group identifier
+   * @param groupId devices group identifier
    */
-  deleteDevicesGroup(organizationId: string, deviceGroupId: string) {
+  deleteGroup(organizationId: string, groupId: string) {
     return this.post(
       API_URL + 'device/group' + organizationId + '/remove',
       {
         organization_id: organizationId,
-        name: deviceGroupId
+        name: groupId
       }
     );
   }

@@ -52,7 +52,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Models that hold device group id
    */
-  deviceGroupId: string;
+  groupId: string;
 
   /**
    * Models that hold the active group
@@ -294,7 +294,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   updateDevicesList(organizationId: string) {
     if (organizationId !== null) {
       // Request to get devices
-      this.backend.getDevices(this.organizationId, this.deviceGroupId)
+      this.backend.getDevices(this.organizationId, this.groupId)
       .subscribe(response => {
           this.devices = response.devices || [];
           this.updateConnectedDevicesLineChart(this.devices);
@@ -450,18 +450,18 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   /**
    * Changes active group
-   * @param deviceGroupId device group identifier
+   * @param groupId device group identifier
    */
-  changeActiveGroup(deviceGroupId: string) {
-    this.activeGroupId = deviceGroupId;
+  changeActiveGroup(groupId: string) {
+    this.activeGroupId = groupId;
   }
 
   /**
    * Checks if the device group is active to show in the tabs
-   * @param deviceGroupId device group identifier
+   * @param groupId device group identifier
    */
-  amIactive(deviceGroupId) {
-    if (deviceGroupId === this.activeGroupId) {
+  amIactive(groupId) {
+    if (groupId === this.activeGroupId) {
       return 'active';
     }
     // Empty class when is not active
@@ -530,7 +530,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    *  Upon confirmation, deletes devices group
    */
-  deleteDevicesGroup() {
+  deleteGroup() {
     const indexActive = this.groups.map(x => x.device_group_id).indexOf(this.activeGroupId);
     if (indexActive !== -1) {
       this.groups.splice(indexActive, 1);
@@ -565,11 +565,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
     // const deleteConfirm = confirm('Delete group?');
     // if (deleteConfirm) {
-    //   if (this.organizationId !== null && this.deviceGroupId !== null) {
-    //     this.backend.deleteDevicesGroup(this.organizationId, this.deviceGroupId)
+    //   if (this.organizationId !== null && this.groupId !== null) {
+    //     this.backend.deleteGroup(this.organizationId, this.groupId)
     //       .subscribe(response => {
     //         this.notificationsService.add({
-    //           message: 'Group ' + this.deviceGroupId + ' has been deleted',
+    //           message: 'Group ' + this.groupId + ' has been deleted',
     //           timeout: 10000
     //         });
     //         this.modalRef.hide();
