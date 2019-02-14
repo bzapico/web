@@ -32,7 +32,7 @@ export class GroupConfigurationComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.addUserMock) || null;
+    const mock = localStorage.getItem(LocalStorageKeys.addGroupMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;

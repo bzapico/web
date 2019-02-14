@@ -1,3 +1,5 @@
+import { Group } from "../definitions/interfaces/group";
+
 export const mockJwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
     // tslint:disable-next-line:max-line-length
     '.eyJhY2Nlc3MiOlsiT1JHIl0sImV4cCI6MTU0MjI4Njg2MywiaWF0IjoxNTQyMjc2MDYzLCJpc3MiOiJhdXRoeCIsImp0aSI6IjI1OTA5ZDNkLTJlODMtNDlmMC04ZmQzLTFlYmZiNTYxMTNhMSIsIm5iZiI6IjE1NDIyNzYwNjMiLCJvcmdhbml6YXRpb25JRCI6IjdhZDFhN2E4LWU0YjEtNDc5OC05MDcxLWU0NTY5MDhmYWQxMyIsInJvbGUiOiJPd25lciIsInVzZXJJRCI6ImpvaG4uZG9lQG1haWwuY29tIn0' +
@@ -1780,44 +1782,36 @@ export const mockDevicesList = [
 /**
  * Mocked devices group list
  */
-export const mockDevicesGroupList = [
+export const mockGroupList: Group[] = [
     {
         organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
         device_group_id: 'a1',
-        update_enabled: '3',
-        enabled: 'enabled',
-        update_device_connectivity: '5',
-        default_device_connectivity: '6',
+        enabled: true,
+        default_device_connectivity: true,
         name: 'Group 1',
         device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
     },
     {
         organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
         device_group_id: 'b2',
-        update_enabled: '3',
-        enabled: 'disabled',
-        update_device_connectivity: '5',
-        default_device_connectivity: '6',
+        enabled: false,
+        default_device_connectivity: false,
         name: 'Group 2',
         device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
     },
     {
         organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
         device_group_id: 'c3',
-        update_enabled: '3',
-        enabled: 'disabled',
-        update_device_connectivity: '5',
-        default_device_connectivity: '6',
+        enabled: true,
+        default_device_connectivity: true,
         name: 'Group 3',
         device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
     },
     {
         organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
         device_group_id: 'd4',
-        update_enabled: '3',
-        enabled: 'disabled',
-        update_device_connectivity: '5',
-        default_device_connectivity: '6',
+        enabled: true,
+        default_device_connectivity: true,
         name: 'Group 4',
         device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
     }

@@ -3,7 +3,7 @@
  */
 export interface Group {
     // OrganizationId with the organization identifier.
-    organization_id?: string;
+    organization_id: string;
     // DevicesGroupId with the device group identifier.
     device_group_id?: string;
     // Name of the device group.

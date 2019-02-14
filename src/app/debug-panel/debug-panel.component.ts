@@ -25,7 +25,7 @@ export const AvailableComponents = {
   editcluster: 'EditCluster',
   addUser: 'Add User',
   devices: 'Devices',
-  addDevicesGroup: 'Add Devices Group',
+  addGroup: 'Add Devices Group',
   configDevicesGroup: 'Configuration Devices Group',
   devicesGroupCreated: 'Devices Group Created'
 };
@@ -106,8 +106,8 @@ export class DebugPanelComponent implements OnInit {
       mock: localStorage.getItem(LocalStorageKeys.devicesMock) === 'false' ? 'false' : 'true'
     });
     this.components.push({
-      name: AvailableComponents.addDevicesGroup,
-      mock: localStorage.getItem(LocalStorageKeys.addDevicesGroupMock) === 'false' ? 'false' : 'true'
+      name: AvailableComponents.addGroup,
+      mock: localStorage.getItem(LocalStorageKeys.addGroupMock) === 'false' ? 'false' : 'true'
     });
     this.components.push({
       name: AvailableComponents.configDevicesGroup,
@@ -141,7 +141,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.clusterEditMock, newValue);
     localStorage.setItem(LocalStorageKeys.addUserMock, newValue);
     localStorage.setItem(LocalStorageKeys.devicesMock, newValue);
-    localStorage.setItem(LocalStorageKeys.addDevicesGroupMock, newValue);
+    localStorage.setItem(LocalStorageKeys.addGroupMock, newValue);
     localStorage.setItem(LocalStorageKeys.configDevicesGroupMock, newValue);
     localStorage.setItem(LocalStorageKeys.devicesGroupCreatedMock, newValue);
   }
@@ -192,8 +192,8 @@ export class DebugPanelComponent implements OnInit {
       case AvailableComponents.devices:
         localStorage.setItem(LocalStorageKeys.devicesMock, componentMockOption.mock);
       break;
-      case AvailableComponents.addDevicesGroup:
-        localStorage.setItem(LocalStorageKeys.addDevicesGroupMock, componentMockOption.mock);
+      case AvailableComponents.addGroup:
+        localStorage.setItem(LocalStorageKeys.addGroupMock, componentMockOption.mock);
       break;
       case AvailableComponents.configDevicesGroup:
         localStorage.setItem(LocalStorageKeys.configDevicesGroupMock, componentMockOption.mock);

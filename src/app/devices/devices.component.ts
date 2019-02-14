@@ -47,7 +47,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Object that holds add device group request
    */
-  deviceGroupData: any;
+  groupData: any;
 
   /**
    * Models that hold device group id
@@ -63,11 +63,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * List of active displayed group
    */
   displayedGroups: any[];
-
-  /**
-   * Devices list chuncked in sub-lists
-   */
-  chunckedDevices: any[];
 
   /**
    * List of labels
@@ -177,7 +172,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.devices = [];
     this.groups = [];
     this.displayedGroups = [];
-    this.chunckedDevices = [];
     this.activeGroupId = 'ALL';
     this.labels = [];
     this.loadedData = false;
@@ -241,6 +235,47 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         if (this.displayedGroups.length === 0 && this.groups.length > 0) {
           for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
             this.displayedGroups.push(this.groups[index]);
+          }
+        }
+        if (!this.loadedData) {
+          this.loadedData = true;
+        }
+      }, errorResponse => {
+          this.loadedData = true;
+          this.requestError = errorResponse.error.message;
+        });
+    }
+  }
+
+  groupListUpdateAfterAdd() {
+    if (this.organizationId !== null) {
+      // Requests an updated devices group list
+      this.backend.getGroups(this.organizationId)
+      .subscribe(response => {
+        const outdatedGroups = this.groups.slice(0);
+        this.groups = response || [];
+
+        if (outdatedGroups.length === this.groups.length) {
+          // do nothing
+        } else {
+          this.displayedGroups = [];
+          let foundNewGroup = false;
+          for (let indexGroups = 0; indexGroups < this.groups.length && !foundNewGroup; indexGroups++) {
+            const index =
+              outdatedGroups
+                .map(group => group.device_group_id)
+                .indexOf(this.groups[indexGroups].device_group_id);
+              if (index === -1) {
+                foundNewGroup  = true;
+                this.displayedGroups.push(this.groups[indexGroups]);
+                if (this.groups[indexGroups - 1]) {
+                  this.displayedGroups.unshift(this.groups[indexGroups - 1]);
+                }
+                if (this.groups[indexGroups - 2]) {
+                  this.displayedGroups.unshift(this.groups[indexGroups - 2]);
+                }
+                this.activeGroupId = this.groups[indexGroups].device_group_id;
+              }
           }
         }
         if (!this.loadedData) {
@@ -475,39 +510,22 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Opens the modal view that holds add group component
    * @param group group object
    */
-  addDevicesGroup(group: Group) {
+  addGroup() {
+    let allowHide = true;
     const initialState = {
       organizationId: this.organizationId,
     };
-    let allowHide = true;
-    const randomGroupStringGenerator = 'GROUP ' + this.generateRandomNumber();
 
     this.modalRef = this.modalService.show(AddDevicesGroupComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
-      if (allowHide === true) {
-        this.groups.push({
-          name: randomGroupStringGenerator, 
-          device_group_id: randomGroupStringGenerator,
-          organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-          update_enabled: '3',
-          enabled: 'enabled',
-          update_device_connectivity: '5',
-          default_device_connectivity: '6',
-          device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
-          });
-        if (this.displayedGroups.length < this.DISPLAYED_GROUP_MAX  ) {
-          this.displayedGroups.push(this.groups[this.groups.length - 1]);
-        }
-        allowHide = false;
+      if (allowHide) {
+        this.groupListUpdateAfterAdd();
       }
+      allowHide = false;
     });
-    this.changeActiveGroup('ALL');
   }
 
-  generateRandomNumber() {
-    return Math.floor(Math.random() * (100 - 1) + 1);
-  }
 
   /**
    *  Upon confirmation, deletes devices group

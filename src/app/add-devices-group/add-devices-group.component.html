@@ -31,13 +31,13 @@
         <p class="grey">Group device availability</p>
         <div class="add-dev-checkbox">
           <span 
-            *ngIf="!checkBox" 
-            (click)="enabled()">
+          *ngIf="!enabled" 
+          (click)="enabled = true">
             <i class="material-icons grey">check_box_outline_blank</i>
           </span>
           <span 
-            *ngIf="checkBox"  
-            (click)="enabled()" 
+          *ngIf="enabled" 
+          (click)="enabled = false"
             class="devices-checkbox">
             <i class="material-icons blue">check_box</i>
           </span>
@@ -46,13 +46,13 @@
         <p class="grey">Devices enabled by default</p>
         <div class="add-dev-checkbox">
           <span 
-            *ngIf="!checkBox" 
-            (click)="enabled()">
+            *ngIf="!defaultConnectivity" 
+            (click)="defaultConnectivity = true">
             <i class="material-icons grey">check_box_outline_blank</i>
           </span>
           <span 
-            *ngIf="checkBox"  
-            (click)="enabled()" 
+            *ngIf="defaultConnectivity" 
+            (click)="defaultConnectivity = false"
             class="devices-checkbox">
             <i class="material-icons blue">check_box</i>
           </span>
@@ -70,7 +70,7 @@
     </div>
     <!-- Option buttons -->
     <div class="buttons d-flex flex-row justify-content-between">
-        <button class="btn btn-primary btn-md" (click)="addDevicesGroup(f)">
+        <button class="btn btn-primary btn-md" (click)="addGroup(f)">
         <span class="align-bottom">Create</span>
       </button>
       <button class="btn btn-red btn-md" (click)="discardChanges(f)">

@@ -217,7 +217,7 @@
           </li>
           <ul class="devices-tab-button" *ngIf="activeGroupId === 'ALL' || groups.length === 0">
             <li>
-              <span class="devices-button-item blue devices-button-item-pr" (click)="addDevicesGroup()">
+              <span class="devices-button-item blue devices-button-item-pr" (click)="addGroup()">
                 <i class="material-icons">add</i>
                 ADD GROUP 
               </span>
@@ -225,7 +225,7 @@
           </ul>
           <ul class="devices-tab-button" *ngIf="activeGroupId !== 'ALL' && groups.length > 0">
             <li>
-              <span class="devices-button-item blue" (click)="addDevicesGroup()">
+              <span class="devices-button-item blue" (click)="addGroup()">
                 <i class="material-icons">add</i>
                 ADD GROUP 
               </span>

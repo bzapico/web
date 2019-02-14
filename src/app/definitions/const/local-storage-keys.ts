@@ -14,7 +14,7 @@ export const LocalStorageKeys = {
     addUserMock: 'add_user_mock',
     passwordMock: 'password_change_mock',
     devicesMock: 'devices_mock',
-    addDevicesGroupMock: 'add_device_group_mock',
+    addGroupMock: 'add_device_group_mock',
     configDevicesGroupMock: 'configuration_device_group_mock',
     devicesGroupCreatedMock: 'device_group_created_mock',
 

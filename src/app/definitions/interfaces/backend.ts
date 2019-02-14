@@ -28,6 +28,6 @@ export interface Backend {
     // Devices
     getDevices(organizationId: string, groupId: string);
     getGroups(organizationId: string);
-    addDevicesGroup(organizationId: string, deviceGroupData: any);
+    addGroup(organizationId: string, groupData: any);
     deleteDevicesGroup(organizationId: string, deviceGroupId: any);
 }

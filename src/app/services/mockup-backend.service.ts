@@ -4,12 +4,14 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockDevicesGroupList } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList } from '../utils/mocks';
+import { Group } from '../definitions/interfaces/group';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MockupBackendService implements Backend {
+  mockGroupList: any;
 
   constructor() {
   }
@@ -353,7 +355,7 @@ export class MockupBackendService implements Backend {
    */
   getGroups(organizationId: string) {
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockDevicesGroupList),
+      body: JSON.stringify(mockGroupList),
       status: 200
     })))
     .pipe(
@@ -364,25 +366,24 @@ export class MockupBackendService implements Backend {
   /**
   * Simulates creating a new device group
   *  @param organizationId Organization identifier
-  *  @param deviceGroupData Device Group data
+  *  @param groupData Device Group data
   */
-  addDevicesGroup(organizationId: string, deviceGroupData: any) {
-    const index = mockDevicesGroupList.map(x => x.name).indexOf(deviceGroupData.name);
-    if (index === -1) {
-      mockDevicesGroupList.push(deviceGroupData);
-      return of (new Response(new ResponseOptions({
-        status: 200
-      }))).pipe(
-        map(response => response.json())
-      );
-    } else {
-      return of (new Response(new ResponseOptions({
-        status: 403,
-        body: deviceGroupData.name + ' is already in use'
-      }))).pipe(
-        map(response => response.json())
-      );
-    }
+  addGroup(organizationId: string, groupData: Group) {
+    const group: Group = {
+        name: groupData.name,
+        device_group_id: 'fbaa8670-1008-ac7a-398a-3c11ac797c77',
+        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+        enabled: groupData.enabled,
+        default_device_connectivity: groupData.default_device_connectivity,
+        device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
+    };
+    mockGroupList.push(group);
+    return of (new Response(new ResponseOptions({
+      status: 200
+    })))
+    .pipe(
+      map(response => response.json())
+    );
   }
 
   /**
@@ -391,9 +392,9 @@ export class MockupBackendService implements Backend {
   *  @param deviceGroupId Device Group data
   */
   deleteDevicesGroup(organizationId: string, deviceGroupId: string) {
-    const index = mockDevicesGroupList.map(x => x.name).indexOf(deviceGroupId);
+    const index = mockGroupList.map(x => x.name).indexOf(deviceGroupId);
     if (index !== -1) {
-      mockDevicesGroupList.splice(index, 1);
+      mockGroupList.splice(index, 1);
     }
     return of (new Response(new ResponseOptions({
       status: 200

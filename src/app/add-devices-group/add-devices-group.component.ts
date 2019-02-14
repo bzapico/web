@@ -5,7 +5,6 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { FormGroup } from '@angular/forms';
 import { DeviceGroupCreatedComponent } from '../device-group-created/device-group-created.component';
 
 @Component({
@@ -15,11 +14,6 @@ import { DeviceGroupCreatedComponent } from '../device-group-created/device-grou
 })
 export class AddDevicesGroupComponent implements OnInit {
   /**
-   * Checkbox reference
-   */
-  checkBox = true;
-
-  /**
    * Backend reference
    */
   backend: Backend;
@@ -28,6 +22,8 @@ export class AddDevicesGroupComponent implements OnInit {
    * Models that hold organization id
    */
   organizationId: string;
+  defaultConnectivity: boolean;
+  enabled: boolean;
   errorMessages: string[];
 
   /**
@@ -45,7 +41,9 @@ export class AddDevicesGroupComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.addDevicesGroupMock) || null;
+    this.defaultConnectivity = false;
+    this.enabled = false;
+    const mock = localStorage.getItem(LocalStorageKeys.addGroupMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
@@ -62,31 +60,33 @@ export class AddDevicesGroupComponent implements OnInit {
   /**
    * Requests to create a new device group
    * Create device group opens the device group created component modal  window confirmation
-   * @param form Form object reference
+   * @param form Form with the group input data
    */
-  addDevicesGroup(form) {
+  addGroup(form) {
     if (this.errorMessages.length === 0) {
-      const deviceGroupData = {
+      const groupData = {
         name: form.value.name,
+        enabled: this.enabled,
+        default_device_connectivity: this.defaultConnectivity,
+        organization_id: this.organizationId
       };
-      // this.backend.addDevicesGroup(this.organizationId, deviceGroupData)
-      // .subscribe(response => {
-      //   const initialState = {
-      //     organizationId: this.organizationId,
-      //   };
-      //   this.bsModalRef =
-      //     this.modalService.show(DeviceGroupCreatedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-      //   this.bsModalRef.content.closeBtnName = 'Close';
-      //   this.bsModalRef.hide();
-      // }, error => {
-      //   this.notificationsService.add({
-      //     message: 'ERROR: ' + error.error.message,
-      //     timeout: 10000
-      //   });
-      // });
+      this.backend.addGroup(this.organizationId, groupData)
+      .subscribe(response => {
+        const initialState = {
+          organizationId: this.organizationId,
+        };
+        this.bsModalRef.hide();
+        this.bsModalRef =
+          this.modalService.show(DeviceGroupCreatedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+        this.bsModalRef.content.closeBtnName = 'Close';
+      }, error => {
+        this.notificationsService.add({
+          message: 'ERROR: ' + error.error.message,
+          timeout: 10000
+        });
+      });
     }
   }
-
 
   /**
    * Checks if the form has been modified before discarding changes
@@ -105,46 +105,4 @@ export class AddDevicesGroupComponent implements OnInit {
     }
   }
 
-  /**
-   * Outputs the error messages in the required format, showing the first one
-   * @param errors String containing the errors
-   */
-  formatValidationOutput(errors: string[]) {
-    if (this.errorMessages.length === 1) {
-      return {
-        msg: this.errorMessages[0],
-        errors: this.errorMessages
-      };
-    } else if (this.errorMessages.length > 0) {
-      return {
-        msg: this.errorMessages[0] + ' +' + (this.errorMessages.length - 1) + ' errors',
-        errors: this.errorMessages
-      };
-    } else {
-      return {
-        msg: '',
-        errors: this.errorMessages
-      };
-    }
-  }
-
-  /**
-   * Another string definition of an array
-   * @param array Array of elements
-   */
-  arrayToString(array: any[]): string {
-    let msg = '';
-    array.forEach(element => {
-      msg = msg + element.toLowerCase() + ', ';
-    });
-    msg = msg.slice(0, msg.length - 2);
-    return msg;
-  }
-
-  /**
-   * Checkbox
-   */
-  enabled() {
-    this.checkBox = !this.checkBox;
-  }
 }
