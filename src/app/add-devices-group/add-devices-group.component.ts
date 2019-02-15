@@ -28,6 +28,14 @@ export class AddDevicesGroupComponent implements OnInit {
   errorMessages: string[];
 
   /**
+   *  Models that hold group data
+   */
+  device_group_id: string;
+  name: string;
+  default_device_connectivity: boolean;
+  device_group_api_key: string;
+
+  /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
   config = {
@@ -53,6 +61,11 @@ export class AddDevicesGroupComponent implements OnInit {
       this.backend = backendService;
     }
     this.errorMessages = [];
+    this.device_group_id = 'Loading ...';
+    this.name = 'Loading ...';
+    this.enabled = false;
+    this.default_device_connectivity = false;
+    this.device_group_api_key = 'Loading ...';
 
   }
 
@@ -77,7 +90,11 @@ export class AddDevicesGroupComponent implements OnInit {
       .subscribe(response => {
         const initialState = {
           organizationId: this.organizationId,
-          groupApiKey: this.groupApiKey
+          groupId: this.device_group_id,
+          name: this.name,
+          enabled: this.enabled,
+          defaultConnectivity: this.default_device_connectivity,
+          groupApiKey: this.device_group_api_key,
         };
         this.bsModalRef.hide();
         this.bsModalRef =

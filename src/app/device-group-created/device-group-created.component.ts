@@ -54,10 +54,7 @@ export class DeviceGroupCreatedComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-    this.group = mockGroupList;
-    // this.group.device_group_api_key = mockGroupApiKey;
-    // Initialization to avoid null in view
-    // Default initialization
+    this.group = mockGroupList; // Default initialization
     this.loadedData = false;
   }
 

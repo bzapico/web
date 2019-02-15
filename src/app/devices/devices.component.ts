@@ -45,9 +45,14 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   groups: any[];
 
   /**
-   * Object that holds add device group request
+   *  Models that hold group data
    */
-  groupData: any;
+    device_group_id: string;
+    name: string;
+    enabled: boolean;
+    default_device_connectivity: boolean;
+    device_group_api_key: string;
+    groupData: any[];
 
   /**
    * Models that hold the active group
@@ -181,6 +186,14 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.devicesChart = [{name: 'Running devices %', series: []}];
     this.requestError = '';
     this.maxLabelsLength = 35;
+    this.groupData = [{
+      device_group_id: 'Loading ...',
+      name: 'Loading ...',
+      enabled: false,
+      default_device_connectivity: false,
+      device_group_api_key: 'Loading ...',
+    }],
+
     // SortBy
     this.sortedBy = '';
     this.reverse = false;
@@ -465,7 +478,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Checkbox
+   * Checkbox statement to select one of many code blocks to be executed.
    */
   enableSwitcher(device) {
    device.enabled = !device.enabled;
@@ -473,7 +486,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Changes active group
+   * Changes to active group
    * @param groupId device group identifier
    */
   changeActiveGroup(groupId: string) {
@@ -506,7 +519,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Devices tabs group list swipe left arrow button functionality
+   * Displayed groups list swipes left by pressing the arrow button functionality
    */
   swipeLeft() {
     const index = this.groups.map(x => x.device_group_id).indexOf(this.displayedGroups[0].device_group_id);
@@ -520,7 +533,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Devices tabs group list swipe right arrow button functionality
+   * Displayed groups list swipes right by pressing the arrow button functionality
    */
   swipeRight() {
     const index = this.groups.map(x => x.device_group_id).indexOf(this.displayedGroups[this.displayedGroups.length - 1].device_group_id);
@@ -623,14 +636,24 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   openGroupConfiguration() {
     const initialState = {
       organizationId: this.organizationId,
+      // groupId: this.device_group_id,
+      // name: this.name,
+      // enabled: this.enabled,
+      // defaultConnectivity: this.default_device_connectivity,
+      // groupApiKey: this.device_group_api_key,
+      groupData: this.groupData,
     };
 
     this.modalRef = this.modalService.show(GroupConfigurationComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { });
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateGroupsList(this.organizationId);
+    });
   }
 
-
+/**
+ * Updates the displayed groups chars lenght to calculate the number of letters displayed according to the size of the viewport
+ */
   updateDisplayedGroupsNamesLength() {
     this.displayedGroupsNamesLength = 0;
     this.displayedGroups.forEach(group => {
