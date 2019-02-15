@@ -6,32 +6,13 @@
     </div>
     <!-- Body -->
     <div class="modal-body">
-      <div *ngIf="loadedData">
-        <div class="dev-group-api"> 
-          <span class="grey">
-            Here it is the API Key associated to the new devices group:
-          </span>
-          <span class="blue">
-              {{group.device_group_api_key}}
-          </span>
-        </div>
-      </div>
-      <!-- Loader -->           
-      <div class="nalej-loader-container" *ngIf="!loadedData">
-        <div class="loader">
-          <svg 
-            class="circular" 
-            viewBox="25 25 50 50">
-            <circle 
-              class="path" 
-              cx="50" 
-              cy="50" 
-              r="20" 
-              fill="none" 
-              stroke-width="2" 
-              stroke-miterlimit="10"/>
-          </svg>
-        </div>
+      <div class="dev-group-api"> 
+        <span class="grey">
+          Here it is the API Key associated to the new devices group:
+        </span>
+        <span class="blue">
+            {{group.device_group_api_key}}
+        </span>
       </div>
       <!-- Option buttons -->
       <div class="buttons d-flex flex-row justify-content-center">

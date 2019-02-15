@@ -54,20 +54,11 @@ export class DeviceGroupCreatedComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-    this.group = mockGroupList; // Default initialization
-    this.loadedData = false;
+    // group is initialized by initial state triggered in add devices group component
   }
 
   ngOnInit() {
-    if (this.organizationId !== null) {
-      this.backend.getGroups(this.organizationId)
-      .subscribe(group => {
-          this.group = group;
-          if (!this.loadedData) {
-            this.loadedData = true;
-          }
-      });
-    }
+    console.log(this.group);
   }
 
   /**

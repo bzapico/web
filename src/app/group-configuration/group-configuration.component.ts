@@ -52,18 +52,12 @@ export class GroupConfigurationComponent implements OnInit {
       this.backend = backendService;
     }
     // Default initialization
-    this.group = mockGroupList;
     this.defaultConnectivity = false;
     this.enabled = false;
   }
 
   ngOnInit() {
-    if (this.organizationId !== null) {
-      this.backend.getGroups(this.organizationId)
-      .subscribe(group => {
-          this.group = group;
-      });
-    }
+
   }
 
   /**
