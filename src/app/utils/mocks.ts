@@ -1,4 +1,4 @@
-import { Group } from "../definitions/interfaces/group";
+import { Group } from '../definitions/interfaces/group';
 
 export const mockJwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
     // tslint:disable-next-line:max-line-length
@@ -1816,3 +1816,8 @@ export const mockGroupList: Group[] = [
         device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
     }
   ];
+
+/**
+ * Mocked new group API Key
+ */
+export const mockGroupApiKey = '9cd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-3352-ac7a-398a-3c11ac797c77';
