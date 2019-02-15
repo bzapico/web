@@ -289,7 +289,7 @@
         </div>      
       </div>
       <!-- Devices table -->
-      <div class="table-h" *ngIf="loadedData && devices && devices.length > 0 && !requestError" >
+      <div class="table-h" *ngIf="loadedData && devices && devices.length > 0 && groups.length > 0 && !requestError" >
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
@@ -440,9 +440,9 @@
       </div>
         <!-- No info to show -->
       <div 
-        *ngIf="loadedData && devices && devices.length === 0 && !requestError"
+        *ngIf="loadedData && groups.length === 0 && !requestError"
         class="no-devices d-flex justify-content-center align-items-center">
-        No available devices detected
+        No available devices detected for more information go to the help center
       </div>
         <!-- Requested error -->
       <div

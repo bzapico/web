@@ -345,6 +345,18 @@ export class BackendService implements Backend {
     );
   }
 
+  // POST /v1/device/{organization_id}/update
+  /**
+  * Request to modify device data
+  * @param organizationId Organization identifier
+  * @param groupData device data
+  */
+   updateDevice(organizationId: string, groupData: any) {
+    return this.post(
+      API_URL + 'device/' + organizationId + groupData + '/update'
+    );
+  }
+
   // GET:  "/v1/device/group/{organization_id}/list"
   /**
    * Requests devices group list
@@ -382,6 +394,18 @@ export class BackendService implements Backend {
         organization_id: organizationId,
         device_group_id: groupId
       }
+    );
+  }
+
+  // POST /v1/device/group/{organization_id}/update
+  /**
+  * Request to modify group data
+  * @param organizationId Organization identifier
+  * @param groupDta group data
+  */
+  updateGroup(organizationId: string, groupData: string) {
+    return this.post(
+      API_URL + 'device/group' + organizationId + groupData + '/update'
     );
   }
 }

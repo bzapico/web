@@ -348,6 +348,17 @@ export class MockupBackendService implements Backend {
       map(response => response.json())
     );
   }
+    /**
+   * Simulates to update a device from a device array
+  *  @param organizationId Organization identifier
+  *  @param groupData Device data
+   */
+  updateDevice(organizationId: string, groupData: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({ result: '' }),
+      status: 200
+    })));
+  }
 
   /**
    * Simulates to request devices group list
@@ -382,6 +393,7 @@ export class MockupBackendService implements Backend {
     };
     mockGroupList.push(group);
     return of (new Response(new ResponseOptions({
+      body: JSON.stringify(group),
       status: 200
     })))
     .pipe(
@@ -400,6 +412,18 @@ export class MockupBackendService implements Backend {
       mockGroupList.splice(index, 1);
     }
     return of (new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+
+  /**
+   * Simulates to update a group from a group array
+  *  @param organizationId Organization identifier
+  *  @param groupData  Device Group data
+   */
+  updateGroup(organizationId: string, groupData: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({ result: '' }),
       status: 200
     })));
   }
