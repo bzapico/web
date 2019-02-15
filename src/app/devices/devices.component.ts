@@ -52,7 +52,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     enabled: boolean;
     default_device_connectivity: boolean;
     device_group_api_key: string;
-    groupData: any[];
 
   /**
    * Models that hold the active group
@@ -186,14 +185,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.devicesChart = [{name: 'Running devices %', series: []}];
     this.requestError = '';
     this.maxLabelsLength = 35;
-    this.groupData = [{
-      device_group_id: 'Loading ...',
-      name: 'Loading ...',
-      enabled: false,
-      default_device_connectivity: false,
-      device_group_api_key: 'Loading ...',
-    }],
-
+    this.device_group_id = 'Loading ...';
+    this.name = 'Loading ...';
+    this.enabled = false;
+    this.default_device_connectivity = false;
+    this.device_group_api_key = 'Loading ...';
     // SortBy
     this.sortedBy = '';
     this.reverse = false;
@@ -603,32 +599,20 @@ export class DevicesComponent implements OnInit, OnDestroy  {
               }
               this.updateDisplayedGroupsNamesLength();
               });
+              this.notificationsService.add({
+                message: 'Group ' + this.activeGroupId + ' has been deleted',
+                timeout: 10000
+              });
+          }, error => {
+            this.notificationsService.add({
+              message: error.error.message,
+              timeout: 10000
+            });
           });
       }
       this.changeActiveGroup('ALL');
     }
   }
-
-    // const deleteConfirm = confirm('Delete group?');
-    // if (deleteConfirm) {
-    //   if (this.organizationId !== null && this.groupId !== null) {
-    //     this.backend.deleteGroup(this.organizationId, this.groupId)
-    //       .subscribe(response => {
-    //         this.notificationsService.add({
-    //           message: 'Group ' + this.groupId + ' has been deleted',
-    //           timeout: 10000
-    //         });
-    //         this.modalRef.hide();
-    //       }, error => {
-    //         this.notificationsService.add({
-    //           message: error.error.message,
-    //           timeout: 10000
-    //         });
-    //       });
-    //   }
-    // } else {
-    //   // Do nothing
-    // }
 
    /**
    * Opens the modal view that holds group configuration component
@@ -636,12 +620,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   openGroupConfiguration() {
     const initialState = {
       organizationId: this.organizationId,
-      // groupId: this.device_group_id,
-      // name: this.name,
-      // enabled: this.enabled,
-      // defaultConnectivity: this.default_device_connectivity,
-      // groupApiKey: this.device_group_api_key,
-      groupData: this.groupData,
+      groupId: this.device_group_id,
+      name: this.name,
+      enabled: this.enabled,
+      defaultConnectivity: this.default_device_connectivity,
+      groupApiKey: this.device_group_api_key,
     };
 
     this.modalRef = this.modalService.show(GroupConfigurationComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
