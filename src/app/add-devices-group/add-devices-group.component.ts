@@ -23,6 +23,7 @@ export class AddDevicesGroupComponent implements OnInit {
    */
   organizationId: string;
   defaultConnectivity: boolean;
+  groupApiKey: string;
   enabled: boolean;
   errorMessages: string[];
 
@@ -43,6 +44,7 @@ export class AddDevicesGroupComponent implements OnInit {
   ) {
     this.defaultConnectivity = false;
     this.enabled = false;
+    this.groupApiKey = 'Loading...';
     const mock = localStorage.getItem(LocalStorageKeys.addGroupMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -68,12 +70,14 @@ export class AddDevicesGroupComponent implements OnInit {
         name: form.value.name,
         enabled: this.enabled,
         default_device_connectivity: this.defaultConnectivity,
-        organization_id: this.organizationId
+        organization_id: this.organizationId,
+        device_group_api_key: this.groupApiKey
       };
       this.backend.addGroup(this.organizationId, groupData)
       .subscribe(response => {
         const initialState = {
           organizationId: this.organizationId,
+          groupApiKey: this.groupApiKey
         };
         this.bsModalRef.hide();
         this.bsModalRef =

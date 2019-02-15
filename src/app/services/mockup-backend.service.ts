@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockGroupApiKey } from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 
 @Injectable({
@@ -381,7 +381,6 @@ export class MockupBackendService implements Backend {
         device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
     };
     mockGroupList.push(group);
-    console.log('desde el mock ', mockGroupList);
     return of (new Response(new ResponseOptions({
       status: 200
     })))

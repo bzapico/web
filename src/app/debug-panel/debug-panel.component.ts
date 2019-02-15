@@ -26,8 +26,8 @@ export const AvailableComponents = {
   addUser: 'Add User',
   devices: 'Devices',
   addGroup: 'Add Devices Group',
-  configDevicesGroup: 'Configuration Devices Group',
-  devicesGroupCreated: 'Devices Group Created'
+  configGroup: 'Configuration Devices Group',
+  createdGroup: 'Devices Group Created'
 };
 
 @Component({
@@ -110,12 +110,12 @@ export class DebugPanelComponent implements OnInit {
       mock: localStorage.getItem(LocalStorageKeys.addGroupMock) === 'false' ? 'false' : 'true'
     });
     this.components.push({
-      name: AvailableComponents.configDevicesGroup,
-      mock: localStorage.getItem(LocalStorageKeys.configDevicesGroupMock) === 'false' ? 'false' : 'true'
+      name: AvailableComponents.configGroup,
+      mock: localStorage.getItem(LocalStorageKeys.configGroupMock) === 'false' ? 'false' : 'true'
     });
     this.components.push({
-      name: AvailableComponents.devicesGroupCreated,
-      mock: localStorage.getItem(LocalStorageKeys.devicesGroupCreatedMock) === 'false' ? 'false' : 'true'
+      name: AvailableComponents.createdGroup,
+      mock: localStorage.getItem(LocalStorageKeys.createdGroupMock) === 'false' ? 'false' : 'true'
     });
   }
 
@@ -142,8 +142,8 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.addUserMock, newValue);
     localStorage.setItem(LocalStorageKeys.devicesMock, newValue);
     localStorage.setItem(LocalStorageKeys.addGroupMock, newValue);
-    localStorage.setItem(LocalStorageKeys.configDevicesGroupMock, newValue);
-    localStorage.setItem(LocalStorageKeys.devicesGroupCreatedMock, newValue);
+    localStorage.setItem(LocalStorageKeys.configGroupMock, newValue);
+    localStorage.setItem(LocalStorageKeys.createdGroupMock, newValue);
   }
 
   /**
@@ -195,11 +195,11 @@ export class DebugPanelComponent implements OnInit {
       case AvailableComponents.addGroup:
         localStorage.setItem(LocalStorageKeys.addGroupMock, componentMockOption.mock);
       break;
-      case AvailableComponents.configDevicesGroup:
-        localStorage.setItem(LocalStorageKeys.configDevicesGroupMock, componentMockOption.mock);
+      case AvailableComponents.configGroup:
+        localStorage.setItem(LocalStorageKeys.configGroupMock, componentMockOption.mock);
       break;
-      case AvailableComponents.devicesGroupCreated:
-        localStorage.setItem(LocalStorageKeys.devicesGroupCreatedMock, componentMockOption.mock);
+      case AvailableComponents.createdGroup:
+        localStorage.setItem(LocalStorageKeys.createdGroupMock, componentMockOption.mock);
       break;
       default:
         console.log('Selected option not registered as available component');
