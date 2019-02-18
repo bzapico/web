@@ -19,7 +19,8 @@
         <div class="add-dev-checkbox">
           <span 
             *ngIf="!enabled" 
-            (click)="enabled = true">
+            (click)="enabled = true"
+            class="devices-checkbox">
             <i class="material-icons grey">check_box_outline_blank</i>
           </span>
           <span 
@@ -34,7 +35,8 @@
         <div class="add-dev-checkbox">
           <span 
             *ngIf="!defaultConnectivity" 
-            (click)="defaultConnectivity = true">
+            (click)="defaultConnectivity = true"
+            class="devices-checkbox">
             <i class="material-icons grey">check_box_outline_blank</i>
           </span>
           <span 
