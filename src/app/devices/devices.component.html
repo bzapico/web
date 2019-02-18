@@ -177,43 +177,42 @@
     <div class="card h-100 p-4">
       <div class="row">
         <div class="col-2 card-title-h">
-            <h5>DEVICES</h5>
+          <h5>DEVICES</h5>
         </div>
+        <!-- Devices tabs buttons -->
         <div class="col-10 devices-tab-buttons-container">
-            <ul class="devices-tab-button tomate" *ngIf="activeGroupId === 'ALL' || groups.length === 0">
-                <li>
-                  <span class="devices-button-item blue devices-button-item-pr" (click)="addGroup()">
-                    <i class="material-icons">add</i>
-                    ADD GROUP 
-                  </span>
-                </li>
-              </ul>
-              <ul class="devices-tab-button tomate" *ngIf="activeGroupId !== 'ALL' && groups.length > 0">
-                <li>
-                  <span class="devices-button-item blue" (click)="addGroup()">
-                    <i class="material-icons">add</i>
-                    ADD GROUP 
-                  </span>
-                </li>
-                <li>
-                  <span class="devices-button-item" (click)="deleteGroup()" >
-                    <i class="material-icons">delete</i>
-                    DELETE GROUP
-                  </span>
-                </li>
-                <li>
-                  <span 
-                    (click)="openGroupConfiguration()" 
-                    class="devices-button-item">
-                    <i class="material-icons">settings</i>
-                    CONFIGURATION
-                  </span>
-                </li>
-              </ul> 
-  
+          <ul class="devices-tab-button" *ngIf="activeGroupId === 'ALL' || groups.length === 0">
+            <li>
+              <span class="devices-button-item blue devices-button-item-pr" (click)="addGroup()">
+                <i class="material-icons">add</i>
+                ADD GROUP 
+              </span>
+            </li>
+          </ul>
+          <ul class="devices-tab-button" *ngIf="activeGroupId !== 'ALL' && groups.length > 0">
+            <li>
+              <span class="devices-button-item blue" (click)="addGroup()">
+                <i class="material-icons">add</i>
+                ADD GROUP 
+              </span>
+            </li>
+            <li>
+              <span class="devices-button-item" (click)="deleteGroup()" >
+                <i class="material-icons">delete</i>
+                DELETE GROUP
+              </span>
+            </li>
+            <li>
+              <span 
+                (click)="openGroupConfiguration()" 
+                class="devices-button-item">
+                <i class="material-icons">settings</i>
+                CONFIGURATION
+              </span>
+            </li>
+          </ul> 
         </div>
       </div>
-
       <!-- Devices tabs -->
       <div class="devices-tab-container">
         <ul>
@@ -251,69 +250,7 @@
             class="tabs-arrow">
             <i class="material-icons">arrow_right</i>
           </li>
-          <!-- <ul class="devices-tab-button" *ngIf="activeGroupId === 'ALL' || groups.length === 0">
-            <li>
-              <span class="devices-button-item blue devices-button-item-pr" (click)="addGroup()">
-                <i class="material-icons">add</i>
-                ADD GROUP 
-              </span>
-            </li>
-          </ul>
-          <ul class="devices-tab-button" *ngIf="activeGroupId !== 'ALL' && groups.length > 0">
-            <li>
-              <span class="devices-button-item blue" (click)="addGroup()">
-                <i class="material-icons">add</i>
-                ADD GROUP 
-              </span>
-            </li>
-            <li>
-              <span class="devices-button-item" (click)="deleteGroup()" >
-                <i class="material-icons">delete</i>
-                DELETE GROUP
-              </span>
-            </li>
-            <li>
-              <span 
-                (click)="openGroupConfiguration()" 
-                class="devices-button-item">
-                <i class="material-icons">settings</i>
-                CONFIGURATION
-              </span>
-            </li>
-          </ul> -->
-
-          
         </ul>
-            <!-- <ul class="devices-tab-button tomate" *ngIf="activeGroupId === 'ALL' || groups.length === 0">
-            <li>
-              <span class="devices-button-item blue devices-button-item-pr" (click)="addGroup()">
-                <i class="material-icons">add</i>
-                ADD GROUP 
-              </span>
-            </li>
-          </ul>
-          <ul class="devices-tab-button tomate" *ngIf="activeGroupId !== 'ALL' && groups.length > 0">
-            <li>
-              <span class="devices-button-item blue" (click)="addGroup()">
-                <i class="material-icons">add</i>
-                ADD GROUP 
-              </span>
-            </li>
-            <li>
-              <span class="devices-button-item" (click)="deleteGroup()" >
-                <i class="material-icons">delete</i>
-                DELETE GROUP
-              </span>
-            </li>
-            <li>
-              <span 
-                (click)="openGroupConfiguration()" 
-                class="devices-button-item">
-                <i class="material-icons">settings</i>
-                CONFIGURATION
-              </span>
-            </li>
-          </ul>  -->
       </div>       
       <div class="row justify-content-between">
         <!-- Sorting mesages -->

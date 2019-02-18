@@ -87,7 +87,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Refresh ratio reference
    */
-  REFRESH_RATIO = 20000; // 20 seconds
+  REFRESH_RATIO = 200000; // 20 seconds
 
   /**
    * Count of num max for displayed groups
@@ -240,15 +240,15 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   @HostListener('window:resize', ['$event'])
     onResize(event) {
       if (event.target.innerWidth < 1280) {
-        this.maxLabelsLength = 15;
+        this.maxLabelsLength = 55;
       } else if (event.target.innerWidth < 1440) {
-        this.maxLabelsLength = 25;
+        this.maxLabelsLength = 65;
       } else if (event.target.innerWidth < 1613) {
-        this.maxLabelsLength = 35;
+        this.maxLabelsLength = 75;
       } else if (event.target.innerWidth < 1920) {
-        this.maxLabelsLength = 45;
+        this.maxLabelsLength = 85;
       } else {
-        this.maxLabelsLength = 50;
+        this.maxLabelsLength = 100;
       }
     }
 
@@ -633,5 +633,14 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.displayedGroups.forEach(group => {
       this.displayedGroupsNamesLength += group.name.length;
     });
+  }
+
+  getGroupName(groupId) {
+    const index = this.groups.map(x => x.device_group_id).indexOf(groupId);
+    console.log(groupId);
+    if (index !== -1) {
+      return this.groups[index].name;
+    }
+    return 'Not found';
   }
 }
