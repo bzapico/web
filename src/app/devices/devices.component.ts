@@ -543,7 +543,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       }
       allowHide = false;
     });
-
   }
 
   /**
@@ -561,42 +560,33 @@ export class DevicesComponent implements OnInit, OnDestroy  {
             this.backend.getGroups(this.organizationId)
               .subscribe(getGroupsResponse => {
                 this.groups = getGroupsResponse;
-                console.log('groups al entrar ', this.groups);
                 if (this.groups.length === 0) {
                   this.displayedGroups = [];
                 } else if (this.displayedGroups.length > 0) {
                   const indexDisplayed = this.displayedGroups.map(x => x.device_group_id).indexOf(this.activeGroupId);
-                  console.log('indexdisplayed ', indexDisplayed, 'displayed groups ', this.displayedGroups);
                   if (indexDisplayed !== -1) {
                     this.displayedGroups.splice(indexDisplayed, 1);
-                    console.log('displayed cuando borrado ' , this.displayedGroups);
                     if (this.displayedGroups[this.displayedGroups.length - 1]) {
                       const lastElementId = this.displayedGroups[this.displayedGroups.length - 1].device_group_id;
-                      console.log(lastElementId);
                       const indexGroups = this.groups.map(x => x.device_group_id).indexOf(lastElementId);
                       if (indexGroups !== -1) {
                         if (this.groups[indexGroups + 1]) {
                           this.displayedGroups.push(this.groups[indexGroups + 1]);
-                          console.log('añado por el final ', this.groups[indexGroups + 1]);
                         } else {
                             const firstElementId = this.displayedGroups[0].device_group_id;
                             const indexGroupsFirst = this.groups.map(x => x.device_group_id).indexOf(firstElementId);
                             if (indexGroupsFirst !== -1) {
                               if (this.groups[indexGroupsFirst - 1]) {
                                 this.displayedGroups.unshift(this.groups[indexGroupsFirst - 1]);
-                                console.log('añado por el principio ', this.groups[indexGroupsFirst - 1]);
                               }
                             }
                         }
                       }
                     }
-
                   }
               }
               this.updateDisplayedGroupsNamesLength();
               });
-
-              // TODO
               this.notificationsService.add({
                 message: 'Group "' + deleteGroupName + '" has been deleted',
                 timeout: 10000
@@ -616,19 +606,21 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Opens the modal view that holds group configuration component
    */
   openGroupConfiguration() {
+    let allowHide = true;
     const initialState = {
       organizationId: this.organizationId,
-      groupId: this.device_group_id,
-      name: this.name,
       enabled: this.enabled,
       defaultConnectivity: this.default_device_connectivity,
-      groupApiKey: this.device_group_api_key,
+      name: this.name
     };
 
     this.modalRef = this.modalService.show(GroupConfigurationComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
-      this.updateGroupsList(this.organizationId);
+      if (allowHide) {
+        this.updateGroupsList(this.organizationId);
+      }
+      allowHide = false;
     });
   }
 

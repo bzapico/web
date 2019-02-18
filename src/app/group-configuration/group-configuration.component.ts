@@ -19,11 +19,12 @@ export class GroupConfigurationComponent implements OnInit {
   backend: Backend;
 
   /**
-   * Model that hold organization ID
+   * Model that hold organization ID, default connectivity and enabled or disbled option
    */
   organizationId: string;
   defaultConnectivity: boolean;
   enabled: boolean;
+  name: string;
 
   /**
    * List of available groups
@@ -52,12 +53,39 @@ export class GroupConfigurationComponent implements OnInit {
       this.backend = backendService;
     }
     // Default initialization
+    // group is initialized by devices group component
     this.defaultConnectivity = false;
     this.enabled = false;
   }
 
   ngOnInit() {
+  }
 
+  /**
+   *  Request to save the group data modifications
+   */
+  saveGroupChangesl() {
+    const groupData = {
+      name: this.name,
+      enabled: this.enabled,
+      default_device_connectivity: this.defaultConnectivity,
+      organization_id: this.organizationId,
+    };
+    this.backend.updateGroup(this.organizationId, groupData)
+    .subscribe(response => {
+      this.notificationsService.add({
+        message: 'The group ' + this.name + ' has been edited',
+        timeout: 10000
+      });
+      this.bsModalRef.hide();
+    }, error => {
+      this.notificationsService.add({
+        message: error.error.message,
+        timeout: 10000
+      });
+      this.bsModalRef.hide();
+    });
+    this.bsModalRef.hide();
   }
 
   /**
@@ -66,5 +94,4 @@ export class GroupConfigurationComponent implements OnInit {
   closeModal() {
     this.bsModalRef.hide();
   }
-
 }

@@ -1789,7 +1789,7 @@ export const mockGroupList: Group[] = [
         enabled: true,
         default_device_connectivity: true,
         name: 'Group 1',
-        device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
+        device_group_api_key: '2bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c79'
     },
     {
         organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
@@ -1797,7 +1797,7 @@ export const mockGroupList: Group[] = [
         enabled: false,
         default_device_connectivity: false,
         name: 'Group 2',
-        device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
+        device_group_api_key: '3bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c78'
     },
     {
         organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
@@ -1805,7 +1805,7 @@ export const mockGroupList: Group[] = [
         enabled: true,
         default_device_connectivity: true,
         name: 'Group 3',
-        device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
+        device_group_api_key: '4bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c76'
     },
     {
         organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
@@ -1813,11 +1813,11 @@ export const mockGroupList: Group[] = [
         enabled: true,
         default_device_connectivity: true,
         name: 'Group 4',
-        device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
+        device_group_api_key: '5bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c75'
     }
   ];
 
 /**
  * Mocked new group API Key
  */
-export const mockGroupApiKey = '9cd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-3352-ac7a-398a-3c11ac797c77';
+export const mockGroupApiKey = '9cd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-3352-ac7a-398a-3c11ac797c74';

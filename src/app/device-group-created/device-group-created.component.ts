@@ -29,11 +29,6 @@ export class DeviceGroupCreatedComponent implements OnInit {
   organizationId: string;
 
   /**
-   * List of available groups
-   */
-  group: any;
-
-  /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
   config = {
@@ -58,7 +53,6 @@ export class DeviceGroupCreatedComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.group);
   }
 
   /**
