@@ -34,7 +34,7 @@
         </div>
         <div>
           <div class="circle summary-box">
-            <span class="align-self-center mt-1">{{devicesCount}}</span>
+            <span class="align-self-center mt-1">{{countDevices()}}</span>
           </div>
           <p class="circle-name text-center text-uppercase mt-3">Devices</p>
         </div>
@@ -53,11 +53,11 @@
         <h5>DEVICES STATUS TIMELINE</h5>
       </div>
       <div 
-        *ngIf="groups.length === 0" 
+        *ngIf="countGroupDevices(activeGroupId) === 0" 
         class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
         No devices
       </div>
-      <div *ngIf="groups.length > 0" class="h-100 box-line-chart">
+      <div *ngIf="countGroupDevices(activeGroupId) > 0" class="h-100 box-line-chart">
         <ngx-charts-line-chart
           [scheme]="colorScheme"
           [results]="devicesChart"
@@ -125,7 +125,7 @@
               <th class="grey">
                 Devices
               </th>
-              <td class="summary-devices-running">{{devicesCount}}</td>
+              <td class="summary-devices-running">{{countGroupDevices(group.device_group_id)}}</td>
             </tr>
           </table>
         </div>
@@ -138,11 +138,11 @@
           <h5 class="text-uppercase">{{group.name}} DEVICES STATUS TIMELINE</h5>
         </div>
         <div 
-          *ngIf="groups.length === 0" 
+          *ngIf="countGroupDevices(activeGroupId) === 0" 
           class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
-          No devices deployed yet
+          No devices
         </div>
-        <div *ngIf="groups.length > 0" class="h-100 box-line-chart">
+        <div *ngIf="countGroupDevices(activeGroupId) > 0" class="h-100 box-line-chart">
           <ngx-charts-line-chart
             [scheme]="colorScheme"
             [results]="devicesChart"
@@ -293,13 +293,19 @@
           </form>
         </div>      
       </div>
+      <!-- No devices to show -->
+      <div 
+        *ngIf="activeGroupId!== 'ALL' && countGroupDevices(activeGroupId) === 0"
+        class="no-devices d-flex justify-content-center align-items-center">
+          No available devices registered in this group
+      </div>
       <!-- Devices table -->
       <div class="table-h" *ngIf="loadedData && devices && devices.length > 0 && groups.length > 0 && !requestError" >
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
               <th 
-                *ngIf="activeGroupId !== 'ALL'"
+                *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0 "
                 (click)="setOrder('id')"
                 [ngClass]="getCategoryCSSClass('id')"
                 scope="col" 
@@ -341,7 +347,7 @@
                 </span>
               </th>
               <th 
-                *ngIf="activeGroupId !== 'ALL'"
+                *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0"
                 (click)="setOrder('date')" 
                 [ngClass]="getCategoryCSSClass('date')"
                 scope="col" 
@@ -369,6 +375,7 @@
                 </span>
               </th>
               <th 
+                *ngIf="activeGroupId === 'ALL' || countGroupDevices(activeGroupId) > 0"
                 (click)="setOrder('status')" 
                 [ngClass]="getCategoryCSSClass('status')"
                 scope="col" 
@@ -382,6 +389,7 @@
                 </span>
               </th> 
               <th 
+                *ngIf="activeGroupId === 'ALL' || countGroupDevices(activeGroupId) > 0"
                 (click)="setOrder('labels')" 
                 [ngClass]="getCategoryCSSClass('labels')"
                 scope="col" 
@@ -394,13 +402,16 @@
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
-              <th scope="col" class="col-1 text-center">
+              <th
+                *ngIf="activeGroupId === 'ALL' || countGroupDevices(activeGroupId) > 0"
+                scope="col" class="col-1 text-center">
                 Enabled
               </th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let device of getDevices() | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+              <!-- "All" tab selected -->
               <span *ngIf="activeGroupId === 'ALL'">
                 <td  class="col-2">{{device.device_id}}</td>
                 <td class="col-2">{{getGroupName(device.device_group_id)}}</td>
@@ -442,7 +453,13 @@
                   </span>
                 </td>
               </span>
-              <span *ngIf="activeGroupId === device.device_group_id"  >
+              <!-- device.device_group_id tab selected -->
+              <span *ngIf="activeGroupId === device.device_group_id" >
+                  <td 
+                    *ngIf="countGroupDevices(device.device_group_id) === 0"
+                    class="col-12">
+                      No available devices registered in this group
+                  </td>
                 <td class="col-3">{{device.device_id}}</td>
                 <td class="col-2">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</td>  
                 <td  
@@ -490,8 +507,9 @@
       <div 
         *ngIf="loadedData && groups.length === 0 && !requestError"
         class="no-devices d-flex justify-content-center align-items-center">
-        No available devices detected for more information go to the help center
+        No available groups have been created. Add a new group to be able to register devices in it.
       </div>
+
         <!-- Requested error -->
       <div
         *ngIf="loadedData && requestError"

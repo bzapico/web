@@ -229,12 +229,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Method that counts the number of devices
    */
-  countDevices() {
+  countDevices(): number {
     let temporalCount = 0;
     this.devices.forEach(group => {
       temporalCount = group.length + temporalCount;
     });
-    this.devicesCount = temporalCount;
+    return temporalCount;
   }
 
   /**
@@ -663,5 +663,23 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       });
     });
     return groupDevices;
+  }
+
+  /**
+   * Counts the number of devices of an specified groupId from the devices list
+   * @param groupId Group identifier
+   */
+  countGroupDevices(groupId: string): number {
+    if (groupId === 'ALL') {
+      return this.countDevices();
+    }
+    let devices = 0;
+    const devicesList = this.getDevices();
+    devicesList.forEach(device => {
+      if (device.device_group_id === groupId) {
+        devices += 1;
+      }
+    });
+    return devices;
   }
 }
