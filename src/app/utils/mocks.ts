@@ -1635,8 +1635,8 @@ export const mockDevicesList = [
         {
           organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
           device_group_id: 'a1',
-          device_id: '3',
-          register_since: '14/03/2018',
+          device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+          register_since: 1550506924515,
           labels: {
               type: 'phone',
               os: 'arm',
@@ -1648,8 +1648,8 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'a1',
-            device_id: '3',
-            register_since: '08/02/2019',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            register_since: 1550417971000,
             labels: {
                 type: 'phone',
             },
@@ -1662,8 +1662,8 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'b2',
-            device_id: '3',
-            register_since: '14/03/2018',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            register_since: 1549899571000,
             labels: {
                 type: 'phone',
                 os: 'arm',
@@ -1675,8 +1675,8 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'b2',
-            device_id: '3',
-            register_since: '08/02/2019',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            register_since: 1547825971000,
             labels: {
                 type: 'phone',
             },
@@ -1687,8 +1687,8 @@ export const mockDevicesList = [
         {
             organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
             device_group_id: 'b2',
-            device_id: '3',
-            register_since: '20/10/2015',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            register_since: 1518968371000,
             labels: {
                 type: 'phone',
                 os: 'arm',
@@ -1700,8 +1700,8 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'b2',
-            device_id: '3',
-            register_since: '15/08/2019',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            register_since: 1516087991000,
             labels: {
                 type: 'phone',
             },
@@ -1714,8 +1714,8 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'c3',
-            device_id: '3',
-            register_since: '14/03/2018',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            register_since: 1527261837000,
             labels: {
                 type: 'phone',
                 os: 'arm',
@@ -1727,8 +1727,8 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'c3',
-            device_id: '3',
-            register_since: '08/02/2019',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            register_since: 1515486791000,
             labels: {
                 type: 'phone',
             },
@@ -1739,8 +1739,8 @@ export const mockDevicesList = [
         {
             organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
             device_group_id: 'c3',
-            device_id: '3',
-            register_since: '20/10/2015',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            register_since: 1513413191000,
             labels: {
                 type: 'phone',
                 os: 'arm',
@@ -1752,8 +1752,8 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'c3',
-            device_id: '3',
-            register_since: '15/08/2019',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            register_since: 1527261837000,
             labels: {
                 type: 'phone',
             },
@@ -1766,8 +1766,8 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'd4',
-            device_id: '3',
-            register_since: '14/03/2018',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            register_since: 1497108201000,
             labels: {
                 type: 'phone',
                 os: 'arm',
@@ -1788,7 +1788,7 @@ export const mockGroupList: Group[] = [
         device_group_id: 'a1',
         enabled: true,
         default_device_connectivity: true,
-        name: 'Group 1',
+        name: 'Voice controllers',
         device_group_api_key: '2bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c79'
     },
     {
@@ -1796,7 +1796,7 @@ export const mockGroupList: Group[] = [
         device_group_id: 'b2',
         enabled: false,
         default_device_connectivity: false,
-        name: 'Group 2',
+        name: 'Nest cams Outdoor',
         device_group_api_key: '3bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c78'
     },
     {
@@ -1804,7 +1804,7 @@ export const mockGroupList: Group[] = [
         device_group_id: 'c3',
         enabled: true,
         default_device_connectivity: true,
-        name: 'Group 3',
+        name: 'Tracking devices',
         device_group_api_key: '4bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c76'
     },
     {
@@ -1812,7 +1812,23 @@ export const mockGroupList: Group[] = [
         device_group_id: 'd4',
         enabled: true,
         default_device_connectivity: true,
-        name: 'Group 4',
+        name: 'Bluetooth sensors',
+        device_group_api_key: '5bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c75'
+    },
+    {
+        organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
+        device_group_id: 'e5',
+        enabled: true,
+        default_device_connectivity: true,
+        name: 'Droids with force',
+        device_group_api_key: '5bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c75'
+    },
+    {
+        organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
+        device_group_id: 'f6',
+        enabled: true,
+        default_device_connectivity: true,
+        name: 'Smart thermostats',
         device_group_api_key: '5bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c75'
     }
   ];

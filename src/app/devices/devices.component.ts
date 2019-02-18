@@ -10,7 +10,6 @@ import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
 import { Device } from '../definitions/interfaces/device';
 import { Group } from '../definitions/interfaces/group';
-import { UpdateEventsService } from '../services/update-events.service';
 
 
 @Component({
@@ -87,12 +86,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Refresh ratio reference
    */
-  REFRESH_RATIO = 200000; // 20 seconds
+  REFRESH_RATIO = 20000; // 20 seconds
 
   /**
    * Count of num max for displayed groups
    */
-  DISPLAYED_GROUP_MAX = 7;
+  DISPLAYED_GROUP_MAX = 5;
 
   /**
    * Charts references
@@ -164,7 +163,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
-    private updateService: UpdateEventsService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.devicesMock) || null;
     // Check which backend is required (fake or real)
@@ -220,6 +218,14 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
+  }
+
+  /**
+   * Translates timestamps to the wish date
+   * @param timestamp is an integer that represents the number of seconds elapsed
+   */
+  parseTimestampToDate(timestamp: number) {
+    return new Date(timestamp);
   }
 
   /**
@@ -328,6 +334,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   /**
    * Requests an updated list of devices to update the current one
+   * @param organizationId organization identifier
    */
   updateDevicesList(organizationId: string) {
     if (organizationId !== null) {
@@ -424,6 +431,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   /**
    * Sortby pipe in the component
+   * @param categoryName the name of the chosen category
    */
   setOrder(categoryName: string) {
     if (this.sortedBy === categoryName) {
@@ -445,7 +453,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   /**
    * Gets the category headers to add a class
-   * @param categoryName class for the header category
+   * @param categoryName the class for the header category
    */
   getCategoryCSSClass(categoryName: string) {
     if (this.sortedBy === '') {
@@ -485,7 +493,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
     // Empty class when is not active
     return '';
-
   }
 
   /**
@@ -548,7 +555,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   *  Upon confirmation, deletes devices group
+   *  Upon confirmation, deletes a device group
    */
   deleteGroup() {
     const deleteConfirm = confirm('Delete group?');
@@ -635,12 +642,28 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     });
   }
 
+  /**
+   * Locate the name of a group through an id
+   * @param groupId group id
+   */
   getGroupName(groupId) {
     const index = this.groups.map(x => x.device_group_id).indexOf(groupId);
-    console.log(groupId);
     if (index !== -1) {
       return this.groups[index].name;
     }
     return 'Not found';
+  }
+
+  /**
+   * Gets the devices array list and traverse the group array list to show in table
+   */
+  getDevices() {
+    const groupDevices = [];
+    this.devices.forEach(group => {
+      group.forEach(device => {
+        groupDevices.push(device);
+      });
+    });
+    return groupDevices;
   }
 }

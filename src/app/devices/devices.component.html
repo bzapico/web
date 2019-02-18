@@ -299,6 +299,21 @@
           <thead>
             <tr>
               <th 
+                *ngIf="activeGroupId !== 'ALL'"
+                (click)="setOrder('id')"
+                [ngClass]="getCategoryCSSClass('id')"
+                scope="col" 
+                class="col-3">
+                ID
+                <span class="expand-chevron" *ngIf="sortedBy === 'id' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'id' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </th>
+              <th 
+                *ngIf="activeGroupId === 'ALL'"
                 (click)="setOrder('id')"
                 [ngClass]="getCategoryCSSClass('id')"
                 scope="col" 
@@ -312,11 +327,40 @@
                 </span>
               </th>
               <th 
+                *ngIf="activeGroupId === 'ALL'"
+                (click)="setOrder('group')"
+                [ngClass]="getCategoryCSSClass('group')"
+                scope="col" 
+                class="col-2">
+                Group
+                <span class="expand-chevron" *ngIf="sortedBy === 'group' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'group' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </th>
+              <th 
+                *ngIf="activeGroupId !== 'ALL'"
                 (click)="setOrder('date')" 
                 [ngClass]="getCategoryCSSClass('date')"
                 scope="col" 
                 class="col-2">
-                Date registered
+                Date
+                <span class="expand-chevron" *ngIf="sortedBy === 'date' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'date' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </th>
+              <th 
+                *ngIf="activeGroupId === 'ALL'"
+                (click)="setOrder('date')" 
+                [ngClass]="getCategoryCSSClass('date')"
+                scope="col" 
+                class="col-1">
+                Date
                 <span class="expand-chevron" *ngIf="sortedBy === 'date' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -341,7 +385,7 @@
                 (click)="setOrder('labels')" 
                 [ngClass]="getCategoryCSSClass('labels')"
                 scope="col" 
-                class="col-5">
+                class="col-4">
                 Labels
                 <span class="expand-chevron" *ngIf="sortedBy === 'labels' && !reverse">
                   <i class="material-icons">expand_more</i>
@@ -356,88 +400,87 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let devicesGroup of devices">
-              <span *ngFor="let device of devicesGroup  | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-                <span *ngIf="activeGroupId === 'ALL'">
-                    <td class="col-2">{{device.device_id}}</td>
-                    <td class="col-2">{{device.register_since}}</td>  
-                    <td 
-                      class="text-lowercase col-2 text-center"
-                      [ngClass]=
-                      "{'status-dot':classStatusCheck(device.status_name, 'connected'),
-                      'status-dot-error':classStatusCheck(device.status_name, 'disconnected'),
-                      'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
-                      <span 
-                        tooltip="{{device.status_name}}" 
-                        class="tooltip-fix text-capitalize" 
-                        placement="auto">
-                      </span>
-                      <span class="hide text-capitalize">
-                        {{device.status_name}}
-                      </span>
-                    </td>
-                    <td class="col-5">
-                      <button 
-                        *ngFor="let label of labelsToString(device.labels)" 
-                        class="btn-sm btn-outline-primary" 
-                        disabled>
-                        {{label[0]}}: {{label[1]}}
-                      </button>
-                    </td>
-                    <td class="col-1 text-center">
-                      <span 
-                        *ngIf="!device.enabled" 
-                        (click)="enableSwitcher(device)">
-                        <i class="material-icons grey">check_box_outline_blank</i>
-                      </span>
-                      <span 
-                        *ngIf="device.enabled"  
-                        (click)="enableSwitcher(device)" 
-                        class="devices-checkbox">
-                        <i class="material-icons blue">check_box</i>
-                      </span>
-                    </td>
-                </span>
-                <span *ngIf="activeGroupId === devicesGroup[0].device_group_id">
-                  <td class="col-2">{{device.device_id}}</td>
-                  <td class="col-2">{{device.register_since}}</td>  
-                  <td 
-                    class="text-lowercase col-2 text-center"
-                    [ngClass]=
-                    "{'status-dot':classStatusCheck(device.status_name, 'connected'),
-                    'status-dot-error':classStatusCheck(device.status_name, 'disconnected'),
-                    'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
-                    <span 
-                      tooltip="{{device.status_name}}" 
-                      class="tooltip-fix text-capitalize" 
-                      placement="auto">
-                    </span>
-                    <span class="hide text-capitalize">
-                      {{device.status_name}}
-                    </span>
-                  </td>
-                  <td class="col-5">
-                    <button 
-                      *ngFor="let label of labelsToString(device.labels)" 
-                      class="btn-sm btn-outline-primary" 
-                      disabled>
-                      {{label[0]}}: {{label[1]}}
-                    </button>
-                  </td>
-                  <td class="col-1 text-center">
-                    <span 
-                      *ngIf="!checkBox" 
-                      (click)="enabled()">
-                      <i class="material-icons grey">check_box_outline_blank</i>
-                    </span>
-                    <span 
-                      *ngIf="checkBox"  
-                      (click)="enabled()" 
-                      class="devices-checkbox">
-                      <i class="material-icons blue">check_box</i>
-                    </span>
-                  </td>
-                </span>
+            <tr *ngFor="let device of getDevices() | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+              <span *ngIf="activeGroupId === 'ALL'">
+                <td  class="col-2">{{device.device_id}}</td>
+                <td class="col-2">{{getGroupName(device.device_group_id)}}</td>
+                <td class="col-1">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</td>  
+                <td 
+                  class="text-lowercase col-2 text-center"
+                  [ngClass]=
+                  "{'status-dot':classStatusCheck(device.status_name, 'connected'),
+                  'status-dot-error':classStatusCheck(device.status_name, 'disconnected'),
+                  'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
+                  <span 
+                    tooltip="{{device.status_name}}" 
+                    class="tooltip-fix text-capitalize" 
+                    placement="auto">
+                  </span>
+                  <span class="hide text-capitalize">
+                    {{device.status_name}}
+                  </span>
+                </td>
+                <td class="col-4">
+                  <button 
+                    *ngFor="let label of labelsToString(device.labels)" 
+                    class="btn-sm btn-outline-primary" 
+                    disabled>
+                    {{label[0]}}: {{label[1]}}
+                  </button>
+                </td>
+                <td class="col-1 text-center">
+                  <span 
+                    *ngIf="!device.enabled" 
+                    (click)="enableSwitcher(device)">
+                    <i class="material-icons grey">check_box_outline_blank</i>
+                  </span>
+                  <span 
+                    *ngIf="device.enabled"  
+                    (click)="enableSwitcher(device)" 
+                    class="devices-checkbox">
+                    <i class="material-icons blue">check_box</i>
+                  </span>
+                </td>
+              </span>
+              <span *ngIf="activeGroupId === device.device_group_id"  >
+                <td class="col-3">{{device.device_id}}</td>
+                <td class="col-2">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</td>  
+                <td  
+                  class="text-lowercase col-2 text-center"
+                  [ngClass]=
+                  "{'status-dot':classStatusCheck(device.status_name, 'connected'),
+                  'status-dot-error':classStatusCheck(device.status_name, 'disconnected'),
+                  'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
+                  <span 
+                    tooltip="{{device.status_name}}" 
+                    class="tooltip-fix text-capitalize" 
+                    placement="auto">
+                  </span>
+                  <span class="hide text-capitalize">
+                    {{device.status_name}}
+                  </span>
+                </td>
+                <td class="col-4">
+                  <button 
+                    *ngFor="let label of labelsToString(device.labels)" 
+                    class="btn-sm btn-outline-primary" 
+                    disabled>
+                    {{label[0]}}: {{label[1]}}
+                  </button>
+                </td>
+                <td class="col-1 text-center">
+                  <span 
+                    *ngIf="!checkBox" 
+                    (click)="enabled()">
+                    <i class="material-icons grey">check_box_outline_blank</i>
+                  </span>
+                  <span 
+                    *ngIf="checkBox"  
+                    (click)="enabled()" 
+                    class="devices-checkbox">
+                    <i class="material-icons blue">check_box</i>
+                  </span>
+                </td>
               </span>
             </tr>
           </tbody>

@@ -9,7 +9,7 @@ export interface Device {
   // DeviceId with the device identifier.
   device_id?: string;
   // RegisterSince is the timestamp when the device joined the group.
-  register_since?: string;
+  register_since?: number;
   // Labels defined by the user.
   labels?: string;
   // Enabled determines if the device can interact with the running applications.
