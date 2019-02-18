@@ -8,8 +8,6 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { mockDevicesChart } from '../utils/mocks';
 import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group.component';
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
-import { Device } from '../definitions/interfaces/device';
-import { Group } from '../definitions/interfaces/group';
 
 
 @Component({
