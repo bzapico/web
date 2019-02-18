@@ -11,7 +11,7 @@
         *ngIf="activeGroupId === group.device_group_id" 
         (click)="changeActiveGroup('ALL')"
         class="button">
-        <span>{{group.name}}<span class="close-trigger">X</span></span>
+        <span>{{group.name | abbreviate}}<span class="close-trigger">X</span></span>
       </button>
     </div>
   </div>

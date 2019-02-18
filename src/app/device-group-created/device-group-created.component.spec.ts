@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef, ModalModule, BsModalService } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -16,10 +16,12 @@ describe('DeviceGroupCreatedComponent', () => {
        ],
        imports: [
         HttpClientTestingModule,
-        RouterTestingModule
+        RouterTestingModule,
+        ModalModule.forRoot(),
       ],
       providers: [
         BsModalRef,
+        BsModalService
       ]
     })
     .compileComponents();

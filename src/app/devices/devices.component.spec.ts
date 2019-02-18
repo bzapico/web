@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { DevicesComponent } from './devices.component';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { SortByPipe } from '../pipes/sort-by.pipe';
+import { AbbreviatePipe } from '../pipes/abbreviate.pipe';
 
 describe('DevicesComponent', () => {
   let component: DevicesComponent;
@@ -19,7 +20,8 @@ describe('DevicesComponent', () => {
       declarations: [
         DevicesComponent,
         FilterPipe,
-        SortByPipe
+        SortByPipe,
+        AbbreviatePipe,
        ],
       imports: [
         HttpClientTestingModule,
