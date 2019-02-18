@@ -100,12 +100,12 @@
                 Availability
               </th>
               <td 
-                *ngIf="group.enabled === 'enabled'" 
+                *ngIf="group.enabled" 
                 class="summary-devices-availability blue">
                 ENABLED
               </td>
               <td 
-                *ngIf="group.enabled === 'disabled'" 
+                *ngIf="!group.enabled" 
                 class="summary-devices-availability red">
                 DISABLED
               </td>
