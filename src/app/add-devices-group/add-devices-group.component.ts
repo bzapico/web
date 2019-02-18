@@ -89,7 +89,7 @@ export class AddDevicesGroupComponent implements OnInit {
       this.backend.addGroup(this.organizationId, groupData)
       .subscribe(response => {
         const initialState = {
-          group: response,
+          groupApiKey: response.device_group_api_key,
         };
         this.bsModalRef.hide();
         this.bsModalRef =
