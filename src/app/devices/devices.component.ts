@@ -92,8 +92,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Count of num max for displayed groups
    */
-  DISPLAYED_GROUP_MAX = 3;
-
+  DISPLAYED_GROUP_MAX = 7;
 
   /**
    * Charts references
@@ -303,11 +302,14 @@ export class DevicesComponent implements OnInit, OnDestroy  {
               if (index === -1) {
                 foundNewGroup  = true;
                 this.displayedGroups.push(this.groups[indexGroups]);
-                if (this.groups[indexGroups - 1]) {
-                  this.displayedGroups.unshift(this.groups[indexGroups - 1]);
-                }
-                if (this.groups[indexGroups - 2]) {
-                  this.displayedGroups.unshift(this.groups[indexGroups - 2]);
+                for (
+                  let indexRefill = indexGroups - 1;
+                  indexRefill >= 0 && this.displayedGroups.length < this.DISPLAYED_GROUP_MAX;
+                  indexRefill--
+                  ) {
+                  if (this.groups[indexRefill]) {
+                    this.displayedGroups.unshift(this.groups[indexRefill]);
+                  }
                 }
                 this.activeGroupId = this.groups[indexGroups].device_group_id;
               }
@@ -606,21 +608,20 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Opens the modal view that holds group configuration component
    */
   openGroupConfiguration() {
-    let allowHide = true;
+    let configGroupName;
+    const configIndex = this.groups.map(x => x.device_group_id).indexOf(this.activeGroupId);
+    configGroupName = this.groups[configIndex].name;
+
     const initialState = {
       organizationId: this.organizationId,
       enabled: this.enabled,
       defaultConnectivity: this.default_device_connectivity,
-      name: this.name
+      name: configGroupName
     };
-
     this.modalRef = this.modalService.show(GroupConfigurationComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
-      if (allowHide) {
-        this.updateGroupsList(this.organizationId);
-      }
-      allowHide = false;
+      this.updateGroupsList(this.organizationId);
     });
   }
 

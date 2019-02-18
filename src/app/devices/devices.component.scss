@@ -148,6 +148,7 @@
 
 /* - - - Devices tabs - - - */
 .devices-tab-container {
+    position: relative;
     margin-bottom: 2em;
     margin-right: 3em;
     font-size: .6em;
@@ -195,23 +196,6 @@
         bottom: -1px;        
         left: 0;
         background-color: #0937FF;
-    }
-    .devices-tab-button {
-        float: right;
-        color: #707070;
-        li {
-            padding: 0.5rem 1.5rem;
-        }
-        .devices-button-item {
-            i {
-                font-size: 1.4em;
-                margin-right: .2em;
-                vertical-align: middle;
-            }
-        }
-        .devices-button-item-pr {
-            padding-right: 3em;
-        }
     }
 }
 /* - - -Summary card devices table - - - */
@@ -328,4 +312,60 @@
 .opacity {
     opacity: 0;
     pointer-events: none;
+}
+.devices-tab-buttons-container {
+    position: relative;
+    font-size: .6em;
+    ul {
+        list-style: none;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+    li {
+        font-size: 1em;
+        float: left;
+        padding: 0.5rem 2.5rem;
+        cursor: pointer;
+        position: relative;
+    }
+    .devices-tab {
+        text-transform: uppercase;
+    }
+    span {
+        display: block;
+        text-decoration: none;
+        display: block;
+        transition: .3s background-color;
+    }
+    span.active{
+        color: #0937FF;
+    }
+    span.active::before {
+        content: "";
+        height: 5px;
+        width: 100%;
+        display: block;
+        position: absolute; 
+        bottom: -1px;        
+        left: 0;
+        background-color: #0937FF;
+    }
+    .devices-tab-button {
+        float: right;
+        color: #707070;
+        li {
+            padding: 0.5rem 1.5rem;
+        }
+        .devices-button-item {
+            i {
+                font-size: 1.4em;
+                margin-right: .2em;
+                vertical-align: middle;
+            }
+        }
+        .devices-button-item-pr {
+            padding-right: 3em;
+        }
+    }
 }

@@ -64,17 +64,17 @@ export class GroupConfigurationComponent implements OnInit {
   /**
    *  Request to save the group data modifications
    */
-  saveGroupChangesl() {
+  saveGroupChanges() {
     const groupData = {
-      name: this.name,
       enabled: this.enabled,
       default_device_connectivity: this.defaultConnectivity,
-      organization_id: this.organizationId,
+      name: this.name
     };
     this.backend.updateGroup(this.organizationId, groupData)
     .subscribe(response => {
+      this.group = response;
       this.notificationsService.add({
-        message: 'The group ' + this.name + ' has been edited',
+        message: 'The group "' + this.name + '" has been edited',
         timeout: 10000
       });
       this.bsModalRef.hide();
