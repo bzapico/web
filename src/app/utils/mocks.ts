@@ -1695,7 +1695,7 @@ export const mockDevicesList = [
             },
             enabled: 'false',
             device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'Disonected'
+            status_name: 'disconnected'
         },
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
@@ -1722,7 +1722,7 @@ export const mockDevicesList = [
             },
             enabled: 'true',
             device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'Disonected'
+            status_name: 'disconnected'
         },
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
@@ -1734,7 +1734,7 @@ export const mockDevicesList = [
             },
             enabled: 'true',
             device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'Disonected'
+            status_name: 'disconnected'
         },
         {
             organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
@@ -1747,7 +1747,7 @@ export const mockDevicesList = [
             },
             enabled: 'false',
             device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'Disonected'
+            status_name: 'disconnected'
         },
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
@@ -1759,7 +1759,7 @@ export const mockDevicesList = [
             },
             enabled: 'true',
             device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'Disonected'
+            status_name: 'disconnected'
         }
     ],
     [
@@ -1774,7 +1774,7 @@ export const mockDevicesList = [
             },
             enabled: 'true',
             device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'Disonected'
+            status_name: 'disconnected'
         }
     ]
 ];
