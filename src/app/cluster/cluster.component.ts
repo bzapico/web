@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
@@ -8,6 +8,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { mockClusterChart, mockNodesChart } from '../utils/mocks';
 import { ActivatedRoute } from '@angular/router';
 import { Cluster } from '../definitions/interfaces/cluster';
+import { AddLabelComponent } from '../add-label/add-label.component';
 
 @Component({
   selector: 'app-cluster',
@@ -114,6 +115,7 @@ export class ClusterComponent implements OnInit {
   filterField: boolean;
 
   constructor(
+    private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
@@ -312,15 +314,28 @@ export class ClusterComponent implements OnInit {
    * Gets the category headers to add a class
    * @param categoryName class for the header category
    */
-    getCategoryCSSClass(categoryName: string) {
-      if (this.sortedBy === '') {
-        return 'default';
-      } else {
-        if (this.sortedBy === categoryName) {
-          return 'enabled';
-        } else if (this.sortedBy !== categoryName) {
-          return 'disabled';
-        }
+  getCategoryCSSClass(categoryName: string) {
+    if (this.sortedBy === '') {
+      return 'default';
+    } else {
+      if (this.sortedBy === categoryName) {
+        return 'enabled';
+      } else if (this.sortedBy !== categoryName) {
+        return 'disabled';
       }
     }
   }
+
+  /**
+   * Opens the modal view that holds add label component
+   */
+  addLabel() {
+    const initialState = {
+      organizationId: this.organizationId,
+    };
+
+    this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { });
+  }
+}
