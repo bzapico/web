@@ -47,7 +47,20 @@ describe('DevicesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('openGroupConfiguration() - Should open the modal view that holds the group configuration component', () => {
+    const openGroupConfiguration = spyOn(component, 'openGroupConfiguration').and.returnValue(true);
+
+    openGroupConfiguration();
+
+    expect(openGroupConfiguration).toHaveBeenCalledWith();
+  });
+
+  it('updateConnectedDevicesLineChart() - Should requests an updated list of connected devices to update line chart', () => {
+    const updateConnectedDevicesLineChart = spyOn(component, 'updateConnectedDevicesLineChart').and.returnValue(true);
+    const devices = {};
+
+    updateConnectedDevicesLineChart(devices);
+
+    expect(updateConnectedDevicesLineChart).toHaveBeenCalledWith(devices);
   });
 });
