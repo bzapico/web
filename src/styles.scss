@@ -203,6 +203,8 @@ a {
 /* - - - Button styles - - - */
 .btn-outline-primary {
   margin:1px;
+  text-align: left;
+  max-width: -webkit-fill-available;
 }
 .btn-primary {
   width: 257px;
@@ -741,6 +743,7 @@ button[type="submit"]:disabled {
 /* - - -  Label buttons - - - */
 .label-buttons {
   background-color: lawngreen;
+  display: inline;
 }
 .delete-label {
   height: 28px;
@@ -756,7 +759,6 @@ button[type="submit"]:disabled {
   left: 4px;
   color: white;
 }
-
 .add-label {
   height: 28px;
   width:28px;
@@ -772,3 +774,17 @@ button[type="submit"]:disabled {
   color: white;
 }
 
+
+.btn-label {
+  text-align: left;
+  max-width: -webkit-fill-available;
+  margin: 1px;
+  color: #fff;
+  background-color: #0937FF;
+  border: 0px;
+  border-radius: 5px;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
