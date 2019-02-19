@@ -15,20 +15,20 @@
     height: 100%;
 }
 .circle {
-    width:112px;
+    width: 112px;
     height: 112px;
-    border: 1px solid #949494; 
-    -moz-border-radius: 50%; 
-    -webkit-border-radius: 50%; 
+    border: 1px solid #949494;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
     border-radius: 50%;
     position: relative;
     margin: 0 auto;
-}
-.circle span {
-    text-align: center;
-    color: black;
-    font-size: 1.7em;
-}
+    span {
+        text-align: center;
+        color: black;
+        font-size: 1.7em;
+    }
+  }
 .circle-name {
     font-size: 1.2em;
     color:#949494;
@@ -40,11 +40,11 @@
         margin-top: 2em;
         max-width: 65px;
         max-height: 65px;
-    }
-    .circle span {
-        font-size: 1em !important;
-        top: 21px;
-        left: 25px;
+        span {
+            font-size: 1em !important;
+            top: 21px;
+            left: 25px;
+        }
     }
     .circle-name {
         font-size: .9em !important;
@@ -120,6 +120,11 @@
 .no-devices {
     height: 70%;
 }
+.no-devices-in-group {
+    position: absolute;
+    bottom: 33%;
+    left: 33%;
+}
 /* - - - Medias Devices list card - - - */
 @media screen and (max-width:1500px) {
     .card-title-h h5, .card-title-c h5 {
@@ -169,19 +174,19 @@
             text-decoration: none;
             display: block;
             transition: .3s background-color;
-        }
-        span.active{
-            color: #0937FF;
-        }
-        span.active::before {
-            content: "";
-            height: 5px;
-            width: 100%;
-            display: block;
-            position: absolute; 
-            bottom: -1px;        
-            left: 0;
-            background-color: #0937FF;
+            &.active {
+                color: #0937FF;
+                &::before {
+                    content: "";
+                    height: 5px;
+                    width: 100%;
+                    display: block;
+                    position: absolute;
+                    bottom: -1px;
+                    left: 0;
+                    background-color: #0937FF;
+                }
+            }
         }
         .devices-button-item {
             i {
@@ -198,12 +203,13 @@
 
 /* - - - Devices tabs - - - */
 .devices-tab-container {
-    position: relative;
     margin-bottom: 2em;
     margin-right: 3em;
     font-size: .6em;
     border-bottom: 1px solid #ececec;
     margin-left: 1em;
+    display: flex;
+    flex-direction: row;
     ul {
         list-style: none;
         text-align: center;
@@ -233,19 +239,19 @@
         text-decoration: none;
         display: block;
         transition: .3s background-color;
-    }
-    span.active{
-        color: #0937FF;
-    }
-    span.active::before {
-        content: "";
-        height: 5px;
-        width: 100%;
-        display: block;
-        position: absolute; 
-        bottom: -1px;        
-        left: 0;
-        background-color: #0937FF;
+        &.active {
+          color: #0937FF;
+          &::before {
+            content: "";
+            height: 5px;
+            width: 100%;
+            display: block;
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            background-color: #0937FF;
+          }
+        }
     }
 }
 /* - - -Summary card devices table - - - */
@@ -283,9 +289,7 @@
 /* - - - Medias summary card devices table - - - */
 @media screen and (max-width:1779px) {
     .summary-card {
-        .summary-devices-availability {
-            font-size: 1em !important;
-        }
+        .summary-devices-availability, 
         .summary-devices-running {
             font-size: 1em !important;
         }
@@ -334,24 +338,24 @@
         display: inline-block;
         background-color: #0937FF;
         border-radius: 50px;
-        border:none;
+        border: none;
         color: #FFFFFF;
         font-size: .8em;
         font-weight: 100;
         padding-bottom: .5em;
         padding-top: .6em;
-        width:161px;
+        width: 161px;
         transition: all 0.5s;
         cursor: pointer;
         text-transform: uppercase;
-    }
-    .button span.close-trigger {
-        font-size: 1.2em !important;
-        margin-left: 40px;
-        cursor: pointer;
-        display: inline-block;
-        position: relative;
-        transition: 0.5s;
+        span.close-trigger {
+            font-size: 1.2em !important;
+            margin-left: 40px;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
     }
 }
 .devices-checkbox {

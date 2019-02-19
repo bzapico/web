@@ -214,6 +214,8 @@
         </div>
       </div>
       <!-- Devices tabs -->
+      <div class="row">
+        <div class="col">
       <div class="devices-tab-container">
         <ul>
           <li *ngIf="displayedGroupsNamesLength < maxLabelsLength" class="devices-tab devices-tab-title">
@@ -251,7 +253,9 @@
             <i class="material-icons">arrow_right</i>
           </li>
         </ul>
-      </div>       
+      </div>  
+        </div>
+      </div>
       <div class="row justify-content-between">
         <!-- Sorting mesages -->
         <div class="col-9">  
@@ -296,7 +300,7 @@
       <!-- No devices to show -->
       <div 
         *ngIf="activeGroupId!== 'ALL' && countGroupDevices(activeGroupId) === 0"
-        class="no-devices d-flex justify-content-center align-items-center">
+        class="no-devices-in-group d-flex justify-content-center align-items-center">
           No available devices registered in this group
       </div>
       <!-- Devices table -->
@@ -509,7 +513,6 @@
         class="no-devices d-flex justify-content-center align-items-center">
         No available groups have been created. Add a new group to be able to register devices in it.
       </div>
-
         <!-- Requested error -->
       <div
         *ngIf="loadedData && requestError"
