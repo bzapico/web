@@ -335,9 +335,9 @@ export class MockupBackendService implements Backend {
    ********************/
 
   /**
-   * Simulates to request devices list
+   * Simulates to request the devices list
    * @param organizationId Organization identifier
-   * @param groupId group identifier
+   * @param groupId Group identifier
    */
   getDevices(organizationId: string, groupId: string) {
     return of (new Response(new ResponseOptions({
@@ -348,10 +348,11 @@ export class MockupBackendService implements Backend {
       map(response => response.json())
     );
   }
-    /**
+
+  /**
    * Simulates to update a device from a device array
-  *  @param organizationId Organization identifier
-  *  @param groupData Device data
+   *  @param organizationId Organization identifier
+   *  @param groupData Device data
    */
   updateDevice(organizationId: string, groupData: string) {
     return of (new Response(new ResponseOptions({
@@ -361,7 +362,7 @@ export class MockupBackendService implements Backend {
   }
 
   /**
-   * Simulates to request devices group list
+   * Simulates to request the groups list
    * @param organizationId Organization identifier
    */
   getGroups(organizationId: string) {
@@ -375,10 +376,10 @@ export class MockupBackendService implements Backend {
   }
 
   /**
-  * Simulates creating a new device group
-  *  @param organizationId Organization identifier
-  *  @param groupData Device Group data
-  */
+   * Simulates to create a new group
+   *  @param organizationId Organization identifier
+   *  @param groupData Group data
+   */
   addGroup(organizationId: string, groupData: Group) {
     function generateRandomString() {
       return Math.floor(Math.random() * Math.floor(1000000)).toString();
@@ -402,10 +403,10 @@ export class MockupBackendService implements Backend {
   }
 
   /**
-  * Simulates delete a devices group
-  *  @param organizationId Organization identifier
-  *  @param groupId Device Group data
-  */
+   * Simulates to delete a group
+   *  @param organizationId Organization identifier
+   *  @param groupId Group identifier
+   */
   deleteGroup(organizationId: string, groupId: string) {
     const index = mockGroupList.map(x => x.device_group_id).indexOf(groupId);
     if (index !== -1) {
@@ -418,8 +419,8 @@ export class MockupBackendService implements Backend {
 
   /**
    * Simulates to update a group from a group array
-  *  @param organizationId Organization identifier
-  *  @param groupData  Device Group data
+   * @param organizationId Organization identifier
+   * @param groupData Group data
    */
   updateGroup(organizationId: string, groupData: string) {
     return of (new Response(new ResponseOptions({

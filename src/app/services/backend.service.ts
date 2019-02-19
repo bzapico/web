@@ -333,9 +333,9 @@ export class BackendService implements Backend {
    * Devices
    ********************/
 
-  // GET: /v1/device/{organization_id}/{group_id}/list
+  // GET: '/v1/device/{organization_id}/{group_id}/list'
   /**
-   * Requests devices list
+   * Requests the devices list
    * @param organizationId Organization identifier
    * @param groupId group identifier
    */
@@ -345,7 +345,7 @@ export class BackendService implements Backend {
     );
   }
 
-  // POST /v1/device/{organization_id}/update
+  // POST: '/v1/device/{organization_id}/update'
   /**
   * Request to modify device data
   * @param organizationId Organization identifier
@@ -357,9 +357,9 @@ export class BackendService implements Backend {
     );
   }
 
-  // GET:  "/v1/device/group/{organization_id}/list"
+  // GET: '/v1/device/group/{organization_id}/list'
   /**
-   * Requests devices group list
+   * Requests the groups list
    * @param organizationId Organization identifier
    */
   getGroups(organizationId: string) {
@@ -368,9 +368,9 @@ export class BackendService implements Backend {
     );
   }
 
-  // POST "/v1/device/group/{organization_id}/add"
+  // POST: '/v1/device/group/{organization_id}/add'
   /**
-   * Requests to add a new device group
+   * Requests to add a new group
    * @param organizationId Organization identifier
    * @param groupData New device group data
    */
@@ -381,9 +381,9 @@ export class BackendService implements Backend {
     );
   }
 
-  // POST "/v1/device/group/{organization_id}/remove"
+  // POST: '/v1/device/group/{organization_id}/remove'
   /**
-   * Requests to delete the provided device Group
+   * Requests to delete the provided group
    * @param organizationId Organization identifier
    * @param groupId devices group identifier
    */
@@ -397,7 +397,7 @@ export class BackendService implements Backend {
     );
   }
 
-  // POST /v1/device/group/{organization_id}/update
+  // POST: '/v1/device/group/{organization_id}/update'
   /**
   * Request to modify group data
   * @param organizationId Organization identifier

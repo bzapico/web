@@ -25,9 +25,9 @@ export const AvailableComponents = {
   editcluster: 'EditCluster',
   addUser: 'Add User',
   devices: 'Devices',
-  addGroup: 'Add Devices Group',
-  configGroup: 'Configuration Devices Group',
-  createdGroup: 'Devices Group Created'
+  addGroup: 'Add Group',
+  configGroup: 'Group Config',
+  createdGroup: 'Group Created'
 };
 
 @Component({

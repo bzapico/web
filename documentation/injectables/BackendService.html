@@ -92,10 +92,16 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#addGroup">addGroup</a>
+                            </li>
+                            <li>
                                 <a href="#addUser">addUser</a>
                             </li>
                             <li>
                                 <a href="#changeRole">changeRole</a>
+                            </li>
+                            <li>
+                                <a href="#deleteGroup">deleteGroup</a>
                             </li>
                             <li>
                                 <a href="#deleteUser">deleteUser</a>
@@ -114,6 +120,12 @@
                             </li>
                             <li>
                                 <a href="#getClusters">getClusters</a>
+                            </li>
+                            <li>
+                                <a href="#getDevices">getDevices</a>
+                            </li>
+                            <li>
+                                <a href="#getGroups">getGroups</a>
                             </li>
                             <li>
                                 <a href="#getInstances">getInstances</a>
@@ -156,6 +168,12 @@
                             </li>
                             <li>
                                 <a href="#saveUserChanges">saveUserChanges</a>
+                            </li>
+                            <li>
+                                <a href="#updateDevice">updateDevice</a>
+                            </li>
+                            <li>
+                                <a href="#updateGroup">updateGroup</a>
                             </li>
                         </ul>
                     </td>
@@ -227,6 +245,98 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="addGroup"></a>
+                        <span class="name">
+                            <b>
+                            addGroup
+                            </b>
+                            <a href="#addGroup"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>addGroup(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupData: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="377" class="link-to-prism">src/app/services/backend.service.ts:377</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Requests to add a new group</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>groupData</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>New device group data</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="addUser"></a>
                         <span class="name">
                             <b>
@@ -245,7 +355,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/services/backend.service.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/services/backend.service.ts:121</a></div>
                             </td>
                         </tr>
 
@@ -337,7 +447,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/app/services/backend.service.ts:159</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/app/services/backend.service.ts:167</a></div>
                             </td>
                         </tr>
 
@@ -412,6 +522,98 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="deleteGroup"></a>
+                        <span class="name">
+                            <b>
+                            deleteGroup
+                            </b>
+                            <a href="#deleteGroup"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>deleteGroup(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="390" class="link-to-prism">src/app/services/backend.service.ts:390</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Requests to delete the provided group</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>groupId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>devices group identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="deleteUser"></a>
                         <span class="name">
                             <b>
@@ -430,7 +632,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/services/backend.service.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/services/backend.service.ts:133</a></div>
                             </td>
                         </tr>
 
@@ -522,7 +724,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="287" class="link-to-prism">src/app/services/backend.service.ts:287</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="295" class="link-to-prism">src/app/services/backend.service.ts:295</a></div>
                             </td>
                         </tr>
 
@@ -598,7 +800,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/app/services/backend.service.ts:250</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="258" class="link-to-prism">src/app/services/backend.service.ts:258</a></div>
                             </td>
                         </tr>
 
@@ -690,7 +892,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/app/services/backend.service.ts:239</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/app/services/backend.service.ts:247</a></div>
                             </td>
                         </tr>
 
@@ -782,7 +984,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/app/services/backend.service.ts:277</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/app/services/backend.service.ts:285</a></div>
                             </td>
                         </tr>
 
@@ -874,7 +1076,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/app/services/backend.service.ts:189</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/app/services/backend.service.ts:197</a></div>
                             </td>
                         </tr>
 
@@ -882,6 +1084,167 @@
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Requests to get the cluster list for an specific organization</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getDevices"></a>
+                        <span class="name">
+                            <b>
+                            getDevices
+                            </b>
+                            <a href="#getDevices"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getDevices(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="342" class="link-to-prism">src/app/services/backend.service.ts:342</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><hr>
+<p>Devices</p>
+<hr>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>groupId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getGroups"></a>
+                        <span class="name">
+                            <b>
+                            getGroups
+                            </b>
+                            <a href="#getGroups"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getGroups(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="365" class="link-to-prism">src/app/services/backend.service.ts:365</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Requests the groups list</p>
 </div>
 
                             <div class="io-description">
@@ -950,14 +1313,16 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/app/services/backend.service.ts:218</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/app/services/backend.service.ts:226</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Applications</p>
+                            <div class="io-description"><hr>
+<p>Applications</p>
+<hr>
 </div>
 
                             <div class="io-description">
@@ -1021,14 +1386,16 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/app/services/backend.service.ts:266</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">src/app/services/backend.service.ts:274</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Cluster</p>
+                            <div class="io-description"><hr>
+<p>Cluster</p>
+<hr>
 </div>
 
                             <div class="io-description">
@@ -1104,7 +1471,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/services/backend.service.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/services/backend.service.ts:100</a></div>
                             </td>
                         </tr>
 
@@ -1180,7 +1547,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/services/backend.service.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/services/backend.service.ts:110</a></div>
                             </td>
                         </tr>
 
@@ -1256,7 +1623,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/app/services/backend.service.ts:228</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="236" class="link-to-prism">src/app/services/backend.service.ts:236</a></div>
                             </td>
                         </tr>
 
@@ -1332,14 +1699,16 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/app/services/backend.service.ts:179</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/app/services/backend.service.ts:187</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Resources</p>
+                            <div class="io-description"><hr>
+<p>Resources</p>
+<hr>
 </div>
 
                             <div class="io-description">
@@ -1403,14 +1772,16 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/services/backend.service.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/services/backend.service.ts:90</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Organization</p>
+                            <div class="io-description"><hr>
+<p>Organization</p>
+<hr>
 </div>
 
                             <div class="io-description">
@@ -1486,7 +1857,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/app/services/backend.service.ts:153</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/app/services/backend.service.ts:161</a></div>
                             </td>
                         </tr>
 
@@ -1562,14 +1933,16 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/services/backend.service.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/services/backend.service.ts:39</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Request to log into the app</p>
+                            <div class="io-description"><hr>
+<p>Login</p>
+<hr>
 </div>
 
                             <div class="io-description">
@@ -1580,7 +1953,6 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1595,10 +1967,6 @@
                                                     </td>
                                                     
 
-                                                        <td>
-                                                                <code><p>User Id / email</p>
-</code>
-                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>password</td>
@@ -1611,10 +1979,6 @@
                                                     </td>
                                                     
 
-                                                        <td>
-                                                                <code><p>string containing the user password</p>
-</code>
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -1654,14 +2018,16 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/services/backend.service.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/services/backend.service.ts:59</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Emulates a request to log out</p>
+                            <div class="io-description"><hr>
+<p>Logout</p>
+<hr>
 </div>
 
                             <div class="io-description">
@@ -1694,7 +2060,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="307" class="link-to-prism">src/app/services/backend.service.ts:307</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="315" class="link-to-prism">src/app/services/backend.service.ts:315</a></div>
                             </td>
                         </tr>
 
@@ -1786,14 +2152,16 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/services/backend.service.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/services/backend.service.ts:73</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Sidebar</p>
+                            <div class="io-description"><hr>
+<p>Sidebar</p>
+<hr>
 </div>
 
                             <div class="io-description">
@@ -1869,7 +2237,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/app/services/backend.service.ts:202</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="210" class="link-to-prism">src/app/services/backend.service.ts:210</a></div>
                             </td>
                         </tr>
 
@@ -1977,7 +2345,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/services/backend.service.ts:141</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/app/services/backend.service.ts:149</a></div>
                             </td>
                         </tr>
 
@@ -2029,6 +2397,188 @@
                                                         <td>
                                                                 <code><p>Object containing user data</p>
 </code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateDevice"></a>
+                        <span class="name">
+                            <b>
+                            updateDevice
+                            </b>
+                            <a href="#updateDevice"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>updateDevice(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupData: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="354" class="link-to-prism">src/app/services/backend.service.ts:354</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Request to modify device data</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>groupData</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>device data</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateGroup"></a>
+                        <span class="name">
+                            <b>
+                            updateGroup
+                            </b>
+                            <a href="#updateGroup"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>updateGroup(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupData: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="406" class="link-to-prism">src/app/services/backend.service.ts:406</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Request to modify group data</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>groupData</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
                                                         </td>
                                                 </tr>
                                         </tbody>
@@ -2128,6 +2678,10 @@ export class BackendService implements Backend {
     private http: HttpClient) {
   }
 
+  /********************
+   * Login
+   ********************/
+
   // POST &#x27;/login&#x27;
   /**
    * Request to log into the app
@@ -2147,6 +2701,10 @@ export class BackendService implements Backend {
     );
   }
 
+  /********************
+   * Logout
+   ********************/
+
   /**
    * Emulates a request to log out
    */
@@ -2156,9 +2714,9 @@ export class BackendService implements Backend {
     })));
   }
 
-  /**
+  /********************
    * Sidebar
-   */
+   ********************/
   /**
    * Request to change the user password
    * @param organizationId Organization identifier
@@ -2171,9 +2729,9 @@ export class BackendService implements Backend {
     );
   }
 
-  /**
+  /********************
    * Organization
-   */
+   ********************/
 
   // GET &#x27;users/{organization_id}/{email}/info
   /**
@@ -2269,9 +2827,9 @@ export class BackendService implements Backend {
     );
   }
 
-  /**
+  /********************
    * Resources
-   */
+   ********************/
 
   // GET &#x27;resources/{organization_id}/summary&#x27;
   /**
@@ -2308,9 +2866,9 @@ export class BackendService implements Backend {
     );
   }
 
-  /**
+  /********************
    * Applications
-   */
+   ********************/
 
   // GET &#x27;apps/inst/{organization_id}/list&#x27;
   /**
@@ -2355,9 +2913,9 @@ export class BackendService implements Backend {
     );
   }
 
-  /**
+  /********************
    * Cluster
-   */
+   ********************/
 
   // GET &#x27;nodes/{organization_id}/{cluster_id}/list&#x27;
   /**
@@ -2421,6 +2979,86 @@ export class BackendService implements Backend {
         headers: headers
       }
       );
+  }
+
+  /********************
+   * Devices
+   ********************/
+
+  // GET: &#x27;/v1/device/{organization_id}/{group_id}/list&#x27;
+  /**
+   * Requests the devices list
+   * @param organizationId Organization identifier
+   * @param groupId group identifier
+   */
+  getDevices(organizationId: string, groupId: string) {
+    return this.get(
+      API_URL + &#x27;device/&#x27; + organizationId + groupId + &#x27;/list&#x27;
+    );
+  }
+
+  // POST: &#x27;/v1/device/{organization_id}/update&#x27;
+  /**
+  * Request to modify device data
+  * @param organizationId Organization identifier
+  * @param groupData device data
+  */
+   updateDevice(organizationId: string, groupData: any) {
+    return this.post(
+      API_URL + &#x27;device/&#x27; + organizationId + groupData + &#x27;/update&#x27;
+    );
+  }
+
+  // GET: &#x27;/v1/device/group/{organization_id}/list&#x27;
+  /**
+   * Requests the groups list
+   * @param organizationId Organization identifier
+   */
+  getGroups(organizationId: string) {
+    return this.get(
+      API_URL + &#x27;device/group/&#x27; + organizationId + &#x27;/list&#x27;
+    );
+  }
+
+  // POST: &#x27;/v1/device/group/{organization_id}/add&#x27;
+  /**
+   * Requests to add a new group
+   * @param organizationId Organization identifier
+   * @param groupData New device group data
+   */
+  addGroup(organizationId: string, groupData: any) {
+    return this.post(
+      API_URL + &#x27;device/group/&#x27; + organizationId + &#x27;/add&#x27;,
+      groupData
+    );
+  }
+
+  // POST: &#x27;/v1/device/group/{organization_id}/remove&#x27;
+  /**
+   * Requests to delete the provided group
+   * @param organizationId Organization identifier
+   * @param groupId devices group identifier
+   */
+  deleteGroup(organizationId: string, groupId: string) {
+    return this.post(
+      API_URL + &#x27;device/group&#x27; + organizationId + &#x27;/remove&#x27;,
+      {
+        organization_id: organizationId,
+        device_group_id: groupId
+      }
+    );
+  }
+
+  // POST: &#x27;/v1/device/group/{organization_id}/update&#x27;
+  /**
+  * Request to modify group data
+  * @param organizationId Organization identifier
+  * @param groupDta group data
+  */
+  updateGroup(organizationId: string, groupData: string) {
+    return this.post(
+      API_URL + &#x27;device/group&#x27; + organizationId + groupData + &#x27;/update&#x27;
+    );
   }
 }
 </code></pre>

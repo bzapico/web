@@ -44,11 +44,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    *  Models that hold group data
    */
-    device_group_id: string;
-    name: string;
-    enabled: boolean;
-    default_device_connectivity: boolean;
-    device_group_api_key: string;
+  device_group_id: string;
+  name: string;
+  enabled: boolean;
+  default_device_connectivity: boolean;
+  device_group_api_key: string;
 
   /**
    * Models that hold the active group
@@ -400,8 +400,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Checks if the cluster status requires an special css class
-   * @param status Cluster status name
+   * Checks if the devices status requires an special css class
+   * @param status devices status name
    * @param className CSS class name
    */
   classStatusCheck(status: string, className: string): boolean {
@@ -466,7 +466,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Checkbox statement to select one of enabled device to be executed.
+   * Checkbox switcher statement to select one of enabled device to be executed.
    */
   enableSwitcher(device) {
    device.enabled = !device.enabled;
@@ -501,7 +501,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (groups.length > this.DISPLAYED_GROUP_MAX) {
       return '';
     }
-    // There are not enough groups
     return 'opacity';
   }
 
@@ -510,9 +509,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   swipeLeft() {
     const index = this.groups.map(x => x.device_group_id).indexOf(this.displayedGroups[0].device_group_id);
-    // If the element is found and it is not the first element
     if (index !== -1 && index > 0) {
-      // Pushes in the beginning of displaye groups array, the rquiered group elment
       this.displayedGroups.unshift(this.groups[index - 1]);
       this.displayedGroups.pop();
       this.updateDisplayedGroupsNamesLength();
@@ -524,7 +521,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   swipeRight() {
     const index = this.groups.map(x => x.device_group_id).indexOf(this.displayedGroups[this.displayedGroups.length - 1].device_group_id);
-    // If the element is found and if it is not the last element
     if (index !== -1 && this.groups[index + 1]) {
       this.displayedGroups.push(this.groups[index + 1]);
       this.displayedGroups.shift();
@@ -534,7 +530,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   /**
    * Opens the modal view that holds add group component
-   * @param group group object
    */
   addGroup() {
     let allowHide = true;
@@ -631,7 +626,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Updates the displayed groups chars lenght to calculate the number of letters displayed according to the size of the viewport
+   * Updates the displayed groups chars length to calculate the number of letters displayed according to the size of the viewport
    */
   updateDisplayedGroupsNamesLength() {
     this.displayedGroupsNamesLength = 0;
