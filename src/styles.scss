@@ -738,3 +738,37 @@ button[type="submit"]:disabled {
   }
 }
 
+/* - - -  Label buttons - - - */
+.label-buttons {
+  background-color: lawngreen;
+}
+.delete-label {
+  height: 28px;
+  width:28px;
+  border-radius: 50%;
+  position: relative;
+  background-color: #F25272;
+}
+.i-delete{
+  font-size: 1.2em;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  color: white;
+}
+
+.add-label {
+  height: 28px;
+  width:28px;
+  border-radius: 50%;
+  position: relative;
+  background-color: #0937FF;
+}
+.i-add{
+  font-size: 1.4em;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  color: white;
+}
+
