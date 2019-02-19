@@ -21,6 +21,7 @@
                 type="text" 
                 class="form-control" 
                 placeholder="Label name" 
+                pattern="[^'\x22]+"
                 required>
               <input 
                 [(ngModel)]="labelValue" 
@@ -28,12 +29,22 @@
                 type="text" 
                 class="form-control" 
                 placeholder="Label value"
+                pattern="[^'\x22]+"
                 required>
             </div>
           </form>
+          <!-- Error messages -->
+          <div class="error-message">
+            <div 
+              tooltip="{{arrayToString(errorMessages)}}"
+              placement="bottom"
+              *ngIf="errorMessages.length > 0">
+              {{formatValidationOutput(errorMessages).msg}}
+            </div>
+          </div>
         <!-- Option button -->
-        <div class="buttons d-flex flex-row justify-content-between mt-5">
-          <button class="btn btn-primary btn-md mt-5" (click)="addLabel(f)">
+        <div class="d-flex flex-row justify-content-between">
+          <button class="btn btn-primary btn-md mt-5" (click)="checkFormFields(f.form)">
             <span class="align-bottom">Save</span>
           </button>
           <button class="btn btn-red btn-md mt-5" (click)="discardChanges(f)">

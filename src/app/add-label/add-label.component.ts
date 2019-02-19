@@ -5,6 +5,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { BackendService } from '../services/backend.service';
 import { BsModalRef } from 'ngx-bootstrap';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-label',
@@ -52,6 +53,57 @@ export class AddLabelComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  /**
+   * Outputs the error messages in the required format, showing the first one
+   * @param errors String containing the errors
+   */
+  formatValidationOutput(errors: string[]) {
+    if (this.errorMessages.length === 1) {
+      return {
+        msg: this.errorMessages[0],
+        errors: this.errorMessages
+      };
+    } else if (this.errorMessages.length > 0) {
+      return {
+        msg: this.errorMessages[0] + ' +' + (this.errorMessages.length - 1) + ' errors',
+        errors: this.errorMessages
+      };
+    } else {
+      return {
+        msg: '',
+        errors: this.errorMessages
+      };
+    }
+  }
+
+  /**
+   * Validates user data
+   * @param form Form with user data
+   */
+  checkFormFields(form: FormGroup) {
+    this.errorMessages = [];
+    if (form.controls.name.invalid) {
+      if (form.controls.name.errors.required) {
+        this.errorMessages.push('Label name is required');
+      }
+      if (form.controls.name.errors.pattern) {
+        this.errorMessages.push('Invalid format: cannot contain special characers as _*/.`');
+      }
+    }
+    if (form.controls.value.invalid) {
+      if (form.controls.value.errors.required) {
+        this.errorMessages.push('Label value is required');
+      }
+      if (form.controls.value.errors.pattern) {
+        this.errorMessages.push('Invalid format: cannot contain special characers as _*/.`');
+      }
+    }
+    if (this.errorMessages.length === 0) {
+      this.addLabel(form);
+    }
+  }
+
   /**
    * Request to add a new label
    * @param form Form object reference
@@ -62,6 +114,18 @@ export class AddLabelComponent implements OnInit {
         name: form.value.name,
         value: form.value.value,
       };
+    //   this.backend.addLabel(this.organizationId, label)
+    //   .subscribe(response => {
+    //     this.notificationsService.add({
+    //       message: 'Added new label to Cluster 1'
+    //     });
+    //     this.bsModalRef.hide();
+    //   }, error => {
+    //     this.notificationsService.add({
+    //       message: 'ERROR: ' + error.error.message,
+    //       timeout: 10000
+    //     });
+    //   });
     }
   }
 

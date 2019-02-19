@@ -338,4 +338,10 @@ export class ClusterComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { });
   }
+
+  /**
+   * Deletes a selected label
+   */
+  deleteLabel() {
+  }
 }
