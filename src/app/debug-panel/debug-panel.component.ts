@@ -22,8 +22,9 @@ export const AvailableComponents = {
   sidebar: 'Sidebar',
   userinfo: 'User Info',
   userEdit: 'User Edit',
-  editcluster: 'EditCluster',
-  addUser: 'Add User'
+  editcluster: 'Edit Cluster',
+  addUser: 'Add User',
+  addLabel: 'Add Label'
 };
 
 @Component({
@@ -97,6 +98,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.addUser,
       mock: localStorage.getItem(LocalStorageKeys.addUserMock) === 'false' ? 'false' : 'true'
     });
+    this.components.push({
+      name: AvailableComponents.addUser,
+      mock: localStorage.getItem(LocalStorageKeys.addLabelMock) === 'false' ? 'false' : 'true'
+    });
   }
 
   /**
@@ -120,6 +125,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.userEditMock, newValue);
     localStorage.setItem(LocalStorageKeys.clusterEditMock, newValue);
     localStorage.setItem(LocalStorageKeys.addUserMock, newValue);
+    localStorage.setItem(LocalStorageKeys.addLabelMock, newValue);
   }
 
   /**
@@ -164,7 +170,10 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.addUser:
       localStorage.setItem(LocalStorageKeys.addUserMock, componentMockOption.mock);
-    break;
+      break;
+      case AvailableComponents.addUser:
+      localStorage.setItem(LocalStorageKeys.addLabelMock, componentMockOption.mock);
+      break;
       default:
         console.log('Selected option not registered as available component');
     }

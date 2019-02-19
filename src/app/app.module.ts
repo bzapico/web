@@ -83,7 +83,8 @@ import { AddLabelComponent } from './add-label/add-label.component';
     ChangePasswordComponent,
     AddDevicesGroupComponent,
     GroupConfigurationComponent,
-    DeviceGroupCreatedComponent
+    DeviceGroupCreatedComponent,
+    AddLabelComponent
   ],
   imports: [
     BrowserModule,

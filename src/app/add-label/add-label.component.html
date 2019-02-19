@@ -1,3 +1,45 @@
-<p>
-  add-label works!
-</p>
+<div class="modal-card">
+    <div class="modal-content">
+        <!-- Header -->
+        <div class="modal-header">
+          <h3 class="nalej-form-title">Add label to Cluster 1</h3>
+          <button 
+            type="button" 
+            class="close" 
+            aria-label="Close"
+            (click)="discardChanges(f)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- Body -->
+        <div class="modal-body">
+          <form #f="ngForm" class="form-label">
+            <div class="form-group">
+              <input 
+                [(ngModel)]="labelName" 
+                name="name" 
+                type="text" 
+                class="form-control" 
+                placeholder="Label name" 
+                required>
+              <input 
+                [(ngModel)]="labelValue" 
+                name="description" 
+                type="text" 
+                class="form-control" 
+                placeholder="Label value"
+                required>
+            </div>
+          </form>
+        <!-- Option button -->
+        <div class="buttons d-flex flex-row justify-content-between mt-5">
+          <button class="btn btn-primary btn-md mt-5" (click)="addLabel(f)">
+            <span class="align-bottom">Save</span>
+          </button>
+          <button class="btn btn-red btn-md mt-5" (click)="discardChanges(f)">
+            <span class="align-bottom">Discard</span>
+          </button>
+        </div>
+        </div>
+      </div>
+    </div>
