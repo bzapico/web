@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { DevicesComponent } from './devices.component';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { SortByPipe } from '../pipes/sort-by.pipe';
+import { AbbreviatePipe } from '../pipes/abbreviate.pipe';
 
 describe('DevicesComponent', () => {
   let component: DevicesComponent;
@@ -19,14 +20,15 @@ describe('DevicesComponent', () => {
       declarations: [
         DevicesComponent,
         FilterPipe,
-        SortByPipe
+        SortByPipe,
+        AbbreviatePipe,
        ],
       imports: [
         HttpClientTestingModule,
         NgxChartsModule,
         BrowserAnimationsModule,
         RouterTestingModule,
-        TooltipModule,
+        TooltipModule.forRoot(),
         CommonModule,
         ModalModule.forRoot(),
         FormsModule,
@@ -45,7 +47,20 @@ describe('DevicesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('openGroupConfiguration() - Should open the modal view that holds the group configuration component', () => {
+    const openGroupConfiguration = spyOn(component, 'openGroupConfiguration').and.returnValue(true);
+
+    openGroupConfiguration();
+
+    expect(openGroupConfiguration).toHaveBeenCalledWith();
+  });
+
+  it('updateConnectedDevicesLineChart() - Should requests an updated list of connected devices to update line chart', () => {
+    const updateConnectedDevicesLineChart = spyOn(component, 'updateConnectedDevicesLineChart').and.returnValue(true);
+    const devices = {};
+
+    updateConnectedDevicesLineChart(devices);
+
+    expect(updateConnectedDevicesLineChart).toHaveBeenCalledWith(devices);
   });
 });

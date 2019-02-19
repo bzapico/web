@@ -68,6 +68,20 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#mockGroupList">mockGroupList</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -78,10 +92,16 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#addGroup">addGroup</a>
+                            </li>
+                            <li>
                                 <a href="#addUser">addUser</a>
                             </li>
                             <li>
                                 <a href="#changeRole">changeRole</a>
+                            </li>
+                            <li>
+                                <a href="#deleteGroup">deleteGroup</a>
                             </li>
                             <li>
                                 <a href="#deleteUser">deleteUser</a>
@@ -97,6 +117,12 @@
                             </li>
                             <li>
                                 <a href="#getClusters">getClusters</a>
+                            </li>
+                            <li>
+                                <a href="#getDevices">getDevices</a>
+                            </li>
+                            <li>
+                                <a href="#getGroups">getGroups</a>
                             </li>
                             <li>
                                 <a href="#getInstances">getInstances</a>
@@ -137,6 +163,12 @@
                             <li>
                                 <a href="#saveUserChanges">saveUserChanges</a>
                             </li>
+                            <li>
+                                <a href="#updateDevice">updateDevice</a>
+                            </li>
+                            <li>
+                                <a href="#updateGroup">updateGroup</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -160,7 +192,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/services/mockup-backend.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/services/mockup-backend.service.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -173,6 +205,98 @@
         <h3 id="methods">
             Methods
         </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="addGroup"></a>
+                        <span class="name">
+                            <b>
+                            addGroup
+                            </b>
+                            <a href="#addGroup"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>addGroup(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupData: <a href="../interfaces/Group.html">Group</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="383" class="link-to-prism">src/app/services/mockup-backend.service.ts:383</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Simulates to create a new group</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>groupData</td>
+                                                        <td>
+                                                                    <code><a href="../interfaces/Group.html" target="_self" >Group</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Group data</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -195,7 +319,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/services/mockup-backend.service.ts:98</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/services/mockup-backend.service.ts:100</a></div>
                             </td>
                         </tr>
 
@@ -278,7 +402,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/app/services/mockup-backend.service.ts:211</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/app/services/mockup-backend.service.ts:213</a></div>
                             </td>
                         </tr>
 
@@ -368,6 +492,98 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="deleteGroup"></a>
+                        <span class="name">
+                            <b>
+                            deleteGroup
+                            </b>
+                            <a href="#deleteGroup"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>deleteGroup(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="410" class="link-to-prism">src/app/services/mockup-backend.service.ts:410</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Simulates to delete a group</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>groupId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Group identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="deleteUser"></a>
                         <span class="name">
                             <b>
@@ -386,7 +602,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/services/mockup-backend.service.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/services/mockup-backend.service.ts:122</a></div>
                             </td>
                         </tr>
 
@@ -469,7 +685,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="288" class="link-to-prism">src/app/services/mockup-backend.service.ts:288</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/app/services/mockup-backend.service.ts:290</a></div>
                             </td>
                         </tr>
 
@@ -550,7 +766,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/app/services/mockup-backend.service.ts:277</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="279" class="link-to-prism">src/app/services/mockup-backend.service.ts:279</a></div>
                             </td>
                         </tr>
 
@@ -631,7 +847,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="319" class="link-to-prism">src/app/services/mockup-backend.service.ts:319</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="321" class="link-to-prism">src/app/services/mockup-backend.service.ts:321</a></div>
                             </td>
                         </tr>
 
@@ -714,7 +930,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/app/services/mockup-backend.service.ts:235</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="237" class="link-to-prism">src/app/services/mockup-backend.service.ts:237</a></div>
                             </td>
                         </tr>
 
@@ -722,6 +938,167 @@
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Simulates to requrest clusters list</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getDevices"></a>
+                        <span class="name">
+                            <b>
+                            getDevices
+                            </b>
+                            <a href="#getDevices"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getDevices(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="342" class="link-to-prism">src/app/services/mockup-backend.service.ts:342</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><hr>
+<p>Devices</p>
+<hr>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>groupId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getGroups"></a>
+                        <span class="name">
+                            <b>
+                            getGroups
+                            </b>
+                            <a href="#getGroups"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getGroups(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="368" class="link-to-prism">src/app/services/mockup-backend.service.ts:368</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Simulates to request the groups list</p>
 </div>
 
                             <div class="io-description">
@@ -790,7 +1167,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="253" class="link-to-prism">src/app/services/mockup-backend.service.ts:253</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/app/services/mockup-backend.service.ts:255</a></div>
                             </td>
                         </tr>
 
@@ -863,7 +1240,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="306" class="link-to-prism">src/app/services/mockup-backend.service.ts:306</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="308" class="link-to-prism">src/app/services/mockup-backend.service.ts:308</a></div>
                             </td>
                         </tr>
 
@@ -948,7 +1325,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/services/mockup-backend.service.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/services/mockup-backend.service.ts:73</a></div>
                             </td>
                         </tr>
 
@@ -1024,7 +1401,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/services/mockup-backend.service.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/services/mockup-backend.service.ts:87</a></div>
                             </td>
                         </tr>
 
@@ -1100,7 +1477,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="267" class="link-to-prism">src/app/services/mockup-backend.service.ts:267</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">src/app/services/mockup-backend.service.ts:269</a></div>
                             </td>
                         </tr>
 
@@ -1176,7 +1553,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/app/services/mockup-backend.service.ts:221</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/app/services/mockup-backend.service.ts:223</a></div>
                             </td>
                         </tr>
 
@@ -1252,7 +1629,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/services/mockup-backend.service.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/services/mockup-backend.service.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -1337,7 +1714,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/app/services/mockup-backend.service.ts:181</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/app/services/mockup-backend.service.ts:183</a></div>
                             </td>
                         </tr>
 
@@ -1413,7 +1790,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/services/mockup-backend.service.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/services/mockup-backend.service.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -1498,7 +1875,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/services/mockup-backend.service.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/services/mockup-backend.service.ts:44</a></div>
                             </td>
                         </tr>
 
@@ -1538,7 +1915,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/services/mockup-backend.service.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/app/services/mockup-backend.service.ts:135</a></div>
                             </td>
                         </tr>
 
@@ -1621,7 +1998,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/app/services/mockup-backend.service.ts:167</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/app/services/mockup-backend.service.ts:169</a></div>
                             </td>
                         </tr>
 
@@ -1718,7 +2095,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/services/mockup-backend.service.ts:144</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/app/services/mockup-backend.service.ts:146</a></div>
                             </td>
                         </tr>
 
@@ -1779,8 +2156,232 @@
                 </tr>
             </tbody>
         </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateDevice"></a>
+                        <span class="name">
+                            <b>
+                            updateDevice
+                            </b>
+                            <a href="#updateDevice"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>updateDevice(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupData: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="357" class="link-to-prism">src/app/services/mockup-backend.service.ts:357</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Simulates to update a device from a device array</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>groupData</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Device data</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateGroup"></a>
+                        <span class="name">
+                            <b>
+                            updateGroup
+                            </b>
+                            <a href="#updateGroup"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>updateGroup(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupData: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="425" class="link-to-prism">src/app/services/mockup-backend.service.ts:425</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Simulates to update a group from a group array</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>groupData</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Group data</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 </section>
 
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mockGroupList"></a>
+                        <span class="name">
+                            <b>
+                            mockGroupList
+                            </b>
+                            <a href="#mockGroupList"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>mockGroupList:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/services/mockup-backend.service.ts:14</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
 
     </div>
 
@@ -1792,12 +2393,14 @@ import { Response, ResponseOptions } from &#x27;@angular/http&#x27;;
 import { of, Observable } from &#x27;rxjs&#x27;;
 import { map } from &#x27;rxjs/operators&#x27;;
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList  } from &#x27;../utils/mocks&#x27;;
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockGroupApiKey } from &#x27;../utils/mocks&#x27;;
+import { Group } from &#x27;../definitions/interfaces/group&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class MockupBackendService implements Backend {
+  mockGroupList: any;
 
   constructor() {
   }
@@ -2113,6 +2716,106 @@ export class MockupBackendService implements Backend {
     .pipe(
       map(response &#x3D;&gt; response.json())
     );
+  }
+
+
+  /********************
+   * Devices
+   ********************/
+
+  /**
+   * Simulates to request the devices list
+   * @param organizationId Organization identifier
+   * @param groupId Group identifier
+   */
+  getDevices(organizationId: string, groupId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({devices: mockDevicesList}),
+      status: 200
+    })))
+    .pipe(
+      map(response &#x3D;&gt; response.json())
+    );
+  }
+
+  /**
+   * Simulates to update a device from a device array
+   *  @param organizationId Organization identifier
+   *  @param groupData Device data
+   */
+  updateDevice(organizationId: string, groupData: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({ result: &#x27;&#x27; }),
+      status: 200
+    })));
+  }
+
+  /**
+   * Simulates to request the groups list
+   * @param organizationId Organization identifier
+   */
+  getGroups(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockGroupList),
+      status: 200
+    })))
+    .pipe(
+      map(response &#x3D;&gt; response.json())
+    );
+  }
+
+  /**
+   * Simulates to create a new group
+   *  @param organizationId Organization identifier
+   *  @param groupData Group data
+   */
+  addGroup(organizationId: string, groupData: Group) {
+    function generateRandomString() {
+      return Math.floor(Math.random() * Math.floor(1000000)).toString();
+    }
+    const group: Group &#x3D; {
+        name: groupData.name,
+        device_group_id: generateRandomString(),
+        organization_id: &#x27;b792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
+        enabled: groupData.enabled,
+        default_device_connectivity: groupData.default_device_connectivity,
+        device_group_api_key: &#x27;7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77&#x27;
+    };
+    mockGroupList.push(group);
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(group),
+      status: 200
+    })))
+    .pipe(
+      map(response &#x3D;&gt; response.json())
+    );
+  }
+
+  /**
+   * Simulates to delete a group
+   *  @param organizationId Organization identifier
+   *  @param groupId Group identifier
+   */
+  deleteGroup(organizationId: string, groupId: string) {
+    const index &#x3D; mockGroupList.map(x &#x3D;&gt; x.device_group_id).indexOf(groupId);
+    if (index !&#x3D;&#x3D; -1) {
+      mockGroupList.splice(index, 1);
+    }
+    return of (new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+
+  /**
+   * Simulates to update a group from a group array
+   * @param organizationId Organization identifier
+   * @param groupData Group data
+   */
+  updateGroup(organizationId: string, groupData: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({ result: &#x27;&#x27; }),
+      status: 200
+    })));
   }
 }
 </code></pre>

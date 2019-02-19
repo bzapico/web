@@ -4,6 +4,7 @@ import { ButtonsModule, BsModalRef, TooltipModule, BsModalService, ModalModule }
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AddDevicesGroupComponent } from './add-devices-group.component';
+import { By } from '@angular/platform-browser';
 
 describe('AddDevicesGroupComponent', () => {
   let component: AddDevicesGroupComponent;
@@ -34,7 +35,19 @@ describe('AddDevicesGroupComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('discardChanges() - Should request to discard changes', () => {
+    const discardChanges = spyOn(component, 'discardChanges').and.returnValue(true);
+
+    discardChanges();
+
+    expect(discardChanges).toHaveBeenCalledWith();
+  });
+
+  it('Discard button - Should discard the user data modifications', () => {
+    const button = fixture.debugElement.query(By.css('.close'));
+
+    button.triggerEventHandler('click', null);
+
+    expect(component.discardChanges).toBeDefined();
   });
 });

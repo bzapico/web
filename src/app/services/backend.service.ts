@@ -26,6 +26,10 @@ export class BackendService implements Backend {
     private http: HttpClient) {
   }
 
+  /********************
+   * Login
+   ********************/
+
   // POST '/login'
   /**
    * Request to log into the app
@@ -45,6 +49,10 @@ export class BackendService implements Backend {
     );
   }
 
+  /********************
+   * Logout
+   ********************/
+
   /**
    * Emulates a request to log out
    */
@@ -54,9 +62,9 @@ export class BackendService implements Backend {
     })));
   }
 
-  /**
+  /********************
    * Sidebar
-   */
+   ********************/
   /**
    * Request to change the user password
    * @param organizationId Organization identifier
@@ -69,9 +77,9 @@ export class BackendService implements Backend {
     );
   }
 
-  /**
+  /********************
    * Organization
-   */
+   ********************/
 
   // GET 'users/{organization_id}/{email}/info
   /**
@@ -167,9 +175,9 @@ export class BackendService implements Backend {
     );
   }
 
-  /**
+  /********************
    * Resources
-   */
+   ********************/
 
   // GET 'resources/{organization_id}/summary'
   /**
@@ -206,9 +214,9 @@ export class BackendService implements Backend {
     );
   }
 
-  /**
+  /********************
    * Applications
-   */
+   ********************/
 
   // GET 'apps/inst/{organization_id}/list'
   /**
@@ -253,9 +261,9 @@ export class BackendService implements Backend {
     );
   }
 
-  /**
+  /********************
    * Cluster
-   */
+   ********************/
 
   // GET 'nodes/{organization_id}/{cluster_id}/list'
   /**
@@ -319,5 +327,85 @@ export class BackendService implements Backend {
         headers: headers
       }
       );
+  }
+
+  /********************
+   * Devices
+   ********************/
+
+  // GET: '/v1/device/{organization_id}/{group_id}/list'
+  /**
+   * Requests the devices list
+   * @param organizationId Organization identifier
+   * @param groupId group identifier
+   */
+  getDevices(organizationId: string, groupId: string) {
+    return this.get(
+      API_URL + 'device/' + organizationId + groupId + '/list'
+    );
+  }
+
+  // POST: '/v1/device/{organization_id}/update'
+  /**
+  * Request to modify device data
+  * @param organizationId Organization identifier
+  * @param groupData device data
+  */
+   updateDevice(organizationId: string, groupData: any) {
+    return this.post(
+      API_URL + 'device/' + organizationId + groupData + '/update'
+    );
+  }
+
+  // GET: '/v1/device/group/{organization_id}/list'
+  /**
+   * Requests the groups list
+   * @param organizationId Organization identifier
+   */
+  getGroups(organizationId: string) {
+    return this.get(
+      API_URL + 'device/group/' + organizationId + '/list'
+    );
+  }
+
+  // POST: '/v1/device/group/{organization_id}/add'
+  /**
+   * Requests to add a new group
+   * @param organizationId Organization identifier
+   * @param groupData New device group data
+   */
+  addGroup(organizationId: string, groupData: any) {
+    return this.post(
+      API_URL + 'device/group/' + organizationId + '/add',
+      groupData
+    );
+  }
+
+  // POST: '/v1/device/group/{organization_id}/remove'
+  /**
+   * Requests to delete the provided group
+   * @param organizationId Organization identifier
+   * @param groupId devices group identifier
+   */
+  deleteGroup(organizationId: string, groupId: string) {
+    return this.post(
+      API_URL + 'device/group' + organizationId + '/remove',
+      {
+        organization_id: organizationId,
+        device_group_id: groupId
+      }
+    );
+  }
+
+  // POST: '/v1/device/group/{organization_id}/update'
+  /**
+  * Request to modify group data
+  * @param organizationId Organization identifier
+  * @param groupDta group data
+  */
+  updateGroup(organizationId: string, groupData: string) {
+    return this.post(
+      API_URL + 'device/group' + organizationId + groupData + '/update'
+    );
   }
 }

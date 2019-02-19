@@ -4,12 +4,14 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList  } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockGroupApiKey } from '../utils/mocks';
+import { Group } from '../definitions/interfaces/group';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MockupBackendService implements Backend {
+  mockGroupList: any;
 
   constructor() {
   }
@@ -325,5 +327,105 @@ export class MockupBackendService implements Backend {
     .pipe(
       map(response => response.json())
     );
+  }
+
+
+  /********************
+   * Devices
+   ********************/
+
+  /**
+   * Simulates to request the devices list
+   * @param organizationId Organization identifier
+   * @param groupId Group identifier
+   */
+  getDevices(organizationId: string, groupId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({devices: mockDevicesList}),
+      status: 200
+    })))
+    .pipe(
+      map(response => response.json())
+    );
+  }
+
+  /**
+   * Simulates to update a device from a device array
+   *  @param organizationId Organization identifier
+   *  @param groupData Device data
+   */
+  updateDevice(organizationId: string, groupData: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({ result: '' }),
+      status: 200
+    })));
+  }
+
+  /**
+   * Simulates to request the groups list
+   * @param organizationId Organization identifier
+   */
+  getGroups(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockGroupList),
+      status: 200
+    })))
+    .pipe(
+      map(response => response.json())
+    );
+  }
+
+  /**
+   * Simulates to create a new group
+   *  @param organizationId Organization identifier
+   *  @param groupData Group data
+   */
+  addGroup(organizationId: string, groupData: Group) {
+    function generateRandomString() {
+      return Math.floor(Math.random() * Math.floor(1000000)).toString();
+    }
+    const group: Group = {
+        name: groupData.name,
+        device_group_id: generateRandomString(),
+        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+        enabled: groupData.enabled,
+        default_device_connectivity: groupData.default_device_connectivity,
+        device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
+    };
+    mockGroupList.push(group);
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(group),
+      status: 200
+    })))
+    .pipe(
+      map(response => response.json())
+    );
+  }
+
+  /**
+   * Simulates to delete a group
+   *  @param organizationId Organization identifier
+   *  @param groupId Group identifier
+   */
+  deleteGroup(organizationId: string, groupId: string) {
+    const index = mockGroupList.map(x => x.device_group_id).indexOf(groupId);
+    if (index !== -1) {
+      mockGroupList.splice(index, 1);
+    }
+    return of (new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+
+  /**
+   * Simulates to update a group from a group array
+   * @param organizationId Organization identifier
+   * @param groupData Group data
+   */
+  updateGroup(organizationId: string, groupData: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({ result: '' }),
+      status: 200
+    })));
   }
 }

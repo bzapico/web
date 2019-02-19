@@ -2,7 +2,7 @@
   <div class="modal-content">
     <!-- Header -->
     <div class="modal-header">
-      <h3 class="nalej-form-title">GROUP 1 configuration</h3>
+      <h3 class="nalej-form-title">{{name}} configuration</h3>
       <button 
         type="button" 
         class="close" 
@@ -14,44 +14,44 @@
     <!-- Body -->
     <div class="modal-body">
       <!-- Option checkboxes -->
-      <div class="">
-        <div class="check-options">
-          <p class="grey">Group device availability</p>
-          <div class="add-dev-checkbox">
-            <span 
-              *ngIf="!checkBox" 
-              (click)="enabled()">
-              <i class="material-icons grey">check_box_outline_blank</i>
-            </span>
-            <span 
-              *ngIf="checkBox"  
-              (click)="enabled()" 
-              class="devices-checkbox">
-              <i class="material-icons blue">check_box</i>
-            </span>
-          </div>
-          <br>
-          <p class="grey">Devices enabled by default</p>
-          <div class="add-dev-checkbox">
-            <span 
-              *ngIf="!checkBox" 
-              (click)="enabled()">
-              <i class="material-icons grey">check_box_outline_blank</i>
-            </span>
-            <span 
-              *ngIf="checkBox"  
-              (click)="enabled()" 
-              class="devices-checkbox">
-              <i class="material-icons blue">check_box</i>
-            </span>
-          </div>   
+      <div class="check-options">
+        <p class="grey">Group device availability</p>
+        <div class="add-dev-checkbox">
+          <span 
+            *ngIf="!enabled" 
+            (click)="enabled = true"
+            class="devices-checkbox">
+            <i class="material-icons grey">check_box_outline_blank</i>
+          </span>
+          <span 
+            *ngIf="enabled" 
+            (click)="enabled = false"
+            class="devices-checkbox">
+            <i class="material-icons blue">check_box</i>
+          </span>
         </div>
+        <br>
+        <p class="grey">Devices enabled by default</p>
+        <div class="add-dev-checkbox">
+          <span 
+            *ngIf="!defaultConnectivity" 
+            (click)="defaultConnectivity = true"
+            class="devices-checkbox">
+            <i class="material-icons grey">check_box_outline_blank</i>
+          </span>
+          <span 
+            *ngIf="defaultConnectivity" 
+            (click)="defaultConnectivity = false"
+            class="devices-checkbox">
+            <i class="material-icons blue">check_box</i>
+          </span>
+        </div>   
       </div>
       <!-- Option buttons -->
       <div class="buttons d-flex flex-row justify-content-between">
         <button 
           class="btn btn-primary btn-md" 
-          (click)="closeModal()">
+          (click)="saveGroupChanges()">
           <span class="align-bottom">Save</span>
         </button>
         <button 
