@@ -205,6 +205,15 @@ a {
   margin:1px;
   text-align: left;
   max-width: -webkit-fill-available;
+  border-color: #0937FF;
+  color:#0937FF;
+  &:hover{
+    background-color: #0937FF;
+    color: white;
+  }
+  &:focus {
+    outline: none;
+  }
 }
 .btn-primary {
   width: 257px;
@@ -741,40 +750,7 @@ button[type="submit"]:disabled {
 }
 
 /* - - -  Label buttons - - - */
-.label-buttons {
-  background-color: lawngreen;
-  display: inline;
-}
-.delete-label {
-  height: 28px;
-  width:28px;
-  border-radius: 50%;
-  position: relative;
-  background-color: #F25272;
-}
-.i-delete{
-  font-size: 1.2em;
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  color: white;
-}
-.add-label {
-  height: 28px;
-  width:28px;
-  border-radius: 50%;
-  position: relative;
-  background-color: #0937FF;
-}
-.i-add{
-  font-size: 1.4em;
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  color: white;
-}
-
-
+// Selected label style
 .btn-label {
   text-align: left;
   max-width: -webkit-fill-available;
@@ -787,4 +763,37 @@ button[type="submit"]:disabled {
     outline: none;
     box-shadow: none;
   }
+}
+.label-buttons {
+  // background-color: lawngreen;
+  display: inline;
+  padding: .8em;
+}
+.delete-label {
+  height: 23px;
+  width: 23px;
+  border-radius: 50%;
+  position: relative;
+  background-color: #F25272;
+}
+.i-delete{
+  font-size: 1em;
+  position: absolute;
+  top: 5px;
+  left: 4px;
+  color: white;
+}
+.add-label {
+  height: 23px;
+  width: 23px;
+  border-radius: 50%;
+  position: relative;
+  background-color: #0937FF;
+}
+.i-add{
+  font-size: 1em;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  color: white;
 }

@@ -16,11 +16,13 @@ import { AddLabelComponent } from '../add-label/add-label.component';
   styleUrls: ['./cluster.component.scss']
 })
 export class ClusterComponent implements OnInit {
-  labelsSelected = [];
-  txtName;
-  txtValue;
-
+   /**
+   * List of selected labels and entities
+   */
+  selectedLabels = [];
+  // TODO
   selectedLabel = false;
+
   /**
    * Backend reference
    */
@@ -158,19 +160,6 @@ export class ClusterComponent implements OnInit {
    }
 
   ngOnInit() {
-
-    this.labelsSelected = [
-      {
-        name: 'tomate',
-        value: 'queso'
-      },
-      {
-        name: 'tomate2',
-        value: 'queso2'
-      }
-    ];
-
-
     this.route.params.subscribe(params => {
       this.clusterId = params['clusterId']; // (+) converts string 'id' to a number
    });
@@ -348,42 +337,39 @@ export class ClusterComponent implements OnInit {
    * Opens the modal view that holds add label component
    */
   addLabel() {
-    // const initialState = {
-    //   organizationId: this.organizationId,
-    // };
+    const initialState = {
+      organizationId: this.organizationId,
+    };
 
-    // this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
-    // this.modalRef.content.closeBtnName = 'Close';
-    // this.modalService.onHide.subscribe((reason: string) => { });
-    console.log(this.txtName + ' ' + this.txtValue);
-    this.labelsSelected.push({
-      name: this.txtName,
-      value: this.txtValue
-    });
+    this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { });
+
   }
 
   /**
    * Deletes a selected label
+   * @param label selected label
    */
   deleteLabel(label) {
     console.log(label);
-
-    for (let index = 0; index < this.labelsSelected.length; index++) {
-      const labSelec = this.labelsSelected[index];
-
-      // console.log(this.labelsSelected[index].text);
-      if (labSelec['name'] = name) {
-        this.labelsSelected.splice(index, 1);
-      }
-
-    }
   }
 
   /**
    * Selects a label
+   * @param label selected label
    */
-  selectLabel() {
+  selectLabel(label) {
+    // this.selectedLabels.push(label);
     this.selectedLabel = !this.selectedLabel;
     console.log(this.selectLabel);
+  }
+
+  /**
+   * Check if the label is selected
+   * @param label selected label
+   */
+  isLabelSelected(label) {
+    console.log(label);
   }
 }
