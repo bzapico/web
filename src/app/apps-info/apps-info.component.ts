@@ -63,6 +63,8 @@ export class AppsInfoComponent implements OnInit {
   width: number;
   height: number;
   draggingEnabled: boolean;
+  nalejColorScheme: string[];
+  nextColorIndex: number;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -87,7 +89,7 @@ export class AppsInfoComponent implements OnInit {
     this.curve = shape.curveBundle;
     this.autoZoom = true;
     this.autoCenter = true;
-    this.enableZoom = false;
+    this.enableZoom = true;
     this.draggingEnabled = false;
     this.view = [350, 250];
     this.colorScheme = {
@@ -100,6 +102,14 @@ export class AppsInfoComponent implements OnInit {
     };
     this.instance = mockAppsInstancesList
     ; // Initialization to avoid null in view
+    this.nalejColorScheme = [
+      '#1725AE',
+      '#040D5A',
+      '#0F1B8C',
+      '#01073A',
+      '#091374'
+    ];
+    this.nextColorIndex = 0;
 
   }
 
@@ -121,22 +131,47 @@ export class AppsInfoComponent implements OnInit {
  * @param instance instance object
  */
   toGraphData(instance) {
-    instance.services.forEach(service => {
-      const node = {
-        id: service.service_id,
-        label: service.name
+    instance.groups.forEach(group => {
+      const nodeGroup = {
+        id: group.service_group_instance_id,
+        label: group.name,
+        tooltip: 'GROUP: ' + group.service_group_instance_id,
+        color: this.nalejColorScheme[this.nextColorIndex],
+        group: group.service_group_instance_id
       };
-      this.graphData.nodes.push(node);
+      this.graphData.nodes.push(nodeGroup);
+      group.service_instances.forEach(service => {
+        const nodeService = {
+          id: group.service_group_instance_id + '-s-' + service.service_id,
+          label: service.name,
+          tooltip: 'SERVICE: ' + service.service_id,
+          color: this.nalejColorScheme[this.nextColorIndex],
+          group: group.service_group_instance_id
+        };
+        this.graphData.nodes.push(nodeService);
+        this.graphData.links.push({
+          source: group.service_group_instance_id,
+          target: group.service_group_instance_id + '-s-' + service.service_id
+        });
+
+      });
+      this.nextColorIndex += 1;
+      if ( this.nextColorIndex >= this.nalejColorScheme.length ) {
+        this.nextColorIndex = 0;
+      }
     });
+
     if (instance.rules) {
       instance.rules.forEach(rule => {
         if (rule.auth_services) {
           rule.auth_services.forEach(linkedService => {
+            console.log(linkedService);
             const link = {
-              source: rule.source_service_id,
+              source: rule.target_service_group_name + rule.target_service_name,
               target: linkedService
             };
             this.graphData.links.push(link);
+            console.log(link);
           });
         }
       });
@@ -152,6 +187,20 @@ export class AppsInfoComponent implements OnInit {
       return ['--'];
     }
     return Object.entries(object);
+  }
+
+  /**
+   * Adds https in case of being required
+   * @param endpoint String containing the endpoint
+   */
+  getEndpointHref(endpoint: string) {
+    let URL = '';
+    if (!endpoint.startsWith('http') && !endpoint.startsWith('https')) {
+      URL = 'http://' + endpoint;
+    } else {
+      URL = endpoint;
+    }
+    return URL;
   }
 
 }

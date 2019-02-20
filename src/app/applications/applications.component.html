@@ -159,15 +159,15 @@
                 </span>
               </th>
               <th 
-                (click)="setOrder('tags')" 
-                [ngClass]="getCategoryCSSClass('tags')"
+                (click)="setOrder('labels')" 
+                [ngClass]="getCategoryCSSClass('labels')"
                 scope="col" 
                 class="col-4">
                 Labels
-                <span class="expand-chevron" *ngIf="sortedBy === 'tags' && !reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'labels' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'tags' && reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'labels' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
