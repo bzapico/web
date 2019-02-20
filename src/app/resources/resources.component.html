@@ -310,11 +310,11 @@
                 [ngClass]="getCategoryCSSClass('description')"
                 scope="col" 
                 class="col-3 pl-4">
-                Description
-                <span class="expand-chevron" *ngIf="sortedBy === 'description' && !reverse">
+                Labels
+                <span class="expand-chevron" *ngIf="sortedBy === 'labels' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'description' && reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'labels' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -382,7 +382,15 @@
                   class="blue">{{cluster.total_nodes}}
                 </a>
               </td>  
-              <td class="col-3 pl-4">{{cluster.description}}</td>
+              <td class="col-3 pl-4" *ngIf="cluster.labels === '-'"> no </td>
+                <td class="col-3 pl-4"*ngIf="cluster.labels !== '-'">
+                    <button 
+                      *ngFor="let label of labelsToString(cluster.labels)" 
+                      class="btn-sm btn-outline-primary" 
+                      disabled>
+                      {{label[0]}}: {{label[1]}}
+                    </button>
+                </td>
               <td class="text-lowercase col-1">
                 {{cluster.cluster_type_name}}
               </td>

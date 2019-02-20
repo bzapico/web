@@ -6,6 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TooltipModule } from '@swimlane/ngx-charts';
 
 describe('AppsInfoComponent', () => {
   let component: AppsInfoComponent;
@@ -18,6 +19,7 @@ describe('AppsInfoComponent', () => {
         ButtonsModule,
         HttpClientTestingModule,
         BrowserAnimationsModule,
+        TooltipModule,
         NgxGraphModule,
         RouterTestingModule
       ],
