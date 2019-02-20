@@ -16,13 +16,6 @@ import { AddLabelComponent } from '../add-label/add-label.component';
   styleUrls: ['./cluster.component.scss']
 })
 export class ClusterComponent implements OnInit {
-   /**
-   * List of selected labels and entities
-   */
-  selectedLabels = [];
-  // TODO
-  selectedLabel = false;
-
   /**
    * Backend reference
    */
@@ -120,6 +113,11 @@ export class ClusterComponent implements OnInit {
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
+
+  /**
+   * List of selected labels from an entity
+   */
+  selectedLabels = [];
 
   constructor(
     private modalService: BsModalService,
@@ -229,7 +227,6 @@ export class ClusterComponent implements OnInit {
     if (!labels || labels === '-') {
       return ;
     }
-
     return Object.entries(labels);
   }
 
@@ -357,19 +354,38 @@ export class ClusterComponent implements OnInit {
 
   /**
    * Selects a label
-   * @param label selected label
+   * @param entityId entity from selected label
+   * @param labelKey label key from selected label
+   * @param labelValue label value from selected label
    */
-  selectLabel(label) {
-    // this.selectedLabels.push(label);
-    this.selectedLabel = !this.selectedLabel;
-    console.log(this.selectLabel);
+  onLabelClick(entityId, labelKey, labelValue) {
+    const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
+    if (selectedIndex === -1 ) {
+      const labelSelected = {
+        entityId: entityId,
+        labels: {}
+      };
+      labelSelected.labels[labelKey] = labelValue;
+      this.selectedLabels.push(labelSelected);
+    } else {
+      this.selectedLabels.splice(selectedIndex, 1);
+    }
   }
 
-  /**
-   * Check if the label is selected
-   * @param label selected label
-   */
-  isLabelSelected(label) {
-    console.log(label);
+ /**
+  * Check if the label is selected. Returs index number in selected labels or -1 if the label is not found.
+  * @param entityId entity from selected label
+  * @param labelKey label key from selected label
+  * @param labelValue label value from selected label
+  */
+  indexOfLabelSelected(entityId, labelKey, labelValue) {
+    for (let index = 0; index < this.selectedLabels.length; index++) {
+      if (this.selectedLabels[index].entityId === entityId &&
+          this.selectedLabels[index].labels[labelKey] === labelValue
+        ) {
+          return index;
+      }
+    }
+  return -1;
   }
 }
