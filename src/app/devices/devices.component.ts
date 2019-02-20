@@ -238,7 +238,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Calculates the number of characters needed to hide the title of tabs
+   * Calculates the number of characters needed to hide the title of tabs, breakpoints calculated through manual testing
    * @param event to pass in onResize method
    */
   @HostListener('window:resize', ['$event'])
