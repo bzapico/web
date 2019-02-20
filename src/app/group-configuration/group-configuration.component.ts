@@ -5,6 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { mockGroupList } from '../utils/mocks';
 
 @Component({
   selector: 'app-group-configuration',
@@ -12,11 +13,23 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
   styleUrls: ['./group-configuration.component.scss']
 })
 export class GroupConfigurationComponent implements OnInit {
-  checkBox = true;
   /**
    * Backend reference
    */
   backend: Backend;
+
+  /**
+   * Model that hold organization ID, default connectivity and enabled or disbled option
+   */
+  organizationId: string;
+  defaultConnectivity: boolean;
+  enabled: boolean;
+  name: string;
+
+  /**
+   * List of available groups
+   */
+  group: any;
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -32,16 +45,47 @@ export class GroupConfigurationComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.addUserMock) || null;
+    const mock = localStorage.getItem(LocalStorageKeys.configGroupMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
     } else {
       this.backend = backendService;
     }
+    // Default initialization
+    // group is initialized by devices group component
+    this.defaultConnectivity = false;
+    this.enabled = false;
   }
 
   ngOnInit() {
+  }
+
+  /**
+   *  Request to save the group data modifications
+   */
+  saveGroupChanges() {
+    const groupData = {
+      enabled: this.enabled,
+      default_device_connectivity: this.defaultConnectivity,
+      name: this.name
+    };
+    this.backend.updateGroup(this.organizationId, groupData)
+    .subscribe(response => {
+      this.group = response;
+      this.notificationsService.add({
+        message: 'The group "' + this.name + '" has been edited',
+        timeout: 10000
+      });
+      this.bsModalRef.hide();
+    }, error => {
+      this.notificationsService.add({
+        message: error.error.message,
+        timeout: 10000
+      });
+      this.bsModalRef.hide();
+    });
+    this.bsModalRef.hide();
   }
 
   /**
@@ -50,12 +94,4 @@ export class GroupConfigurationComponent implements OnInit {
   closeModal() {
     this.bsModalRef.hide();
   }
-
-  /**
-   * Checkbox
-   */
-  enabled() {
-    this.checkBox = !this.checkBox;
-  }
-
 }

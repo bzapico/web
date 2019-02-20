@@ -1,4 +1,4 @@
-/* - - - Summary app card - - - */
+/* - - - Summary device card - - - */
 .summary-card {
     display: flex;
     flex-direction: row;
@@ -14,78 +14,40 @@
     align-content: center;
     height: 100%;
 }
-.deployed-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    height: 100%;
-    max-width: 156px;
-    align-items: center;
-}
-.fix-top {
-    margin-top: 6px;
-}
-.donut-chart {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    position: relative;
-}
-.apps-run {
-    font-size: .8em;
-    margin-top: -1em;
-}
 .circle {
-    width:112px;
+    width: 112px;
     height: 112px;
-    border: 1px solid #949494; 
-    -moz-border-radius: 50%; 
-    -webkit-border-radius: 50%; 
+    border: 1px solid #949494;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
     border-radius: 50%;
     position: relative;
     margin: 0 auto;
-}
-.circle span {
-    text-align: center;
-    color: black;
-    font-size: 1.7em;
-}
+    span {
+        text-align: center;
+        color: black;
+        font-size: 1.7em;
+    }
+  }
 .circle-name {
     font-size: 1.2em;
     color:#949494;
 }
 
-/* - - - Medias Summary app card - - - */
+/* - - - Medias Summary devices card - - - */
 @media screen and (max-width:1500px) {
     .circle {
         margin-top: 2em;
         max-width: 65px;
         max-height: 65px;
-    }
-    .circle span {
-        font-size: 1em !important;
-        top: 21px;
-        left: 25px;
+        span {
+            font-size: 1em !important;
+            top: 21px;
+            left: 25px;
+        }
     }
     .circle-name {
         font-size: .9em !important;
-    }
-    .info-btn {
-        height: 25px !important;
-        width: 25px !important;
-    }
-    .i-info {
-        font-size: 1.2em !important;
-        top: 2px !important;
-        left: 10px !important;
-    }
-    .donut-chart {
-        height: 85%;
-        max-width: 100px;
-    }
-    .apps-run {
-        margin-top: -3em;
     }
     .summary-card {
         margin-top: 0em;
@@ -104,16 +66,9 @@
         top: 54px;
         left: 58px;
     }
-    .apps-run {
-        font-size: 1em;
-        margin-top: 0em;
-    }
-    .deployed-box {
-        max-width: 176px;
-    }
 }
 
-/* - - - App Status card - - - */
+/* - - - Device Status card - - - */
 .box-line-chart {
     display: flex;
     flex-direction: row;
@@ -127,27 +82,14 @@
     justify-content: space-between;
 }
 
-/* - - - Media App Status card - - - */
+/* - - - Media Device Status card - - - */
 @media screen and (max-width:1500px) {
     .y-axis-line-chart span {
         font-size: .8em;
     }
 }
 
-/* - - - Deployed app list table card - - - */
-.info-btn {
-    height: 32px;
-    width:32px;
-    border-radius: 50%;
-    position: relative;
-}
-.i-info {
-    font-size: 1.2em;
-    font-weight: 700;
-    position: absolute;
-    top: 5px;
-    left: 13px;
-}
+/* - - - Devices list table card - - - */
 .status-dot:before {
     content:'\A';
     width:10px;
@@ -175,10 +117,15 @@
     display:inline-block;
     margin: 0 5px 0 0;
 }
-.no-apps {
+.no-devices {
     height: 70%;
 }
-/* - - - Medias Deployed app list card - - - */
+.no-devices-in-group {
+    position: absolute;
+    bottom: 33%;
+    left: 33%;
+}
+/* - - - Medias Devices list card - - - */
 @media screen and (max-width:1500px) {
     .card-title-h h5, .card-title-c h5 {
         font-size: 1em;
@@ -193,39 +140,67 @@
     .status-dot-process:before {
         margin: 0 23px;
     }
-    .fix-top {
-        margin-top: 6px!important;
-    }
 }
 @media screen and (max-width:1680px) {
     .summary-card {
         margin-top: 0em;
     }
-    .deployed-box{
-        max-width: 121px;
-    }
     .circle {
         width: 90px;
         height: 90px;
     }
-    .apps-run {
-        line-height: 1em;
-    }
-    .fix-top {
-        margin-top: 25px;
-    }
-    .donut-chart {
-        height: 75%;
-    }
-    .no-deployed {
-        padding-top: 2em;
+}
+
+/* - - - Devices tabs buttons - - - */
+.devices-tab-buttons-container {
+    font-size: .6em;
+    margin-bottom: 1em;
+    .devices-tab-button {
+        list-style: none;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        float: right;
+        color: #949494;
+        li {
+            font-size: 1em;
+            float: left;
+            padding: 0rem 1.5rem;
+            cursor: pointer;
+            position: relative;
+        }
+        span {
+            display: block;
+            text-decoration: none;
+            display: block;
+            transition: .3s background-color;
+            &.active {
+                color: #0937FF;
+                &::before {
+                    content: "";
+                    height: 5px;
+                    width: 100%;
+                    display: block;
+                    position: absolute;
+                    bottom: -1px;
+                    left: 0;
+                    background-color: #0937FF;
+                }
+            }
+        }
+        .devices-button-item {
+            i {
+                font-size: 1.4em;
+                margin-right: .2em;
+                vertical-align: middle;
+            }
+        }
+        .devices-button-item-pr {
+            padding-right: 3em;
+        }
     }
 }
 
-.devices-checkbox {
-    cursor: pointer;
-}
-  
 /* - - - Devices tabs - - - */
 .devices-tab-container {
     margin-bottom: 2em;
@@ -233,59 +208,49 @@
     font-size: .6em;
     border-bottom: 1px solid #ececec;
     margin-left: 1em;
-   ul {
+    display: flex;
+    flex-direction: row;
+    ul {
         list-style: none;
         text-align: center;
         padding: 0;
         margin: 0;
     }
-   li {
-        font-family: 'Oswald', sans-serif;
+    li {
         font-size: 1em;
         float: left;
         padding: 0.5rem 2.5rem;
         cursor: pointer;
         position: relative;
     }
+    .tabs-arrow {
+        color: #949494;
+        padding: 0rem 2rem;
+    }
     .devices-tab-title {
         cursor: default;
         padding-right: 8em;
+    }
+    .devices-tab {
+        text-transform: uppercase;
     }
     span {
         display: block;
         text-decoration: none;
         display: block;
         transition: .3s background-color;
-    }
-    span.active{
-        color: #0937FF;
-    }
-    span.active::before {
-        content: "";
-        height: 5px;
-        width: 100%;
-        display: block;
-        position: absolute; 
-        bottom: -1px;        
-        left: 0;
-        background-color: #0937FF;
-    }
-    .devices-tab-button {
-        float: right;
-        color: #707070;
-        li {
-            padding: 0.5rem 1.5rem;
-        }
-        .devices-button-item {
-            i {
-                font-size: 1.4em;
-                margin-right: .2em;
-                vertical-align: middle;
-
-            }
-        }
-        .devices-button-item-pr {
-            padding-right: 3em;
+        &.active {
+          color: #0937FF;
+          &::before {
+            content: "";
+            height: 5px;
+            width: 100%;
+            display: block;
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            background-color: #0937FF;
+          }
         }
     }
 }
@@ -297,8 +262,8 @@
         vertical-align: middle;
         font-size:  .9em;
         border: none;
-        margin-left: 20%;
         text-align: right;
+        max-width: 180px;
     }
     th {
         padding: 0.2em;
@@ -311,8 +276,8 @@
     } 
 }
 .summary-devices-availability {
-    color: #0937FF;
     font-size: 1.4em !important;
+    text-transform: uppercase;
 }
 .summary-devices-running {
     font-size: 3em !important;
@@ -324,11 +289,17 @@
 /* - - - Medias summary card devices table - - - */
 @media screen and (max-width:1779px) {
     .summary-card {
-        .summary-devices-availability {
-            font-size: 1em !important;
-        }
+        .summary-devices-availability, 
         .summary-devices-running {
             font-size: 1em !important;
+        }
+    }
+    .devices-tab-container li {
+        padding: 0.5rem 1.2rem;
+    }
+    .devices-tab-button {
+        li {
+            padding: 0rem 1.2rem !important;
         }
     }
 }
@@ -342,13 +313,18 @@
         }
     }
     .devices-tab-container li {
-        padding: 0.5rem 1.5rem;
+        padding: 0.5rem .9rem;
     }
     .devices-button-item-pr {
         padding-right: 0em !important;
     }
     .devices-tab-title {
         padding-right: 4em !important;
+    }
+    .devices-tab-button {
+        li {
+            padding: 0rem .9rem !important;
+        }
     }
 }
 
@@ -357,30 +333,35 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-
     .button {
         outline: none;
         display: inline-block;
         background-color: #0937FF;
         border-radius: 50px;
-        border:none;
+        border: none;
         color: #FFFFFF;
         font-size: .8em;
         font-weight: 100;
         padding-bottom: .5em;
         padding-top: .6em;
-        width:161px;
+        width: 161px;
         transition: all 0.5s;
         cursor: pointer;
-    }
-    .button span.close-trigger {
-        font-size: 1.2em !important;
-        margin-left: 40px;
-        cursor: pointer;
-        display: inline-block;
-        position: relative;
-        transition: 0.5s;
+        text-transform: uppercase;
+        span.close-trigger {
+            font-size: 1.2em !important;
+            margin-left: 40px;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
     }
 }
-
-  
+.devices-checkbox {
+    cursor: pointer;
+}
+.opacity {
+    opacity: 0;
+    pointer-events: none;
+}

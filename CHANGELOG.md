@@ -3,6 +3,16 @@
 Overall:
 - Added sorting and filtering capabilities 
 
+- IoT Devices view
+    - Top indicators 
+        - Summary info  
+        - Devices status timeline
+    - Devices list  
+        - Tabs functionality
+    - Add group modal view
+    - Configuration group modal view
+    - Device group created modal view
+
 ## v0.1.0
 Created the brand new UI Frontend for Nalej. 
 - Sidebar with navigation
