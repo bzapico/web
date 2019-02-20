@@ -149,7 +149,7 @@
                 (click)="setOrder('id')"
                 [ngClass]="getCategoryCSSClass('id')"
                 scope="col" 
-                class="col-2">
+                class="col-3">
                 ID
                 <span class="expand-chevron" *ngIf="sortedBy === 'id' && !reverse">
                   <i class="material-icons">expand_more</i>
@@ -159,24 +159,11 @@
                 </span>
               </th>
               <th 
-                (click)="setOrder('description')" 
-                [ngClass]="getCategoryCSSClass('description')"
-                scope="col" 
-                class="col-3 pl-4">
-                Description
-                <span class="expand-chevron" *ngIf="sortedBy === 'description' && !reverse">
-                  <i class="material-icons">expand_more</i>
-                </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'description' && reverse">
-                  <i class="material-icons">expand_less</i>
-                </span>
-              </th>
-              <th 
                 (click)="setOrder('tags')" 
                 [ngClass]="getCategoryCSSClass('tags')"
                 scope="col" 
-                class="col-2">
-                Tags
+                class="col-4">
+                Labels
                 <span class="expand-chevron" *ngIf="sortedBy === 'tags' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -205,9 +192,8 @@
           <tbody>
             <tr *ngFor="let app of instances | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
               <td class="text-capitalize col-2">{{app.name}}</td>
-              <td class="col-2">{{app.app_instance_id}}</td>
-              <td class="col-3">{{app.description}}</td>  
-              <td class="col-2">
+              <td class="col-3">{{app.app_instance_id}}</td>
+              <td class="col-4">
                 <button *ngFor="let label of labelsToString(app.labels)" class="btn-sm btn-outline-primary" disabled>
                     {{label[0]}}: {{label[1]}}
                 </button>
