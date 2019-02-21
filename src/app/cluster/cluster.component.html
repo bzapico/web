@@ -235,9 +235,9 @@
                   {{label[0]}}: {{label[1]}} 
                 </button>
                 <div class="label-buttons">
-                    <!-- *ngIf="activeLabelId === '' || indexOfLabelSelected(node.node_id, label[0], label[1]).length === 0" -->
+                    <!-- *ngIf="activeLabel === '' || indexOfLabelSelected(node.node_id, label[0], label[1]).length === 0" -->
                   <div 
-
+                  *ngIf="activeLabel === 0 || indexOfLabelSelected(node.node_id, label[0], label[1]).length === 0"
                     class="add-label-button" 
                     (click)="addLabel()">
                     <i 
@@ -247,9 +247,9 @@
                       add
                     </i>
                   </div>
-                  <!-- *ngIf="activeLabelId === indexOfLabelSelected(node.node_id, label[0], label[1]) || indexOfLabelSelected(node.node_id, label[0], label[1]).length > 0" -->
+                  <!-- *ngIf="activeLabel === indexOfLabelSelected(node.node_id, label[0], label[1]) || indexOfLabelSelected(node.node_id, label[0], label[1]).length > 0" -->
                   <div 
-
+                  *ngIf="activeLabel === indexOfLabelSelected(node.node_id, label[0], label[1]) || indexOfLabelSelected(node.node_id, label[0], label[1]).length > 0"
                     class="delete-label-button" 
                     (click)="deleteLabel(label)">
                     <i 
