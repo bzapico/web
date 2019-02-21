@@ -226,18 +226,18 @@
               <td class="col-3" *ngIf="node.labels !== '-'">
                 <button 
                   (click)="onLabelClick(node.node_id, label[0], label[1])"
-                  [ngClass]="{
-                    'btn-label-selected': indexOfLabelSelected(node.node_id, label[0], label[1]) >= 0 ,
-                    'btn-outline-primary': indexOfLabelSelected(node.node_id, label[0], label[1]) === -1
-                  }" 
+                  [ngClass]=
+                  "{'btn-label-selected': indexOfLabelSelected(node.node_id, label[0], label[1]) >= 0 ,
+                    'btn-outline-primary': indexOfLabelSelected(node.node_id, label[0], label[1]) === -1}" 
                   *ngFor="let label of labelsToString(node.labels)" 
                   class="btn-sm btn-outline-primary" 
                   >
                   {{label[0]}}: {{label[1]}} 
                 </button>
                 <div class="label-buttons">
+                    <!-- *ngIf="activeLabelId === '' || indexOfLabelSelected(node.node_id, label[0], label[1]).length === 0" -->
                   <div 
-                    *ngIf="!activeLabel" 
+
                     class="add-label-button" 
                     (click)="addLabel()">
                     <i 
@@ -247,8 +247,9 @@
                       add
                     </i>
                   </div>
+                  <!-- *ngIf="activeLabelId === indexOfLabelSelected(node.node_id, label[0], label[1]) || indexOfLabelSelected(node.node_id, label[0], label[1]).length > 0" -->
                   <div 
-                    *ngIf="activeLabel" 
+
                     class="delete-label-button" 
                     (click)="deleteLabel(label)">
                     <i 

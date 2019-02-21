@@ -8,6 +8,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { mockDevicesChart } from '../utils/mocks';
 import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group.component';
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
+import { AddLabelComponent } from '../add-label/add-label.component';
 
 
 @Component({
@@ -155,6 +156,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Checkbox reference
    */
   checkBox = true;
+
+  /**
+   * List of selected labels from an entity
+   */
+  selectedLabels = [];
 
   constructor(
     private modalService: BsModalService,
@@ -676,5 +682,64 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       }
     });
     return devices;
+  }
+
+  /**
+   * Opens the modal view that holds add label component
+   */
+  addLabel() {
+    const initialState = {
+      organizationId: this.organizationId,
+    };
+
+    this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { });
+
+  }
+
+  /**
+   * Deletes a selected label
+   * @param label selected label
+   */
+  deleteLabel(label) {
+    console.log(label);
+  }
+
+  /**
+   * Selects a label
+   * @param entityId entity from selected label
+   * @param labelKey label key from selected label
+   * @param labelValue label value from selected label
+   */
+  onLabelClick(entityId, labelKey, labelValue) {
+    const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
+    if (selectedIndex === -1 ) {
+      const labelSelected = {
+        entityId: entityId,
+        labels: {}
+      };
+      labelSelected.labels[labelKey] = labelValue;
+      this.selectedLabels.push(labelSelected);
+    } else {
+      this.selectedLabels.splice(selectedIndex, 1);
+    }
+  }
+
+ /**
+  * Check if the label is selected. Returs index number in selected labels or -1 if the label is not found.
+  * @param entityId entity from selected label
+  * @param labelKey label key from selected label
+  * @param labelValue label value from selected label
+  */
+  indexOfLabelSelected(entityId, labelKey, labelValue) {
+    for (let index = 0; index < this.selectedLabels.length; index++) {
+      if (this.selectedLabels[index].entityId === entityId &&
+          this.selectedLabels[index].labels[labelKey] === labelValue
+        ) {
+          return index;
+      }
+    }
+  return -1;
   }
 }
