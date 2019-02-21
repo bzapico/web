@@ -382,8 +382,8 @@
                   class="blue">{{cluster.total_nodes}}
                 </a>
               </td>  
-              <td class="col-3 pl-4" *ngIf="cluster.labels === '-'"> no </td>
-                <td class="col-3 pl-4" *ngIf="cluster.labels !== '-'">
+              <td class="col-3 pl-4" *ngIf="!cluster.labels"> no </td>
+                <td class="col-3 pl-4" *ngIf="cluster.labels">
                   <button 
                     (click)="onLabelClick(cluster.cluster_id, label[0], label[1])"
                     [ngClass]=

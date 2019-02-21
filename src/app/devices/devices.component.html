@@ -435,8 +435,8 @@
                     {{device.status_name}}
                   </span>
                 </td>
-                <td class="col-4" *ngIf="device.labels.lenght < 0"> no </td>
-                <td class="col-4" *ngIf="device.labels.lenght >= 0">
+                <td class="col-4" *ngIf="!device.labels"> no </td>
+                <td class="col-4" *ngIf="device.labels">
                   <button 
                     (click)="onLabelClick(device.device_id, label[0], label[1])"
                     [ngClass]=
@@ -510,7 +510,8 @@
                     {{device.status_name}}
                   </span>
                 </td>
-                <td class="col-4">
+                <td class="col-4" *ngIf="!device.labels "> no </td>
+                <td class="col-4" *ngIf="device.labels">
                   <button 
                     *ngFor="let label of labelsToString(device.labels)" 
                     class="btn-sm btn-outline-primary" 
