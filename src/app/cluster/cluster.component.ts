@@ -16,12 +16,6 @@ import { AddLabelComponent } from '../add-label/add-label.component';
   styleUrls: ['./cluster.component.scss']
 })
 export class ClusterComponent implements OnInit {
-
-  /**
-   * Models that hold the amount of active labels
-   */
-  activeLabel: number;
-
   /**
    * Backend reference
    */
@@ -148,7 +142,6 @@ export class ClusterComponent implements OnInit {
     this.clustersCount = 0;
     this.clusterData = {};
     this.requestError = '';
-    this.activeLabel = 0;
 
     // SortBy
     this.sortedBy = '';
@@ -396,13 +389,17 @@ export class ClusterComponent implements OnInit {
   return -1;
   }
 
-
   /**
-   * Check if any label is selected to change the state of add and delete buttons and to change class when is about to be selected
+   * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
+   * @param entityId entity from selected label
    */
-  isAnyLabelSelected() {
-    // this.activeLabel = this.indexOfLabelSelected(entityId, labelKey, labelValue);
-// activeLabel === indexOfLabelSelected(node.node_id, label[0], label[1]) ||
-// indexOfLabelSelected(node.node_id, label[0], label[1]).length > 0
+  isAnyLabelSelected(entityId) {
+    if (this.selectedLabels.length > 0) {
+      const indexSelected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
+      if (indexSelected >= 0) {
+          return true;
+      }
+    }
+    return false;
   }
 }

@@ -269,1103 +269,261 @@ export const mockResourcesSummary = {
  */
 export const mockAppsInstancesList = [
     {
-        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
-        app_instance_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        name: 'UI - Tableau',
-        description: 'Instance of Tableau',
-        configuration_options: {
-            option1: 'value1',
-            option2: 'value2',
-            option3: 'value3'
+        'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+        'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+        'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4b',
+        'name': 'dhtest15',
+        'labels': {
+           'app': 'simple-app'
         },
-        environment_variables: {
-            var1: 'value1',
-            var2: 'value2',
-            var3: 'value3'
-        },
-        labels: {
-            app2: 'simple-app',
-            app1: 'web-test',
-        },
-        rules: [
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '1',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
+        'rules': [
+           {
+              'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+              'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+              'rule_id': 'fefec0af-ac57-42f1-9741-a25abfa77db6',
+              'name': 'allow access to wordpress',
+              'target_service_group_name': 'g1',
+              'target_service_name': '2',
+              'target_port': 80,
+              'access_name': 'PUBLIC'
+           }
+        ],
+        'groups': [
+           {
+              'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+              'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+              'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4b',
+              'service_group_id': '338b4ca5-a189-4c6d-a7f2-5ed3e2f641f3',
+              'service_group_instance_id': 'd8863b33-b55a-4b0d-9b2d-5cefcfb6ac52',
+              'name': 'g1',
+              'service_instances': [
+                 {
+                    'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                    'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                    'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4b',
+                    'service_group_id': '338b4ca5-a189-4c6d-a7f2-5ed3e2f641f3',
+                    'service_group_instance_id': 'd8863b33-b55a-4b0d-9b2d-5cefcfb6ac52',
+                    'service_id': 'a433d8fd-8821-4323-9a9c-07a1bf724db4',
+                    'name': 'simple-mysql',
+                    'type_name': 'DOCKER',
+                    'image': 'mysql:5.6',
+                    'specs': {
+                       'replicas': 1
+                    },
+                    'storage': [
+                       {
+                          'size': '104857600',
+                          'mount_path': '/tmp',
+                          'type_name': 'EPHEMERAL'
+                       }
+                    ],
+                    'exposed_ports': [
+                       {
+                          'name': 'mysqlport',
+                          'internal_port': 3306,
+                          'exposed_port': 3306
+                       }
+                    ],
+                    'environment_variables': {
+                       'MYSQL_ROOT_PASSWORD': 'root'
+                    },
+                    'configs': [
+                       {
+                          'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                          'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                          'config_file_id': '8f0737bb-0356-40ec-8171-45ca037d09b1',
+                          'content': 'SG9sYQo=',
+                          'mount_path': '/config/saludo.conf'
+                       },
+                       {
+                          'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                          'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                          'config_file_id': '0c6adc92-9143-4493-8e8d-f9ab8cddb9cc',
+                          'content': 'QWRpb3MK',
+                          'mount_path': '/config/despedida.conf'
+                       }
+                    ],
+                    'labels': {
+                       'app': 'simple-mysql',
+                       'component': 'simple-app'
+                    },
+                    'status_name': 'SERVICE_WAITING',
+                    'endpoints': [
+                        'nalej.com',
+                    ]
+                 },
+                 {
+                    'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                    'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                    'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4b',
+                    'service_group_id': '338b4ca5-a189-4c6d-a7f2-5ed3e2f641f3',
+                    'service_group_instance_id': 'd8863b33-b55a-4b0d-9b2d-5cefcfb6ac52',
+                    'service_id': '068458be-679e-4d91-9747-c51b95fd81bd',
+                    'name': 'simple-wordpress',
+                    'type_name': 'DOCKER',
+                    'image': 'wordpress:5.0.0',
+                    'specs': {
+                       'replicas': 1
+                    },
+                    'storage': [
+                       {
+                          'size': '104857600',
+                          'mount_path': '/tmp',
+                          'type_name': 'EPHEMERAL'
+                       }
+                    ],
+                    'exposed_ports': [
+                       {
+                          'name': 'wordpressport',
+                          'internal_port': 80,
+                          'exposed_port': 80,
+                          'endpoints': [
+                             {
+                                'type_name': 'WEB',
+                                'path': '/'
+                             }
+                          ]
+                       }
+                    ],
+                    'environment_variables': {
+                       'WORDPRESS_DB_HOST': 'NALEJ_SERV_SIMPLE-MYSQL:3306',
+                       'WORDPRESS_DB_PASSWORD': 'root'
+                    },
+                    'labels': {
+                       'app': 'simple-wordpress',
+                       'component': 'simple-app'
+                    },
+                    'deploy_after': [
+                       '1'
+                    ],
+                    'status_name': 'SERVICE_WAITING'
+                 }
+              ],
+              'policy_name': 'SAME_CLUSTER',
+              'status_name': 'SERVICE_SCHEDULED',
+              'specs': {
+                 'num_replicas': 1
+              }
+           },
+           {
+              'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+              'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+              'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4b',
+              'service_group_id': '338b4ca5-a189-4c6d-a7f2-5ed3e2f641f3',
+              'service_group_instance_id': '78138841-7d52-402b-86e7-50f2ff192716',
+              'name': 'g1',
+              'service_instances': [
+                 {
+                    'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                    'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                    'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4b',
+                    'service_group_id': '338b4ca5-a189-4c6d-a7f2-5ed3e2f641f3',
+                    'service_group_instance_id': '78138841-7d52-402b-86e7-50f2ff192716',
+                    'service_id': 'a433d8fd-8821-4323-9a9c-07a1bf724db4',
+                    'name': 'simple-mysql',
+                    'type_name': 'DOCKER',
+                    'image': 'mysql:5.6',
+                    'specs': {
+                       'replicas': 1
+                    },
+                    'storage': [
+                       {
+                          'size': '104857600',
+                          'mount_path': '/tmp',
+                          'type_name': 'EPHEMERAL'
+                       }
+                    ],
+                    'exposed_ports': [
+                       {
+                          'name': 'mysqlport',
+                          'internal_port': 3306,
+                          'exposed_port': 3306
+                       }
+                    ],
+                    'environment_variables': {
+                       'MYSQL_ROOT_PASSWORD': 'root'
+                    },
+                    'configs': [
+                       {
+                          'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                          'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                          'config_file_id': '8f0737bb-0356-40ec-8171-45ca037d09b1',
+                          'content': 'SG9sYQo=',
+                          'mount_path': '/config/saludo.conf'
+                       },
+                       {
+                          'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                          'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                          'config_file_id': '0c6adc92-9143-4493-8e8d-f9ab8cddb9cc',
+                          'content': 'QWRpb3MK',
+                          'mount_path': '/config/despedida.conf'
+                       }
+                    ],
+                    'labels': {
+                       'app': 'simple-mysql',
+                       'component': 'simple-app'
+                    },
+                    'status_name': 'SERVICE_RUNNING',
+                    'deployed_on_cluster_id': '155cb041-58c5-45aa-b529-1e4ce66e71e1'
+                 },
+                 {
+                    'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                    'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                    'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4b',
+                    'service_group_id': '338b4ca5-a189-4c6d-a7f2-5ed3e2f641f3',
+                    'service_group_instance_id': '78138841-7d52-402b-86e7-50f2ff192716',
+                    'service_id': '068458be-679e-4d91-9747-c51b95fd81bd',
+                    'name': 'simple-wordpress',
+                    'type_name': 'DOCKER',
+                    'image': 'wordpress:5.0.0',
+                    'specs': {
+                       'replicas': 1
+                    },
+                    'storage': [
+                       {
+                          'size': '104857600',
+                          'mount_path': '/tmp',
+                          'type_name': 'EPHEMERAL'
+                       }
+                    ],
+                    'exposed_ports': [
+                       {
+                          'name': 'wordpressport',
+                          'internal_port': 80,
+                          'exposed_port': 80,
+                          'endpoints': [
+                             {
+                                'type_name': 'WEB',
+                                'path': '/'
+                             }
+                          ]
+                       }
+                    ],
+                    'environment_variables': {
+                       'WORDPRESS_DB_HOST': 'NALEJ_SERV_SIMPLE-MYSQL:3306',
+                       'WORDPRESS_DB_PASSWORD': 'root'
+                    },
+                    'labels': {
+                       'app': 'simple-wordpress',
+                       'component': 'simple-app'
+                    },
+                    'deploy_after': [
+                       '1'
+                    ],
+                    'status_name': 'SERVICE_RUNNING',
+                    'deployed_on_cluster_id': '155cb041-58c5-45aa-b529-1e4ce66e71e1'
+                 }
+              ],
+              'policy_name': 'SAME_CLUSTER',
+              'status_name': 'SERVICE_SCHEDULED',
+              'specs': {
+                 'num_replicas': 1
+              }
+           }
+        ],
+        'status_name': 'RUNNING',
 
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '2',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
-                    '1',
-                    '3',
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '3',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
-                    '1',
-                    '2',
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '4',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
-                    '1',
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            }
-        ],
-        groups: [
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_2',
-                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
-                service_group_id: 'service_group_id_2',
-                name: 'group_2',
-                description: 'Databases',
-                service_instances: [
-                    '1',
-                    '5'
-                ],
-                policy_name: 'recursive'
-            }
-        ],
-        services: [
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_1',
-                app_descriptor_id: 'app_descriptor_id_1',
-                service_id: '1',
-                name: 'simple-mysql',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '0'
-                ],
-                status_name: 'RUNNING'
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_2',
-                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
-                service_id: '2',
-                name: 'simple-mysql',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '1'
-                ],
-                status_name: 'RUNNING'
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_3',
-                app_descriptor_id: 'app_descriptor_id_3',
-                service_id: '3',
-                name: 'simple-wordpress',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '2'
-                ],
-                status_name: 'SERVICE_WAITING'
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_4',
-                app_descriptor_id: 'app_descriptor_id_4',
-                service_id: '4',
-                name: 'simple-mysql',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '3'
-                ],
-                status_name: 'RUNNING'
-            }
-        ],
-        status_name: 'Running',
-    },
-    {
-        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        app_descriptor_id: 'app_descriptor_id_3',
-        app_instance_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        name: 'UI - Grafana',
-        description: 'Grafana dashboard',
-        configuration_options: {
-            option1: 'value1',
-            option2: 'value2',
-            option3: 'value3'
-        },
-        environment_variables: {
-            var1: 'value1',
-            var2: 'value2',
-            var3: 'value3'
-        },
-        labels: {
-            app1: 'web-test',
-        },
-        rules: [
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_3',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '1',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
-
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_3',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '2',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
-                    '1',
-                    '3',
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_3',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '3',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
-                    '1',
-                    '2',
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_3',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '4',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
-                    '1',
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            }
-        ],
-        groups: [
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_3',
-                app_descriptor_id: 'app_descriptor_id_3',
-                service_group_id: 'service_group_id_3',
-                name: 'group_3',
-                description: 'Databases',
-                service_instances: [
-                    '1',
-                    '5'
-                ],
-                policy_name: 'recursive'
-            }
-        ],
-        services: [
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_1',
-                app_descriptor_id: 'app_descriptor_id_3',
-                service_id: '1',
-                name: 'simple-mysql',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '0'
-                ],
-                status_name: 'SERVICE_WAITING'
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_2',
-                app_descriptor_id: 'app_descriptor_id_3',
-                service_id: '2',
-                name: 'simple-mysql',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '1'
-                ],
-                status_name: 'RUNNING'
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_3',
-                app_descriptor_id: 'app_descriptor_id_3',
-                service_id: '3',
-                name: 'simple-wordpress',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '2'
-                ],
-                status_name: 'RUNNING'
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_4',
-                app_descriptor_id: 'app_descriptor_id_4',
-                service_id: '4',
-                name: 'simple-wordpress',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '3'
-                ],
-                status_name: 'RUNNING'
-            }
-        ],
-        status_name: 'Running',
-    },
-    {
-        organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-        app_descriptor_id: 'app_descriptor_id_4',
-        app_instance_id: 'f9641333-3100-4bab-be3e-b0d33c227634',
-        name: 'Assets Application',
-        description: 'Instance of Cassandra',
-        configuration_options: {
-            option1: 'value1',
-            option2: 'value2',
-            option3: 'value3'
-        },
-        environment_variables: {
-            var1: 'value1',
-            var2: 'value2',
-            var3: 'value3'
-        },
-        labels: {
-            app2: 'simple-app',
-            app1: 'web-test',
-        },
-        rules: [
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_4',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '1',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
-
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_4',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '2',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
-                    '1',
-                    '3',
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_4',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '3',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
-                    '1',
-                    '2',
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_4',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '4',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
-                    '1',
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            }
-        ],
-        groups: [
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_2',
-                app_descriptor_id: 'app_descriptor_id_4',
-                service_group_id: 'service_group_id_2',
-                name: 'group_2',
-                description: 'Databases',
-                service_instances: [
-                    '1',
-                    '5'
-                ],
-                policy_name: 'recursive'
-            }
-        ],
-        services: [
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_1',
-                app_descriptor_id: 'app_descriptor_id_4',
-                service_id: '1',
-                name: 'simple-mysql',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '0'
-                ],
-                status_name: 'SERVICE_WAITING'
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_2',
-                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
-                service_id: '2',
-                name: 'simple-mysql',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '1'
-                ],
-                status_name: 'RUNNING'
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_3',
-                app_descriptor_id: 'app_descriptor_id_3',
-                service_id: '3',
-                name: 'simple-wordpress',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '2'
-                ],
-                status_name: 'RUNNING'
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_4',
-                app_descriptor_id: 'app_descriptor_id_4',
-                service_id: '4',
-                name: 'simple-wordpress',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '3'
-                ],
-                status_name: 'RUNNING'
-            }
-        ],
-        status_name: 'Running',
-    },
-    {
-        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        app_descriptor_id: 'app_descriptor_id_5',
-        app_instance_id: 'f9641333-3100-4bab-be3e-b0d33c227634',
-        name: 'Assets Application',
-        description: 'Instance of MongoDB',
-        configuration_options: {
-            option1: 'value1',
-            option2: 'value2',
-            option3: 'value3'
-        },
-        environment_variables: {
-            var1: 'value1',
-            var2: 'value2',
-            var3: 'value3'
-        },
-        labels: {
-            app2: 'simple-app',
-        },
-        rules: [
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_5',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '1',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
-
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_5',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '2',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
-                    '1',
-                    '3',
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_5',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '3',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
-                    '1',
-                    '2',
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_descriptor_id: 'app_descriptor_id_5',
-                rule_id: '83799773-1fe6-44ad-a32c-04fab6212c84',
-                name: 'all open',
-                source_service_id: '4',
-                source_port: '1234',
-                access_name: 'root',
-                auth_services: [
-                    '1',
-                ],
-                device_groups: [
-                    'device_group1',
-                    'device_group2',
-                    'device_group3',
-                ],
-            }
-        ],
-        groups: [
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_2',
-                app_descriptor_id: 'app_descriptor_id_5',
-                service_group_id: 'service_group_id_2',
-                name: 'group_2',
-                description: 'Databases',
-                service_instances: [
-                    '1',
-                    '5'
-                ],
-                policy_name: 'recursive'
-            }
-        ],
-        services: [
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_1',
-                app_descriptor_id: 'app_descriptor_id_1',
-                service_id: '1',
-                name: 'simple-mysql',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '0'
-                ],
-                status_name: 'RUNNING'
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_2',
-                app_descriptor_id: '174a1888-a7ed-49a1-940a-7a648ca3ec8f',
-                service_id: '2',
-                name: 'simple-mysql',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '1'
-                ],
-                status_name: 'RUNNING'
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_3',
-                app_descriptor_id: 'app_descriptor_id_3',
-                service_id: '3',
-                name: 'simple-wordpress',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '2'
-                ],
-                status_name: 'SERVICE_WAITING'
-            },
-            {
-                organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-                app_instance_id: 'app_instance_id_4',
-                app_descriptor_id: 'app_descriptor_id_4',
-                service_id: '4',
-                name: 'simple-wordpress',
-                description: 'Great service',
-                type_name: 'DB',
-                image: 'https://urlofservice:8080/',
-                credentials: {},
-                specs: {},
-                storage: [
-                    'storage_restriction_1',
-                    'storage_restriction_2'
-                ],
-                exposed_ports: [
-                    '8080',
-                    '4300',
-                    '23422'
-                ],
-                environment_variables: {
-                    var1: 'value1',
-                    var2: 'value2',
-                    var3: 'value3'
-                },
-                configs: [
-                    {
-                        name: 'db config',
-                        port: '12312'
-                    }
-                ],
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2',
-                    lab3: 'label3'
-                },
-                deploy_after: [
-                    '3'
-                ],
-                status_name: 'RUNNING'
-            }
-        ],
-        status_name: 'Running',
-    }
+     }
 ];
 
 /**
@@ -1388,7 +546,7 @@ export const mockRegisteredAppsList = [
  */
 export const mockNodeList = [
     {
-        node_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d9',
+        node_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d9a',
         ip: '10.240.0.59',
         credentials: 'Private',
         labels: {
@@ -1410,7 +568,7 @@ export const mockNodeList = [
 
     },
     {
-        node_id: 'fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56',
+        node_id: 'fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56b',
         ip: '10.240.0.58',
         credentials: 'Private',
         labels: {
@@ -1431,7 +589,7 @@ export const mockNodeList = [
         state_name: 'Unregistered',
 
     },    {
-        node_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d7',
+        node_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d7c',
         ip: '10.240.0.57',
         credentials: 'Private',
         labels: {
@@ -1452,7 +610,7 @@ export const mockNodeList = [
         state_name: 'Unregistered',
 
     },    {
-        node_id: 'fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56',
+        node_id: 'fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56d',
         ip: '10.240.0.56',
         credentials: 'Private',
         labels: {
@@ -1473,7 +631,7 @@ export const mockNodeList = [
         state_name: 'Unregistered',
 
     },    {
-        node_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d5',
+        node_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d5e',
         ip: '10.240.0.55',
         credentials: 'Private',
         labels: {
@@ -1494,7 +652,7 @@ export const mockNodeList = [
         state_name: 'Unregistered',
 
     },    {
-        node_id: 'fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56',
+        node_id: 'fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56f',
         ip: '10.240.0.53',
         credentials: 'Private',
         labels: {
@@ -1635,7 +793,7 @@ export const mockDevicesList = [
         {
           organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
           device_group_id: 'a1',
-          device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+          device_id: '792989c-4ae4-460f-92b5-bca7ed36f016a',
           register_since: 1550506924515,
           labels: {
               type: 'phone',
@@ -1648,7 +806,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'a1',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016b',
             register_since: 1550417971000,
             labels: {
                 type: 'phone',
@@ -1662,7 +820,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'b2',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016c',
             register_since: 1549899571000,
             labels: {
                 type: 'phone',
@@ -1675,7 +833,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'b2',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016d',
             register_since: 1547825971000,
             labels: {
                 type: 'phone',
@@ -1687,7 +845,7 @@ export const mockDevicesList = [
         {
             organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
             device_group_id: 'b2',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016e',
             register_since: 1518968371000,
             labels: {
                 type: 'phone',
@@ -1700,7 +858,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'b2',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016f',
             register_since: 1516087991000,
             labels: {
                 type: 'phone',
@@ -1714,7 +872,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'c3',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016g',
             register_since: 1527261837000,
             labels: {
                 type: 'phone',
@@ -1727,7 +885,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'c3',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016h',
             register_since: 1515486791000,
             labels: {
                 type: 'phone',
@@ -1739,7 +897,7 @@ export const mockDevicesList = [
         {
             organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
             device_group_id: 'c3',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016i',
             register_since: 1513413191000,
             labels: {
                 type: 'phone',
@@ -1752,7 +910,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'c3',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016j',
             register_since: 1527261837000,
             labels: {
                 type: 'phone',
@@ -1766,7 +924,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'd4',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016k',
             register_since: 1497108201000,
             labels: {
                 type: 'phone',

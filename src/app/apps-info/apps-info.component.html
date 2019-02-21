@@ -11,7 +11,7 @@
             <!-- Service Graph -->
             <h3 class="services-title">Services</h3>
             <div class="graph">
-              <div class="graph-click-fix"></div>
+              <!-- <div class="graph-click-fix"></div> -->
               <ngx-graph
                   class="chart-container ml-4"
                   [view]="view"
@@ -25,11 +25,16 @@
                   [curve]="curve"
                   [enableZoom]="enableZoom">
                 <ng-template #nodeTemplate let-node>
-                  <svg:g class="node">
+                  <svg:g 
+                    class="node"
+                    ngx-tooltip
+                    [tooltipPlacement]="'top'"
+                    [tooltipType]="'tooltip'"
+                    [tooltipTitle]="node.tooltip">
                     <svg:rect 
                     [attr.width]="node.width" 
                     [attr.height]="node.height" 
-                    [attr.fill]="node.options.color" 
+                    [attr.fill]="node.color" 
                     rx="14" 
                     ry="14"/>
                     <svg:text 
@@ -84,7 +89,7 @@
               </div>
               <br>
               <div class="row">
-                <div class="col-sm grey">Tags</div>
+                <div class="col-sm grey">Labels</div>
               </div>
               <div class="row" *ngFor="let label of objectToString(instance.labels)">
                 <div class="col-sm text-right">{{label[0]}}</div>
@@ -114,7 +119,8 @@
               <div class="row">
                 <div class="col-sm grey">Services</div>
               </div>
-              <div *ngFor="let service of instance.services">
+              <div *ngFor="let group of instance.groups">
+                <div *ngFor="let service of group.service_instances">
                 <div class="row">
                   <div class="col-sm text-right grey">Name</div>
                   <div class="col-sm text-right">{{service.name}}</div>
@@ -138,6 +144,7 @@
                   </div>
                 </div>
                 <br>
+                </div>
               </div>
               <div class="row">
                 <div class="col-sm grey">Rules</div>
@@ -173,21 +180,23 @@
                 <div class="row" *ngFor="let service of group.service_instances; let i = index">
                   <div *ngIf="i === 0" class="col-sm text-right grey" >Services</div>
                   <div *ngIf="i !== 0" class="col-sm"></div>
-                  <div class="col-sm text-right">{{service}}</div>
+                  <div class="col-sm text-right">{{service.name}}</div>
                   <br>
                 </div>
               </div>  
               <div class="row">
                 <div class="col-sm grey">Endpoints</div>
               </div>
-              <div *ngFor="let service of instance.services">
-                <div *ngIf="service.endpoints && service.endpoints.length > 0">
-                  <div class="row" *ngFor="let endpoint of service.endpoints">
-                    <div class="col-9 offset-3 endpoint-fix">
-                      {{endpoint}}
-                    </div>
-                    <br>
-                  </div>     
+              <div *ngFor="let group of instance.groups">
+                <div *ngFor="let service of group.service_instances">
+                  <div *ngIf="service.endpoints && service.endpoints.length > 0">
+                    <div class="row" *ngFor="let endpoint of service.endpoints">
+                      <div class="col-9 offset-3 endpoint-fix">
+                        <a href="{{getEndpointHref(endpoint)}}" target="_blank">{{endpoint}}</a>
+                      </div>
+                      <br>
+                    </div>     
+                  </div>
                 </div>
               </div>
             </div>  

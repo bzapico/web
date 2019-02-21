@@ -742,4 +742,18 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
   return -1;
   }
+
+  /**
+   * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
+   * @param entityId entity from selected label
+   */
+  isAnyLabelSelected(entityId) {
+    if (this.selectedLabels.length > 0) {
+      const indexSelected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
+      if (indexSelected >= 0) {
+          return true;
+      }
+    }
+    return false;
+  }
 }

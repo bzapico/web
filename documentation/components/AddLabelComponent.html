@@ -38,7 +38,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>GroupConfigurationComponent</li>
+  <li>AddLabelComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/group-configuration/group-configuration.component.ts</code>
+    <code>src/app/add-label/add-label.component.ts</code>
 </p>
 
 
@@ -91,19 +91,19 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-group-configuration</code></td>
+                <td class="col-md-9"><code>app-add-label</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>group-configuration.component.scss</code></td>
+                <td class="col-md-9"><code>add-label.component.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./group-configuration.component.html</code></td>
+                <td class="col-md-9"><code>./add-label.component.html</code></td>
             </tr>
 
 
@@ -134,16 +134,13 @@
                                 <a href="#config">config</a>
                             </li>
                             <li>
-                                <a href="#defaultConnectivity">defaultConnectivity</a>
+                                <a href="#errorMessages">errorMessages</a>
                             </li>
                             <li>
-                                <a href="#enabled">enabled</a>
+                                <a href="#labelName">labelName</a>
                             </li>
                             <li>
-                                <a href="#group">group</a>
-                            </li>
-                            <li>
-                                <a href="#name">name</a>
+                                <a href="#labelValue">labelValue</a>
                             </li>
                             <li>
                                 <a href="#organizationId">organizationId</a>
@@ -161,13 +158,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#closeModal">closeModal</a>
+                                <a href="#addLabel">addLabel</a>
+                            </li>
+                            <li>
+                                <a href="#checkFormFields">checkFormFields</a>
+                            </li>
+                            <li>
+                                <a href="#discardChanges">discardChanges</a>
+                            </li>
+                            <li>
+                                <a href="#formatValidationOutput">formatValidationOutput</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit">ngOnInit</a>
-                            </li>
-                            <li>
-                                <a href="#saveGroupChanges">saveGroupChanges</a>
                             </li>
                         </ul>
                     </td>
@@ -192,7 +195,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/group-configuration/group-configuration.component.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/add-label/add-label.component.ts:36</a></div>
                             </td>
                         </tr>
 
@@ -279,38 +282,294 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="closeModal"></a>
+                        <a name="addLabel"></a>
                         <span class="name">
                             <b>
-                            closeModal
+                            addLabel
                             </b>
-                            <a href="#closeModal"><span class="icon ion-ios-link"></span></a>
+                            <a href="#addLabel"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>closeModal()</code>
+<code>addLabel(form: )</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/group-configuration/group-configuration.component.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/add-label/add-label.component.ts:111</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Close the modal window</p>
+                            <div class="io-description"><p>Request to add a new label</p>
 </div>
 
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>form</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Form object reference</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checkFormFields"></a>
+                        <span class="name">
+                            <b>
+                            checkFormFields
+                            </b>
+                            <a href="#checkFormFields"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>checkFormFields(form: <a href="../interfaces/Group.html">FormGroup</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/add-label/add-label.component.ts:84</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Validates user data</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>form</td>
+                                                        <td>
+                                                                    <code><a href="../interfaces/Group.html" target="_self" >FormGroup</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Form with user data</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="discardChanges"></a>
+                        <span class="name">
+                            <b>
+                            discardChanges
+                            </b>
+                            <a href="#discardChanges"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>discardChanges(form: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/add-label/add-label.component.ts:136</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Checks if the form has been modified before discarding changes</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>form</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Form object reference</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="formatValidationOutput"></a>
+                        <span class="name">
+                            <b>
+                            formatValidationOutput
+                            </b>
+                            <a href="#formatValidationOutput"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>formatValidationOutput(errors: string[])</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/add-label/add-label.component.ts:61</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Outputs the error messages in the required format, showing the first one</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>errors</td>
+                                                        <td>
+                                                                    <code>string[]</code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>String containing the errors</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>{ msg: any; errors: {}; }</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -337,53 +596,13 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/group-configuration/group-configuration.component.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/add-label/add-label.component.ts:54</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="saveGroupChanges"></a>
-                        <span class="name">
-                            <b>
-                            saveGroupChanges
-                            </b>
-                            <a href="#saveGroupChanges"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>saveGroupChanges()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/group-configuration/group-configuration.component.ts:67</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Request to save the group data modifications</p>
-</div>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -427,7 +646,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/group-configuration/group-configuration.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/add-label/add-label.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -468,7 +687,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/group-configuration/group-configuration.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/add-label/add-label.component.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -510,7 +729,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/group-configuration/group-configuration.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/add-label/add-label.component.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -527,30 +746,30 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="defaultConnectivity"></a>
+                        <a name="errorMessages"></a>
                         <span class="name">
                             <b>
-                            defaultConnectivity
+                            errorMessages
                             </b>
-                            <a href="#defaultConnectivity"><span class="icon ion-ios-link"></span></a>
+                            <a href="#errorMessages"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>defaultConnectivity:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                        <code>errorMessages:     <code>string[]</code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                            <i>Type : </i>    <code>string[]</code>
 
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/group-configuration/group-configuration.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/add-label/add-label.component.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -561,92 +780,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="enabled"></a>
+                        <a name="labelName"></a>
                         <span class="name">
                             <b>
-                            enabled
+                            labelName
                             </b>
-                            <a href="#enabled"><span class="icon ion-ios-link"></span></a>
+                            <a href="#labelName"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>enabled:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/group-configuration/group-configuration.component.ts:26</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="group"></a>
-                        <span class="name">
-                            <b>
-                            group
-                            </b>
-                            <a href="#group"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>group:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/group-configuration/group-configuration.component.ts:32</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>List of available groups</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="name"></a>
-                        <span class="name">
-                            <b>
-                            name
-                            </b>
-                            <a href="#name"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>name:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <code>labelName:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                     </td>
                 </tr>
@@ -658,7 +803,41 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/group-configuration/group-configuration.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/add-label/add-label.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="labelValue"></a>
+                        <span class="name">
+                            <b>
+                            labelValue
+                            </b>
+                            <a href="#labelValue"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>labelValue:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/add-label/add-label.component.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -692,13 +871,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/group-configuration/group-configuration.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/add-label/add-label.component.ts:24</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Model that hold organization ID, default connectivity and enabled or disbled option</p>
+                        <div class="io-description"><p>Models that hold organization id</p>
 </div>
                     </td>
                 </tr>
@@ -713,36 +892,32 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { Backend } from &#x27;../definitions/interfaces/backend&#x27;;
-import { BsModalRef } from &#x27;ngx-bootstrap&#x27;;
-import { BackendService } from &#x27;../services/backend.service&#x27;;
-import { MockupBackendService } from &#x27;../services/mockup-backend.service&#x27;;
 import { NotificationsService } from &#x27;../services/notifications.service&#x27;;
+import { MockupBackendService } from &#x27;../services/mockup-backend.service&#x27;;
+import { BackendService } from &#x27;../services/backend.service&#x27;;
+import { BsModalRef } from &#x27;ngx-bootstrap&#x27;;
 import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
-import { mockGroupList } from &#x27;../utils/mocks&#x27;;
+import { FormGroup } from &#x27;@angular/forms&#x27;;
 
 @Component({
-  selector: &#x27;app-group-configuration&#x27;,
-  templateUrl: &#x27;./group-configuration.component.html&#x27;,
-  styleUrls: [&#x27;./group-configuration.component.scss&#x27;]
+  selector: &#x27;app-add-label&#x27;,
+  templateUrl: &#x27;./add-label.component.html&#x27;,
+  styleUrls: [&#x27;./add-label.component.scss&#x27;]
 })
-export class GroupConfigurationComponent implements OnInit {
+export class AddLabelComponent implements OnInit {
   /**
    * Backend reference
    */
   backend: Backend;
 
   /**
-   * Model that hold organization ID, default connectivity and enabled or disbled option
+   * Models that hold organization id
    */
   organizationId: string;
-  defaultConnectivity: boolean;
-  enabled: boolean;
-  name: string;
+  labelName: string;
+  labelValue: string;
 
-  /**
-   * List of available groups
-   */
-  group: any;
+  errorMessages: string[];
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -758,125 +933,172 @@ export class GroupConfigurationComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    const mock &#x3D; localStorage.getItem(LocalStorageKeys.configGroupMock) || null;
+    const mock &#x3D; localStorage.getItem(LocalStorageKeys.addLabelMock) || null;
     // check which backend is required (fake or real)
     if (mock &amp;&amp; mock &#x3D;&#x3D;&#x3D; &#x27;true&#x27;) {
       this.backend &#x3D; mockupBackendService;
     } else {
       this.backend &#x3D; backendService;
     }
-    // Default initialization
-    // group is initialized by devices group component
-    this.defaultConnectivity &#x3D; false;
-    this.enabled &#x3D; false;
-  }
+    this.errorMessages &#x3D; [];
+    }
 
   ngOnInit() {
   }
 
   /**
-   *  Request to save the group data modifications
+   * Outputs the error messages in the required format, showing the first one
+   * @param errors String containing the errors
    */
-  saveGroupChanges() {
-    const groupData &#x3D; {
-      enabled: this.enabled,
-      default_device_connectivity: this.defaultConnectivity,
-      name: this.name
-    };
-    this.backend.updateGroup(this.organizationId, groupData)
-    .subscribe(response &#x3D;&gt; {
-      this.group &#x3D; response;
-      this.notificationsService.add({
-        message: &#x27;The group &quot;&#x27; + this.name + &#x27;&quot; has been edited&#x27;,
-        timeout: 10000
-      });
-      this.bsModalRef.hide();
-    }, error &#x3D;&gt; {
-      this.notificationsService.add({
-        message: error.error.message,
-        timeout: 10000
-      });
-      this.bsModalRef.hide();
-    });
-    this.bsModalRef.hide();
+  formatValidationOutput(errors: string[]) {
+    if (this.errorMessages.length &#x3D;&#x3D;&#x3D; 1) {
+      return {
+        msg: this.errorMessages[0],
+        errors: this.errorMessages
+      };
+    } else if (this.errorMessages.length &gt; 0) {
+      return {
+        msg: this.errorMessages[0] + &#x27; +&#x27; + (this.errorMessages.length - 1) + &#x27; errors&#x27;,
+        errors: this.errorMessages
+      };
+    } else {
+      return {
+        msg: &#x27;&#x27;,
+        errors: this.errorMessages
+      };
+    }
   }
 
   /**
-   * Close the modal window
+   * Validates user data
+   * @param form Form with user data
    */
-  closeModal() {
-    this.bsModalRef.hide();
+  checkFormFields(form: FormGroup) {
+    this.errorMessages &#x3D; [];
+    if (form.controls.name.invalid) {
+      if (form.controls.name.errors.required) {
+        this.errorMessages.push(&#x27;Label name is required&#x27;);
+      }
+      if (form.controls.name.errors.pattern) {
+        this.errorMessages.push(&#x27;Invalid format: cannot contain special characers as _*/.&#x60;&#x27;);
+      }
+    }
+    if (form.controls.value.invalid) {
+      if (form.controls.value.errors.required) {
+        this.errorMessages.push(&#x27;Label value is required&#x27;);
+      }
+      if (form.controls.value.errors.pattern) {
+        this.errorMessages.push(&#x27;Invalid format: cannot contain special characers as _*/.&#x60;&#x27;);
+      }
+    }
+    if (this.errorMessages.length &#x3D;&#x3D;&#x3D; 0) {
+      this.addLabel(form);
+    }
   }
+
+  /**
+   * Request to add a new label
+   * @param form Form object reference
+   */
+  addLabel(form) {
+    if (this.errorMessages.length &#x3D;&#x3D;&#x3D; 0) {
+      const user &#x3D; {
+        name: form.value.name,
+        value: form.value.value,
+      };
+    //   this.backend.addLabel(this.organizationId, label)
+    //   .subscribe(response &#x3D;&gt; {
+    //     this.notificationsService.add({
+    //       message: &#x27;Added new label to Cluster 1&#x27;
+    //     });
+    //     this.bsModalRef.hide();
+    //   }, error &#x3D;&gt; {
+    //     this.notificationsService.add({
+    //       message: &#x27;ERROR: &#x27; + error.error.message,
+    //       timeout: 10000
+    //     });
+    //   });
+    }
+  }
+
+  /**
+   * Checks if the form has been modified before discarding changes
+   * @param form Form object reference
+   */
+  discardChanges(form) {
+    if (form.dirty) {
+      const discard &#x3D; confirm(&#x27;Discard changes?&#x27;);
+      if (discard) {
+        this.bsModalRef.hide();
+      } else {
+        // Do nothing
+      }
+    } else {
+      this.bsModalRef.hide();
+    }
+  }
+
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;modal-card&quot;&gt;
-  &lt;div class&#x3D;&quot;modal-content&quot;&gt;
-    &lt;!-- Header --&gt;
-    &lt;div class&#x3D;&quot;modal-header&quot;&gt;
-      &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;{{name}} configuration&lt;/h3&gt;
-      &lt;button 
-        type&#x3D;&quot;button&quot; 
-        class&#x3D;&quot;close&quot; 
-        aria-label&#x3D;&quot;Close&quot;
-        (click)&#x3D;&quot;closeModal()&quot;&gt;
-        &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
-      &lt;/button&gt;
-    &lt;/div&gt;
-    &lt;!-- Body --&gt;
-    &lt;div class&#x3D;&quot;modal-body&quot;&gt;
-      &lt;!-- Option checkboxes --&gt;
-      &lt;div class&#x3D;&quot;check-options&quot;&gt;
-        &lt;p class&#x3D;&quot;grey&quot;&gt;Group device availability&lt;/p&gt;
-        &lt;div class&#x3D;&quot;add-dev-checkbox&quot;&gt;
-          &lt;span 
-            *ngIf&#x3D;&quot;!enabled&quot; 
-            (click)&#x3D;&quot;enabled &#x3D; true&quot;
-            class&#x3D;&quot;devices-checkbox&quot;&gt;
-            &lt;i class&#x3D;&quot;material-icons grey&quot;&gt;check_box_outline_blank&lt;/i&gt;
-          &lt;/span&gt;
-          &lt;span 
-            *ngIf&#x3D;&quot;enabled&quot; 
-            (click)&#x3D;&quot;enabled &#x3D; false&quot;
-            class&#x3D;&quot;devices-checkbox&quot;&gt;
-            &lt;i class&#x3D;&quot;material-icons blue&quot;&gt;check_box&lt;/i&gt;
-          &lt;/span&gt;
+    &lt;div class&#x3D;&quot;modal-content&quot;&gt;
+        &lt;!-- Header --&gt;
+        &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+          &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;Add label to Cluster 1&lt;/h3&gt;
+          &lt;button 
+            type&#x3D;&quot;button&quot; 
+            class&#x3D;&quot;close&quot; 
+            aria-label&#x3D;&quot;Close&quot;
+            (click)&#x3D;&quot;discardChanges(f)&quot;&gt;
+            &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+          &lt;/button&gt;
         &lt;/div&gt;
-        &lt;br&gt;
-        &lt;p class&#x3D;&quot;grey&quot;&gt;Devices enabled by default&lt;/p&gt;
-        &lt;div class&#x3D;&quot;add-dev-checkbox&quot;&gt;
-          &lt;span 
-            *ngIf&#x3D;&quot;!defaultConnectivity&quot; 
-            (click)&#x3D;&quot;defaultConnectivity &#x3D; true&quot;
-            class&#x3D;&quot;devices-checkbox&quot;&gt;
-            &lt;i class&#x3D;&quot;material-icons grey&quot;&gt;check_box_outline_blank&lt;/i&gt;
-          &lt;/span&gt;
-          &lt;span 
-            *ngIf&#x3D;&quot;defaultConnectivity&quot; 
-            (click)&#x3D;&quot;defaultConnectivity &#x3D; false&quot;
-            class&#x3D;&quot;devices-checkbox&quot;&gt;
-            &lt;i class&#x3D;&quot;material-icons blue&quot;&gt;check_box&lt;/i&gt;
-          &lt;/span&gt;
-        &lt;/div&gt;   
+        &lt;!-- Body --&gt;
+        &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+          &lt;form #f&#x3D;&quot;ngForm&quot; class&#x3D;&quot;form-label&quot;&gt;
+            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+              &lt;input 
+                [(ngModel)]&#x3D;&quot;labelName&quot; 
+                name&#x3D;&quot;name&quot; 
+                type&#x3D;&quot;text&quot; 
+                class&#x3D;&quot;form-control&quot; 
+                placeholder&#x3D;&quot;Label name&quot; 
+                pattern&#x3D;&quot;[A-Za-z0-9]{1,20}[^-,]+&quot;
+                required&gt;
+              &lt;input 
+                [(ngModel)]&#x3D;&quot;labelValue&quot; 
+                name&#x3D;&quot;description&quot; 
+                type&#x3D;&quot;text&quot; 
+                class&#x3D;&quot;form-control&quot; 
+                placeholder&#x3D;&quot;Label value&quot;
+                pattern&#x3D;&quot;[A-Za-z0-9]{1,20}[^-,]+&quot;
+                required&gt;
+            &lt;/div&gt;
+          &lt;/form&gt;
+          &lt;!-- Error messages --&gt;
+          &lt;div class&#x3D;&quot;error-message&quot;&gt;
+            &lt;div 
+              tooltip&#x3D;&quot;{{arrayToString(errorMessages)}}&quot;
+              placement&#x3D;&quot;bottom&quot;
+              *ngIf&#x3D;&quot;errorMessages.length &gt; 0&quot;&gt;
+              {{formatValidationOutput(errorMessages).msg}}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;!-- Option button --&gt;
+        &lt;div class&#x3D;&quot;d-flex flex-row justify-content-between&quot;&gt;
+          &lt;button class&#x3D;&quot;btn btn-primary btn-md mt-5&quot; (click)&#x3D;&quot;checkFormFields(f.form)&quot;&gt;
+            &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Save&lt;/span&gt;
+          &lt;/button&gt;
+          &lt;button class&#x3D;&quot;btn btn-red btn-md mt-5&quot; (click)&#x3D;&quot;discardChanges(f)&quot;&gt;
+            &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Discard&lt;/span&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
-      &lt;!-- Option buttons --&gt;
-      &lt;div class&#x3D;&quot;buttons d-flex flex-row justify-content-between&quot;&gt;
-        &lt;button 
-          class&#x3D;&quot;btn btn-primary btn-md&quot; 
-          (click)&#x3D;&quot;saveGroupChanges()&quot;&gt;
-          &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Save&lt;/span&gt;
-        &lt;/button&gt;
-        &lt;button 
-          class&#x3D;&quot;btn btn-red btn-md&quot; 
-          (click)&#x3D;&quot;closeModal()&quot;&gt;
-          &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Discard&lt;/span&gt;
-        &lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+    &lt;/div&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -904,10 +1126,10 @@ export class GroupConfigurationComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">{{name}} configuration</h3>      <button         type="button"         class="close"         aria-label="Close"        (click)="closeModal()">        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <!-- Option checkboxes -->      <div class="check-options">        <p class="grey">Group device availability</p>        <div class="add-dev-checkbox">          <span             *ngIf="!enabled"             (click)="enabled = true"            class="devices-checkbox">            <i class="material-icons grey">check_box_outline_blank</i>          </span>          <span             *ngIf="enabled"             (click)="enabled = false"            class="devices-checkbox">            <i class="material-icons blue">check_box</i>          </span>        </div>        <br>        <p class="grey">Devices enabled by default</p>        <div class="add-dev-checkbox">          <span             *ngIf="!defaultConnectivity"             (click)="defaultConnectivity = true"            class="devices-checkbox">            <i class="material-icons grey">check_box_outline_blank</i>          </span>          <span             *ngIf="defaultConnectivity"             (click)="defaultConnectivity = false"            class="devices-checkbox">            <i class="material-icons blue">check_box</i>          </span>        </div>         </div>      <!-- Option buttons -->      <div class="buttons d-flex flex-row justify-content-between">        <button           class="btn btn-primary btn-md"           (click)="saveGroupChanges()">          <span class="align-bottom">Save</span>        </button>        <button           class="btn btn-red btn-md"           (click)="closeModal()">          <span class="align-bottom">Discard</span>        </button>      </div>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card">    <div class="modal-content">        <!-- Header -->        <div class="modal-header">          <h3 class="nalej-form-title">Add label to Cluster 1</h3>          <button             type="button"             class="close"             aria-label="Close"            (click)="discardChanges(f)">            <span aria-hidden="true">&times;</span>          </button>        </div>        <!-- Body -->        <div class="modal-body">          <form #f="ngForm" class="form-label">            <div class="form-group">              <input                 [(ngModel)]="labelName"                 name="name"                 type="text"                 class="form-control"                 placeholder="Label name"                 pattern="[A-Za-z0-9]{1,20}[^-,]+"                required>              <input                 [(ngModel)]="labelValue"                 name="description"                 type="text"                 class="form-control"                 placeholder="Label value"                pattern="[A-Za-z0-9]{1,20}[^-,]+"                required>            </div>          </form>          <!-- Error messages -->          <div class="error-message">            <div               tooltip="{{arrayToString(errorMessages)}}"              placement="bottom"              *ngIf="errorMessages.length > 0">              {{formatValidationOutput(errorMessages).msg}}            </div>          </div>        <!-- Option button -->        <div class="d-flex flex-row justify-content-between">          <button class="btn btn-primary btn-md mt-5" (click)="checkFormFields(f.form)">            <span class="align-bottom">Save</span>          </button>          <button class="btn btn-red btn-md mt-5" (click)="discardChanges(f)">            <span class="align-bottom">Discard</span>          </button>        </div>        </div>      </div>    </div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AppsInfoComponent', 'selector': 'app-apps-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'GroupConfigurationComponent'};
+    var ACTUAL_COMPONENT = {'name': 'AddLabelComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -941,7 +1163,7 @@ export class GroupConfigurationComponent implements OnInit {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'GroupConfigurationComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'AddLabelComponent.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
