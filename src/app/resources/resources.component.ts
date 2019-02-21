@@ -157,6 +157,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * List of selected labels from an entity
    */
   selectedLabels = [];
+  entityId: boolean;
 
   constructor(
     private modalService: BsModalService,
@@ -457,7 +458,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       }
       return Object.entries(labels);
     }
-/**
+  /**
    * Opens the modal view that holds add label component
    */
   addLabel() {

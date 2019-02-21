@@ -53,5 +53,21 @@ describe('ClusterComponent', () => {
     expect(updateNodesList).toHaveBeenCalledWith(nodes);
   });
 
+  it('Tooltip should not be displayed until user does not any actions', () => {
+    const element: HTMLElement = fixture.debugElement.nativeElement;
+    expect(element.querySelector('.tooltip-inner')).toBeNull();
+  });
+
+  it('onLabelClick() - Should select a label', () => {
+    const onLabelClick = spyOn(component, 'onLabelClick').and.returnValue(true);
+    const labelSelected = {};
+
+    onLabelClick(labelSelected);
+
+    expect(onLabelClick.length > 0);
+  });
+
+
+
 
 });

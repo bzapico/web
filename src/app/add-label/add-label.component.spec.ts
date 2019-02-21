@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonsModule, BsModalRef, TooltipModule, BsModalService, ModalModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
 
 import { AddLabelComponent } from './add-label.component';
 
@@ -35,7 +36,19 @@ describe('AddLabelComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('discardChanges() - Should request to discard changes', () => {
+    const discardChanges = spyOn(component, 'discardChanges').and.returnValue(true);
+
+    discardChanges();
+
+    expect(discardChanges).toHaveBeenCalledWith();
+  });
+
+  it('Discard button - Should discard the user data modifications', () => {
+    const button = fixture.debugElement.query(By.css('.close'));
+
+    button.triggerEventHandler('click', null);
+
+    expect(component.discardChanges).toBeDefined();
   });
 });
