@@ -280,26 +280,36 @@
         }
     }
 }
-
-.btn-deploy {
-    background-color: #0937FF;
-    border-radius: 5px;
-    width: 150px;
-    position: relative;
+/* - - - Apps buttons - - - */
+.app-info {
+    color: #0937FF;
     cursor: pointer;
-    color: white;
-    border: none;
-    text-indent: 11px;
-    height: 29px;
-    font-size: .7em;
 }
-.i-deploy {
-    font-size: 1.4em;
-    font-weight: 700;
-    position: absolute;
-    top: 7px;
-    left: 2px;
+.apps-options {
+    position: relative;
+    width: 100%;
+    .btn-apps-options {
+        background-color: #0937FF;
+        border-radius: 5px;
+        padding: 1em 2em;
+        cursor: pointer;
+        color: white;
+        border: none;
+        text-indent: 2em;
+        position: absolute;
+        bottom: 0px;
+        right: 74px;
+        font-size: .6em;
+        .i-options {
+            font-size: 1.8em;
+            font-weight: 700;
+            position: absolute;
+            top: 7px;
+            left: -7px;
+        }
+    }
 }
+
 .btn-grey {
     background-color: #E8E8E8;
     border-radius: 50%;
@@ -311,16 +321,42 @@
     border: none;
     font-size: .7em;
     outline: none;
+    .i-red {
+        font-size: 1.8em;
+        font-weight: 700;
+        position: absolute;
+        top: 4px;
+        left: 3px;
+    }
+    .i-undeploy {
+        position: absolute;
+        top: 4px;
+        left: 8px;
+        font-size: 1.4em;
+    }
 }
-.i-undeploy {
-    position: absolute;
-    top: 4px;
-    left: 7px;
-    font-size: 1.4em;
+.btn-blue {
+    background-color: #0937FF;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    position: relative;
+    cursor: pointer;
+    color: white;
+    border: none;
+    font-size: .7em;
+    outline: none;
+    .i-white {
+        font-size: 2em;
+        font-weight: 700;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+    }
 }
 
-.app-info {
-    color: #0937FF;
-    cursor: pointer;
-}
+
+
+
+
 
