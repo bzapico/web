@@ -10,7 +10,6 @@ import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
 
-
 @Component({
   selector: 'app-devices',
   templateUrl: './devices.component.html',
@@ -756,4 +755,5 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
     return false;
   }
+
 }

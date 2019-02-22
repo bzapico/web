@@ -451,22 +451,22 @@
                     <div 
                       *ngIf="isAnyLabelSelected(device.device_id) === false"
                       class="add-label-button" 
-                      (click)="addLabel()">
-                      <i 
-                        class="material-icons i-add" 
-                        tooltip="Add" 
-                        placement="top">
+                      (click)="addLabel()"
+                      tooltip="Add" 
+                      placement="right"
+                      >
+                      <i class="material-icons i-add">
                         add
                       </i>
                     </div>
                     <div 
                       *ngIf="isAnyLabelSelected(device.device_id) === true"
                       class="delete-label-button" 
-                      (click)="deleteLabel()">
-                      <i 
-                        class="material-icons i-delete" 
-                        tooltip="Delete" 
-                        placement="top">
+                      (click)="deleteLabel()"
+                      tooltip="Delete" 
+                      placement="right"
+                      >
+                      <i class="material-icons i-delete">
                         delete
                       </i>
                     </div>
