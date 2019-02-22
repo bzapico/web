@@ -546,7 +546,7 @@ export const mockRegisteredAppsList = [
  */
 export const mockNodeList = [
     {
-        node_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d9',
+        node_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d9a',
         ip: '10.240.0.59',
         credentials: 'Private',
         labels: {
@@ -568,7 +568,7 @@ export const mockNodeList = [
 
     },
     {
-        node_id: 'fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56',
+        node_id: 'fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56b',
         ip: '10.240.0.58',
         credentials: 'Private',
         labels: {
@@ -589,7 +589,7 @@ export const mockNodeList = [
         state_name: 'Unregistered',
 
     },    {
-        node_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d7',
+        node_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d7c',
         ip: '10.240.0.57',
         credentials: 'Private',
         labels: {
@@ -610,7 +610,7 @@ export const mockNodeList = [
         state_name: 'Unregistered',
 
     },    {
-        node_id: 'fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56',
+        node_id: 'fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56d',
         ip: '10.240.0.56',
         credentials: 'Private',
         labels: {
@@ -631,7 +631,7 @@ export const mockNodeList = [
         state_name: 'Unregistered',
 
     },    {
-        node_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d5',
+        node_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d5e',
         ip: '10.240.0.55',
         credentials: 'Private',
         labels: {
@@ -652,7 +652,7 @@ export const mockNodeList = [
         state_name: 'Unregistered',
 
     },    {
-        node_id: 'fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56',
+        node_id: 'fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56f',
         ip: '10.240.0.53',
         credentials: 'Private',
         labels: {
@@ -793,7 +793,7 @@ export const mockDevicesList = [
         {
           organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
           device_group_id: 'a1',
-          device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+          device_id: '792989c-4ae4-460f-92b5-bca7ed36f016a',
           register_since: 1550506924515,
           labels: {
               type: 'phone',
@@ -806,7 +806,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'a1',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016b',
             register_since: 1550417971000,
             labels: {
                 type: 'phone',
@@ -820,7 +820,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'b2',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016c',
             register_since: 1549899571000,
             labels: {
                 type: 'phone',
@@ -833,7 +833,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'b2',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016d',
             register_since: 1547825971000,
             labels: {
                 type: 'phone',
@@ -845,7 +845,7 @@ export const mockDevicesList = [
         {
             organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
             device_group_id: 'b2',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016e',
             register_since: 1518968371000,
             labels: {
                 type: 'phone',
@@ -858,7 +858,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'b2',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016f',
             register_since: 1516087991000,
             labels: {
                 type: 'phone',
@@ -872,7 +872,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'c3',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016g',
             register_since: 1527261837000,
             labels: {
                 type: 'phone',
@@ -885,7 +885,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'c3',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016h',
             register_since: 1515486791000,
             labels: {
                 type: 'phone',
@@ -897,7 +897,7 @@ export const mockDevicesList = [
         {
             organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
             device_group_id: 'c3',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016i',
             register_since: 1513413191000,
             labels: {
                 type: 'phone',
@@ -910,7 +910,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'c3',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016j',
             register_since: 1527261837000,
             labels: {
                 type: 'phone',
@@ -924,7 +924,7 @@ export const mockDevicesList = [
         {
             organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
             device_group_id: 'd4',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016',
+            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016k',
             register_since: 1497108201000,
             labels: {
                 type: 'phone',

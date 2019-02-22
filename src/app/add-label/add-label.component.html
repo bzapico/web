@@ -1,0 +1,56 @@
+<div class="modal-card">
+    <div class="modal-content">
+        <!-- Header -->
+        <div class="modal-header">
+          <h3 class="nalej-form-title">Add label to Cluster 1</h3>
+          <button 
+            type="button" 
+            class="close" 
+            aria-label="Close"
+            (click)="discardChanges(f)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- Body -->
+        <div class="modal-body">
+          <form #f="ngForm" class="form-label">
+            <div class="form-group">
+              <input 
+                [(ngModel)]="labelName" 
+                name="name" 
+                type="text" 
+                class="form-control" 
+                placeholder="Label name" 
+                pattern="[A-Za-z0-9]{1,20}[^-,]+"
+                required>
+              <input 
+                [(ngModel)]="labelValue" 
+                name="description" 
+                type="text" 
+                class="form-control" 
+                placeholder="Label value"
+                pattern="[A-Za-z0-9]{1,20}[^-,]+"
+                required>
+            </div>
+          </form>
+          <!-- Error messages -->
+          <div class="error-message">
+            <div 
+              tooltip="{{arrayToString(errorMessages)}}"
+              placement="bottom"
+              *ngIf="errorMessages.length > 0">
+              {{formatValidationOutput(errorMessages).msg}}
+            </div>
+          </div>
+        <!-- Option button -->
+        <div class="d-flex flex-row justify-content-between">
+          <button class="btn btn-primary btn-md mt-5" (click)="checkFormFields(f.form)">
+            <span class="align-bottom">Save</span>
+          </button>
+          <button class="btn btn-red btn-md mt-5" (click)="discardChanges(f)">
+            <span class="align-bottom">Discard</span>
+          </button>
+        </div>
+        </div>
+      </div>
+    </div>

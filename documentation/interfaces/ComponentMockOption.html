@@ -192,12 +192,13 @@ export const AvailableComponents &#x3D; {
   sidebar: &#x27;Sidebar&#x27;,
   userinfo: &#x27;User Info&#x27;,
   userEdit: &#x27;User Edit&#x27;,
-  editcluster: &#x27;EditCluster&#x27;,
+  editcluster: &#x27;Edit Cluster&#x27;,
   addUser: &#x27;Add User&#x27;,
+  addLabel: &#x27;Add Label&#x27;,
   devices: &#x27;Devices&#x27;,
   addGroup: &#x27;Add Group&#x27;,
   configGroup: &#x27;Group Config&#x27;,
-  createdGroup: &#x27;Group Created&#x27;
+  createdGroup: &#x27;Group Created&#x27;,
 };
 
 @Component({
@@ -310,6 +311,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.userEditMock, newValue);
     localStorage.setItem(LocalStorageKeys.clusterEditMock, newValue);
     localStorage.setItem(LocalStorageKeys.addUserMock, newValue);
+    localStorage.setItem(LocalStorageKeys.addLabelMock, newValue);
     localStorage.setItem(LocalStorageKeys.devicesMock, newValue);
     localStorage.setItem(LocalStorageKeys.addGroupMock, newValue);
     localStorage.setItem(LocalStorageKeys.configGroupMock, newValue);
@@ -357,7 +359,10 @@ export class DebugPanelComponent implements OnInit {
         localStorage.setItem(LocalStorageKeys.clusterEditMock, componentMockOption.mock);
       break;
       case AvailableComponents.addUser:
-        localStorage.setItem(LocalStorageKeys.addUserMock, componentMockOption.mock);
+      localStorage.setItem(LocalStorageKeys.addUserMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.addUser:
+      localStorage.setItem(LocalStorageKeys.addLabelMock, componentMockOption.mock);
       break;
       case AvailableComponents.devices:
         localStorage.setItem(LocalStorageKeys.devicesMock, componentMockOption.mock);
