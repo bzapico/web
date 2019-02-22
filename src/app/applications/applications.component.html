@@ -85,7 +85,13 @@
   <div class="col-lg-12 col-md-12 col-sm-12 h-100">
     <div class="card h-100 p-4">
       <div class="card-title-h">
-        <h5>DEPLOYED APP LIST</h5>
+        <h5>APPLICATIONS</h5>
+      </div>
+      <div>
+        <button class="btn-deploy">
+          <i class="material-icons i-deploy">play_arrow</i>
+          Deploy instance
+        </button>
       </div>
       <!-- Applications tabs -->
       <div class="row">
@@ -211,13 +217,19 @@
                 </span>
               </th>
               <th scope="col" class="col-1 text-center">
-                Info
+                Actions
               </th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let app of instances | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-              <td class="text-capitalize col-2">{{app.name}}</td>
+              <td 
+                tooltip="Info"
+                placement="top"
+                class="text-capitalize col-2 app-info" 
+                (click)="openAppsInfo(app)">
+                {{app.name}}
+              </td>
               <td class="col-3">{{app.app_instance_id}}</td>
               <td class="col-4">
                 <button *ngFor="let label of labelsToString(app.labels)" class="btn-sm btn-outline-primary" disabled>
@@ -236,11 +248,11 @@
                   {{app.status_name}}
                 </span>
               </td>
-                <td class="row-info-btn col-1 text-center">
-                  <button class="btn info-btn btn-primary" (click)="openAppsInfo(app)">
-                    <span class="i-info">i</span>
-                  </button>
-                </td>
+              <td class="row-info-btn col-1 text-center">
+                <button tooltip="Undeploy" placement="left" class="btn-grey">
+                  <span class="i-undeploy">X</span>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
