@@ -5,13 +5,12 @@
   </div>
   <div class="col-lg-8">
     <div 
-      *ngFor="let group of groups"
       class="close-group-button">
       <button  
-        *ngIf="activeGroupId === group.device_group_id" 
+        *ngIf="activeGroupId !== 'ALL'" 
         (click)="changeActiveGroup('ALL')"
         class="button">
-        <span>{{group.name | abbreviate}}<span class="close-trigger">X</span></span>
+        <span>  {{activeGroupId | abbreviate}}<span class="close-trigger">X</span></span>
       </button>
     </div>
   </div>
@@ -423,19 +422,22 @@
                 <td 
                   class="text-lowercase col-2 text-center"
                   [ngClass]=
-                  "{'status-dot':classStatusCheck(device.status_name, 'connected'),
-                  'status-dot-error':classStatusCheck(device.status_name, 'disconnected'),
-                  'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
+                  "{'status-dot':classStatusCheck(device.device_status_name, 'connected'),
+                  'status-dot-error':classStatusCheck(device.device_status_name, 'disconnected'),
+                  'status-dot-process':classStatusCheck(device.device_status_name, 'process')}"> 
                   <span 
-                    tooltip="{{device.status_name}}" 
+                    tooltip="{{device.device_status_name}}" 
                     class="tooltip-fix text-capitalize" 
                     placement="auto">
                   </span>
-                  <span class="hide text-capitalize">
-                    {{device.status_name}}
+                  <span class="hide">
+                    {{device.device_status_name}}
                   </span>
                 </td>
-                <td class="col-4">
+                <td *ngIf="!device.labels || device.label.keys.length === 0" class="col-4">
+                    No
+                </td>
+                <td *ngIf="device.labels && device.label.keys.length > 0" class="col-4">
                   <button 
                     *ngFor="let label of labelsToString(device.labels)" 
                     class="btn-sm btn-outline-primary" 
@@ -469,19 +471,22 @@
                 <td  
                   class="text-lowercase col-2 text-center"
                   [ngClass]=
-                  "{'status-dot':classStatusCheck(device.status_name, 'connected'),
-                  'status-dot-error':classStatusCheck(device.status_name, 'disconnected'),
-                  'status-dot-process':classStatusCheck(device.status_name, 'process')}"> 
+                  "{'status-dot':classStatusCheck(device.device_status_name, 'online'),
+                  'status-dot-error':classStatusCheck(device.device_status_name, 'offline'),
+                  'status-dot-process':classStatusCheck(device.device_status_name, 'process')}"> 
                   <span 
-                    tooltip="{{device.status_name}}" 
+                    tooltip="{{device.device_status_name}}" 
                     class="tooltip-fix text-capitalize" 
                     placement="auto">
                   </span>
-                  <span class="hide text-capitalize">
-                    {{device.status_name}}
+                  <span class="hide">
+                    {{device.device_status_name}}
                   </span>
                 </td>
-                <td class="col-4">
+                <td *ngIf="!device.labels || device.label.keys.length === 0" class="col-4">
+                  No
+                </td>
+                <td *ngIf="device.labels && device.label.keys.length > 0" class="col-4">
                   <button 
                     *ngFor="let label of labelsToString(device.labels)" 
                     class="btn-sm btn-outline-primary" 
