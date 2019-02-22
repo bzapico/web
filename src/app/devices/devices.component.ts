@@ -203,11 +203,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
+        console.log(this.organizationId);
         this.updateGroupsList(this.organizationId);
-        this.updateDevicesList(this.organizationId);
         this.refreshIntervalRef = setInterval(() => {
           this.updateGroupsList(this.organizationId);
-          this.updateDevicesList(this.organizationId);
         },
         this.REFRESH_RATIO); // Refresh each 60 seconds
     }
@@ -223,7 +222,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param timestamp is an integer that represents the number of seconds elapsed
    */
   parseTimestampToDate(timestamp: number) {
-    return new Date(timestamp);
+    return new Date(timestamp * 1000);
   }
 
   /**
@@ -265,7 +264,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       // Requests an updated devices group list
       this.backend.getGroups(this.organizationId)
       .subscribe(response => {
-        this.groups = response || [];
+        this.groups = response.groups || [];
         if (this.displayedGroups.length === 0 && this.groups.length > 0) {
           for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
             this.displayedGroups.push(this.groups[index]);
@@ -275,6 +274,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         if (!this.loadedData) {
           this.loadedData = true;
         }
+        this.updateDevicesList(this.organizationId);
       }, errorResponse => {
           this.loadedData = true;
           this.requestError = errorResponse.error.message;
@@ -335,20 +335,24 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param organizationId organization identifier
    */
   updateDevicesList(organizationId: string) {
+    this.devices = [];
     if (organizationId !== null) {
       // Request to get devices
-      this.backend.getDevices(this.organizationId, this.activeGroupId)
-      .subscribe(response => {
-          this.devices = response.devices || [];
-          this.updateConnectedDevicesLineChart(this.devices);
-          this.countDevices();
-          if (!this.loadedData) {
-            this.loadedData = true;
-          }
-      }, errorResponse => {
-          this.loadedData = true;
-          this.requestError = errorResponse.error.message;
+      if (this.groups.length > 0) {
+        this.groups.forEach(group => {
+          this.backend.getDevices(this.organizationId, group.device_group_id)
+          .subscribe(response => {
+              this.devices.push(response.devices || []);
+              this.updateConnectedDevicesLineChart(this.devices);
+              if (!this.loadedData) {
+                this.loadedData = true;
+              }
+          }, errorResponse => {
+              this.loadedData = true;
+              this.requestError = errorResponse.error.message;
+            });
         });
+      }
     }
   }
 
@@ -360,7 +364,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     let connectedDevicesCount = 0;
     devices.forEach(group => {
       group.forEach(device => {
-        if (device && device.enabled.toLowerCase() === 'connected') {
+        if (device && device.device_status_name.toLowerCase() === 'online') {
           connectedDevicesCount += 1;
         }
       });
@@ -405,24 +409,26 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param className CSS class name
    */
   classStatusCheck(status: string, className: string): boolean {
-    switch (status.toLowerCase()) {
-      case 'connected': {
-        if (className.toLowerCase() === 'connected') {
-          return true;
+    if (status) {
+      switch (status.toLowerCase()) {
+        case 'online': {
+          if (className.toLowerCase() === 'connected') {
+            return true;
+          }
+          break;
         }
-        break;
-      }
-      case 'disconnected': {
-        if (className.toLowerCase() === 'disconnected') {
-          return true;
+        case 'offline': {
+          if (className.toLowerCase() === 'disconnected') {
+            return true;
+          }
+          break;
         }
-        break;
-      }
-     default: {
-        if (className.toLowerCase() === 'process') {
-          return true;
+       default: {
+          if (className.toLowerCase() === 'process') {
+            return true;
+          }
+          return false;
         }
-        return false;
       }
     }
   }
@@ -614,9 +620,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
     const initialState = {
       organizationId: this.organizationId,
-      enabled: this.enabled,
-      defaultConnectivity: this.default_device_connectivity,
-      name: configGroupName
+      enabled: this.groups[configIndex].enabled || false,
+      defaultConnectivity: this.groups[configIndex].default_device_connectivity || false,
+      name: configGroupName,
+      device_group_id: this.groups[configIndex].device_group_id
     };
     this.modalRef = this.modalService.show(GroupConfigurationComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
