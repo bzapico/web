@@ -10,7 +10,7 @@
         *ngIf="activeGroupId !== 'ALL'" 
         (click)="changeActiveGroup('ALL')"
         class="button">
-        <span>  {{activeGroupId | abbreviate}}<span class="close-trigger">X</span></span>
+        <span>  {{getGroupName(activeGroupId) | abbreviate}}<span class="close-trigger">X</span></span>
       </button>
     </div>
   </div>
