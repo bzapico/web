@@ -87,6 +87,32 @@
       <div class="card-title-h">
         <h5>DEPLOYED APP LIST</h5>
       </div>
+      <!-- Applications tabs -->
+      <div class="row">
+        <div class="col">
+          <div class="app-tab-container">
+            <ul>
+              <li class="app-tab app-tab-title">
+                <span class="grey">LISTS</span>
+              </li>
+              <li 
+                class="app-tab"
+                (click)="changeActiveList()">
+                <span class="active">
+                  INSTANCES
+                </span>
+              </li>
+              <li 
+                class="app-tab"
+                (click)="changeActiveList()">
+                <span>
+                  REGISTERED
+                </span>
+              </li>
+            </ul>
+          </div>  
+        </div>
+      </div>
       <div class="row justify-content-between">
         <!-- Sorting mesages -->
           <div class="col-9">  

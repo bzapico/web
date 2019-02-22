@@ -216,44 +216,44 @@
       <!-- Devices tabs -->
       <div class="row">
         <div class="col">
-      <div class="devices-tab-container">
-        <ul>
-          <li *ngIf="displayedGroupsNamesLength < maxLabelsLength" class="devices-tab devices-tab-title">
-            <span class="grey">GROUPS</span>
-          </li>
-          <li 
-            *ngIf="groups.length > 0" 
-            class="devices-tab" 
-            (click)="changeActiveGroup('ALL')">
-            <span [ngClass]="amIactive('ALL')">ALL</span>
-          </li>
-          <li 
-            *ngIf="groups.length === 0" 
-            class="devices-tab">
-            <span class="active">ALL</span>
-          </li>
-          <li 
-            [ngClass]="haveIGroups(groups)"
-            (click)="swipeLeft()" 
-            class="tabs-arrow" >
-            <i class="material-icons">arrow_left</i>
-          </li>
-          <li 
-            *ngFor="let group of displayedGroups"
-            class="devices-tab"
-            (click)="changeActiveGroup(group.device_group_id)">
-            <span *ngIf="displayedGroups.length > 0" [ngClass]="amIactive(group.device_group_id)">
-              {{group.name}}
-            </span>
-          </li>
-          <li 
-            [ngClass]="haveIGroups(groups)"
-            (click)="swipeRight()"
-            class="tabs-arrow">
-            <i class="material-icons">arrow_right</i>
-          </li>
-        </ul>
-      </div>  
+          <div class="devices-tab-container">
+            <ul>
+              <li *ngIf="displayedGroupsNamesLength < maxLabelsLength" class="devices-tab devices-tab-title">
+                <span class="grey">GROUPS</span>
+              </li>
+              <li 
+                *ngIf="groups.length > 0" 
+                class="devices-tab" 
+                (click)="changeActiveGroup('ALL')">
+                <span [ngClass]="amIactive('ALL')">ALL</span>
+              </li>
+              <li 
+                *ngIf="groups.length === 0" 
+                class="devices-tab">
+                <span class="active">ALL</span>
+              </li>
+              <li 
+                [ngClass]="haveIGroups(groups)"
+                (click)="swipeLeft()" 
+                class="tabs-arrow" >
+                <i class="material-icons">arrow_left</i>
+              </li>
+              <li 
+                *ngFor="let group of displayedGroups"
+                class="devices-tab"
+                (click)="changeActiveGroup(group.device_group_id)">
+                <span *ngIf="displayedGroups.length > 0" [ngClass]="amIactive(group.device_group_id)">
+                  {{group.name}}
+                </span>
+              </li>
+              <li 
+                [ngClass]="haveIGroups(groups)"
+                (click)="swipeRight()"
+                class="tabs-arrow">
+                <i class="material-icons">arrow_right</i>
+              </li>
+            </ul>
+          </div>  
         </div>
       </div>
       <div class="row justify-content-between">

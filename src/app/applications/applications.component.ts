@@ -140,6 +140,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   filterField: boolean;
 
+  /**
+   *  Active List reference
+   */
+  activeList: boolean;
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -167,6 +172,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
      this.sortedBy = '';
      this.reverse = false;
      this.searchTerm = '';
+     this.activeList = false;
 
      // Filter field
      this.filterField = false;
@@ -404,5 +410,13 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         }
       }
     }
+
+  /**
+   * Changes to active list
+   */
+  changeActiveList() {
+    this.activeList = !this.activeList;
   }
+
+}
 
