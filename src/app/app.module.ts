@@ -42,6 +42,7 @@ import { SortByPipe } from './pipes/sort-by.pipe';
 import { AddDevicesGroupComponent } from './add-devices-group/add-devices-group.component';
 import { GroupConfigurationComponent } from './group-configuration/group-configuration.component';
 import { DeviceGroupCreatedComponent } from './device-group-created/device-group-created.component';
+import { AddLabelComponent } from './add-label/add-label.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { DeviceGroupCreatedComponent } from './device-group-created/device-group
     SortByPipe,
     AddDevicesGroupComponent,
     GroupConfigurationComponent,
-    DeviceGroupCreatedComponent
+    DeviceGroupCreatedComponent,
+    AddLabelComponent
   ],
   entryComponents: [
     DebugPanelComponent,
@@ -81,7 +83,8 @@ import { DeviceGroupCreatedComponent } from './device-group-created/device-group
     ChangePasswordComponent,
     AddDevicesGroupComponent,
     GroupConfigurationComponent,
-    DeviceGroupCreatedComponent
+    DeviceGroupCreatedComponent,
+    AddLabelComponent
   ],
   imports: [
     BrowserModule,

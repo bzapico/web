@@ -218,12 +218,13 @@
   sidebar: &#x27;Sidebar&#x27;,
   userinfo: &#x27;User Info&#x27;,
   userEdit: &#x27;User Edit&#x27;,
-  editcluster: &#x27;EditCluster&#x27;,
+  editcluster: &#x27;Edit Cluster&#x27;,
   addUser: &#x27;Add User&#x27;,
+  addLabel: &#x27;Add Label&#x27;,
   devices: &#x27;Devices&#x27;,
   addGroup: &#x27;Add Group&#x27;,
   configGroup: &#x27;Group Config&#x27;,
-  createdGroup: &#x27;Group Created&#x27;
+  createdGroup: &#x27;Group Created&#x27;,
 }</code>
                         </td>
                     </tr>
@@ -358,6 +359,7 @@
     clusterEditMock: &#x27;cluster_edit_mock&#x27;,
     addUserMock: &#x27;add_user_mock&#x27;,
     passwordMock: &#x27;password_change_mock&#x27;,
+    addLabelMock: &#x27;add_label_mock&#x27;,
     devicesMock: &#x27;devices_mock&#x27;,
     addGroupMock: &#x27;add_group_mock&#x27;,
     configGroupMock: &#x27;configuration_group_mock&#x27;,
@@ -1186,7 +1188,7 @@
         {
           organization_id: &#x27;b792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
           device_group_id: &#x27;a1&#x27;,
-          device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
+          device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016a&#x27;,
           register_since: 1550506924515,
           labels: {
               type: &#x27;phone&#x27;,
@@ -1199,7 +1201,7 @@
         {
             organization_id: &#x27;b792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
             device_group_id: &#x27;a1&#x27;,
-            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
+            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016b&#x27;,
             register_since: 1550417971000,
             labels: {
                 type: &#x27;phone&#x27;,
@@ -1213,7 +1215,7 @@
         {
             organization_id: &#x27;b792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
             device_group_id: &#x27;b2&#x27;,
-            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
+            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016c&#x27;,
             register_since: 1549899571000,
             labels: {
                 type: &#x27;phone&#x27;,
@@ -1226,7 +1228,7 @@
         {
             organization_id: &#x27;b792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
             device_group_id: &#x27;b2&#x27;,
-            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
+            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016d&#x27;,
             register_since: 1547825971000,
             labels: {
                 type: &#x27;phone&#x27;,
@@ -1238,7 +1240,7 @@
         {
             organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
             device_group_id: &#x27;b2&#x27;,
-            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
+            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016e&#x27;,
             register_since: 1518968371000,
             labels: {
                 type: &#x27;phone&#x27;,
@@ -1251,7 +1253,7 @@
         {
             organization_id: &#x27;b792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
             device_group_id: &#x27;b2&#x27;,
-            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
+            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016f&#x27;,
             register_since: 1516087991000,
             labels: {
                 type: &#x27;phone&#x27;,
@@ -1265,7 +1267,7 @@
         {
             organization_id: &#x27;b792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
             device_group_id: &#x27;c3&#x27;,
-            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
+            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016g&#x27;,
             register_since: 1527261837000,
             labels: {
                 type: &#x27;phone&#x27;,
@@ -1278,7 +1280,7 @@
         {
             organization_id: &#x27;b792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
             device_group_id: &#x27;c3&#x27;,
-            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
+            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016h&#x27;,
             register_since: 1515486791000,
             labels: {
                 type: &#x27;phone&#x27;,
@@ -1290,7 +1292,7 @@
         {
             organization_id: &#x27;7ad1a7a8-e4b1-4798-9071-e456908fad13&#x27;,
             device_group_id: &#x27;c3&#x27;,
-            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
+            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016i&#x27;,
             register_since: 1513413191000,
             labels: {
                 type: &#x27;phone&#x27;,
@@ -1303,7 +1305,7 @@
         {
             organization_id: &#x27;b792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
             device_group_id: &#x27;c3&#x27;,
-            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
+            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016j&#x27;,
             register_since: 1527261837000,
             labels: {
                 type: &#x27;phone&#x27;,
@@ -1317,7 +1319,7 @@
         {
             organization_id: &#x27;b792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
             device_group_id: &#x27;d4&#x27;,
-            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016&#x27;,
+            device_id: &#x27;792989c-4ae4-460f-92b5-bca7ed36f016k&#x27;,
             register_since: 1497108201000,
             labels: {
                 type: &#x27;phone&#x27;,
@@ -1530,7 +1532,7 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>[
     {
-        node_id: &#x27;6769d264-4ba7-4cd7-b221-a7f4f14e481d9&#x27;,
+        node_id: &#x27;6769d264-4ba7-4cd7-b221-a7f4f14e481d9a&#x27;,
         ip: &#x27;10.240.0.59&#x27;,
         credentials: &#x27;Private&#x27;,
         labels: {
@@ -1552,7 +1554,7 @@
 
     },
     {
-        node_id: &#x27;fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56&#x27;,
+        node_id: &#x27;fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56b&#x27;,
         ip: &#x27;10.240.0.58&#x27;,
         credentials: &#x27;Private&#x27;,
         labels: {
@@ -1573,7 +1575,7 @@
         state_name: &#x27;Unregistered&#x27;,
 
     },    {
-        node_id: &#x27;6769d264-4ba7-4cd7-b221-a7f4f14e481d7&#x27;,
+        node_id: &#x27;6769d264-4ba7-4cd7-b221-a7f4f14e481d7c&#x27;,
         ip: &#x27;10.240.0.57&#x27;,
         credentials: &#x27;Private&#x27;,
         labels: {
@@ -1594,7 +1596,7 @@
         state_name: &#x27;Unregistered&#x27;,
 
     },    {
-        node_id: &#x27;fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56&#x27;,
+        node_id: &#x27;fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56d&#x27;,
         ip: &#x27;10.240.0.56&#x27;,
         credentials: &#x27;Private&#x27;,
         labels: {
@@ -1615,7 +1617,7 @@
         state_name: &#x27;Unregistered&#x27;,
 
     },    {
-        node_id: &#x27;6769d264-4ba7-4cd7-b221-a7f4f14e481d5&#x27;,
+        node_id: &#x27;6769d264-4ba7-4cd7-b221-a7f4f14e481d5e&#x27;,
         ip: &#x27;10.240.0.55&#x27;,
         credentials: &#x27;Private&#x27;,
         labels: {
@@ -1636,7 +1638,7 @@
         state_name: &#x27;Unregistered&#x27;,
 
     },    {
-        node_id: &#x27;fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56&#x27;,
+        node_id: &#x27;fcd88a93-9b06-4d3b-a5c0-27f9a3bd1b56f&#x27;,
         ip: &#x27;10.240.0.53&#x27;,
         credentials: &#x27;Private&#x27;,
         labels: {
