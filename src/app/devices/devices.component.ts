@@ -66,6 +66,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   displayedGroups: any[];
 
+  devicesOnTimeline: any[];
+
   /**
    * List of labels
    */
@@ -209,10 +211,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
         this.updateGroupsList(this.organizationId);
-        this.updateDevicesList(this.organizationId);
         this.refreshIntervalRef = setInterval(() => {
           this.updateGroupsList(this.organizationId);
-          this.updateDevicesList(this.organizationId);
         },
         this.REFRESH_RATIO); // Refresh each 60 seconds
     }
@@ -227,8 +227,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Translates timestamps to the wish date
    * @param timestamp is an integer that represents the number of seconds elapsed
    */
-  parseTimestampToDate(timestamp: number) {
-    return new Date(timestamp);
+  parseTimestampToDate(timestamp: any) {
+    return new Date(Number.parseInt(timestamp, 10) * 1000);
   }
 
   /**
@@ -243,7 +243,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Calculates the number of characters needed to hide the title of tabs
+   * Calculates the number of characters needed to hide the title of tabs, breakpoints calculated through manual testing
    * @param event to pass in onResize method
    */
   @HostListener('window:resize', ['$event'])
@@ -270,7 +270,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       // Requests an updated devices group list
       this.backend.getGroups(this.organizationId)
       .subscribe(response => {
-        this.groups = response || [];
+        this.groups = response.groups || [];
         if (this.displayedGroups.length === 0 && this.groups.length > 0) {
           for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
             this.displayedGroups.push(this.groups[index]);
@@ -280,6 +280,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         if (!this.loadedData) {
           this.loadedData = true;
         }
+        this.updateDevicesList(this.organizationId);
       }, errorResponse => {
           this.loadedData = true;
           this.requestError = errorResponse.error.message;
@@ -296,7 +297,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       this.backend.getGroups(this.organizationId)
       .subscribe(response => {
         const outdatedGroups = this.groups.slice(0);
-        this.groups = response || [];
+        this.groups = response.groups || [];
 
         if (outdatedGroups.length === this.groups.length) {
           // do nothing
@@ -306,18 +307,27 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           for (let indexGroups = 0; indexGroups < this.groups.length && !foundNewGroup; indexGroups++) {
             const index =
               outdatedGroups
-                .map(group => group.device_group_id)
+                .map(x => x.device_group_id)
                 .indexOf(this.groups[indexGroups].device_group_id);
               if (index === -1) {
                 foundNewGroup  = true;
                 this.displayedGroups.push(this.groups[indexGroups]);
-                for (
-                  let indexRefill = indexGroups - 1;
-                  indexRefill >= 0 && this.displayedGroups.length < this.DISPLAYED_GROUP_MAX;
-                  indexRefill--
-                  ) {
-                  if (this.groups[indexRefill]) {
-                    this.displayedGroups.unshift(this.groups[indexRefill]);
+                let refillDisplayedIndex = indexGroups - 1;
+                let refillBackAvailable = true;
+                let refillDisplayedIndexReset = false;
+                while (this.displayedGroups.length < this.DISPLAYED_GROUP_MAX && this.groups.length >= this.DISPLAYED_GROUP_MAX) {
+                  if (this.groups[refillDisplayedIndex] && refillBackAvailable) {
+                    this.displayedGroups.unshift(this.groups[refillDisplayedIndex]);
+                    refillDisplayedIndex -= 1;
+                  } else {
+                    refillBackAvailable = false;
+                    if (!refillDisplayedIndexReset) {
+                      refillDisplayedIndex = indexGroups + 1;
+                      refillDisplayedIndexReset = true;
+                    }
+                    if (this.groups[refillDisplayedIndex]) {
+                      this.displayedGroups.push(this.groups[refillDisplayedIndex]);
+                    }
                   }
                 }
                 this.activeGroupId = this.groups[indexGroups].device_group_id;
@@ -340,20 +350,24 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param organizationId organization identifier
    */
   updateDevicesList(organizationId: string) {
+    this.devices = [];
     if (organizationId !== null) {
       // Request to get devices
-      this.backend.getDevices(this.organizationId, this.activeGroupId)
-      .subscribe(response => {
-          this.devices = response.devices || [];
-          this.updateConnectedDevicesLineChart(this.devices);
-          this.countDevices();
-          if (!this.loadedData) {
-            this.loadedData = true;
-          }
-      }, errorResponse => {
-          this.loadedData = true;
-          this.requestError = errorResponse.error.message;
-        });
+      if (this.groups.length > 0) {
+        this.groups.forEach(group => {
+          this.backend.getDevices(this.organizationId, group.device_group_id)
+          .subscribe(response => {
+              this.devices.push(response.devices || []);
+              if (!this.loadedData) {
+                this.loadedData = true;
+              }
+            }, errorResponse => {
+              this.loadedData = true;
+              this.requestError = errorResponse.error.message;
+            });
+          });
+          this.updateDevicesStatusLineChart();
+      }
     }
   }
 
@@ -361,15 +375,18 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Updates timeline chart
    * @param devices devices array
    */
-  updateConnectedDevicesLineChart(devices) {
+  updateDevicesStatusLineChart() {
     let connectedDevicesCount = 0;
-    devices.forEach(group => {
-      group.forEach(device => {
-        if (device && device.enabled.toLowerCase() === 'connected') {
+    let selectedGroupDevicesCountTotal = 0;
+
+    if (this.devicesOnTimeline && this.devicesOnTimeline.length > 0) {
+      this.devicesOnTimeline.forEach(device => {
+          selectedGroupDevicesCountTotal += 1;
+        if (device && device.device_status_name && device.device_status_name.toLowerCase() === 'online') {
           connectedDevicesCount += 1;
         }
       });
-    });
+    }
 
     const now = new Date(Date.now());
     let minutes: any = now.getMinutes();
@@ -380,17 +397,22 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (seconds < 10) {
       seconds = '0' + now.getSeconds();
     }
+    let value = 0;
+    if (connectedDevicesCount !== 0 && selectedGroupDevicesCountTotal !== 0) {
+      value = Math.floor(connectedDevicesCount / selectedGroupDevicesCountTotal) * 100;
+    }
     const entry = {
-      'value': connectedDevicesCount / devices.length * 100,
+      'value': value,
       'name':  now.getHours() + ':' + minutes + ':' + seconds
     };
 
-    if (this.devicesChart[0].series.length > 5) {
+    if (this.devicesChart[0].series.length > 4) {
       // Removes first element
       this.devicesChart[0].series.shift();
     }
     this.devicesChart[0].series.push(entry);
     this.devicesChart = [...this.devicesChart];
+
   }
 
   /**
@@ -410,24 +432,26 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param className CSS class name
    */
   classStatusCheck(status: string, className: string): boolean {
-    switch (status.toLowerCase()) {
-      case 'connected': {
-        if (className.toLowerCase() === 'connected') {
-          return true;
+    if (status) {
+      switch (status.toLowerCase()) {
+        case 'online': {
+          if (className.toLowerCase() === 'online') {
+            return true;
+          }
+          break;
         }
-        break;
-      }
-      case 'disconnected': {
-        if (className.toLowerCase() === 'disconnected') {
-          return true;
+        case 'offline': {
+          if (className.toLowerCase() === 'offline') {
+            return true;
+          }
+          break;
         }
-        break;
-      }
-     default: {
-        if (className.toLowerCase() === 'process') {
-          return true;
+       default: {
+          if (className.toLowerCase() === 'process') {
+            return true;
+          }
+          return false;
         }
-        return false;
       }
     }
   }
@@ -472,10 +496,18 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   /**
    * Checkbox switcher statement to select one of enabled device to be executed.
+   * @param device device data to update
    */
   enableSwitcher(device) {
    device.enabled = !device.enabled;
    // backend call
+   this.backend.updateDevice(this.organizationId, {
+      organizationId: this.organizationId,
+      deviceGroupId: device.device_group_id,
+      deviceId: device.device_id,
+      enabled: device.enabled
+   }).subscribe( updateDeviceResponse => {
+   });
   }
 
   /**
@@ -484,6 +516,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   changeActiveGroup(groupId: string) {
     this.activeGroupId = groupId;
+    this.cleanDevicesStatusTimeline();
+    this.updateDevicesOnTimeline();
+    this.updateDevicesStatusLineChart();
   }
 
   /**
@@ -566,7 +601,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           .subscribe(response => {
             this.backend.getGroups(this.organizationId)
               .subscribe(getGroupsResponse => {
-                this.groups = getGroupsResponse;
+                this.groups = getGroupsResponse.groups;
                 if (this.groups.length === 0) {
                   this.displayedGroups = [];
                 } else if (this.displayedGroups.length > 0) {
@@ -575,24 +610,27 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                     this.displayedGroups.splice(indexDisplayed, 1);
                     if (this.displayedGroups[this.displayedGroups.length - 1]) {
                       const lastElementId = this.displayedGroups[this.displayedGroups.length - 1].device_group_id;
-                      const indexGroups = this.groups.map(x => x.device_group_id).indexOf(lastElementId);
-                      if (indexGroups !== -1) {
-                        if (this.groups[indexGroups + 1]) {
-                          this.displayedGroups.push(this.groups[indexGroups + 1]);
-                        } else {
-                            const firstElementId = this.displayedGroups[0].device_group_id;
-                            const indexGroupsFirst = this.groups.map(x => x.device_group_id).indexOf(firstElementId);
-                            if (indexGroupsFirst !== -1) {
-                              if (this.groups[indexGroupsFirst - 1]) {
-                                this.displayedGroups.unshift(this.groups[indexGroupsFirst - 1]);
+                      if (this.groups && this.groups.length > 0) {
+                        const indexGroups = this.groups.map(x => x.device_group_id).indexOf(lastElementId);
+                        if (indexGroups !== -1) {
+                          if (this.groups[indexGroups + 1]) {
+                            this.displayedGroups.push(this.groups[indexGroups + 1]);
+                          } else {
+                              const firstElementId = this.displayedGroups[0].device_group_id;
+                              const indexGroupsFirst = this.groups.map(x => x.device_group_id).indexOf(firstElementId);
+                              if (indexGroupsFirst !== -1) {
+                                if (this.groups[indexGroupsFirst - 1]) {
+                                  this.displayedGroups.unshift(this.groups[indexGroupsFirst - 1]);
+                                }
                               }
-                            }
+                          }
                         }
                       }
                     }
                   }
               }
               this.updateDisplayedGroupsNamesLength();
+              this.changeActiveGroup('ALL');
               });
               this.notificationsService.add({
                 message: 'Group "' + deleteGroupName + '" has been deleted',
@@ -605,7 +643,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
             });
           });
       }
-      this.changeActiveGroup('ALL');
     }
   }
 
@@ -619,9 +656,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
     const initialState = {
       organizationId: this.organizationId,
-      enabled: this.enabled,
-      defaultConnectivity: this.default_device_connectivity,
-      name: configGroupName
+      enabled: this.groups[configIndex].enabled || false,
+      defaultConnectivity: this.groups[configIndex].default_device_connectivity || false,
+      name: configGroupName,
+      device_group_id: this.groups[configIndex].device_group_id
     };
     this.modalRef = this.modalService.show(GroupConfigurationComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
@@ -645,9 +683,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param groupId group id
    */
   getGroupName(groupId) {
-    const index = this.groups.map(x => x.device_group_id).indexOf(groupId);
-    if (index !== -1) {
-      return this.groups[index].name;
+    if (this.groups && this.groups.length > 0) {
+      const index = this.groups.map(x => x.device_group_id).indexOf(groupId);
+      if (index !== -1) {
+        return this.groups[index].name;
+      }
     }
     return 'Not found';
   }
@@ -681,6 +721,51 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       }
     });
     return devices;
+  }
+  /**
+   * Search for an specific array of devices that are part of the same group
+   * @param groupId Group identifier
+   */
+  getGroupDevices(groupId: string): any[] {
+    let devicesGroup;
+    for (let indexGroup = 0; indexGroup < this.devices.length; indexGroup++) {
+      devicesGroup = this.devices[indexGroup];
+      if (devicesGroup && devicesGroup[0] && devicesGroup[0].device_group_id) {
+      }
+
+      if (devicesGroup && devicesGroup.length > 0 && devicesGroup[0].device_group_id === groupId) {
+        return devicesGroup;
+      }
+    }
+    return [-1];
+  }
+
+  /**
+   * Removes the values in devices status timeline
+   */
+  cleanDevicesStatusTimeline() {
+    while (this.devicesChart[0].series.length > 0) {
+      this.devicesChart[0].series.pop();
+    }
+    this.devicesChart = [...this.devicesChart];
+  }
+
+  /**
+   * Updates devices values array for timeline
+   */
+  updateDevicesOnTimeline () {
+    this.devicesOnTimeline = [];
+    if (this.activeGroupId === 'ALL') {
+      this.devices.forEach(devicesGroup => {
+        if (devicesGroup && devicesGroup.length > 0) {
+          devicesGroup.forEach(device => {
+            this.devicesOnTimeline.push(device);
+          });
+        }
+      });
+    } else {
+      this.devicesOnTimeline = this.getGroupDevices(this.activeGroupId);
+    }
   }
 
   /**

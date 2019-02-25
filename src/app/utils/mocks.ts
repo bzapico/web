@@ -789,150 +789,61 @@ export const mockDevicesChart = [
  * Mocked devices list
  */
 export const mockDevicesList = [
+    [],
     [
         {
-          organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-          device_group_id: 'a1',
-          device_id: '792989c-4ae4-460f-92b5-bca7ed36f016a',
-          register_since: 1550506924515,
-          labels: {
-              type: 'phone',
-              os: 'arm',
-          },
-          enabled: 'true',
-          device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-          status_name: 'Connected'
-        },
-        {
-            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-            device_group_id: 'a1',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016b',
-            register_since: 1550417971000,
-            labels: {
-                type: 'phone',
-            },
-            enabled: 'true',
-            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'Connected'
+           'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+           'device_group_id': 'a56b9900-0fef-41b0-bb7c-adf0055274cd',
+           'device_id': 'dh006',
+           'register_since': '1550746714',
+           'enabled': true,
+           'device_status_name': 'OFFLINE'
         }
     ],
     [
         {
-            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-            device_group_id: 'b2',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016c',
-            register_since: 1549899571000,
-            labels: {
-                type: 'phone',
-                os: 'arm',
-            },
-            enabled: 'true',
-            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'Connected'
+        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        'device_id': 'dh001',
+        'register_since': '1550746644',
+        'enabled': true,
+        'device_status_name': 'OFFLINE',
+        labels: {
+            type: 'phone',
+            arch: 'arm'
+            }
         },
         {
-            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-            device_group_id: 'b2',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016d',
-            register_since: 1547825971000,
-            labels: {
-                type: 'phone',
-            },
-            enabled: 'true',
-            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'Connected'
+        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        'device_id': 'dh002',
+        'register_since': '1550746647',
+        'enabled': true,
+        'device_status_name': 'OFFLINE'
         },
         {
-            organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-            device_group_id: 'b2',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016e',
-            register_since: 1518968371000,
-            labels: {
-                type: 'phone',
-                os: 'arm',
-            },
-            enabled: 'false',
-            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'disconnected'
+        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        'device_id': 'dh003',
+        'register_since': '1550746651',
+        'enabled': true,
+        'device_status_name': 'OFFLINE'
         },
         {
-            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-            device_group_id: 'b2',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016f',
-            register_since: 1516087991000,
-            labels: {
-                type: 'phone',
-            },
-            enabled: 'true',
-            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'Connected'
-        }
-    ],
-    [
-        {
-            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-            device_group_id: 'c3',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016g',
-            register_since: 1527261837000,
-            labels: {
-                type: 'phone',
-                os: 'arm',
-            },
-            enabled: 'true',
-            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'disconnected'
+        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        'device_id': 'dh004',
+        'register_since': '1550746653',
+        'enabled': true,
+        'device_status_name': 'OFFLINE'
         },
         {
-            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-            device_group_id: 'c3',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016h',
-            register_since: 1515486791000,
-            labels: {
-                type: 'phone',
-            },
-            enabled: 'true',
-            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'disconnected'
-        },
-        {
-            organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-            device_group_id: 'c3',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016i',
-            register_since: 1513413191000,
-            labels: {
-                type: 'phone',
-                os: 'arm',
-            },
-            enabled: 'false',
-            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'disconnected'
-        },
-        {
-            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-            device_group_id: 'c3',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016j',
-            register_since: 1527261837000,
-            labels: {
-                type: 'phone',
-            },
-            enabled: 'true',
-            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'disconnected'
-        }
-    ],
-    [
-        {
-            organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-            device_group_id: 'd4',
-            device_id: '792989c-4ae4-460f-92b5-bca7ed36f016k',
-            register_since: 1497108201000,
-            labels: {
-                type: 'phone',
-                os: 'arm',
-            },
-            enabled: 'true',
-            device_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3',
-            status_name: 'disconnected'
+        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        'device_id': 'dh005',
+        'register_since': '1550746656',
+        'enabled': true,
+        'device_status_name': 'OFFLINE'
         }
     ]
 ];
@@ -942,55 +853,33 @@ export const mockDevicesList = [
  */
 export const mockGroupList: Group[] = [
     {
-        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        device_group_id: 'a1',
-        enabled: true,
-        default_device_connectivity: true,
-        name: 'Voice controllers',
-        device_group_api_key: '2bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c79'
+       'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+       'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+       'name': 'dg1',
+       'created': '1550746520',
+       'enabled': true,
+       'default_device_connectivity': true,
+       'device_group_api_key': '6ca7ab9c-54be-4f74-be44-bb58977fb37e'
     },
     {
-        organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
-        device_group_id: 'b2',
-        enabled: false,
-        default_device_connectivity: false,
-        name: 'Nest cams Outdoor',
-        device_group_api_key: '3bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c78'
+       'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+       'device_group_id': 'a56b9900-0fef-41b0-bb7c-adf0055274cd',
+       'name': 'dg3',
+       'created': '1550746676',
+       'enabled': true,
+       'default_device_connectivity': true,
+       'device_group_api_key': '585fc4d1-f364-415d-be51-be0eda39e632'
     },
     {
-        organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
-        device_group_id: 'c3',
-        enabled: true,
-        default_device_connectivity: true,
-        name: 'Tracking devices',
-        device_group_api_key: '4bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c76'
-    },
-    {
-        organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
-        device_group_id: 'd4',
-        enabled: true,
-        default_device_connectivity: true,
-        name: 'Bluetooth sensors',
-        device_group_api_key: '5bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c75'
-    },
-    {
-        organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
-        device_group_id: 'e5',
-        enabled: true,
-        default_device_connectivity: true,
-        name: 'Droids with force',
-        device_group_api_key: '5bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c75'
-    },
-    {
-        organization_id: 'a792989c-4ae4-460f-92b5-bca7ed36f017',
-        device_group_id: 'f6',
-        enabled: true,
-        default_device_connectivity: true,
-        name: 'Smart thermostats',
-        device_group_api_key: '5bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c75'
+       'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+       'device_group_id': 'd94ac398-fd77-4937-b7f7-9fa0ff8b1eab',
+       'name': 'dg2',
+       'created': '1550746669',
+       'enabled': true,
+       'default_device_connectivity': true,
+       'device_group_api_key': 'cd9e76b1-bfb8-4f51-ba73-3336d8051948'
     }
-  ];
-
+ ];
 /**
  * Mocked new group API Key
  */

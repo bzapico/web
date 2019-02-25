@@ -9,7 +9,7 @@ export interface Group {
     // Name of the device group.
     name?: string;
     // Created time
-    created?: number;
+    created?: string;
     // Labels defined by the user.
     labels?: string;
     // Enabled determines if the device can interact with the running applications.

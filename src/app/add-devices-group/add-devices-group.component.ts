@@ -84,7 +84,6 @@ export class AddDevicesGroupComponent implements OnInit {
         enabled: this.enabled,
         default_device_connectivity: this.defaultConnectivity,
         organization_id: this.organizationId,
-        device_group_api_key: this.groupApiKey
       };
       this.backend.addGroup(this.organizationId, groupData)
       .subscribe(response => {

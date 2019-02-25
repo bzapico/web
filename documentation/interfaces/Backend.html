@@ -2015,7 +2015,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>updateDevice(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupData: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>updateDevice(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, deviceData: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
@@ -2054,9 +2054,9 @@
 
                                                 </tr>
                                                 <tr>
-                                                        <td>groupData</td>
+                                                        <td>deviceData</td>
                                                         <td>
-                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                                         </td>
                                                     
                                                     <td>
@@ -2198,7 +2198,7 @@ export interface Backend {
     getAppDescriptor(organizationId: string, descriptorId: string);
     // Devices
     getDevices(organizationId: string, groupId: string);
-    updateDevice(organizationId: string, groupData: string);
+    updateDevice(organizationId: string, deviceData: any);
     // Groups
     getGroups(organizationId: string);
     addGroup(organizationId: string, groupData: any);

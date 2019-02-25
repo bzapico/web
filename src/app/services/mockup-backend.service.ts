@@ -340,8 +340,18 @@ export class MockupBackendService implements Backend {
    * @param groupId Group identifier
    */
   getDevices(organizationId: string, groupId: string) {
+    let found = false;
+    let devicesArray = [];
+    for (let index = 0; index < mockDevicesList.length && !found; index++) {
+      if (mockDevicesList[index] &&
+          mockDevicesList[index].length > 0 &&
+          mockDevicesList[index][0].device_group_id === groupId) {
+            found = true;
+            devicesArray = mockDevicesList[index];
+      }
+    }
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify({devices: mockDevicesList}),
+      body: JSON.stringify({devices: devicesArray}),
       status: 200
     })))
     .pipe(
@@ -352,9 +362,9 @@ export class MockupBackendService implements Backend {
   /**
    * Simulates to update a device from a device array
    *  @param organizationId Organization identifier
-   *  @param groupData Device data
+   *  @param deviceData Device data
    */
-  updateDevice(organizationId: string, groupData: string) {
+  updateDevice(organizationId: string, deviceData: any) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify({ result: '' }),
       status: 200
@@ -367,7 +377,7 @@ export class MockupBackendService implements Backend {
    */
   getGroups(organizationId: string) {
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockGroupList),
+      body: JSON.stringify({groups: mockGroupList}),
       status: 200
     })))
     .pipe(
