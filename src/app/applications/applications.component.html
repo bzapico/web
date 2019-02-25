@@ -88,12 +88,12 @@
         <h5>APPLICATIONS</h5>
       </div>
       <div class="apps-options">
-        <button *ngIf="activeList" class="btn-apps-options">
+        <button *ngIf="activeList" class="btn-apps-options button-padding-fix">
           <i class="material-icons i-options">play_arrow</i>
           Deploy instance
         </button>
-        <button *ngIf="!activeList" class="btn-apps-options">
-          <i class="material-icons i-options">vertical_align_top</i>
+        <button *ngIf="!activeList" class="btn-apps-options button-padding-fix">
+          <i class="material-icons i-options">publish</i>
           Register application
         </button>
       </div>
@@ -238,7 +238,7 @@
               <td class="col-3">{{app.app_instance_id}}</td>
               <td class="col-4">
                 <button *ngFor="let label of labelsToString(app.labels)" class="btn-sm btn-outline-primary" disabled>
-                    {{label[0]}}: {{label[1]}}
+                  {{label[0]}}: {{label[1]}}
                 </button>
               </td>
               <td 
@@ -255,7 +255,7 @@
               </td>
               <td class="row-info-btn col-1 text-center">
                 <button tooltip="Undeploy" placement="left" class="btn-grey">
-                  <span class="i-undeploy">X</span>
+                  <i class="material-icons i-red">close</i>
                 </button>
               </td>
             </tr>

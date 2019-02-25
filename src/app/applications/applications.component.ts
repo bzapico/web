@@ -17,7 +17,7 @@ import { AddLabelComponent } from '../add-label/add-label.component';
   styleUrls: ['./applications.component.scss']
 })
 export class ApplicationsComponent implements OnInit, OnDestroy {
-   /**
+  /**
    * Backend reference
    */
   backend: Backend;
@@ -42,7 +42,15 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   registered: any[];
 
+  /**
+   * List of labels
+   */
   labels: any[];
+
+  /**
+   * List of selected labels from an entity
+   */
+  selectedLabels = [];
 
   /**
    * Number of running instances
@@ -146,17 +154,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   activeList: boolean;
 
-  /**
-   * List of selected labels from an entity
-   */
-  selectedLabels = [];
-
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
-  ) {
+    ) {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -187,7 +190,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
      * Charts reference init
      */
     Object.assign(this, {mockAppChart, mockAppPieChart});
-}
+  }
 
   ngOnInit() {
       // Get User data from localStorage
@@ -352,6 +355,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       instance.status_name = '-';
     }
   }
+
   /**
    * Checks if the cluster status requires an special css class
    * @param status Cluster status name
@@ -423,6 +427,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   changeActiveList() {
     this.activeList = !this.activeList;
   }
+
    /**
    * Opens the modal view that holds add label component
    */
