@@ -227,7 +227,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="383" class="link-to-prism">src/app/services/mockup-backend.service.ts:383</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="393" class="link-to-prism">src/app/services/mockup-backend.service.ts:393</a></div>
                             </td>
                         </tr>
 
@@ -510,7 +510,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="410" class="link-to-prism">src/app/services/mockup-backend.service.ts:410</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="420" class="link-to-prism">src/app/services/mockup-backend.service.ts:420</a></div>
                             </td>
                         </tr>
 
@@ -1091,7 +1091,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="368" class="link-to-prism">src/app/services/mockup-backend.service.ts:368</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="378" class="link-to-prism">src/app/services/mockup-backend.service.ts:378</a></div>
                             </td>
                         </tr>
 
@@ -2171,14 +2171,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>updateDevice(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupData: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>updateDevice(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, deviceData: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="357" class="link-to-prism">src/app/services/mockup-backend.service.ts:357</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="367" class="link-to-prism">src/app/services/mockup-backend.service.ts:367</a></div>
                             </td>
                         </tr>
 
@@ -2217,9 +2217,9 @@
                                                         </td>
                                                 </tr>
                                                 <tr>
-                                                        <td>groupData</td>
+                                                        <td>deviceData</td>
                                                         <td>
-                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                                         </td>
                                                     
                                                     <td>
@@ -2270,7 +2270,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="425" class="link-to-prism">src/app/services/mockup-backend.service.ts:425</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="435" class="link-to-prism">src/app/services/mockup-backend.service.ts:435</a></div>
                             </td>
                         </tr>
 
@@ -2729,8 +2729,18 @@ export class MockupBackendService implements Backend {
    * @param groupId Group identifier
    */
   getDevices(organizationId: string, groupId: string) {
+    let found &#x3D; false;
+    let devicesArray &#x3D; [];
+    for (let index &#x3D; 0; index &lt; mockDevicesList.length &amp;&amp; !found; index++) {
+      if (mockDevicesList[index] &amp;&amp;
+          mockDevicesList[index].length &gt; 0 &amp;&amp;
+          mockDevicesList[index][0].device_group_id &#x3D;&#x3D;&#x3D; groupId) {
+            found &#x3D; true;
+            devicesArray &#x3D; mockDevicesList[index];
+      }
+    }
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify({devices: mockDevicesList}),
+      body: JSON.stringify({devices: devicesArray}),
       status: 200
     })))
     .pipe(
@@ -2741,9 +2751,9 @@ export class MockupBackendService implements Backend {
   /**
    * Simulates to update a device from a device array
    *  @param organizationId Organization identifier
-   *  @param groupData Device data
+   *  @param deviceData Device data
    */
-  updateDevice(organizationId: string, groupData: string) {
+  updateDevice(organizationId: string, deviceData: any) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify({ result: &#x27;&#x27; }),
       status: 200
@@ -2756,7 +2766,7 @@ export class MockupBackendService implements Backend {
    */
   getGroups(organizationId: string) {
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockGroupList),
+      body: JSON.stringify({groups: mockGroupList}),
       status: 200
     })))
     .pipe(
