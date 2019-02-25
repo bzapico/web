@@ -401,7 +401,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       'name':  now.getHours() + ':' + minutes + ':' + seconds
     };
 
-    if (this.devicesChart[0].series.length > 5) {
+    if (this.devicesChart[0].series.length > 4) {
       // Removes first element
       this.devicesChart[0].series.shift();
     }

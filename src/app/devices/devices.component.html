@@ -465,7 +465,8 @@
                 <td class="col-1 text-center">
                   <span 
                     *ngIf="!device.enabled" 
-                    (click)="enableSwitcher(device)">
+                    (click)="enableSwitcher(device)"
+                    class="devices-checkbox">
                     <i class="material-icons grey">check_box_outline_blank</i>
                   </span>
                   <span 
