@@ -266,7 +266,7 @@
       <div 
         *ngIf="loadedData && instances && instances.length === 0 && !requestError && activeList"
         class="no-apps d-flex justify-content-center align-items-center">
-        No available applications detected
+        No application instances deployed
       </div>
       <!-- Registered Apps -->
       <div class="table-h" *ngIf="loadedData && registered && registered.length > 0 && !requestError && !activeList">
@@ -396,7 +396,7 @@
       <div 
         *ngIf="loadedData && registered && registered.length === 0 && !requestError && !activeList"
         class="no-apps d-flex justify-content-center align-items-center">
-        No available applications detected
+        No registered applications detected
       </div>
        <!-- Requested error -->
       <div
