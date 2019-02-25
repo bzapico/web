@@ -262,14 +262,14 @@
           </tbody>
         </table>
       </div>
-       <!-- No aap instances to show -->
+       <!-- No app instances to show -->
       <div 
         *ngIf="loadedData && instances && instances.length === 0 && !requestError && activeList"
         class="no-apps d-flex justify-content-center align-items-center">
         No available applications detected
       </div>
       <!-- Registered Apps -->
-      <div class="table-h" *ngIf="loadedData && instances && instances.length > 0 && !requestError && !activeList">
+      <div class="table-h" *ngIf="loadedData && registered && registered.length > 0 && !requestError && !activeList">
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
@@ -331,7 +331,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let app of instances | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+            <tr *ngFor="let app of registered| sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
               <td 
                 tooltip="Info"
                 placement="top"
@@ -378,14 +378,13 @@
                 </div>
               </td>
               <td class="col-2 text-center"> 
-                  <!-- {{app.service_instances}} -->
-                  2
+                  {{getServicesCount(app)}}
               </td>
               <td class="row-info-btn col-1 text-center">
-                <button tooltip="Undeploy" placement="left" class="btn-blue mr-2">
+                <button tooltip="Deploy" placement="left" class="btn-blue mr-2">
                   <i class="material-icons i-white">play_arrow</i>
                 </button>
-                <button tooltip="Undeploy" placement="left" class="btn-grey">
+                <button tooltip="Delete" placement="left" class="btn-grey">
                   <i class="material-icons i-red">delete</i>
                 </button>
               </td>
@@ -395,7 +394,7 @@
       </div>
         <!-- No registered app to show -->
       <div 
-        *ngIf="loadedData && instances && instances.length === 0 && !requestError && !activeList"
+        *ngIf="loadedData && registered && registered.length === 0 && !requestError && !activeList"
         class="no-apps d-flex justify-content-center align-items-center">
         No available applications detected
       </div>

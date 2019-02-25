@@ -689,6 +689,34 @@ export const mockRegisteredAppsList = [
                                 'component': 'simple-app'
                             },
                             'deploy_after': ['1']
+                        },
+                        {
+                            'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                            'app_descriptor_id': '1ae8e3ca-dc97-4e49-8ee8-302a15dbd58a',
+                            'service_group_id': 'bcd25b71-1e04-418b-920d-1f5dc3557eee',
+                            'service_id': 'd1e42f2b-ef78-4c16-b30d-5abe02813801',
+                            'name': 'simple-wordpress',
+                            'image': 'wordpress:5.0.0',
+                            'specs': { 'replicas': 1 },
+                            'storage': [{ 'size': '104857600', 'mount_path': '/tmp' }],
+                            'exposed_ports':
+                                [{
+                                    'name': 'wordpressport',
+                                    'internal_port': 80,
+                                    'exposed_port': 80,
+                                    'endpoints': [{ 'type': 'WEB', 'path': '/' }]
+                                }],
+                            'environment_variables':
+                            {
+                                'WORDPRESS_DB_HOST': 'NALEJ_SERV_SIMPLE-MYSQL:3306',
+                                'WORDPRESS_DB_PASSWORD': 'root'
+                            },
+                            'labels':
+                            {
+                                'app': 'simple-wordpress',
+                                'component': 'simple-app'
+                            },
+                            'deploy_after': ['1']
                         }
                     ],
                 'specs': { 'num_replicas': 1 }

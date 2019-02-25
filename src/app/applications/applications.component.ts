@@ -501,5 +501,15 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     return false;
   }
 
+  /**
+   * Returns the length of the services in registered list. Represents the number of available services
+   * @param app selected app
+   */
+  getServicesCount(app) {
+    for (let index = 0; index < app.groups.length; index++) {
+      const element = app.groups[index];
+      return element.services.length;
+    }
+  }
 }
 
