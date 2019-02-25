@@ -340,8 +340,18 @@ export class MockupBackendService implements Backend {
    * @param groupId Group identifier
    */
   getDevices(organizationId: string, groupId: string) {
+    let found = false;
+    let devicesArray = [];
+    for (let index = 0; index < mockDevicesList.length && !found; index++) {
+      if (mockDevicesList[index] &&
+          mockDevicesList[index].length > 0 &&
+          mockDevicesList[index][0].device_group_id === groupId) {
+            found = true;
+            devicesArray = mockDevicesList[index];
+      }
+    }
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify({devices: mockDevicesList}),
+      body: JSON.stringify({devices: devicesArray}),
       status: 200
     })))
     .pipe(

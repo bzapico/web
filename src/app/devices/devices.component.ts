@@ -227,9 +227,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Translates timestamps to the wish date
    * @param timestamp is an integer that represents the number of seconds elapsed
    */
-  parseTimestampToDate(timestamp: number) {
-    console.log(timestamp);
-    return new Date(timestamp * 1000);
+  parseTimestampToDate(timestamp: any) {
+    return new Date(Number.parseInt(timestamp, 10) * 1000);
   }
 
   /**

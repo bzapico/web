@@ -788,7 +788,65 @@ export const mockDevicesChart = [
 /**
  * Mocked devices list
  */
-export const mockDevicesList = [];
+export const mockDevicesList = [
+    [],
+    [
+        {
+           'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+           'device_group_id': 'a56b9900-0fef-41b0-bb7c-adf0055274cd',
+           'device_id': 'dh006',
+           'register_since': '1550746714',
+           'enabled': true,
+           'device_status_name': 'OFFLINE'
+        }
+    ],
+    [
+        {
+        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        'device_id': 'dh001',
+        'register_since': '1550746644',
+        'enabled': true,
+        'device_status_name': 'OFFLINE',
+        labels: {
+            type: 'phone',
+            arch: 'arm'
+            }
+        },
+        {
+        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        'device_id': 'dh002',
+        'register_since': '1550746647',
+        'enabled': true,
+        'device_status_name': 'OFFLINE'
+        },
+        {
+        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        'device_id': 'dh003',
+        'register_since': '1550746651',
+        'enabled': true,
+        'device_status_name': 'OFFLINE'
+        },
+        {
+        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        'device_id': 'dh004',
+        'register_since': '1550746653',
+        'enabled': true,
+        'device_status_name': 'OFFLINE'
+        },
+        {
+        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        'device_id': 'dh005',
+        'register_since': '1550746656',
+        'enabled': true,
+        'device_status_name': 'OFFLINE'
+        }
+    ]
+];
 
 /**
  * Mocked devices group list
