@@ -18,6 +18,7 @@ export interface Backend {
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);
     getClusters(organizationId: string);
     getNodes(organizationId: string, clusterId: string);
+    updateNode(organizationId: string, nodeId: string, changes: any);
     getClusterDetail(organizationId: string, clusterId: string);
     getResourcesSummary(organizationId: string);
     // Applications
@@ -28,6 +29,8 @@ export interface Backend {
     // Devices
     getDevices(organizationId: string, groupId: string);
     updateDevice(organizationId: string, deviceData: any);
+    addLabelToDevice(organizationId: string, label: any);
+    removeLabelFromDevice(organizationId: string, label: any);
     // Groups
     getGroups(organizationId: string);
     addGroup(organizationId: string, groupData: any);

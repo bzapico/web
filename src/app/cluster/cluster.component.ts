@@ -243,9 +243,6 @@ export class ClusterComponent implements OnInit {
     if (!cluster.running_nodes) {
       cluster.running_nodes = 0;
     }
-    if (!cluster.labels) {
-      cluster.labels = '-';
-    }
   }
   /**
    * Generates the NGX-Chart required JSON object for pie chart rendering
@@ -333,9 +330,11 @@ export class ClusterComponent implements OnInit {
   /**
    * Opens the modal view that holds add label component
    */
-  addLabel() {
+  addLabel(node) {
     const initialState = {
       organizationId: this.organizationId,
+      entityType: 'node',
+      entity: node
     };
 
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
@@ -346,10 +345,27 @@ export class ClusterComponent implements OnInit {
 
   /**
    * Deletes a selected label
-   * @param label selected label
+   * @param entity selected label entity
    */
-  deleteLabel(label) {
-    console.log(label);
+  deleteLabel(entity) {
+    const deleteConfirm = confirm('Delete labels?');
+    if (deleteConfirm) {
+      const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.node_id);
+      this.backend.updateNode(
+        this.organizationId,
+        entity.node_id,
+        {
+          organizationId: this.organizationId,
+          nodeId: entity.node_id,
+          remove_labels: true,
+          labels: this.selectedLabels[index].labels
+        }).subscribe(updateNodeResponse => {
+          this.selectedLabels.splice(index, 1);
+          this.updateNodesList();
+        });
+    } else {
+      // Do nothing
+    }
   }
 
   /**

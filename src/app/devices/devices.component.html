@@ -452,7 +452,16 @@
                   </span>
                 </td>
                 <td *ngIf="!device.labels" class="col-4">
-                    No
+                    <div 
+                      class="add-label-button"
+                      (click)="addLabel(device)">
+                        <i 
+                        class="material-icons i-add" 
+                        tooltip="Add" 
+                        placement="right">
+                        add
+                        </i>  
+                    </div>
                 </td>
                 <td *ngIf="device.labels" class="col-4">
                   <button 
@@ -469,7 +478,7 @@
                     <div 
                       *ngIf="isAnyLabelSelected(device.device_id) === false"
                       class="add-label-button" 
-                      (click)="addLabel()"
+                      (click)="addLabel(device)"
                       tooltip="Add" 
                       placement="right"
                       >

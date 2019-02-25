@@ -25,6 +25,9 @@ export class AddLabelComponent implements OnInit {
   labelName: string;
   labelValue: string;
 
+  entity: any;
+  entityType: string;
+
   errorMessages: string[];
 
   /**
@@ -83,11 +86,11 @@ export class AddLabelComponent implements OnInit {
    */
   checkFormFields(form: FormGroup) {
     this.errorMessages = [];
-    if (form.controls.name.invalid) {
-      if (form.controls.name.errors.required) {
+    if (form.controls.key.invalid) {
+      if (form.controls.key.errors.required) {
         this.errorMessages.push('Label name is required');
       }
-      if (form.controls.name.errors.pattern) {
+      if (form.controls.key.errors.pattern) {
         this.errorMessages.push('Invalid format: cannot contain special characers as _*/.`');
       }
     }
@@ -110,22 +113,99 @@ export class AddLabelComponent implements OnInit {
    */
   addLabel(form) {
     if (this.errorMessages.length === 0) {
-      const user = {
-        name: form.value.name,
+      const label = {
+        key: form.value.key,
         value: form.value.value,
       };
-    //   this.backend.addLabel(this.organizationId, label)
-    //   .subscribe(response => {
-    //     this.notificationsService.add({
-    //       message: 'Added new label to Cluster 1'
-    //     });
-    //     this.bsModalRef.hide();
-    //   }, error => {
-    //     this.notificationsService.add({
-    //       message: 'ERROR: ' + error.error.message,
-    //       timeout: 10000
-    //     });
-    //   });
+      const updatedEntity = this.entity;
+
+      switch (this.entityType.toLowerCase()) {
+        case 'cluster':
+          if (!updatedEntity.labels || updatedEntity.labels === '-') {
+            updatedEntity.labels = {};
+          }
+          updatedEntity.labels[form.value.key] = form.value.value;
+          updatedEntity.add_labels = true;
+            this.backend.saveClusterChanges(
+              this.organizationId,
+              this.entity.cluster_id,
+              {
+                organizationId: this.organizationId,
+                clusterId: updatedEntity.cluster_id,
+                add_labels: true,
+                labels: updatedEntity.labels
+              }
+              ).subscribe(updateClusterResponse => {
+                this.notificationsService.add({
+                  message: 'Updated ' + this.entity.name,
+                  timeout: 3000,
+                });
+                this.bsModalRef.hide();
+              }, error => {
+                this.notificationsService.add({
+                  message: error.error.message,
+                  timeout: 5000,
+                });
+              });
+            break;
+            case 'node':
+              if (!updatedEntity.labels || updatedEntity.labels === '-') {
+                updatedEntity.labels = {};
+              }
+              updatedEntity.labels[form.value.key] = form.value.value;
+              updatedEntity.add_labels = true;
+                this.backend.updateNode(
+                  this.organizationId,
+                  this.entity.node_id,
+                  {
+                    organizationId: this.organizationId,
+                    nodeId: updatedEntity.node_id,
+                    add_labels: true,
+                    labels: updatedEntity.labels
+                  }
+                  ).subscribe(updateNodeResponse => {
+                    this.notificationsService.add({
+                      message: 'Updated ' + this.entity.ip + ' node',
+                      timeout: 3000,
+                    });
+                    this.bsModalRef.hide();
+                  }, error => {
+                    this.notificationsService.add({
+                      message: error.error.message,
+                      timeout: 5000,
+                    });
+                  });
+              break;
+              case 'device':
+              if (!updatedEntity.labels || updatedEntity.labels === '-') {
+                updatedEntity.labels = {};
+              }
+              updatedEntity.labels[form.value.key] = form.value.value;
+              updatedEntity.add_labels = true;
+                this.backend.addLabelToDevice(
+                  this.organizationId,
+                  {
+                    organization_id: this.organizationId,
+                    device_group_id: updatedEntity.device_group_id,
+                    device_id: updatedEntity.device_id,
+                    labels: updatedEntity.labels
+                  }
+                  ).subscribe(updateNodeResponse => {
+                    this.notificationsService.add({
+                      message: 'Updated ' + this.entity.device_id ,
+                      timeout: 3000,
+                    });
+                    this.bsModalRef.hide();
+                  }, error => {
+                    this.notificationsService.add({
+                      message: error.error.message,
+                      timeout: 5000,
+                    });
+                  });
+              break;
+        default:
+          break;
+      }
     }
   }
 
@@ -144,6 +224,19 @@ export class AddLabelComponent implements OnInit {
     } else {
       this.bsModalRef.hide();
     }
+  }
+
+   /**
+   * Another string definition of an array
+   * @param array Array of elements
+   */
+  arrayToString(array: any[]): string {
+    let msg = '';
+    array.forEach(element => {
+      msg = msg + element.toLowerCase() + ', ';
+    });
+    msg = msg.slice(0, msg.length - 2);
+    return msg;
   }
 
 }

@@ -170,11 +170,15 @@ export class MockupBackendService implements Backend {
     const index = mockClusterList.map(x => x.cluster_id).indexOf(clusterId);
     if (index !== -1) {
       mockClusterList[index].name = changes.name;
-      mockClusterList[index].description = changes.description;
+      mockClusterList[index].labels = changes.labels;
     }
     return of(new Response(new ResponseOptions({
       status: 200
     })));
+  }
+
+  updateNode(organizationId: string, nodeId: string, changes: any) {
+    
   }
   /**
    * Simulates to request a list of user roles
@@ -328,6 +332,7 @@ export class MockupBackendService implements Backend {
       map(response => response.json())
     );
   }
+  
 
 
   /********************
@@ -437,5 +442,12 @@ export class MockupBackendService implements Backend {
       body: JSON.stringify({ result: '' }),
       status: 200
     })));
+  }
+
+  addLabelToDevice(organizationId: string) {
+
+  }
+  removeLabelFromDevice(organizationId: string) {
+
   }
 }

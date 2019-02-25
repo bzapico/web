@@ -379,9 +379,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     if (!cluster.running_nodes) {
       cluster.running_nodes = 0;
     }
-    if (!cluster.labels) {
-      cluster.labels = '-';
-    }
   }
   /**
    * Checks if the cluster status requires an special css class
@@ -461,9 +458,11 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Opens the modal view that holds add label component
    */
-  addLabel() {
+  addLabel(entity) {
     const initialState = {
       organizationId: this.organizationId,
+      entityType: 'cluster',
+      entity: entity
     };
 
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
@@ -474,10 +473,27 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 
   /**
    * Deletes a selected label
-   * @param label selected label
+   * @param entity selected label entity
    */
-  deleteLabel(label) {
-    console.log(label);
+  deleteLabel(entity) {
+    const deleteConfirm = confirm('Delete labels?');
+    if (deleteConfirm) {
+      const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.cluster_id);
+      this.backend.saveClusterChanges(
+        this.organizationId,
+        entity.cluster_id,
+        {
+          organizationId: this.organizationId,
+          clusterId: entity.cluster_id,
+          remove_labels: true,
+          labels: this.selectedLabels[index].labels
+        }).subscribe(updateClusterResponse => {
+          this.selectedLabels.splice(index, 1);
+          this.updateClusterList();
+        });
+    } else {
+      // Do nothing
+    }
   }
 
   /**
