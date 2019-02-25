@@ -292,7 +292,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       this.backend.getGroups(this.organizationId)
       .subscribe(response => {
         const outdatedGroups = this.groups.slice(0);
-        this.groups = response || [];
+        this.groups = response.groups || [];
 
         if (outdatedGroups.length === this.groups.length) {
           // do nothing
@@ -302,18 +302,27 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           for (let indexGroups = 0; indexGroups < this.groups.length && !foundNewGroup; indexGroups++) {
             const index =
               outdatedGroups
-                .map(group => group.device_group_id)
+                .map(x => x.device_group_id)
                 .indexOf(this.groups[indexGroups].device_group_id);
               if (index === -1) {
                 foundNewGroup  = true;
                 this.displayedGroups.push(this.groups[indexGroups]);
-                for (
-                  let indexRefill = indexGroups - 1;
-                  indexRefill >= 0 && this.displayedGroups.length < this.DISPLAYED_GROUP_MAX;
-                  indexRefill--
-                  ) {
-                  if (this.groups[indexRefill]) {
-                    this.displayedGroups.unshift(this.groups[indexRefill]);
+                let refillDisplayedIndex = indexGroups - 1;
+                let refillBackAvailable = true;
+                let refillDisplayedIndexReset = false;
+                while (this.displayedGroups.length < this.DISPLAYED_GROUP_MAX && this.groups.length >= this.DISPLAYED_GROUP_MAX) {
+                  if (this.groups[refillDisplayedIndex] && refillBackAvailable) {
+                    this.displayedGroups.unshift(this.groups[refillDisplayedIndex]);
+                    refillDisplayedIndex -= 1;
+                  } else {
+                    refillBackAvailable = false;
+                    if (!refillDisplayedIndexReset) {
+                      refillDisplayedIndex = indexGroups + 1;
+                      refillDisplayedIndexReset = true;
+                    }
+                    if (this.groups[refillDisplayedIndex]) {
+                      this.displayedGroups.push(this.groups[refillDisplayedIndex]);
+                    }
                   }
                 }
                 this.activeGroupId = this.groups[indexGroups].device_group_id;
@@ -493,7 +502,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       deviceId: device.device_id,
       enabled: device.enabled
    }).subscribe( updateDeviceResponse => {
-     console.log(updateDeviceResponse);
    });
   }
 
@@ -588,7 +596,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           .subscribe(response => {
             this.backend.getGroups(this.organizationId)
               .subscribe(getGroupsResponse => {
-                this.groups = getGroupsResponse;
+                this.groups = getGroupsResponse.groups;
                 if (this.groups.length === 0) {
                   this.displayedGroups = [];
                 } else if (this.displayedGroups.length > 0) {
@@ -597,24 +605,27 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                     this.displayedGroups.splice(indexDisplayed, 1);
                     if (this.displayedGroups[this.displayedGroups.length - 1]) {
                       const lastElementId = this.displayedGroups[this.displayedGroups.length - 1].device_group_id;
-                      const indexGroups = this.groups.map(x => x.device_group_id).indexOf(lastElementId);
-                      if (indexGroups !== -1) {
-                        if (this.groups[indexGroups + 1]) {
-                          this.displayedGroups.push(this.groups[indexGroups + 1]);
-                        } else {
-                            const firstElementId = this.displayedGroups[0].device_group_id;
-                            const indexGroupsFirst = this.groups.map(x => x.device_group_id).indexOf(firstElementId);
-                            if (indexGroupsFirst !== -1) {
-                              if (this.groups[indexGroupsFirst - 1]) {
-                                this.displayedGroups.unshift(this.groups[indexGroupsFirst - 1]);
+                      if (this.groups && this.groups.length > 0) {
+                        const indexGroups = this.groups.map(x => x.device_group_id).indexOf(lastElementId);
+                        if (indexGroups !== -1) {
+                          if (this.groups[indexGroups + 1]) {
+                            this.displayedGroups.push(this.groups[indexGroups + 1]);
+                          } else {
+                              const firstElementId = this.displayedGroups[0].device_group_id;
+                              const indexGroupsFirst = this.groups.map(x => x.device_group_id).indexOf(firstElementId);
+                              if (indexGroupsFirst !== -1) {
+                                if (this.groups[indexGroupsFirst - 1]) {
+                                  this.displayedGroups.unshift(this.groups[indexGroupsFirst - 1]);
+                                }
                               }
-                            }
+                          }
                         }
                       }
                     }
                   }
               }
               this.updateDisplayedGroupsNamesLength();
+              this.changeActiveGroup('ALL');
               });
               this.notificationsService.add({
                 message: 'Group "' + deleteGroupName + '" has been deleted',
@@ -627,7 +638,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
             });
           });
       }
-      this.changeActiveGroup('ALL');
     }
   }
 
@@ -668,9 +678,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param groupId group id
    */
   getGroupName(groupId) {
-    const index = this.groups.map(x => x.device_group_id).indexOf(groupId);
-    if (index !== -1) {
-      return this.groups[index].name;
+    if (this.groups && this.groups.length > 0) {
+      const index = this.groups.map(x => x.device_group_id).indexOf(groupId);
+      if (index !== -1) {
+        return this.groups[index].name;
+      }
     }
     return 'Not found';
   }

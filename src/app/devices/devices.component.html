@@ -84,91 +84,93 @@
     </div>
   </div>
 </div>
-<span *ngFor="let group of groups">
-  <div *ngIf="activeGroupId === group.device_group_id"  class="row row-info">
-    <!-- Summary group info card -->
-    <div  class="col-lg-4 h-100">
-      <div  class="card h-100">
-        <div class="card-title-c">
-          <h5 class="text-uppercase">Summary {{group.name}}</h5>
+<span *ngIf="groups && groups.length > 0">
+  <span *ngFor="let group of groups">
+    <div *ngIf="activeGroupId === group.device_group_id"  class="row row-info">
+      <!-- Summary group info card -->
+      <div  class="col-lg-4 h-100">
+        <div  class="card h-100">
+          <div class="card-title-c">
+            <h5 class="text-uppercase">Summary {{group.name}}</h5>
+          </div>
+          <div class="summary-card" >
+            <table class="table summary-devices-table">
+              <tr>
+                <th class="grey">
+                  Availability
+                </th>
+                <td 
+                  *ngIf="group.enabled" 
+                  class="summary-devices-availability blue">
+                  ENABLED
+                </td>
+                <td 
+                  *ngIf="!group.enabled" 
+                  class="summary-devices-availability red">
+                  DISABLED
+                </td>
+              </tr>
+              <tr>
+                <th class="grey">
+                  API Key
+                </th>
+                <td 
+                  class="dark-grey" 
+                  tooltip= "API Key" 
+                  placement="bottom">
+                  {{group.device_group_api_key}}
+                </td> 
+              </tr>
+              <tr>
+                <th class="grey">
+                  Devices
+                </th>
+                <td class="summary-devices-running">{{countGroupDevices(group.device_group_id)}}</td>
+              </tr>
+            </table>
+          </div>
         </div>
-        <div class="summary-card" >
-          <table class="table summary-devices-table">
-            <tr>
-              <th class="grey">
-                Availability
-              </th>
-              <td 
-                *ngIf="group.enabled" 
-                class="summary-devices-availability blue">
-                ENABLED
-              </td>
-              <td 
-                *ngIf="!group.enabled" 
-                class="summary-devices-availability red">
-                DISABLED
-              </td>
-            </tr>
-            <tr>
-              <th class="grey">
-                API Key
-              </th>
-              <td 
-                class="dark-grey" 
-                tooltip= "API Key" 
-                placement="bottom">
-                {{group.device_group_api_key}}
-              </td> 
-            </tr>
-            <tr>
-              <th class="grey">
-                Devices
-              </th>
-              <td class="summary-devices-running">{{countGroupDevices(group.device_group_id)}}</td>
-            </tr>
-          </table>
+      </div>
+      <!-- Devices status timeline info card -->
+      <div class="col-lg-8 h-100">
+        <div class="card p-4 h-100">
+          <div class="card-title-c">
+            <h5 class="text-uppercase">{{group.name}} DEVICES STATUS TIMELINE</h5>
+          </div>
+          <div 
+            *ngIf="countGroupDevices(activeGroupId) === 0" 
+            class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
+            No devices
+          </div>
+          <div *ngIf="countGroupDevices(activeGroupId) > 0" class="h-100 box-line-chart">
+            <ngx-charts-line-chart
+              [scheme]="colorScheme"
+              [results]="devicesChart"
+              [xAxis]="showXAxis"
+              [yAxis]="showYAxis"
+              [gradient]="gradient" 
+              [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel"
+              [yScaleMin]="0"
+              [yScaleMax]="100"
+              [showGridLines]="showGridLines"
+              [showRefLines]="showRefLines"
+              [schemeType]="schemeType"
+              [customColors]="customColors"
+              [rangeFillOpacity]="rangeFillOpacity"
+              [referenceLines]="referenceLines"
+              [showRefLabels]="showRefLabels"
+              >
+            </ngx-charts-line-chart>
+            <div class="y-axis-line-chart">
+              <span class="grey">100%</span>
+              <span class="grey mb-4">0%</span>
+            </div>  
+          </div>
         </div>
       </div>
     </div>
-    <!-- Devices status timeline info card -->
-    <div class="col-lg-8 h-100">
-      <div class="card p-4 h-100">
-        <div class="card-title-c">
-          <h5 class="text-uppercase">{{group.name}} DEVICES STATUS TIMELINE</h5>
-        </div>
-        <div 
-          *ngIf="countGroupDevices(activeGroupId) === 0" 
-          class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
-          No devices
-        </div>
-        <div *ngIf="countGroupDevices(activeGroupId) > 0" class="h-100 box-line-chart">
-          <ngx-charts-line-chart
-            [scheme]="colorScheme"
-            [results]="devicesChart"
-            [xAxis]="showXAxis"
-            [yAxis]="showYAxis"
-            [gradient]="gradient" 
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
-            [yScaleMin]="0"
-            [yScaleMax]="100"
-            [showGridLines]="showGridLines"
-            [showRefLines]="showRefLines"
-            [schemeType]="schemeType"
-            [customColors]="customColors"
-            [rangeFillOpacity]="rangeFillOpacity"
-            [referenceLines]="referenceLines"
-            [showRefLabels]="showRefLabels"
-            >
-          </ngx-charts-line-chart>
-          <div class="y-axis-line-chart">
-            <span class="grey">100%</span>
-            <span class="grey mb-4">0%</span>
-          </div>  
-        </div>
-      </div>
-    </div>
-  </div>
+  </span>
 </span>
 <!-- Deployed devices list panel card-->
 <div class="row row-main">
