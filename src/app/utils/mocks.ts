@@ -808,10 +808,8 @@ export const mockDevicesList = [
         'register_since': '1550746644',
         'enabled': true,
         'device_status_name': 'OFFLINE',
-        labels: {
-            type: 'phone',
-            arch: 'arm'
-            }
+        'labels': {
+        }
         },
         {
         'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',

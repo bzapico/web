@@ -174,7 +174,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = mockupBackendService;
     }
     // Default initialization
     this.devices = [];
@@ -786,10 +786,26 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   /**
    * Deletes a selected label
-   * @param label selected label
+   * @param entity selected label entity
    */
-  deleteLabel(label) {
-    console.log(label);
+  deleteLabel(entity) {
+    const deleteConfirm = confirm('Delete labels?');
+    if (deleteConfirm) {
+      const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.device_id);
+      this.backend.removeLabelFromDevice(
+        this.organizationId,
+        {
+          organizationId: this.organizationId,
+          device_id: entity.device_id,
+          device_group_id: entity.device_group_id,
+          labels: this.selectedLabels[index].labels
+        }).subscribe(deleteLabelResponse => {
+          this.selectedLabels.splice(index, 1);
+          this.updateDevicesList(this.organizationId);
+        });
+    } else {
+      // Do nothing
+    }
   }
 
   /**

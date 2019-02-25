@@ -444,10 +444,37 @@ export class MockupBackendService implements Backend {
     })));
   }
 
-  addLabelToDevice(organizationId: string) {
-
+  addLabelToDevice(organizationId: string, changes: any) {
+    for (let index = 0; index < mockDevicesList.length; index++) {
+      for (let indexDevice = 0; indexDevice < mockDevicesList[index].length; indexDevice++) {
+        if (mockDevicesList[index][indexDevice].device_id === changes.device_id) {
+          console.log(Object.keys(changes.labels)[0]);
+          console.log(changes.labels[Object.keys(changes.labels)[0]]);
+          console.log(mockDevicesList[index][indexDevice].labels);
+          if (!mockDevicesList[index][indexDevice].labels) {
+            mockDevicesList[index][indexDevice].labels = {};
+          }
+          mockDevicesList[index][indexDevice].labels[Object.keys(changes.labels)[0]] = changes.labels[Object.keys(changes.labels)[0]] ;
+          return of (new Response(new ResponseOptions({
+            status: 200
+          })));
+        }
+      }
+    }
+    return of (new Response(new ResponseOptions({
+      status: 200
+    })));
   }
-  removeLabelFromDevice(organizationId: string) {
-
+  removeLabelFromDevice(organizationId: string, changes: any) {
+    for (let index = 0; index < mockDevicesList.length; index++) {
+      for (let indexDevice = 0; indexDevice < mockDevicesList[index].length; indexDevice++) {
+        if (mockDevicesList[index][indexDevice].device_id === changes.device_id) {
+          delete mockDevicesList[index][indexDevice].labels[Object.keys(changes.labels)[0]];
+        }
+      }
+    }
+    return of (new Response(new ResponseOptions({
+      status: 200
+    })));
   }
 }

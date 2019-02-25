@@ -190,7 +190,7 @@ export class AddLabelComponent implements OnInit {
                     device_id: updatedEntity.device_id,
                     labels: updatedEntity.labels
                   }
-                  ).subscribe(updateNodeResponse => {
+                  ).subscribe(updateDeviceResponse => {
                     this.notificationsService.add({
                       message: 'Updated ' + this.entity.device_id ,
                       timeout: 3000,
