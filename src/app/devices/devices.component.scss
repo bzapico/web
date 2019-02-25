@@ -33,6 +33,10 @@
     font-size: 1.2em;
     color:#949494;
 }
+.devices-availability-size {
+    font-size: 0.8em!important;
+    text-transform: uppercase;
+}
 
 /* - - - Medias Summary devices card - - - */
 @media screen and (max-width:1500px) {
@@ -279,6 +283,10 @@
     font-size: 1.4em !important;
     text-transform: uppercase;
 }
+.devices-availability-size {
+    font-size: 1.0em!important;
+    text-transform: uppercase;
+}
 .summary-devices-running {
     font-size: 3em !important;
 }
@@ -289,6 +297,9 @@
 /* - - - Medias summary card devices table - - - */
 @media screen and (max-width:1779px) {
     .summary-card {
+        .devices-availability-size {
+            font-size: 0.8em!important;
+        }
         .summary-devices-availability, 
         .summary-devices-running {
             font-size: 1em !important;

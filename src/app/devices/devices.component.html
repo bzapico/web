@@ -127,6 +127,21 @@
                 </th>
                 <td class="summary-devices-running">{{countGroupDevices(group.device_group_id)}}</td>
               </tr>
+              <tr>
+                <th class="grey">
+                    Device connectivity
+                  </th>
+                  <td 
+                    *ngIf="group.default_device_connectivity" 
+                    class="devices-availability-size blue">
+                    ENABLED
+                  </td>
+                  <td 
+                    *ngIf="!group.default_device_connectivity " 
+                    class=" devices-availability-size red">
+                    DISABLED
+                  </td>
+              </tr>
             </table>
           </div>
         </div>
