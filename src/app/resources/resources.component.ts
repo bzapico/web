@@ -9,6 +9,7 @@ import { CarouselConfig } from 'ngx-bootstrap/carousel';
 import { EditClusterComponent } from '../edit-cluster/edit-cluster.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Cluster } from '../definitions/interfaces/cluster';
+import { AddLabelComponent } from '../add-label/add-label.component';
 
 
 @Component({
@@ -151,6 +152,12 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
+
+  /**
+   * List of selected labels from an entity
+   */
+  selectedLabels = [];
+  entityId: boolean;
 
   constructor(
     private modalService: BsModalService,
@@ -449,7 +456,78 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       if (!labels || labels === '-') {
         return ;
       }
-
       return Object.entries(labels);
     }
+  /**
+   * Opens the modal view that holds add label component
+   */
+  addLabel() {
+    const initialState = {
+      organizationId: this.organizationId,
+    };
+
+    this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { });
+
   }
+
+  /**
+   * Deletes a selected label
+   * @param label selected label
+   */
+  deleteLabel(label) {
+    console.log(label);
+  }
+
+  /**
+   * Selects a label
+   * @param entityId entity from selected label
+   * @param labelKey label key from selected label
+   * @param labelValue label value from selected label
+   */
+  onLabelClick(entityId, labelKey, labelValue) {
+    const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
+    if (selectedIndex === -1 ) {
+      const labelSelected = {
+        entityId: entityId,
+        labels: {}
+      };
+      labelSelected.labels[labelKey] = labelValue;
+      this.selectedLabels.push(labelSelected);
+    } else {
+      this.selectedLabels.splice(selectedIndex, 1);
+    }
+  }
+
+ /**
+  * Check if the label is selected. Returs index number in selected labels or -1 if the label is not found.
+  * @param entityId entity from selected label
+  * @param labelKey label key from selected label
+  * @param labelValue label value from selected label
+  */
+  indexOfLabelSelected(entityId, labelKey, labelValue) {
+    for (let index = 0; index < this.selectedLabels.length; index++) {
+      if (this.selectedLabels[index].entityId === entityId &&
+          this.selectedLabels[index].labels[labelKey] === labelValue
+        ) {
+          return index;
+      }
+    }
+  return -1;
+  }
+
+  /**
+   * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
+   * @param entityId entity from selected label
+   */
+  isAnyLabelSelected(entityId) {
+    if (this.selectedLabels.length > 0) {
+      const indexSelected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
+      if (indexSelected >= 0) {
+          return true;
+      }
+    }
+    return false;
+  }
+}

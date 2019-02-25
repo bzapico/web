@@ -68,10 +68,10 @@
               <th class="grey">
                 Labels
               </th>
-              <td *ngIf="clusterData.labels === '-'"> No </td>
-              <td *ngIf="clusterData.labels !== '-'">
+              <td *ngIf="!clusterData.labels"> No </td>
+              <td *ngIf="clusterData.labels">
                 <button *ngFor="let label of labelsToString(clusterData.labels)" class="btn-sm btn-outline-primary" disabled>
-                  <span *ngIf="label[1]!== '-'">{{label[0]}}: {{label[1]}}</span>  
+                  <span *ngIf="label[1]">{{label[0]}}: {{label[1]}}</span>  
                 </button>
               </td>
             </tr>
@@ -148,103 +148,131 @@
       </div>
       <div class="table-h" *ngIf="loadedData && nodes && nodes.length > 0 && !requestError">
         <table class="table-responsive table-fixed">
-            <thead>
-              <tr>
-                <th 
-                  (click)="setOrder('id')"
-                  [ngClass]="getCategoryCSSClass('id')"
-                  scope="col" 
-                  class="col-3">
-                  ID
-                  <span class="expand-chevron" *ngIf="sortedBy === 'id' && !reverse">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'id' && reverse">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  (click)="setOrder('ip')"
-                  [ngClass]="getCategoryCSSClass('ip')"
-                  scope="col" 
-                  class="col-2">
-                  IP
-                  <span class="expand-chevron" *ngIf="sortedBy === 'ip' && !reverse">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'ip' && reverse">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  (click)="setOrder('state')"
-                  [ngClass]="getCategoryCSSClass('state')"
-                  scope="col" 
-                  class="col-2">
-                  State
-                  <span class="expand-chevron" *ngIf="sortedBy === 'state' && !reverse">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'state' && reverse">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  (click)="setOrder('labels')"
-                  [ngClass]="getCategoryCSSClass('labels')"
-                  scope="col" 
-                  class="col-3">
-                  Labels
-                  <span class="expand-chevron" *ngIf="sortedBy === 'labels' && !reverse">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'labels' && reverse">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  (click)="setOrder('status')"
-                  [ngClass]="getCategoryCSSClass('status')"
-                  scope="col" 
-                  class="col-2 text-center">
-                  Status
-                  <span class="expand-chevron" *ngIf="sortedBy === 'status' && !reverse">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'status' && reverse">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let node of nodes | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-                <td class="col-3">{{node.node_id}}</td>
-                <td class="col-2">{{node.ip}}</td>  
-                <td class="text-lowercase col-2">{{node.state_name}}</td>
-                <td class="col-3" *ngIf="node.labels === '-'"> no </td>
-                <td class="col-3"*ngIf="node.labels !== '-'">
-                    <button 
-                      *ngFor="let label of labelsToString(node.labels)" 
-                      class="btn-sm btn-outline-primary" 
-                      disabled>
-                      {{label[0]}}: {{label[1]}}
-                    </button>
-                </td>
-                <td 
-                  class="text-lowercase col-2 text-center"
+          <thead>
+            <tr>
+              <th 
+                (click)="setOrder('id')"
+                [ngClass]="getCategoryCSSClass('id')"
+                scope="col" 
+                class="col-3">
+                ID
+                <span class="expand-chevron" *ngIf="sortedBy === 'id' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'id' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </th>
+              <th 
+                (click)="setOrder('ip')"
+                [ngClass]="getCategoryCSSClass('ip')"
+                scope="col" 
+                class="col-2">
+                IP
+                <span class="expand-chevron" *ngIf="sortedBy === 'ip' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'ip' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </th>
+              <th 
+                (click)="setOrder('state')"
+                [ngClass]="getCategoryCSSClass('state')"
+                scope="col" 
+                class="col-2">
+                State
+                <span class="expand-chevron" *ngIf="sortedBy === 'state' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'state' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </th>
+              <th 
+                (click)="setOrder('labels')"
+                [ngClass]="getCategoryCSSClass('labels')"
+                scope="col" 
+                class="col-3">
+                Labels
+                <span class="expand-chevron" *ngIf="sortedBy === 'labels' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'labels' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </th>
+              <th 
+                (click)="setOrder('status')"
+                [ngClass]="getCategoryCSSClass('status')"
+                scope="col" 
+                class="col-2 text-center">
+                Status
+                <span class="expand-chevron" *ngIf="sortedBy === 'status' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'status' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let node of nodes | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+              <td class="col-3">{{node.node_id}}</td>
+              <td class="col-2">{{node.ip}}</td>  
+              <td class="text-lowercase col-2">{{node.state_name}}</td>
+              <td class="col-3" *ngIf="!node.labels"> no </td>
+              <td class="col-3" *ngIf="node.labels">
+                <button 
+                  (click)="onLabelClick(node.node_id, label[0], label[1])"
                   [ngClass]=
-                  "{'status-dot':classStatusCheck(node.status_name, 'running'),
-                  'status-dot-error':classStatusCheck(node.status_name, 'error'),
-                  'status-dot-process':classStatusCheck(node.status_name, 'process')}">
-                  <span tooltip= "{{node.status_name | lowercase}}" class="tooltip-fix" placement="auto">
-                  </span>
-                  <span class="hide">
-                    {{node.status_name}}
-                  </span>
-                </td>
-              </tr>
-            </tbody>
+                  "{'btn-label-selected': indexOfLabelSelected(node.node_id, label[0], label[1]) >= 0 ,
+                    'btn-outline-primary': indexOfLabelSelected(node.node_id, label[0], label[1]) === -1}" 
+                  *ngFor="let label of labelsToString(node.labels)" 
+                  class="btn-sm btn-outline-primary" 
+                  >
+                  {{label[0]}}: {{label[1]}} 
+                </button>
+                <div class="label-buttons">
+                  <div 
+                    *ngIf="isAnyLabelSelected(node.node_id) === false"
+                    class="add-label-button" 
+                    (click)="addLabel()">
+                    <i 
+                      class="material-icons i-add" 
+                      tooltip="Add" 
+                      placement="right">
+                      add
+                    </i>
+                  </div>
+                  <div 
+                    *ngIf="isAnyLabelSelected(node.node_id) === true"
+                    class="delete-label-button" 
+                    (click)="deleteLabel()">
+                    <i 
+                      class="material-icons i-delete" 
+                      tooltip="Delete" 
+                      placement="right">
+                      delete
+                    </i>
+                  </div>
+                </div>
+              </td>
+              <td 
+                class="text-lowercase col-2 text-center"
+                [ngClass]=
+                "{'status-dot':classStatusCheck(node.status_name, 'running'),
+                'status-dot-error':classStatusCheck(node.status_name, 'error'),
+                'status-dot-process':classStatusCheck(node.status_name, 'process')}">
+                <span tooltip= "{{node.status_name | lowercase}}" class="tooltip-fix" placement="auto">
+                </span>
+                <span class="hide">
+                  {{node.status_name}}
+                </span>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
       <!-- No info to show -->

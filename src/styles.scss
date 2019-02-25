@@ -200,15 +200,10 @@ a {
 }
 
 /* - - - Button styles - - - */
-.btn-outline-primary {
-  margin:1px;
-}
 .btn-primary {
   width: 257px;
   color: #fff;
   background-color: #0937FF;
-  background-image: linear-gradient(-85deg, #051C80, #0937FF);
-  border-color: #051C80;
   border: 0px;
   border-radius: 5px;
   &:focus {
@@ -220,9 +215,6 @@ a {
   color: #fff;
   border: 0px;
   background: #ff437d; 
-  background: -moz-linear-gradient(-45deg, #ff437d 0%, #802222 100%);
-  background: -webkit-linear-gradient(-45deg, #ff437d 0%,#802222 100%); 
-  background: linear-gradient(135deg, #ff437d 0%,#802222 100%); 
 }
 button[type="submit"]:disabled {
   background: #949494;
@@ -236,6 +228,93 @@ button[type="submit"]:disabled {
 }
 .alert > button.close:hover span {
   color:white;
+}
+
+/* - - -  Label buttons - - - */
+// Normal label style
+.btn-outline-primary {
+  margin:1px;
+  text-align: left;
+  max-width: -webkit-fill-available;
+  border-color: #0937FF;
+  color:#0937FF;
+  &:hover{
+    background-color: #707070;
+    border-color: #707070;
+    color: white;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    color: #0937FF;
+    background-color: transparent;   
+  }
+}
+// Selected label style
+.btn-label-selected {
+  text-align: left;
+  max-width: -webkit-fill-available;
+  margin: 1px;
+  color: #fff;
+  background-color: #0937FF;
+  border-radius: 5px;
+  -webkit-box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
+  -moz-box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
+  box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+// To be selected label style
+.btn-label-grey {
+  margin: 1px;
+  text-align: left;
+  max-width: -webkit-fill-available;
+  border-color: #949494;
+  color: #949494;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+// Add and delete label container
+.label-buttons {
+  width: 30px;
+  height: 20px;
+  display: inline-block;
+  cursor: pointer;
+}
+.delete-label-button {
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  margin: .3em;
+  position: relative;
+  background-color: #F25272;
+}
+.i-delete{
+  font-size: 1em;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  color: white;
+}
+.add-label-button {
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  margin: .3em;
+  position: relative;
+  background-color: #0937FF;
+}
+.i-add{
+  font-size: 1.4em;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  color: white;
 }
 
 /* - - - Modal window styles - - - */
@@ -332,20 +411,17 @@ button[type="submit"]:disabled {
     margin: 0 0 6px;
     padding: 17px 15px 15px 50px;
     border: 0px;
-    -moz-border-radius: 10px 10px 10px 10px;
-    -webkit-border-radius: 10px 10px 10px 10px;
-    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
     background-position: center;
     background-repeat: no-repeat;
-    -webkit-box-shadow: 3px 13px 31px 0px rgba(163, 163, 163, 1);
-    -moz-box-shadow: 3px 13px 31px 0px rgba(163, 163, 163, 1);
-    box-shadow: 3px 13px 31px 0px rgba(163, 163, 163, 1);
     color: #ffffff;
     &:hover {
       box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
-      -moz-border-radius: 10px 10px 10px 10px;
-      -webkit-border-radius: 10px 10px 10px 10px;
-      border-radius: 10px 10px 10px 10px;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
       opacity: 1;
       color: white;
       cursor: pointer;
@@ -354,30 +430,6 @@ button[type="submit"]:disabled {
 }
 .alert {
   background: #0937ff;
-  background: -moz-linear-gradient(left, #0937ff 0%, #051c80 100%);
-  background: -webkit-linear-gradient(left, #0937ff 0%, #051c80 100%);
-  background: linear-gradient(to right, #0937ff 0%, #051c80 100%); 
-}
-.alert-success {
-  background: #0937ff;
-  background: -moz-linear-gradient(left, #0937ff 0%, #051c80 100%);
-  background: -webkit-linear-gradient(left, #0937ff 0%, #051c80 100%);
-  background: linear-gradient(to right, #0937ff 0%, #051c80 100%);
-}
-.alert-error {
-  background-color: #FF437D;
-}
-.alert-info {
-  background-color: #0937FF;
-}
-.alert-warning {
-  background: rgba(255, 67, 127, 1);
-  background: -moz-linear-gradient(left, rgba(255, 67, 127, 1) 0%, rgba(128, 34, 34, 1) 100%);
-  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255, 67, 127, 1)), color-stop(100%, rgba(128, 34, 34, 1)));
-  background: -webkit-linear-gradient(left, rgba(255, 67, 127, 1) 0%, rgba(128, 34, 34, 1) 100%);
-  background: -o-linear-gradient(left, rgba(255, 67, 127, 1) 0%, rgba(128, 34, 34, 1) 100%);
-  background: -ms-linear-gradient(left, rgba(255, 67, 127, 1) 0%, rgba(128, 34, 34, 1) 100%);
-  background: linear-gradient(to right, rgba(255, 67, 127, 1) 0%, rgba(128, 34, 34, 1) 100%);
 }
 .alert-icon {
   position: absolute;

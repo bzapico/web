@@ -367,7 +367,7 @@ export class MockupBackendService implements Backend {
    */
   getGroups(organizationId: string) {
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockGroupList),
+      body: JSON.stringify({groups: mockGroupList}),
       status: 200
     })))
     .pipe(

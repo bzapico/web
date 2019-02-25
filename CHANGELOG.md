@@ -2,6 +2,7 @@
 
 Overall:
 - Added sorting and filtering capabilities 
+- Label management in tables
 
 - IoT Devices view
     - Top indicators 
