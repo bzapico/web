@@ -56,15 +56,6 @@ describe('DevicesComponent', () => {
     expect(openGroupConfiguration).toHaveBeenCalledWith();
   });
 
-  it('updateConnectedDevicesLineChart() - Should requests an updated list of connected devices to update line chart', () => {
-    const updateConnectedDevicesLineChart = spyOn(component, 'updateConnectedDevicesLineChart').and.returnValue(true);
-    const devices = {};
-
-    updateConnectedDevicesLineChart(devices);
-
-    expect(updateConnectedDevicesLineChart).toHaveBeenCalledWith(devices);
-  });
-
   it('Tooltip should not be displayed until user does not any actions', () => {
     const element: HTMLElement = fixture.debugElement.nativeElement;
     expect(element.querySelector('.tooltip-inner')).toBeNull();

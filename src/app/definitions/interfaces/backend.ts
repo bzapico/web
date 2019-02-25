@@ -27,7 +27,7 @@ export interface Backend {
     getAppDescriptor(organizationId: string, descriptorId: string);
     // Devices
     getDevices(organizationId: string, groupId: string);
-    updateDevice(organizationId: string, groupData: string);
+    updateDevice(organizationId: string, deviceData: any);
     // Groups
     getGroups(organizationId: string);
     addGroup(organizationId: string, groupData: any);

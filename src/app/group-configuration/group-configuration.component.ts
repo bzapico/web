@@ -25,6 +25,7 @@ export class GroupConfigurationComponent implements OnInit {
   defaultConnectivity: boolean;
   enabled: boolean;
   name: string;
+  device_group_id: string;
 
   /**
    * List of available groups
@@ -66,9 +67,12 @@ export class GroupConfigurationComponent implements OnInit {
    */
   saveGroupChanges() {
     const groupData = {
+      update_enabled: true,
+      update_default_device_connectivity: true,
       enabled: this.enabled,
       default_device_connectivity: this.defaultConnectivity,
-      name: this.name
+      name: this.name,
+      device_group_id: this.device_group_id
     };
     this.backend.updateGroup(this.organizationId, groupData)
     .subscribe(response => {

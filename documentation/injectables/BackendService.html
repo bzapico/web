@@ -263,7 +263,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="377" class="link-to-prism">src/app/services/backend.service.ts:377</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="378" class="link-to-prism">src/app/services/backend.service.ts:378</a></div>
                             </td>
                         </tr>
 
@@ -540,7 +540,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="390" class="link-to-prism">src/app/services/backend.service.ts:390</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="391" class="link-to-prism">src/app/services/backend.service.ts:391</a></div>
                             </td>
                         </tr>
 
@@ -1237,7 +1237,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="365" class="link-to-prism">src/app/services/backend.service.ts:365</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="366" class="link-to-prism">src/app/services/backend.service.ts:366</a></div>
                             </td>
                         </tr>
 
@@ -2430,7 +2430,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>updateDevice(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupData: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>updateDevice(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, deviceData: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
@@ -2476,7 +2476,7 @@
                                                         </td>
                                                 </tr>
                                                 <tr>
-                                                        <td>groupData</td>
+                                                        <td>deviceData</td>
                                                         <td>
                                                                     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                                         </td>
@@ -2529,7 +2529,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="406" class="link-to-prism">src/app/services/backend.service.ts:406</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="407" class="link-to-prism">src/app/services/backend.service.ts:407</a></div>
                             </td>
                         </tr>
 
@@ -2993,7 +2993,7 @@ export class BackendService implements Backend {
    */
   getDevices(organizationId: string, groupId: string) {
     return this.get(
-      API_URL + &#x27;device/&#x27; + organizationId + groupId + &#x27;/list&#x27;
+      API_URL + &#x27;device/&#x27; + organizationId + &#x27;/&#x27; + groupId + &#x27;/list&#x27;
     );
   }
 
@@ -3001,11 +3001,12 @@ export class BackendService implements Backend {
   /**
   * Request to modify device data
   * @param organizationId Organization identifier
-  * @param groupData device data
+  * @param deviceData device data
   */
-   updateDevice(organizationId: string, groupData: any) {
+   updateDevice(organizationId: string, deviceData: any) {
     return this.post(
-      API_URL + &#x27;device/&#x27; + organizationId + groupData + &#x27;/update&#x27;
+      API_URL + &#x27;device/&#x27; + organizationId + &#x27;/update&#x27;,
+      deviceData
     );
   }
 
@@ -3041,7 +3042,7 @@ export class BackendService implements Backend {
    */
   deleteGroup(organizationId: string, groupId: string) {
     return this.post(
-      API_URL + &#x27;device/group&#x27; + organizationId + &#x27;/remove&#x27;,
+      API_URL + &#x27;device/group/&#x27; + organizationId + &#x27;/remove&#x27;,
       {
         organization_id: organizationId,
         device_group_id: groupId
@@ -3057,7 +3058,8 @@ export class BackendService implements Backend {
   */
   updateGroup(organizationId: string, groupData: string) {
     return this.post(
-      API_URL + &#x27;device/group&#x27; + organizationId + groupData + &#x27;/update&#x27;
+      API_URL + &#x27;device/group/&#x27; + organizationId + &#x27;/update&#x27;,
+      groupData
     );
   }
 }

@@ -341,7 +341,7 @@ export class BackendService implements Backend {
    */
   getDevices(organizationId: string, groupId: string) {
     return this.get(
-      API_URL + 'device/' + organizationId + groupId + '/list'
+      API_URL + 'device/' + organizationId + '/' + groupId + '/list'
     );
   }
 
@@ -349,11 +349,12 @@ export class BackendService implements Backend {
   /**
   * Request to modify device data
   * @param organizationId Organization identifier
-  * @param groupData device data
+  * @param deviceData device data
   */
-   updateDevice(organizationId: string, groupData: any) {
+   updateDevice(organizationId: string, deviceData: any) {
     return this.post(
-      API_URL + 'device/' + organizationId + groupData + '/update'
+      API_URL + 'device/' + organizationId + '/update',
+      deviceData
     );
   }
 
@@ -389,7 +390,7 @@ export class BackendService implements Backend {
    */
   deleteGroup(organizationId: string, groupId: string) {
     return this.post(
-      API_URL + 'device/group' + organizationId + '/remove',
+      API_URL + 'device/group/' + organizationId + '/remove',
       {
         organization_id: organizationId,
         device_group_id: groupId
@@ -405,7 +406,8 @@ export class BackendService implements Backend {
   */
   updateGroup(organizationId: string, groupData: string) {
     return this.post(
-      API_URL + 'device/group' + organizationId + groupData + '/update'
+      API_URL + 'device/group/' + organizationId + '/update',
+      groupData
     );
   }
 }
