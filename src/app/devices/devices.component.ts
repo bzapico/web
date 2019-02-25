@@ -86,7 +86,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Refresh ratio reference
    */
-  REFRESH_RATIO = 5000; // 20 seconds
+  REFRESH_RATIO = 20000; // 20 seconds
 
   /**
    * Count of num max for displayed groups
@@ -492,6 +492,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       deviceGroupId: device.device_group_id,
       deviceId: device.device_id,
       enabled: device.enabled
+   }).subscribe( updateDeviceResponse => {
+     console.log(updateDeviceResponse);
    });
   }
 
