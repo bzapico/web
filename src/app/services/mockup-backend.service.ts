@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockGroupApiKey } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList} from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 
 @Injectable({

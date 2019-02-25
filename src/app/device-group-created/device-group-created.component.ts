@@ -5,7 +5,6 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { mockGroupList, mockGroupApiKey } from '../utils/mocks';
 
 @Component({
   selector: 'app-device-group-created',
