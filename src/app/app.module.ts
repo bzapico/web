@@ -86,7 +86,8 @@ import { RegisterApplicationComponent } from './register-application/register-ap
     AddDevicesGroupComponent,
     GroupConfigurationComponent,
     DeviceGroupCreatedComponent,
-    AddLabelComponent
+    AddLabelComponent,
+    RegisterApplicationComponent
   ],
   imports: [
     BrowserModule,
