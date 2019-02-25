@@ -352,9 +352,9 @@ export class MockupBackendService implements Backend {
   /**
    * Simulates to update a device from a device array
    *  @param organizationId Organization identifier
-   *  @param groupData Device data
+   *  @param deviceData Device data
    */
-  updateDevice(organizationId: string, groupData: string) {
+  updateDevice(organizationId: string, deviceData: any) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify({ result: '' }),
       status: 200

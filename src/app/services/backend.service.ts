@@ -349,11 +349,12 @@ export class BackendService implements Backend {
   /**
   * Request to modify device data
   * @param organizationId Organization identifier
-  * @param groupData device data
+  * @param deviceData device data
   */
-   updateDevice(organizationId: string, groupData: any) {
+   updateDevice(organizationId: string, deviceData: any) {
     return this.post(
-      API_URL + 'device/' + organizationId + groupData + '/update'
+      API_URL + 'device/' + organizationId + '/update',
+      deviceData
     );
   }
 

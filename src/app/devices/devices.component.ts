@@ -482,10 +482,17 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   /**
    * Checkbox switcher statement to select one of enabled device to be executed.
+   * @param device device data to update
    */
   enableSwitcher(device) {
    device.enabled = !device.enabled;
    // backend call
+   this.backend.updateDevice(this.organizationId, {
+      organizationId: this.organizationId,
+      deviceGroupId: device.device_group_id,
+      deviceId: device.device_id,
+      enabled: device.enabled
+   });
   }
 
   /**
