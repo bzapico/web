@@ -2,7 +2,7 @@
     <div class="modal-content">
         <!-- Header -->
         <div class="modal-header">
-          <h3 class="nalej-form-title">Add label to Cluster 1</h3>
+          <h3 class="nalej-form-title">Add label to {{entityType}} <br/><span class="title">{{modalTitle}}</span></h3>
           <button 
             type="button" 
             class="close" 
@@ -17,7 +17,7 @@
             <div class="form-group">
               <input 
                 [(ngModel)]="labelName" 
-                name="name" 
+                name="key" 
                 type="text" 
                 class="form-control" 
                 placeholder="Label name" 
@@ -25,7 +25,7 @@
                 required>
               <input 
                 [(ngModel)]="labelValue" 
-                name="description" 
+                name="value" 
                 type="text" 
                 class="form-control" 
                 placeholder="Label value"

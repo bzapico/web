@@ -379,9 +379,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     if (!cluster.running_nodes) {
       cluster.running_nodes = 0;
     }
-    if (!cluster.labels) {
-      cluster.labels = '-';
-    }
   }
   /**
    * Checks if the cluster status requires an special css class
@@ -461,23 +458,43 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Opens the modal view that holds add label component
    */
-  addLabel() {
+  addLabel(entity) {
     const initialState = {
       organizationId: this.organizationId,
+      entityType: 'cluster',
+      entity: entity,
+      modalTitle: entity.name
     };
 
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { });
+    this.modalService.onHide.subscribe((reason: string) => {this.updateClusterList();});
 
   }
 
   /**
    * Deletes a selected label
-   * @param label selected label
+   * @param entity selected label entity
    */
-  deleteLabel(label) {
-    console.log(label);
+  deleteLabel(entity) {
+    const deleteConfirm = confirm('Delete labels?');
+    if (deleteConfirm) {
+      const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.cluster_id);
+      this.backend.saveClusterChanges(
+        this.organizationId,
+        entity.cluster_id,
+        {
+          organizationId: this.organizationId,
+          clusterId: entity.cluster_id,
+          remove_labels: true,
+          labels: this.selectedLabels[index].labels
+        }).subscribe(updateClusterResponse => {
+          this.selectedLabels.splice(index, 1);
+          this.updateClusterList();
+        });
+    } else {
+      // Do nothing
+    }
   }
 
   /**
@@ -488,15 +505,24 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   onLabelClick(entityId, labelKey, labelValue) {
     const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
+    const newLabel = {
+      entityId: entityId,
+      labels: {}
+    } ;
     if (selectedIndex === -1 ) {
-      const labelSelected = {
-        entityId: entityId,
-        labels: {}
-      };
-      labelSelected.labels[labelKey] = labelValue;
-      this.selectedLabels.push(labelSelected);
+      const selected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
+      if (selected === -1) {
+        newLabel.labels[labelKey] = labelValue;
+        this.selectedLabels.push(newLabel);
+      } else {
+        this.selectedLabels[selected].labels[labelKey] = labelValue;
+      }
     } else {
-      this.selectedLabels.splice(selectedIndex, 1);
+      if (Object.keys(this.selectedLabels[selectedIndex].labels).length > 1) {
+        delete this.selectedLabels[selectedIndex].labels[labelKey];
+      } else {
+        this.selectedLabels.splice(selectedIndex, 1);
+      }
     }
   }
 
