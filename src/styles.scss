@@ -13,7 +13,7 @@ html, body {
   margin: 0px;
   height: 100%;
   overflow-x: hidden;
-  font-family: 'Aldrich', sans-serif;
+  font-family: 'Aldrich', ;
   box-sizing: border-box;
 }
 .blue {
@@ -240,10 +240,13 @@ button[type="submit"]:disabled {
   max-width: -webkit-fill-available;
   border-color: #0937FF;
   color:#0937FF;
-  &:hover{
+  &:hover:enabled{
     background-color: #707070;
     border-color: #707070;
     color: white;
+  }
+  &:hover:disabled{
+    border-color: #0937FF;
   }
   &:focus {
     outline: none;

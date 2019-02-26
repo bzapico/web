@@ -46,7 +46,22 @@ export class RegisterApplicationComponent implements OnInit {
  * Drop file
  */
   handelFiles() {
+    const dropArea = document.getElementById('drop-area');
+    const dropEventsArray = ['dragenter', 'dragover', 'dragleave', 'drop'];
 
+    // dropArea.addEventListener('dragenter', handlerFunction, false);
+    // dropArea.addEventListener('dragleave', handlerFunction, false);
+    // dropArea.addEventListener('dragover', handlerFunction, false);
+    // dropArea.addEventListener('drop', handlerFunction, false);
+    dropEventsArray.forEach(eventName => {
+        // dropArea.addEventListener(eventName, this.preventDefaults(), false);
+    });
+
+  }
+
+  preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
   }
 
   /**
@@ -62,4 +77,6 @@ export class RegisterApplicationComponent implements OnInit {
   discardChanges() {
     this.bsModalRef.hide();
   }
+
+
 }
