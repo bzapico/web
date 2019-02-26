@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockGroupApiKey } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockGroupApiKey, mockNodesChart } from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 
 @Injectable({
@@ -169,18 +169,49 @@ export class MockupBackendService implements Backend {
   saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
     const index = mockClusterList.map(x => x.cluster_id).indexOf(clusterId);
     if (index !== -1) {
-      mockClusterList[index].name = changes.name;
-      mockClusterList[index].labels = changes.labels;
-      console.log('changes', changes);
-      console.log('mockClusterList', mockClusterList[index]);
+      if (changes.remove_labels) {
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          delete mockClusterList[index].labels[key];
+        });
+      } else if (changes.add_labels) {
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          mockClusterList[index].labels[key] = changes.labels[key];
+        });
+      } else if (changes.name) {
+        mockClusterList[index].name = changes.name;
+      }
     }
     return of(new Response(new ResponseOptions({
       status: 200
     })));
   }
 
+  /**
+   * Simulates update nodes changes
+   * @param organizationId organization identifier
+   * @param nodeId node identifier
+   * @param changes changes to address
+   */
   updateNode(organizationId: string, nodeId: string, changes: any) {
-    
+    const index = mockNodeList.map(x => x.node_id).indexOf(nodeId);
+    if (index !== -1) {
+      if (changes.remove_labels) {
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          delete mockNodeList[index].labels[key];
+        });
+      } else if (changes.add_labels) {
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          mockNodeList[index].labels[key] = changes.labels[key];
+        });
+      }
+    }
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
   }
   /**
    * Simulates to request a list of user roles
