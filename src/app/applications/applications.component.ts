@@ -51,6 +51,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * List of selected labels from an entity
    */
   selectedLabels = [];
+  entityId: boolean;
 
   /**
    * Number of running instances
@@ -202,6 +203,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           this.refreshIntervalRef = setInterval(() => {
             this.updateAppInstances(this.organizationId);
             this.updateRegisteredInstances(this.organizationId);
+
           }, this.REFRESH_RATIO); // Refresh each 60 seconds
       }
   }
@@ -431,26 +433,48 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    /**
    * Opens the modal view that holds add label component
    */
-  addLabel() {
+  addLabel(entity) {
     const initialState = {
       organizationId: this.organizationId,
+      entityType: 'app',
+      entity: entity,
+      modalTitle: entity.name
     };
 
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { });
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateRegisteredInstances(this.organizationId);
+    } );
 
   }
 
   /**
    * Deletes a selected label
-   * @param label selected label
+   * @param entity selected label entity
    */
-  deleteLabel(label) {
-    console.log(label);
+  deleteLabel(entity) {
+    const deleteConfirm = confirm('Delete labels?');
+    if (deleteConfirm) {
+      const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.app_descriptor_id);
+      this.backend.updateAppDescriptor(
+        this.organizationId,
+        entity.app_descriptor_id,
+        {
+          organizationId: this.organizationId,
+          descriptorId: entity.app_descriptor_id,
+          remove_labels: true,
+          labels: this.selectedLabels[index].labels
+        }).subscribe(updateAppResponse => {
+          this.selectedLabels.splice(index, 1);
+          this.updateRegisteredInstances(this.organizationId);
+        });
+    } else {
+      // Do nothing
+    }
   }
 
-  /**
+ /**
    * Selects a label
    * @param entityId entity from selected label
    * @param labelKey label key from selected label
@@ -458,15 +482,24 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   onLabelClick(entityId, labelKey, labelValue) {
     const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
+    const newLabel = {
+      entityId: entityId,
+      labels: {}
+    } ;
     if (selectedIndex === -1 ) {
-      const labelSelected = {
-        entityId: entityId,
-        labels: {}
-      };
-      labelSelected.labels[labelKey] = labelValue;
-      this.selectedLabels.push(labelSelected);
+      const selected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
+      if (selected === -1) {
+        newLabel.labels[labelKey] = labelValue;
+        this.selectedLabels.push(newLabel);
+      } else {
+        this.selectedLabels[selected].labels[labelKey] = labelValue;
+      }
     } else {
-      this.selectedLabels.splice(selectedIndex, 1);
+      if (Object.keys(this.selectedLabels[selectedIndex].labels).length > 1) {
+        delete this.selectedLabels[selectedIndex].labels[labelKey];
+      } else {
+        this.selectedLabels.splice(selectedIndex, 1);
+      }
     }
   }
 

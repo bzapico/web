@@ -3604,7 +3604,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 
     this.modalRef &#x3D; this.modalService.show(AddLabelComponent, {initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
-    this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; {this.updateClusterList();});
+    this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; {this.updateClusterList(); });
 
   }
 
