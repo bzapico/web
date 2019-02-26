@@ -504,15 +504,24 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   onLabelClick(entityId, labelKey, labelValue) {
     const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
+    const newLabel = {
+      entityId: entityId,
+      labels: {}
+    } ;
     if (selectedIndex === -1 ) {
-      const labelSelected = {
-        entityId: entityId,
-        labels: {}
-      };
-      labelSelected.labels[labelKey] = labelValue;
-      this.selectedLabels.push(labelSelected);
+      const selected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
+      if (selected === -1) {
+        newLabel.labels[labelKey] = labelValue;
+        this.selectedLabels.push(newLabel);
+      } else {
+        this.selectedLabels[selected].labels[labelKey] = labelValue;
+      }
     } else {
-      this.selectedLabels.splice(selectedIndex, 1);
+      if (Object.keys(this.selectedLabels[selectedIndex].labels).length > 1) {
+        delete this.selectedLabels[selectedIndex].labels[labelKey];
+      } else {
+        this.selectedLabels.splice(selectedIndex, 1);
+      }
     }
   }
 
