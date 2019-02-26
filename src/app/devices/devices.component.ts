@@ -345,16 +345,19 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param organizationId organization identifier
    */
   updateDevicesList(organizationId: string) {
-    this.devices = [];
+    const tmpDevices = [];
     if (organizationId !== null) {
       // Request to get devices
       if (this.groups.length > 0) {
         this.groups.forEach(group => {
           this.backend.getDevices(this.organizationId, group.device_group_id)
           .subscribe(response => {
-              this.devices.push(response.devices || []);
+              tmpDevices.push(response.devices || []);
               if (!this.loadedData) {
                 this.loadedData = true;
+              }
+              if (tmpDevices.length === this.groups.length) {
+                this.devices = tmpDevices;
               }
             }, errorResponse => {
               this.loadedData = true;
