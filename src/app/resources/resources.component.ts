@@ -462,7 +462,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     const initialState = {
       organizationId: this.organizationId,
       entityType: 'cluster',
-      entity: entity
+      entity: entity,
+      modalTitle: entity.name
     };
 
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });

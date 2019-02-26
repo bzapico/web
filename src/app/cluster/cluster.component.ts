@@ -334,7 +334,8 @@ export class ClusterComponent implements OnInit {
     const initialState = {
       organizationId: this.organizationId,
       entityType: 'node',
-      entity: node
+      entity: node,
+      modalTitle: node.ip
     };
 
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });

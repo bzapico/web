@@ -24,6 +24,7 @@ export class AddLabelComponent implements OnInit {
   organizationId: string;
   labelName: string;
   labelValue: string;
+  modalTitle: string;
 
   entity: any;
   entityType: string;

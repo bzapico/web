@@ -775,7 +775,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     const initialState = {
       organizationId: this.organizationId,
       entityType: 'device',
-      entity: device
+      entity: device,
+      modalTitle: device.device_id
     };
 
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
