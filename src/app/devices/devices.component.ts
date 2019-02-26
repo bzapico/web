@@ -174,7 +174,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
     } else {
-      this.backend = mockupBackendService;
+      this.backend = backendService;
     }
     // Default initialization
     this.devices = [];
