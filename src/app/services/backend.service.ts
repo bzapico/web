@@ -214,6 +214,20 @@ export class BackendService implements Backend {
     );
   }
 
+    // POST '/v1/nodes/{organization_id}/{node_id}/update'
+  /**
+   * Request to modify cluster data
+   * @param organizationId Organization identifier
+   * @param nodeId Node identifier
+   * @param changes Object holding cluster changes
+   */
+  updateNode(organizationId: string, nodeId: string, changes: any) {
+    return this.post(
+      API_URL + 'nodes/' + organizationId + '/' + nodeId + '/update',
+      changes
+    );
+  }
+
   /********************
    * Applications
    ********************/
@@ -409,5 +423,20 @@ export class BackendService implements Backend {
       API_URL + 'device/group/' + organizationId + '/update',
       groupData
     );
+  }
+
+  addLabelToDevice(organizationId: string, changes: any) {
+    return this.post(
+      API_URL + 'device/' + organizationId + '/label/add',
+      changes
+    );
+  }
+
+  removeLabelFromDevice(organizationId: string, changes: any) {
+    return this.post(
+      API_URL + 'device/' + organizationId + '/label/remove',
+      changes
+    );
+
   }
 }

@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockGroupApiKey } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockGroupApiKey, mockNodesChart } from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 
 @Injectable({
@@ -169,8 +169,45 @@ export class MockupBackendService implements Backend {
   saveClusterChanges(organizationId: string, clusterId: string, changes: any) {
     const index = mockClusterList.map(x => x.cluster_id).indexOf(clusterId);
     if (index !== -1) {
-      mockClusterList[index].name = changes.name;
-      mockClusterList[index].description = changes.description;
+      if (changes.remove_labels) {
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          delete mockClusterList[index].labels[key];
+        });
+      } else if (changes.add_labels) {
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          mockClusterList[index].labels[key] = changes.labels[key];
+        });
+      } else if (changes.name) {
+        mockClusterList[index].name = changes.name;
+      }
+    }
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+
+  /**
+   * Simulates update nodes changes
+   * @param organizationId organization identifier
+   * @param nodeId node identifier
+   * @param changes changes to address
+   */
+  updateNode(organizationId: string, nodeId: string, changes: any) {
+    const index = mockNodeList.map(x => x.node_id).indexOf(nodeId);
+    if (index !== -1) {
+      if (changes.remove_labels) {
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          delete mockNodeList[index].labels[key];
+        });
+      } else if (changes.add_labels) {
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          mockNodeList[index].labels[key] = changes.labels[key];
+        });
+      }
     }
     return of(new Response(new ResponseOptions({
       status: 200
@@ -328,6 +365,7 @@ export class MockupBackendService implements Backend {
       map(response => response.json())
     );
   }
+  
 
 
   /********************
@@ -435,6 +473,37 @@ export class MockupBackendService implements Backend {
   updateGroup(organizationId: string, groupData: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify({ result: '' }),
+      status: 200
+    })));
+  }
+
+  addLabelToDevice(organizationId: string, changes: any) {
+    for (let index = 0; index < mockDevicesList.length; index++) {
+      for (let indexDevice = 0; indexDevice < mockDevicesList[index].length; indexDevice++) {
+        if (mockDevicesList[index][indexDevice].device_id === changes.device_id) {
+          if (!mockDevicesList[index][indexDevice].labels) {
+            mockDevicesList[index][indexDevice].labels = {};
+          }
+          mockDevicesList[index][indexDevice].labels[Object.keys(changes.labels)[0]] = changes.labels[Object.keys(changes.labels)[0]] ;
+          return of (new Response(new ResponseOptions({
+            status: 200
+          })));
+        }
+      }
+    }
+    return of (new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+  removeLabelFromDevice(organizationId: string, changes: any) {
+    for (let index = 0; index < mockDevicesList.length; index++) {
+      for (let indexDevice = 0; indexDevice < mockDevicesList[index].length; indexDevice++) {
+        if (mockDevicesList[index][indexDevice].device_id === changes.device_id) {
+          delete mockDevicesList[index][indexDevice].labels[Object.keys(changes.labels)[0]];
+        }
+      }
+    }
+    return of (new Response(new ResponseOptions({
       status: 200
     })));
   }
