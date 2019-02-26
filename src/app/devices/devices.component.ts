@@ -345,16 +345,19 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param organizationId organization identifier
    */
   updateDevicesList(organizationId: string) {
-    this.devices = [];
+    const tmpDevices = [];
     if (organizationId !== null) {
       // Request to get devices
       if (this.groups.length > 0) {
         this.groups.forEach(group => {
           this.backend.getDevices(this.organizationId, group.device_group_id)
           .subscribe(response => {
-              this.devices.push(response.devices || []);
+              tmpDevices.push(response.devices || []);
               if (!this.loadedData) {
                 this.loadedData = true;
+              }
+              if (tmpDevices.length === this.groups.length) {
+                this.devices = tmpDevices;
               }
             }, errorResponse => {
               this.loadedData = true;
@@ -766,9 +769,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Opens the modal view that holds add label component
    */
-  addLabel() {
+  addLabel(device) {
     const initialState = {
       organizationId: this.organizationId,
+      entityType: 'device',
+      entity: device,
+      modalTitle: device.device_id
     };
 
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
@@ -779,10 +785,26 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   /**
    * Deletes a selected label
-   * @param label selected label
+   * @param entity selected label entity
    */
-  deleteLabel(label) {
-    console.log(label);
+  deleteLabel(entity) {
+    const deleteConfirm = confirm('Delete labels?');
+    if (deleteConfirm) {
+      const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.device_id);
+      this.backend.removeLabelFromDevice(
+        this.organizationId,
+        {
+          organizationId: this.organizationId,
+          device_id: entity.device_id,
+          device_group_id: entity.device_group_id,
+          labels: this.selectedLabels[index].labels
+        }).subscribe(deleteLabelResponse => {
+          this.selectedLabels.splice(index, 1);
+          this.updateDevicesList(this.organizationId);
+        });
+    } else {
+      // Do nothing
+    }
   }
 
   /**
@@ -793,15 +815,24 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   onLabelClick(entityId, labelKey, labelValue) {
     const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
+    const newLabel = {
+      entityId: entityId,
+      labels: {}
+    } ;
     if (selectedIndex === -1 ) {
-      const labelSelected = {
-        entityId: entityId,
-        labels: {}
-      };
-      labelSelected.labels[labelKey] = labelValue;
-      this.selectedLabels.push(labelSelected);
+      const selected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
+      if (selected === -1) {
+        newLabel.labels[labelKey] = labelValue;
+        this.selectedLabels.push(newLabel);
+      } else {
+        this.selectedLabels[selected].labels[labelKey] = labelValue;
+      }
     } else {
-      this.selectedLabels.splice(selectedIndex, 1);
+      if (Object.keys(this.selectedLabels[selectedIndex].labels).length > 1) {
+        delete this.selectedLabels[selectedIndex].labels[labelKey];
+      } else {
+        this.selectedLabels.splice(selectedIndex, 1);
+      }
     }
   }
 

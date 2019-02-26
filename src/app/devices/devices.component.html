@@ -452,7 +452,16 @@
                   </span>
                 </td>
                 <td *ngIf="!device.labels" class="col-4">
-                    No
+                    <div 
+                      class="add-label-button"
+                      (click)="addLabel(device)">
+                        <i 
+                        class="material-icons i-add" 
+                        tooltip="Add" 
+                        placement="right">
+                        add
+                        </i>  
+                    </div>
                 </td>
                 <td *ngIf="device.labels" class="col-4">
                   <button 
@@ -469,7 +478,7 @@
                     <div 
                       *ngIf="isAnyLabelSelected(device.device_id) === false"
                       class="add-label-button" 
-                      (click)="addLabel()"
+                      (click)="addLabel(device)"
                       tooltip="Add" 
                       placement="right"
                       >
@@ -480,7 +489,7 @@
                     <div 
                       *ngIf="isAnyLabelSelected(device.device_id) === true"
                       class="delete-label-button" 
-                      (click)="deleteLabel()"
+                      (click)="deleteLabel(device)"
                       tooltip="Delete" 
                       placement="right"
                       >
@@ -543,12 +552,12 @@
                 <td class="col-1 text-center">
                   <span 
                     *ngIf="!checkBox" 
-                    (click)="enabled()">
+                    (click)="enableSwitcher(device)">
                     <i class="material-icons grey">check_box_outline_blank</i>
                   </span>
                   <span 
                     *ngIf="checkBox"  
-                    (click)="enabled()" 
+                    (click)="enableSwitcher(device)" 
                     class="devices-checkbox">
                     <i class="material-icons blue">check_box</i>
                   </span>
