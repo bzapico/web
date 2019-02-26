@@ -22,6 +22,15 @@ export class RegisterApplicationComponent implements OnInit {
    */
   organizationId: string;
 
+  /**
+   *  Reference to the drop area so we can attach some events to it
+   * */
+  dropArea: any;
+
+  private preventAndStop(event: Event): void {
+    event.stopPropagation();
+    event.preventDefault();
+  }
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -36,10 +45,11 @@ export class RegisterApplicationComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-
+    this.dropArea = document.getElementById('drop-area');
   }
 
   ngOnInit() {
+    console.log(this.dropArea);
   }
 
   /**
@@ -48,6 +58,7 @@ export class RegisterApplicationComponent implements OnInit {
   handelFiles() {
     const dropArea = document.getElementById('drop-area');
     const dropEventsArray = ['dragenter', 'dragover', 'dragleave', 'drop'];
+    console.log(dropEventsArray);
 
     // dropArea.addEventListener('dragenter', handlerFunction, false);
     // dropArea.addEventListener('dragleave', handlerFunction, false);
@@ -62,6 +73,15 @@ export class RegisterApplicationComponent implements OnInit {
   preventDefaults(e) {
     e.preventDefault();
     e.stopPropagation();
+  }
+
+  highlight(e) {
+
+    this.dropArea.classList.add('highlight');
+  }
+  unhighlight(e) {
+
+    this.dropArea.classList.remove('highlight');
   }
 
   /**

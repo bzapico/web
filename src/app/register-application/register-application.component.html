@@ -18,17 +18,17 @@
           <form class="drop-form">
             <p class="drop-title">Drop here</p>
             <p class="drop-note">
-              Accepted files formats: .tgz. .tar.gz, .zip, .7z 
+              Accepted files formats: .tgz, .tar.gz, .zip, .7z 
             </p>
             <p class="drop-note">
-              for more information <span class="blue">click here to checj apps workflor</span>
+              for more information <a href="mailto:support@daisho.group" target="_blank" >click here to check apps workflow</a>
             </p> 
             <input 
-              (change)="handelFiles(this.files)"
+              (change)="handelFiles()"
               type="file" 
               id="fileElem" 
               multiple 
-              accecpt="image/*"
+              accept="image/*"
              >
           </form>
         </div>
