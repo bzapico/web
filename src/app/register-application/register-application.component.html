@@ -14,26 +14,34 @@
       <!-- Body -->
       <div class="modal-body">
         <p class="upload-descriptor">Upload app descriptor file</p>
-        <div class="drop-box">
-          <p class="drop-title">Drop here</p>
-          <p class="drop-explanation">
-            Accepted files formats: .tgz. .tar.gz, .zip, .7z 
-          </p>
-          <p class="drop-explanation">
-            for more information <span class="blue">click here to checj apps workflor</span>
-          </p> 
-            
-   
+        <div id="drop-area">
+          <form class="drop-form">
+            <p class="drop-title">Drop here</p>
+            <p class="drop-note">
+              Accepted files formats: .tgz. .tar.gz, .zip, .7z 
+            </p>
+            <p class="drop-note">
+              for more information <span class="blue">click here to checj apps workflor</span>
+            </p> 
+            <!-- <input 
+              (change)="handelFiles(this.files)"
+              type="file" 
+              id="fileElem" 
+              multiple 
+              accecpt="image/*"
+              class="hide"
+             > -->
+          </form>
         </div>
-      <!-- Option button -->
-      <div class="d-flex flex-row justify-content-between mt-3">
-        <button class="btn btn-primary btn-md mt-5" (click)="registerApp()">
-          <span class="align-bottom">Register</span>
-        </button>
-        <button class="btn btn-red btn-md mt-5" (click)="discardChanges()">
-            <span class="align-bottom">Discard</span>
-        </button>
-      </div>
+        <!-- Option button -->
+        <div class="d-flex flex-row justify-content-between mt-3">
+          <button class="btn btn-primary btn-md mt-5" (click)="registerApp()">
+            <span class="align-bottom">Register</span>
+          </button>
+          <button class="btn btn-red btn-md mt-5" (click)="discardChanges()">
+              <span class="align-bottom">Discard</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>

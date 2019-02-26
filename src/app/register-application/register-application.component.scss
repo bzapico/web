@@ -2,7 +2,7 @@
     font-size: 0.8em;
     margin-top: 3em;
 }
-.drop-box{
+#drop-area{
     width: 100%;
     height: 13em;
     border-radius: 10px;
@@ -15,7 +15,7 @@
         margin-top: .5em;
         margin-bottom: 0;
     }
-    .drop-explanation {
+    .drop-note {
         font-size: .6em;
         color: #949494;
         text-align: center;
@@ -45,4 +45,12 @@
     .buttons {
         padding: 0;
     }
+}
+#div1, #div2 {
+    float: left;
+    width: 100px;
+    height: 35px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
 }

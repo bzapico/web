@@ -43,7 +43,14 @@ export class RegisterApplicationComponent implements OnInit {
   }
 
   /**
-   * 
+ * Drop file
+ */
+  handelFiles() {
+
+  }
+
+  /**
+   * Register the app
    */
   registerApp() {
 
