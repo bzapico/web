@@ -309,13 +309,19 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                 this.displayedGroups.push(this.groups[indexGroups]);
                 let refillDisplayedIndex = indexGroups - 1;
                 let refillBackAvailable = true;
+                if (refillDisplayedIndex < 0) {
+                  refillBackAvailable = false;
+                }
                 let refillDisplayedIndexReset = false;
-                while (this.displayedGroups.length < this.DISPLAYED_GROUP_MAX && this.groups.length >= this.DISPLAYED_GROUP_MAX) {
+                while (this.displayedGroups.length < this.DISPLAYED_GROUP_MAX ) {
                   if (this.groups[refillDisplayedIndex] && refillBackAvailable) {
                     this.displayedGroups.unshift(this.groups[refillDisplayedIndex]);
                     refillDisplayedIndex -= 1;
                   } else {
                     refillBackAvailable = false;
+                    if (refillDisplayedIndex < this.groups.length - 1) {
+                      refillDisplayedIndex += 1;
+                    }
                     if (!refillDisplayedIndexReset) {
                       refillDisplayedIndex = indexGroups + 1;
                       refillDisplayedIndexReset = true;
