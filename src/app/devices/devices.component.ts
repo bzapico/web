@@ -154,11 +154,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   filterField: boolean;
 
   /**
-   * Checkbox reference
-   */
-  checkBox = true;
-
-  /**
    * List of selected labels from an entity
    */
   selectedLabels = [];

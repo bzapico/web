@@ -178,32 +178,60 @@ export class AddLabelComponent implements OnInit {
                   });
               break;
               case 'device':
-              if (!updatedEntity.labels || updatedEntity.labels === '-') {
-                updatedEntity.labels = {};
-              }
-              updatedEntity.labels[form.value.key] = form.value.value;
-              updatedEntity.add_labels = true;
-                this.backend.addLabelToDevice(
-                  this.organizationId,
-                  {
-                    organization_id: this.organizationId,
-                    device_group_id: updatedEntity.device_group_id,
-                    device_id: updatedEntity.device_id,
-                    labels: updatedEntity.labels
-                  }
-                  ).subscribe(updateDeviceResponse => {
-                    this.notificationsService.add({
-                      message: 'Updated ' + this.entity.device_id ,
-                      timeout: 3000,
+                if (!updatedEntity.labels || updatedEntity.labels === '-') {
+                  updatedEntity.labels = {};
+                }
+                updatedEntity.labels[form.value.key] = form.value.value;
+                updatedEntity.add_labels = true;
+                  this.backend.addLabelToDevice(
+                    this.organizationId,
+                    {
+                      organization_id: this.organizationId,
+                      device_group_id: updatedEntity.device_group_id,
+                      device_id: updatedEntity.device_id,
+                      labels: updatedEntity.labels
+                    }
+                    ).subscribe(updateDeviceResponse => {
+                      this.notificationsService.add({
+                        message: 'Updated ' + this.entity.device_id ,
+                        timeout: 3000,
+                      });
+                      this.bsModalRef.hide();
+                    }, error => {
+                      this.notificationsService.add({
+                        message: error.error.message,
+                        timeout: 5000,
+                      });
                     });
-                    this.bsModalRef.hide();
-                  }, error => {
-                    this.notificationsService.add({
-                      message: error.error.message,
-                      timeout: 5000,
+                break;
+              case 'app':
+                if (!updatedEntity.labels || updatedEntity.labels === '-') {
+                  updatedEntity.labels = {};
+                }
+                updatedEntity.labels[form.value.key] = form.value.value;
+                updatedEntity.add_labels = true;
+                  this.backend.updateAppDescriptor(
+                    this.organizationId,
+                    this.entity.app_descriptor_id,
+                    {
+                      organizationId: this.organizationId,
+                      descriptorId: updatedEntity.app_descriptor_id,
+                      add_labels: true,
+                      labels: updatedEntity.labels
+                    }
+                    ).subscribe(updateAppResponse => {
+                      this.notificationsService.add({
+                        message: 'Updated ' + this.entity.app_descriptor_id ,
+                        timeout: 3000,
+                      });
+                      this.bsModalRef.hide();
+                    }, error => {
+                      this.notificationsService.add({
+                        message: error.error.message,
+                        timeout: 5000,
+                      });
                     });
-                  });
-              break;
+                break;
         default:
           break;
       }

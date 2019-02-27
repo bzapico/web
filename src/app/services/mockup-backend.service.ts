@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockGroupApiKey, mockNodesChart } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList} from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 
 @Injectable({
@@ -335,6 +335,32 @@ export class MockupBackendService implements Backend {
     );
   }
 
+  /**
+   * Simulates update application descriptor (registered app) changes
+   * @param organizationId organization identifier
+   * @param descriptorId Descriptor identifier
+   * @param changes changes to address
+   */
+  updateAppDescriptor(organizationId: string, descriptorId: string, changes: any) {
+    const index = mockRegisteredAppsList.map(x => x.app_descriptor_id).indexOf(descriptorId);
+    if (index !== -1) {
+      if (changes.remove_labels) {
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          delete mockRegisteredAppsList[index].labels[key];
+        });
+      } else if (changes.add_labels) {
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          mockRegisteredAppsList[index].labels[key] = changes.labels[key];
+        });
+      }
+    }
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+
   /********************
    * Cluster
    ********************/
@@ -365,8 +391,6 @@ export class MockupBackendService implements Backend {
       map(response => response.json())
     );
   }
-  
-
 
   /********************
    * Devices

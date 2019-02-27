@@ -85,7 +85,43 @@
   <div class="col-lg-12 col-md-12 col-sm-12 h-100">
     <div class="card h-100 p-4">
       <div class="card-title-h">
-        <h5>DEPLOYED APP LIST</h5>
+        <h5>APPLICATIONS</h5>
+      </div>
+      <div class="apps-options">
+        <button *ngIf="activeList" class="btn-apps-options button-padding-fix">
+          <i class="material-icons i-options">play_arrow</i>
+          Deploy instance
+        </button>
+        <button *ngIf="!activeList" class="btn-apps-options button-padding-fix">
+          <i class="material-icons i-options">publish</i>
+          Register application
+        </button>
+      </div>
+      <!-- Applications tabs -->
+      <div class="row">
+        <div class="col">
+          <div class="app-tab-container">
+            <ul>
+              <li class="app-tab app-tab-title">
+                <span class="grey">LISTS</span>
+              </li>
+              <li 
+                class="app-tab"
+                (click)="changeActiveList()">
+                <span [ngClass]="{'active': activeList}">
+                  INSTANCES
+                </span>
+              </li>
+              <li 
+                class="app-tab"
+                (click)="changeActiveList()">
+                <span [ngClass]="{'active': !activeList}">
+                  REGISTERED
+                </span>
+              </li>
+            </ul>
+          </div>  
+        </div>
       </div>
       <div class="row justify-content-between">
         <!-- Sorting mesages -->
@@ -128,7 +164,8 @@
             </form>
           </div>      
       </div>
-      <div class="table-h" *ngIf="loadedData && instances && instances.length > 0 && !requestError" >
+      <!-- App Instances -->
+      <div class="table-h" *ngIf="loadedData && instances && instances.length > 0 && !requestError && activeList">
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
@@ -185,17 +222,23 @@
                 </span>
               </th>
               <th scope="col" class="col-1 text-center">
-                Info
+                Actions
               </th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let app of instances | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-              <td class="text-capitalize col-2">{{app.name}}</td>
+              <td 
+                tooltip="Info"
+                placement="top"
+                class="text-capitalize col-2 app-info" 
+                (click)="openAppsInfo(app)">
+                {{app.name}}
+              </td>
               <td class="col-3">{{app.app_instance_id}}</td>
               <td class="col-4">
                 <button *ngFor="let label of labelsToString(app.labels)" class="btn-sm btn-outline-primary" disabled>
-                    {{label[0]}}: {{label[1]}}
+                  {{label[0]}}: {{label[1]}}
                 </button>
               </td>
               <td 
@@ -210,20 +253,150 @@
                   {{app.status_name}}
                 </span>
               </td>
-                <td class="row-info-btn col-1 text-center">
-                  <button class="btn info-btn btn-primary" (click)="openAppsInfo(app)">
-                    <span class="i-info">i</span>
-                  </button>
-                </td>
+              <td class="row-info-btn col-1 text-center">
+                <button tooltip="Undeploy" placement="left" class="btn-grey">
+                  <i class="material-icons i-red">close</i>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
-       <!-- No info to show -->
+       <!-- No app instances to show -->
       <div 
-        *ngIf="loadedData && instances && instances.length === 0 && !requestError"
+        *ngIf="loadedData && instances && instances.length === 0 && !requestError && activeList"
         class="no-apps d-flex justify-content-center align-items-center">
-        No available applications detected
+        No application instances deployed
+      </div>
+      <!-- Registered Apps -->
+      <div class="table-h" *ngIf="loadedData && registered && registered.length > 0 && !requestError && !activeList">
+        <table class="table-responsive table-fixed">
+          <thead>
+            <tr>
+              <th 
+                (click)="setOrder('name')"            
+                [ngClass]="getCategoryCSSClass('name')"
+                scope="col" 
+                class="col-2">
+                Name 
+                <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'name' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </th>
+              <th 
+                (click)="setOrder('id')"
+                [ngClass]="getCategoryCSSClass('id')"
+                scope="col" 
+                class="col-3">
+                ID
+                <span class="expand-chevron" *ngIf="sortedBy === 'id' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'id' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </th>
+              <th 
+                (click)="setOrder('labels')" 
+                [ngClass]="getCategoryCSSClass('labels')"
+                scope="col" 
+                class="col-4">
+                Labels
+                <span class="expand-chevron" *ngIf="sortedBy === 'labels' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'labels' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </th>
+              <th 
+                (click)="setOrder('services')" 
+                [ngClass]="getCategoryCSSClass('services')"
+                scope="col" 
+                class="col-2 text-center">
+                Services
+                <span class="expand-chevron" *ngIf="sortedBy === 'services' && !reverse">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span class="expand-chevron" *ngIf="sortedBy === 'services' && reverse">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </th>
+              <th scope="col" class="col-1 text-center">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let app of registered| sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+              <td 
+                tooltip="Info"
+                placement="top"
+                class="text-capitalize col-2 app-info" 
+                (click)="openAppsInfo(app)">
+                {{app.name}}
+              </td>
+              <td class="col-3">{{app.app_descriptor_id}}</td>
+              <td class="col-4" *ngIf="!app.labels"> no </td>
+              <td class="col-4" *ngIf="app.labels">
+                <button 
+                  (click)="onLabelClick(app.app_descriptor_id, label[0], label[1])"
+                  [ngClass]=
+                  "{'btn-label-selected': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) >= 0 ,
+                    'btn-outline-primary': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) === -1}" 
+                  *ngFor="let label of labelsToString(app.labels)" 
+                  class="btn-sm btn-outline-primary" 
+                  >
+                  {{label[0]}}: {{label[1]}} 
+                </button>
+                <div class="label-buttons">
+                  <div 
+                    *ngIf="isAnyLabelSelected(app.app_descriptor_id) === false"
+                    class="add-label-button" 
+                    (click)="addLabel(app)"
+                    tooltip="Add" 
+                    placement="right"
+                    >
+                    <i class="material-icons i-add">
+                      add
+                    </i>
+                  </div>
+                  <div 
+                    *ngIf="isAnyLabelSelected(app.app_descriptor_id) === true"
+                    class="delete-label-button" 
+                    (click)="deleteLabel(app)"
+                    tooltip="Delete" 
+                    placement="right"
+                    >
+                    <i class="material-icons i-delete">
+                      delete
+                    </i>
+                  </div>
+                </div>
+              </td>
+              <td class="col-2 text-center"> 
+                  {{getServicesCount(app)}}
+              </td>
+              <td class="row-info-btn col-1 text-center">
+                <button tooltip="Deploy" placement="left" class="btn-blue btn-blue-mr">
+                  <i class="material-icons i-white">play_arrow</i>
+                </button>
+                <button tooltip="Delete" placement="left" class="btn-grey btn-grey-mr">
+                  <i class="material-icons i-red">delete</i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+        <!-- No registered app to show -->
+      <div 
+        *ngIf="loadedData && registered && registered.length === 0 && !requestError && !activeList"
+        class="no-apps d-flex justify-content-center align-items-center">
+        No registered applications detected
       </div>
        <!-- Requested error -->
       <div

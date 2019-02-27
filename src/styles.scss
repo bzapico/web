@@ -57,7 +57,9 @@ a {
   cursor: pointer;
   margin-right: 5px;
 }
-
+.button-padding-fix {
+  padding-top: 10px !important;
+}
 /* - - - Loader - - - */
 .loader {
   margin: 0 auto;

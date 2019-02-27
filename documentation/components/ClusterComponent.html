@@ -551,7 +551,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="350" class="link-to-prism">src/app/cluster/cluster.component.ts:350</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="351" class="link-to-prism">src/app/cluster/cluster.component.ts:351</a></div>
                             </td>
                         </tr>
 
@@ -885,7 +885,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="406" class="link-to-prism">src/app/cluster/cluster.component.ts:406</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="407" class="link-to-prism">src/app/cluster/cluster.component.ts:407</a></div>
                             </td>
                         </tr>
 
@@ -983,7 +983,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="421" class="link-to-prism">src/app/cluster/cluster.component.ts:421</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="422" class="link-to-prism">src/app/cluster/cluster.component.ts:422</a></div>
                             </td>
                         </tr>
 
@@ -1169,7 +1169,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="377" class="link-to-prism">src/app/cluster/cluster.component.ts:377</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="378" class="link-to-prism">src/app/cluster/cluster.component.ts:378</a></div>
                             </td>
                         </tr>
 
@@ -2756,7 +2756,8 @@ export class ClusterComponent implements OnInit {
     const initialState &#x3D; {
       organizationId: this.organizationId,
       entityType: &#x27;node&#x27;,
-      entity: node
+      entity: node,
+      modalTitle: node.ip
     };
 
     this.modalRef &#x3D; this.modalService.show(AddLabelComponent, {initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });

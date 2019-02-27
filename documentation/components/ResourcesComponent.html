@@ -679,7 +679,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="478" class="link-to-prism">src/app/resources/resources.component.ts:478</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="479" class="link-to-prism">src/app/resources/resources.component.ts:479</a></div>
                             </td>
                         </tr>
 
@@ -920,7 +920,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="534" class="link-to-prism">src/app/resources/resources.component.ts:534</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="535" class="link-to-prism">src/app/resources/resources.component.ts:535</a></div>
                             </td>
                         </tr>
 
@@ -1018,7 +1018,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="549" class="link-to-prism">src/app/resources/resources.component.ts:549</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="550" class="link-to-prism">src/app/resources/resources.component.ts:550</a></div>
                             </td>
                         </tr>
 
@@ -1242,7 +1242,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="505" class="link-to-prism">src/app/resources/resources.component.ts:505</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="506" class="link-to-prism">src/app/resources/resources.component.ts:506</a></div>
                             </td>
                         </tr>
 
@@ -3598,12 +3598,13 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     const initialState &#x3D; {
       organizationId: this.organizationId,
       entityType: &#x27;cluster&#x27;,
-      entity: entity
+      entity: entity,
+      modalTitle: entity.name
     };
 
     this.modalRef &#x3D; this.modalService.show(AddLabelComponent, {initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
-    this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; {this.updateClusterList();});
+    this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; {this.updateClusterList(); });
 
   }
 
