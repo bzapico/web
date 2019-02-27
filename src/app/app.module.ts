@@ -86,7 +86,8 @@ import { DeployInstanceComponent } from './deploy-instance/deploy-instance.compo
     AddDevicesGroupComponent,
     GroupConfigurationComponent,
     DeviceGroupCreatedComponent,
-    AddLabelComponent
+    AddLabelComponent,
+    DeployInstanceComponent
   ],
   imports: [
     BrowserModule,

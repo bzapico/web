@@ -1,3 +1,45 @@
-<p>
-  deploy-instance works!
-</p>
+<div class="modal-card">
+  <div class="modal-content">
+    <!-- Header -->
+    <div class="modal-header">
+      <h3 class="nalej-form-title">Deploy instance</h3>
+      <button 
+        type="button" 
+        class="close" 
+        aria-label="Close"
+        (click)="discardChanges(f)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- Body -->
+    <div class="modal-body">
+    <form #f="ngForm" class="form-deploy">
+      <div class="form-group">
+        <input 
+          [(ngModel)]="registeredApp" 
+          name="name" 
+          type="text" 
+          class="form-control" 
+          placeholder="Registered app" 
+          required>
+        <input 
+          [(ngModel)]="instanceName" 
+          name="name" 
+          type="text" 
+          class="form-control" 
+          placeholder="Instance name" 
+          required>
+      </div>
+    </form>
+    <!-- Option buttons -->
+    <div class="buttons d-flex flex-row justify-content-between">
+      <button class="btn btn-primary btn-md" (click)="checkFormFields(f.form)">
+        <span class="align-bottom">Deploy</span>
+      </button>
+      <button class="btn btn-red btn-md" (click)="discardChanges(f)">
+        <span class="align-bottom">Discard</span>
+      </button>
+    </div>
+    </div>
+  </div>
+</div>

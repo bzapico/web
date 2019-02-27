@@ -88,7 +88,10 @@
         <h5>APPLICATIONS</h5>
       </div>
       <div class="apps-options">
-        <button *ngIf="activeList" class="btn-apps-options button-padding-fix">
+        <button 
+          (click)="deployInstance()"
+          *ngIf="activeList" 
+          class="btn-apps-options button-padding-fix">
           <i class="material-icons i-options">play_arrow</i>
           Deploy instance
         </button>
@@ -381,7 +384,11 @@
                   {{getServicesCount(app)}}
               </td>
               <td class="row-info-btn col-1 text-center">
-                <button tooltip="Deploy" placement="left" class="btn-blue mr-2">
+                <button           
+                  (click)="deployInstance()"
+                  tooltip="Deploy" 
+                  placement="left" 
+                  class="btn-blue mr-2">
                   <i class="material-icons i-white">play_arrow</i>
                 </button>
                 <button tooltip="Delete" placement="left" class="btn-grey">

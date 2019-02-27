@@ -1,0 +1,145 @@
+
+.form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 14px;
+    font-size: 0.9em;
+    text-align: center;
+    border-radius: 5px;
+    &:focus {
+      z-index: 2;
+      border-color: #0937FF;
+      outline: none;
+      box-shadow: none;
+      &::placeholder {
+        color: white;
+      }
+    }
+  }
+.form-control:disabled, .form-control[readonly] {
+   background-color: white; 
+}
+.form-deploy {
+    position: relative;
+}
+.form-group {
+    margin-top: 40px;
+}
+input {
+    padding: 22px;
+    border: 2px solid #EEEEEE;
+    color: #949494;
+    text-align: center;
+    caret-color: #0937FF;
+    margin: -3px 0;
+    font-size: .9em;
+    &:checked {
+      outline: none;
+    }
+    &::placeholder {
+      color: #949494;
+    }
+    &:-webkit-autofill {
+      background-color: #fff !important;
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+    }
+  }
+.roles {
+    h4 {
+        font-size: .9em;
+    }
+}
+.disabled {
+    path {
+    stroke:  #c8ccd4 !important;
+    }
+}
+.cntr {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .btn-radio {
+        cursor: pointer;
+        display: inline-block;
+        user-select: none;
+        &:not(:first-child) {
+          margin-left: 20px;
+        }
+        svg {
+          fill: none;
+          vertical-align: middle;
+          circle {
+            stroke-width: 2;
+            stroke: #c8ccd4;
+          }
+          path {
+             stroke: #0937FF;
+            &.inner {
+              stroke-width: 6;
+              stroke-dasharray: 19;
+              stroke-dashoffset: 19;
+            }
+            &.outer {
+              stroke-width: 2;
+              stroke-dasharray: 57;
+              stroke-dashoffset: 57;
+            }
+          }
+        }
+        input {
+          display: none;
+          &:checked + svg path {
+            transition: all 0.4s ease;
+            &.inner {
+              stroke-dashoffset: 38;
+              transition-delay: 0.3s;
+            }
+            &.outer {
+              stroke-dashoffset: 0;
+            }
+          }
+        }
+      }
+    @media screen and (max-width: 480px) {
+        .btn-radio {
+            display: block;
+            float: none;
+            &:not(:first-child) {
+            margin-left: 0;
+            margin-top: 15px;
+            }
+        }
+    }
+    span {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: .8em;
+    color: #949494;
+    margin-left: 5px;
+    }
+}
+.btn-md {
+    border: 0px;
+    border-radius: 5px;
+    width: 120px;
+    font-size: 0.8em;
+    text-align: center;
+    color: #fff;
+    padding: 11px;
+    height: 47px;
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+.btn-primary {
+    text-indent: -7px;
+}
+.buttons {
+    padding-top: 3em;
+}
+

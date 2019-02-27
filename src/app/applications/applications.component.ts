@@ -9,6 +9,7 @@ import { ApplicationInstance } from '../definitions/interfaces/application-insta
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AppsInfoComponent } from '../apps-info/apps-info.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
+import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -544,5 +545,19 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       return element.services.length;
     }
   }
+
+  /**
+   * Opens the modal view that holds the deploy instance component
+   */
+  deployInstance() {
+    const initialState = {
+      organizationId: this.organizationId,
+    };
+
+    this.modalRef = this.modalService.show(DeployInstanceComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    // this.modalService.onHide.subscribe((reason: string) => {  });
+  }
+
 }
 
