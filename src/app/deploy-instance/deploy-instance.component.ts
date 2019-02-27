@@ -22,9 +22,6 @@ export class DeployInstanceComponent implements OnInit {
    */
   organizationId: string;
 
-  errorMessages: string[];
-
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -47,11 +44,13 @@ export class DeployInstanceComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-    this.errorMessages = [];
-
   }
 
   ngOnInit() {
+  }
+
+  deployInstance() {
+
   }
 
   /**
@@ -70,5 +69,4 @@ export class DeployInstanceComponent implements OnInit {
       this.bsModalRef.hide();
     }
   }
-
 }
