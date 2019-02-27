@@ -539,10 +539,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param app selected app
    */
   getServicesCount(app) {
-    for (let index = 0; index < app.groups.length; index++) {
-      const element = app.groups[index];
-      return element.services.length;
-    }
+    let temporalCount = 0;
+    app.groups.forEach(group => {
+      temporalCount = group.services.length + temporalCount;
+    });
+    return temporalCount;
   }
 }
-

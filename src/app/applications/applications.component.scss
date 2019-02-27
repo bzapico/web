@@ -301,7 +301,7 @@
     .btn-apps-options {
         background-color: #0937FF;
         border-radius: 5px;
-        padding: 1em 3em;
+        padding: .5em 1.8em;
         cursor: pointer;
         color: white;
         border: none;
@@ -309,14 +309,14 @@
         position: absolute;
         bottom: 0px;
         right: 74px;
-        font-size: .6em;
+        font-size: .8em;
         outline: none;
         .i-options {
             font-size: 1.8em;
             font-weight: 700;
             position: absolute;
-            top: 9px;
-            left: -3px;
+            top: 6px;
+            left: -13px;
         }
     }
 }
