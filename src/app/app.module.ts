@@ -43,6 +43,7 @@ import { AddDevicesGroupComponent } from './add-devices-group/add-devices-group.
 import { GroupConfigurationComponent } from './group-configuration/group-configuration.component';
 import { DeviceGroupCreatedComponent } from './device-group-created/device-group-created.component';
 import { AddLabelComponent } from './add-label/add-label.component';
+import { DeployInstanceComponent } from './deploy-instance/deploy-instance.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { AddLabelComponent } from './add-label/add-label.component';
     AddDevicesGroupComponent,
     GroupConfigurationComponent,
     DeviceGroupCreatedComponent,
-    AddLabelComponent
+    AddLabelComponent,
+    DeployInstanceComponent
   ],
   entryComponents: [
     DebugPanelComponent,
