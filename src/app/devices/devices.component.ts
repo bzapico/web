@@ -293,7 +293,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       .subscribe(response => {
         const outdatedGroups = this.groups.slice(0);
         this.groups = response.groups || [];
-
         if (outdatedGroups.length === this.groups.length) {
           // do nothing
         } else {
@@ -307,29 +306,19 @@ export class DevicesComponent implements OnInit, OnDestroy  {
               if (index === -1) {
                 foundNewGroup  = true;
                 this.displayedGroups.push(this.groups[indexGroups]);
-                let refillDisplayedIndex = indexGroups - 1;
-                let refillBackAvailable = true;
-                if (refillDisplayedIndex < 0) {
-                  refillBackAvailable = false;
-                }
-                let refillDisplayedIndexReset = false;
-                while (this.displayedGroups.length < this.DISPLAYED_GROUP_MAX ) {
-                  if (this.groups[refillDisplayedIndex] && refillBackAvailable) {
-                    this.displayedGroups.unshift(this.groups[refillDisplayedIndex]);
-                    refillDisplayedIndex -= 1;
-                  } else {
-                    refillBackAvailable = false;
-                    if (refillDisplayedIndex < this.groups.length - 1) {
-                      refillDisplayedIndex += 1;
+                  let refillIndexPush = 1;
+                  let refillIndexUnshift = 1;
+                  let stop = false;
+                  while ( stop === false && this.displayedGroups.length < this.DISPLAYED_GROUP_MAX) {
+                    if (this.groups[indexGroups + refillIndexPush]) {
+                      this.displayedGroups.push(this.groups[indexGroups + refillIndexPush]);
+                      refillIndexPush += 1;
+                    } else if (this.groups[indexGroups - refillIndexUnshift]) {
+                      this.displayedGroups.unshift(this.groups[indexGroups - refillIndexUnshift]);
+                      refillIndexUnshift += 1;
+                    } else {
+                      stop = true;
                     }
-                    if (!refillDisplayedIndexReset) {
-                      refillDisplayedIndex = indexGroups + 1;
-                      refillDisplayedIndexReset = true;
-                    }
-                    if (this.groups[refillDisplayedIndex]) {
-                      this.displayedGroups.push(this.groups[refillDisplayedIndex]);
-                    }
-                  }
                 }
                 this.activeGroupId = this.groups[indexGroups].device_group_id;
               }
