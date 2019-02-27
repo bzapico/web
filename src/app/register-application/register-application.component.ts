@@ -26,11 +26,7 @@ export class RegisterApplicationComponent implements OnInit {
    *  Reference to the drop area so we can attach some events to it
    * */
   dropArea: any;
-
-  private preventAndStop(event: Event): void {
-    event.stopPropagation();
-    event.preventDefault();
-  }
+  uploaded: boolean;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -45,6 +41,7 @@ export class RegisterApplicationComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
+    this.uploaded = false;
     this.dropArea = document.getElementById('drop-area');
   }
 
@@ -60,28 +57,10 @@ export class RegisterApplicationComponent implements OnInit {
     const dropEventsArray = ['dragenter', 'dragover', 'dragleave', 'drop'];
     console.log(dropEventsArray);
 
-    // dropArea.addEventListener('dragenter', handlerFunction, false);
-    // dropArea.addEventListener('dragleave', handlerFunction, false);
-    // dropArea.addEventListener('dragover', handlerFunction, false);
-    // dropArea.addEventListener('drop', handlerFunction, false);
     dropEventsArray.forEach(eventName => {
         // dropArea.addEventListener(eventName, this.preventDefaults(), false);
     });
 
-  }
-
-  preventDefaults(e) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  highlight(e) {
-
-    this.dropArea.classList.add('highlight');
-  }
-  unhighlight(e) {
-
-    this.dropArea.classList.remove('highlight');
   }
 
   /**

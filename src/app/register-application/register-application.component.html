@@ -14,15 +14,25 @@
       <!-- Body -->
       <div class="modal-body">
         <p class="upload-descriptor">Upload app descriptor file</p>
-        <div id="drop-area">
+        <div 
+          (click)="uploaded = !uploaded"
+          class="drop-area" 
+          [ngClass]="{
+            'file-to-upload': uploaded,
+            'file-uploaded': !uploaded
+          }">
           <form class="drop-form">
-            <p class="drop-title">Drop here</p>
-            <p class="drop-note">
-              Accepted files formats: .tgz, .tar.gz, .zip, .7z 
-            </p>
-            <p class="drop-note">
-              for more information <a href="mailto:support@daisho.group" target="_blank" >click here to check apps workflow</a>
-            </p> 
+            <div class="drop-note" *ngIf="uploaded">
+              <span class="drop-title">Drop here</span> <br>
+              Accepted files formats: .tgz, .tar.gz, .zip, .7z <br>
+              for more information 
+              <a href="mailto:support@daisho.group" target="_blank" >click here to check apps workflow</a>
+            </div> 
+            <div class="drop-note-uploaded" *ngIf="!uploaded"> 
+              <span class="drop-title-uploaded">example.json</span> <br>
+              from /tmp/descriptiors/example.json <br>
+              <span class="green">ready to be registered</span>
+            </div>
             <input 
               (change)="handelFiles()"
               type="file" 
