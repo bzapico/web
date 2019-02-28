@@ -28,6 +28,8 @@ export class DeployInstanceComponent implements OnInit {
   registeredId: string;
   registeredName: string;
   openFromRegistered: boolean;
+  registeredApp: any;
+  registeredApps: any[];
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -53,13 +55,27 @@ export class DeployInstanceComponent implements OnInit {
     }
     this.registeredName = 'Loading ...'; // Default initialization;
     this.openFromRegistered = false;
+    this.registeredApps = [];
+    if (!this.registeredName) {
+      this.registeredName = 'Select any registered app';
+    }
   }
 
   ngOnInit() {
+    this.backend.getRegisteredApps(this.organizationId)
+    .subscribe(response => {
+        this.registeredApps = response.descriptors || [];
+    });
   }
 
   deployInstance() {
+    // backend call with required data
+  }
 
+  selectRegistered(app) {
+    this.registeredApp = app;
+    this.registeredName = app.name;
+    this.registeredId = app.app_descriptor_id;
   }
 
   /**

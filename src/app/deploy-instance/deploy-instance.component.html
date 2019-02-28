@@ -24,9 +24,9 @@
             id="button-basic" 
             dropdownToggle 
             type="button" 
-            class="dropdown-toggle"
+            class="dropdown-toggle cursor-pointer"
             aria-controls="dropdown-basic">
-            Registered app 
+            {{registeredName}}
           </button>
           <ul 
             id="dropdown-basic" 
@@ -34,12 +34,14 @@
             class="dropdown-menu"
             role="menu" 
             aria-labelledby="button-basic">
-            <li role="menuitem">
-              <span class="dropdown-item">MyApp</span>
+            <li *ngFor="let app of registeredApps" role="menuitem">
+              <span 
+                class="dropdown-item cursor-pointer"
+                (click)="selectRegistered(app)">
+                {{app.name}}
+              </span>
             </li>
-            <li role="menuitem">
-              <span class="dropdown-item">MyApp</span>
-            </li>
+
           </ul>
         </div>
         <!-- Disabled registered app name -->
