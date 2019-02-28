@@ -681,7 +681,43 @@ button[type="submit"]:disabled {
       border: none;
   }
 }
-
+.table-h {
+  height: 80%;
+  width: 100%;
+  overflow: hidden;
+  thead th {
+      cursor: pointer;
+      &.default{
+        color: black;
+        i {
+          color: black;
+        }
+      }
+      &.enabled {
+        i {
+        color: #0937FF;
+        }
+        span i{
+          visibility: visible;
+        }
+      }
+      &.disabled {
+        color: #949494;
+        i {
+          color: #949494;
+        }
+      }
+  }
+  .expand-chevron {
+      position: relative;
+      cursor: pointer;
+      top: 3px;
+      right: 3px;
+      i {
+        font-size: 1.1em;
+      }
+  }
+}
 /* - - -  Search and sort in tables - - - */
 // Sorting styles
 .sorting-message {
@@ -741,43 +777,6 @@ button[type="submit"]:disabled {
   }
 }
 
-.table-h {
-  height: 80%;
-  width: 100%;
-  overflow: hidden;
-  thead th {
-      cursor: pointer;
-      &.default{
-        color: black;
-        i {
-          color: black;
-        }
-      }
-      &.enabled {
-        i {
-        color: #0937FF;
-        }
-        span i{
-          visibility: visible;
-        }
-      }
-      &.disabled {
-        color: #949494;
-        i {
-          color: #949494;
-        }
-      }
-  }
-  .expand-chevron {
-      position: relative;
-      cursor: pointer;
-      top: 3px;
-      right: 3px;
-      i {
-        font-size: 1.1em;
-      }
-  }
-}
 
 @media screen and (max-width:1300px) {
   /* Target devices narrower than 1300px */
@@ -793,3 +792,69 @@ button[type="submit"]:disabled {
   }
 }
 
+/* - - - Nalej tabs - - - */
+.nalej-tab-container {
+  margin-bottom: 2em;
+  margin-right: 3em;
+  font-size: .6em;
+  border-bottom: 1px solid #ececec;
+  margin-left: 1em;
+  display: flex;
+  flex-direction: row;
+  ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    font-size: 1em;
+    float: left;
+    padding: 0.5rem 2.5rem;
+    cursor: pointer;
+    position: relative;
+  }
+  .tabs-arrow {
+    color: #949494;
+    padding: 0rem 2rem;
+  }
+  .nalej-tab-title {
+    cursor: default;
+    padding-right: 8em;
+  }
+  .nalej-tab {
+    text-transform: uppercase;
+  }
+  span {
+    display: block;
+    text-decoration: none;
+    display: block;
+    transition: .3s background-color;
+    &.active {
+      color: #0937FF;
+      &::before {
+        content: "";
+        height: 5px;
+        width: 100%;
+        display: block;
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        background-color: #0937FF;
+      }
+    }
+  }
+}
+@media screen and (max-width:1779px) {
+  .nalej-tab-container li {
+    padding: 0.5rem 1.2rem;
+  }
+}
+@media screen and (max-width:1570px) {
+  .nalej-tab-container li {
+    padding: 0.5rem .9rem;
+  }
+  .nalej-tab-title {
+    padding-right: 4em !important;
+  }
+}

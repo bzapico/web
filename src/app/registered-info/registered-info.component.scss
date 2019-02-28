@@ -1,0 +1,174 @@
+/* - - - Servivces summary card- - - */
+.summary-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    margin-top: 1em;
+}
+.summary-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+}
+.circle {
+    width:112px;
+    height: 112px;
+    border: 1px solid #949494; 
+    -moz-border-radius: 50%; 
+    -webkit-border-radius: 50%; 
+    border-radius: 50%;
+    position: relative;
+    margin: 0 auto;
+}
+.circle span {
+    text-align: center;
+    color: black;
+    font-size: 1.7em;
+}
+.circle-name {
+    font-size: 1.2em;
+    color:#949494;
+}
+
+/* - - - Medias Servivces summary card - - - */
+@media screen and (max-width:1500px) {
+    .circle {
+        margin-top: 2em;
+        max-width: 65px;
+        max-height: 65px;
+    }
+    .circle span {
+        font-size: 1em !important;
+        top: 21px;
+        left: 25px;
+    }
+    .circle-name {
+        font-size: .9em !important;
+    }
+    .summary-card {
+        margin-top: 0em;
+        height: 82%;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    .card-title-h h5, .card-title-c h5 {
+        font-size: 1em;
+    }
+}
+@media screen and (max-width:1680px) {
+    .summary-card {
+        margin-top: 0em;
+    }
+    .circle {
+        width: 90px;
+        height: 90px;
+    }
+}
+@media screen and (min-width:2560px) {
+    .circle {
+        min-width: 140px;
+        min-height: 140px;
+    }
+    .circle span {
+        top: 54px;
+        left: 58px;
+    }
+}
+.info-btn {
+    height: 32px;
+    width:32px;
+    border-radius: 50%;
+    position: relative;
+}
+.i-info {
+    font-size: 1.2em;
+    position: absolute;
+    top: 6px;
+    left: 7px;
+}
+@media screen and (max-width:1500px) {
+    .info-btn {
+        height: 25px;
+        width: 25px;
+    }
+    .i-info {
+        font-size: 1em;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+    }
+}
+/* - - - Apps buttons - - - */
+.apps-options {
+    position: relative;
+    width: 100%;
+    .reg-deploy {
+        background-color: #0937FF;
+        border-radius: 5px;
+        padding: .5em 1.8em;
+        cursor: pointer;
+        color: white;
+        border: none;
+        text-indent: 2em;
+        position: absolute;
+        bottom: 0px;
+        right: 74px;
+        font-size: .8em;
+        outline: none;
+        .i-options {
+            font-size: 1.8em;
+            font-weight: 700;
+            position: absolute;
+            top: 6px;
+            left: -13px;
+        }
+    }
+    .reg-undeploy {
+        background-color: #ececec;
+        border-radius: 5px;
+        padding: .5em 1.8em;
+        cursor: pointer;
+        color: #F25272;
+        border: none;
+        text-indent: 2em;
+        position: absolute;
+        bottom: 0px;
+        right: 74px;
+        font-size: .8em;
+        outline: none;
+        .i-options {
+            font-size: 1.8em;
+            font-weight: 700;
+            position: absolute;
+            top: 6px;
+            left: -13px;
+        }
+    }
+}
+.config-card {
+    font-size: .8em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2em;
+}
+.reg-info {
+  height: 100px;
+}
+.no-info-in-group {
+    position: absolute;
+    bottom: 33%;
+    left: 33%;
+}
+.no-info {
+    height: 70%;
+}
+.typo-small{
+    font-size: .7em;
+}
