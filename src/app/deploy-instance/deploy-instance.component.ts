@@ -18,9 +18,16 @@ export class DeployInstanceComponent implements OnInit {
   backend: Backend;
 
   /**
-   * Models that hold organization id
+   * Model that hold organization ID
    */
   organizationId: string;
+
+  /**
+   * Model that hold app registered ID and its name
+   */
+  registeredId: string;
+  registeredName: string;
+  openFromRegistered: boolean;
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -44,6 +51,8 @@ export class DeployInstanceComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
+    this.registeredName = 'Loading ...'; // Default initialization;
+    this.openFromRegistered = false;
   }
 
   ngOnInit() {

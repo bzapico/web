@@ -559,5 +559,22 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     // this.modalService.onHide.subscribe((reason: string) => {  });
   }
 
+  /**
+   * Opens the modal view that holds the deploy registered app component
+   * @param app registered app to deploy
+   */
+  deployRegistered(app) {
+    const initialState = {
+      organizationId: this.organizationId,
+      registeredId: app.app_descriptor_id,
+      registeredName: app.name,
+      openFromRegistered: true
+    };
+
+    this.modalRef = this.modalService.show(DeployInstanceComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    // this.modalService.onHide.subscribe((reason: string) => {  });
+
+  }
 }
 

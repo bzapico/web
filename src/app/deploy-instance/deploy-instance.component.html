@@ -15,7 +15,11 @@
     <div class="modal-body">
     <form #f="ngForm" class="form-deploy">
       <div class="form-group">
-        <div class="btn-group" dropdown>
+        <!-- Dropdown button -->
+        <div 
+          *ngIf="!openFromRegistered"
+          class="btn-group" 
+          dropdown>
           <button 
             id="button-basic" 
             dropdownToggle 
@@ -38,6 +42,15 @@
             </li>
           </ul>
         </div>
+        <!-- Disabled registered app name -->
+        <input 
+          *ngIf="openFromRegistered"
+          [(ngModel)]="registeredName" 
+          name="registeredName" 
+          type="text" 
+          class="form-control bg-light-grey" 
+          placeholder="" 
+          disabled>
         <input 
           [(ngModel)]="instanceName" 
           name="name" 
