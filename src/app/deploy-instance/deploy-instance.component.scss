@@ -1,0 +1,128 @@
+
+.form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 14px;
+    font-size: 0.9em;
+    text-align: center;
+    border-radius: 5px;
+    &:focus {
+      z-index: 2;
+      border-color: #0937FF;
+      outline: none;
+      box-shadow: none;
+      &::placeholder {
+        color: white;
+      }
+    }
+  }
+.form-control:disabled, .form-control[readonly] {
+   background-color: white; 
+}
+.form-deploy {
+    position: relative;
+}
+.form-group {
+    margin-top: 40px;
+}
+input {
+    padding: 22px;
+    border: 2px solid #EEEEEE;
+    color: #949494;
+    text-align: center;
+    caret-color: #0937FF;
+    margin: -3px 0;
+    font-size: .9em;
+    &:checked {
+      outline: none;
+    }
+    &::placeholder {
+      color: #949494;
+    }
+    &:-webkit-autofill {
+      background-color: #fff !important;
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+    }
+}
+.btn-md {
+    border: 0px;
+    border-radius: 5px;
+    width: 120px;
+    font-size: 0.8em;
+    text-align: center;
+    color: #fff;
+    padding: 11px;
+    height: 47px;
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+.btn-primary {
+    text-indent: -7px;
+}
+.buttons {
+    padding-top: 3em;
+}
+.btn-group{
+    width: 100%;
+}
+.dropdown-menu {
+    width: 100% !important;
+    padding: 0em;
+}
+.dropdown-toggle {
+    padding: 14px;
+    width: 100%;
+    font-size: 0.9em;
+    border-radius: 5px;
+    border: 2px solid #EEEEEE;
+    color: #949494;
+    caret-color: #0937FF;
+    margin: -3px 0;
+    &:focus {
+        box-shadow: none;
+        z-index: 2;
+        border-color: #0937FF;
+        outline: none;
+        box-shadow: none;
+        &::placeholder {
+            color: white;
+        }
+    }
+    &::after {
+        position: absolute;
+        right: 25px;
+        top: 21px;
+    }
+}
+.dropdown-item {
+    color: #949494;
+    text-align: inherit;
+    font-size: 0.9em;
+    text-align: center;
+    padding: .6rem 1.5rem;
+    &:hover {
+        background-color: #ECECEC;
+    }
+}
+.deploy-app-name-disabled {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 14px;
+    font-size: 0.9em;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #EEEEEE;
+    color: #949494;
+    background-color: #ECECEC;  
+}
+.cursor-pointer {
+    cursor: pointer;
+}
