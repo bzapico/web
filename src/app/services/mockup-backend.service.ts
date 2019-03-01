@@ -361,6 +361,37 @@ export class MockupBackendService implements Backend {
     })));
   }
 
+  /**
+   * Simulates deploying an app instance
+   * @param organizationId organization identifier
+   * @param descriptorId Descriptor identifier
+   * @param name String with the instance name
+   */
+  deploy(organizationId: string, descriptorId: string, name: string) {
+    const newInstance = mockAppsInstancesList[0];
+    newInstance.organization_id = organizationId;
+    newInstance.app_descriptor_id = descriptorId;
+    newInstance.name = name;
+    newInstance.app_instance_id = this.uuidv4();
+    mockAppsInstancesList.push(newInstance);
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+
+  /**
+   * Simulates undeploying an app instance
+   * @param organizationId organization identifier
+   * @param instanceId Descriptor identifier
+   */
+  undeploy(organizationId: string, instanceId: string) {
+    const indexInstance = mockAppsInstancesList.map(x => x.app_instance_id).indexOf(instanceId);
+    mockAppsInstancesList.splice(indexInstance, 1);
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+
   /********************
    * Cluster
    ********************/
@@ -530,5 +561,17 @@ export class MockupBackendService implements Backend {
     return of (new Response(new ResponseOptions({
       status: 200
     })));
+  }
+
+    /**
+   * Generates UUID v4
+   * https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+   */
+  uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      // tslint:disable-next-line:no-bitwise
+      const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
   }
 }

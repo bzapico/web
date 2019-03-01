@@ -30,6 +30,7 @@ export class DeployInstanceComponent implements OnInit {
   openFromRegistered: boolean;
   registeredApp: any;
   registeredApps: any[];
+  instanceName: string;
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -53,7 +54,6 @@ export class DeployInstanceComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-    this.registeredName = 'Loading ...'; // Default initialization;
     this.openFromRegistered = false;
     this.registeredApps = [];
     if (!this.registeredName) {
@@ -69,13 +69,27 @@ export class DeployInstanceComponent implements OnInit {
   }
 
   deployInstance() {
-    // backend call with required data
+    this.backend.deploy(this.organizationId, this.registeredId, this.instanceName)
+      .subscribe(deployResponse => {
+        console.log(deployResponse);
+        this.bsModalRef.hide();
+        this.notificationsService.add({
+          message: 'Deploying instance of ' + this.registeredName,
+          timeout: 3000
+        });
+      }, error => {
+        this.notificationsService.add({
+          message: error.error.message,
+          timeout: 5000
+        });
+        this.bsModalRef.hide();
+      });
   }
 
   selectRegistered(app) {
     this.registeredApp = app;
-    this.registeredName = app.name;
     this.registeredId = app.app_descriptor_id;
+    this.registeredName = app.name;
   }
 
   /**

@@ -289,6 +289,40 @@ export class BackendService implements Backend {
     );
   }
 
+  // POST '/v1/apps/inst/{organization_id}/{app_descriptor_id}/deploy'
+  /**
+   * Request to deploy an application instance
+   * @param organizationId Organization identifier
+   * @param descriptorId Descriptor identifier
+   * @param name Instance name
+   */
+  deploy(organizationId: string, descriptorId: string, name: string) {
+    return this.post(
+      API_URL + 'apps/inst/' + organizationId + '/' + descriptorId + '/deploy',
+      {
+        organization_id: organizationId,
+        app_descriptor_id: descriptorId,
+        name: name
+      }
+    );
+  }
+
+    // POST '/v1/apps/inst/{organization_id}/{app_instance_id}/deploy'
+    /**
+     * Request to undeploy an specific application instance
+     * @param organizationId Organization identifier
+     * @param instanceId Instance identifier
+     */
+    undeploy(organizationId: string, instanceId: string) {
+      return this.post(
+        API_URL + 'apps/inst/' + organizationId + '/' + instanceId + '/undeploy',
+        {
+          organization_id: organizationId,
+          app_instance_id: instanceId
+        }
+      );
+    }
+
   /********************
    * Cluster
    ********************/
