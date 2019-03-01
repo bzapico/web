@@ -322,6 +322,22 @@ export class BackendService implements Backend {
         }
       );
     }
+    // POST '/v1/apps/desc/{organization_id}/{app_descriptor_id}/delete'
+       /**
+     * Request to delete an specific registered app
+     * @param organizationId Organization identifier
+     * @param descriptorId Descriptor identifier
+     */
+    deleteRegistered(organizationId: string, descriptorId: string) {
+      return this.post(
+        API_URL + 'apps/desc/' + organizationId + '/' + descriptorId + '/delete',
+        {
+          organization_id: organizationId,
+          app_descriptor_id: descriptorId
+        }
+      );
+    }
+
 
   /********************
    * Cluster

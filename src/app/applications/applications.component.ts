@@ -600,6 +600,34 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
             timeout: 3000
           });
           this.updateAppInstances(this.organizationId);
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 5000
+          });
+        });
+    }
+  }
+
+    /**
+   * Requests to delete the selected app
+   * @param app Application object
+   */
+  deleteApp(app) {
+    const deleteConfirm = confirm('Delete ' + app.name + '?');
+    if (deleteConfirm) {
+      this.backend.deleteRegistered(this.organizationId, app.app_descriptor_id)
+        .subscribe(deleteResponse => {
+          this.notificationsService.add({
+            message: 'Deleting ' + app.name,
+            timeout: 3000
+          });
+          this.updateRegisteredInstances(this.organizationId);
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 5000
+          });
         });
     }
   }

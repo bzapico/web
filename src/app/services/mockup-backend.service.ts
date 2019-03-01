@@ -383,11 +383,24 @@ export class MockupBackendService implements Backend {
   /**
    * Simulates undeploying an app instance
    * @param organizationId organization identifier
-   * @param instanceId Descriptor identifier
+   * @param instanceId Instance identifier
    */
   undeploy(organizationId: string, instanceId: string) {
     const indexInstance = mockAppsInstancesList.map(x => x.app_instance_id).indexOf(instanceId);
     mockAppsInstancesList.splice(indexInstance, 1);
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+
+    /**
+   * Simulates delete an app descriptor
+   * @param organizationId organization identifier
+   * @param descriptorId Descriptor identifier
+   */
+  deleteRegistered(organizationId: string, descriptorId: string) {
+    const indexInstance = mockRegisteredAppsList.map(x => x.app_descriptor_id).indexOf(descriptorId);
+    mockRegisteredAppsList.splice(indexInstance, 1);
     return of(new Response(new ResponseOptions({
       status: 200
     })));
