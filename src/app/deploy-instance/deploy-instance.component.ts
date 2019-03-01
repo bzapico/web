@@ -71,7 +71,6 @@ export class DeployInstanceComponent implements OnInit {
   deployInstance() {
     this.backend.deploy(this.organizationId, this.registeredId, this.instanceName)
       .subscribe(deployResponse => {
-        console.log(deployResponse);
         this.bsModalRef.hide();
         this.notificationsService.add({
           message: 'Deploying instance of ' + this.registeredName,
