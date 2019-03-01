@@ -368,7 +368,8 @@ export class MockupBackendService implements Backend {
    * @param name String with the instance name
    */
   deploy(organizationId: string, descriptorId: string, name: string) {
-    const newInstance = mockAppsInstancesList[0];
+
+    const newInstance = JSON.parse(JSON.stringify(mockAppsInstancesList[0]));
     newInstance.organization_id = organizationId;
     newInstance.app_descriptor_id = descriptorId;
     newInstance.name = name;
