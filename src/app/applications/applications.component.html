@@ -88,11 +88,14 @@
         <h5>APPLICATIONS</h5>
       </div>
       <div class="apps-options">
-        <button *ngIf="activeList" class="btn-apps-options button-padding-fix">
+        <button 
+          (click)="deployInstance()"
+          *ngIf="showInstances" 
+          class="btn-apps-options button-padding-fix">
           <i class="material-icons i-options">play_arrow</i>
           Deploy instance
         </button>
-        <button *ngIf="!activeList" class="btn-apps-options button-padding-fix">
+        <button *ngIf="!showInstances" class="btn-apps-options button-padding-fix">
           <i class="material-icons i-options">publish</i>
           Register application
         </button>
@@ -107,15 +110,15 @@
               </li>
               <li 
                 class="app-tab"
-                (click)="changeActiveList()">
-                <span [ngClass]="{'active': activeList}">
+                (click)="changeActiveList('instances')">
+                <span [ngClass]="{'active': showInstances}">
                   INSTANCES
                 </span>
               </li>
               <li 
                 class="app-tab"
-                (click)="changeActiveList()">
-                <span [ngClass]="{'active': !activeList}">
+                (click)="changeActiveList('registered')">
+                <span [ngClass]="{'active': !showInstances}">
                   REGISTERED
                 </span>
               </li>
@@ -165,7 +168,7 @@
           </div>      
       </div>
       <!-- App Instances -->
-      <div class="table-h" *ngIf="loadedData && instances && instances.length > 0 && !requestError && activeList">
+      <div class="table-h" *ngIf="loadedData && instances && instances.length > 0 && !requestError && showInstances">
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
@@ -254,7 +257,7 @@
                 </span>
               </td>
               <td class="row-info-btn col-1 text-center">
-                <button tooltip="Undeploy" placement="left" class="btn-grey">
+                <button tooltip="Undeploy" placement="left" class="btn-grey" (click)="undeploy(app)">
                   <i class="material-icons i-red">close</i>
                 </button>
               </td>
@@ -264,12 +267,12 @@
       </div>
        <!-- No app instances to show -->
       <div 
-        *ngIf="loadedData && instances && instances.length === 0 && !requestError && activeList"
+        *ngIf="loadedData && instances && instances.length === 0 && !requestError && showInstances"
         class="no-apps d-flex justify-content-center align-items-center">
         No application instances deployed
       </div>
       <!-- Registered Apps -->
-      <div class="table-h" *ngIf="loadedData && registered && registered.length > 0 && !requestError && !activeList">
+      <div class="table-h" *ngIf="loadedData && registered && registered.length > 0 && !requestError && !showInstances">
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
@@ -382,10 +385,14 @@
                   {{getServicesCount(app)}}
               </td>
               <td class="row-info-btn col-1 text-center">
-                <button tooltip="Deploy" placement="left" class="btn-blue mr-2">
+                <button           
+                  (click)="deployRegistered(app)"
+                  tooltip="Deploy" 
+                  placement="left" 
+                  class="btn-blue mr-2">
                   <i class="material-icons i-white">play_arrow</i>
                 </button>
-                <button tooltip="Delete" placement="left" class="btn-grey">
+                <button tooltip="Delete" placement="left" class="btn-grey btn-grey-mr" (click)="deleteApp(app)">
                   <i class="material-icons i-red">delete</i>
                 </button>
               </td>
@@ -395,7 +402,7 @@
       </div>
         <!-- No registered app to show -->
       <div 
-        *ngIf="loadedData && registered && registered.length === 0 && !requestError && !activeList"
+        *ngIf="loadedData && registered && registered.length === 0 && !requestError && !showInstances"
         class="no-apps d-flex justify-content-center align-items-center">
         No registered applications detected
       </div>

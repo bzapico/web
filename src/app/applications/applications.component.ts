@@ -9,6 +9,7 @@ import { ApplicationInstance } from '../definitions/interfaces/application-insta
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AppsInfoComponent } from '../apps-info/apps-info.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
+import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -153,7 +154,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   /**
    *  Active List reference
    */
-  activeList: boolean;
+  showInstances: boolean;
 
   constructor(
     private modalService: BsModalService,
@@ -182,7 +183,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
      this.sortedBy = '';
      this.reverse = false;
      this.searchTerm = '';
-     this.activeList = true;
+     this.showInstances = true;
 
      // Filter field
      this.filterField = false;
@@ -426,8 +427,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   /**
    * Changes to active list
    */
-  changeActiveList() {
-    this.activeList = !this.activeList;
+  changeActiveList(listToShow: string) {
+    if (listToShow === 'instances') {
+      this.showInstances = true;
+    } else if (listToShow === 'registered') {
+      this.showInstances = false;
+    }
   }
 
    /**
@@ -544,5 +549,86 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       temporalCount = group.services.length + temporalCount;
     });
     return temporalCount;
+  }
+
+  /**
+   * Opens the modal view that holds the deploy instance component
+   */
+  deployInstance() {
+    const initialState = {
+      organizationId: this.organizationId,
+    };
+
+    this.modalRef = this.modalService.show(DeployInstanceComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateAppInstances(this.organizationId);
+     });
+  }
+
+  /**
+   * Opens the modal view that holds the deploy registered app component
+   * @param app registered app to deploy
+   */
+  deployRegistered(app) {
+    const initialState = {
+      organizationId: this.organizationId,
+      registeredId: app.app_descriptor_id,
+      registeredName: app.name,
+      openFromRegistered: true
+    };
+
+    this.modalRef = this.modalService.show(DeployInstanceComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateAppInstances(this.organizationId);
+      this.changeActiveList('instances');
+    });
+
+  }
+  /**
+   * Requests to undeploy the selected instance
+   * @param app Application instance object
+   */
+  undeploy(app) {
+    const undeployConfirm = confirm('Undeploy ' + app.name + '?');
+    if (undeployConfirm) {
+      this.backend.undeploy(this.organizationId, app.app_instance_id)
+        .subscribe(undeployResponse => {
+          this.notificationsService.add({
+            message: 'Undeploying ' + app.name,
+            timeout: 3000
+          });
+          this.updateAppInstances(this.organizationId);
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 5000
+          });
+        });
+    }
+  }
+
+    /**
+   * Requests to delete the selected app
+   * @param app Application object
+   */
+  deleteApp(app) {
+    const deleteConfirm = confirm('Delete ' + app.name + '?');
+    if (deleteConfirm) {
+      this.backend.deleteRegistered(this.organizationId, app.app_descriptor_id)
+        .subscribe(deleteResponse => {
+          this.notificationsService.add({
+            message: 'Deleting ' + app.name,
+            timeout: 3000
+          });
+          this.updateRegisteredInstances(this.organizationId);
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 5000
+          });
+        });
+    }
   }
 }

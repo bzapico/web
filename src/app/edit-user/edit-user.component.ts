@@ -65,12 +65,11 @@ export class EditUserComponent implements OnInit {
   }
 
   ngOnInit() {
-// edit
     if (this.userRoleToEdit) {
-        // this.userRole should be initialized by initial state
+      // this.userRole should be initialized by initial state
       this.temporalRole = this.userRoleToEdit;
     } else {
-          // profile
+      // profile
       this.temporalRole = this.userRole;
     }
 
@@ -202,16 +201,5 @@ export class EditUserComponent implements OnInit {
     });
     return roleId;
   }
-
- /**
-  * Checks it the role is Owner
-  * @param userRole user Role
-  */
-//  isOwner(userRole: string): boolean {
-//    if (userRole === 'Owner') {
-//     return true;
-//    }
-//    return false;
-//  }
 }
 
