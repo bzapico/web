@@ -1,3 +1,63 @@
+/* - - - Info card- - - */
+/* - - - Apps info card  buttons - - - */
+.reg-deploy {
+    border: none;
+    border-radius: 5px;
+    padding: .5em 1em .5em 3em;
+    cursor: pointer;
+    position: relative;
+    font-size: .8em;
+    outline: none; 
+    background-color: #0937FF;
+    color: white;
+    width: 159px;
+    height: 42px;
+}
+.reg-undeploy {
+    border: none;
+    border-radius: 5px;
+    padding: .5em 1.8em .5em 3em;
+    cursor: pointer;
+    position: relative;
+    font-size: .8em;
+    outline: none; 
+    background-color: #ececec;
+    color: #F25272;
+    width: 159px;
+    height: 42px;
+}
+.i-options {
+    position: absolute;
+    top: 50%;
+    left: 12%;
+    transform: translate(-50%, -50%);
+    display: block;
+    font-size: 1.7em;
+}
+.reg-info {
+    text-align: right;
+    font-size:  .9em;
+    color: #949494;
+    padding: 3em 0;
+}
+  
+/* - - - Media apps info card buttons - - - */
+@media screen and (max-width:1613px) {
+    .reg-info {
+        padding: 0 !important;
+    }
+}
+@media screen and (max-width:1557px) {
+    .reg-deploy {
+        width: 114px;
+        height: 54px;
+    }
+    .reg-undeploy {
+        width: 114px;
+        height: 54px;
+    }
+}
+
 /* - - - Servivces summary card- - - */
 .summary-card {
     display: flex;
@@ -79,87 +139,10 @@
         left: 58px;
     }
 }
-.info-btn {
-    height: 32px;
-    width:32px;
-    border-radius: 50%;
-    position: relative;
-}
-.i-info {
-    font-size: 1.2em;
-    position: absolute;
-    top: 6px;
-    left: 7px;
-}
-@media screen and (max-width:1500px) {
-    .info-btn {
-        height: 25px;
-        width: 25px;
-    }
-    .i-info {
-        font-size: 1em;
-        position: absolute;
-        top: 5px;
-        left: 5px;
-    }
-}
-/* - - - Apps buttons - - - */
-.apps-options {
-    position: relative;
-    width: 100%;
-    .reg-deploy {
-        background-color: #0937FF;
-        border-radius: 5px;
-        padding: .5em 1.8em;
-        cursor: pointer;
-        color: white;
-        border: none;
-        text-indent: 2em;
-        position: absolute;
-        bottom: 0px;
-        right: 74px;
-        font-size: .8em;
-        outline: none;
-        .i-options {
-            font-size: 1.8em;
-            font-weight: 700;
-            position: absolute;
-            top: 6px;
-            left: -13px;
-        }
-    }
-    .reg-undeploy {
-        background-color: #ececec;
-        border-radius: 5px;
-        padding: .5em 1.8em;
-        cursor: pointer;
-        color: #F25272;
-        border: none;
-        text-indent: 2em;
-        position: absolute;
-        bottom: 0px;
-        right: 74px;
-        font-size: .8em;
-        outline: none;
-        .i-options {
-            font-size: 1.8em;
-            font-weight: 700;
-            position: absolute;
-            top: 6px;
-            left: -13px;
-        }
-    }
-}
-.config-card {
-    font-size: .8em;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 2em;
-}
-.reg-info {
-  height: 100px;
+
+/* - - -  Tables card - - - */
+.search-box {
+    width: 237px;
 }
 .no-info-in-group {
     position: absolute;
@@ -171,4 +154,46 @@
 }
 .typo-small{
     font-size: .7em;
+}
+.show-graph-icons {
+    cursor: pointer;
+    color: #949494;
+}
+.services-card-height{
+    min-height: 517px;
+}
+
+/* - - - Info table button - - - */
+.info-btn {
+    height: 32px;
+    width:32px;
+    border-radius: 50%;
+    position: relative;
+}
+.i-info {
+    font-size: 1.2em;
+    position: absolute;
+    top: 5px;
+    left: 13px;
+}
+@media screen and (max-width:1500px) {
+    .info-btn {
+        height: 25px;
+        width: 25px;
+    }
+    .i-info {
+        font-size: 1em;
+        top: 3px;
+        left: 10px;
+    }
+}
+
+/* - - -  Config card - - - */
+.config-card {
+    font-size: .8em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2em;
 }

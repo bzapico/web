@@ -9,40 +9,35 @@
   <div class="col-4">
     <!-- Applicartion id card -->
     <div class="card p-4 mb-4">
-      <div class="card-title-c">
+      <div  class="card-title-c">
         <h5>
           <a [routerLink]="['/applications']" routerLinkActive="active" class="blue">
             APPS
           </a>
           <span class="grey text-uppercase">
-            > APPLICATION 1
+            > {{registeredData.name}}
           </span>
         </h5>
       </div>
-      <div class="row">
-        <div class="col-3">
-          <p class="reg-info">ID</p>
+      <div class="d-flex flex-column justify-content-between">
+        <div class="d-flex flex-row justify-content-between">
+          <p class="reg-info text-left ">ID</p>
+          <p class="reg-info w-75">7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77</p>
         </div>
-        <div class="col-9">
-          <p class="reg-info">155cb041-58c5-45aa-b529-1e4ce66e71e1</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <div class="apps-options">
-            <button class="reg-deploy  button-padding-fix">
-              <i class="material-icons i-options">play_arrow</i>
-              Deploy instance
-            </button>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="apps-options">
-            <button class="reg-undeploy button-padding-fix">
-              <i class="material-icons i-options">delete</i>
-              Delete app
-            </button>
-          </div>
+        <div class="d-flex flex-row justify-content-around">
+          <button
+          class="reg-deploy button-padding-fix"                
+          (click)="deployRegistered(app)">
+            <i class="material-icons i-options">play_arrow</i>
+            Deploy instance
+          </button>
+          <button 
+          class="reg-undeploy button-padding-fix"
+          (click)="deleteApp(app)"
+          >
+            <i class="material-icons i-options">delete</i>
+            Delete app
+          </button>
         </div>
       </div>
     </div>
@@ -74,7 +69,7 @@
       <div class="card-title-c">
         <h5>LABELS</h5>
       </div>
-      <div>
+      <div class="py-4">
         <button class="btn-sm btn-outline-primary">
           app: simple-wordpress
         </button>
@@ -93,20 +88,66 @@
         <button class="btn-sm btn-outline-primary">
           component: app
         </button>
+        <div class="label-buttons">
+            <div 
+              class="add-label-button" 
+              (click)="addLabel()"
+              tooltip="Add" 
+              placement="right">
+              <i class="material-icons i-add">add</i>
+            </div>
+          </div>
       </div>
+      <!-- <div *ngFor="let app of registered">
+        <button 
+         (click)="onLabelClick(app.app_instance_id, label[0], label[1])" 
+          [ngClass]="{
+            'btn-label-selected': indexOfLabelSelected(app.app_instance_id, label[0], label[1]) >= 0 ,
+            'btn-outline-primary': indexOfLabelSelected(app.app_instance_id, label[0], label[1]) === -1
+          }"
+          *ngFor="let label of labelsToString(app.labels)" 
+          class="btn-sm btn-outline-primary">
+          {{label[0]}}: {{label[1]}}
+        </button>
+        <div class="label-buttons">
+          <div 
+            *ngIf="isAnyLabelSelected(app.app_instance_id) === false" 
+            class="add-label-button" 
+            (click)="addLabel()"
+            tooltip="Add" 
+            placement="right">
+            <i class="material-icons i-add">add</i>
+          </div>
+          <div 
+            *ngIf="isAnyLabelSelected(app.app_instance_id) === true" 
+            class="delete-label-button"
+            (click)="deleteLabel()" 
+            tooltip="Delete" 
+            placement="right">
+            <i class="material-icons i-delete">delete</i>
+          </div>
+        </div>
+      </div> -->
     </div>
   </div>
   <!-- ------------------------------left -->
   <div class="col-8">
     <!-- Services card -->
-    <div class="card p-4 mb-4">
+    <div class="card p-4 mb-4 services-card-height">
       <div class="row">
         <div class="col-10 card-title-h">
           <h5>SERVICES</h5>
         </div>
         <div class="col-2">
-          <i class="material-icons float-right grey">view_list</i>
-          <i class="material-icons float-right blue mr-2">bar_chart</i>
+          <div class="show-graph-icons">
+            <i class="material-icons float-right"   
+            [ngClass]="!showGraph ? 'blue' : 'grey'"
+            (click)="showWindowGraph()">view_list</i>
+            <i class="material-icons float-right mr-2" 
+            (click)="showWindowGraph()"
+            [ngClass]="showGraph ? 'blue' : 'grey'"
+            >bar_chart</i>
+          </div> 
         </div>
       </div>
       <!-- Services tabs -->
@@ -221,11 +262,15 @@
             <!-- <tr *ngFor="sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm"> -->
             <tr>
               <td class="col-2">simple-mysql</td>
-              <td class="col-4">asdasdasdasdasdasdasd}</td>
+              <td class="col-4">asdasdasdasdasdasdasd</td>
               <td class="col-4">
                 <button class="btn-sm btn-outline-primary">app: simple-wordpress</button>
               </td>
-              <td class="col-2 text-center">info</td>
+              <td class="col-2 text-center">
+                <button class="btn info-btn btn-primary" (click)="openServicesInfo()">
+                  <span class="i-info" tooltip="Info" placement="left">i</span>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -335,7 +380,7 @@
                     </span>
                   </th>
                   <th scope="col" class="col-1 text-center">
-                    Edit
+                    Info
                   </th>
                 </tr>
               </thead>
@@ -355,10 +400,8 @@
                     g1-serviec2
                   </td>
                   <td class="col-1 text-center">
-                    <button class="btn info-btn btn-primary" (click)="openEditCluster(cluster)">
-                      <i class="material-icons i-info">
-                        edit
-                      </i>
+                    <button class="btn info-btn btn-primary" (click)="openRulesInfo()">
+                      <span class="i-info" tooltip="Info" placement="left">i</span>
                     </button>
                   </td>
                 </tr>
@@ -377,10 +420,8 @@
                     g1-serviec2
                   </td>
                   <td class="col-1 text-center">
-                    <button class="btn info-btn btn-primary" (click)="openEditCluster(cluster)">
-                      <i class="material-icons i-info">
-                        edit
-                      </i>
+                    <button class="btn info-btn btn-primary" (click)="openRulesInfo()">
+                      <span class="i-info" tooltip="Info" placement="left">i</span>
                     </button>
                   </td>
                 </tr>
@@ -413,9 +454,9 @@
             <h5>CONFIGURATION</h5>
           </div>
           <div class="config-card">
-            <p class="grey">Enviroment variables</p>
+            <p class="grey text-left">Enviroment variables</p>
             <p>No enviroment variables have been set</p>
-            <p class="grey">Other settings</p>
+            <p class="grey text-left">Other settings</p>
             <p>No extra settings have been set</p>
           </div>
         </div>

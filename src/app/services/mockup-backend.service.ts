@@ -313,7 +313,7 @@ export class MockupBackendService implements Backend {
     );
   }
 
-  getAppInstance (organizationId: string, instanceId: string) {
+  getAppInstance(organizationId: string, instanceId: string) {
     const index = mockAppsInstancesList.map(x => x.app_instance_id).indexOf(instanceId);
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockAppsInstancesList[index]),
@@ -324,7 +324,7 @@ export class MockupBackendService implements Backend {
     );
   }
 
-  getAppDescriptor (organizationId: string, descriptorId: string) {
+  getAppDescriptor(organizationId: string, descriptorId: string) {
     const index = mockRegisteredAppsList.map(x => x.app_descriptor_id).indexOf(descriptorId);
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockRegisteredAppsList[index]),
@@ -404,6 +404,20 @@ export class MockupBackendService implements Backend {
     return of(new Response(new ResponseOptions({
       status: 200
     })));
+  }
+
+  /**
+   * Simulates get app registered details
+   */
+  getRegisteredDetail(organizationId: string, descriptorId: string) {
+    const index = mockRegisteredAppsList.map(x => x.app_descriptor_id).indexOf(descriptorId);
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockRegisteredAppsList[index]),
+      status: 200
+    })))
+    .pipe(
+      map(response => response.json())
+    );
   }
 
   /********************
