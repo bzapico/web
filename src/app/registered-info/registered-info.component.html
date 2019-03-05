@@ -4,11 +4,11 @@
     <h2>Applications</h2>
   </div>
 </div>
-<div class="row">
+<div class="row row-reg">
   <!-- -----------------------------right -->
-  <div class="col-4">
+  <div class="col-4 h-100">
     <!-- Applicartion id card -->
-    <div class="card p-4 mb-4">
+    <div class="card p-4 mb-4 row-reg-info">
       <div  class="card-title-c">
         <h5>
           <a [routerLink]="['/applications']" routerLinkActive="active" class="blue">
@@ -19,22 +19,21 @@
           </span>
         </h5>
       </div>
-      <div class="d-flex flex-column justify-content-between">
+      <div class="reg-info">
         <div class="d-flex flex-row justify-content-between">
-          <p class="reg-info text-left ">ID</p>
-          <p class="reg-info w-75">7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77</p>
+          <p class="reg-info-id text-left ">ID</p>
+          <p class="reg-info-id w-75">{{registeredData.app_descriptor_id}}</p>
         </div>
         <div class="d-flex flex-row justify-content-around">
           <button
-          class="reg-deploy button-padding-fix"                
-          (click)="deployRegistered(app)">
+            class="reg-deploy button-padding-fix"                
+            (click)="deployRegistered(app)">
             <i class="material-icons i-options">play_arrow</i>
             Deploy instance
           </button>
           <button 
-          class="reg-undeploy button-padding-fix"
-          (click)="deleteApp(app)"
-          >
+            class="reg-undeploy button-padding-fix"
+            (click)="deleteApp(app)">
             <i class="material-icons i-options">delete</i>
             Delete app
           </button>
@@ -42,20 +41,21 @@
       </div>
     </div>
     <!-- Services summary card -->
-    <div class="card p-4 mb-4">
+    <div class="card p-4 mb-4  row-reg-services-info">
       <div class="card-title-c">
         <h5>SERVICES SUMMARY</h5>
       </div>
       <div *ngIf="groups.length > 0" class="summary-card">
         <div>
           <div class="circle summary-box">
-            <span class="align-self-center mt-1">5</span>
+            <span class="align-self-center mt-1">{{groups.length}}</span>
           </div>
           <p class="circle-name text-center mt-3">GROUPS</p>
         </div>
         <div>
           <div class="circle summary-box">
-            <span class="align-self-center mt-1">6</span>
+            <!-- <span class="align-self-center mt-1">{{services.length}}</span> -->
+            <span class="align-self-center mt-1">5</span>
           </div>
           <p class="circle-name text-center mt-3">SERVICES</p>
         </div>
@@ -65,75 +65,148 @@
       </div>
     </div>
     <!-- Labels card-->
-    <div class="card p-4">
+    <div class="card p-4 row-reg-labels">
       <div class="card-title-c">
         <h5>LABELS</h5>
       </div>
-      <div class="py-4">
-        <button class="btn-sm btn-outline-primary">
-          app: simple-wordpress
-        </button>
-        <button class="btn-sm btn-outline-primary">
-          component: simple-app
-        </button>
-        <button class="btn-sm btn-outline-primary">
-          app: wordpress
-        </button>
-        <button class="btn-sm btn-outline-primary">
-          component: simple
-        </button>
-        <button class="btn-sm btn-outline-primary">
-          app: simple-wordpress
-        </button>
-        <button class="btn-sm btn-outline-primary">
-          component: app
-        </button>
-        <div class="label-buttons">
+      <div  *ngIf="loadedData && registered && registered.length > 0 && !requestError">
+        <div class="reg-labels">
+          <button class="btn-sm btn-outline-primary">
+            app: simple-wordpress
+          </button>
+          <button class="btn-sm btn-outline-primary">
+            component: simple-app
+          </button>
+          <button class="btn-sm btn-outline-primary">
+            app: wordpress
+          </button>
+          <button class="btn-sm btn-outline-primary">
+            component: simple
+          </button>
+          <button class="btn-sm btn-outline-primary">
+            app: simple-wordpress
+          </button>
+          <button class="btn-sm btn-outline-primary">
+            component: app
+          </button>
+          <div class="label-buttons">
+              <div 
+                class="add-label-button" 
+                (click)="addLabel()"
+                tooltip="Add" 
+                placement="right">
+                <i class="material-icons i-add">add</i>
+              </div>
+            </div>
+        </div>
+      </div>
+      <!-- <div *ngIf="loadedData && registered && registered.length > 0 && !requestError">
+        <div class="reg-labels" *ngFor="let app of registered">
+          <button 
+          (click)="onLabelClick(app.app_descriptor_id, label[0], label[1])" 
+            [ngClass]="{
+              'btn-label-selected': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) >= 0 ,
+              'btn-outline-primary': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) === -1
+            }"
+            *ngFor="let label of labelsToString(app.labels)" 
+            class="btn-sm btn-outline-primary">
+            {{label[0]}}: {{label[1]}}
+          </button>
+          <div class="label-buttons">
             <div 
+              *ngIf="isAnyLabelSelected(app.app_descriptor_id) === false" 
               class="add-label-button" 
               (click)="addLabel()"
               tooltip="Add" 
               placement="right">
               <i class="material-icons i-add">add</i>
             </div>
-          </div>
-      </div>
-      <!-- <div *ngFor="let app of registered">
-        <button 
-         (click)="onLabelClick(app.app_instance_id, label[0], label[1])" 
-          [ngClass]="{
-            'btn-label-selected': indexOfLabelSelected(app.app_instance_id, label[0], label[1]) >= 0 ,
-            'btn-outline-primary': indexOfLabelSelected(app.app_instance_id, label[0], label[1]) === -1
-          }"
-          *ngFor="let label of labelsToString(app.labels)" 
-          class="btn-sm btn-outline-primary">
-          {{label[0]}}: {{label[1]}}
-        </button>
-        <div class="label-buttons">
-          <div 
-            *ngIf="isAnyLabelSelected(app.app_instance_id) === false" 
-            class="add-label-button" 
-            (click)="addLabel()"
-            tooltip="Add" 
-            placement="right">
-            <i class="material-icons i-add">add</i>
-          </div>
-          <div 
-            *ngIf="isAnyLabelSelected(app.app_instance_id) === true" 
-            class="delete-label-button"
-            (click)="deleteLabel()" 
-            tooltip="Delete" 
-            placement="right">
-            <i class="material-icons i-delete">delete</i>
+            <div 
+              *ngIf="isAnyLabelSelected(app.app_descriptor_id) === true" 
+              class="delete-label-button"
+              (click)="deleteLabel()" 
+              tooltip="Delete" 
+              placement="right">
+              <i class="material-icons i-delete">delete</i>
+            </div>
           </div>
         </div>
       </div> -->
+
     </div>
   </div>
   <!-- ------------------------------left -->
-  <div class="col-8">
+  <div class="col-8 h-100">
+
+    <!-- Grapho card -->
+    <div *ngIf="showGraph"  class="card p-4 mb-4 row-reg-services">
+      <div class="row">
+          <div class="col-10 card-title-h">
+            <h5>SERVICE/GRAPH</h5>
+          </div>
+          <div class="col-2">
+            <div class="show-graph-icons">
+              <i class="material-icons float-right"   
+              [ngClass]="!showGraph ? 'blue' : 'grey'"
+              (click)="showWindowGraph()">view_list</i>
+              <i class="material-icons float-right mr-2" 
+              (click)="showWindowGraph()"
+              [ngClass]="showGraph ? 'blue' : 'grey'"
+              >bar_chart</i>
+            </div> 
+          </div>
+        </div>
+          <div class="graph">
+              <!-- <div class="graph-click-fix"></div> -->
+              <ngx-graph
+                  class="chart-container ml-4"
+                  [view]="view"
+                  [legend]="showLegend"
+                  [links]="graphData.links"
+                  [nodes]="graphData.nodes"
+                  [scheme]="colorScheme"
+                  [orientation]="orientation"
+                  [autoZoom]="autoZoom"
+                  [autoCenter]="autoCenter"
+                  [curve]="curve"
+                  [enableZoom]="enableZoom">
+                <ng-template #nodeTemplate let-node>
+                  <svg:g 
+                    class="node"
+                    ngx-tooltip
+                    [tooltipPlacement]="'top'"
+                    [tooltipType]="'tooltip'"
+                    [tooltipTitle]="node.tooltip">
+                    <svg:rect 
+                    [attr.width]="node.width" 
+                    [attr.height]="node.height" 
+                    [attr.fill]="node.color" 
+                    rx="14" 
+                    ry="14"/>
+                    <svg:text 
+                      alignment-baseline="central" 
+                      [attr.x]="10" 
+                      [attr.y]="node.height / 2">
+                      {{node.label}}
+                  </svg:text>
+                  </svg:g>
+                </ng-template>
+                <ng-template #linkTemplate let-link>
+                  <svg:g class="edge">
+                    <svg:path
+                      stroke-width="2"
+                      class="line"
+                      d="M 0,30 h100"
+                      >
+                    </svg:path>
+                  </svg:g>
+                </ng-template>
+              </ngx-graph>
+            </div>
+       
+    </div>
     <!-- Services card -->
-    <div class="card p-4 mb-4 services-card-height">
+    <div *ngIf="!showGraph" class="card p-4 mb-4 row-reg-services">
       <div class="row">
         <div class="col-10 card-title-h">
           <h5>SERVICES</h5>
@@ -201,7 +274,7 @@
           </p>
         </div>
         <!-- Search input -->
-        <div class="col-3">
+        <div class="col-4">
           <form>
             <div class="search-box">
               <input type="text" class="form-control" name="searchTerm" placeholder="Search..."
@@ -235,7 +308,7 @@
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
-              <th (click)="setOrder('image')" [ngClass]="getCategoryCSSClass('image')" scope="col" class="col-4">
+              <th (click)="setOrder('image')" [ngClass]="getCategoryCSSClass('image')" scope="col" class="col-5">
                 Image
                 <span class="expand-chevron" *ngIf="sortedBy === 'image' && !reverse">
                   <i class="material-icons">expand_more</i>
@@ -253,7 +326,7 @@
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
-              <th scope="col" class="col-2 text-center">
+              <th scope="col" class="col-1 text-center">
                 Info
               </th>
             </tr>
@@ -262,11 +335,11 @@
             <!-- <tr *ngFor="sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm"> -->
             <tr>
               <td class="col-2">simple-mysql</td>
-              <td class="col-4">asdasdasdasdasdasdasd</td>
+              <td class="col-5">asdasdasdasdasdasdasd</td>
               <td class="col-4">
                 <button class="btn-sm btn-outline-primary">app: simple-wordpress</button>
               </td>
-              <td class="col-2 text-center">
+              <td class="col-1 text-center">
                 <button class="btn info-btn btn-primary" (click)="openServicesInfo()">
                   <span class="i-info" tooltip="Info" placement="left">i</span>
                 </button>
@@ -293,10 +366,10 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-9">
+    <div class="row row-reg-rules">
+      <div class="col-9 h-100">
         <!-- Rules card -->
-        <div class="card p-4 ">
+        <div class="card p-4 h-100">
           <div class="card-title-c">
             <h5>RULES</h5>
           </div>
@@ -361,7 +434,7 @@
                     </span>
                   </th>
                   <th (click)="setOrder('target')" [ngClass]="getCategoryCSSClass('target')" scope="col"
-                    class="col-4 text-center cabecera">
+                    class="col-4">
                     Target <span class="grey typo-small">(group, serviec, port)</span>
                     <span class="expand-chevron" *ngIf="sortedBy === 'target' && !reverse">
                       <i class="material-icons">expand_more</i>
@@ -389,15 +462,15 @@
                 <tr>
                   <td class="col-2">
                     <a [routerLink]="[]" routerLinkActive="active" class="blue text-capitalize text-left">
-                      Access to wordpress
+                      BAccess to wordpress
                     </a>
                   </td>
                   <td class="col-2">public</td>
-                  <td class="col-4 text-center">
-                    g2 - service 1- 80
+                  <td class="col-4">
+                    f2 - service 1- 80
                   </td>
                   <td class="text-lowercase col-3">
-                    g1-serviec2
+                    f1-serviec2
                   </td>
                   <td class="col-1 text-center">
                     <button class="btn info-btn btn-primary" (click)="openRulesInfo()">
@@ -413,7 +486,7 @@
                     </a>
                   </td>
                   <td class="col-2">public</td>
-                  <td class="col-4 text-center">
+                  <td class="col-4">
                     g2 - service 1- 80
                   </td>
                   <td class="text-lowercase col-3">
@@ -447,9 +520,9 @@
           </div>
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-3 h-100">
         <!-- Configuration card -->
-        <div class="card p-4 h-100">
+        <div class="card p-4 h-100 ">
           <div class="card-title-c">
             <h5>CONFIGURATION</h5>
           </div>

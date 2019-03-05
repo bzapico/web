@@ -406,20 +406,6 @@ export class MockupBackendService implements Backend {
     })));
   }
 
-  /**
-   * Simulates get app registered details
-   */
-  getRegisteredDetail(organizationId: string, descriptorId: string) {
-    const index = mockRegisteredAppsList.map(x => x.app_descriptor_id).indexOf(descriptorId);
-    return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockRegisteredAppsList[index]),
-      status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
-  }
-
   /********************
    * Cluster
    ********************/

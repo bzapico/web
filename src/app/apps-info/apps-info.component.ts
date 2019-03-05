@@ -44,7 +44,7 @@ export class AppsInfoComponent implements OnInit {
   title: string;
 
   /**
-   * NGX-Grpahs object-assign required object references (for rendering)
+   * NGX-Graphs object-assign required object references (for rendering)
    */
   mockServicesGraph: any;
 

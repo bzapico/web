@@ -9,6 +9,7 @@ import { AddLabelComponent } from '../add-label/add-label.component';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 import { ApplicationInstance } from '../definitions/interfaces/application-instance';
 import { ActivatedRoute } from '@angular/router';
+import * as shape from 'd3-shape';
 
 @Component({
   selector: 'app-registered-info',
@@ -116,6 +117,29 @@ export class RegisteredInfoComponent implements OnInit {
 
   showGraph: boolean;
 
+  /**
+   * NGX-Graphs object-assign required object references (for rendering)
+   */
+  mockServicesGraph: any;
+
+  /**
+   * Graph options
+   */
+  showlegend: boolean;
+  graphData: any;
+  orientation: string;
+  curve: any;
+  autoZoom: boolean;
+  autoCenter: boolean;
+  enableZoom: boolean;
+  colorScheme: any;
+  view: any[];
+  width: number;
+  height: number;
+  draggingEnabled: boolean;
+  nalejColorScheme: string[];
+  nextColorIndex: number;
+
 
   constructor(
     private modalService: BsModalService,
@@ -146,11 +170,39 @@ export class RegisteredInfoComponent implements OnInit {
     this.searchTerm = '';
     // Filter field
     this.filterField = false;
+     // Graph initialization
+     this.showlegend = false;
+     this.orientation = 'TB';
+     this.curve = shape.curveBundle;
+     this.autoZoom = true;
+     this.autoCenter = true;
+     this.enableZoom = true;
+     this.draggingEnabled = false;
+     this.view = [350, 250];
+     this.colorScheme = {
+       domain: ['#6C86F7']
+     };
+
+     this.graphData = {
+       nodes: [],
+       links: []
+     };
+    //  this.instance = mockAppsInstancesList; // Initialization to avoid null in view
+     this.nalejColorScheme = [
+       '#1725AE',
+       '#040D5A',
+       '#0F1B8C',
+       '#01073A',
+       '#091374'
+     ];
+     this.nextColorIndex = 0;
+
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.descriptorId = params['descriptorId']; // (+) converts string 'id' to a number
+      console.log('params ', params);
+      this.descriptorId = params['registeredId']; // (+) converts string 'id' to a number
    });
     // Get User data from localStorage
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
@@ -164,7 +216,9 @@ export class RegisteredInfoComponent implements OnInit {
     }
     this.backend.getAppDescriptor(this.organizationId, this.descriptorId)
       .subscribe(registered => {
+        console.log('registered', registered);
         this.registeredData = registered;
+
       });
   }
 
