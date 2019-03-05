@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockNodesChart } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList} from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 
 @Injectable({
@@ -335,6 +335,77 @@ export class MockupBackendService implements Backend {
     );
   }
 
+  /**
+   * Simulates update application descriptor (registered app) changes
+   * @param organizationId organization identifier
+   * @param descriptorId Descriptor identifier
+   * @param changes changes to address
+   */
+  updateAppDescriptor(organizationId: string, descriptorId: string, changes: any) {
+    const index = mockRegisteredAppsList.map(x => x.app_descriptor_id).indexOf(descriptorId);
+    if (index !== -1) {
+      if (changes.remove_labels) {
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          delete mockRegisteredAppsList[index].labels[key];
+        });
+      } else if (changes.add_labels) {
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          mockRegisteredAppsList[index].labels[key] = changes.labels[key];
+        });
+      }
+    }
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+
+  /**
+   * Simulates deploying an app instance
+   * @param organizationId organization identifier
+   * @param descriptorId Descriptor identifier
+   * @param name String with the instance name
+   */
+  deploy(organizationId: string, descriptorId: string, name: string) {
+
+    const newInstance = JSON.parse(JSON.stringify(mockAppsInstancesList[0]));
+    newInstance.organization_id = organizationId;
+    newInstance.app_descriptor_id = descriptorId;
+    newInstance.name = name;
+    newInstance.app_instance_id = this.uuidv4();
+    mockAppsInstancesList.push(newInstance);
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+
+  /**
+   * Simulates undeploying an app instance
+   * @param organizationId organization identifier
+   * @param instanceId Instance identifier
+   */
+  undeploy(organizationId: string, instanceId: string) {
+    const indexInstance = mockAppsInstancesList.map(x => x.app_instance_id).indexOf(instanceId);
+    mockAppsInstancesList.splice(indexInstance, 1);
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+
+    /**
+   * Simulates delete an app descriptor
+   * @param organizationId organization identifier
+   * @param descriptorId Descriptor identifier
+   */
+  deleteRegistered(organizationId: string, descriptorId: string) {
+    const indexInstance = mockRegisteredAppsList.map(x => x.app_descriptor_id).indexOf(descriptorId);
+    mockRegisteredAppsList.splice(indexInstance, 1);
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+
   /********************
    * Cluster
    ********************/
@@ -504,5 +575,17 @@ export class MockupBackendService implements Backend {
     return of (new Response(new ResponseOptions({
       status: 200
     })));
+  }
+
+    /**
+   * Generates UUID v4
+   * https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+   */
+  uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      // tslint:disable-next-line:no-bitwise
+      const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
   }
 }

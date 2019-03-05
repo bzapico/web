@@ -26,6 +26,10 @@ export interface Backend {
     getRegisteredApps(organizationId: string);
     getAppInstance(organizationId: string, instanceId: string);
     getAppDescriptor(organizationId: string, descriptorId: string);
+    updateAppDescriptor(organizationId: string, descriptorId: string, changes: any);
+    deploy(organizationId: string, descriptorId: string, name: string);
+    undeploy(organizationId: string, instanceId: string);
+    deleteRegistered(organizationId: string, descriptorId: string);
     // Devices
     getDevices(organizationId: string, groupId: string);
     updateDevice(organizationId: string, deviceData: any);

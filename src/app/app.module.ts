@@ -44,6 +44,7 @@ import { GroupConfigurationComponent } from './group-configuration/group-configu
 import { DeviceGroupCreatedComponent } from './device-group-created/device-group-created.component';
 import { AddLabelComponent } from './add-label/add-label.component';
 import { RegisterApplicationComponent } from './register-application/register-application.component';
+import { DeployInstanceComponent } from './deploy-instance/deploy-instance.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { RegisterApplicationComponent } from './register-application/register-ap
     GroupConfigurationComponent,
     DeviceGroupCreatedComponent,
     AddLabelComponent,
-    RegisterApplicationComponent
+    RegisterApplicationComponent,
+    DeployInstanceComponent
   ],
   entryComponents: [
     DebugPanelComponent,
@@ -87,7 +89,8 @@ import { RegisterApplicationComponent } from './register-application/register-ap
     GroupConfigurationComponent,
     DeviceGroupCreatedComponent,
     AddLabelComponent,
-    RegisterApplicationComponent
+    RegisterApplicationComponent,
+    DeployInstanceComponent
   ],
   imports: [
     BrowserModule,

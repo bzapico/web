@@ -275,6 +275,70 @@ export class BackendService implements Backend {
     );
   }
 
+  // POST '/v1/apps/desc/{organization_id}/{app_descriptor_id}/update'
+  /**
+   * Request to modify application descriptor (registered app) data
+   * @param organizationId Organization identifier
+   * @param descriptorId Descriptor identifier
+   * @param changes Object holding apps changes
+   */
+  updateAppDescriptor(organizationId: string, descriptorId: string, changes: any) {
+    return this.post(
+      API_URL + 'apps/desc/' + organizationId + '/' + descriptorId + '/update',
+      changes
+    );
+  }
+
+  // POST '/v1/apps/inst/{organization_id}/{app_descriptor_id}/deploy'
+  /**
+   * Request to deploy an application instance
+   * @param organizationId Organization identifier
+   * @param descriptorId Descriptor identifier
+   * @param name Instance name
+   */
+  deploy(organizationId: string, descriptorId: string, name: string) {
+    return this.post(
+      API_URL + 'apps/inst/' + organizationId + '/' + descriptorId + '/deploy',
+      {
+        organization_id: organizationId,
+        app_descriptor_id: descriptorId,
+        name: name
+      }
+    );
+  }
+
+    // POST '/v1/apps/inst/{organization_id}/{app_instance_id}/deploy'
+    /**
+     * Request to undeploy an specific application instance
+     * @param organizationId Organization identifier
+     * @param instanceId Instance identifier
+     */
+    undeploy(organizationId: string, instanceId: string) {
+      return this.post(
+        API_URL + 'apps/inst/' + organizationId + '/' + instanceId + '/undeploy',
+        {
+          organization_id: organizationId,
+          app_instance_id: instanceId
+        }
+      );
+    }
+    // POST '/v1/apps/desc/{organization_id}/{app_descriptor_id}/delete'
+       /**
+     * Request to delete an specific registered app
+     * @param organizationId Organization identifier
+     * @param descriptorId Descriptor identifier
+     */
+    deleteRegistered(organizationId: string, descriptorId: string) {
+      return this.post(
+        API_URL + 'apps/desc/' + organizationId + '/' + descriptorId + '/delete',
+        {
+          organization_id: organizationId,
+          app_descriptor_id: descriptorId
+        }
+      );
+    }
+
+
   /********************
    * Cluster
    ********************/
