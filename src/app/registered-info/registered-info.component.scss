@@ -1,25 +1,43 @@
-.row-reg {
-    height: 96%;
+/* - - - Card heights - - */
+.h-reg {
+    height: 96%; 
 }
-.row-reg-info {
-    height: 31.5%
-    // min-height: 300px;
+.h-reg-info {
+    height: 301px;
+    margin-bottom: 2em;
 }
-.row-reg-services-info{
-    height: 28%;
+.h-reg-services-info {
+    height: 261px;
+    margin-bottom: 2em;
 }
-.row-reg-labels {
-    height: 26%;
+.h-reg-labels {
+    height: 29%;
 }
-.row-reg-services{
-    // min-height: 517px;
-    height: 55%;
+.h-reg-services {
+    height: 517px;
+    margin-bottom: 2em;
 }
-.row-reg-rules {
-    height: 33%;
+@media screen and (max-width:1557px) {
+    .h-reg-services {
+        height: 373px;
+    }
+    .h-reg {
+        height: 100%;
+    }
+}
+.h-reg-rules {
+    height: 38%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.reg-flex-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
 }
 
-/* - - - Info card- - - */
 /* - - - Apps info card  buttons - - - */
 .reg-deploy {
     border: none;
@@ -55,32 +73,40 @@
     display: block;
     font-size: 1.7em;
 }
+.reg-info-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 90%;
+}
+.reg-info-id-box {
+    height: 79%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 .reg-info-id {
     text-align: right;
     font-size:  .9em;
     color: #949494;
+    display: inline;
 }
 .reg-info {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
-    height: 100%;
 }
-  
+
 /* - - - Media apps info card buttons - - - */
-@media screen and (max-width:1613px) {
-    .reg-info {
-        font-size: .8em;
-    }
-}
 @media screen and (max-width:1557px) {
     .reg-deploy {
         width: 114px;
-        height: 52px;
     }
     .reg-undeploy {
         width: 114px;
-        height: 52px;
+    }
+    .i-options{
+        left: 20%;
     }
 }
 
@@ -118,6 +144,8 @@
 .circle-name {
     font-size: 1.2em;
     color:#949494;
+    text-align: center;
+    margin-top: 1em;
 }
 
 /* - - - Medias Servivces summary card - - - */
@@ -134,6 +162,7 @@
     }
     .circle-name {
         font-size: .9em !important;
+        margin-top: 0.3em;
     }
     .summary-card {
         margin-top: 0em;
@@ -165,29 +194,47 @@
         left: 58px;
     }
 }
+
+/* - - -  Labels card - - - */
 .reg-labels {
+    height: 100%;
     overflow: hidden;
     padding-top: 1.5em;
     button {
         font-size: 0.8em;
     }
-
-}
-.add-label-button {
-    height: 20px;
-    width: 20px;
 }
 .i-add {
     font-size: 1em;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    color: white;
+    top: 3px;
+    left: 3px;
+}
+.i-delete{
+    font-size: 1em;
+    top: 3px;
+    left: 3px;
+}
+
+@media screen and (max-width:1680px) {
+    .reg-labels {
+        padding-top: 1em;
+        overflow: scroll;
+    }
+}
+@media screen and (max-width:1580px) {
+    .reg-labels {
+        padding-top: 0em;
+        overflow: scroll;
+    }
 }
 
 /* - - -  Tables card - - - */
 .search-box {
     width: 237px;
+    margin-right: 1em;
+}
+.nalej-tab-container {
+    margin-right: 1em;
 }
 .no-info-in-group {
     position: absolute;
@@ -203,6 +250,23 @@
 .show-graph-icons {
     cursor: pointer;
     color: #949494;
+}
+.mr-bars {
+    margin-right: 11px;
+}
+.table-h-fix {
+    padding-top: 0em;
+}
+.show-sm {
+    display: none;
+}
+@media screen and (max-width:1680px) {
+    .hide-sm {
+        display: none;
+    }
+    .show-sm {
+        display: block;
+    }
 }
 
 
@@ -230,18 +294,29 @@
     margin-top: 2em;
     overflow: hidden;
 }
+@media screen and (max-width:1613px) {
+    .config-card {
+        margin-top: 0em;
+        overflow: scroll;
+        display: block;
+        text-align: left;
+    }
+}
 
+/* - - -  Graph - - - */
 .graph {
     background-color: #f9f9f9;
-    height: 250px;
+    height: 80%;
     position: relative;
     display: block;
+    border-radius: 10px;
     .chart-container {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         overflow: hidden;
+        border-radius: 10px;
     }
     .node {
         text {
@@ -265,3 +340,10 @@
         height: 250px;
     }
 }
+
+
+
+
+
+
+

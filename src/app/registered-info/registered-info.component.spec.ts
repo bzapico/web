@@ -5,7 +5,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { TooltipModule } from '@swimlane/ngx-charts';
-import { ButtonsModule, ModalModule } from 'ngx-bootstrap';
+import { ButtonsModule, ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from '../pipes/filter.pipe';
@@ -32,6 +32,10 @@ describe('RegisteredInfoComponent', () => {
         BrowserAnimationsModule,
         FormsModule,
         ModalModule.forRoot(),
+      ],
+      providers: [
+        BsModalRef,
+        BsModalService
       ]
     })
     .compileComponents();

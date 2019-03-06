@@ -178,7 +178,7 @@ export class RegisteredInfoComponent implements OnInit {
      this.autoCenter = true;
      this.enableZoom = true;
      this.draggingEnabled = false;
-     this.view = [350, 250];
+    //  this.view = [605, 250];
      this.colorScheme = {
        domain: ['#6C86F7']
      };
@@ -215,6 +215,7 @@ export class RegisteredInfoComponent implements OnInit {
     }
     this.backend.getAppDescriptor(this.organizationId, this.descriptorId)
       .subscribe(registered => {
+        console.log(registered);
         this.registeredData = registered;
       });
   }
