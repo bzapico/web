@@ -7,9 +7,9 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
-import { ApplicationInstance } from '../definitions/interfaces/application-instance';
 import { ActivatedRoute } from '@angular/router';
 import * as shape from 'd3-shape';
+import { AppDescriptor } from '../definitions/interfaces/app-descriptor';
 
 @Component({
   selector: 'app-registered-info',
@@ -48,9 +48,9 @@ export class RegisteredInfoComponent implements OnInit {
   descriptorId: string;
 
   /**
-   * Model that hold registered application data
+   * Model that hold registered application descriptor data
    */
-  registeredData: ApplicationInstance;
+  registeredData: AppDescriptor;
 
   /**
    * Models that hold the active group
@@ -201,7 +201,6 @@ export class RegisteredInfoComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      console.log('params ', params);
       this.descriptorId = params['registeredId']; // (+) converts string 'id' to a number
    });
     // Get User data from localStorage
@@ -216,9 +215,7 @@ export class RegisteredInfoComponent implements OnInit {
     }
     this.backend.getAppDescriptor(this.organizationId, this.descriptorId)
       .subscribe(registered => {
-        console.log('registered', registered);
         this.registeredData = registered;
-
       });
   }
 
@@ -537,6 +534,58 @@ export class RegisteredInfoComponent implements OnInit {
             timeout: 5000
           });
         });
+    }
+  }
+
+/**
+ * Transforms the data needed to create the grapho
+ * @param instance instance object
+ */
+  toGraphData(instance) {
+    instance.groups.forEach(group => {
+      const nodeGroup = {
+        id: group.service_group_instance_id,
+        label: group.name,
+        tooltip: 'GROUP: ' + group.service_group_instance_id,
+        color: this.nalejColorScheme[this.nextColorIndex],
+        group: group.service_group_instance_id
+      };
+      this.graphData.nodes.push(nodeGroup);
+      group.service_instances.forEach(service => {
+        const nodeService = {
+          id: group.service_group_instance_id + '-s-' + service.service_id,
+          label: service.name,
+          tooltip: 'SERVICE: ' + service.service_id,
+          color: this.nalejColorScheme[this.nextColorIndex],
+          group: group.service_group_instance_id
+        };
+        this.graphData.nodes.push(nodeService);
+        this.graphData.links.push({
+          source: group.service_group_instance_id,
+          target: group.service_group_instance_id + '-s-' + service.service_id
+        });
+
+      });
+      this.nextColorIndex += 1;
+      if ( this.nextColorIndex >= this.nalejColorScheme.length ) {
+        this.nextColorIndex = 0;
+      }
+    });
+
+    if (instance.rules) {
+      instance.rules.forEach(rule => {
+        if (rule.auth_services) {
+          rule.auth_services.forEach(linkedService => {
+            console.log(linkedService);
+            const link = {
+              source: rule.target_service_group_name + rule.target_service_name,
+              target: linkedService
+            };
+            this.graphData.links.push(link);
+            console.log(link);
+          });
+        }
+      });
     }
   }
 
