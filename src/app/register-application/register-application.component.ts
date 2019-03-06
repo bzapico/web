@@ -25,11 +25,18 @@ export class RegisterApplicationComponent implements OnInit {
   organizationId: string;
 
   /**
-   *  Reference to the drop area so we can attach some events to it
-   * */
-  dropArea: any;
-  uploaded: boolean;
+   * Flag that holds it the file was correctly processed
+   */
+  readyToUpload: boolean;
+
+  /**
+   * File array that would contain the required file to register an application
+   */
   public files: UploadFile[] = [];
+
+  jsonFile: any;
+
+  fileName: string;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -45,72 +52,84 @@ export class RegisterApplicationComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-    this.uploaded = false;
-    this.dropArea = document.getElementById('drop-area');
+    this.readyToUpload = false;
+    this.fileName = 'loading...';
   }
 
   ngOnInit() {
-    console.log(this.dropArea);
   }
 
   /**
    * Register the app
    */
   registerApp() {
-
   }
 
   /**
    * Checks if the form has been modified before discarding changes
    */
   discardChanges() {
-    this.bsModalRef.hide();
+    if (this.readyToUpload) {
+      const confirmResult = confirm('Discard changes?');
+      if (confirmResult) {
+        this.bsModalRef.hide();
+      }
+    } else {
+        this.bsModalRef.hide();
+    }
   }
 
-
-
-  public dropped(event: UploadEvent) {
+  public onFileDrop(event: UploadEvent) {
     this.files = event.files;
-    let jsonFile: object;
-    /*
-      Control de casos:
-        1 - si se arrastra más de un fichero... pa tu culo un puchero
-        2 - si el fichero no es un json. pa tu culo mi p***on
-        3 - si la lectura es correcta, pasamos de fase
-    */
-    for (const droppedFile of event.files) {
-      // Is it a file?
-      if (droppedFile.fileEntry.isFile) {
-        const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-        fileEntry.file((file: File) => {
-          const fileReader = new FileReader();
-          fileReader.onload = (e) => {
-            try {
-              jsonFile = JSON.parse(fileReader.result as string);
-            } catch (e) {
-              alert('JSON FILE ERROR: \r' + e + '.\rFile not valid for registering an app.');
-            }
-          };
-          fileReader.readAsText(file);
-        });
-      } else {
-        // It was a directory (empty directories are added, otherwise only files)
-        const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
+    if (event.files.length > 1) {
+      alert('Multiple files upload is unavailable');
+    } else {
+      for (const droppedFile of event.files) {
+        // Is it a file?
+        if (droppedFile.fileEntry.isFile) {
+          const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+          fileEntry.file((file: File) => {
+            const fileReader = new FileReader();
+            fileReader.onload = (e) => {
+              try {
+                this.jsonFile = JSON.parse(fileReader.result as string);
+                this.readyToUpload = true;
+                if (this.jsonFile.name) {
+                  this.fileName = this.jsonFile.name;
+                } else {
+                  this.fileName = file.name;
+                }
+              } catch (e) {
+                alert('JSON FILE ERROR: \r' + e + '.\rFile not valid for registering an app.');
+              }
+            };
+            fileReader.readAsText(file);
+          });
+        } else {
+          // Only files allowed
+          alert('Folder upload is unavailable. Please upload a valid .json file');
+        }
       }
     }
   }
 
-  fileChanged(e) {
-    console.log(e);
+  fileSelectorChange(e) {
+    const fileReader = new FileReader();
+    fileReader.onload = (event) => {
+      try {
+        this.jsonFile = JSON.parse(fileReader.result as string);
+        if (this.jsonFile.name) {
+          this.fileName = this.jsonFile.name;
+        } else {
+          this.fileName = e.target.files[0].name;
+        }
+        this.readyToUpload = true;
+      } catch (event) {
+        alert('JSON FILE ERROR: \r' + event + '.\rFile not valid for registering an app.');
+        e.path[0].value = '';
+      }
+    };
+    fileReader.readAsText(e.target.files[0]);
   }
-
-  public fileOver(event) {
-    console.log(event);
-  }
-
-  public fileLeave(event) {
-    console.log(event);
-  }
-
 
 }
