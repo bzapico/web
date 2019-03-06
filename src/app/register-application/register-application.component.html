@@ -14,7 +14,10 @@
       <!-- Body -->
       <div class="modal-body">
         <p class="upload-descriptor">Upload app descriptor file</p>
-        <div 
+        <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)" >
+        </file-drop>
+        <input type='file' (change)="fileChanged($event)" style="margin-top: 2em">
+        <!-- <div 
           (click)="uploaded = !uploaded"
           class="drop-area" 
           [ngClass]="{
@@ -41,7 +44,7 @@
               accept="image/*"
              >
           </form>
-        </div>
+        </div> -->
         <!-- Option button -->
         <div class="d-flex flex-row justify-content-between mt-3">
           <button class="btn btn-primary btn-md mt-5" (click)="registerApp()">
