@@ -74,7 +74,7 @@
       </div>
       <!-- Labels card-->
       <div class="card h-reg-labels">
-        <div class="card-title-c">
+        <div class="card-title-c hide-sm">
           <h5>LABELS</h5>
         </div>
         <div class="reg-labels" *ngIf="loadedData && registered && registered.length > 0 && !requestError">
@@ -116,7 +116,7 @@
       <div *ngIf="showGraph" class="card h-reg-services">
         <div class="row">
           <div class="col-10 card-title-h">
-            <h5>SERVICE/GRAPH</h5>
+            <h5>SERVICE</h5>
           </div>
           <div class="col-2">
             <div class="show-graph-icons">
@@ -525,6 +525,7 @@
                 <tr *ngFor="let rule of services | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
                 <tr>
                   <td class="col-2">
+                      <!-- BAccess to wordpress  | truncate -->
                     <a 
                       [routerLink]="[]" 
                       routerLinkActive="active" 

@@ -148,7 +148,7 @@ export class RegisteredInfoComponent implements OnInit {
     private notificationsService: NotificationsService,
     private route: ActivatedRoute
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
+    const mock = localStorage.getItem(LocalStorageKeys.registeredInfoMock) || null;
     // Check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
