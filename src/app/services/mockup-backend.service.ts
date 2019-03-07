@@ -313,6 +313,11 @@ export class MockupBackendService implements Backend {
     );
   }
 
+  /**
+   * Simulates to request an specific instance information
+   * @param organizationId Organization identifier
+   * @param instanceId Instance identifier
+   */
   getAppInstance (organizationId: string, instanceId: string) {
     const index = mockAppsInstancesList.map(x => x.app_instance_id).indexOf(instanceId);
     return of (new Response(new ResponseOptions({
@@ -324,6 +329,11 @@ export class MockupBackendService implements Backend {
     );
   }
 
+  /**
+   * Simulates to request an specific app descriptor information
+   * @param organizationId Organization identifier
+   * @param descriptorId Descriptor identifier
+   */
   getAppDescriptor (organizationId: string, descriptorId: string) {
     const index = mockRegisteredAppsList.map(x => x.app_descriptor_id).indexOf(descriptorId);
     return of (new Response(new ResponseOptions({
@@ -335,6 +345,11 @@ export class MockupBackendService implements Backend {
     );
   }
 
+  /**
+   * Simulates to request registering an application descriptor
+   * @param organizationId Organization identifiekr
+   * @param descriptor Descriptor object
+   */
   addAppDescriptor(organizationId: string, descriptor: any) {
     // Not validating the descriptor
     descriptor.app_descriptor_id = this.uuidv4();

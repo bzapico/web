@@ -4,6 +4,7 @@ import { RegisterApplicationComponent } from './register-application.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BsModalRef } from 'ngx-bootstrap';
+import { FileDropModule } from 'ngx-file-drop';
 
 describe('RegisterApplicationComponent', () => {
   let component: RegisterApplicationComponent;
@@ -14,7 +15,8 @@ describe('RegisterApplicationComponent', () => {
       declarations: [ RegisterApplicationComponent ],
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule
+        RouterTestingModule,
+        FileDropModule
       ],
       providers: [
         BsModalRef,
