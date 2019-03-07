@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockResetPasword, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList} from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList} from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 
 @Injectable({
@@ -313,7 +313,12 @@ export class MockupBackendService implements Backend {
     );
   }
 
-  getAppInstance(organizationId: string, instanceId: string) {
+  /**
+   * Simulates to request an specific instance information
+   * @param organizationId Organization identifier
+   * @param instanceId Instance identifier
+   */
+  getAppInstance (organizationId: string, instanceId: string) {
     const index = mockAppsInstancesList.map(x => x.app_instance_id).indexOf(instanceId);
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockAppsInstancesList[index]),
@@ -324,7 +329,12 @@ export class MockupBackendService implements Backend {
     );
   }
 
-  getAppDescriptor(organizationId: string, descriptorId: string) {
+  /**
+   * Simulates to request an specific app descriptor information
+   * @param organizationId Organization identifier
+   * @param descriptorId Descriptor identifier
+   */
+  getAppDescriptor (organizationId: string, descriptorId: string) {
     const index = mockRegisteredAppsList.map(x => x.app_descriptor_id).indexOf(descriptorId);
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockRegisteredAppsList[index]),
@@ -333,6 +343,21 @@ export class MockupBackendService implements Backend {
     .pipe(
       map(response => response.json())
     );
+  }
+
+  /**
+   * Simulates to request registering an application descriptor
+   * @param organizationId Organization identifiekr
+   * @param descriptor Descriptor object
+   */
+  addAppDescriptor(organizationId: string, descriptor: any) {
+    // Not validating the descriptor
+    descriptor.app_descriptor_id = this.uuidv4();
+    mockRegisteredAppsList.push(descriptor);
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(descriptor),
+      status: 200
+    })));
   }
 
   /**

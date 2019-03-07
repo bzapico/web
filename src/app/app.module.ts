@@ -44,8 +44,9 @@ import { GroupConfigurationComponent } from './group-configuration/group-configu
 import { DeviceGroupCreatedComponent } from './device-group-created/device-group-created.component';
 import { AddLabelComponent } from './add-label/add-label.component';
 import { RegisteredInfoComponent } from './registered-info/registered-info.component';
+import { RegisterApplicationComponent } from './register-application/register-application.component';
 import { DeployInstanceComponent } from './deploy-instance/deploy-instance.component';
-
+import { FileDropModule } from 'ngx-file-drop';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { DeployInstanceComponent } from './deploy-instance/deploy-instance.compo
     DeviceGroupCreatedComponent,
     AddLabelComponent,
     RegisteredInfoComponent,
+    RegisterApplicationComponent,
     DeployInstanceComponent
   ],
   entryComponents: [
@@ -89,6 +91,7 @@ import { DeployInstanceComponent } from './deploy-instance/deploy-instance.compo
     GroupConfigurationComponent,
     DeviceGroupCreatedComponent,
     AddLabelComponent,
+    RegisterApplicationComponent,
     DeployInstanceComponent
   ],
   imports: [
@@ -101,6 +104,7 @@ import { DeployInstanceComponent } from './deploy-instance/deploy-instance.compo
     HttpClientModule,
     HttpModule,
     RouterModule,
+    FileDropModule,
     // NGX-BOOTSTRAP
     ModalModule.forRoot(),
     ButtonsModule.forRoot(),

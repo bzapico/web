@@ -9,6 +9,7 @@ import { ApplicationInstance } from '../definitions/interfaces/application-insta
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AppsInfoComponent } from '../apps-info/apps-info.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
+import { RegisterApplicationComponent } from '../register-application/register-application.component';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 
 @Component({
@@ -607,6 +608,20 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           });
         });
     }
+  }
+
+  /**
+   * Opens the modal view that holds the register app component
+   */
+  registerApp() {
+    const initialState = {
+      organizationId: this.organizationId
+    };
+    this.modalRef = this.modalService.show(RegisterApplicationComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateRegisteredInstances(this.organizationId);
+    });
   }
 
     /**

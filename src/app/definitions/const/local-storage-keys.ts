@@ -18,6 +18,7 @@ export const LocalStorageKeys = {
     addGroupMock: 'add_group_mock',
     configGroupMock: 'configuration_group_mock',
     createdGroupMock: 'group_created_mock',
+    registerAppMock: 'register_app_mock',
     deployInstanceMock: 'deploy_instance_mock',
     registeredInfoMock: 'registered_info_mock',
 

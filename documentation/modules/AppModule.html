@@ -635,6 +635,9 @@
                                 <a href="../components/GroupConfigurationComponent.html">GroupConfigurationComponent</a>
                             </li>
                             <li class="list-group-item">
+                                <a href="../components/RegisterApplicationComponent.html">RegisterApplicationComponent</a>
+                            </li>
+                            <li class="list-group-item">
                                 <a href="../components/UserInfoComponent.html">UserInfoComponent</a>
                             </li>
                     </ul>
@@ -720,9 +723,13 @@ import { AddDevicesGroupComponent } from &#x27;./add-devices-group/add-devices-g
 import { GroupConfigurationComponent } from &#x27;./group-configuration/group-configuration.component&#x27;;
 import { DeviceGroupCreatedComponent } from &#x27;./device-group-created/device-group-created.component&#x27;;
 import { AddLabelComponent } from &#x27;./add-label/add-label.component&#x27;;
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 import { RegisteredInfoComponent } from &#x27;./registered-info/registered-info.component&#x27;;
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+import { RegisterApplicationComponent } from &#x27;./register-application/register-application.component&#x27;;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 977c179aa202c110606d5a8909f75e0d4a35ff1a
 import { DeployInstanceComponent } from &#x27;./deploy-instance/deploy-instance.component&#x27;;
-
+import { FileDropModule } from &#x27;ngx-file-drop&#x27;;
 
 @NgModule({
   declarations: [
@@ -751,7 +758,11 @@ import { DeployInstanceComponent } from &#x27;./deploy-instance/deploy-instance.
     GroupConfigurationComponent,
     DeviceGroupCreatedComponent,
     AddLabelComponent,
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
     RegisteredInfoComponent,
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+    RegisterApplicationComponent,
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 977c179aa202c110606d5a8909f75e0d4a35ff1a
     DeployInstanceComponent
   ],
   entryComponents: [
@@ -766,6 +777,7 @@ import { DeployInstanceComponent } from &#x27;./deploy-instance/deploy-instance.
     GroupConfigurationComponent,
     DeviceGroupCreatedComponent,
     AddLabelComponent,
+    RegisterApplicationComponent,
     DeployInstanceComponent
   ],
   imports: [
@@ -778,6 +790,7 @@ import { DeployInstanceComponent } from &#x27;./deploy-instance/deploy-instance.
     HttpClientModule,
     HttpModule,
     RouterModule,
+    FileDropModule,
     // NGX-BOOTSTRAP
     ModalModule.forRoot(),
     ButtonsModule.forRoot(),

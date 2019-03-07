@@ -200,7 +200,11 @@ export const AvailableComponents &#x3D; {
   configGroup: &#x27;Group Config&#x27;,
   createdGroup: &#x27;Group Created&#x27;,
   deployInstance: &#x27;Deploy instance&#x27;,
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
   registeredInfo: &#x27;Registered Info&#x27;
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+  registerApp: &#x27;Register app&#x27;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 977c179aa202c110606d5a8909f75e0d4a35ff1a
 };
 
 @Component({
@@ -294,10 +298,18 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.deployInstance,
       mock: localStorage.getItem(LocalStorageKeys.deployInstanceMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
     this.components.push({
       name: AvailableComponents.registeredInfo,
       mock: localStorage.getItem(LocalStorageKeys.registeredInfoMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });  }
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+     this.components.push({
+      name: AvailableComponents.registerApp,
+      mock: localStorage.getItem(LocalStorageKeys.registerAppMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
+  }
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 977c179aa202c110606d5a8909f75e0d4a35ff1a
 
   /**
    * Modifies all components mocks values
@@ -326,7 +338,11 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.configGroupMock, newValue);
     localStorage.setItem(LocalStorageKeys.createdGroupMock, newValue);
     localStorage.setItem(LocalStorageKeys.deployInstanceMock, newValue);
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
     localStorage.setItem(LocalStorageKeys.registeredInfoMock, newValue);
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+    localStorage.setItem(LocalStorageKeys.registerAppMock, newValue);
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 977c179aa202c110606d5a8909f75e0d4a35ff1a
   }
 
   /**
@@ -390,8 +406,13 @@ export class DebugPanelComponent implements OnInit {
       case AvailableComponents.deployInstance:
         localStorage.setItem(LocalStorageKeys.deployInstanceMock, componentMockOption.mock);
       break;
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
       case AvailableComponents.deployInstance:
         localStorage.setItem(LocalStorageKeys.registeredInfoMock, componentMockOption.mock);
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+      case AvailableComponents.registerApp:
+        localStorage.setItem(LocalStorageKeys.registerAppMock, componentMockOption.mock);
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 977c179aa202c110606d5a8909f75e0d4a35ff1a
       break;
       default:
         console.log(&#x27;Selected option not registered as available component&#x27;);

@@ -95,7 +95,11 @@
           <i class="material-icons i-options">play_arrow</i>
           Deploy instance
         </button>
-        <button *ngIf="!showInstances" class="btn-apps-options button-padding-fix">
+        <button
+          (click)="registerApp()"
+          *ngIf="!showInstances"
+          class="btn-apps-options button-padding-fix"
+          >
           <i class="material-icons i-options">publish</i>
           Register application
         </button>
