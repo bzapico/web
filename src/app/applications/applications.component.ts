@@ -617,7 +617,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     const initialState = {
       organizationId: this.organizationId
     };
-
     this.modalRef = this.modalService.show(RegisterApplicationComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {

@@ -335,9 +335,10 @@ export class MockupBackendService implements Backend {
     );
   }
 
-  addAppDescriptor(organizationId: string, descriptor: string) {
+  addAppDescriptor(organizationId: string, descriptor: any) {
     // Not validating the descriptor
-    mockRegisteredAppsList.push(descriptor as any);
+    descriptor.app_descriptor_id = this.uuidv4();
+    mockRegisteredAppsList.push(descriptor);
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(descriptor),
       status: 200
