@@ -67,7 +67,7 @@ describe('ClusterComponent', () => {
     expect(onLabelClick.length > 0);
   });
 
-
-
-
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

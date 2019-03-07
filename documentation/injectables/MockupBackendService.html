@@ -3437,7 +3437,7 @@ export class MockupBackendService implements Backend {
     );
   }
 
-  getAppInstance (organizationId: string, instanceId: string) {
+  getAppInstance(organizationId: string, instanceId: string) {
     const index &#x3D; mockAppsInstancesList.map(x &#x3D;&gt; x.app_instance_id).indexOf(instanceId);
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockAppsInstancesList[index]),
@@ -3448,7 +3448,7 @@ export class MockupBackendService implements Backend {
     );
   }
 
-  getAppDescriptor (organizationId: string, descriptorId: string) {
+  getAppDescriptor(organizationId: string, descriptorId: string) {
     const index &#x3D; mockRegisteredAppsList.map(x &#x3D;&gt; x.app_descriptor_id).indexOf(descriptorId);
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockRegisteredAppsList[index]),

@@ -61,7 +61,6 @@
             <div class="circle summary-box">
               <!-- TODO -->
               <span class="align-self-center mt-1">{{registeredData.groups[0].services.length}}</span>
-              <!-- <span class="align-self-center mt-1">5</span>  -->
             </div>
             <p class="circle-name">SERVICES</p>
           </div>
@@ -120,13 +119,22 @@
           </div>
           <div class="col-2">
             <div class="show-graph-icons">
-              <i class="material-icons float-right"   
-              [ngClass]="!showGraph ? 'blue' : 'grey'"
-              (click)="showWindowGraph()">view_list</i>
-              <i class="material-icons float-right mr-bars" 
-              (click)="showWindowGraph()"
-              [ngClass]="showGraph ? 'blue' : 'grey'"
-              >bar_chart</i>
+              <i 
+                tooltip="Services" 
+                placement="left"
+                class="material-icons float-right"   
+                [ngClass]="!showGraph ? 'blue' : 'grey'"
+                (click)="showWindowGraph()">
+                view_list
+              </i>
+              <i 
+                tooltip="Graph" 
+                placement="left"
+                class="material-icons float-right mr-bars" 
+                (click)="showWindowGraph()"
+                [ngClass]="showGraph ? 'blue' : 'grey'">
+                bar_chart
+              </i>
             </div> 
           </div>
         </div>
@@ -183,16 +191,25 @@
           <div class="col-10 card-title-h">
             <h5>SERVICES</h5>
           </div>
-          <div class="col-2">
-            <div class="show-graph-icons">
-              <i class="material-icons float-right"   
-              [ngClass]="!showGraph ? 'blue' : 'grey'"
-              (click)="showWindowGraph()">view_list</i>
-              <i class="material-icons float-right mr-bars" 
-              (click)="showWindowGraph()"
-              [ngClass]="showGraph ? 'blue' : 'grey'"
-              >bar_chart</i>
-            </div> 
+            <div class="col-2">
+              <div class="show-graph-icons">
+                <i 
+                  tooltip="Services" 
+                  placement="left"
+                  class="material-icons float-right"   
+                  [ngClass]="!showGraph ? 'blue' : 'grey'"
+                  (click)="showWindowGraph()">
+                  view_list
+                </i>
+                <i 
+                  tooltip="Graph" 
+                  placement="left"
+                  class="material-icons float-right mr-bars" 
+                  (click)="showWindowGraph()"
+                  [ngClass]="showGraph ? 'blue' : 'grey'">
+                  bar_chart
+                </i>
+              </div> 
           </div>
         </div>
         <!-- Services tabs -->
@@ -230,7 +247,7 @@
                   <span 
                     *ngIf="displayedGroups.length > 0" 
                     [ngClass]="amIactive()">
-                    group 1
+                    {{group.name}}
                   </span>
                 </li>
                 <li 
@@ -285,17 +302,18 @@
           </div>
         </div>
         <!-- No services to show -->
-        <div *ngIf="activeGroupId!== 'ALL' && countGroupDevices(activeGroupId) === 0"
+        <div *ngIf="activeGroupId!== 'ALL' && countGroupServices(activeGroupId) === 0"
           class="no-info-in-group d-flex justify-content-center align-items-center">
           No available services in this group
         </div>
         <!-- Services table -->
-        <div class="table-h">
+        <div class="table-h" *ngIf="loadedData && services && services.length > 0 && groups.length > 0 && !requestError">
           <table class="table-responsive table-fixed">
             <thead>
               <tr>
                 <!-- TODO -->
                 <th 
+                  *ngIf="activeGroupId !== 'ALL' && countGroupServices(activeGroupId) > 0"
                   (click)="setOrder('name')" 
                   [ngClass]="getCategoryCSSClass('name')" 
                   scope="col" 
@@ -313,6 +331,43 @@
                   </span>
                 </th>
                 <th 
+                  *ngIf="activeGroupId === 'ALL'"
+                  (click)="setOrder('name')" 
+                  [ngClass]="getCategoryCSSClass('name')" 
+                  scope="col" 
+                  class="col-2">
+                  Name
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'name' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'name' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  *ngIf="activeGroupId !== 'ALL' && countGroupServices(activeGroupId) > 0"
+                  (click)="setOrder('image')" 
+                  [ngClass]="getCategoryCSSClass('image')" 
+                  scope="col" 
+                  class="col-5">
+                  Image
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'image' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'image' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th> 
+                <th 
+                  *ngIf="activeGroupId === 'ALL'"
                   (click)="setOrder('image')" 
                   [ngClass]="getCategoryCSSClass('image')" 
                   scope="col" 
@@ -330,6 +385,7 @@
                   </span>
                 </th>
                 <th 
+                  *ngIf="activeGroupId !== 'ALL' && countGroupServices(activeGroupId) > 0"
                   (click)="setOrder('labels')" 
                   [ngClass]="getCategoryCSSClass('labels')" 
                   scope="col" 
@@ -347,6 +403,31 @@
                   </span>
                 </th>
                 <th 
+                  *ngIf="activeGroupId === 'ALL'"
+                  (click)="setOrder('labels')" 
+                  [ngClass]="getCategoryCSSClass('labels')" 
+                  scope="col" 
+                  class="col-4">
+                  Labels
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'labels' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'labels' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  *ngIf="activeGroupId !== 'ALL' && countGroupServices(activeGroupId) > 0"
+                  scope="col" 
+                  class="col-1 text-center p-0">
+                  Info
+                </th>
+                <th 
+                  *ngIf="activeGroupId === 'ALL'"
                   scope="col" 
                   class="col-1 text-center p-0">
                   Info
@@ -355,19 +436,42 @@
             </thead>
             <tbody>
               <!-- TODO -->
-              <tr *ngFor="let service of services | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-              <tr>
-                <td class="col-2">simple-mysql</td>
-                <td class="col-5">asdasdasdasdasdasdasd</td>
+              <tr *ngFor="let group of groups | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+              <!-- "All" tab selected -->
+              <span *ngIf="activeGroupId === 'ALL'">
+                <td class="col-2">simple-mysql {{group.service.name}}</td>
+                <td class="col-5">zookeeper:3.5</td>
                 <td class="col-4">
                   <button class="btn-sm btn-outline-primary">app: simple-wordpress</button>
                 </td>
                 <td class="col-1 text-center">
-                  <button class="btn info-btn btn-primary" (click)="openServicesInfo()">
-                    <span class="i-info" tooltip="Info" placement="left">i</span>
+                  <button 
+                    class="btn info-btn btn-primary"  
+                    tooltip="Info" 
+                    placement="left" 
+                    (click)="openServicesInfo()">
+                    <span class="i-info">i</span>
                   </button>
                 </td>
-              </tr>
+              </span>
+              <!-- group.service_group_id tab selected -->
+              <span *ngIf="activeGroupId === group.service_group_id">
+                <td class="col-2">simple-mysql {{group.name}}</td>
+                <td class="col-5">zookeeper:3.5</td>
+                <td class="col-4">
+                  <button class="btn-sm btn-outline-primary">app: simple-wordpress</button>
+                </td>
+                <td class="col-1 text-center">
+                  <button 
+                    class="btn info-btn btn-primary" 
+                    tooltip="Info" 
+                    placement="left" 
+                    (click)="openServicesInfo()">
+                    <span class="i-info" >i</span>
+                  </button>
+                </td>
+              </span>
+            </tr>
             </tbody>
           </table>
         </div>
@@ -440,7 +544,6 @@
             </div>
           </div>
           <!-- Rules table -->
-          <!-- TODO *NGIF -->
           <div class="table-h table-h-fix" *ngIf="loadedData && groups.length > 0 && !requestError">
             <table class="table-responsive table-fixed">
               <thead class="hide-sm">
@@ -522,49 +625,29 @@
               </thead>
               <tbody>
                 <!-- TODO -->
-                <tr *ngFor="let rule of services | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-                <tr>
-                  <td class="col-2">
-                      <!-- BAccess to wordpress  | truncate -->
-                    <a 
-                      [routerLink]="[]" 
-                      routerLinkActive="active" 
-                      class="blue text-capitalize text-left">
-                      BAccess to wordpress
-                    </a>
-                  </td>
-                  <td class="col-2">public</td>
-                  <td class="col-4">
-                    f2 - service 1- 80
-                  </td>
-                  <td class="text-lowercase col-3">
-                    f1-serviec2
-                  </td>
-                  <td class="col-1 text-center">
-                    <button class="btn info-btn btn-primary" (click)="openRulesInfo()">
-                      <span class="i-info" tooltip="Info" placement="left">i</span>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
+                <tr *ngFor="let rule of registeredData.rules | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
                   <td class="col-2">
                     <a 
                       [routerLink]="[]" 
                       routerLinkActive="active" 
                       class="blue text-capitalize text-left">
-                      Access to wordpress
+                      {{rule.name | truncate}}
                     </a>
                   </td>
-                  <td class="col-2">public</td>
+                  <td class="col-2 text-lowercase">{{rule.access}}</td>
                   <td class="col-4">
-                    g2 - service 1- 80
+                      {{rule.target_service_name}}
                   </td>
                   <td class="text-lowercase col-3">
-                    g1-serviec2
+                      {{rule.auth_service_group_name}}
                   </td>
                   <td class="col-1 text-center">
-                    <button class="btn info-btn btn-primary" (click)="openRulesInfo()">
-                      <span class="i-info" tooltip="Info" placement="left">i</span>
+                    <button 
+                      class="btn info-btn btn-primary"  
+                      tooltip="Info" 
+                      placement="left" 
+                      (click)="openRulesInfo()">
+                      <span class="i-info">i</span>
                     </button>
                   </td>
                 </tr>

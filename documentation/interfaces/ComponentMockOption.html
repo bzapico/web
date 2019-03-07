@@ -199,7 +199,8 @@ export const AvailableComponents &#x3D; {
   addGroup: &#x27;Add Group&#x27;,
   configGroup: &#x27;Group Config&#x27;,
   createdGroup: &#x27;Group Created&#x27;,
-  deployInstance: &#x27;Deploy instance&#x27;
+  deployInstance: &#x27;Deploy instance&#x27;,
+  registeredInfo: &#x27;Registered Info&#x27;
 };
 
 @Component({
@@ -289,10 +290,14 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.createdGroup,
       mock: localStorage.getItem(LocalStorageKeys.createdGroupMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
-     this.components.push({
+    this.components.push({
       name: AvailableComponents.deployInstance,
       mock: localStorage.getItem(LocalStorageKeys.deployInstanceMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
-    }); }
+    });
+    this.components.push({
+      name: AvailableComponents.registeredInfo,
+      mock: localStorage.getItem(LocalStorageKeys.registeredInfoMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });  }
 
   /**
    * Modifies all components mocks values
@@ -321,6 +326,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.configGroupMock, newValue);
     localStorage.setItem(LocalStorageKeys.createdGroupMock, newValue);
     localStorage.setItem(LocalStorageKeys.deployInstanceMock, newValue);
+    localStorage.setItem(LocalStorageKeys.registeredInfoMock, newValue);
   }
 
   /**
@@ -383,6 +389,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.deployInstance:
         localStorage.setItem(LocalStorageKeys.deployInstanceMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.deployInstance:
+        localStorage.setItem(LocalStorageKeys.registeredInfoMock, componentMockOption.mock);
       break;
       default:
         console.log(&#x27;Selected option not registered as available component&#x27;);

@@ -288,12 +288,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 2em;
     overflow: hidden;
+    height: 100%;
 }
 @media screen and (max-width:1613px) {
     .config-card {
-        margin-top: 0em;
         overflow: scroll;
         display: block;
         text-align: left;
