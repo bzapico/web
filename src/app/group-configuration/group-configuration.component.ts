@@ -68,7 +68,7 @@ export class GroupConfigurationComponent implements OnInit {
   saveGroupChanges() {
     const groupData = {
       update_enabled: true,
-      update_default_device_connectivity: true,
+      update_device_connectivity: true,
       enabled: this.enabled,
       default_device_connectivity: this.defaultConnectivity,
       name: this.name,
