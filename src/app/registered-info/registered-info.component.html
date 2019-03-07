@@ -8,7 +8,7 @@
   <div class="col-4 h-100">
     <div class="reg-flex-col">
       <!-- Registered applicartion id card -->
-      <div class="card h-reg-info">
+      <div class="card h-reg-info flex-grow-0">
         <div class="card-title-c">
           <h5>
             <a 
@@ -46,14 +46,14 @@
         </div>
       </div>
       <!-- Services summary card -->
-      <div class="card h-reg-services-info">
+      <div class="card h-reg-services-info flex-grow-0">
         <div class="card-title-c">
           <h5>SERVICES SUMMARY</h5>
         </div>
-        <div *ngIf="registeredData.groups.length > 0" class="summary-card">
+        <div *ngIf="groups.length > 0" class="summary-card">
           <div>
             <div class="circle summary-box">
-              <span class="align-self-center mt-1">{{registeredData.groups.length}}</span>
+              <span class="align-self-center mt-1">{{groups.length}}</span>
             </div>
             <p class="circle-name">GROUPS</p>
           </div>
@@ -72,7 +72,7 @@
         </div>
       </div>
       <!-- Labels card-->
-      <div class="card h-reg-labels">
+      <div class="card h-reg-labels flex-grow-1">
         <div class="card-title-c hide-sm">
           <h5>LABELS</h5>
         </div>
@@ -112,7 +112,7 @@
   <div class="col-8 h-100">
     <div class="reg-flex-col">
       <!-- Grapho card -->
-      <div *ngIf="showGraph" class="card h-reg-services">
+      <div *ngIf="showGraph" class="card h-reg-services flex-grow-1">
         <div class="row">
           <div class="col-10 card-title-h">
             <h5>SERVICE</h5>
@@ -186,7 +186,7 @@
         </div>
       </div>
       <!-- Services card -->
-      <div *ngIf="!showGraph" class="card h-reg-services">
+      <div *ngIf="!showGraph" class="card h-reg-services flex-grow-1">
         <div class="row">
           <div class="col-10 card-title-h">
             <h5>SERVICES</h5>
@@ -247,7 +247,7 @@
                   <span 
                     *ngIf="displayedGroups.length > 0" 
                     [ngClass]="amIactive()">
-                    {{group.name}}
+                    Group 1
                   </span>
                 </li>
                 <li 
@@ -306,12 +306,11 @@
           class="no-info-in-group d-flex justify-content-center align-items-center">
           No available services in this group
         </div>
-        <!-- Services table -->
-        <div class="table-h" *ngIf="loadedData && services && services.length > 0 && groups.length > 0 && !requestError">
+        <!-- TODO Services table -->
+        <!-- <div class="table-h" *ngIf="loadedData && services && services.length > 0 && groups.length > 0 && !requestError">
           <table class="table-responsive table-fixed">
             <thead>
               <tr>
-                <!-- TODO -->
                 <th 
                   *ngIf="activeGroupId !== 'ALL' && countGroupServices(activeGroupId) > 0"
                   (click)="setOrder('name')" 
@@ -435,9 +434,9 @@
               </tr>
             </thead>
             <tbody>
-              <!-- TODO -->
+           
               <tr *ngFor="let group of groups | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-              <!-- "All" tab selected -->
+            
               <span *ngIf="activeGroupId === 'ALL'">
                 <td class="col-2">simple-mysql {{group.service.name}}</td>
                 <td class="col-5">zookeeper:3.5</td>
@@ -454,7 +453,7 @@
                   </button>
                 </td>
               </span>
-              <!-- group.service_group_id tab selected -->
+         
               <span *ngIf="activeGroupId === group.service_group_id">
                 <td class="col-2">simple-mysql {{group.name}}</td>
                 <td class="col-5">zookeeper:3.5</td>
@@ -468,6 +467,92 @@
                     placement="left" 
                     (click)="openServicesInfo()">
                     <span class="i-info" >i</span>
+                  </button>
+                </td>
+              </span>
+            </tr>
+            </tbody>
+          </table>
+        </div> -->
+
+        <!-- LAYOUT Services table -->
+        <div class="table-h">
+          <table class="table-responsive table-fixed">
+            <thead>
+              <tr>
+                <th 
+                  (click)="setOrder('name')" 
+                  [ngClass]="getCategoryCSSClass('name')" 
+                  scope="col" 
+                  class="col-2">
+                  Name
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'name' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'name' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  (click)="setOrder('image')" 
+                  [ngClass]="getCategoryCSSClass('image')" 
+                  scope="col" 
+                  class="col-5">
+                  Image
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'image' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'image' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th> 
+                <th 
+                  (click)="setOrder('labels')" 
+                  [ngClass]="getCategoryCSSClass('labels')" 
+                  scope="col" 
+                  class="col-4">
+                  Labels
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'labels' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'labels' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  scope="col" 
+                  class="col-1 text-center p-0">
+                  Info
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <span >
+                <td class="col-2">simple-mysql</td>
+                <td class="col-5">zookeeper:3.5</td>
+                <td class="col-4">
+                  <button class="btn-sm btn-outline-primary">app: simple-wordpress</button>
+                </td>
+                <td class="col-1 text-center">
+                  <button 
+                    class="btn info-btn btn-primary"  
+                    tooltip="Info" 
+                    placement="left" 
+                    (click)="openServicesInfo()">
+                    <span class="i-info">i</span>
                   </button>
                 </td>
               </span>
@@ -500,7 +585,7 @@
           </div>
         </div>
       </div>
-      <div class="h-reg-rules">
+      <div class="h-reg-rules flex-grow-0">
         <!-- Rules card -->
         <div class="card h-100 mr-4 w-75">
           <div class="card-title-c">

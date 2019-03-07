@@ -93,7 +93,7 @@ export class RegisteredInfoComponent implements OnInit {
   /**
    * Count of num max for displayed groups
    */
-  DISPLAYED_GROUP_MAX = 5;
+  DISPLAYED_GROUP_MAX = 4;
 
   /**
    * Hold request error message or undefined
