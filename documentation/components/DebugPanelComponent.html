@@ -186,7 +186,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -267,7 +267,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:131</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:137</a></div>
                             </td>
                         </tr>
 
@@ -339,7 +339,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:57</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -377,7 +377,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:160</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:167</a></div>
                             </td>
                         </tr>
 
@@ -449,7 +449,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:226</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="236" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:236</a></div>
                             </td>
                         </tr>
 
@@ -489,7 +489,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="234" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:234</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:244</a></div>
                             </td>
                         </tr>
 
@@ -567,7 +567,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:51</a></div>
                             </td>
                         </tr>
 
@@ -606,7 +606,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:46</a></div>
                             </td>
                         </tr>
 
@@ -646,7 +646,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -680,7 +680,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -724,7 +724,8 @@ export const AvailableComponents &#x3D; {
   addGroup: &#x27;Add Group&#x27;,
   configGroup: &#x27;Group Config&#x27;,
   createdGroup: &#x27;Group Created&#x27;,
-  deployInstance: &#x27;Deploy instance&#x27;
+  deployInstance: &#x27;Deploy instance&#x27;,
+  registerApp: &#x27;Register app&#x27;
 };
 
 @Component({
@@ -817,7 +818,12 @@ export class DebugPanelComponent implements OnInit {
      this.components.push({
       name: AvailableComponents.deployInstance,
       mock: localStorage.getItem(LocalStorageKeys.deployInstanceMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
-    }); }
+    });
+     this.components.push({
+      name: AvailableComponents.registerApp,
+      mock: localStorage.getItem(LocalStorageKeys.registerAppMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
+  }
 
   /**
    * Modifies all components mocks values
@@ -846,6 +852,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.configGroupMock, newValue);
     localStorage.setItem(LocalStorageKeys.createdGroupMock, newValue);
     localStorage.setItem(LocalStorageKeys.deployInstanceMock, newValue);
+    localStorage.setItem(LocalStorageKeys.registerAppMock, newValue);
   }
 
   /**
@@ -908,6 +915,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.deployInstance:
         localStorage.setItem(LocalStorageKeys.deployInstanceMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.registerApp:
+        localStorage.setItem(LocalStorageKeys.registerAppMock, componentMockOption.mock);
       break;
       default:
         console.log(&#x27;Selected option not registered as available component&#x27;);

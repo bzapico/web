@@ -725,7 +725,7 @@ import { DeviceGroupCreatedComponent } from &#x27;./device-group-created/device-
 import { AddLabelComponent } from &#x27;./add-label/add-label.component&#x27;;
 import { RegisterApplicationComponent } from &#x27;./register-application/register-application.component&#x27;;
 import { DeployInstanceComponent } from &#x27;./deploy-instance/deploy-instance.component&#x27;;
-
+import { FileDropModule } from &#x27;ngx-file-drop&#x27;;
 
 @NgModule({
   declarations: [
@@ -782,6 +782,7 @@ import { DeployInstanceComponent } from &#x27;./deploy-instance/deploy-instance.
     HttpClientModule,
     HttpModule,
     RouterModule,
+    FileDropModule,
     // NGX-BOOTSTRAP
     ModalModule.forRoot(),
     ButtonsModule.forRoot(),
