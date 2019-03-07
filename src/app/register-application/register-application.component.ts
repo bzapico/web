@@ -117,7 +117,11 @@ export class RegisterApplicationComponent implements OnInit {
             fileReader.onload = (e) => {
               try {
                 this.jsonFile = JSON.parse(fileReader.result as string);
-                this.readyToUpload = true;
+                if (this.jsonFile.name) {
+                  this.readyToUpload = true;
+                } else {
+                  alert('Missing required "name" field');
+                }
               } catch (e) {
                 alert('JSON FILE ERROR: \r' + e + '.\rFile not valid for registering an app.');
               }
