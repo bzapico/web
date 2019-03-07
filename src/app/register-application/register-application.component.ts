@@ -63,6 +63,20 @@ export class RegisterApplicationComponent implements OnInit {
    * Register the app
    */
   registerApp() {
+    this.backend.addAppDescriptor(this.organizationId, this.jsonFile)
+      .subscribe(addDescriptorResponse => {
+        this.notificationsService.add({
+          message: 'Registered ' + this.jsonFile.name + 'app',
+          timeout: 5000
+        });
+        this.bsModalRef.hide();
+      }, error => {
+        this.notificationsService.add({
+          message: error.error.message,
+          timeout: 5000
+        });
+        this.bsModalRef.hide();
+      });
   }
 
   /**
@@ -94,15 +108,11 @@ export class RegisterApplicationComponent implements OnInit {
               try {
                 this.jsonFile = JSON.parse(fileReader.result as string);
                 this.readyToUpload = true;
-                if (this.jsonFile.name) {
-                  this.fileName = this.jsonFile.name;
-                } else {
-                  this.fileName = file.name;
-                }
               } catch (e) {
                 alert('JSON FILE ERROR: \r' + e + '.\rFile not valid for registering an app.');
               }
             };
+            this.fileName = file.name;
             fileReader.readAsText(file);
           });
         } else {
@@ -118,17 +128,13 @@ export class RegisterApplicationComponent implements OnInit {
     fileReader.onload = (event) => {
       try {
         this.jsonFile = JSON.parse(fileReader.result as string);
-        if (this.jsonFile.name) {
-          this.fileName = this.jsonFile.name;
-        } else {
-          this.fileName = e.target.files[0].name;
-        }
         this.readyToUpload = true;
       } catch (event) {
         alert('JSON FILE ERROR: \r' + event + '.\rFile not valid for registering an app.');
         e.path[0].value = '';
       }
     };
+    this.fileName = e.target.files[0].name;
     fileReader.readAsText(e.target.files[0]);
   }
 

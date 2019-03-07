@@ -36,10 +36,10 @@
         </file-drop>
 
         <div class="drop-note-uploaded" *ngIf="readyToUpload"> 
-          <span class="drop-title-uploaded">{{fileName}}</span> 
+          <span class="drop-title-uploaded">{{jsonFile.name}}</span> 
           <span 
             class="subtitle">
-            from jsonFileName.json
+            from {{fileName}}
           </span>
           <span class="green subtitle-2" >ready to be uploaded</span>
         </div>

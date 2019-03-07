@@ -275,6 +275,12 @@ export class BackendService implements Backend {
     );
   }
 
+  addAppDescriptor(organizationId: string, descriptor: any) {
+    return this.post(
+      API_URL + 'apps/desc/' + organizationId + '/add',
+      descriptor
+    );
+  }
   // POST '/v1/apps/desc/{organization_id}/{app_descriptor_id}/update'
   /**
    * Request to modify application descriptor (registered app) data

@@ -26,6 +26,7 @@ export interface Backend {
     getRegisteredApps(organizationId: string);
     getAppInstance(organizationId: string, instanceId: string);
     getAppDescriptor(organizationId: string, descriptorId: string);
+    addAppDescriptor(organizationId: string, descriptor: any);
     updateAppDescriptor(organizationId: string, descriptorId: string, changes: any);
     deploy(organizationId: string, descriptorId: string, name: string);
     undeploy(organizationId: string, instanceId: string);
