@@ -16,6 +16,7 @@ Overall:
 - Appications view
     - App instances tab divider
         - Deploy instance modal view
+        - App instances extended view
     - Regisered instances tab divider
         - Register application modal view
         - App registered extended view    
