@@ -7,7 +7,6 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { ActivatedRoute } from '@angular/router';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import * as shape from 'd3-shape';
-import { AddLabelComponent } from '../add-label/add-label.component';
 
 @Component({
   selector: 'app-instances-info',
@@ -66,12 +65,6 @@ export class InstancesInfoComponent implements OnInit {
    * List of labels
    */
   labels: any[];
-
-  /**
-   * List of selected labels from an entity
-   */
-  selectedLabels = [];
-  entityId: boolean;
 
   /**
    * Models that keeps the displayed groups names length
@@ -180,81 +173,12 @@ export class InstancesInfoComponent implements OnInit {
      this.autoCenter = true;
      this.enableZoom = true;
      this.draggingEnabled = false;
-    //  this.view = [605, 250];
      this.colorScheme = {
        domain: ['#6C86F7']
      };
-    // TODO
      this.graphData = {
-       nodes: [
-        {
-          id: 'start',
-          label: 'start',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '1',
-          label: 'Query ThreatConnect',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '2',
-          label: 'Query XForce',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '7',
-          label: 'Query ThCt',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '3',
-          label: 'Format Results',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '4',
-          label: 'Search Splunk',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '5',
-          label: 'Block LDAP',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '6',
-          label: 'Email Results',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }
-       ],
-       links: [
-        {
-          source: 'start',
-          target: '1',
-          label: 'links to'
-        }, {
-          source: 'start',
-          target: '2'
-        }, {
-          source: 'start',
-          target: '7'
-        }, {
-          source: '1',
-          target: '3',
-          label: 'related to'
-        }, {
-          source: '2',
-          target: '4'
-        }, {
-          source: '2',
-          target: '6'
-        }, {
-          source: '3',
-          target: '5'
-        }
-       ]
+       nodes: [],
+       links: []
      };
 
      this.nalejColorScheme = [
@@ -284,7 +208,6 @@ export class InstancesInfoComponent implements OnInit {
     }
     this.backend.getAppInstance(this.organizationId,  this.instanceId)
     .subscribe(instance => {
-      console.log('instance ', instance);
         this.instance = instance;
         this.toGraphData(instance);
         if (!this.loadedData) {
@@ -292,7 +215,6 @@ export class InstancesInfoComponent implements OnInit {
         }
     });
   }
-
 
   /**
    * Transforms the data needed to create the grapho
@@ -333,13 +255,11 @@ export class InstancesInfoComponent implements OnInit {
       instance.rules.forEach(rule => {
         if (rule.auth_services) {
           rule.auth_services.forEach(linkedService => {
-            console.log(linkedService);
             const link = {
               source: rule.target_service_group_name + rule.target_service_name,
               target: linkedService
             };
             this.graphData.links.push(link);
-            console.log(link);
           });
         }
       });
@@ -366,7 +286,6 @@ export class InstancesInfoComponent implements OnInit {
       // Request to get apps instances
       this.backend.getInstances(this.organizationId)
       .subscribe(response => {
-        console.log('getinstances ', response);
           this.instances = response.instances || [];
           if (!this.loadedData) {
             this.loadedData = true;
@@ -397,7 +316,7 @@ export class InstancesInfoComponent implements OnInit {
       }
     }
 
-    /**
+  /**
    * Parse to string labels map
    * @param labels Key-value map that contains the labels
    */
@@ -406,108 +325,6 @@ export class InstancesInfoComponent implements OnInit {
       return ;
     }
     return Object.entries(labels);
-  }
-
-   /**
-   * Opens the modal view that holds add label component
-   */
-  addLabel(entity) {
-    const initialState = {
-      organizationId: this.organizationId,
-      entityType: 'app',
-      entity: entity,
-      modalTitle: entity.name
-    };
-
-    this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
-      this.updateAppInstances(this.organizationId);
-    } );
-  }
-
-  /**
-   * Deletes a selected label
-   * @param entity selected label entity
-   */
-  deleteLabel(entity) {
-    // const deleteConfirm = confirm('Delete labels?');
-    // if (deleteConfirm) {
-    //   const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.app_instance_id);
-    //   this.backend.updateAppInstances(
-    //     this.organizationId,
-    //     entity.app_instance_id,
-    //     {
-    //       organizationId: this.organizationId,
-    //       instanceId: entity.app_instance_id,
-    //       remove_labels: true,
-    //       labels: this.selectedLabels[index].labels
-    //     }).subscribe(updateAppResponse => {
-    //       this.selectedLabels.splice(index, 1);
-    //       this.updateAppInstances(this.organizationId);
-    //     });
-    // } else {
-    //   // Do nothing
-    // }
-  }
-
-  /**
-   * Selects a label
-   * @param entityId entity from selected label
-   * @param labelKey label key from selected label
-   * @param labelValue label value from selected label
-   */
-  onLabelClick(entityId, labelKey, labelValue) {
-    const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
-    const newLabel = {
-      entityId: entityId,
-      labels: {}
-    } ;
-    if (selectedIndex === -1 ) {
-      const selected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
-      if (selected === -1) {
-        newLabel.labels[labelKey] = labelValue;
-        this.selectedLabels.push(newLabel);
-      } else {
-        this.selectedLabels[selected].labels[labelKey] = labelValue;
-      }
-    } else {
-      if (Object.keys(this.selectedLabels[selectedIndex].labels).length > 1) {
-        delete this.selectedLabels[selectedIndex].labels[labelKey];
-      } else {
-        this.selectedLabels.splice(selectedIndex, 1);
-      }
-    }
-  }
-
-  /**
-  * Check if the label is selected. Returs index number in selected labels or -1 if the label is not found.
-  * @param entityId entity from selected label
-  * @param labelKey label key from selected label
-  * @param labelValue label value from selected label
-  */
-  indexOfLabelSelected(entityId, labelKey, labelValue) {
-    for (let index = 0; index < this.selectedLabels.length; index++) {
-      if (this.selectedLabels[index].entityId === entityId &&
-          this.selectedLabels[index].labels[labelKey] === labelValue
-        ) {
-          return index;
-      }
-    }
-  return -1;
-  }
-  /**
-   * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
-   * @param entityId entity from selected label
-   */
-  isAnyLabelSelected(entityId) {
-    if (this.selectedLabels.length > 0) {
-      const indexSelected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
-      if (indexSelected >= 0) {
-          return true;
-      }
-    }
-    return false;
   }
 
   /**
@@ -682,8 +499,4 @@ export class InstancesInfoComponent implements OnInit {
   openRulesInfo() {
 
   }
-
-
-
-
 }

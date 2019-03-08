@@ -1,34 +1,34 @@
 /* - - - Card heights - - */
-.h-reg {
+.h-ins {
     height: 96%; 
 }
-.h-reg-info {
+.h-ins-info {
     height: 301px;
     margin-bottom: 2em;
 }
-.h-reg-services-info {
+.h-ins-services-info {
     height: 261px;
     margin-bottom: 2em;
 }
-.h-reg-labels {
+.h-ins-labels {
     height: 29%;
 }
-.h-reg-services {
+.h-ins-services {
     height: 517px;
     margin-bottom: 2em;
 }
 @media screen and (max-width:1557px) {
-    .h-reg-services {
+    .h-ins-services {
         height: 373px;
     }
 }
-.h-reg-rules {
+.h-ins-rules {
     height: 38%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.reg-flex-col {
+.ins-flex-col {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -36,21 +36,65 @@
     min-height: 90%;
 }
 
-/* - - - Apps info card  buttons - - - */
-.reg-deploy {
-    border: none;
-    border-radius: 5px;
-    padding: .5em 1em .5em 3em;
-    cursor: pointer;
-    position: relative;
-    font-size: .8em;
-    outline: none; 
-    background-color: #0937FF;
-    color: white;
-    width: 159px;
-    height: 42px;
+/* - - -Summary card instances table - - - */
+.summary-instances-table {
+    margin-bottom: -1em;
+    td {
+        padding: 0.2rem;
+        vertical-align: middle;
+        font-size:  .9em;
+        border: none;
+        text-align: right;
+        max-width: 180px;
+    }
+    th {
+        padding: 0.2em;
+        border: none;
+        font-size:  .9em;
+        font-weight: 200;
+    }
+    tr {
+        border: none;
+    } 
 }
-.reg-undeploy {
+.summary-instances-status{
+    font-size: 1.4em !important;
+    text-transform: uppercase;
+}
+.summary-instances-data {
+    font-size: 2.5em !important;
+}
+.ins-info-box {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* - - - Medias summary card instances table - - - */
+@media screen and (max-width:1612px), screen and (max-height: 900px) {
+    .summary-card {
+        .summary-instances-status, 
+        .summary-instances-data{
+            font-size: 1em !important;
+        }
+    }
+
+}
+@media screen and (max-width:1570px) {
+    .summary-card{
+        th {
+            display: none;
+        } 
+        td {
+            font-size: .7em;
+            text-align: center;
+        }
+    }
+}
+/* - - - Apps info card  buttons - - - */
+
+.btn-undeploy {
     border: none;
     border-radius: 5px;
     padding: .5em 1.8em .5em 3em;
@@ -60,7 +104,7 @@
     outline: none; 
     background-color: #ececec;
     color: #F25272;
-    width: 159px;
+    width: 233px;
     height: 42px;
 }
 .i-options {
@@ -71,31 +115,16 @@
     display: block;
     font-size: 1.7em;
 }
-.reg-info {
+.ins-info {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
-
-
-/* - - - Media apps info card buttons - - - */
-@media screen and (max-width:1557px) {
-    .reg-deploy {
-        width: 114px;
-    }
-    .reg-undeploy {
-        width: 114px;
-    }
-    .i-options{
-        left: 20%;
-    }
-}
-
 /* - - - Servivces summary card- - - */
 .summary-card {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
     margin-top: 1em;
@@ -148,7 +177,7 @@
     }
     .summary-card {
         margin-top: 0em;
-        height: 82%;
+   
     }
     h2 {
         font-size: 1.5rem;
@@ -181,7 +210,7 @@
 }
 
 /* - - -  Labels card - - - */
-.reg-labels {
+.ins-labels {
     height: 100%;
     overflow: hidden;
     padding-top: 1.5em;
@@ -201,13 +230,13 @@
 }
 
 @media screen and (max-width:1680px) {
-    .reg-labels {
+    .ins-labels {
         padding-top: 1em;
         overflow: scroll;
     }
 }
 @media screen and (max-width:1580px) {
-    .reg-labels {
+    .ins-labels {
         padding-top: 0em;
         overflow: scroll;
     }
@@ -245,7 +274,7 @@
 .show-sm {
     display: none;
 }
-@media screen and (max-width:1680px) {
+@media screen and (max-width:1613px), screen and (max-height: 800px)  {
     .hide-sm {
         display: none;
     }
@@ -253,8 +282,11 @@
         display: block;
     }
 }
-
-
+@media screen and (max-width:1280px) , screen and (max-height: 720px) {
+    .hide-title-sm {
+        display: none;
+    }
+}
 /* - - - Info table button - - - */
 .info-btn {
     height: 26px;
@@ -281,7 +313,7 @@
     height: 100%;
 
 }
-@media screen and (max-width:1613px) {
+@media screen and (max-width:1682px), screen and (max-height: 800px)  {
     .config-card {
         overflow: scroll;
         display: block;
@@ -324,89 +356,5 @@
         z-index: 20;
         width: 400px;
         height: 250px;
-    }
-}
-
-
-
-
-/* - - -Summary card instances table - - - */
-.summary-instances-table {
-    margin-bottom: -1em;
-    td {
-        padding: 0.2rem;
-        vertical-align: middle;
-        font-size:  .9em;
-        border: none;
-        text-align: right;
-        max-width: 180px;
-    }
-    th {
-        padding: 0.2em;
-        border: none;
-        font-size:  .9em;
-        font-weight: 200;
-    }
-    tr {
-        border: none;
-    } 
-}
-.summary-instances-availability {
-    font-size: 1.4em !important;
-    text-transform: uppercase;
-}
-.instances-availability-size {
-    font-size: 1.0em!important;
-    text-transform: uppercase;
-}
-.summary-instances-running {
-    font-size: 3em !important;
-}
-.summary-card-small {
-    display: none;
-}
-
-/* - - - Medias summary card instances table - - - */
-@media screen and (max-width:1779px) {
-    .summary-card {
-        .instances-availability-size {
-            font-size: 0.8em!important;
-        }
-        .summary-instances-availability, 
-        .summary-instances-running {
-            font-size: 1em !important;
-        }
-    }
-    .instances-tab-container li {
-        padding: 0.5rem 1.2rem;
-    }
-    .instances-tab-button {
-        li {
-            padding: 0rem 1.2rem !important;
-        }
-    }
-}
-@media screen and (max-width:1570px) {
-    .summary-card{
-        th {
-            display: none;
-        } 
-        td {
-            font-size: .7em;
-        }
-    }
-    .instances-tab-container li {
-        padding: 0.5rem .9rem;
-    }
-    .instances-button-item-pr {
-        padding-right: 0em !important;
-    }
-    .instances-tab-title {
-        padding-right: 4em !important;
-    }
-    .instances-tab-button {
-        li {
-            padding: 0rem .9rem !important;
-        }
     }
 }

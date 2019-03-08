@@ -4,11 +4,11 @@
     <h2>Applications</h2>
   </div>
 </div>
-<div class="row h-reg">
+<div class="row h-ins">
   <div class="col-4 h-100">
-    <div class="reg-flex-col">
+    <div class="ins-flex-col">
       <!-- Applicartion instances id card -->
-      <div class="card h-reg-info flex-grow-1">
+      <div class="card h-ins-info flex-grow-1">
         <div class="card-title-c">
           <h5>
             <a 
@@ -22,112 +22,69 @@
             </span>
           </h5>
         </div>
-        <!-- <div *ngFor="let app of instances"> -->
-          <div class="summary-card" >
-              <table class="table summary-instances-table">
-                <tr>
-                  <th class="grey">Status</th>
-                  <td 
-                    class="summary-instances-availability blue"
-                    [ngClass]= 
-                  "{
-                    'blue':instance.status_name === 'Running',
-                    'red':instance.status_namee === 'Error',
-                    'orange': instance.status_name === 'queued'
-                  }">
-                  {{instance.status_name}}
-                </td>
-                </tr>
-                <tr>
-                  <th class="grey">Instance of</th>
-                  <td class="dark-grey">WORDPRESS</td> 
-                </tr>
-                <tr>
-                  <th class="grey">ID</th>
-                  <td class="dark-grey">{{instance.app_instance_id}}</td>
-                </tr>
-                <tr>
-                  <th class="grey"> Registered app id</th>
-                    <td class="dark-grey">{{instance.app_descriptor_id}}</td> 
-                </tr>
-                <tr>
-                  <th class="grey">groups </th>
-                  <td class="summary-instances-running">2</td> 
-                </tr>
-                <tr>
-                  <th class="grey">Services</th>
-                  <td class="summary-instances-running">4</td> 
-                </tr>
-                <tr>
-                  <div class="text-center" >
-                      <button 
-                      class="reg-undeploy button-padding-fix"
-                      (click)="undeploy(app)">
-                      <i class="material-icons i-options">close</i>
-                      Undeploy <span class="hide-sm">application</span> 
-                    </button>
-                  </div>
-                </tr>
-              </table>
-          
+          <div class="summary-card">
+            <div class="ins-info-box">
+                <table class="table summary-instances-table">
+                    <tr>
+                      <th class="grey">Status</th>
+                      <td 
+                        class="summary-instances-status"
+                        [ngClass]= 
+                          "{
+                            'blue': instance.status_name === 'RUNNING',
+                            'red': instance.status_namee === 'ERROR',
+                            'orange': instance.status_name === 'QUEUED'
+                          }">
+                        {{instance.status_name}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th class="grey">Instance of</th>
+                      <td class="dark-grey">WORDPRESS</td> 
+                    </tr>
+                    <tr>
+                      <th class="grey">ID</th>
+                      <td class="dark-grey">{{instance.app_instance_id}}</td>
+                    </tr>
+                    <tr>
+                      <th class="grey">Registered app ID</th>
+                        <td class="dark-grey">{{instance.app_descriptor_id}}</td> 
+                    </tr>
+                    <tr>
+                      <th class="grey">Groups</th>
+                      <td class="summary-instances-data">2</td> 
+                    </tr>
+                    <tr>
+                      <th class="grey">Services</th>
+                      <td class="summary-instances-data">4</td> 
+                    </tr>
+                  </table>
+            </div>
+              <button 
+                class="btn-undeploy button-padding-fix"
+                (click)="undeploy(app)">
+                <i class="material-icons i-options">close</i>
+                Undeploy application
+              </button>
           </div>
-        <!-- </div> -->
-       
       </div>
       <!-- Labels card-->
-      <div class="card h-reg-labels flex-grow-0">
-        <div class="card-title-c hide-sm">
+      <div class="card h-ins-labels flex-grow-0">
+        <div class="card-title-c hide-title-sm">
           <h5>LABELS</h5>
         </div>
-        <div class="reg-labels">
-          <button class="btn-sm btn-outline-primary">key: value</button>
-          <button class="btn-sm btn-outline-primary">key: value</button>
-          <button class="btn-sm btn-outline-primary">key: value</button>
-          <div 
-            class="add-label-button" 
-            (click)="addLabel(app)"
-            tooltip="Add" 
-            placement="right">
-            <i class="material-icons i-add">add</i>
-          </div>
-        </div>
-        <!-- <div class="reg-labels" *ngIf="loadedData && instances && instances.length > 0 && !requestError">
-          <button 
-            (click)="onLabelClick(app.app_instance_id, label[0], label[1])" 
-            [ngClass]="{
-              'btn-label-selected': indexOfLabelSelected(app.app_instance_id, label[0], label[1]) >= 0 ,
-              'btn-outline-primary': indexOfLabelSelected(app.app_instance_id, label[0], label[1]) === -1
-            }"
-            *ngFor="let label of labelsToString(app.labels)" 
-            class="btn-sm btn-outline-primary">
-            key: value
+        <div class="ins-labels" *ngFor="let label of objectToString(instance.labels)">
+          <button class="btn-sm btn-outline-primary" disabled>
+            {{label[0]}}: {{label[1]}}
           </button>
-          <div class="label-buttons">
-            <div 
-              *ngIf="isAnyLabelSelected(app.app_instance_id) === false" 
-              class="add-label-button" 
-              (click)="addLabel(app)"
-              tooltip="Add" 
-              placement="right">
-              <i class="material-icons i-add">add</i>
-            </div>
-            <div 
-              *ngIf="isAnyLabelSelected(app.app_instance_id) === true" 
-              class="delete-label-button"
-              (click)="deleteLabel(app)" 
-              tooltip="Delete" 
-              placement="right">
-              <i class="material-icons i-delete">delete</i>
-            </div>
-          </div>
-        </div> -->
+        </div>
       </div>
     </div>
   </div>
   <div class="col-8 h-100">
-    <div class="reg-flex-col">
+    <div class="ins-flex-col">
       <!-- Grapho card -->
-      <div *ngIf="showGraph" class="card h-reg-services flex-grow-1">
+      <div *ngIf="showGraph" class="card h-ins-services flex-grow-1">
         <div class="row">
           <div class="col-10 card-title-h">
             <h5>SERVICE</h5>
@@ -201,7 +158,7 @@
         </div>
       </div>
       <!-- Services card -->
-      <div *ngIf="!showGraph" class="card h-reg-services flex-grow-1">
+      <div *ngIf="!showGraph" class="card h-ins-services flex-grow-1">
         <div class="row">
           <div class="col-10 card-title-h">
             <h5>SERVICES</h5>
@@ -431,7 +388,7 @@
           </div>
         </div>
       </div>
-      <div class="h-reg-rules flex-grow-0">
+      <div class="h-ins-rules flex-grow-0">
         <!-- Rules card -->
         <div class="card h-100 mr-4 w-75">
           <div class="card-title-c">
@@ -555,7 +512,6 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- TODO -->
                 <tr *ngFor="let rule of instance.rules | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
                   <td class="col-2">
                     <a 
