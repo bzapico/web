@@ -175,9 +175,6 @@
     }
 }
 @media screen and (max-width:1680px) , screen and (max-height: 1039px) {
-    .summary-card {
-        margin-top: 0em;
-    }
     .circle {
         width: 90px;
         height: 90px;
@@ -262,7 +259,7 @@
 .show-sm {
     display: none;
 }
-@media screen and (max-width:1679px), screen and (max-height: 800px)  {
+@media screen and (max-width:1613px), screen and (max-height: 800px)  {
     .hide-sm {
         display: none;
     }
