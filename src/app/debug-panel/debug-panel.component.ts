@@ -30,6 +30,7 @@ export const AvailableComponents = {
   configGroup: 'Group Config',
   createdGroup: 'Group Created',
   deployInstance: 'Deploy instance',
+  registeredInfo: 'Registered Info',
   registerApp: 'Register app'
 };
 
@@ -120,9 +121,13 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.createdGroup,
       mock: localStorage.getItem(LocalStorageKeys.createdGroupMock) === 'false' ? 'false' : 'true'
     });
-     this.components.push({
+    this.components.push({
       name: AvailableComponents.deployInstance,
       mock: localStorage.getItem(LocalStorageKeys.deployInstanceMock) === 'false' ? 'false' : 'true'
+    });
+    this.components.push({
+      name: AvailableComponents.registeredInfo,
+      mock: localStorage.getItem(LocalStorageKeys.registeredInfoMock) === 'false' ? 'false' : 'true'
     });
      this.components.push({
       name: AvailableComponents.registerApp,
@@ -157,6 +162,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.configGroupMock, newValue);
     localStorage.setItem(LocalStorageKeys.createdGroupMock, newValue);
     localStorage.setItem(LocalStorageKeys.deployInstanceMock, newValue);
+    localStorage.setItem(LocalStorageKeys.registeredInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.registerAppMock, newValue);
   }
 
@@ -220,6 +226,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.deployInstance:
         localStorage.setItem(LocalStorageKeys.deployInstanceMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.deployInstance:
+        localStorage.setItem(LocalStorageKeys.registeredInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.registerApp:
         localStorage.setItem(LocalStorageKeys.registerAppMock, componentMockOption.mock);

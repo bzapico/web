@@ -343,17 +343,18 @@
                 tooltip="Info"
                 placement="top"
                 class="text-capitalize col-2 app-info" 
-                >
+                [routerLink]="['registered', app.app_descriptor_id]" 
+                routerLinkActive="active" >
                 {{app.name}}
               </td>
               <td class="col-3">{{app.app_descriptor_id}}</td>
               <td class="col-4" *ngIf="!app.labels"> no </td>
               <td class="col-4" *ngIf="app.labels">
                 <button 
-                  (click)="onLabelClick(app.app_descriptor_id, label[0], label[1])"
+                  (click)="onLabelClick(app.app_instance_id, label[0], label[1])"
                   [ngClass]=
-                  "{'btn-label-selected': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) >= 0 ,
-                    'btn-outline-primary': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) === -1}" 
+                  "{'btn-label-selected': indexOfLabelSelected(app.app_instance_id, label[0], label[1]) >= 0 ,
+                    'btn-outline-primary': indexOfLabelSelected(app.app_instance_id, label[0], label[1]) === -1}" 
                   *ngFor="let label of labelsToString(app.labels)" 
                   class="btn-sm btn-outline-primary" 
                   >
@@ -361,9 +362,9 @@
                 </button>
                 <div class="label-buttons">
                   <div 
-                    *ngIf="isAnyLabelSelected(app.app_descriptor_id) === false"
+                    *ngIf="isAnyLabelSelected(app.app_instance_id) === false"
                     class="add-label-button" 
-                    (click)="addLabel(app)"
+                    (click)="addLabel()"
                     tooltip="Add" 
                     placement="right"
                     >
@@ -372,9 +373,9 @@
                     </i>
                   </div>
                   <div 
-                    *ngIf="isAnyLabelSelected(app.app_descriptor_id) === true"
+                    *ngIf="isAnyLabelSelected(app.app_instance_id) === true"
                     class="delete-label-button" 
-                    (click)="deleteLabel(app)"
+                    (click)="deleteLabel()"
                     tooltip="Delete" 
                     placement="right"
                     >

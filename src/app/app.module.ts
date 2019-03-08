@@ -43,6 +43,7 @@ import { AddDevicesGroupComponent } from './add-devices-group/add-devices-group.
 import { GroupConfigurationComponent } from './group-configuration/group-configuration.component';
 import { DeviceGroupCreatedComponent } from './device-group-created/device-group-created.component';
 import { AddLabelComponent } from './add-label/add-label.component';
+import { RegisteredInfoComponent } from './registered-info/registered-info.component';
 import { RegisterApplicationComponent } from './register-application/register-application.component';
 import { DeployInstanceComponent } from './deploy-instance/deploy-instance.component';
 import { FileDropModule } from 'ngx-file-drop';
@@ -74,6 +75,7 @@ import { FileDropModule } from 'ngx-file-drop';
     GroupConfigurationComponent,
     DeviceGroupCreatedComponent,
     AddLabelComponent,
+    RegisteredInfoComponent,
     RegisterApplicationComponent,
     DeployInstanceComponent
   ],

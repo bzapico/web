@@ -15,7 +15,10 @@ Overall:
     - Device group created modal view
 - Appications view
     - App instances tab divider
+        - Deploy instance modal view
     - Regisered instances tab divider
+        - Register application modal view
+        - App registered extended view    
 
 ## v0.1.0
 Created the brand new UI Frontend for Nalej. 

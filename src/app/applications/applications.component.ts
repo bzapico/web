@@ -83,7 +83,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   appsChart: any;
 
   /**
-   * Reference for the service that allows the user info component
+   * Reference for the service that allows the modal component
    */
   modalRef: BsModalRef;
 

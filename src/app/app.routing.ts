@@ -11,6 +11,7 @@ import { ResourcesComponent } from './resources/resources.component';
 import { ApplicationsComponent } from './applications/applications.component';
 import { ClusterComponent } from './cluster/cluster.component';
 import { DevicesComponent } from './devices/devices.component';
+import { RegisteredInfoComponent } from './registered-info/registered-info.component';
 
 const appRoutes: Routes = [
     {
@@ -45,6 +46,10 @@ const appRoutes: Routes = [
                 path: 'applications',
                 component: ApplicationsComponent,
                 canActivate: [AuthGuard]
+            },
+            {
+                path: 'applications/registered/:registeredId',
+                component: RegisteredInfoComponent,
             },
             {
                 path: 'devices',

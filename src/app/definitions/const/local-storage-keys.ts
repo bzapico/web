@@ -20,6 +20,7 @@ export const LocalStorageKeys = {
     createdGroupMock: 'group_created_mock',
     registerAppMock: 'register_app_mock',
     deployInstanceMock: 'deploy_instance_mock',
+    registeredInfoMock: 'registered_info_mock',
 
     // Data
     jwt: 'jwt',
