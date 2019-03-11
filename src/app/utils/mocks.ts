@@ -533,8 +533,15 @@ export const mockRegisteredAppsList = [
     {
         'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
         'app_descriptor_id': '0b2ccec5-be21-4ad2-9df8-afa703b5c600',
-        'name': 'Sample application',
+        'name': 'Sample application 1',
         'labels': { 'app': 'simple-app' },
+        'enviroment_variables': {
+            'WORDPRESS_DB_HOST': 'NALEJ_SERV_SIMPLE-MYSQL:3306',
+            'WORDPRESS_DB_PASSWORD': 'root'
+        },
+        'configuration_options': {
+            'config007': '007'
+        },
         'rules': [{
             'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
             'app_descriptor_id': '0b2ccec5-be21-4ad2-9df8-afa703b5c600',
@@ -543,7 +550,7 @@ export const mockRegisteredAppsList = [
             'target_service_group_name': 'g1',
             'target_service_name': '2',
             'target_port': 80,
-            'access': 'PUBLIC',
+            'access': 2,
             'auth_service_group_name': 'g1'
         }],
         'groups':
@@ -564,12 +571,12 @@ export const mockRegisteredAppsList = [
                             'specs': { 'replicas': 1 },
                             'storage': [{
                                 'size': '104857600',
-                                'mount_path': '/tmp'
+                                'mount_path': '/tmp',
                             }],
                             'exposed_ports': [{
                                 'name': 'mysqlport',
                                 'internal_port': 3306,
-                                'exposed_port': 3306
+                                'exposed_port': 3306,
                             }],
                             'environment_variables': { 'MYSQL_ROOT_PASSWORD': 'root' },
                             'labels': {
@@ -614,8 +621,15 @@ export const mockRegisteredAppsList = [
     {
         'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
         'app_descriptor_id': '1ae8e3ca-dc97-4e49-8ee8-302a15dbd58a',
-        'name': 'Sample application',
+        'name': 'Sample application 2',
         'labels': { 'app': 'simple-app' },
+        'enviroment_variables': {
+            'WORDPRESS_DB_HOST': 'NALEJ_SERV_SIMPLE-MYSQL:3306',
+            'WORDPRESS_DB_PASSWORD': 'root'
+        },
+        'configuration_options': {
+            'config007': '007'
+        },
         'rules':
             [{
                 'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
@@ -625,7 +639,7 @@ export const mockRegisteredAppsList = [
                 'target_service_group_name': 'g1',
                 'target_service_name': '2',
                 'target_port': 80,
-                'access': 'PUBLIC',
+                'access': 2,
                 'auth_service_group_name': 'g1'
             }],
         'groups':
@@ -725,8 +739,15 @@ export const mockRegisteredAppsList = [
     {
                 'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
                 'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
-                'name': 'Sample application',
+                'name': 'Sample application 3',
                 'labels': { 'app': 'simple-app' },
+                'enviroment_variables': {
+                    'WORDPRESS_DB_HOST': 'NALEJ_SERV_SIMPLE-MYSQL:3306',
+                    'WORDPRESS_DB_PASSWORD': 'root'
+                },
+                'configuration_options': {
+                    'config007': '007'
+                },
                 'rules':
                     [{
                         'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
@@ -736,7 +757,7 @@ export const mockRegisteredAppsList = [
                         'target_service_group_name': 'g1',
                         'target_service_name': '2',
                         'target_port': 80,
-                        'access': 'PUBLIC',
+                        'access': 1,
                         'auth_service_group_name': 'g1'
                     }],
                 'groups':
