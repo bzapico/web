@@ -6,7 +6,7 @@
 </div>
 <div class="row h-reg">
   <div class="col-4 h-100">
-    <div class="reg-flex-col bg-primary">
+    <div class="reg-flex-col">
       <!-- Registered applicartion id card -->
       <div class="card h-reg-info flex-grow-0">
         <div class="card-title-c">
@@ -59,14 +59,13 @@
           </div>
           <div>
             <div class="circle summary-box">
-              <!-- TODO -->
               <span class="align-self-center mt-1">{{getServicesCount(registeredData)}}</span>
             </div>
             <p class="circle-name">SERVICES</p>
           </div>
         </div>
         <div 
-          *ngIf="groups.length === 0" 
+          *ngIf="registeredData.groups.length === 0" 
           class="summary-card d-flex justify-content-center align-items-center">
           No available registered apps detected
         </div>
@@ -223,35 +222,34 @@
                   <span class="grey">GROUPS</span>
                 </li>
                 <li 
-                  *ngIf="groups.length > 0" 
+                  *ngIf="registeredData.groups.length > 0" 
                   class="nalej-tab" 
                   (click)="changeActiveGroup('ALL')">
                   <span [ngClass]="amIactive('ALL')">ALL</span>
                 </li>
                 <li 
-                  *ngIf="groups.length === 0" 
+                  *ngIf="registeredData.groups.length === 0" 
                   class="nalej-tab">
                   <span class="active">ALL</span>
                 </li>
                 <li 
-                  [ngClass]="haveIGroups(groups)" 
+                  [ngClass]="haveIGroups(registeredData.groups)" 
                   (click)="swipeLeft()" 
                   class="tabs-arrow">
                   <i class="material-icons">arrow_left</i>
                 </li>
-                <!-- TODO -->
                 <li 
                   *ngFor="let group of displayedGroups" 
                   class="nalej-tab" 
-                  (click)="changeActiveGroup()">
-                  <span 
-                    *ngIf="displayedGroups.length > 0" 
-                    [ngClass]="amIactive()">
-                    Group 1
-                  </span>
+                  (click)="changeActiveGroup(group.service_group_id)">
+                    <span 
+                      *ngIf="displayedGroups.length > 0" 
+                      [ngClass]="amIactive(group.service_group_id)">
+                      {{group.name}}
+                    </span>
                 </li>
                 <li 
-                  [ngClass]="haveIGroups(groups)" 
+                  [ngClass]="haveIGroups(registeredData.groups)" 
                   (click)="swipeRight()" 
                   class="tabs-arrow">
                   <i class="material-icons">arrow_right</i>
@@ -302,17 +300,17 @@
           </div>
         </div>
         <!-- No services to show -->
-        <div *ngIf="activeGroupId!== 'ALL' && countGroupServices(activeGroupId) === 0"
+        <div *ngIf="activeGroupId!== 'ALL' && countGroupServices(activeGroupId) > 0"
           class="no-info-in-group d-flex justify-content-center align-items-center">
           No available services in this group
         </div>
-        <!-- TODO Services table -->
-        <!-- <div class="table-h" *ngIf="loadedData && services && services.length > 0 && groups.length > 0 && !requestError">
+        <!--  Services table -->
+        <div class="table-h" *ngIf="loadedData && registeredData.groups && registeredData.groups.length > 0 && registeredData.groups.length > 0 && !requestError">
           <table class="table-responsive table-fixed">
             <thead>
               <tr>
                 <th 
-                  *ngIf="activeGroupId !== 'ALL' && countGroupServices(activeGroupId) > 0"
+                  *ngIf="activeGroupId || countGroupServices(activeGroupId) > 0"
                   (click)="setOrder('name')" 
                   [ngClass]="getCategoryCSSClass('name')" 
                   scope="col" 
@@ -330,25 +328,7 @@
                   </span>
                 </th>
                 <th 
-                  *ngIf="activeGroupId === 'ALL'"
-                  (click)="setOrder('name')" 
-                  [ngClass]="getCategoryCSSClass('name')" 
-                  scope="col" 
-                  class="col-2">
-                  Name
-                  <span 
-                    class="expand-chevron" 
-                    *ngIf="sortedBy === 'name' && !reverse">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span 
-                    class="expand-chevron" 
-                    *ngIf="sortedBy === 'name' && reverse">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  *ngIf="activeGroupId !== 'ALL' && countGroupServices(activeGroupId) > 0"
+                  *ngIf="activeGroupId === 'ALL' || countGroupServices(activeGroupId) > 0"
                   (click)="setOrder('image')" 
                   [ngClass]="getCategoryCSSClass('image')" 
                   scope="col" 
@@ -366,25 +346,7 @@
                   </span>
                 </th> 
                 <th 
-                  *ngIf="activeGroupId === 'ALL'"
-                  (click)="setOrder('image')" 
-                  [ngClass]="getCategoryCSSClass('image')" 
-                  scope="col" 
-                  class="col-5">
-                  Image
-                  <span 
-                    class="expand-chevron" 
-                    *ngIf="sortedBy === 'image' && !reverse">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span 
-                    class="expand-chevron" 
-                    *ngIf="sortedBy === 'image' && reverse">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  *ngIf="activeGroupId !== 'ALL' && countGroupServices(activeGroupId) > 0"
+                  *ngIf="activeGroupId === 'ALL' || countGroupServices(activeGroupId) > 0"
                   (click)="setOrder('labels')" 
                   [ngClass]="getCategoryCSSClass('labels')" 
                   scope="col" 
@@ -402,31 +364,7 @@
                   </span>
                 </th>
                 <th 
-                  *ngIf="activeGroupId === 'ALL'"
-                  (click)="setOrder('labels')" 
-                  [ngClass]="getCategoryCSSClass('labels')" 
-                  scope="col" 
-                  class="col-4">
-                  Labels
-                  <span 
-                    class="expand-chevron" 
-                    *ngIf="sortedBy === 'labels' && !reverse">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span 
-                    class="expand-chevron" 
-                    *ngIf="sortedBy === 'labels' && reverse">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  *ngIf="activeGroupId !== 'ALL' && countGroupServices(activeGroupId) > 0"
-                  scope="col" 
-                  class="col-1 text-center p-0">
-                  Info
-                </th>
-                <th 
-                  *ngIf="activeGroupId === 'ALL'"
+                  *ngIf="activeGroupId === 'ALL' || countGroupServices(activeGroupId) > 0"
                   scope="col" 
                   class="col-1 text-center p-0">
                   Info
@@ -434,134 +372,59 @@
               </tr>
             </thead>
             <tbody>
-           
-              <tr *ngFor="let group of groups | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-            
-              <span *ngIf="activeGroupId === 'ALL'">
-                <td class="col-2">simple-mysql {{group.service.name}}</td>
-                <td class="col-5">zookeeper:3.5</td>
-                <td class="col-4">
-                  <button class="btn-sm btn-outline-primary">app: simple-wordpress</button>
-                </td>
-                <td class="col-1 text-center">
-                  <button 
-                    class="btn info-btn btn-primary"  
-                    tooltip="Info" 
-                    placement="left" 
-                    (click)="openServicesInfo()">
-                    <span class="i-info">i</span>
-                  </button>
-                </td>
-              </span>
-         
-              <span *ngIf="activeGroupId === group.service_group_id">
-                <td class="col-2">simple-mysql {{group.name}}</td>
-                <td class="col-5">zookeeper:3.5</td>
-                <td class="col-4">
-                  <button class="btn-sm btn-outline-primary">app: simple-wordpress</button>
-                </td>
-                <td class="col-1 text-center">
-                  <button 
-                    class="btn info-btn btn-primary" 
-                    tooltip="Info" 
-                    placement="left" 
-                    (click)="openServicesInfo()">
-                    <span class="i-info" >i</span>
-                  </button>
-                </td>
-              </span>
-            </tr>
-            </tbody>
-          </table>
-        </div> -->
-
-        <!-- LAYOUT Services table -->
-        <div class="table-h">
-          <table class="table-responsive table-fixed">
-            <thead>
-              <tr>
-                <th 
-                  (click)="setOrder('name')" 
-                  [ngClass]="getCategoryCSSClass('name')" 
-                  scope="col" 
-                  class="col-2">
-                  Name
-                  <span 
-                    class="expand-chevron" 
-                    *ngIf="sortedBy === 'name' && !reverse">
-                    <i class="material-icons">expand_more</i>
+            <tr *ngFor="let group of registeredData.groups | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+              <span *ngFor="let service of group.services">
+                <!-- "All" tab selected -->
+                <span *ngIf="activeGroupId === 'ALL'">
+                    <td class="col-2">{{service.name}}</td>
+                    <td class="col-5">{{service.image}}</td>
+                    <td class="col-4">
+                      <button 
+                      *ngFor="let label of objectToString(service.labels)"
+                      class="btn-sm btn-outline-primary" 
+                      disabled>
+                          {{label[0]}}: {{label[1]}} 
+                      </button>
+                    </td>
+                    <td class="col-1 text-center">
+                      <button 
+                        class="btn info-btn btn-primary"  
+                        tooltip="Info" 
+                        placement="left" 
+                        (click)="openServicesInfo()">
+                        <span class="i-info">i</span>
+                      </button>
+                    </td>
                   </span>
-                  <span 
-                    class="expand-chevron" 
-                    *ngIf="sortedBy === 'name' && reverse">
-                    <i class="material-icons">expand_less</i>
+                  <!-- service.service_group_id tab selected -->
+                  <span *ngIf="activeGroupId === service.service_group_id">
+                    <td class="col-2">{{service.name}}</td>
+                    <td class="col-5">{{service.image}}</td>
+                    <td class="col-4">
+                      <button 
+                        *ngFor="let label of objectToString(service.labels)"
+                        class="btn-sm btn-outline-primary"
+                        disabled> 
+                        {{label[0]}}: {{label[1]}} 
+                      </button>
+                    </td>
+                    <td class="col-1 text-center">
+                      <button 
+                        class="btn info-btn btn-primary" 
+                        tooltip="Info" 
+                        placement="left" 
+                        (click)="openServicesInfo()">
+                        <span class="i-info" >i</span>
+                      </button>
+                    </td>
                   </span>
-                </th>
-                <th 
-                  (click)="setOrder('image')" 
-                  [ngClass]="getCategoryCSSClass('image')" 
-                  scope="col" 
-                  class="col-5">
-                  Image
-                  <span 
-                    class="expand-chevron" 
-                    *ngIf="sortedBy === 'image' && !reverse">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span 
-                    class="expand-chevron" 
-                    *ngIf="sortedBy === 'image' && reverse">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th> 
-                <th 
-                  (click)="setOrder('labels')" 
-                  [ngClass]="getCategoryCSSClass('labels')" 
-                  scope="col" 
-                  class="col-4">
-                  Labels
-                  <span 
-                    class="expand-chevron" 
-                    *ngIf="sortedBy === 'labels' && !reverse">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span 
-                    class="expand-chevron" 
-                    *ngIf="sortedBy === 'labels' && reverse">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  scope="col" 
-                  class="col-1 text-center p-0">
-                  Info
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-              <span >
-                <td class="col-2">simple-mysql</td>
-                <td class="col-5">zookeeper:3.5</td>
-                <td class="col-4">
-                  <button class="btn-sm btn-outline-primary">app: simple-wordpress</button>
-                </td>
-                <td class="col-1 text-center">
-                  <button 
-                    class="btn info-btn btn-primary"  
-                    tooltip="Info" 
-                    placement="left" 
-                    (click)="openServicesInfo()">
-                    <span class="i-info">i</span>
-                  </button>
-                </td>
               </span>
             </tr>
             </tbody>
           </table>
         </div>
         <!-- No info to show -->
-        <div *ngIf="loadedData && !requestError && groups.length === 0"
+        <div *ngIf="loadedData && !requestError && registeredData.groups.length === 0"
           class="no-info d-flex justify-content-center align-items-center">
           No available services
         </div>
@@ -613,7 +476,7 @@
               </p>
             </div>
             <!-- Search input -->
-            <div class="col-4">
+            <div class="col-6">
               <form>
                 <div class="search-box">
                   <input type="text" class="form-control" name="searchTerm" placeholder="Search..."
@@ -629,7 +492,7 @@
             </div>
           </div>
           <!-- Rules table -->
-          <div class="table-h table-h-fix" *ngIf="loadedData && groups.length > 0 && !requestError">
+          <div class="table-h table-h-fix" *ngIf="loadedData && registeredData.groups.length > 0 && !requestError">
             <table class="table-responsive table-fixed">
               <thead class="hide-sm">
                 <tr>
@@ -709,7 +572,6 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- TODO -->
                 <tr *ngFor="let rule of registeredData.rules | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
                   <td class="col-2">
                     <a
@@ -717,7 +579,7 @@
                       {{rule.name | truncate}}
                     </a>
                     </td>
-                    <td class="col-2 text-lowercase">{{rule.access_name}}</td>
+                    <td class="col-2 text-lowercase">{{rule.access}}</td>
                     <td class="col-4">
                       {{rule.target_service_name}} - {{rule.target_service_name}} - {{rule.target_port}}
                     </td>
@@ -740,7 +602,7 @@
             </table>
           </div>
           <!-- No info to show -->
-          <div *ngIf="loadedData && groups.length === 0 !requestError"
+          <div *ngIf="loadedData && registeredData.groups.length === 0 !requestError"
             class="no-info d-flex justify-content-center align-items-center">
             No available rules detected
           </div>
@@ -771,10 +633,41 @@
             <h5 class="show-sm">CONF...</h5>
           </div>
           <div class="config-card">
-            <p class="grey text-left">Enviroment variables</p>
-            <p>No enviroment variables have been set</p>
-            <p class="grey text-left">Other settings</p>
-            <p>No extra settings have been set</p>
+            <div *ngIf="registeredData.environment_variables">
+              <p class=" text-left">Enviroment variables</p>
+              <div 
+                class="row mb-2" 
+                *ngFor="let variable of objectToString(registeredData.environment_variables)">
+                <div class="col-12 grey text-right">
+                  {{variable[0]}} 
+                </div>
+
+                <div class="col-12 text-right">
+                  {{variable[1]}}
+                </div>
+              </div>
+            </div>
+            <div *ngIf="!registeredData.environment_variables">
+              <p class="text-left">Enviroment variables</p>
+              <p class="grey">No enviroment variables have been set</p>
+            </div>
+            <div *ngIf="registeredData.configuration_options">
+              <p class="text-left">Other settings</p>
+              <div 
+                class="row mb-1" 
+                *ngFor="let configuration of objectToString(registeredData.configuration_options)">
+                  <div class="col-12 grey text-right">
+                    {{configuration[0]}} 
+                  </div>
+                  <div class="col-12 text-right">
+                    {{configuration[1]}}
+                  </div>
+              </div>
+            </div>
+            <div *ngIf="!registeredData.configuration_options">
+              <p class="text-left">Other settings</p>
+              <p class="grey">No extra settings have been set</p>
+            </div>
           </div>
         </div>
       </div>

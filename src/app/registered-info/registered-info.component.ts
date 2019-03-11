@@ -223,24 +223,32 @@ export class RegisteredInfoComponent implements OnInit {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
         if (this.organizationId !== null) {
-          this.updateGroupsList(this.organizationId);
           this.updateRegisteredInstances(this.organizationId);
           this.updateAppInstances(this.organizationId);
         }
         this.updateDisplayedGroupsNamesLength();
     }
     this.backend.getAppDescriptor(this.organizationId, this.descriptorId)
-      .subscribe(registered => {
-        console.log('esto es registered.groups ', registered.groups );
-        this.registeredData = registered;
-        console.log('esto es registered data.groups ', this.registeredData.groups.length);
-        this.toGraphData(registered);
+      .subscribe(registeredResponse => {
+        this.registeredData = registeredResponse;
+        this.initDisplayedGroups(registeredResponse);
+        this.toGraphData(registeredResponse);
         if (!this.loadedData) {
           this.loadedData = true;
         }
       });
   }
 
+
+  initDisplayedGroups(registeredResponse) {
+
+    if (this.displayedGroups.length === 0 && registeredResponse.groups.length > 0) {
+      for (let index = 0; index < registeredResponse.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
+        this.displayedGroups.push(registeredResponse.groups[index]);
+      }
+    }
+
+  }
   /**
    * Updates registered apps array
    * @param organizationId Organization identifier
@@ -272,36 +280,6 @@ export class RegisteredInfoComponent implements OnInit {
         this.loadedData = true;
         this.requestError = errorResponse.error.message;
       });
-    }
-  }
-
-  /**
-   * Requests an updated list of services to update the current one
-   * @param organizationId organization identifier
-   */
-  updateServicesList(organizationId: string) {
-    const tmpServices = [];
-    if (organizationId !== null) {
-      // Request to get services
-      if (this.groups.length > 0) {
-        this.groups.forEach(group => {
-          console.log('group de update services list', group);
-          this.backend.getRegisteredApps(this.organizationId)
-          .subscribe(response => {
-            console.log('response de updateServicesList', response);
-              tmpServices.push(response.services || []);
-              if (!this.loadedData) {
-                this.loadedData = true;
-              }
-              if (tmpServices.length === this.groups.length) {
-                this.services = tmpServices;
-              }
-            }, errorResponse => {
-              this.loadedData = true;
-              this.requestError = errorResponse.error.message;
-            });
-          });
-      }
     }
   }
 
@@ -542,33 +520,6 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Requests an updated list of available services group to update the current one
-   * @param organizationId Organization identifier
-   */
-  updateGroupsList(organizationId: string) {
-    if (organizationId !== null) {
-      // Requests an updated services group list
-      this.backend.getGroups(this.organizationId)
-      .subscribe(response => {
-        this.groups = response.groups || [];
-        if (this.displayedGroups.length === 0 && this.groups.length > 0) {
-          for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
-            this.displayedGroups.push(this.groups[index]);
-          }
-        }
-        this.updateDisplayedGroupsNamesLength();
-        if (!this.loadedData) {
-          this.loadedData = true;
-        }
-        this.updateServicesList(this.organizationId);
-      }, errorResponse => {
-          this.loadedData = true;
-          this.requestError = errorResponse.error.message;
-        });
-    }
-  }
-
-  /**
    * Opens the modal view that holds the deploy registered app component
    * @param app registered app to deploy
    */
@@ -668,7 +619,7 @@ export class RegisteredInfoComponent implements OnInit {
   countServices(): number {
     let temporalCount = 0;
     this.services.forEach(group => {
-      temporalCount = group.services.length + temporalCount;
+      temporalCount = group.length + temporalCount;
     });
     return temporalCount;
   }
@@ -680,7 +631,6 @@ export class RegisteredInfoComponent implements OnInit {
   getServicesCount(registered) {
     let temporalCount = 0;
     registered.groups.forEach(group => {
-      console.log('groups desde count services', group);
       temporalCount = group.services.length + temporalCount;
     });
     return temporalCount;
@@ -734,6 +684,17 @@ export class RegisteredInfoComponent implements OnInit {
       }
     }
     return [-1];
+  }
+
+  /**
+   * Transforms objects to arrays to be parsed to string and performed in the view
+   * @param object Key-value map that contains the object
+   */
+  objectToString(object: any) {
+    if (!object) {
+      return ['--'];
+    }
+    return Object.entries(object);
   }
 
   /**
