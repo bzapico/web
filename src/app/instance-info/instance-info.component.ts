@@ -9,11 +9,11 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import * as shape from 'd3-shape';
 
 @Component({
-  selector: 'app-instances-info',
-  templateUrl: './instances-info.component.html',
-  styleUrls: ['./instances-info.component.scss']
+  selector: 'app-instance-info',
+  templateUrl: './instance-info.component.html',
+  styleUrls: ['./instance-info.component.scss']
 })
-export class InstancesInfoComponent implements OnInit {
+export class InstanceInfoComponent implements OnInit {
 
   /**
    * Backend reference
@@ -208,6 +208,7 @@ export class InstancesInfoComponent implements OnInit {
     }
     this.backend.getAppInstance(this.organizationId,  this.instanceId)
     .subscribe(instance => {
+      console.log(instance);
         this.instance = instance;
         this.toGraphData(instance);
         if (!this.loadedData) {
@@ -478,6 +479,35 @@ export class InstancesInfoComponent implements OnInit {
         });
     }
   }
+
+  /**
+   * Checks if the cluster status requires an special css class
+   * @param status Cluster status name
+   * @param className CSS class name
+   */
+  classStatusCheck(status: string, className: string): boolean {
+    switch (status.toLowerCase()) {
+      case 'running': {
+        if (className.toLowerCase() === 'running') {
+          return true;
+        }
+        break;
+      }
+      case 'error': {
+        if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
+     default: {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        return false;
+      }
+    }
+  }
+
 
   /**
    * Shows the graph in services card

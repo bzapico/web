@@ -13,10 +13,10 @@ Overall:
     - Add group modal view
     - Configuration group modal view
     - Device group created modal view
-- Appications view
+- Applications view
     - App instances tab divider
         - Deploy instance modal view
-        - App instances extended view
+        - App instance extended view
     - Regisered instances tab divider
         - Register application modal view
         - App registered extended view    

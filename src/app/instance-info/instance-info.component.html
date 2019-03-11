@@ -7,8 +7,8 @@
 <div class="row h-ins">
   <div class="col-4 h-100">
     <div class="ins-flex-col">
-      <!-- Applicartion instances id card -->
-      <div class="card h-ins-info flex-grow-1">
+      <!-- Application instances id card -->
+      <div class="card h-ins-info flex-grow-0">
         <div class="card-title-c">
           <h5>
             <a 
@@ -31,9 +31,9 @@
                         class="summary-instances-status"
                         [ngClass]= 
                           "{
-                            'blue': instance.status_name === 'RUNNING',
-                            'red': instance.status_namee === 'ERROR',
-                            'orange': instance.status_name === 'QUEUED'
+                            'blue': classStatusCheck(instance.status_name, 'running'),
+                            'red': classStatusCheck(instance.status_name, 'error'),
+                            'orange':classStatusCheck(instance.status_name, 'process')
                           }">
                         {{instance.status_name}}
                       </td>
@@ -69,7 +69,7 @@
           </div>
       </div>
       <!-- Labels card-->
-      <div class="card h-ins-labels flex-grow-0">
+      <div class="card h-ins-labels flex-grow-1">
         <div class="card-title-c hide-title-sm">
           <h5>LABELS</h5>
         </div>
@@ -301,36 +301,53 @@
                   </span>
                 </th>
                 <th 
-                  (click)="setOrder('image')" 
-                  [ngClass]="getCategoryCSSClass('image')" 
+                  (click)="setOrder('replicas')" 
+                  [ngClass]="getCategoryCSSClass('replicas')" 
                   scope="col" 
-                  class="col-5">
-                  Image
+                  class="col-2 text-center">
+                  Replicas
                   <span 
                     class="expand-chevron" 
-                    *ngIf="sortedBy === 'image' && !reverse">
+                    *ngIf="sortedBy === 'replicas' && !reverse">
                     <i class="material-icons">expand_more</i>
                   </span>
                   <span 
                     class="expand-chevron" 
-                    *ngIf="sortedBy === 'image' && reverse">
+                    *ngIf="sortedBy === 'replicas' && reverse">
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th> 
                 <th 
-                  (click)="setOrder('labels')" 
-                  [ngClass]="getCategoryCSSClass('labels')" 
+                  (click)="setOrder('status')" 
+                  [ngClass]="getCategoryCSSClass('status')" 
                   scope="col" 
-                  class="col-4">
-                  Labels
+                  class="col-3">
+                  Status
                   <span 
                     class="expand-chevron" 
-                    *ngIf="sortedBy === 'labels' && !reverse">
+                    *ngIf="sortedBy === 'status' && !reverse">
                     <i class="material-icons">expand_more</i>
                   </span>
                   <span 
                     class="expand-chevron" 
-                    *ngIf="sortedBy === 'labels' && reverse">
+                    *ngIf="sortedBy === 'status' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  (click)="setOrder('endpoints')" 
+                  [ngClass]="getCategoryCSSClass('endpoints')" 
+                  scope="col" 
+                  class="col-4">
+                  Endpoints
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'endpoints' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'endpoints' && reverse">
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th>
@@ -345,10 +362,9 @@
               <tr>
               <span >
                 <td class="col-2">simple-mysql</td>
-                <td class="col-5">zookeeper:3.5</td>
-                <td class="col-4">
-                  <button class="btn-sm btn-outline-primary">app: simple-wordpress</button>
-                </td>
+                <td class="col-2 text-center">3</td>
+                <td class="col-3">SERVICE_WAITING</td>
+                <td class="col-4">http://mysql.dashborad.com</td>
                 <td class="col-1 text-center">
                   <button 
                     class="btn info-btn btn-primary"  
@@ -475,7 +491,7 @@
                     [ngClass]="getCategoryCSSClass('target')" 
                     scope="col"
                     class="col-4">
-                    Target <span class="grey typo-small">(group, serviec, port)</span>
+                    Target <span class="grey typo-small">(group, service, port)</span>
                     <span 
                       class="expand-chevron" 
                       *ngIf="sortedBy === 'target' && !reverse">
@@ -492,7 +508,7 @@
                     [ngClass]="getCategoryCSSClass('auth')" 
                     scope="col" 
                     class="col-3">
-                    Auth <span class="grey typo-small">(group,service)</span>
+                    Auth <span class="grey typo-small">(group, service)</span>
                     <span 
                       class="expand-chevron" 
                       *ngIf="sortedBy === 'auth' && !reverse">
@@ -515,18 +531,18 @@
                 <tr *ngFor="let rule of instance.rules | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
                   <td class="col-2">
                     <a 
-                      [routerLink]="[]" 
-                      routerLinkActive="active" 
                       class="blue text-capitalize text-left">
                       {{rule.name | truncate}}
                     </a>
                   </td>
-                  <td class="col-2 text-lowercase">{{rule.access}}</td>
+                  <td class="col-2 text-lowercase">{{rule.access_name}}</td>
                   <td class="col-4">
-                      {{rule.target_service_name}}
+                      {{rule.target_service_name}} - {{rule.target_service_name}} - {{rule.target_port}}
                   </td>
                   <td class="text-lowercase col-3">
                       {{rule.auth_service_group_name}}
+                      <span *ngIf="rule.auth_services"> - </span>
+                      {{rule.auth_services}}
                   </td>
                   <td class="col-1 text-center">
                     <button 

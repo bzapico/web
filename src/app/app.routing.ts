@@ -12,7 +12,7 @@ import { ApplicationsComponent } from './applications/applications.component';
 import { ClusterComponent } from './cluster/cluster.component';
 import { DevicesComponent } from './devices/devices.component';
 import { RegisteredInfoComponent } from './registered-info/registered-info.component';
-import { InstancesInfoComponent } from './instances-info/instances-info.component';
+import { InstanceInfoComponent } from './instance-info/instance-info.component';
 
 const appRoutes: Routes = [
     {
@@ -54,7 +54,7 @@ const appRoutes: Routes = [
             },
             {
                 path: 'applications/instance/:instanceId',
-                component: InstancesInfoComponent,
+                component: InstanceInfoComponent,
             },
             {
                 path: 'devices',

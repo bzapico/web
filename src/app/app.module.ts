@@ -47,7 +47,7 @@ import { RegisteredInfoComponent } from './registered-info/registered-info.compo
 import { RegisterApplicationComponent } from './register-application/register-application.component';
 import { DeployInstanceComponent } from './deploy-instance/deploy-instance.component';
 import { FileDropModule } from 'ngx-file-drop';
-import { InstancesInfoComponent } from './instances-info/instances-info.component';
+import { InstanceInfoComponent } from './instance-info/instance-info.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +79,7 @@ import { InstancesInfoComponent } from './instances-info/instances-info.componen
     RegisteredInfoComponent,
     RegisterApplicationComponent,
     DeployInstanceComponent,
-    InstancesInfoComponent
+    InstanceInfoComponent
   ],
   entryComponents: [
     DebugPanelComponent,

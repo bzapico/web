@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InstancesInfoComponent } from './instances-info.component';
+import { InstanceInfoComponent } from './instance-info.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
@@ -13,12 +13,12 @@ import { SortByPipe } from '../pipes/sort-by.pipe';
 import { TruncatePipe } from '../pipes/truncate.pipe';
 
 describe('InstancesInfoComponent', () => {
-  let component: InstancesInfoComponent;
-  let fixture: ComponentFixture<InstancesInfoComponent>;
+  let component: InstanceInfoComponent;
+  let fixture: ComponentFixture<InstanceInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InstancesInfoComponent,
+      declarations: [ InstanceInfoComponent,
         FilterPipe,
         SortByPipe,
         TruncatePipe,
@@ -42,7 +42,7 @@ describe('InstancesInfoComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InstancesInfoComponent);
+    fixture = TestBed.createComponent(InstanceInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
