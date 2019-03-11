@@ -672,7 +672,7 @@
                     [ngClass]="getCategoryCSSClass('target')" 
                     scope="col"
                     class="col-4">
-                    Target <span class="grey typo-small">(group, serviec, port)</span>
+                    Target <span class="grey typo-small">(group, service, port)</span>
                     <span 
                       class="expand-chevron" 
                       *ngIf="sortedBy === 'target' && !reverse">
@@ -689,7 +689,7 @@
                     [ngClass]="getCategoryCSSClass('auth')" 
                     scope="col" 
                     class="col-3">
-                    Auth <span class="grey typo-small">(group,service)</span>
+                    Auth <span class="grey typo-small">(group, service)</span>
                     <span 
                       class="expand-chevron" 
                       *ngIf="sortedBy === 'auth' && !reverse">
@@ -712,18 +712,20 @@
                 <!-- TODO -->
                 <tr *ngFor="let rule of registeredData.rules | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
                   <td class="col-2">
-                    <a 
-                      class="blue text-capitalize text-left">
+                    <a
+                    class="blue text-capitalize text-left">
                       {{rule.name | truncate}}
                     </a>
-                  </td>
-                  <td class="col-2 text-lowercase">{{rule.access}}</td>
-                  <td class="col-4">
-                      {{rule.target_service_name}}
-                  </td>
-                  <td class="text-lowercase col-3">
+                    </td>
+                    <td class="col-2 text-lowercase">{{rule.access_name}}</td>
+                    <td class="col-4">
+                      {{rule.target_service_name}} - {{rule.target_service_name}} - {{rule.target_port}}
+                    </td>
+                    <td class="text-lowercase col-3">
                       {{rule.auth_service_group_name}}
-                  </td>
+                    <span *ngIf="rule.auth_services"> - </span>
+                    {{rule.auth_services}}
+                    </td>
                   <td class="col-1 text-center">
                     <button 
                       class="btn info-btn btn-primary"  
