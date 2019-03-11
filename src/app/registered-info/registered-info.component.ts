@@ -49,6 +49,11 @@ export class RegisteredInfoComponent implements OnInit {
   services: any[];
 
   /**
+   * Count of total services for summary card
+   */
+  servicesCount: number;
+
+  /**
    * Model that hold descriptor ID
    */
   descriptorId: string;
@@ -165,6 +170,8 @@ export class RegisteredInfoComponent implements OnInit {
       this.backend = backendService;
     }
     // Default initialization
+    this.services = [];
+    this.servicesCount = 0;
     this.instances = [];
     this.registered = [];
     this.labels = [];
@@ -187,83 +194,15 @@ export class RegisteredInfoComponent implements OnInit {
      this.autoCenter = true;
      this.enableZoom = true;
      this.draggingEnabled = false;
-    //  this.view = [605, 250];
      this.colorScheme = {
        domain: ['#6C86F7']
      };
     // TODO
      this.graphData = {
-       nodes: [
-        {
-          id: 'start',
-          label: 'start',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '1',
-          label: 'Query ThreatConnect',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '2',
-          label: 'Query XForce',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '7',
-          label: 'Query ThCt',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '3',
-          label: 'Format Results',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '4',
-          label: 'Search Splunk',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '5',
-          label: 'Block LDAP',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '6',
-          label: 'Email Results',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }
-       ],
-       links: [
-        {
-          source: 'start',
-          target: '1',
-          label: 'links to'
-        }, {
-          source: 'start',
-          target: '2'
-        }, {
-          source: 'start',
-          target: '7'
-        }, {
-          source: '1',
-          target: '3',
-          label: 'related to'
-        }, {
-          source: '2',
-          target: '4'
-        }, {
-          source: '2',
-          target: '6'
-        }, {
-          source: '3',
-          target: '5'
-        }
-       ]
+       nodes: [],
+       links: []
      };
-    // this.registered = mockRegisteredAppsList; // Initialization to avoid null in view
+    this.registered = mockRegisteredAppsList; // Initialization to avoid null in view
      this.nalejColorScheme = [
        '#1725AE',
        '#040D5A',
@@ -292,8 +231,13 @@ export class RegisteredInfoComponent implements OnInit {
     }
     this.backend.getAppDescriptor(this.organizationId, this.descriptorId)
       .subscribe(registered => {
-        console.log(registered);
+        console.log('esto es registered.groups ', registered.groups );
         this.registeredData = registered;
+        console.log('esto es registered data.groups ', this.registeredData.groups.length);
+        this.toGraphData(registered);
+        if (!this.loadedData) {
+          this.loadedData = true;
+        }
       });
   }
 
@@ -341,8 +285,10 @@ export class RegisteredInfoComponent implements OnInit {
       // Request to get services
       if (this.groups.length > 0) {
         this.groups.forEach(group => {
+          console.log('group de update services list', group);
           this.backend.getRegisteredApps(this.organizationId)
           .subscribe(response => {
+            console.log('response de updateServicesList', response);
               tmpServices.push(response.services || []);
               if (!this.loadedData) {
                 this.loadedData = true;
@@ -614,6 +560,7 @@ export class RegisteredInfoComponent implements OnInit {
         if (!this.loadedData) {
           this.loadedData = true;
         }
+        this.updateServicesList(this.organizationId);
       }, errorResponse => {
           this.loadedData = true;
           this.requestError = errorResponse.error.message;
@@ -677,7 +624,7 @@ export class RegisteredInfoComponent implements OnInit {
         group: group.service_group_id
       };
       this.graphData.nodes.push(nodeGroup);
-      group.service_id.forEach(service => {
+      group.services.forEach(service => {
         const nodeService = {
           id: group.service_group_id + '-s-' + service.service_id,
           label: service.name,
@@ -721,18 +668,32 @@ export class RegisteredInfoComponent implements OnInit {
   countServices(): number {
     let temporalCount = 0;
     this.services.forEach(group => {
-      temporalCount = group.length + temporalCount;
+      temporalCount = group.services.length + temporalCount;
     });
     return temporalCount;
   }
 
   /**
-   * Gets the registered apps array list and traverse the group array list to show services in table
+   * Returns the length of the services in registered list. Represents the number of available services
+   * @param registered selected registered
    */
-  getRegisteredApps() {
+  getServicesCount(registered) {
+    let temporalCount = 0;
+    registered.groups.forEach(group => {
+      console.log('groups desde count services', group);
+      temporalCount = group.services.length + temporalCount;
+    });
+    return temporalCount;
+  }
+
+  /**
+   * Gets the services array list and traverse the group array list to show in table
+   */
+  getServices() {
     const groupServices = [];
     this.services.forEach(group => {
       group.forEach(service => {
+
         groupServices.push(service);
       });
     });
@@ -748,7 +709,7 @@ export class RegisteredInfoComponent implements OnInit {
       return this.countServices();
     }
     let services = 0;
-    const servicesList = this.getRegisteredApps();
+    const servicesList = this.getServices();
     servicesList.forEach(service => {
       if (service.service_group_id === groupId) {
         services += 1;

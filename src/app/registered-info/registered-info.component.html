@@ -6,7 +6,7 @@
 </div>
 <div class="row h-reg">
   <div class="col-4 h-100">
-    <div class="reg-flex-col">
+    <div class="reg-flex-col bg-primary">
       <!-- Registered applicartion id card -->
       <div class="card h-reg-info flex-grow-0">
         <div class="card-title-c">
@@ -50,23 +50,23 @@
         <div class="card-title-c">
           <h5>SERVICES SUMMARY</h5>
         </div>
-        <div *ngIf="groups.length > 0" class="summary-card">
+        <div *ngIf="registeredData.groups.length > 0" class="summary-card">
           <div>
             <div class="circle summary-box">
-              <span class="align-self-center mt-1">{{groups.length}}</span>
+              <span class="align-self-center mt-1">{{registeredData.groups.length}}</span>
             </div>
             <p class="circle-name">GROUPS</p>
           </div>
           <div>
             <div class="circle summary-box">
               <!-- TODO -->
-              <span class="align-self-center mt-1">{{registeredData.groups[0].services.length}}</span>
+              <span class="align-self-center mt-1">{{getServicesCount(registeredData)}}</span>
             </div>
             <p class="circle-name">SERVICES</p>
           </div>
         </div>
         <div 
-          *ngIf="registeredData.groups.length === 0" 
+          *ngIf="groups.length === 0" 
           class="summary-card d-flex justify-content-center align-items-center">
           No available registered apps detected
         </div>
@@ -713,8 +713,6 @@
                 <tr *ngFor="let rule of registeredData.rules | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
                   <td class="col-2">
                     <a 
-                      [routerLink]="[]" 
-                      routerLinkActive="active" 
                       class="blue text-capitalize text-left">
                       {{rule.name | truncate}}
                     </a>
