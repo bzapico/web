@@ -4,7 +4,6 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { AppDescriptor } from '../definitions/interfaces/app-descriptor';
 
 @Component({
   selector: 'app-rule-info',
@@ -22,21 +21,6 @@ export class RuleInfoComponent implements OnInit {
    */
   loadedData: boolean;
 
-  /**
-   * Model that hold organization ID
-   */
-  organizationId: string;
-
-  /**
-   * Model that hold descriptor ID
-   */
-  descriptorId: string;
-
-  /**
-   * Model that hold registered application descriptor data
-   */
-  registeredData: AppDescriptor;
-
   constructor(
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
@@ -51,45 +35,10 @@ export class RuleInfoComponent implements OnInit {
     }
 
     // Default initialization
-    this.loadedData = true;
+    this.loadedData = false;
    }
 
   ngOnInit() {
-    // if (this.organizationId !== null) {
-    //   this.backend.getAppDescriptor(this.organizationId, this.descriptorId)
-    //   .subscribe(registered => {
-    //     console.log(registered);
-    //     this.registeredData = registered;
-    //   });
-    // }
-
   }
-
-
-  /**
-   * Transforms objects to arrays to be parsed to string and performed in the view
-   * @param object Key-value map that contains the object
-   */
-  objectToString(object: any) {
-    if (!object) {
-      return ['--'];
-    }
-    return Object.entries(object);
-  }
-
-  /**
-   * Adds https in case of being required
-   * @param endpoint String containing the endpoint
-   */
-  getEndpointHref(endpoint: string) {
-    let URL = '';
-    if (!endpoint.startsWith('http') && !endpoint.startsWith('https')) {
-      URL = 'http://' + endpoint;
-    } else {
-      URL = endpoint;
-    }
-    return URL;
-  }
-
 
 }

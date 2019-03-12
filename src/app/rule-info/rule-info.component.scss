@@ -3,7 +3,7 @@
 }
 #scroll-app-info {
     margin: 3.5em 0;
-    height: 387px;
+    height: 405px;
     overflow-y: scroll;
     overflow-x: hidden;
     font-size:  .9em;
@@ -18,7 +18,7 @@
       -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
     }
 }
-h3.rule-h3-title {
+.rule-h3-title {
     font-size: 1.5rem;
     margin-bottom: 0.1rem;
 }
@@ -33,7 +33,7 @@ h3.rule-h3-title {
 .btn-primary {
     text-indent: -7px;
 }
-@media screen and (max-height: 747px) {
+@media screen and (max-height: 779px) {
     #scroll-app-info {
         height: 268px;
     }

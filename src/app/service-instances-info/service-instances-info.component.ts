@@ -21,48 +21,24 @@ export class ServiceInstancesInfoComponent implements OnInit {
    */
   loadedData: boolean;
 
-  /**
-   * Model that hold organization ID
-   */
-  organizationId: string;
-
-  /**
-   * Model that hold organization ID
-   */
-  instanceId: string;
-
-  /**
-   * List of available apps instances
-   */
-  instance: any;
-
   constructor(
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService
   ) {
-    // const mock = localStorage.getItem(LocalStorageKeys.serviceInstancesInfoMock) || null;
-    // // check which backend is required (fake or real)
-    // if (mock && mock === 'true') {
-    //   this.backend = mockupBackendService;
-    // } else {
-    //   this.backend = backendService;
-    // }
+    const mock = localStorage.getItem(LocalStorageKeys.serviceInstancesInfoMock) || null;
+    // check which backend is required (fake or real)
+    if (mock && mock === 'true') {
+      this.backend = mockupBackendService;
+    } else {
+      this.backend = backendService;
+    }
 
     // Default initialization
-    // this.loadedData = true;
+    this.loadedData = true;
   }
 
   ngOnInit() {
-    // if (this.organizationId !== null) {
-    //   this.backend.getAppInstance(this.organizationId,  this.instanceId)
-    //   .subscribe(instance => {
-    //       this.instance = instance;
-    //       if (!this.loadedData) {
-    //         this.loadedData = true;
-    //       }
-    //   });
-    // }
   }
 
 }

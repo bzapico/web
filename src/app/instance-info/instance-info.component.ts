@@ -536,9 +536,20 @@ export class InstanceInfoComponent implements OnInit {
   /**
    * Open rules info modal window // TO BE DESIGNED
    */
-  openRulesInfo() {
+  openRulesInfo(rule) {
     const initialState = {
       organizationId: this.organizationId,
+      ruleId: rule.rule_id,
+      ruleAccess: rule.access,
+      ruleAppDescriptorId: rule.app_descriptor_id,
+      ruleAuthServices: rule.auth_services,
+      ruleAuthServiceGroupName: rule.auth_service_group_name,
+      ruleName: rule.name,
+      ruleTargetPort: rule.target_port,
+      ruleTargetServiceGroupName: rule.target_service_group_name,
+      ruleTargetServiceName: rule.target_service_name,
+      ruleDeviceGroupIds: rule.device_group_ids,
+      ruleDeviceGroupNames: rule.device_group_names
     };
 
     this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
