@@ -32,7 +32,8 @@ export const AvailableComponents = {
   deployInstance: 'Deploy instance',
   registeredInfo: 'Registered Info',
   registerApp: 'Register app',
-  instanceInfo: 'Instance Info'
+  instanceInfo: 'Instance Info',
+  serviceInstancesInfo: 'Service Instances Info'
 };
 
 @Component({
@@ -138,6 +139,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.instanceInfo,
       mock: localStorage.getItem(LocalStorageKeys.instanceInfoMock) === 'false' ? 'false' : 'true'
     });
+    this.components.push({
+      name: AvailableComponents.instanceInfo,
+      mock: localStorage.getItem(LocalStorageKeys.serviceInstancesInfoMock) === 'false' ? 'false' : 'true'
+    });
   }
 
   /**
@@ -170,6 +175,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.registeredInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.registerAppMock, newValue);
     localStorage.setItem(LocalStorageKeys.instanceInfoMock, newValue);
+    localStorage.setItem(LocalStorageKeys.serviceInstancesInfoMock, newValue);
   }
 
   /**
@@ -215,7 +221,7 @@ export class DebugPanelComponent implements OnInit {
       case AvailableComponents.addUser:
       localStorage.setItem(LocalStorageKeys.addUserMock, componentMockOption.mock);
       break;
-      case AvailableComponents.addUser:
+      case AvailableComponents.addLabel:
       localStorage.setItem(LocalStorageKeys.addLabelMock, componentMockOption.mock);
       break;
       case AvailableComponents.devices:
@@ -233,7 +239,7 @@ export class DebugPanelComponent implements OnInit {
       case AvailableComponents.deployInstance:
         localStorage.setItem(LocalStorageKeys.deployInstanceMock, componentMockOption.mock);
       break;
-      case AvailableComponents.deployInstance:
+      case AvailableComponents.registeredInfo:
         localStorage.setItem(LocalStorageKeys.registeredInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.registerApp:
@@ -242,6 +248,9 @@ export class DebugPanelComponent implements OnInit {
       case AvailableComponents.instanceInfo:
         localStorage.setItem(LocalStorageKeys.instanceInfoMock, componentMockOption.mock);
       break;
+      case AvailableComponents.serviceInstancesInfo:
+      localStorage.setItem(LocalStorageKeys.serviceInstancesInfoMock, componentMockOption.mock);
+    break;
       default:
         console.log('Selected option not registered as available component');
     }

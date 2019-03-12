@@ -209,6 +209,7 @@ export class InstanceInfoComponent implements OnInit {
     }
     this.backend.getAppInstance(this.organizationId,  this.instanceId)
     .subscribe(instance => {
+      console.log(instance);
         this.instance = instance;
         this.toGraphData(instance);
         if (!this.loadedData) {
@@ -517,18 +518,17 @@ export class InstanceInfoComponent implements OnInit {
   }
 
   /**
-   * Open serivces info modal window // TO BE DESIGNED
+   * Open services info modal window
+   *  @param service service
    */
-  openServicesInfo(service) {
+  openServicesInfo() {
     const initialState = {
       organizationId: this.organizationId,
+      // serviceId: service.service_group_id,
     };
 
     this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
-
-    });
 
   }
 
