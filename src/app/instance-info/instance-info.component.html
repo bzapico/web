@@ -47,8 +47,8 @@
                       <td class="dark-grey">{{instance.app_instance_id}}</td>
                     </tr>
                     <tr>
-                      <th class="grey">Registered app ID</th>
-                        <td class="dark-grey">{{instance.app_descriptor_id}}</td> 
+                      <th class="grey hide-sm">Registered app ID</th>
+                        <td class="dark-grey hide-sm">{{instance.app_descriptor_id}}</td> 
                     </tr>
                     <tr>
                       <th class="grey">Groups</th>
@@ -73,10 +73,12 @@
         <div class="card-title-c hide-title-sm">
           <h5>LABELS</h5>
         </div>
-        <div class="ins-labels" *ngFor="let label of objectToString(instance.labels)">
-          <button class="btn-sm btn-outline-primary" disabled>
-            {{label[0]}}: {{label[1]}}
-          </button>
+        <div class="ins-labels">
+          <div  *ngFor="let label of objectToString(instance.labels)">
+            <button class="btn-sm btn-outline-primary" disabled>
+              {{label[0]}}: {{label[1]}}
+            </button>
+          </div>
         </div>
       </div>
     </div>
