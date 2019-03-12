@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ServiceInstancesInfoComponent } from './service-instances-info.component';
+import { BsModalRef, ButtonsModule, BsModalService } from 'ngx-bootstrap';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NgxGraphModule } from '@swimlane/ngx-graph';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TooltipModule } from '@swimlane/ngx-charts';
 
 describe('ServiceInstancesInfoComponent', () => {
   let component: ServiceInstancesInfoComponent;
@@ -8,7 +14,19 @@ describe('ServiceInstancesInfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ServiceInstancesInfoComponent ]
+      declarations: [ ServiceInstancesInfoComponent ],
+      imports: [
+        ButtonsModule,
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        TooltipModule,
+        NgxGraphModule,
+        RouterTestingModule
+      ],
+      providers: [
+        BsModalRef,
+        BsModalService
+      ]
     })
     .compileComponents();
   }));
