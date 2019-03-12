@@ -7,6 +7,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { ActivatedRoute } from '@angular/router';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import * as shape from 'd3-shape';
+import { ServiceInstancesInfoComponent } from '../service-instances-info/service-instances-info.component';
 
 @Component({
   selector: 'app-instance-info',
@@ -518,7 +519,16 @@ export class InstanceInfoComponent implements OnInit {
   /**
    * Open serivces info modal window // TO BE DESIGNED
    */
-  openServicesInfo() {
+  openServicesInfo(service) {
+    const initialState = {
+      organizationId: this.organizationId,
+    };
+
+    this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+
+    });
 
   }
 

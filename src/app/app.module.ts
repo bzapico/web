@@ -96,7 +96,8 @@ import { ServiceInstancesInfoComponent } from './service-instances-info/service-
     DeviceGroupCreatedComponent,
     AddLabelComponent,
     RegisterApplicationComponent,
-    DeployInstanceComponent
+    DeployInstanceComponent,
+    ServiceInstancesInfoComponent
   ],
   imports: [
     BrowserModule,
