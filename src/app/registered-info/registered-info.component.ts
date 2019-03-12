@@ -11,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 import * as shape from 'd3-shape';
 import { AppDescriptor } from '../definitions/interfaces/app-descriptor';
 import { mockRegisteredAppsList } from '../utils/mocks';
+import { ServiceInstancesInfoComponent } from '../service-instances-info/service-instances-info.component';
+import { RuleInfoComponent } from '../rule-info/rule-info.component';
 
 @Component({
   selector: 'app-registered-info',
@@ -783,16 +785,29 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Open serivces info modal window // TO BE DESIGNED
+   * Open serivces info modal window
    */
   openServicesInfo() {
+    const initialState = {
+      organizationId: this.organizationId,
+      // serviceId: service.service_group_id,
+    };
+
+    this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
 
   }
 
   /**
-   * Open rules info modal window // TO BE DESIGNED
+   * Open rules info modal window
    */
   openRulesInfo() {
+    const initialState = {
+      organizationId: this.organizationId,
+    };
+
+    this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
 
   }
 

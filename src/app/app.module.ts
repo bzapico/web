@@ -99,7 +99,8 @@ import { RuleInfoComponent } from './rule-info/rule-info.component';
     AddLabelComponent,
     RegisterApplicationComponent,
     DeployInstanceComponent,
-    ServiceInstancesInfoComponent
+    ServiceInstancesInfoComponent,
+    RuleInfoComponent
   ],
   imports: [
     BrowserModule,
