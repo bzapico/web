@@ -48,6 +48,7 @@ import { RegisterApplicationComponent } from './register-application/register-ap
 import { DeployInstanceComponent } from './deploy-instance/deploy-instance.component';
 import { FileDropModule } from 'ngx-file-drop';
 import { InstanceInfoComponent } from './instance-info/instance-info.component';
+import { ServiceInstancesInfoComponent } from './service-instances-info/service-instances-info.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { InstanceInfoComponent } from './instance-info/instance-info.component';
     RegisteredInfoComponent,
     RegisterApplicationComponent,
     DeployInstanceComponent,
-    InstanceInfoComponent
+    InstanceInfoComponent,
+    ServiceInstancesInfoComponent
   ],
   entryComponents: [
     DebugPanelComponent,
