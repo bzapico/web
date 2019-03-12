@@ -1,0 +1,603 @@
+<!-- Component title -->
+<div class="row row-title mb-4">
+  <div class="col-lg-12">
+    <h2>Applications</h2>
+  </div>
+</div>
+<div class="row h-ins">
+  <div class="col-4 h-100">
+    <div class="ins-flex-col">
+      <!-- Application instances id card -->
+      <div class="card h-ins-info flex-grow-0">
+        <div class="card-title-c">
+          <h5>
+            <a 
+              [routerLink]="['/applications']" 
+              routerLinkActive="active" 
+              class="blue">
+              APPS
+            </a>
+            <span class="grey text-uppercase">
+              > {{instance.name}}
+            </span>
+          </h5>
+        </div>
+          <div class="summary-card">
+            <div class="ins-info-box">
+                <table class="table summary-instances-table">
+                    <tr>
+                      <th class="grey">Status</th>
+                      <td 
+                        class="summary-instances-status"
+                        [ngClass]= 
+                          "{
+                            'blue': classStatusCheck(instance.status_name, 'running'),
+                            'red': classStatusCheck(instance.status_name, 'error'),
+                            'orange':classStatusCheck(instance.status_name, 'process')
+                          }">
+                        {{instance.status_name}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th class="grey">Instance of</th>
+                      <td class="dark-grey">WORDPRESS</td> 
+                    </tr>
+                    <tr>
+                      <th class="grey">ID</th>
+                      <td class="dark-grey">{{instance.app_instance_id}}</td>
+                    </tr>
+                    <tr>
+                      <th class="grey hide-sm">Registered app ID</th>
+                        <td class="dark-grey hide-sm">{{instance.app_descriptor_id}}</td> 
+                    </tr>
+                    <tr>
+                      <th class="grey">Groups</th>
+                      <td class="summary-instances-data">2</td> 
+                    </tr>
+                    <tr>
+                      <th class="grey">Services</th>
+                      <td class="summary-instances-data">4</td> 
+                    </tr>
+                  </table>
+            </div>
+              <button 
+                class="btn-undeploy button-padding-fix"
+                (click)="undeploy(app)">
+                <i class="material-icons i-options">close</i>
+                Undeploy application
+              </button>
+          </div>
+      </div>
+      <!-- Labels card-->
+      <div class="card h-ins-labels flex-grow-1">
+        <div class="card-title-c hide-title-sm">
+          <h5>LABELS</h5>
+        </div>
+        <div class="ins-labels">
+          <div  *ngFor="let label of objectToString(instance.labels)">
+            <button class="btn-sm btn-outline-primary" disabled>
+              {{label[0]}}: {{label[1]}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-8 h-100">
+    <div class="ins-flex-col">
+      <!-- Grapho card -->
+      <div *ngIf="showGraph" class="card h-ins-services flex-grow-1">
+        <div class="row">
+          <div class="col-10 card-title-h">
+            <h5>SERVICE</h5>
+          </div>
+          <div class="col-2">
+            <div class="show-graph-icons">
+              <i 
+                tooltip="Services" 
+                placement="left"
+                class="material-icons float-right"   
+                [ngClass]="!showGraph ? 'blue' : 'grey'"
+                (click)="showWindowGraph()">
+                view_list
+              </i>
+              <i 
+                tooltip="Graph" 
+                placement="left"
+                class="material-icons float-right mr-bars" 
+                (click)="showWindowGraph()"
+                [ngClass]="showGraph ? 'blue' : 'grey'">
+                bar_chart
+              </i>
+            </div> 
+          </div>
+        </div>
+        <div class="graph">
+          <ngx-graph
+            class="chart-container"
+            [view]="view"
+            [legend]="showLegend"
+            [links]="graphData.links"
+            [nodes]="graphData.nodes"
+            [scheme]="colorScheme"
+            [orientation]="orientation"
+            [autoZoom]="autoZoom"
+            [autoCenter]="autoCenter"
+            [curve]="curve"
+            [enableZoom]="enableZoom">
+            <ng-template #nodeTemplate let-node>
+              <svg:g 
+                class="node"
+                ngx-tooltip
+                [tooltipPlacement]="'top'"
+                [tooltipType]="'tooltip'"
+                [tooltipTitle]="node.tooltip">
+                <svg:rect 
+                [attr.width]="node.width" 
+                [attr.height]="node.height" 
+                [attr.fill]="node.color" 
+                rx="14" 
+                ry="14"/>
+                <svg:text 
+                  alignment-baseline="central" 
+                  [attr.x]="10" 
+                  [attr.y]="node.height / 2">
+                  {{node.label}}
+                </svg:text>
+              </svg:g>
+            </ng-template>
+            <ng-template #linkTemplate let-link>
+              <svg:g class="edge">
+                <svg:path
+                  stroke-width="2"
+                  class="line"
+                  d="M 0,30 h100"
+                  >
+                </svg:path>
+              </svg:g>
+            </ng-template>
+          </ngx-graph>
+        </div>
+      </div>
+      <!-- Services card -->
+      <div *ngIf="!showGraph" class="card h-ins-services flex-grow-1">
+        <div class="row">
+          <div class="col-10 card-title-h">
+            <h5>SERVICES</h5>
+          </div>
+            <div class="col-2">
+              <div class="show-graph-icons">
+                <i 
+                  tooltip="Services" 
+                  placement="left"
+                  class="material-icons float-right"   
+                  [ngClass]="!showGraph ? 'blue' : 'grey'"
+                  (click)="showWindowGraph()">
+                  view_list
+                </i>
+                <i 
+                  tooltip="Graph" 
+                  placement="left"
+                  class="material-icons float-right mr-bars" 
+                  (click)="showWindowGraph()"
+                  [ngClass]="showGraph ? 'blue' : 'grey'">
+                  bar_chart
+                </i>
+              </div> 
+          </div>
+        </div>
+        <!-- Services tabs -->
+        <div class="row">
+          <div class="col">
+            <div class="nalej-tab-container">
+              <ul>
+                <li 
+                  *ngIf="displayedGroupsNamesLength < maxLabelsLength" 
+                  class="nalej-tab nalej-tab-title">
+                  <span class="grey">GROUPS</span>
+                </li>
+                <li 
+                  *ngIf="groups.length > 0" 
+                  class="nalej-tab" 
+                  (click)="changeActiveGroup('ALL')">
+                  <span [ngClass]="amIactive('ALL')">ALL</span>
+                </li>
+                <li 
+                  *ngIf="groups.length === 0" 
+                  class="nalej-tab">
+                  <span class="active">ALL</span>
+                </li>
+                <li 
+                  [ngClass]="haveIGroups(groups)" 
+                  (click)="swipeLeft()" 
+                  class="tabs-arrow">
+                  <i class="material-icons">arrow_left</i>
+                </li>
+                <!-- TODO -->
+                <li 
+                  *ngFor="let group of displayedGroups" 
+                  class="nalej-tab" 
+                  (click)="changeActiveGroup()">
+                  <span 
+                    *ngIf="displayedGroups.length > 0" 
+                    [ngClass]="amIactive()">
+                    Group 1
+                  </span>
+                </li>
+                <li 
+                  [ngClass]="haveIGroups(groups)" 
+                  (click)="swipeRight()" 
+                  class="tabs-arrow">
+                  <i class="material-icons">arrow_right</i>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-between">
+          <!-- Sorting mesages -->
+          <div class="col-9">
+            <p *ngIf="searchTerm && !filterField" class="sorting-message">
+              Filtered by term "{{ searchTerm }}".
+              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+            </p>
+            <p *ngIf="filterField && !searchTerm" class="sorting-message">
+              Sorted by {{ sortedBy }},
+              <span *ngIf="reverse">ascendant. </span>
+              <span *ngIf="!reverse">descendant. </span>
+              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+            </p>
+            <p *ngIf="filterField && searchTerm" class="sorting-message">
+              Sorted by {{ sortedBy }}
+              <span *ngIf="reverse">ascendant </span>
+              <span *ngIf="!reverse">descendant </span>
+              and filtered by term "{{ searchTerm }}".
+              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+            </p>
+          </div>
+          <!-- Search input -->
+          <div class="col-3">
+            <form>
+              <div class="search-box">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  name="searchTerm" 
+                  placeholder="Search..."
+                  [(ngModel)]="searchTerm">
+                <div class="search-icon" *ngIf="searchTerm === ''">
+                  <i class="material-icons">search</i>
+                </div>
+                <div class="close-icon" *ngIf="searchTerm !== ''">
+                  <i class="material-icons" (click)="resetFilters(filterField)">close</i>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- No services to show -->
+        <div *ngIf="activeGroupId!== 'ALL' && countGroupServices(activeGroupId) === 0"
+          class="no-info-in-group d-flex justify-content-center align-items-center">
+          No available services in this group
+        </div>
+        <!-- LAYOUT Services table -->
+        <div class="table-h">
+          <table class="table-responsive table-fixed">
+            <thead>
+              <tr>
+                <th 
+                  (click)="setOrder('name')" 
+                  [ngClass]="getCategoryCSSClass('name')" 
+                  scope="col" 
+                  class="col-2">
+                  Name
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'name' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'name' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  (click)="setOrder('replicas')" 
+                  [ngClass]="getCategoryCSSClass('replicas')" 
+                  scope="col" 
+                  class="col-2 text-center">
+                  Replicas
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'replicas' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'replicas' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th> 
+                <th 
+                  (click)="setOrder('status')" 
+                  [ngClass]="getCategoryCSSClass('status')" 
+                  scope="col" 
+                  class="col-3">
+                  Status
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'status' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'status' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  (click)="setOrder('endpoints')" 
+                  [ngClass]="getCategoryCSSClass('endpoints')" 
+                  scope="col" 
+                  class="col-4">
+                  Endpoints
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'endpoints' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span 
+                    class="expand-chevron" 
+                    *ngIf="sortedBy === 'endpoints' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  scope="col" 
+                  class="col-1 text-center p-0">
+                  Info
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <span >
+                <td class="col-2">simple-mysql</td>
+                <td class="col-2 text-center">3</td>
+                <td class="col-3">SERVICE_WAITING</td>
+                <td class="col-4">http://mysql.dashborad.com</td>
+                <td class="col-1 text-center">
+                  <button 
+                    class="btn info-btn btn-primary"  
+                    tooltip="Info" 
+                    placement="left" 
+                    (click)="openServicesInfo()">
+                    <span class="i-info">i</span>
+                  </button>
+                </td>
+              </span>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- No info to show -->
+        <div *ngIf="loadedData && !requestError && groups.length === 0"
+          class="no-info d-flex justify-content-center align-items-center">
+          No available services
+        </div>
+        <!-- Requested error -->
+        <div *ngIf="loadedData && requestError" class="no-elements d-flex justify-content-center align-items-center">
+          <p>{{ requestError }}</p>
+        </div>
+        <!-- Loader -->
+        <div class="nalej-loader-container" *ngIf="!loadedData">
+          <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+              <circle 
+                class="path" 
+                cx="50" 
+                cy="50" 
+                r="20" 
+                fill="none" 
+                stroke-width="2" 
+                stroke-miterlimit="10" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="h-ins-rules flex-grow-0">
+        <!-- Rules card -->
+        <div class="card h-100 mr-4 w-75">
+          <div class="card-title-c">
+            <h5>RULES</h5>
+          </div>
+          <div class="row hide-sm">
+            <!-- Sorting mesages -->
+            <div class="col">
+              <p *ngIf="searchTerm && !filterField" class="sorting-message">
+                Filtered by term "{{ searchTerm }}".
+                <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+              </p>
+              <p *ngIf="filterField && !searchTerm" class="sorting-message">
+                Sorted by {{ sortedBy }},
+                <span *ngIf="reverse">ascendant. </span>
+                <span *ngIf="!reverse">descendant. </span>
+                <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+              </p>
+              <p *ngIf="filterField && searchTerm" class="sorting-message">
+                Sorted by {{ sortedBy }}
+                <span *ngIf="reverse">ascendant </span>
+                <span *ngIf="!reverse">descendant </span>
+                and filtered by term "{{ searchTerm }}".
+                <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+              </p>
+            </div>
+            <!-- Search input -->
+            <div class="col-6">
+              <form>
+                <div class="search-box">
+                  <input type="text" class="form-control" name="searchTerm" placeholder="Search..."
+                    [(ngModel)]="searchTerm">
+                  <div class="search-icon" *ngIf="searchTerm === ''">
+                    <i class="material-icons">search</i>
+                  </div>
+                  <div class="close-icon" *ngIf="searchTerm !== ''">
+                    <i class="material-icons" (click)="resetFilters(filterField)">close</i>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- Rules table -->
+          <div class="table-h table-h-fix" *ngIf="loadedData && instances && instances.length > 0 && !requestError">
+            <table class="table-responsive table-fixed">
+              <thead class="hide-sm">
+                <tr>
+                  <th 
+                    (click)="setOrder('name')" 
+                    [ngClass]="getCategoryCSSClass('name')" 
+                    scope="col" 
+                    class="col-2">
+                    Name
+                    <span 
+                      class="expand-chevron" 
+                      *ngIf="sortedBy === 'name' && !reverse">
+                      <i class="material-icons">expand_more</i>
+                    </span>
+                    <span 
+                      class="expand-chevron" 
+                      *ngIf="sortedBy === 'name' && reverse">
+                      <i class="material-icons">expand_less</i>
+                    </span>
+                  </th>
+                  <th 
+                    (click)="setOrder('access')" 
+                    [ngClass]="getCategoryCSSClass('access')" 
+                    scope="col" 
+                    class="col-2">
+                    Access
+                    <span 
+                      class="expand-chevron" 
+                      *ngIf="sortedBy === 'access' && !reverse">
+                      <i class="material-icons">expand_more</i>
+                    </span>
+                    <span 
+                      class="expand-chevron" 
+                      *ngIf="sortedBy === 'access' && reverse">
+                      <i class="material-icons">expand_less</i>
+                    </span>
+                  </th>
+                  <th 
+                    (click)="setOrder('target')" 
+                    [ngClass]="getCategoryCSSClass('target')" 
+                    scope="col"
+                    class="col-4">
+                    Target <span class="grey typo-small">(group, service, port)</span>
+                    <span 
+                      class="expand-chevron" 
+                      *ngIf="sortedBy === 'target' && !reverse">
+                      <i class="material-icons">expand_more</i>
+                    </span>
+                    <span 
+                      class="expand-chevron" 
+                      *ngIf="sortedBy === 'target' && reverse">
+                      <i class="material-icons">expand_less</i>
+                    </span>
+                  </th>
+                  <th 
+                    (click)="setOrder('auth')" 
+                    [ngClass]="getCategoryCSSClass('auth')" 
+                    scope="col" 
+                    class="col-3">
+                    Auth <span class="grey typo-small">(group, service)</span>
+                    <span 
+                      class="expand-chevron" 
+                      *ngIf="sortedBy === 'auth' && !reverse">
+                      <i class="material-icons">expand_more</i>
+                    </span>
+                    <span 
+                      class="expand-chevron" 
+                      *ngIf="sortedBy === 'auth' && reverse">
+                      <i class="material-icons">expand_less</i>
+                    </span>
+                  </th>
+                  <th 
+                    scope="col" 
+                    class="col-1 text-center p-0">
+                    Info
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let rule of instance.rules | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+                  <td class="col-2">
+                    <a 
+                      class="blue text-capitalize text-left">
+                      {{rule.name | truncate}}
+                    </a>
+                  </td>
+                  <td class="col-2 text-lowercase">{{rule.access_name}}</td>
+                  <td class="col-4">
+                      {{rule.target_service_name}} - {{rule.target_service_name}} - {{rule.target_port}}
+                  </td>
+                  <td class="text-lowercase col-3">
+                      {{rule.auth_service_group_name}}
+                      <span *ngIf="rule.auth_services"> - </span>
+                      {{rule.auth_services}}
+                  </td>
+                  <td class="col-1 text-center">
+                    <button 
+                      class="btn info-btn btn-primary"  
+                      tooltip="Info" 
+                      placement="left" 
+                      (click)="openRulesInfo()">
+                      <span class="i-info">i</span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- No info to show -->
+          <div *ngIf="loadedData && instances && instances.length === 0 !requestError"
+            class="no-info d-flex justify-content-center align-items-center">
+            No available rules detected
+          </div>
+          <!-- Requested error -->
+          <div *ngIf="loadedData && requestError" class="no-elements d-flex justify-content-center align-items-center">
+            <p>{{requestError}}</p>
+          </div>
+          <!-- Loader -->
+          <div class="nalej-loader-container" *ngIf="!loadedData">
+            <div class="loader">
+              <svg class="circular" viewBox="25 25 50 50">
+                <circle 
+                  class="path" 
+                  cx="50" 
+                  cy="50" 
+                  r="20" 
+                  fill="none" 
+                  stroke-width="2" 
+                  stroke-miterlimit="10" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <!-- Configuration card -->
+        <div class="card h-100">
+          <div class="card-title-c">
+            <h5 class="hide-sm">CONFIGURATION</h5>
+            <h5 class="show-sm">CONF...</h5>
+          </div>
+          <div class="config-card">
+            <p class="grey text-left">Enviroment variables</p>
+            <p>No enviroment variables have been set</p>
+            <p class="grey text-left">Other settings</p>
+            <p>No extra settings have been set</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

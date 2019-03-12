@@ -31,7 +31,8 @@ export const AvailableComponents = {
   createdGroup: 'Group Created',
   deployInstance: 'Deploy instance',
   registeredInfo: 'Registered Info',
-  registerApp: 'Register app'
+  registerApp: 'Register app',
+  instanceInfo: 'Instance Info'
 };
 
 @Component({
@@ -133,6 +134,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.registerApp,
       mock: localStorage.getItem(LocalStorageKeys.registerAppMock) === 'false' ? 'false' : 'true'
     });
+    this.components.push({
+      name: AvailableComponents.instanceInfo,
+      mock: localStorage.getItem(LocalStorageKeys.instanceInfoMock) === 'false' ? 'false' : 'true'
+    });
   }
 
   /**
@@ -164,6 +169,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.deployInstanceMock, newValue);
     localStorage.setItem(LocalStorageKeys.registeredInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.registerAppMock, newValue);
+    localStorage.setItem(LocalStorageKeys.instanceInfoMock, newValue);
   }
 
   /**
@@ -232,6 +238,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.registerApp:
         localStorage.setItem(LocalStorageKeys.registerAppMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.instanceInfo:
+        localStorage.setItem(LocalStorageKeys.instanceInfoMock, componentMockOption.mock);
       break;
       default:
         console.log('Selected option not registered as available component');
