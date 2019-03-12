@@ -3,67 +3,78 @@
       <div class="modal-content">
         <!-- Header -->
         <div class="modal-header">
-          <h3 class="rule-title mb-4">Rule info</h3>
+          <h3 class="service-title mb-4">Service info</h3>
         </div>
         <!-- Body -->
         <div class="modal-body">
-        <h3 class="rule-h3-title">{{ruleName}}</h3>
-        <p class="rule-title">{{ruleId}}</p>
+        <h3 class="service-h3-title">{{serviceName}}</h3>
+        <p class="service-title">alksjdlakjsdlaksjd</p>
+        <p class="service-title">{{serviceId}}</p>
         <div id="scroll-app-info">
           <div class="row">
-            <div class="col-sm grey mb-3">Access</div>
-            <div class="col-sm text-right rule-access">{{ruleAccess}}</div>
+            <div class="col-sm grey mb-3">Replicas</div>
+            <!-- <div class="col-sm text-right">3</div> -->
+            <h3 class="service-h3-title col-sm text-right">3</h3>
           </div>
           <br>
+
           <div class="row">
-            <div class="col-sm grey mb-3">Target</div>
+            <div class="col-sm grey mb-3">Exposed ports</div>
           </div>
           <div class="row">
             <div class="col-sm-2"></div>
-            <div class="col-sm-4 grey">Group</div>
-            <div class="col-sm text-right">{{ruleTargetServiceName}}</div>
+            <div class="col-sm-4 grey">Port</div>
+            <div class="col-sm text-right">asdasd</div>
           </div>
           <div class="row">
             <div class="col-sm-2"></div>
-            <div class="col-sm-4  grey">Services</div>
-            <div class="col-sm text-right">{{ruleTargetServiceGroupName}}</div>
+            <div class="col-sm-4  grey">Internal</div>
+            <div class="col-sm text-right">asdasd</div>
           </div>
           <div class="row">
             <div class="col-sm-2"></div>
-            <div class="col-sm-4  grey">Port</div>
-            <div class="col-sm text-right text-lowercase">{{ruleTargetPort}}</div>
+            <div class="col-sm-4  grey">External</div>
+            <div class="col-sm text-right text-lowercase">asdasd</div>
           </div>
           <br>
+
           <div class="row">
-            <div class="col-sm grey mb-3">Auth</div>
+            <div class="col-sm grey mb-3">Endpoints</div>
           </div>
           <div class="row">
             <div class="col-sm-2"></div>
-            <div class="col-sm-4 grey">Group</div>
-            <div class="col-sm text-right">{{ruleAuthServiceGroupName}}</div>
-          </div>
-          <div class="row" *ngFor="let auth of ruleAuthServices; let i = index">
-            <div class="col-sm-2"></div>
-            <div *ngIf="i === 0" class="col-sm-4 grey">Services</div>
-            <div *ngIf="i !== 0" class="col-sm"></div>
-            <div class="col-sm text-right">{{auth}}</div>
+            <div class="col-sm-4 grey">Port</div>
+            <div class="col-sm text-right">asdasd</div>
           </div>
           <div class="row">
             <div class="col-sm-2"></div>
-            <div class="col-sm-4 grey">Devices</div>
-            <div class="col-sm text-right text-lowercase">{{ruleDeviceGroupIds}}</div>
+            <div class="col-sm-4  grey">Type</div>
+            <div class="col-sm text-right">asdasd</div>
           </div>
           <div class="row">
             <div class="col-sm-2"></div>
-            <div class="col-sm-4 grey">Devices group</div>
-            <div class="col-sm text-right text-lowercase">{{ruleDeviceGroupNames}}</div>
+            <div class="col-sm-4  grey">Path</div>
+            <div class="col-sm text-right text-lowercase">asdasd</div>
           </div>
           <br>
+
+          <div class="row">
+            <div class="col-sm grey mb-3">Service group ID</div>
+            <div class="col-sm text-right">3asdasdasd</div>
+          </div>
+          <br>
+
           <div class="row">
             <div class="col-sm grey mb-3">App descriptor ID</div>
-            <div class="col-sm text-right">{{ruleAppDescriptorId}}</div>
+            <div class="col-sm text-right">asdasdad</div>
           </div>
             <br>
+
+            <div class="row">
+              <div class="col-sm grey mb-3">Labels</div>
+              <div class="col-sm text-right">NO</div>
+            </div>
+              <br>
         </div>      
         <!-- Option button -->
         <div class="buttons d-flex flex-row justify-content-center">

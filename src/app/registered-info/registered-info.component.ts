@@ -51,6 +51,11 @@ export class RegisteredInfoComponent implements OnInit {
   services: any[];
 
   /**
+   * Count of total services for summary card
+   */
+  servicesCount: number;
+
+  /**
    * Model that hold descriptor ID
    */
   descriptorId: string;
@@ -167,6 +172,8 @@ export class RegisteredInfoComponent implements OnInit {
       this.backend = backendService;
     }
     // Default initialization
+    this.services = [];
+    this.servicesCount = 0;
     this.instances = [];
     this.registered = [];
     this.labels = [];
@@ -189,83 +196,15 @@ export class RegisteredInfoComponent implements OnInit {
      this.autoCenter = true;
      this.enableZoom = true;
      this.draggingEnabled = false;
-    //  this.view = [605, 250];
      this.colorScheme = {
        domain: ['#6C86F7']
      };
     // TODO
      this.graphData = {
-       nodes: [
-        {
-          id: 'start',
-          label: 'start',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '1',
-          label: 'Query ThreatConnect',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '2',
-          label: 'Query XForce',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '7',
-          label: 'Query ThCt',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '3',
-          label: 'Format Results',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '4',
-          label: 'Search Splunk',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '5',
-          label: 'Block LDAP',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '6',
-          label: 'Email Results',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }
-       ],
-       links: [
-        {
-          source: 'start',
-          target: '1',
-          label: 'links to'
-        }, {
-          source: 'start',
-          target: '2'
-        }, {
-          source: 'start',
-          target: '7'
-        }, {
-          source: '1',
-          target: '3',
-          label: 'related to'
-        }, {
-          source: '2',
-          target: '4'
-        }, {
-          source: '2',
-          target: '6'
-        }, {
-          source: '3',
-          target: '5'
-        }
-       ]
+       nodes: [],
+       links: []
      };
-    // this.registered = mockRegisteredAppsList; // Initialization to avoid null in view
+    this.registered = mockRegisteredAppsList; // Initialization to avoid null in view
      this.nalejColorScheme = [
        '#1725AE',
        '#040D5A',
@@ -286,17 +225,35 @@ export class RegisteredInfoComponent implements OnInit {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
         if (this.organizationId !== null) {
-          this.updateGroupsList(this.organizationId);
           this.updateRegisteredInstances(this.organizationId);
           this.updateAppInstances(this.organizationId);
         }
         this.updateDisplayedGroupsNamesLength();
     }
     this.backend.getAppDescriptor(this.organizationId, this.descriptorId)
-      .subscribe(registered => {
-        console.log(registered);
-        this.registeredData = registered;
+      .subscribe(registeredResponse => {
+        this.registeredData = registeredResponse || [];
+        this.initDisplayedGroups(registeredResponse);
+        this.toGraphData(registeredResponse);
+        if (!this.loadedData) {
+          this.loadedData = true;
+        }
+      }, errorResponse => {
+        this.loadedData = true;
+        this.requestError = errorResponse.error.message;
       });
+  }
+
+  /**
+   *  Displayed groups initialization
+   * @param registeredResponse registered data response
+   */
+  initDisplayedGroups(registeredResponse) {
+    if (this.displayedGroups.length === 0 && registeredResponse.groups.length > 0) {
+      for (let index = 0; index < registeredResponse.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
+        this.displayedGroups.push(registeredResponse.groups[index]);
+      }
+    }
   }
 
   /**
@@ -330,34 +287,6 @@ export class RegisteredInfoComponent implements OnInit {
         this.loadedData = true;
         this.requestError = errorResponse.error.message;
       });
-    }
-  }
-
-  /**
-   * Requests an updated list of services to update the current one
-   * @param organizationId organization identifier
-   */
-  updateServicesList(organizationId: string) {
-    const tmpServices = [];
-    if (organizationId !== null) {
-      // Request to get services
-      if (this.groups.length > 0) {
-        this.groups.forEach(group => {
-          this.backend.getRegisteredApps(this.organizationId)
-          .subscribe(response => {
-              tmpServices.push(response.services || []);
-              if (!this.loadedData) {
-                this.loadedData = true;
-              }
-              if (tmpServices.length === this.groups.length) {
-                this.services = tmpServices;
-              }
-            }, errorResponse => {
-              this.loadedData = true;
-              this.requestError = errorResponse.error.message;
-            });
-          });
-      }
     }
   }
 
@@ -576,6 +505,8 @@ export class RegisteredInfoComponent implements OnInit {
   /**
    * Displayed groups list swipes left by pressing the arrow button functionality
    */
+
+   // TODO:
   swipeLeft() {
     const index = this.groups.map(x => x.service_group_id).indexOf(this.displayedGroups[0].service_group_id);
     if (index !== -1 && index > 0) {
@@ -589,38 +520,14 @@ export class RegisteredInfoComponent implements OnInit {
    * Displayed groups list swipes right by pressing the arrow button functionality
    */
   swipeRight() {
-    const index = this.groups.map(x => x.service_group_id).indexOf(this.displayedGroups[this.displayedGroups.length - 1].service_group_id);
+    const index = this.groups
+    .map(x => x.service_group_id)
+    .indexOf(this.displayedGroups[this.displayedGroups.length - 1].service_group_id);
     if (index !== -1 && this.groups[index + 1]) {
       this.displayedGroups.push(this.groups[index + 1]);
       this.displayedGroups.shift();
     }
     this.updateDisplayedGroupsNamesLength();
-  }
-
-  /**
-   * Requests an updated list of available services group to update the current one
-   * @param organizationId Organization identifier
-   */
-  updateGroupsList(organizationId: string) {
-    if (organizationId !== null) {
-      // Requests an updated services group list
-      this.backend.getGroups(this.organizationId)
-      .subscribe(response => {
-        this.groups = response.groups || [];
-        if (this.displayedGroups.length === 0 && this.groups.length > 0) {
-          for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
-            this.displayedGroups.push(this.groups[index]);
-          }
-        }
-        this.updateDisplayedGroupsNamesLength();
-        if (!this.loadedData) {
-          this.loadedData = true;
-        }
-      }, errorResponse => {
-          this.loadedData = true;
-          this.requestError = errorResponse.error.message;
-        });
-    }
   }
 
   /**
@@ -679,7 +586,7 @@ export class RegisteredInfoComponent implements OnInit {
         group: group.service_group_id
       };
       this.graphData.nodes.push(nodeGroup);
-      group.service_id.forEach(service => {
+      group.services.forEach(service => {
         const nodeService = {
           id: group.service_group_id + '-s-' + service.service_id,
           label: service.name,
@@ -729,12 +636,25 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Gets the registered apps array list and traverse the group array list to show services in table
+   * Returns the length of the services in registered list. Represents the number of available services
+   * @param registered selected registered
    */
-  getRegisteredApps() {
+  getServicesCount(registered) {
+    let temporalCount = 0;
+    registered.groups.forEach(group => {
+      temporalCount = group.services.length + temporalCount;
+    });
+    return temporalCount;
+  }
+
+  /**
+   * Gets the services array list and traverse the group array list to show in table
+   */
+  getServices() {
     const groupServices = [];
     this.services.forEach(group => {
       group.forEach(service => {
+
         groupServices.push(service);
       });
     });
@@ -750,7 +670,7 @@ export class RegisteredInfoComponent implements OnInit {
       return this.countServices();
     }
     let services = 0;
-    const servicesList = this.getRegisteredApps();
+    const servicesList = this.getServices();
     servicesList.forEach(service => {
       if (service.service_group_id === groupId) {
         services += 1;
@@ -778,6 +698,17 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
+   * Transforms objects to arrays to be parsed to string and performed in the view
+   * @param object Key-value map that contains the object
+   */
+  objectToString(object: any) {
+    if (!object) {
+      return ['--'];
+    }
+    return Object.entries(object);
+  }
+
+  /**
    * Shows the graph in services card
    */
   showWindowGraph() {
@@ -785,42 +716,43 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Open serivces info modal window
-   */
-  openServicesInfo(service) {
-    console.log('rule desde open', service);
-    const initialState = {
-      organizationId: this.organizationId,
-      serviceId: service.service_group_id,
-    };
+  * Open serivces info modal window
+  */
+ openServicesInfo(service) {
+   console.log('service desde open', service);
+   const initialState = {
+     organizationId: this.organizationId,
+     serviceId: service.service_group_id,
+     serviceName: service.name
+   };
 
-    this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.modalRef.content.closeBtnName = 'Close';
+   this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+   this.modalRef.content.closeBtnName = 'Close';
 
-  }
+ }
 
-  /**
-   * Open rules info modal window
-   */
-  openRulesInfo(rule) {
-    const initialState = {
-      organizationId: this.organizationId,
-      ruleId: rule.rule_id,
-      ruleAccess: rule.access,
-      ruleAppDescriptorId: rule.app_descriptor_id,
-      ruleAuthServices: rule.auth_services,
-      ruleAuthServiceGroupName: rule.auth_service_group_name,
-      ruleName: rule.name,
-      ruleTargetPort: rule.target_port,
-      ruleTargetServiceGroupName: rule.target_service_group_name,
-      ruleTargetServiceName: rule.target_service_name,
-      ruleDeviceGroupIds: rule.device_group_ids,
-      ruleDeviceGroupNames: rule.device_group_names
-    };
+ /**
+  * Open rules info modal window
+  */
+ openRulesInfo(rule) {
+   const initialState = {
+     organizationId: this.organizationId,
+     ruleId: rule.rule_id,
+     ruleAccess: rule.access,
+     ruleAppDescriptorId: rule.app_descriptor_id,
+     ruleAuthServices: rule.auth_services,
+     ruleAuthServiceGroupName: rule.auth_service_group_name,
+     ruleName: rule.name,
+     ruleTargetPort: rule.target_port,
+     ruleTargetServiceGroupName: rule.target_service_group_name,
+     ruleTargetServiceName: rule.target_service_name,
+     ruleDeviceGroupIds: rule.device_group_ids,
+     ruleDeviceGroupNames: rule.device_group_names
+   };
 
-    this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.modalRef.content.closeBtnName = 'Close';
+   this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+   this.modalRef.content.closeBtnName = 'Close';
 
-  }
+ }
 
 }

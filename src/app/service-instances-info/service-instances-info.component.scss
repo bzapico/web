@@ -3,7 +3,7 @@
 }
 #scroll-app-info {
     margin: 3.5em 0;
-    height: 405px;
+    height: 474px;
     overflow-y: scroll;
     overflow-x: hidden;
     font-size:  .9em;
@@ -18,17 +18,14 @@
       -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
     }
 }
-.rule-h3-title {
+.service-h3-title {
     font-size: 1.5rem;
     margin-bottom: 0.1rem;
 }
-.rule-access {
-    font-size: 1.4em;
-    color: #0937FF;
-}
-.rule-title {
+.service-title {
     font-size: .9em;
     color:  #949494;
+    margin-bottom: 0;
 }
 .btn-primary {
     text-indent: -7px;
