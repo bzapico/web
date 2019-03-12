@@ -239,8 +239,7 @@
                 tooltip="Info"
                 placement="top"
                 class="text-capitalize col-2 app-info" 
-                [routerLink]="['instance', app.app_instance_id]" 
-                routerLinkActive="active"
+                (click)="openAppsInfo(app)"
                 >
                 {{app.name}}
               </td>
