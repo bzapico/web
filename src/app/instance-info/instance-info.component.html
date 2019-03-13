@@ -164,7 +164,7 @@
       <div *ngIf="!showGraph" class="card h-ins-services flex-grow-1">
         <div class="row">
           <div class="col-10 card-title-h">
-            <h5>SERVICES</h5>
+            <h5>SERVICE INSTANCES</h5>
           </div>
             <div class="col-2">
               <div class="show-graph-icons">
@@ -195,7 +195,7 @@
                 <li 
                   *ngIf="displayedGroupsNamesLength < maxLabelsLength" 
                   class="nalej-tab nalej-tab-title">
-                  <span class="grey">GROUPS</span>
+                  <span class="grey">GROUP INSTANCES</span>
                 </li>
                 <li 
                   *ngIf="groups && groups.length > 0" 
@@ -214,7 +214,6 @@
                   class="tabs-arrow">
                   <i class="material-icons">arrow_left</i>
                 </li>
-                <!-- TODO -->
                 <li 
                   *ngFor="let group of displayedGroups" 
                   class="nalej-tab" 
@@ -240,20 +239,20 @@
           <div class="col-9">
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
               Filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+              <span class="blue reset-search" (click)="resetFilters('services')">Reset</span>
             </p>
             <p *ngIf="filterField && !searchTerm" class="sorting-message">
               Sorted by {{ sortedBy }},
               <span *ngIf="reverse">ascendant. </span>
               <span *ngIf="!reverse">descendant. </span>
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+              <span class="blue reset-search" (click)="resetFilters('services')">Reset</span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
               Sorted by {{ sortedBy }}
               <span *ngIf="reverse">ascendant </span>
               <span *ngIf="!reverse">descendant </span>
               and filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+              <span class="blue reset-search" (click)="resetFilters('services')">Reset</span>
             </p>
           </div>
           <!-- Search input -->
@@ -270,7 +269,7 @@
                   <i class="material-icons">search</i>
                 </div>
                 <div class="close-icon" *ngIf="searchTerm !== ''">
-                  <i class="material-icons" (click)="resetFilters(filterField)">close</i>
+                  <i class="material-icons" (click)="resetFilters('services')">close</i>
                 </div>
               </div>
             </form>
@@ -287,8 +286,8 @@
             <thead>
               <tr>
                 <th 
-                  (click)="setOrder('name')" 
-                  [ngClass]="getCategoryCSSClass('name')" 
+                  (click)="setOrder('services','name')" 
+                  [ngClass]="getCategoryCSSClass('services','name')" 
                   scope="col" 
                   class="col-2">
                   Name
@@ -304,8 +303,8 @@
                   </span>
                 </th>
                 <th 
-                  (click)="setOrder('replicas')" 
-                  [ngClass]="getCategoryCSSClass('replicas')" 
+                  (click)="setOrder('services','replicas')" 
+                  [ngClass]="getCategoryCSSClass('services','replicas')" 
                   scope="col" 
                   class="col-2 text-center">
                   Replicas
@@ -321,8 +320,8 @@
                   </span>
                 </th> 
                 <th 
-                  (click)="setOrder('status')" 
-                  [ngClass]="getCategoryCSSClass('status')" 
+                  (click)="setOrder('services','status')" 
+                  [ngClass]="getCategoryCSSClass('services','status')" 
                   scope="col" 
                   class="col-3">
                   Status
@@ -338,8 +337,8 @@
                   </span>
                 </th>
                 <th 
-                  (click)="setOrder('endpoints')" 
-                  [ngClass]="getCategoryCSSClass('endpoints')" 
+                  (click)="setOrder('services','endpoints')" 
+                  [ngClass]="getCategoryCSSClass('services','endpoints')" 
                   scope="col" 
                   class="col-4">
                   Endpoints
@@ -421,22 +420,22 @@
           <div class="row hide-sm">
             <!-- Sorting mesages -->
             <div class="col">
-              <p *ngIf="searchTermRules && !filterField" class="sorting-message">
+              <p *ngIf="searchTermRules && !filterFieldRules" class="sorting-message">
                 Filtered by term "{{ searchTermRules }}".
-                <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+                <span class="blue reset-search" (click)="resetFilters('rules')">Reset</span>
               </p>
-              <p *ngIf="filterField && !searchTermRules" class="sorting-message">
-                Sorted by {{ sortedBy }},
+              <p *ngIf="filterFieldRules && !searchTermRules" class="sorting-message">
+                Sorted by {{ sortedByRules }},
                 <span *ngIf="reverse">ascendant. </span>
                 <span *ngIf="!reverse">descendant. </span>
-                <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+                <span class="blue reset-search" (click)="resetFilters('rules')">Reset</span>
               </p>
-              <p *ngIf="filterField && searchTermRules" class="sorting-message">
-                Sorted by {{ sortedBy }}
+              <p *ngIf="filterFieldRules && searchTermRules" class="sorting-message">
+                Sorted by {{ sortedByRules }}
                 <span *ngIf="reverse">ascendant </span>
                 <span *ngIf="!reverse">descendant </span>
                 and filtered by term "{{ searchTermRules }}".
-                <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+                <span class="blue reset-search" (click)="resetFilters('rules')">Reset</span>
               </p>
             </div>
             <!-- Search input -->
@@ -449,82 +448,82 @@
                     <i class="material-icons">search</i>
                   </div>
                   <div class="close-icon" *ngIf="searchTermRules !== ''">
-                    <i class="material-icons" (click)="resetFilters(filterField)">close</i>
+                    <i class="material-icons" (click)="resetFilters('rules')">close</i>
                   </div>
                 </div>
               </form>
             </div>
           </div>
           <!-- Rules table -->
-          <div class="table-h table-h-fix" *ngIf="loadedData && instances && instances.length > 0 && !requestError">
+          <div class="table-h table-h-fix" *ngIf="loadedData && instance.rules && instance.rules.length > 0 && !requestError">
             <table class="table-responsive table-fixed">
               <thead class="hide-sm">
                 <tr>
                   <th 
-                    (click)="setOrder('name')" 
-                    [ngClass]="getCategoryCSSClass('name')" 
+                    (click)="setOrder('rules','name')" 
+                    [ngClass]="getCategoryCSSClass('rules','name')" 
                     scope="col" 
                     class="col-2">
                     Name
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'name' && !reverse">
+                      *ngIf="sortedByRules === 'name' && !reverseRules">
                       <i class="material-icons">expand_more</i>
                     </span>
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'name' && reverse">
+                      *ngIf="sortedByRules === 'name' && reverseRules">
                       <i class="material-icons">expand_less</i>
                     </span>
                   </th>
                   <th 
-                    (click)="setOrder('access')" 
-                    [ngClass]="getCategoryCSSClass('access')" 
+                    (click)="setOrder('rules','access')" 
+                    [ngClass]="getCategoryCSSClass('rules', 'access')" 
                     scope="col" 
                     class="col-2">
                     Access
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'access' && !reverse">
+                      *ngIf="sortedByRules === 'access' && !reverseRules">
                       <i class="material-icons">expand_more</i>
                     </span>
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'access' && reverse">
+                      *ngIf="sortedByRules === 'access' && reverseRules">
                       <i class="material-icons">expand_less</i>
                     </span>
                   </th>
                   <th 
-                    (click)="setOrder('target')" 
-                    [ngClass]="getCategoryCSSClass('target')" 
+                    (click)="setOrder('rules','target')" 
+                    [ngClass]="getCategoryCSSClass('rules','target')" 
                     scope="col"
                     class="col-4">
                     Target <span class="grey typo-small">(group, service, port)</span>
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'target' && !reverse">
+                      *ngIf="sortedByRules === 'target' && !reverseRules">
                       <i class="material-icons">expand_more</i>
                     </span>
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'target' && reverse">
+                      *ngIf="sortedByRules === 'target' && reverseRules">
                       <i class="material-icons">expand_less</i>
                     </span>
                   </th>
                   <th 
-                    (click)="setOrder('auth')" 
-                    [ngClass]="getCategoryCSSClass('auth')" 
+                    (click)="setOrder('rules','auth')" 
+                    [ngClass]="getCategoryCSSClass('rules','auth')" 
                     scope="col" 
                     class="col-3">
                     Auth <span class="grey typo-small">(group, service)</span>
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'auth' && !reverse">
+                      *ngIf="sortedByRules === 'auth' && !reverse">
                       <i class="material-icons">expand_more</i>
                     </span>
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'auth' && reverse">
+                      *ngIf="sortedByRules === 'auth' && reverse">
                       <i class="material-icons">expand_less</i>
                     </span>
                   </th>
@@ -536,7 +535,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let rule of instance.rules | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTermRules">
+                <tr *ngFor="let rule of instance.rules | sortBy : sortedByRules : reverseRules : 'case-insensitive' | filter : searchTermRules">
                   <td class="col-2">
                     <a 
                       class="blue text-capitalize text-left">
@@ -566,7 +565,7 @@
             </table>
           </div>
           <!-- No info to show -->
-          <div *ngIf="loadedData && instances && instances.length === 0 !requestError"
+          <div *ngIf="loadedData && instances && instances.rules.length === 0 !requestError"
             class="no-info d-flex justify-content-center align-items-center">
             No available rules detected
           </div>

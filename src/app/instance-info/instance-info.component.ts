@@ -99,6 +99,7 @@ export class InstanceInfoComponent implements OnInit {
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
+  filterFieldRules: boolean;
 
   /**
    * Reference for the service that allows the modal component
@@ -166,6 +167,7 @@ export class InstanceInfoComponent implements OnInit {
     this.searchTermRules = '';
     // Filter field
     this.filterField = false;
+    this.filterFieldRules = false;
      // Graph initialization
      this.showlegend = false;
      this.orientation = 'TB';
@@ -334,36 +336,63 @@ export class InstanceInfoComponent implements OnInit {
    * Sortby pipe in the component
    * @param categoryName the name of the chosen category
    */
-  setOrder(categoryName: string) {
-    if (this.sortedBy === categoryName) {
-      this.reverse = !this.reverse;
-      this.filterField = false;
+  setOrder(list: string, categoryName: string) {
+    if (list === 'services') {
+      if (this.sortedBy === categoryName) {
+        this.reverse = !this.reverse;
+        this.filterField = false;
+      }
+      this.sortedBy = categoryName;
+      this.filterField = true;
+    } else if (list === 'rules') {
+      if (this.sortedByRules === categoryName) {
+        this.reverseRules = !this.reverseRules;
+        this.filterFieldRules = false;
+      }
+      this.sortedByRules = categoryName;
+      this.filterFieldRules = true;
     }
-    this.sortedBy = categoryName;
-    this.filterField = true;
   }
 
   /**
    * Reset all the filters fields
    */
-  resetFilters() {
-    this.filterField = false;
-    this.searchTerm = '';
-    this.sortedBy = '';
+  resetFilters(list: string) {
+    if (list === 'services') {
+      this.filterField = false;
+      this.searchTerm = '';
+      this.sortedBy = '';
+    } else if (list === 'rules') {
+      this.filterFieldRules = false;
+      this.searchTermRules = '';
+      this.sortedByRules = '';
+    }
   }
 
   /**
    * Gets the category headers to add a class
    * @param categoryName the class for the header category
    */
-  getCategoryCSSClass(categoryName: string) {
-    if (this.sortedBy === '') {
-      return 'default';
-    } else {
-      if (this.sortedBy === categoryName) {
-        return 'enabled';
-      } else if (this.sortedBy !== categoryName) {
-        return 'disabled';
+  getCategoryCSSClass(list: string, categoryName: string) {
+    if (list === 'rules') {
+      if (this.sortedByRules === '') {
+        return 'default';
+      } else {
+        if (this.sortedByRules === categoryName) {
+          return 'enabled';
+        } else if (this.sortedByRules !== categoryName) {
+          return 'disabled';
+        }
+      }
+    } else if (list === 'services') {
+      if (this.sortedBy === '') {
+        return 'default';
+      } else {
+        if (this.sortedBy === categoryName) {
+          return 'enabled';
+        } else if (this.sortedBy !== categoryName) {
+          return 'disabled';
+        }
       }
     }
   }
