@@ -157,7 +157,11 @@ export class InstanceInfoComponent implements OnInit {
     // Default initialization
     this.labels = [];
     this.groups = [];
-    this.instance = {groups: []};
+    this.instance = {
+        groups: [],
+        environment_variables: {},
+        configuration_options: {}
+      };
     this.registered = [];
     this.displayedGroups = [];
     this.activeGroupId = 'ALL';
@@ -227,35 +231,36 @@ export class InstanceInfoComponent implements OnInit {
    * @param instance instance object
    */
   toGraphData(instance) {
-    instance.groups.forEach(group => {
-      const nodeGroup = {
-        id: group.service_group_instance_id,
-        label: group.name,
-        tooltip: 'GROUP: ' + group.service_group_instance_id,
-        color: this.nalejColorScheme[this.nextColorIndex],
-        group: group.service_group_instance_id
-      };
-      this.graphData.nodes.push(nodeGroup);
-      group.service_instances.forEach(service => {
-        const nodeService = {
-          id: group.service_group_instance_id + '-s-' + service.service_id,
-          label: service.name,
-          tooltip: 'SERVICE: ' + service.service_id,
+    if (instance && instance.groups) {
+      instance.groups.forEach(group => {
+        const nodeGroup = {
+          id: group.service_group_instance_id,
+          label: group.name,
+          tooltip: 'GROUP: ' + group.service_group_instance_id,
           color: this.nalejColorScheme[this.nextColorIndex],
           group: group.service_group_instance_id
         };
-        this.graphData.nodes.push(nodeService);
-        this.graphData.links.push({
-          source: group.service_group_instance_id,
-          target: group.service_group_instance_id + '-s-' + service.service_id
+        this.graphData.nodes.push(nodeGroup);
+        group.service_instances.forEach(service => {
+          const nodeService = {
+            id: group.service_group_instance_id + '-s-' + service.service_id,
+            label: service.name,
+            tooltip: 'SERVICE: ' + service.service_id,
+            color: this.nalejColorScheme[this.nextColorIndex],
+            group: group.service_group_instance_id
+          };
+          this.graphData.nodes.push(nodeService);
+          this.graphData.links.push({
+            source: group.service_group_instance_id,
+            target: group.service_group_instance_id + '-s-' + service.service_id
+          });
         });
-
+        this.nextColorIndex += 1;
+        if ( this.nextColorIndex >= this.nalejColorScheme.length ) {
+          this.nextColorIndex = 0;
+        }
       });
-      this.nextColorIndex += 1;
-      if ( this.nextColorIndex >= this.nalejColorScheme.length ) {
-        this.nextColorIndex = 0;
-      }
-    });
+    }
 
     if (instance.rules) {
       instance.rules.forEach(rule => {
@@ -274,11 +279,19 @@ export class InstanceInfoComponent implements OnInit {
 
   /**
    * Transforms objects to arrays to be parsed to string and performed in the view
-   * @param object Key-value map that contains the object
    */
   instanceLabelsToString() {
     if (this.instance && this.instance.labels) {
       return Object.entries(this.instance.labels);
+    }
+  }
+  /**
+   * Transforms objects to arrays to be parsed to string and performed in the view
+   * @param object Key-value map that contains the object
+   */
+  objectToString(object) {
+    if (Object.entries(object)) {
+      return Object.entries(object);
     }
   }
 
@@ -603,10 +616,14 @@ export class InstanceInfoComponent implements OnInit {
   countGroupServices(groupId: string) {
     if (groupId === 'ALL') {
       let counter = 0;
-      this.instance.groups.forEach(group => {
-        counter += group.service_instances.length;
-      });
-      return counter;
+      if(this.instance && this.instance.groups) {
+        this.instance.groups.forEach(group => {
+          counter += group.service_instances.length;
+        });
+        return counter;
+      } else {
+        return 0;
+      }
     } else {
       const index = this.displayedGroups
         .map(x => x.service_group_instance_id)
@@ -622,14 +639,22 @@ export class InstanceInfoComponent implements OnInit {
    * Return the list of group services
    */
   getGroupServices(groupId: string) {
+    if (!groupId) {
+      return [];
+    }
     if (groupId === 'ALL') {
+      console.log('entro por el all');
       const services = [];
-      this.instance.groups.forEach(group => {
-        group.service_instances.forEach(service => {
-          services.push(service);
+      if (this.instance && this.instance.groups) {
+        this.instance.groups.forEach(group => {
+          group.service_instances.forEach(service => {
+            services.push(service);
+          });
         });
-      });
-      return services;
+        return services;
+      } else {
+        return [];
+      }
     } else {
       const index = this.displayedGroups
       .map(x => x.service_group_instance_id)

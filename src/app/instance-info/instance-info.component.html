@@ -53,7 +53,8 @@
                     </tr>
                     <tr>
                       <th class="grey">Groups</th>
-                      <td class="summary-instances-data">{{instance.groups.length}}</td> 
+                      <td *ngIf="instance && instance.groups" class="summary-instances-data">{{instance.groups.length}}</td> 
+                      <td *ngIf="!instance || !instance.groups" class="summary-instances-data">0</td> 
                     </tr>
                     <tr>
                       <th class="grey">Service instances</th>
@@ -86,7 +87,7 @@
   </div>
   <div class="col-8 h-100">
     <div class="ins-flex-col">
-      <!-- Grapho card -->
+      <!-- Graph card -->
       <div *ngIf="showGraph" class="card h-ins-services flex-grow-1">
         <div class="row">
           <div class="col-10 card-title-h">
@@ -188,7 +189,7 @@
           </div>
         </div>
         <!-- Services tabs -->
-        <div class="row">
+        <div class="row" *ngIf="instance && instance.groups && instance.groups.length > 0">
           <div class="col">
             <div class="nalej-tab-container">
               <ul>
@@ -234,7 +235,7 @@
             </div>
           </div>
         </div>
-        <div class="row justify-content-between">
+        <div *ngIf="instance && instance.groups && instance.groups.length > 0" class="row justify-content-between">
           <!-- Sorting mesages -->
           <div class="col-9">
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
@@ -281,7 +282,7 @@
           No available services in this group
         </div>
         <!-- Services table -->
-        <div class="table-h">
+        <div *ngIf="instance && instance.groups && instance.groups.length > 0" class="table-h">
           <table class="table-responsive table-fixed">
             <thead>
               <tr>
@@ -361,8 +362,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let service of getGroupServices(activeGroupId) | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-              <span *ngIf="service">
+              <tr *ngIf="getGroupServices(activeGroupId)">
+              <span *ngFor="let service of getGroupServices(activeGroupId) | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
                 <td class="col-2">{{service.name}}</td>
                 <td class="col-2 text-center">{{service.specs.replicas}}</td>
                 <td 
@@ -594,17 +595,47 @@
         </div>
         <!-- Configuration card -->
         <div class="card h-100">
-          <div class="card-title-c">
-            <h5 class="hide-sm">CONFIGURATION</h5>
-            <h5 class="show-sm">CONF...</h5>
-          </div>
-          <div class="config-card">
-            <p class="grey text-left">Enviroment variables</p>
-            <p>No enviroment variables have been set</p>
-            <p class="grey text-left">Other settings</p>
-            <p>No extra settings have been set</p>
-          </div>
-        </div>
+            <div class="card-title-c">
+              <h5 class="hide-sm">CONFIGURATION</h5>
+              <h5 class="show-sm">CONF...</h5>
+            </div>
+            <div class="config-card">
+              <div *ngIf="instance.environment_variables">
+                <p class=" text-left">Enviroment variables</p>
+                <div 
+                  class="row mb-2" 
+                  *ngFor="let variable of objectToString(instance.environment_variables)">
+                  <div class="col-12 grey text-right">
+                    {{variable[0]}} 
+                  </div>
+
+                  <div class="col-12 text-right">
+                    {{variable[1]}}
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!instance.environment_variables">
+                <p class="text-left">Enviroment variables</p>
+                <p class="grey">No enviroment variables have been set</p>
+              </div>
+              <div *ngIf="instance.configuration_options">
+                <p class="text-left">Other settings</p>
+                <div 
+                  class="row mb-1" 
+                  *ngFor="let configuration of objectToString(instance.configuration_options)">
+                    <div class="col-12 grey text-right">
+                      {{configuration[0]}} 
+                    </div>
+                    <div class="col-12 text-right">
+                      {{configuration[1]}}
+                    </div>
+                </div>
+              </div>
+              <div *ngIf="!instance.configuration_options">
+                <p class="text-left">Other settings</p>
+                <p class="grey">No extra settings have been set</p>
+              </div>
+            </div>
       </div>
     </div>
   </div>
