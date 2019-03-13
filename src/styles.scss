@@ -25,6 +25,9 @@ html, body {
 .dark-grey {
   color: #707070;
 }
+.light-grey {
+  color: #d2d2d2;
+}
 .red {
   color: #F25272;
 }
@@ -43,12 +46,9 @@ a {
   }
 }
 .error-message {
-  width: 95%;
-  margin: 0 auto;
   font-size: 0.8em;
   color: #F25272;
-  text-align: center;
-  height: 20px;
+  margin-top: .2em;
 }
 .change-password {
   color: #0937FF;
@@ -341,7 +341,7 @@ button[type="submit"]:disabled {
   border: 0;
   border-radius: 10px;
   outline: 0;
-  padding: 4rem;
+  padding: 2rem;
 }
 .modal-header {
   padding-bottom: 0;
@@ -354,8 +354,9 @@ button[type="submit"]:disabled {
   }
 }
 .nalej-form-title{
-  font-size: 1em;
+  font-size: .9em;
   display: inline;
+  margin-bottom: 1em;
   button span {
     color: #888888;
   }
