@@ -102,7 +102,8 @@ import { ServiceInfoComponent } from './service-info/service-info.component';
     RegisterApplicationComponent,
     DeployInstanceComponent,
     ServiceInstancesInfoComponent,
-    RuleInfoComponent
+    RuleInfoComponent,
+    ServiceInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -523,18 +523,22 @@ export class InstanceInfoComponent implements OnInit {
    *  @param service service
    */
   openServicesInfo(service) {
-    console.log('service desde open', service);
     const initialState = {
       organizationId: this.organizationId,
       serviceId: service.service_group_id,
-      serviceAppDescriptorId: service.app_descriptor_id,
-      serviceExposedPorts: service.exposed_ports,
-      serviceImage: service.image,
-      serviceLabels: service.labels,
-      serviceName: service.name,
-      serviceGroupId: service.service_group_id,
-      serviceReplicas: service.replicas,
-      serviceSpecs: service.specs,
+      instanceId: service.service_instance_id,
+      appDescriptorId: service.app_descriptor_id,
+      appInstanceId: service.app_instance_id,
+      enviormentVariables: service.enviroment_variables,
+      exposedPorts: service.exposed_ports,
+      image: service.image,
+      name: service.name,
+      groupId: service.service_group_id,
+      groupInstanceId: service.service_group_instance_id,
+      replicas: service.replicas,
+      specs: service.specs,
+      statusName: service.status_name,
+      typeName: service.type_name
     };
 
     this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
@@ -549,16 +553,16 @@ export class InstanceInfoComponent implements OnInit {
     const initialState = {
       organizationId: this.organizationId,
       ruleId: rule.rule_id,
-      ruleAccess: rule.access,
-      ruleAppDescriptorId: rule.app_descriptor_id,
-      ruleAuthServices: rule.auth_services,
-      ruleAuthServiceGroupName: rule.auth_service_group_name,
-      ruleName: rule.name,
-      ruleTargetPort: rule.target_port,
-      ruleTargetServiceGroupName: rule.target_service_group_name,
-      ruleTargetServiceName: rule.target_service_name,
-      ruleDeviceGroupIds: rule.device_group_ids,
-      ruleDeviceGroupNames: rule.device_group_names
+      access: rule.access,
+      appDescriptorId: rule.app_descriptor_id,
+      authServices: rule.auth_services,
+      authServiceGroupName: rule.auth_service_group_name,
+      name: rule.name,
+      targetPort: rule.target_port,
+      targetServiceGroupName: rule.target_service_group_name,
+      targetServiceName: rule.target_service_name,
+      deviceGroupIds: rule.device_group_ids,
+      deviceGroupNames: rule.device_group_names
     };
 
     this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });

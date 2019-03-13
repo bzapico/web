@@ -13,6 +13,7 @@ import { AppDescriptor } from '../definitions/interfaces/app-descriptor';
 import { mockRegisteredAppsList } from '../utils/mocks';
 import { ServiceInstancesInfoComponent } from '../service-instances-info/service-instances-info.component';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
+import { ServiceInfoComponent } from '../service-info/service-info.component';
 
 @Component({
   selector: 'app-registered-info',
@@ -719,18 +720,17 @@ export class RegisteredInfoComponent implements OnInit {
   * Open serivces info modal window
   */
  openServicesInfo(service) {
-   console.log('service desde open', service);
    const initialState = {
      organizationId: this.organizationId,
      serviceId: service.service_group_id,
-     serviceAppDescriptorId: service.app_descriptor_id,
-     serviceExposedPorts: service.exposed_ports,
-     serviceImage: service.image,
-     serviceLabels: service.labels,
-     serviceName: service.name,
-     serviceGroupId: service.service_group_id,
-     serviceReplicas: service.replicas,
-     serviceSpecs: service.specs,
+     appDescriptorId: service.app_descriptor_id,
+     exposedPorts: service.exposed_ports,
+     image: service.image,
+     labels: service.labels,
+     name: service.name,
+     groupId: service.service_group_id,
+     replicas: service.replicas,
+     specs: service.specs,
    };
 
    this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
@@ -745,16 +745,16 @@ export class RegisteredInfoComponent implements OnInit {
    const initialState = {
      organizationId: this.organizationId,
      ruleId: rule.rule_id,
-     ruleAccess: rule.access,
-     ruleAppDescriptorId: rule.app_descriptor_id,
-     ruleAuthServices: rule.auth_services,
-     ruleAuthServiceGroupName: rule.auth_service_group_name,
-     ruleName: rule.name,
-     ruleTargetPort: rule.target_port,
-     ruleTargetServiceGroupName: rule.target_service_group_name,
-     ruleTargetServiceName: rule.target_service_name,
-     ruleDeviceGroupIds: rule.device_group_ids,
-     ruleDeviceGroupNames: rule.device_group_names
+     access: rule.access,
+     appDescriptorId: rule.app_descriptor_id,
+     authServices: rule.auth_services,
+     authServiceGroupName: rule.auth_service_group_name,
+     name: rule.name,
+     targetPort: rule.target_port,
+     targetServiceGroupName: rule.target_service_group_name,
+     targetServiceName: rule.target_service_name,
+     deviceGroupIds: rule.device_group_ids,
+     deviceGroupNames: rule.device_group_names
    };
 
    this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });

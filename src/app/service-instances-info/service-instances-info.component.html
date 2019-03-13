@@ -3,24 +3,28 @@
     <div class="modal-content">
         <!-- Header -->
         <div class="modal-header">
-          <h3 class="service-title mb-4">Service info</h3>
+          <h3 class="service-title mb-4">Service instances info</h3>
         </div>
         <!-- Body -->
         <div class="modal-body">
-        <h3 class="service-h3-title">{{serviceName}}</h3>
-        <p class="service-title">{{serviceImage}}</p>
+        <h3 class="service-h3-title">{{name}}</h3>
+        <p class="service-title">{{image}}</p>
         <p class="service-title">{{serviceId}}</p>
         <div id="scroll-app-info">
           <div class="row">
+            <div class="col-sm grey mb-3">Status</div>
+            <h3 class="service-h3-title col-sm text-right blue">RUNNING</h3>
+          </div>
+          <div class="row">
             <div class="col-sm grey mb-3">Replicas</div>
-            <h3 class="service-h3-title col-sm text-right">{{serviceSpecs.replicas}}</h3>
+            <h3 class="service-h3-title col-sm text-right">{{specs.replicas}}</h3>
           </div>
           <br>
-          <div *ngFor="let exposedPort of serviceExposedPorts">
+          <div *ngFor="let exposedPort of exposedPorts">
             <div class="row">
               <div class="col-sm grey mb-3">Exposed ports</div>
             </div>
-            <span *ngIf="serviceExposedPorts">
+            <span *ngIf="exposedPorts">
               <div class="row">
                 <div class="col-sm"></div>
                 <div class="col-sm">Port</div>
@@ -34,7 +38,7 @@
                 <div class="col-sm text-right grey">{{exposedPort.exposed_port}}</div>
               </div>
             </span>
-            <span *ngIf="!serviceExposedPorts">
+            <span *ngIf="!exposedPorts">
               <div class="row">
                 <div class="col-sm text-right">No</div>
               </div>
@@ -43,7 +47,7 @@
             <div class="row">
               <div class="col-sm grey mb-3">Endpoints</div>
             </div>
-            <span *ngIf="serviceExposedPorts">
+            <span *ngIf="exposedPorts">
               <div class="row">
                 <div class="col-sm"></div>
                 <div class="col-sm">Port</div>
@@ -57,7 +61,7 @@
                 <div class="col-sm text-right grey" >{{endpoint.path}}</div>
               </div>
             </span>
-            <span *ngIf="!serviceExposedPorts">
+            <span *ngIf="!exposedPorts">
               <div class="row">
                 <div class="col-sm text-right">No</div>
               </div>
@@ -66,24 +70,24 @@
           <br>
           <div class="row">
             <div class="col-sm grey mb-3">Service group ID</div>
-            <div class="col-sm text-right">{{serviceGroupId}}</div>
+            <div class="col-sm text-right">{{groupId}}</div>
           </div>
           <br>
           <div class="row">
             <div class="col-sm grey mb-3">App descriptor ID</div>
-            <div class="col-sm text-right">{{serviceAppDescriptorId}}</div>
+            <div class="col-sm text-right">{{appDescriptorId}}</div>
           </div>
           <br>
           <div class="row">
             <div class="col-sm grey mb-3">Labels</div>
           </div>
-          <div class="row" *ngFor="let label of objectToString(serviceLabels)">
-            <div *ngIf="serviceLabels" class="col-sm text-right">
+          <div class="row" *ngFor="let label of objectToString(labels)">
+            <div *ngIf="labels" class="col-sm text-right">
               <button class="btn-sm btn-outline-primary" disabled>
                 {{label[0]}} : {{label[1]}}
               </button>
             </div>
-            <div *ngIf="!serviceLabels" class="col-sm text-right">No</div>
+            <div *ngIf="!labels" class="col-sm text-right">No</div>
           </div>
           <br>
         </div>      
