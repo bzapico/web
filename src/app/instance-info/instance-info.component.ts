@@ -4,7 +4,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import * as shape from 'd3-shape';
 
@@ -139,7 +139,8 @@ export class InstanceInfoComponent implements OnInit {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
@@ -477,6 +478,7 @@ export class InstanceInfoComponent implements OnInit {
             message: 'Undeploying ' + app.name,
             timeout: 3000
           });
+          this.router.navigate(['/applications']);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
