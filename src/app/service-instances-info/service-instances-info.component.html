@@ -1,6 +1,6 @@
 <div id="apps-info-wrapper">
-    <div class="modal-card">
-      <div class="modal-content">
+  <div class="modal-card">
+    <div class="modal-content">
         <!-- Header -->
         <div class="modal-header">
           <h3 class="service-title mb-4">Service info</h3>
@@ -8,73 +8,84 @@
         <!-- Body -->
         <div class="modal-body">
         <h3 class="service-h3-title">{{serviceName}}</h3>
-        <p class="service-title">alksjdlakjsdlaksjd</p>
+        <p class="service-title">{{serviceImage}}</p>
         <p class="service-title">{{serviceId}}</p>
         <div id="scroll-app-info">
           <div class="row">
             <div class="col-sm grey mb-3">Replicas</div>
-            <!-- <div class="col-sm text-right">3</div> -->
-            <h3 class="service-h3-title col-sm text-right">3</h3>
+            <h3 class="service-h3-title col-sm text-right">{{serviceSpecs.replicas}}</h3>
           </div>
           <br>
-
-          <div class="row">
-            <div class="col-sm grey mb-3">Exposed ports</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4 grey">Port</div>
-            <div class="col-sm text-right">asdasd</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4  grey">Internal</div>
-            <div class="col-sm text-right">asdasd</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4  grey">External</div>
-            <div class="col-sm text-right text-lowercase">asdasd</div>
+          <div *ngFor="let exposedPort of serviceExposedPorts">
+            <div class="row">
+              <div class="col-sm grey mb-3">Exposed ports</div>
+            </div>
+            <span *ngIf="serviceExposedPorts">
+              <div class="row">
+                <div class="col-sm"></div>
+                <div class="col-sm">Port</div>
+                <div class="col-sm text-right">Internal</div>
+                <div class="col-sm text-right">External</div>
+              </div>
+              <div class="row">
+                <div class="col-sm"></div>
+                <div class="col-sm grey">{{exposedPort.name}}</div>
+                <div class="col-sm text-right grey">{{exposedPort.internal_port}}</div>
+                <div class="col-sm text-right grey">{{exposedPort.exposed_port}}</div>
+              </div>
+            </span>
+            <span *ngIf="!serviceExposedPorts">
+              <div class="row">
+                <div class="col-sm text-right">No</div>
+              </div>
+            </span>
+            <br>
+            <div class="row">
+              <div class="col-sm grey mb-3">Endpoints</div>
+            </div>
+            <span *ngIf="serviceExposedPorts">
+              <div class="row">
+                <div class="col-sm"></div>
+                <div class="col-sm">Port</div>
+                <div class="col-sm text-right">Type</div>
+                <div class="col-sm text-right">Path</div>
+              </div>
+              <div class="row" *ngFor="let endpoint of exposedPort.endpoints">
+                <div class="col-sm"></div>
+                <div class="col-sm grey">{{exposedPort.name}}</div>
+                <div class="col-sm text-right grey">{{endpoint.type}}</div>
+                <div class="col-sm text-right grey" >{{endpoint.path}}</div>
+              </div>
+            </span>
+            <span *ngIf="!serviceExposedPorts">
+              <div class="row">
+                <div class="col-sm text-right">No</div>
+              </div>
+            </span> 
           </div>
           <br>
-
-          <div class="row">
-            <div class="col-sm grey mb-3">Endpoints</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4 grey">Port</div>
-            <div class="col-sm text-right">asdasd</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4  grey">Type</div>
-            <div class="col-sm text-right">asdasd</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4  grey">Path</div>
-            <div class="col-sm text-right text-lowercase">asdasd</div>
-          </div>
-          <br>
-
           <div class="row">
             <div class="col-sm grey mb-3">Service group ID</div>
-            <div class="col-sm text-right">3asdasdasd</div>
+            <div class="col-sm text-right">{{serviceGroupId}}</div>
           </div>
           <br>
-
           <div class="row">
             <div class="col-sm grey mb-3">App descriptor ID</div>
-            <div class="col-sm text-right">asdasdad</div>
+            <div class="col-sm text-right">{{serviceAppDescriptorId}}</div>
           </div>
-            <br>
-
-            <div class="row">
-              <div class="col-sm grey mb-3">Labels</div>
-              <div class="col-sm text-right">NO</div>
+          <br>
+          <div class="row">
+            <div class="col-sm grey mb-3">Labels</div>
+          </div>
+          <div class="row" *ngFor="let label of objectToString(serviceLabels)">
+            <div *ngIf="serviceLabels" class="col-sm text-right">
+              <button class="btn-sm btn-outline-primary" disabled>
+                {{label[0]}} : {{label[1]}}
+              </button>
             </div>
-              <br>
+            <div *ngIf="!serviceLabels" class="col-sm text-right">No</div>
+          </div>
+          <br>
         </div>      
         <!-- Option button -->
         <div class="buttons d-flex flex-row justify-content-center">
@@ -82,7 +93,8 @@
             <span class="align-bottom">Close</span>
           </button>
         </div>
-      </div>
+    </div>
     </div>
   </div>
+</div>
     

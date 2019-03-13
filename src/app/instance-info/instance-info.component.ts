@@ -522,10 +522,19 @@ export class InstanceInfoComponent implements OnInit {
    * Open services info modal window
    *  @param service service
    */
-  openServicesInfo() {
+  openServicesInfo(service) {
+    console.log('service desde open', service);
     const initialState = {
       organizationId: this.organizationId,
-      // serviceId: service.service_group_id,
+      serviceId: service.service_group_id,
+      serviceAppDescriptorId: service.app_descriptor_id,
+      serviceExposedPorts: service.exposed_ports,
+      serviceImage: service.image,
+      serviceLabels: service.labels,
+      serviceName: service.name,
+      serviceGroupId: service.service_group_id,
+      serviceReplicas: service.replicas,
+      serviceSpecs: service.specs,
     };
 
     this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });

@@ -48,12 +48,12 @@
           <div *ngIf="i !== 0" class="col-sm"></div>
           <div class="col-sm text-right">{{auth}}</div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="ruleDeviceGroupIds">
           <div class="col-sm-2"></div>
           <div class="col-sm-4 grey">Devices</div>
           <div class="col-sm text-right text-lowercase">{{ruleDeviceGroupIds}}</div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="ruleDeviceGroupNames">
           <div class="col-sm-2"></div>
           <div class="col-sm-4 grey">Devices group</div>
           <div class="col-sm text-right text-lowercase">{{ruleDeviceGroupNames}}</div>

@@ -41,4 +41,15 @@ export class ServiceInstancesInfoComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Transforms objects to arrays to be parsed to string and performed in the view
+   * @param object Key-value map that contains the object
+   */
+  objectToString(object: any) {
+    if (!object) {
+      return ['--'];
+    }
+    return Object.entries(object);
+  }
+
 }

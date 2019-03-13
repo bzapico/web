@@ -723,7 +723,14 @@ export class RegisteredInfoComponent implements OnInit {
    const initialState = {
      organizationId: this.organizationId,
      serviceId: service.service_group_id,
-     serviceName: service.name
+     serviceAppDescriptorId: service.app_descriptor_id,
+     serviceExposedPorts: service.exposed_ports,
+     serviceImage: service.image,
+     serviceLabels: service.labels,
+     serviceName: service.name,
+     serviceGroupId: service.service_group_id,
+     serviceReplicas: service.replicas,
+     serviceSpecs: service.specs,
    };
 
    this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
