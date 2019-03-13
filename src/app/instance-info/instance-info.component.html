@@ -31,16 +31,17 @@
                         class="summary-instances-status"
                         [ngClass]= 
                           "{
-                            'blue': classStatusCheck(instance.status_name, 'running'),
-                            'red': classStatusCheck(instance.status_name, 'error'),
-                            'orange':classStatusCheck(instance.status_name, 'process')
+                            'blue': instanceClassStatusCheck('running'),
+                            'red': instanceClassStatusCheck('error'),
+                            'orange':instanceClassStatusCheck('process')
                           }">
                         {{instance.status_name}}
                       </td>
                     </tr>
                     <tr>
                       <th class="grey">Instance of</th>
-                      <td class="dark-grey">WORDPRESS</td> 
+                      <!-- GET REGISTERED AND SET THE RIGHT NAME --> 
+                      <td class="dark-grey text-uppercase">{{instance.name}}</td> 
                     </tr>
                     <tr>
                       <th class="grey">ID</th>
@@ -52,11 +53,11 @@
                     </tr>
                     <tr>
                       <th class="grey">Groups</th>
-                      <td class="summary-instances-data">2</td> 
+                      <td class="summary-instances-data">{{instance.groups.length}}</td> 
                     </tr>
                     <tr>
-                      <th class="grey">Services</th>
-                      <td class="summary-instances-data">4</td> 
+                      <th class="grey">Service instances</th>
+                      <td class="summary-instances-data">{{countGroupServices('ALL')}}</td> 
                     </tr>
                   </table>
             </div>
@@ -74,7 +75,7 @@
           <h5>LABELS</h5>
         </div>
         <div class="ins-labels">
-          <div  *ngFor="let label of objectToString(instance.labels)">
+          <div  *ngFor="let label of instanceLabelsToString()">
             <button class="btn-sm btn-outline-primary" disabled>
               {{label[0]}}: {{label[1]}}
             </button>
@@ -98,14 +99,14 @@
                 placement="left"
                 class="material-icons float-right"   
                 [ngClass]="!showGraph ? 'blue' : 'grey'"
-                (click)="showWindowGraph()">
+                (click)="selectDisplayMode('list')">
                 view_list
               </i>
               <i 
                 tooltip="Graph" 
                 placement="left"
                 class="material-icons float-right mr-bars" 
-                (click)="showWindowGraph()"
+                (click)="selectDisplayMode('graph')"
                 [ngClass]="showGraph ? 'blue' : 'grey'">
                 bar_chart
               </i>
@@ -172,14 +173,14 @@
                   placement="left"
                   class="material-icons float-right"   
                   [ngClass]="!showGraph ? 'blue' : 'grey'"
-                  (click)="showWindowGraph()">
+                  (click)="selectDisplayMode('list')">
                   view_list
                 </i>
                 <i 
                   tooltip="Graph" 
                   placement="left"
                   class="material-icons float-right mr-bars" 
-                  (click)="showWindowGraph()"
+                  (click)="selectDisplayMode('graph')"
                   [ngClass]="showGraph ? 'blue' : 'grey'">
                   bar_chart
                 </i>
@@ -197,13 +198,13 @@
                   <span class="grey">GROUPS</span>
                 </li>
                 <li 
-                  *ngIf="groups.length > 0" 
+                  *ngIf="groups && groups.length > 0" 
                   class="nalej-tab" 
                   (click)="changeActiveGroup('ALL')">
                   <span [ngClass]="amIactive('ALL')">ALL</span>
                 </li>
                 <li 
-                  *ngIf="groups.length === 0" 
+                  *ngIf="groups && groups.length === 0" 
                   class="nalej-tab">
                   <span class="active">ALL</span>
                 </li>
@@ -217,11 +218,11 @@
                 <li 
                   *ngFor="let group of displayedGroups" 
                   class="nalej-tab" 
-                  (click)="changeActiveGroup()">
+                  (click)="changeActiveGroup(group.service_group_instance_id)">
                   <span 
                     *ngIf="displayedGroups.length > 0" 
-                    [ngClass]="amIactive()">
-                    Group 1
+                    [ngClass]="amIactive(group.service_group_instance_id)">
+                    {{group.name}} - {{getLastChars(3, group.service_group_instance_id)}}
                   </span>
                 </li>
                 <li 
@@ -280,7 +281,7 @@
           class="no-info-in-group d-flex justify-content-center align-items-center">
           No available services in this group
         </div>
-        <!-- LAYOUT Services table -->
+        <!-- Services table -->
         <div class="table-h">
           <table class="table-responsive table-fixed">
             <thead>
@@ -361,12 +362,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-              <span >
-                <td class="col-2">simple-mysql</td>
-                <td class="col-2 text-center">3</td>
-                <td class="col-3">SERVICE_WAITING</td>
-                <td class="col-4">http://mysql.dashborad.com</td>
+              <tr *ngFor="let service of getGroupServices(activeGroupId) | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+              <span *ngIf="service">
+                <td class="col-2">{{service.name}}</td>
+                <td class="col-2 text-center">{{service.specs.replicas}}</td>
+                <td class="col-3">{{service.status_name}}</td>
+                <td class="col-4">
+                  <span *ngFor="let endpoint of service.endpoints">
+                      <a *ngIf="endpoint" href="{{getEndpointHref(endpoint)}}" target="_blank">{{endpoint}}</a>
+                    </span>
+                  <span *ngIf="!service.endpoints">No</span>
+                </td>
                 <td class="col-1 text-center">
                   <button 
                     class="btn info-btn btn-primary"  
@@ -415,21 +421,21 @@
           <div class="row hide-sm">
             <!-- Sorting mesages -->
             <div class="col">
-              <p *ngIf="searchTerm && !filterField" class="sorting-message">
-                Filtered by term "{{ searchTerm }}".
+              <p *ngIf="searchTermRules && !filterField" class="sorting-message">
+                Filtered by term "{{ searchTermRules }}".
                 <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
               </p>
-              <p *ngIf="filterField && !searchTerm" class="sorting-message">
+              <p *ngIf="filterField && !searchTermRules" class="sorting-message">
                 Sorted by {{ sortedBy }},
                 <span *ngIf="reverse">ascendant. </span>
                 <span *ngIf="!reverse">descendant. </span>
                 <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
               </p>
-              <p *ngIf="filterField && searchTerm" class="sorting-message">
+              <p *ngIf="filterField && searchTermRules" class="sorting-message">
                 Sorted by {{ sortedBy }}
                 <span *ngIf="reverse">ascendant </span>
                 <span *ngIf="!reverse">descendant </span>
-                and filtered by term "{{ searchTerm }}".
+                and filtered by term "{{ searchTermRules }}".
                 <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
               </p>
             </div>
@@ -437,12 +443,12 @@
             <div class="col-6">
               <form>
                 <div class="search-box">
-                  <input type="text" class="form-control" name="searchTerm" placeholder="Search..."
-                    [(ngModel)]="searchTerm">
-                  <div class="search-icon" *ngIf="searchTerm === ''">
+                  <input type="text" class="form-control" name="searchTermRules" placeholder="Search..."
+                    [(ngModel)]="searchTermRules">
+                  <div class="search-icon" *ngIf="searchTermRules === ''">
                     <i class="material-icons">search</i>
                   </div>
-                  <div class="close-icon" *ngIf="searchTerm !== ''">
+                  <div class="close-icon" *ngIf="searchTermRules !== ''">
                     <i class="material-icons" (click)="resetFilters(filterField)">close</i>
                   </div>
                 </div>
@@ -530,7 +536,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let rule of instance.rules | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+                <tr *ngFor="let rule of instance.rules | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTermRules">
                   <td class="col-2">
                     <a 
                       class="blue text-capitalize text-left">

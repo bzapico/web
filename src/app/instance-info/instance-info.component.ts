@@ -31,11 +31,6 @@ export class InstanceInfoComponent implements OnInit {
   loadedData: boolean;
 
   /**
-   * List of available apps instances
-   */
-  instances: any[];
-
-  /**
    * Model that hold organization ID
    */
   instanceId: string;
@@ -92,11 +87,13 @@ export class InstanceInfoComponent implements OnInit {
    */
   sortedBy: string;
   reverse: boolean;
-
+  sortedByRules: string;
+  reverseRules: boolean;
   /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
+  searchTermRules: string;
 
   /**
    * Variable to store the value of the filter search text and sortBy pipe
@@ -151,8 +148,9 @@ export class InstanceInfoComponent implements OnInit {
       this.backend = backendService;
     }
     // Default initialization
-    this.instances = [];
     this.labels = [];
+    this.groups = [];
+    this.instance = {groups : []};
     this.displayedGroups = [];
     this.activeGroupId = 'ALL';
     this.requestError = '';
@@ -162,7 +160,10 @@ export class InstanceInfoComponent implements OnInit {
     // SortBy
     this.sortedBy = '';
     this.reverse = false;
+    this.sortedByRules = '';
+    this.reverseRules = false;
     this.searchTerm = '';
+    this.searchTermRules = '';
     // Filter field
     this.filterField = false;
      // Graph initialization
@@ -201,19 +202,11 @@ export class InstanceInfoComponent implements OnInit {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
         if (this.organizationId !== null) {
-          this.updateGroupsList(this.organizationId);
-          this.updateAppInstances(this.organizationId);
+          this.updateInstanceInfo(this.organizationId);
         }
         this.updateDisplayedGroupsNamesLength();
     }
-    this.backend.getAppInstance(this.organizationId,  this.instanceId)
-    .subscribe(instance => {
-        this.instance = instance;
-        this.toGraphData(instance);
-        if (!this.loadedData) {
-          this.loadedData = true;
-        }
-    });
+
   }
 
   /**
@@ -270,30 +263,9 @@ export class InstanceInfoComponent implements OnInit {
    * Transforms objects to arrays to be parsed to string and performed in the view
    * @param object Key-value map that contains the object
    */
-  objectToString(object: any) {
-    if (!object) {
-      return ['--'];
-    }
-    return Object.entries(object);
-  }
-
-  /**
-   * Updates instances array
-   * @param organizationId Organization identifier
-   */
-  updateAppInstances(organizationId: string) {
-    if (organizationId !== null) {
-      // Request to get apps instances
-      this.backend.getInstances(this.organizationId)
-      .subscribe(response => {
-          this.instances = response.instances || [];
-          if (!this.loadedData) {
-            this.loadedData = true;
-          }
-      }, errorResponse => {
-        this.loadedData = true;
-        this.requestError = errorResponse.error.message;
-      });
+  instanceLabelsToString() {
+    if (this.instance && this.instance.labels) {
+      return Object.entries(this.instance.labels);
     }
   }
 
@@ -410,7 +382,7 @@ export class InstanceInfoComponent implements OnInit {
    * Displayed groups list swipes left by pressing the arrow button functionality
    */
   swipeLeft() {
-    const index = this.groups.map(x => x.service_group_id).indexOf(this.displayedGroups[0].service_group_id);
+    const index = this.groups.map(x => x.service_group_instance_id).indexOf(this.displayedGroups[0].service_group_instance_id);
     if (index !== -1 && index > 0) {
       this.displayedGroups.unshift(this.groups[index - 1]);
       this.displayedGroups.pop();
@@ -422,7 +394,9 @@ export class InstanceInfoComponent implements OnInit {
    * Displayed groups list swipes right by pressing the arrow button functionality
    */
   swipeRight() {
-    const index = this.groups.map(x => x.service_group_id).indexOf(this.displayedGroups[this.displayedGroups.length - 1].service_group_id);
+    const index = this.groups
+      .map(x => x.service_group_instance_id)
+      .indexOf(this.displayedGroups[this.displayedGroups.length - 1].service_group_instance_id);
     if (index !== -1 && this.groups[index + 1]) {
       this.displayedGroups.push(this.groups[index + 1]);
       this.displayedGroups.shift();
@@ -434,21 +408,26 @@ export class InstanceInfoComponent implements OnInit {
    * Requests an updated list of available services group to update the current one
    * @param organizationId Organization identifier
    */
-  updateGroupsList(organizationId: string) {
+  updateInstanceInfo(organizationId: string) {
     if (organizationId !== null) {
       // Requests an updated services group list
-      this.backend.getGroups(this.organizationId)
-      .subscribe(response => {
-        this.groups = response.groups || [];
-        if (this.displayedGroups.length === 0 && this.groups.length > 0) {
-          for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
-            this.displayedGroups.push(this.groups[index]);
+      this.backend.getAppInstance(this.organizationId,  this.instanceId)
+      .subscribe(instance => {
+          this.instance = instance;
+          this.groups = instance.groups || [];
+          if (this.displayedGroups.length === 0 && this.groups.length > 0) {
+            for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
+              this.displayedGroups.push(this.groups[index]);
+            }
           }
-        }
-        this.updateDisplayedGroupsNamesLength();
-        if (!this.loadedData) {
-          this.loadedData = true;
-        }
+          this.toGraphData(instance);
+          if (!this.loadedData) {
+            this.loadedData = true;
+          }
+          this.updateDisplayedGroupsNamesLength();
+          if (!this.loadedData) {
+            this.loadedData = true;
+          }
       }, errorResponse => {
           this.loadedData = true;
           this.requestError = errorResponse.error.message;
@@ -469,7 +448,6 @@ export class InstanceInfoComponent implements OnInit {
             message: 'Undeploying ' + app.name,
             timeout: 3000
           });
-          this.updateAppInstances(this.organizationId);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
@@ -481,28 +459,29 @@ export class InstanceInfoComponent implements OnInit {
 
   /**
    * Checks if the cluster status requires an special css class
-   * @param status Cluster status name
    * @param className CSS class name
    */
-  classStatusCheck(status: string, className: string): boolean {
-    switch (status.toLowerCase()) {
-      case 'running': {
-        if (className.toLowerCase() === 'running') {
-          return true;
+  instanceClassStatusCheck(className: string): boolean {
+    if (this.instance && this.instance.status_name) {
+      switch (this.instance.status_name.toLowerCase()) {
+        case 'running': {
+          if (className.toLowerCase() === 'running') {
+            return true;
+          }
+          break;
         }
-        break;
-      }
-      case 'error': {
-        if (className.toLowerCase() === 'error') {
-          return true;
+        case 'error': {
+          if (className.toLowerCase() === 'error') {
+            return true;
+          }
+          break;
         }
-        break;
-      }
-     default: {
-        if (className.toLowerCase() === 'process') {
-          return true;
+       default: {
+          if (className.toLowerCase() === 'process') {
+            return true;
+          }
+          return false;
         }
-        return false;
       }
     }
   }
@@ -511,8 +490,12 @@ export class InstanceInfoComponent implements OnInit {
   /**
    * Shows the graph in services card
    */
-  showWindowGraph() {
-    this.showGraph = !this.showGraph;
+  selectDisplayMode(type: string) {
+    if (type === 'list') {
+      this.showGraph = false;
+    } else if (type === 'graph') {
+      this.showGraph = true;
+    }
   }
 
   /**
@@ -527,5 +510,75 @@ export class InstanceInfoComponent implements OnInit {
    */
   openRulesInfo() {
 
+  }
+
+  /**
+   * Return the last specified number of chars of an string
+   * @param numberOfChars number of chars to be returned
+   * @param text text to substring
+   */
+  getLastChars(numberOfChars: number, text: string) {
+    return text.substr(text.length - numberOfChars, numberOfChars);
+  }
+
+  /**
+   * Returns the lenght of service instances that are part of the specified active group
+   * @param activeGroupId Identifier for the active group
+   */
+  countGroupServices(groupId: string) {
+    if (groupId === 'ALL') {
+      let counter = 0;
+      this.instance.groups.forEach(group => {
+        counter += group.service_instances.length;
+      });
+      return counter;
+    } else {
+      const index = this.displayedGroups
+        .map(x => x.service_group_instance_id)
+        .indexOf(groupId);
+      if (index !== -1) {
+        return this.displayedGroups[index].service_instances.length;
+      }
+      throw new Error('Not found');
+    }
+  }
+
+  /**
+   * Return the list of group services
+   */
+  getGroupServices(groupId: string) {
+    if (groupId === 'ALL') {
+      const services = [];
+      this.instance.groups.forEach(group => {
+        group.service_instances.forEach(service => {
+          services.push(service);
+        });
+      });
+      return services;
+    } else {
+      const index = this.displayedGroups
+      .map(x => x.service_group_instance_id)
+      .indexOf(this.activeGroupId);
+
+      if (index !== -1) {
+        return this.displayedGroups[index].service_instances;
+      } else {
+        return [];
+      }
+    }
+  }
+
+    /**
+   * Adds https in case of being required
+   * @param endpoint String containing the endpoint
+   */
+  getEndpointHref(endpoint: string) {
+    let URL = '';
+    if (!endpoint.startsWith('http') && !endpoint.startsWith('https')) {
+      URL = 'http://' + endpoint;
+    } else {
+      URL = endpoint;
+    }
+    return URL;
   }
 }
