@@ -718,6 +718,7 @@ export class RegisteredInfoComponent implements OnInit {
 
   /**
   * Open serivces info modal window
+  *  @param service service object
   */
  openServicesInfo(service) {
    const initialState = {
@@ -740,6 +741,7 @@ export class RegisteredInfoComponent implements OnInit {
 
  /**
   * Open rules info modal window
+  *  @param rule rule object
   */
  openRulesInfo(rule) {
    const initialState = {

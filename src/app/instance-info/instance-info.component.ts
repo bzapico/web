@@ -520,7 +520,7 @@ export class InstanceInfoComponent implements OnInit {
 
   /**
    * Open services info modal window
-   *  @param service service
+   *  @param service service object
    */
   openServicesInfo(service) {
     const initialState = {
@@ -547,7 +547,8 @@ export class InstanceInfoComponent implements OnInit {
   }
 
   /**
-   * Open rules info modal window // TO BE DESIGNED
+   * Open rules info modal window
+   * @param rule rule object
    */
   openRulesInfo(rule) {
     const initialState = {
