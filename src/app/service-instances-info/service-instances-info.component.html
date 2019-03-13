@@ -8,46 +8,32 @@
         <!-- Body -->
         <div class="modal-body">
         <h3 class="service-h3-title">{{name}}</h3>
-        <p class="service-title">{{image}}</p>
-        <p class="service-title">{{serviceId}}</p>
+        <p class="service-image">{{image}}</p>
+        <p class="service-title-sm">{{serviceId}}</p>
         <div id="scroll-app-info">
           <div class="row">
             <div class="col-sm grey mb-3">Status</div>
-            <h3 class="service-h3-title col-sm text-right blue">RUNNING</h3>
+            <h3 class="service-status col-sm text-right blue">RUNNING</h3>
           </div>
           <div class="row">
-            <div class="col-sm grey mb-3">Replicas</div>
+            <div class="col-sm grey">Replicas</div>
             <h3 class="service-h3-title col-sm text-right">{{specs.replicas}}</h3>
           </div>
           <br>
           <div *ngFor="let exposedPort of exposedPorts">
-            <div class="row">
-              <div class="col-sm grey mb-3">Exposed ports</div>
+
+          <div class="row">
+            <div class="col-sm grey mb-3">Endpoints</div>
+          </div>
+          <div class="row">
+            <div class="col-sm"></div>
+            <div class="col-sm text-right blue mb-2">applications/registered/fef6af2f-e2ae-4986-9457-015ae64e9f5e</div>
+          </div>
+          <div class="row">
+              <div class="col-sm"></div>
+              <div class="col-sm text-right blue mb-2">applications/registered/fef6af2f-e2ae-4986-9457-015ae64e9f5e</div>
             </div>
-            <span *ngIf="exposedPorts">
-              <div class="row">
-                <div class="col-sm"></div>
-                <div class="col-sm">Port</div>
-                <div class="col-sm text-right">Internal</div>
-                <div class="col-sm text-right">External</div>
-              </div>
-              <div class="row">
-                <div class="col-sm"></div>
-                <div class="col-sm grey">{{exposedPort.name}}</div>
-                <div class="col-sm text-right grey">{{exposedPort.internal_port}}</div>
-                <div class="col-sm text-right grey">{{exposedPort.exposed_port}}</div>
-              </div>
-            </span>
-            <span *ngIf="!exposedPorts">
-              <div class="row">
-                <div class="col-sm text-right">No</div>
-              </div>
-            </span>
-            <br>
-            <div class="row">
-              <div class="col-sm grey mb-3">Endpoints</div>
-            </div>
-            <span *ngIf="exposedPorts">
+            <!-- <span *ngIf="exposedPorts">
               <div class="row">
                 <div class="col-sm"></div>
                 <div class="col-sm">Port</div>
@@ -65,7 +51,31 @@
               <div class="row">
                 <div class="col-sm text-right">No</div>
               </div>
-            </span> 
+            </span>  -->
+            <div class="row">
+              <div class="col-sm grey mb-3">Exposed ports</div>
+            </div>
+            <span *ngIf="exposedPorts">
+              <div class="row">
+                <div class="col-sm"></div>
+                <div class="col-sm">Name</div>
+                <div class="col-sm text-right">Internal</div>
+                <div class="col-sm text-right">External</div>
+              </div>
+              <div class="row">
+                <div class="col-sm"></div>
+                <div class="col-sm grey">{{exposedPort.name}}</div>
+                <div class="col-sm text-right grey">{{exposedPort.internal_port}}</div>
+                <div class="col-sm text-right grey">{{exposedPort.exposed_port}}</div>
+              </div>
+            </span>
+            <span *ngIf="!exposedPorts">
+              <div class="row">
+                <div class="col-sm text-right">No</div>
+              </div>
+            </span>
+            <br>
+
           </div>
           <br>
           <div class="row">
