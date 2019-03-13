@@ -508,12 +508,28 @@ export class InstanceInfoComponent implements OnInit {
           break;
         }
        default: {
-          if (className.toLowerCase() === 'process') {
+          if (className.toLowerCase() === 'other') {
             return true;
           }
           return false;
         }
       }
+    }
+  }
+
+  getServiceStatusClass (status: string ) {
+    switch (status.toLowerCase()) {
+      case 'service_running':
+        return 'blue';
+      break;
+      case 'service_error':
+        return 'red';
+      break;
+      case 'service_waiting':
+        return 'orange';
+      break;
+      default:
+        return 'orange';
     }
   }
 
