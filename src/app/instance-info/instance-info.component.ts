@@ -42,6 +42,11 @@ export class InstanceInfoComponent implements OnInit {
   enabled: boolean;
 
   /**
+   * Registered instances list
+   */
+  registered: any[];
+
+  /**
    * List of available services
    */
   services: any[];
@@ -152,7 +157,8 @@ export class InstanceInfoComponent implements OnInit {
     // Default initialization
     this.labels = [];
     this.groups = [];
-    this.instance = {groups : []};
+    this.instance = {groups: []};
+    this.registered = [];
     this.displayedGroups = [];
     this.activeGroupId = 'ALL';
     this.requestError = '';
@@ -205,6 +211,10 @@ export class InstanceInfoComponent implements OnInit {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
         if (this.organizationId !== null) {
+          this.backend.getRegisteredApps(this.organizationId)
+            .subscribe(registeredAppsResponse => {
+              this.registered = registeredAppsResponse.descriptors;
+            });
           this.updateInstanceInfo(this.organizationId);
         }
         this.updateDisplayedGroupsNamesLength();
@@ -465,6 +475,20 @@ export class InstanceInfoComponent implements OnInit {
     }
   }
 
+  /**
+   * Returns the descriptor beauty name
+   * @param descriptorId Descriptor identifier
+   */
+  getDescriptorName(descriptorId: string) {
+    const index =
+    this.registered
+        .map(x => x.app_descriptor_id).
+        indexOf(descriptorId);
+    if (index !== -1) {
+      return this.registered[index].name;
+    }
+  }
+
    /**
    * Requests to undeploy the selected instance
    * @param app Application instance object
@@ -517,6 +541,10 @@ export class InstanceInfoComponent implements OnInit {
     }
   }
 
+  /**
+   * Depending on the service status, returns the css class name that is required
+   * @param status Service status string
+   */
   getServiceStatusClass (status: string ) {
     switch (status.toLowerCase()) {
       case 'service_running':
@@ -615,7 +643,7 @@ export class InstanceInfoComponent implements OnInit {
     }
   }
 
-    /**
+  /**
    * Adds https in case of being required
    * @param endpoint String containing the endpoint
    */
