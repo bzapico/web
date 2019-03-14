@@ -2,7 +2,6 @@
   height: 100%;
   margin-bottom: 2em;
 }
-
 form label {
   font-size: .8em;
   color: #949494;
@@ -11,7 +10,7 @@ form label {
 .error-message {
   font-size: 0.8em;
   color: #F25272;
-  // margin-top: .6em;
+  margin-top: .2em;
 }
 .form-group {
   margin-bottom: .5rem;
@@ -36,25 +35,24 @@ form label {
         color: white;
       }
     }
+    input {
+      &:checked {
+        outline: none;
+      }
+      &::placeholder {
+        color: #d2d2d2;
+      }
+      &:-webkit-autofill {
+        background-color: #fff !important;
+        -webkit-box-shadow: 0 0 0px 1000px white inset;
+      }
+    }
   }
 .form-control:disabled, .form-control[readonly] {
-   background-color: white; 
+    background-color: white; 
 }
-input {
-
-    &:checked {
-      outline: none;
-    }
-    &::placeholder {
-      color: #d2d2d2;
-
-    }
-    &:-webkit-autofill {
-      background-color: #fff !important;
-      -webkit-box-shadow: 0 0 0px 1000px white inset;
-    }
-  }
-.btn-md {
+/* - - - Buttons styles - - - */
+.btn-nalej-form {
   border: 0px;
   border-radius: 5px;
   width: 232px;
@@ -62,12 +60,14 @@ input {
   text-align: center;
   color: #fff;
   height: 51px;
+  background-color: #007bff;
+
   &:focus {
       outline: none;
       box-shadow: none;
   }
 }
-
+/* - - - Dropdown styles - - - */
 .dropdown-menu {
   width: 100% !important;
   padding: 0em;
