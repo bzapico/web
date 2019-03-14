@@ -31,16 +31,17 @@
                         class="summary-instances-status"
                         [ngClass]= 
                           "{
-                            'blue': classStatusCheck(instance.status_name, 'running'),
-                            'red': classStatusCheck(instance.status_name, 'error'),
-                            'orange':classStatusCheck(instance.status_name, 'process')
+                            'blue': instanceClassStatusCheck('running'),
+                            'red': instanceClassStatusCheck('error'),
+                            'orange':instanceClassStatusCheck('other')
                           }">
                         {{instance.status_name}}
                       </td>
                     </tr>
                     <tr>
                       <th class="grey">Instance of</th>
-                      <td class="dark-grey">WORDPRESS</td> 
+                      <!-- GET REGISTERED AND SET THE RIGHT NAME --> 
+                      <td class="dark-grey text-uppercase">{{getDescriptorName(instance.app_descriptor_id)}}</td> 
                     </tr>
                     <tr>
                       <th class="grey">ID</th>
@@ -52,17 +53,18 @@
                     </tr>
                     <tr>
                       <th class="grey">Groups</th>
-                      <td class="summary-instances-data">2</td> 
+                      <td *ngIf="instance && instance.groups" class="summary-instances-data">{{instance.groups.length}}</td> 
+                      <td *ngIf="!instance || !instance.groups" class="summary-instances-data">0</td> 
                     </tr>
                     <tr>
-                      <th class="grey">Services</th>
-                      <td class="summary-instances-data">4</td> 
+                      <th class="grey">Service instances</th>
+                      <td class="summary-instances-data">{{countGroupServices('ALL')}}</td> 
                     </tr>
                   </table>
             </div>
               <button 
                 class="btn-undeploy button-padding-fix"
-                (click)="undeploy(app)">
+                (click)="undeploy(instance)">
                 <i class="material-icons i-options">close</i>
                 Undeploy application
               </button>
@@ -73,19 +75,28 @@
         <div class="card-title-c hide-title-sm">
           <h5>LABELS</h5>
         </div>
-        <div class="ins-labels">
-          <div  *ngFor="let label of objectToString(instance.labels)">
+        <div
+          *ngIf="instance.labels"
+          class="ins-labels">
+          <div  *ngFor="let label of instanceLabelsToString()">
             <button class="btn-sm btn-outline-primary" disabled>
               {{label[0]}}: {{label[1]}}
             </button>
           </div>
         </div>
+        <div
+        *ngIf="!instance.labels"
+        class="ins-labels">
+        <div class="w-100 h-100 d-flex justify-content-center align-items-center">
+            No labels
+        </div>
+      </div>
       </div>
     </div>
   </div>
   <div class="col-8 h-100">
     <div class="ins-flex-col">
-      <!-- Grapho card -->
+      <!-- Graph card -->
       <div *ngIf="showGraph" class="card h-ins-services flex-grow-1">
         <div class="row">
           <div class="col-10 card-title-h">
@@ -98,14 +109,14 @@
                 placement="left"
                 class="material-icons float-right"   
                 [ngClass]="!showGraph ? 'blue' : 'grey'"
-                (click)="showWindowGraph()">
+                (click)="selectDisplayMode('list')">
                 view_list
               </i>
               <i 
                 tooltip="Graph" 
                 placement="left"
                 class="material-icons float-right mr-bars" 
-                (click)="showWindowGraph()"
+                (click)="selectDisplayMode('graph')"
                 [ngClass]="showGraph ? 'blue' : 'grey'">
                 bar_chart
               </i>
@@ -163,7 +174,7 @@
       <div *ngIf="!showGraph" class="card h-ins-services flex-grow-1">
         <div class="row">
           <div class="col-10 card-title-h">
-            <h5>SERVICES</h5>
+            <h5>SERVICE INSTANCES</h5>
           </div>
             <div class="col-2">
               <div class="show-graph-icons">
@@ -172,14 +183,14 @@
                   placement="left"
                   class="material-icons float-right"   
                   [ngClass]="!showGraph ? 'blue' : 'grey'"
-                  (click)="showWindowGraph()">
+                  (click)="selectDisplayMode('list')">
                   view_list
                 </i>
                 <i 
                   tooltip="Graph" 
                   placement="left"
                   class="material-icons float-right mr-bars" 
-                  (click)="showWindowGraph()"
+                  (click)="selectDisplayMode('graph')"
                   [ngClass]="showGraph ? 'blue' : 'grey'">
                   bar_chart
                 </i>
@@ -187,23 +198,23 @@
           </div>
         </div>
         <!-- Services tabs -->
-        <div class="row">
+        <div class="row" *ngIf="instance && instance.groups && instance.groups.length > 0">
           <div class="col">
             <div class="nalej-tab-container">
               <ul>
                 <li 
                   *ngIf="displayedGroupsNamesLength < maxLabelsLength" 
                   class="nalej-tab nalej-tab-title">
-                  <span class="grey">GROUPS</span>
+                  <span class="grey">GROUP INSTANCES</span>
                 </li>
                 <li 
-                  *ngIf="groups.length > 0" 
+                  *ngIf="groups && groups.length > 0" 
                   class="nalej-tab" 
                   (click)="changeActiveGroup('ALL')">
                   <span [ngClass]="amIactive('ALL')">ALL</span>
                 </li>
                 <li 
-                  *ngIf="groups.length === 0" 
+                  *ngIf="groups && groups.length === 0" 
                   class="nalej-tab">
                   <span class="active">ALL</span>
                 </li>
@@ -213,15 +224,14 @@
                   class="tabs-arrow">
                   <i class="material-icons">arrow_left</i>
                 </li>
-                <!-- TODO -->
                 <li 
                   *ngFor="let group of displayedGroups" 
                   class="nalej-tab" 
-                  (click)="changeActiveGroup()">
+                  (click)="changeActiveGroup(group.service_group_instance_id)">
                   <span 
                     *ngIf="displayedGroups.length > 0" 
-                    [ngClass]="amIactive()">
-                    Group 1
+                    [ngClass]="amIactive(group.service_group_instance_id)">
+                    {{group.name}} - {{getLastChars(3, group.service_group_instance_id)}}
                   </span>
                 </li>
                 <li 
@@ -234,25 +244,25 @@
             </div>
           </div>
         </div>
-        <div class="row justify-content-between">
+        <div *ngIf="instance && instance.groups && instance.groups.length > 0" class="row justify-content-between">
           <!-- Sorting mesages -->
           <div class="col-9">
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
               Filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+              <span class="blue reset-search" (click)="resetFilters('services')">Reset</span>
             </p>
             <p *ngIf="filterField && !searchTerm" class="sorting-message">
               Sorted by {{ sortedBy }},
               <span *ngIf="reverse">ascendant. </span>
               <span *ngIf="!reverse">descendant. </span>
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+              <span class="blue reset-search" (click)="resetFilters('services')">Reset</span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
               Sorted by {{ sortedBy }}
               <span *ngIf="reverse">ascendant </span>
               <span *ngIf="!reverse">descendant </span>
               and filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+              <span class="blue reset-search" (click)="resetFilters('services')">Reset</span>
             </p>
           </div>
           <!-- Search input -->
@@ -269,7 +279,7 @@
                   <i class="material-icons">search</i>
                 </div>
                 <div class="close-icon" *ngIf="searchTerm !== ''">
-                  <i class="material-icons" (click)="resetFilters(filterField)">close</i>
+                  <i class="material-icons" (click)="resetFilters('services')">close</i>
                 </div>
               </div>
             </form>
@@ -280,14 +290,14 @@
           class="no-info-in-group d-flex justify-content-center align-items-center">
           No available services in this group
         </div>
-        <!-- LAYOUT Services table -->
-        <div class="table-h">
+        <!-- Services table -->
+        <div *ngIf="instance && instance.groups && instance.groups.length > 0" class="table-h">
           <table class="table-responsive table-fixed">
             <thead>
               <tr>
                 <th 
-                  (click)="setOrder('name')" 
-                  [ngClass]="getCategoryCSSClass('name')" 
+                  (click)="setOrder('services','name')" 
+                  [ngClass]="getCategoryCSSClass('services','name')" 
                   scope="col" 
                   class="col-2">
                   Name
@@ -303,8 +313,8 @@
                   </span>
                 </th>
                 <th 
-                  (click)="setOrder('replicas')" 
-                  [ngClass]="getCategoryCSSClass('replicas')" 
+                  (click)="setOrder('services','replicas')" 
+                  [ngClass]="getCategoryCSSClass('services','replicas')" 
                   scope="col" 
                   class="col-2 text-center">
                   Replicas
@@ -320,8 +330,8 @@
                   </span>
                 </th> 
                 <th 
-                  (click)="setOrder('status')" 
-                  [ngClass]="getCategoryCSSClass('status')" 
+                  (click)="setOrder('services','status')" 
+                  [ngClass]="getCategoryCSSClass('services','status')" 
                   scope="col" 
                   class="col-3">
                   Status
@@ -337,8 +347,8 @@
                   </span>
                 </th>
                 <th 
-                  (click)="setOrder('endpoints')" 
-                  [ngClass]="getCategoryCSSClass('endpoints')" 
+                  (click)="setOrder('services','endpoints')" 
+                  [ngClass]="getCategoryCSSClass('services','endpoints')" 
                   scope="col" 
                   class="col-4">
                   Endpoints
@@ -347,7 +357,7 @@
                     *ngIf="sortedBy === 'endpoints' && !reverse">
                     <i class="material-icons">expand_more</i>
                   </span>
-                  <span 
+                  <span  
                     class="expand-chevron" 
                     *ngIf="sortedBy === 'endpoints' && reverse">
                     <i class="material-icons">expand_less</i>
@@ -361,12 +371,20 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-              <span >
-                <td class="col-2">simple-mysql</td>
-                <td class="col-2 text-center">3</td>
-                <td class="col-3">SERVICE_WAITING</td>
-                <td class="col-4">http://mysql.dashborad.com</td>
+              <span *ngIf="getGroupServices(activeGroupId)">
+              <tr *ngFor="let service of getGroupServices(activeGroupId) | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+                <td class="col-2">{{service.name}}</td>
+                <td class="col-2 text-center">{{service.specs.replicas}}</td>
+                <td 
+                  class="col-3 text-lowercase"
+                  [ngClass]="getServiceStatusClass(service.status_name)"
+             >{{getBeautyStatusName(service.status_name)}}</td>
+                <td class="col-4">
+                  <span *ngFor="let endpoint of service.endpoints">
+                      <a *ngIf="endpoint" href="{{getEndpointHref(endpoint)}}" target="_blank">{{endpoint}}</a>
+                    </span>
+                  <span *ngIf="!service.endpoints">No</span>
+                </td>
                 <td class="col-1 text-center">
                   <button 
                     class="btn info-btn btn-primary"  
@@ -376,8 +394,8 @@
                     <span class="i-info">i</span>
                   </button>
                 </td>
-              </span>
-            </tr>
+              </tr>
+            </span>
             </tbody>
           </table>
         </div>
@@ -415,110 +433,110 @@
           <div class="row hide-sm">
             <!-- Sorting mesages -->
             <div class="col">
-              <p *ngIf="searchTerm && !filterField" class="sorting-message">
-                Filtered by term "{{ searchTerm }}".
-                <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+              <p *ngIf="searchTermRules && !filterFieldRules" class="sorting-message">
+                Filtered by term "{{ searchTermRules }}".
+                <span class="blue reset-search" (click)="resetFilters('rules')">Reset</span>
               </p>
-              <p *ngIf="filterField && !searchTerm" class="sorting-message">
-                Sorted by {{ sortedBy }},
+              <p *ngIf="filterFieldRules && !searchTermRules" class="sorting-message">
+                Sorted by {{ sortedByRules }},
                 <span *ngIf="reverse">ascendant. </span>
                 <span *ngIf="!reverse">descendant. </span>
-                <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+                <span class="blue reset-search" (click)="resetFilters('rules')">Reset</span>
               </p>
-              <p *ngIf="filterField && searchTerm" class="sorting-message">
-                Sorted by {{ sortedBy }}
+              <p *ngIf="filterFieldRules && searchTermRules" class="sorting-message">
+                Sorted by {{ sortedByRules }}
                 <span *ngIf="reverse">ascendant </span>
                 <span *ngIf="!reverse">descendant </span>
-                and filtered by term "{{ searchTerm }}".
-                <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+                and filtered by term "{{ searchTermRules }}".
+                <span class="blue reset-search" (click)="resetFilters('rules')">Reset</span>
               </p>
             </div>
             <!-- Search input -->
             <div class="col-6">
               <form>
                 <div class="search-box">
-                  <input type="text" class="form-control" name="searchTerm" placeholder="Search..."
-                    [(ngModel)]="searchTerm">
-                  <div class="search-icon" *ngIf="searchTerm === ''">
+                  <input type="text" class="form-control" name="searchTermRules" placeholder="Search..."
+                    [(ngModel)]="searchTermRules">
+                  <div class="search-icon" *ngIf="searchTermRules === ''">
                     <i class="material-icons">search</i>
                   </div>
-                  <div class="close-icon" *ngIf="searchTerm !== ''">
-                    <i class="material-icons" (click)="resetFilters(filterField)">close</i>
+                  <div class="close-icon" *ngIf="searchTermRules !== ''">
+                    <i class="material-icons" (click)="resetFilters('rules')">close</i>
                   </div>
                 </div>
               </form>
             </div>
           </div>
           <!-- Rules table -->
-          <div class="table-h table-h-fix" *ngIf="loadedData && instances && instances.length > 0 && !requestError">
+          <div class="table-h table-h-fix" *ngIf="loadedData && instance.rules && instance.rules.length > 0 && !requestError">
             <table class="table-responsive table-fixed">
               <thead class="hide-sm">
                 <tr>
                   <th 
-                    (click)="setOrder('name')" 
-                    [ngClass]="getCategoryCSSClass('name')" 
+                    (click)="setOrder('rules','name')" 
+                    [ngClass]="getCategoryCSSClass('rules','name')" 
                     scope="col" 
                     class="col-2">
                     Name
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'name' && !reverse">
+                      *ngIf="sortedByRules === 'name' && !reverseRules">
                       <i class="material-icons">expand_more</i>
                     </span>
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'name' && reverse">
+                      *ngIf="sortedByRules === 'name' && reverseRules">
                       <i class="material-icons">expand_less</i>
                     </span>
                   </th>
                   <th 
-                    (click)="setOrder('access')" 
-                    [ngClass]="getCategoryCSSClass('access')" 
+                    (click)="setOrder('rules','access')" 
+                    [ngClass]="getCategoryCSSClass('rules', 'access')" 
                     scope="col" 
                     class="col-2">
                     Access
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'access' && !reverse">
+                      *ngIf="sortedByRules === 'access' && !reverseRules">
                       <i class="material-icons">expand_more</i>
                     </span>
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'access' && reverse">
+                      *ngIf="sortedByRules === 'access' && reverseRules">
                       <i class="material-icons">expand_less</i>
                     </span>
                   </th>
                   <th 
-                    (click)="setOrder('target')" 
-                    [ngClass]="getCategoryCSSClass('target')" 
+                    (click)="setOrder('rules','target')" 
+                    [ngClass]="getCategoryCSSClass('rules','target')" 
                     scope="col"
                     class="col-4">
                     Target <span class="grey typo-small">(group, service, port)</span>
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'target' && !reverse">
+                      *ngIf="sortedByRules === 'target' && !reverseRules">
                       <i class="material-icons">expand_more</i>
                     </span>
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'target' && reverse">
+                      *ngIf="sortedByRules === 'target' && reverseRules">
                       <i class="material-icons">expand_less</i>
                     </span>
                   </th>
                   <th 
-                    (click)="setOrder('auth')" 
-                    [ngClass]="getCategoryCSSClass('auth')" 
+                    (click)="setOrder('rules','auth')" 
+                    [ngClass]="getCategoryCSSClass('rules','auth')" 
                     scope="col" 
                     class="col-3">
                     Auth <span class="grey typo-small">(group, service)</span>
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'auth' && !reverse">
+                      *ngIf="sortedByRules === 'auth' && !reverse">
                       <i class="material-icons">expand_more</i>
                     </span>
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedBy === 'auth' && reverse">
+                      *ngIf="sortedByRules === 'auth' && reverse">
                       <i class="material-icons">expand_less</i>
                     </span>
                   </th>
@@ -530,7 +548,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let rule of instance.rules | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+                <tr *ngFor="let rule of instance.rules | sortBy : sortedByRules : reverseRules : 'case-insensitive' | filter : searchTermRules">
                   <td class="col-2">
                     <a 
                       class="blue text-capitalize text-left">
@@ -560,7 +578,7 @@
             </table>
           </div>
           <!-- No info to show -->
-          <div *ngIf="loadedData && instances && instances.length === 0 !requestError"
+          <div *ngIf="loadedData && instance && instance.rules.length === 0 !requestError"
             class="no-info d-flex justify-content-center align-items-center">
             No available rules detected
           </div>
@@ -586,17 +604,47 @@
         </div>
         <!-- Configuration card -->
         <div class="card h-100">
-          <div class="card-title-c">
-            <h5 class="hide-sm">CONFIGURATION</h5>
-            <h5 class="show-sm">CONF...</h5>
-          </div>
-          <div class="config-card">
-            <p class="grey text-left">Enviroment variables</p>
-            <p>No enviroment variables have been set</p>
-            <p class="grey text-left">Other settings</p>
-            <p>No extra settings have been set</p>
-          </div>
-        </div>
+            <div class="card-title-c">
+              <h5 class="hide-sm">CONFIGURATION</h5>
+              <h5 class="show-sm">CONF...</h5>
+            </div>
+            <div class="config-card">
+              <div *ngIf="instance.environment_variables">
+                <p class=" text-left">Enviroment variables</p>
+                <div 
+                  class="row mb-2" 
+                  *ngFor="let variable of objectToString(instance.environment_variables)">
+                  <div class="col-12 grey text-right">
+                    {{variable[0]}} 
+                  </div>
+
+                  <div class="col-12 text-right">
+                    {{variable[1]}}
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!instance.environment_variables">
+                <p class="text-left">Enviroment variables</p>
+                <p class="grey">No enviroment variables have been set</p>
+              </div>
+              <div *ngIf="instance.configuration_options">
+                <p class="text-left">Other settings</p>
+                <div 
+                  class="row mb-1" 
+                  *ngFor="let configuration of objectToString(instance.configuration_options)">
+                    <div class="col-12 grey text-right">
+                      {{configuration[0]}} 
+                    </div>
+                    <div class="col-12 text-right">
+                      {{configuration[1]}}
+                    </div>
+                </div>
+              </div>
+              <div *ngIf="!instance.configuration_options">
+                <p class="text-left">Other settings</p>
+                <p class="grey">No extra settings have been set</p>
+              </div>
+            </div>
       </div>
     </div>
   </div>
