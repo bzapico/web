@@ -369,7 +369,7 @@
                 <td 
                   class="col-3 text-lowercase"
                   [ngClass]="getServiceStatusClass(service.status_name)"
-                  >{{service.status_name}}</td>
+                  >{{getBeautyStatusName(service.status_name)}}</td>
                 <td class="col-4">
                   <span *ngFor="let endpoint of service.endpoints">
                       <a *ngIf="endpoint" href="{{getEndpointHref(endpoint)}}" target="_blank">{{endpoint}}</a>

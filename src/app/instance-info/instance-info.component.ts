@@ -643,7 +643,6 @@ export class InstanceInfoComponent implements OnInit {
       return [];
     }
     if (groupId === 'ALL') {
-      console.log('entro por el all');
       const services = [];
       if (this.instance && this.instance.groups) {
         this.instance.groups.forEach(group => {
@@ -680,5 +679,16 @@ export class InstanceInfoComponent implements OnInit {
       URL = endpoint;
     }
     return URL;
+  }
+
+  /**
+   * Filters the backend incoming status to display it in removing the initial "service_"
+   * @param rawStatus string containing the status that the backend is sending
+   */
+  getBeautyStatusName (rawStatus: string): string {
+    if (rawStatus.toLowerCase().startsWith('service_')) {
+      return rawStatus.substring('service_'.length, rawStatus.length);
+    }
+    return rawStatus;
   }
 }
