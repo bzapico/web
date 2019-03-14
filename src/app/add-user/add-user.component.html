@@ -14,115 +14,120 @@
     <!-- Body -->
     <div class="modal-body">
       <form [formGroup]="addUserForm" (ngSubmit)="addUser(f)">
-          <div class="form-group">
-            <label>Name*</label>
-            <input 
-              formControlName="userName"
-              placeholder="e.g. John"
-              type="text" 
-              class="form-control" 
-              [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
-              required>
+        <div class="form-group">
+          <label>Name*</label>
+          <input 
+            formControlName="userName"
+            placeholder="e.g. John"
+            pattern="[a-zA-Z0-9]+"
+            type="text" 
+            class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
+            required>
+          <div *ngIf="!submitted && f.userName.errors" class="error-message"></div>
+          <div class="error-h">
             <div *ngIf="submitted && f.userName.errors" class="error-message">
-              <div *ngIf="f.userName.errors.required">First Name is required</div>
+              <div *ngIf="f.userName.errors.required">Name is required</div>
             </div>
           </div>
-          <div class="form-group">
-            <label >Email*</label>
-            <input 
-              formControlName="email" 
-              placeholder="e.g. john@nalej.com"
-              type="text" 
-              class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f.email.errors }" 
-              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"
-              required>
+        </div>
+        <div class="form-group">
+          <label >Email*</label>
+          <input 
+            formControlName="email" 
+            placeholder="e.g. john@nalej.com"
+            type="text" 
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" 
+            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"
+            required>
+          <div class="error-h">
             <div *ngIf="submitted && f.email.errors" class="error-message">
               <div *ngIf="f.email.errors.required">Email is required</div>
               <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
             </div>
           </div>
-          <div class="form-group">
-            <label >Password*</label>
-            <input 
-              formControlName="password" 
-              placeholder="Type your password here"
-              type="password" 
-              class="form-control" 
-              [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-              required>
+        </div>
+        <div class="form-group">
+          <label >Password*</label>
+          <input 
+            formControlName="password" 
+            placeholder="Type your password here"
+            type="password" 
+            class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+            required>
+          <div class="error-h">
             <div *ngIf="submitted && f.password.errors" class="error-message">
               <div *ngIf="f.password.errors.required">Password is required</div>
               <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
             </div>
           </div>
-          <div class="form-group">
-            <label>Confirm password*</label>
-            <input 
-              formControlName="passwordConfirm" 
-              type="password" 
-              placeholder="Type your password again"
-              class="form-control" 
-              [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-              required>
-            <div *ngIf="submitted && f.password.errors" class="error-message">
-              <div *ngIf="f.password.errors.required">Password is required</div>
-              <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+        </div>
+        <div class="form-group">
+          <label>Confirm password*</label>
+          <input 
+            formControlName="passwordConfirm" 
+            type="password" 
+            placeholder="Type your password again"
+            class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && !samePasswords(addUserForm) }"
+            required>
+          <div class="error-h">
+            <div *ngIf="submitted && !samePasswords(addUserForm)" class="error-message">
+              Set passwords do not match
             </div>
           </div>
-          <!-- Dropdown button -->
-          <div class="form-group">
-            <label>Role*</label>
-
-            <!-- <div class="input-group mb-3 ">
-                <select class="form-control">
-                  <option class="light-grey" selected>e.g. Owner</option>
-                  <option class="light-grey" value="1">Owner</option>
-                  <option class="light-grey" value="2">Developer</option>
-                  <option class="light-grey" value="3">Operator</option>
-                </select>
-              </div> -->
-            <div class="btn-group w-100"  dropdown>
-              <button 
-                id="button-basic" 
-                dropdownToggle 
-                type="button" 
-                class="dropdown-toggle cursor-pointer form-control"
-                aria-controls="dropdown-basic">
-                <span class="light-grey">e.g. Owner</span>
-              </button>
-              <ul 
-                id="dropdown-basic" 
-                *dropdownMenu 
-                class="dropdown-menu"
-                role="menu" 
-                aria-labelledby="button-basic">
-                <li role="menuitem">
-                  <span class="dropdown-item cursor-pointer">
-                    Owner
-                  </span>
-                </li>
-                <li role="menuitem">
-                  <span class="dropdown-item cursor-pointer">
-                    Developer
-                  </span>
-                </li>
-                <li role="menuitem">
-                  <span class="dropdown-item cursor-pointer">
-                    Operator
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- Save new user -->
-          <div class="form-group d-flex flex-row justify-content-center mt-5">
-            <button class="btn-nalej-form"  [disabled]="loading">
-              <span class="align-bottom">Add user</span>
+        </div>
+        <div class="form-group">
+          <label>Role*</label>
+          <div class="btn-group w-100" dropdown>
+            <button 
+              id="button-basic" 
+              dropdownToggle 
+              type="button" 
+              class="dropdown-toggle cursor-pointer form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.role.errors && !userRole }"
+              aria-controls="dropdown-basic">
+              <span *ngIf="!userRole" class="light-grey">e.g. Owner</span>
+              {{userRole}}
             </button>
+            <ul 
+              id="dropdown-basic" 
+              *dropdownMenu 
+              class="dropdown-menu"
+              role="menu" 
+              aria-labelledby="button-basic">
+              <li role="menuitem">
+                <span class="dropdown-item cursor-pointer" (click)="userRole = 'Owner'">
+                  Owner
+                </span>
+              </li>
+              <li role="menuitem">
+                <span class="dropdown-item cursor-pointer" (click)="userRole = 'Developer'">
+                  Developer
+                </span>
+              </li>
+              <li role="menuitem">
+                <span class="dropdown-item cursor-pointer" (click)="userRole = 'Operator'">
+                  Operator
+                </span>
+              </li>
+            </ul>
           </div>
+          <div class="error-h">
+            <div *ngIf="submitted && f.role.errors && !userRole" class="error-message">
+              <div *ngIf="f.role.errors.required">A roles is required</div>
+            </div>
+          </div>
+        </div>
+        <!-- Save new user -->
+        <div class="form-group d-flex flex-row justify-content-center mt-5">
+          <button class="btn-nalej-form" [disabled]="loading">
+            <span class="align-bottom">Add user</span>
+          </button>
+        </div>
       </form>
-
     </div>
   </div>
 </div>

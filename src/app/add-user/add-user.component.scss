@@ -1,19 +1,12 @@
-.nalej-form {
-  height: 100%;
-  margin-bottom: 2em;
-}
-form label {
-  font-size: .8em;
-  color: #949494;
-  margin-bottom: 0;
-}
-.error-message {
-  font-size: 0.8em;
-  color: #F25272;
-  margin-top: .2em;
-}
+
+/* - - - Forms styles - - - */
 .form-group {
-  margin-bottom: .5rem;
+  margin-bottom: 0rem;
+  label {
+    font-size: .8em;
+    color: #949494;
+    margin-bottom: 0;
+  }
   input {
     &::placeholder {
       color: #d2d2d2;
@@ -26,40 +19,41 @@ form label {
   }
 }
 .form-control {
-    position: relative;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    height: 40px;
-    font-size: .8em;
-    text-align: center;
-    border-radius: 5px;
-    border: 2px solid #EEEEEE;
-    caret-color: #0937FF;
-    padding-top: 10px;
-    &:focus {
-      z-index: 2;
-      border-color: #0937FF;
-      outline: none;
-      box-shadow: none;
-      &::placeholder {
-        color: white;
-      }
-    }
-    input {
-      &:checked {
-        outline: none;
-      }
-      &:-webkit-autofill {
-        background-color: #fff !important;
-        -webkit-box-shadow: 0 0 0px 1000px white inset;
-      }
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 40px;
+  font-size: .8em;
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solid #EEEEEE;
+  caret-color: #0937FF;
+  padding-top: 10px;
+  &:focus {
+    z-index: 2;
+    border-color: #0937FF;
+    outline: none;
+    box-shadow: none;
+    &::placeholder {
+      color: white;
     }
   }
-.form-control:disabled, .form-control[readonly] {
-    background-color: white; 
+  input {
+    &:checked {
+      outline: none;
+    }
+    &:-webkit-autofill {
+      background-color: #fff !important;
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+    }
+  }
+  &:disabled, &[readonly] {
+    background-color: white;
+  }
 }
-/* - - - Buttons styles - - - */
+
+/* - - - Forms button styles - - - */
 .btn-nalej-form {
   border: 0px;
   border-radius: 5px;
@@ -70,13 +64,15 @@ form label {
   height: 51px;
   background-color: #0937FF;
   cursor: pointer;
-
   &:focus {
-      outline: none;
-      box-shadow: none;
+    outline: none;
+    box-shadow: none;
+  }
+  &:disabled {
+    background-color: #707070;
   }
 }
-/* - - - Dropdown styles - - - */
+/* - - - Forms dropdown styles - - - */
 .dropdown-menu {
   width: 100% !important;
   padding: 0em;
@@ -93,14 +89,14 @@ form label {
   text-align: center;
   font-size: .8em;
   &:focus {
-      box-shadow: none;
-      z-index: 2;
-      border-color: #0937FF;
-      outline: none;
-      box-shadow: none;
-      &::placeholder {
-          color: white;
-      }
+    box-shadow: none;
+    z-index: 2;
+    border-color: #0937FF;
+    outline: none;
+    box-shadow: none;
+    &::placeholder {
+      color: white;
+    }
   }
   &::after {
     position: absolute;
@@ -115,6 +111,19 @@ form label {
   text-align: center;
   padding: .6rem 1.5rem;
   &:hover {
-      background-color: #ECECEC;
+    background-color: #ECECEC;
   }
 }   
+
+/* - - - Forms error messages styles - - - */
+.error-h {
+  height: 19px;
+  margin-top: .2em;
+  .error-message {
+    font-size: 0.8em;
+    color: #F25272;
+  }
+}
+.is-invalid {
+  border: 2px solid #F25272!important;
+}
