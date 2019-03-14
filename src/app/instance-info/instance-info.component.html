@@ -75,13 +75,22 @@
         <div class="card-title-c hide-title-sm">
           <h5>LABELS</h5>
         </div>
-        <div class="ins-labels">
+        <div
+          *ngIf="instance.labels"
+          class="ins-labels">
           <div  *ngFor="let label of instanceLabelsToString()">
             <button class="btn-sm btn-outline-primary" disabled>
               {{label[0]}}: {{label[1]}}
             </button>
           </div>
         </div>
+        <div
+        *ngIf="!instance.labels"
+        class="ins-labels">
+        <div class="w-100 h-100 d-flex justify-content-center align-items-center">
+            No labels
+        </div>
+      </div>
       </div>
     </div>
   </div>
@@ -348,7 +357,7 @@
                     *ngIf="sortedBy === 'endpoints' && !reverse">
                     <i class="material-icons">expand_more</i>
                   </span>
-                  <span 
+                  <span  
                     class="expand-chevron" 
                     *ngIf="sortedBy === 'endpoints' && reverse">
                     <i class="material-icons">expand_less</i>
@@ -369,7 +378,7 @@
                 <td 
                   class="col-3 text-lowercase"
                   [ngClass]="getServiceStatusClass(service.status_name)"
-                  >{{getBeautyStatusName(service.status_name)}}</td>
+             >{{getBeautyStatusName(service.status_name)}}</td>
                 <td class="col-4">
                   <span *ngFor="let endpoint of service.endpoints">
                       <a *ngIf="endpoint" href="{{getEndpointHref(endpoint)}}" target="_blank">{{endpoint}}</a>
