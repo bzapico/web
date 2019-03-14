@@ -5,7 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-user',
@@ -13,6 +13,9 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./add-user.component.scss']
 })
 export class AddUserComponent implements OnInit {
+
+  registerForm: FormGroup;
+  submitted = false;
   /**
    * Backend reference
    */
@@ -39,6 +42,7 @@ export class AddUserComponent implements OnInit {
     ignoreBackdropClick: true
   };
   constructor(
+    private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
@@ -57,6 +61,28 @@ export class AddUserComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.registerForm = this.formBuilder.group({
+      userName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      passwordConfirm: ['', [Validators.required, Validators.minLength(6)]]
+  });
+
+  }
+
+  // convenience getter for easy access to form fields
+  get f() { return this.registerForm.controls; }
+
+  onSubmit() {
+      this.submitted = true;
+
+      // stop here if form is invalid
+      if (this.registerForm.invalid) {
+          return;
+      }
+
+      alert('SUCCESS!! :-)');
   }
 
   /**

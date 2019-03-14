@@ -13,110 +13,118 @@
     </div>
     <!-- Body -->
     <div class="modal-body">
-      <form  (ngSubmit)="onSubmit()">
+      <form  [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="nalej-form">
-        <div class="form-group">
-          <label for="validationServer013">Name*</label>
-          <input 
-            id="validationServer013" 
-            [(ngModel)]="userName" 
-            name="name" 
-            formControlName="userName"
-            placeholder="e.g. John"
-            type="text" 
-            class="form-control" 
-            [ngClass]="{ 'is-invalid': submitted && f.fuserName.errors }"
-            required>
-            <div *ngIf="submitted && f.fuserName.errors" class="invalid-feedback">
-              <div *ngIf="f.userName.errors.required">First Name is required</div>
+          <div class="form-group">
+            <label for="validationServer013">Name*</label>
+            <!-- [(ngModel)]="userName"  -->
+            <input 
+              id="validationServer013" 
+            
+              name="name" 
+              formControlName="userName"
+              placeholder="e.g. John"
+              type="text" 
+              class="form-control" 
+              [ngClass]="{ 'is-invalid': submitted && f.fuserName.errors }"
+              required>
+              <div *ngIf="submitted && f.fuserName.errors" class="invalid-feedback">
+                <div *ngIf="f.userName.errors.required">First Name is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="validationServerUsername33">Email*</label>
+            <input 
+              formControlName="email" 
+              name="email" 
+              placeholder="e.g. john@nalej.com"
+              type="text" 
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors }" 
+              id="validationServerUsername33"
+              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"
+              required>
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="validationServerUsername33">Password*</label>
+            <input 
+              formControlName="password" 
+              name="password" 
+              placeholder="Type your password here"
+              type="password" 
+              class="form-control" 
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+              required>
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+                  <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="validationServerUsername33">Confirm password*</label>
+            <input 
+              formControlName="passwordConfirm" 
+              name="passwordConfirm" 
+              type="password" 
+              placeholder="Type your password again"
+              class="form-control" 
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+              id="validationServerUsername33"
+              required>
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+                  <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+              </div>
+            <!-- <div class="error-message">
+
+            </div>      -->
+          </div>
+          <!-- Dropdown button -->
+          <div class="form-group">
+            <label for="validationServerUsername33">Role*</label>
+            <div class="btn-group w-100"  dropdown>
+              <button 
+                id="button-basic" 
+                dropdownToggle 
+                type="button" 
+                class="dropdown-toggle cursor-pointer form-control"
+                aria-controls="dropdown-basic">
+                <span class="light-grey">e.g. Owner</span>
+                
+              </button>
+              <ul 
+                id="dropdown-basic" 
+                *dropdownMenu 
+                class="dropdown-menu"
+                role="menu" 
+                aria-labelledby="button-basic">
+                <li role="menuitem">
+                  <span class="dropdown-item cursor-pointer">
+                    Owner
+                  </span>
+                </li>
+                <li role="menuitem">
+                  <span class="dropdown-item cursor-pointer">
+                    Developer
+                  </span>
+                </li>
+                <li role="menuitem">
+                  <span class="dropdown-item cursor-pointer">
+                    Operator
+                  </span>
+                </li>
+              </ul>
             </div>
-        </div>
-        <div class="form-group">
-          <label for="validationServerUsername33">Email*</label>
-          <input 
-            [(ngModel)]="email" 
-            name="email" 
-            placeholder="e.g. john@nalej.com"
-            type="text" 
-            class="form-control"
-            id="validationServerUsername33"
-            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"
-            required>
-          <div class="error-message">
-            Please choose a username.
           </div>
         </div>
-        <div class="form-group">
-          <label for="validationServerUsername33">Password*</label>
-          <input 
-            [(ngModel)]="password" 
-            name="password" 
-            placeholder="Type your password here"
-            type="password" 
-            class="form-control" 
-            required>
-          <div class="invalid-feedback">
-            Please choose a username.
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="validationServerUsername33">Confirm password*</label>
-          <input 
-            [(ngModel)]="passwordConfirm" 
-            name="passwordConfirm" 
-            type="password" 
-            placeholder="Type your password again"
-            class="form-control" 
-            id="validationServerUsername33"
-            required>
-          <div class="error-message">
-
-
-           
-          </div>     
-        </div>
-        <!-- Dropdown button -->
-        <div class="form-group">
-          <label for="validationServerUsername33">Role*</label>
-          <div class="btn-group w-100"  dropdown>
-            <button 
-              id="button-basic" 
-              dropdownToggle 
-              type="button" 
-              class="dropdown-toggle cursor-pointer form-control"
-              aria-controls="dropdown-basic">
-              <span class="light-grey">e.g. Owner</span>
-              
-            </button>
-            <ul 
-              id="dropdown-basic" 
-              *dropdownMenu 
-              class="dropdown-menu"
-              role="menu" 
-              aria-labelledby="button-basic">
-              <li role="menuitem">
-                <span class="dropdown-item cursor-pointer">
-                  Owner
-                </span>
-              </li>
-              <li role="menuitem">
-                <span class="dropdown-item cursor-pointer">
-                  Developer
-                </span>
-              </li>
-              <li role="menuitem">
-                <span class="dropdown-item cursor-pointer">
-                  Operator
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
     
         <!-- Save new user -->
-        <div class="d-flex flex-row justify-content-center">
+        <!-- <div class="d-flex flex-row justify-content-center"> -->
+        <div class="form-group d-flex flex-row justify-content-center">
           <button class="btn-nalej-form" (click)="checkFormFields(f.form)">
             <span class="align-bottom">Add user</span>
           </button>
@@ -124,14 +132,14 @@
       </form>
 
     <!-- Error messages -->
-    <div class="error-message">
+    <!-- <div class="error-message">
         <div 
         tooltip = "{{arrayToString(errorMessages)}}"
         placement = "bottom"
         *ngIf="errorMessages.length > 0">
         {{formatValidationOutput(errorMessages).msg}}
       </div>
-    </div>
+    </div> -->
     
     </div>
   </div>
