@@ -292,7 +292,7 @@
         </div>
         <!-- Services table -->
         <div *ngIf="instance && instance.groups && instance.groups.length > 0" class="table-h">
-          <table class="table-responsive table-fixed">
+          <table class="table-responsive table-fixed cucu">
             <thead>
               <tr>
                 <th 
@@ -371,8 +371,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngIf="getGroupServices(activeGroupId)">
-              <span *ngFor="let service of getGroupServices(activeGroupId) | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+              <span *ngIf="getGroupServices(activeGroupId)">
+              <tr *ngFor="let service of getGroupServices(activeGroupId) | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
                 <td class="col-2">{{service.name}}</td>
                 <td class="col-2 text-center">{{service.specs.replicas}}</td>
                 <td 
@@ -394,8 +394,8 @@
                     <span class="i-info">i</span>
                   </button>
                 </td>
-              </span>
-            </tr>
+              </tr>
+            </span>
             </tbody>
           </table>
         </div>
