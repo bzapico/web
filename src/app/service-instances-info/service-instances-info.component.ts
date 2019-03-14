@@ -52,4 +52,20 @@ export class ServiceInstancesInfoComponent implements OnInit {
     return Object.entries(object);
   }
 
+    /**
+   * Adds https in case of being required
+   * @param endpoint String containing the endpoint
+   */
+  getEndpointHref(endpoint: string) {
+    console.log('desde get endpoint ', endpoint);
+    let URL = '';
+    if (!endpoint.startsWith('http') && !endpoint.startsWith('https')) {
+      URL = 'http://' + endpoint;
+    } else {
+      URL = endpoint;
+    }
+    return URL;
+  }
+
+
 }

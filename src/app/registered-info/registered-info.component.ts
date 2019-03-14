@@ -11,7 +11,6 @@ import { ActivatedRoute } from '@angular/router';
 import * as shape from 'd3-shape';
 import { AppDescriptor } from '../definitions/interfaces/app-descriptor';
 import { mockRegisteredAppsList } from '../utils/mocks';
-import { ServiceInstancesInfoComponent } from '../service-instances-info/service-instances-info.component';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { ServiceInfoComponent } from '../service-info/service-info.component';
 
@@ -734,7 +733,7 @@ export class RegisteredInfoComponent implements OnInit {
      specs: service.specs,
    };
 
-   this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+   this.modalRef = this.modalService.show(ServiceInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
    this.modalRef.content.closeBtnName = 'Close';
 
  }

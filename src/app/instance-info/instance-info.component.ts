@@ -601,6 +601,7 @@ export class InstanceInfoComponent implements OnInit {
    *  @param service service object
    */
   openServicesInfo(service) {
+    console.log('service', service);
     const initialState = {
       organizationId: this.organizationId,
       serviceId: service.service_group_id,
@@ -616,7 +617,8 @@ export class InstanceInfoComponent implements OnInit {
       replicas: service.replicas,
       specs: service.specs,
       statusName: service.status_name,
-      typeName: service.type_name
+      typeName: service.type_name,
+      endpoints: service.endpoints
     };
 
     this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
@@ -641,7 +643,7 @@ export class InstanceInfoComponent implements OnInit {
       targetServiceGroupName: rule.target_service_group_name,
       targetServiceName: rule.target_service_name,
       deviceGroupIds: rule.device_group_ids,
-      deviceGroupNames: rule.device_group_names
+      deviceGroupNames: rule.device_group_names,
     };
 
     this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
