@@ -57,7 +57,6 @@ export class ServiceInstancesInfoComponent implements OnInit {
    * @param endpoint String containing the endpoint
    */
   getEndpointHref(endpoint: string) {
-    console.log('desde get endpoint ', endpoint);
     let URL = '';
     if (!endpoint.startsWith('http') && !endpoint.startsWith('https')) {
       URL = 'http://' + endpoint;

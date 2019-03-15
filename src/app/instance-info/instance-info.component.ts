@@ -227,7 +227,6 @@ export class InstanceInfoComponent implements OnInit {
     }
     this.backend.getAppInstance(this.organizationId,  this.instanceId)
     .subscribe(instance => {
-      console.log(instance);
         this.instance = instance;
         this.toGraphData(instance);
         if (!this.loadedData) {
@@ -601,7 +600,6 @@ export class InstanceInfoComponent implements OnInit {
    *  @param service service object
    */
   openServicesInfo(service) {
-    console.log('service', service);
     const initialState = {
       organizationId: this.organizationId,
       serviceId: service.service_group_id,
