@@ -17,9 +17,14 @@ Overall:
     - App instances tab divider
         - Deploy instance modal view
         - App instance extended view
+        - Service instance extended info modal view
+        - Rule extended info modal view
     - Regisered instances tab divider
         - Register application modal view
         - App registered extended view    
+        - Service extended info modal view
+        - Rule extended info modal view
+        
 
 ## v0.1.0
 Created the brand new UI Frontend for Nalej. 
