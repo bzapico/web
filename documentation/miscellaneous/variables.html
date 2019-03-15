@@ -1671,8 +1671,15 @@
     {
         &#x27;organization_id&#x27;: &#x27;0baa866a-c894-4f2e-97ec-ca1d3cabed42&#x27;,
         &#x27;app_descriptor_id&#x27;: &#x27;0b2ccec5-be21-4ad2-9df8-afa703b5c600&#x27;,
-        &#x27;name&#x27;: &#x27;Sample application&#x27;,
+        &#x27;name&#x27;: &#x27;Sample application 1&#x27;,
         &#x27;labels&#x27;: { &#x27;app&#x27;: &#x27;simple-app&#x27; },
+        &#x27;enviroment_variables&#x27;: {
+            &#x27;WORDPRESS_DB_HOST&#x27;: &#x27;NALEJ_SERV_SIMPLE-MYSQL:3306&#x27;,
+            &#x27;WORDPRESS_DB_PASSWORD&#x27;: &#x27;root&#x27;
+        },
+        &#x27;configuration_options&#x27;: {
+            &#x27;config007&#x27;: &#x27;007&#x27;
+        },
         &#x27;rules&#x27;: [{
             &#x27;organization_id&#x27;: &#x27;0baa866a-c894-4f2e-97ec-ca1d3cabed42&#x27;,
             &#x27;app_descriptor_id&#x27;: &#x27;0b2ccec5-be21-4ad2-9df8-afa703b5c600&#x27;,
@@ -1681,7 +1688,7 @@
             &#x27;target_service_group_name&#x27;: &#x27;g1&#x27;,
             &#x27;target_service_name&#x27;: &#x27;2&#x27;,
             &#x27;target_port&#x27;: 80,
-            &#x27;access&#x27;: &#x27;PUBLIC&#x27;,
+            &#x27;access&#x27;: 2,
             &#x27;auth_service_group_name&#x27;: &#x27;g1&#x27;
         }],
         &#x27;groups&#x27;:
@@ -1702,12 +1709,12 @@
                             &#x27;specs&#x27;: { &#x27;replicas&#x27;: 1 },
                             &#x27;storage&#x27;: [{
                                 &#x27;size&#x27;: &#x27;104857600&#x27;,
-                                &#x27;mount_path&#x27;: &#x27;/tmp&#x27;
+                                &#x27;mount_path&#x27;: &#x27;/tmp&#x27;,
                             }],
                             &#x27;exposed_ports&#x27;: [{
                                 &#x27;name&#x27;: &#x27;mysqlport&#x27;,
                                 &#x27;internal_port&#x27;: 3306,
-                                &#x27;exposed_port&#x27;: 3306
+                                &#x27;exposed_port&#x27;: 3306,
                             }],
                             &#x27;environment_variables&#x27;: { &#x27;MYSQL_ROOT_PASSWORD&#x27;: &#x27;root&#x27; },
                             &#x27;labels&#x27;: {
@@ -1752,8 +1759,15 @@
     {
         &#x27;organization_id&#x27;: &#x27;0baa866a-c894-4f2e-97ec-ca1d3cabed42&#x27;,
         &#x27;app_descriptor_id&#x27;: &#x27;1ae8e3ca-dc97-4e49-8ee8-302a15dbd58a&#x27;,
-        &#x27;name&#x27;: &#x27;Sample application&#x27;,
+        &#x27;name&#x27;: &#x27;Sample application 2&#x27;,
         &#x27;labels&#x27;: { &#x27;app&#x27;: &#x27;simple-app&#x27; },
+        &#x27;enviroment_variables&#x27;: {
+            &#x27;WORDPRESS_DB_HOST&#x27;: &#x27;NALEJ_SERV_SIMPLE-MYSQL:3306&#x27;,
+            &#x27;WORDPRESS_DB_PASSWORD&#x27;: &#x27;root&#x27;
+        },
+        &#x27;configuration_options&#x27;: {
+            &#x27;config007&#x27;: &#x27;007&#x27;
+        },
         &#x27;rules&#x27;:
             [{
                 &#x27;organization_id&#x27;: &#x27;0baa866a-c894-4f2e-97ec-ca1d3cabed42&#x27;,
@@ -1763,7 +1777,7 @@
                 &#x27;target_service_group_name&#x27;: &#x27;g1&#x27;,
                 &#x27;target_service_name&#x27;: &#x27;2&#x27;,
                 &#x27;target_port&#x27;: 80,
-                &#x27;access&#x27;: &#x27;PUBLIC&#x27;,
+                &#x27;access&#x27;: 2,
                 &#x27;auth_service_group_name&#x27;: &#x27;g1&#x27;
             }],
         &#x27;groups&#x27;:
@@ -1863,8 +1877,15 @@
     {
                 &#x27;organization_id&#x27;: &#x27;0baa866a-c894-4f2e-97ec-ca1d3cabed42&#x27;,
                 &#x27;app_descriptor_id&#x27;: &#x27;89c9dd8e-ad04-437f-ae63-73d1960396a8&#x27;,
-                &#x27;name&#x27;: &#x27;Sample application&#x27;,
+                &#x27;name&#x27;: &#x27;Sample application 3&#x27;,
                 &#x27;labels&#x27;: { &#x27;app&#x27;: &#x27;simple-app&#x27; },
+                &#x27;enviroment_variables&#x27;: {
+                    &#x27;WORDPRESS_DB_HOST&#x27;: &#x27;NALEJ_SERV_SIMPLE-MYSQL:3306&#x27;,
+                    &#x27;WORDPRESS_DB_PASSWORD&#x27;: &#x27;root&#x27;
+                },
+                &#x27;configuration_options&#x27;: {
+                    &#x27;config007&#x27;: &#x27;007&#x27;
+                },
                 &#x27;rules&#x27;:
                     [{
                         &#x27;organization_id&#x27;: &#x27;0baa866a-c894-4f2e-97ec-ca1d3cabed42&#x27;,
@@ -1874,7 +1895,7 @@
                         &#x27;target_service_group_name&#x27;: &#x27;g1&#x27;,
                         &#x27;target_service_name&#x27;: &#x27;2&#x27;,
                         &#x27;target_port&#x27;: 80,
-                        &#x27;access&#x27;: &#x27;PUBLIC&#x27;,
+                        &#x27;access&#x27;: 1,
                         &#x27;auth_service_group_name&#x27;: &#x27;g1&#x27;
                     }],
                 &#x27;groups&#x27;:

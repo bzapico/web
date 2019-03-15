@@ -483,9 +483,6 @@ export class InstanceInfoComponent implements OnInit {
             }
           }
           this.toGraphData(instance);
-          if (!this.loadedData) {
-            this.loadedData = true;
-          }
           this.updateDisplayedGroupsNamesLength();
           if (!this.loadedData) {
             this.loadedData = true;

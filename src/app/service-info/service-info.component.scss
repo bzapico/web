@@ -3,7 +3,7 @@
 }
 #scroll-app-info {
     margin: 3.5em 0;
-    height: 475px;
+    max-height: 475px;
     overflow-y: scroll;
     overflow-x: hidden;
     font-size:  .9em;
