@@ -7,7 +7,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as shape from 'd3-shape';
 import { AppDescriptor } from '../definitions/interfaces/app-descriptor';
 import { mockRegisteredAppsList } from '../utils/mocks';
@@ -34,19 +34,14 @@ export class RegisteredInfoComponent implements OnInit {
   loadedData: boolean;
 
   /**
-   * List of available apps instances
-   */
-  instances: any[];
-
-  /**
-   * List of registered apps
-   */
-  registered: any[];
-
-  /**
    * List of available services
    */
   services: any[];
+
+  /**
+   * Count of total services for summary card
+   */
+  servicesCount: number;
 
   /**
    * Model that hold descriptor ID
@@ -104,17 +99,21 @@ export class RegisteredInfoComponent implements OnInit {
    * Models that hold the sort info needed to sortBy pipe
    */
   sortedBy: string;
+  sortedByRules: string;
   reverse: boolean;
+  reverseRules: boolean;
 
   /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
+  searchTermRules: string;
 
   /**
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
+  filterFieldRules: boolean;
 
   /**
    * Reference for the service that allows the modal component
@@ -155,7 +154,8 @@ export class RegisteredInfoComponent implements OnInit {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.registeredInfoMock) || null;
     // Check which backend is required (fake or real)
@@ -165,20 +165,28 @@ export class RegisteredInfoComponent implements OnInit {
       this.backend = backendService;
     }
     // Default initialization
-    this.instances = [];
-    this.registered = [];
+    this.services = [];
+    this.servicesCount = 0;
     this.labels = [];
     this.displayedGroups = [];
     this.activeGroupId = 'ALL';
     this.requestError = '';
     this.showGraph = false;
-    this.registeredData = {};
+    this.registeredData = {
+      groups: [],
+      environment_variables: {},
+      configuration_options: {}
+    };
     // SortBy
     this.sortedBy = '';
+    this.sortedByRules = '';
     this.reverse = false;
+    this.reverseRules = false;
     this.searchTerm = '';
+    this.searchTermRules = '';
     // Filter field
     this.filterField = false;
+    this.filterFieldRules = false;
      // Graph initialization
      this.showlegend = false;
      this.orientation = 'TB';
@@ -187,83 +195,13 @@ export class RegisteredInfoComponent implements OnInit {
      this.autoCenter = true;
      this.enableZoom = true;
      this.draggingEnabled = false;
-    //  this.view = [605, 250];
      this.colorScheme = {
        domain: ['#6C86F7']
      };
-    // TODO
      this.graphData = {
-       nodes: [
-        {
-          id: 'start',
-          label: 'start',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '1',
-          label: 'Query ThreatConnect',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '2',
-          label: 'Query XForce',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '7',
-          label: 'Query ThCt',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '3',
-          label: 'Format Results',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '4',
-          label: 'Search Splunk',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '5',
-          label: 'Block LDAP',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }, {
-          id: '6',
-          label: 'Email Results',
-          color: '#6C86F7',
-          tooltip: 'SE: 45665498764'
-        }
-       ],
-       links: [
-        {
-          source: 'start',
-          target: '1',
-          label: 'links to'
-        }, {
-          source: 'start',
-          target: '2'
-        }, {
-          source: 'start',
-          target: '7'
-        }, {
-          source: '1',
-          target: '3',
-          label: 'related to'
-        }, {
-          source: '2',
-          target: '4'
-        }, {
-          source: '2',
-          target: '6'
-        }, {
-          source: '3',
-          target: '5'
-        }
-       ]
+       nodes: [],
+       links: []
      };
-    // this.registered = mockRegisteredAppsList; // Initialization to avoid null in view
      this.nalejColorScheme = [
        '#1725AE',
        '#040D5A',
@@ -284,79 +222,32 @@ export class RegisteredInfoComponent implements OnInit {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
         if (this.organizationId !== null) {
-          this.updateGroupsList(this.organizationId);
-          this.updateRegisteredInstances(this.organizationId);
-          this.updateAppInstances(this.organizationId);
+          this.updateAppDescriptor();
         }
         this.updateDisplayedGroupsNamesLength();
     }
+  }
+
+  updateAppDescriptor() {
+    this.loadedData = false;
     this.backend.getAppDescriptor(this.organizationId, this.descriptorId)
-      .subscribe(registered => {
-        console.log(registered);
-        this.registeredData = registered;
-      });
-  }
-
-  /**
-   * Updates registered apps array
-   * @param organizationId Organization identifier
-   */
-  updateRegisteredInstances(organizationId: string) {
-    if (organizationId !== null) {
-      // Request to get registered apps
-      this.backend.getRegisteredApps(this.organizationId)
-      .subscribe(response => {
-          this.registered = response.descriptors || [];
-      });
-    }
-  }
-
-  /**
-   * Updates instances array
-   * @param organizationId Organization identifier
-   */
-  updateAppInstances(organizationId: string) {
-    if (organizationId !== null) {
-      // Request to get apps instances
-      this.backend.getInstances(this.organizationId)
-      .subscribe(response => {
-          this.instances = response.instances || [];
-          if (!this.loadedData) {
-            this.loadedData = true;
+      .subscribe(registeredResponse => {
+        this.registeredData = registeredResponse;
+        this.groups = registeredResponse.groups || [];
+        if (this.displayedGroups.length === 0 && this.groups.length > 0) {
+          for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
+            this.displayedGroups.push(this.groups[index]);
           }
+        }
+        this.toGraphData(registeredResponse);
+        this.updateDisplayedGroupsNamesLength();
+        if (!this.loadedData) {
+          this.loadedData = true;
+        }
       }, errorResponse => {
         this.loadedData = true;
         this.requestError = errorResponse.error.message;
       });
-    }
-  }
-
-  /**
-   * Requests an updated list of services to update the current one
-   * @param organizationId organization identifier
-   */
-  updateServicesList(organizationId: string) {
-    const tmpServices = [];
-    if (organizationId !== null) {
-      // Request to get services
-      if (this.groups.length > 0) {
-        this.groups.forEach(group => {
-          this.backend.getRegisteredApps(this.organizationId)
-          .subscribe(response => {
-              tmpServices.push(response.services || []);
-              if (!this.loadedData) {
-                this.loadedData = true;
-              }
-              if (tmpServices.length === this.groups.length) {
-                this.services = tmpServices;
-              }
-            }, errorResponse => {
-              this.loadedData = true;
-              this.requestError = errorResponse.error.message;
-            });
-          });
-      }
-    }
   }
 
   /**
@@ -403,7 +294,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
-      this.updateRegisteredInstances(this.organizationId);
+      this.updateAppDescriptor();
     } );
   }
 
@@ -425,7 +316,7 @@ export class RegisteredInfoComponent implements OnInit {
           labels: this.selectedLabels[index].labels
         }).subscribe(updateAppResponse => {
           this.selectedLabels.splice(index, 1);
-          this.updateRegisteredInstances(this.organizationId);
+          this.updateAppDescriptor();
         });
     } else {
       // Do nothing
@@ -527,36 +418,63 @@ export class RegisteredInfoComponent implements OnInit {
    * Sortby pipe in the component
    * @param categoryName the name of the chosen category
    */
-  setOrder(categoryName: string) {
-    if (this.sortedBy === categoryName) {
-      this.reverse = !this.reverse;
-      this.filterField = false;
+  setOrder(list: string, categoryName: string) {
+    if (list === 'services') {
+      if (this.sortedBy === categoryName) {
+        this.reverse = !this.reverse;
+        this.filterField = false;
+      }
+      this.sortedBy = categoryName;
+      this.filterField = true;
+    } else if (list === 'rules') {
+      if (this.sortedByRules === categoryName) {
+        this.reverseRules = !this.reverseRules;
+        this.filterFieldRules = false;
+      }
+      this.sortedByRules = categoryName;
+      this.filterFieldRules = true;
     }
-    this.sortedBy = categoryName;
-    this.filterField = true;
   }
 
   /**
    * Reset all the filters fields
    */
-  resetFilters() {
-    this.filterField = false;
-    this.searchTerm = '';
-    this.sortedBy = '';
+  resetFilters(list: string) {
+    if (list === 'services') {
+      this.filterField = false;
+      this.searchTerm = '';
+      this.sortedBy = '';
+    } else if (list === 'rules') {
+      this.filterFieldRules = false;
+      this.searchTermRules = '';
+      this.sortedByRules = '';
+    }
   }
 
-  /**
+ /**
    * Gets the category headers to add a class
    * @param categoryName the class for the header category
    */
-  getCategoryCSSClass(categoryName: string) {
-    if (this.sortedBy === '') {
-      return 'default';
-    } else {
-      if (this.sortedBy === categoryName) {
-        return 'enabled';
-      } else if (this.sortedBy !== categoryName) {
-        return 'disabled';
+  getCategoryCSSClass(list: string, categoryName: string) {
+    if (list === 'rules') {
+      if (this.sortedByRules === '') {
+        return 'default';
+      } else {
+        if (this.sortedByRules === categoryName) {
+          return 'enabled';
+        } else if (this.sortedByRules !== categoryName) {
+          return 'disabled';
+        }
+      }
+    } else if (list === 'services') {
+      if (this.sortedBy === '') {
+        return 'default';
+      } else {
+        if (this.sortedBy === categoryName) {
+          return 'enabled';
+        } else if (this.sortedBy !== categoryName) {
+          return 'disabled';
+        }
       }
     }
   }
@@ -596,32 +514,6 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Requests an updated list of available services group to update the current one
-   * @param organizationId Organization identifier
-   */
-  updateGroupsList(organizationId: string) {
-    if (organizationId !== null) {
-      // Requests an updated services group list
-      this.backend.getGroups(this.organizationId)
-      .subscribe(response => {
-        this.groups = response.groups || [];
-        if (this.displayedGroups.length === 0 && this.groups.length > 0) {
-          for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
-            this.displayedGroups.push(this.groups[index]);
-          }
-        }
-        this.updateDisplayedGroupsNamesLength();
-        if (!this.loadedData) {
-          this.loadedData = true;
-        }
-      }, errorResponse => {
-          this.loadedData = true;
-          this.requestError = errorResponse.error.message;
-        });
-    }
-  }
-
-  /**
    * Opens the modal view that holds the deploy registered app component
    * @param app registered app to deploy
    */
@@ -636,7 +528,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.modalRef = this.modalService.show(DeployInstanceComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
-      this.updateAppInstances(this.organizationId);
+      this.router.navigate(['/applications']);
     });
   }
 
@@ -653,7 +545,7 @@ export class RegisteredInfoComponent implements OnInit {
             message: 'Deleting ' + app.name,
             timeout: 3000
           });
-          this.updateRegisteredInstances(this.organizationId);
+          this.router.navigate(['/applications']);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
@@ -677,7 +569,7 @@ export class RegisteredInfoComponent implements OnInit {
         group: group.service_group_id
       };
       this.graphData.nodes.push(nodeGroup);
-      group.service_id.forEach(service => {
+      group.services.forEach(service => {
         const nodeService = {
           id: group.service_group_id + '-s-' + service.service_id,
           label: service.name,
@@ -702,13 +594,11 @@ export class RegisteredInfoComponent implements OnInit {
       registered.rules.forEach(rule => {
         if (rule.auth_services) {
           rule.auth_services.forEach(linkedService => {
-            console.log(linkedService);
             const link = {
               source: rule.target_service_group_name + rule.target_service_name,
               target: linkedService
             };
             this.graphData.links.push(link);
-            console.log(link);
           });
         }
       });
@@ -727,12 +617,27 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Gets the registered apps array list and traverse the group array list to show services in table
+   * Returns the length of the services in registered list. Represents the number of available services
+   * @param registered selected registered
    */
-  getRegisteredApps() {
+  getServicesCount(registered) {
+    let temporalCount = 0;
+    if (registered && registered.groups) {
+      registered.groups.forEach(group => {
+        temporalCount = group.services.length + temporalCount;
+      });
+    }
+    return temporalCount;
+  }
+
+  /**
+   * Gets the services array list and traverse the group array list to show in table
+   */
+  getServices() {
     const groupServices = [];
     this.services.forEach(group => {
       group.forEach(service => {
+
         groupServices.push(service);
       });
     });
@@ -740,21 +645,29 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Counts the number of services of an specified groupId from the services list
-   * @param groupId Group identifier
+   * Returns the lenght of service instances that are part of the specified active group
+   * @param activeGroupId Identifier for the active group
    */
-  countGroupServices(groupId: string): number {
+  countGroupServices(groupId: string) {
     if (groupId === 'ALL') {
-      return this.countServices();
-    }
-    let services = 0;
-    const servicesList = this.getRegisteredApps();
-    servicesList.forEach(service => {
-      if (service.service_group_id === groupId) {
-        services += 1;
+      let counter = 0;
+      if (this.registeredData && this.registeredData.groups) {
+        this.registeredData.groups.forEach(group => {
+          counter += group.services.length;
+        });
+        return counter;
+      } else {
+        return 0;
       }
-    });
-    return services;
+    } else {
+      const index = this.displayedGroups
+        .map(x => x.service_group_id)
+        .indexOf(groupId);
+      if (index !== -1) {
+        return this.displayedGroups[index].services.length;
+      }
+      throw new Error('Not found');
+    }
   }
 
   /**
@@ -762,17 +675,43 @@ export class RegisteredInfoComponent implements OnInit {
    * @param groupId Group identifier
    */
   getGroupServices(groupId: string): any[] {
-    let servicesGroup;
-    for (let indexGroup = 0; indexGroup < this.services.length; indexGroup++) {
-      servicesGroup = this.services[indexGroup];
-      if (servicesGroup && servicesGroup[0] && servicesGroup[0].service_group_id) {
+    if (!groupId) {
+      return [];
+    }
+    if (groupId === 'ALL') {
+      const services = [];
+      if (this.registeredData && this.registeredData.groups) {
+        this.registeredData.groups.forEach(group => {
+          group.services.forEach(service => {
+            services.push(service);
+          });
+        });
+        return services;
+      } else {
+        return [];
       }
+    } else {
+      const index = this.displayedGroups
+      .map(x => x.service_group_id)
+      .indexOf(this.activeGroupId);
 
-      if (servicesGroup && servicesGroup.length > 0 && servicesGroup[0].service_group_id === groupId) {
-        return servicesGroup;
+      if (index !== -1) {
+        return this.displayedGroups[index].services;
+      } else {
+        return [];
       }
     }
-    return [-1];
+  }
+
+  /**
+   * Transforms objects to arrays to be parsed to string and performed in the view
+   * @param object Key-value map that contains the object
+   */
+  objectToString(object: any) {
+    if (!object) {
+      return ['--'];
+    }
+    return Object.entries(object);
   }
 
   /**
@@ -794,6 +733,17 @@ export class RegisteredInfoComponent implements OnInit {
    */
   openRulesInfo() {
 
+  }
+
+  /**
+   * Shows the graph in services card
+   */
+  selectDisplayMode(type: string) {
+    if (type === 'list') {
+      this.showGraph = false;
+    } else if (type === 'graph') {
+      this.showGraph = true;
+    }
   }
 
 }

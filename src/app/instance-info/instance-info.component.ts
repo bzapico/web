@@ -474,9 +474,6 @@ export class InstanceInfoComponent implements OnInit {
             }
           }
           this.toGraphData(instance);
-          if (!this.loadedData) {
-            this.loadedData = true;
-          }
           this.updateDisplayedGroupsNamesLength();
           if (!this.loadedData) {
             this.loadedData = true;
@@ -616,7 +613,7 @@ export class InstanceInfoComponent implements OnInit {
   countGroupServices(groupId: string) {
     if (groupId === 'ALL') {
       let counter = 0;
-      if(this.instance && this.instance.groups) {
+      if (this.instance && this.instance.groups) {
         this.instance.groups.forEach(group => {
           counter += group.service_instances.length;
         });
