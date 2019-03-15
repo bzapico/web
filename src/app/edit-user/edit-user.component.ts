@@ -7,6 +7,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-user',
@@ -14,6 +15,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit {
+
+  /**
+   * Models that holds forms info
+   */
+  editUserForm: FormGroup;
+  submitted = false;
+  loading: boolean;
+
   /**
    * Backend reference
    */
@@ -32,7 +41,7 @@ export class EditUserComponent implements OnInit {
   userRoleToEdit: string;
   userName: string;
   userId: string;
-  email: string;
+  // email: string;
   rolesList: any[];
   temporalRole: string;
 
@@ -47,6 +56,7 @@ export class EditUserComponent implements OnInit {
   bsPasswordModalRef: BsModalRef;
 
   constructor(
+    private formBuilder: FormBuilder,
     private modalService: BsModalService,
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
@@ -54,6 +64,7 @@ export class EditUserComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
+    this.userRole = null;
     const mock = localStorage.getItem(LocalStorageKeys.userEditMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -65,6 +76,12 @@ export class EditUserComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.editUserForm = this.formBuilder.group({
+      userName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      role: ['', [Validators.required]],
+    });
+
     if (this.userRoleToEdit) {
       // this.userRole should be initialized by initial state
       this.temporalRole = this.userRoleToEdit;
@@ -81,6 +98,11 @@ export class EditUserComponent implements OnInit {
         });
       }
   }
+
+  /**
+   * Convenience getter for easy access to form fields
+   */
+  get f() { return this.editUserForm.controls; }
 
   /**
    * Checks if the form has been modified before discarding changes
@@ -123,10 +145,15 @@ export class EditUserComponent implements OnInit {
    * @param f Form object reference
    */
   saveUserChanges(f) {
+    this.submitted = true;
+    this.loading = true;
     if (this.userId !== null) {
       this.backend.saveUserChanges(this.organizationId, {
-        name: this.userName,
-        email: this.userId,
+        // name: this.userName,
+        // email: this.userId,
+        // role_name: this.userRole
+        name: f.userName.value,
+        email: f.email.value,
         role_name: this.userRole
       })
       .subscribe(response => {

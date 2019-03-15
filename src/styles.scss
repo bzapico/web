@@ -48,10 +48,10 @@ a {
 
 .change-password {
   color: #0937FF;
-  text-align: right;
+  text-align: center;
   font-size: 0.8em;
   cursor: pointer;
-  margin-right: 5px;
+  margin-top: 2em;
 }
 .button-padding-fix {
   padding-top: 10px !important;
@@ -416,9 +416,9 @@ button[type="submit"]:disabled {
       -webkit-box-shadow: 0 0 0px 1000px white inset;
     }
   }
-  &:disabled, &[readonly] {
-    background-color: white;
-  }
+  // &:disabled, &[readonly] {
+  //   background-color: white;
+  // }
 }
 
 /* - - - Forms button styles - - - */
