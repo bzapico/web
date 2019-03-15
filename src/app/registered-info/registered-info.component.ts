@@ -11,6 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as shape from 'd3-shape';
 import { AppDescriptor } from '../definitions/interfaces/app-descriptor';
 import { mockRegisteredAppsList } from '../utils/mocks';
+import { RuleInfoComponent } from '../rule-info/rule-info.component';
+import { ServiceInfoComponent } from '../service-info/service-info.component';
 
 @Component({
   selector: 'app-registered-info',
@@ -505,7 +507,9 @@ export class RegisteredInfoComponent implements OnInit {
    * Displayed groups list swipes right by pressing the arrow button functionality
    */
   swipeRight() {
-    const index = this.groups.map(x => x.service_group_id).indexOf(this.displayedGroups[this.displayedGroups.length - 1].service_group_id);
+    const index = this.groups
+    .map(x => x.service_group_id)
+    .indexOf(this.displayedGroups[this.displayedGroups.length - 1].service_group_id);
     if (index !== -1 && this.groups[index + 1]) {
       this.displayedGroups.push(this.groups[index + 1]);
       this.displayedGroups.shift();
@@ -722,18 +726,53 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Open serivces info modal window // TO BE DESIGNED
-   */
-  openServicesInfo() {
+  * Open serivces info modal window
+  *  @param service service object
+  */
+ openServicesInfo(service) {
+   const initialState = {
+     organizationId: this.organizationId,
+     serviceId: service.service_group_id,
+     appDescriptorId: service.app_descriptor_id,
+     exposedPorts: service.exposed_ports,
+     image: service.image,
+     labels: service.labels,
+     name: service.name,
+     groupId: service.service_group_id,
+     replicas: service.replicas,
+     specs: service.specs,
+     endpoints: service.endpoints
+   };
 
-  }
+   this.modalRef = this.modalService.show(ServiceInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+   this.modalRef.content.closeBtnName = 'Close';
 
-  /**
-   * Open rules info modal window // TO BE DESIGNED
-   */
-  openRulesInfo() {
+ }
 
-  }
+ /**
+  * Open rules info modal window
+  *  @param rule rule object
+  */
+ openRulesInfo(rule) {
+   const initialState = {
+     organizationId: this.organizationId,
+     ruleId: rule.rule_id,
+     access: rule.access,
+     appDescriptorId: rule.app_descriptor_id,
+     authServices: rule.auth_services,
+     authServiceGroupName: rule.auth_service_group_name,
+     name: rule.name,
+     targetPort: rule.target_port,
+     targetServiceGroupName: rule.target_service_group_name,
+     targetServiceName: rule.target_service_name,
+     deviceGroupIds: rule.device_group_ids,
+     deviceGroupNames: rule.device_group_names
+   };
+
+   this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+   this.modalRef.content.closeBtnName = 'Close';
+
+ }
 
   /**
    * Shows the graph in services card
