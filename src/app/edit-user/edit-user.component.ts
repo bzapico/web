@@ -149,9 +149,6 @@ export class EditUserComponent implements OnInit {
     this.loading = true;
     if (this.userId !== null) {
       this.backend.saveUserChanges(this.organizationId, {
-        // name: this.userName,
-        // email: this.userId,
-        // role_name: this.userRole
         name: f.userName.value,
         email: f.email.value,
         role_name: this.userRole
