@@ -43,9 +43,10 @@
 .btn-primary {
     text-indent: -7px;
 }
-@media screen and (max-height: 779px) {
+@media screen and (max-height: 859px) {
     #scroll-app-info {
-        height: 268px;
+        height: 224px;
+        margin: 2.5em 0;
     }
 }
 

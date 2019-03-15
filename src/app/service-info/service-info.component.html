@@ -43,7 +43,7 @@
               </span>
               </div>
               <br>
-              <span *ngIf="exposedPorts.endpoints">
+              <span *ngIf="endpoints">
               <div class="row">
                 <div class="col-sm grey mb-3">Endpoints</div>
               </div>
@@ -55,7 +55,7 @@
                 </div>
               </span>
             <div *ngFor="let exposedPort of exposedPorts">
-              <span *ngIf="exposedPorts.endpoints">
+              <span *ngIf="endpoints">
                 <div class="row" *ngFor="let endpoint of exposedPort.endpoints">
                   <div class="col-sm"></div>
                   <div class="col-sm grey">{{exposedPort.name}}</div>

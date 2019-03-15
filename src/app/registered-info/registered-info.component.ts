@@ -741,6 +741,7 @@ export class RegisteredInfoComponent implements OnInit {
      groupId: service.service_group_id,
      replicas: service.replicas,
      specs: service.specs,
+     endpoints: service.endpoints
    };
 
    this.modalRef = this.modalService.show(ServiceInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
