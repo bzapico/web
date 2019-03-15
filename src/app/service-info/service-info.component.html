@@ -16,40 +16,46 @@
               <h3 class="service-h3-title col-sm text-right">{{specs.replicas}}</h3>
             </div>
             <br>
-            <div *ngFor="let exposedPort of exposedPorts">
+            <span *ngIf="exposedPorts">
               <div class="row">
                 <div class="col-sm grey mb-3">Exposed ports</div>
               </div>
-              <span *ngIf="exposedPorts">
                 <div class="row">
                   <div class="col-sm"></div>
                   <div class="col-sm">Port</div>
                   <div class="col-sm text-right">Internal</div>
                   <div class="col-sm text-right">External</div>
                 </div>
-                <div class="row">
-                  <div class="col-sm"></div>
-                  <div class="col-sm grey">{{exposedPort.name}}</div>
-                  <div class="col-sm text-right grey">{{exposedPort.internal_port}}</div>
-                  <div class="col-sm text-right grey">{{exposedPort.exposed_port}}</div>
-                </div>
               </span>
-              <span *ngIf="!exposedPorts">
+              <div *ngFor="let exposedPort of exposedPorts">
+                <span *ngIf="exposedPorts">
+                  <div class="row">
+                    <div class="col-sm"></div>
+                    <div class="col-sm grey">{{exposedPort.name}}</div>
+                    <div class="col-sm text-right grey">{{exposedPort.internal_port}}</div>
+                    <div class="col-sm text-right grey">{{exposedPort.exposed_port}}</div>
+                  </div>
+                </span>
+                <span *ngIf="!exposedPorts">
                 <div class="row">
                   <div class="col-sm text-right">No</div>
                 </div>
               </span>
+              </div>
               <br>
+              <span *ngIf="exposedPorts.endpoints">
               <div class="row">
                 <div class="col-sm grey mb-3">Endpoints</div>
               </div>
-              <span *ngIf="exposedPorts">
                 <div class="row">
                   <div class="col-sm"></div>
                   <div class="col-sm">Port</div>
                   <div class="col-sm text-right">Type</div>
                   <div class="col-sm text-right">Path</div>
                 </div>
+              </span>
+            <div *ngFor="let exposedPort of exposedPorts">
+              <span *ngIf="exposedPorts.endpoints">
                 <div class="row" *ngFor="let endpoint of exposedPort.endpoints">
                   <div class="col-sm"></div>
                   <div class="col-sm grey">{{exposedPort.name}}</div>
@@ -57,11 +63,6 @@
                   <div class="col-sm text-right grey" >{{endpoint.path}}</div>
                 </div>
               </span>
-              <span *ngIf="!exposedPorts">
-                <div class="row">
-                  <div class="col-sm text-right">No</div>
-                </div>
-              </span> 
             </div>
             <br>
             <div class="row">
