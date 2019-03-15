@@ -52,7 +52,7 @@ export class ServiceInstancesInfoComponent implements OnInit {
     return Object.entries(object);
   }
 
-    /**
+  /**
    * Adds https in case of being required
    * @param endpoint String containing the endpoint
    */
@@ -67,5 +67,38 @@ export class ServiceInstancesInfoComponent implements OnInit {
     return URL;
   }
 
+  /**
+   * Checks if the service status requires an special css class
+   * @param status Service status name
+   * @param className CSS class name
+   */
+  classStatusCheck(status: string, className: string): boolean {
+    switch (status.toLowerCase()) {
+      case 'service_running': {
+        if (className.toLowerCase() === 'service_running') {
+          return true;
+        }
+        break;
+      }
+      case 'service_error': {
+        if (className.toLowerCase() === 'service_error') {
+          return true;
+        }
+        break;
+      }
+      case 'service_waiting': {
+        if (className.toLowerCase() === 'service_waiting') {
+          return true;
+        }
+        break;
+      }
+     default: {
+        if (className.toLowerCase() === 'service_scheduled') {
+          return true;
+        }
+        return false;
+      }
+    }
+  }
 
 }

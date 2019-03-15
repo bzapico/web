@@ -634,7 +634,7 @@ export class InstanceInfoComponent implements OnInit {
     const initialState = {
       organizationId: this.organizationId,
       ruleId: rule.rule_id,
-      access: rule.access,
+      access: rule.access_name,
       appDescriptorId: rule.app_descriptor_id,
       authServices: rule.auth_services,
       authServiceGroupName: rule.auth_service_group_name,
