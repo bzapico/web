@@ -34,7 +34,6 @@
             </p>
           </span>
         </file-drop>
-
         <div class="drop-note-uploaded" *ngIf="readyToUpload"> 
           <span class="drop-title-uploaded">{{jsonFile.name}}</span> 
           <span 
@@ -43,13 +42,9 @@
           </span>
           <span class="green subtitle-2" >ready to be uploaded</span>
         </div>
-        <!-- Option button -->
-        <div class="d-flex flex-row justify-content-between mt-3">
-          <button class="btn btn-primary btn-md mt-5" (click)="registerApp()">
+        <div class="form-group d-flex flex-row justify-content-center mt-5">
+          <button class="btn-nalej-form" (click)="registerApp()">
             <span class="align-bottom">Register</span>
-          </button>
-          <button class="btn btn-red btn-md mt-5" (click)="discardChanges()">
-              <span class="align-bottom">Discard</span>
           </button>
         </div>
       </div>
