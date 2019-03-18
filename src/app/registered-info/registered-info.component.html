@@ -149,7 +149,7 @@
             </div> 
           </div>
         </div>
-        <div class="graph">
+        <div *ngIf="graphDataLoaded" class="graph">
           <ngx-graph
             class="chart-container"
             [view]="view"
@@ -195,6 +195,7 @@
             </ng-template>
           </ngx-graph>
         </div>
+        <div *ngIf="!graphDataLoaded" class="loader"></div>
       </div>
       <!-- Services card -->
       <div *ngIf="!showGraph" class="card h-reg-services flex-grow-1">

@@ -123,7 +123,7 @@
             </div> 
           </div>
         </div>
-        <div class="graph">
+        <div *ngIf="graphDataLoaded && countGroupServices('ALL') > 0" class="graph">
             <ngx-graph
                 class="chart-container"
                 [view]="view"
@@ -169,6 +169,12 @@
               </ng-template>
             </ngx-graph>
           </div>
+        <div *ngIf="!graphDataLoaded" class="loader"></div>
+        <!-- No info to show -->
+        <div *ngIf="graphDataLoaded && countGroupServices('ALL') === 0"
+        class="no-info d-flex justify-content-center align-items-center">
+          No available services
+        </div>
       </div>
       <!-- Services card -->
       <div *ngIf="!showGraph" class="card h-ins-services flex-grow-1">

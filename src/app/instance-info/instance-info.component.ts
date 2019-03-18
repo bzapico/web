@@ -127,6 +127,7 @@ export class InstanceInfoComponent implements OnInit {
   /**
    * Graph options
    */
+  graphDataLoaded: boolean;
   showlegend: boolean;
   graphData: any;
   orientation: string;
@@ -190,7 +191,7 @@ export class InstanceInfoComponent implements OnInit {
      // Graph initialization
      this.showlegend = false;
      this.orientation = 'TB';
-     this.curve = shape.curveBasis;
+     this.curve = shape.curveStepAfter;
      this.autoZoom = true;
      this.autoCenter = true;
      this.enableZoom = true;
@@ -198,6 +199,7 @@ export class InstanceInfoComponent implements OnInit {
      this.colorScheme = {
        domain: ['#6C86F7']
      };
+     this.graphDataLoaded = false;
      this.graphData = {
        nodes: [],
        links: []
@@ -247,13 +249,12 @@ export class InstanceInfoComponent implements OnInit {
    * @param instance instance object
    */
   toGraphData(instance) {
-    console.log(instance, 'instance');
     if (instance && instance.groups) {
       instance.groups.forEach(group => {
         const nodeGroup = {
           id: group.service_group_instance_id,
           label: group.name,
-          tooltip: 'GROUP STATUS: ' + this.getBeautyStatusName(group.status_name),
+          tooltip: 'GROUP ' + group.name + ': ' + this.getBeautyStatusName(group.status_name),
           color: this.getNodeColor(group.status_name),
           group: group.service_group_instance_id
         };
@@ -262,7 +263,7 @@ export class InstanceInfoComponent implements OnInit {
           const nodeService = {
             id: group.service_group_instance_id + '-s-' + service.service_id,
             label: service.name,
-            tooltip: 'SERVICE STATUS: ' + this.getBeautyStatusName(service.status_name),
+            tooltip: 'SERVICE ' + service.name + ': ' + this.getBeautyStatusName(service.status_name),
             color: this.getNodeColor(service.status_name),
             group: group.service_group_instance_id
           };
@@ -280,16 +281,20 @@ export class InstanceInfoComponent implements OnInit {
       instance.rules.forEach(rule => {
         if (rule.auth_services) {
           rule.auth_services.forEach(linkedService => {
+            const sourceIndex = this.graphData.nodes.map(x => x.label).indexOf(rule.target_service_name);
+            const targetIndex = this.graphData.nodes.map(x => x.label).indexOf(linkedService);
             const link = {
-              source: rule.target_service_group_name + rule.target_service_name,
-              target: linkedService
+              source: this.graphData.nodes[sourceIndex].id,
+              target: this.graphData.nodes[targetIndex].id
             };
             this.graphData.links.push(link);
           });
         }
       });
     }
-    console.log(this.graphData);
+
+
+    this.graphDataLoaded = true;
   }
 
   getNodeColor(status: string): string {
@@ -704,7 +709,7 @@ export class InstanceInfoComponent implements OnInit {
       if (index !== -1) {
         return this.displayedGroups[index].service_instances.length;
       }
-      throw new Error('Not found');
+      return 0;
     }
   }
 
