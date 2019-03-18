@@ -124,7 +124,7 @@ export class OrganizationComponent implements OnInit {
       organizationName: this.organizationName,
       organizationId: this.organizationId,
       userName: user.name,
-      userId: user.email,
+      email: user.email,
       role: user.role_name,
     };
 
@@ -146,7 +146,7 @@ export class OrganizationComponent implements OnInit {
       organizationName: this.organizationName,
       organizationId: this.organizationId,
       userName: user.name,
-      userId: user.email,
+      email: user.email,
       userRole: role,
       userRoleToEdit: user.role_name,
       title: 'Edit user'

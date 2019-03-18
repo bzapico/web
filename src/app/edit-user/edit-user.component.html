@@ -6,18 +6,18 @@
       type="button" 
       class="close" 
       aria-label="Close"
-      (click)="discardChanges(f)">
+      (click)="discardChanges(editUserForm)">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <!-- Body -->
   <div class="modal-body">
-    <form [formGroup]="editUserForm" (ngSubmit)="saveUserChanges(f)">
+    <form [formGroup]="editUserForm" (ngSubmit)="saveUserChanges(editUserForm)">
         <div class="form-group">
           <label>Name*</label>
           <input 
             formControlName="userName"
-            placeholder="e.g. John"
+            placeholder="{{userName}}"
             pattern="[a-zA-Z0-9]+"
             type="text" 
             class="form-control" 
@@ -33,11 +33,10 @@
         <div class="form-group">
           <label>Email</label>
           <input 
-            formControlName="userId" 
-            placeholder="email"
+            formControlName="email" 
+            placeholder="{{email}}"
             type="text" 
-            class="form-control"
-            disabled>
+            class="form-control">
             <div class="error-h"></div>
         </div>
         <div class="form-group">

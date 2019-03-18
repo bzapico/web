@@ -28,7 +28,7 @@ export class ChangePasswordComponent implements OnInit {
   /**
    * Models that hold organization id, user id, and passwords
    */
-  userId: string;
+  email: string;
   password: string;
   newPassword: string;
   confirmNewPassword: string;
@@ -52,11 +52,9 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit() {
     this.changePasswordForm = this.formBuilder.group({
-      userName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
       passwordConfirm: [''],
-      role: ['', [Validators.required]],
     });
   }
 
@@ -64,9 +62,9 @@ export class ChangePasswordComponent implements OnInit {
    * Custom validator for checking the passwords,
    * @param group passwords group
    */
-  samePasswords(group: FormGroup) {
-    const newPassword = group.controls.newPassword.value;
-    const passwordConfirm = group.controls.passwordConfirm.value;
+  samePasswords(group) {
+    const newPassword = group.newPassword.value;
+    const passwordConfirm = group.passwordConfirm.value;
     return newPassword === passwordConfirm ? true : false;
   }
 
@@ -80,18 +78,24 @@ export class ChangePasswordComponent implements OnInit {
    * @param f Form containing the user input
    */
   saveNewPassword(f) {
-    this.submitted = true;
-    const passwordChange = {
-      email: f.email.value,
-      password: f.password.value,
-      new_password: f.newPassword.value,
-    };
-    this.loading = true;
-    this.backend.resetPassword(this.organizationId, passwordChange)
-      .subscribe(response => {
-        this.notificationsService.add({message: 'Password changed successfully'});
-        this.bsModalRef.hide();
-      });
+    if (!this.loading) {
+      this.submitted = true;
+      const passwordChange = {
+        passwordConfirm: f.passwordConfirm.value,
+        password: f.password.value,
+        new_password: f.newPassword.value,
+        email: this.email
+      };
+      this.loading = true;
+      this.backend.resetPassword(this.organizationId, passwordChange)
+        .subscribe(response => {
+          this.loading = false;
+          this.notificationsService.add({message: 'Password changed successfully'});
+          this.bsModalRef.hide();
+        }, error => {
+          this.loading = false;
+        });
+    }
   }
 
   /**

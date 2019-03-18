@@ -40,8 +40,7 @@ export class EditUserComponent implements OnInit {
   userRole: string;
   userRoleToEdit: string;
   userName: string;
-  userId: string;
-  // email: string;
+  email: string;
   rolesList: any[];
   temporalRole: string;
 
@@ -50,15 +49,11 @@ export class EditUserComponent implements OnInit {
    */
   roleDirty: boolean;
 
-  /**
-   * Change password modal window reference
-   */
-  bsPasswordModalRef: BsModalRef;
-
   constructor(
     private formBuilder: FormBuilder,
     private modalService: BsModalService,
     public bsModalRef: BsModalRef,
+    public bsPasswordModalRef: BsModalRef,
     private backendService: BackendService,
     private router: Router,
     private mockupBackendService: MockupBackendService,
@@ -78,7 +73,7 @@ export class EditUserComponent implements OnInit {
   ngOnInit() {
     this.editUserForm = this.formBuilder.group({
       userName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: [{value: '', disabled: true}, [Validators.required, Validators.email]],
       role: ['', [Validators.required]],
     });
 
@@ -147,7 +142,7 @@ export class EditUserComponent implements OnInit {
   saveUserChanges(f) {
     this.submitted = true;
     this.loading = true;
-    if (this.userId !== null) {
+    if (this.email !== null) {
       this.backend.saveUserChanges(this.organizationId, {
         name: f.userName.value,
         email: f.email.value,
@@ -155,7 +150,7 @@ export class EditUserComponent implements OnInit {
       })
       .subscribe(response => {
         if (this.userRole && this.userRole === 'Owner') {
-          this.backend.changeRole(this.organizationId, this.userId, this.getRoleId(this.temporalRole)).
+          this.backend.changeRole(this.organizationId, this.email, this.getRoleId(this.temporalRole)).
           subscribe(responseRole => {
             this.notificationsService.add({
               message: 'The user ' + this.userName + ' has been edited',
@@ -203,7 +198,7 @@ export class EditUserComponent implements OnInit {
   openChangePassword() {
     const initialState = {
       organizationId: this.organizationId,
-      userId: this.userId
+      email: this.email
     };
     this.bsPasswordModalRef =
       this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });

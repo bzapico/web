@@ -32,15 +32,6 @@ describe('UserInfoComponent', () => {
     fixture.detectChanges();
   });
 
-  it('checkUserRole() - Should check the role of current user', () => {
-    const checkUserRole = spyOn(component, 'checkUserRole').and.returnValue(true);
-    const buttonRole = {};
-
-    checkUserRole(buttonRole);
-
-    expect(checkUserRole).toHaveBeenCalledWith(buttonRole);
-  });
-
   it('deleteUser() - Should test if the method is called with parameter as mock user object', () => {
     const mockUserObj = {
       userId: 'john@domain.com',

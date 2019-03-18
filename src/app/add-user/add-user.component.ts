@@ -5,7 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-add-user',
@@ -17,6 +17,10 @@ export class AddUserComponent implements OnInit {
    * Models that holds forms info
    */
   addUserForm: FormGroup;
+  userName: FormControl;
+  email: FormControl;
+  password: FormControl;
+  passwordConfirm: FormControl;
   submitted = false;
   loading: boolean;
 
@@ -30,10 +34,6 @@ export class AddUserComponent implements OnInit {
    */
   organizationId: string;
   userRole: string;
-  userName: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
