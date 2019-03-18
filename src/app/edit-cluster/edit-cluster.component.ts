@@ -5,6 +5,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { BackendService } from '../services/backend.service';
 import { BsModalRef } from 'ngx-bootstrap';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -13,7 +14,15 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
   styleUrls: ['./edit-cluster.component.scss']
 })
 export class EditClusterComponent implements OnInit {
-   /**
+
+  /**
+   * Models that holds forms info
+   */
+  editClusterForm: FormGroup;
+  submitted = false;
+  loading: boolean;
+
+  /**
    * Backend reference
    */
   backend: Backend;
@@ -28,6 +37,7 @@ export class EditClusterComponent implements OnInit {
   clusterTags: string;
 
   constructor(
+    private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
@@ -47,25 +57,38 @@ export class EditClusterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.editClusterForm = this.formBuilder.group({
+      clusterName: [''],
+      clusterDescription: [''],
+    });
   }
 
   /**
-   * Request to save the cluster data modifications
-   * @param form Form object reference
+   * Convenience getter for easy access to form fields
    */
-  saveClusterChanges(form) {
+  get f() { return this.editClusterForm.controls; }
+
+  /**
+   * Request to save the cluster data modifications
+   * @param f Form object reference
+   */
+  saveClusterChanges(f) {
+    this.submitted = true;
+    this.loading = true;
     if (this.organizationId !== null && this.clusterId !== null) {
       this.backend.saveClusterChanges(this.organizationId, this.clusterId, {
         name: this.clusterName,
         description: this.clusterDescription,
       })
         .subscribe(response => {
+          this.loading = false;
           this.notificationsService.add({
             message: 'The cluster ' + this.clusterName + ' has been edited',
             timeout: 10000
           });
           this.bsModalRef.hide();
         }, error => {
+          this.loading = false;
           this.notificationsService.add({
             message: error.error.message,
             timeout: 10000

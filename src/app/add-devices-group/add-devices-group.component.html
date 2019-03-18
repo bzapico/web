@@ -13,72 +13,68 @@
     </div>
     <!-- Body -->
     <div class="modal-body">
-    <form #f="ngForm" class="form-device">
+      <form [formGroup]="addGroupForm" (ngSubmit)="addGroup(f)">
         <div class="form-group">
+          <label>Group name*</label>
           <input 
-            [(ngModel)]="groupName" 
-            name="name" 
+            formControlName="groupName"
+            placeholder="e.g. Device group"
+            pattern="[a-zA-Z0-9]+"
             type="text" 
             class="form-control" 
-            placeholder="Group name" 
+            [ngClass]="{ 'is-invalid': submitted && f.groupName.errors }"
             required>
+          <div *ngIf="!submitted && f.groupName.errors" class="error-message"></div>
+          <div class="error-h">
+            <div *ngIf="submitted && f.groupName.errors" class="error-message">
+              <div *ngIf="f.groupName.errors.required">Group name is required</div>
+              <div *ngIf="f.groupName.errors.pattern">Cannot contain spectial characters</div>
+            </div>
+          </div>
         </div>
-      </form>
-    <!-- Option checkboxes -->
-    <div class="py-4">
-      <p>Options</p>
-      <div class="check-options">
-        <p class="grey">Group device availability</p>
-        <div class="add-dev-checkbox">
-          <span 
-          *ngIf="!enabled" 
-          (click)="enabled = true"
-          class="devices-checkbox">
-            <i class="material-icons grey">check_box_outline_blank</i>
-          </span>
-          <span 
-          *ngIf="enabled" 
-          (click)="enabled = false"
-            class="devices-checkbox">
-            <i class="material-icons blue">check_box</i>
-          </span>
+        <!-- Option checkboxes -->
+        <div class="py-4">
+          <p class="nalej-form-title">Options</p>
+          <div class="check-options">
+            <p class="grey">Group device availability</p>
+            <div class="add-dev-checkbox">
+              <span 
+              *ngIf="!enabled" 
+              (click)="enabled = true"
+              class="devices-checkbox">
+                <i class="material-icons grey">check_box_outline_blank</i>
+              </span>
+              <span 
+              *ngIf="enabled" 
+              (click)="enabled = false"
+                class="devices-checkbox">
+                <i class="material-icons blue">check_box</i>
+              </span>
+            </div>
+            <br>
+            <p class="grey">Devices enabled by default</p>
+            <div class="add-dev-checkbox">
+              <span 
+                *ngIf="!defaultConnectivity" 
+                (click)="defaultConnectivity = true"
+                class="devices-checkbox">
+                <i class="material-icons grey">check_box_outline_blank</i>
+              </span>
+              <span 
+                *ngIf="defaultConnectivity" 
+                (click)="defaultConnectivity = false"
+                class="devices-checkbox">
+                <i class="material-icons blue">check_box</i>
+              </span>
+            </div>   
+          </div>
         </div>
-        <br>
-        <p class="grey">Devices enabled by default</p>
-        <div class="add-dev-checkbox">
-          <span 
-            *ngIf="!defaultConnectivity" 
-            (click)="defaultConnectivity = true"
-            class="devices-checkbox">
-            <i class="material-icons grey">check_box_outline_blank</i>
-          </span>
-          <span 
-            *ngIf="defaultConnectivity" 
-            (click)="defaultConnectivity = false"
-            class="devices-checkbox">
-            <i class="material-icons blue">check_box</i>
-          </span>
-        </div>   
-      </div>
-    </div>
-    <!-- Error messages -->
-    <div class="error-message">
-      <div 
-        tooltip = "{{arrayToString(errorMessages)}}"
-        placement = "bottom"
-        *ngIf="errorMessages.length > 0">
-        {{formatValidationOutput(errorMessages).msg}}
-      </div>
-    </div>
-    <!-- Option buttons -->
-    <div class="buttons d-flex flex-row justify-content-between">
-        <button class="btn btn-primary btn-md" (click)="addGroup(f)">
-        <span class="align-bottom">Create</span>
-      </button>
-      <button class="btn btn-red btn-md" (click)="discardChanges(f)">
-        <span class="align-bottom">Discard</span>
-      </button>
-    </div>
+        <div class="form-group d-flex flex-row justify-content-center mt-5">
+          <button class="btn-nalej-form" [disabled]="loading">
+            <span class="align-bottom">Add devices group</span>
+          </button>
+        </div>
+    </form>
     </div>
   </div>
 </div>

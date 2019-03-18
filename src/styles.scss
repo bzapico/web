@@ -539,6 +539,12 @@ button[type="submit"]:disabled {
 }
 .is-invalid {
   border: 2px solid #F25272!important;
+  &:focus {
+    border-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  }
+
 }
 /* - - - Alerts styles - - - */
 .alert-close-button {
