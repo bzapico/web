@@ -17,16 +17,11 @@ export class LoginComponent implements OnInit {
    */
   loginForm: FormGroup;
   submitted = false;
-  loading: boolean;
 
   /**
    * Reference for the service that allows to open debug panel
    */
   modalRef: BsModalRef;
-  /**
-   * Holds the error messages
-   */
-  errorMessages: string[];
 
   /**
    * Loaded Data for login request status
@@ -46,7 +41,6 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
-
     this.loginRequest = false;
   }
 
@@ -61,11 +55,9 @@ export class LoginComponent implements OnInit {
    */
   onSubmit() {
     this.submitted = true;
-    this.loading = true;
     this.loginRequest = true;
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(response => {
-        this.loading = false;
         if (response.token) {
           const jwtHelper: JwtHelperService = new JwtHelperService();
           const jwtTokenData = jwtHelper.decodeToken(response.token);
@@ -92,7 +84,6 @@ export class LoginComponent implements OnInit {
           }
         }
       }, error => {
-        this.loading = false;
         this.loginRequest = false;
       });
   }

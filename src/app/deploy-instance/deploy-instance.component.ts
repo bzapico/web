@@ -73,7 +73,7 @@ export class DeployInstanceComponent implements OnInit {
 
   ngOnInit() {
     this.deployInstanceForm = this.formBuilder.group({
-      registeredName: [''],
+      registeredName: [{value: '', disabled: true}],
       instanceName: [''],
     });
 

@@ -59,7 +59,6 @@ export class EditClusterComponent implements OnInit {
   ngOnInit() {
     this.editClusterForm = this.formBuilder.group({
       clusterName: [''],
-      clusterDescription: [''],
     });
   }
 
@@ -78,7 +77,6 @@ export class EditClusterComponent implements OnInit {
     if (this.organizationId !== null && this.clusterId !== null) {
       this.backend.saveClusterChanges(this.organizationId, this.clusterId, {
         name: this.clusterName,
-        description: this.clusterDescription,
       })
         .subscribe(response => {
           this.loading = false;
