@@ -2,7 +2,7 @@
     <div class="modal-content">
         <!-- Header -->
         <div class="modal-header">
-          <h3 class="nalej-form-title">Add label to {{entityType}} <br/><span class="title">{{modalTitle}}</span></h3>
+          <h3 class="nalej-form-title">Add label to {{entityType}}</h3>
           <button 
             type="button" 
             class="close" 
@@ -13,36 +13,52 @@
         </div>
         <!-- Body -->
         <div class="modal-body">
-          <form #f="ngForm" class="form-label">
+            <h3 class="label-title">{{modalTitle}}</h3>
+          <form [formGroup]="addLabelForm" (ngSubmit)="addLabel(f)">
             <div class="form-group">
-              <input 
-                [(ngModel)]="labelName" 
-                name="key" 
+              <label>Label key*</label>
+                <input 
+                formControlName="labelName" 
                 type="text" 
                 class="form-control" 
-                placeholder="Label name" 
+                placeholder="e.g. Group" 
+                [ngClass]="{ 'is-invalid': submitted && f.labelName.errors }"
                 pattern="[A-Za-z0-9]{1,20}[^-,]+"
                 required>
-              <input 
-                [(ngModel)]="labelValue" 
-                name="value" 
+              <div *ngIf="!submitted && f.labelName.errors" class="error-message"></div>
+              <div class="error-h">
+                <div *ngIf="submitted && f.labelName.errors" class="error-message">
+                  <div *ngIf="f.labelName.errors.required">Label key is required</div>
+                  <div *ngIf="f.labelName.errors.pattern">Cannot contain spectial characters</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Label value*</label>
+                <input 
+                formControlName="labelValue" 
                 type="text" 
                 class="form-control" 
-                placeholder="Label value"
+                placeholder="e.g. MyGroup" 
+                [ngClass]="{ 'is-invalid': submitted && f.labelValue.errors }"
                 pattern="[A-Za-z0-9]{1,20}[^-,]+"
                 required>
+              <div *ngIf="!submitted && f.labelValue.errors" class="error-message"></div>
+              <div class="error-h">
+                <div *ngIf="submitted && f.labelValue.errors" class="error-message">
+                  <div *ngIf="f.labelValue.errors.required">Label value is required</div>
+                  <div *ngIf="f.labelValue.errors.pattern">Cannot contain spectial characters</div>
+                </div>
+              </div>
+            </div>
+            <!-- Save new user -->
+            <div class="form-group d-flex flex-row justify-content-center mt-5">
+              <button class="btn-nalej-form" [disabled]="loading">
+                <span class="align-bottom">Save changes</span>
+              </button>
             </div>
           </form>
-          <!-- Error messages -->
-          <div class="error-message">
-            <div 
-              tooltip="{{arrayToString(errorMessages)}}"
-              placement="bottom"
-              *ngIf="errorMessages.length > 0">
-              {{formatValidationOutput(errorMessages).msg}}
-            </div>
-          </div>
-        <!-- Option button -->
+          <!-- <form #f="ngForm" class="form-label">
         <div class="d-flex flex-row justify-content-between">
           <button class="btn btn-primary btn-md mt-5" (click)="checkFormFields(f.form)">
             <span class="align-bottom">Save</span>
@@ -51,6 +67,6 @@
             <span class="align-bottom">Discard</span>
           </button>
         </div>
-        </div>
+        </div> -->
       </div>
     </div>
