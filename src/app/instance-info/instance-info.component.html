@@ -390,7 +390,7 @@
                     class="btn info-btn btn-primary"  
                     tooltip="Info" 
                     placement="left" 
-                    (click)="openServicesInfo()">
+                    (click)="openServicesInfo(service)">
                     <span class="i-info">i</span>
                   </button>
                 </td>
@@ -531,12 +531,12 @@
                     Auth <span class="grey typo-small">(group, service)</span>
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedByRules === 'auth' && !reverse">
+                      *ngIf="sortedByRules === 'auth' && !reverseRules">
                       <i class="material-icons">expand_more</i>
                     </span>
                     <span 
                       class="expand-chevron" 
-                      *ngIf="sortedByRules === 'auth' && reverse">
+                      *ngIf="sortedByRules === 'auth' && reverseRules">
                       <i class="material-icons">expand_less</i>
                     </span>
                   </th>
@@ -569,7 +569,7 @@
                       class="btn info-btn btn-primary"  
                       tooltip="Info" 
                       placement="left" 
-                      (click)="openRulesInfo()">
+                      (click)="openRulesInfo(rule)">
                       <span class="i-info">i</span>
                     </button>
                   </td>

@@ -7,6 +7,9 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import * as shape from 'd3-shape';
+import { ServiceInstancesInfoComponent } from '../service-instances-info/service-instances-info.component';
+import { RuleInfoComponent } from '../rule-info/rule-info.component';
+import { Services } from '@angular/core/src/view';
 
 @Component({
   selector: 'app-instance-info',
@@ -223,7 +226,14 @@ export class InstanceInfoComponent implements OnInit {
         }
         this.updateDisplayedGroupsNamesLength();
     }
-
+    this.backend.getAppInstance(this.organizationId,  this.instanceId)
+    .subscribe(instance => {
+        this.instance = instance;
+        this.toGraphData(instance);
+        if (!this.loadedData) {
+          this.loadedData = true;
+        }
+    });
   }
 
   /**
@@ -474,9 +484,6 @@ export class InstanceInfoComponent implements OnInit {
             }
           }
           this.toGraphData(instance);
-          if (!this.loadedData) {
-            this.loadedData = true;
-          }
           this.updateDisplayedGroupsNamesLength();
           if (!this.loadedData) {
             this.loadedData = true;
@@ -587,16 +594,61 @@ export class InstanceInfoComponent implements OnInit {
   }
 
   /**
-   * Open serivces info modal window // TO BE DESIGNED
+   * Open services info modal window
+   *  @param service service object
    */
-  openServicesInfo() {
+  openServicesInfo(service) {
+    const initialState = {
+      organizationId: this.organizationId,
+      serviceId: service.service_group_id,
+      instanceId: service.service_instance_id,
+      appDescriptorId: service.app_descriptor_id,
+      appInstanceId: service.app_instance_id,
+      enviormentVariables: service.enviroment_variables,
+      exposedPorts: service.exposed_ports,
+      image: service.image,
+      name: service.name,
+      groupId: service.service_group_id,
+      groupInstanceId: service.service_group_instance_id,
+      replicas: service.replicas,
+      specs: service.specs,
+      statusName: service.status_name,
+      typeName: service.type_name,
+      endpoints: service.endpoints,
+      credentials : service.credentials,
+      dockerRepository: service.docker_repository,
+      deployAfter: service.deploy_after,
+      deployedOnCluster: service.deployed_on_cluster_id,
+      labels: service.labels,
+    };
+
+    this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
 
   }
 
   /**
-   * Open rules info modal window // TO BE DESIGNED
+   * Open rules info modal window
+   * @param rule rule object
    */
-  openRulesInfo() {
+  openRulesInfo(rule) {
+    const initialState = {
+      organizationId: this.organizationId,
+      ruleId: rule.rule_id,
+      access: rule.access_name,
+      appDescriptorId: rule.app_descriptor_id,
+      authServices: rule.auth_services,
+      authServiceGroupName: rule.auth_service_group_name,
+      name: rule.name,
+      targetPort: rule.target_port,
+      targetServiceGroupName: rule.target_service_group_name,
+      targetServiceName: rule.target_service_name,
+      deviceGroupIds: rule.device_group_ids,
+      deviceGroupNames: rule.device_group_names,
+    };
+
+    this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
 
   }
 
@@ -616,7 +668,7 @@ export class InstanceInfoComponent implements OnInit {
   countGroupServices(groupId: string) {
     if (groupId === 'ALL') {
       let counter = 0;
-      if(this.instance && this.instance.groups) {
+      if (this.instance && this.instance.groups) {
         this.instance.groups.forEach(group => {
           counter += group.service_instances.length;
         });

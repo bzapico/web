@@ -202,7 +202,10 @@ export const AvailableComponents &#x3D; {
   deployInstance: &#x27;Deploy instance&#x27;,
   registeredInfo: &#x27;Registered Info&#x27;,
   registerApp: &#x27;Register app&#x27;,
-  instanceInfo: &#x27;Instance Info&#x27;
+  instanceInfo: &#x27;Instance Info&#x27;,
+  serviceInstancesInfo: &#x27;Service Instances Info&#x27;,
+  ruleInfo: &#x27;Rule Info&#x27;,
+  serviceInfo: &#x27;Service Info&#x27;
 };
 
 @Component({
@@ -308,6 +311,18 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.instanceInfo,
       mock: localStorage.getItem(LocalStorageKeys.instanceInfoMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
+    this.components.push({
+      name: AvailableComponents.serviceInstancesInfo,
+      mock: localStorage.getItem(LocalStorageKeys.serviceInstancesInfoMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
+    this.components.push({
+      name: AvailableComponents.ruleInfo,
+      mock: localStorage.getItem(LocalStorageKeys.ruleInfoMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
+    this.components.push({
+      name: AvailableComponents.serviceInfo,
+      mock: localStorage.getItem(LocalStorageKeys.serviceInfoMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
   }
 
   /**
@@ -340,6 +355,9 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.registeredInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.registerAppMock, newValue);
     localStorage.setItem(LocalStorageKeys.instanceInfoMock, newValue);
+    localStorage.setItem(LocalStorageKeys.serviceInstancesInfoMock, newValue);
+    localStorage.setItem(LocalStorageKeys.ruleInfoMock, newValue);
+    localStorage.setItem(LocalStorageKeys.serviceInfoMock, newValue);
   }
 
   /**
@@ -385,7 +403,7 @@ export class DebugPanelComponent implements OnInit {
       case AvailableComponents.addUser:
       localStorage.setItem(LocalStorageKeys.addUserMock, componentMockOption.mock);
       break;
-      case AvailableComponents.addUser:
+      case AvailableComponents.addLabel:
       localStorage.setItem(LocalStorageKeys.addLabelMock, componentMockOption.mock);
       break;
       case AvailableComponents.devices:
@@ -403,7 +421,7 @@ export class DebugPanelComponent implements OnInit {
       case AvailableComponents.deployInstance:
         localStorage.setItem(LocalStorageKeys.deployInstanceMock, componentMockOption.mock);
       break;
-      case AvailableComponents.deployInstance:
+      case AvailableComponents.registeredInfo:
         localStorage.setItem(LocalStorageKeys.registeredInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.registerApp:
@@ -411,6 +429,15 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.instanceInfo:
         localStorage.setItem(LocalStorageKeys.instanceInfoMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.serviceInstancesInfo:
+      localStorage.setItem(LocalStorageKeys.serviceInstancesInfoMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.ruleInfo:
+      localStorage.setItem(LocalStorageKeys.ruleInfoMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.serviceInfo:
+      localStorage.setItem(LocalStorageKeys.serviceInfoMock, componentMockOption.mock);
       break;
       default:
         console.log(&#x27;Selected option not registered as available component&#x27;);

@@ -174,6 +174,11 @@
         font-size: 1em;
     }
 }
+@media screen and (max-width:1550px) {
+    .table-fixed tbody td:last-child {
+        padding: 0.75rem 0;
+    }
+}
 @media screen and (max-width:1680px) , screen and (max-height: 1039px) {
     .circle {
         width: 90px;
@@ -298,7 +303,7 @@
     overflow-y: auto;
     overflow-y: hidden;
     height: 100%;
-
+    padding: 1.5em;
 }
 @media screen and (max-width:1682px), screen and (max-height: 800px)  {
     .config-card {

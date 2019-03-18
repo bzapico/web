@@ -37,8 +37,15 @@ hr {
         font-size: 0.8em;
       }
     }
+    .dp-height {
+      height: 300px !important;
+    }
 }
 
 .debug-panel {
   width: 500px;
+}
+.dp-height {
+  height: 500px;
+  overflow: scroll;
 }

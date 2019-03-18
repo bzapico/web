@@ -48,6 +48,9 @@ import { RegisterApplicationComponent } from './register-application/register-ap
 import { DeployInstanceComponent } from './deploy-instance/deploy-instance.component';
 import { FileDropModule } from 'ngx-file-drop';
 import { InstanceInfoComponent } from './instance-info/instance-info.component';
+import { ServiceInstancesInfoComponent } from './service-instances-info/service-instances-info.component';
+import { RuleInfoComponent } from './rule-info/rule-info.component';
+import { ServiceInfoComponent } from './service-info/service-info.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +82,10 @@ import { InstanceInfoComponent } from './instance-info/instance-info.component';
     RegisteredInfoComponent,
     RegisterApplicationComponent,
     DeployInstanceComponent,
-    InstanceInfoComponent
+    InstanceInfoComponent,
+    ServiceInstancesInfoComponent,
+    RuleInfoComponent,
+    ServiceInfoComponent
   ],
   entryComponents: [
     DebugPanelComponent,
@@ -94,7 +100,10 @@ import { InstanceInfoComponent } from './instance-info/instance-info.component';
     DeviceGroupCreatedComponent,
     AddLabelComponent,
     RegisterApplicationComponent,
-    DeployInstanceComponent
+    DeployInstanceComponent,
+    ServiceInstancesInfoComponent,
+    RuleInfoComponent,
+    ServiceInfoComponent
   ],
   imports: [
     BrowserModule,
