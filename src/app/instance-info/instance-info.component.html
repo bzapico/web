@@ -33,7 +33,7 @@
                           "{
                             'blue': instanceClassStatusCheck('running'),
                             'red': instanceClassStatusCheck('error'),
-                            'orange':instanceClassStatusCheck('other')
+                            'teal':instanceClassStatusCheck('other')
                           }">
                         {{instance.status_name}}
                       </td>
@@ -124,51 +124,51 @@
           </div>
         </div>
         <div class="graph">
-          <ngx-graph
-            class="chart-container"
-            [view]="view"
-            [legend]="showLegend"
-            [links]="graphData.links"
-            [nodes]="graphData.nodes"
-            [scheme]="colorScheme"
-            [orientation]="orientation"
-            [autoZoom]="autoZoom"
-            [autoCenter]="autoCenter"
-            [curve]="curve"
-            [enableZoom]="enableZoom">
-            <ng-template #nodeTemplate let-node>
-              <svg:g 
-                class="node"
-                ngx-tooltip
-                [tooltipPlacement]="'top'"
-                [tooltipType]="'tooltip'"
-                [tooltipTitle]="node.tooltip">
-                <svg:rect 
-                [attr.width]="node.width" 
-                [attr.height]="node.height" 
-                [attr.fill]="node.color" 
-                rx="14" 
-                ry="14"/>
-                <svg:text 
-                  alignment-baseline="central" 
-                  [attr.x]="10" 
-                  [attr.y]="node.height / 2">
-                  {{node.label}}
+            <ngx-graph
+                class="chart-container ml-4"
+                [view]="view"
+                [legend]="showLegend"
+                [links]="graphData.links"
+                [nodes]="graphData.nodes"
+                [scheme]="colorScheme"
+                [orientation]="orientation"
+                [autoZoom]="autoZoom"
+                [autoCenter]="autoCenter"
+                [curve]="curve"
+                [enableZoom]="enableZoom">
+              <ng-template #nodeTemplate let-node>
+                <svg:g 
+                  class="node"
+                  ngx-tooltip
+                  [tooltipPlacement]="'top'"
+                  [tooltipType]="'tooltip'"
+                  [tooltipTitle]="node.tooltip">
+                  <svg:rect 
+                  [attr.width]="node.width" 
+                  [attr.height]="node.height" 
+                  [attr.fill]="node.color" 
+                  rx="14" 
+                  ry="14"/>
+                  <svg:text 
+                    alignment-baseline="central" 
+                    [attr.x]="10" 
+                    [attr.y]="node.height/2">
+                    {{node.label}}
                 </svg:text>
-              </svg:g>
-            </ng-template>
-            <ng-template #linkTemplate let-link>
-              <svg:g class="edge">
-                <svg:path
-                  stroke-width="2"
-                  class="line"
-                  d="M 0,30 h100"
-                  >
-                </svg:path>
-              </svg:g>
-            </ng-template>
-          </ngx-graph>
-        </div>
+                </svg:g>
+              </ng-template>
+              <ng-template #linkTemplate let-link>
+                <svg:g class="edge">
+                  <svg:path
+                    stroke-width="4"
+                    class="line"
+                    d="M 0,30 h100"
+                    >
+                  </svg:path>
+                </svg:g>
+              </ng-template>
+            </ngx-graph>
+          </div>
       </div>
       <!-- Services card -->
       <div *ngIf="!showGraph" class="card h-ins-services flex-grow-1">
@@ -528,7 +528,7 @@
                     [ngClass]="getCategoryCSSClass('rules','auth')" 
                     scope="col" 
                     class="col-3">
-                    Auth <span class="grey typo-small">(group, service)</span>
+                    Auth <span class="grey typo-small">(group, service / device group)</span>
                     <span 
                       class="expand-chevron" 
                       *ngIf="sortedByRules === 'auth' && !reverseRules">
@@ -563,6 +563,9 @@
                       {{rule.auth_service_group_name}}
                       <span *ngIf="rule.auth_services"> - </span>
                       {{rule.auth_services}}
+                      <span *ngIf="rule.device_group_names"></span>
+                      {{rule.device_group_names}}
+                      </td
                   </td>
                   <td class="col-1 text-center">
                     <button 
@@ -578,7 +581,7 @@
             </table>
           </div>
           <!-- No info to show -->
-          <div *ngIf="loadedData && instance && instance.rules.length === 0 !requestError"
+          <div *ngIf="loadedData && instance && instance.rules && instance.rules.length === 0 !requestError"
             class="no-info d-flex justify-content-center align-items-center">
             No available rules detected
           </div>

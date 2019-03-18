@@ -173,7 +173,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.displayedGroups = [];
     this.activeGroupId = 'ALL';
     this.requestError = '';
-    this.showGraph = false;
+    this.showGraph = true;
     this.registeredData = {
       groups: [],
       environment_variables: {},
@@ -569,7 +569,7 @@ export class RegisteredInfoComponent implements OnInit {
         id: group.service_group_id,
         label: group.name,
         tooltip: 'GROUP: ' + group.service_group_id,
-        color: this.nalejColorScheme[this.nextColorIndex],
+        color: '#444',
         group: group.service_group_id
       };
       this.graphData.nodes.push(nodeGroup);
@@ -578,7 +578,7 @@ export class RegisteredInfoComponent implements OnInit {
           id: group.service_group_id + '-s-' + service.service_id,
           label: service.name,
           tooltip: 'SERVICE: ' + service.service_id,
-          color: this.nalejColorScheme[this.nextColorIndex],
+          color: '#343434',
           group: group.service_group_id
         };
         this.graphData.nodes.push(nodeService);
@@ -607,6 +607,7 @@ export class RegisteredInfoComponent implements OnInit {
         }
       });
     }
+    console.log(this.graphData);
   }
 
   /**
