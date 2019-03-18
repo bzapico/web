@@ -12,11 +12,13 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   /**
    * Holds the login form group of inputs
    */
   loginForm: FormGroup;
+  submitted = false;
+  loading: boolean;
+
   /**
    * Reference for the service that allows to open debug panel
    */
@@ -44,19 +46,26 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
-    this.errorMessages = [];
+
     this.loginRequest = false;
   }
+
+  /**
+   * Convenience getter for easy access to form fields
+   */
+  get f() { return this.loginForm.controls; }
 
   /**
    * Triggered when clicking the login button and calls the login function on the auth service to check the credentials.
    * If credentials are correct, JWT Token would be stored in localStorage
    */
   onSubmit() {
+    this.submitted = true;
+    this.loading = true;
     this.loginRequest = true;
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(response => {
-        this.errorMessages = [];
+        this.loading = false;
         if (response.token) {
           const jwtHelper: JwtHelperService = new JwtHelperService();
           const jwtTokenData = jwtHelper.decodeToken(response.token);
@@ -83,12 +92,8 @@ export class LoginComponent implements OnInit {
           }
         }
       }, error => {
+        this.loading = false;
         this.loginRequest = false;
-        if (error.error && error.error.message) {
-          this.errorMessages.push(
-            error.error.message.charAt(0).toUpperCase() +
-            error.error.message.slice(1)); // Capitalize first letter of error msg
-        }
       });
   }
 
@@ -99,64 +104,5 @@ export class LoginComponent implements OnInit {
     this.modalRef = this.modalService.show(DebugPanelComponent);
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { location.reload(); });
-  }
-  /**
-   * Validates user data
-   * @param form Form with user data
-   */
-  checkFormFields(form: FormGroup) {
-    this.errorMessages = [];
-    if (form.controls.email.invalid) {
-      if (form.controls.email.errors.required) {
-        this.errorMessages.push('Email is required');
-      }
-      if (form.controls.email.errors.email) {
-        this.errorMessages.push('Email must be a valid email address');
-      }
-    }
-    if (form.controls.password.invalid) {
-      if (form.controls.password.errors.required) {
-        this.errorMessages.push('Password is required');
-      }
-      if (form.controls.password.errors.minlength) {
-        this.errorMessages.push('Password must have more than 6 characters');
-      }
-    }
-  }
-
-  /**
-  * Outputs the error messages in the required format, showing the first one
-  * @param errors String containing the errors
-  */
-  formatValidationOutput(errors: string[]) {
-    if (this.errorMessages.length === 1) {
-      return {
-        msg: this.errorMessages[0],
-        errors: this.errorMessages
-      };
-    } else if (this.errorMessages.length > 0) {
-      return {
-        msg: this.errorMessages[0] + ' +' + (this.errorMessages.length - 1) + ' errors',
-        errors: this.errorMessages
-      };
-    } else {
-      return {
-        msg: '',
-        errors: this.errorMessages
-      };
-    }
-  }
-
-  /**
-   * Another string definition of an array
-   * @param array Array of elements
-   */
-  arrayToString(array: any[]): string {
-    let msg = '';
-    array.forEach(element => {
-      msg = msg + element.toLowerCase() + ', ';
-    });
-    msg = msg.slice(0, msg.length - 2);
-    return msg;
   }
 }

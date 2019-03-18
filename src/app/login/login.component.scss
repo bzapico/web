@@ -8,91 +8,31 @@
   justify-content: center;
   align-items: center;
 }
-.form-login {
-  max-width: 350px;
-  padding: 15px;
-  margin: 0 auto;
-  .form-login-heading {
+.login-card {
+  background-color: white;
+  width: 400px;
+  border: 0;
+  border-radius: 10px;
+  outline: 0;
+  padding: 2rem;
+  height: 421px;
+}
+.form-login-heading {
   color: white;
   letter-spacing: 1.9em;
   text-indent: 35px;
   text-align: center;
   margin-bottom: 20px;
   font-size: 19px;
-  }
-  .form-control {
-    margin: 0 auto;
-    position: relative;
-    height: auto;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 14px;
-    font-size: 12px;
-    text-align: center;
-    border-radius: 5px;
-    &:focus {
-      z-index: 2;
-      border-color: #0937FF;
-      outline: none;
-      box-shadow: none;
-      &::placeholder {
-        color: white;
-      }
-    }
-  }
-  input {
-    width: 257px;
-    border: 2px solid #EEEEEE;
-    color: #949494;
-    caret-color: #0937FF;
-    &::placeholder {
-      color: #949494;
-    }
-    &[type="email"] {
-      margin-bottom: -2px;
-    }
-  }
-}
-.btn-primary {
-  width: 257px;
-  color: #fff;
-  background-color: #0937FF;
-  border-radius: 5px;
-  &:focus {
-    outline: none;
-    box-shadow: none;
-  }
-}
-button[type="submit"]:disabled {
-  background: #949494;
-}
-.btn-group-lg > .btn, .btn-lg {
-  margin: 58px auto;
-  padding: 15px;
-  font-size: 14px;
-}
-.card {
-  background: white;
-  height: 371px;
-  width: 320px;
-  border-radius: 10px;
-  padding: 0;
-  .card-title {
-    font-size: 18px;
-    text-align: center;
-    margin-top: 70px;
-    padding-bottom: 10px;
-  }
-  .card-body {
-    padding: 0;
-  }
 }
 .loader-position{
-  top: 25% !important;
+  top: 18% !important;
 }
-.error-message {
-  padding: 10px 0;
+.nalej-loader-container {
+  min-height: 4em !important;
+}
+.btn-h {
+  height: 1.6em;
 }
 
 
