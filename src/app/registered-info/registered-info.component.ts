@@ -193,7 +193,7 @@ export class RegisteredInfoComponent implements OnInit {
      // Graph initialization
      this.showlegend = false;
      this.orientation = 'TB';
-     this.curve = shape.curveStepAfter;
+     this.curve = shape.curveBasis;
      this.autoZoom = true;
      this.autoCenter = true;
      this.enableZoom = true;
@@ -788,6 +788,22 @@ export class RegisteredInfoComponent implements OnInit {
     } else if (type === 'graph') {
       this.showGraph = true;
     }
+  }
+
+  /**
+   * Return if the marker is required
+   * @param link Link object
+   */
+  getMarker(link) {
+    const index = this.graphData.nodes.map(x => x.id).indexOf(link.source);
+    if (index !== -1) {
+      if (this.graphData.nodes[index].id === this.graphData.nodes[index].group) {
+        return '';
+      } else {
+        return 'url(#arrow)';
+      }
+    }
+    return 'url(#arrow)';
   }
 
 }

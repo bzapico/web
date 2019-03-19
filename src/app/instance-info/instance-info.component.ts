@@ -292,11 +292,13 @@ export class InstanceInfoComponent implements OnInit {
         }
       });
     }
-    console.log(this.graphData);
-
     this.graphDataLoaded = true;
   }
 
+  /**
+   * Get arrow color depending on node source color
+   * @param sourceId Link source identifier
+   */
   getArrowColor (sourceId: string): string {
     const index = this.graphData.nodes.map(x => x.id).indexOf(sourceId);
     if (index !== -1) {
@@ -304,6 +306,10 @@ export class InstanceInfoComponent implements OnInit {
     }
   }
 
+  /**
+   * Return an specific color depending on the node status
+   * @param status Status name
+   */
   getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
       case 'service_running':
@@ -775,5 +781,21 @@ export class InstanceInfoComponent implements OnInit {
       return rawStatus.substring('service_'.length, rawStatus.length);
     }
     return rawStatus;
+  }
+
+  /**
+   * Return if the marker is required
+   * @param link Link object
+   */
+  getMarker(link) {
+    const index = this.graphData.nodes.map(x => x.id).indexOf(link.source);
+    if (index !== -1) {
+      if (this.graphData.nodes[index].id === this.graphData.nodes[index].group) {
+        return '';
+      } else {
+        return 'url(#arrow)';
+      }
+    }
+    return 'url(#arrow)';
   }
 }
