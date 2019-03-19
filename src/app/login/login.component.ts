@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
    * Loaded Data for login request status
    */
   loginRequest: boolean;
+  notificationsService: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -85,6 +86,10 @@ export class LoginComponent implements OnInit {
         }
       }, error => {
         this.loginRequest = false;
+        this.notificationsService.add({
+          message: error.error.message,
+          timeout: 5000
+        });
       });
   }
 

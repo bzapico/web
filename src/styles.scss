@@ -352,7 +352,7 @@ button[type="submit"]:disabled {
 @media screen and (max-width: 1300px) {
  /* Target devices narrower than 1300px. */
     .modal-card {
-      padding: 2rem;
+      padding: 1rem;
     }
     .modal-dialog {
       margin: 0.5rem auto;
@@ -434,6 +434,7 @@ button[type="submit"]:disabled {
   background-color: #0937FF;
   padding-top: 6px;
   cursor: pointer;
+  margin-top: 2em;
   &:focus {
     outline: none;
     box-shadow: none;
@@ -482,6 +483,11 @@ button[type="submit"]:disabled {
       color: #ececec;
       transition: 0.3s;
     }
+  }
+}
+@media screen and (max-width:1500px) {
+  .btn-nalej-form {
+    margin-top: 1em;
   }
 }
 

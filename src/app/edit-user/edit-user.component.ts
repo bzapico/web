@@ -74,7 +74,7 @@ export class EditUserComponent implements OnInit {
     this.editUserForm = this.formBuilder.group({
       userName: ['', Validators.required],
       email: [{value: '', disabled: true}, [Validators.required, Validators.email]],
-      role: ['', [Validators.required]],
+      role: ['']
     });
 
     if (this.userRoleToEdit) {

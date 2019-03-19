@@ -90,7 +90,10 @@ export class ChangePasswordComponent implements OnInit {
       this.backend.resetPassword(this.organizationId, passwordChange)
         .subscribe(response => {
           this.loading = false;
-          this.notificationsService.add({message: 'Password changed successfully'});
+          this.notificationsService.add({
+            message: 'Password changed successfully',
+            timeout: 5000
+          });
           this.bsModalRef.hide();
         }, error => {
           this.loading = false;

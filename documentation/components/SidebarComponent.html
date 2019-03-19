@@ -899,7 +899,7 @@ export class SidebarComponent implements OnInit {
   openEditUser() {
     const initialState &#x3D; {
       userName: this.name,
-      userId: this.email,
+      email: this.email,
       userRole: this.role,
       title: &#x27;Edit profile&#x27;,
       organizationId: this.organizationId
@@ -908,7 +908,7 @@ export class SidebarComponent implements OnInit {
     this.modalRef &#x3D; this.modalService.show(EditUserComponent, { initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
     this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; {
-      this.updateProfileUser(this.organizationId, initialState.userId);
+      this.updateProfileUser(this.organizationId, initialState.email);
       if (this.router.url &#x3D;&#x3D;&#x3D; &#x27;/organization&#x27;) {
         this.updateService.changesOnUserList.next();
       }
