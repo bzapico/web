@@ -222,18 +222,4 @@ export class AddLabelComponent implements OnInit {
       this.bsModalRef.hide();
     }
   }
-
-  //  /**
-  //  * Another string definition of an array
-  //  * @param array Array of elements
-  //  */
-  // arrayToString(array: any[]): string {
-  //   let msg = '';
-  //   array.forEach(element => {
-  //     msg = msg + element.toLowerCase() + ', ';
-  //   });
-  //   msg = msg.slice(0, msg.length - 2);
-  //   return msg;
-  // }
-
 }
