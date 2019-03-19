@@ -350,8 +350,7 @@
                 {{app.name}}
               </td>
               <td class="col-3">{{app.app_descriptor_id}}</td>
-              <td class="col-4" *ngIf="!app.labels"> no </td>
-              <td class="col-4" *ngIf="app.labels">
+              <td class="col-4" >
                 <button 
                   (click)="onLabelClick(app.app_descriptor_id, label[0], label[1])"
                   [ngClass]=
