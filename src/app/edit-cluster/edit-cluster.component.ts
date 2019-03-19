@@ -71,20 +71,21 @@ export class EditClusterComponent implements OnInit {
     this.loading = true;
     if (this.organizationId !== null && this.clusterId !== null) {
       this.backend.saveClusterChanges(this.organizationId, this.clusterId, {
-        name: this.clusterName,
+        name: f.clusterName.value,
       })
         .subscribe(response => {
+          this.clusterName = f.clusterName.value;
           this.loading = false;
           this.notificationsService.add({
             message: 'The cluster ' + this.clusterName + ' has been edited',
-            timeout: 10000
+            timeout: 5000
           });
           this.bsModalRef.hide();
         }, error => {
           this.loading = false;
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 10000
+            timeout: 5000
           });
           this.bsModalRef.hide();
         });

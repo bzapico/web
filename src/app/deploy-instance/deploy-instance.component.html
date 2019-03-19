@@ -13,7 +13,7 @@
     </div>
     <!-- Body -->
     <div class="modal-body">
-        <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance()">
+        <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">
           <div *ngIf="!openFromRegistered" class="form-group">
             <label>Registered name</label>
             <div class="btn-group w-100" dropdown>
@@ -55,6 +55,7 @@
             <label>Instance name</label>
             <input 
               formControlName="instanceName" 
+              value="instanceName"
               placeholder="Instance name"
               type="text" 
               class="form-control">

@@ -91,7 +91,6 @@ export class LoginComponent implements OnInit {
         this.notificationsService.add({
           message: error.error.message,
           timeout: 10000,
-          type: 'warning'
         });
       });
   }

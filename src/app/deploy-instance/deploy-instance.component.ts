@@ -88,7 +88,8 @@ export class DeployInstanceComponent implements OnInit {
    */
   get f() { return this.deployInstanceForm.controls; }
 
-  deployInstance() {
+  deployInstance(f) {
+    this.instanceName = f.instanceName.value;
     this.submitted = true;
     this.loading = true;
     this.backend.deploy(this.organizationId, this.registeredId, this.instanceName)

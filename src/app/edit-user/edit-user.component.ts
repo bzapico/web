@@ -154,7 +154,6 @@ export class EditUserComponent implements OnInit {
         this.notificationsService.add({
           message: 'ERROR: ' + error.error.message,
           timeout: 10000,
-          type: 'warning'
         });
         this.bsModalRef.hide();
       });
