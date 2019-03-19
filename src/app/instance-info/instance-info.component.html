@@ -175,6 +175,11 @@
               </ng-template>
             </ngx-graph>
           </div>
+          <div class="row mt-2 text-right mr-1">
+            <div class="col graph-subtext">
+              Scroll on graph to zoom
+            </div>
+          </div>
         <div *ngIf="!graphDataLoaded" class="loader"></div>
         <!-- No info to show -->
         <div *ngIf="graphDataLoaded && countGroupServices('ALL') === 0"
