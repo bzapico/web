@@ -28,13 +28,11 @@ export class EditClusterComponent implements OnInit {
   backend: Backend;
 
   /**
-   * Models that hold organization id, cluster id, name, description and tags
+   * Models that hold organization id, cluster id, name
    */
   organizationId: string;
   clusterId: string;
   clusterName: string;
-  clusterDescription: string;
-  clusterTags: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,10 +48,7 @@ export class EditClusterComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-      this.clusterName = 'Loading...'; // Default initialization
-      this.clusterDescription = 'Loading...'; // Default initialization
-      this.clusterTags = 'Loading...'; // Default initialization
-      this.clusterId = 'Loading ...'; // Default initialization
+    this.clusterName = 'Loading...'; // Default initialization
   }
 
   ngOnInit() {

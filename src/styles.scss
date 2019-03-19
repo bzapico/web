@@ -208,11 +208,21 @@ a {
     outline: none;
     box-shadow: none;
   }
+  &:hover {
+    color: #fff;
+    transition: 0.3s;
+    background-color: #4f71fd;
+  }
 }
 .btn-red {
   color: #fff;
   border: 0px;
   background: #ff437d !important; 
+  &:hover {
+    color: #fff;
+    transition: 0.3s;
+    background-color: #ff8eb1;
+  }
 }
 button[type="submit"]:disabled {
   background: #949494;
@@ -294,6 +304,11 @@ button[type="submit"]:disabled {
   margin: .3em;
   position: relative;
   background-color: #F25272;
+  &:hover {
+    color: #fff;
+    transition: 0.3s;
+    background-color: #ff8eb1;
+  }
 }
 .i-delete{
   font-size: 1em;
@@ -310,6 +325,11 @@ button[type="submit"]:disabled {
   position: relative;
   background-color: #0937FF;
   cursor: pointer;
+  &:hover {
+    color: #fff;
+    transition: 0.3s;
+    background-color: #4f71fd;
+  }
 }
 .i-add{
   font-size: 1.4em;
@@ -619,6 +639,9 @@ button[type="submit"]:disabled {
 }
 .alert {
   background: #0937ff;
+}
+.alert-warning {
+  background-color: #F25272;
 }
 .alert-icon {
   position: absolute;

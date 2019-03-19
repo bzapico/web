@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DebugPanelComponent } from '../debug-panel/debug-panel.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { NotificationsService } from '../services/notifications.service';
+import { detectChangesInternal } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-login',
@@ -27,13 +29,13 @@ export class LoginComponent implements OnInit {
    * Loaded Data for login request status
    */
   loginRequest: boolean;
-  notificationsService: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private notificationsService: NotificationsService
   ) {
   }
 
@@ -57,7 +59,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.loginRequest = true;
-    this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
+    this.authService.login(this.f.email.value, this.f.password.value)
       .subscribe(response => {
         if (response.token) {
           const jwtHelper: JwtHelperService = new JwtHelperService();
@@ -88,7 +90,8 @@ export class LoginComponent implements OnInit {
         this.loginRequest = false;
         this.notificationsService.add({
           message: error.error.message,
-          timeout: 5000
+          timeout: 10000,
+          type: 'warning'
         });
       });
   }

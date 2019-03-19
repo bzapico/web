@@ -97,6 +97,11 @@ export class ChangePasswordComponent implements OnInit {
           this.bsModalRef.hide();
         }, error => {
           this.loading = false;
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 10000,
+            type: 'warning'
+          });
         });
     }
   }
