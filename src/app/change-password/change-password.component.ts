@@ -78,15 +78,20 @@ export class ChangePasswordComponent implements OnInit {
    * @param f Form containing the user input
    */
   saveNewPassword(f) {
-    if (!this.loading) {
-      this.submitted = true;
+    this.submitted = true;
+    console.log(f);
+    if (!this.loading
+      && !f.passwordConfirm.invalid
+      && !f.password.invalid
+      && !f.newPassword.invalid
+      && f.newPassword.value === f.passwordConfirm.value) {
+      this.loading = true;
       const passwordChange = {
         passwordConfirm: f.passwordConfirm.value,
         password: f.password.value,
         new_password: f.newPassword.value,
         email: this.email
       };
-      this.loading = true;
       this.backend.resetPassword(this.organizationId, passwordChange)
         .subscribe(response => {
           this.loading = false;
