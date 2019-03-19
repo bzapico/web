@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonsModule, BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -19,6 +19,7 @@ describe('DeployInstanceComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule,
         ModalModule.forRoot(),
+        ReactiveFormsModule
       ],
       providers: [
         BsModalRef,

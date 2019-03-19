@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonsModule, BsModalRef, TooltipModule, BsModalService, ModalModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -21,6 +21,7 @@ describe('AddLabelComponent', () => {
         RouterTestingModule,
         TooltipModule,
         ModalModule.forRoot(),
+        ReactiveFormsModule
       ],
       providers: [
         BsModalRef,
