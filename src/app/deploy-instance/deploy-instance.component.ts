@@ -5,6 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-deploy-instance',
@@ -12,6 +13,14 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
   styleUrls: ['./deploy-instance.component.scss']
 })
 export class DeployInstanceComponent implements OnInit {
+
+  /**
+   * Models that holds forms info
+   */
+  deployInstanceForm: FormGroup;
+  submitted = false;
+  loading: boolean;
+
   /**
    * Backend reference
    */
@@ -41,6 +50,7 @@ export class DeployInstanceComponent implements OnInit {
   };
 
   constructor(
+    private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
@@ -62,21 +72,36 @@ export class DeployInstanceComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.deployInstanceForm = this.formBuilder.group({
+      registeredName: [{value: '', disabled: true}],
+      instanceName: [''],
+    });
+
     this.backend.getRegisteredApps(this.organizationId)
     .subscribe(response => {
         this.registeredApps = response.descriptors || [];
     });
   }
 
-  deployInstance() {
+  /**
+   * Convenience getter for easy access to form fields
+   */
+  get f() { return this.deployInstanceForm.controls; }
+
+  deployInstance(f) {
+    this.instanceName = f.instanceName.value;
+    this.submitted = true;
+    this.loading = true;
     this.backend.deploy(this.organizationId, this.registeredId, this.instanceName)
       .subscribe(deployResponse => {
+        this.loading = false;
         this.bsModalRef.hide();
         this.notificationsService.add({
           message: 'Deploying instance of ' + this.registeredName,
           timeout: 3000
         });
       }, error => {
+        this.loading = false;
         this.notificationsService.add({
           message: error.error.message,
           timeout: 5000

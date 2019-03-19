@@ -3,6 +3,7 @@
 Overall:
 - Added sorting and filtering capabilities 
 - Label management in tables
+- Forms refactor
 
 - IoT Devices view
     - Top indicators 

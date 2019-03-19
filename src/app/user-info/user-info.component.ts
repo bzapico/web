@@ -7,6 +7,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { mockOrganizationInfo, mockUserList } from '../utils/mocks';
 import { NotificationsService } from '../services/notifications.service';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -15,6 +16,12 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
+  /**
+   * Models that holds forms info
+   */
+  userInfoForm: FormGroup;
+  loading: boolean;
+
   /**
    * Backend reference
    */
@@ -41,7 +48,7 @@ export class UserInfoComponent implements OnInit {
   userName: string;
   organizationId: string;
   organizationName: string;
-  userId: string;
+  email: string;
   role: string;
 
   /**
@@ -49,9 +56,16 @@ export class UserInfoComponent implements OnInit {
    */
   bsPasswordModalRef: BsModalRef;
 
-
+  /**
+   * Models that removes the possibility for the user to close the modal by clicking outside the content card
+   */
+  config = {
+    backdrop: false,
+    ignoreBackdropClick: true
+  };
 
   constructor(
+    private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -67,36 +81,36 @@ export class UserInfoComponent implements OnInit {
     }
     this.title = 'User info';
     this.userName = 'Loading ...'; // Default initialization
-    this.userId = 'Loading ...'; // Default initialization
+    this.email = 'Loading ...'; // Default initialization
     this.buttonDeleteUser = 'Delete User';
     this.buttonChangePassword = 'Change Password';
   }
 
   ngOnInit() {
+    this.userInfoForm = this.formBuilder.group({
+      userName: [{value: '', disabled: true}],
+      email: [{value: '', disabled: true}],
+      role: [{value: '', disabled: true}],
+    });
   }
 
   /**
-   *  Checks the role of current user
+   * Convenience getter for easy access to form fields
    */
-  checkUserRole(buttonRole) {
-    if (buttonRole === this.role) {
-      return true;
-    }
-    return false;
-  }
+  get f() { return this.userInfoForm.controls; }
 
   /**
    *  Upon confirmation, deletes user
-   * @param userId A user to be deleted
+   * @param email A user to be deleted
    */
   deleteUser() {
     const deleteConfirm = confirm('Delete user?');
     if (deleteConfirm) {
-      if (this.organizationId !== null && this.userId !== null) {
-        this.backend.deleteUser(this.organizationId, this.userId)
+      if (this.organizationId !== null && this.email !== null) {
+        this.backend.deleteUser(this.organizationId, this.email)
           .subscribe(response => {
             this.notificationsService.add({
-              message: 'User ' + this.userId + ' has been deleted',
+              message: 'User ' + this.email + ' has been deleted',
               timeout: 10000
             });
             this.bsModalRef.hide();
@@ -118,7 +132,7 @@ export class UserInfoComponent implements OnInit {
   openChangePassword() {
     const initialState = {
       organizationId: this.organizationId,
-      userId: this.userId
+      email: this.email
     };
     this.bsPasswordModalRef =
       this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });

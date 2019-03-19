@@ -25,6 +25,9 @@ html, body {
 .dark-grey {
   color: #707070;
 }
+.light-grey {
+  color: #d2d2d2;
+}
 .red {
   color: #F25272;
 }
@@ -45,20 +48,13 @@ a {
     text-decoration: none;
   }
 }
-.error-message {
-  width: 95%;
-  margin: 0 auto;
-  font-size: 0.8em;
-  color: #F25272;
-  text-align: center;
-  height: 20px;
-}
+
 .change-password {
   color: #0937FF;
-  text-align: right;
+  text-align: center;
   font-size: 0.8em;
   cursor: pointer;
-  margin-right: 5px;
+  margin-top: 2em;
 }
 .button-padding-fix {
   padding-top: 10px !important;
@@ -215,11 +211,21 @@ a {
     outline: none;
     box-shadow: none;
   }
+  &:hover {
+    color: #fff;
+    transition: 0.3s;
+    background-color: #4f71fd;
+  }
 }
 .btn-red {
   color: #fff;
   border: 0px;
-  background: #ff437d; 
+  background: #ff437d !important; 
+  &:hover {
+    color: #fff;
+    transition: 0.3s;
+    background-color: #ff8eb1;
+  }
 }
 button[type="submit"]:disabled {
   background: #949494;
@@ -301,6 +307,11 @@ button[type="submit"]:disabled {
   margin: .3em;
   position: relative;
   background-color: #F25272;
+  &:hover {
+    color: #fff;
+    transition: 0.3s;
+    background-color: #ff8eb1;
+  }
 }
 .i-delete{
   font-size: 1em;
@@ -317,6 +328,11 @@ button[type="submit"]:disabled {
   position: relative;
   background-color: #0937FF;
   cursor: pointer;
+  &:hover {
+    color: #fff;
+    transition: 0.3s;
+    background-color: #4f71fd;
+  }
 }
 .i-add{
   font-size: 1.4em;
@@ -344,7 +360,7 @@ button[type="submit"]:disabled {
   border: 0;
   border-radius: 10px;
   outline: 0;
-  padding: 4rem;
+  padding: 2rem;
 }
 .modal-header {
   padding-bottom: 0;
@@ -356,21 +372,208 @@ button[type="submit"]:disabled {
     outline: none;
   }
 }
-.nalej-form-title{
-  font-size: 1em;
-  display: inline;
-  button span {
-    color: #888888;
-  }
-}
 @media screen and (max-width: 1300px) {
  /* Target devices narrower than 1300px. */
     .modal-card {
-      padding: 2rem;
+      padding: 1rem;
     }
     .modal-dialog {
       margin: 0.5rem auto;
     }
+}
+
+/* - - - Forms styles - - - */
+.nalej-form-title{
+  font-size: .9em;
+  display: inline;
+  margin-bottom: 1em;
+  button span {
+    color: #888888;
+  }
+}
+.form-group {
+  margin-bottom: 0rem;
+  label {
+    font-size: .8em;
+    color: #949494;
+    margin-bottom: 0;
+  }
+  input {
+    &::placeholder {
+      color: #888888;
+    }
+    &:focus {
+      &::placeholder {
+        color: white;
+      }
+    }
+  }
+}
+.form-control {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 40px;
+  font-size: .8em;
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solid #EEEEEE;
+  caret-color: #0937FF;
+  padding-top: 10px;
+  &:focus {
+    z-index: 2;
+    border-color: #0937FF;
+    outline: none;
+    box-shadow: none;
+    &::placeholder {
+      color: white;
+    }
+  }
+  input {
+    &:checked {
+      outline: none;
+    }
+    &:-webkit-autofill {
+      background-color: #fff !important;
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+    }
+  }
+  &:disabled, &[readonly] {
+    background-color: #ececec;
+    border-color: #ececec;
+  }
+}
+
+/* - - - Forms button styles - - - */
+.btn-nalej-form {
+  border: 0px;
+  border-radius: 5px;
+  width: 232px;
+  font-size: 0.8em;
+  text-align: center;
+  color: #fff;
+  height: 51px;
+  background-color: #0937FF;
+  padding-top: 6px;
+  cursor: pointer;
+  margin-top: 2em;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  &:disabled {
+    background-color: #707070;
+  }
+  &:hover {
+    color: #fff;
+    transition: 0.3s;
+    background-color: #4f71fd;
+  }
+}
+.btn-nalej-form-red {
+  border: 0px;
+  border-radius: 5px;
+  width: 232px;
+  font-size: 0.8em;
+  text-align: center;
+  height: 51px;
+  background-color: #ececec;
+  color: #F25272;
+  cursor: pointer;
+  position: relative;
+  padding-top: 6px;
+  text-indent: 18px;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  &:disabled {
+    background-color: #707070;
+  }
+  .delete-icon {
+    color: #F25272;
+    position: absolute;
+    top: 15px;
+    left: 35px;
+    font-size: 21px;
+  }
+  &:hover {
+    background-color: #F25272;
+    color: #ececec;
+    transition: 0.3s;
+    .delete-icon {
+      color: #ececec;
+      transition: 0.3s;
+    }
+  }
+}
+@media screen and (max-width:1500px) {
+  .btn-nalej-form {
+    margin-top: 1em;
+  }
+}
+
+/* - - - Forms dropdown styles - - - */
+.dropdown-menu {
+  width: 100% !important;
+  padding: 0em;
+}
+.dropdown-toggle {
+  width: 100%;
+  font-size: 0.9em;
+  border-radius: 5px;
+  border: 2px solid #EEEEEE;
+  color: #949494;
+  caret-color: #0937FF;
+  margin: -3px 0;
+  height: 40px;
+  text-align: center;
+  font-size: .8em;
+  &:focus {
+    box-shadow: none;
+    z-index: 2;
+    border-color: #0937FF;
+    outline: none;
+    box-shadow: none;
+    &::placeholder {
+      color: white;
+    }
+  }
+  &::after {
+    position: absolute;
+    right: 25px;
+    top: 17px;
+  }
+}
+.dropdown-item {
+  color: #949494;
+  text-align: inherit;
+  font-size: 0.8em;
+  text-align: center;
+  padding: .6rem 1.5rem;
+  &:hover {
+    background-color: #ECECEC;
+  }
+}   
+
+/* - - - Forms error messages styles - - - */
+.error-h {
+  height: 19px;
+  margin-top: .2em;
+  .error-message {
+    font-size: 0.8em;
+    color: #F25272;
+  }
+}
+.is-invalid {
+  border: 2px solid #F25272!important;
+  &:focus {
+    border-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  }
+
 }
 /* - - - Alerts styles - - - */
 .alert-close-button {
@@ -439,6 +642,9 @@ button[type="submit"]:disabled {
 }
 .alert {
   background: #0937ff;
+}
+.alert-warning {
+  background-color: #F25272;
 }
 .alert-icon {
   position: absolute;
@@ -740,16 +946,18 @@ button[type="submit"]:disabled {
   width: 325px;
   margin-bottom: 2rem;
   position: relative; 
-  font-size: .9em;
+  font-size: 1rem;
   float: right;
   margin-right: 2em;
   .form-control {
+    font-size: 1rem;
     padding: .375rem 2.1rem 0.375rem 0rem;
   }
-  input {
+   > input {
     border: 2px solid #ededed;
     border-radius: 5px;
     text-indent: 1em;
+    text-align: left;
     background-color: transparent;
     &::placeholder {
       font-size: .9em;

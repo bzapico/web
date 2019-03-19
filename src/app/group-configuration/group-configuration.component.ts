@@ -79,13 +79,13 @@ export class GroupConfigurationComponent implements OnInit {
       this.group = response;
       this.notificationsService.add({
         message: 'The group "' + this.name + '" has been edited',
-        timeout: 10000
+        timeout: 5000
       });
       this.bsModalRef.hide();
     }, error => {
       this.notificationsService.add({
         message: error.error.message,
-        timeout: 10000
+        timeout: 5000
       });
       this.bsModalRef.hide();
     });

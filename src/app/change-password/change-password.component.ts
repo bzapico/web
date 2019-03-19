@@ -4,7 +4,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { Backend } from '../definitions/interfaces/backend';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
 @Component({
@@ -14,6 +14,13 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 })
 export class ChangePasswordComponent implements OnInit {
   /**
+   * Models that holds forms info
+   */
+  changePasswordForm: FormGroup;
+  submitted = false;
+  loading: boolean;
+
+  /**
    * Backend reference
    */
   backend: Backend;
@@ -21,18 +28,14 @@ export class ChangePasswordComponent implements OnInit {
   /**
    * Models that hold organization id, user id, and passwords
    */
-  userId: string;
+  email: string;
   password: string;
   newPassword: string;
   confirmNewPassword: string;
   organizationId: string;
 
-  /**
-   * Holds the error messages
-   */
-  errorMessages: string[];
-
   constructor(
+    private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
@@ -48,28 +51,63 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.errorMessages = [];
+    this.changePasswordForm = this.formBuilder.group({
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
+      passwordConfirm: [''],
+    });
   }
 
   /**
-   * Request to save changes in the user password
-   * @param form Form containing the user input
+   * Custom validator for checking the passwords,
+   * @param group passwords group
    */
-  saveNewPassword(form: FormGroup) {
-    const passwordChange = {
-      email: this.userId,
-      password: form.value.password,
-      new_password: form.value.newPassword
-    };
-    this.backend.resetPassword(this.organizationId, passwordChange)
-      .subscribe(response => {
-        this.notificationsService.add({message: 'Password changed successfully'});
-        this.bsModalRef.hide();
-      }, error => {
-        if (error && error.error && error.error.message) {
-          this.errorMessages.push(error.error.message);
-        }
-      });
+  samePasswords(group) {
+    const newPassword = group.newPassword.value;
+    const passwordConfirm = group.passwordConfirm.value;
+    return newPassword === passwordConfirm ? true : false;
+  }
+
+  /**
+   * Convenience getter for easy access to form fields
+   */
+  get f() { return this.changePasswordForm.controls; }
+
+  /**
+   * Request to save changes in the user password
+   * @param f Form containing the user input
+   */
+  saveNewPassword(f) {
+    this.submitted = true;
+    console.log(f);
+    if (!this.loading
+      && !f.passwordConfirm.invalid
+      && !f.password.invalid
+      && !f.newPassword.invalid
+      && f.newPassword.value === f.passwordConfirm.value) {
+      this.loading = true;
+      const passwordChange = {
+        passwordConfirm: f.passwordConfirm.value,
+        password: f.password.value,
+        new_password: f.newPassword.value,
+        email: this.email
+      };
+      this.backend.resetPassword(this.organizationId, passwordChange)
+        .subscribe(response => {
+          this.loading = false;
+          this.notificationsService.add({
+            message: 'Password changed successfully',
+            timeout: 5000
+          });
+          this.bsModalRef.hide();
+        }, error => {
+          this.loading = false;
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 10000,
+          });
+        });
+    }
   }
 
   /**
@@ -87,74 +125,6 @@ export class ChangePasswordComponent implements OnInit {
     } else {
       this.bsModalRef.hide();
     }
-  }
-
-  /**
-   * Validates user data
-   * @param form Form with user data
-   */
-  checkFormFields(form: FormGroup) {
-    this.errorMessages = [];
-
-    if (form.controls.password.invalid) {
-      if (form.controls.password.errors.required) {
-        this.errorMessages.push('Password is required');
-      }
-      if (form.controls.password.errors.minlength) {
-        this.errorMessages.push('Password must have more than 6 characters');
-      }
-    }
-    if (form.controls.newPassword.invalid) {
-      if (form.controls.newPassword.errors.required) {
-        this.errorMessages.push('A new password is required');
-      }
-      if (form.controls.newPassword.errors.minlength) {
-        this.errorMessages.push('The new password must have more than 6 characters');
-      }
-    }
-    if (form.controls.newPassword.value !== form.controls.confirmNewPassword.value) {
-      this.errorMessages.push('Set passwords do not match');
-    }
-    if (this.errorMessages.length === 0) {
-      this.saveNewPassword(form);
-    }
-  }
-
-
-  /**
-   * Outputs the error messages in the required format, showing the first one
-   * @param errors String containing the errors
-   */
-  formatValidationOutput(errors: string[]) {
-    if (this.errorMessages.length === 1) {
-      return {
-        msg: this.errorMessages[0],
-        errors: this.errorMessages
-      };
-    } else if (this.errorMessages.length > 0) {
-      return {
-        msg: this.errorMessages[0] + ' +' + (this.errorMessages.length - 1) + ' errors',
-        errors: this.errorMessages
-      };
-    } else {
-      return {
-        msg: '',
-        errors: this.errorMessages
-      };
-    }
-  }
-
-  /**
-   * Another string definition of an array
-   * @param array Array of elements
-   */
-  arrayToString(array: any[]): string {
-    let msg = '';
-    array.forEach(element => {
-      msg = msg + element.toLowerCase() + ', ';
-    });
-    msg = msg.slice(0, msg.length - 2);
-    return msg;
   }
 
 }

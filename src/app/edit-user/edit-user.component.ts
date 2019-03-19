@@ -7,6 +7,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-user',
@@ -14,6 +15,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit {
+
+  /**
+   * Models that holds forms info
+   */
+  editUserForm: FormGroup;
+  submitted = false;
+  loading: boolean;
+
   /**
    * Backend reference
    */
@@ -29,31 +38,22 @@ export class EditUserComponent implements OnInit {
    */
   organizationId: string;
   userRole: string;
-  userRoleToEdit: string;
   userName: string;
-  userId: string;
   email: string;
   rolesList: any[];
-  temporalRole: string;
-
-  /**
-   * Holds the status of the role (if it has been modified)
-   */
-  roleDirty: boolean;
-
-  /**
-   * Change password modal window reference
-   */
-  bsPasswordModalRef: BsModalRef;
+  selfEditProfile: boolean;
 
   constructor(
+    private formBuilder: FormBuilder,
     private modalService: BsModalService,
     public bsModalRef: BsModalRef,
+    public bsPasswordModalRef: BsModalRef,
     private backendService: BackendService,
     private router: Router,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
+    // this.userRole = null;
     const mock = localStorage.getItem(LocalStorageKeys.userEditMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -61,26 +61,25 @@ export class EditUserComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-    this.roleDirty = false;
   }
 
   ngOnInit() {
-    if (this.userRoleToEdit) {
-      // this.userRole should be initialized by initial state
-      this.temporalRole = this.userRoleToEdit;
-    } else {
-      // profile
-      this.temporalRole = this.userRole;
-    }
+    this.editUserForm = this.formBuilder.group({
+      userName: ['', [Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]],
+      email: [{value: '', disabled: true}],
+    });
 
-    if (this.userRole && this.userRole === 'Owner') {
-      // Query role list
-      this.backend.listRoles(this.organizationId)
-        .subscribe(response => {
-          this.rolesList = response.roles;
-        });
-      }
+    // Query role list
+    this.backend.listRoles(this.organizationId)
+      .subscribe(response => {
+        this.rolesList = response.roles;
+      });
   }
+
+  /**
+   * Convenience getter for easy access to form fields
+   */
+  get f() { return this.editUserForm.controls; }
 
   /**
    * Checks if the form has been modified before discarding changes
@@ -100,56 +99,42 @@ export class EditUserComponent implements OnInit {
   }
 
   /**
-   *  Checks the role of current user
-   */
-  checkUserRole(buttonRole) {
-    if (buttonRole === this.temporalRole) {
-      return true;
-    }
-    return false;
-  }
-
-  /**
-   * Changes the new user role
-   * @param newRole New user role
-   */
-  changeRole(newRole) {
-    this.roleDirty = true;
-    this.temporalRole = newRole;
-  }
-
-  /**
    * Request to save the user data modifications
    * @param f Form object reference
    */
   saveUserChanges(f) {
-    if (this.userId !== null) {
+    this.submitted = true;
+    if (!f.userName.errors && this.userRole) {
+      this.loading = true;
       this.backend.saveUserChanges(this.organizationId, {
-        name: this.userName,
-        email: this.userId,
+        name: f.userName.value,
+        email: this.email,
         role_name: this.userRole
       })
       .subscribe(response => {
-        if (this.userRole && this.userRole === 'Owner') {
-          this.backend.changeRole(this.organizationId, this.userId, this.getRoleId(this.temporalRole)).
+        this.userName = f.userName.value;
+        this.loading = false;
+        if (this.userRole) {
+          this.backend.changeRole(this.organizationId, this.email, this.getRoleId(this.userRole)).
           subscribe(responseRole => {
             this.notificationsService.add({
               message: 'The user ' + this.userName + ' has been edited',
               timeout: 10000
             });
             this.bsModalRef.hide();
-            if (!this.userRoleToEdit && this.temporalRole === 'Owner') {
+            if (this.selfEditProfile === true && this.userRole === 'Owner') {
               // no redirection for the owner
-            } else if (!this.userRoleToEdit && this.temporalRole === 'Developer') {
+            } else if (this.selfEditProfile === true && this.userRole === 'Developer') {
               this.router.navigate([
                 '/applications'
               ]);
-            } else if (!this.userRoleToEdit && this.temporalRole === 'Operator') {
+            } else if (this.selfEditProfile === true && this.userRole === 'Operator') {
               this.router.navigate([
                 '/resources'
               ]);
             }
           }, error => {
+            this.loading = false;
             this.notificationsService.add({
               message: 'ERROR: ' + error.error.message,
               timeout: 10000
@@ -157,6 +142,7 @@ export class EditUserComponent implements OnInit {
             this.bsModalRef.hide();
           });
         } else {
+          this.loading = false;
           this.notificationsService.add({
             message: 'The user ' + this.userName + ' has been edited',
             timeout: 10000
@@ -164,30 +150,17 @@ export class EditUserComponent implements OnInit {
           this.bsModalRef.hide();
         }
       }, error => {
+        this.loading = false;
         this.notificationsService.add({
           message: 'ERROR: ' + error.error.message,
-          timeout: 10000
+          timeout: 10000,
         });
         this.bsModalRef.hide();
       });
     }
   }
 
-  /**
-   * Opens the modal view that holds change password editable component
-   */
-  openChangePassword() {
-    const initialState = {
-      organizationId: this.organizationId,
-      userId: this.userId
-    };
-    this.bsPasswordModalRef =
-      this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.bsPasswordModalRef.content.closeBtnName = 'Close';
-    this.bsModalRef.hide();
-  }
-
-  /**
+   /**
    * Search between roles list to get the required id
    * @param role Role name
    */
@@ -200,6 +173,20 @@ export class EditUserComponent implements OnInit {
       }
     });
     return roleId;
+  }
+
+  /**
+   * Opens the modal view that holds change password editable component
+   */
+  openChangePassword() {
+    const initialState = {
+      organizationId: this.organizationId,
+      email: this.email
+    };
+    this.bsPasswordModalRef =
+      this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.bsPasswordModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.hide();
   }
 }
 

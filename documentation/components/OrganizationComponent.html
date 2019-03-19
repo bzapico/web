@@ -350,7 +350,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/app/organization/organization.component.ts:167</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/app/organization/organization.component.ts:162</a></div>
                             </td>
                         </tr>
 
@@ -390,7 +390,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/app/organization/organization.component.ts:222</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/app/organization/organization.component.ts:217</a></div>
                             </td>
                         </tr>
 
@@ -638,7 +638,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/app/organization/organization.component.ts:212</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/app/organization/organization.component.ts:207</a></div>
                             </td>
                         </tr>
 
@@ -678,7 +678,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/app/organization/organization.component.ts:200</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/app/organization/organization.component.ts:195</a></div>
                             </td>
                         </tr>
 
@@ -749,7 +749,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/app/organization/organization.component.ts:180</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/app/organization/organization.component.ts:175</a></div>
                             </td>
                         </tr>
 
@@ -1396,7 +1396,7 @@ export class OrganizationComponent implements OnInit {
       organizationName: this.organizationName,
       organizationId: this.organizationId,
       userName: user.name,
-      userId: user.email,
+      email: user.email,
       role: user.role_name,
     };
 
@@ -1409,19 +1409,14 @@ export class OrganizationComponent implements OnInit {
    * Opens the modal view that holds the user info and editable component
    */
   openEditUser(user) {
-    let role &#x3D; &#x27;Owner&#x27;;
-    const jwtData &#x3D; localStorage.getItem(LocalStorageKeys.jwtData) || null;
-    if (jwtData !&#x3D;&#x3D; null) {
-      role &#x3D; JSON.parse(jwtData).role;
-    }
     const initialState &#x3D; {
       organizationName: this.organizationName,
       organizationId: this.organizationId,
       userName: user.name,
-      userId: user.email,
-      userRole: role,
-      userRoleToEdit: user.role_name,
-      title: &#x27;Edit user&#x27;
+      email: user.email,
+      userRole: user.role_name,
+      title: &#x27;Edit user&#x27;,
+      selfEditProfile: false
     };
 
     this.modalRef &#x3D; this.modalService.show(EditUserComponent, { initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
