@@ -6,13 +6,13 @@
       type="button" 
       class="close" 
       aria-label="Close"
-      (click)="discardChanges(editUserForm)">
+      (click)="discardChanges(f)">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <!-- Body -->
   <div class="modal-body">
-    <form [formGroup]="editUserForm" (ngSubmit)="saveUserChanges(editUserForm)">
+    <form [formGroup]="editUserForm" (ngSubmit)="saveUserChanges(f)">
       <div class="form-group">
         <label>Name*</label>
         <input 
@@ -20,13 +20,15 @@
           placeholder="{{userName}}"
           pattern="[a-zA-Z0-9]+"
           type="text" 
+          value="{{userName}}"
           class="form-control" 
           [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
-          required>
+          >
           <div *ngIf="!submitted && f.userName.errors" class="error-message"></div>
           <div class="error-h">
             <div *ngIf="submitted && f.userName.errors" class="error-message">
-              <div *ngIf="f.userName.errors.required">Name is required</div>
+              <div *ngIf="f.userName.errors.minlength">Name is too short</div>
+              <div *ngIf="f.userName.errors.pattern">Cannot contain spectial characters</div>
             </div>
           </div>
       </div>
@@ -47,7 +49,7 @@
             dropdownToggle 
             type="button" 
             class="dropdown-toggle cursor-pointer form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.role.errors }"
+            [ngClass]="{ 'is-invalid': submitted && role === '' }"
             aria-controls="dropdown-basic">
             {{userRole}}
           </button>
@@ -75,8 +77,8 @@
           </ul>
         </div>
         <div class="error-h">
-          <div *ngIf="submitted && f.role.errors" class="error-message">
-            <div *ngIf="f.role.errors">A roles is required</div>
+          <div *ngIf="submitted" class="error-message">
+            <div *ngIf="role === ''">A roles is required</div>
           </div>
         </div>
       </div>

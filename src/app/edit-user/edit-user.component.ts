@@ -38,16 +38,10 @@ export class EditUserComponent implements OnInit {
    */
   organizationId: string;
   userRole: string;
-  userRoleToEdit: string;
   userName: string;
   email: string;
   rolesList: any[];
-  temporalRole: string;
-
-  /**
-   * Holds the status of the role (if it has been modified)
-   */
-  roleDirty: boolean;
+  selfEditProfile: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,7 +53,7 @@ export class EditUserComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    this.userRole = null;
+    // this.userRole = null;
     const mock = localStorage.getItem(LocalStorageKeys.userEditMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -67,31 +61,19 @@ export class EditUserComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-    this.roleDirty = false;
   }
 
   ngOnInit() {
     this.editUserForm = this.formBuilder.group({
-      userName: ['', Validators.required],
-      email: [{value: '', disabled: true}, [Validators.required, Validators.email]],
-      role: ['']
+      userName: ['', [Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]],
+      email: [{value: '', disabled: true}],
     });
 
-    if (this.userRoleToEdit) {
-      // this.userRole should be initialized by initial state
-      this.temporalRole = this.userRoleToEdit;
-    } else {
-      // profile
-      this.temporalRole = this.userRole;
-    }
-
-    if (this.userRole && this.userRole === 'Owner') {
-      // Query role list
-      this.backend.listRoles(this.organizationId)
-        .subscribe(response => {
-          this.rolesList = response.roles;
-        });
-      }
+    // Query role list
+    this.backend.listRoles(this.organizationId)
+      .subscribe(response => {
+        this.rolesList = response.roles;
+      });
   }
 
   /**
@@ -117,58 +99,42 @@ export class EditUserComponent implements OnInit {
   }
 
   /**
-   *  Checks the role of current user
-   */
-  checkUserRole(buttonRole) {
-    if (buttonRole === this.temporalRole) {
-      return true;
-    }
-    return false;
-  }
-
-  /**
-   * Changes the new user role
-   * @param newRole New user role
-   */
-  changeRole(newRole) {
-    this.roleDirty = true;
-    this.temporalRole = newRole;
-  }
-
-  /**
    * Request to save the user data modifications
    * @param f Form object reference
    */
   saveUserChanges(f) {
     this.submitted = true;
-    this.loading = true;
-    if (this.email !== null) {
+    if (!f.userName.errors && this.userRole) {
+      this.loading = true;
       this.backend.saveUserChanges(this.organizationId, {
         name: f.userName.value,
-        email: f.email.value,
+        email: this.email,
         role_name: this.userRole
       })
       .subscribe(response => {
-        if (this.userRole && this.userRole === 'Owner') {
-          this.backend.changeRole(this.organizationId, this.email, this.getRoleId(this.temporalRole)).
+        this.userName = f.userName.value;
+        this.loading = false;
+        if (this.userRole) {
+          this.backend.changeRole(this.organizationId, this.email, this.getRoleId(this.userRole)).
           subscribe(responseRole => {
             this.notificationsService.add({
               message: 'The user ' + this.userName + ' has been edited',
               timeout: 10000
             });
             this.bsModalRef.hide();
-            if (!this.userRoleToEdit && this.temporalRole === 'Owner') {
+            if (this.selfEditProfile === true && this.userRole === 'Owner') {
               // no redirection for the owner
-            } else if (!this.userRoleToEdit && this.temporalRole === 'Developer') {
+            } else if (this.selfEditProfile === true && this.userRole === 'Developer') {
               this.router.navigate([
                 '/applications'
               ]);
-            } else if (!this.userRoleToEdit && this.temporalRole === 'Operator') {
+            } else if (this.selfEditProfile === true && this.userRole === 'Operator') {
               this.router.navigate([
                 '/resources'
               ]);
             }
           }, error => {
+            this.loading = false;
             this.notificationsService.add({
               message: 'ERROR: ' + error.error.message,
               timeout: 10000
@@ -176,6 +142,7 @@ export class EditUserComponent implements OnInit {
             this.bsModalRef.hide();
           });
         } else {
+          this.loading = false;
           this.notificationsService.add({
             message: 'The user ' + this.userName + ' has been edited',
             timeout: 10000
@@ -183,13 +150,30 @@ export class EditUserComponent implements OnInit {
           this.bsModalRef.hide();
         }
       }, error => {
+        this.loading = false;
         this.notificationsService.add({
           message: 'ERROR: ' + error.error.message,
-          timeout: 10000
+          timeout: 10000,
+          type: 'warning'
         });
         this.bsModalRef.hide();
       });
     }
+  }
+
+   /**
+   * Search between roles list to get the required id
+   * @param role Role name
+   */
+  getRoleId(role: string): string {
+    let roleId = '';
+    this.rolesList.forEach(roleObject => {
+      if (roleObject.name === role) {
+        roleId = roleObject.role_id;
+        return roleId;
+      }
+    });
+    return roleId;
   }
 
   /**
@@ -204,21 +188,6 @@ export class EditUserComponent implements OnInit {
       this.modalService.show(ChangePasswordComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.bsPasswordModalRef.content.closeBtnName = 'Close';
     this.bsModalRef.hide();
-  }
-
-  /**
-   * Search between roles list to get the required id
-   * @param role Role name
-   */
-  getRoleId(role: string): string {
-    let roleId = '';
-    this.rolesList.forEach(roleObject => {
-      if (roleObject.name === role) {
-        roleId = roleObject.role_id;
-        return roleId;
-      }
-    });
-    return roleId;
   }
 }
 
