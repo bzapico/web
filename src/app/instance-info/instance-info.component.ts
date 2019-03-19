@@ -191,7 +191,7 @@ export class InstanceInfoComponent implements OnInit {
      // Graph initialization
      this.showlegend = false;
      this.orientation = 'TB';
-     this.curve = shape.curveStepAfter;
+     this.curve = shape.curveBasis;
      this.autoZoom = true;
      this.autoCenter = true;
      this.enableZoom = true;
@@ -285,16 +285,23 @@ export class InstanceInfoComponent implements OnInit {
             const targetIndex = this.graphData.nodes.map(x => x.label).indexOf(linkedService);
             const link = {
               source: this.graphData.nodes[sourceIndex].id,
-              target: this.graphData.nodes[targetIndex].id
+              target: this.graphData.nodes[targetIndex].id,
             };
             this.graphData.links.push(link);
           });
         }
       });
     }
-
+    console.log(this.graphData);
 
     this.graphDataLoaded = true;
+  }
+
+  getArrowColor (sourceId: string): string {
+    const index = this.graphData.nodes.map(x => x.id).indexOf(sourceId);
+    if (index !== -1) {
+      return this.graphData.nodes[index].color;
+    }
   }
 
   getNodeColor(status: string): string {
