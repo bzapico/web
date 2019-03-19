@@ -18,7 +18,7 @@
             class="text-center text-uppercase"
             [ngClass]="{'blue':classStatusCheck(clusterData.status_name, 'running'),
             'red':classStatusCheck(clusterData.status_name, 'error'),
-            'orange':classStatusCheck(clusterData.status_name, 'process')}">
+            'teal':classStatusCheck(clusterData.status_name, 'process')}">
             {{clusterData.status_name}}
           </h3>
         </div>
