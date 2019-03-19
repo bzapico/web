@@ -53,6 +53,11 @@
     color: white;
     width: 159px;
     height: 42px;
+    &:hover {
+        color: #fff;
+        transition: 0.3s;
+        background-color: #4f71fd;
+    }
 }
 .reg-undeploy {
     border: none;
@@ -66,6 +71,11 @@
     color: #F25272;
     width: 159px;
     height: 42px;
+    &:hover {
+        color: #fff;
+        transition: 0.3s;
+        background-color: #ff437d;
+    }
 }
 .i-options {
     position: absolute;

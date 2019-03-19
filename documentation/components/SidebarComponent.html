@@ -323,7 +323,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/sidebar/sidebar.component.ts:121</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/sidebar/sidebar.component.ts:122</a></div>
                             </td>
                         </tr>
 
@@ -481,7 +481,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/sidebar/sidebar.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/sidebar/sidebar.component.ts:110</a></div>
                             </td>
                         </tr>
 
@@ -899,16 +899,17 @@ export class SidebarComponent implements OnInit {
   openEditUser() {
     const initialState &#x3D; {
       userName: this.name,
-      userId: this.email,
+      email: this.email,
       userRole: this.role,
       title: &#x27;Edit profile&#x27;,
-      organizationId: this.organizationId
+      organizationId: this.organizationId,
+      selfEditProfile: true
     };
 
     this.modalRef &#x3D; this.modalService.show(EditUserComponent, { initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
     this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; {
-      this.updateProfileUser(this.organizationId, initialState.userId);
+      this.updateProfileUser(this.organizationId, initialState.email);
       if (this.router.url &#x3D;&#x3D;&#x3D; &#x27;/organization&#x27;) {
         this.updateService.changesOnUserList.next();
       }
@@ -1011,7 +1012,7 @@ export class SidebarComponent implements OnInit {
     &lt;li 
       class&#x3D;&quot;d-flex flex-col justify-content-center margin-bottom-auto lo-btn&quot; 
       (click)&#x3D;&quot;logout()&quot;&gt;
-      &lt;button class&#x3D;&quot;btn info-btn logout-btn btn-red logout my-4&quot;&gt;
+      &lt;button class&#x3D;&quot;btn info-btn logout-btn logout my-4&quot;&gt;
         Logout
       &lt;/button&gt;
     &lt;/li&gt;
@@ -1044,7 +1045,7 @@ export class SidebarComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="sidebar">  <ul class="nav">    <li       class="nav-title"       style="visibility:hidden"       (click)="openDebugPanel()">      NALEJ    </li>    <li class="nav-item">      <a         routerLinkActive="active"         class="nav-link">        <div class="profile" (click)="openEditUser()">          <div class="avatar-frame">            <i class="material-icons">person</i>          </div>          <p class="name">{{name}}</p>          <p class="type">{{role}}</p>          <p class="email">{{email}}</p>        </div>      </a>    </li>    <li       *ngIf="role === \'Owner\'"       class="nav-item nav-item-page">      <a        routerLinkActive="active"         routerLink="/organization"         class="nav-link">        <i class="material-icons">group_work</i>        Organization        <span class="arrow">></span>      </a>    </li>    <li      *ngIf="role === \'Owner\' || role === \'Operator\'"      class="nav-item nav-item-page">      <a                 routerLinkActive="active"         routerLink="/resources"         class="nav-link">        <i class="material-icons">dns</i>        Resources        <span class="arrow">></span>      </a>    </li>    <li      *ngIf="role === \'Owner\' || role === \'Developer\'"       class="nav-item nav-item-page">      <a                 routerLinkActive="active"         routerLink="/devices"         class="nav-link">        <i class="material-icons">device_hub</i>        Devices        <span class="arrow">></span>      </a>    </li>    <li       *ngIf="role === \'Owner\' || role === \'Developer\'"       class="nav-item nav-item-page">      <a                 routerLinkActive="active"         routerLink="/applications"         class="nav-link">        <i class="material-icons">apps</i>        Applications        <span class="arrow">></span>      </a>    </li>    <li       class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn"       (click)="logout()">      <button class="btn info-btn logout-btn btn-red logout my-4">        Logout      </button>    </li>  </ul></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="sidebar">  <ul class="nav">    <li       class="nav-title"       style="visibility:hidden"       (click)="openDebugPanel()">      NALEJ    </li>    <li class="nav-item">      <a         routerLinkActive="active"         class="nav-link">        <div class="profile" (click)="openEditUser()">          <div class="avatar-frame">            <i class="material-icons">person</i>          </div>          <p class="name">{{name}}</p>          <p class="type">{{role}}</p>          <p class="email">{{email}}</p>        </div>      </a>    </li>    <li       *ngIf="role === \'Owner\'"       class="nav-item nav-item-page">      <a        routerLinkActive="active"         routerLink="/organization"         class="nav-link">        <i class="material-icons">group_work</i>        Organization        <span class="arrow">></span>      </a>    </li>    <li      *ngIf="role === \'Owner\' || role === \'Operator\'"      class="nav-item nav-item-page">      <a                 routerLinkActive="active"         routerLink="/resources"         class="nav-link">        <i class="material-icons">dns</i>        Resources        <span class="arrow">></span>      </a>    </li>    <li      *ngIf="role === \'Owner\' || role === \'Developer\'"       class="nav-item nav-item-page">      <a                 routerLinkActive="active"         routerLink="/devices"         class="nav-link">        <i class="material-icons">device_hub</i>        Devices        <span class="arrow">></span>      </a>    </li>    <li       *ngIf="role === \'Owner\' || role === \'Developer\'"       class="nav-item nav-item-page">      <a                 routerLinkActive="active"         routerLink="/applications"         class="nav-link">        <i class="material-icons">apps</i>        Applications        <span class="arrow">></span>      </a>    </li>    <li       class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn"       (click)="logout()">      <button class="btn info-btn logout-btn logout my-4">        Logout      </button>    </li>  </ul></div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AppsInfoComponent', 'selector': 'app-apps-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SidebarComponent'};

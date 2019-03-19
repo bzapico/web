@@ -1,20 +1,3 @@
-.btn-md {
-    border: 0px;
-    border-radius: 5px;
-    width: 120px;
-    font-size: 0.8em;
-    text-align: center;
-    color: #fff;
-    padding: 11px;
-    height: 47px;
-    &:focus {
-        outline: none;
-        box-shadow: none;
-    }
-}
-.btn-primary {
-    text-indent: -7px;
-}
 .upload-descriptor {
     font-size: 1em;
     margin-top: 3em;
@@ -54,7 +37,6 @@
 .file-uploaded {
     background-color: #949494;
 }
-
 #fileElem {
     display: none;
 }

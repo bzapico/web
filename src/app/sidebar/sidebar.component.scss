@@ -131,10 +131,16 @@
     color: #fff;
     border: 0px;
     border-radius: 5px;
+    background: #ff437d; 
     &:focus {
         outline: none;
         box-shadow: none;
     }
+    &:hover {
+        color: #fff;
+        transition: 0.3s;
+        background-color: #ff6897;
+      }
 }
 .logout {
     position: fixed;

@@ -5,6 +5,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { BackendService } from '../services/backend.service';
 import { BsModalRef } from 'ngx-bootstrap';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -13,21 +14,28 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
   styleUrls: ['./edit-cluster.component.scss']
 })
 export class EditClusterComponent implements OnInit {
-   /**
+
+  /**
+   * Models that holds forms info
+   */
+  editClusterForm: FormGroup;
+  submitted = false;
+  loading: boolean;
+
+  /**
    * Backend reference
    */
   backend: Backend;
 
   /**
-   * Models that hold organization id, cluster id, name, description and tags
+   * Models that hold organization id, cluster id, name
    */
   organizationId: string;
   clusterId: string;
   clusterName: string;
-  clusterDescription: string;
-  clusterTags: string;
 
   constructor(
+    private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
@@ -40,35 +48,44 @@ export class EditClusterComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-      this.clusterName = 'Loading...'; // Default initialization
-      this.clusterDescription = 'Loading...'; // Default initialization
-      this.clusterTags = 'Loading...'; // Default initialization
-      this.clusterId = 'Loading ...'; // Default initialization
+    this.clusterName = 'Loading...'; // Default initialization
   }
 
   ngOnInit() {
+    this.editClusterForm = this.formBuilder.group({
+      clusterName: [''],
+    });
   }
 
   /**
-   * Request to save the cluster data modifications
-   * @param form Form object reference
+   * Convenience getter for easy access to form fields
    */
-  saveClusterChanges(form) {
+  get f() { return this.editClusterForm.controls; }
+
+  /**
+   * Request to save the cluster data modifications
+   * @param f Form object reference
+   */
+  saveClusterChanges(f) {
+    this.submitted = true;
+    this.loading = true;
     if (this.organizationId !== null && this.clusterId !== null) {
       this.backend.saveClusterChanges(this.organizationId, this.clusterId, {
-        name: this.clusterName,
-        description: this.clusterDescription,
+        name: f.clusterName.value,
       })
         .subscribe(response => {
+          this.clusterName = f.clusterName.value;
+          this.loading = false;
           this.notificationsService.add({
             message: 'The cluster ' + this.clusterName + ' has been edited',
-            timeout: 10000
+            timeout: 5000
           });
           this.bsModalRef.hide();
         }, error => {
+          this.loading = false;
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 10000
+            timeout: 5000
           });
           this.bsModalRef.hide();
         });

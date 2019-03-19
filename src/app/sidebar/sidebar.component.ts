@@ -87,16 +87,17 @@ export class SidebarComponent implements OnInit {
   openEditUser() {
     const initialState = {
       userName: this.name,
-      userId: this.email,
+      email: this.email,
       userRole: this.role,
       title: 'Edit profile',
-      organizationId: this.organizationId
+      organizationId: this.organizationId,
+      selfEditProfile: true
     };
 
     this.modalRef = this.modalService.show(EditUserComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
-      this.updateProfileUser(this.organizationId, initialState.userId);
+      this.updateProfileUser(this.organizationId, initialState.email);
       if (this.router.url === '/organization') {
         this.updateService.changesOnUserList.next();
       }

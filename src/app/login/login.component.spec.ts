@@ -25,7 +25,7 @@ describe('LoginComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         FormsModule,
-        TooltipModule
+        TooltipModule,
       ],
       providers: [
         AuthService,
@@ -55,16 +55,6 @@ describe('LoginComponent', () => {
     expect(component.loginRequest).toBeTruthy();
   });
 
-  // tslint:disable-next-line:max-line-length
-  it('onSubmit() - Should triggered when clicking the login button and calls the login function on the auth service to check the credentials', async() => {
-    fixture.detectChanges();
-    spyOn(component, 'onSubmit');
-    el = fixture.debugElement.query(By.css('button')).nativeElement;
-    el.click();
-
-    expect(component.onSubmit).toHaveBeenCalledTimes(0);
-  });
-
   it('Form shoud be invalid', async() => {
     component.loginForm.controls['email'].setValue('');
     component.loginForm.controls['password'].setValue('');
@@ -85,9 +75,5 @@ describe('LoginComponent', () => {
 
     expect(openDebugPanel).toHaveBeenCalledWith();
   });
-
-
-
-
 
 });

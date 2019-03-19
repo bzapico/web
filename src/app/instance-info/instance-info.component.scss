@@ -120,6 +120,11 @@
     color: #F25272;
     width: 233px;
     height: 42px;
+    &:hover {
+        color: #fff;
+        transition: 0.3s;
+        background-color: #ff437d;
+    }
 }
 .i-options {
     position: absolute;

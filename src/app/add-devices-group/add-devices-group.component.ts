@@ -6,6 +6,8 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { DeviceGroupCreatedComponent } from '../device-group-created/device-group-created.component';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-add-devices-group',
@@ -13,6 +15,14 @@ import { DeviceGroupCreatedComponent } from '../device-group-created/device-grou
   styleUrls: ['./add-devices-group.component.scss']
 })
 export class AddDevicesGroupComponent implements OnInit {
+
+  /**
+   * Models that holds forms info
+   */
+  addGroupForm: FormGroup;
+  submitted = false;
+  loading: boolean;
+
   /**
    * Backend reference
    */
@@ -44,6 +54,7 @@ export class AddDevicesGroupComponent implements OnInit {
   };
 
   constructor(
+    private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -66,11 +77,18 @@ export class AddDevicesGroupComponent implements OnInit {
     this.enabled = false;
     this.default_device_connectivity = false;
     this.device_group_api_key = 'Loading ...';
-
   }
 
   ngOnInit() {
+    this.addGroupForm = this.formBuilder.group({
+      groupName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+    });
   }
+
+  /**
+   * Convenience getter for easy access to form fields
+   */
+  get f() { return this.addGroupForm.controls; }
 
   /**
    * Requests to create a new device group
@@ -78,15 +96,18 @@ export class AddDevicesGroupComponent implements OnInit {
    * @param form Form with the group input data
    */
   addGroup(form) {
+    this.submitted = true;
+    this.loading = true;
     if (this.errorMessages.length === 0) {
       const groupData = {
-        name: form.value.name,
+        name: form.groupName.value,
         enabled: this.enabled,
         default_device_connectivity: this.defaultConnectivity,
         organization_id: this.organizationId,
       };
       this.backend.addGroup(this.organizationId, groupData)
       .subscribe(response => {
+        this.loading = false;
         const initialState = {
           groupApiKey: response.device_group_api_key,
         };
@@ -95,6 +116,7 @@ export class AddDevicesGroupComponent implements OnInit {
           this.modalService.show(DeviceGroupCreatedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
         this.bsModalRef.content.closeBtnName = 'Close';
       }, error => {
+        this.loading = false;
         this.notificationsService.add({
           message: 'ERROR: ' + error.error.message,
           timeout: 10000
@@ -119,5 +141,4 @@ export class AddDevicesGroupComponent implements OnInit {
       this.bsModalRef.hide();
     }
   }
-
 }

@@ -1,169 +1,21 @@
 .avatar-frame {
-    border: 2px solid #707070;
+  border: 2px solid white;
+  background-color: #707070b8;
+  margin: 0 auto;
+  width: 112px;
+  height: 112px;
+  position: relative;
+  border-radius: 50%;
+  margin-bottom: 1em;
+  > i {
+    font-size: 100px;
     margin: 0 auto;
-    width: 112px;
-    height: 112px;
-    position: relative;
-    border-radius: 50%;
-    > i {
-        font-size: 100px;
-        margin: 0 auto;
-        margin-left: 4px;
-        color:#707070;
-    }
-    .edit-button {   
-        outline: none;    
-        right: 0;
-        position: absolute;
-        top: 0;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background-color: #0937FF;
-        background-image: linear-gradient(-85deg, #051C80, #0937FF);
-        i {
-            font-size: 1.3em;
-            margin: 6px 0;
-            color: white;
-        }
-    }
-}
-.change-password-fix {
-    margin-left: -2px;
-}
-.form-control:disabled, .form-control[readonly] {
-   background-color: white; 
-}
-.form-user {
-    position: relative;
-}
-.form-group {
-    margin: 40px 0;
-}
-input {
-    padding: 22px;
-    border: 2px solid #EEEEEE;
-    color: #949494;
-    text-align: center;
-    caret-color: #0937FF;
-    margin: -3px 0;
-    font-size: .9em;
-    &:checked {
-      outline: none;
-    }
-    &::placeholder {
-      color: #949494;
-    }
-    &:-webkit-autofill {
-      background-color: #fff !important;
-      -webkit-box-shadow: 0 0 0px 1000px white inset;
-    }
+    margin-left: 4px;
+    color:white;
   }
-.roles {
-    h4 {
-        font-size: .9em;
-    }
-}
-.disabled-role {
-    path {
-    stroke:  #c8ccd4 !important;
-    }
-}
-.cntr {
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    .btn-radio {
-        cursor: pointer;
-        display: inline-block;
-        user-select: none;
-        &:not(:first-child) {
-          margin-left: 20px;
-        }
-        svg {
-          fill: none;
-          vertical-align: middle;
-          circle {
-            stroke-width: 2;
-            stroke: #c8ccd4;
-          }
-          path {
-             stroke: #0937FF;
-            &.inner {
-              stroke-width: 6;
-              stroke-dasharray: 19;
-              stroke-dashoffset: 19;
-            }
-            &.outer {
-              stroke-width: 2;
-              stroke-dasharray: 57;
-              stroke-dashoffset: 57;
-            }
-          }
-        }
-        input {
-          display: none;
-          &:checked + svg path {
-            transition: all 0.4s ease;
-            &.inner {
-              stroke-dashoffset: 38;
-              transition-delay: 0.3s;
-            }
-            &.outer {
-              stroke-dashoffset: 0;
-            }
-          }
-        }
-      }
-    @media screen and (max-width: 480px) {
-        .btn-radio {
-            display: block;
-            float: none;
-            &:not(:first-child) {
-            margin-left: 0;
-            margin-top: 15px;
-            }
-        }
-    }
-    span {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: .8em;
-    color: #949494;
-    margin-left: 5px;
-    }
-}
-.btn-md {
-    border: 0px;
-    border-radius: 5px;
-    width: 120px;
-    font-size: 0.8em;
-    text-align: center;
-    color: #fff;
-    padding: 11px;
-    height: 47px;
-    &:focus {
-        outline: none;
-        box-shadow: none;
-    }
-}
-.btn-primary {
-    text-indent: -7px;
-}
-.buttons {
-    margin: 40px 0 0;
-    .btn-primary {
-        margin: 0 auto;
-        margin-bottom: 0.5rem;
-    }
-    .btn-red {
-        width: 257px;
-        margin: 0 auto;
-    }
 }
 @media screen and (max-width: 1300px) {
-    .avatar-frame {
-        display: none;
-    }
+  .avatar-frame {
+    display: none;
+  }
 }

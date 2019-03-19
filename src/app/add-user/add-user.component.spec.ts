@@ -1,10 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AddUserComponent } from './add-user.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonsModule, BsModalRef, TooltipModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { By } from '@angular/platform-browser';
 
 describe('AddUserComponent', () => {
   let component: AddUserComponent;
@@ -18,7 +17,8 @@ describe('AddUserComponent', () => {
         ButtonsModule,
         HttpClientTestingModule,
         TooltipModule,
-        RouterTestingModule
+        RouterTestingModule,
+        ReactiveFormsModule
       ],
       providers: [
         BsModalRef,
@@ -41,12 +41,15 @@ describe('AddUserComponent', () => {
     expect(discardChanges).toHaveBeenCalledWith();
   });
 
-  it('Discard button - Should discard the user data modifications', () => {
-    const button = fixture.debugElement.query(By.css('.close'));
+  it('form invalid when empty', () => {
+    expect(component.f.valid).toBeFalsy();
+  });
 
-    button.triggerEventHandler('click', null);
-
-    expect(component.discardChanges).toBeDefined();
+  it('userName field validity', () => {
+    let errors = {};
+    const userName = component.f['userName'];
+    errors = userName.errors || {};
+    expect(errors['required']).toBeTruthy();
   });
 
 });

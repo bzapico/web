@@ -140,6 +140,15 @@
                                 <a href="#buttonDeleteUser">buttonDeleteUser</a>
                             </li>
                             <li>
+                                <a href="#config">config</a>
+                            </li>
+                            <li>
+                                <a href="#email">email</a>
+                            </li>
+                            <li>
+                                <a href="#loading">loading</a>
+                            </li>
+                            <li>
                                 <a href="#organizationId">organizationId</a>
                             </li>
                             <li>
@@ -152,7 +161,7 @@
                                 <a href="#title">title</a>
                             </li>
                             <li>
-                                <a href="#userId">userId</a>
+                                <a href="#userInfoForm">userInfoForm</a>
                             </li>
                             <li>
                                 <a href="#userName">userName</a>
@@ -170,9 +179,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#checkUserRole">checkUserRole</a>
-                            </li>
-                            <li>
                                 <a href="#deleteUser">deleteUser</a>
                             </li>
                             <li>
@@ -189,6 +195,20 @@
 
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#f">f</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -199,12 +219,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(bsModalRef: BsModalRef, modalService: BsModalService, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>)</code>
+<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, bsModalRef: BsModalRef, modalService: BsModalService, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/user-info/user-info.component.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/user-info/user-info.component.ts:65</a></div>
                             </td>
                         </tr>
 
@@ -221,6 +241,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>bsModalRef</td>
                                                   
@@ -303,73 +335,6 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="checkUserRole"></a>
-                        <span class="name">
-                            <b>
-                            checkUserRole
-                            </b>
-                            <a href="#checkUserRole"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>checkUserRole(buttonRole: )</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/user-info/user-info.component.ts:81</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Checks the role of current user</p>
-</div>
-
-                            <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>buttonRole</td>
-                                                    
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                            </div>
-                                <div class="io-description">
-                                    
-                                </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
                         <a name="deleteUser"></a>
                         <span class="name">
                             <b>
@@ -388,7 +353,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/user-info/user-info.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/user-info/user-info.component.ts:106</a></div>
                             </td>
                         </tr>
 
@@ -428,7 +393,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/user-info/user-info.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/user-info/user-info.component.ts:89</a></div>
                             </td>
                         </tr>
 
@@ -466,7 +431,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/user-info/user-info.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/app/user-info/user-info.component.ts:132</a></div>
                             </td>
                         </tr>
 
@@ -518,7 +483,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/user-info/user-info.component.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/user-info/user-info.component.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -559,7 +524,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/user-info/user-info.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/user-info/user-info.component.ts:69</a></div>
                             </td>
                         </tr>
 
@@ -593,7 +558,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/user-info/user-info.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/user-info/user-info.component.ts:57</a></div>
                             </td>
                         </tr>
 
@@ -633,7 +598,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/user-info/user-info.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/user-info/user-info.component.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -673,7 +638,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/user-info/user-info.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/user-info/user-info.component.ts:43</a></div>
                             </td>
                         </tr>
 
@@ -683,6 +648,122 @@
 </div>
                     </td>
                 </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="config"></a>
+                        <span class="name">
+                            <b>
+                            config
+                            </b>
+                            <a href="#config"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>config:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    backdrop: false,
+    ignoreBackdropClick: true
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/user-info/user-info.component.ts:62</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Models that removes the possibility for the user to close the modal by clicking outside the content card</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="email"></a>
+                        <span class="name">
+                            <b>
+                            email
+                            </b>
+                            <a href="#email"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>email:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/user-info/user-info.component.ts:51</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loading"></a>
+                        <span class="name">
+                            <b>
+                            loading
+                            </b>
+                            <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>loading:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/user-info/user-info.component.ts:23</a></div>
+                            </td>
+                        </tr>
+
 
             </tbody>
         </table>
@@ -713,7 +794,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/user-info/user-info.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/user-info/user-info.component.ts:49</a></div>
                             </td>
                         </tr>
 
@@ -747,7 +828,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/user-info/user-info.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/user-info/user-info.component.ts:50</a></div>
                             </td>
                         </tr>
 
@@ -781,7 +862,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/user-info/user-info.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/user-info/user-info.component.ts:52</a></div>
                             </td>
                         </tr>
 
@@ -815,7 +896,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/user-info/user-info.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/user-info/user-info.component.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -832,33 +913,39 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="userId"></a>
+                        <a name="userInfoForm"></a>
                         <span class="name">
                             <b>
-                            userId
+                            userInfoForm
                             </b>
-                            <a href="#userId"><span class="icon ion-ios-link"></span></a>
+                            <a href="#userInfoForm"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>userId:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <code>userInfoForm:     <code><a href="../interfaces/Group.html" target="_self" >FormGroup</a></code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <i>Type : </i>    <code><a href="../interfaces/Group.html" target="_self" >FormGroup</a></code>
 
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/user-info/user-info.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/user-info/user-info.component.ts:22</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Models that holds forms info</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -889,7 +976,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/user-info/user-info.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/user-info/user-info.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -904,6 +991,40 @@
         </table>
 </section>
 
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="f"></a>
+                        <span class="name"><b>f</b><a href="#f"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>f()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/user-info/user-info.component.ts:100</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Convenience getter for easy access to form fields</p>
+</div>
+
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
 </div>
 
 
@@ -917,6 +1038,7 @@ import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#
 import { mockOrganizationInfo, mockUserList } from &#x27;../utils/mocks&#x27;;
 import { NotificationsService } from &#x27;../services/notifications.service&#x27;;
 import { ChangePasswordComponent } from &#x27;../change-password/change-password.component&#x27;;
+import { FormGroup, FormBuilder } from &#x27;@angular/forms&#x27;;
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -925,6 +1047,12 @@ import { ChangePasswordComponent } from &#x27;../change-password/change-password
   styleUrls: [&#x27;./user-info.component.scss&#x27;]
 })
 export class UserInfoComponent implements OnInit {
+  /**
+   * Models that holds forms info
+   */
+  userInfoForm: FormGroup;
+  loading: boolean;
+
   /**
    * Backend reference
    */
@@ -951,7 +1079,7 @@ export class UserInfoComponent implements OnInit {
   userName: string;
   organizationId: string;
   organizationName: string;
-  userId: string;
+  email: string;
   role: string;
 
   /**
@@ -959,9 +1087,16 @@ export class UserInfoComponent implements OnInit {
    */
   bsPasswordModalRef: BsModalRef;
 
-
+  /**
+   * Models that removes the possibility for the user to close the modal by clicking outside the content card
+   */
+  config &#x3D; {
+    backdrop: false,
+    ignoreBackdropClick: true
+  };
 
   constructor(
+    private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -977,36 +1112,36 @@ export class UserInfoComponent implements OnInit {
     }
     this.title &#x3D; &#x27;User info&#x27;;
     this.userName &#x3D; &#x27;Loading ...&#x27;; // Default initialization
-    this.userId &#x3D; &#x27;Loading ...&#x27;; // Default initialization
+    this.email &#x3D; &#x27;Loading ...&#x27;; // Default initialization
     this.buttonDeleteUser &#x3D; &#x27;Delete User&#x27;;
     this.buttonChangePassword &#x3D; &#x27;Change Password&#x27;;
   }
 
   ngOnInit() {
+    this.userInfoForm &#x3D; this.formBuilder.group({
+      userName: [{value: &#x27;&#x27;, disabled: true}],
+      email: [{value: &#x27;&#x27;, disabled: true}],
+      role: [{value: &#x27;&#x27;, disabled: true}],
+    });
   }
 
   /**
-   *  Checks the role of current user
+   * Convenience getter for easy access to form fields
    */
-  checkUserRole(buttonRole) {
-    if (buttonRole &#x3D;&#x3D;&#x3D; this.role) {
-      return true;
-    }
-    return false;
-  }
+  get f() { return this.userInfoForm.controls; }
 
   /**
    *  Upon confirmation, deletes user
-   * @param userId A user to be deleted
+   * @param email A user to be deleted
    */
   deleteUser() {
     const deleteConfirm &#x3D; confirm(&#x27;Delete user?&#x27;);
     if (deleteConfirm) {
-      if (this.organizationId !&#x3D;&#x3D; null &amp;&amp; this.userId !&#x3D;&#x3D; null) {
-        this.backend.deleteUser(this.organizationId, this.userId)
+      if (this.organizationId !&#x3D;&#x3D; null &amp;&amp; this.email !&#x3D;&#x3D; null) {
+        this.backend.deleteUser(this.organizationId, this.email)
           .subscribe(response &#x3D;&gt; {
             this.notificationsService.add({
-              message: &#x27;User &#x27; + this.userId + &#x27; has been deleted&#x27;,
+              message: &#x27;User &#x27; + this.email + &#x27; has been deleted&#x27;,
               timeout: 10000
             });
             this.bsModalRef.hide();
@@ -1028,7 +1163,7 @@ export class UserInfoComponent implements OnInit {
   openChangePassword() {
     const initialState &#x3D; {
       organizationId: this.organizationId,
-      userId: this.userId
+      email: this.email
     };
     this.bsPasswordModalRef &#x3D;
       this.modalService.show(ChangePasswordComponent, { initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
@@ -1055,126 +1190,53 @@ export class UserInfoComponent implements OnInit {
   &lt;!-- Body --&gt;
   &lt;div class&#x3D;&quot;modal-body&quot;&gt;
     &lt;div class&#x3D;&quot;avatar-frame&quot;&gt;
-      &lt;button class&#x3D;&quot;edit-button d-none&quot;&gt;
-        &lt;i class&#x3D;&quot;material-icons&quot;&gt;edit&lt;/i&gt;
-      &lt;/button&gt;
       &lt;i class&#x3D;&quot;material-icons&quot;&gt;person&lt;/i&gt;
     &lt;/div&gt;
-    &lt;form #f&#x3D;&quot;ngForm&quot; class&#x3D;&quot;form-user&quot;&gt;
+    &lt;form [formGroup]&#x3D;&quot;userInfoForm&quot;&gt;
       &lt;div class&#x3D;&quot;form-group&quot;&gt;
+        &lt;label&gt;Name&lt;/label&gt;
         &lt;input 
-          disabled
-          [(ngModel)]&#x3D;&quot;userName&quot; 
-          name&#x3D;&quot;name&quot; 
+          formControlName&#x3D;&quot;userName&quot;
+          placeholder&#x3D;&quot;{{userName}}&quot;
           type&#x3D;&quot;text&quot; 
-          class&#x3D;&quot;form-control&quot; 
-          placeholder&#x3D;&quot;Name&quot; 
-          required&gt;
+          class&#x3D;&quot;form-control&quot;&gt;
+        &lt;div class&#x3D;&quot;error-h&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;form-group&quot;&gt;
+        &lt;label&gt;Email&lt;/label&gt;
         &lt;input 
-          disabled
-          [(ngModel)]&#x3D;&quot;organizationName&quot; 
-          name&#x3D;&quot;organization&quot; 
+          formControlName&#x3D;&quot;email&quot; 
+          placeholder&#x3D;&quot;{{email}}&quot;
           type&#x3D;&quot;text&quot; 
-          class&#x3D;&quot;form-control&quot; 
-          placeholder&#x3D;&quot;Organization&quot;
-          required&gt;
+          class&#x3D;&quot;form-control&quot;&gt;
+          &lt;div class&#x3D;&quot;error-h&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;form-group&quot;&gt;
+        &lt;label&gt;Role&lt;/label&gt;
         &lt;input 
-          disabled
-          [(ngModel)]&#x3D;&quot;userId&quot; 
-          name&#x3D;&quot;email&quot; 
+          formControlName&#x3D;&quot;role&quot; 
+          placeholder&#x3D;&quot;{{role}}&quot;
           type&#x3D;&quot;text&quot; 
-          class&#x3D;&quot;form-control&quot; 
-          placeholder&#x3D;&quot;Email&quot; 
-          pattern&#x3D;&quot;^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$&quot;
-          required&gt;
+          class&#x3D;&quot;form-control&quot;&gt;
+          &lt;div class&#x3D;&quot;error-h&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- Change password --&gt;
+      &lt;div class&#x3D;&quot;change-password&quot; (click)&#x3D;&quot;openChangePassword()&quot;&gt;
+        &lt;p&gt;Change password&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;!-- Delete user --&gt;
+      &lt;div class&#x3D;&quot;form-group d-flex flex-row justify-content-center mt-5&quot;&gt;
+        &lt;button class&#x3D;&quot;btn-nalej-form-red&quot; (click)&#x3D;&quot;deleteUser()&quot;&gt;
+            &lt;i 
+            class&#x3D;&quot;material-icons delete-icon&quot; 
+            tooltip&#x3D;&quot;Delete&quot; 
+            placement&#x3D;&quot;right&quot;&gt;
+            delete
+          &lt;/i&gt;
+          &lt;span class&#x3D;&quot;align-bottom&quot;&gt;{{buttonDeleteUser}}&lt;/span&gt;
+        &lt;/button&gt;
       &lt;/div&gt;
     &lt;/form&gt;
-  &lt;!-- Roles radio buttons --&gt;
-  &lt;div class&#x3D;&quot;roles&quot;&gt;
-    &lt;h4&gt;Roles*&lt;/h4&gt;
-    &lt;div class&#x3D;&quot;cntr&quot;&gt;
-      &lt;label 
-        for&#x3D;&quot;rdo-1&quot; 
-        class&#x3D;&quot;btn-radio&quot;
-        [ngClass]&#x3D;&quot;{&#x27;disabled-role&#x27;: checkUserRole(&#x27;Owner&#x27;)}&quot;&gt;
-        &lt;input 
-          [checked]&#x3D;&quot;checkUserRole(&#x27;Owner&#x27;)&quot; 
-          disabled 
-          type&#x3D;&quot;radio&quot; 
-          id&#x3D;&quot;rdo-1&quot; 
-          name&#x3D;&quot;radio-grp&quot;&gt;
-        &lt;svg width&#x3D;&quot;20px&quot; height&#x3D;&quot;20px&quot; viewBox&#x3D;&quot;0 0 20 20&quot;&gt;
-          &lt;circle 
-            cx&#x3D;&quot;10&quot; 
-            cy&#x3D;&quot;10&quot; 
-            r&#x3D;&quot;9&quot;&gt;
-          &lt;/circle&gt;
-          &lt;path d&#x3D;&quot;M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z&quot;
-            class&#x3D;&quot;inner&quot;&gt;&lt;/path&gt;
-          &lt;path d&#x3D;&quot;M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z&quot;
-            class&#x3D;&quot;outer&quot;&gt;&lt;/path&gt;
-        &lt;/svg&gt;
-        &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Owner&lt;/span&gt;
-      &lt;/label&gt;
-      &lt;label 
-        for&#x3D;&quot;rdo-2&quot; 
-        class&#x3D;&quot;btn-radio&quot;
-        [ngClass]&#x3D;&quot;{&#x27;disabled-role&#x27;: checkUserRole(&#x27;Operator&#x27;)}&quot;&gt;
-        &lt;input 
-          [checked]&#x3D;&quot;checkUserRole(&#x27;Operator&#x27;)&quot; 
-          disabled 
-          type&#x3D;&quot;radio&quot; 
-          id&#x3D;&quot;rdo-2&quot; 
-          name&#x3D;&quot;radio-grp&quot;&gt;
-        &lt;svg width&#x3D;&quot;20px&quot; height&#x3D;&quot;20px&quot; viewBox&#x3D;&quot;0 0 20 20&quot;&gt;
-          &lt;circle 
-            cx&#x3D;&quot;10&quot; 
-            cy&#x3D;&quot;10&quot; 
-            r&#x3D;&quot;9&quot;&gt;
-          &lt;/circle&gt;
-          &lt;path d&#x3D;&quot;M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z&quot;
-            class&#x3D;&quot;inner&quot;&gt;&lt;/path&gt;
-          &lt;path d&#x3D;&quot;M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z&quot;
-            class&#x3D;&quot;outer&quot;&gt;&lt;/path&gt;
-        &lt;/svg&gt;
-        &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Operator&lt;/span&gt;
-      &lt;/label&gt;
-      &lt;label 
-        for&#x3D;&quot;rdo-3&quot; 
-        class&#x3D;&quot;btn-radio&quot;
-        [ngClass]&#x3D;&quot;{&#x27;disabled-role&#x27;: checkUserRole(&#x27;Developer&#x27;)}&quot;&gt;
-        &lt;input 
-          [checked]&#x3D;&quot;checkUserRole(&#x27;Developer&#x27;)&quot; 
-          disabled 
-          type&#x3D;&quot;radio&quot; 
-          id&#x3D;&quot;rdo-3&quot; 
-          name&#x3D;&quot;radio-grp&quot;&gt;
-        &lt;svg width&#x3D;&quot;20px&quot; height&#x3D;&quot;20px&quot; viewBox&#x3D;&quot;0 0 20 20&quot;&gt;
-          &lt;circle 
-            cx&#x3D;&quot;10&quot; 
-            cy&#x3D;&quot;10&quot; 
-            r&#x3D;&quot;9&quot;&gt;
-          &lt;/circle&gt;
-          &lt;path d&#x3D;&quot;M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z&quot;
-            class&#x3D;&quot;inner&quot;&gt;
-          &lt;/path&gt;
-          &lt;path d&#x3D;&quot;M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z&quot;
-            class&#x3D;&quot;outer&quot;&gt;
-          &lt;/path&gt;
-        &lt;/svg&gt;
-        &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Developer&lt;/span&gt;
-      &lt;/label&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;!-- Option buttons --&gt;
-  &lt;div class&#x3D;&quot;buttons d-flex flex-column justify-content-center&quot;&gt;
-    &lt;button class&#x3D;&quot;btn btn-primary btn-lg&quot; (click)&#x3D;&quot;openChangePassword()&quot;&gt;
-      &lt;span class&#x3D;&quot;align-bottom change-password-fix&quot;&gt;{{buttonChangePassword}}&lt;/span&gt;
-    &lt;/button&gt;
-    &lt;button class&#x3D;&quot;btn btn-red btn-lg&quot; (click)&#x3D;&quot;deleteUser()&quot;&gt;
-      &lt;span class&#x3D;&quot;align-bottom&quot;&gt;{{buttonDeleteUser}}&lt;/span&gt;
-    &lt;/button&gt;
-  &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
     </div>
@@ -1204,7 +1266,7 @@ export class UserInfoComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <!-- Header -->  <div class="modal-header">    <h3 class="nalej-form-title">{{title}}</h3>    <button       type="button"       class="close"       aria-label="Close"      (click)="bsModalRef.hide()">      <span aria-hidden="true">&times;</span>    </button>  </div>  <!-- Body -->  <div class="modal-body">    <div class="avatar-frame">      <button class="edit-button d-none">        <i class="material-icons">edit</i>      </button>      <i class="material-icons">person</i>    </div>    <form #f="ngForm" class="form-user">      <div class="form-group">        <input           disabled          [(ngModel)]="userName"           name="name"           type="text"           class="form-control"           placeholder="Name"           required>        <input           disabled          [(ngModel)]="organizationName"           name="organization"           type="text"           class="form-control"           placeholder="Organization"          required>        <input           disabled          [(ngModel)]="userId"           name="email"           type="text"           class="form-control"           placeholder="Email"           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"          required>      </div>    </form>  <!-- Roles radio buttons -->  <div class="roles">    <h4>Roles*</h4>    <div class="cntr">      <label         for="rdo-1"         class="btn-radio"        [ngClass]="{\'disabled-role\': checkUserRole(\'Owner\')}">        <input           [checked]="checkUserRole(\'Owner\')"           disabled           type="radio"           id="rdo-1"           name="radio-grp">        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner"></path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer"></path>        </svg>        <span class="align-bottom">Owner</span>      </label>      <label         for="rdo-2"         class="btn-radio"        [ngClass]="{\'disabled-role\': checkUserRole(\'Operator\')}">        <input           [checked]="checkUserRole(\'Operator\')"           disabled           type="radio"           id="rdo-2"           name="radio-grp">        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner"></path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer"></path>        </svg>        <span class="align-bottom">Operator</span>      </label>      <label         for="rdo-3"         class="btn-radio"        [ngClass]="{\'disabled-role\': checkUserRole(\'Developer\')}">        <input           [checked]="checkUserRole(\'Developer\')"           disabled           type="radio"           id="rdo-3"           name="radio-grp">        <svg width="20px" height="20px" viewBox="0 0 20 20">          <circle             cx="10"             cy="10"             r="9">          </circle>          <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"            class="inner">          </path>          <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"            class="outer">          </path>        </svg>        <span class="align-bottom">Developer</span>      </label>    </div>  </div>  <!-- Option buttons -->  <div class="buttons d-flex flex-column justify-content-center">    <button class="btn btn-primary btn-lg" (click)="openChangePassword()">      <span class="align-bottom change-password-fix">{{buttonChangePassword}}</span>    </button>    <button class="btn btn-red btn-lg" (click)="deleteUser()">      <span class="align-bottom">{{buttonDeleteUser}}</span>    </button>  </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <!-- Header -->  <div class="modal-header">    <h3 class="nalej-form-title">{{title}}</h3>    <button       type="button"       class="close"       aria-label="Close"      (click)="bsModalRef.hide()">      <span aria-hidden="true">&times;</span>    </button>  </div>  <!-- Body -->  <div class="modal-body">    <div class="avatar-frame">      <i class="material-icons">person</i>    </div>    <form [formGroup]="userInfoForm">      <div class="form-group">        <label>Name</label>        <input           formControlName="userName"          placeholder="{{userName}}"          type="text"           class="form-control">        <div class="error-h"></div>      </div>      <div class="form-group">        <label>Email</label>        <input           formControlName="email"           placeholder="{{email}}"          type="text"           class="form-control">          <div class="error-h"></div>      </div>      <div class="form-group">        <label>Role</label>        <input           formControlName="role"           placeholder="{{role}}"          type="text"           class="form-control">          <div class="error-h"></div>      </div>      <!-- Change password -->      <div class="change-password" (click)="openChangePassword()">        <p>Change password</p>      </div>      <!-- Delete user -->      <div class="form-group d-flex flex-row justify-content-center mt-5">        <button class="btn-nalej-form-red" (click)="deleteUser()">            <i             class="material-icons delete-icon"             tooltip="Delete"             placement="right">            delete          </i>          <span class="align-bottom">{{buttonDeleteUser}}</span>        </button>      </div>    </form>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AppsInfoComponent', 'selector': 'app-apps-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'UserInfoComponent'};

@@ -313,6 +313,11 @@
         right: 74px;
         font-size: .8em;
         outline: none;
+        &:hover {
+            color: #fff;
+            transition: 0.3s;
+            background-color: #4f71fd;
+          }
         .i-options {
             font-size: 1.8em;
             font-weight: 700;
@@ -333,6 +338,11 @@
     border: none;
     font-size: .7em;
     outline: none;
+    &:hover {
+        color: #fff;
+        transition: 0.3s;
+        background-color: #F25272;
+      }
     .i-red {
         font-size: 1.7em;
         font-weight: 700;
@@ -355,6 +365,11 @@
     border: none;
     font-size: .7em;
     outline: none;
+    &:hover {
+        color: #fff;
+        transition: 0.3s;
+        background-color: #4f71fd;
+      }
     .i-white {
         font-size: 1.7em;
         font-weight: 700;

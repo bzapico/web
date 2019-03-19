@@ -5,7 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-add-user',
@@ -13,6 +13,17 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./add-user.component.scss']
 })
 export class AddUserComponent implements OnInit {
+  /**
+   * Models that holds forms info
+   */
+  addUserForm: FormGroup;
+  userName: FormControl;
+  email: FormControl;
+  password: FormControl;
+  passwordConfirm: FormControl;
+  submitted = false;
+  loading: boolean;
+
   /**
    * Backend reference
    */
@@ -23,13 +34,6 @@ export class AddUserComponent implements OnInit {
    */
   organizationId: string;
   userRole: string;
-  userName: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
-
-  errorMessages: string[];
-
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -38,7 +42,9 @@ export class AddUserComponent implements OnInit {
     backdrop: false,
     ignoreBackdropClick: true
   };
+
   constructor(
+    private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
@@ -52,45 +58,77 @@ export class AddUserComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-    this.errorMessages = [];
-
   }
 
   ngOnInit() {
+    this.addUserForm = this.formBuilder.group({
+      userName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      passwordConfirm: [''],
+      role: ['', [Validators.required]],
+    });
   }
 
   /**
-   * Requests to add a new user
-   * @param form Form with the user input data
+   * Custom validator for checking the passwords,
+   * @param group passwords group
    */
-  addUser(form) {
-    if (this.errorMessages.length === 0) {
+  samePasswords(group: FormGroup) {
+    const password = group.controls.password.value;
+    const passwordConfirm = group.controls.passwordConfirm.value;
+    return password === passwordConfirm ? true : false;
+  }
+
+  /**
+   * Convenience getter for easy access to form fields
+   */
+  get f() { return this.addUserForm.controls; }
+
+  /**
+   * Requests to add a new user
+   * @param f Form with the user input data
+   */
+  addUser(f) {
+    this.submitted = true;
       const user = {
-        name: form.value.name,
-        email: form.value.email,
-        password: form.value.password,
+        name: f.userName.value,
+        email: f.email.value,
+        password: f.password.value,
         role_name: this.userRole
       };
+      if (f.userName.invalid === true ||
+        f.email.invalid === true ||
+        f.password.invalid === true ||
+        f.password.value !== f.passwordConfirm.value ||
+        f.passwordConfirm.invalid  === true ||
+        !this.userRole
+        ) {
+        return;
+      }
+      this.loading = true;
       this.backend.addUser(this.organizationId, user)
         .subscribe(response => {
+          this.loading = false;
           this.notificationsService.add({
-            message: 'The user ' + user.email + ' has been created successfully'
+            message: 'The user ' + user.email + ' has been created successfully',
+            timeout: 5000
           });
           this.bsModalRef.hide();
         }, error => {
+          this.loading = false;
           if (error.status === 409) {
             this.notificationsService.add({
               message: 'ERROR: ' + error.error.message + ' already exists',
-              timeout: 10000
+              timeout: 5000
             });
           } else {
               this.notificationsService.add({
                 message: 'ERROR: ' + error.error.message,
-                timeout: 10000
+                timeout: 5000
               });
             }
         });
-    }
   }
 
   /**
@@ -109,83 +147,4 @@ export class AddUserComponent implements OnInit {
       this.bsModalRef.hide();
     }
   }
-
-  /**
-   * Changes the new user role
-   * @param newRole New user role
-   */
-  changeRole(newRole) {
-    this.userRole = newRole;
-  }
-
-  /**
-   * Validates user data
-   * @param form Form with user data
-   */
-  checkFormFields(form: FormGroup) {
-    this.errorMessages = [];
-    if (form.controls.email.invalid) {
-      if (form.controls.email.errors.required) {
-        this.errorMessages.push('Email is required');
-      }
-      if (form.controls.email.errors.pattern) {
-        this.errorMessages.push('Email must be a valid email address');
-      }
-    }
-    if (form.controls.password.invalid) {
-      if (form.controls.password.errors.required) {
-        this.errorMessages.push('Password is required');
-      }
-      if (form.controls.password.errors.minlength) {
-        this.errorMessages.push('Password must have more than 6 characters');
-      }
-    }
-    if (form.controls.password.value !== form.controls.passwordConfirm.value) {
-      this.errorMessages.push('Password and confirm password are not the same one');
-    }
-    if (!this.userRole) {
-      this.errorMessages.push('User role selection is required');
-    }
-
-    if (this.errorMessages.length === 0) {
-      this.addUser(form);
-    }
-  }
-
-  /**
-   * Outputs the error messages in the required format, showing the first one
-   * @param errors String containing the errors
-   */
-  formatValidationOutput(errors: string[]) {
-    if (this.errorMessages.length === 1) {
-      return {
-        msg: this.errorMessages[0],
-        errors: this.errorMessages
-      };
-    } else if (this.errorMessages.length > 0) {
-      return {
-        msg: this.errorMessages[0] + ' +' + (this.errorMessages.length - 1) + ' errors',
-        errors: this.errorMessages
-      };
-    } else {
-      return {
-        msg: '',
-        errors: this.errorMessages
-      };
-    }
-  }
-
-  /**
-   * Another string definition of an array
-   * @param array Array of elements
-   */
-  arrayToString(array: any[]): string {
-    let msg = '';
-    array.forEach(element => {
-      msg = msg + element.toLowerCase() + ', ';
-    });
-    msg = msg.slice(0, msg.length - 2);
-    return msg;
-  }
-
 }
