@@ -135,6 +135,7 @@ export class RegisteredInfoComponent implements OnInit {
   /**
    * Graph options
    */
+  graphDataLoaded: boolean;
   showlegend: boolean;
   graphData: any;
   orientation: string;
@@ -173,7 +174,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.displayedGroups = [];
     this.activeGroupId = 'ALL';
     this.requestError = '';
-    this.showGraph = false;
+    this.showGraph = true;
     this.registeredData = {
       groups: [],
       environment_variables: {},
@@ -192,7 +193,7 @@ export class RegisteredInfoComponent implements OnInit {
      // Graph initialization
      this.showlegend = false;
      this.orientation = 'TB';
-     this.curve = shape.curveBundle;
+     this.curve = shape.curveBasis;
      this.autoZoom = true;
      this.autoCenter = true;
      this.enableZoom = true;
@@ -200,6 +201,7 @@ export class RegisteredInfoComponent implements OnInit {
      this.colorScheme = {
        domain: ['#6C86F7']
      };
+     this.graphDataLoaded = false;
      this.graphData = {
        nodes: [],
        links: []
@@ -568,8 +570,8 @@ export class RegisteredInfoComponent implements OnInit {
       const nodeGroup = {
         id: group.service_group_id,
         label: group.name,
-        tooltip: 'GROUP: ' + group.service_group_id,
-        color: this.nalejColorScheme[this.nextColorIndex],
+        tooltip: 'GROUP: ' + group.name,
+        color: '#444',
         group: group.service_group_id
       };
       this.graphData.nodes.push(nodeGroup);
@@ -577,8 +579,8 @@ export class RegisteredInfoComponent implements OnInit {
         const nodeService = {
           id: group.service_group_id + '-s-' + service.service_id,
           label: service.name,
-          tooltip: 'SERVICE: ' + service.service_id,
-          color: this.nalejColorScheme[this.nextColorIndex],
+          tooltip: 'SERVICE: ' + service.name,
+          color: '#343434',
           group: group.service_group_id
         };
         this.graphData.nodes.push(nodeService);
@@ -598,15 +600,18 @@ export class RegisteredInfoComponent implements OnInit {
       registered.rules.forEach(rule => {
         if (rule.auth_services) {
           rule.auth_services.forEach(linkedService => {
+            const sourceIndex = this.graphData.nodes.map(x => x.label).indexOf(rule.target_service_name);
+            const targetIndex = this.graphData.nodes.map(x => x.label).indexOf(linkedService);
             const link = {
-              source: rule.target_service_group_name + rule.target_service_name,
-              target: linkedService
+              source: this.graphData.nodes[sourceIndex].id,
+              target: this.graphData.nodes[targetIndex].id
             };
             this.graphData.links.push(link);
           });
         }
       });
     }
+    this.graphDataLoaded = true;
   }
 
   /**
@@ -670,7 +675,7 @@ export class RegisteredInfoComponent implements OnInit {
       if (index !== -1) {
         return this.displayedGroups[index].services.length;
       }
-      throw new Error('Not found');
+      return 0;
     }
   }
 
@@ -783,6 +788,22 @@ export class RegisteredInfoComponent implements OnInit {
     } else if (type === 'graph') {
       this.showGraph = true;
     }
+  }
+
+  /**
+   * Return if the marker is required
+   * @param link Link object
+   */
+  getMarker(link) {
+    const index = this.graphData.nodes.map(x => x.id).indexOf(link.source);
+    if (index !== -1) {
+      if (this.graphData.nodes[index].id === this.graphData.nodes[index].group) {
+        return '';
+      } else {
+        return 'url(#arrow)';
+      }
+    }
+    return 'url(#arrow)';
   }
 
 }

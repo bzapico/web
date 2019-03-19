@@ -149,7 +149,7 @@
             </div> 
           </div>
         </div>
-        <div class="graph">
+        <div *ngIf="graphDataLoaded" class="graph">
           <ngx-graph
             class="chart-container"
             [view]="view"
@@ -184,17 +184,29 @@
               </svg:g>
             </ng-template>
             <ng-template #linkTemplate let-link>
-              <svg:g class="edge">
-                <svg:path
-                  stroke-width="2"
-                  class="line"
-                  d="M 0,30 h100"
-                  >
-                </svg:path>
-              </svg:g>
+                <svg:g class="edge">
+                    <defs>
+                      <marker id="arrow" markerWidth="13" markerHeight="13" refX="2" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+                          <path d="M2,2 L2,11 L10,6 L2,2" fill="#333" stroke-width="0" />
+                      </marker>
+                    </defs>
+                    <svg:path
+                      stroke-width="2"
+                      class="line"
+                      d="M 0,30 h100"
+                      [attr.marker-mid]="getMarker(link)"
+                      >
+                    </svg:path>
+                  </svg:g>
             </ng-template>
           </ngx-graph>
         </div>
+        <div class="row mt-2 text-right mr-1">
+            <div class="col graph-subtext">
+              Scroll on graph to zoom
+            </div>
+          </div>
+        <div *ngIf="!graphDataLoaded" class="loader"></div>
       </div>
       <!-- Services card -->
       <div *ngIf="!showGraph" class="card h-reg-services flex-grow-1">
@@ -535,7 +547,7 @@
                     [ngClass]="getCategoryCSSClass('rules','auth')" 
                     scope="col" 
                     class="col-3">
-                    Auth <span class="grey typo-small">(group, service)</span>
+                    Auth <span class="grey typo-small">(group, service / device group)</span>
                     <span 
                       class="expand-chevron" 
                       *ngIf="sortedByRules === 'auth' && !reverseRules">
@@ -570,6 +582,8 @@
                       {{rule.auth_service_group_name}}
                     <span *ngIf="rule.auth_services"> - </span>
                     {{rule.auth_services}}
+                    <span *ngIf="rule.device_group_names"></span>
+                    {{rule.device_group_names}}
                     </td>
                   <td class="col-1 text-center">
                     <button 

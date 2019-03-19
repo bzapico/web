@@ -127,6 +127,7 @@ export class InstanceInfoComponent implements OnInit {
   /**
    * Graph options
    */
+  graphDataLoaded: boolean;
   showlegend: boolean;
   graphData: any;
   orientation: string;
@@ -141,6 +142,11 @@ export class InstanceInfoComponent implements OnInit {
   draggingEnabled: boolean;
   nalejColorScheme: string[];
   nextColorIndex: number;
+  STATUS_COLORS = {
+    RUNNING: '#0937FF',
+    ERROR: '#F25272',
+    OTHER: '#03D7E8'
+  };
 
   constructor(
     private modalService: BsModalService,
@@ -169,7 +175,7 @@ export class InstanceInfoComponent implements OnInit {
     this.displayedGroups = [];
     this.activeGroupId = 'ALL';
     this.requestError = '';
-    this.showGraph = false;
+    this.showGraph = true;
     this.enabled = false;
 
     // SortBy
@@ -185,7 +191,7 @@ export class InstanceInfoComponent implements OnInit {
      // Graph initialization
      this.showlegend = false;
      this.orientation = 'TB';
-     this.curve = shape.curveBundle;
+     this.curve = shape.curveBasis;
      this.autoZoom = true;
      this.autoCenter = true;
      this.enableZoom = true;
@@ -193,10 +199,13 @@ export class InstanceInfoComponent implements OnInit {
      this.colorScheme = {
        domain: ['#6C86F7']
      };
+     this.graphDataLoaded = false;
      this.graphData = {
        nodes: [],
        links: []
      };
+
+
 
      this.nalejColorScheme = [
        '#1725AE',
@@ -229,7 +238,6 @@ export class InstanceInfoComponent implements OnInit {
     this.backend.getAppInstance(this.organizationId,  this.instanceId)
     .subscribe(instance => {
         this.instance = instance;
-        this.toGraphData(instance);
         if (!this.loadedData) {
           this.loadedData = true;
         }
@@ -246,8 +254,8 @@ export class InstanceInfoComponent implements OnInit {
         const nodeGroup = {
           id: group.service_group_instance_id,
           label: group.name,
-          tooltip: 'GROUP: ' + group.service_group_instance_id,
-          color: this.nalejColorScheme[this.nextColorIndex],
+          tooltip: 'GROUP ' + group.name + ': ' + this.getBeautyStatusName(group.status_name),
+          color: this.getNodeColor(group.status_name),
           group: group.service_group_instance_id
         };
         this.graphData.nodes.push(nodeGroup);
@@ -255,8 +263,8 @@ export class InstanceInfoComponent implements OnInit {
           const nodeService = {
             id: group.service_group_instance_id + '-s-' + service.service_id,
             label: service.name,
-            tooltip: 'SERVICE: ' + service.service_id,
-            color: this.nalejColorScheme[this.nextColorIndex],
+            tooltip: 'SERVICE ' + service.name + ': ' + this.getBeautyStatusName(service.status_name),
+            color: this.getNodeColor(service.status_name),
             group: group.service_group_instance_id
           };
           this.graphData.nodes.push(nodeService);
@@ -265,10 +273,7 @@ export class InstanceInfoComponent implements OnInit {
             target: group.service_group_instance_id + '-s-' + service.service_id
           });
         });
-        this.nextColorIndex += 1;
-        if ( this.nextColorIndex >= this.nalejColorScheme.length ) {
-          this.nextColorIndex = 0;
-        }
+
       });
     }
 
@@ -276,14 +281,48 @@ export class InstanceInfoComponent implements OnInit {
       instance.rules.forEach(rule => {
         if (rule.auth_services) {
           rule.auth_services.forEach(linkedService => {
+            const sourceIndex = this.graphData.nodes.map(x => x.label).indexOf(rule.target_service_name);
+            const targetIndex = this.graphData.nodes.map(x => x.label).indexOf(linkedService);
             const link = {
-              source: rule.target_service_group_name + rule.target_service_name,
-              target: linkedService
+              source: this.graphData.nodes[sourceIndex].id,
+              target: this.graphData.nodes[targetIndex].id,
             };
             this.graphData.links.push(link);
           });
         }
       });
+    }
+    this.graphDataLoaded = true;
+  }
+
+  /**
+   * Get arrow color depending on node source color
+   * @param sourceId Link source identifier
+   */
+  getArrowColor (sourceId: string): string {
+    const index = this.graphData.nodes.map(x => x.id).indexOf(sourceId);
+    if (index !== -1) {
+      return this.graphData.nodes[index].color;
+    }
+  }
+
+  /**
+   * Return an specific color depending on the node status
+   * @param status Status name
+   */
+  getNodeColor(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'service_running':
+        return this.STATUS_COLORS.RUNNING;
+      break;
+      case 'service_error':
+        return this.STATUS_COLORS.ERROR;
+      break;
+      case 'service_waiting':
+        return this.STATUS_COLORS.OTHER;
+      break;
+      default:
+        return this.STATUS_COLORS.OTHER;
     }
   }
 
@@ -574,10 +613,10 @@ export class InstanceInfoComponent implements OnInit {
         return 'red';
       break;
       case 'service_waiting':
-        return 'orange';
+        return 'teal';
       break;
       default:
-        return 'orange';
+        return 'teal';
     }
   }
 
@@ -683,7 +722,7 @@ export class InstanceInfoComponent implements OnInit {
       if (index !== -1) {
         return this.displayedGroups[index].service_instances.length;
       }
-      throw new Error('Not found');
+      return 0;
     }
   }
 
@@ -742,5 +781,21 @@ export class InstanceInfoComponent implements OnInit {
       return rawStatus.substring('service_'.length, rawStatus.length);
     }
     return rawStatus;
+  }
+
+  /**
+   * Return if the marker is required
+   * @param link Link object
+   */
+  getMarker(link) {
+    const index = this.graphData.nodes.map(x => x.id).indexOf(link.source);
+    if (index !== -1) {
+      if (this.graphData.nodes[index].id === this.graphData.nodes[index].group) {
+        return '';
+      } else {
+        return 'url(#arrow)';
+      }
+    }
+    return 'url(#arrow)';
   }
 }
