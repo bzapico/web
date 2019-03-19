@@ -38,6 +38,7 @@
     text-transform: uppercase;
 }
 
+
 /* - - - Medias Summary devices card - - - */
 @media screen and (max-width:1500px) {
     .circle {
@@ -295,6 +296,11 @@
 }
 
 /* - - - Medias summary card devices table - - - */
+@media screen and (max-width:1779px), screen and (max-height: 1057px) {
+    .summary-devices-running {
+        font-size: 2em !important;
+    }
+ }
 @media screen and (max-width:1779px) {
     .summary-card {
         .devices-availability-size {

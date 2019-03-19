@@ -539,15 +539,53 @@
                   </span>
                 </td>
                 <td *ngIf="!device.labels" class="col-4">
-                  No
+                    <div 
+                    class="add-label-button"
+                    (click)="addLabel(device)">
+                      <i 
+                      class="material-icons i-add" 
+                      tooltip="Add" 
+                      placement="right">
+                      add
+                      </i>  
+                  </div>
                 </td>
                 <td *ngIf="device.labels" class="col-4">
+                  
                   <button 
+                    (click)="onLabelClick(device.device_id, label[0], label[1])"
+                    [ngClass]=
+                    "{'btn-label-selected': indexOfLabelSelected(device.device_id, label[0], label[1]) >= 0 ,
+                      'btn-outline-primary': indexOfLabelSelected(device.device_id, label[0], label[1]) === -1}" 
                     *ngFor="let label of labelsToString(device.labels)" 
                     class="btn-sm btn-outline-primary" 
-                    disabled>
+                    >
                     {{label[0]}}: {{label[1]}}
                   </button>
+                  <div class="label-buttons">
+                      <div 
+                        *ngIf="isAnyLabelSelected(device.device_id) === false"
+                        class="add-label-button" 
+                        (click)="addLabel(device)"
+                        tooltip="Add" 
+                        placement="right"
+                        >
+                        <i class="material-icons i-add">
+                          add
+                        </i>
+                      </div>
+                      <div 
+                        *ngIf="isAnyLabelSelected(device.device_id) === true"
+                        class="delete-label-button" 
+                        (click)="deleteLabel(device)"
+                        tooltip="Delete" 
+                        placement="right"
+                        >
+                        <i class="material-icons i-delete">
+                          delete
+                        </i>
+                      </div>
+                    </div>
                 </td>
                 <td class="col-1 text-center">
                   <span 
