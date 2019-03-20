@@ -5,7 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-deploy-instance',
@@ -74,7 +74,7 @@ export class DeployInstanceComponent implements OnInit {
   ngOnInit() {
     this.deployInstanceForm = this.formBuilder.group({
       registeredName: [{value: '', disabled: true}],
-      instanceName: [''],
+      instanceName: ['', [Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]],
     });
 
     this.backend.getRegisteredApps(this.organizationId)
@@ -91,23 +91,25 @@ export class DeployInstanceComponent implements OnInit {
   deployInstance(f) {
     this.instanceName = f.instanceName.value;
     this.submitted = true;
-    this.loading = true;
-    this.backend.deploy(this.organizationId, this.registeredId, this.instanceName)
-      .subscribe(deployResponse => {
-        this.loading = false;
-        this.bsModalRef.hide();
-        this.notificationsService.add({
-          message: 'Deploying instance of ' + this.registeredName,
-          timeout: 3000
+    if (!f.instanceName.errors) {
+      this.loading = true;
+      this.backend.deploy(this.organizationId, this.registeredId, this.instanceName)
+        .subscribe(deployResponse => {
+          this.loading = false;
+          this.bsModalRef.hide();
+          this.notificationsService.add({
+            message: 'Deploying instance of ' + this.registeredName,
+            timeout: 3000
+          });
+        }, error => {
+          this.loading = false;
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 5000
+          });
+          this.bsModalRef.hide();
         });
-      }, error => {
-        this.loading = false;
-        this.notificationsService.add({
-          message: error.error.message,
-          timeout: 5000
-        });
-        this.bsModalRef.hide();
-      });
+    }
   }
 
   selectRegistered(app) {
