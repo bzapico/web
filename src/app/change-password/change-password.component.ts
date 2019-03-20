@@ -79,7 +79,6 @@ export class ChangePasswordComponent implements OnInit {
    */
   saveNewPassword(f) {
     this.submitted = true;
-    console.log(f);
     if (!this.loading
       && !f.passwordConfirm.invalid
       && !f.password.invalid
