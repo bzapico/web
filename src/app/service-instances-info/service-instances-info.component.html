@@ -88,12 +88,12 @@
           </div>
           <br>
           <div class="row">
-            <div class="col-sm grey mb-3">Enviroment variables</div>
+            <div class="col-sm grey mb-3">Environment variables</div>
           </div>
-          <div class="row" *ngFor="let enviromentVariable of objectToString(enviormentVariables)">
+          <div class="row" *ngFor="let environmentVariable of objectToString(enviormentVariables)">
             <div *ngIf="enviormentVariables" class="col-sm text-right">
-              <div class="text-right grey">{{enviromentVariable[0]}}</div>
-              <div class="text-right">{{enviromentVariable[1]}}</div>
+              <div class="text-right grey">{{environmentVariable[0]}}</div>
+              <div class="text-right">{{environmentVariable[1]}}</div>
             </div>
             <div *ngIf="!enviormentVariables" class="col-sm text-right">No</div>
           </div>
