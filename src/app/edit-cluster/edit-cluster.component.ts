@@ -5,7 +5,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { BackendService } from '../services/backend.service';
 import { BsModalRef } from 'ngx-bootstrap';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -53,7 +53,7 @@ export class EditClusterComponent implements OnInit {
 
   ngOnInit() {
     this.editClusterForm = this.formBuilder.group({
-      clusterName: [''],
+      clusterName: ['',  [Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]],
     });
   }
 
@@ -68,8 +68,8 @@ export class EditClusterComponent implements OnInit {
    */
   saveClusterChanges(f) {
     this.submitted = true;
-    this.loading = true;
-    if (this.organizationId !== null && this.clusterId !== null) {
+    if (this.organizationId !== null && this.clusterId !== null && !f.clusterName.errors ) {
+      this.loading = true;
       this.backend.saveClusterChanges(this.organizationId, this.clusterId, {
         name: f.clusterName.value,
       })

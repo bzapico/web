@@ -78,7 +78,7 @@
         <div
           *ngIf="instance.labels"
           class="ins-labels">
-          <div  *ngFor="let label of instanceLabelsToString()">
+          <div *ngFor="let label of instanceLabelsToString()">
             <button class="btn-sm btn-outline-primary" disabled>
               {{label[0]}}: {{label[1]}}
             </button>

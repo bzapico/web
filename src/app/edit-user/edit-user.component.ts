@@ -119,7 +119,7 @@ export class EditUserComponent implements OnInit {
           subscribe(responseRole => {
             this.notificationsService.add({
               message: 'The user ' + this.userName + ' has been edited',
-              timeout: 10000
+              timeout: 5000
             });
             this.bsModalRef.hide();
             if (this.selfEditProfile === true && this.userRole === 'Owner') {
@@ -137,7 +137,7 @@ export class EditUserComponent implements OnInit {
             this.loading = false;
             this.notificationsService.add({
               message: 'ERROR: ' + error.error.message,
-              timeout: 10000
+              timeout: 5000
             });
             this.bsModalRef.hide();
           });
@@ -145,7 +145,7 @@ export class EditUserComponent implements OnInit {
           this.loading = false;
           this.notificationsService.add({
             message: 'The user ' + this.userName + ' has been edited',
-            timeout: 10000
+            timeout: 5000
           });
           this.bsModalRef.hide();
         }
@@ -153,7 +153,7 @@ export class EditUserComponent implements OnInit {
         this.loading = false;
         this.notificationsService.add({
           message: 'ERROR: ' + error.error.message,
-          timeout: 10000,
+          timeout: 5000,
         });
         this.bsModalRef.hide();
       });

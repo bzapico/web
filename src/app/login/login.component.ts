@@ -90,7 +90,7 @@ export class LoginComponent implements OnInit {
         this.loginRequest = false;
         this.notificationsService.add({
           message: error.error.message,
-          timeout: 10000,
+          timeout: 5000
         });
       });
   }

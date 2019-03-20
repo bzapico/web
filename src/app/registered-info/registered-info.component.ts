@@ -237,6 +237,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.backend.getAppDescriptor(this.organizationId, this.descriptorId)
       .subscribe(registeredResponse => {
         this.registeredData = registeredResponse;
+        console.log(this.registeredData);
         this.groups = registeredResponse.groups || [];
         if (this.displayedGroups.length === 0 && this.groups.length > 0) {
           for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {

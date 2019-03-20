@@ -104,7 +104,7 @@ export class ChangePasswordComponent implements OnInit {
           this.loading = false;
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 10000,
+            timeout: 5000,
           });
         });
     }

@@ -35,7 +35,6 @@ export class AddDevicesGroupComponent implements OnInit {
   defaultConnectivity: boolean;
   groupApiKey: string;
   enabled: boolean;
-  errorMessages: string[];
 
   /**
    *  Models that hold group data
@@ -71,7 +70,6 @@ export class AddDevicesGroupComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-    this.errorMessages = [];
     this.device_group_id = 'Loading ...';
     this.name = 'Loading ...';
     this.enabled = false;
@@ -81,7 +79,7 @@ export class AddDevicesGroupComponent implements OnInit {
 
   ngOnInit() {
     this.addGroupForm = this.formBuilder.group({
-      groupName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+      groupName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[A-Za-z0-9_]+$')]],
     });
   }
 
@@ -97,8 +95,8 @@ export class AddDevicesGroupComponent implements OnInit {
    */
   addGroup(form) {
     this.submitted = true;
-    this.loading = true;
-    if (this.errorMessages.length === 0) {
+    if (!form.groupName.errors) {
+      this.loading = true;
       const groupData = {
         name: form.groupName.value,
         enabled: this.enabled,
