@@ -20,6 +20,7 @@
             formControlName="clusterName"
             placeholder="{{clusterName}}"
             value="{{clusterName}}"
+            autofocus
             pattern="[a-zA-Z0-9]+"
             [ngClass]="{ 'is-invalid': submitted && f.clusterName.errors }"
             type="text" 

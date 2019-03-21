@@ -17,7 +17,7 @@ const BASE_TIMER_DELAY = 10;
 })
 export class AutofocusDirective implements AfterContentInit, OnChanges, OnDestroy {
   @Input( 'shouldFocusElement') appAutofocus: any;
-    //  TODO:   needs INPUT 'timerDelay: autofocusDelay'
+    //  TODO:   needs INPUT as above'timerDelay: autofocusDelay'
 
     public shouldFocusElement: any;
     public timerDelay: number | string;

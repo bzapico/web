@@ -21,6 +21,7 @@
             placeholder="e.g. Device group"
             pattern="^[A-Za-z0-9_]+$"
             type="text" 
+            autofocus
             class="form-control" 
             [ngClass]="{ 'is-invalid': submitted && f.groupName.errors }"
             required>

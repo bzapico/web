@@ -51,7 +51,7 @@ import { InstanceInfoComponent } from './instance-info/instance-info.component';
 import { ServiceInstancesInfoComponent } from './service-instances-info/service-instances-info.component';
 import { RuleInfoComponent } from './rule-info/rule-info.component';
 import { ServiceInfoComponent } from './service-info/service-info.component';
-import { AutofocusDirective } from './autofocus.directive';
+import { AutofocusDirective } from './directives/autofocus.directive';
 
 @NgModule({
   declarations: [
