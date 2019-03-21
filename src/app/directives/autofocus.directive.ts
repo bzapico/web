@@ -10,14 +10,11 @@ const BASE_TIMER_DELAY = 10;
 
 @Directive({
     selector: '[autofocus], [appAutofocus]',
-    // inputs: [
-    //     'shouldFocusElement: appAutofocus',
-    //     'timerDelay: autofocusDelay'
-    // ]
+
 })
 export class AutofocusDirective implements AfterContentInit, OnChanges, OnDestroy {
   @Input( 'shouldFocusElement') appAutofocus: any;
-    //  TODO:   needs INPUT as above'timerDelay: autofocusDelay'
+    // @INPUT 'timerDelay: autofocusDelay'
 
     public shouldFocusElement: any;
     public timerDelay: number | string;
@@ -118,7 +115,7 @@ export class AutofocusDirective implements AfterContentInit, OnChanges, OnDestro
                 this.elementRef.nativeElement.focus();
 
             },
-            this.timerDelay
+            // this.timerDelay
         );
 
     }
