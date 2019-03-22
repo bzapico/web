@@ -49,6 +49,28 @@ export class DeployInstanceComponent implements OnInit {
     ignoreBackdropClick: true
   };
 
+  /**
+   * NGX-select-dropdown
+   */
+
+  singleSelect: any = [];
+  tab = 1;
+  selectedOptions = [{
+    '_id': '5a66d6c31d5e4e36c7711b7a',
+    'index': 0,
+    'balance': '$2,806.37',
+    'picture': 'http://placehold.it/32x32',
+    'name': 'Burns Dalton'
+  }];
+
+  options = [
+    {
+      '_id': '5a66d6c31d5e4e36c7711b7a',
+      'index': 0,
+      'picture': 'http://placehold.it/32x32',
+      'name': 'Burns Dalton'
+  }];
+
   constructor(
     private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
@@ -74,7 +96,7 @@ export class DeployInstanceComponent implements OnInit {
   ngOnInit() {
     this.deployInstanceForm = this.formBuilder.group({
       registeredName: [{value: '', disabled: true}],
-      registeredNameSelect: [''],
+      selectData: [null, Validators.required],
       instanceName: ['', [Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]],
     });
 
@@ -82,6 +104,14 @@ export class DeployInstanceComponent implements OnInit {
     .subscribe(response => {
         this.registeredApps = response.descriptors || [];
     });
+
+     setTimeout(() => {
+      this.deployInstanceForm.patchValue({ selectData: this.selectedOptions[0] });
+    }, 7000);
+  }
+// TODO:
+  changeValue($event: any) {
+    console.log(this.deployInstanceForm.getRawValue());
   }
 
   /**

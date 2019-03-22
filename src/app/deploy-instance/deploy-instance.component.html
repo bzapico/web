@@ -14,28 +14,17 @@
     <!-- Body -->
     <div class="modal-body">
         <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">
-          <div *ngIf="!openFromRegistered" class="form-group">
+          <div *ngIf="!openFromRegistered"  class="form-group">
             <label>Registered name</label>
 
-            <select 
-            formControlName="registeredNameSelect" 
-            name="regApp"  
-            autofocus    
-            class="dropdown-toggle cursor-pointer form-control">
-              <option value="" disabled>  
-                {{registeredName}}
-              </option>
-              <option 
-                class="dropdown-item cursor-pointer"
-                *ngFor="let app of registeredApps"  
-                (click)="selectRegistered(app)" 
-                [ngValue]="regApp">
-                {{app.name}}
-              </option>
-          </select> 
-
-           
-
+            <ngx-select-dropdown 
+              (click)="selectRegistered(app)" 
+              formControlName="selectData" 
+              [multiple]="true" 
+              [config]="config" 
+              [options]="registeredName">
+            </ngx-select-dropdown>
+  
             <div class="error-h"></div>
           </div>
           <div *ngIf="openFromRegistered" class="form-group">
