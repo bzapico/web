@@ -18,50 +18,25 @@
             <label>Registered name</label>
 
 
-
-            <select 
-              formControlName="registeredNameSelect" 
-              name="regApp"  
-              autofocus    
-              class="dropdown-toggle cursor-pointer form-control">
-                <option value="" disabled>  
-                  {{registeredName}}
-                </option>
-                <option 
-                  class="dropdown-item cursor-pointer"
-                  *ngFor="let app of registeredApps"  
-                  (click)="selectRegistered(app)" 
-                  [ngValue]="regApp">
-                  {{app.name}}
-                </option>
-            </select> 
-
-<!-- 
-            <div class="btn-group w-100" dropdown>
-              <button 
-                id="button-basic" npm i ngx-select-ex
-                dropdownToggle 
-                autofocus
-                type="button" 
-                class="dropdown-toggle cursor-pointer form-control"
-                aria-controls="dropdown-basic">
-                {{registeredName}}
-              </button>
-              <ul 
-                id="dropdown-basic" 
-                *dropdownMenu 
-                class="dropdown-menu"
-                role="menu" 
-                aria-labelledby="button-basic">
-                <li *ngFor="let app of registeredApps" role="menuitem">
-                  <span 
-                    class="dropdown-item cursor-pointer"
-                    (click)="selectRegistered(app)">
+            <ngx-select [items]="items" optionValueField="hex" optionTextField="name" [(ngModel)]="ngxValue" [ngModelOptions]="{standalone: true}">
+ 
+                <ng-template ngx-select-option-selected let-option let-text="text">
+                    <span class="color-box" [style]="style('background-color:' + option.value)"></span>
+                    <span [innerHtml]="text"></span>
+                    {{registeredName}}
+                </ng-template>
+             
+                <ng-template ngx-select-option let-option let-text="text">
+                    <span  *ngFor="let app of registeredApps"  class="color-box" [style]="style('background-color:' + option.value)"></span>
+                    <span [innerHtml]="text"></span>
                     {{app.name}}
-                  </span>
-                </li>
-              </ul>
-            </div> -->
+                </ng-template>
+             
+                <ng-template ngx-select-option-not-found>
+                    Nothing found
+                </ng-template>
+             
+            </ngx-select>
 
             <div class="error-h"></div>
           </div>
