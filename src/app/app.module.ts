@@ -52,7 +52,7 @@ import { ServiceInstancesInfoComponent } from './service-instances-info/service-
 import { RuleInfoComponent } from './rule-info/rule-info.component';
 import { ServiceInfoComponent } from './service-info/service-info.component';
 import { AutofocusDirective } from './directives/autofocus.directive';
-import { NgxSelectModule } from 'ngx-select-ex';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 @NgModule({
   declarations: [
@@ -117,7 +117,7 @@ import { NgxSelectModule } from 'ngx-select-ex';
     ReactiveFormsModule,
     HttpClientModule,
     HttpModule,
-    NgxSelectModule,
+    SelectDropDownModule,
     RouterModule,
     FileDropModule,
     // NGX-BOOTSTRAP
