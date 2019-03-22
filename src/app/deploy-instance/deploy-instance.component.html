@@ -16,6 +16,9 @@
         <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">
           <div *ngIf="!openFromRegistered" class="form-group">
             <label>Registered name</label>
+
+
+
             <select 
               formControlName="registeredNameSelect" 
               name="regApp"  
@@ -32,6 +35,34 @@
                   {{app.name}}
                 </option>
             </select> 
+
+<!-- 
+            <div class="btn-group w-100" dropdown>
+              <button 
+                id="button-basic" npm i ngx-select-ex
+                dropdownToggle 
+                autofocus
+                type="button" 
+                class="dropdown-toggle cursor-pointer form-control"
+                aria-controls="dropdown-basic">
+                {{registeredName}}
+              </button>
+              <ul 
+                id="dropdown-basic" 
+                *dropdownMenu 
+                class="dropdown-menu"
+                role="menu" 
+                aria-labelledby="button-basic">
+                <li *ngFor="let app of registeredApps" role="menuitem">
+                  <span 
+                    class="dropdown-item cursor-pointer"
+                    (click)="selectRegistered(app)">
+                    {{app.name}}
+                  </span>
+                </li>
+              </ul>
+            </div> -->
+
             <div class="error-h"></div>
           </div>
           <div *ngIf="openFromRegistered" class="form-group">
