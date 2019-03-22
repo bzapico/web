@@ -16,30 +16,22 @@
         <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">
           <div *ngIf="!openFromRegistered" class="form-group">
             <label>Registered name</label>
-            <div class="btn-group w-100" dropdown>
-              <button 
-                id="button-basic" 
-                dropdownToggle 
-                type="button" 
-                class="dropdown-toggle cursor-pointer form-control"
-                aria-controls="dropdown-basic">
-                {{registeredName}}
-              </button>
-              <ul 
-                id="dropdown-basic" 
-                *dropdownMenu 
-                class="dropdown-menu"
-                role="menu" 
-                aria-labelledby="button-basic">
-                <li *ngFor="let app of registeredApps" role="menuitem">
-                  <span 
-                    class="dropdown-item cursor-pointer"
-                    (click)="selectRegistered(app)">
-                    {{app.name}}
-                  </span>
-                </li>
-              </ul>
-            </div>
+            <select 
+              formControlName="registeredNameSelect" 
+              name="regApp"  
+              autofocus    
+              class="dropdown-toggle cursor-pointer form-control">
+                <option value="" disabled>  
+                  {{registeredName}}
+                </option>
+                <option 
+                  class="dropdown-item cursor-pointer"
+                  *ngFor="let app of registeredApps"  
+                  (click)="selectRegistered(app)" 
+                  [ngValue]="regApp">
+                  {{app.name}}
+                </option>
+            </select> 
             <div class="error-h"></div>
           </div>
           <div *ngIf="openFromRegistered" class="form-group">
@@ -58,7 +50,7 @@
               value="instanceName"
               placeholder="Instance name"
               type="text" 
-              autofocus
+     
               [ngClass]="{ 'is-invalid': submitted && f.instanceName.errors }"
               class="form-control">
               <div class="error-h">

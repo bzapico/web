@@ -74,6 +74,7 @@ export class DeployInstanceComponent implements OnInit {
   ngOnInit() {
     this.deployInstanceForm = this.formBuilder.group({
       registeredName: [{value: '', disabled: true}],
+      registeredNameSelect: [''],
       instanceName: ['', [Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]],
     });
 
