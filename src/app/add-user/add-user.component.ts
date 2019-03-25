@@ -6,6 +6,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-add-user',
@@ -19,6 +20,8 @@ export class AddUserComponent implements OnInit {
   addUserForm: FormGroup;
   userName: FormControl;
   email: FormControl;
+  organizationId: string;
+  userRole: string;
   password: FormControl;
   passwordConfirm: FormControl;
   submitted = false;
@@ -30,18 +33,21 @@ export class AddUserComponent implements OnInit {
   backend: Backend;
 
   /**
-   * Models that hold organization id, user role, name and email
-   */
-  organizationId: string;
-  userRole: string;
-
-  /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
   config = {
     backdrop: false,
     ignoreBackdropClick: true
   };
+
+  /**
+   * NGX-select-dropdown
+   */
+  tab = 1;
+  selectedOptions = [];
+  options = [];
+  selectConfig = {};
+  roleOptions: any[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,6 +57,21 @@ export class AddUserComponent implements OnInit {
     private notificationsService: NotificationsService
   ) {
     this.userRole = null;
+    this.selectConfig = {
+      displayKey: 'role',
+      search: false,
+      height: 'auto',
+      placeholder: 'e.g. Owner',
+      limitTo: 3,
+      moreText: 'more',
+      noResultsFound: 'No results found!'
+    };
+    this.roleOptions = [
+     'Owner',
+     'Operator',
+     'Developer'
+    ];
+
     const mock = localStorage.getItem(LocalStorageKeys.addUserMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -66,8 +87,13 @@ export class AddUserComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       passwordConfirm: [''],
-      role: ['', [Validators.required]],
+      role: [null, Validators.required],
     });
+
+    // NGX-select-dropdown
+    setTimeout(() => {
+      this.addUserForm.patchValue({ role: this.selectedOptions[0] });
+    }, 7000);
   }
 
   /**
@@ -95,14 +121,14 @@ export class AddUserComponent implements OnInit {
         name: f.userName.value,
         email: f.email.value,
         password: f.password.value,
-        role_name: this.userRole
+        role_name: f.role.value
       };
       if (f.userName.invalid === true ||
         f.email.invalid === true ||
         f.password.invalid === true ||
         f.password.value !== f.passwordConfirm.value ||
         f.passwordConfirm.invalid  === true ||
-        !this.userRole
+        f.role.value === true
         ) {
         return;
       }

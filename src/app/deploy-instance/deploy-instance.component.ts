@@ -107,14 +107,6 @@ export class DeployInstanceComponent implements OnInit {
   }
 
   /**
-   * NGX-select-dropdown on changed method
-   * @param $event on change
-   */
-  selectionChanged($event: any) {
-    // console.log(this.deployInstanceForm.getRawValue());
-  }
-
-  /**
    * Convenience getter for easy access to form fields
    */
   get f() { return this.deployInstanceForm.controls; }

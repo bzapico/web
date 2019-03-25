@@ -17,7 +17,6 @@
           <div *ngIf="!openFromRegistered"  class="form-group">
             <label>Registered name</label>
             <ngx-select-dropdown 
-              (change)="selectionChanged($event)"
               formControlName="selectDrop" 
               [multiple]="false" 
               [config]="selectConfig" 
@@ -41,7 +40,6 @@
               value="instanceName"
               placeholder="Instance name"
               type="text" 
-     
               [ngClass]="{ 'is-invalid': submitted && f.instanceName.errors }"
               class="form-control">
               <div class="error-h">

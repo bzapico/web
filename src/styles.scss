@@ -558,6 +558,11 @@ button[type="submit"]:disabled {
   font-size: .9em;
   float: inherit !important;
 }
+.ngx-error {
+  .ngx-dropdown-container button {
+    border: 2px solid #F25272 !important;
+  }
+}
 
 /* - - - Forms error messages styles - - - */
 .error-h {
