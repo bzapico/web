@@ -53,7 +53,6 @@ import { RuleInfoComponent } from './rule-info/rule-info.component';
 import { ServiceInfoComponent } from './service-info/service-info.component';
 import { AutofocusDirective } from './directives/autofocus.directive';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
-import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -119,7 +118,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
     HttpClientModule,
     HttpModule,
     SelectDropDownModule,
-    NgSelectModule,
     RouterModule,
     FileDropModule,
     // NGX-BOOTSTRAP

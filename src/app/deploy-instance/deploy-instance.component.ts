@@ -52,24 +52,10 @@ export class DeployInstanceComponent implements OnInit {
   /**
    * NGX-select-dropdown
    */
-
-  singleSelect: any = [];
   tab = 1;
-  selectedOptions = [{
-    '_id': '5a66d6c31d5e4e36c7711b7a',
-    'index': 0,
-    'balance': '$2,806.37',
-    'picture': 'http://placehold.it/32x32',
-    'name': 'Burns Dalton'
-  }];
-
-  options = [
-    {
-      '_id': '5a66d6c31d5e4e36c7711b7a',
-      'index': 0,
-      'picture': 'http://placehold.it/32x32',
-      'name': 'Burns Dalton'
-  }];
+  selectedOptions = [];
+  options = [];
+  selectConfig = {};
 
   constructor(
     private formBuilder: FormBuilder,
@@ -88,6 +74,15 @@ export class DeployInstanceComponent implements OnInit {
     }
     this.openFromRegistered = false;
     this.registeredApps = [];
+    this.selectConfig = {
+      displayKey: 'name',
+      search: false,
+      height: 'auto',
+      placeholder: 'Registered name',
+      limitTo: this.registeredApps.length,
+      moreText: 'more',
+      noResultsFound: 'No results found!'
+    };
     if (!this.registeredName) {
       this.registeredName = 'Select any registered app';
     }
@@ -96,7 +91,7 @@ export class DeployInstanceComponent implements OnInit {
   ngOnInit() {
     this.deployInstanceForm = this.formBuilder.group({
       registeredName: [{value: '', disabled: true}],
-      selectData: [null, Validators.required],
+      selectDrop: [null, Validators.required],
       instanceName: ['', [Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]],
     });
 
@@ -105,13 +100,18 @@ export class DeployInstanceComponent implements OnInit {
         this.registeredApps = response.descriptors || [];
     });
 
-     setTimeout(() => {
-      this.deployInstanceForm.patchValue({ selectData: this.selectedOptions[0] });
+    // NGX-select-dropdown
+    setTimeout(() => {
+      this.deployInstanceForm.patchValue({ selectDrop: this.selectedOptions[0] });
     }, 7000);
   }
-// TODO:
-  changeValue($event: any) {
-    console.log(this.deployInstanceForm.getRawValue());
+
+  /**
+   * NGX-select-dropdown on changed method
+   * @param $event on change
+   */
+  selectionChanged($event: any) {
+    // console.log(this.deployInstanceForm.getRawValue());
   }
 
   /**

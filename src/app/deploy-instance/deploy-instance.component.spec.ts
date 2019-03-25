@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonsModule, BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 import { DeployInstanceComponent } from './deploy-instance.component';
 
@@ -17,6 +18,7 @@ describe('DeployInstanceComponent', () => {
         FormsModule,
         ButtonsModule,
         HttpClientTestingModule,
+        SelectDropDownModule,
         RouterTestingModule,
         ModalModule.forRoot(),
         ReactiveFormsModule
