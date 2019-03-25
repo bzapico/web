@@ -17,7 +17,7 @@
           <div *ngIf="!openFromRegistered"  class="form-group">
             <label>Registered name</label>
 
-            <ngx-select-dropdown 
+            <!-- <ngx-select-dropdown 
               formControlName="selectData" 
               [multiple]="true" 
               [config]="config" 
@@ -30,7 +30,22 @@
               [ngValue]="regApp">
               {{app.name}}
             </option>
-            </ngx-select-dropdown>
+            </ngx-select-dropdown> -->
+            <div class="overflow-box"    >
+                <ng-select 
+                    bindLabel="company"
+                    [items]="selectData"
+          
+                    placeholder="Select item"
+                    formControlName="selectData" >
+                    <option 
+                    *ngFor="let app of registeredApps"
+                    value="app"     
+                    >
+                        {{app.name}}
+                    </option>
+                </ng-select>
+            </div>
   
             <div class="error-h"></div>
           </div>
