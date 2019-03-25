@@ -18,11 +18,18 @@
             <label>Registered name</label>
 
             <ngx-select-dropdown 
-              (click)="selectRegistered(app)" 
               formControlName="selectData" 
               [multiple]="true" 
               [config]="config" 
               [options]="registeredName">
+              <option value="registeredName">{{registeredName}}</option>
+              <option 
+              class="dropdown-item cursor-pointer"
+              *ngFor="let app of registeredApps"  
+              (click)="selectRegistered(app)" 
+              [ngValue]="regApp">
+              {{app.name}}
+            </option>
             </ngx-select-dropdown>
   
             <div class="error-h"></div>
