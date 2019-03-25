@@ -39,6 +39,7 @@
               formControlName="instanceName" 
               value="instanceName"
               placeholder="Instance name"
+              appAutofocus="{{defaultAutofocus}}"
               type="text" 
               [ngClass]="{ 'is-invalid': submitted && f.instanceName.errors }"
               class="form-control">

@@ -126,6 +126,7 @@ export class OrganizationComponent implements OnInit {
       userName: user.name,
       email: user.email,
       role: user.role_name,
+      defaultAutofocus: true
     };
 
     this.modalRef = this.modalService.show(UserInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
@@ -144,7 +145,8 @@ export class OrganizationComponent implements OnInit {
       email: user.email,
       userRole: user.role_name,
       title: 'Edit user',
-      selfEditProfile: false
+      selfEditProfile: false,
+      defaultAutofocus: true
     };
 
     this.modalRef = this.modalService.show(EditUserComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });

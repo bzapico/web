@@ -21,7 +21,7 @@
           pattern="[a-zA-Z0-9]+"
           type="text" 
           value="{{userName}}"
-          autofocus
+          appAutofocus="true"
           class="form-control" 
           [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
           >
@@ -44,42 +44,17 @@
       </div>
       <div class="form-group">
         <label>Role*</label>
-        <div class="btn-group w-100" dropdown>
-          <button 
-            id="button-basic" 
-            dropdownToggle 
-            type="button" 
-            class="dropdown-toggle cursor-pointer form-control"
-            [ngClass]="{ 'is-invalid': submitted && role === '' }"
-            aria-controls="dropdown-basic">
-            {{userRole}}
-          </button>
-          <ul 
-            id="dropdown-basic" 
-            *dropdownMenu 
-            class="dropdown-menu"
-            role="menu" 
-            aria-labelledby="button-basic">
-            <li role="menuitem">
-              <span class="dropdown-item cursor-pointer" (click)="userRole = 'Owner'">
-                Owner
-              </span>
-            </li>
-            <li role="menuitem">
-              <span class="dropdown-item cursor-pointer" (click)="userRole = 'Developer'">
-                Developer
-              </span>
-            </li>
-            <li role="menuitem">
-              <span class="dropdown-item cursor-pointer" (click)="userRole = 'Operator'">
-                Operator
-              </span>
-            </li>
-          </ul>
-        </div>
+        <ngx-select-dropdown 
+          formControlName="role" 
+          [multiple]="false" 
+          [ngClass]="{ 'ngx-error': submitted && !userRole }"
+          [config]="selectConfig" 
+          [options]="roleOptions">
+          {{userRole}}
+        </ngx-select-dropdown>
         <div class="error-h">
           <div *ngIf="submitted" class="error-message">
-            <div *ngIf="role === ''">A roles is required</div>
+            <div *ngIf="!userRole">A roles is required</div>
           </div>
         </div>
       </div>

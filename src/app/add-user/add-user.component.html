@@ -21,7 +21,7 @@
             placeholder="e.g. John"
             pattern="[a-zA-Z0-9]+"
             type="text" 
-            autofocus
+            appAutofocus="true"
             class="form-control" 
             [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
             required>

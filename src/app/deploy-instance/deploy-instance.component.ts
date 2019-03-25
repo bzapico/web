@@ -49,6 +49,7 @@ export class DeployInstanceComponent implements OnInit {
     ignoreBackdropClick: true
   };
 
+  defaultAutofocus: string;
   /**
    * NGX-select-dropdown
    */
@@ -99,11 +100,6 @@ export class DeployInstanceComponent implements OnInit {
     .subscribe(response => {
         this.registeredApps = response.descriptors || [];
     });
-
-    // NGX-select-dropdown
-    setTimeout(() => {
-      this.deployInstanceForm.patchValue({ selectDrop: this.selectedOptions[0] });
-    }, 7000);
   }
 
   /**

@@ -6,7 +6,6 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-add-user',
@@ -89,11 +88,6 @@ export class AddUserComponent implements OnInit {
       passwordConfirm: [''],
       role: [null, Validators.required],
     });
-
-    // NGX-select-dropdown
-    setTimeout(() => {
-      this.addUserForm.patchValue({ role: this.selectedOptions[0] });
-    }, 7000);
   }
 
   /**

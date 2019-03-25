@@ -16,7 +16,7 @@
                         formControlName="email" 
                         placeholder="{{email}}"
                         type="text" 
-                        autofocus
+                        appAutofocus="true"
                         [ngClass]="{ 'is-invalid': submitted && f.email.errors }" 
                         pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"
                         class="form-control"
