@@ -16,6 +16,16 @@ export class ServiceInfoComponent implements OnInit {
    */
   backend: Backend;
 
+  name: string;
+  image: string;
+  serviceId: string;
+  specs: any;
+  exposedPorts: any;
+  endpoints: any;
+  groupId: string;
+  appDescriptorId: string;
+  labels: any;
+
   /**
    * Loaded Data status
    */
