@@ -17,6 +17,25 @@ export class ServiceInstancesInfoComponent implements OnInit {
   backend: Backend;
 
   /**
+   * Data models for instances related information
+   */
+  name: string;
+  image: string;
+  serviceId: string;
+  statusName: string;
+  specs: any;
+  endpoints: any;
+  exposedPorts: any;
+  typeName: string;
+  credentials: any;
+  environmentVariables: any;
+  labels: any;
+  groupId: string;
+  appDescriptorId: string;
+  instanceId: string;
+  deployAfter: any;
+  deployedOnCluster: string;
+  /**
    * Loaded Data status
    */
   loadedData: boolean;

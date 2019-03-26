@@ -49,7 +49,7 @@
             dropdownToggle 
             type="button" 
             class="dropdown-toggle cursor-pointer form-control"
-            [ngClass]="{ 'is-invalid': submitted && role === '' }"
+            [ngClass]="{ 'is-invalid': submitted && userRole === '' }"
             aria-controls="dropdown-basic">
             {{userRole}}
           </button>
@@ -78,7 +78,7 @@
         </div>
         <div class="error-h">
           <div *ngIf="submitted" class="error-message">
-            <div *ngIf="role === ''">A roles is required</div>
+            <div *ngIf="userRole === ''">A role is required</div>
           </div>
         </div>
       </div>
