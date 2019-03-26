@@ -33,6 +33,11 @@ export class DeviceGroupCreatedComponent implements OnInit {
   group: any[];
 
   /**
+   * Holds the api key for the created group
+   */
+  groupApiKey: string;
+
+  /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
   config = {
