@@ -21,7 +21,6 @@ import { AuthService } from './services/auth.service';
 import { BackendService } from './services/backend.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { OrganizationComponent } from './organization/organization.component';
@@ -113,7 +112,6 @@ import { ServiceInfoComponent } from './service-info/service-info.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HttpModule,
     RouterModule,
     FileDropModule,
     // NGX-BOOTSTRAP
