@@ -4532,8 +4532,8 @@ export class InstanceInfoComponent implements OnInit {
             const sourceIndex &#x3D; this.graphData.nodes.map(x &#x3D;&gt; x.label).indexOf(rule.target_service_name);
             const targetIndex &#x3D; this.graphData.nodes.map(x &#x3D;&gt; x.label).indexOf(linkedService);
             const link &#x3D; {
-              source: this.graphData.nodes[sourceIndex].id,
-              target: this.graphData.nodes[targetIndex].id,
+              target: this.graphData.nodes[sourceIndex].id,
+              source: this.graphData.nodes[targetIndex].id,
             };
             this.graphData.links.push(link);
           });
