@@ -603,8 +603,8 @@ export class RegisteredInfoComponent implements OnInit {
             const sourceIndex = this.graphData.nodes.map(x => x.label).indexOf(rule.target_service_name);
             const targetIndex = this.graphData.nodes.map(x => x.label).indexOf(linkedService);
             const link = {
-              source: this.graphData.nodes[sourceIndex].id,
-              target: this.graphData.nodes[targetIndex].id
+              target: this.graphData.nodes[sourceIndex].id,
+              source: this.graphData.nodes[targetIndex].id
             };
             this.graphData.links.push(link);
           });
