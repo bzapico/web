@@ -643,7 +643,7 @@ export class InstanceInfoComponent implements OnInit {
       instanceId: service.service_instance_id,
       appDescriptorId: service.app_descriptor_id,
       appInstanceId: service.app_instance_id,
-      enviromentVariables: service.environment_variables,
+      environmentVariables: service.environment_variables,
       exposedPorts: service.exposed_ports,
       image: service.image,
       name: service.name,
