@@ -550,23 +550,70 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       // Requests an updated services group list
       this.backend.getAppInstance(this.organizationId,  this.instanceId)
       .subscribe(instance => {
-          this.instance = instance;
-          this.groups = instance.groups || [];
-          if (this.displayedGroups.length === 0 && this.groups.length > 0) {
-            for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
-              this.displayedGroups.push(this.groups[index]);
+          if (this.anyChanges(this.instance, instance)) {
+            this.instance = instance;
+            this.groups = instance.groups || [];
+            if (this.displayedGroups.length === 0 && this.groups.length > 0) {
+              for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
+                this.displayedGroups.push(this.groups[index]);
+              }
             }
-          }
-          this.toGraphData(instance);
-          this.updateDisplayedGroupsNamesLength();
-          if (!this.loadedData) {
-            this.loadedData = true;
+            this.toGraphData(instance);
+            this.updateDisplayedGroupsNamesLength();
+            if (!this.loadedData) {
+              this.loadedData = true;
+            }
           }
       }, errorResponse => {
           this.loadedData = true;
           this.requestError = errorResponse.error.message;
         });
     }
+  }
+
+  /**
+   * Compares the status of each instance service to determine if there are changes in the instances
+   * @param instanceOutdated Outdated instance object
+   * @param instanceUpdated Updated instance object
+   */
+  anyChanges(instanceOutdated, instanceUpdated) {
+    let anyChanges = false;
+    const instanceOutdatedServices = [];
+    const instanceUpdatedServices = [];
+    if (instanceOutdated.groups.length !== instanceUpdated.groups.length) {
+      return true;
+    }
+    // Creating arrays of services to compare
+    instanceOutdated.groups.forEach(group => {
+      group.service_instances.forEach(service => {
+        instanceOutdatedServices.push({
+            id: group.service_group_instance_id + service.service_instance_id,
+            status: service.status_name
+          });
+      });
+    });
+    instanceUpdated.groups.forEach(group => {
+      group.service_instances.forEach(service => {
+        instanceUpdatedServices.push({
+            id: group.service_group_instance_id + service.service_instance_id,
+            status: service.status_name
+          });
+      });
+    });
+
+    // Check if there is any difference in the status
+    instanceOutdatedServices.forEach(service => {
+      const index = instanceUpdatedServices.map(x => x.id).indexOf(service.id);
+      if (index !== -1) {
+        if (instanceUpdatedServices[index].status !== service.status) {
+          anyChanges = true;
+        }
+      } else {
+        anyChanges = true;
+      }
+    });
+
+    return anyChanges;
   }
 
   /**
