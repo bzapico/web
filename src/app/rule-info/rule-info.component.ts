@@ -17,6 +17,20 @@ export class RuleInfoComponent implements OnInit {
   backend: Backend;
 
   /**
+   * Data models for rules related information
+   */
+  name: string;
+  ruleId: string;
+  access: string;
+  targetServiceName: string;
+  targetServiceGroupName: string;
+  targetPort: string;
+  authServiceGroupName: string;
+  authServices: any;
+  deviceGroupIds: any;
+  deviceGroupNames: any;
+  appDescriptorId: string;
+  /**
    * Loaded Data status
    */
   loadedData: boolean;

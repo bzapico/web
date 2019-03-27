@@ -179,7 +179,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.labels = [];
     this.loadedData = false;
     this.devicesCount = 0;
-    this.devicesChart = [{name: 'Running devices %', series: []}];
+    this.devicesChart = [{
+      name: 'Running devices %',
+      series: []
+    }];
     this.requestError = '';
     this.maxLabelsLength = 35;
     this.device_group_id = 'Loading ...';
@@ -354,12 +357,13 @@ export class DevicesComponent implements OnInit, OnDestroy  {
               if (tmpDevices.length === this.groups.length) {
                 this.devices = tmpDevices;
               }
+              this.updateDevicesOnTimeline();
+              this.updateDevicesStatusLineChart();
             }, errorResponse => {
               this.loadedData = true;
               this.requestError = errorResponse.error.message;
             });
           });
-          this.updateDevicesStatusLineChart();
       }
     }
   }
@@ -380,7 +384,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         }
       });
     }
-
     const now = new Date(Date.now());
     let minutes: any = now.getMinutes();
     let seconds: any = now.getSeconds();
@@ -390,12 +393,13 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (seconds < 10) {
       seconds = '0' + now.getSeconds();
     }
+
     let value = 0;
-    if (connectedDevicesCount !== 0 && selectedGroupDevicesCountTotal !== 0) {
-      value = Math.floor(connectedDevicesCount / selectedGroupDevicesCountTotal) * 100;
+    if (connectedDevicesCount > 0 && selectedGroupDevicesCountTotal !== 0) {
+      value = connectedDevicesCount / selectedGroupDevicesCountTotal * 100;
     }
     const entry = {
-      'value': value,
+      'value': value.toFixed(2),
       'name':  now.getHours() + ':' + minutes + ':' + seconds
     };
 
@@ -405,7 +409,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
     this.devicesChart[0].series.push(entry);
     this.devicesChart = [...this.devicesChart];
-
   }
 
   /**
@@ -754,7 +757,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Updates devices values array for timeline
    */
-  updateDevicesOnTimeline () {
+  updateDevicesOnTimeline() {
     this.devicesOnTimeline = [];
     if (this.activeGroupId === 'ALL') {
       this.devices.forEach(devicesGroup => {
