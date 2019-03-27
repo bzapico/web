@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
@@ -16,7 +16,7 @@ import { Services } from '@angular/core/src/view';
   templateUrl: './instance-info.component.html',
   styleUrls: ['./instance-info.component.scss']
 })
-export class InstanceInfoComponent implements OnInit {
+export class InstanceInfoComponent implements OnInit, OnDestroy {
 
   /**
    * Backend reference
@@ -68,6 +68,15 @@ export class InstanceInfoComponent implements OnInit {
    * List of labels
    */
   labels: any[];
+  /**
+   * Interval reference
+   */
+  refreshIntervalRef: any;
+
+  /**
+   * Refresh ratio reference
+   */
+  REFRESH_RATIO = 5000;
 
   /**
    * Models that keeps the displayed groups names length
@@ -127,6 +136,7 @@ export class InstanceInfoComponent implements OnInit {
   /**
    * Graph options
    */
+  graphReset: boolean;
   graphDataLoaded: boolean;
   showlegend: boolean;
   graphData: any;
@@ -189,6 +199,7 @@ export class InstanceInfoComponent implements OnInit {
     this.filterField = false;
     this.filterFieldRules = false;
      // Graph initialization
+     this.graphReset = false;
      this.showlegend = false;
      this.orientation = 'TB';
      this.curve = shape.curveBasis;
@@ -227,21 +238,27 @@ export class InstanceInfoComponent implements OnInit {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
         if (this.organizationId !== null) {
-          this.backend.getRegisteredApps(this.organizationId)
-            .subscribe(registeredAppsResponse => {
-              this.registered = registeredAppsResponse.descriptors;
-            });
-          this.updateInstanceInfo(this.organizationId);
+          this.updateInfo();
         }
-        this.updateDisplayedGroupsNamesLength();
     }
-    this.backend.getAppInstance(this.organizationId,  this.instanceId)
-    .subscribe(instance => {
-        this.instance = instance;
-        if (!this.loadedData) {
-          this.loadedData = true;
-        }
-    });
+    this.refreshIntervalRef = setInterval(() => {
+      this.updateInfo();
+    }, this.REFRESH_RATIO); // Refresh each 5 seconds
+
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.refreshIntervalRef);
+    this.refreshIntervalRef = null;
+  }
+
+  updateInfo() {
+    this.backend.getRegisteredApps(this.organizationId)
+      .subscribe(registeredAppsResponse => {
+        this.registered = registeredAppsResponse.descriptors;
+      });
+    this.updateInstanceInfo(this.organizationId);
+    this.updateDisplayedGroupsNamesLength();
   }
 
   /**
@@ -249,6 +266,10 @@ export class InstanceInfoComponent implements OnInit {
    * @param instance instance object
    */
   toGraphData(instance) {
+    this.graphData = {
+      nodes: [],
+      links: []
+    };
     if (instance && instance.groups) {
       instance.groups.forEach(group => {
         const nodeGroup = {
@@ -811,5 +832,15 @@ export class InstanceInfoComponent implements OnInit {
       }
     }
     return 'url(#arrow)';
+  }
+
+  /**
+   * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
+   */
+  resetGraphZoom() {
+    this.graphReset = true;
+    setTimeout(() => {
+      this.graphReset = false;
+    }, 1);
   }
 }
