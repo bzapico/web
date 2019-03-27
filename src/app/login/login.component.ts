@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DebugPanelComponent } from '../debug-panel/debug-panel.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { NotificationsService } from '../services/notifications.service';
-import { detectChangesInternal } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +18,11 @@ export class LoginComponent implements OnInit {
    */
   loginForm: FormGroup;
   submitted = false;
+
+  /**
+   * Data model for user email
+   */
+  email: string;
 
   /**
    * Reference for the service that allows to open debug panel

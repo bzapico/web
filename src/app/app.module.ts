@@ -21,7 +21,6 @@ import { AuthService } from './services/auth.service';
 import { BackendService } from './services/backend.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { OrganizationComponent } from './organization/organization.component';
@@ -116,7 +115,6 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HttpModule,
     SelectDropDownModule,
     RouterModule,
     FileDropModule,
