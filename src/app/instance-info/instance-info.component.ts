@@ -280,14 +280,28 @@ export class InstanceInfoComponent implements OnInit {
     if (instance.rules) {
       instance.rules.forEach(rule => {
         if (rule.auth_services) {
-          rule.auth_services.forEach(linkedService => {
-            const sourceIndex = this.graphData.nodes.map(x => x.label).indexOf(rule.target_service_name);
-            const targetIndex = this.graphData.nodes.map(x => x.label).indexOf(linkedService);
-            const link = {
-              target: this.graphData.nodes[sourceIndex].id,
-              source: this.graphData.nodes[targetIndex].id,
-            };
-            this.graphData.links.push(link);
+          rule.auth_services.forEach(authService => {
+            const targetsIndex: number[] = [];
+            for (let index = 0; index < this.graphData.nodes.length; index++) {
+              if (this.graphData.nodes[index].label === rule.target_service_name) {
+                targetsIndex.push(index);
+              }
+            }
+            const sourcesIndex: number[] = [];
+            for (let index = 0; index < this.graphData.nodes.length; index++) {
+              if (this.graphData.nodes[index].label === authService) {
+                sourcesIndex.push(index);
+              }
+            }
+            sourcesIndex.forEach(indexSource => {
+              targetsIndex.forEach(indexTarget => {
+                const link = {
+                  source: this.graphData.nodes[indexSource].id,
+                  target: this.graphData.nodes[indexTarget].id,
+                };
+                this.graphData.links.push(link);
+              });
+            });
           });
         }
       });
