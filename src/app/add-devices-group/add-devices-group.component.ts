@@ -119,7 +119,8 @@ export class AddDevicesGroupComponent implements OnInit {
         this.loading = false;
         this.notificationsService.add({
           message: 'ERROR: ' + error.error.message,
-          timeout: 10000
+          timeout: 10000,
+          type: 'warning'
         });
       });
     }

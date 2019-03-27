@@ -638,12 +638,13 @@ export class DevicesComponent implements OnInit, OnDestroy  {
               });
               this.notificationsService.add({
                 message: 'Group "' + deleteGroupName + '" has been deleted',
-                timeout: 10000
+                timeout: 3000
               });
           }, error => {
             this.notificationsService.add({
               message: error.error.message,
-              timeout: 10000
+              timeout: 5000,
+              type: 'warning'
             });
           });
       }

@@ -112,6 +112,7 @@ export class AddLabelComponent implements OnInit {
             this.notificationsService.add({
               message: error.error.message,
               timeout: 5000,
+              type: 'warning'
             });
           });
       break;
@@ -141,6 +142,7 @@ export class AddLabelComponent implements OnInit {
             this.notificationsService.add({
               message: error.error.message,
               timeout: 5000,
+              type: 'warning'
             });
           });
       break;
@@ -169,6 +171,7 @@ export class AddLabelComponent implements OnInit {
             this.notificationsService.add({
               message: error.error.message,
               timeout: 5000,
+              type: 'warning'
             });
           });
       break;
@@ -198,6 +201,7 @@ export class AddLabelComponent implements OnInit {
             this.notificationsService.add({
               message: error.error.message,
               timeout: 5000,
+              type: 'warning'
             });
           });
       break;

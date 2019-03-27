@@ -604,7 +604,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000
+            timeout: 5000,
+            type: 'warning'
           });
         });
     }
@@ -641,7 +642,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000
+            timeout: 5000,
+            type: 'warning'
           });
         });
     }
