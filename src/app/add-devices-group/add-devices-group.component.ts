@@ -79,7 +79,7 @@ export class AddDevicesGroupComponent implements OnInit {
 
   ngOnInit() {
     this.addGroupForm = this.formBuilder.group({
-      groupName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[A-Za-z0-9_]+$')]],
+      groupName: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[A-Za-z0-9_]+$')]],
     });
   }
 
