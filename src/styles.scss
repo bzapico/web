@@ -834,7 +834,9 @@ button[type="submit"]:disabled {
   padding-top: 2em;
 }
 .box-line-chart {
+  border: 1px solid orangered;
   .ngx-charts {
+    background-color: wheat;
     .gridline-path {
       stroke: transparent!important;
       stroke-width: 1;
