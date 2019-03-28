@@ -29,7 +29,7 @@
           <div class="error-h">
             <div *ngIf="submitted && f.userName.errors" class="error-message">
               <div *ngIf="f.userName.errors.minlength">Name is too short</div>
-              <div *ngIf="f.userName.errors.pattern">Cannot contain spectial characters</div>
+              <div *ngIf="f.userName.errors.pattern">Cannot contain special characters</div>
             </div>
           </div>
       </div>
@@ -42,7 +42,7 @@
           class="form-control">
           <div class="error-h"></div>
       </div>
-      <div class="form-group drop-group">
+      <div *ngIf="profileRole === 'Owner'" class="form-group drop-group">
         <label>Role*</label>
         <ngx-select-dropdown 
           formControlName="role" 
@@ -60,6 +60,15 @@
             <div *ngIf="!userRole">A roles is required</div>
           </div>
         </div>
+      </div>
+      <div *ngIf="profileRole !== 'Owner'" class="form-group">
+        <label>Registered name</label>
+        <input 
+          placeholder="{{userRole}}"
+          type="text" 
+          class="form-control"
+          disabled>
+        <div class="error-h"></div>
       </div>
         <!-- Change password -->
       <div class="change-password" (click)="openChangePassword()">

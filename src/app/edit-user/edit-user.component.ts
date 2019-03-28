@@ -42,6 +42,7 @@ export class EditUserComponent implements OnInit {
   email: string;
   rolesList: any[];
   selfEditProfile: boolean;
+  profileRole: string;
 
   /**
    * NGX-select-dropdown
@@ -82,6 +83,11 @@ export class EditUserComponent implements OnInit {
       email: [{value: '', disabled: true}],
       role: [null, Validators.required],
     });
+
+    if (this.selfEditProfile === true) {
+      this.userRole = this.profileRole;
+    }
+
     this.selectConfig = {
       displayKey: 'role',
       search: false,
@@ -91,7 +97,6 @@ export class EditUserComponent implements OnInit {
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
-
     // Query role list
     this.backend.listRoles(this.organizationId)
       .subscribe(response => {

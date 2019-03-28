@@ -30,6 +30,7 @@ export class OrganizationComponent implements OnInit {
   organizationName: string;
   subscriptionType: string;
   users: any[];
+  profileRole: string;
 
   /**
    * Loaded Data status
@@ -98,6 +99,7 @@ export class OrganizationComponent implements OnInit {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
+      this.profileRole = JSON.parse(jwtData).role;
       if (this.organizationId !== null) {
         this.backend.getOrganizationInfo(this.organizationId)
           .subscribe(response => {
@@ -126,7 +128,7 @@ export class OrganizationComponent implements OnInit {
       userName: user.name,
       email: user.email,
       role: user.role_name,
-      defaultAutofocus: true
+      defaultAutofocus: true,
     };
 
     this.modalRef = this.modalService.show(UserInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
@@ -144,9 +146,10 @@ export class OrganizationComponent implements OnInit {
       userName: user.name,
       email: user.email,
       userRole: user.role_name,
+      profileRole: this.profileRole,
       title: 'Edit user',
       selfEditProfile: false,
-      defaultAutofocus: true
+      defaultAutofocus: true,
     };
 
     this.modalRef = this.modalService.show(EditUserComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
