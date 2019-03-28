@@ -100,7 +100,7 @@
       <div *ngIf="showGraph" class="card h-ins-services flex-grow-1">
         <div class="row">
           <div class="col-10 card-title-h">
-            <h5>SERVICE</h5>
+            <h5>SERVICES</h5>
           </div>
           <div class="col-2">
             <div class="show-graph-icons">
@@ -123,7 +123,7 @@
             </div> 
           </div>
         </div>
-        <div *ngIf="graphDataLoaded && countGroupServices('ALL') > 0" class="graph">
+        <div *ngIf="graphDataLoaded && !graphReset && countGroupServices('ALL') > 0" class="graph">
             <ngx-graph
                 class="chart-container"
                 [view]="view"
@@ -175,9 +175,9 @@
               </ng-template>
             </ngx-graph>
           </div>
-          <div class="row mt-2 text-right mr-1">
+          <div *ngIf="!graphReset" class="row mt-2 text-right mr-1">
             <div class="col graph-subtext">
-              Scroll on graph to zoom
+              Auto refresh every 5 seconds. Scroll on graph to zoom. <a class="blue cursor-pointer" (click)="resetGraphZoom()">Reset</a>
             </div>
           </div>
         <div *ngIf="!graphDataLoaded" class="loader"></div>
