@@ -14,7 +14,7 @@
     <!-- Body -->
     <div class="modal-body">
         <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">
-          <div *ngIf="!openFromRegistered"  class="form-group">
+          <div *ngIf="!openFromRegistered"  class="form-group drop-group">
             <label>Registered name</label>
             <ngx-select-dropdown 
               formControlName="selectDrop" 
@@ -22,6 +22,9 @@
               [config]="selectConfig" 
               [options]="registeredApps">
             </ngx-select-dropdown>
+            <div class="drop-down-arrow"> 
+                <i class="material-icons">arrow_drop_down</i>
+              </div>
             <div class="error-h"></div>
           </div>
           <div *ngIf="openFromRegistered" class="form-group">

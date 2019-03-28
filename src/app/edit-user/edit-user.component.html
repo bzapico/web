@@ -42,7 +42,7 @@
           class="form-control">
           <div class="error-h"></div>
       </div>
-      <div class="form-group">
+      <div class="form-group drop-group">
         <label>Role*</label>
         <ngx-select-dropdown 
           formControlName="role" 
@@ -52,6 +52,9 @@
           [options]="roleOptions">
           {{userRole}}
         </ngx-select-dropdown>
+        <div class="drop-down-arrow"> 
+            <i class="material-icons">arrow_drop_down</i>
+          </div>
         <div class="error-h">
           <div *ngIf="submitted" class="error-message">
             <div *ngIf="!userRole">A roles is required</div>

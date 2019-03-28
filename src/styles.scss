@@ -563,6 +563,16 @@ button[type="submit"]:disabled {
     border: 2px solid #F25272 !important;
   }
 }
+.drop-group {
+  position: relative;
+}
+.drop-down-arrow {
+  position: absolute;
+  top: 32px;
+  right: 16px;
+  color: #949494;
+  cursor: pointer;
+}
 
 /* - - - Forms error messages styles - - - */
 .error-h {
