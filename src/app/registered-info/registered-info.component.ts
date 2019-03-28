@@ -741,6 +741,7 @@ export class RegisteredInfoComponent implements OnInit {
      serviceId: service.service_group_id,
      appDescriptorId: service.app_descriptor_id,
      exposedPorts: service.exposed_ports,
+     environmentVariables: service.environment_variables,
      image: service.image,
      labels: service.labels,
      name: service.name,

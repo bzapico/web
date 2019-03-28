@@ -529,7 +529,7 @@
                     (click)="setOrder('rules','target')" 
                     [ngClass]="getCategoryCSSClass('rules','target')" 
                     scope="col"
-                    class="col-4">
+                    class="col-4 auth-lh-fix">
                     Target <span class="grey typo-small">(group, service, port)</span>
                     <span 
                       class="expand-chevron" 
@@ -546,8 +546,8 @@
                     (click)="setOrder('rules','auth')" 
                     [ngClass]="getCategoryCSSClass('rules','auth')" 
                     scope="col" 
-                    class="col-3">
-                    Auth <span class="grey typo-small">(group, service / device group)</span>
+                    class="col-3 auth-lh-fix">
+                    Auth <span class="grey typo-small ">(group, service / device group)</span>
                     <span 
                       class="expand-chevron" 
                       *ngIf="sortedByRules === 'auth' && !reverseRules">
@@ -576,7 +576,7 @@
                     </td>
                     <td class="col-2 text-lowercase">{{rule.access}}</td>
                     <td class="col-4">
-                      {{rule.target_service_name}} - {{rule.target_service_name}} - {{rule.target_port}}
+                      {{rule.target_service_group_name}} - {{rule.target_service_name}} - {{rule.target_port}}
                     </td>
                     <td class="text-lowercase col-3">
                       {{rule.auth_service_group_name}}
@@ -631,7 +631,7 @@
           </div>
           <div class="config-card">
             <div *ngIf="registeredData.environment_variables">
-              <p class=" text-left">Enviroment variables</p>
+              <p class=" text-left">Environment variables</p>
               <div 
                 class="row mb-2" 
                 *ngFor="let variable of objectToString(registeredData.environment_variables)">
@@ -645,8 +645,8 @@
               </div>
             </div>
             <div *ngIf="!registeredData.environment_variables">
-              <p class="text-left">Enviroment variables</p>
-              <p class="grey">No enviroment variables have been set</p>
+              <p class="text-left">Environment variables</p>
+              <p class="grey">No environment variables have been set</p>
             </div>
             <div *ngIf="registeredData.configuration_options">
               <p class="text-left">Other settings</p>

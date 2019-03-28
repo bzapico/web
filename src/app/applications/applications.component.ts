@@ -373,8 +373,44 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         }
         break;
       }
+      case 'deployment_error': {
+        if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
+      case 'planning_error': {
+        if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
+      case 'incomplete': {
+        if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
       case 'error': {
         if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
+      case 'queued': {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        break;
+      }
+      case 'planning': {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        break;
+      }
+      case 'scheduled': {
+        if (className.toLowerCase() === 'process') {
           return true;
         }
         break;
