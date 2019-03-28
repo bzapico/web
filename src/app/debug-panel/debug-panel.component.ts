@@ -283,7 +283,7 @@ export class DebugPanelComponent implements OnInit {
       id: this.notificationsService.uuidv4(),
       message: 'Test notification',
       type: 'info',
-      timeout: 10000
+      timeout: 5000
     });
   }
   urlChange($event) {

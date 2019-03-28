@@ -111,13 +111,14 @@ export class UserInfoComponent implements OnInit {
           .subscribe(response => {
             this.notificationsService.add({
               message: 'User ' + this.email + ' has been deleted',
-              timeout: 10000
+              timeout: 3000
             });
             this.bsModalRef.hide();
           }, error => {
             this.notificationsService.add({
               message: error.error.message,
-              timeout: 10000
+              timeout: 5000,
+              type: 'warning'
             });
           });
       }
