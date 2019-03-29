@@ -16,7 +16,7 @@
         <p class="upload-descriptor">Upload app descriptor file</p>
         <file-drop 
           *ngIf="!readyToUpload"
-          customstyle="file-drop"
+          dropZoneClassName="file-drop"
           (onFileDrop)="onFileDrop($event)" >
           <span
             class="drop-title">
