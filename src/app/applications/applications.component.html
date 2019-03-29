@@ -54,6 +54,8 @@
       </div>
       <div *ngIf="instances.length>0" class="h-100 box-line-chart">
         <ngx-charts-line-chart
+          [view]="view"
+          (window:resize)="onResize($event)"
           [scheme]="colorScheme"
           [results]="appsChart"
           [xAxis]="showXAxis"

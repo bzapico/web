@@ -134,23 +134,13 @@
 }
 /* - - - App Status card - - - */
 .box-line-chart {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width:93%;
-    height: 100%;
+    // width:93%;
+    // height: 100%;
+    // max-height: 265px;
+    background-color: chartreuse;
 }
-.y-axis-line-chart {
-    display: flex;
-    flex-direction:column;
-    justify-content: space-between;
-}
-
 /* - - - Media App Status card - - - */
 @media screen and (max-width:1500px) {
-    .y-axis-line-chart span {
-        font-size: .8em;
-    }
     .card-title-h h5, .card-title-c h5 {
         font-size: 1em;
     }

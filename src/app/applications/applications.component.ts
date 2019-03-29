@@ -115,6 +115,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Line Chart options
    */
   showXAxis = true;
+  view;
   showYAxis = true;
   showXAxisLabel = false;
   showYAxisLabel = false;
@@ -171,6 +172,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.backend = backendService;
     }
 
+    this.view = [innerWidth / 1.3, 400];
     // Default initialization
     this.instances = [];
     this.registered = [];
@@ -209,6 +211,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           }, this.REFRESH_RATIO); // Refresh each 60 seconds
       }
   }
+  onResize(event) {
+    this.view = [event.target.innerWidth / 158, 660];
+    console.log(event);
+}
 
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
