@@ -56,7 +56,7 @@
         class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
         No devices
       </div>
-      <div *ngIf="countGroupDevices(activeGroupId) > 0" class="h-100 box-line-chart">
+      <div *ngIf="countGroupDevices(activeGroupId) > 0" class="box-line-chart">
         <ngx-charts-line-chart
           [scheme]="colorScheme"
           [results]="devicesChart"

@@ -836,9 +836,8 @@ button[type="submit"]:disabled {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border: 1px solid orangered;
+  height: 88%;
   .ngx-charts {
-    background-color: wheat;
     .gridline-path {
       stroke: transparent!important;
       stroke-width: 1;

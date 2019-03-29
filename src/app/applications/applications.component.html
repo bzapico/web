@@ -52,10 +52,8 @@
         class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
         No applications deployed yet
       </div>
-      <div *ngIf="instances.length>0" class="h-100 box-line-chart">
+      <div *ngIf="instances.length>0" class="box-line-chart">
         <ngx-charts-line-chart
-          [view]="view"
-          (window:resize)="onResize($event)"
           [scheme]="colorScheme"
           [results]="appsChart"
           [xAxis]="showXAxis"
