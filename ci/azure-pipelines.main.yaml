@@ -46,11 +46,13 @@ jobs:
 
   - script: |
       sudo npm install -g @angular/cli
+      sudo chown -R $(whoami):$(id -gn) /home/$(whoami)
       npm install
     displayName: 'Install dependencies'
 
   - script: |
       ng run nalej:test-ci --watch=false --code-coverage
+    displayName: 'Run unit tests'
   
   - task: PublishTestResults@2
     inputs:
