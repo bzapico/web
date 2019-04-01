@@ -101,21 +101,22 @@ export class AddLabelComponent implements OnInit {
               add_labels: true,
               labels: updatedEntity.labels
             }
-            ).subscribe(updateClusterResponse => {
-              this.loading = false;
-              this.notificationsService.add({
-                message: 'Updated ' + this.entity.name,
-                timeout: 3000,
-              });
-              this.bsModalRef.hide();
-            }, error => {
-              this.loading = false;
-              this.notificationsService.add({
-                message: error.error.message,
-                timeout: 5000,
-              });
+          ).subscribe(updateClusterResponse => {
+            this.loading = false;
+            this.notificationsService.add({
+              message: 'Updated ' + this.entity.name,
+              timeout: 3000,
             });
-        break;
+            this.bsModalRef.hide();
+          }, error => {
+            this.loading = false;
+            this.notificationsService.add({
+              message: error.error.message,
+              timeout: 5000,
+              type: 'warning'
+            });
+          });
+          break;
         case 'node':
           if (!updatedEntity.labels || updatedEntity.labels === '-') {
             updatedEntity.labels = {};
@@ -131,21 +132,23 @@ export class AddLabelComponent implements OnInit {
               add_labels: true,
               labels: updatedEntity.labels
             }
-            ).subscribe(updateNodeResponse => {
-              this.loading = false;
-              this.notificationsService.add({
-                message: 'Updated ' + this.entity.ip + ' node',
-                timeout: 3000,
-              });
-              this.bsModalRef.hide();
-            }, error => {
-              this.loading = false;
-              this.notificationsService.add({
-                message: error.error.message,
-                timeout: 5000,
-              });
+          ).subscribe(updateNodeResponse => {
+            this.loading = false;
+            this.notificationsService.add({
+              message: 'Updated ' + this.entity.ip + ' node',
+              timeout: 3000,
             });
-        break;
+            this.bsModalRef.hide();
+          }, error => {
+            this.loading = false;
+            this.notificationsService.add({
+              message: error.error.message,
+              timeout: 5000,
+              type: 'warning'
+            });
+          });
+          this.bsModalRef.hide();
+          break;
         case 'device':
           if (!updatedEntity.labels || updatedEntity.labels === '-') {
             updatedEntity.labels = {};
@@ -160,21 +163,23 @@ export class AddLabelComponent implements OnInit {
               device_id: updatedEntity.device_id,
               labels: updatedEntity.labels
             }
-            ).subscribe(updateDeviceResponse => {
-              this.loading = false;
-              this.notificationsService.add({
-                message: 'Updated ' + this.entity.device_id ,
-                timeout: 3000,
-              });
-              this.bsModalRef.hide();
-            }, error => {
-              this.loading = false;
-              this.notificationsService.add({
-                message: error.error.message,
-                timeout: 5000,
-              });
+          ).subscribe(updateDeviceResponse => {
+            this.loading = false;
+            this.notificationsService.add({
+              message: 'Updated ' + this.entity.device_id,
+              timeout: 3000,
             });
-        break;
+            this.bsModalRef.hide();
+          }, error => {
+            this.loading = false;
+            this.notificationsService.add({
+              message: error.error.message,
+              timeout: 5000,
+              type: 'warning'
+            });
+          });
+          this.bsModalRef.hide();
+          break;
         case 'app':
           if (!updatedEntity.labels || updatedEntity.labels === '-') {
             updatedEntity.labels = {};
@@ -190,23 +195,24 @@ export class AddLabelComponent implements OnInit {
               add_labels: true,
               labels: updatedEntity.labels
             }
-            ).subscribe(updateAppResponse => {
-              this.loading = false;
-              this.notificationsService.add({
-                message: 'Updated ' + this.entity.app_descriptor_id ,
-                timeout: 3000,
-              });
-              this.bsModalRef.hide();
-            }, error => {
-              this.loading = false;
-              this.notificationsService.add({
-                message: error.error.message,
-                timeout: 5000,
-              });
+          ).subscribe(updateAppResponse => {
+            this.loading = false;
+            this.notificationsService.add({
+              message: 'Updated ' + this.entity.app_descriptor_id,
+              timeout: 3000,
             });
-        break;
-      default:
-      break;
+            this.bsModalRef.hide();
+          }, error => {
+            this.loading = false;
+            this.notificationsService.add({
+              message: error.error.message,
+              timeout: 5000,
+              type: 'warning'
+            });
+          });
+          break;
+        default:
+          break;
       }
     }
   }

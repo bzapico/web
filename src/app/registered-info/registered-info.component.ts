@@ -556,7 +556,8 @@ export class RegisteredInfoComponent implements OnInit {
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000
+            timeout: 5000,
+            type: 'warning'
           });
         });
     }
@@ -604,8 +605,8 @@ export class RegisteredInfoComponent implements OnInit {
             const sourceIndex = this.graphData.nodes.map(x => x.label).indexOf(rule.target_service_name);
             const targetIndex = this.graphData.nodes.map(x => x.label).indexOf(linkedService);
             const link = {
-              source: this.graphData.nodes[sourceIndex].id,
-              target: this.graphData.nodes[targetIndex].id
+              target: this.graphData.nodes[sourceIndex].id,
+              source: this.graphData.nodes[targetIndex].id
             };
             this.graphData.links.push(link);
           });
@@ -741,6 +742,7 @@ export class RegisteredInfoComponent implements OnInit {
      serviceId: service.service_group_id,
      appDescriptorId: service.app_descriptor_id,
      exposedPorts: service.exposed_ports,
+     environmentVariables: service.environment_variables,
      image: service.image,
      labels: service.labels,
      name: service.name,

@@ -245,6 +245,11 @@
         overflow: scroll;
     }
 }
+@media screen and (max-height: 790px) {
+    .reg-labels {
+        padding-top: 0em;
+    }
+}
 
 /* - - -  Tables card - - - */
 .search-box {
@@ -286,8 +291,7 @@
         display: block;
     }
 }
-
-@media screen and (max-width:1280px) , screen and (max-height: 720px) {
+@media screen and (max-height: 668px) {
     .hide-title-sm {
         display: none;
     }
@@ -313,17 +317,15 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    overflow-y: auto;
-    overflow-y: hidden;
-    height: 100%;
-    padding: 1.5em;
+    justify-content: space-evenly;
+    overflow: scroll;
+    height: 83%;
+    word-wrap: break-word;
 }
-@media screen and (max-width:1682px), screen and (max-height: 800px)  {
+@media screen and (max-width:1682px), screen and (max-height: 944px)  {
     .config-card {
-        overflow: scroll;
-        display: block;
         text-align: left;
+        justify-content: end;
     }
 }
 
@@ -363,4 +365,8 @@
         width: 400px;
         height: 250px;
     }
+}
+
+.auth-lh-fix {
+    line-height: 12px;
 }

@@ -132,7 +132,7 @@ export class AddUserComponent implements OnInit {
           this.loading = false;
           this.notificationsService.add({
             message: 'The user ' + user.email + ' has been created successfully',
-            timeout: 5000
+            timeout: 3000
           });
           this.bsModalRef.hide();
         }, error => {
@@ -140,12 +140,14 @@ export class AddUserComponent implements OnInit {
           if (error.status === 409) {
             this.notificationsService.add({
               message: 'ERROR: ' + error.error.message + ' already exists',
-              timeout: 5000
+              timeout: 5000,
+              type: 'warning'
             });
           } else {
               this.notificationsService.add({
                 message: 'ERROR: ' + error.error.message,
-                timeout: 5000
+                timeout: 5000,
+                type: 'warning'
               });
             }
         });

@@ -96,7 +96,7 @@ export class ChangePasswordComponent implements OnInit {
           this.loading = false;
           this.notificationsService.add({
             message: 'Password changed successfully',
-            timeout: 5000
+            timeout: 3000
           });
           this.bsModalRef.hide();
         }, error => {
@@ -104,6 +104,7 @@ export class ChangePasswordComponent implements OnInit {
           this.notificationsService.add({
             message: error.error.message,
             timeout: 5000,
+            type: 'warning'
           });
         });
     }

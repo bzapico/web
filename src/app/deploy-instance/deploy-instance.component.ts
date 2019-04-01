@@ -124,7 +124,8 @@ export class DeployInstanceComponent implements OnInit {
           this.loading = false;
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000
+            timeout: 5000,
+            type: 'warning'
           });
           this.bsModalRef.hide();
         });

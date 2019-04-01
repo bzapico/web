@@ -78,14 +78,15 @@ export class EditClusterComponent implements OnInit {
           this.loading = false;
           this.notificationsService.add({
             message: 'The cluster ' + this.clusterName + ' has been edited',
-            timeout: 5000
+            timeout: 3000
           });
           this.bsModalRef.hide();
         }, error => {
           this.loading = false;
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000
+            timeout: 5000,
+            type: 'warning'
           });
           this.bsModalRef.hide();
         });

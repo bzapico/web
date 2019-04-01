@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
@@ -16,7 +16,7 @@ import { Services } from '@angular/core/src/view';
   templateUrl: './instance-info.component.html',
   styleUrls: ['./instance-info.component.scss']
 })
-export class InstanceInfoComponent implements OnInit {
+export class InstanceInfoComponent implements OnInit, OnDestroy {
 
   /**
    * Backend reference
@@ -68,6 +68,15 @@ export class InstanceInfoComponent implements OnInit {
    * List of labels
    */
   labels: any[];
+  /**
+   * Interval reference
+   */
+  refreshIntervalRef: any;
+
+  /**
+   * Refresh ratio reference
+   */
+  REFRESH_RATIO = 5000;
 
   /**
    * Models that keeps the displayed groups names length
@@ -127,6 +136,7 @@ export class InstanceInfoComponent implements OnInit {
   /**
    * Graph options
    */
+  graphReset: boolean;
   graphDataLoaded: boolean;
   showlegend: boolean;
   graphData: any;
@@ -189,6 +199,7 @@ export class InstanceInfoComponent implements OnInit {
     this.filterField = false;
     this.filterFieldRules = false;
      // Graph initialization
+     this.graphReset = false;
      this.showlegend = false;
      this.orientation = 'TB';
      this.curve = shape.curveBasis;
@@ -227,21 +238,27 @@ export class InstanceInfoComponent implements OnInit {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
         if (this.organizationId !== null) {
-          this.backend.getRegisteredApps(this.organizationId)
-            .subscribe(registeredAppsResponse => {
-              this.registered = registeredAppsResponse.descriptors;
-            });
-          this.updateInstanceInfo(this.organizationId);
+          this.updateInfo();
         }
-        this.updateDisplayedGroupsNamesLength();
     }
-    this.backend.getAppInstance(this.organizationId,  this.instanceId)
-    .subscribe(instance => {
-        this.instance = instance;
-        if (!this.loadedData) {
-          this.loadedData = true;
-        }
-    });
+    this.refreshIntervalRef = setInterval(() => {
+      this.updateInfo();
+    }, this.REFRESH_RATIO); // Refresh each 5 seconds
+
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.refreshIntervalRef);
+    this.refreshIntervalRef = null;
+  }
+
+  updateInfo() {
+    this.backend.getRegisteredApps(this.organizationId)
+      .subscribe(registeredAppsResponse => {
+        this.registered = registeredAppsResponse.descriptors;
+      });
+    this.updateInstanceInfo(this.organizationId);
+    this.updateDisplayedGroupsNamesLength();
   }
 
   /**
@@ -249,6 +266,10 @@ export class InstanceInfoComponent implements OnInit {
    * @param instance instance object
    */
   toGraphData(instance) {
+    this.graphData = {
+      nodes: [],
+      links: []
+    };
     if (instance && instance.groups) {
       instance.groups.forEach(group => {
         const nodeGroup = {
@@ -280,14 +301,28 @@ export class InstanceInfoComponent implements OnInit {
     if (instance.rules) {
       instance.rules.forEach(rule => {
         if (rule.auth_services) {
-          rule.auth_services.forEach(linkedService => {
-            const sourceIndex = this.graphData.nodes.map(x => x.label).indexOf(rule.target_service_name);
-            const targetIndex = this.graphData.nodes.map(x => x.label).indexOf(linkedService);
-            const link = {
-              source: this.graphData.nodes[sourceIndex].id,
-              target: this.graphData.nodes[targetIndex].id,
-            };
-            this.graphData.links.push(link);
+          rule.auth_services.forEach(authService => {
+            const targetsIndex: number[] = [];
+            for (let index = 0; index < this.graphData.nodes.length; index++) {
+              if (this.graphData.nodes[index].label === rule.target_service_name) {
+                targetsIndex.push(index);
+              }
+            }
+            const sourcesIndex: number[] = [];
+            for (let index = 0; index < this.graphData.nodes.length; index++) {
+              if (this.graphData.nodes[index].label === authService) {
+                sourcesIndex.push(index);
+              }
+            }
+            sourcesIndex.forEach(indexSource => {
+              targetsIndex.forEach(indexTarget => {
+                const link = {
+                  source: this.graphData.nodes[indexSource].id,
+                  target: this.graphData.nodes[indexTarget].id,
+                };
+                this.graphData.links.push(link);
+              });
+            });
           });
         }
       });
@@ -515,23 +550,70 @@ export class InstanceInfoComponent implements OnInit {
       // Requests an updated services group list
       this.backend.getAppInstance(this.organizationId,  this.instanceId)
       .subscribe(instance => {
-          this.instance = instance;
-          this.groups = instance.groups || [];
-          if (this.displayedGroups.length === 0 && this.groups.length > 0) {
-            for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
-              this.displayedGroups.push(this.groups[index]);
+          if (this.anyChanges(this.instance, instance)) {
+            this.instance = instance;
+            this.groups = instance.groups || [];
+            if (this.displayedGroups.length === 0 && this.groups.length > 0) {
+              for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
+                this.displayedGroups.push(this.groups[index]);
+              }
             }
-          }
-          this.toGraphData(instance);
-          this.updateDisplayedGroupsNamesLength();
-          if (!this.loadedData) {
-            this.loadedData = true;
+            this.toGraphData(instance);
+            this.updateDisplayedGroupsNamesLength();
+            if (!this.loadedData) {
+              this.loadedData = true;
+            }
           }
       }, errorResponse => {
           this.loadedData = true;
           this.requestError = errorResponse.error.message;
         });
     }
+  }
+
+  /**
+   * Compares the status of each instance service to determine if there are changes in the instances
+   * @param instanceOutdated Outdated instance object
+   * @param instanceUpdated Updated instance object
+   */
+  anyChanges(instanceOutdated, instanceUpdated) {
+    let anyChanges = false;
+    const instanceOutdatedServices = [];
+    const instanceUpdatedServices = [];
+    if (instanceOutdated.groups.length !== instanceUpdated.groups.length) {
+      return true;
+    }
+    // Creating arrays of services to compare
+    instanceOutdated.groups.forEach(group => {
+      group.service_instances.forEach(service => {
+        instanceOutdatedServices.push({
+            id: group.service_group_instance_id + service.service_instance_id,
+            status: service.status_name
+          });
+      });
+    });
+    instanceUpdated.groups.forEach(group => {
+      group.service_instances.forEach(service => {
+        instanceUpdatedServices.push({
+            id: group.service_group_instance_id + service.service_instance_id,
+            status: service.status_name
+          });
+      });
+    });
+
+    // Check if there is any difference in the status
+    instanceOutdatedServices.forEach(service => {
+      const index = instanceUpdatedServices.map(x => x.id).indexOf(service.id);
+      if (index !== -1) {
+        if (instanceUpdatedServices[index].status !== service.status) {
+          anyChanges = true;
+        }
+      } else {
+        anyChanges = true;
+      }
+    });
+
+    return anyChanges;
   }
 
   /**
@@ -565,7 +647,8 @@ export class InstanceInfoComponent implements OnInit {
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000
+            timeout: 5000,
+            type: 'warning'
           });
         });
     }
@@ -643,7 +726,7 @@ export class InstanceInfoComponent implements OnInit {
       instanceId: service.service_instance_id,
       appDescriptorId: service.app_descriptor_id,
       appInstanceId: service.app_instance_id,
-      enviormentVariables: service.enviroment_variables,
+      environmentVariables: service.environment_variables,
       exposedPorts: service.exposed_ports,
       image: service.image,
       name: service.name,
@@ -797,5 +880,15 @@ export class InstanceInfoComponent implements OnInit {
       }
     }
     return 'url(#arrow)';
+  }
+
+  /**
+   * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
+   */
+  resetGraphZoom() {
+    this.graphReset = true;
+    setTimeout(() => {
+      this.graphReset = false;
+    }, 1);
   }
 }

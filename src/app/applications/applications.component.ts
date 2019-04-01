@@ -373,8 +373,44 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         }
         break;
       }
+      case 'deployment_error': {
+        if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
+      case 'planning_error': {
+        if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
+      case 'incomplete': {
+        if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
       case 'error': {
         if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
+      case 'queued': {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        break;
+      }
+      case 'planning': {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        break;
+      }
+      case 'scheduled': {
+        if (className.toLowerCase() === 'process') {
           return true;
         }
         break;
@@ -606,7 +642,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000
+            timeout: 5000,
+            type: 'warning'
           });
         });
     }
@@ -643,7 +680,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000
+            timeout: 5000,
+            type: 'warning'
           });
         });
     }
