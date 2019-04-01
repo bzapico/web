@@ -86,9 +86,9 @@ jobs:
   
   - script: |
       VERSION=$(cat .version)
-      docker push $(stagingDockerRegitstry)/citesting/web:$VERSION
+      docker push $(stagingDockerRegistry)/citesting/web:$VERSION
     # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    displayName: Build the docker images
+    displayName: Psuh docker images
     
   - template: docker/logout.yaml@ci_templates
     parameters:
