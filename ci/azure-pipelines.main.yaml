@@ -45,7 +45,7 @@ jobs:
       slackWebhook: $(slackBuilds)
 
   - script: |
-      npm install -g @angular/cli
+      sudo npm install -g @angular/cli
       npm install
     displayName: 'Install dependencies'
 
