@@ -21,6 +21,7 @@
           pattern="[a-zA-Z0-9]+"
           type="text" 
           value="{{userName}}"
+          appAutofocus="true"
           class="form-control" 
           [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
           >
@@ -28,7 +29,7 @@
           <div class="error-h">
             <div *ngIf="submitted && f.userName.errors" class="error-message">
               <div *ngIf="f.userName.errors.minlength">Name is too short</div>
-              <div *ngIf="f.userName.errors.pattern">Cannot contain spectial characters</div>
+              <div *ngIf="f.userName.errors.pattern">Cannot contain special characters</div>
             </div>
           </div>
       </div>
@@ -41,46 +42,33 @@
           class="form-control">
           <div class="error-h"></div>
       </div>
-      <div class="form-group">
+      <div *ngIf="profileRole === 'Owner'" class="form-group drop-group">
         <label>Role*</label>
-        <div class="btn-group w-100" dropdown>
-          <button 
-            id="button-basic" 
-            dropdownToggle 
-            type="button" 
-            class="dropdown-toggle cursor-pointer form-control"
-            [ngClass]="{ 'is-invalid': submitted && userRole === '' }"
-            aria-controls="dropdown-basic">
-            {{userRole}}
-          </button>
-          <ul 
-            id="dropdown-basic" 
-            *dropdownMenu 
-            class="dropdown-menu"
-            role="menu" 
-            aria-labelledby="button-basic">
-            <li role="menuitem">
-              <span class="dropdown-item cursor-pointer" (click)="userRole = 'Owner'">
-                Owner
-              </span>
-            </li>
-            <li role="menuitem">
-              <span class="dropdown-item cursor-pointer" (click)="userRole = 'Developer'">
-                Developer
-              </span>
-            </li>
-            <li role="menuitem">
-              <span class="dropdown-item cursor-pointer" (click)="userRole = 'Operator'">
-                Operator
-              </span>
-            </li>
-          </ul>
-        </div>
+        <ngx-select-dropdown 
+          formControlName="role" 
+          [multiple]="false" 
+          [ngClass]="{ 'ngx-error': submitted && !userRole }"
+          [config]="selectConfig" 
+          [options]="roleOptions">
+          {{userRole}}
+        </ngx-select-dropdown>
+        <div class="drop-down-arrow"> 
+            <i class="material-icons">arrow_drop_down</i>
+          </div>
         <div class="error-h">
           <div *ngIf="submitted" class="error-message">
-            <div *ngIf="userRole === ''">A role is required</div>
+            <div *ngIf="!userRole">A roles is required</div>
           </div>
         </div>
+      </div>
+      <div *ngIf="profileRole !== 'Owner'" class="form-group">
+        <label>Role</label>
+        <input 
+          placeholder="{{userRole}}"
+          type="text" 
+          class="form-control"
+          disabled>
+        <div class="error-h"></div>
       </div>
         <!-- Change password -->
       <div class="change-password" (click)="openChangePassword()">
