@@ -57,7 +57,6 @@ jobs:
   - task: PublishTestResults@2
     inputs:
       testRunner: JUnit
-      testRunTitle: "Angular"
       testResultsFiles: "$(System.DefaultWorkingDirectory)/junit/TESTS-*.xml"
     displayName: "Publish test results"
 
@@ -65,7 +64,7 @@ jobs:
     inputs:
       codeCoverageTool: "cobertura"
       summaryFileLocation: "$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml"
-      reportDirectory: "$(System.DefaultWorkingDirectory)/reports/"
+      reportDirectory: "$(System.DefaultWorkingDirectory)/coverage"
     displayName: "Publish code coverage results"
   
   # - template: go/test.yaml@ci_templates
