@@ -69,21 +69,24 @@ jobs:
   - script: "ng build"
     displayName: "Build Web UI"
       
-  - template: docker/login.yaml@ci_templates
-    parameters:
-      username: $(spAppId)
-      password: $(spPassword)
-      dockerRegistry: $(stagingDockerRegistry)
+  # - template: docker/login.yaml@ci_templates
+  #   parameters:
+  #     username: $(spAppId)
+  #     password: $(spPassword)
+  #     dockerRegistry: $(stagingDockerRegistry)
+
+  - script: |
+      docker login --username $(spAppId) --password $(spPassword) $(stagingDockerRegistry)
     
   - script: |
       VERSION=$(cat .version)
-      docker build --no-cache -t $(stagingDockerRegitstry)/citesting/web:$(VERSION) -f components/web/Dockerfile .
+      docker build --no-cache -t $(stagingDockerRegistry)/citesting/web:$VERSION -f components/web/Dockerfile .
     # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     displayName: Build the docker images
   
   - script: |
       VERSION=$(cat .version)
-      docker push $(stagingDockerRegitstry)/citesting/web:$(VERSION)
+      docker push $(stagingDockerRegitstry)/citesting/web:$VERSION
     # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     displayName: Build the docker images
     
