@@ -28,15 +28,15 @@
               <div class="donut-number">{{countRunning}}/{{instances.length}}</div>
             </div>
             <p *ngIf="instances.length > 0" class="blue text-center apps-run mb-0">Apps running</p>
-            <p *ngIf="instances.length === 0" class="circle-name grey text-center no-deployed">NO APPS DEPLOYED</p>
-            <p *ngIf="instances.length > 0" class="circle-name grey text-center">DEPLOYED</p>
+            <p *ngIf="instances.length === 0" class="circle-name no-deployed">NO APPS DEPLOYED</p>
+            <p *ngIf="instances.length > 0" class="circle-name my-0">DEPLOYED</p>
           </div>
         </div>
-        <div class="fix-top">
+        <div>
           <div class="circle summary-box">
             <span class="align-self-center mt-1">{{registered.length}}</span>
           </div>
-          <p class="circle-name text-center mt-3">REGISTERED</p>
+          <p class="circle-name">REGISTERED</p>
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@
         class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
         No applications deployed yet
       </div>
-      <div *ngIf="instances.length>0" class="h-100 box-line-chart">
+      <div *ngIf="instances.length>0" class="box-line-chart">
         <ngx-charts-line-chart
           [scheme]="colorScheme"
           [results]="appsChart"
