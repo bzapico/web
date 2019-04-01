@@ -8,6 +8,7 @@
 
 FROM node:8.12.0-alpine as builder
 COPY package.json package-lock.json ./
+COPY node_modules node_modules
 
 RUN npm i && mkdir /ng-app && mv ./node_modules ./ng-app
 RUN ls ./ng-app
