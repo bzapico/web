@@ -50,8 +50,7 @@ jobs:
       npm install
     displayName: 'Install dependencies'
 
-  - script: |
-      ng run nalej:test-ci --watch=false --code-coverage
+  - script: "ng run nalej:test-ci --watch=false --code-coverage"
     displayName: 'Run unit tests'
   
   - task: PublishTestResults@2
@@ -67,36 +66,30 @@ jobs:
       reportDirectory: "$(System.DefaultWorkingDirectory)/coverage"
     displayName: "Publish code coverage results"
   
-  # - template: go/test.yaml@ci_templates
-  #   parameters:
-  #     modulePath: $(modulePath)
-
-  # - template: go/build.yaml@ci_templates
-  #   parameters:
-  #     modulePath: $(modulePath)
-  #     appList: $(appList)
-  
-  # - template: docker/login.yaml@ci_templates
-  #   parameters:
-  #     username: $(spAppId)
-  #     password: $(spPassword)
-  #     dockerRegistry: $(stagingDockerRegistry)
+  - script: "ng build"
+    displayName: "Build Web UI"
+      
+  - template: docker/login.yaml@ci_templates
+    parameters:
+      username: $(spAppId)
+      password: $(spPassword)
+      dockerRegistry: $(stagingDockerRegistry)
     
-  # - template: docker/build.yaml@ci_templates
-  #   parameters:
-  #     modulePath: $(modulePath)
-  #     imageList: $(imageList)
-  #     dockerRegistry: $(stagingDockerRegistry)
+  - script: |
+      VERSION=$(cat .version)
+      docker build --no-cache -t $(stagingDockerRegitstry)/citesting/web:$(VERSION) -f components/web/Dockerfile .
+    # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    displayName: Build the docker images
   
-  # - template: docker/push.yaml@ci_templates
-  #   parameters:
-  #     modulePath: $(modulePath)
-  #     imageList: $(imageList)
-  #     dockerRegistry: $(stagingDockerRegistry)
+  - script: |
+      VERSION=$(cat .version)
+      docker push $(stagingDockerRegitstry)/citesting/web:$(VERSION)
+    # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    displayName: Build the docker images
     
-  # - template: docker/logout.yaml@ci_templates
-  #   parameters:
-  #     dockerRegistry: $(stagingDockerRegistry)
+  - template: docker/logout.yaml@ci_templates
+    parameters:
+      dockerRegistry: $(stagingDockerRegistry)
 
   - template: slack/build/finish.yaml@ci_templates
     parameters:
