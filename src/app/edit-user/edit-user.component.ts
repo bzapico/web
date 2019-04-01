@@ -79,7 +79,7 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit() {
     this.editUserForm = this.formBuilder.group({
-      userName: ['', [Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]],
+      userName: ['', [Validators.minLength(3), Validators.pattern('^[a-zA-Z0-9]+$')]],
       email: [{value: '', disabled: true}],
       role: [null, Validators.required],
     });
@@ -132,6 +132,11 @@ export class EditUserComponent implements OnInit {
    */
   saveUserChanges(f) {
     this.submitted = true;
+    if (this.selfEditProfile) {
+      f.role.value = this.profileRole;
+    } else {
+      f.role.value = this.userRole;
+    }
     if (!f.userName.errors && f.role.value) {
       this.loading = true;
       this.backend.saveUserChanges(this.organizationId, {
@@ -142,7 +147,7 @@ export class EditUserComponent implements OnInit {
       .subscribe(response => {
         this.userName = f.userName.value;
         this.loading = false;
-        if (f.role.value) {
+        if (this.profileRole === 'Owner') {
           this.backend.changeRole(this.organizationId, this.email, this.getRoleId(f.role.value)).
           subscribe(responseRole => {
             this.notificationsService.add({
