@@ -460,9 +460,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (this.sortedBy === categoryName) {
       this.reverse = !this.reverse;
       this.filterField = false;
+    } else {
+      this.sortedBy = categoryName;
+      this.filterField = true;
     }
-    this.sortedBy = categoryName;
-    this.filterField = true;
   }
 
   /**
@@ -707,6 +708,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         groupDevices.push(device);
       });
     });
+    console.log(groupDevices.map(x => x.device_status_name));
     return groupDevices;
   }
 
