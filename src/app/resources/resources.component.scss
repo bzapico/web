@@ -1,5 +1,4 @@
 /* - - - Cluster table card - - - */
-
 .info-btn {
     height: 32px;
     width:32px;
@@ -12,34 +11,6 @@
     top: 6px;
     left: 7px;
 }
-.status-dot:before {
-    content:'\A';
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    background: #0937FF;
-    display:inline-block;
-    margin: 0 5px 0 0;
-}
-.status-dot-error:before {
-    content:'\A';
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    background: #F25272;
-    display:inline-block;
-    margin: 0 5px 0 0;
-}
-.status-dot-process:before {
-    content:'\A';
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    background: #03D7E8;
-    display:inline-block;
-    margin: 0 5px 0 0;
-}
-
 /* - - - Medias Cluster table card - - - */
 @media screen and (max-width:1500px) {
     .card-title-c {
@@ -47,16 +18,6 @@
     }
     h2 {
         font-size: 1.5rem;
-    }
-    .status-dot, 
-    .status-dot-error, 
-    .status-dot-process {
-        text-align: center;
-    }
-    .status-dot:before, 
-    .status-dot-error:before, 
-    .status-dot-process:before {
-        margin: 0 23px;
     }
     .info-btn {
         height: 25px;
@@ -104,9 +65,11 @@
 .circle-name {
     font-size: 1.2em;
     color:#949494;
+    text-align: center;
+    margin-top: 1em;
 }
 /* - - - Medias Summary card circles - - - */
-@media screen and (max-width:1500px){
+@media screen and (max-width:1500px), screen and (max-height: 790px) {
     .circle {
         margin-top: 2em;
         max-width: 65px;
@@ -118,8 +81,8 @@
         }
     }
     .circle-name {
-        font-size: 1em !important;
-        margin-top: 0.6em !important;
+        font-size: .9em;
+  
     }
     .summary-card {
         margin-top: 0em;
@@ -246,18 +209,8 @@
 }
 /* - - - Node Status card - - - */
 .box-line-chart {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    height: 100%;
     width: 92%;
     margin-left: 8px;
-}
-.y-axis-line-chart {
-    font-size: .8em;
-    display: flex;
-    flex-direction:column;
-    justify-content: space-between;
 }
 
 @media screen and (max-width:1500px) {
@@ -269,21 +222,22 @@
         margin-left: 0;
     }
 }
-@media screen and (max-width:1613px) {
-    .circle-name {
-        margin-bottom: 0;
-    }
-}
-@media screen and (max-width:1680px) {
+@media screen and (max-width:1680px), screen and (max-height: 864px) {
     .summary-card { 
         margin-top: 0em;
     }
     .circle {
         width: 90px;
         height: 90px;
-        margin-top: 10px;
     }
-    .circle-name {
-        margin-bottom: 0;
+}
+@media screen and (max-width:1686px){
+    .hide-all-word {
+        display: none;
     }
+    .nodes-run {
+        &:nth-child(2) { 
+         text-transform: capitalize;
+        }
+    }    
 }
