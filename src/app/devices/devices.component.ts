@@ -708,7 +708,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         groupDevices.push(device);
       });
     });
-    console.log(groupDevices.map(x => x.device_status_name));
     return groupDevices;
   }
 

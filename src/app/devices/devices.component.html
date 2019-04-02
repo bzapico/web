@@ -368,43 +368,43 @@
               </th>
               <th 
                 *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0"
-                (click)="setOrder('date')" 
-                [ngClass]="getCategoryCSSClass('date')"
+                (click)="setOrder('register_since')" 
+                [ngClass]="getCategoryCSSClass('register_since')"
                 scope="col" 
                 class="col-2">
                 Date
-                <span class="expand-chevron" *ngIf="sortedBy === 'date' && !reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'register_since' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'date' && reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'register_since' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
               <th 
                 *ngIf="activeGroupId === 'ALL'"
-                (click)="setOrder('date')" 
-                [ngClass]="getCategoryCSSClass('date')"
+                (click)="setOrder('register_since')" 
+                [ngClass]="getCategoryCSSClass('register_since')"
                 scope="col" 
                 class="col-1">
                 Date
-                <span class="expand-chevron" *ngIf="sortedBy === 'date' && !reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'register_since' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'date' && reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'register_since' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
               <th 
                 *ngIf="activeGroupId === 'ALL' || countGroupDevices(activeGroupId) > 0"
-                (click)="setOrder('status')" 
-                [ngClass]="getCategoryCSSClass('status')"
+                (click)="setOrder('device_status_name')" 
+                [ngClass]="getCategoryCSSClass('device_status_name')"
                 scope="col" 
                 class="col-2 text-center">
                 Status
-                <span class="expand-chevron" *ngIf="sortedBy === 'status' && !reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'device_status_name' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'status' && reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'device_status_name' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th> 
