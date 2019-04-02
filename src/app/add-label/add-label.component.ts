@@ -62,8 +62,8 @@ export class AddLabelComponent implements OnInit {
 
   ngOnInit() {
     this.addLabelForm = this.formBuilder.group({
-      labelName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
-      labelValue: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+      labelName: ['', [Validators.required, Validators.minLength(1), Validators.pattern('^[a-zA-Z0-9_.-]*$')]],
+      labelValue: ['', [Validators.required, Validators.minLength(1), Validators.pattern('^[a-zA-Z0-9_.-]*$')]],
     });
   }
 
@@ -78,29 +78,29 @@ export class AddLabelComponent implements OnInit {
    */
   addLabel(form) {
     this.submitted = true;
-    this.loading = true;
     const label = {
       key: form.labelName.value,
       value: form.labelValue.value,
     };
     const updatedEntity = this.entity;
-
-    switch (this.entityType.toLowerCase()) {
-      case 'cluster':
-        if (!updatedEntity.labels || updatedEntity.labels === '-') {
-          updatedEntity.labels = {};
-        }
-        updatedEntity.labels[form.labelName.value] = form.labelValue.value;
-        updatedEntity.add_labels = true;
-        this.backend.saveClusterChanges(
-          this.organizationId,
-          this.entity.cluster_id,
-          {
-            organizationId: this.organizationId,
-            clusterId: updatedEntity.cluster_id,
-            add_labels: true,
-            labels: updatedEntity.labels
+    if (!form.labelName.errors && !form.labelValue.errors) {
+      this.loading = true;
+      switch (this.entityType.toLowerCase()) {
+        case 'cluster':
+          if (!updatedEntity.labels || updatedEntity.labels === '-') {
+            updatedEntity.labels = {};
           }
+          updatedEntity.labels[form.labelName.value] = form.labelValue.value;
+          updatedEntity.add_labels = true;
+          this.backend.saveClusterChanges(
+            this.organizationId,
+            this.entity.cluster_id,
+            {
+              organizationId: this.organizationId,
+              clusterId: updatedEntity.cluster_id,
+              add_labels: true,
+              labels: updatedEntity.labels
+            }
           ).subscribe(updateClusterResponse => {
             this.loading = false;
             this.notificationsService.add({
@@ -109,28 +109,29 @@ export class AddLabelComponent implements OnInit {
             });
             this.bsModalRef.hide();
           }, error => {
+            this.loading = false;
             this.notificationsService.add({
               message: error.error.message,
               timeout: 5000,
               type: 'warning'
             });
           });
-      break;
-      case 'node':
-        if (!updatedEntity.labels || updatedEntity.labels === '-') {
-          updatedEntity.labels = {};
-        }
-        updatedEntity.labels[form.labelName.value] = form.labelValue.value;
-        updatedEntity.add_labels = true;
-        this.backend.updateNode(
-          this.organizationId,
-          this.entity.node_id,
-          {
-            organizationId: this.organizationId,
-            nodeId: updatedEntity.node_id,
-            add_labels: true,
-            labels: updatedEntity.labels
+          break;
+        case 'node':
+          if (!updatedEntity.labels || updatedEntity.labels === '-') {
+            updatedEntity.labels = {};
           }
+          updatedEntity.labels[form.labelName.value] = form.labelValue.value;
+          updatedEntity.add_labels = true;
+          this.backend.updateNode(
+            this.organizationId,
+            this.entity.node_id,
+            {
+              organizationId: this.organizationId,
+              nodeId: updatedEntity.node_id,
+              add_labels: true,
+              labels: updatedEntity.labels
+            }
           ).subscribe(updateNodeResponse => {
             this.loading = false;
             this.notificationsService.add({
@@ -139,74 +140,80 @@ export class AddLabelComponent implements OnInit {
             });
             this.bsModalRef.hide();
           }, error => {
+            this.loading = false;
             this.notificationsService.add({
               message: error.error.message,
               timeout: 5000,
               type: 'warning'
             });
           });
-      break;
-      case 'device':
-        if (!updatedEntity.labels || updatedEntity.labels === '-') {
-          updatedEntity.labels = {};
-        }
-        updatedEntity.labels[form.labelName.value] = form.labelValue.value;
-        updatedEntity.add_labels = true;
-        this.backend.addLabelToDevice(
-          this.organizationId,
-          {
-            organization_id: this.organizationId,
-            device_group_id: updatedEntity.device_group_id,
-            device_id: updatedEntity.device_id,
-            labels: updatedEntity.labels
+          this.bsModalRef.hide();
+          break;
+        case 'device':
+          if (!updatedEntity.labels || updatedEntity.labels === '-') {
+            updatedEntity.labels = {};
           }
+          updatedEntity.labels[form.labelName.value] = form.labelValue.value;
+          updatedEntity.add_labels = true;
+          this.backend.addLabelToDevice(
+            this.organizationId,
+            {
+              organization_id: this.organizationId,
+              device_group_id: updatedEntity.device_group_id,
+              device_id: updatedEntity.device_id,
+              labels: updatedEntity.labels
+            }
           ).subscribe(updateDeviceResponse => {
             this.loading = false;
             this.notificationsService.add({
-              message: 'Updated ' + this.entity.device_id ,
+              message: 'Updated ' + this.entity.device_id,
               timeout: 3000,
             });
             this.bsModalRef.hide();
           }, error => {
+            this.loading = false;
             this.notificationsService.add({
               message: error.error.message,
               timeout: 5000,
               type: 'warning'
             });
           });
-      break;
-      case 'app':
-        if (!updatedEntity.labels || updatedEntity.labels === '-') {
-          updatedEntity.labels = {};
-        }
-        updatedEntity.labels[form.labelName.value] = form.labelValue.value;
-        updatedEntity.add_labels = true;
-        this.backend.updateAppDescriptor(
-          this.organizationId,
-          this.entity.app_descriptor_id,
-          {
-            organizationId: this.organizationId,
-            descriptorId: updatedEntity.app_descriptor_id,
-            add_labels: true,
-            labels: updatedEntity.labels
+          this.bsModalRef.hide();
+          break;
+        case 'app':
+          if (!updatedEntity.labels || updatedEntity.labels === '-') {
+            updatedEntity.labels = {};
           }
+          updatedEntity.labels[form.labelName.value] = form.labelValue.value;
+          updatedEntity.add_labels = true;
+          this.backend.updateAppDescriptor(
+            this.organizationId,
+            this.entity.app_descriptor_id,
+            {
+              organizationId: this.organizationId,
+              descriptorId: updatedEntity.app_descriptor_id,
+              add_labels: true,
+              labels: updatedEntity.labels
+            }
           ).subscribe(updateAppResponse => {
             this.loading = false;
             this.notificationsService.add({
-              message: 'Updated ' + this.entity.app_descriptor_id ,
+              message: 'Updated ' + this.entity.app_descriptor_id,
               timeout: 3000,
             });
             this.bsModalRef.hide();
           }, error => {
+            this.loading = false;
             this.notificationsService.add({
               message: error.error.message,
               timeout: 5000,
               type: 'warning'
             });
           });
-      break;
-    default:
-    break;
+          break;
+        default:
+          break;
+      }
     }
   }
 

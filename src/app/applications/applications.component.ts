@@ -594,6 +594,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   deployInstance() {
     const initialState = {
       organizationId: this.organizationId,
+      defaultAutofocus: false
     };
 
     this.modalRef = this.modalService.show(DeployInstanceComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
@@ -612,7 +613,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       organizationId: this.organizationId,
       registeredId: app.app_descriptor_id,
       registeredName: app.name,
-      openFromRegistered: true
+      openFromRegistered: true,
+      defaultAutofocus: true
     };
 
     this.modalRef = this.modalService.show(DeployInstanceComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });

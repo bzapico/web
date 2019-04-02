@@ -32,19 +32,12 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 100%;
-    min-height: 100%;
+    height: 90%;
+    min-height: 90%;
 }
 .graph-subtext {
     color: #949494;
     font-size: 0.7em;
-}
-
-.orange {
-    color:  #ffc40d;
-}
-.teal {
-    color: #03D7E8;
 }
 
 /* - - -Summary card instances table - - - */
@@ -266,7 +259,11 @@
         padding-top: 0em;
         overflow: scroll;
     }
-
+}
+@media screen and (max-height: 790px) {
+    .ins-labels {
+        padding-top: 0em;
+    }
 }
 
 /* - - -  Tables card - - - */
@@ -309,7 +306,7 @@
         display: block;
     }
 }
-@media screen and (max-width:1280px) , screen and (max-height: 720px) {
+@media screen and (max-height: 668px) {
     .hide-title-sm {
         display: none;
     }
@@ -334,17 +331,15 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    overflow-y: auto;
-    overflow-y: hidden;
-    height: 100%;
-
+    justify-content: space-evenly;
+    overflow: scroll;
+    height: 83%;
+    word-wrap: break-word;
 }
-@media screen and (max-width:1682px), screen and (max-height: 800px)  {
+@media screen and (max-width:1682px), screen and (max-height: 944px)  {
     .config-card {
-        overflow: scroll;
-        display: block;
         text-align: left;
+        justify-content: end;
     }
 }
 
