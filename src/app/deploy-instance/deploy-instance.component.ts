@@ -93,7 +93,7 @@ export class DeployInstanceComponent implements OnInit {
     this.deployInstanceForm = this.formBuilder.group({
       registeredName: [{value: '', disabled: true}],
       selectDrop: [null, Validators.required],
-      instanceName: ['', [Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]],
+      instanceName: ['', [Validators.minLength(3), Validators.pattern('^[a-zA-Z0-9]+$')]],
     });
 
     this.backend.getRegisteredApps(this.organizationId)
