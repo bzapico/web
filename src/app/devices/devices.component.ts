@@ -459,7 +459,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   setOrder(categoryName: string) {
     if (this.sortedBy === categoryName) {
       this.reverse = !this.reverse;
-      this.filterField = false;
+      this.filterField = true;
     } else {
       this.sortedBy = categoryName;
       this.filterField = true;
@@ -873,6 +873,20 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       }
     }
     return false;
+  }
+
+  getBeautyCategoryName (sortedByRawCategory: string): string {
+    switch (sortedByRawCategory) {
+      case 'device_status_name':
+        return 'status';
+        break;
+      case 'register_since':
+        return 'date';
+        break;
+      default:
+        return sortedByRawCategory;
+        break;
+    }
   }
 
 }

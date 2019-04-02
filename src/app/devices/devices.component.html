@@ -280,13 +280,13 @@
             <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
           </p>
           <p *ngIf="filterField && !searchTerm" class="sorting-message">
-            Sorted by {{ sortedBy }},
+            Sorted by {{ getBeautyCategoryName(sortedBy) }},
             <span *ngIf="reverse">ascendant. </span>
             <span *ngIf="!reverse">descendant. </span>
             <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
           </p>
           <p *ngIf="filterField && searchTerm" class="sorting-message">
-            Sorted by {{ sortedBy }}
+            Sorted by {{ getBeautyCategoryName(sortedBy) }}
             <span *ngIf="reverse">ascendant </span>
             <span *ngIf="!reverse">descendant </span>
             and filtered by term "{{ searchTerm }}".
