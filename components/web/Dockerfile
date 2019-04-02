@@ -14,9 +14,7 @@ RUN ls ./ng-app
 WORKDIR /ng-app
 
 COPY *.json ./
-RUN mkdir src
 COPY src/ src/.
-RUN ls .
 
 RUN $(npm bin)/ng build
 

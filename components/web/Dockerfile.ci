@@ -1,0 +1,8 @@
+FROM nginx:alpine
+
+RUN rm -rf /usr/share/nginx/html/*
+
+COPY components/web/nginx/nalej_web.conf /etc/nginx/conf.d/
+COPY dist /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]

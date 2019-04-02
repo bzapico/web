@@ -29,6 +29,7 @@ bin/
 # misc
 /.sass-cache
 /connect.lock
+/junit
 /coverage
 /libpeerconnection.log
 npm-debug.log

@@ -1,0 +1,110 @@
+variables: 
+  - group: common-vars
+  - group: slack-webhooks
+  - group: docker-registries
+  - group: ci-service-principal
+  - group: ssh-credentials
+  - name: GOBIN
+    value: '$(GOPATH)/bin'
+  - name: GOROOT
+    value: '/usr/local/go1.11'
+  - name: GOPATH
+    value: '$(system.defaultWorkingDirectory)/gopath'
+  - name: modulePath
+    value: '$(GOPATH)/src/github.com/$(Build.Repository.Name)'
+  - name: appList
+    value: 'unified-logging-coord unified-logging-slave'
+  - name: imageList
+    value: 'unified-logging-coord unified-logging-slave'
+  - name: authorName
+    value: ""
+
+resources:
+  repositories:
+    - repository: ci_templates
+      type: github
+      name: nalej/ci-templates
+      endpoint: nalej
+
+jobs:
+- job: MainWorkflow
+
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  
+  steps:
+  - template: misc/variables.yaml@ci_templates
+
+  - template: slack/build/start.yaml@ci_templates
+    parameters:
+      author: $(authorName)
+      repository: $(Build.Repository.Name)
+      branch: $(Build.SourceBranch)
+      commit: $(Build.SourceVersionMessage)
+      buildUrl: $(buildUrl)$(Build.BuildId)
+      slackWebhook: $(slackBuilds)
+
+  - script: |
+      sudo npm install -g @angular/cli
+      sudo chown -R $(whoami):$(id -gn) /home/$(whoami)
+      npm install
+    displayName: 'Install dependencies'
+
+  - script: "ng run nalej:test-ci --watch=false --code-coverage"
+    displayName: 'Run unit tests'
+  
+  - task: PublishTestResults@2
+    inputs:
+      testRunner: JUnit
+      testResultsFiles: "$(System.DefaultWorkingDirectory)/junit/TESTS-*.xml"
+    displayName: "Publish test results"
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: "cobertura"
+      summaryFileLocation: "$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml"
+      reportDirectory: "$(System.DefaultWorkingDirectory)/coverage"
+    displayName: "Publish code coverage results"
+  
+  - script: "ng build"
+    displayName: "Build Web UI"
+      
+  - template: docker/login.yaml@ci_templates
+    parameters:
+      username: $(spAppId)
+      password: $(spPassword)
+      dockerRegistry: $(stagingDockerRegistry)
+  
+  - script: |
+      VERSION=$(cat .version)
+      docker build --no-cache -t $(stagingDockerRegistry)/nalej/web:$VERSION -f components/web/Dockerfile.ci .
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    displayName: Build the docker images
+  
+  - script: |
+      VERSION=$(cat .version)
+      docker push $(stagingDockerRegistry)/nalej/web:$VERSION
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    displayName: Push docker images
+    
+  - template: docker/logout.yaml@ci_templates
+    parameters:
+      dockerRegistry: $(stagingDockerRegistry)
+
+  - template: slack/build/finish.yaml@ci_templates
+    parameters:
+      author: $(authorName)
+      repository: $(Build.Repository.Name)
+      branch: $(Build.SourceBranch)
+      commit: $(Build.SourceVersionMessage)
+      buildUrl: $(buildUrl)$(Build.BuildId)
+      slackWebhook: $(slackBuilds)
+  
+  - template: slack/build/failed.yaml@ci_templates
+    parameters:
+      author: $(authorName)
+      repository: $(Build.Repository.Name)
+      branch: $(Build.SourceBranch)
+      commit: $(Build.SourceVersionMessage)
+      buildUrl: $(buildUrl)$(Build.BuildId)
+      slackWebhook: $(slackCIFailed)
