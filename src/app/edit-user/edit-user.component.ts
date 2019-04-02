@@ -42,6 +42,16 @@ export class EditUserComponent implements OnInit {
   email: string;
   rolesList: any[];
   selfEditProfile: boolean;
+  profileRole: string;
+
+  /**
+   * NGX-select-dropdown
+   */
+  tab = 1;
+  selectedOptions = [];
+  options = [];
+  selectConfig = {};
+  roleOptions: any[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -53,7 +63,11 @@ export class EditUserComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    // this.userRole = null;
+    this.roleOptions = [
+     'Owner',
+     'Operator',
+     'Developer'
+    ];
     const mock = localStorage.getItem(LocalStorageKeys.userEditMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -65,10 +79,24 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit() {
     this.editUserForm = this.formBuilder.group({
-      userName: ['', [Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]],
+      userName: ['', [Validators.minLength(3), Validators.pattern('^[a-zA-Z0-9]+$')]],
       email: [{value: '', disabled: true}],
+      role: [null, Validators.required],
     });
 
+    if (this.selfEditProfile === true) {
+      this.userRole = this.profileRole;
+    }
+
+    this.selectConfig = {
+      displayKey: 'role',
+      search: false,
+      height: 'auto',
+      placeholder: this.userRole,
+      limitTo: 3,
+      moreText: 'more',
+      noResultsFound: 'No results found!'
+    };
     // Query role list
     this.backend.listRoles(this.organizationId)
       .subscribe(response => {
@@ -104,31 +132,36 @@ export class EditUserComponent implements OnInit {
    */
   saveUserChanges(f) {
     this.submitted = true;
-    if (!f.userName.errors && this.userRole) {
+    if (this.selfEditProfile) {
+      f.role.value = this.profileRole;
+    } else {
+      f.role.value = this.userRole;
+    }
+    if (!f.userName.errors && f.role.value) {
       this.loading = true;
       this.backend.saveUserChanges(this.organizationId, {
         name: f.userName.value,
         email: this.email,
-        role_name: this.userRole
+        role_name: f.role.value
       })
       .subscribe(response => {
         this.userName = f.userName.value;
         this.loading = false;
-        if (this.userRole) {
-          this.backend.changeRole(this.organizationId, this.email, this.getRoleId(this.userRole)).
+        if (this.profileRole === 'Owner') {
+          this.backend.changeRole(this.organizationId, this.email, this.getRoleId(f.role.value)).
           subscribe(responseRole => {
             this.notificationsService.add({
               message: 'The user ' + this.userName + ' has been edited',
               timeout: 3000
             });
             this.bsModalRef.hide();
-            if (this.selfEditProfile === true && this.userRole === 'Owner') {
+            if (this.selfEditProfile === true && f.role.value === 'Owner') {
               // no redirection for the owner
-            } else if (this.selfEditProfile === true && this.userRole === 'Developer') {
+            } else if (this.selfEditProfile === true && f.role.value === 'Developer') {
               this.router.navigate([
                 '/applications'
               ]);
-            } else if (this.selfEditProfile === true && this.userRole === 'Operator') {
+            } else if (this.selfEditProfile === true && f.role.value === 'Operator') {
               this.router.navigate([
                 '/resources'
               ]);

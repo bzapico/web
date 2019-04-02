@@ -20,8 +20,18 @@
             formControlName="clusterName"
             placeholder="{{clusterName}}"
             value="{{clusterName}}"
+            appAutofocus="true"
+            pattern="[a-zA-Z0-9]+"
+            [ngClass]="{ 'is-invalid': submitted && f.clusterName.errors }"
             type="text" 
             class="form-control">
+            <div *ngIf="!submitted && f.clusterName.errors" class="error-message"></div>
+            <div class="error-h">
+              <div *ngIf="submitted && f.clusterName.errors" class="error-message">
+                <div *ngIf="f.clusterName.errors.minlength">Cluster name is too short</div>
+                <div *ngIf="f.clusterName.errors.pattern">Cannot contain spectial characters</div>
+              </div>
+            </div>
         </div>
         <div class="form-group d-flex flex-row justify-content-center mt-4">
           <button class="btn-nalej-form" [disabled]="loading">

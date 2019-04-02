@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonsModule, BsModalRef, TooltipModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 describe('AddUserComponent', () => {
   let component: AddUserComponent;
@@ -17,6 +18,7 @@ describe('AddUserComponent', () => {
         ButtonsModule,
         HttpClientTestingModule,
         TooltipModule,
+        SelectDropDownModule,
         RouterTestingModule,
         ReactiveFormsModule
       ],
