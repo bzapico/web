@@ -875,6 +875,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     return false;
   }
 
+  /**
+   * Returns human-understandable category name
+   * @param sortedByRawCategory Raw category name
+   */
   getBeautyCategoryName (sortedByRawCategory: string): string {
     switch (sortedByRawCategory) {
       case 'device_status_name':

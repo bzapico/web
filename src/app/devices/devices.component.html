@@ -315,7 +315,7 @@
       </div>
       <!-- No devices to show -->
       <div 
-        *ngIf="activeGroupId!== 'ALL' && countGroupDevices(activeGroupId) === 0"
+        *ngIf="countGroupDevices(activeGroupId) === 0"
         class="no-devices-in-group d-flex justify-content-center align-items-center">
           No available devices registered in this group
       </div>
@@ -339,7 +339,7 @@
                 </span>
               </th>
               <th 
-                *ngIf="activeGroupId === 'ALL'"
+                *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
                 (click)="setOrder('id')"
                 [ngClass]="getCategoryCSSClass('id')"
                 scope="col" 
@@ -353,7 +353,7 @@
                 </span>
               </th>
               <th 
-                *ngIf="activeGroupId === 'ALL'"
+                *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
                 (click)="setOrder('group')"
                 [ngClass]="getCategoryCSSClass('group')"
                 scope="col" 
@@ -381,7 +381,7 @@
                 </span>
               </th>
               <th 
-                *ngIf="activeGroupId === 'ALL'"
+                *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
                 (click)="setOrder('register_since')" 
                 [ngClass]="getCategoryCSSClass('register_since')"
                 scope="col" 
@@ -395,7 +395,7 @@
                 </span>
               </th>
               <th 
-                *ngIf="activeGroupId === 'ALL' || countGroupDevices(activeGroupId) > 0"
+                *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
                 (click)="setOrder('device_status_name')" 
                 [ngClass]="getCategoryCSSClass('device_status_name')"
                 scope="col" 
@@ -409,7 +409,7 @@
                 </span>
               </th> 
               <th 
-                *ngIf="activeGroupId === 'ALL' || countGroupDevices(activeGroupId) > 0"
+                *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
                 (click)="setOrder('labels')" 
                 [ngClass]="getCategoryCSSClass('labels')"
                 scope="col" 
@@ -423,7 +423,7 @@
                 </span>
               </th>
               <th
-                *ngIf="activeGroupId === 'ALL' || countGroupDevices(activeGroupId) > 0"
+                *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
                 scope="col" class="col-1 text-center">
                 Enabled
               </th>
