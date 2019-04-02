@@ -234,6 +234,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   countDevices(): number {
     let temporalCount = 0;
+    if (!this.loadedData) {
+      return null;
+    }
     this.devices.forEach(group => {
       temporalCount = group.length + temporalCount;
     });
@@ -275,9 +278,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           }
         }
         this.updateDisplayedGroupsNamesLength();
-        if (!this.loadedData) {
-          this.loadedData = true;
-        }
         this.updateDevicesList(this.organizationId);
       }, errorResponse => {
           this.loadedData = true;
@@ -347,11 +347,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (organizationId !== null) {
       // Request to get devices
       if (this.groups.length > 0) {
-        this.groups.forEach(group => {
+        this.groups.forEach((group, index) => {
           this.backend.getDevices(this.organizationId, group.device_group_id)
           .subscribe(response => {
               tmpDevices.push(response.devices || []);
-              if (!this.loadedData) {
+              if (!this.loadedData && index === this.groups.length - 1) {
                 this.loadedData = true;
               }
               if (tmpDevices.length === this.groups.length) {
@@ -459,10 +459,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   setOrder(categoryName: string) {
     if (this.sortedBy === categoryName) {
       this.reverse = !this.reverse;
-      this.filterField = false;
+      this.filterField = true;
+    } else {
+      this.sortedBy = categoryName;
+      this.filterField = true;
     }
-    this.sortedBy = categoryName;
-    this.filterField = true;
   }
 
   /**
@@ -872,6 +873,24 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       }
     }
     return false;
+  }
+
+  /**
+   * Returns human-understandable category name
+   * @param sortedByRawCategory Raw category name
+   */
+  getBeautyCategoryName (sortedByRawCategory: string): string {
+    switch (sortedByRawCategory) {
+      case 'device_status_name':
+        return 'status';
+        break;
+      case 'register_since':
+        return 'date';
+        break;
+      default:
+        return sortedByRawCategory;
+        break;
+    }
   }
 
 }
