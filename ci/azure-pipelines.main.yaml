@@ -85,7 +85,7 @@ jobs:
       VERSION=$(cat .version)
       docker push $(stagingDockerRegistry)/nalej/web:$VERSION
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    displayName: Psuh docker images
+    displayName: Push docker images
     
   - template: docker/logout.yaml@ci_templates
     parameters:
