@@ -80,7 +80,7 @@ jobs:
     
   - script: |
       VERSION=$(cat .version)
-      docker build --no-cache -t $(stagingDockerRegistry)/citesting/web:$VERSION -f components/web/Dockerfile .
+      docker build --no-cache -t $(stagingDockerRegistry)/citesting/web:$VERSION -f components/web/Dockerfile.ci .
     # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     displayName: Build the docker images
   
