@@ -16,13 +16,13 @@
           <div class="circle summary-box">
             <span class="align-self-center mt-1">{{clustersCount}}</span>
           </div>
-          <p class="circle-name text-center text-uppercase mt-3">Cluster</p>
+          <p class="circle-name">CLUSTER</p>
         </div>
         <div>
           <div class="circle summary-box">
             <span class="align-self-center mt-1">{{nodesCount}}</span>
           </div>
-          <p class="circle-name text-center text-uppercase mt-3">Nodes</p>
+          <p class="circle-name">NODES</p>
         </div>
       </div>
     </div>
@@ -58,8 +58,9 @@
                   *ngIf="clusterGroup[0].running_nodes === clusterGroup[0].total_nodes" 
                   class="blue nodes-run"                   
                   [routerLink]="['cluster', clusterGroup[0].cluster_id]" 
-                  routerLinkActive="active"
-                >All nodes running</p>
+                  routerLinkActive="active">
+                  <span class="hide-all-word">All</span> nodes running
+              </p>
                 <p 
                   *ngIf="clusterGroup[0].running_nodes !== clusterGroup[0].total_nodes" 
                   class="blue nodes-run"
@@ -84,7 +85,7 @@
                   class="blue nodes-run"
                   [routerLink]="['cluster', clusterGroup[1].cluster_id]" 
                   routerLinkActive="active">
-                  All nodes running
+                  <span class="hide-all-word">All</span> nodes running
                 </p>
                 <p
                   *ngIf="clusterGroup[1].running_nodes !== clusterGroup[1].total_nodes"
@@ -111,7 +112,7 @@
                   class="blue nodes-run"
                   [routerLink]="['cluster', clusterGroup[2].cluster_id]" 
                   routerLinkActive="active">
-                  All nodes running
+                  <span class="hide-all-word">All</span> nodes running
                 </p>
                 <p
                   *ngIf="clusterGroup[2].running_nodes !== clusterGroup[2].total_nodes"

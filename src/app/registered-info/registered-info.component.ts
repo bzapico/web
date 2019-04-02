@@ -528,7 +528,8 @@ export class RegisteredInfoComponent implements OnInit {
       organizationId: this.organizationId,
       registeredId: app.app_descriptor_id,
       registeredName: app.name,
-      openFromRegistered: true
+      openFromRegistered: true,
+      defaultAutofocus: true
     };
 
     this.modalRef = this.modalService.show(DeployInstanceComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });

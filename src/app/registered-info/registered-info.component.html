@@ -77,15 +77,15 @@
         </div>
         <div class="reg-labels" *ngIf="loadedData && registeredData && registeredData.labels && !requestError">
           <button 
-            (click)="onLabelClick(registeredData.app_descriptor_id, label[0], label[1])" 
-            [ngClass]="{
-              'btn-label-selected': indexOfLabelSelected(registeredData.app_descriptor_id, label[0], label[1]) >= 0 ,
-              'btn-outline-primary': indexOfLabelSelected(registeredData.app_descriptor_id, label[0], label[1]) === -1
-            }"
+          (click)="onLabelClick(registeredData.app_descriptor_id, label[0], label[1])"
+          [ngClass]=
+            "{'btn-label-selected': indexOfLabelSelected(registeredData.app_descriptor_id, label[0], label[1]) >= 0 ,
+              'btn-outline-primary': indexOfLabelSelected(registeredData.app_descriptor_id, label[0], label[1]) === -1}" 
             *ngFor="let label of labelsToString(registeredData.labels)" 
-            class="btn-sm btn-outline-primary">
-            {{label[0]}}: {{label[1]}}
-          </button>
+            class="btn-sm btn-outline-primary" 
+            >
+          {{label[0]}}: {{label[1]}} 
+        </button>
           <div class="label-buttons">
             <div 
               *ngIf="isAnyLabelSelected(registeredData.app_descriptor_id) === false" 

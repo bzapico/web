@@ -25,6 +25,7 @@ export class ServiceInfoComponent implements OnInit {
   groupId: string;
   appDescriptorId: string;
   labels: any;
+  environmentVariables: string;
 
   /**
    * Loaded Data status

@@ -20,10 +20,11 @@
               <input 
               formControlName="labelName" 
               type="text" 
+              appAutofocus="true"
               class="form-control" 
               placeholder="e.g. Group" 
               [ngClass]="{ 'is-invalid': submitted && f.labelName.errors }"
-              pattern="[A-Za-z0-9]{1,20}[^-,]+"
+              pattern="^[a-zA-Z0-9_.-]*$"
               required>
             <div *ngIf="!submitted && f.labelName.errors" class="error-message"></div>
             <div class="error-h">
@@ -41,7 +42,7 @@
               class="form-control" 
               placeholder="e.g. MyGroup" 
               [ngClass]="{ 'is-invalid': submitted && f.labelValue.errors }"
-              pattern="[A-Za-z0-9]{1,20}[^-,]+"
+              pattern="^[a-zA-Z0-9_.-]*$"
               required>
             <div *ngIf="!submitted && f.labelValue.errors" class="error-message"></div>
             <div class="error-h">

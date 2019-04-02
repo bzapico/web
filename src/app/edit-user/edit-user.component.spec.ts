@@ -6,6 +6,7 @@ import { ButtonsModule, BsModalRef, BsModalService, ModalModule } from 'ngx-boot
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 describe('EditUserComponent', () => {
   let component: EditUserComponent;
@@ -20,7 +21,8 @@ describe('EditUserComponent', () => {
         ButtonsModule,
         RouterTestingModule,
         ModalModule.forRoot(),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        SelectDropDownModule,
       ],
       providers: [
         BsModalRef,
