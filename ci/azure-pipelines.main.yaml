@@ -69,25 +69,22 @@ jobs:
   - script: "ng build"
     displayName: "Build Web UI"
       
-  # - template: docker/login.yaml@ci_templates
-  #   parameters:
-  #     username: $(spAppId)
-  #     password: $(spPassword)
-  #     dockerRegistry: $(stagingDockerRegistry)
-
-  - script: |
-      docker login --username $(spAppId) --password $(spPassword) $(stagingDockerRegistry)
-    
+  - template: docker/login.yaml@ci_templates
+    parameters:
+      username: $(spAppId)
+      password: $(spPassword)
+      dockerRegistry: $(stagingDockerRegistry)
+  
   - script: |
       VERSION=$(cat .version)
-      docker build --no-cache -t $(stagingDockerRegistry)/citesting/web:$VERSION -f components/web/Dockerfile.ci .
-    # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      docker build --no-cache -t $(stagingDockerRegistry)/nalej/web:$VERSION -f components/web/Dockerfile.ci .
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     displayName: Build the docker images
   
   - script: |
       VERSION=$(cat .version)
-      docker push $(stagingDockerRegistry)/citesting/web:$VERSION
-    # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      docker push $(stagingDockerRegistry)/nalej/web:$VERSION
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     displayName: Psuh docker images
     
   - template: docker/logout.yaml@ci_templates
