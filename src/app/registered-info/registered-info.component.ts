@@ -136,6 +136,7 @@ export class RegisteredInfoComponent implements OnInit {
    * Graph options
    */
   graphDataLoaded: boolean;
+  graphReset: boolean;
   showlegend: boolean;
   graphData: any;
   orientation: string;
@@ -206,6 +207,7 @@ export class RegisteredInfoComponent implements OnInit {
        nodes: [],
        links: []
      };
+     this.graphReset = false;
      this.nalejColorScheme = [
        '#1725AE',
        '#040D5A',
@@ -279,7 +281,7 @@ export class RegisteredInfoComponent implements OnInit {
    */
   labelsToString(labels: any) {
     if (!labels || labels === '-') {
-      return ;
+      return [];
     }
     return Object.entries(labels);
   }
@@ -807,6 +809,15 @@ export class RegisteredInfoComponent implements OnInit {
       }
     }
     return 'url(#arrow)';
+  }
+  /**
+   * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
+  */
+  resetGraphZoom() {
+    this.graphReset = true;
+    setTimeout(() => {
+      this.graphReset = false;
+    }, 1);
   }
 
 }
