@@ -80,14 +80,14 @@
         </div>
         <div class="reg-labels" *ngIf="loadedData && registeredData && registeredData.labels && !requestError">
           <button 
-          (click)="onLabelClick(registeredData.app_descriptor_id, label[0], label[1])"
           [ngClass]=
-            "{'btn-label-selected': indexOfLabelSelected(registeredData.app_descriptor_id, label[0], label[1]) >= 0 ,
-              'btn-outline-primary': indexOfLabelSelected(registeredData.app_descriptor_id, label[0], label[1]) === -1}" 
-            *ngFor="let label of labelsToString(registeredData.labels)" 
-            class="btn-sm btn-outline-primary" 
+          "{'btn-label-selected': indexOfLabelSelected(registeredData.app_descriptor_id, label.key, label.value) >= 0 ,
+          'btn-outline-primary': indexOfLabelSelected(registeredData.app_descriptor_id, label.key, label.value) === -1}" 
+          *ngFor="let label of registeredData.labels | keyvalue" 
+          (click)="onLabelClick(registeredData.app_descriptor_id, label.key, label.value)"
+          class="btn-sm btn-outline-primary" 
             >
-          {{label[0]}}: {{label[1]}} 
+          {{label.key}}: {{label.value}} 
         </button>
           <div class="label-buttons">
             <div 
@@ -152,7 +152,7 @@
             </div> 
           </div>
         </div>
-        <div *ngIf="graphDataLoaded" class="graph">
+        <div *ngIf="graphDataLoaded && !graphReset" class="graph">
           <ngx-graph
             class="chart-container"
             [view]="view"
@@ -204,9 +204,9 @@
             </ng-template>
           </ngx-graph>
         </div>
-        <div class="row mt-2 text-right mr-1">
+        <div *ngIf="!graphReset" class="row mt-2 text-right mr-1">
             <div class="col graph-subtext">
-              Scroll on graph to zoom
+              Scroll on graph to zoom. <a class="blue cursor-pointer" (click)="resetGraphZoom()">Reset</a>
             </div>
           </div>
         <div *ngIf="!graphDataLoaded" class="loader"></div>
