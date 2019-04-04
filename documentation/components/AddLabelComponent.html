@@ -407,7 +407,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/app/add-label/add-label.component.ts:213</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">src/app/add-label/add-label.component.ts:224</a></div>
                             </td>
                         </tr>
 
@@ -1046,8 +1046,8 @@ export class AddLabelComponent implements OnInit {
 
   ngOnInit() {
     this.addLabelForm &#x3D; this.formBuilder.group({
-      labelName: [&#x27;&#x27;, [Validators.required, Validators.pattern(&#x27;^[a-zA-Z]+$&#x27;)]],
-      labelValue: [&#x27;&#x27;, [Validators.required, Validators.pattern(&#x27;^[a-zA-Z]+$&#x27;)]],
+      labelName: [&#x27;&#x27;, [Validators.required, Validators.minLength(1), Validators.pattern(&#x27;^[a-zA-Z0-9_.-]*$&#x27;)]],
+      labelValue: [&#x27;&#x27;, [Validators.required, Validators.minLength(1), Validators.pattern(&#x27;^[a-zA-Z0-9_.-]*$&#x27;)]],
     });
   }
 
@@ -1062,29 +1062,29 @@ export class AddLabelComponent implements OnInit {
    */
   addLabel(form) {
     this.submitted &#x3D; true;
-    this.loading &#x3D; true;
     const label &#x3D; {
       key: form.labelName.value,
       value: form.labelValue.value,
     };
     const updatedEntity &#x3D; this.entity;
-
-    switch (this.entityType.toLowerCase()) {
-      case &#x27;cluster&#x27;:
-        if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
-          updatedEntity.labels &#x3D; {};
-        }
-        updatedEntity.labels[form.labelName.value] &#x3D; form.labelValue.value;
-        updatedEntity.add_labels &#x3D; true;
-        this.backend.saveClusterChanges(
-          this.organizationId,
-          this.entity.cluster_id,
-          {
-            organizationId: this.organizationId,
-            clusterId: updatedEntity.cluster_id,
-            add_labels: true,
-            labels: updatedEntity.labels
+    if (!form.labelName.errors &amp;&amp; !form.labelValue.errors) {
+      this.loading &#x3D; true;
+      switch (this.entityType.toLowerCase()) {
+        case &#x27;cluster&#x27;:
+          if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
+            updatedEntity.labels &#x3D; {};
           }
+          updatedEntity.labels[form.labelName.value] &#x3D; form.labelValue.value;
+          updatedEntity.add_labels &#x3D; true;
+          this.backend.saveClusterChanges(
+            this.organizationId,
+            this.entity.cluster_id,
+            {
+              organizationId: this.organizationId,
+              clusterId: updatedEntity.cluster_id,
+              add_labels: true,
+              labels: updatedEntity.labels
+            }
           ).subscribe(updateClusterResponse &#x3D;&gt; {
             this.loading &#x3D; false;
             this.notificationsService.add({
@@ -1093,27 +1093,29 @@ export class AddLabelComponent implements OnInit {
             });
             this.bsModalRef.hide();
           }, error &#x3D;&gt; {
+            this.loading &#x3D; false;
             this.notificationsService.add({
               message: error.error.message,
               timeout: 5000,
+              type: &#x27;warning&#x27;
             });
           });
-      break;
-      case &#x27;node&#x27;:
-        if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
-          updatedEntity.labels &#x3D; {};
-        }
-        updatedEntity.labels[form.labelName.value] &#x3D; form.labelValue.value;
-        updatedEntity.add_labels &#x3D; true;
-        this.backend.updateNode(
-          this.organizationId,
-          this.entity.node_id,
-          {
-            organizationId: this.organizationId,
-            nodeId: updatedEntity.node_id,
-            add_labels: true,
-            labels: updatedEntity.labels
+          break;
+        case &#x27;node&#x27;:
+          if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
+            updatedEntity.labels &#x3D; {};
           }
+          updatedEntity.labels[form.labelName.value] &#x3D; form.labelValue.value;
+          updatedEntity.add_labels &#x3D; true;
+          this.backend.updateNode(
+            this.organizationId,
+            this.entity.node_id,
+            {
+              organizationId: this.organizationId,
+              nodeId: updatedEntity.node_id,
+              add_labels: true,
+              labels: updatedEntity.labels
+            }
           ).subscribe(updateNodeResponse &#x3D;&gt; {
             this.loading &#x3D; false;
             this.notificationsService.add({
@@ -1122,71 +1124,80 @@ export class AddLabelComponent implements OnInit {
             });
             this.bsModalRef.hide();
           }, error &#x3D;&gt; {
+            this.loading &#x3D; false;
             this.notificationsService.add({
               message: error.error.message,
               timeout: 5000,
+              type: &#x27;warning&#x27;
             });
           });
-      break;
-      case &#x27;device&#x27;:
-        if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
-          updatedEntity.labels &#x3D; {};
-        }
-        updatedEntity.labels[form.labelName.value] &#x3D; form.labelValue.value;
-        updatedEntity.add_labels &#x3D; true;
-        this.backend.addLabelToDevice(
-          this.organizationId,
-          {
-            organization_id: this.organizationId,
-            device_group_id: updatedEntity.device_group_id,
-            device_id: updatedEntity.device_id,
-            labels: updatedEntity.labels
+          this.bsModalRef.hide();
+          break;
+        case &#x27;device&#x27;:
+          if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
+            updatedEntity.labels &#x3D; {};
           }
+          updatedEntity.labels[form.labelName.value] &#x3D; form.labelValue.value;
+          updatedEntity.add_labels &#x3D; true;
+          this.backend.addLabelToDevice(
+            this.organizationId,
+            {
+              organization_id: this.organizationId,
+              device_group_id: updatedEntity.device_group_id,
+              device_id: updatedEntity.device_id,
+              labels: updatedEntity.labels
+            }
           ).subscribe(updateDeviceResponse &#x3D;&gt; {
             this.loading &#x3D; false;
             this.notificationsService.add({
-              message: &#x27;Updated &#x27; + this.entity.device_id ,
+              message: &#x27;Updated &#x27; + this.entity.device_id,
               timeout: 3000,
             });
             this.bsModalRef.hide();
           }, error &#x3D;&gt; {
+            this.loading &#x3D; false;
             this.notificationsService.add({
               message: error.error.message,
               timeout: 5000,
+              type: &#x27;warning&#x27;
             });
           });
-      break;
-      case &#x27;app&#x27;:
-        if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
-          updatedEntity.labels &#x3D; {};
-        }
-        updatedEntity.labels[form.labelName.value] &#x3D; form.labelValue.value;
-        updatedEntity.add_labels &#x3D; true;
-        this.backend.updateAppDescriptor(
-          this.organizationId,
-          this.entity.app_descriptor_id,
-          {
-            organizationId: this.organizationId,
-            descriptorId: updatedEntity.app_descriptor_id,
-            add_labels: true,
-            labels: updatedEntity.labels
+          this.bsModalRef.hide();
+          break;
+        case &#x27;app&#x27;:
+          if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
+            updatedEntity.labels &#x3D; {};
           }
+          updatedEntity.labels[form.labelName.value] &#x3D; form.labelValue.value;
+          updatedEntity.add_labels &#x3D; true;
+          this.backend.updateAppDescriptor(
+            this.organizationId,
+            this.entity.app_descriptor_id,
+            {
+              organizationId: this.organizationId,
+              descriptorId: updatedEntity.app_descriptor_id,
+              add_labels: true,
+              labels: updatedEntity.labels
+            }
           ).subscribe(updateAppResponse &#x3D;&gt; {
             this.loading &#x3D; false;
             this.notificationsService.add({
-              message: &#x27;Updated &#x27; + this.entity.app_descriptor_id ,
+              message: &#x27;Updated &#x27; + this.entity.app_descriptor_id,
               timeout: 3000,
             });
             this.bsModalRef.hide();
           }, error &#x3D;&gt; {
+            this.loading &#x3D; false;
             this.notificationsService.add({
               message: error.error.message,
               timeout: 5000,
+              type: &#x27;warning&#x27;
             });
           });
-      break;
-    default:
-    break;
+          break;
+        default:
+          break;
+      }
     }
   }
 
@@ -1233,10 +1244,11 @@ export class AddLabelComponent implements OnInit {
               &lt;input 
               formControlName&#x3D;&quot;labelName&quot; 
               type&#x3D;&quot;text&quot; 
+              appAutofocus&#x3D;&quot;true&quot;
               class&#x3D;&quot;form-control&quot; 
               placeholder&#x3D;&quot;e.g. Group&quot; 
               [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: submitted &amp;&amp; f.labelName.errors }&quot;
-              pattern&#x3D;&quot;[A-Za-z0-9]{1,20}[^-,]+&quot;
+              pattern&#x3D;&quot;^[a-zA-Z0-9_.-]*$&quot;
               required&gt;
             &lt;div *ngIf&#x3D;&quot;!submitted &amp;&amp; f.labelName.errors&quot; class&#x3D;&quot;error-message&quot;&gt;&lt;/div&gt;
             &lt;div class&#x3D;&quot;error-h&quot;&gt;
@@ -1254,7 +1266,7 @@ export class AddLabelComponent implements OnInit {
               class&#x3D;&quot;form-control&quot; 
               placeholder&#x3D;&quot;e.g. MyGroup&quot; 
               [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: submitted &amp;&amp; f.labelValue.errors }&quot;
-              pattern&#x3D;&quot;[A-Za-z0-9]{1,20}[^-,]+&quot;
+              pattern&#x3D;&quot;^[a-zA-Z0-9_.-]*$&quot;
               required&gt;
             &lt;div *ngIf&#x3D;&quot;!submitted &amp;&amp; f.labelValue.errors&quot; class&#x3D;&quot;error-message&quot;&gt;&lt;/div&gt;
             &lt;div class&#x3D;&quot;error-h&quot;&gt;
@@ -1299,9 +1311,9 @@ export class AddLabelComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Add label to {{entityType}}</h3>      <button         type="button"         class="close"         aria-label="Close"        (click)="discardChanges(f)">        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">          <h3 class="label-title">{{modalTitle}}</h3>        <form [formGroup]="addLabelForm" (ngSubmit)="addLabel(f)">          <div class="form-group">            <label>Label key*</label>              <input               formControlName="labelName"               type="text"               class="form-control"               placeholder="e.g. Group"               [ngClass]="{ \'is-invalid\': submitted && f.labelName.errors }"              pattern="[A-Za-z0-9]{1,20}[^-,]+"              required>            <div *ngIf="!submitted && f.labelName.errors" class="error-message"></div>            <div class="error-h">              <div *ngIf="submitted && f.labelName.errors" class="error-message">                <div *ngIf="f.labelName.errors.required">Label key is required</div>                <div *ngIf="f.labelName.errors.pattern">Cannot contain spectial characters</div>              </div>            </div>          </div>          <div class="form-group">            <label>Label value*</label>              <input               formControlName="labelValue"               type="text"               class="form-control"               placeholder="e.g. MyGroup"               [ngClass]="{ \'is-invalid\': submitted && f.labelValue.errors }"              pattern="[A-Za-z0-9]{1,20}[^-,]+"              required>            <div *ngIf="!submitted && f.labelValue.errors" class="error-message"></div>            <div class="error-h">              <div *ngIf="submitted && f.labelValue.errors" class="error-message">                <div *ngIf="f.labelValue.errors.required">Label value is required</div>                <div *ngIf="f.labelValue.errors.pattern">Cannot contain spectial characters</div>              </div>            </div>          </div>          <div class="form-group d-flex flex-row justify-content-center">            <button class="btn-nalej-form" [disabled]="loading">              <span class="align-bottom">Save changes</span>            </button>          </div>        </form>    </div>  </div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Add label to {{entityType}}</h3>      <button         type="button"         class="close"         aria-label="Close"        (click)="discardChanges(f)">        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">          <h3 class="label-title">{{modalTitle}}</h3>        <form [formGroup]="addLabelForm" (ngSubmit)="addLabel(f)">          <div class="form-group">            <label>Label key*</label>              <input               formControlName="labelName"               type="text"               appAutofocus="true"              class="form-control"               placeholder="e.g. Group"               [ngClass]="{ \'is-invalid\': submitted && f.labelName.errors }"              pattern="^[a-zA-Z0-9_.-]*$"              required>            <div *ngIf="!submitted && f.labelName.errors" class="error-message"></div>            <div class="error-h">              <div *ngIf="submitted && f.labelName.errors" class="error-message">                <div *ngIf="f.labelName.errors.required">Label key is required</div>                <div *ngIf="f.labelName.errors.pattern">Cannot contain spectial characters</div>              </div>            </div>          </div>          <div class="form-group">            <label>Label value*</label>              <input               formControlName="labelValue"               type="text"               class="form-control"               placeholder="e.g. MyGroup"               [ngClass]="{ \'is-invalid\': submitted && f.labelValue.errors }"              pattern="^[a-zA-Z0-9_.-]*$"              required>            <div *ngIf="!submitted && f.labelValue.errors" class="error-message"></div>            <div class="error-h">              <div *ngIf="submitted && f.labelValue.errors" class="error-message">                <div *ngIf="f.labelValue.errors.required">Label value is required</div>                <div *ngIf="f.labelValue.errors.pattern">Cannot contain spectial characters</div>              </div>            </div>          </div>          <div class="form-group d-flex flex-row justify-content-center">            <button class="btn-nalej-form" [disabled]="loading">              <span class="align-bottom">Save changes</span>            </button>          </div>        </form>    </div>  </div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AppsInfoComponent', 'selector': 'app-apps-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
-    var DIRECTIVES = [];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'AddLabelComponent'};
 </script>
 <script src="../js/tree.js"></script>
