@@ -175,7 +175,7 @@
               </ng-template>
             </ngx-graph>
           </div>
-          <div *ngIf="!graphReset" class="row mt-2 text-right mr-1">
+          <div *ngIf="!graphReset && countGroupServices('ALL') !== 0" class="row mt-2 text-right mr-1">
             <div class="col graph-subtext">
               Auto refresh every 5 seconds. Scroll on graph to zoom. <a class="blue cursor-pointer" (click)="resetGraphZoom()">Reset</a>
             </div>

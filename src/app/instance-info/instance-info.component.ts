@@ -580,7 +580,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     let anyChanges = false;
     const instanceOutdatedServices = [];
     const instanceUpdatedServices = [];
-    console.log(instanceOutdated, instanceUpdated);
     if (!instanceOutdated ||
         !instanceOutdated.groups ||
         !instanceUpdated ||
