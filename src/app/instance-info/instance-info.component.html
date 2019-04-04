@@ -33,11 +33,7 @@
                       <td 
                         class="summary-instances-status"
                         [ngClass]= 
-                          "{
-                            'blue': instanceClassStatusCheck('running'),
-                            'red': instanceClassStatusCheck('error'),
-                            'teal':instanceClassStatusCheck('other')
-                          }">
+                          "instanceClassStatusCheck(instance.status_name)">
                         {{instance.status_name}}
                       </td>
                     </tr>
@@ -69,7 +65,7 @@
                 class="btn-undeploy button-padding-fix"
                 (click)="undeploy(instance)">
                 <i class="material-icons i-options">close</i>
-                Undeploy application
+                Undeploy instance
               </button>
           </div>
       </div>
@@ -194,7 +190,7 @@
       <div *ngIf="!showGraph" class="card h-ins-services flex-grow-1">
         <div class="row">
           <div class="col-10 card-title-h">
-            <h5>SERVICE INSTANCES</h5>
+            <h5>SERVICES</h5>
           </div>
             <div class="col-2">
               <div class="show-graph-icons">

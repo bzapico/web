@@ -662,26 +662,22 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Checks if the cluster status requires an special css class
    * @param className CSS class name
    */
-  instanceClassStatusCheck(className: string): boolean {
+  instanceClassStatusCheck(status: string): string {
     if (this.instance && this.instance.status_name) {
-      switch (this.instance.status_name.toLowerCase()) {
+      switch (status.toLowerCase()) {
         case 'running': {
-          if (className.toLowerCase() === 'running') {
-            return true;
-          }
+            return 'blue';
           break;
         }
+        case 'planning_error':
+        case 'incomplete':
+        case 'deployment_error':
         case 'error': {
-          if (className.toLowerCase() === 'error') {
-            return true;
-          }
+            return 'red';
           break;
         }
        default: {
-          if (className.toLowerCase() === 'other') {
-            return true;
-          }
-          return false;
+            return 'teal';
         }
       }
     }
