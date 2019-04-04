@@ -323,7 +323,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/edit-cluster/edit-cluster.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/edit-cluster/edit-cluster.component.ts:100</a></div>
                             </td>
                         </tr>
 
@@ -827,7 +827,7 @@ import { MockupBackendService } from &#x27;../services/mockup-backend.service&#x
 import { BackendService } from &#x27;../services/backend.service&#x27;;
 import { BsModalRef } from &#x27;ngx-bootstrap&#x27;;
 import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
-import { FormGroup, FormBuilder } from &#x27;@angular/forms&#x27;;
+import { FormGroup, FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -875,7 +875,7 @@ export class EditClusterComponent implements OnInit {
 
   ngOnInit() {
     this.editClusterForm &#x3D; this.formBuilder.group({
-      clusterName: [&#x27;&#x27;],
+      clusterName: [&#x27;&#x27;,  [Validators.minLength(3), Validators.pattern(&#x27;^[a-zA-Z]+$&#x27;)]],
     });
   }
 
@@ -890,8 +890,8 @@ export class EditClusterComponent implements OnInit {
    */
   saveClusterChanges(f) {
     this.submitted &#x3D; true;
-    this.loading &#x3D; true;
-    if (this.organizationId !&#x3D;&#x3D; null &amp;&amp; this.clusterId !&#x3D;&#x3D; null) {
+    if (this.organizationId !&#x3D;&#x3D; null &amp;&amp; this.clusterId !&#x3D;&#x3D; null &amp;&amp; !f.clusterName.errors ) {
+      this.loading &#x3D; true;
       this.backend.saveClusterChanges(this.organizationId, this.clusterId, {
         name: f.clusterName.value,
       })
@@ -900,14 +900,15 @@ export class EditClusterComponent implements OnInit {
           this.loading &#x3D; false;
           this.notificationsService.add({
             message: &#x27;The cluster &#x27; + this.clusterName + &#x27; has been edited&#x27;,
-            timeout: 5000
+            timeout: 3000
           });
           this.bsModalRef.hide();
         }, error &#x3D;&gt; {
           this.loading &#x3D; false;
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000
+            timeout: 5000,
+            type: &#x27;warning&#x27;
           });
           this.bsModalRef.hide();
         });
@@ -957,8 +958,18 @@ export class EditClusterComponent implements OnInit {
             formControlName&#x3D;&quot;clusterName&quot;
             placeholder&#x3D;&quot;{{clusterName}}&quot;
             value&#x3D;&quot;{{clusterName}}&quot;
+            appAutofocus&#x3D;&quot;true&quot;
+            pattern&#x3D;&quot;[a-zA-Z0-9]+&quot;
+            [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: submitted &amp;&amp; f.clusterName.errors }&quot;
             type&#x3D;&quot;text&quot; 
             class&#x3D;&quot;form-control&quot;&gt;
+            &lt;div *ngIf&#x3D;&quot;!submitted &amp;&amp; f.clusterName.errors&quot; class&#x3D;&quot;error-message&quot;&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;error-h&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;submitted &amp;&amp; f.clusterName.errors&quot; class&#x3D;&quot;error-message&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;f.clusterName.errors.minlength&quot;&gt;Cluster name is too short&lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;f.clusterName.errors.pattern&quot;&gt;Cannot contain spectial characters&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
         &lt;div class&#x3D;&quot;form-group d-flex flex-row justify-content-center mt-4&quot;&gt;
           &lt;button class&#x3D;&quot;btn-nalej-form&quot; [disabled]&#x3D;&quot;loading&quot;&gt;
@@ -996,9 +1007,9 @@ export class EditClusterComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Edit {{clusterName}}</h3>      <button         type="button"         class="close"         aria-label="Close"        (click)="discardChanges(f)">        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <form [formGroup]="editClusterForm" (ngSubmit)="saveClusterChanges(f)">        <div class="form-group">          <label>Name</label>          <input             formControlName="clusterName"            placeholder="{{clusterName}}"            value="{{clusterName}}"            type="text"             class="form-control">        </div>        <div class="form-group d-flex flex-row justify-content-center mt-4">          <button class="btn-nalej-form" [disabled]="loading">            <span class="align-bottom">Save changes</span>          </button>        </div>      </form>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Edit {{clusterName}}</h3>      <button         type="button"         class="close"         aria-label="Close"        (click)="discardChanges(f)">        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <form [formGroup]="editClusterForm" (ngSubmit)="saveClusterChanges(f)">        <div class="form-group">          <label>Name</label>          <input             formControlName="clusterName"            placeholder="{{clusterName}}"            value="{{clusterName}}"            appAutofocus="true"            pattern="[a-zA-Z0-9]+"            [ngClass]="{ \'is-invalid\': submitted && f.clusterName.errors }"            type="text"             class="form-control">            <div *ngIf="!submitted && f.clusterName.errors" class="error-message"></div>            <div class="error-h">              <div *ngIf="submitted && f.clusterName.errors" class="error-message">                <div *ngIf="f.clusterName.errors.minlength">Cluster name is too short</div>                <div *ngIf="f.clusterName.errors.pattern">Cannot contain spectial characters</div>              </div>            </div>        </div>        <div class="form-group d-flex flex-row justify-content-center mt-4">          <button class="btn-nalej-form" [disabled]="loading">            <span class="align-bottom">Save changes</span>          </button>        </div>      </form>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AppsInfoComponent', 'selector': 'app-apps-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
-    var DIRECTIVES = [];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'EditClusterComponent'};
 </script>
 <script src="../js/tree.js"></script>

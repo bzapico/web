@@ -332,7 +332,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     height: 83%;
     word-wrap: break-word;
 }

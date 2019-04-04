@@ -314,7 +314,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/register-application/register-application.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/register-application/register-application.component.ts:92</a></div>
                             </td>
                         </tr>
 
@@ -354,7 +354,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/register-application/register-application.component.ts:144</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/app/register-application/register-application.component.ts:145</a></div>
                             </td>
                         </tr>
 
@@ -466,7 +466,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/register-application/register-application.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/register-application/register-application.component.ts:107</a></div>
                             </td>
                         </tr>
 
@@ -929,13 +929,14 @@ export class RegisterApplicationComponent implements OnInit {
       .subscribe(addDescriptorResponse &#x3D;&gt; {
         this.notificationsService.add({
           message: &#x27;Registered &#x27; + this.jsonFile.name + &#x27;app&#x27;,
-          timeout: 5000
+          timeout: 3000
         });
         this.bsModalRef.hide();
       }, error &#x3D;&gt; {
         this.notificationsService.add({
           message: error.error.message,
-          timeout: 5000
+          timeout: 5000,
+          type: &#x27;warning&#x27;
         });
         this.bsModalRef.hide();
       });
@@ -1035,7 +1036,7 @@ export class RegisterApplicationComponent implements OnInit {
         &lt;p class&#x3D;&quot;upload-descriptor&quot;&gt;Upload app descriptor file&lt;/p&gt;
         &lt;file-drop 
           *ngIf&#x3D;&quot;!readyToUpload&quot;
-          customstyle&#x3D;&quot;file-drop&quot;
+          dropZoneClassName&#x3D;&quot;file-drop&quot;
           (onFileDrop)&#x3D;&quot;onFileDrop($event)&quot; &gt;
           &lt;span
             class&#x3D;&quot;drop-title&quot;&gt;
@@ -1096,9 +1097,9 @@ export class RegisterApplicationComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">      <!-- Header -->      <div class="modal-header">        <h3 class="nalej-form-title">Register application</h3>        <button           type="button"           class="close"           aria-label="Close"          (click)="discardChanges()">          <span aria-hidden="true">&times;</span>        </button>      </div>      <!-- Body -->      <div class="modal-body">        <p class="upload-descriptor">Upload app descriptor file</p>        <file-drop           *ngIf="!readyToUpload"          customstyle="file-drop"          (onFileDrop)="onFileDrop($event)" >          <span            class="drop-title">            Drop here            <p class="drop-note">              <input                class="inputfile"                type="file"                id="file"                name="file"                (change)="fileSelectorChange($event)"                accept="application/json"                />                <label class="cursor-pointer blue" for="file">Or click here to choose your .json file</label>            </p>          </span>        </file-drop>        <div class="drop-note-uploaded" *ngIf="readyToUpload">           <span class="drop-title-uploaded">{{jsonFile.name}}</span>           <span             class="subtitle">            from {{fileName}}          </span>          <span class="green subtitle-2" >ready to be uploaded</span>        </div>        <div class="form-group d-flex flex-row justify-content-center mt-5">          <button class="btn-nalej-form" (click)="registerApp()">            <span class="align-bottom">Register</span>          </button>        </div>      </div>    </div>  </div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">      <!-- Header -->      <div class="modal-header">        <h3 class="nalej-form-title">Register application</h3>        <button           type="button"           class="close"           aria-label="Close"          (click)="discardChanges()">          <span aria-hidden="true">&times;</span>        </button>      </div>      <!-- Body -->      <div class="modal-body">        <p class="upload-descriptor">Upload app descriptor file</p>        <file-drop           *ngIf="!readyToUpload"          dropZoneClassName="file-drop"          (onFileDrop)="onFileDrop($event)" >          <span            class="drop-title">            Drop here            <p class="drop-note">              <input                class="inputfile"                type="file"                id="file"                name="file"                (change)="fileSelectorChange($event)"                accept="application/json"                />                <label class="cursor-pointer blue" for="file">Or click here to choose your .json file</label>            </p>          </span>        </file-drop>        <div class="drop-note-uploaded" *ngIf="readyToUpload">           <span class="drop-title-uploaded">{{jsonFile.name}}</span>           <span             class="subtitle">            from {{fileName}}          </span>          <span class="green subtitle-2" >ready to be uploaded</span>        </div>        <div class="form-group d-flex flex-row justify-content-center mt-5">          <button class="btn-nalej-form" (click)="registerApp()">            <span class="align-bottom">Register</span>          </button>        </div>      </div>    </div>  </div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AppsInfoComponent', 'selector': 'app-apps-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
-    var DIRECTIVES = [];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'RegisterApplicationComponent'};
 </script>
 <script src="../js/tree.js"></script>

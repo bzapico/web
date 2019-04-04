@@ -111,6 +111,9 @@ export class DeployInstanceComponent implements OnInit {
     this.instanceName = f.instanceName.value;
     this.submitted = true;
     if (!f.instanceName.errors) {
+      if (!this.registeredId) {
+        this.registeredId = f.selectDrop.value.app_descriptor_id;
+      }
       this.loading = true;
       this.backend.deploy(this.organizationId, this.registeredId, this.instanceName)
         .subscribe(deployResponse => {
@@ -130,12 +133,6 @@ export class DeployInstanceComponent implements OnInit {
           this.bsModalRef.hide();
         });
     }
-  }
-
-  selectRegistered(app) {
-    this.registeredApp = app;
-    this.registeredId = app.app_descriptor_id;
-    this.registeredName = app.name;
   }
 
   /**

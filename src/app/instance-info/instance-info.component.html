@@ -17,8 +17,11 @@
               class="blue">
               APPS
             </a>
+            <span class="grey"> > </span>
+            <b>INSTANCE</b>
+            <span class="grey"> > </span>
             <span class="grey text-uppercase">
-              > {{instance.name}}
+            {{instance.name}}
             </span>
           </h5>
         </div>
@@ -30,11 +33,7 @@
                       <td 
                         class="summary-instances-status"
                         [ngClass]= 
-                          "{
-                            'blue': instanceClassStatusCheck('running'),
-                            'red': instanceClassStatusCheck('error'),
-                            'teal':instanceClassStatusCheck('other')
-                          }">
+                          "instanceClassStatusCheck(instance.status_name)">
                         {{instance.status_name}}
                       </td>
                     </tr>
@@ -66,7 +65,7 @@
                 class="btn-undeploy button-padding-fix"
                 (click)="undeploy(instance)">
                 <i class="material-icons i-options">close</i>
-                Undeploy application
+                Undeploy instance
               </button>
           </div>
       </div>
@@ -175,7 +174,7 @@
               </ng-template>
             </ngx-graph>
           </div>
-          <div *ngIf="!graphReset" class="row mt-2 text-right mr-1">
+          <div *ngIf="!graphReset && countGroupServices('ALL') !== 0" class="row mt-2 text-right mr-1">
             <div class="col graph-subtext">
               Auto refresh every 5 seconds. Scroll on graph to zoom. <a class="blue cursor-pointer" (click)="resetGraphZoom()">Reset</a>
             </div>
@@ -191,7 +190,7 @@
       <div *ngIf="!showGraph" class="card h-ins-services flex-grow-1">
         <div class="row">
           <div class="col-10 card-title-h">
-            <h5>SERVICE INSTANCES</h5>
+            <h5>SERVICES</h5>
           </div>
             <div class="col-2">
               <div class="show-graph-icons">
@@ -395,7 +394,7 @@
                 <td 
                   class="col-3 text-lowercase"
                   [ngClass]="getServiceStatusClass(service.status_name)"
-             >{{getBeautyStatusName(service.status_name)}}</td>
+                >{{getBeautyStatusName(service.status_name)}}</td>
                 <td class="col-4">
                   <span *ngFor="let endpoint of service.endpoints">
                       <a *ngIf="endpoint" href="{{getEndpointHref(endpoint)}}" target="_blank">{{endpoint}}</a>
