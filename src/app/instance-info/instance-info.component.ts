@@ -252,6 +252,9 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.refreshIntervalRef = null;
   }
 
+  /**
+   * Request the list of registered apps and updates the instance info
+   */
   updateInfo() {
     this.backend.getRegisteredApps(this.organizationId)
       .subscribe(registeredAppsResponse => {
@@ -557,6 +560,8 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
               for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
                 this.displayedGroups.push(this.groups[index]);
               }
+            } else {
+              this.updateDisplayedGroupsInfo();
             }
             this.toGraphData(instance);
             this.updateDisplayedGroupsNamesLength();
@@ -569,6 +574,17 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           this.requestError = errorResponse.error.message;
         });
     }
+  }
+  /**
+   * Updates displayed groups information
+   */
+  updateDisplayedGroupsInfo() {
+    this.displayedGroups.forEach(displayedGroup => {
+      const index = this.groups.map(x => x.service_group_instance_id).indexOf(displayedGroup.service_group_instance_id);
+      if (index !== -1) {
+        displayedGroup = this.groups[index];
+      }
+    });
   }
 
   /**
@@ -829,12 +845,12 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         return [];
       }
     } else {
-      const index = this.displayedGroups
+      const index = this.groups
       .map(x => x.service_group_instance_id)
       .indexOf(this.activeGroupId);
 
       if (index !== -1) {
-        return this.displayedGroups[index].service_instances;
+        return this.groups[index].service_instances;
       } else {
         return [];
       }
