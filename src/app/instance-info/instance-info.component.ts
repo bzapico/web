@@ -580,7 +580,12 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     let anyChanges = false;
     const instanceOutdatedServices = [];
     const instanceUpdatedServices = [];
-    if (instanceOutdated.groups.length !== instanceUpdated.groups.length) {
+    console.log(instanceOutdated, instanceUpdated);
+    if (!instanceOutdated ||
+        !instanceOutdated.groups ||
+        !instanceUpdated ||
+        !instanceUpdated.groups ||
+        (instanceOutdated.groups.length !== instanceUpdated.groups.length)) {
       return true;
     }
     // Creating arrays of services to compare
