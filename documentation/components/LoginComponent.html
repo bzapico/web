@@ -191,7 +191,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, authService: <a href="../injectables/AuthService.html">AuthService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, modalService: BsModalService, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>)</code>
+<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, authService: <a href="../injectables/AuthService.html">AuthService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, modalService: BsModalService, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -242,6 +242,18 @@
                                                   
                                                         <td>
                                                                     <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -313,7 +325,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/login/login.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/login/login.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -351,7 +363,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/login/login.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/login/login.component.ts:71</a></div>
                             </td>
                         </tr>
 
@@ -392,7 +404,7 @@ If credentials are correct, JWT Token would be stored in localStorage</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/login/login.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/login/login.component.ts:114</a></div>
                             </td>
                         </tr>
 
@@ -632,7 +644,7 @@ If credentials are correct, JWT Token would be stored in localStorage</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/login/login.component.ts:57</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/login/login.component.ts:65</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -653,7 +665,7 @@ If credentials are correct, JWT Token would be stored in localStorage</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
 import { AuthService } from &#x27;../services/auth.service&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
+import { Router, ActivatedRoute } from &#x27;@angular/router&#x27;;
 import { BsModalService, BsModalRef } from &#x27;ngx-bootstrap&#x27;;
 import { DebugPanelComponent } from &#x27;../debug-panel/debug-panel.component&#x27;;
 import { JwtHelperService } from &#x27;@auth0/angular-jwt&#x27;;
@@ -690,12 +702,20 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private route: ActivatedRoute,
     private modalService: BsModalService,
     private notificationsService: NotificationsService
   ) {
   }
 
   ngOnInit() {
+    if (this.route.snapshot.queryParamMap.get(&#x27;unauthorized&#x27;)) {
+      this.notificationsService.add({
+        message: &#x27;Session has expired, please log in&#x27;,
+        timeout: 5000,
+        type: &#x27;warning&#x27;
+      });
+    }
     this.loginForm &#x3D; this.formBuilder.group({
       email: [&#x27;&#x27;, Validators.compose([Validators.required, Validators.email])],
       password: [&#x27;&#x27;, Validators.compose([Validators.required, Validators.minLength(6)])]

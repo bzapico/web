@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DebugPanelComponent } from '../debug-panel/debug-panel.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -38,12 +38,20 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private route: ActivatedRoute,
     private modalService: BsModalService,
     private notificationsService: NotificationsService
   ) {
   }
 
   ngOnInit() {
+    if (this.route.snapshot.queryParamMap.get('unauthorized')) {
+      this.notificationsService.add({
+        message: 'Session has expired, please log in',
+        timeout: 5000,
+        type: 'warning'
+      });
+    }
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
