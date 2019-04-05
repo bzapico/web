@@ -22,7 +22,9 @@ export class ErrorHandlerService implements ErrorHandler {
             break;
         case 400 : console.log('Bad Request, that server could not understand the request due to invalid syntax');
             break;
-        case 401 : console.log('Unauthorized, the user does not have the necessary credentials');
+        case 401 :
+            console.log('Unauthorized, the user does not have the necessary credentials');
+            window.location.href = '/#/login?unauthorized=true';
             break;
         case 403 : console.log('Forbidden, the user does not have access rights to the content');
             break;
