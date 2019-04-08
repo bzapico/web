@@ -454,14 +454,11 @@
                   </td>
                   <td *ngIf="!device.labels" class="col-4">
                       <div 
+                        tooltip="Add" 
+                        placement="right"
                         class="add-label-button"
                         (click)="addLabel(device)">
-                          <i 
-                          class="material-icons i-add" 
-                          tooltip="Add" 
-                          placement="right">
-                          add
-                          </i>  
+                          <i class="material-icons i-add">add</i>  
                       </div>
                   </td>
                   <td *ngIf="device.labels" class="col-4">
@@ -483,9 +480,7 @@
                         tooltip="Add" 
                         placement="right"
                         >
-                        <i class="material-icons i-add">
-                          add
-                        </i>
+                        <i class="material-icons i-add">add</i>
                       </div>
                       <div 
                         *ngIf="isAnyLabelSelected(device.device_id) === true"
@@ -494,9 +489,7 @@
                         tooltip="Delete" 
                         placement="right"
                         >
-                        <i class="material-icons i-delete">
-                          delete
-                        </i>
+                        <i class="material-icons i-delete">delete</i>
                       </div>
                     </div>
                   </td>
@@ -542,13 +535,10 @@
                   <td *ngIf="!device.labels" class="col-4">
                       <div 
                       class="add-label-button"
+                      tooltip="Add" 
+                      placement="right"
                       (click)="addLabel(device)">
-                        <i 
-                        class="material-icons i-add" 
-                        tooltip="Add" 
-                        placement="right">
-                        add
-                        </i>  
+                        <i class="material-icons i-add">add</i>  
                     </div>
                   </td>
                   <td *ngIf="device.labels" class="col-4">
@@ -571,9 +561,7 @@
                           tooltip="Add" 
                           placement="right"
                           >
-                          <i class="material-icons i-add">
-                            add
-                          </i>
+                          <i class="material-icons i-add">add</i>
                         </div>
                         <div 
                           *ngIf="isAnyLabelSelected(device.device_id) === true"
@@ -582,9 +570,7 @@
                           tooltip="Delete" 
                           placement="right"
                           >
-                          <i class="material-icons i-delete">
-                            delete
-                          </i>
+                          <i class="material-icons i-delete">delete</i>
                         </div>
                       </div>
                   </td>
