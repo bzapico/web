@@ -41,7 +41,7 @@
       <div 
         *ngIf="groups.length === 0"
         class="summary-card d-flex justify-content-center align-items-center">
-        No available devices detected
+        No available groups detected
       </div>
     </div>
   </div>
@@ -52,7 +52,7 @@
         <h5>DEVICES STATUS TIMELINE</h5>
       </div>
       <div 
-        *ngIf="countGroupDevices(activeGroupId) === 0" 
+        *ngIf="groups > 0 && countGroupDevices(activeGroupId) === 0" 
         class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
         No devices
       </div>
@@ -316,7 +316,7 @@
         </div>
         <!-- No devices to show -->
         <div 
-          *ngIf="countGroupDevices(activeGroupId) === 0 && loadedData"
+          *ngIf="groups > 0 && countGroupDevices(activeGroupId) === 0 && loadedData"
           class="no-devices-in-group d-flex justify-content-center align-items-center">
             No available devices registered in this group
         </div>
@@ -518,7 +518,7 @@
                 <!-- device.device_group_id tab selected -->
                 <span *ngIf="activeGroupId === device.device_group_id" >
                     <td 
-                      *ngIf="countGroupDevices(device.device_group_id) === 0"
+                      *ngIf="groups > 0 && countGroupDevices(device.device_group_id) === 0"
                       class="col-12">
                         No available devices registered in this group
                     </td>

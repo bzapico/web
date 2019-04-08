@@ -364,6 +364,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
               this.requestError = errorResponse.error.message;
             });
           });
+      } else {
+        this.loadedData = true;
       }
     }
   }
