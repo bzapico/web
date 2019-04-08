@@ -88,9 +88,6 @@ a {
 }
 
 @media screen and (max-width:1500px) {
-  .loader {
-    top: 25%;
-  }
   .tooltip-fix {
     height: 20px;
     width: 20px;
@@ -99,11 +96,7 @@ a {
     left: 39%;
   }
 }
-@media screen and (min-width:2560px) {
-  .loader {
-    top: 100%;
-  }
-}
+
 
 /* - - - Loader styles - - - */
 .nalej-loader-container {
