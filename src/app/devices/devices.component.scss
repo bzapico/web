@@ -103,6 +103,11 @@
         height: 90px;
     }
 }
+@media  screen and (max-height: 967px) {
+    .no-devices {
+        height: 60%;
+    }
+}
 
 /* - - - Devices tabs buttons - - - */
 .devices-tab-buttons-container {
