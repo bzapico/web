@@ -316,7 +316,7 @@
         </div>
         <!-- No devices to show -->
         <div 
-          *ngIf="groups > 0 && countGroupDevices(activeGroupId) === 0 && loadedData"
+          *ngIf="groups.length > 0 && countGroupDevices(activeGroupId) === 0 && loadedData"
           class="no-devices-in-group d-flex justify-content-center align-items-center">
             No available devices registered in this group
         </div>
@@ -511,7 +511,7 @@
                 <!-- device.device_group_id tab selected -->
                 <span *ngIf="activeGroupId === device.device_group_id" >
                     <td 
-                      *ngIf="groups > 0 && countGroupDevices(device.device_group_id) === 0"
+                      *ngIf="groups.length > 0 && countGroupDevices(device.device_group_id) === 0"
                       class="col-12">
                         No available devices registered in this group
                     </td>
