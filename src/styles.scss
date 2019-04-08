@@ -593,23 +593,9 @@ button[type="submit"]:disabled {
 
 }
 /* - - - Alerts styles - - - */
-.alert-close-button {
-  position: relative;
-  right: -0.3em;
-  top: -0.3em;
-  float: right;
-  font-size: 20px;
-  font-weight: bold;
-  color: #ffffff;
-  outline: none;
-  -webkit-text-shadow: 0 1px 0 #ffffff;
-  text-shadow: 0 1px 0 #ffffff;
-  opacity: 0.8;
-}
 .alert-message {
   -ms-word-wrap: break-word;
   word-wrap: break-word;
-  padding: 1em;
   a, label {
     color: #ffffff;
   }
@@ -637,8 +623,7 @@ button[type="submit"]:disabled {
   .alert {
     position: relative;
     overflow: hidden;
-    margin: 0 0 6px;
-    padding: 17px 15px 15px 50px;
+    padding: 19px 56px 15px 52px;
     border: 0px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;

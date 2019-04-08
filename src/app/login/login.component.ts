@@ -99,12 +99,28 @@ export class LoginComponent implements OnInit {
           }
         }
       }, error => {
-        this.loginRequest = false;
-        this.notificationsService.add({
-          message: error.error.message,
-          timeout: 5000,
-          type: 'warning'
-        });
+        if (error.error.message) {
+          this.loginRequest = false;
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 5000,
+            type: 'warning'
+          });
+        } else if (error.message) {
+          this.loginRequest = false;
+          this.notificationsService.add({
+            message: error.message,
+            timeout: 500000,
+            type: 'warning'
+          });
+        } else {
+          this.loginRequest = false;
+          this.notificationsService.add({
+            message: 'ERROR',
+            timeout: 5000,
+            type: 'warning'
+          });
+        }
       });
   }
 
