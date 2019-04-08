@@ -386,13 +386,10 @@
               <td class="col-3 pl-4" *ngIf="!cluster.labels"> 
                 <div 
                 class="add-label-button"
+                tooltip="Add" 
+                placement="right"
                 (click)="addLabel(cluster)">
-                  <i 
-                  class="material-icons i-add" 
-                  tooltip="Add" 
-                  placement="right">
-                  add
-                  </i>  
+                  <i class="material-icons i-add">add</i>  
                 </div>
               </td>
                 <td class="col-3 pl-4" *ngIf="cluster.labels">
@@ -410,24 +407,18 @@
                     <div 
                       *ngIf="isAnyLabelSelected(cluster.cluster_id) === false"
                       class="add-label-button" 
+                      tooltip="Add" 
+                      placement="right"
                       (click)="addLabel(cluster)">
-                      <i 
-                        class="material-icons i-add" 
-                        tooltip="Add" 
-                        placement="right">
-                        add
-                      </i>
+                      <i class="material-icons i-add">add</i>
                     </div>
                     <div 
                       *ngIf="isAnyLabelSelected(cluster.cluster_id) === true"
                       class="delete-label-button" 
+                      tooltip="Delete" 
+                      placement="right"
                       (click)="deleteLabel(cluster)">
-                      <i 
-                        class="material-icons i-delete" 
-                        tooltip="Delete" 
-                        placement="right">
-                        delete
-                      </i>
+                      <i class="material-icons i-delete">delete</i>
                     </div>
                   </div>
                 </td>
