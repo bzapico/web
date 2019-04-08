@@ -294,15 +294,15 @@
                 </span>
               </th>
               <th 
-                (click)="setOrder('nodes')"
-                [ngClass]="getCategoryCSSClass('nodes')"
+                (click)="setOrder('total_nodes')"
+                [ngClass]="getCategoryCSSClass('total_nodes')"
                 scope="col" 
                 class="col-1 text-center cabecera">
                 Nodes 
-                <span class="expand-chevron" *ngIf="sortedBy === 'nodes' && !reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'total_nodes' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'nodes' && reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'total_nodes' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -320,41 +320,41 @@
                 </span>
               </th>
               <th 
-                (click)="setOrder('types')" 
-                [ngClass]="getCategoryCSSClass('types')"
+                (click)="setOrder('cluster_type_name')" 
+                [ngClass]="getCategoryCSSClass('cluster_type_name')"
                 scope="col" 
                 class="col-1">
                 Types
-                <span class="expand-chevron" *ngIf="sortedBy === 'types' && !reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'cluster_type_name' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'types' && reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'cluster_type_name' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
               <th 
-                (click)="setOrder('status')" 
-                [ngClass]="getCategoryCSSClass('status')"
+                (click)="setOrder('status_name')" 
+                [ngClass]="getCategoryCSSClass('status_name')"
                 scope="col" 
                 class="col-1 text-center">
                 Status
-                <span class="expand-chevron" *ngIf="sortedBy === 'status' && !reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'status_name' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'status' && reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'status_name' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
               <th 
-                (click)="setOrder('multitenant')" 
-                [ngClass]="getCategoryCSSClass('multitenant')"
+                (click)="setOrder('multitenant_support')" 
+                [ngClass]="getCategoryCSSClass('multitenant_support')"
                 scope="col" 
                 class="col-1 text-center">
                 Multitenant
-                <span class="expand-chevron" *ngIf="sortedBy === 'multitenant' && !reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'multitenant_support' && !reverse">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'multitenant' && reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'multitenant_support' && reverse">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -386,13 +386,10 @@
               <td class="col-3 pl-4" *ngIf="!cluster.labels"> 
                 <div 
                 class="add-label-button"
+                tooltip="Add" 
+                placement="right"
                 (click)="addLabel(cluster)">
-                  <i 
-                  class="material-icons i-add" 
-                  tooltip="Add" 
-                  placement="right">
-                  add
-                  </i>  
+                  <i class="material-icons i-add">add</i>  
                 </div>
               </td>
                 <td class="col-3 pl-4" *ngIf="cluster.labels">
@@ -410,24 +407,18 @@
                     <div 
                       *ngIf="isAnyLabelSelected(cluster.cluster_id) === false"
                       class="add-label-button" 
+                      tooltip="Add" 
+                      placement="right"
                       (click)="addLabel(cluster)">
-                      <i 
-                        class="material-icons i-add" 
-                        tooltip="Add" 
-                        placement="right">
-                        add
-                      </i>
+                      <i class="material-icons i-add">add</i>
                     </div>
                     <div 
                       *ngIf="isAnyLabelSelected(cluster.cluster_id) === true"
                       class="delete-label-button" 
+                      tooltip="Delete" 
+                      placement="right"
                       (click)="deleteLabel(cluster)">
-                      <i 
-                        class="material-icons i-delete" 
-                        tooltip="Delete" 
-                        placement="right">
-                        delete
-                      </i>
+                      <i class="material-icons i-delete">delete</i>
                     </div>
                   </div>
                 </td>

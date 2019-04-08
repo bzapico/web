@@ -96,7 +96,10 @@ export const mockClusterList = [
         running_nodes: '3',
         cluster_type_name: 'bKubernetes',
         status_name: 'Error',
-        labels: 'ny, edge',
+        labels: {
+            lab1: 'label1',
+            lab2: 'label2'
+        },
         multitenant_support: 'yes'
     }, {
         organization_id: 'f7751f83-f619-436f-ade2-005924e346b9',
@@ -121,7 +124,10 @@ export const mockClusterList = [
         running_nodes: '5',
         cluster_type_name: 'dKubernetes',
         status_name: 'Running',
-        labels: 'ny, edge',
+        labels: {
+            lab1: 'label1',
+            lab2: 'label2'
+        },
         multitenant_support: 'yes'
     }, {
         organization_id: 'f7751f83-f619-436f-ade2-005924e346b9',

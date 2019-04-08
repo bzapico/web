@@ -339,6 +339,9 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       let totalNodesCount = 0;
       let nodesRunningPercentage = 0;
         if (response.clusters && response.clusters.length) {
+          response.clusters.forEach(cluster => {
+            cluster.total_nodes = parseInt(cluster.total_nodes, 10);
+          });
           this.clusters = response.clusters;
         } else {
           this.clusters = [];

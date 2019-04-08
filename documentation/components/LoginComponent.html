@@ -404,7 +404,7 @@ If credentials are correct, JWT Token would be stored in localStorage</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/login/login.component.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/app/login/login.component.ts:130</a></div>
                             </td>
                         </tr>
 
@@ -763,12 +763,28 @@ export class LoginComponent implements OnInit {
           }
         }
       }, error &#x3D;&gt; {
-        this.loginRequest &#x3D; false;
-        this.notificationsService.add({
-          message: error.error.message,
-          timeout: 5000,
-          type: &#x27;warning&#x27;
-        });
+        if (error.error.message) {
+          this.loginRequest &#x3D; false;
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 5000,
+            type: &#x27;warning&#x27;
+          });
+        } else if (error.message) {
+          this.loginRequest &#x3D; false;
+          this.notificationsService.add({
+            message: error.message,
+            timeout: 500000,
+            type: &#x27;warning&#x27;
+          });
+        } else {
+          this.loginRequest &#x3D; false;
+          this.notificationsService.add({
+            message: &#x27;ERROR&#x27;,
+            timeout: 5000,
+            type: &#x27;warning&#x27;
+          });
+        }
       });
   }
 

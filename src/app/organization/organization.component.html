@@ -27,7 +27,7 @@
   <div class="col-lg-8 col-md-8 col-sm-12 h-100">
     <div class="card h-100">
       <div class="card-title-h">
-        <h5>MEMBERS</h5>
+        <h5>USERS</h5>
       </div>
       <div class="row">
         <!-- Sorting mesages -->
@@ -134,13 +134,11 @@
               <td class="blue col-2" (click)="openUserInfo(user)">{{user.role_name}}</td>
               <td class="col-5">{{user.email}}</td>
               <td class="col-2 pl-2">
-                <button class="btn info-btn info-btn-fix btn-primary" (click)="openUserInfo(user)">
-                  <span class="i-info" tooltip="Info" placement="left">i</span>
+                <button class="btn info-btn info-btn-fix btn-primary" (click)="openUserInfo(user)"  tooltip="Info" placement="left">
+                  <span class="i-info">i</span>
                 </button>
-              <!-- </td>
-              <td class="col-1"> -->
-                <button class="btn info-btn btn-primary" (click)="openEditUser(user)">
-                  <i class="material-icons i-edit" tooltip="Edit" placement="left">
+                <button class="btn info-btn btn-primary" (click)="openEditUser(user)"  tooltip="Edit" placement="left">
+                  <i class="material-icons i-edit">
                     edit
                   </i>
                 </button>

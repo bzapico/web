@@ -41,7 +41,7 @@
       <div 
         *ngIf="groups.length === 0"
         class="summary-card d-flex justify-content-center align-items-center">
-        No available devices detected
+        No available groups detected
       </div>
     </div>
   </div>
@@ -229,7 +229,7 @@
           </ul> 
         </div>
       </div>
-      <span class="h-100 w-100" *ngIf="loadedData">
+      <span class="h-75 w-100" *ngIf="loadedData">
         <!-- Devices tabs -->
         <div class="row">
           <div class="col">
@@ -316,7 +316,7 @@
         </div>
         <!-- No devices to show -->
         <div 
-          *ngIf="countGroupDevices(activeGroupId) === 0 && loadedData"
+          *ngIf="groups.length > 0 && countGroupDevices(activeGroupId) === 0 && loadedData"
           class="no-devices-in-group d-flex justify-content-center align-items-center">
             No available devices registered in this group
         </div>
@@ -410,7 +410,35 @@
                   </span>
                 </th> 
                 <th 
+                  *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0"
+                  (click)="setOrder('device_status_name')" 
+                  [ngClass]="getCategoryCSSClass('device_status_name')"
+                  scope="col" 
+                  class="col-2 text-center">
+                  Status
+                  <span class="expand-chevron" *ngIf="sortedBy === 'device_status_name' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span class="expand-chevron" *ngIf="sortedBy === 'device_status_name' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th> 
+                <th 
                   *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
+                  (click)="setOrder('labels')" 
+                  [ngClass]="getCategoryCSSClass('labels')"
+                  scope="col" 
+                  class="col-4">
+                  Labels
+                  <span class="expand-chevron" *ngIf="sortedBy === 'labels' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span class="expand-chevron" *ngIf="sortedBy === 'labels' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0"
                   (click)="setOrder('labels')" 
                   [ngClass]="getCategoryCSSClass('labels')"
                   scope="col" 
@@ -425,6 +453,11 @@
                 </th>
                 <th
                   *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
+                  scope="col" class="col-1 text-center">
+                  Enabled
+                </th>
+                <th
+                  *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0"
                   scope="col" class="col-1 text-center">
                   Enabled
                 </th>
@@ -454,14 +487,11 @@
                   </td>
                   <td *ngIf="!device.labels" class="col-4">
                       <div 
+                        tooltip="Add" 
+                        placement="right"
                         class="add-label-button"
                         (click)="addLabel(device)">
-                          <i 
-                          class="material-icons i-add" 
-                          tooltip="Add" 
-                          placement="right">
-                          add
-                          </i>  
+                          <i class="material-icons i-add">add</i>  
                       </div>
                   </td>
                   <td *ngIf="device.labels" class="col-4">
@@ -483,9 +513,7 @@
                         tooltip="Add" 
                         placement="right"
                         >
-                        <i class="material-icons i-add">
-                          add
-                        </i>
+                        <i class="material-icons i-add">add</i>
                       </div>
                       <div 
                         *ngIf="isAnyLabelSelected(device.device_id) === true"
@@ -494,9 +522,7 @@
                         tooltip="Delete" 
                         placement="right"
                         >
-                        <i class="material-icons i-delete">
-                          delete
-                        </i>
+                        <i class="material-icons i-delete">delete</i>
                       </div>
                     </div>
                   </td>
@@ -518,7 +544,7 @@
                 <!-- device.device_group_id tab selected -->
                 <span *ngIf="activeGroupId === device.device_group_id" >
                     <td 
-                      *ngIf="countGroupDevices(device.device_group_id) === 0"
+                      *ngIf="groups.length > 0 && countGroupDevices(device.device_group_id) === 0"
                       class="col-12">
                         No available devices registered in this group
                     </td>
@@ -542,13 +568,10 @@
                   <td *ngIf="!device.labels" class="col-4">
                       <div 
                       class="add-label-button"
+                      tooltip="Add" 
+                      placement="right"
                       (click)="addLabel(device)">
-                        <i 
-                        class="material-icons i-add" 
-                        tooltip="Add" 
-                        placement="right">
-                        add
-                        </i>  
+                        <i class="material-icons i-add">add</i>  
                     </div>
                   </td>
                   <td *ngIf="device.labels" class="col-4">
@@ -571,9 +594,7 @@
                           tooltip="Add" 
                           placement="right"
                           >
-                          <i class="material-icons i-add">
-                            add
-                          </i>
+                          <i class="material-icons i-add">add</i>
                         </div>
                         <div 
                           *ngIf="isAnyLabelSelected(device.device_id) === true"
@@ -582,15 +603,14 @@
                           tooltip="Delete" 
                           placement="right"
                           >
-                          <i class="material-icons i-delete">
-                            delete
-                          </i>
+                          <i class="material-icons i-delete">delete</i>
                         </div>
                       </div>
                   </td>
                   <td class="col-1 text-center">
                     <span 
                       *ngIf="!checkBox" 
+                      class="devices-checkbox"
                       (click)="enableSwitcher(device)">
                       <i class="material-icons grey">check_box_outline_blank</i>
                     </span>

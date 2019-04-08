@@ -240,24 +240,18 @@
                   <div 
                     *ngIf="isAnyLabelSelected(node.node_id) === false"
                     class="add-label-button" 
+                    tooltip="Add" 
+                    placement="right"
                     (click)="addLabel(node)">
-                    <i 
-                      class="material-icons i-add" 
-                      tooltip="Add" 
-                      placement="right">
-                      add
-                    </i>
+                    <i class="material-icons i-add">add</i>
                   </div>
                   <div 
                     *ngIf="isAnyLabelSelected(node.node_id) === true"
                     class="delete-label-button" 
+                    tooltip="Delete" 
+                    placement="right"
                     (click)="deleteLabel(node)">
-                    <i 
-                      class="material-icons i-delete" 
-                      tooltip="Delete" 
-                      placement="right">
-                      delete
-                    </i>
+                    <i class="material-icons i-delete">delete</i>
                   </div>
                 </div>
               </td>
