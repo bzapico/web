@@ -1,18 +1,6 @@
 /* - - - Summary app card - - - */
 .summary-card {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
     margin-top: -1em;
-}
-.summary-box {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    height: 100%;
 }
 .deployed-box {
     display: flex;
@@ -34,41 +22,10 @@
     font-size: .8em;
     margin-top: -1em;
 }
-.circle {
-    width:112px;
-    height: 112px;
-    border: 1px solid #949494; 
-    -moz-border-radius: 50%; 
-    -webkit-border-radius: 50%; 
-    border-radius: 50%;
-    position: relative;
-    margin: 0 auto;
-}
-.circle span {
-    text-align: center;
-    color: black;
-    font-size: 1.7em;
-}
-.circle-name {
-    font-size: 1.2em;
-    color:#949494;
-    text-align: center;
-    margin-top: 1em;
-}
 /* - - - Medias Summary app card - - - */
 @media screen and (max-width:1680px), screen and (max-height: 997px) {
     .circle {
         margin-top: 2em;
-        width: 90px;
-        height: 90px;
-    }
-    .circle span {
-        font-size: 1.3em;
-        top: 21px;
-        left: 25px;
-    }
-    .circle-name {
-        font-size: .9em;
     }
     .donut-chart {
         height: 85%;
@@ -81,16 +38,6 @@
 @media screen and (max-width:1500px), screen and (max-height: 800px){
     .circle {
         margin-top: 2em;
-        max-width: 65px;
-        max-height: 65px;
-    }
-    .circle span {
-        font-size: 1em !important;
-        top: 21px;
-        left: 25px;
-    }
-    .circle-name {
-        font-size: .9em;
     }
     .info-btn {
         height: 25px !important;
@@ -108,22 +55,8 @@
     .apps-run {
         margin-top: -3em;
     }
-    .summary-card {
-        height: 82%;
-    }
-    h2 {
-        font-size: 1.5rem;
-    }
 }
 @media screen and (min-width:2560px) {
-    .circle {
-        min-width: 140px;
-        min-height: 140px;
-    }
-    .circle span {
-        top: 54px;
-        left: 58px;
-    }
     .apps-run {
         font-size: 1em;
         margin-top: 0em;
@@ -135,12 +68,6 @@
 /* - - - App Status card - - - */
 .box-line-chart {
     width:93%;
-}
-/* - - - Media App Status card - - - */
-@media screen and (max-width:1500px) {
-    .card-title-h h5, .card-title-c h5 {
-        font-size: 1em;
-    }
 }
 
 /* - - - Deployed app list table card - - - */

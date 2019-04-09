@@ -1,79 +1,8 @@
 /* - - - Summary device card - - - */
-.summary-card {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    margin-top: 1em;
-}
-.summary-box {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    height: 100%;
-}
-.circle {
-    width: 112px;
-    height: 112px;
-    border: 1px solid #949494;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    position: relative;
-    margin: 0 auto;
-    span {
-        text-align: center;
-        color: black;
-        font-size: 1.7em;
-    }
-  }
-.circle-name {
-    font-size: 1.2em;
-    color:#949494;
-    text-align: center;
-    margin-top: 1em;
-}
 .devices-availability-size {
     font-size: 0.8em!important;
     text-transform: uppercase;
 }
-
-/* - - - Medias Summary devices card - - - */
-@media screen and (max-width:1500px), screen and (max-height: 790px){
-    .circle {
-        margin-top: 2em;
-        max-width: 65px;
-        max-height: 65px;
-        span {
-            font-size: 1em !important;
-            top: 21px;
-            left: 25px;
-        }
-    }
-    .circle-name {
-        font-size: .9em;
-    }
-    .summary-card {
-        margin-top: 0em;
-        height: 82%;
-    }
-    h2 {
-        font-size: 1.5rem;
-    }
-}
-@media screen and (min-width:2560px) {
-    .circle {
-        min-width: 140px;
-        min-height: 140px;
-    }
-    .circle span {
-        top: 54px;
-        left: 58px;
-    }
-}
-
 /* - - - Device Status card - - - */
 .box-line-chart {
     width:93%;
@@ -88,20 +17,6 @@
     left: 33%;
 }
 /* - - - Medias Devices list card - - - */
-@media screen and (max-width:1500px) {
-    .card-title-h h5, .card-title-c h5 {
-        font-size: 1em;
-    }
-}
-@media screen and (max-width:1680px), screen and (max-height: 864px) {
-    .summary-card {
-        margin-top: 0em;
-    }
-    .circle {
-        width: 90px;
-        height: 90px;
-    }
-}
 @media  screen and (max-height: 967px) {
     .no-devices {
         height: 60%;

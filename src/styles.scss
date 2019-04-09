@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
 @font-face {
@@ -97,13 +96,12 @@ a {
   }
 }
 
-
 /* - - - Loader styles - - - */
 .nalej-loader-container {
   display: block;
   position: relative;
-  min-height: 15em !important;
-  min-width: 5em !important;
+  min-height: 15em;
+  min-width: 5em;
   .circular {
     animation: rotate 2s linear infinite;
     height: 100%;
@@ -176,12 +174,17 @@ a {
 .row-main {
   height: 54%;
 }
-.card-title-h {
+.card-title-name__mb {
   margin-bottom: 1em;
 }
 
-@media screen and (max-width:1500px) {
-  .card-title-h {
+@media screen and (max-width:1500px), screen and (max-height: 790px) {
+  .card-title-name {
+    h5 {
+      font-size: 1em;
+    }
+  }
+  .card-title-name__mb {
     margin-bottom: 0em;
     h5 {
       font-size: 1em;
@@ -210,23 +213,13 @@ a {
     background-color: #4f71fd;
   }
 }
-.btn-red {
-  color: #fff;
-  border: 0px;
-  background: #ff437d !important; 
-  &:hover {
-    color: #fff;
-    transition: 0.3s;
-    background-color: #ff8eb1;
-  }
-}
 button[type="submit"]:disabled {
   background: #949494;
   background: -moz-linear-gradient(left, #949494 0%, #444444 100%); 
   background: -webkit-linear-gradient(left, #949494 0%,#444444 100%);
   background: linear-gradient(to right, #949494 0%,#444444 100%);
 }
-.btn-group-lg > .btn, .btn-lg {
+ .btn-lg {
   padding: 15px;
   font-size: 14px;
 }
@@ -379,7 +372,7 @@ button[type="submit"]:disabled {
 .nalej-form-title{
   font-size: .9em;
   display: inline;
-  margin-bottom: 1em;
+
   button span {
     color: #888888;
   }
@@ -404,13 +397,9 @@ button[type="submit"]:disabled {
 }
 .form-control {
   position: relative;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
   height: 40px;
   font-size: .8em;
   text-align: center;
-  border-radius: 5px;
   border: 2px solid #EEEEEE;
   caret-color: #0937FF;
   padding-top: 10px;
@@ -428,8 +417,7 @@ button[type="submit"]:disabled {
       outline: none;
     }
     &:-webkit-autofill {
-      background-color: #fff !important;
-      -webkit-box-shadow: 0 0 0px 1000px white inset;
+      background-color: #fff;
     }
   }
   &:disabled, &[readonly] {
@@ -655,6 +643,86 @@ button[type="submit"]:disabled {
   height: 4px;
   background-color: #000000;
   opacity: 0.4;
+}
+
+/* - - - Summary card styles- - - */
+.summary-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+.summary-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+/* - - - Summary circles styles - - - */
+.circle {
+  width: 112px;
+  height: 112px;
+  border: 1px solid #949494;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  position: relative;
+  margin: 0 auto;
+  span {
+    text-align: center;
+    color: black;
+    font-size: 1.7em;
+  }
+}
+.circle-name {
+  font-size: 1.2em;
+  color:#949494;
+  text-align: center;
+  margin-top: 1em;
+}
+
+/* - - - Medias Summary card circles - - - */
+@media screen and (max-width:1500px), screen and (max-height: 790px) {
+  .circle {
+    max-width: 65px;
+    max-height: 65px;
+    span {
+      font-size: 1em;
+      top: 21px;
+      left: 25px;
+    }
+  }
+  .circle-name {
+    font-size: .9em;
+  }
+  .summary-card {
+    margin-top: 0em;
+    height: 82%;
+  }
+
+}
+@media screen and (max-width:1680px), screen and (max-height: 997px) {
+  .summary-card {
+    margin-top: 0em;
+  }
+  .circle {
+    width: 90px;
+    height: 90px;
+  }
+  h2 {
+    font-size: 1.5rem;
+}
+}
+@media screen and (min-width:2560px) {
+  .circle {
+    min-width: 140px;
+    min-height: 140px;
+    span {
+      top: 54px;
+      left: 58px;
+    }
+  }
 }
 
 /* - - - Carousel styles- - - */
