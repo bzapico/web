@@ -219,7 +219,7 @@ button[type="submit"]:disabled {
   background: -webkit-linear-gradient(left, #949494 0%,#444444 100%);
   background: linear-gradient(to right, #949494 0%,#444444 100%);
 }
- .btn-lg {
+.btn-lg {
   padding: 15px;
   font-size: 14px;
 }
@@ -286,16 +286,22 @@ button[type="submit"]:disabled {
   display: inline-block;
   cursor: pointer;
 }
-.delete-label-button {
+.label-button {
   height: 22px;
   width: 22px;
   border-radius: 50%;
   margin: .3em;
   position: relative;
-  background-color: #F25272;
+  cursor: pointer;
   &:hover {
     color: #fff;
     transition: 0.3s;
+  }
+}
+.delete-label-button {
+  @extend .label-button;
+  background-color: #F25272;
+  &:hover {
     background-color: #ff8eb1;
   }
 }
@@ -307,16 +313,9 @@ button[type="submit"]:disabled {
   color: white;
 }
 .add-label-button {
-  height: 22px;
-  width: 22px;
-  border-radius: 50%;
-  margin: .3em;
-  position: relative;
+  @extend .label-button;
   background-color: #0937FF;
-  cursor: pointer;
   &:hover {
-    color: #fff;
-    transition: 0.3s;
     background-color: #4f71fd;
   }
 }
@@ -427,18 +426,15 @@ button[type="submit"]:disabled {
 }
 
 /* - - - Forms button styles - - - */
-.btn-nalej-form {
+.btn-nalej {
   border: 0px;
   border-radius: 5px;
   width: 232px;
   font-size: 0.8em;
   text-align: center;
-  color: #fff;
   height: 51px;
-  background-color: #0937FF;
   padding-top: 6px;
   cursor: pointer;
-  margin-top: 2em;
   &:focus {
     outline: none;
     box-shadow: none;
@@ -446,6 +442,12 @@ button[type="submit"]:disabled {
   &:disabled {
     background-color: #707070;
   }
+}
+.btn-nalej-form {
+  @extend .btn-nalej;
+  color: #fff;
+  background-color: #0937FF;
+  margin-top: 2em;
   &:hover {
     color: #fff;
     transition: 0.3s;
@@ -453,25 +455,11 @@ button[type="submit"]:disabled {
   }
 }
 .btn-nalej-form-red {
-  border: 0px;
-  border-radius: 5px;
-  width: 232px;
-  font-size: 0.8em;
-  text-align: center;
-  height: 51px;
+  @extend .btn-nalej;
   background-color: #ececec;
   color: #F25272;
-  cursor: pointer;
   position: relative;
-  padding-top: 6px;
   text-indent: 18px;
-  &:focus {
-    outline: none;
-    box-shadow: none;
-  }
-  &:disabled {
-    background-color: #707070;
-  }
   .delete-icon {
     color: #F25272;
     position: absolute;
@@ -710,9 +698,9 @@ button[type="submit"]:disabled {
     width: 90px;
     height: 90px;
   }
-  h2 {
+  .section-title {
     font-size: 1.5rem;
-}
+  }
 }
 @media screen and (min-width:2560px) {
   .circle {
@@ -1085,44 +1073,37 @@ button[type="submit"]:disabled {
 }
 
 /* - - - Status dots for tables - - - */
-.status-dot:before {
+.status-dot-nalej {
   content:'\A';
   width:10px;
   height:10px;
   border-radius:50%;
-  background: #0937FF;
   display:inline-block;
   margin: 0 5px 0 0;
+}
+.status-dot:before {
+  @extend .status-dot-nalej;
+  background: #0937FF;
 }
 .status-dot-error:before {
-  content:'\A';
-  width:10px;
-  height:10px;
-  border-radius:50%;
+  @extend .status-dot-nalej;
   background: #F25272;
-  display:inline-block;
-  margin: 0 5px 0 0;
 }
 .status-dot-process:before {
-  content:'\A';
-  width:10px;
-  height:10px;
-  border-radius:50%;
+  @extend .status-dot-nalej;
   background: #03D7E8;
-  display:inline-block;
-  margin: 0 5px 0 0;
 }
 
 @media screen and (max-width:1500px) {
   .status-dot, 
   .status-dot-error, 
   .status-dot-process {
-      text-align: center;
+    text-align: center;
   }
   .status-dot:before, 
   .status-dot-error:before, 
   .status-dot-process:before {
-      margin: 0 23px;
+    margin: 0 23px;
   }
 }
 

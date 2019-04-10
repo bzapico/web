@@ -20,33 +20,10 @@
 }
 
 /* - - - Summary Cluster card - - - */
-.circle {
-    width: 112px;
-    height: 112px;
-    border: 1px solid #949494;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    position: relative;
-    span {
-      text-align: center;
-      color: black;
-      font-size: 1.7em;
-    }
-  }
 .circles-box{
     margin-right: 2em;
     flex-direction: row;  
     width: 40%;
-}
-.circle-space{
-   padding-left: 3em;
-   padding-right: 5em;
-}
-.circle-name {
-    font-size: 1.2em;
-    color:#949494;
-    margin-top: 1.2em;
 }
 #scroll-table {
     margin: 4em 0;
@@ -91,25 +68,7 @@
 
 /* - - - Medias Summary Cluster card - - - */
 @media screen and (max-width:1500px){
-    .circle {
-        margin: 0 .5em;
-        max-width: 65px;
-        max-height: 65px;
-        span {
-          font-size: 1em !important;
-          top: 21px;
-          left: 25px;
-        }
-    }
-    .circle-name {
-        font-size: 1em !important;
-        margin-top: .4em !important;
-    }
-    .circle-space{
-        padding-left: 1em;
-        padding-right: 3em;
-     }
-     .circles-box{
+    .circles-box{
         margin-right: 2em;
         flex-direction: row;  
     }
@@ -129,15 +88,6 @@
 
 }
 @media screen and (min-width:2560px){
-    .circle {
-        margin-top: 2em;
-        min-width: 140px;
-        min-height: 140px;
-        span {
-          top: 54px;
-          left: 58px;
-        }
-    }
     .cluster-summary {
         padding: 4em 3em 0 3em;
     }
