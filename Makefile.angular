@@ -7,12 +7,12 @@ NGCLEAN=$(NGCMD) clean
 NGTEST=$(NGCMD) test
 NGE2E=$(NGCMD) e2e
 
+VERSION=$(shell cat .version)
+
 # Docker configuration
 registry:=dev
 AZURE_CR=nalejdev
-DOCKER_REGISTRY=$(AZURE_CR).azurecr.io
 DOCKER_REPO=$(shell whoami)
-VERSION=$(shell cat .version)
 
 ifeq ($(registry),staging)
 	AZURE_CR=nalejstaging
@@ -23,6 +23,8 @@ ifeq ($(registry),production)
 	AZURE_CR=nalejregistry
 	DOCKER_REPO=nalej
 endif
+
+DOCKER_REGISTRY=$(AZURE_CR).azurecr.io
 
 
 .PHONY: all
@@ -77,7 +79,7 @@ yaml:
 			cd $(TARGET)/yaml/appcluster && find . -type f -name '*.yaml' | xargs sed -i '' 's/__NPH_VERSION/$(VERSION)/g' && cd - > /dev/null ; \
 			cd $(TARGET)/yaml/appcluster && find . -type f -name '*.yaml' | xargs sed -i '' 's/__NPH_NAMESPACE/nalej/g' && cd - > /dev/null ; \
 			cd $(TARGET)/yaml/appcluster && find . -type f -name '*.yaml' | xargs sed -i '' 's/__NPH_REGISTRY_NAMESPACE/$(DOCKER_REPO)/g' && cd - > /dev/null ; \
-			cd $(TARGET)/yaml/appcluster && find . -type f -name '*.yaml' | xargs sed -i '' 's/__NPH_REGISTRY/$(AZURE_CR)/g' && cd - > /dev/null ; \
+			cd $(TARGET)/yaml/appcluster && find . -type f -name '*.yaml' | xargs sed -i '' 's/__NPH_REGISTRY/$(DOCKER_REGISTRY)/g' && cd - > /dev/null ; \
 		fi ; \
 		if [ -d components/"$$app"/mngtcluster ]; then \
 			rm -rf $(TARGET)/yaml/mngtcluster ; \
@@ -86,7 +88,7 @@ yaml:
 			cd $(TARGET)/yaml/mngtcluster && find . -type f -name '*.yaml' | xargs sed -i '' 's/__NPH_VERSION/$(VERSION)/g' && cd - > /dev/null ; \
 			cd $(TARGET)/yaml/mngtcluster && find . -type f -name '*.yaml' | xargs sed -i '' 's/__NPH_NAMESPACE/nalej/g' && cd - > /dev/null ; \
 			cd $(TARGET)/yaml/mngtcluster && find . -type f -name '*.yaml' | xargs sed -i '' 's/__NPH_REGISTRY_NAMESPACE/$(DOCKER_REPO)/g' && cd - > /dev/null ; \
-			cd $(TARGET)/yaml/mngtcluster && find . -type f -name '*.yaml' | xargs sed -i '' 's/__NPH_REGISTRY/$(AZURE_CR)/g' && cd - > /dev/null ; \
+			cd $(TARGET)/yaml/mngtcluster && find . -type f -name '*.yaml' | xargs sed -i '' 's/__NPH_REGISTRY/$(DOCKER_REGISTRY)/g' && cd - > /dev/null ; \
 		fi ; \
 	done
 
