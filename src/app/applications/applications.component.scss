@@ -23,10 +23,7 @@
     margin-top: -1em;
 }
 /* - - - Medias Summary app card - - - */
-@media screen and (max-width:1680px), screen and (max-height: 997px) {
-    .circle {
-        margin-top: 2em;
-    }
+@media screen and (max-width:1720px), screen and (max-height: 780px) {
     .donut-chart {
         height: 85%;
         max-width: 120px;
@@ -35,7 +32,7 @@
         margin-top: -2em;
     }
 }
-@media screen and (max-width:1500px), screen and (max-height: 800px){
+@media screen and (max-width:1440px), screen and (max-height: 900px){
     .circle {
         margin-top: 2em;
     }
@@ -152,7 +149,7 @@
     outline: none;
 }
 /* - - - Medias Apps tabs - - - */
-@media screen and (max-width:1500px) {
+@media screen and (max-width:1440px) {
     .app-tab-container {
         margin-right: 1em !important;
     }

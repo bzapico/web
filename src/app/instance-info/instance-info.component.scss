@@ -17,7 +17,7 @@
     height: 517px;
     margin-bottom: 2em;
 }
-@media screen and (max-width:1557px) {
+@media screen and (max-width:1440px) {
     .h-ins-services {
         height: 373px;
     }
@@ -79,7 +79,7 @@
 }
 
 /* - - - Medias summary card instances table - - - */
-@media screen and (max-width:1612px), screen and (max-height: 900px) {
+@media screen and (max-width:1440px), screen and (max-height: 900px) {
     .summary-instance-card {
         .summary-instances-status, 
         .summary-instances-data{
@@ -88,7 +88,7 @@
     }
 
 }
-@media screen and (max-width:1570px) {
+@media screen and (max-width:1440px) {
     .summary-instance-card{
         th {
             font-size: .7em;
@@ -142,7 +142,7 @@
     margin-top: 1em;
 }
 /* - - - Medias Servivces summary card - - - */
-@media screen and (max-width:1550px) {
+@media screen and (max-width:1440px) {
     .table-fixed tbody td {
         padding: 0.75rem 0;
     }
@@ -168,21 +168,10 @@
     left: 3px;
 }
 
-@media screen and (max-width:1680px) {
-    .ins-labels {
-        padding-top: 1em;
-        overflow: scroll;
-    }
-}
-@media screen and (max-width:1580px) {
+@media screen and (max-width:1366px), screen and (max-height: 768px) {
     .ins-labels {
         padding-top: 0em;
         overflow: scroll;
-    }
-}
-@media screen and (max-height: 790px) {
-    .ins-labels {
-        padding-top: 0em;
     }
 }
 
@@ -218,7 +207,7 @@
 .show-sm {
     display: none;
 }
-@media screen and (max-width:1613px), screen and (max-height: 800px)  {
+@media screen and (max-width:1720px), screen and (max-height: 780px)   {
     .hide-sm {
         display: none;
     }
@@ -226,7 +215,7 @@
         display: block;
     }
 }
-@media screen and (max-height: 668px) {
+@media screen and (max-height: 780px) {
     .hide-title-sm {
         display: none;
     }
@@ -257,7 +246,7 @@
     height: 83%;
     word-wrap: break-word;
 }
-@media screen and (max-width:1682px), screen and (max-height: 944px)  {
+@media screen and (max-width:1440px), screen and (max-height: 900px)  {
     .config-card {
         text-align: left;
         justify-content: end;

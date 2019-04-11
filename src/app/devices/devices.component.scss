@@ -156,19 +156,14 @@
     text-transform: uppercase;
 }
 .summary-devices-running {
-    font-size: 3em !important;
+    font-size: 2em !important;
 }
 .summary-card-small {
     display: none;
 }
 
 /* - - - Medias summary card devices table - - - */
-@media screen and (max-width:1779px), screen and (max-height: 1057px) {
-    .summary-devices-running {
-        font-size: 2em !important;
-    }
- }
-@media screen and (max-width:1779px) {
+@media screen and (max-width:1720px), screen and (max-height: 780px) {
     .summary-card {
         .devices-availability-size {
             font-size: 0.8em!important;
@@ -184,10 +179,11 @@
     .devices-tab-button {
         li {
             padding: 0rem 1.2rem !important;
+            background-color: green;
         }
     }
 }
-@media screen and (max-width:1570px) {
+@media screen and (max-width:1440px) {
     .summary-card{
         th {
             display: none;
