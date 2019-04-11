@@ -1,7 +1,7 @@
 <!-- Component title -->
 <div class="row row-title mb-4">
     <div class="col-lg-12">
-      <h2>Applications</h2>
+      <h2 class="section-title">Applications</h2>
     </div>
 </div>
 <div class="row h-reg">
@@ -9,7 +9,7 @@
     <div class="reg-flex-col">
       <!-- Registered application id card -->
       <div class="card h-reg-info flex-grow-0">
-        <div class="card-title-c">
+        <div class="card-title-name">
           <h5>
             <a 
               [routerLink]="['/applications']" 
@@ -50,7 +50,7 @@
       </div>
       <!-- Services summary card -->
       <div class="card h-reg-services-info flex-grow-0">
-        <div class="card-title-c">
+        <div class="card-title-name">
           <h5>SERVICES SUMMARY</h5>
         </div>
         <div *ngIf="registeredData.groups && registeredData.groups.length > 0" class="summary-card">
@@ -75,7 +75,7 @@
       </div>
       <!-- Labels card-->
       <div class="card h-reg-labels flex-grow-1">
-        <div class="card-title-c hide-title-sm">
+        <div class="card-title-name hide-title-sm">
           <h5>LABELS</h5>
         </div>
         <div class="reg-labels" *ngIf="loadedData && registeredData && registeredData.labels && !requestError">
@@ -128,7 +128,7 @@
       <!-- Graph card -->
       <div *ngIf="showGraph" class="card h-reg-services flex-grow-1">
         <div class="row">
-          <div class="col-10 card-title-h">
+          <div class="col-10 card-title-name">
             <h5>SERVICES</h5>
           </div>
           <div class="col-2">
@@ -214,7 +214,7 @@
       <!-- Services card -->
       <div *ngIf="!showGraph" class="card h-reg-services flex-grow-1">
         <div class="row">
-          <div class="col-10 card-title-h">
+          <div class="col-10 card-title-name">
             <h5>SERVICES</h5>
           </div>
             <div class="col-2">
@@ -449,7 +449,7 @@
       <div class="h-reg-rules flex-grow-0">
         <!-- Rules card -->
         <div class="card h-100 mr-4 w-75">
-          <div class="card-title-c">
+          <div class="card-title-name">
             <h5>RULES</h5>
           </div>
           <div class="row hide-sm">
@@ -628,7 +628,7 @@
         </div>
         <!-- Configuration card -->
         <div class="card h-100">
-          <div class="card-title-c">
+          <div class="card-title-name">
             <h5 class="hide-sm">CONFIGURATION</h5>
             <h5 class="show-sm">CONF...</h5>
           </div>

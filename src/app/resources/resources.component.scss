@@ -13,12 +13,6 @@
 }
 /* - - - Medias Cluster table card - - - */
 @media screen and (max-width:1500px) {
-    .card-title-c {
-        font-size: 1em;
-    }
-    h2 {
-        font-size: 1.5rem;
-    }
     .info-btn {
         height: 25px;
         width: 25px;
@@ -31,75 +25,6 @@
     }
 }
 
-/* - - - Summary card circles - - - */
-.summary-card {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    margin-top: 1em;
-}
-.summary-box {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    height: 100%;
-}
-.circle {
-    width: 112px;
-    height: 112px;
-    border: 1px solid #949494;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    position: relative;
-    margin: 0 auto;
-    span {
-      text-align: center;
-      color: black;
-      font-size: 1.7em;
-    }
-  }
-.circle-name {
-    font-size: 1.2em;
-    color:#949494;
-    text-align: center;
-    margin-top: 1em;
-}
-/* - - - Medias Summary card circles - - - */
-@media screen and (max-width:1500px), screen and (max-height: 790px) {
-    .circle {
-        margin-top: 2em;
-        max-width: 65px;
-        max-height: 65px;
-        span {
-          font-size: 1em !important;
-          top: 21px;
-          left: 25px;
-        }
-    }
-    .circle-name {
-        font-size: .9em;
-  
-    }
-    .summary-card {
-        margin-top: 0em;
-        height: 82%;
-    }
-
-}
-@media screen and (min-width:2560px) {
-    .circle {
-        min-width: 140px;
-        min-height: 140px;
-        span {
-          top: 54px;
-          left: 58px;
-        }
-    }
-}
 
 /* - - - Cluster card Slider - - - */
 
@@ -220,15 +145,6 @@
     .box-line-chart {
         width: 100%;
         margin-left: 0;
-    }
-}
-@media screen and (max-width:1680px), screen and (max-height: 864px) {
-    .summary-card { 
-        margin-top: 0em;
-    }
-    .circle {
-        width: 90px;
-        height: 90px;
     }
 }
 @media screen and (max-width:1686px){
