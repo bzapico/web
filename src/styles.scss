@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "../node_modules/bootstrap/scss/mixins";
 
@@ -134,13 +133,12 @@ a {
   }
 }
 
-
 /* - - - Loader styles - - - */
 .nalej-loader-container {
   display: block;
   position: relative;
-  min-height: 15em !important;
-  min-width: 5em !important;
+  min-height: 15em;
+  min-width: 5em;
   .circular {
     animation: rotate 2s linear infinite;
     height: 100%;
@@ -213,12 +211,17 @@ a {
 .row-main {
   height: 54%;
 }
-.card-title-h {
+.card-title-name__mb {
   margin-bottom: 1em;
 }
 
-@media screen and (max-width:1500px) {
-  .card-title-h {
+@media screen and (max-width:1500px), screen and (max-height: 790px) {
+  .card-title-name {
+    h5 {
+      font-size: 1em;
+    }
+  }
+  .card-title-name__mb {
     margin-bottom: 0em;
     h5 {
       font-size: 1em;
@@ -247,23 +250,13 @@ a {
     background-color: #4f71fd;
   }
 }
-.btn-red {
-  color: #fff;
-  border: 0px;
-  background: #ff437d !important; 
-  &:hover {
-    color: #fff;
-    transition: 0.3s;
-    background-color: #ff8eb1;
-  }
-}
 button[type="submit"]:disabled {
   background: #949494;
   background: -moz-linear-gradient(left, #949494 0%, #444444 100%); 
   background: -webkit-linear-gradient(left, #949494 0%,#444444 100%);
   background: linear-gradient(to right, #949494 0%,#444444 100%);
 }
-.btn-group-lg > .btn, .btn-lg {
+.btn-lg {
   padding: 15px;
   font-size: 14px;
 }
@@ -330,16 +323,22 @@ button[type="submit"]:disabled {
   display: inline-block;
   cursor: pointer;
 }
-.delete-label-button {
+.label-button {
   height: 22px;
   width: 22px;
   border-radius: 50%;
   margin: .3em;
   position: relative;
-  background-color: #F25272;
+  cursor: pointer;
   &:hover {
     color: #fff;
     transition: 0.3s;
+  }
+}
+.delete-label-button {
+  @extend .label-button;
+  background-color: #F25272;
+  &:hover {
     background-color: #ff8eb1;
   }
 }
@@ -351,16 +350,9 @@ button[type="submit"]:disabled {
   color: white;
 }
 .add-label-button {
-  height: 22px;
-  width: 22px;
-  border-radius: 50%;
-  margin: .3em;
-  position: relative;
+  @extend .label-button;
   background-color: #0937FF;
-  cursor: pointer;
   &:hover {
-    color: #fff;
-    transition: 0.3s;
     background-color: #4f71fd;
   }
 }
@@ -416,7 +408,7 @@ button[type="submit"]:disabled {
 .nalej-form-title{
   font-size: .9em;
   display: inline;
-  margin-bottom: 1em;
+
   button span {
     color: #888888;
   }
@@ -441,13 +433,9 @@ button[type="submit"]:disabled {
 }
 .form-control {
   position: relative;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
   height: 40px;
   font-size: .8em;
   text-align: center;
-  border-radius: 5px;
   border: 2px solid #EEEEEE;
   caret-color: #0937FF;
   padding-top: 10px;
@@ -465,8 +453,7 @@ button[type="submit"]:disabled {
       outline: none;
     }
     &:-webkit-autofill {
-      background-color: #fff !important;
-      -webkit-box-shadow: 0 0 0px 1000px white inset;
+      background-color: #fff;
     }
   }
   &:disabled, &[readonly] {
@@ -476,18 +463,15 @@ button[type="submit"]:disabled {
 }
 
 /* - - - Forms button styles - - - */
-.btn-nalej-form {
+.btn-nalej {
   border: 0px;
   border-radius: 5px;
   width: 232px;
   font-size: 0.8em;
   text-align: center;
-  color: #fff;
   height: 51px;
-  background-color: #0937FF;
   padding-top: 6px;
   cursor: pointer;
-  margin-top: 2em;
   &:focus {
     outline: none;
     box-shadow: none;
@@ -495,6 +479,12 @@ button[type="submit"]:disabled {
   &:disabled {
     background-color: #707070;
   }
+}
+.btn-nalej-form {
+  @extend .btn-nalej;
+  color: #fff;
+  background-color: #0937FF;
+  margin-top: 2em;
   &:hover {
     color: #fff;
     transition: 0.3s;
@@ -502,25 +492,11 @@ button[type="submit"]:disabled {
   }
 }
 .btn-nalej-form-red {
-  border: 0px;
-  border-radius: 5px;
-  width: 232px;
-  font-size: 0.8em;
-  text-align: center;
-  height: 51px;
+  @extend .btn-nalej;
   background-color: #ececec;
   color: #F25272;
-  cursor: pointer;
   position: relative;
-  padding-top: 6px;
   text-indent: 18px;
-  &:focus {
-    outline: none;
-    box-shadow: none;
-  }
-  &:disabled {
-    background-color: #707070;
-  }
   .delete-icon {
     color: #F25272;
     position: absolute;
@@ -692,6 +668,86 @@ button[type="submit"]:disabled {
   height: 4px;
   background-color: #000000;
   opacity: 0.4;
+}
+
+/* - - - Summary card styles- - - */
+.summary-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+.summary-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+/* - - - Summary circles styles - - - */
+.circle {
+  width: 112px;
+  height: 112px;
+  border: 1px solid #949494;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  position: relative;
+  margin: 0 auto;
+  span {
+    text-align: center;
+    color: black;
+    font-size: 1.7em;
+  }
+}
+.circle-name {
+  font-size: 1.2em;
+  color:#949494;
+  text-align: center;
+  margin-top: 1em;
+}
+
+/* - - - Medias Summary card circles - - - */
+@media screen and (max-width:1500px), screen and (max-height: 790px) {
+  .circle {
+    max-width: 65px;
+    max-height: 65px;
+    span {
+      font-size: 1em;
+      top: 21px;
+      left: 25px;
+    }
+  }
+  .circle-name {
+    font-size: .9em;
+  }
+  .summary-card {
+    margin-top: 0em;
+    height: 82%;
+  }
+
+}
+@media screen and (max-width:1680px), screen and (max-height: 997px) {
+  .summary-card {
+    margin-top: 0em;
+  }
+  .circle {
+    width: 90px;
+    height: 90px;
+  }
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (min-width:2560px) {
+  .circle {
+    min-width: 140px;
+    min-height: 140px;
+    span {
+      top: 54px;
+      left: 58px;
+    }
+  }
 }
 
 /* - - - Carousel styles- - - */
@@ -1054,44 +1110,37 @@ button[type="submit"]:disabled {
 }
 
 /* - - - Status dots for tables - - - */
-.status-dot:before {
+.status-dot-nalej {
   content:'\A';
   width:10px;
   height:10px;
   border-radius:50%;
-  background: #0937FF;
   display:inline-block;
   margin: 0 5px 0 0;
+}
+.status-dot:before {
+  @extend .status-dot-nalej;
+  background: #0937FF;
 }
 .status-dot-error:before {
-  content:'\A';
-  width:10px;
-  height:10px;
-  border-radius:50%;
+  @extend .status-dot-nalej;
   background: #F25272;
-  display:inline-block;
-  margin: 0 5px 0 0;
 }
 .status-dot-process:before {
-  content:'\A';
-  width:10px;
-  height:10px;
-  border-radius:50%;
+  @extend .status-dot-nalej;
   background: #03D7E8;
-  display:inline-block;
-  margin: 0 5px 0 0;
 }
 
 @media screen and (max-width:1500px) {
   .status-dot, 
   .status-dot-error, 
   .status-dot-process {
-      text-align: center;
+    text-align: center;
   }
   .status-dot:before, 
   .status-dot-error:before, 
   .status-dot-process:before {
-      margin: 0 23px;
+    margin: 0 23px;
   }
 }
 

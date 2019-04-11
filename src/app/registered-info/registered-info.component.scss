@@ -121,95 +121,10 @@
         left: 20%;
     }
 }
-
-/* - - - Servivces summary card- - - */
-.summary-card {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    margin-top: 1em;
-}
-.summary-box {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    height: 100%;
-}
-.circle {
-    width:112px;
-    height: 112px;
-    border: 1px solid #949494; 
-    -moz-border-radius: 50%; 
-    -webkit-border-radius: 50%; 
-    border-radius: 50%;
-    position: relative;
-    margin: 0 auto;
-}
-.circle span {
-    text-align: center;
-    color: black;
-    font-size: 1.7em;
-}
-.circle-name {
-    font-size: 1.2em;
-    color:#949494;
-    text-align: center;
-    margin-top: 1em;
-}
-
 /* - - - Medias Servivces summary card - - - */
-
-@media screen and (max-width:1500px) , screen and (max-height: 900px) {
-    .circle {
-        margin-top: 2em;
-        max-width: 65px;
-        max-height: 65px;
-    }
-    .circle span {
-        font-size: 1em !important;
-        top: 21px;
-        left: 25px;
-    }
-    .circle-name {
-        font-size: .9em !important;
-        margin-top: 0.3em;
-    }
-    .summary-card {
-        margin-top: 0em;
-        height: 82%;
-    }
-    h2 {
-        font-size: 1.5rem;
-    }
-    .card-title-h h5, .card-title-c h5 {
-        font-size: 1em;
-    }
-}
 @media screen and (max-width:1550px) {
     .table-fixed tbody td:last-child {
         padding: 0.75rem 0;
-    }
-}
-@media screen and (max-width:1680px) , screen and (max-height: 1039px) {
-    .circle {
-        width: 90px;
-        height: 90px;
-    }
-    .circle-name {
-        margin-top: .5em;
-    }
-}
-@media screen and (min-width:2560px) {
-    .circle {
-        min-width: 140px;
-        min-height: 140px;
-    }
-    .circle span {
-        top: 54px;
-        left: 58px;
     }
 }
 
