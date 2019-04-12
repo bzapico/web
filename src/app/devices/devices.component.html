@@ -196,8 +196,8 @@
           <h5>DEVICES</h5>
         </div>
         <!-- Devices tabs buttons -->
-        <div class="col-10 devices-tab-buttons-container">
-          <ul class="devices-tab-button" *ngIf="activeGroupId === 'ALL' || groups.length === 0">
+        <div class="col-10 devices-tab-btns-box">
+          <ul class="devices-tab-btn" *ngIf="activeGroupId === 'ALL' || groups.length === 0">
             <li>
               <span class="devices-button-item blue devices-button-item-pr" (click)="addGroup()">
                 <i class="material-icons">add</i>
@@ -205,7 +205,7 @@
               </span>
             </li>
           </ul>
-          <ul class="devices-tab-button" *ngIf="activeGroupId !== 'ALL' && groups.length > 0">
+          <ul class="devices-tab-btn" *ngIf="activeGroupId !== 'ALL' && groups.length > 0">
             <li>
               <span class="devices-button-item blue" (click)="addGroup()">
                 <i class="material-icons">add</i>
@@ -233,20 +233,20 @@
         <!-- Devices tabs -->
         <div class="row">
           <div class="col">
-            <div class="devices-tab-container">
+            <div class="nalej-tab-box">
               <ul>
-                <li *ngIf="displayedGroupsNamesLength < maxLabelsLength" class="devices-tab devices-tab-title">
+                <li *ngIf="displayedGroupsNamesLength < maxLabelsLength" class="nalej-tab nalej-tab-title">
                   <span class="grey">GROUPS</span>
                 </li>
                 <li 
                   *ngIf="groups.length > 0" 
-                  class="devices-tab" 
+                  class="nalej-tab" 
                   (click)="changeActiveGroup('ALL')">
                   <span [ngClass]="amIactive('ALL')">ALL</span>
                 </li>
                 <li 
                   *ngIf="groups.length === 0" 
-                  class="devices-tab">
+                  class="nalej-tab">
                   <span class="active">ALL</span>
                 </li>
                 <li 
@@ -257,7 +257,7 @@
                 </li>
                 <li 
                   *ngFor="let group of displayedGroups"
-                  class="devices-tab"
+                  class="nalej-tab"
                   (click)="changeActiveGroup(group.device_group_id)">
                   <span *ngIf="displayedGroups.length > 0" [ngClass]="amIactive(group.device_group_id)">
                     {{group.name}}
