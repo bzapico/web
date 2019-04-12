@@ -1,5 +1,5 @@
 <!-- Component title -->
-<div class="row row-title mb-4">
+<div class="row row-title">
   <div class="col-lg-12">
     <h2 class="section-title">Resources</h2>
   </div>
@@ -28,7 +28,7 @@
   <div class="col-lg-9 h-100">
     <div class="card card-clus p-4 h-100">
       <div class="card-title-name">
-        <h5 class="d-inline text-uppercase">SUMMARY</h5>
+        <h5>SUMMARY</h5>
       </div>
       <div class="box-card">
         <div class="box circles-box ">
@@ -256,7 +256,7 @@
                 </div>
               </td>
               <td 
-                class="text-lowercase col-2 text-center"
+                class="col-2 col-center-low"
                 [ngClass]=
                 "{'status-dot':classStatusCheck(node.status_name, 'running'),
                 'status-dot-error':classStatusCheck(node.status_name, 'error'),
@@ -274,17 +274,17 @@
       <!-- No info to show -->
       <div
         *ngIf="loadedData && nodes && nodes.length === 0 && !requestError"
-        class="no-elements d-flex justify-content-center align-items-center">
+        class="no-elements">
         <p>There are not registered nodes in this cluster</p>
       </div>
        <!-- Requested error -->
       <div
         *ngIf="loadedData && requestError"
-        class="no-elements d-flex justify-content-center align-items-center">
+        class="no-elements">
         <p>{{requestError}}</p>
       </div>
       <!-- Loader -->
-      <div class="nalej-loader-container" *ngIf="!loadedData">
+      <div class="nalej-loader-box" *ngIf="!loadedData">
         <div class="loader">
           <svg 
             class="circular" 

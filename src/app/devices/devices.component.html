@@ -1,5 +1,5 @@
 <!-- Component title -->
-<div class="row row-title mb-4">
+<div class="row row-title">
   <div class="col-lg-2">
     <h2 class="section-title">Devices</h2>
   </div>
@@ -22,7 +22,7 @@
   <div class="col-lg-4 h-100">
     <div class="card h-100">
       <div class="card-title-name">
-        <h5 class="text-uppercase">Summary</h5>
+        <h5>SUMMARY</h5>
       </div>
       <div *ngIf="groups.length > 0" class="summary-card">
         <div>
@@ -40,7 +40,7 @@
       </div>
       <div 
         *ngIf="groups.length === 0"
-        class="summary-card d-flex justify-content-center align-items-center">
+        class="no-elements">
         No available groups detected
       </div>
     </div>
@@ -53,10 +53,10 @@
       </div>
       <div 
         *ngIf="countGroupDevices(activeGroupId) === 0" 
-        class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
+        class="h-100 no-elements"> 
         No devices
       </div>
-      <div *ngIf="countGroupDevices(activeGroupId) > 0" class="box-line-chart">
+      <div *ngIf="countGroupDevices(activeGroupId) > 0" class="line-chart-box">
         <ngx-charts-line-chart
           [scheme]="colorScheme"
           [results]="devicesChart"
@@ -154,10 +154,10 @@
           </div>
           <div 
             *ngIf="countGroupDevices(activeGroupId) === 0" 
-            class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
+            class="h-100 no-elements"> 
             No devices
           </div>
-          <div *ngIf="countGroupDevices(activeGroupId) > 0" class="box-line-chart">
+          <div *ngIf="countGroupDevices(activeGroupId) > 0" class="line-chart-box">
             <ngx-charts-line-chart
               [scheme]="colorScheme"
               [results]="devicesChart"
@@ -317,7 +317,7 @@
         <!-- No devices to show -->
         <div 
           *ngIf="groups.length > 0 && countGroupDevices(activeGroupId) === 0 && loadedData"
-          class="no-devices-in-group d-flex justify-content-center align-items-center">
+          class="no-elements-in-group">
             No available devices registered in this group
         </div>
         <!-- Devices table -->
@@ -471,7 +471,7 @@
                   <td class="col-2">{{getGroupName(device.device_group_id)}}</td>
                   <td class="col-1">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</td>  
                   <td 
-                    class="text-lowercase col-2 text-center"
+                    class="col-2 col-center-low"
                     [ngClass]=
                     "{'status-dot':classStatusCheck(device.device_status_name, 'online'),
                     'status-dot-error':classStatusCheck(device.device_status_name, 'offline'),
@@ -551,7 +551,7 @@
                   <td class="col-3">{{device.device_id}}</td>
                   <td class="col-2">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</td>  
                   <td  
-                    class="text-lowercase col-2 text-center"
+                    class="col-2 col-center-low"
                     [ngClass]=
                     "{'status-dot':classStatusCheck(device.device_status_name, 'online'),
                     'status-dot-error':classStatusCheck(device.device_status_name, 'offline'),
@@ -629,18 +629,18 @@
           <!-- No info to show -->
         <div 
           *ngIf="groups.length === 0 && !requestError"
-          class="no-devices d-flex justify-content-center align-items-center">
+          class="no-elements">
           No available groups have been created. Add a new group to be able to register devices in it.
         </div>
           <!-- Requested error -->
         <div
           *ngIf="requestError"
-          class="no-elements d-flex justify-content-center align-items-center">
+          class="no-elements">
           <p>{{ requestError }}</p>
         </div>
       </span>
       <!-- Loader -->
-      <div class="nalej-loader-container h-100 w-100" *ngIf="!loadedData">
+      <div class="nalej-loader-box h-100 w-100" *ngIf="!loadedData">
         <div class="loader">
           <svg 
             class="circular" 

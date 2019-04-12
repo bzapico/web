@@ -61,6 +61,11 @@
     justify-content: space-around;
     height: 100%!important;
 }
+.cluster-name {
+    text-transform: uppercase;
+    color: #949494;
+    text-align: center;
+}
 .nodes-run {
     font-size: .8em;
     cursor: pointer;
@@ -95,9 +100,6 @@
     padding: 1.5rem 1.5rem 0 1.5rem;
     height: 100%;
 }       
-.no-clusters {
-    height: 70%;
-}
 
 /* - - - Media Cluster card Slider - - - */
 @media screen and (max-width:1500px) {
@@ -133,16 +135,13 @@
     }
 }
 /* - - - Node Status card - - - */
-.box-line-chart {
+.line-chart-box {
     width: 92%;
     margin-left: 8px;
 }
 
 @media screen and (max-width:1500px) {
-    .y-axis-line-chart  {
-        display: none;
-    }
-    .box-line-chart {
+    .line-chart-box {
         width: 100%;
         margin-left: 0;
     }

@@ -97,7 +97,7 @@ a {
 }
 
 /* - - - Loader styles - - - */
-.nalej-loader-container {
+.nalej-loader-box {
   display: block;
   position: relative;
   min-height: 15em;
@@ -166,6 +166,7 @@ a {
 
 .row-title {
   height: 4%;
+  margin-bottom: 1.5em;
 }
 .row-info {
   height: 29%;
@@ -197,6 +198,7 @@ a {
 }
 
 /* - - - Button styles - - - */
+
 .btn-primary {
   width: 257px;
   color: #fff;
@@ -213,15 +215,16 @@ a {
     background-color: #4f71fd;
   }
 }
+.nalej-btn-lg {
+  @extend .btn-primary;
+  padding: 15px;
+  font-size: 14px;
+}
 button[type="submit"]:disabled {
   background: #949494;
   background: -moz-linear-gradient(left, #949494 0%, #444444 100%); 
   background: -webkit-linear-gradient(left, #949494 0%,#444444 100%);
   background: linear-gradient(to right, #949494 0%,#444444 100%);
-}
-.btn-lg {
-  padding: 15px;
-  font-size: 14px;
 }
 .alert > button.close:hover span {
   color:white;
@@ -719,6 +722,30 @@ button[type="submit"]:disabled {
     }
   }
 }
+/* - - - Scroll app info styles- - - */
+.scroll-app-info {
+  margin: 3.5em 0;
+  max-height: 475px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-size:  .9em;
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 8px;
+    margin-left: 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  }
+}
+@media screen and (max-height: 779px) {
+  .scroll-app-info {
+      height: 224px;
+      margin: 1.5em 0;
+  }
+}
 
 /* - - - Carousel styles- - - */
 .carousel-small {
@@ -884,13 +911,26 @@ button[type="submit"]:disabled {
   }
 }
 
+
 /* - - -  No elements in a table - - - */
 .no-elements {
   height: 80%;
   text-align: center;
-  padding-top: 2em;
+  // padding-top: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-.box-line-chart {
+.no-elements-in-group {
+  position: absolute;
+  bottom: 33%;
+  left: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.line-chart-box {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -928,42 +968,50 @@ button[type="submit"]:disabled {
 }
 
 /* - - -  Table-h - - - */
+.col-center-low {
+  text-align: center;
+  text-transform: lowercase;
+}
+.col-right-low {
+  text-align: right;
+  text-transform: lowercase;
+}
 .table-fixed {
   width: 100%;
   height: 100%;
   overflow: hidden;
   thead {
-      background-color: white;
+    background-color: white;
   }
   thead, tbody, tr, td, th {
-      display: block;
+    display: block;
   }
   tr:after {
-      content: ' ';
-      display: block;
-      visibility: hidden;
-      clear: both;
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
   }
   tbody {
-      height: 90%;
-      overflow-y: auto;
-      width: 100%;
-      td {
-          float: left;
-          padding: 0.75rem;
-          font-size: .9em;
-          border-top: 0.8px solid #EEEEEE;
-          color: #949494;
-      }
+    height: 90%;
+    overflow-y: auto;
+    width: 100%;
+    td {
+      float: left;
+      padding: 0.75rem;
+      font-size: .9em;
+      border-top: 0.8px solid #EEEEEE;
+      color: #949494;
+    }
   }
   thead th {
-      float: left;
-      border: none;
-      font-size: .9em;
-      font-weight: 200;
+    float: left;
+    border: none;
+    font-size: .9em;
+    font-weight: 200;
   }
   tbody tr:first-child td {
-      border: none;
+    border: none;
   }
 }
 .table-h {
@@ -971,36 +1019,36 @@ button[type="submit"]:disabled {
   width: 100%;
   overflow: hidden;
   thead th {
-      cursor: pointer;
-      &.default{
+    cursor: pointer;
+    &.default{
+      color: black;
+      i {
         color: black;
-        i {
-          color: black;
-        }
       }
-      &.enabled {
-        i {
-        color: #0937FF;
-        }
-        span i{
-          visibility: visible;
-        }
+    }
+    &.enabled {
+      i {
+      color: #0937FF;
       }
-      &.disabled {
+      span i{
+        visibility: visible;
+      }
+    }
+    &.disabled {
+      color: #949494;
+      i {
         color: #949494;
-        i {
-          color: #949494;
-        }
       }
+    }
   }
   .expand-chevron {
-      position: relative;
-      cursor: pointer;
-      top: 3px;
-      right: 3px;
-      i {
-        font-size: 1.1em;
-      }
+    position: relative;
+    cursor: pointer;
+    top: 3px;
+    right: 3px;
+    i {
+      font-size: 1.1em;
+    }
   }
 }
 /* - - -  Search and sort in tables - - - */
@@ -1011,7 +1059,7 @@ button[type="submit"]:disabled {
   padding: 0.75rem;
   margin-bottom: 0;
   .reset-search{
-      cursor: pointer;
+    cursor: pointer;
   }
 }
 // Search box
@@ -1115,7 +1163,7 @@ button[type="submit"]:disabled {
 }
 
 /* - - - Nalej tabs - - - */
-.nalej-tab-container {
+.nalej-tab-box {
   margin-bottom: 2em;
   margin-right: 3em;
   font-size: .6em;
@@ -1168,12 +1216,12 @@ button[type="submit"]:disabled {
   }
 }
 @media screen and (max-width:1779px) {
-  .nalej-tab-container li {
+  .nalej-tab-box li {
     padding: 0.5rem 1.2rem;
   }
 }
 @media screen and (max-width:1570px) {
-  .nalej-tab-container li {
+  .nalej-tab-box li {
     padding: 0.5rem .9rem;
   }
   .nalej-tab-title {

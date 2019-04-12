@@ -4,25 +4,9 @@
     text-transform: uppercase;
 }
 /* - - - Device Status card - - - */
-.box-line-chart {
+.line-chart-box {
     width:93%;
 }
-/* - - - Devices list table card - - - */
-.no-devices {
-    height: 70%;
-}
-.no-devices-in-group {
-    position: absolute;
-    bottom: 33%;
-    left: 33%;
-}
-/* - - - Medias Devices list card - - - */
-@media  screen and (max-height: 967px) {
-    .no-devices {
-        height: 60%;
-    }
-}
-
 /* - - - Devices tabs buttons - - - */
 .devices-tab-buttons-container {
     font-size: .6em;

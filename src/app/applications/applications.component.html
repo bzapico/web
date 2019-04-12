@@ -1,5 +1,5 @@
 <!-- Component title -->
-<div class="row row-title mb-4">
+<div class="row row-title">
   <div class="col-lg-12">
     <h2 class="section-title">Applications</h2>
   </div>
@@ -49,10 +49,10 @@
       </div>
       <div 
         *ngIf="instances.length === 0" 
-        class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
+        class="h-100 no-elements"> 
         No applications deployed yet
       </div>
-      <div *ngIf="instances.length>0" class="box-line-chart">
+      <div *ngIf="instances.length>0" class="line-chart-box">
         <ngx-charts-line-chart
           [scheme]="colorScheme"
           [results]="appsChart"
@@ -107,20 +107,20 @@
       <!-- Applications tabs -->
       <div class="row">
         <div class="col">
-          <div class="app-tab-container">
+          <div class="nalej-tab-box">
             <ul>
-              <li class="app-tab app-tab-title">
+              <li class="nalej-tab nalej-tab-title">
                 <span class="grey">LISTS</span>
               </li>
               <li 
-                class="app-tab"
+                class="nalej-tab"
                 (click)="changeActiveList('instances')">
                 <span [ngClass]="{'active': showInstances}">
                   INSTANCES
                 </span>
               </li>
               <li 
-                class="app-tab"
+                class="nalej-tab"
                 (click)="changeActiveList('registered')">
                 <span [ngClass]="{'active': !showInstances}">
                   REGISTERED
@@ -251,7 +251,7 @@
                 </button>
               </td>
               <td 
-                class="text-lowercase col-2 text-center"
+                class="col-2 col-center-low"
                 [ngClass]=
                 "{'status-dot':classStatusCheck(app.status_name, 'running'),
                 'status-dot-error':classStatusCheck(app.status_name, 'error'),
@@ -274,7 +274,7 @@
        <!-- No app instances to show -->
       <div 
         *ngIf="loadedData && instances && instances.length === 0 && !requestError && showInstances"
-        class="no-apps d-flex justify-content-center align-items-center">
+        class="no-elements">
         No application instances deployed
       </div>
       <!-- Registered Apps -->
@@ -408,17 +408,17 @@
         <!-- No registered app to show -->
       <div 
         *ngIf="loadedData && registered && registered.length === 0 && !requestError && !showInstances"
-        class="no-apps d-flex justify-content-center align-items-center">
+        class="no-elements">
         No registered applications detected
       </div>
        <!-- Requested error -->
       <div
         *ngIf="loadedData && requestError"
-        class="no-elements d-flex justify-content-center align-items-center">
+        class="no-elements">
         <p>{{requestError}}</p>
       </div>
       <!-- Loader -->
-      <div class="nalej-loader-container" *ngIf="!loadedData">
+      <div class="nalej-loader-box" *ngIf="!loadedData">
         <div class="loader">
           <svg 
             class="circular" 

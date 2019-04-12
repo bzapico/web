@@ -1,5 +1,5 @@
 <!-- Component title -->
-<div class="row row-title mb-4">
+<div class="row row-title">
   <div class="col-lg-12">
     <h2 class="section-title">Applications</h2>
   </div>
@@ -182,7 +182,7 @@
         <div *ngIf="!graphDataLoaded" class="loader"></div>
         <!-- No info to show -->
         <div *ngIf="graphDataLoaded && countGroupServices('ALL') === 0"
-        class="no-info d-flex justify-content-center align-items-center">
+        class="no-elements">
           No available services
         </div>
       </div>
@@ -216,7 +216,7 @@
         <!-- Services tabs -->
         <div class="row" *ngIf="instance && instance.groups && instance.groups.length > 0">
           <div class="col">
-            <div class="nalej-tab-container">
+            <div class="nalej-tab-box">
               <ul>
                 <li 
                   *ngIf="displayedGroupsNamesLength < maxLabelsLength" 
@@ -303,7 +303,7 @@
         </div>
         <!-- No services to show -->
         <div *ngIf="activeGroupId!== 'ALL' && countGroupServices(activeGroupId) === 0"
-          class="no-info-in-group d-flex justify-content-center align-items-center">
+          class="no-elements-in-group">
           No available services in this group
         </div>
         <!-- Services table -->
@@ -417,15 +417,15 @@
         </div>
         <!-- No info to show -->
         <div *ngIf="loadedData && !requestError && groups.length === 0"
-          class="no-info d-flex justify-content-center align-items-center">
+          class="no-elements">
           No available services
         </div>
         <!-- Requested error -->
-        <div *ngIf="loadedData && requestError" class="no-elements d-flex justify-content-center align-items-center">
+        <div *ngIf="loadedData && requestError" class="no-elements">
           <p>{{ requestError }}</p>
         </div>
         <!-- Loader -->
-        <div class="nalej-loader-container" *ngIf="!loadedData">
+        <div class="nalej-loader-box" *ngIf="!loadedData">
           <div class="loader">
             <svg class="circular" viewBox="25 25 50 50">
               <circle 
@@ -597,15 +597,15 @@
           </div>
           <!-- No info to show -->
           <div *ngIf="loadedData && instance && instance.rules && instance.rules.length === 0 !requestError"
-            class="no-info d-flex justify-content-center align-items-center">
+            class="no-elements">
             No available rules detected
           </div>
           <!-- Requested error -->
-          <div *ngIf="loadedData && requestError" class="no-elements d-flex justify-content-center align-items-center">
+          <div *ngIf="loadedData && requestError" class="no-elements">
             <p>{{requestError}}</p>
           </div>
           <!-- Loader -->
-          <div class="nalej-loader-container" *ngIf="!loadedData">
+          <div class="nalej-loader-box" *ngIf="!loadedData">
             <div class="loader">
               <svg class="circular" viewBox="25 25 50 50">
                 <circle 
