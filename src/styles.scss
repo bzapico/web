@@ -402,7 +402,6 @@ button[type="submit"]:disabled {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: red;
 }
 .form-control {
   position: relative;
@@ -436,7 +435,7 @@ button[type="submit"]:disabled {
 }
 
 /* - - - Forms button styles - - - */
-.btn-nalej {
+.nalej-btn-form {
   border: 0px;
   border-radius: 5px;
   width: 232px;
@@ -453,8 +452,8 @@ button[type="submit"]:disabled {
     background-color: #707070;
   }
 }
-.btn-nalej-form {
-  @extend .btn-nalej;
+.nalej-btn-form-blue {
+  @extend .nalej-btn-form;
   color: #fff;
   background-color: #0937FF;
   margin-top: 2em;
@@ -464,8 +463,8 @@ button[type="submit"]:disabled {
     background-color: #4f71fd;
   }
 }
-.btn-nalej-form-red {
-  @extend .btn-nalej;
+.nalej-btn-form-red {
+  @extend .nalej-btn-form;
   background-color: #ececec;
   color: #F25272;
   position: relative;
@@ -488,7 +487,7 @@ button[type="submit"]:disabled {
   }
 }
 @media screen and (max-width:1500px) {
-  .btn-nalej-form {
+  .nalej-btn-form {
     margin-top: 1em;
   }
 }
