@@ -435,7 +435,7 @@ button[type="submit"]:disabled {
 }
 
 /* - - - Forms button styles - - - */
-.nalej-btn-form {
+.nalej-form-btn {
   border: 0px;
   border-radius: 5px;
   width: 232px;
@@ -452,8 +452,8 @@ button[type="submit"]:disabled {
     background-color: #707070;
   }
 }
-.nalej-btn-form-blue {
-  @extend .nalej-btn-form;
+.nalej-form-btn-blue {
+  @extend .nalej-form-btn;
   color: #fff;
   background-color: #0937FF;
   margin-top: 2em;
@@ -463,8 +463,8 @@ button[type="submit"]:disabled {
     background-color: #4f71fd;
   }
 }
-.nalej-btn-form-red {
-  @extend .nalej-btn-form;
+.nalej-form-btn-red {
+  @extend .nalej-form-btn;
   background-color: #ececec;
   color: #F25272;
   position: relative;
@@ -487,7 +487,7 @@ button[type="submit"]:disabled {
   }
 }
 @media screen and (max-width:1500px) {
-  .nalej-btn-form {
+  .nalej-form-btn {
     margin-top: 1em;
   }
 }
@@ -541,10 +541,10 @@ button[type="submit"]:disabled {
     border: 2px solid #F25272 !important;
   }
 }
-.drop-group {
+.form-group-drop {
   position: relative;
 }
-.drop-down-arrow {
+.form-group-drop-arrow {
   position: absolute;
   top: 32px;
   right: 16px;
