@@ -255,7 +255,7 @@ button[type="submit"]:disabled {
   }
 }
 // Selected label style
-.btn-label-selected {
+.label-btn-selected {
   text-align: left;
   max-width: -webkit-fill-available;
   margin: 1px;
@@ -283,13 +283,13 @@ button[type="submit"]:disabled {
   }
 }
 // Add and delete label container
-.label-buttons {
+.label-btns {
   width: 30px;
   height: 20px;
   display: inline-block;
   cursor: pointer;
 }
-.label-button {
+.label-btn {
   height: 22px;
   width: 22px;
   border-radius: 50%;
@@ -301,8 +301,8 @@ button[type="submit"]:disabled {
     transition: 0.3s;
   }
 }
-.delete-label-button {
-  @extend .label-button;
+.label-btn-delete {
+  @extend .label-btn;
   background-color: #F25272;
   &:hover {
     background-color: #ff8eb1;
@@ -315,8 +315,8 @@ button[type="submit"]:disabled {
   left: 4px;
   color: white;
 }
-.add-label-button {
-  @extend .label-button;
+.label-btn-add {
+  @extend .label-btn;
   background-color: #0937FF;
   &:hover {
     background-color: #4f71fd;

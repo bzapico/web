@@ -354,17 +354,17 @@
                 <button 
                   (click)="onLabelClick(app.app_descriptor_id, label[0], label[1])"
                   [ngClass]=
-                  "{'btn-label-selected': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) >= 0 ,
+                  "{'label-btn-selected': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) >= 0 ,
                     'btn-outline-primary': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) === -1}" 
                   *ngFor="let label of labelsToString(app.labels)" 
                   class="btn-sm btn-outline-primary" 
                   >
                   {{label[0]}}: {{label[1]}} 
                 </button>
-                <div class="label-buttons">
+                <div class="label-btns">
                   <div 
                     *ngIf="isAnyLabelSelected(app.app_descriptor_id) === false"
-                    class="add-label-button" 
+                    class="label-btn-add" 
                     (click)="addLabel(app)"
                     tooltip="Add" 
                     placement="right"
@@ -375,7 +375,7 @@
                   </div>
                   <div 
                     *ngIf="isAnyLabelSelected(app.app_descriptor_id) === true"
-                    class="delete-label-button" 
+                    class="label-btn-delete" 
                     (click)="deleteLabel(app)"
                     tooltip="Delete" 
                     placement="right"

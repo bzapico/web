@@ -89,10 +89,10 @@
             >
           {{label.key}}: {{label.value}} 
         </button>
-          <div class="label-buttons">
+          <div class="label-btns">
             <div 
               *ngIf="isAnyLabelSelected(registeredData.app_descriptor_id) === false" 
-              class="add-label-button" 
+              class="label-btn-add" 
               (click)="addLabel(registeredData)"
               tooltip="Add label" 
               placement="right">
@@ -100,7 +100,7 @@
             </div>
             <div 
               *ngIf="isAnyLabelSelected(registeredData.app_descriptor_id) === true" 
-              class="delete-label-button"
+              class="label-btn-delete"
               (click)="deleteLabel(registeredData)" 
               tooltip="Delete label" 
               placement="right">
@@ -109,10 +109,10 @@
           </div>
         </div>
         <div *ngIf="registeredData && !registeredData.labels">
-            <div class="label-buttons">
+            <div class="label-btns">
                 <div 
                   *ngIf="isAnyLabelSelected(registeredData.app_descriptor_id) === false" 
-                  class="add-label-button" 
+                  class="label-btn-add" 
                   (click)="addLabel(registeredData)"
                   tooltip="Add label" 
                   placement="right">
