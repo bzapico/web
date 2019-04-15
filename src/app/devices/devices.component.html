@@ -25,15 +25,15 @@
         <h5>SUMMARY</h5>
       </div>
       <div *ngIf="groups.length > 0" class="summary-card">
-        <div>
-          <div class="circle summary-box">
-            <span class="align-self-center mt-1">{{groups.length}}</span>
+        <div class="summary-box">
+          <div class="circle">
+            <span>{{groups.length}}</span>
           </div>
           <p class="circle-name">GROUPS</p>
         </div>
-        <div>
-          <div class="circle summary-box">
-            <span class="align-self-center mt-1">{{countDevices()}}</span>
+        <div class="summary-box">
+          <div class="circle">
+            <span>{{countDevices()}}</span>
           </div>
           <p class="circle-name">DEVICES</p>
         </div>

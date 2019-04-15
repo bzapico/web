@@ -196,17 +196,6 @@
 .table-h-fix {
     padding-top: 0em;
 }
-.show-sm {
-    display: none;
-}
-@media screen and (max-width:1720px), screen and (max-height: 780px)   {
-    .hide-sm {
-        display: none;
-    }
-    .show-sm {
-        display: block;
-    }
-}
 @media screen and (max-height: 780px) {
     .hide-title-sm {
         display: none;

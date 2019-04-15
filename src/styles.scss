@@ -117,12 +117,6 @@ a {
     padding-top: 100%;
   }
 }
-@media screen and (max-width:1720px) {
-  .hide {
-    display: none  !important;
-  }
-}
-
 @media screen and (max-width:1440px) {
   .tooltip-fix {
     height: 20px;
@@ -130,6 +124,29 @@ a {
     position: absolute;
     top: 33%;
     left: 39%;
+  }
+}
+
+/* - - - Hide and show styles - - - */
+.show-sm {
+  display: none;
+}
+@media screen and (max-width:1720px), screen and (max-height: 780px)  {
+  .hide-sm {
+    display: none;
+  }
+  .show-sm {
+    display: block;
+  }
+}
+@media screen and (max-width:1720px) {
+  .hide-lg {
+    display: none !important;
+  }
+}
+@media screen and (max-width:1440px) {
+  .hide-md {
+    display: none !important;
   }
 }
 
@@ -269,6 +286,81 @@ button[type="submit"]:disabled {
 }
 .alert > button.close:hover span {
   color:white;
+}
+/* - - - Actions btns styles - - - */
+
+.action-btn {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  position: relative;
+  color: #fff;
+  background-color: #0937FF;
+  border: 0;
+  cursor: pointer;
+  &:focus {
+    outline: 0;
+  }
+}
+.i-edit {
+  font-size: 1.2em;
+  position: absolute;
+  top: 7px;
+  left: 8px;
+}
+.i-info {
+  font-size: 1.3em;
+  font-weight: 700;
+  position: absolute;
+  top: 7px;
+  left: 8px;
+}
+//  Action buttons when there are two in a column
+.actions-col {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+.action-btn-2 {
+  @extend .action-btn;
+  margin: 0 6px;
+}
+.i-edit-2 {
+  @extend .i-edit;
+  top: 7px;
+  left: 8px;
+}
+.i-info-2 {
+  @extend .i-info;
+  top: 5px;
+  left: 14px
+}
+
+@media screen and (max-width: 1440px){
+  .action-btn {
+    height: 25px;
+    width: 25px;
+    min-height: 25px;
+    min-width: 25px
+  }
+  .i-edit {
+    font-size: 1em;
+    top: 5px;
+    left: 6px;
+  }
+  .i-info {
+    top: 1px;
+    left: 10px;
+  }
+  .i-edit-2 {
+    font-size: 1em;
+    top: 5px;
+    left: 6px;
+  }
+  .i-info-2 {
+    top: 1px;
+    left: 10px;
+  }
 }
 
 /* - - -  Label buttons - - - */
@@ -693,7 +785,7 @@ button[type="submit"]:disabled {
 }
 .summary-box {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
 }
@@ -701,14 +793,14 @@ button[type="submit"]:disabled {
 .circle {
   width: 112px;
   height: 112px;
+  line-height: 112px;
   border: 1px solid #949494;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
-  position: relative;
+  text-align: center;
   margin: 0 auto;
   span {
-    text-align: center;
     color: black;
     font-size: 1.7em;
   }
@@ -718,17 +810,31 @@ button[type="submit"]:disabled {
   color:#949494;
   text-align: center;
   margin-top: 1em;
+  margin-bottom: 0;
 }
 
 /* - - - Medias Summary card circles - - - */
+
+@media screen and (max-width:1440px), screen and (max-height: 900px) {
+  .summary-card {
+    margin-top: 0em;
+  }
+  .circle {
+    width: 90px;
+    height: 90px;
+    line-height: 90px;
+  }
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
 @media screen and (max-width:1280px), screen and (max-height: 790px) {
   .circle {
     max-width: 65px;
     max-height: 65px;
+    line-height: 65px;
     span {
       font-size: 1em;
-      top: 21px;
-      left: 25px;
     }
   }
   .circle-name {
@@ -740,26 +846,11 @@ button[type="submit"]:disabled {
   }
 
 }
-@media screen and (max-width:1440px), screen and (max-height: 900px) {
-  .summary-card {
-    margin-top: 0em;
-  }
-  .circle {
-    width: 90px;
-    height: 90px;
-  }
-  .section-title {
-    font-size: 1.5rem;
-  }
-}
 @media screen and (min-width:2560px) {
   .circle {
     min-width: 140px;
     min-height: 140px;
-    span {
-      top: 54px;
-      left: 58px;
-    }
+    line-height: 140px;
   }
 }
 /* - - - Scroll app info styles- - - */
@@ -957,7 +1048,6 @@ button[type="submit"]:disabled {
 .no-elements {
   height: 80%;
   text-align: center;
-  // padding-top: 2em;
   display: flex;
   flex-direction: row;
   justify-content: center;

@@ -54,15 +54,15 @@
           <h5>SERVICES SUMMARY</h5>
         </div>
         <div *ngIf="registeredData.groups && registeredData.groups.length > 0" class="summary-card">
-          <div>
-            <div class="circle summary-box">
-              <span *ngIf="registeredData.groups" class="align-self-center mt-1">{{registeredData.groups.length}}</span>
+          <div class="summary-box">
+            <div class="circle">
+              <span>{{registeredData.groups.length}}</span>
             </div>
             <p class="circle-name">GROUPS</p>
           </div>
-          <div>
-            <div class="circle summary-box">
-              <span class="align-self-center mt-1">{{getServicesCount(registeredData)}}</span>
+          <div class="summary-box">
+            <div class="circle">
+              <span>{{getServicesCount(registeredData)}}</span>
             </div>
             <p class="circle-name">SERVICES</p>
           </div>
