@@ -1,10 +1,47 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+@import "../node_modules/bootstrap/scss/mixins";
 
 @font-face {
   font-family: 'Aldrich';
   src: url('./assets/fonts/Aldrich-Regular.ttf');
 }
 
+/* - - - Media queries - - - */
+@mixin for-third-only {
+  @media all and (max-width: 1146px) and (max-height: 1417px) { @content; }
+}
+@mixin for-third-up {
+  @media all and (max-width: 1146px) { @content; }
+}
+@mixin for-sm-desktop-only {
+  @media all and (max-width: 1280px) and (max-height: 790px) { @content; }
+}
+@mixin for-sm-desktop-up {
+  @media all and (max-width: 1280px) { @content; }
+}
+@mixin for-md-desktop-only {
+  @media all and (max-width: 1366px) and (max-height: 768px) { @content; }
+}
+@mixin for-md-desktop-up {
+  @media all and (max-width: 1366px) { @content; }
+}
+@mixin for-desktop-only {
+  @media all and (max-width: 1440px) and (max-height: 900px) { @content; }
+}
+@mixin for-desktop-up {
+  @media all and (max-width: 1440px) { @content; }
+}
+@mixin for-quarter-only {
+  @media all and (max-width:1720px) and (max-height: 780px) { @content; }
+}
+@mixin for-quarter-up {
+  @media all and (max-width: 1720px) { @content; }
+}
+@mixin for-big-desktop-up {
+  @media all and (min-width: 2560px) { @content; }
+}
+
+/* - - - All styles - - - */
 * {
   font-family: 'Aldrich', sans-serif;
 }
@@ -80,13 +117,13 @@ a {
     padding-top: 100%;
   }
 }
-@media screen and (max-width:1679px) {
+@media screen and (max-width:1720px) {
   .hide {
     display: none  !important;
   }
 }
 
-@media screen and (max-width:1500px) {
+@media screen and (max-width:1440px) {
   .tooltip-fix {
     height: 20px;
     width: 20px;
@@ -178,7 +215,7 @@ a {
   margin-bottom: 1em;
 }
 
-@media screen and (max-width:1500px), screen and (max-height: 790px) {
+@media screen and (max-width:1440px), screen and (max-height: 900px) {
   .card-title-name {
     h5 {
       font-size: 1em;
@@ -357,8 +394,8 @@ button[type="submit"]:disabled {
     outline: none;
   }
 }
-@media screen and (max-width: 1300px) {
- /* Target devices narrower than 1300px. */
+@media screen and (max-width: 1366px) {
+ /* Target devices narrower than 1366px. */
     .modal-card {
       padding: 1rem;
     }
@@ -477,7 +514,7 @@ button[type="submit"]:disabled {
     }
   }
 }
-@media screen and (max-width:1500px) {
+@media screen and (max-width:1440px) {
   .btn-nalej-form {
     margin-top: 1em;
   }
@@ -671,7 +708,7 @@ button[type="submit"]:disabled {
 }
 
 /* - - - Medias Summary card circles - - - */
-@media screen and (max-width:1500px), screen and (max-height: 790px) {
+@media screen and (max-width:1280px), screen and (max-height: 790px) {
   .circle {
     max-width: 65px;
     max-height: 65px;
@@ -690,7 +727,7 @@ button[type="submit"]:disabled {
   }
 
 }
-@media screen and (max-width:1680px), screen and (max-height: 997px) {
+@media screen and (max-width:1440px), screen and (max-height: 900px) {
   .summary-card {
     margin-top: 0em;
   }
@@ -834,7 +871,7 @@ button[type="submit"]:disabled {
     display: none;
   }
 }
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1440px) {
   /* Target devices narrower than 1500px */
   .carousel-big {
     display: none;
@@ -914,7 +951,7 @@ button[type="submit"]:disabled {
   justify-content: space-between;
 }
 
-@media screen and (max-width:1500px) {
+@media screen and (max-width:1440px) {
   .y-axis-line-chart  {
       display: none;
   }
@@ -1058,7 +1095,7 @@ button[type="submit"]:disabled {
 }
 
 
-@media screen and (max-width:1300px) {
+@media screen and (max-width:1280px) {
   /* Target devices narrower than 1300px */
   .sorting-message {
     padding: 0 0.75rem;
@@ -1067,6 +1104,9 @@ button[type="submit"]:disabled {
     margin-bottom: .2rem;
     margin-right: 0em;
   }
+
+}
+@media screen and (max-width:1366px) {
   .table-h {
     padding-top: 1em;
   }
@@ -1094,7 +1134,7 @@ button[type="submit"]:disabled {
   background: #03D7E8;
 }
 
-@media screen and (max-width:1500px) {
+@media screen and (max-width:1440px) {
   .status-dot, 
   .status-dot-error, 
   .status-dot-process {
@@ -1160,17 +1200,9 @@ button[type="submit"]:disabled {
     }
   }
 }
-@media screen and (max-width:1779px) {
+@media screen and (max-width:1720px) {
   .nalej-tab-container li {
-    padding: 0.5rem 1.2rem;
-  }
-}
-@media screen and (max-width:1570px) {
-  .nalej-tab-container li {
-    padding: 0.5rem .9rem;
-  }
-  .nalej-tab-title {
-    padding-right: 4em !important;
+    padding: 0.5rem 1rem;
   }
 }
 
