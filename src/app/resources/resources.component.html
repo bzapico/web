@@ -385,7 +385,7 @@
               </td>  
               <td class="col-3 pl-4" *ngIf="!cluster.labels"> 
                 <div 
-                class="label-btn-add"
+                class="label-btn-blue"
                 tooltip="Add" 
                 placement="right"
                 (click)="addLabel(cluster)">
@@ -406,7 +406,7 @@
                   <div class="label-btns">
                     <div 
                       *ngIf="isAnyLabelSelected(cluster.cluster_id) === false"
-                      class="label-btn-add" 
+                      class="label-btn-blue" 
                       tooltip="Add" 
                       placement="right"
                       (click)="addLabel(cluster)">
@@ -414,7 +414,7 @@
                     </div>
                     <div 
                       *ngIf="isAnyLabelSelected(cluster.cluster_id) === true"
-                      class="label-btn-delete" 
+                      class="label-btn-red" 
                       tooltip="Delete" 
                       placement="right"
                       (click)="deleteLabel(cluster)">
@@ -425,7 +425,7 @@
               <td class="text-lowercase col-1">
                 {{cluster.cluster_type_name}}
               </td>
-              <td class="col-1 col-center-low"
+              <td class="col-1 col-center-lowercase"
                 [ngClass]=
                   "{
                   'status-dot': classStatusCheck (cluster.status_name, 'running'),
@@ -438,7 +438,7 @@
                   {{cluster.status_name}}
                 </span>
               </td>
-              <td class="col-1 col-center-low">
+              <td class="col-1 col-center-lowercase">
                 {{cluster.multitenant_support}}
               </td>
               <td class="col-1 text-center">

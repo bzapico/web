@@ -92,7 +92,7 @@
           <div class="label-btns">
             <div 
               *ngIf="isAnyLabelSelected(registeredData.app_descriptor_id) === false" 
-              class="label-btn-add" 
+              class="label-btn-blue" 
               (click)="addLabel(registeredData)"
               tooltip="Add label" 
               placement="right">
@@ -100,7 +100,7 @@
             </div>
             <div 
               *ngIf="isAnyLabelSelected(registeredData.app_descriptor_id) === true" 
-              class="label-btn-delete"
+              class="label-btn-red"
               (click)="deleteLabel(registeredData)" 
               tooltip="Delete label" 
               placement="right">
@@ -112,7 +112,7 @@
             <div class="label-btns">
                 <div 
                   *ngIf="isAnyLabelSelected(registeredData.app_descriptor_id) === false" 
-                  class="label-btn-add" 
+                  class="label-btn-blue" 
                   (click)="addLabel(registeredData)"
                   tooltip="Add label" 
                   placement="right">

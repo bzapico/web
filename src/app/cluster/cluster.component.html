@@ -239,7 +239,7 @@
                 <div class="label-btns">
                   <div 
                     *ngIf="isAnyLabelSelected(node.node_id) === false"
-                    class="label-btn-add" 
+                    class="label-btn-blue" 
                     tooltip="Add" 
                     placement="right"
                     (click)="addLabel(node)">
@@ -247,7 +247,7 @@
                   </div>
                   <div 
                     *ngIf="isAnyLabelSelected(node.node_id) === true"
-                    class="label-btn-delete" 
+                    class="label-btn-red" 
                     tooltip="Delete" 
                     placement="right"
                     (click)="deleteLabel(node)">
@@ -256,7 +256,7 @@
                 </div>
               </td>
               <td 
-                class="col-2 col-center-low"
+                class="col-2 col-center-lowercase"
                 [ngClass]=
                 "{'status-dot':classStatusCheck(node.status_name, 'running'),
                 'status-dot-error':classStatusCheck(node.status_name, 'error'),
