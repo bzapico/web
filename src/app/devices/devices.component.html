@@ -471,7 +471,7 @@
                   <td class="col-2">{{getGroupName(device.device_group_id)}}</td>
                   <td class="col-1">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</td>  
                   <td 
-                    class="col-2 col-center-low"
+                    class="col-2 col-center-lowercase"
                     [ngClass]=
                     "{'status-dot':classStatusCheck(device.device_status_name, 'online'),
                     'status-dot-error':classStatusCheck(device.device_status_name, 'offline'),
@@ -489,7 +489,7 @@
                       <div 
                         tooltip="Add" 
                         placement="right"
-                        class="label-btn-add"
+                        class="label-btn-blue"
                         (click)="addLabel(device)">
                           <i class="material-icons i-add">add</i>  
                       </div>
@@ -508,7 +508,7 @@
                     <div class="label-btns">
                       <div 
                         *ngIf="isAnyLabelSelected(device.device_id) === false"
-                        class="label-btn-add" 
+                        class="label-btn-blue" 
                         (click)="addLabel(device)"
                         tooltip="Add" 
                         placement="right"
@@ -517,7 +517,7 @@
                       </div>
                       <div 
                         *ngIf="isAnyLabelSelected(device.device_id) === true"
-                        class="label-btn-delete" 
+                        class="label-btn-red" 
                         (click)="deleteLabel(device)"
                         tooltip="Delete" 
                         placement="right"
@@ -551,7 +551,7 @@
                   <td class="col-3">{{device.device_id}}</td>
                   <td class="col-2">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</td>  
                   <td  
-                    class="col-2 col-center-low"
+                    class="col-2 col-center-lowercase"
                     [ngClass]=
                     "{'status-dot':classStatusCheck(device.device_status_name, 'online'),
                     'status-dot-error':classStatusCheck(device.device_status_name, 'offline'),
@@ -567,7 +567,7 @@
                   </td>
                   <td *ngIf="!device.labels" class="col-4">
                       <div 
-                      class="label-btn-add"
+                      class="label-btn-blue"
                       tooltip="Add" 
                       placement="right"
                       (click)="addLabel(device)">
@@ -589,7 +589,7 @@
                     <div class="label-btns">
                         <div 
                           *ngIf="isAnyLabelSelected(device.device_id) === false"
-                          class="label-btn-add" 
+                          class="label-btn-blue" 
                           (click)="addLabel(device)"
                           tooltip="Add" 
                           placement="right"
@@ -598,7 +598,7 @@
                         </div>
                         <div 
                           *ngIf="isAnyLabelSelected(device.device_id) === true"
-                          class="label-btn-delete" 
+                          class="label-btn-red" 
                           (click)="deleteLabel(device)"
                           tooltip="Delete" 
                           placement="right"

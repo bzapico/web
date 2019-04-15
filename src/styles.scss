@@ -338,7 +338,7 @@ button[type="submit"]:disabled {
     transition: 0.3s;
   }
 }
-.label-btn-delete {
+.label-btn-red {
   @extend .label-btn;
   background-color: #F25272;
   &:hover {

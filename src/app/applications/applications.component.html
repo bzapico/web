@@ -91,14 +91,14 @@
         <button 
           (click)="deployInstance()"
           *ngIf="showInstances" 
-          class="btn-apps-options btn-p-fix">
+          class="apps-actions-btn btn-p-fix">
           <i class="material-icons i-options">play_arrow</i>
           Deploy instance
         </button>
         <button
           (click)="registerApp()"
           *ngIf="!showInstances"
-          class="btn-apps-options btn-p-fix"
+          class="apps-actions-btn btn-p-fix"
           >
           <i class="material-icons i-options">publish</i>
           Register application
@@ -251,7 +251,7 @@
                 </button>
               </td>
               <td 
-                class="col-2 col-center-low"
+                class="col-2 col-center-lowercase"
                 [ngClass]=
                 "{'status-dot':classStatusCheck(app.status_name, 'running'),
                 'status-dot-error':classStatusCheck(app.status_name, 'error'),
@@ -364,7 +364,7 @@
                 <div class="label-btns">
                   <div 
                     *ngIf="isAnyLabelSelected(app.app_descriptor_id) === false"
-                    class="label-btn-add" 
+                    class="label-btn-blue" 
                     (click)="addLabel(app)"
                     tooltip="Add" 
                     placement="right"
@@ -375,7 +375,7 @@
                   </div>
                   <div 
                     *ngIf="isAnyLabelSelected(app.app_descriptor_id) === true"
-                    class="label-btn-delete" 
+                    class="label-btn-red" 
                     (click)="deleteLabel(app)"
                     tooltip="Delete" 
                     placement="right"
