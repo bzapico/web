@@ -7,7 +7,7 @@
 <div class="row row-info">
   <!-- Summary info card -->
   <div class="col-lg-4 h-100">
-    <div class="card h-100">
+    <div class="card">
       <div class="card-title-name">
         <h5>SUMMARY</h5>
       </div>
@@ -29,7 +29,7 @@
   </div>
   <!-- Clusters info card -->
   <div class="col-lg-4 h-100">
-    <div class="card card-clus h-100">
+    <div class="card card-clus">
       <div class="card-title-name">
         <h5 class="d-inline">CLUSTERS</h5>
         <p class="d-inline cluster-number">{{clustersCount}} available</p>
@@ -37,7 +37,7 @@
       <!-- Carousel big -->
       <carousel 
         *ngIf="clusters.length > 0" 
-        class="h-75 carousel-big"> 
+        class="carousel-big"> 
         <slide *ngFor="let clusterGroup of chunckedClusters; let i = index">
           <div class="d-block w-100">
             <div class="slide-box animated fadeIn">
@@ -151,14 +151,14 @@
                     *ngIf="cluster.running_nodes === cluster.total_nodes"
                     class="nodes-run mb-0 blue"
                     [routerLink]="['cluster', cluster.cluster_id]" 
-                    routerLinkActive="active" >
+                    routerLinkActive="active">
                     All nodes running
                   </p>
                   <p
                     *ngIf="cluster.running_nodes !== cluster.total_nodes" 
                     class="nodes-run mb-0 blue"
                     [routerLink]="['cluster', cluster.cluster_id]" 
-                    routerLinkActive="active" >
+                    routerLinkActive="active">
                     {{cluster.running_nodes}} nodes running
                   </p>
                   <p *ngIf="cluster.name.length > 26" class="cluster-name">{{cluster.name | slice: 0:25}}...</p>
@@ -178,7 +178,7 @@
   </div>
   <!-- Node status timeline info card -->
   <div class="col-lg-4 h-100">
-    <div class="card h-100">
+    <div class="card">
       <div class="card-title-name mb-1">
         <h5>NODE STATUS TIMELINE</h5>
       </div>
@@ -217,8 +217,8 @@
 </div>
 <!-- Clusters panel card-->
 <div class="row row-main">
-  <div class="col-lg-12 col-md-12 col-sm-12 h-100">
-    <div class="card h-100">
+  <div class="col-lg-12 h-100">
+    <div class="card">
       <div class="card-title-name-mb">
         <h5>CLUSTERS</h5>
       </div>
@@ -455,7 +455,7 @@
         </table>
       </div>
       <!-- No info to show -->
-      <div 
+      <div
         *ngIf="loadedData && clusters.length === 0 && !requestError"
         class="no-elements">
           No available clusters detected

@@ -20,7 +20,7 @@
 <div *ngIf="devices.length === 0 ||  activeGroupId === 'ALL'"  class="row row-info">
   <!-- Summary group info card for all -->
   <div class="col-lg-4 h-100">
-    <div class="card h-100">
+    <div class="card">
       <div class="card-title-name">
         <h5>SUMMARY</h5>
       </div>
@@ -47,7 +47,7 @@
   </div>
   <!-- Devices status timeline info card for all -->
   <div class="col-lg-8 h-100">
-    <div class="card p-4 h-100">
+    <div class="card p-4">
       <div class="card-title-name">
         <h5>DEVICES STATUS TIMELINE</h5>
       </div>
@@ -88,8 +88,8 @@
   <span *ngFor="let group of groups">
     <div *ngIf="activeGroupId === group.device_group_id"  class="row row-info">
       <!-- Summary group info card -->
-      <div  class="col-lg-4 h-100">
-        <div  class="card h-100">
+      <div class="col-lg-4 h-100">
+        <div class="card">
           <div class="card-title-name">
             <h5 class="text-uppercase">Summary {{group.name}}</h5>
           </div>
@@ -148,7 +148,7 @@
       </div>
       <!-- Devices status timeline info card -->
       <div class="col-lg-8 h-100">
-        <div class="card p-4 h-100">
+        <div class="card p-4">
           <div class="card-title-name">
             <h5 class="text-uppercase">{{group.name}} DEVICES STATUS TIMELINE</h5>
           </div>
@@ -190,7 +190,7 @@
 <!-- Deployed devices list panel card-->
 <div class="row row-main">
   <div class="col-lg-12 col-md-12 col-sm-12 h-100">
-    <div class="card h-100 p-4">
+    <div class="card p-4">
       <div class="row">
         <div class="col-2 card-title-name-mb">
           <h5>DEVICES</h5>

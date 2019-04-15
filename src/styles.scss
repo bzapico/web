@@ -199,18 +199,22 @@ a {
   border: 0;
   overflow: hidden;
   padding: 1.5rem;
+  height: 100%;
 }
 
 .row-title {
   height: 4%;
-  margin-bottom: 1.5em;
+  margin-bottom: 2%;
+  border: 1px solid purple;
 }
 .row-info {
   height: 29%;
-  margin-bottom: 2.2rem;
+  margin-bottom: 2%;
+  border: 1px solid salmon;
 }
 .row-main {
   height: 54%;
+  border: 1px solid teal;
 }
 .card-title-name-mb {
   margin-bottom: 1em;
@@ -791,6 +795,7 @@ button[type="submit"]:disabled {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 75%;
   .carousel-indicators {
     bottom: -0.4em;
   }
@@ -905,7 +910,7 @@ button[type="submit"]:disabled {
   }
 }
 @media screen and (max-width: 1440px) {
-  /* Target devices narrower than 1500px */
+  /* Target devices narrower than 1440px */
   .carousel-big {
     display: none;
   }
@@ -1032,6 +1037,7 @@ button[type="submit"]:disabled {
     height: 90%;
     overflow-y: auto;
     width: 100%;
+    background-color: cadetblue;
     td {
       float: left;
       padding: 0.75rem;
@@ -1150,7 +1156,7 @@ button[type="submit"]:disabled {
 
 
 @media screen and (max-width:1280px) {
-  /* Target devices narrower than 1300px */
+  /* Target devices narrower than 1280px */
   .sorting-message {
     padding: 0 0.75rem;
   }
