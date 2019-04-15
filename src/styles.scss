@@ -352,7 +352,7 @@ button[type="submit"]:disabled {
   left: 4px;
   color: white;
 }
-.label-btn-add {
+.label-btn-blue {
   @extend .label-btn;
   background-color: #0937FF;
   &:hover {
@@ -1004,7 +1004,7 @@ button[type="submit"]:disabled {
 }
 
 /* - - -  Table-h - - - */
-.col-center-low {
+.col-center-lowercase {
   text-align: center;
   text-transform: lowercase;
 }
@@ -1297,3 +1297,4 @@ button[type="submit"]:disabled {
 .cursor-pointer {
   cursor: pointer!important;
 }
+
