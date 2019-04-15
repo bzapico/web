@@ -7,22 +7,21 @@
 <!-- Organization info card -->
 <div class="row row-info">
   <div class="col-lg-12 h-100">
-    <div class="card py-3 d-flex flex-col justify-content-center">
-      <div class="company-img-hide"></div>
-      <div class="company-img flex-col d-flex justify-content-center align-items-center mt-2">
-        <img 
-          class="" src="../assets/images/group.png" 
-          alt="company-img" >
-      </div>
-      <div class="company-info text-center my-2">
-        <h3 class="company-name my-2">{{organizationName}}</h3>
-        <span class="subscription blue">{{subscriptionType}}</span>
-        <span class="users d-block">{{users.length}} users</span>
+    <div class="card">
+      <div class="company-info">
+        <div class="company-img">
+          <img src="../assets/images/group.png" alt="company-img">
+        </div>
+        <div class="my-2">
+          <h3 class="company-name">{{organizationName}}</h3>
+          <p class="company-subscription">{{subscriptionType}}</p>
+          <p class="company-users">{{users.length}} users</p>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<!-- Members panel card-->
+<!-- Users card-->
 <div class="row row-main">
   <div class="col-lg-8 col-sm-12 h-100">
     <div class="card">
@@ -31,121 +30,117 @@
       </div>
       <div class="row">
         <!-- Sorting mesages -->
-          <div class="col-7">  
-            <p *ngIf="searchTerm && !filterField" class="sorting-message">
-              Filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
-            </p>
-            <p *ngIf="filterField && !searchTerm" class="sorting-message">
-              Sorted by {{ sortedBy }},
-              <span *ngIf="reverse">ascendant. </span>
-              <span *ngIf="!reverse">descendant. </span>
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
-            </p>
-            <p *ngIf="filterField && searchTerm" class="sorting-message">
-              Sorted by {{ sortedBy }}
-              <span *ngIf="reverse">ascendant </span>
-              <span *ngIf="!reverse">descendant </span>
-              and filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
-            </p> 
-          </div>
-          <!-- Search input -->
-          <div class="col-5">
-            <form>
-              <div class="search-box">
-                <input 
-                  type="text" 
-                  class="form-control" 
-                  name="searchTerm" 
-                  placeholder="Search..." 
-                  [(ngModel)]="searchTerm"> 
-                  <div class="search-icon" *ngIf="searchTerm === ''">
-                    <i class="material-icons">search</i>
-                  </div>     
-                  <div class="close-icon" *ngIf="searchTerm !== ''">
-                    <i class="material-icons" (click)="resetFilters(filterField)">close</i>
-                  </div>
-              </div>
-            </form>
-          </div>      
+        <div class="col-7">  
+          <p *ngIf="searchTerm && !filterField" class="sorting-message">
+            Filtered by term "{{ searchTerm }}".
+            <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>
+          </p>
+          <p *ngIf="filterField && !searchTerm" class="sorting-message">
+            Sorted by {{ sortedBy }},
+            <span *ngIf="reverse">ascendant. </span>
+            <span *ngIf="!reverse">descendant. </span>
+            <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>
+          </p>
+          <p *ngIf="filterField && searchTerm" class="sorting-message">
+            Sorted by {{ sortedBy }}
+            <span *ngIf="reverse">ascendant </span>
+            <span *ngIf="!reverse">descendant </span>
+            and filtered by term "{{ searchTerm }}".
+            <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>
+          </p> 
+        </div>
+        <!-- Search input -->
+        <div class="col-5">
+          <form>
+            <div class="search-box">
+              <input 
+                type="text" 
+                class="form-control" 
+                name="searchTerm" 
+                placeholder="Search..." 
+                [(ngModel)]="searchTerm"> 
+                <div class="search-icon" *ngIf="searchTerm === ''">
+                  <i class="material-icons">search</i>
+                </div>     
+                <div class="close-icon" *ngIf="searchTerm !== ''">
+                  <i class="material-icons" (click)="resetFilters(filterField)">close</i>
+                </div>
+            </div>
+          </form>
+        </div>      
       </div>
-      <div class="table-h" *ngIf="loadedData && users && users.length > 0 && !requestError">
-        <table class="table-responsive table-fixed">
-          <thead>
-            <tr>
-              <th 
-                (click)="setOrder('name')"            
-                [ngClass]="getCategoryCSSClass('name')"
-                scope="col" 
-                class="col-3">
-                Name 
-                <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse">
-                  <i class="material-icons">expand_more</i>
-                </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'name' && reverse">
-                  <i class="material-icons">expand_less</i>
-                </span>
-              </th>
-              <th 
-                (click)="setOrder('role')"            
-                [ngClass]="getCategoryCSSClass('role')"
-                scope="col" 
-                class="col-2">
-                Role 
-                <span class="expand-chevron" *ngIf="sortedBy === 'role' && !reverse">
-                  <i class="material-icons">expand_more</i>
-                </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'role' && reverse">
-                  <i class="material-icons">expand_less</i>
-                </span>
-              </th>
-              <th 
-                (click)="setOrder('email')"            
-                [ngClass]="getCategoryCSSClass('email')"
-                scope="col" 
-                class="col-5">
-                Email
-                <span class="expand-chevron" *ngIf="sortedBy === 'email' && !reverse">
-                  <i class="material-icons">expand_more</i>
-                </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'email' && reverse">
-                  <i class="material-icons">expand_less</i>
-                </span>
-              </th>
-              <th 
-                (click)="setOrder('actions')"            
-                [ngClass]="getCategoryCSSClass('actions')"
-                scope="col" 
-                class="col-2 pl-4">
-                Actions 
-                <span class="expand-chevron" *ngIf="sortedBy === 'actions' && !reverse">
-                  <i class="material-icons">expand_more</i>
-                </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'actions' && reverse">
-                  <i class="material-icons">expand_less</i>
-                </span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let user of users | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-              <td class="col-3">{{user.name}}</td>
-              <td class="blue col-2" (click)="openUserInfo(user)">{{user.role_name}}</td>
-              <td class="col-5">{{user.email}}</td>
-              <td class="col-2 pl-2">
-                <button class="btn info-btn info-btn-fix btn-primary" (click)="openUserInfo(user)"  tooltip="Info" placement="left">
-                  <span class="i-info">i</span>
-                </button>
-                <button class="btn info-btn btn-primary" (click)="openEditUser(user)"  tooltip="Edit" placement="left">
-                  <i class="material-icons i-edit">
-                    edit
-                  </i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="table-users" *ngIf="loadedData && users && users.length > 0 && !requestError">
+        <div  class="table-h">
+          <table class="table-responsive table-fixed">
+            <thead>
+              <tr>
+                <th 
+                  (click)="setOrder('name')"            
+                  [ngClass]="getCategoryCSSClass('name')"
+                  scope="col" 
+                  class="col-3">
+                  Name 
+                  <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span class="expand-chevron" *ngIf="sortedBy === 'name' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  (click)="setOrder('role')"            
+                  [ngClass]="getCategoryCSSClass('role')"
+                  scope="col" 
+                  class="col-2">
+                  Role 
+                  <span class="expand-chevron" *ngIf="sortedBy === 'role' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span class="expand-chevron" *ngIf="sortedBy === 'role' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  (click)="setOrder('email')"            
+                  [ngClass]="getCategoryCSSClass('email')"
+                  scope="col" 
+                  class="col-5">
+                  Email
+                  <span class="expand-chevron" *ngIf="sortedBy === 'email' && !reverse">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span class="expand-chevron" *ngIf="sortedBy === 'email' && reverse">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  scope="col" 
+                  class="col-2 text-center">
+                  Actions 
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+                <td class="col-3">{{user.name}}</td>
+                <td class="col-2 blue " (click)="openUserInfo(user)">{{user.role_name}}</td>
+                <td class="col-5">{{user.email}}</td>
+                <td class="col-2 actions-col">
+                  <button class="action-btn" (click)="openUserInfo(user)" tooltip="Info" placement="left">
+                    <span class="i-info">i</span>
+                  </button>
+                  <button class="action-btn" (click)="openEditUser(user)" tooltip="Edit" placement="left">
+                    <i class="material-icons i-edit">edit</i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Add user button -->
+        <div class="add-user-btn">
+          <button class="btn nalej-btn-lg" (click)="addUser()">Add user</button>
+        </div>
       </div>
       <!-- No info to show -->
       <div
@@ -176,22 +171,19 @@
           </svg>
         </div>
       </div>
-      <div class="add-user-btn">
-        <button class="btn nalej-btn-lg" (click)="addUser()">Add user</button>
-      </div>
     </div>
   </div>
-  <!-- Subscription panel card -->
+  <!-- Subscription card -->
   <div class="col-lg-4 col-sm-12 h-100">
-    <div class="card flex-col d-flex justify-content-between p-4">
+    <div class="card">
       <div class="card-title-name">
         <h5>SUBSCRIPTION</h5>
       </div>
-      <div class="btn-primary subs-v">
-        <i class="material-icons">check</i></div>
-      <h2 class="text-center blue">Free</h2>
-      <p class="subs-check text-center">Check all our subscription modes and payments</p>
-      <button class="btn nalej-btn-lg d-none">Change subscription</button>
+      <div class="subscription-card">
+        <div class="subscription-icon"><i class="material-icons">check</i></div>
+        <h2 class="subscription-plan">Free</h2>
+        <p class="subscription-check">Check all our subscription modes and payments</p>
+      </div>
     </div>
   </div>
 </div>
