@@ -63,7 +63,7 @@
     }
 }
 /* - - - App Status card - - - */
-.box-line-chart {
+.line-chart-box {
     width:93%;
 }
 
@@ -86,63 +86,6 @@
     top: 5px;
     left: 13px;
 }
-.no-apps {
-    height: 70%;
-}
-
-/* - - - Apps tabs - - - */
-.app-tab-container {
-    margin-bottom: 2em;
-    margin-right: 3em;
-    font-size: .6em;
-    border-bottom: 1px solid #ececec;
-    margin-left: 1em;
-    display: flex;
-    flex-direction: row;
-    ul {
-        list-style: none;
-        text-align: center;
-        padding: 0;
-        margin: 0;
-    }
-    li {
-        font-size: 1em;
-        float: left;
-        padding: 0.5rem 2.5rem;
-        cursor: pointer;
-        position: relative;
-    }
-    .tabs-arrow {
-        color: #949494;
-        padding: 0rem 2rem;
-    }
-    .app-tab-title {
-        cursor: default;
-        padding-right: 8em;
-    }
-    .app-tab {
-        text-transform: uppercase;
-    }
-    span {
-        display: block;
-        text-decoration: none;
-        display: block;
-        transition: .3s background-color;
-        &.active {
-          color: #0937FF;
-          &::before {
-            content: "";
-            height: 5px;
-            width: 100%;
-            display: block;
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            background-color: #0937FF;
-          }
-        }
-    }
-}
 .app-info {
     color: #0937FF;
     cursor: pointer;
@@ -153,7 +96,7 @@
     .app-tab-container {
         margin-right: 1em !important;
     }
-    .apps-options .btn-apps-options {
+    .apps-options .apps-actions-btn {
         bottom: -9px !important;
         right: 45px !important;
     }
@@ -162,7 +105,7 @@
 .apps-options {
     position: relative;
     width: 100%;
-    .btn-apps-options {
+    .apps-actions-btn {
         background-color: #0937FF;
         border-radius: 5px;
         padding: .5em 1.8em;

@@ -1,19 +1,5 @@
-#scroll-app-info {
+.scroll-app-info {
     margin: 4em 0;
-    height: 200px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    font-size:  .9em;
-    &::-webkit-scrollbar {
-      -webkit-appearance: none;
-      width: 8px;
-      margin-left: 2px;
-    }
-    &::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background-color: rgba(0, 0, 0, 0.5);
-      -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
-    }
 }
 .services-title {
     font-size: .9em;

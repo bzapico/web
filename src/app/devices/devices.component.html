@@ -1,5 +1,5 @@
 <!-- Component title -->
-<div class="row row-title mb-4">
+<div class="row row-title">
   <div class="col-lg-2">
     <h2 class="section-title">Devices</h2>
   </div>
@@ -22,7 +22,7 @@
   <div class="col-lg-4 h-100">
     <div class="card h-100">
       <div class="card-title-name">
-        <h5 class="text-uppercase">Summary</h5>
+        <h5>SUMMARY</h5>
       </div>
       <div *ngIf="groups.length > 0" class="summary-card">
         <div>
@@ -40,7 +40,7 @@
       </div>
       <div 
         *ngIf="groups.length === 0"
-        class="summary-card d-flex justify-content-center align-items-center">
+        class="no-elements">
         No available groups detected
       </div>
     </div>
@@ -53,10 +53,10 @@
       </div>
       <div 
         *ngIf="countGroupDevices(activeGroupId) === 0" 
-        class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
+        class="h-100 no-elements"> 
         No devices
       </div>
-      <div *ngIf="countGroupDevices(activeGroupId) > 0" class="box-line-chart">
+      <div *ngIf="countGroupDevices(activeGroupId) > 0" class="line-chart-box">
         <ngx-charts-line-chart
           [scheme]="colorScheme"
           [results]="devicesChart"
@@ -154,10 +154,10 @@
           </div>
           <div 
             *ngIf="countGroupDevices(activeGroupId) === 0" 
-            class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
+            class="h-100 no-elements"> 
             No devices
           </div>
-          <div *ngIf="countGroupDevices(activeGroupId) > 0" class="box-line-chart">
+          <div *ngIf="countGroupDevices(activeGroupId) > 0" class="line-chart-box">
             <ngx-charts-line-chart
               [scheme]="colorScheme"
               [results]="devicesChart"
@@ -192,12 +192,12 @@
   <div class="col-lg-12 col-md-12 col-sm-12 h-100">
     <div class="card h-100 p-4">
       <div class="row">
-        <div class="col-2 card-title-name__mb">
+        <div class="col-2 card-title-name-mb">
           <h5>DEVICES</h5>
         </div>
         <!-- Devices tabs buttons -->
-        <div class="col-10 devices-tab-buttons-container">
-          <ul class="devices-tab-button" *ngIf="activeGroupId === 'ALL' || groups.length === 0">
+        <div class="col-10 devices-tab-btns-box">
+          <ul class="devices-tab-btn" *ngIf="activeGroupId === 'ALL' || groups.length === 0">
             <li>
               <span class="devices-button-item blue devices-button-item-pr" (click)="addGroup()">
                 <i class="material-icons">add</i>
@@ -205,7 +205,7 @@
               </span>
             </li>
           </ul>
-          <ul class="devices-tab-button" *ngIf="activeGroupId !== 'ALL' && groups.length > 0">
+          <ul class="devices-tab-btn" *ngIf="activeGroupId !== 'ALL' && groups.length > 0">
             <li>
               <span class="devices-button-item blue" (click)="addGroup()">
                 <i class="material-icons">add</i>
@@ -233,20 +233,20 @@
         <!-- Devices tabs -->
         <div class="row">
           <div class="col">
-            <div class="devices-tab-container">
+            <div class="nalej-tab-box">
               <ul>
-                <li *ngIf="displayedGroupsNamesLength < maxLabelsLength" class="devices-tab devices-tab-title">
+                <li *ngIf="displayedGroupsNamesLength < maxLabelsLength" class="nalej-tab nalej-tab-title">
                   <span class="grey">GROUPS</span>
                 </li>
                 <li 
                   *ngIf="groups.length > 0" 
-                  class="devices-tab" 
+                  class="nalej-tab" 
                   (click)="changeActiveGroup('ALL')">
                   <span [ngClass]="amIactive('ALL')">ALL</span>
                 </li>
                 <li 
                   *ngIf="groups.length === 0" 
-                  class="devices-tab">
+                  class="nalej-tab">
                   <span class="active">ALL</span>
                 </li>
                 <li 
@@ -257,7 +257,7 @@
                 </li>
                 <li 
                   *ngFor="let group of displayedGroups"
-                  class="devices-tab"
+                  class="nalej-tab"
                   (click)="changeActiveGroup(group.device_group_id)">
                   <span *ngIf="displayedGroups.length > 0" [ngClass]="amIactive(group.device_group_id)">
                     {{group.name}}
@@ -317,7 +317,7 @@
         <!-- No devices to show -->
         <div 
           *ngIf="groups.length > 0 && countGroupDevices(activeGroupId) === 0 && loadedData"
-          class="no-devices-in-group d-flex justify-content-center align-items-center">
+          class="no-elements-in-group">
             No available devices registered in this group
         </div>
         <!-- Devices table -->
@@ -471,7 +471,7 @@
                   <td class="col-2">{{getGroupName(device.device_group_id)}}</td>
                   <td class="col-1">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</td>  
                   <td 
-                    class="text-lowercase col-2 text-center"
+                    class="col-2 col-center-lowercase"
                     [ngClass]=
                     "{'status-dot':classStatusCheck(device.device_status_name, 'online'),
                     'status-dot-error':classStatusCheck(device.device_status_name, 'offline'),
@@ -489,7 +489,7 @@
                       <div 
                         tooltip="Add" 
                         placement="right"
-                        class="add-label-button"
+                        class="label-btn-blue"
                         (click)="addLabel(device)">
                           <i class="material-icons i-add">add</i>  
                       </div>
@@ -498,17 +498,17 @@
                     <button 
                       (click)="onLabelClick(device.device_id, label[0], label[1])"
                       [ngClass]=
-                      "{'btn-label-selected': indexOfLabelSelected(device.device_id, label[0], label[1]) >= 0 ,
+                      "{'label-btn-selected': indexOfLabelSelected(device.device_id, label[0], label[1]) >= 0 ,
                         'btn-outline-primary': indexOfLabelSelected(device.device_id, label[0], label[1]) === -1}" 
                       *ngFor="let label of labelsToString(device.labels)" 
                       class="btn-sm btn-outline-primary" 
                       >
                       {{label[0]}}: {{label[1]}} 
                     </button>
-                    <div class="label-buttons">
+                    <div class="label-btns">
                       <div 
                         *ngIf="isAnyLabelSelected(device.device_id) === false"
-                        class="add-label-button" 
+                        class="label-btn-blue" 
                         (click)="addLabel(device)"
                         tooltip="Add" 
                         placement="right"
@@ -517,7 +517,7 @@
                       </div>
                       <div 
                         *ngIf="isAnyLabelSelected(device.device_id) === true"
-                        class="delete-label-button" 
+                        class="label-btn-red" 
                         (click)="deleteLabel(device)"
                         tooltip="Delete" 
                         placement="right"
@@ -551,7 +551,7 @@
                   <td class="col-3">{{device.device_id}}</td>
                   <td class="col-2">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</td>  
                   <td  
-                    class="text-lowercase col-2 text-center"
+                    class="col-2 col-center-lowercase"
                     [ngClass]=
                     "{'status-dot':classStatusCheck(device.device_status_name, 'online'),
                     'status-dot-error':classStatusCheck(device.device_status_name, 'offline'),
@@ -567,7 +567,7 @@
                   </td>
                   <td *ngIf="!device.labels" class="col-4">
                       <div 
-                      class="add-label-button"
+                      class="label-btn-blue"
                       tooltip="Add" 
                       placement="right"
                       (click)="addLabel(device)">
@@ -579,17 +579,17 @@
                     <button 
                       (click)="onLabelClick(device.device_id, label[0], label[1])"
                       [ngClass]=
-                      "{'btn-label-selected': indexOfLabelSelected(device.device_id, label[0], label[1]) >= 0 ,
+                      "{'label-btn-selected': indexOfLabelSelected(device.device_id, label[0], label[1]) >= 0 ,
                         'btn-outline-primary': indexOfLabelSelected(device.device_id, label[0], label[1]) === -1}" 
                       *ngFor="let label of labelsToString(device.labels)" 
                       class="btn-sm btn-outline-primary" 
                       >
                       {{label[0]}}: {{label[1]}}
                     </button>
-                    <div class="label-buttons">
+                    <div class="label-btns">
                         <div 
                           *ngIf="isAnyLabelSelected(device.device_id) === false"
-                          class="add-label-button" 
+                          class="label-btn-blue" 
                           (click)="addLabel(device)"
                           tooltip="Add" 
                           placement="right"
@@ -598,7 +598,7 @@
                         </div>
                         <div 
                           *ngIf="isAnyLabelSelected(device.device_id) === true"
-                          class="delete-label-button" 
+                          class="label-btn-red" 
                           (click)="deleteLabel(device)"
                           tooltip="Delete" 
                           placement="right"
@@ -629,18 +629,18 @@
           <!-- No info to show -->
         <div 
           *ngIf="groups.length === 0 && !requestError"
-          class="no-devices d-flex justify-content-center align-items-center">
+          class="no-elements">
           No available groups have been created. Add a new group to be able to register devices in it.
         </div>
           <!-- Requested error -->
         <div
           *ngIf="requestError"
-          class="no-elements d-flex justify-content-center align-items-center">
+          class="no-elements">
           <p>{{ requestError }}</p>
         </div>
       </span>
       <!-- Loader -->
-      <div class="nalej-loader-container h-100 w-100" *ngIf="!loadedData">
+      <div class="nalej-loader-box h-100 w-100" *ngIf="!loadedData">
         <div class="loader">
           <svg 
             class="circular" 

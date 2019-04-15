@@ -1,5 +1,5 @@
 <!-- Component title -->
-<div class="row row-title mb-4">
+<div class="row row-title">
   <div class="col-lg-12">
     <h2 class="section-title">Applications</h2>
   </div>
@@ -49,10 +49,10 @@
       </div>
       <div 
         *ngIf="instances.length === 0" 
-        class="h-100 d-flex justify-content-center align-items-center box-line-chart text-center"> 
+        class="h-100 no-elements"> 
         No applications deployed yet
       </div>
-      <div *ngIf="instances.length>0" class="box-line-chart">
+      <div *ngIf="instances.length>0" class="line-chart-box">
         <ngx-charts-line-chart
           [scheme]="colorScheme"
           [results]="appsChart"
@@ -84,21 +84,21 @@
 <div class="row row-main">
   <div class="col-lg-12 col-md-12 col-sm-12 h-100">
     <div class="card h-100 p-4">
-      <div class="card-title-name__mb">
+      <div class="card-title-name-mb">
         <h5>APPLICATIONS</h5>
       </div>
       <div class="apps-options">
         <button 
           (click)="deployInstance()"
           *ngIf="showInstances" 
-          class="btn-apps-options button-padding-fix">
+          class="apps-actions-btn btn-p-fix">
           <i class="material-icons i-options">play_arrow</i>
           Deploy instance
         </button>
         <button
           (click)="registerApp()"
           *ngIf="!showInstances"
-          class="btn-apps-options button-padding-fix"
+          class="apps-actions-btn btn-p-fix"
           >
           <i class="material-icons i-options">publish</i>
           Register application
@@ -107,20 +107,20 @@
       <!-- Applications tabs -->
       <div class="row">
         <div class="col">
-          <div class="app-tab-container">
+          <div class="nalej-tab-box">
             <ul>
-              <li class="app-tab app-tab-title">
+              <li class="nalej-tab nalej-tab-title">
                 <span class="grey">LISTS</span>
               </li>
               <li 
-                class="app-tab"
+                class="nalej-tab"
                 (click)="changeActiveList('instances')">
                 <span [ngClass]="{'active': showInstances}">
                   INSTANCES
                 </span>
               </li>
               <li 
-                class="app-tab"
+                class="nalej-tab"
                 (click)="changeActiveList('registered')">
                 <span [ngClass]="{'active': !showInstances}">
                   REGISTERED
@@ -251,7 +251,7 @@
                 </button>
               </td>
               <td 
-                class="text-lowercase col-2 text-center"
+                class="col-2 col-center-lowercase"
                 [ngClass]=
                 "{'status-dot':classStatusCheck(app.status_name, 'running'),
                 'status-dot-error':classStatusCheck(app.status_name, 'error'),
@@ -274,7 +274,7 @@
        <!-- No app instances to show -->
       <div 
         *ngIf="loadedData && instances && instances.length === 0 && !requestError && showInstances"
-        class="no-apps d-flex justify-content-center align-items-center">
+        class="no-elements">
         No application instances deployed
       </div>
       <!-- Registered Apps -->
@@ -354,17 +354,17 @@
                 <button 
                   (click)="onLabelClick(app.app_descriptor_id, label[0], label[1])"
                   [ngClass]=
-                  "{'btn-label-selected': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) >= 0 ,
+                  "{'label-btn-selected': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) >= 0 ,
                     'btn-outline-primary': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) === -1}" 
                   *ngFor="let label of labelsToString(app.labels)" 
                   class="btn-sm btn-outline-primary" 
                   >
                   {{label[0]}}: {{label[1]}} 
                 </button>
-                <div class="label-buttons">
+                <div class="label-btns">
                   <div 
                     *ngIf="isAnyLabelSelected(app.app_descriptor_id) === false"
-                    class="add-label-button" 
+                    class="label-btn-blue" 
                     (click)="addLabel(app)"
                     tooltip="Add" 
                     placement="right"
@@ -375,7 +375,7 @@
                   </div>
                   <div 
                     *ngIf="isAnyLabelSelected(app.app_descriptor_id) === true"
-                    class="delete-label-button" 
+                    class="label-btn-red" 
                     (click)="deleteLabel(app)"
                     tooltip="Delete" 
                     placement="right"
@@ -408,17 +408,17 @@
         <!-- No registered app to show -->
       <div 
         *ngIf="loadedData && registered && registered.length === 0 && !requestError && !showInstances"
-        class="no-apps d-flex justify-content-center align-items-center">
+        class="no-elements">
         No registered applications detected
       </div>
        <!-- Requested error -->
       <div
         *ngIf="loadedData && requestError"
-        class="no-elements d-flex justify-content-center align-items-center">
+        class="no-elements">
         <p>{{requestError}}</p>
       </div>
       <!-- Loader -->
-      <div class="nalej-loader-container" *ngIf="!loadedData">
+      <div class="nalej-loader-box" *ngIf="!loadedData">
         <div class="loader">
           <svg 
             class="circular" 

@@ -1,5 +1,5 @@
 /* - - - Company card - - - */
-.hidden-img-fix {
+.company-img-hide {
     height: 32%; 
     display: none;
 }
@@ -99,10 +99,8 @@
     .company-img{
         display: none;
     }
-    .hidden-img-fix {
+    .company-img-hide {
         height: 11%;
-    }
-    .hidden-img-fix {
         display: block;
     }
     .search-box {

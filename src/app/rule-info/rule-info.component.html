@@ -9,7 +9,7 @@
       <div class="modal-body">
       <h3 class="rule-h3-title">{{name}}</h3>
       <p class="rule-title">{{ruleId}}</p>
-      <div id="scroll-app-info">
+      <div class="scroll-app-info">
         <div class="row">
           <div class="col-sm grey mb-3">Access</div>
           <div class="col-sm text-right rule-access">{{access}}</div>
@@ -31,7 +31,7 @@
         <div class="row">
           <div class="col-sm-2"></div>
           <div class="col-sm-4  grey">Port</div>
-          <div class="col-sm text-right text-lowercase">{{targetPort}}</div>
+          <div class="col-sm col-right-low">{{targetPort}}</div>
         </div>
         <br>
         <div class="row">
@@ -51,12 +51,12 @@
         <div class="row" *ngIf="deviceGroupIds">
           <div class="col-sm-2"></div>
           <div class="col-sm-4 grey">Devices</div>
-          <div class="col-sm text-right text-lowercase">{{deviceGroupIds}}</div>
+          <div class="col-sm col-right-low">{{deviceGroupIds}}</div>
         </div>
         <div class="row" *ngIf="deviceGroupNames">
           <div class="col-sm-2"></div>
           <div class="col-sm-4 grey">Devices group</div>
-          <div class="col-sm text-right text-lowercase">{{deviceGroupNames}}</div>
+          <div class="col-sm col-right-low">{{deviceGroupNames}}</div>
         </div>
         <br>
         <div class="row">
@@ -67,7 +67,7 @@
       </div>      
       <!-- Option button -->
       <div class="buttons d-flex flex-row justify-content-center">
-        <button class="btn btn-primary btn-lg" (click)="bsModalRef.hide()">
+        <button class="btn nalej-btn-lg" (click)="bsModalRef.hide()">
           <span class="align-bottom">Close</span>
         </button>
       </div>

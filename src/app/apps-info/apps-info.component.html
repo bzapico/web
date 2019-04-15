@@ -58,7 +58,7 @@
               </ngx-graph>
             </div>
             <!-- Deployed app info grid -->
-            <div id="scroll-app-info">
+            <div class="scroll-app-info">
               <div class="row">
                 <div class="col-sm grey">Name</div>
                 <div class="col-sm text-right">{{instance.name}}</div>
@@ -67,7 +67,7 @@
               <div class="row">
                 <div class="col-sm grey">Status</div>
                 <div 
-                class="col-sm text-right text-lowercase" 
+                class="col-sm col-right-low" 
                 [ngClass]= 
                   "{
                     'blue':instance.status_name === 'Running',
@@ -132,7 +132,7 @@
                 <div class="row">
                   <div class="col-sm text-right grey">Status</div>
                   <div 
-                    class="col-sm text-right text-lowercase" 
+                    class="col-sm col-right-low" 
                     [ngClass]= 
                     "{
                       'blue': service.status_name === 'RUNNING',
@@ -203,7 +203,7 @@
           </div>     
           <div> 
           <!-- Loader -->           
-          <div class="nalej-loader-container" *ngIf="!loadedData">
+          <div class="nalej-loader-box" *ngIf="!loadedData">
             <div class="loader">
               <svg 
                 class="circular" 
@@ -221,7 +221,7 @@
           </div>
           <!-- Option button -->
           <div class="buttons d-flex flex-row justify-content-center">
-            <button class="btn btn-primary btn-lg" (click)="bsModalRef.hide()">
+            <button class="btn nalej-btn-lg" (click)="bsModalRef.hide()">
               <span class="align-bottom">Close</span>
             </button>
           </div>

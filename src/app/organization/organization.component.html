@@ -1,5 +1,5 @@
 <!-- Component title -->
-<div class="row row-title mb-4">
+<div class="row row-title">
   <div class="col-lg-12">
     <h2 class="section-title">Organization</h2>
   </div>
@@ -8,7 +8,7 @@
 <div class="row row-info">
   <div class="col-lg-12 h-100">
     <div class="card py-3 h-100 d-flex flex-col justify-content-center">
-      <div class="hidden-img-fix"></div>
+      <div class="company-img-hide"></div>
       <div class="company-img flex-col d-flex justify-content-center align-items-center mt-2">
         <img 
           class="" src="../assets/images/group.png" 
@@ -150,17 +150,17 @@
       <!-- No info to show -->
       <div
         *ngIf="loadedData && users && users.length === 0 && !requestError"
-        class="no-elements d-flex justify-content-center align-items-center">
+        class="no-elements">
         <p>There are not registered users in this organization<br>Click on "add user" button to start adding new users </p>
       </div>
       <!-- Requested error -->
       <div
         *ngIf="loadedData && requestError"
-        class="no-elements d-flex justify-content-center align-items-center">
+        class="no-elements">
         <p>{{requestError}}</p>
       </div>
       <!-- Loader -->
-      <div class="nalej-loader-container" *ngIf="!loadedData">
+      <div class="nalej-loader-box" *ngIf="!loadedData">
         <div class="loader">
           <svg 
             class="circular" 
@@ -177,7 +177,7 @@
         </div>
       </div>
       <div class="add-user-btn">
-        <button class="btn btn-lg btn-primary" (click)="addUser()">Add user</button>
+        <button class="btn nalej-btn-lg" (click)="addUser()">Add user</button>
       </div>
     </div>
   </div>
@@ -191,7 +191,7 @@
         <i class="material-icons">check</i></div>
       <h2 class="text-center blue">Free</h2>
       <p class="subs-check text-center">Check all our subscription modes and payments</p>
-      <button class="btn btn-lg btn-primary d-none">Change subscription</button>
+      <button class="btn nalej-btn-lg d-none">Change subscription</button>
     </div>
   </div>
 </div>
