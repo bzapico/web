@@ -1099,6 +1099,7 @@ button[type="submit"]:disabled {
 }
 
 /* - - -  Table-h - - - */
+
 .col-center-lowercase {
   text-align: center;
   text-transform: lowercase;
@@ -1111,6 +1112,7 @@ button[type="submit"]:disabled {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  background-color: antiquewhite;
   thead {
     background-color: white;
   }
@@ -1127,6 +1129,7 @@ button[type="submit"]:disabled {
     height: 90%;
     overflow-y: auto;
     width: 100%;
+    border: 1px solid red;
     td {
       float: left;
       padding: 0.75rem;
@@ -1194,10 +1197,15 @@ button[type="submit"]:disabled {
     color: #0937FF
   }
 }
+
+.search-row {
+  border: 1px solid orangered;
+  margin-bottom: 1em;
+}
 // Search box
 .search-box {    
   width: 325px;
-  margin-bottom: 2rem;
+  // margin-bottom: 2rem;
   position: relative; 
   font-size: 1rem;
   float: right;
