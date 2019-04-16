@@ -1,11 +1,11 @@
-.box-card {
+.cluster-card-box {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     height: 100%;
 }
-.box {
+.cluster-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,16 +18,16 @@
     color: #949494;
     font-size: 0.8em;
 }
-
-/* - - - Summary Cluster card - - - */
 .circles-box{
     margin-right: 2em;
     flex-direction: row;  
     width: 40%;
 }
-#scroll-table {
-    margin: 4em 0;
-    height: 200px;
+
+/* - - - Cluster table card - - - */
+#scroll-cluster-table {
+    min-height: 128px;
+    width: 51%;
     overflow-y: auto;
     overflow-x: hidden;
     font-size:  .9em;
@@ -42,73 +42,72 @@
       -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
     }
 }
-.cluster-summary {
+.cluster-summary-table {
     margin-bottom: 0.5rem;
+    font-size:  .9em;
+    font-weight: 200;
+    tr {
+        border: none;
+    } 
+    th {
+        padding: 0.2em;
+        border: none;
+        color: #949494;
+    }
     td {
         padding: 0.2rem;
         vertical-align: middle;
-        font-size:  .9em;
         border: none;
         margin-left: 20%;
         text-align: right;
     }
-    th {
-        padding: 0.2em;
-        border: none;
-        font-size:  .9em;
-        font-weight: 200;
-    }
-    tr {
-        border: none;
-    } 
 }
-.nodes-run-node {
-    margin-top: -0.1em;
-}
-
 /* - - - Medias Summary Cluster card - - - */
-@media screen and (max-width:1440px){
+@media screen and (max-width: 1440px){
     .circles-box{
         margin-right: 2em;
         flex-direction: row;  
     }
-    .cluster-summary th {
+    .cluster-summary-table th {
         font-size: .8em;
         vertical-align: inherit;
     }
-    .cluster-summary{
+    .cluster-summary-table{
         margin-bottom: 10px;
     }
-    .box-card {
+    .cluster-card-box {
         height: 82% !important;
     }
-    .box{
+    .cluster-box{
         margin-top: 0;
     }
 
 }
-@media screen and (min-width:2560px){
-    .cluster-summary {
+@media screen and (min-width: 2560px){
+    .cluster-summary-table {
         padding: 4em 3em 0 3em;
     }
 }
 
 /* - - - Cluster card pie chart - - - */
-.nodes-run {
-    font-size: .8em;
-    margin-top: -1em;
-}
 .donut-chart {
     height: 85%;
     text-align: center;
     position: relative;
 }
+.nodes-run-node {
+    margin-top: -0.1em;
+    color: #949494;
+}
+.nodes-run {
+    font-size: .8em;
+    margin-top: -1em;
+    color: #0937FF;
+    margin-bottom: 0;
+}
 
 /* - - - Media Cluster card pie chart- - - */
-@media screen and (max-width:1440px){
-    .card-clus {   
-        padding-bottom: .5em !important;
-    }
+@media screen and (max-width: 1440px){
     .cluster-number {
         margin-bottom: 0;
     }
@@ -119,7 +118,7 @@
         font-size: .8em;
     }
 }
-@media screen and (min-width:2560px){
+@media screen and (min-width: 2560px){
     .nodes-run {
         font-size: 1em;
         margin-top: 0em;

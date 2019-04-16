@@ -120,10 +120,11 @@ a {
 @media screen and (max-width:1440px) {
   .tooltip-fix {
     height: 20px;
-    width: 20px;
+    width: 30px;
     position: absolute;
     top: 33%;
-    left: 39%;
+    left: 40%;
+    cursor: pointer;
   }
 }
 
@@ -222,16 +223,13 @@ a {
 .row-title {
   height: 4%;
   margin-bottom: 2%;
-  border: 1px solid purple;
 }
 .row-info {
   height: 29%;
   margin-bottom: 2%;
-  border: 1px solid salmon;
 }
 .row-main {
   height: 54%;
-  border: 1px solid teal;
 }
 .card-title-name-mb {
   margin-bottom: 1em;
@@ -1151,7 +1149,6 @@ button[type="submit"]:disabled {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: antiquewhite;
   thead {
     background-color: white;
   }
@@ -1168,7 +1165,6 @@ button[type="submit"]:disabled {
     height: 90%;
     overflow-y: auto;
     width: 100%;
-    border: 1px solid red;
     td {
       float: left;
       padding: 0.75rem;
