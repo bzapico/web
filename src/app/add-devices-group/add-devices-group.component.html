@@ -41,14 +41,14 @@
             <p class="grey">Group device availability</p>
             <div class="add-dev-checkbox">
               <span 
-              *ngIf="!enabled" 
-              (click)="enabled = true"
-              class="devices-checkbox">
+                *ngIf="!enabled" 
+                (click)="enabled = true"
+                class="devices-checkbox">
                 <i class="material-icons grey">check_box_outline_blank</i>
               </span>
               <span 
-              *ngIf="enabled" 
-              (click)="enabled = false"
+                *ngIf="enabled" 
+                (click)="enabled = false"
                 class="devices-checkbox">
                 <i class="material-icons blue">check_box</i>
               </span>
@@ -71,7 +71,7 @@
             </div>   
           </div>
         </div>
-        <div class="form-group-btn mt-5">
+        <div class="form-group-btn">
           <button class="nalej-form-btn-blue" [disabled]="loading">
             <span class="align-bottom">Add devices group</span>
           </button>

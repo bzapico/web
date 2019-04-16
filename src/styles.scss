@@ -573,7 +573,14 @@ button[type="submit"]:disabled {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: 3em;
 }
+@media screen and (max-width:1440px), screen and (max-height: 900px) {
+  .form-group-btn {
+    margin-top: 1em;
+  }
+}
+
 .form-control {
   position: relative;
   height: 40px;
@@ -627,7 +634,6 @@ button[type="submit"]:disabled {
   @extend .nalej-form-btn;
   color: #fff;
   background-color: #0937FF;
-  margin-top: 2em;
   &:hover {
     color: #fff;
     transition: 0.3s;

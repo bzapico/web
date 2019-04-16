@@ -32,7 +32,6 @@
                     <label>Password*</label>
                     <input 
                         formControlName="password" 
-                        placeholder=""
                         type="password" 
                         class="form-control" 
                         [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
@@ -54,9 +53,7 @@
                 <div class="btn-h">
                     <div class="nalej-loader-container" *ngIf="loginRequest" >
                         <div class="loader loader-position">
-                            <svg 
-                                class="circular" 
-                                viewBox="25 25 50 50">
+                            <svg class="circular" viewBox="25 25 50 50">
                                 <circle 
                                 class="path" 
                                 cx="50" 

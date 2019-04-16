@@ -13,53 +13,53 @@
     </div>
     <!-- Body -->
     <div class="modal-body">
-        <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">
-          <div *ngIf="!openFromRegistered"  class="form-group form-group-drop">
-            <label>Registered name</label>
-            <ngx-select-dropdown 
-              formControlName="selectDrop" 
-              [multiple]="false" 
-              [config]="selectConfig" 
-              [options]="registeredApps">
-            </ngx-select-dropdown>
-            <div class="form-group-drop-arrow"> 
-                <i class="material-icons">arrow_drop_down</i>
-              </div>
-            <div class="error-h"></div>
+      <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">
+        <div *ngIf="!openFromRegistered" class="form-group form-group-drop">
+          <label>Registered name</label>
+          <ngx-select-dropdown 
+            formControlName="selectDrop" 
+            [multiple]="false" 
+            [config]="selectConfig" 
+            [options]="registeredApps">
+          </ngx-select-dropdown>
+          <div class="form-group-drop-arrow"> 
+            <i class="material-icons">arrow_drop_down</i>
           </div>
-          <div *ngIf="openFromRegistered" class="form-group">
-            <label>Registered name</label>
-            <input 
-              formControlName="registeredName" 
-              placeholder="{{registeredName}}"
-              type="text" 
-              class="form-control">
-            <div class="error-h"></div>
+          <div class="error-h"></div>
+        </div>
+        <div *ngIf="openFromRegistered" class="form-group">
+          <label>Registered name</label>
+          <input 
+            formControlName="registeredName" 
+            placeholder="{{registeredName}}"
+            type="text" 
+            class="form-control">
+          <div class="error-h"></div>
+        </div>
+        <div class="form-group">
+          <label>Instance name*</label>
+          <input 
+            formControlName="instanceName" 
+            value="instanceName"
+            placeholder="Instance name"
+            appAutofocus="{{defaultAutofocus}}"
+            type="text" 
+            [ngClass]="{ 'is-invalid': submitted && f.instanceName.errors }"
+            class="form-control">
+          <div class="error-h">
+            <div *ngIf="submitted && f.instanceName.errors" class="error-message">
+              <div *ngIf="f.instanceName.errors.required">Name is required</div>
+              <div *ngIf="f.instanceName.errors.minlength">Name is too short</div>
+              <div *ngIf="f.instanceName.errors.pattern">Cannot contain spectial characters</div>
+            </div>
           </div>
-          <div class="form-group">
-            <label>Instance name*</label>
-            <input 
-              formControlName="instanceName" 
-              value="instanceName"
-              placeholder="Instance name"
-              appAutofocus="{{defaultAutofocus}}"
-              type="text" 
-              [ngClass]="{ 'is-invalid': submitted && f.instanceName.errors }"
-              class="form-control">
-              <div class="error-h">
-                <div *ngIf="submitted && f.instanceName.errors" class="error-message">
-                  <div *ngIf="f.instanceName.errors.required">Name is required</div>
-                  <div *ngIf="f.instanceName.errors.minlength">Name is too short</div>
-                  <div *ngIf="f.instanceName.errors.pattern">Cannot contain spectial characters</div>
-                </div>
-              </div>
-          </div>
-          <div class="form-group d-flex flex-row justify-content-center">
-            <button class="nalej-form-btn-blue" [disabled]="loading">
-              <span class="align-bottom">Deploy</span>
-            </button>
-          </div>
-        </form>
+        </div>
+        <div class="form-group-btn">
+          <button class="nalej-form-btn-blue" [disabled]="loading">
+            <span class="align-bottom">Deploy</span>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
