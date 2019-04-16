@@ -1237,53 +1237,54 @@ export class AddLabelComponent implements OnInit {
     &lt;/div&gt;
     &lt;!-- Body --&gt;
     &lt;div class&#x3D;&quot;modal-body&quot;&gt;
-          &lt;h3 class&#x3D;&quot;label-title&quot;&gt;{{modalTitle}}&lt;/h3&gt;
-        &lt;form [formGroup]&#x3D;&quot;addLabelForm&quot; (ngSubmit)&#x3D;&quot;addLabel(f)&quot;&gt;
-          &lt;div class&#x3D;&quot;form-group&quot;&gt;
-            &lt;label&gt;Label key*&lt;/label&gt;
-              &lt;input 
-              formControlName&#x3D;&quot;labelName&quot; 
-              type&#x3D;&quot;text&quot; 
-              appAutofocus&#x3D;&quot;true&quot;
-              class&#x3D;&quot;form-control&quot; 
-              placeholder&#x3D;&quot;e.g. Group&quot; 
-              [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: submitted &amp;&amp; f.labelName.errors }&quot;
-              pattern&#x3D;&quot;^[a-zA-Z0-9_.-]*$&quot;
-              required&gt;
-            &lt;div *ngIf&#x3D;&quot;!submitted &amp;&amp; f.labelName.errors&quot; class&#x3D;&quot;error-message&quot;&gt;&lt;/div&gt;
-            &lt;div class&#x3D;&quot;error-h&quot;&gt;
-              &lt;div *ngIf&#x3D;&quot;submitted &amp;&amp; f.labelName.errors&quot; class&#x3D;&quot;error-message&quot;&gt;
-                &lt;div *ngIf&#x3D;&quot;f.labelName.errors.required&quot;&gt;Label key is required&lt;/div&gt;
-                &lt;div *ngIf&#x3D;&quot;f.labelName.errors.pattern&quot;&gt;Cannot contain spectial characters&lt;/div&gt;
-              &lt;/div&gt;
+      &lt;h3 class&#x3D;&quot;label-title&quot;&gt;{{modalTitle}}&lt;/h3&gt;
+      &lt;form [formGroup]&#x3D;&quot;addLabelForm&quot; (ngSubmit)&#x3D;&quot;addLabel(f)&quot;&gt;
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;label&gt;Label key*&lt;/label&gt;
+            &lt;input 
+            formControlName&#x3D;&quot;labelName&quot; 
+            type&#x3D;&quot;text&quot; 
+            appAutofocus&#x3D;&quot;true&quot;
+            class&#x3D;&quot;form-control&quot; 
+            placeholder&#x3D;&quot;e.g. Group&quot; 
+            [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: submitted &amp;&amp; f.labelName.errors }&quot;
+            pattern&#x3D;&quot;^[a-zA-Z0-9_.-]*$&quot;
+            required&gt;
+          &lt;div *ngIf&#x3D;&quot;!submitted &amp;&amp; f.labelName.errors&quot; class&#x3D;&quot;error-message&quot;&gt;&lt;/div&gt;
+          &lt;div class&#x3D;&quot;error-h&quot;&gt;
+            &lt;div *ngIf&#x3D;&quot;submitted &amp;&amp; f.labelName.errors&quot; class&#x3D;&quot;error-message&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;f.labelName.errors.required&quot;&gt;Label key is required&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;f.labelName.errors.pattern&quot;&gt;Cannot contain spectial characters&lt;/div&gt;
             &lt;/div&gt;
           &lt;/div&gt;
-          &lt;div class&#x3D;&quot;form-group&quot;&gt;
-            &lt;label&gt;Label value*&lt;/label&gt;
-              &lt;input 
-              formControlName&#x3D;&quot;labelValue&quot; 
-              type&#x3D;&quot;text&quot; 
-              class&#x3D;&quot;form-control&quot; 
-              placeholder&#x3D;&quot;e.g. MyGroup&quot; 
-              [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: submitted &amp;&amp; f.labelValue.errors }&quot;
-              pattern&#x3D;&quot;^[a-zA-Z0-9_.-]*$&quot;
-              required&gt;
-            &lt;div *ngIf&#x3D;&quot;!submitted &amp;&amp; f.labelValue.errors&quot; class&#x3D;&quot;error-message&quot;&gt;&lt;/div&gt;
-            &lt;div class&#x3D;&quot;error-h&quot;&gt;
-              &lt;div *ngIf&#x3D;&quot;submitted &amp;&amp; f.labelValue.errors&quot; class&#x3D;&quot;error-message&quot;&gt;
-                &lt;div *ngIf&#x3D;&quot;f.labelValue.errors.required&quot;&gt;Label value is required&lt;/div&gt;
-                &lt;div *ngIf&#x3D;&quot;f.labelValue.errors.pattern&quot;&gt;Cannot contain spectial characters&lt;/div&gt;
-              &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;label&gt;Label value*&lt;/label&gt;
+            &lt;input 
+            formControlName&#x3D;&quot;labelValue&quot; 
+            type&#x3D;&quot;text&quot; 
+            class&#x3D;&quot;form-control&quot; 
+            placeholder&#x3D;&quot;e.g. MyGroup&quot; 
+            [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: submitted &amp;&amp; f.labelValue.errors }&quot;
+            pattern&#x3D;&quot;^[a-zA-Z0-9_.-]*$&quot;
+            required&gt;
+          &lt;div *ngIf&#x3D;&quot;!submitted &amp;&amp; f.labelValue.errors&quot; class&#x3D;&quot;error-message&quot;&gt;&lt;/div&gt;
+          &lt;div class&#x3D;&quot;error-h&quot;&gt;
+            &lt;div *ngIf&#x3D;&quot;submitted &amp;&amp; f.labelValue.errors&quot; class&#x3D;&quot;error-message&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;f.labelValue.errors.required&quot;&gt;Label value is required&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;f.labelValue.errors.pattern&quot;&gt;Cannot contain spectial characters&lt;/div&gt;
             &lt;/div&gt;
           &lt;/div&gt;
-          &lt;div class&#x3D;&quot;form-group d-flex flex-row justify-content-center&quot;&gt;
-            &lt;button class&#x3D;&quot;nalej-form-btn-blue&quot; [disabled]&#x3D;&quot;loading&quot;&gt;
-              &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Save changes&lt;/span&gt;
-            &lt;/button&gt;
-          &lt;/div&gt;
-        &lt;/form&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;form-group-btn&quot;&gt;
+          &lt;button class&#x3D;&quot;nalej-form-btn-blue&quot; [disabled]&#x3D;&quot;loading&quot;&gt;
+            &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Save changes&lt;/span&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
     &lt;/div&gt;
-  &lt;/div&gt;</code></pre>
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -1311,8 +1312,8 @@ export class AddLabelComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Add label to {{entityType}}</h3>      <button         type="button"         class="close"         aria-label="Close"        (click)="discardChanges(f)">        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">          <h3 class="label-title">{{modalTitle}}</h3>        <form [formGroup]="addLabelForm" (ngSubmit)="addLabel(f)">          <div class="form-group">            <label>Label key*</label>              <input               formControlName="labelName"               type="text"               appAutofocus="true"              class="form-control"               placeholder="e.g. Group"               [ngClass]="{ \'is-invalid\': submitted && f.labelName.errors }"              pattern="^[a-zA-Z0-9_.-]*$"              required>            <div *ngIf="!submitted && f.labelName.errors" class="error-message"></div>            <div class="error-h">              <div *ngIf="submitted && f.labelName.errors" class="error-message">                <div *ngIf="f.labelName.errors.required">Label key is required</div>                <div *ngIf="f.labelName.errors.pattern">Cannot contain spectial characters</div>              </div>            </div>          </div>          <div class="form-group">            <label>Label value*</label>              <input               formControlName="labelValue"               type="text"               class="form-control"               placeholder="e.g. MyGroup"               [ngClass]="{ \'is-invalid\': submitted && f.labelValue.errors }"              pattern="^[a-zA-Z0-9_.-]*$"              required>            <div *ngIf="!submitted && f.labelValue.errors" class="error-message"></div>            <div class="error-h">              <div *ngIf="submitted && f.labelValue.errors" class="error-message">                <div *ngIf="f.labelValue.errors.required">Label value is required</div>                <div *ngIf="f.labelValue.errors.pattern">Cannot contain spectial characters</div>              </div>            </div>          </div>          <div class="form-group d-flex flex-row justify-content-center">            <button class="nalej-form-btn-blue" [disabled]="loading">              <span class="align-bottom">Save changes</span>            </button>          </div>        </form>    </div>  </div></div>'
-    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AppsInfoComponent', 'selector': 'app-apps-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Add label to {{entityType}}</h3>      <button         type="button"         class="close"         aria-label="Close"        (click)="discardChanges(f)">        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <h3 class="label-title">{{modalTitle}}</h3>      <form [formGroup]="addLabelForm" (ngSubmit)="addLabel(f)">        <div class="form-group">          <label>Label key*</label>            <input             formControlName="labelName"             type="text"             appAutofocus="true"            class="form-control"             placeholder="e.g. Group"             [ngClass]="{ \'is-invalid\': submitted && f.labelName.errors }"            pattern="^[a-zA-Z0-9_.-]*$"            required>          <div *ngIf="!submitted && f.labelName.errors" class="error-message"></div>          <div class="error-h">            <div *ngIf="submitted && f.labelName.errors" class="error-message">              <div *ngIf="f.labelName.errors.required">Label key is required</div>              <div *ngIf="f.labelName.errors.pattern">Cannot contain spectial characters</div>            </div>          </div>        </div>        <div class="form-group">          <label>Label value*</label>            <input             formControlName="labelValue"             type="text"             class="form-control"             placeholder="e.g. MyGroup"             [ngClass]="{ \'is-invalid\': submitted && f.labelValue.errors }"            pattern="^[a-zA-Z0-9_.-]*$"            required>          <div *ngIf="!submitted && f.labelValue.errors" class="error-message"></div>          <div class="error-h">            <div *ngIf="submitted && f.labelValue.errors" class="error-message">              <div *ngIf="f.labelValue.errors.required">Label value is required</div>              <div *ngIf="f.labelValue.errors.pattern">Cannot contain spectial characters</div>            </div>          </div>        </div>        <div class="form-group-btn">          <button class="nalej-form-btn-blue" [disabled]="loading">            <span class="align-bottom">Save changes</span>          </button>        </div>      </form>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'AddLabelComponent'};
 </script>
