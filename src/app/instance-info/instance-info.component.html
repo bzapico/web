@@ -27,39 +27,39 @@
         </div>
           <div class="summary-instance-card">
             <div class="ins-info-box">
-                <table class="table summary-instances-table">
-                    <tr>
-                      <th class="grey">Status</th>
-                      <td 
-                        class="summary-instances-status"
-                        [ngClass]= 
-                          "instanceClassStatusCheck(instance.status_name)">
-                        {{instance.status_name}}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th class="grey">Instance of</th>
-                      <!-- GET REGISTERED AND SET THE RIGHT NAME --> 
-                      <td class="dark-grey text-uppercase">{{getDescriptorName(instance.app_descriptor_id)}}</td> 
-                    </tr>
-                    <tr>
-                      <th class="grey">ID</th>
-                      <td class="dark-grey">{{instance.app_instance_id}}</td>
-                    </tr>
-                    <tr>
-                      <th class="grey hide-sm">Registered app ID</th>
-                        <td class="dark-grey hide-sm">{{instance.app_descriptor_id}}</td> 
-                    </tr>
-                    <tr>
-                      <th class="grey">Groups</th>
-                      <td *ngIf="instance && instance.groups" class="summary-instances-data">{{instance.groups.length}}</td> 
-                      <td *ngIf="!instance || !instance.groups" class="summary-instances-data">0</td> 
-                    </tr>
-                    <tr>
-                      <th class="grey">Service instances</th>
-                      <td class="summary-instances-data">{{countGroupServices('ALL')}}</td> 
-                    </tr>
-                  </table>
+              <table class="table summary-instances-table">
+                <tr>
+                  <th>Status</th>
+                  <td 
+                    class="summary-instances-status"
+                    [ngClass]= 
+                      "instanceClassStatusCheck(instance.status_name)">
+                    {{instance.status_name}}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Instance of</th>
+                  <!-- GET REGISTERED AND SET THE RIGHT NAME --> 
+                  <td class="dark-grey text-uppercase">{{getDescriptorName(instance.app_descriptor_id)}}</td> 
+                </tr>
+                <tr>
+                  <th>ID</th>
+                  <td class="dark-grey">{{instance.app_instance_id}}</td>
+                </tr>
+                <tr class="hide-md">
+                  <th>Registered app ID</th>
+                  <td class="dark-grey">{{instance.app_descriptor_id}}</td> 
+                </tr>
+                <tr>
+                  <th>Groups</th>
+                  <td *ngIf="instance && instance.groups" class="summary-instances-data">{{instance.groups.length}}</td> 
+                  <td *ngIf="!instance || !instance.groups" class="summary-instances-data">0</td> 
+                </tr>
+                <tr>
+                  <th>Service instances</th>
+                  <td class="summary-instances-data">{{countGroupServices('ALL')}}</td> 
+                </tr>
+              </table>
             </div>
               <button 
                 class="btn-undeploy btn-p-fix"
@@ -71,23 +71,19 @@
       </div>
       <!-- Labels card-->
       <div class="card h-ins-labels flex-grow-1">
-        <div class="card-title-name hide-title-sm">
+        <div class="card-title-name hide-title-sm mb-3">
           <h5>LABELS</h5>
         </div>
-        <div
-          *ngIf="instance.labels"
-          class="ins-labels">
+        <div *ngIf="instance.labels">
           <div *ngFor="let label of instanceLabelsToString()">
             <button class="btn-sm btn-outline-primary" disabled>
               {{label[0]}}: {{label[1]}}
             </button>
           </div>
         </div>
-        <div
-        *ngIf="!instance.labels"
-        class="ins-labels">
-        <div class="w-100 h-100 d-flex justify-content-center align-items-center">
-            No labels
+        <div *ngIf="!instance.labels" class="no-elements">
+        <div class="no-elements">
+          No labels
         </div>
       </div>
       </div>
@@ -124,17 +120,17 @@
         </div>
         <div *ngIf="graphDataLoaded && !graphReset && countGroupServices('ALL') > 0" class="graph">
             <ngx-graph
-                class="chart-container"
-                [view]="view"
-                [legend]="showLegend"
-                [links]="graphData.links"
-                [nodes]="graphData.nodes"
-                [scheme]="colorScheme"
-                [orientation]="orientation"
-                [autoZoom]="autoZoom"
-                [autoCenter]="autoCenter"
-                [curve]="curve"
-                [enableZoom]="enableZoom">
+              class="chart-container"
+              [view]="view"
+              [legend]="showLegend"
+              [links]="graphData.links"
+              [nodes]="graphData.nodes"
+              [scheme]="colorScheme"
+              [orientation]="orientation"
+              [autoZoom]="autoZoom"
+              [autoCenter]="autoCenter"
+              [curve]="curve"
+              [enableZoom]="enableZoom">
               <ng-template #nodeTemplate let-node>
                 <svg:g 
                   class="node"
@@ -181,8 +177,7 @@
           </div>
         <div *ngIf="!graphDataLoaded" class="loader"></div>
         <!-- No info to show -->
-        <div *ngIf="graphDataLoaded && countGroupServices('ALL') === 0"
-        class="no-elements">
+        <div *ngIf="graphDataLoaded && countGroupServices('ALL') === 0" class="no-elements">
           No available services
         </div>
       </div>
@@ -260,25 +255,25 @@
             </div>
           </div>
         </div>
-        <div *ngIf="instance && instance.groups && instance.groups.length > 0" class="row justify-content-between">
+        <div *ngIf="instance && instance.groups && instance.groups.length > 0" class="row mb-3">
           <!-- Sorting mesages -->
           <div class="col-9">
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
               Filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters('services')">Reset</span>
+              <span class="reset-search" (click)="resetFilters('services')">Reset</span>
             </p>
             <p *ngIf="filterField && !searchTerm" class="sorting-message">
               Sorted by {{ sortedBy }},
               <span *ngIf="reverse">ascendant. </span>
               <span *ngIf="!reverse">descendant. </span>
-              <span class="blue reset-search" (click)="resetFilters('services')">Reset</span>
+              <span class="reset-search" (click)="resetFilters('services')">Reset</span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
               Sorted by {{ sortedBy }}
               <span *ngIf="reverse">ascendant </span>
               <span *ngIf="!reverse">descendant </span>
               and filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters('services')">Reset</span>
+              <span class="reset-search" (click)="resetFilters('services')">Reset</span>
             </p>
           </div>
           <!-- Search input -->
@@ -302,8 +297,7 @@
           </div>
         </div>
         <!-- No services to show -->
-        <div *ngIf="activeGroupId!== 'ALL' && countGroupServices(activeGroupId) === 0"
-          class="no-elements-in-group">
+        <div *ngIf="activeGroupId!== 'ALL' && countGroupServices(activeGroupId) === 0" class="no-elements-in-group">
           No available services in this group
         </div>
         <!-- Services table -->
@@ -403,7 +397,7 @@
                 </td>
                 <td class="col-1 text-center">
                   <button 
-                    class="btn info-btn btn-primary"  
+                    class="action-btn-blue"  
                     tooltip="Info" 
                     placement="left" 
                     (click)="openServicesInfo(service)">
@@ -416,8 +410,7 @@
           </table>
         </div>
         <!-- No info to show -->
-        <div *ngIf="loadedData && !requestError && groups.length === 0"
-          class="no-elements">
+        <div *ngIf="loadedData && !requestError && groups.length === 0" class="no-elements">
           No available services
         </div>
         <!-- Requested error -->
@@ -446,25 +439,25 @@
           <div class="card-title-name">
             <h5>RULES</h5>
           </div>
-          <div class="row hide-sm">
+          <div class="row mb-3 hide-md">
             <!-- Sorting mesages -->
             <div class="col">
               <p *ngIf="searchTermRules && !filterFieldRules" class="sorting-message">
                 Filtered by term "{{ searchTermRules }}".
-                <span class="blue reset-search" (click)="resetFilters('rules')">Reset</span>
+                <span class="reset-search" (click)="resetFilters('rules')">Reset</span>
               </p>
               <p *ngIf="filterFieldRules && !searchTermRules" class="sorting-message">
                 Sorted by {{ sortedByRules }},
                 <span *ngIf="reverse">ascendant. </span>
                 <span *ngIf="!reverse">descendant. </span>
-                <span class="blue reset-search" (click)="resetFilters('rules')">Reset</span>
+                <span class="reset-search" (click)="resetFilters('rules')">Reset</span>
               </p>
               <p *ngIf="filterFieldRules && searchTermRules" class="sorting-message">
                 Sorted by {{ sortedByRules }}
                 <span *ngIf="reverse">ascendant </span>
                 <span *ngIf="!reverse">descendant </span>
                 and filtered by term "{{ searchTermRules }}".
-                <span class="blue reset-search" (click)="resetFilters('rules')">Reset</span>
+                <span class="reset-search" (click)="resetFilters('rules')">Reset</span>
               </p>
             </div>
             <!-- Search input -->
@@ -486,7 +479,7 @@
           <!-- Rules table -->
           <div class="table-h table-h-fix" *ngIf="loadedData && instance.rules && instance.rules.length > 0 && !requestError">
             <table class="table-responsive table-fixed">
-              <thead class="hide-sm">
+              <thead class="hide-md">
                 <tr>
                   <th 
                     (click)="setOrder('rules','name')" 
@@ -584,7 +577,7 @@
                   </td>
                   <td class="col-1 text-center">
                     <button 
-                      class="btn info-btn btn-primary"  
+                      class="action-btn-blue"  
                       tooltip="Info" 
                       placement="left" 
                       (click)="openRulesInfo(rule)">
@@ -596,8 +589,7 @@
             </table>
           </div>
           <!-- No info to show -->
-          <div *ngIf="loadedData && instance && instance.rules && instance.rules.length === 0 !requestError"
-            class="no-elements">
+          <div *ngIf="loadedData && instance && instance.rules && instance.rules.length === 0 !requestError" class="no-elements">
             No available rules detected
           </div>
           <!-- Requested error -->
@@ -622,47 +614,48 @@
         </div>
         <!-- Configuration card -->
         <div class="card">
-            <div class="card-title-name">
-              <h5 class="hide-sm">CONFIGURATION</h5>
-              <h5 class="show-sm">CONF...</h5>
-            </div>
-            <div class="config-card">
-              <div *ngIf="instance.environment_variables">
-                <p class=" text-left">Environment variables</p>
-                <div 
-                  class="row mb-2" 
-                  *ngFor="let variable of objectToString(instance.environment_variables)">
-                  <div class="col-12 grey text-right">
-                    {{variable[0]}} 
-                  </div>
+          <div class="card-title-name">
+            <h5 class="hide-md">CONFIGURATION</h5>
+            <h5 class="show-sm">CONF...</h5>
+          </div>
+          <div class="config-card">
+            <div *ngIf="instance.environment_variables">
+              <p class=" text-left">Environment variables</p>
+              <div 
+                class="row mb-2" 
+                *ngFor="let variable of objectToString(instance.environment_variables)">
+                <div class="col-12 grey text-right">
+                  {{variable[0]}} 
+                </div>
 
-                  <div class="col-12 text-right">
-                    {{variable[1]}}
-                  </div>
+                <div class="col-12 text-right">
+                  {{variable[1]}}
                 </div>
-              </div>
-              <div *ngIf="!instance.environment_variables">
-                <p class="text-left">Environment variables</p>
-                <p class="grey">No environment variables have been set</p>
-              </div>
-              <div *ngIf="instance.configuration_options">
-                <p class="text-left">Other settings</p>
-                <div 
-                  class="row mb-1" 
-                  *ngFor="let configuration of objectToString(instance.configuration_options)">
-                    <div class="col-12 grey text-right">
-                      {{configuration[0]}} 
-                    </div>
-                    <div class="col-12 text-right">
-                      {{configuration[1]}}
-                    </div>
-                </div>
-              </div>
-              <div *ngIf="!instance.configuration_options">
-                <p class="text-left">Other settings</p>
-                <p class="grey">No extra settings have been set</p>
               </div>
             </div>
+            <div *ngIf="!instance.environment_variables">
+              <p class="text-left">Environment variables</p>
+              <p class="grey">No environment variables have been set</p>
+            </div>
+            <div *ngIf="instance.configuration_options">
+              <p class="text-left">Other settings</p>
+              <div 
+                class="row mb-1" 
+                *ngFor="let configuration of objectToString(instance.configuration_options)">
+                  <div class="col-12 grey text-right">
+                    {{configuration[0]}} 
+                  </div>
+                  <div class="col-12 text-right">
+                    {{configuration[1]}}
+                  </div>
+              </div>
+            </div>
+            <div *ngIf="!instance.configuration_options">
+              <p class="text-left">Other settings</p>
+              <p class="grey">No extra settings have been set</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

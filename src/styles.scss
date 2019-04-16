@@ -92,9 +92,7 @@ a {
   cursor: pointer;
   margin-top: 2em;
 }
-.btn-p-fix {
-  padding-top: 10px !important;
-}
+
 /* - - - Loader - - - */
 .loader {
   margin: 0 auto;
@@ -134,7 +132,13 @@ a {
 }
 @media screen and (max-width:1720px), screen and (max-height: 780px)  {
   .hide-sm {
-    display: none;
+    display: none !important;
+  }
+
+}
+@media screen and (max-width:1440px), screen and (max-height: 900px){
+  .hide-md {
+    display: none !important;
   }
   .show-sm {
     display: block;
@@ -145,11 +149,7 @@ a {
     display: none !important;
   }
 }
-@media screen and (max-width:1440px) {
-  .hide-md {
-    display: none !important;
-  }
-}
+
 
 /* - - - Loader styles - - - */
 .nalej-loader-box {
@@ -285,6 +285,9 @@ button[type="submit"]:disabled {
 .alert > button.close:hover span {
   color:white;
 }
+.btn-p-fix {
+  padding-top: 10px !important;
+}
 
 /* - - - Actions btns styles - - - */
 .action-btn {
@@ -325,11 +328,11 @@ button[type="submit"]:disabled {
   left: 8px;
 }
 .i-info {
-  font-size: 1.3em;
+  font-size: 1.4em;
   font-weight: 700;
   position: absolute;
-  top: 7px;
-  left: 8px;
+  top: 3px;
+  left: 13px;
 }
 .i-red {
   font-size: 1.2em;
@@ -359,8 +362,6 @@ button[type="submit"]:disabled {
 }
 .i-info-2 {
   @extend .i-info;
-  top: 5px;
-  left: 14px
 }
 .i-red-2 {
   @extend .i-white;
@@ -1422,4 +1423,3 @@ button[type="submit"]:disabled {
 .cursor-pointer {
   cursor: pointer!important;
 }
-

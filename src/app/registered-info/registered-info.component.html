@@ -69,16 +69,16 @@
         </div>
         <div 
           *ngIf="!registeredData.groups || registeredData.groups.length === 0" 
-          class="summary-card d-flex justify-content-center align-items-center">
+          class="no-elements">
           No available registered apps detected
         </div>
       </div>
       <!-- Labels card-->
       <div class="card h-reg-labels flex-grow-1">
-        <div class="card-title-name hide-title-sm">
+        <div class="card-title-name hide-title-sm mb-3">
           <h5>LABELS</h5>
         </div>
-        <div class="reg-labels" *ngIf="loadedData && registeredData && registeredData.labels && !requestError">
+        <div *ngIf="loadedData && registeredData && registeredData.labels && !requestError">
           <button 
           [ngClass]=
           "{'btn-label-selected': indexOfLabelSelected(registeredData.app_descriptor_id, label.key, label.value) >= 0 ,
@@ -285,25 +285,25 @@
             </div>
           </div>
         </div>
-        <div *ngIf="registeredData && registeredData.groups && registeredData.groups.length > 0" class="row justify-content-between">
+        <div *ngIf="registeredData && registeredData.groups && registeredData.groups.length > 0" class="row mb-3">
           <!-- Sorting mesages -->
           <div class="col-9">
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
               Filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters('services')">Reset</span>
+              <span class="reset-search" (click)="resetFilters('services')">Reset</span>
             </p>
             <p *ngIf="filterField && !searchTerm" class="sorting-message">
               Sorted by {{ sortedBy }},
               <span *ngIf="reverse">ascendant. </span>
               <span *ngIf="!reverse">descendant. </span>
-              <span class="blue reset-search" (click)="resetFilters('services')">Reset</span>
+              <span class="reset-search" (click)="resetFilters('services')">Reset</span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
               Sorted by {{ sortedBy }}
               <span *ngIf="reverse">ascendant </span>
               <span *ngIf="!reverse">descendant </span>
               and filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters('services')">Reset</span>
+              <span class="reset-search" (click)="resetFilters('services')">Reset</span>
             </p>
           </div>
           <!-- Search input -->
@@ -327,8 +327,7 @@
           </div>
         </div>
         <!-- No services to show -->
-        <div *ngIf="activeGroupId!== 'ALL' && countGroupServices(activeGroupId) === 0"
-          class="no-elements-in-group">
+        <div *ngIf="activeGroupId!== 'ALL' && countGroupServices(activeGroupId) === 0" class="no-elements-in-group">
           No available services in this group
         </div>
         <!--  Services table -->
@@ -409,7 +408,7 @@
                   </td>
                   <td class="col-1 text-center">
                     <button 
-                      class="btn info-btn btn-primary" 
+                      class="action-btn-blue" 
                       tooltip="Info" 
                       placement="left" 
                       (click)="openServicesInfo(service)">
@@ -422,8 +421,7 @@
           </table>
         </div>
         <!-- No info to show -->
-        <div *ngIf="loadedData && !requestError && registeredData.groups.length === 0"
-          class="no-elements">
+        <div *ngIf="loadedData && !requestError && registeredData.groups.length === 0" class="no-elements">
           No available services
         </div>
         <!-- Requested error -->
@@ -452,25 +450,25 @@
           <div class="card-title-name">
             <h5>RULES</h5>
           </div>
-          <div class="row hide-sm">
+          <div class="row mb-3 hide-sm">
             <!-- Sorting mesages -->
             <div class="col">
               <p *ngIf="searchTermRules && !filterFieldRules" class="sorting-message">
                 Filtered by term "{{ searchTermRules }}".
-                <span class="blue reset-search" (click)="resetFilters('rules')">Reset</span>
+                <span class="reset-search" (click)="resetFilters('rules')">Reset</span>
               </p>
               <p *ngIf="filterFieldRules && !searchTermRules" class="sorting-message">
                 Sorted by {{ sortedByRules }},
                 <span *ngIf="reverse">ascendant. </span>
                 <span *ngIf="!reverse">descendant. </span>
-                <span class="blue reset-search" (click)="resetFilters('rules')">Reset</span>
+                <span class="reset-search" (click)="resetFilters('rules')">Reset</span>
               </p>
               <p *ngIf="filterFieldRules && searchTermRules" class="sorting-message">
                 Sorted by {{ sortedByRules }}
                 <span *ngIf="reverse">ascendant </span>
                 <span *ngIf="!reverse">descendant </span>
                 and filtered by term "{{ searchTermRules }}".
-                <span class="blue reset-search" (click)="resetFilters('rules')">Reset</span>
+                <span class="reset-search" (click)="resetFilters('rules')">Reset</span>
               </p>
             </div>
             <!-- Search input -->
@@ -590,7 +588,7 @@
                     </td>
                   <td class="col-1 text-center">
                     <button 
-                      class="btn info-btn btn-primary"  
+                      class="action-btn-blue"  
                       tooltip="Info" 
                       placement="left" 
                       (click)="openRulesInfo(rule)">
@@ -602,8 +600,7 @@
             </table>
           </div>
           <!-- No info to show -->
-          <div *ngIf="loadedData && registeredData && registeredData.groups.length === 0 !requestError"
-            class="no-elements">
+          <div *ngIf="loadedData && registeredData && registeredData.groups.length === 0 !requestError" class="no-elements">
             No available rules detected
           </div>
           <!-- Requested error -->
