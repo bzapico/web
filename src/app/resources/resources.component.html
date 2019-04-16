@@ -169,9 +169,7 @@
           </div>
         </slide>
       </carousel>
-      <div 
-        *ngIf="clusters.length === 0"
-        class="no-elements">
+      <div *ngIf="clusters.length === 0" class="no-elements">
         No available clusters detected
       </div>
     </div>
@@ -182,9 +180,7 @@
       <div class="card-title-name">
         <h5>NODE STATUS TIMELINE</h5>
       </div>
-      <div 
-        *ngIf="nodesCount === 0"
-        class="no-elements">
+      <div *ngIf="nodesCount === 0" class="no-elements">
         No available nodes detected
       </div>
       <div *ngIf="nodesCount > 0" class="line-chart-box">
@@ -207,7 +203,7 @@
           [showRefLabels]="showRefLabels"
           >
         </ngx-charts-line-chart>
-        <div class="y-axis-line-chart">
+        <div class="line-chart-y-axis">
           <span class="grey">100%</span>
           <span class="grey mb-4">0%</span>
         </div>  
@@ -222,7 +218,7 @@
       <div class="card-title-name-mb">
         <h5>CLUSTERS</h5>
       </div>
-      <div class="row justify-content-between search-row">
+      <div class="row mb-3">
         <!-- Sorting mesages -->
         <div class="col">  
           <p *ngIf="searchTerm && !filterField" class="sorting-message">
@@ -442,10 +438,8 @@
                 {{cluster.multitenant_support}}
               </td>
               <td class="col-1 text-center">
-                <button 
-                  class="action-btn" 
-                  (click)="openEditCluster(cluster)">
-                    <i class="material-icons i-edit">edit</i>
+                <button class="action-btn" (click)="openEditCluster(cluster)">
+                  <i class="material-icons i-edit">edit</i>
                 </button>
               </td>
             </tr>
@@ -453,23 +447,17 @@
         </table>
       </div>
       <!-- No info to show -->
-      <div
-        *ngIf="loadedData && clusters.length === 0 && !requestError"
-        class="no-elements">
-          No available clusters detected
+      <div *ngIf="loadedData && clusters.length === 0 && !requestError" class="no-elements">
+        No available clusters detected
       </div>
-       <!-- Requested error -->
-       <div
-        *ngIf="loadedData && requestError"
-        class="no-elements">
+      <!-- Requested error -->
+      <div *ngIf="loadedData && requestError" class="no-elements">
         <p>{{requestError}}</p>
       </div>
       <!-- Loader -->
       <div class="nalej-loader-box" *ngIf="!loadedData">
         <div class="loader">
-          <svg 
-            class="circular" 
-            viewBox="25 25 50 50">
+          <svg class="circular" viewBox="25 25 50 50">
             <circle 
               class="path" 
               cx="50" 

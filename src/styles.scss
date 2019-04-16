@@ -1085,7 +1085,7 @@ button[type="submit"]:disabled {
     }
   }
 }
-.y-axis-line-chart {
+.line-chart-y-axis {
   font-size: .8em;
   display: flex;
   flex-direction:column;
@@ -1093,8 +1093,8 @@ button[type="submit"]:disabled {
 }
 
 @media screen and (max-width:1440px) {
-  .y-axis-line-chart  {
-      display: none;
+  .line-chart-y-axis  {
+    display: none;
   }
 }
 
@@ -1198,10 +1198,6 @@ button[type="submit"]:disabled {
   }
 }
 
-.search-row {
-  border: 1px solid orangered;
-  margin-bottom: 1em;
-}
 // Search box
 .search-box {    
   width: 325px;
@@ -1262,12 +1258,6 @@ button[type="submit"]:disabled {
     margin-bottom: .2rem;
     margin-right: 0em;
   }
-
-}
-@media screen and (max-width:1366px) {
-  .table-h {
-    padding-top: 1em;
-  }
 }
 
 /* - - - Status dots for tables - - - */
@@ -1307,13 +1297,12 @@ button[type="submit"]:disabled {
 
 /* - - - Nalej tabs - - - */
 .nalej-tab-box {
-  margin-bottom: 2em;
-  margin-right: 3em;
+  margin: 0em 3em 2em 1em;
   font-size: .6em;
   border-bottom: 1px solid #ececec;
-  margin-left: 1em;
   display: flex;
   flex-direction: row;
+  text-transform: uppercase;
   ul {
     list-style: none;
     text-align: center;
@@ -1334,9 +1323,6 @@ button[type="submit"]:disabled {
   .nalej-tab-title {
     cursor: default;
     padding-right: 8em;
-  }
-  .nalej-tab {
-    text-transform: uppercase;
   }
   span {
     display: block;
