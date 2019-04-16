@@ -7,16 +7,14 @@
 <div class="row row-info">
   <!-- Summary app info card -->
   <div class="col-lg-4 h-100">
-    <div class="card p-4">
+    <div class="card">
       <div class="card-title-name">
         <h5>SUMMARY</h5>
       </div>
       <div class="summary-card">
         <div>
           <div class="deployed-box">
-            <div 
-              *ngIf="instances.length >0"
-              class="donut-chart">
+            <div *ngIf="instances.length >0" class="donut-chart">
               <ngx-charts-pie-chart
                 [scheme]="colorScheme" 
                 [results]="instancesPieChart" 
@@ -27,7 +25,7 @@
               </ngx-charts-pie-chart>
               <div class="donut-number">{{countRunning}}/{{instances.length}}</div>
             </div>
-            <p *ngIf="instances.length > 0" class="blue text-center apps-run mb-0">Apps running</p>
+            <p *ngIf="instances.length > 0" class="apps-run">Apps running</p>
             <p *ngIf="instances.length === 0" class="circle-name no-deployed">NO APPS DEPLOYED</p>
             <p *ngIf="instances.length > 0" class="circle-name my-0">DEPLOYED</p>
           </div>
@@ -43,13 +41,11 @@
   </div>
   <!-- App status timeline info card -->
   <div class="col-lg-8 h-100">
-    <div class="card p-4">
+    <div class="card">
       <div class="card-title-name">
         <h5>APP STATUS TIMELINE</h5>
       </div>
-      <div 
-        *ngIf="instances.length === 0" 
-        class="h-100 no-elements"> 
+      <div *ngIf="instances.length === 0" class="no-elements"> 
         No applications deployed yet
       </div>
       <div *ngIf="instances.length>0" class="line-chart-box">
@@ -82,8 +78,8 @@
 </div>
 <!-- Deployed app list panel card-->
 <div class="row row-main">
-  <div class="col-lg-12 col-md-12 col-sm-12 h-100">
-    <div class="card p-4">
+  <div class="col-lg-12 h-100">
+    <div class="card">
       <div class="card-title-name-mb">
         <h5>APPLICATIONS</h5>
       </div>
@@ -109,19 +105,15 @@
         <div class="col">
           <div class="nalej-tab-box">
             <ul>
-              <li class="nalej-tab nalej-tab-title">
+              <li class="nalej-tab-title">
                 <span class="grey">LISTS</span>
               </li>
-              <li 
-                class="nalej-tab"
-                (click)="changeActiveList('instances')">
+              <li (click)="changeActiveList('instances')">
                 <span [ngClass]="{'active': showInstances}">
                   INSTANCES
                 </span>
               </li>
-              <li 
-                class="nalej-tab"
-                (click)="changeActiveList('registered')">
+              <li (click)="changeActiveList('registered')">
                 <span [ngClass]="{'active': !showInstances}">
                   REGISTERED
                 </span>
@@ -130,46 +122,46 @@
           </div>  
         </div>
       </div>
-      <div class="row justify-content-between">
-        <!-- Sorting mesages -->
-          <div class="col-9">  
-            <p *ngIf="searchTerm && !filterField" class="sorting-message">
-              Filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
-            </p>
-            <p *ngIf="filterField && !searchTerm" class="sorting-message">
-              Sorted by {{ sortedBy }},
-              <span *ngIf="reverse">ascendant. </span>
-              <span *ngIf="!reverse">descendant. </span>
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
-            </p>
-            <p *ngIf="filterField && searchTerm" class="sorting-message">
-              Sorted by {{ sortedBy }}
-              <span *ngIf="reverse">ascendant </span>
-              <span *ngIf="!reverse">descendant </span>
-              and filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
-            </p> 
-          </div>
-          <!-- Search input -->
-          <div class="col-3">
-            <form>
-              <div class="search-box">
-                <input 
-                  type="text" 
-                  class="form-control" 
-                  name="searchTerm" 
-                  placeholder="Search..." 
-                  [(ngModel)]="searchTerm"> 
-                  <div class="search-icon" *ngIf="searchTerm === ''">
-                    <i class="material-icons">search</i>
-                  </div>     
-                  <div class="close-icon" *ngIf="searchTerm !== ''">
-                    <i class="material-icons" (click)="resetFilters(filterField)">close</i>
-                  </div>
-              </div>
-            </form>
-          </div>      
+      <div class="row mb-3">
+      <!-- Sorting mesages -->
+        <div class="col-9">  
+          <p *ngIf="searchTerm && !filterField" class="sorting-message">
+            Filtered by term "{{ searchTerm }}".
+            <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>
+          </p>
+          <p *ngIf="filterField && !searchTerm" class="sorting-message">
+            Sorted by {{ sortedBy }},
+            <span *ngIf="reverse">ascendant. </span>
+            <span *ngIf="!reverse">descendant. </span>
+            <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>
+          </p>
+          <p *ngIf="filterField && searchTerm" class="sorting-message">
+            Sorted by {{ sortedBy }}
+            <span *ngIf="reverse">ascendant </span>
+            <span *ngIf="!reverse">descendant </span>
+            and filtered by term "{{ searchTerm }}".
+            <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>
+          </p> 
+        </div>
+        <!-- Search input -->
+        <div class="col-3">
+          <form>
+            <div class="search-box">
+              <input 
+                type="text" 
+                class="form-control" 
+                name="searchTerm" 
+                placeholder="Search..." 
+                [(ngModel)]="searchTerm"> 
+                <div class="search-icon" *ngIf="searchTerm === ''">
+                  <i class="material-icons">search</i>
+                </div>     
+                <div class="close-icon" *ngIf="searchTerm !== ''">
+                  <i class="material-icons" (click)="resetFilters(filterField)">close</i>
+                </div>
+            </div>
+          </form>
+        </div>      
       </div>
       <!-- App Instances -->
       <div class="table-h" *ngIf="loadedData && instances && instances.length > 0 && !requestError && showInstances">
@@ -238,7 +230,7 @@
               <td 
                 tooltip="Info"
                 placement="top"
-                class="text-capitalize col-2 app-info" 
+                class="col-2 app-info" 
                 [routerLink]="['instance', app.app_instance_id]" 
                 routerLinkActive="active"
                 >
@@ -262,8 +254,8 @@
                   {{app.status_name}}
                 </span>
               </td>
-              <td class="row-info-btn col-1 text-center">
-                <button tooltip="Undeploy" placement="left" class="btn-grey" (click)="undeploy(app)">
+              <td class="col-1 row-info-btn text-center">
+                <button tooltip="Undeploy" placement="left" class="action-btn-red" (click)="undeploy(app)">
                   <i class="material-icons i-red">close</i>
                 </button>
               </td>
@@ -272,9 +264,7 @@
         </table>
       </div>
        <!-- No app instances to show -->
-      <div 
-        *ngIf="loadedData && instances && instances.length === 0 && !requestError && showInstances"
-        class="no-elements">
+      <div *ngIf="loadedData && instances && instances.length === 0 && !requestError && showInstances" class="no-elements">
         No application instances deployed
       </div>
       <!-- Registered Apps -->
@@ -344,13 +334,13 @@
               <td 
                 tooltip="Info"
                 placement="top"
-                class="text-capitalize col-2 app-info" 
+                class="col-2 app-info" 
                 [routerLink]="['registered', app.app_descriptor_id]" 
                 routerLinkActive="active" >
                 {{app.name}}
               </td>
               <td class="col-3">{{app.app_descriptor_id}}</td>
-              <td class="col-4" >
+              <td class="col-4">
                 <button 
                   (click)="onLabelClick(app.app_descriptor_id, label[0], label[1])"
                   [ngClass]=
@@ -369,9 +359,7 @@
                     tooltip="Add" 
                     placement="right"
                     >
-                    <i class="material-icons i-add">
-                      add
-                    </i>
+                    <i class="material-icons i-add">add</i>
                   </div>
                   <div 
                     *ngIf="isAnyLabelSelected(app.app_descriptor_id) === true"
@@ -380,25 +368,24 @@
                     tooltip="Delete" 
                     placement="right"
                     >
-                    <i class="material-icons i-delete">
-                      delete
-                    </i>
+                    <i class="material-icons i-delete">delete</i>
                   </div>
                 </div>
               </td>
               <td class="col-2 text-center"> 
-                  {{getServicesCount(app)}}
+                {{getServicesCount(app)}}
               </td>
-              <td class="row-info-btn col-1 text-center">
+              <td class="col-1 actions-col actions-col-fix">
                 <button           
                   (click)="deployRegistered(app)"
                   tooltip="Deploy" 
                   placement="left" 
-                  class="btn-blue mr-2">
-                  <i class="material-icons i-white">play_arrow</i>
+                  class="action-btn-blue-2"
+                  >
+                  <i class="material-icons i-white-2">play_arrow</i>
                 </button>
-                <button tooltip="Delete" placement="left" class="btn-grey btn-grey-mr" (click)="deleteApp(app)">
-                  <i class="material-icons i-red">delete</i>
+                <button tooltip="Delete" placement="left" class="action-btn-red-2" (click)="deleteApp(app)">
+                  <i class="material-icons i-red-2">delete</i>
                 </button>
               </td>
             </tr>
@@ -406,23 +393,17 @@
         </table>
       </div>
         <!-- No registered app to show -->
-      <div 
-        *ngIf="loadedData && registered && registered.length === 0 && !requestError && !showInstances"
-        class="no-elements">
+      <div *ngIf="loadedData && registered && registered.length === 0 && !requestError && !showInstances" class="no-elements">
         No registered applications detected
       </div>
        <!-- Requested error -->
-      <div
-        *ngIf="loadedData && requestError"
-        class="no-elements">
+      <div *ngIf="loadedData && requestError" class="no-elements">
         <p>{{requestError}}</p>
       </div>
       <!-- Loader -->
       <div class="nalej-loader-box" *ngIf="!loadedData">
         <div class="loader">
-          <svg 
-            class="circular" 
-            viewBox="25 25 50 50">
+          <svg class="circular" viewBox="25 25 50 50">
             <circle 
               class="path" 
               cx="50" 

@@ -287,22 +287,40 @@ button[type="submit"]:disabled {
 .alert > button.close:hover span {
   color:white;
 }
-/* - - - Actions btns styles - - - */
 
+/* - - - Actions btns styles - - - */
 .action-btn {
   height: 32px;
   width: 32px;
   border-radius: 50%;
   position: relative;
-  color: #fff;
-  background-color: #0937FF;
   border: 0;
   cursor: pointer;
   &:focus {
     outline: 0;
   }
 }
-.i-edit {
+.action-btn-blue {
+  @extend .action-btn;
+  color: #fff;
+  background-color: #0937FF;
+  &:hover {
+    color: #fff;
+    transition: 0.3s;
+    background-color: #4f71fd;
+  }
+}
+.action-btn-red {
+  @extend .action-btn;
+  color: #F25272;
+  background-color: #E8E8E8;
+  &:hover {
+    color: #fff;
+    transition: 0.3s;
+    background-color: #F25272;
+  }
+}
+.i-white {
   font-size: 1.2em;
   position: absolute;
   top: 7px;
@@ -315,18 +333,29 @@ button[type="submit"]:disabled {
   top: 7px;
   left: 8px;
 }
+.i-red {
+  font-size: 1.2em;
+  font-weight: 700;
+  position: absolute;
+  top: 8px;
+  left: 7px;
+}
 //  Action buttons when there are two in a column
 .actions-col {
   justify-content: center;
-  display: flex;
+  display: flex !important;
   flex-direction: row;
 }
-.action-btn-2 {
-  @extend .action-btn;
+.action-btn-blue-2 {
+  @extend .action-btn-blue;
   margin: 0 6px;
 }
-.i-edit-2 {
-  @extend .i-edit;
+.action-btn-red-2 {
+  @extend .action-btn-red;
+  margin: 0 6px;
+}
+.i-white-2 {
+  @extend .i-white;
   top: 7px;
   left: 8px;
 }
@@ -335,24 +364,34 @@ button[type="submit"]:disabled {
   top: 5px;
   left: 14px
 }
+.i-red-2 {
+  @extend .i-white;
+  top: 7px;
+  left: 8px;
+}
 
 @media screen and (max-width: 1440px){
-  .action-btn {
+  .action-btn-blue, .action-btn-red {
     height: 25px;
     width: 25px;
     min-height: 25px;
-    min-width: 25px
+    min-width: 25px;
   }
-  .i-edit {
+  .i-white {
     font-size: 1em;
     top: 5px;
     left: 6px;
+  }
+  .i-red {
+    font-size: 1em;
+    top: 6px;
+    left: 5px;
   }
   .i-info {
     top: 1px;
     left: 10px;
   }
-  .i-edit-2 {
+  .i-white-2, .i-red-2 {
     font-size: 1em;
     top: 5px;
     left: 6px;
