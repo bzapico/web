@@ -4,10 +4,10 @@
     <div class="modal-header">
       <h3 class="nalej-form-title">Add new devices group</h3>
       <button 
+        (click)="discardChanges(f)"
         type="button" 
-        class="close" 
         aria-label="Close"
-        (click)="discardChanges(f)">
+        class="close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -18,13 +18,13 @@
           <label>Group name*</label>
           <input 
             formControlName="groupName"
+            type="text" 
             placeholder="e.g. Device group"
             pattern="^[A-Za-z0-9_]+$"
-            type="text" 
             appAutofocus="true"
-            class="form-control" 
             [ngClass]="{ 'is-invalid': submitted && f.groupName.errors }"
-            required>
+            required
+            class="form-control">
           <div *ngIf="!submitted && f.groupName.errors" class="error-message"></div>
           <div class="error-h">
             <div *ngIf="submitted && f.groupName.errors" class="error-message">
@@ -76,7 +76,7 @@
             <span class="align-bottom">Add devices group</span>
           </button>
         </div>
-    </form>
+      </form>
     </div>
   </div>
 </div>

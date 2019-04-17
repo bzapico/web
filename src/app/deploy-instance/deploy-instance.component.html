@@ -4,10 +4,10 @@
     <div class="modal-header">
       <h3 class="nalej-form-title">Deploy instance</h3>
       <button 
+        (click)="discardChanges(f)"
         type="button" 
-        class="close" 
         aria-label="Close"
-        (click)="discardChanges(f)">
+        class="close" >
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -31,8 +31,8 @@
           <label>Registered name</label>
           <input 
             formControlName="registeredName" 
-            placeholder="{{registeredName}}"
             type="text" 
+            placeholder="{{registeredName}}"
             class="form-control">
           <div class="error-h"></div>
         </div>
@@ -40,10 +40,10 @@
           <label>Instance name*</label>
           <input 
             formControlName="instanceName" 
+            type="text" 
             value="instanceName"
             placeholder="Instance name"
             appAutofocus="{{defaultAutofocus}}"
-            type="text" 
             [ngClass]="{ 'is-invalid': submitted && f.instanceName.errors }"
             class="form-control">
           <div class="error-h">

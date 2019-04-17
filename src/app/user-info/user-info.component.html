@@ -3,10 +3,10 @@
   <div class="modal-header">
     <h3 class="nalej-form-title">{{title}}</h3>
     <button 
+      (click)="bsModalRef.hide()"
       type="button" 
-      class="close" 
       aria-label="Close"
-      (click)="bsModalRef.hide()">
+      class="close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -20,8 +20,8 @@
         <label>Name</label>
         <input 
           formControlName="userName"
-          placeholder="{{userName}}"
           type="text" 
+          placeholder="{{userName}}"
           class="form-control">
         <div class="error-h"></div>
       </div>
@@ -29,8 +29,8 @@
         <label>Email</label>
         <input 
           formControlName="email" 
-          placeholder="{{email}}"
           type="text" 
+          placeholder="{{email}}"
           class="form-control">
           <div class="error-h"></div>
       </div>
@@ -38,18 +38,18 @@
         <label>Role</label>
         <input 
           formControlName="role" 
-          placeholder="{{role}}"
           type="text" 
+          placeholder="{{role}}"
           class="form-control">
           <div class="error-h"></div>
       </div>
       <!-- Change password -->
-      <div class="change-password" (click)="openChangePassword()">
+      <div (click)="openChangePassword()" class="change-password">
         <p>Change password</p>
       </div>
       <!-- Delete user -->
       <div class="form-group-btn">
-        <button class="nalej-form-btn-red" (click)="deleteUser()">
+        <button (click)="deleteUser()" class="nalej-form-btn-red">
           <i class="material-icons delete-icon">delete</i>
           <span class="align-bottom">{{buttonDeleteUser}}</span>
         </button>

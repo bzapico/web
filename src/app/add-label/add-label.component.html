@@ -4,10 +4,10 @@
     <div class="modal-header">
       <h3 class="nalej-form-title">Add label to {{entityType}}</h3>
       <button 
+        (click)="discardChanges(f)"
         type="button" 
-        class="close" 
         aria-label="Close"
-        (click)="discardChanges(f)">
+        class="close" >
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -20,12 +20,12 @@
             <input 
             formControlName="labelName" 
             type="text" 
-            appAutofocus="true"
-            class="form-control" 
             placeholder="e.g. Group" 
+            appAutofocus="true"
             [ngClass]="{ 'is-invalid': submitted && f.labelName.errors }"
             pattern="^[a-zA-Z0-9_.-]*$"
-            required>
+            required
+            class="form-control">
           <div *ngIf="!submitted && f.labelName.errors" class="error-message"></div>
           <div class="error-h">
             <div *ngIf="submitted && f.labelName.errors" class="error-message">
@@ -39,11 +39,11 @@
             <input 
             formControlName="labelValue" 
             type="text" 
-            class="form-control" 
             placeholder="e.g. MyGroup" 
             [ngClass]="{ 'is-invalid': submitted && f.labelValue.errors }"
             pattern="^[a-zA-Z0-9_.-]*$"
-            required>
+            required
+            class="form-control" >
           <div *ngIf="!submitted && f.labelValue.errors" class="error-message"></div>
           <div class="error-h">
             <div *ngIf="submitted && f.labelValue.errors" class="error-message">

@@ -3,10 +3,10 @@
   <div class="modal-header">
     <h3 class="nalej-form-title">{{title}}</h3>
     <button 
+      (click)="discardChanges(f)"
       type="button" 
-      class="close" 
       aria-label="Close"
-      (click)="discardChanges(f)">
+      class="close" >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -17,14 +17,13 @@
         <label>Name*</label>
         <input 
           formControlName="userName"
+          type="text" 
           placeholder="{{userName}}"
           pattern="[a-zA-Z0-9]+"
-          type="text" 
           value="{{userName}}"
           appAutofocus="true"
-          class="form-control" 
           [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
-          >
+          class="form-control">
         <div *ngIf="!submitted && f.userName.errors" class="error-message"></div>
         <div class="error-h">
           <div *ngIf="submitted && f.userName.errors" class="error-message">
@@ -37,8 +36,8 @@
         <label>Email</label>
         <input 
           formControlName="email" 
-          placeholder="{{email}}"
           type="text" 
+          placeholder="{{email}}"
           class="form-control">
         <div class="error-h"></div>
       </div>
@@ -66,12 +65,12 @@
         <input 
           placeholder="{{userRole}}"
           type="text" 
-          class="form-control"
-          disabled>
+          disabled
+          class="form-control">
         <div class="error-h"></div>
       </div>
         <!-- Change password -->
-      <div class="change-password" (click)="openChangePassword()">
+      <div (click)="openChangePassword()" class="change-password">
         <p>Change password</p>
       </div>
       <!-- Save new user -->

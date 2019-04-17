@@ -33,20 +33,20 @@
         <div class="col-7">  
           <p *ngIf="searchTerm && !filterField" class="sorting-message">
             Filtered by term "{{ searchTerm }}".
-            <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>
+            <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
           </p>
           <p *ngIf="filterField && !searchTerm" class="sorting-message">
             Sorted by {{ sortedBy }},
             <span *ngIf="reverse">ascendant. </span>
             <span *ngIf="!reverse">descendant. </span>
-            <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>
+            <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
           </p>
           <p *ngIf="filterField && searchTerm" class="sorting-message">
             Sorted by {{ sortedBy }}
             <span *ngIf="reverse">ascendant </span>
             <span *ngIf="!reverse">descendant </span>
             and filtered by term "{{ searchTerm }}".
-            <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>
+            <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
           </p> 
         </div>
         <!-- Search input -->
@@ -54,22 +54,27 @@
           <form>
             <div class="search-box">
               <input 
-                type="text" 
-                class="form-control" 
                 name="searchTerm" 
-                placeholder="Search..." 
-                [(ngModel)]="searchTerm"> 
-                <div class="search-icon" *ngIf="searchTerm === ''">
+                [(ngModel)]="searchTerm"
+                type="text" 
+                placeholder="Search..."
+                class="form-control"> 
+                <div *ngIf="searchTerm === ''" class="search-icon">
                   <i class="material-icons">search</i>
                 </div>     
-                <div class="close-icon" *ngIf="searchTerm !== ''">
-                  <i class="material-icons" (click)="resetFilters(filterField)">close</i>
+                <div *ngIf="searchTerm !== ''" class="close-icon">
+                  <i (click)="resetFilters(filterField)" class="material-icons">close</i>
                 </div>
             </div>
           </form>
         </div>      
       </div>
-      <div class="table-users" *ngIf="loadedData && users && users.length > 0 && !requestError">
+      <div *ngIf=
+        "loadedData && 
+        users &&
+        users.length > 0 && 
+        !requestError" 
+        class="table-users">
         <div  class="table-h">
           <table class="table-responsive table-fixed">
             <thead>
@@ -80,10 +85,10 @@
                   scope="col" 
                   class="col-3">
                   Name 
-                  <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse">
+                  <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'name' && reverse">
+                  <span class="expand-chevron" *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th>
@@ -93,10 +98,10 @@
                   scope="col" 
                   class="col-2">
                   Role 
-                  <span class="expand-chevron" *ngIf="sortedBy === 'role' && !reverse">
+                  <span *ngIf="sortedBy === 'role' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'role' && reverse">
+                  <span *ngIf="sortedBy === 'role' && reverse" class="expand-chevron">
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th>
@@ -106,30 +111,39 @@
                   scope="col" 
                   class="col-5">
                   Email
-                  <span class="expand-chevron" *ngIf="sortedBy === 'email' && !reverse">
+                  <span *ngIf="sortedBy === 'email' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'email' && reverse">
+                  <span *ngIf="sortedBy === 'email' && reverse" class="expand-chevron">
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th>
-                <th 
-                  scope="col" 
-                  class="col-2 text-center">
+                <th scope="col" class="col-2 text-center">
                   Actions 
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let user of users | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+              <tr *ngFor=
+                "let user of users |
+                sortBy : sortedBy : reverse : 'case-insensitive' |
+                filter : searchTerm">
                 <td class="col-3">{{user.name}}</td>
-                <td class="col-2 blue" (click)="openUserInfo(user)">{{user.role_name}}</td>
+                <td (click)="openUserInfo(user)" class="col-2 blue">{{user.role_name}}</td>
                 <td class="col-5">{{user.email}}</td>
                 <td class="col-2 actions-col">
-                  <button class="action-btn-blue-2" (click)="openUserInfo(user)" tooltip="Info" placement="left">
+                  <button 
+                    (click)="openUserInfo(user)" 
+                    tooltip="Info" 
+                    placement="left" 
+                    class="action-btn-blue-2">
                     <span class="i-info-2">i</span>
                   </button>
-                  <button class="action-btn-blue-2" (click)="openEditUser(user)" tooltip="Edit" placement="left">
+                  <button 
+                    (click)="openEditUser(user)" 
+                    tooltip="Edit" 
+                    placement="left"
+                    class="action-btn-blue-2">
                     <i class="material-icons i-white-2">edit</i>
                   </button>
                 </td>
@@ -139,27 +153,25 @@
         </div>
         <!-- Add user button -->
         <div class="add-user-btn">
-          <button class="btn nalej-btn-lg" (click)="addUser()">Add user</button>
+          <button (click)="addUser()" class="btn nalej-btn-lg" >Add user</button>
         </div>
       </div>
       <!-- No info to show -->
-      <div
-        *ngIf="loadedData && users && users.length === 0 && !requestError"
-        class="no-elements">
-        <p>There are not registered users in this organization<br>Click on "add user" button to start adding new users </p>
+      <div *ngIf=
+          "loadedData &&
+          users && users.length === 0 &&
+          !requestError"
+          class="no-elements">
+        <p>There are not registered users in this organization<br>Click on "add user" button to start adding new users</p>
       </div>
       <!-- Requested error -->
-      <div
-        *ngIf="loadedData && requestError"
-        class="no-elements">
+      <div *ngIf="loadedData && requestError" class="no-elements">
         <p>{{requestError}}</p>
       </div>
       <!-- Loader -->
-      <div class="nalej-loader-box" *ngIf="!loadedData">
+      <div *ngIf="!loadedData" class="nalej-loader-box">
         <div class="loader">
-          <svg 
-            class="circular" 
-            viewBox="25 25 50 50">
+          <svg class="circular" viewBox="25 25 50 50">
             <circle 
               class="path" 
               cx="50" 
