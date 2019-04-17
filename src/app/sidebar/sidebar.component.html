@@ -20,9 +20,7 @@
         </div>
       </a>
     </li>
-    <li 
-      *ngIf="role === 'Owner'" 
-      class="nav-item nav-item-page">
+    <li *ngIf="role === 'Owner'" class="nav-item nav-item-page">
       <a
         routerLinkActive="active" 
         routerLink="/organization" 
@@ -31,9 +29,7 @@
         Organization
       </a>
     </li>
-    <li
-      *ngIf="role === 'Owner' || role === 'Operator'"
-      class="nav-item nav-item-page">
+    <li *ngIf="role === 'Owner' || role === 'Operator'" class="nav-item nav-item-page">
       <a         
         routerLinkActive="active" 
         routerLink="/resources" 
@@ -42,9 +38,7 @@
         Resources
       </a>
     </li>
-    <li
-      *ngIf="role === 'Owner' || role === 'Developer'" 
-      class="nav-item nav-item-page">
+    <li *ngIf="role === 'Owner' || role === 'Developer'" class="nav-item nav-item-page">
       <a         
         routerLinkActive="active" 
         routerLink="/devices" 
@@ -53,9 +47,7 @@
         Devices
       </a>
     </li>
-    <li 
-      *ngIf="role === 'Owner' || role === 'Developer'" 
-      class="nav-item nav-item-page">
+    <li *ngIf="role === 'Owner' || role === 'Developer'" class="nav-item nav-item-page">
       <a         
         routerLinkActive="active" 
         routerLink="/applications" 
@@ -64,9 +56,7 @@
         Applications
       </a>
     </li>
-    <li 
-      class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn" 
-      (click)="logout()">
+    <li  class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn"  (click)="logout()">
       <button class="btn info-btn logout-btn logout my-4">
         Logout
       </button>
