@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------------
+// This file contains very basic styles.
+// -----------------------------------------------------------------------------
+
+html, body {
+    margin: 0px;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: 'Aldrich';
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font-family: 'Aldrich', sans-serif;
+}
+
+/**
+* Basic styles for links
+*/
+
