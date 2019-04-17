@@ -1,69 +1,60 @@
 <div class="debug-panel">
   <!-- Header -->
-<div class="modal-header">
+  <div class="modal-header">
     <h4 class="modal-title pull-left mb-3">
       Debug panel
     </h4>
     <button
+      (click)="bsModalRef.hide()"
       type="button"
-      class="close pull-right"
       aria-label="Close"
-      (click)="bsModalRef.hide()">
-      <span aria-hidden="true">
-        &times;
-      </span>
+      class="close pull-right">
+      <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <!-- Body -->
   <div class="modal-body">
-      <h5 class="mb-3">Backend URL</h5>
-      <input 
-        class="w-100 form-control mb-3"
-        type="text"
-        [ngModel]="url"
-        (ngModelChange)="urlChange($event)"
-        >
+    <h5 class="mb-3">Backend URL</h5>
+    <input 
+      (ngModelChange)="urlChange($event)"
+      type="text"
+      [ngModel]="url"
+      class="w-100 form-control mb-3">
     <hr/>
     <h5 class="mb-3">Backend control</h5>
-    <div class="dp-height" *ngIf="components.length">
+    <div *ngIf="components.length" class="dp-height" >
       <div class="d-flex justify-content-center align-items-center">
-          <div
-            class="btn btn-outline-primary mb-3 small-font"
-            (click)="changeAll('false')"
-            >All real
-          </div>
-          <div
-            class="btn btn-outline-primary mb-3 small-font"
-            (click)="changeAll('true')"
-            >All mock
-          </div>
+        <div (click)="changeAll('false')" class="btn btn-outline-primary mb-3 small-font">
+          All real
+        </div>
+        <div (click)="changeAll('true')" class="btn btn-outline-primary mb-3 small-font">
+          All mock
+        </div>
       </div>
       <hr/>
-      <div
-        class="row"
-        *ngFor="let item of components; let index = index">
+      <div *ngFor="let item of components; let index = index" class="row">
         <!-- Option name -->
         <span class="col-3 small-font">
           {{item.name}}
         </span>
         <!-- Option buttons -->
-          <div 
-          class="btn-group offset-5"
-          btnRadioGroup
+        <div 
+          (click)="optionChange(components[index])"
           [(ngModel)]="components[index].mock"
-          (click)="optionChange(components[index])">
+          btnRadioGroup
+          class="btn-group offset-5">
           <label
-            class="btn btn-outline-primary small-font"
             btnRadio="false"
             tabindex="0"
-            role="button">
+            role="button"
+            class="btn btn-outline-primary small-font">
             Real
           </label>
           <label
-            class="btn btn-outline-primary small-font"
             btnRadio="true"
             tabindex="0"
-            role="button">
+            role="button"
+            class="btn btn-outline-primary small-font">
             Mock
           </label>
         </div>
@@ -71,18 +62,16 @@
     </div>
     <hr/>
     <h5 class="mb-3">Notifications</h5>
-    <div 
-      class="btn btn-outline-primary offset-6 mb-3 small-font"
-      (click)="spamNotification()"
-      >Spam test notification
+    <div (click)="spamNotification()" class="btn btn-outline-primary offset-6 mb-3 small-font">
+      Spam test notification
     </div>
   </div>
   <!-- Footer -->
   <div class="modal-footer">
     <button
+      (click)="bsModalRef.hide()"
       type="button"
-      class="btn btn-default"
-      (click)="bsModalRef.hide()">
+      class="btn btn-default">
       Close
     </button>
   </div>
