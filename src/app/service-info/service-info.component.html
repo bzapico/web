@@ -56,7 +56,7 @@
           </span>
         <div *ngFor="let exposedPort of exposedPorts">
           <span *ngIf="endpoints">
-            <div class="row" *ngFor="let endpoint of exposedPort.endpoints">
+            <div *ngFor="let endpoint of exposedPort.endpoints"c lass="row">
               <div class="col-sm"></div>
               <div class="col-sm grey">{{exposedPort.name}}</div>
               <div class="col-sm text-right grey">{{endpoint.type}}</div>
@@ -101,7 +101,7 @@
       </div>      
       <!-- Option button -->
       <div class="form-group-btn">
-        <button class="nalej-form-btn-blue" (click)="bsModalRef.hide()">
+        <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">
           <span class="align-bottom">Close</span>
         </button>
       </div>

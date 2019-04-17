@@ -40,7 +40,8 @@
                 <a 
                   *ngIf="endpoint" 
                   href="{{getEndpointHref(endpoint)}}" 
-                  target="_blank">{{endpoint}}
+                  target="_blank">
+                  {{endpoint}}
                 </a>
               </span>
             </div>
@@ -104,7 +105,7 @@
         <div class="row">
           <div class="col-sm grey mb-3">Labels</div>
         </div>
-        <div class="row" *ngFor="let label of objectToString(labels)">
+        <div *ngFor="let label of objectToString(labels)" class="row">
           <div *ngIf="labels" class="col-sm text-right">
             <button class="btn-sm btn-outline-primary" disabled>
               {{label[0]}} : {{label[1]}}
@@ -147,7 +148,7 @@
       </div>      
       <!-- Option button -->
       <div class="form-group-btn">
-        <button class="nalej-form-btn-blue" (click)="bsModalRef.hide()">
+        <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue" >
           <span class="align-bottom">Close</span>
         </button>
       </div>

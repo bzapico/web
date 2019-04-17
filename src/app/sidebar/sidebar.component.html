@@ -1,16 +1,14 @@
 <div class="sidebar">
   <ul class="nav">
     <li 
+      (click)="openDebugPanel()"
       class="nav-title" 
-      style="visibility:hidden" 
-      (click)="openDebugPanel()">
+      style="visibility:hidden">
       NALEJ
     </li>
     <li class="nav-item">
-      <a 
-        routerLinkActive="active" 
-        class="nav-link">
-        <div class="profile" (click)="openEditUser()">
+      <a routerLinkActive="active" class="nav-link">
+        <div (click)="openEditUser()" class="profile" >
           <div class="avatar-frame">
             <i class="material-icons">person</i>
           </div>
@@ -56,7 +54,7 @@
         Applications
       </a>
     </li>
-    <li  class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn"  (click)="logout()">
+    <li (click)="logout()" class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn">
       <button class="btn info-btn logout-btn logout my-4">
         Logout
       </button>

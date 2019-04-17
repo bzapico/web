@@ -35,9 +35,7 @@
         <p class="cluster-availability">{{clustersCount}} available</p>
       </div>
       <!-- Carousel big -->
-      <carousel 
-        *ngIf="clusters.length > 0" 
-        class="carousel-big"> 
+      <carousel *ngIf="clusters.length > 0" class="carousel-big"> 
         <slide *ngFor="let clusterGroup of chunckedClusters; let i = index">
           <div class="d-block w-100">
             <div class="slide-box animated fadeIn">
@@ -54,17 +52,15 @@
                   </ngx-charts-pie-chart>
                   <div class="donut-number">{{clusterGroup[0].running_nodes}}/{{clusterGroup[0].total_nodes}}</div>
                 </div>
-                <p 
-                  *ngIf="clusterGroup[0].running_nodes === clusterGroup[0].total_nodes" 
-                  class="nodes-run"                   
+                <p *ngIf="clusterGroup[0].running_nodes === clusterGroup[0].total_nodes"              
                   [routerLink]="['cluster', clusterGroup[0].cluster_id]" 
-                  routerLinkActive="active">
+                  routerLinkActive="active"
+                  class="nodes-run">
                   <span class="hide-all-word">All</span> nodes running
                 </p>
-                <p 
-                  *ngIf="clusterGroup[0].running_nodes !== clusterGroup[0].total_nodes" 
-                  class="nodes-run"
-                >{{clusterGroup[0].running_nodes}} nodes running</p>
+                <p *ngIf="clusterGroup[0].running_nodes !== clusterGroup[0].total_nodes" class="nodes-run">
+                  {{clusterGroup[0].running_nodes}} nodes running
+                </p>
                 <p class="cluster-name">{{clusterGroup[0].name | abbreviate}}</p>
               </div>
               <div *ngIf="clusterGroup[1]">
@@ -80,16 +76,13 @@
                   </ngx-charts-pie-chart>
                   <div class="donut-number">{{clusterGroup[1].running_nodes}}/{{clusterGroup[1].total_nodes}}</div>
                 </div>
-                <p
-                  *ngIf="clusterGroup[1].running_nodes === clusterGroup[1].total_nodes"
-                  class="nodes-run"
+                <p *ngIf="clusterGroup[1].running_nodes === clusterGroup[1].total_nodes"
                   [routerLink]="['cluster', clusterGroup[1].cluster_id]" 
-                  routerLinkActive="active">
+                  routerLinkActive="active"
+                  class="nodes-run">
                   <span class="hide-all-word">All</span> nodes running
                 </p>
-                <p
-                  *ngIf="clusterGroup[1].running_nodes !== clusterGroup[1].total_nodes"
-                  class="nodes-run">
+                <p *ngIf="clusterGroup[1].running_nodes !== clusterGroup[1].total_nodes" class="nodes-run">
                   {{clusterGroup[1].running_nodes}} nodes running
                 </p>
                 <p class="cluster-name">{{clusterGroup[1].name | abbreviate}}</p>
@@ -107,16 +100,13 @@
                   </ngx-charts-pie-chart>
                   <div class="donut-number">{{clusterGroup[2].running_nodes}}/{{clusterGroup[2].total_nodes}}</div>
                 </div>
-                <p
-                  *ngIf="clusterGroup[2].running_nodes === clusterGroup[2].total_nodes"
-                  class="nodes-run"
+                <p *ngIf="clusterGroup[2].running_nodes === clusterGroup[2].total_nodes"
                   [routerLink]="['cluster', clusterGroup[2].cluster_id]" 
-                  routerLinkActive="active">
+                  routerLinkActive="active"
+                  class="nodes-run">
                   <span class="hide-all-word">All</span> nodes running
                 </p>
-                <p
-                  *ngIf="clusterGroup[2].running_nodes !== clusterGroup[2].total_nodes"
-                  class="nodes-run">
+                <p *ngIf="clusterGroup[2].running_nodes !== clusterGroup[2].total_nodes" class="nodes-run">
                   {{clusterGroup[2].running_nodes}} nodes running
                 </p>
                 <p class="cluster-name">{{clusterGroup[2].name | abbreviate}}</p>
@@ -126,12 +116,8 @@
         </slide>
       </carousel>
       <!-- Carousel small -->
-      <carousel 
-        *ngIf="clusters && clusters.length > 0" 
-        class="carousel-small">
-        <slide 
-          class="animated fadeIn"
-          *ngFor="let cluster of clusters; let i = index">
+      <carousel *ngIf="clusters && clusters.length > 0" class="carousel-small">
+        <slide *ngFor="let cluster of clusters; let i = index" class="animated fadeIn">
           <div class="d-block w-100">
             <div class="slide-box">
               <div class="donut-chart-box">
@@ -144,25 +130,29 @@
                     [schemeType]="schemeType"
                     >
                   </ngx-charts-pie-chart>
-                  <div class="donut-number">{{cluster.running_nodes}}/{{cluster.total_nodes}}</div>
+                  <div class="donut-number">
+                    {{cluster.running_nodes}}/{{cluster.total_nodes}}
+                  </div>
                 </div>
                 <div class="cluster-info">
-                  <p
-                    *ngIf="cluster.running_nodes === cluster.total_nodes"
-                    class="nodes-run mb-0"
+                  <p *ngIf="cluster.running_nodes === cluster.total_nodes"
                     [routerLink]="['cluster', cluster.cluster_id]" 
-                    routerLinkActive="active">
+                    routerLinkActive="active"
+                    class="nodes-run mb-0">
                     All nodes running
                   </p>
-                  <p
-                    *ngIf="cluster.running_nodes !== cluster.total_nodes" 
-                    class="nodes-run mb-0"
+                  <p *ngIf="cluster.running_nodes !== cluster.total_nodes" 
                     [routerLink]="['cluster', cluster.cluster_id]" 
-                    routerLinkActive="active">
+                    routerLinkActive="active"
+                    class="nodes-run mb-0">
                     {{cluster.running_nodes}} nodes running
                   </p>
-                  <p *ngIf="cluster.name.length > 26" class="cluster-name">{{cluster.name | slice: 0:25}}...</p>
-                  <p *ngIf="cluster.name.length < 26" class="cluster-name">{{cluster.name}}</p>
+                  <p *ngIf="cluster.name.length > 26" class="cluster-name">
+                    {{cluster.name | slice: 0:25}}...
+                  </p>
+                  <p *ngIf="cluster.name.length < 26" class="cluster-name">
+                    {{cluster.name}}
+                  </p>
                 </div>
               </div>
             </div>
@@ -223,20 +213,20 @@
         <div class="col">  
           <p *ngIf="searchTerm && !filterField" class="sorting-message">
             Filtered by term "{{ searchTerm }}".
-            <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>
+            <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
           </p>
           <p *ngIf="filterField && !searchTerm" class="sorting-message">
             Sorted by {{ sortedBy }},
             <span *ngIf="reverse">ascendant. </span>
             <span *ngIf="!reverse">descendant. </span>
-            <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>
+            <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
           </p>
           <p *ngIf="filterField && searchTerm" class="sorting-message">
             Sorted by {{ sortedBy }}
             <span *ngIf="reverse">ascendant </span>
             <span *ngIf="!reverse">descendant </span>
             and filtered by term "{{ searchTerm }}".
-            <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>
+            <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
           </p> 
         </div>
         <!-- Search input -->
@@ -244,22 +234,27 @@
           <form>
             <div class="search-box">
               <input 
-                type="text" 
-                class="form-control" 
                 name="searchTerm" 
-                placeholder="Search..." 
-                [(ngModel)]="searchTerm"> 
-                <div class="search-icon" *ngIf="searchTerm === ''">
+                [(ngModel)]="searchTerm"
+                type="text" 
+                placeholder="Search..."
+                class="form-control"> 
+                <div *ngIf="searchTerm === ''" class="search-icon">
                   <i class="material-icons">search</i>
                 </div>     
-                <div class="close-icon" *ngIf="searchTerm !== ''">
-                  <i class="material-icons" (click)="resetFilters(filterField)">close</i>
+                <div *ngIf="searchTerm !== ''" class="close-icon">
+                  <i (click)="resetFilters(filterField)" class="material-icons">close</i>
                 </div>
             </div>
           </form>
         </div>      
       </div>
-      <div class="table-h" *ngIf="loadedData && clusters && clusters.length > 0 && !requestError">
+      <div *ngIf=
+        "loadedData && 
+        clusters && 
+        clusters.length > 0 && 
+        !requestError" 
+        class="table-h">
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
@@ -269,10 +264,10 @@
                 scope="col" 
                 class="col-2">
                 Name 
-                <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse">
+                <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'name' && reverse">
+                <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -282,10 +277,10 @@
                 scope="col" 
                 class="col-2">
                 ID
-                <span class="expand-chevron" *ngIf="sortedBy === 'id' && !reverse">
+                <span *ngIf="sortedBy === 'id' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'id' && reverse">
+                <span *ngIf="sortedBy === 'id' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -295,10 +290,10 @@
                 scope="col" 
                 class="col-1 text-center">
                 Nodes 
-                <span class="expand-chevron" *ngIf="sortedBy === 'total_nodes' && !reverse">
+                <span *ngIf="sortedBy === 'total_nodes' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'total_nodes' && reverse">
+                <span *ngIf="sortedBy === 'total_nodes' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -308,10 +303,10 @@
                 scope="col" 
                 class="col-3">
                 Labels
-                <span class="expand-chevron" *ngIf="sortedBy === 'labels' && !reverse">
+                <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'labels' && reverse">
+                <span class="expand-chevron" *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -321,10 +316,10 @@
                 scope="col" 
                 class="col-1">
                 Types
-                <span class="expand-chevron" *ngIf="sortedBy === 'cluster_type_name' && !reverse">
+                <span *ngIf="sortedBy === 'cluster_type_name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'cluster_type_name' && reverse">
+                <span *ngIf="sortedBy === 'cluster_type_name' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -334,10 +329,10 @@
                 scope="col" 
                 class="col-1 text-center">
                 Status
-                <span class="expand-chevron" *ngIf="sortedBy === 'status_name' && !reverse">
+                <span *ngIf="sortedBy === 'status_name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'status_name' && reverse">
+                <span *ngIf="sortedBy === 'status_name' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -347,22 +342,23 @@
                 scope="col" 
                 class="col-1 text-center">
                 Multitenant
-                <span class="expand-chevron" *ngIf="sortedBy === 'multitenant_support' && !reverse">
+                <span *ngIf="sortedBy === 'multitenant_support' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'multitenant_support' && reverse">
+                <span *ngIf="sortedBy === 'multitenant_support' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
-              <th 
-                scope="col" 
-                class="col-1 text-center">
+              <th scope="col" class="col-1 text-center">
                 Edit
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let cluster of clusters | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+            <tr *ngFor="
+              let cluster of clusters |
+              sortBy : sortedBy : reverse : 'case-insensitive' |
+              filter : searchTerm">
               <td class="col-2">
                 <a 
                   [routerLink]="['cluster', cluster.cluster_id]" 
@@ -379,22 +375,24 @@
                   class="blue">{{cluster.total_nodes}}
                 </a>
               </td>  
-              <td class="col-3" *ngIf="!cluster.labels"> 
+              <td *ngIf="!cluster.labels" class="col-3"> 
                 <div 
-                class="label-btn-blue"
+                (click)="addLabel(cluster)"
                 tooltip="Add" 
                 placement="right"
-                (click)="addLabel(cluster)">
+                class="label-btn-blue">
                   <i class="material-icons i-add">add</i>  
                 </div>
               </td>
-                <td class="col-3" *ngIf="cluster.labels">
+                <td *ngIf="cluster.labels" class="col-3">
                   <button 
+                    *ngFor="let label of labelsToString(cluster.labels)"
                     (click)="onLabelClick(cluster.cluster_id, label[0], label[1])"
                     [ngClass]=
-                    "{'label-btn-selected': indexOfLabelSelected(cluster.cluster_id, label[0], label[1]) >= 0 ,
-                      'btn-outline-primary': indexOfLabelSelected(cluster.cluster_id, label[0], label[1]) === -1}" 
-                    *ngFor="let label of labelsToString(cluster.labels)" 
+                    "{
+                      'label-btn-selected': indexOfLabelSelected(cluster.cluster_id, label[0], label[1]) >= 0 ,
+                      'btn-outline-primary': indexOfLabelSelected(cluster.cluster_id, label[0], label[1]) === -1
+                    }" 
                     class="btn-sm btn-outline-primary" 
                     >
                     {{label[0]}}: {{label[1]}} 
@@ -402,18 +400,18 @@
                   <div class="label-btns">
                     <div 
                       *ngIf="isAnyLabelSelected(cluster.cluster_id) === false"
-                      class="label-btn-blue" 
+                      (click)="addLabel(cluster)"
                       tooltip="Add" 
                       placement="right"
-                      (click)="addLabel(cluster)">
+                      class="label-btn-blue">
                       <i class="material-icons i-add">add</i>
                     </div>
                     <div 
                       *ngIf="isAnyLabelSelected(cluster.cluster_id) === true"
-                      class="label-btn-red" 
+                      (click)="deleteLabel(cluster)"
                       tooltip="Delete" 
                       placement="right"
-                      (click)="deleteLabel(cluster)">
+                      class="label-btn-red">
                       <i class="material-icons i-delete">delete</i>
                     </div>
                   </div>
@@ -428,7 +426,10 @@
                   'status-dot-error': classStatusCheck (cluster.status_name, 'error'),
                   'status-dot-process': classStatusCheck (cluster.status_name, 'process')
                   }">
-                <span tooltip= "{{cluster.status_name | lowercase}}" class="tooltip-fix" placement="auto">
+                <span 
+                  tooltip= "{{cluster.status_name | lowercase}}" 
+                  placement="auto" 
+                  class="tooltip-fix">
                 </span>
                 <span class="hide-lg">
                   {{cluster.status_name}}
@@ -438,7 +439,7 @@
                 {{cluster.multitenant_support}}
               </td>
               <td class="col-1 text-center">
-                <button class="action-btn-blue" (click)="openEditCluster(cluster)">
+                <button (click)="openEditCluster(cluster)" class="action-btn-blue">
                   <i class="material-icons i-white">edit</i>
                 </button>
               </td>
@@ -455,7 +456,7 @@
         <p>{{requestError}}</p>
       </div>
       <!-- Loader -->
-      <div class="nalej-loader-box" *ngIf="!loadedData">
+      <div *ngIf="!loadedData" class="nalej-loader-box" >
         <div class="loader">
           <svg class="circular" viewBox="25 25 50 50">
             <circle 
