@@ -355,8 +355,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="
-              let cluster of clusters |
+            <tr *ngFor=
+              "let cluster of clusters |
               sortBy : sortedBy : reverse : 'case-insensitive' |
               filter : searchTerm">
               <td class="col-2">
@@ -419,13 +419,14 @@
               <td class="col-1 text-lowercase">
                 {{cluster.cluster_type_name}}
               </td>
-              <td class="col-1 col-center-lowercase"
+              <td 
                 [ngClass]=
                   "{
                   'status-dot': classStatusCheck (cluster.status_name, 'running'),
                   'status-dot-error': classStatusCheck (cluster.status_name, 'error'),
                   'status-dot-process': classStatusCheck (cluster.status_name, 'process')
-                  }">
+                  }"
+                  class="col-1 col-center-lowercase">
                 <span 
                   tooltip= "{{cluster.status_name | lowercase}}" 
                   placement="auto" 
