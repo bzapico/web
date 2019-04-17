@@ -33,15 +33,11 @@
             </div>
           </div>
           <div class="reg-info">
-            <button
-              class="reg-deploy btn-p-fix"                
-              (click)="deployRegistered(registeredData)">
+            <button (click)="deployRegistered(registeredData)" class="reg-deploy btn-p-fix">
               <i class="material-icons i-options">play_arrow</i>
               Deploy <span class="hide-sm">instance</span> 
             </button>
-            <button 
-              class="reg-undeploy btn-p-fix"
-              (click)="deleteApp(registeredData)">
+            <button (click)="deleteApp(registeredData)" class="reg-undeploy btn-p-fix">
               <i class="material-icons i-options">delete</i>
               Delete <span class="hide-sm">app</span>
             </button>
@@ -262,8 +258,8 @@
                 </li>
                 <li 
                   *ngIf="registeredData.groups.length > 0" 
-                  class="nalej-tab" 
-                  (click)="changeActiveGroup('ALL')">
+                  (click)="changeActiveGroup('ALL')"
+                  class="nalej-tab" >
                   <span [ngClass]="amIactive('ALL')">ALL</span>
                 </li>
                 <li *ngIf="registeredData.groups.length === 0" class="nalej-tab">
@@ -310,7 +306,7 @@
               Sorted by {{ sortedBy }},
               <span *ngIf="reverse">ascendant. </span>
               <span *ngIf="!reverse">descendant. </span>
-              <span  (click)="resetFilters('services')" class="reset-search">Reset</span>
+              <span (click)="resetFilters('services')" class="reset-search">Reset</span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
               Sorted by {{ sortedBy }}
