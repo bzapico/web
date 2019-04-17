@@ -166,6 +166,7 @@
             class="chart-container">
             <ng-template #nodeTemplate let-node>
               <svg:g 
+                class="node"
                 ngx-tooltip
                 [tooltipPlacement]="'top'"
                 [tooltipType]="'tooltip'"
@@ -176,7 +177,7 @@
                 [attr.fill]="node.color" 
                 rx="14" 
                 ry="14"
-                class="node"/>
+                />
                 <svg:text 
                   alignment-baseline="central" 
                   [attr.x]="10" 

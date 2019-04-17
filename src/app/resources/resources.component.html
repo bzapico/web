@@ -47,8 +47,7 @@
                     [doughnut]= "doughnut"
                     [gradient]="gradient"
                     [schemeType]="schemeType"
-                    [explodeSlices]="false"
-                    >
+                    [explodeSlices]="false">
                   </ngx-charts-pie-chart>
                   <div class="donut-number">{{clusterGroup[0].running_nodes}}/{{clusterGroup[0].total_nodes}}</div>
                 </div>
@@ -71,8 +70,7 @@
                     [doughnut]= "doughnut"
                     [gradient]="gradient"
                     [schemeType]="schemeType"
-                    [explodeSlices]="false"
-                    >
+                    [explodeSlices]="false">
                   </ngx-charts-pie-chart>
                   <div class="donut-number">{{clusterGroup[1].running_nodes}}/{{clusterGroup[1].total_nodes}}</div>
                 </div>
@@ -95,8 +93,7 @@
                     [doughnut]= "doughnut"
                     [gradient]="gradient"
                     [schemeType]="schemeType"
-                    [explodeSlices]="false"
-                    >
+                    [explodeSlices]="false">
                   </ngx-charts-pie-chart>
                   <div class="donut-number">{{clusterGroup[2].running_nodes}}/{{clusterGroup[2].total_nodes}}</div>
                 </div>
@@ -127,8 +124,7 @@
                     [results]="pieChartsData[i]" 
                     [doughnut]= "doughnut"
                     [gradient]="gradient"
-                    [schemeType]="schemeType"
-                    >
+                    [schemeType]="schemeType">
                   </ngx-charts-pie-chart>
                   <div class="donut-number">
                     {{cluster.running_nodes}}/{{cluster.total_nodes}}
@@ -393,8 +389,7 @@
                       'label-btn-selected': indexOfLabelSelected(cluster.cluster_id, label[0], label[1]) >= 0 ,
                       'btn-outline-primary': indexOfLabelSelected(cluster.cluster_id, label[0], label[1]) === -1
                     }" 
-                    class="btn-sm btn-outline-primary" 
-                    >
+                    class="btn-sm btn-outline-primary">
                     {{label[0]}}: {{label[1]}} 
                   </button>
                   <div class="label-btns">
@@ -419,12 +414,11 @@
               <td class="col-1 text-lowercase">
                 {{cluster.cluster_type_name}}
               </td>
-              <td 
-                [ngClass]=
+              <td [ngClass]=
                   "{
-                  'status-dot': classStatusCheck (cluster.status_name, 'running'),
-                  'status-dot-error': classStatusCheck (cluster.status_name, 'error'),
-                  'status-dot-process': classStatusCheck (cluster.status_name, 'process')
+                    'status-dot': classStatusCheck (cluster.status_name, 'running'),
+                    'status-dot-error': classStatusCheck (cluster.status_name, 'error'),
+                    'status-dot-process': classStatusCheck (cluster.status_name, 'process')
                   }"
                   class="col-1 col-center-lowercase">
                 <span 
@@ -449,7 +443,11 @@
         </table>
       </div>
       <!-- No info to show -->
-      <div *ngIf="loadedData && clusters.length === 0 && !requestError" class="no-elements">
+      <div *ngIf=
+        "loadedData &&
+        clusters.length === 0 &&
+        !requestError" 
+        class="no-elements">
         No available clusters detected
       </div>
       <!-- Requested error -->
