@@ -1,0 +1,254 @@
+// -----------------------------------------------------------------------------
+// Buttons
+// -----------------------------------------------------------------------------
+
+
+/* - - - Basic buttons styles- - - */
+.btn-primary {
+    width: 257px;
+    color: #fff;
+    background-color: #0937FF;
+    border: 0px;
+    border-radius: 5px;
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+    &:hover {
+        color: #fff;
+        transition: 0.3s;
+        background-color: #4f71fd;
+    }
+}
+.nalej-btn-lg {
+    @extend .btn-primary;
+    padding: 15px;
+    font-size: 14px;
+}
+button[type="submit"]:disabled {
+    background: #949494;
+    background: -moz-linear-gradient(left, #949494 0%, #444444 100%); 
+    background: -webkit-linear-gradient(left, #949494 0%,#444444 100%);
+    background: linear-gradient(to right, #949494 0%,#444444 100%);
+}
+.btn-p-fix {
+    padding-top: 10px !important;
+}
+
+ /* - - - Actions btns styles - - - */
+.action-btn {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    position: relative;
+    border: 0;
+    cursor: pointer;
+    &:focus {
+      outline: 0;
+    }
+}
+.action-btn-blue {
+    @extend .action-btn;
+    color: #fff;
+    background-color: #0937FF;
+    &:hover {
+      color: #fff;
+      transition: 0.3s;
+      background-color: #4f71fd;
+    }
+}
+.action-btn-red {
+    @extend .action-btn;
+    color: #F25272;
+    background-color: #E8E8E8;
+    &:hover {
+      color: #fff;
+      transition: 0.3s;
+      background-color: #F25272;
+    }
+}
+.i-white {
+    font-size: 1.2em;
+    position: absolute;
+    top: 7px;
+    left: 8px;
+}
+.i-info {
+    font-size: 1.4em;
+    font-weight: 700;
+    position: absolute;
+    top: 3px;
+    left: 13px;
+}
+.i-red {
+    font-size: 1.2em;
+    font-weight: 700;
+    position: absolute;
+    top: 8px;
+    left: 7px;
+}
+
+//  Action buttons when there are two in a column
+.actions-col {
+    justify-content: center;
+    display: flex !important;
+    flex-direction: row;
+}
+  .action-btn-blue-2 {
+    @extend .action-btn-blue;
+    margin: 0 6px;
+}
+.action-btn-red-2 {
+    @extend .action-btn-red;
+    margin: 0 6px;
+}
+.i-white-2 {
+    @extend .i-white;
+    top: 7px;
+    left: 8px;
+}
+.i-info-2 {
+    @extend .i-info;
+}
+.i-red-2 {
+    @extend .i-white;
+    top: 7px;
+    left: 8px;
+}
+  
+@media screen and (max-width: 1440px){
+    .action-btn-blue, .action-btn-red {
+        height: 25px;
+        width: 25px;
+        min-height: 25px;
+        min-width: 25px;
+    }
+    .i-white {
+        font-size: 1em;
+        top: 5px;
+        left: 6px;
+    }
+    .i-red {
+        font-size: 1em;
+        top: 6px;
+        left: 5px;
+    }
+    .i-info {
+        top: 1px;
+        left: 10px;
+    }
+    .i-white-2, .i-red-2 {
+        font-size: 1em;
+        top: 5px;
+        left: 6px;
+    }
+    .i-info-2 {
+        top: 1px;
+        left: 10px;
+    }
+}
+
+/* - - -  Label buttons - - - */
+
+// Normal label style
+.btn-outline-primary {
+    margin:1px;
+    text-align: left;
+    max-width: -webkit-fill-available;
+    border-color: #0937FF;
+    color:#0937FF;
+    &:hover:enabled{
+        background-color: #707070;
+        border-color: #707070;
+        color: white;
+    }
+    &:hover:disabled{
+        border-color: #0937FF;
+    }
+    &:focus {
+        outline: none;
+    }
+    &:disabled {
+        color: #0937FF;
+        background-color: transparent;   
+    }
+}
+
+// Selected label style
+.label-btn-selected {
+    text-align: left;
+    max-width: -webkit-fill-available;
+    margin: 1px;
+    color: #fff;
+    background-color: #0937FF;
+    border-radius: 5px;
+    -webkit-box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
+    -moz-box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
+    box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+// To be selected label style
+.btn-label-grey {
+    margin: 1px;
+    text-align: left;
+    max-width: -webkit-fill-available;
+    border-color: #949494;
+    color: #949494;
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+// Add and delete label container
+.label-btns {
+    width: 30px;
+    height: 20px;
+    display: inline-block;
+    cursor: pointer;
+}
+.label-btn {
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    margin: .3em;
+    position: relative;
+    cursor: pointer;
+    &:hover {
+        color: #fff;
+        transition: 0.3s;
+    }
+}
+.label-btn-red {
+    @extend .label-btn;
+    background-color: #F25272;
+    &:hover {
+        background-color: #ff8eb1;
+    }
+}
+.i-delete{
+    font-size: 1em;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    color: white;
+}
+.label-btn-blue {
+    @extend .label-btn;
+    background-color: #0937FF;
+    &:hover {
+        background-color: #4f71fd;
+    }
+}
+.i-add{
+    font-size: 1.4em;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    color: white;
+}
+  

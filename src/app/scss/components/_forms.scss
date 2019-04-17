@@ -1,0 +1,149 @@
+// -----------------------------------------------------------------------------
+// Forms
+// -----------------------------------------------------------------------------
+
+/* - - - Forms styles - - - */
+.nalej-form-title{
+    font-size: .9em;
+    display: inline;
+    button span {
+      color: #888888;
+    }
+}
+.form-group {
+    margin-bottom: 0rem;
+    label {
+        font-size: .8em;
+        color: #949494;
+        margin-bottom: 0;
+    }
+    input {
+        &::placeholder {
+                color: #888888;
+        }
+        &:focus {
+            &::placeholder {
+                color: white;
+            }
+        }
+    }
+}
+.form-group-btn {
+    @extend .form-group;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 3em;
+}
+@media screen and (max-width:1440px), screen and (max-height: 900px) {
+    .form-group-btn {
+      margin-top: 1em;
+    }
+}
+  
+.form-control {
+    position: relative;
+    height: 40px;
+    font-size: .8em;
+    text-align: center;
+    border: 2px solid #EEEEEE;
+    caret-color: #0937FF;
+    padding-top: 10px;
+    &:focus {
+        z-index: 2;
+        border-color: #0937FF;
+        outline: none;
+        box-shadow: none;
+        &::placeholder {
+            color: white;
+        }
+    }
+    input {
+      &:checked {
+            outline: none;
+      }
+      &:-webkit-autofill {
+            background-color: #fff;
+      }
+    }
+    &:disabled, &[readonly] {
+        background-color: #ececec;
+        border-color: #ececec;
+    }
+}
+  
+  /* - - - Forms button styles - - - */
+.nalej-form-btn {
+    border: 0px;
+    border-radius: 5px;
+    width: 232px;
+    font-size: 0.8em;
+    text-align: center;
+    height: 51px;
+    padding-top: 6px;
+    cursor: pointer;
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+    &:disabled {
+        background-color: #707070;
+    }
+}
+.nalej-form-btn-blue {
+    @extend .nalej-form-btn;
+    color: #fff;
+    background-color: #0937FF;
+    &:hover {
+        color: #fff;
+        transition: 0.3s;
+        background-color: #4f71fd;
+    }
+}
+.nalej-form-btn-red {
+    @extend .nalej-form-btn;
+    background-color: #ececec;
+    color: #F25272;
+    position: relative;
+    text-indent: 18px;
+    .delete-icon {
+        color: #F25272;
+        position: absolute;
+        top: 15px;
+        left: 35px;
+        font-size: 21px;
+    }
+    &:hover {
+        background-color: #F25272;
+        color: #ececec;
+        transition: 0.3s;
+        .delete-icon {
+            color: #ececec;
+            transition: 0.3s;
+        }
+    }
+}
+@media screen and (max-width:1440px) {
+    .btn-nalej-form {
+        margin-top: 1em;
+    }
+}
+
+/* - - - Forms error messages styles - - - */
+.error-h {
+    height: 19px;
+    margin-top: .2em;
+    .error-message {
+      font-size: 0.8em;
+      color: #F25272;
+    }
+  }
+  .is-invalid {
+    border: 2px solid #F25272!important;
+    &:focus {
+      border-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    }
+  }
+  

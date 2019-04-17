@@ -17,7 +17,40 @@ html, body {
     font-family: 'Aldrich', sans-serif;
 }
 
-/**
-* Basic styles for links
-*/
+/* - - - Basic styles for links - - - */
+a {
+    color: #0937FF;
+    text-decoration: none;
+    &:hover {
+      color: #0937FF;
+      text-decoration: none;
+    }
+}
+
+/* - - - Main row styles - - - */
+.row-title {
+    height: 4%;
+    margin-bottom: 2%;
+}
+.row-info {
+    height: 29%;
+    margin-bottom: 2%;
+}
+.row-main {
+    height: 54%;
+}
+  
+@media screen and (max-width:1440px), screen and (max-height: 900px) {
+    .row-info {
+        height: 31%;
+        margin-bottom: 1.9rem;
+    }
+}
+
+/* - - - Common styles - - - */
+@media screen and (max-width:1440px), screen and (max-height: 900px) {
+    .section-title {
+      font-size: 1.5rem;
+    }
+  }
 

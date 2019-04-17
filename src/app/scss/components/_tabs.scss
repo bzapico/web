@@ -1,0 +1,83 @@
+// -----------------------------------------------------------------------------
+// Tabs
+// -----------------------------------------------------------------------------
+
+/* - - - Nalej tabs - - - */
+.nalej-tab-box {
+    margin: 0em 3em 2em 1em;
+    font-size: .6em;
+    border-bottom: 1px solid #ececec;
+    display: flex;
+    flex-direction: row;
+    text-transform: uppercase;
+    ul {
+        list-style: none;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+    li {
+        font-size: 1em;
+        float: left;
+        padding: 0.5rem 2.5rem;
+        cursor: pointer;
+        position: relative;
+    }
+    .tabs-arrow {
+        color: #949494;
+        padding: 0rem 2rem;
+    }
+    .nalej-tab-title {
+        cursor: default;
+        padding-right: 8em;
+    }
+    span {
+        display: block;
+        text-decoration: none;
+        display: block;
+        transition: .3s background-color;
+        &.active {
+            color: #0937FF;
+            &::before {
+            content: "";
+            height: 5px;
+            width: 100%;
+            display: block;
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            background-color: #0937FF;
+            }
+        }
+    }
+}
+@media screen and (max-width:1720px) {
+    .nalej-tab-container li {
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* - - - Scroll app info styles- - - */
+.scroll-app-info {
+    margin: 3.5em 0;
+    max-height: 475px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-size:  .9em;
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 8px;
+        margin-left: 2px;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    }
+}
+@media screen and (max-height: 779px) {
+    .scroll-app-info {
+        height: 224px;
+        margin: 1.5em 0;
+    }
+}

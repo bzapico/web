@@ -2,11 +2,55 @@
 // This file contains SCSS helper classes.
 // -----------------------------------------------------------------------------
 
-a {
-  color: #0937FF;
-  text-decoration: none;
-  &:hover {
-    color: #0937FF;
-    text-decoration: none;
+/* - - - Hide and show styles - - - */
+.show-sm {
+  display: none;
+}
+@media screen and (max-width:1720px), screen and (max-height: 780px)  {
+  .hide-sm {
+    display: none !important;
+  }
+
+}
+@media screen and (max-width:1440px), screen and (max-height: 900px){
+  .hide-md {
+    display: none !important;
+  }
+  .show-sm {
+    display: block;
   }
 }
+@media screen and (max-width:1720px) {
+  .hide-lg {
+    display: none !important;
+  }
+}
+/* - - - Tooltip fix - - - */
+@media screen and (max-width:1440px) {
+  .tooltip-fix {
+    height: 20px;
+    width: 30px;
+    position: absolute;
+    top: 33%;
+    left: 40%;
+    cursor: pointer;
+  }
+}
+
+.no-elements {
+  height: 80%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.no-elements-in-group {
+  position: absolute;
+  bottom: 33%;
+  left: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

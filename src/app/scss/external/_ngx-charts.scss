@@ -1,0 +1,55 @@
+// -----------------------------------------------------------------------------
+// Ngx-charts
+// -----------------------------------------------------------------------------
+
+
+/* - - -  Pie charts - - - */
+.ngx-charts .label {
+    display: none;
+}
+.pie-grid .percent-label {
+    font-size: 1em;
+    display: block;
+}
+.ngx-charts text { 
+    fill: #949494; 
+}
+  
+/* - - -  Line charts  - - - */
+.line-chart-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 88%;
+    .ngx-charts {
+        .gridline-path {
+            stroke: transparent!important;
+            stroke-width: 1;
+            fill: none;
+        }
+        .refline-path {
+            stroke: #EEEEEE!important;
+            stroke-width: 1;
+            stroke-dasharray: 0 !important;
+            stroke-dashoffset: 0 !important;
+        }
+        .y {
+            .tick {
+            display: none !important;
+            }
+        }
+    }
+}
+.line-chart-y-axis {
+    font-size: .8em;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+}
+  
+@media screen and (max-width:1440px) {
+    .line-chart-y-axis  {
+        display: none;
+    }
+}
+  
