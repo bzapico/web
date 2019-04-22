@@ -2,6 +2,7 @@
 // Buttons
 // -----------------------------------------------------------------------------
 
+@import  'app/scss/variables/mixins';
 
 /* - - - Basic buttons styles- - - */
 .btn-primary {
@@ -56,6 +57,12 @@ button[type="submit"]:disabled {
       transition: 0.3s;
       background-color: #4f71fd;
     }
+    @include for-desktop-up {
+        height: 25px;
+        width: 25px;
+        min-height: 25px;
+        min-width: 25px;
+    }
 }
 .action-btn-red {
     @extend .action-btn;
@@ -66,12 +73,23 @@ button[type="submit"]:disabled {
       transition: 0.3s;
       background-color: #F25272;
     }
+    @include for-desktop-up {
+        height: 25px;
+        width: 25px;
+        min-height: 25px;
+        min-width: 25px;
+    }
 }
 .i-white {
     font-size: 1.2em;
     position: absolute;
     top: 7px;
     left: 8px;
+    @include for-desktop-up {
+        font-size: 1em;
+        top: 5px;
+        left: 6px;
+    }
 }
 .i-info {
     font-size: 1.4em;
@@ -79,6 +97,10 @@ button[type="submit"]:disabled {
     position: absolute;
     top: 3px;
     left: 13px;
+    @include for-desktop-up {
+        top: 1px;
+        left: 10px;
+    }
 }
 .i-red {
     font-size: 1.2em;
@@ -86,6 +108,11 @@ button[type="submit"]:disabled {
     position: absolute;
     top: 8px;
     left: 7px;
+    @include for-desktop-up {
+        font-size: 1em;
+        top: 6px;
+        left: 5px;
+    }
 }
 
 //  Action buttons when there are two in a column
@@ -106,45 +133,27 @@ button[type="submit"]:disabled {
     @extend .i-white;
     top: 7px;
     left: 8px;
+    @include for-desktop-up {
+        font-size: 1em;
+        top: 5px;
+        left: 6px;
+    }
 }
 .i-info-2 {
     @extend .i-info;
+    @include for-desktop-up {
+        top: 1px;
+        left: 10px;
+    }
 }
 .i-red-2 {
     @extend .i-white;
     top: 7px;
     left: 8px;
-}
-  
-@media screen and (max-width: 1440px){
-    .action-btn-blue, .action-btn-red {
-        height: 25px;
-        width: 25px;
-        min-height: 25px;
-        min-width: 25px;
-    }
-    .i-white {
+    @include for-desktop-up {
         font-size: 1em;
         top: 5px;
         left: 6px;
-    }
-    .i-red {
-        font-size: 1em;
-        top: 6px;
-        left: 5px;
-    }
-    .i-info {
-        top: 1px;
-        left: 10px;
-    }
-    .i-white-2, .i-red-2 {
-        font-size: 1em;
-        top: 5px;
-        left: 6px;
-    }
-    .i-info-2 {
-        top: 1px;
-        left: 10px;
     }
 }
 

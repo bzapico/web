@@ -2,9 +2,29 @@
 // Carusel
 // -----------------------------------------------------------------------------
 
+@import  'app/scss/variables/mixins';
 
 .carousel-small {
     display: none;
+    @include for-desktop-up {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 85%;
+        padding-bottom: 28px;
+        .cluster-info {
+            max-width: 150px;
+            margin-right: 1em;
+        }
+        .donut-chart {
+            height:100%;
+            max-width: 100px;
+        }
+    }
+    @include for-big-desktop-up {
+        display: none;
+    }
 }
 .carousel-big {
     display: flex;
@@ -12,17 +32,23 @@
     justify-content: center;
     height: 75%;
     .carousel-indicators {
-      bottom: -0.4em;
+        bottom: -0.4em;
+    }
+    @include for-desktop-up {
+        display: none;
     }
 }
 .donut-number {
     margin-top: .1em;
-    font-size: 0.9em;
+    font-size: .9em;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
+    @include for-desktop-up {
+        font-size: .8em;
+    }
 }
 .carousel-indicators {
     bottom: 0;
@@ -38,7 +64,7 @@
     list-style: none;
     margin-bottom: 0;
     .active {
-         background-color: #0937FF;
+        background-color: #0937FF;
     }
     li {
         position: relative;
@@ -82,73 +108,32 @@
 .carousel-control-prev-icon {
     background-image:none;
     &:before {
-      content: '\e314';
-      font-family: 'Material Icons';
-      color: black;
-      font-size: 26px;
-      left: -6px;
-      position: absolute;
-      bottom: 8px;
+        content: '\e314';
+        font-family: 'Material Icons';
+        color: black;
+        font-size: 26px;
+        left: -6px;
+        position: absolute;
+        bottom: 8px;
+    }
+    @include for-desktop-up {
+        bottom: -10px;
+        left: -18px;
     }
 }
 .carousel-control-next-icon {
     background-image:none;
     &:before {
-      content: '\e315';
-      font-family: 'Material Icons';
-      color: black;
-      font-size: 26px;
-      bottom: 8px;
-      position: absolute;
-      right: -6px;
+        content: '\e315';
+        font-family: 'Material Icons';
+        color: black;
+        font-size: 26px;
+        bottom: 8px;
+        position: absolute;
+        right: -6px;
+    }
+    @include for-desktop-up {
+        bottom: -10px;
+        right: -18px;
     }
 }
-
-/* - - - Medias Charts and Carousel - - - */
-@media screen and (min-width:2560px) {
-    .carousel-small{
-        display: none;
-    }
-}
-@media screen and (max-width: 1440px) {
-    .carousel-big {
-        display: none;
-    }
-    .carousel-small {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        height: 85%;
-        padding-bottom: 28px;
-        .cluster-info {
-            max-width: 150px;
-            margin-right: 1em;
-        }
-        .donut-chart {
-            height:100%;
-            max-width: 100px;
-        }
-    }
-    .donut-number {
-        font-size: .8em;
-    }
-    .carousel-control-prev-icon {
-        &:before {
-            bottom: -10px;
-            left: -18px;
-        }
-    }
-    .carousel-control-next-icon {
-        &:before {
-            bottom: -10px;
-            right: -18px;
-        }
-    }
-    .cluster-info {
-        &:first-child p {
-            line-height: .6rem !important;
-        }
-    }
-}
-  

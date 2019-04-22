@@ -2,6 +2,8 @@
 // Modals
 // -----------------------------------------------------------------------------
 
+@import  'app/scss/variables/mixins';
+
 /* - - - Modal window styles - - - */
 .modal.fade {
     display: flex !important;
@@ -11,6 +13,9 @@
 .modal-dialog {
     vertical-align: middle;
     width: 500px;
+    @include for-md-desktop-up {
+        margin: 0.5rem auto;
+    }
 }
 .modal-content {
     border: 0;
@@ -21,6 +26,9 @@
     border-radius: 10px;
     outline: 0;
     padding: 2rem;
+    @include for-md-desktop-up {
+        padding: 1rem;
+    }
 }
 .modal-header {
     padding-bottom: 0;
@@ -32,19 +40,3 @@
         outline: none;
     }
 }
-@media screen and (max-width: 1366px) {
-    .modal-card {
-        padding: 1rem;
-    }
-    .modal-dialog {
-        margin: 0.5rem auto;
-    }
-}
-
-.change-password {
-    color: #0937FF;
-    text-align: center;
-    font-size: 0.8em;
-    cursor: pointer;
-    margin-top: 2em;
-  }

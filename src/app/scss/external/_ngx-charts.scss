@@ -2,6 +2,7 @@
 // Ngx-charts
 // -----------------------------------------------------------------------------
 
+@import  'app/scss/variables/mixins';
 
 /* - - -  Pie charts - - - */
 .ngx-charts .label {
@@ -45,10 +46,7 @@
     display: flex;
     flex-direction:column;
     justify-content: space-between;
-}
-  
-@media screen and (max-width:1440px) {
-    .line-chart-y-axis  {
+    @include for-desktop-up {
         display: none;
     }
 }

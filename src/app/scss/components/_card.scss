@@ -2,6 +2,7 @@
 // Cards
 // -----------------------------------------------------------------------------
 
+@import  'app/scss/variables/mixins';
 
 /* - - - Basic card styles- - - */
 .card {
@@ -14,24 +15,23 @@
   padding: 1.5rem;
   height: 100%;
 }
-.card-title-name-mb {
-    margin-bottom: 1em;
-}
-  
-@media screen and (max-width:1440px), screen and (max-height: 900px) {
-    .card-title-name {
+.card-title-name {
+    @include for-desktop-only {
         h5 {
             font-size: 1em;
         }
     }
-    .card-title-name-mb {
+}
+.card-title-name-mb {
+    margin-bottom: 1em;
+    @include for-desktop-only {
         margin-bottom: 0em;
         h5 {
             font-size: 1em;
         }
     }
 }
-  
+
 /* - - - Summary card styles- - - */
 .summary-card {
     display: flex;
@@ -39,6 +39,14 @@
     justify-content: space-around;
     align-items: center;
     height: 100%;
+    @include for-desktop-only {
+        margin-top: 0em;
+    }
+    @include for-sm-desktop-only {
+        margin-top: 0em;
+        height: 82%;
+    }
+
 }
 .summary-box {
     display: flex;
@@ -61,6 +69,24 @@
       color: black;
       font-size: 1.7em;
     }
+    @include for-desktop-only {
+        width: 90px;
+        height: 90px;
+        line-height: 90px;
+    }
+    @include for-sm-desktop-only {
+        max-width: 65px;
+        max-height: 65px;
+        line-height: 65px;
+        span {
+            font-size: 1em;
+        }
+    }
+    @include for-big-desktop-up {
+        min-width: 140px;
+        min-height: 140px;
+        line-height: 140px;
+    }
 }
 .circle-name {
     font-size: 1.2em;
@@ -68,40 +94,8 @@
     text-align: center;
     margin-top: 1em;
     margin-bottom: 0;
-}
-  
-/* - - - Medias Summary card circles - - - */
-@media screen and (max-width:1440px), screen and (max-height: 900px) {
-    .summary-card {
-        margin-top: 0em;
-    }
-    .circle {
-        width: 90px;
-        height: 90px;
-        line-height: 90px;
-    }
-}
-  @media screen and (max-width:1280px), screen and (max-height: 790px) {
-    .circle {
-        max-width: 65px;
-        max-height: 65px;
-        line-height: 65px;
-        span {
-            font-size: 1em;
-      }
-    }
-    .circle-name {
+    @include for-sm-desktop-only {
         font-size: .9em;
     }
-    .summary-card {
-        margin-top: 0em;
-        height: 82%;
-    }
 }
-@media screen and (min-width:2560px) {
-    .circle {
-        min-width: 140px;
-        min-height: 140px;
-        line-height: 140px;
-    }
-}
+  

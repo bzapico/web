@@ -2,6 +2,8 @@
 // Tabs
 // -----------------------------------------------------------------------------
 
+@import  'app/scss/variables/mixins';
+
 /* - - - Nalej tabs - - - */
 .nalej-tab-box {
     margin: 0em 3em 2em 1em;
@@ -10,6 +12,9 @@
     display: flex;
     flex-direction: row;
     text-transform: uppercase;
+    @include for-quarter-up {
+        padding: 0.5rem 1rem;
+    }
     ul {
         list-style: none;
         text-align: center;
@@ -51,11 +56,6 @@
         }
     }
 }
-@media screen and (max-width:1720px) {
-    .nalej-tab-container li {
-        padding: 0.5rem 1rem;
-    }
-}
 
 /* - - - Scroll app info styles- - - */
 .scroll-app-info {
@@ -74,9 +74,7 @@
         background-color: rgba(0, 0, 0, 0.5);
         -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
     }
-}
-@media screen and (max-height: 779px) {
-    .scroll-app-info {
+    @media screen and (max-height: 779px) {
         height: 224px;
         margin: 1.5em 0;
     }

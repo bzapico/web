@@ -2,6 +2,7 @@
 // Tables
 // -----------------------------------------------------------------------------
 
+@import  'app/scss/variables/mixins';
 
 .col-center-lowercase {
     text-align: center;
@@ -99,6 +100,9 @@
         cursor: pointer;
         color: #0937FF
     }
+    @include for-sm-desktop-up {
+        padding: 0 0.75rem;
+    }
 }
   
 // Search box
@@ -108,6 +112,10 @@
     font-size: 1rem;
     float: right;
     margin-right: 2em;
+    @include for-sm-desktop-up {
+        margin-bottom: .2rem;
+        margin-right: 0em;
+    }
     .form-control {
         font-size: 1rem;
         padding: .375rem 2.1rem 0.375rem 0rem;
@@ -149,16 +157,6 @@
         cursor: pointer;
     }
 }
-  
-@media screen and (max-width:1280px) {
-    .sorting-message {
-        padding: 0 0.75rem;
-    }
-    .search-box {
-        margin-bottom: .2rem;
-        margin-right: 0em;
-    }
-}
 
 /* - - - Status dots for tables - - - */
 .status-dot-nalej {
@@ -169,28 +167,40 @@
     display:inline-block;
     margin: 0 5px 0 0;
 }
-.status-dot:before {
-    @extend .status-dot-nalej;
-    background: #0937FF;
-}
-.status-dot-error:before {
-    @extend .status-dot-nalej;
-    background: #F25272;
-}
-.status-dot-process:before {
-    @extend .status-dot-nalej;
-    background: #03D7E8;
-}
-  
-@media screen and (max-width:1440px) {
-    .status-dot, 
-    .status-dot-error, 
-    .status-dot-process {
+.status-dot {
+    @include for-desktop-up {
         text-align: center;
     }
-    .status-dot:before, 
-    .status-dot-error:before, 
-    .status-dot-process:before {
-         margin: 0 23px;
+    &:before {
+        @extend .status-dot-nalej;
+        background: #0937FF;
+        @include for-desktop-up {
+            margin: 0 23px;
+        }
     }
 }
+.status-dot-error{
+    @include for-desktop-up {
+        text-align: center;
+    }
+    &:before {
+        @extend .status-dot-nalej;
+        background: #F25272;
+        @include for-desktop-up {
+            margin: 0 23px;
+        }
+    }
+}
+.status-dot-process {
+    @include for-desktop-up {
+        text-align: center;
+    }
+    &:before {
+        @extend .status-dot-nalej;
+        background: #03D7E8;
+        @include for-desktop-up {
+            margin: 0 23px;
+        }
+    }
+}
+  

@@ -1,6 +1,8 @@
 // 1. Bootstrap
-@import '~bootstrap/dist/css/bootstrap.css';
-@import '../node_modules/bootstrap/scss/mixins';
+@import 
+  '~bootstrap/dist/css/bootstrap.css';
+@import 
+  '../node_modules/bootstrap/scss/mixins';
 
 // 2. Base 
 @import
@@ -12,6 +14,7 @@
   font-family: 'Aldrich';
   src: url('./assets/fonts/Aldrich-Regular.ttf');
 }
+
 // 4. Varibles
 @import 
   'app/scss/variables/colors',
