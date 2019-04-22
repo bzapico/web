@@ -699,7 +699,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code>&quot;&quot; | &quot;active&quot;</code>
+                                <b>Returns : </b>    <code>&quot;active&quot; | &quot;&quot;</code>
 
                             </div>
                                 <div class="io-description">
@@ -5194,13 +5194,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     &lt;h2 class&#x3D;&quot;section-title&quot;&gt;Devices&lt;/h2&gt;
   &lt;/div&gt;
   &lt;div class&#x3D;&quot;col-lg-8&quot;&gt;
-    &lt;div 
-      class&#x3D;&quot;close-group-button&quot;&gt;
+    &lt;div class&#x3D;&quot;close-group-button&quot;&gt;
       &lt;button  
         *ngIf&#x3D;&quot;activeGroupId !&#x3D;&#x3D; &#x27;ALL&#x27;&quot; 
         (click)&#x3D;&quot;changeActiveGroup(&#x27;ALL&#x27;)&quot;
         class&#x3D;&quot;button&quot;&gt;
-        &lt;span&gt;  {{getGroupName(activeGroupId) | abbreviate}}&lt;span class&#x3D;&quot;close-trigger&quot;&gt;X&lt;/span&gt;&lt;/span&gt;
+        &lt;span&gt;{{getGroupName(activeGroupId) | abbreviate}}&lt;span class&#x3D;&quot;close-trigger&quot;&gt;X&lt;/span&gt;&lt;/span&gt;
       &lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -5210,40 +5209,36 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 &lt;div *ngIf&#x3D;&quot;devices.length &#x3D;&#x3D;&#x3D; 0 ||  activeGroupId &#x3D;&#x3D;&#x3D; &#x27;ALL&#x27;&quot;  class&#x3D;&quot;row row-info&quot;&gt;
   &lt;!-- Summary group info card for all --&gt;
   &lt;div class&#x3D;&quot;col-lg-4 h-100&quot;&gt;
-    &lt;div class&#x3D;&quot;card h-100&quot;&gt;
+    &lt;div class&#x3D;&quot;card&quot;&gt;
       &lt;div class&#x3D;&quot;card-title-name&quot;&gt;
         &lt;h5&gt;SUMMARY&lt;/h5&gt;
       &lt;/div&gt;
       &lt;div *ngIf&#x3D;&quot;groups.length &gt; 0&quot; class&#x3D;&quot;summary-card&quot;&gt;
-        &lt;div&gt;
-          &lt;div class&#x3D;&quot;circle summary-box&quot;&gt;
-            &lt;span class&#x3D;&quot;align-self-center mt-1&quot;&gt;{{groups.length}}&lt;/span&gt;
+        &lt;div class&#x3D;&quot;summary-box&quot;&gt;
+          &lt;div class&#x3D;&quot;circle&quot;&gt;
+            &lt;span&gt;{{groups.length}}&lt;/span&gt;
           &lt;/div&gt;
           &lt;p class&#x3D;&quot;circle-name&quot;&gt;GROUPS&lt;/p&gt;
         &lt;/div&gt;
-        &lt;div&gt;
-          &lt;div class&#x3D;&quot;circle summary-box&quot;&gt;
-            &lt;span class&#x3D;&quot;align-self-center mt-1&quot;&gt;{{countDevices()}}&lt;/span&gt;
+        &lt;div class&#x3D;&quot;summary-box&quot;&gt;
+          &lt;div class&#x3D;&quot;circle&quot;&gt;
+            &lt;span&gt;{{countDevices()}}&lt;/span&gt;
           &lt;/div&gt;
           &lt;p class&#x3D;&quot;circle-name&quot;&gt;DEVICES&lt;/p&gt;
         &lt;/div&gt;
       &lt;/div&gt;
-      &lt;div 
-        *ngIf&#x3D;&quot;groups.length &#x3D;&#x3D;&#x3D; 0&quot;
-        class&#x3D;&quot;no-elements&quot;&gt;
+      &lt;div  *ngIf&#x3D;&quot;groups.length &#x3D;&#x3D;&#x3D; 0&quot; class&#x3D;&quot;no-elements&quot;&gt;
         No available groups detected
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;!-- Devices status timeline info card for all --&gt;
   &lt;div class&#x3D;&quot;col-lg-8 h-100&quot;&gt;
-    &lt;div class&#x3D;&quot;card p-4 h-100&quot;&gt;
+    &lt;div class&#x3D;&quot;card p-4&quot;&gt;
       &lt;div class&#x3D;&quot;card-title-name&quot;&gt;
         &lt;h5&gt;DEVICES STATUS TIMELINE&lt;/h5&gt;
       &lt;/div&gt;
-      &lt;div 
-        *ngIf&#x3D;&quot;countGroupDevices(activeGroupId) &#x3D;&#x3D;&#x3D; 0&quot; 
-        class&#x3D;&quot;h-100 no-elements&quot;&gt; 
+      &lt;div  *ngIf&#x3D;&quot;countGroupDevices(activeGroupId) &#x3D;&#x3D;&#x3D; 0&quot;  class&#x3D;&quot;no-elements&quot;&gt; 
         No devices
       &lt;/div&gt;
       &lt;div *ngIf&#x3D;&quot;countGroupDevices(activeGroupId) &gt; 0&quot; class&#x3D;&quot;line-chart-box&quot;&gt;
@@ -5266,7 +5261,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           [showRefLabels]&#x3D;&quot;showRefLabels&quot;
           &gt;
         &lt;/ngx-charts-line-chart&gt;
-        &lt;div class&#x3D;&quot;y-axis-line-chart&quot;&gt;
+        &lt;div class&#x3D;&quot;line-chart-y-axis&quot;&gt;
           &lt;span class&#x3D;&quot;grey&quot;&gt;100%&lt;/span&gt;
           &lt;span class&#x3D;&quot;grey mb-4&quot;&gt;0%&lt;/span&gt;
         &lt;/div&gt;  
@@ -5278,17 +5273,15 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   &lt;span *ngFor&#x3D;&quot;let group of groups&quot;&gt;
     &lt;div *ngIf&#x3D;&quot;activeGroupId &#x3D;&#x3D;&#x3D; group.device_group_id&quot;  class&#x3D;&quot;row row-info&quot;&gt;
       &lt;!-- Summary group info card --&gt;
-      &lt;div  class&#x3D;&quot;col-lg-4 h-100&quot;&gt;
-        &lt;div  class&#x3D;&quot;card h-100&quot;&gt;
+      &lt;div class&#x3D;&quot;col-lg-4 h-100&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
           &lt;div class&#x3D;&quot;card-title-name&quot;&gt;
             &lt;h5 class&#x3D;&quot;text-uppercase&quot;&gt;Summary {{group.name}}&lt;/h5&gt;
           &lt;/div&gt;
-          &lt;div class&#x3D;&quot;summary-card&quot; &gt;
+          &lt;div class&#x3D;&quot;summary-card&quot;&gt;
             &lt;table class&#x3D;&quot;table summary-devices-table&quot;&gt;
               &lt;tr&gt;
-                &lt;th class&#x3D;&quot;grey&quot;&gt;
-                  Availability
-                &lt;/th&gt;
+                &lt;th&gt;Availability&lt;/th&gt;
                 &lt;td 
                   *ngIf&#x3D;&quot;group.enabled&quot; 
                   class&#x3D;&quot;summary-devices-availability blue&quot;&gt;
@@ -5301,9 +5294,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                 &lt;/td&gt;
               &lt;/tr&gt;
               &lt;tr&gt;
-                &lt;th class&#x3D;&quot;grey&quot;&gt;
-                  API Key
-                &lt;/th&gt;
+                &lt;th&gt;API Key&lt;/th&gt;
                 &lt;td 
                   class&#x3D;&quot;dark-grey&quot; 
                   tooltip&#x3D; &quot;API Key&quot; 
@@ -5312,25 +5303,23 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                 &lt;/td&gt; 
               &lt;/tr&gt;
               &lt;tr&gt;
-                &lt;th class&#x3D;&quot;grey&quot;&gt;
-                  Devices
-                &lt;/th&gt;
-                &lt;td class&#x3D;&quot;summary-devices-running&quot;&gt;{{countGroupDevices(group.device_group_id)}}&lt;/td&gt;
+                &lt;th&gt;Devices&lt;/th&gt;
+                &lt;td class&#x3D;&quot;summary-devices-running&quot;&gt;
+                  {{countGroupDevices(group.device_group_id)}}
+                &lt;/td&gt;
               &lt;/tr&gt;
               &lt;tr&gt;
-                &lt;th class&#x3D;&quot;grey&quot;&gt;
-                    Device connectivity
-                  &lt;/th&gt;
-                  &lt;td 
-                    *ngIf&#x3D;&quot;group.default_device_connectivity&quot; 
-                    class&#x3D;&quot;devices-availability-size blue&quot;&gt;
-                    ENABLED
-                  &lt;/td&gt;
-                  &lt;td 
-                    *ngIf&#x3D;&quot;!group.default_device_connectivity &quot; 
-                    class&#x3D;&quot; devices-availability-size red&quot;&gt;
-                    DISABLED
-                  &lt;/td&gt;
+                &lt;th&gt;Device connectivity&lt;/th&gt;
+                &lt;td 
+                  *ngIf&#x3D;&quot;group.default_device_connectivity&quot; 
+                  class&#x3D;&quot;summary-devices-conectivity blue&quot;&gt;
+                  ENABLED
+                &lt;/td&gt;
+                &lt;td 
+                  *ngIf&#x3D;&quot;!group.default_device_connectivity &quot; 
+                  class&#x3D;&quot;summary-devices-conectivity red&quot;&gt;
+                  DISABLED
+                &lt;/td&gt;
               &lt;/tr&gt;
             &lt;/table&gt;
           &lt;/div&gt;
@@ -5338,13 +5327,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       &lt;/div&gt;
       &lt;!-- Devices status timeline info card --&gt;
       &lt;div class&#x3D;&quot;col-lg-8 h-100&quot;&gt;
-        &lt;div class&#x3D;&quot;card p-4 h-100&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
           &lt;div class&#x3D;&quot;card-title-name&quot;&gt;
             &lt;h5 class&#x3D;&quot;text-uppercase&quot;&gt;{{group.name}} DEVICES STATUS TIMELINE&lt;/h5&gt;
           &lt;/div&gt;
-          &lt;div 
-            *ngIf&#x3D;&quot;countGroupDevices(activeGroupId) &#x3D;&#x3D;&#x3D; 0&quot; 
-            class&#x3D;&quot;h-100 no-elements&quot;&gt; 
+          &lt;div  *ngIf&#x3D;&quot;countGroupDevices(activeGroupId) &#x3D;&#x3D;&#x3D; 0&quot;  class&#x3D;&quot;no-elements&quot;&gt; 
             No devices
           &lt;/div&gt;
           &lt;div *ngIf&#x3D;&quot;countGroupDevices(activeGroupId) &gt; 0&quot; class&#x3D;&quot;line-chart-box&quot;&gt;
@@ -5367,7 +5354,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
               [showRefLabels]&#x3D;&quot;showRefLabels&quot;
               &gt;
             &lt;/ngx-charts-line-chart&gt;
-            &lt;div class&#x3D;&quot;y-axis-line-chart&quot;&gt;
+            &lt;div class&#x3D;&quot;line-chart-y-axis&quot;&gt;
               &lt;span class&#x3D;&quot;grey&quot;&gt;100%&lt;/span&gt;
               &lt;span class&#x3D;&quot;grey mb-4&quot;&gt;0%&lt;/span&gt;
             &lt;/div&gt;  
@@ -5379,8 +5366,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 &lt;/span&gt;
 &lt;!-- Deployed devices list panel card--&gt;
 &lt;div class&#x3D;&quot;row row-main&quot;&gt;
-  &lt;div class&#x3D;&quot;col-lg-12 col-md-12 col-sm-12 h-100&quot;&gt;
-    &lt;div class&#x3D;&quot;card h-100 p-4&quot;&gt;
+  &lt;div class&#x3D;&quot;col-lg-12 h-100&quot;&gt;
+    &lt;div class&#x3D;&quot;card p-4&quot;&gt;
       &lt;div class&#x3D;&quot;row&quot;&gt;
         &lt;div class&#x3D;&quot;col-2 card-title-name-mb&quot;&gt;
           &lt;h5&gt;DEVICES&lt;/h5&gt;
@@ -5389,7 +5376,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         &lt;div class&#x3D;&quot;col-10 devices-tab-btns-box&quot;&gt;
           &lt;ul class&#x3D;&quot;devices-tab-btn&quot; *ngIf&#x3D;&quot;activeGroupId &#x3D;&#x3D;&#x3D; &#x27;ALL&#x27; || groups.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;
             &lt;li&gt;
-              &lt;span class&#x3D;&quot;devices-button-item blue devices-button-item-pr&quot; (click)&#x3D;&quot;addGroup()&quot;&gt;
+              &lt;span class&#x3D;&quot;blue devices-button-item-pr&quot; (click)&#x3D;&quot;addGroup()&quot;&gt;
                 &lt;i class&#x3D;&quot;material-icons&quot;&gt;add&lt;/i&gt;
                 ADD GROUP 
               &lt;/span&gt;
@@ -5397,21 +5384,19 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           &lt;/ul&gt;
           &lt;ul class&#x3D;&quot;devices-tab-btn&quot; *ngIf&#x3D;&quot;activeGroupId !&#x3D;&#x3D; &#x27;ALL&#x27; &amp;&amp; groups.length &gt; 0&quot;&gt;
             &lt;li&gt;
-              &lt;span class&#x3D;&quot;devices-button-item blue&quot; (click)&#x3D;&quot;addGroup()&quot;&gt;
+              &lt;span class&#x3D;&quot;blue&quot; (click)&#x3D;&quot;addGroup()&quot;&gt;
                 &lt;i class&#x3D;&quot;material-icons&quot;&gt;add&lt;/i&gt;
                 ADD GROUP 
               &lt;/span&gt;
             &lt;/li&gt;
             &lt;li&gt;
-              &lt;span class&#x3D;&quot;devices-button-item&quot; (click)&#x3D;&quot;deleteGroup()&quot; &gt;
+              &lt;span (click)&#x3D;&quot;deleteGroup()&quot;&gt;
                 &lt;i class&#x3D;&quot;material-icons&quot;&gt;delete&lt;/i&gt;
                 DELETE GROUP
               &lt;/span&gt;
             &lt;/li&gt;
             &lt;li&gt;
-              &lt;span 
-                (click)&#x3D;&quot;openGroupConfiguration()&quot; 
-                class&#x3D;&quot;devices-button-item&quot;&gt;
+              &lt;span (click)&#x3D;&quot;openGroupConfiguration()&quot;&gt;
                 &lt;i class&#x3D;&quot;material-icons&quot;&gt;settings&lt;/i&gt;
                 CONFIGURATION
               &lt;/span&gt;
@@ -5425,18 +5410,13 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           &lt;div class&#x3D;&quot;col&quot;&gt;
             &lt;div class&#x3D;&quot;nalej-tab-box&quot;&gt;
               &lt;ul&gt;
-                &lt;li *ngIf&#x3D;&quot;displayedGroupsNamesLength &lt; maxLabelsLength&quot; class&#x3D;&quot;nalej-tab nalej-tab-title&quot;&gt;
+                &lt;li *ngIf&#x3D;&quot;displayedGroupsNamesLength &lt; maxLabelsLength&quot; class&#x3D;&quot;nalej-tab-title&quot;&gt;
                   &lt;span class&#x3D;&quot;grey&quot;&gt;GROUPS&lt;/span&gt;
                 &lt;/li&gt;
-                &lt;li 
-                  *ngIf&#x3D;&quot;groups.length &gt; 0&quot; 
-                  class&#x3D;&quot;nalej-tab&quot; 
-                  (click)&#x3D;&quot;changeActiveGroup(&#x27;ALL&#x27;)&quot;&gt;
+                &lt;li *ngIf&#x3D;&quot;groups.length &gt; 0&quot; (click)&#x3D;&quot;changeActiveGroup(&#x27;ALL&#x27;)&quot;&gt;
                   &lt;span [ngClass]&#x3D;&quot;amIactive(&#x27;ALL&#x27;)&quot;&gt;ALL&lt;/span&gt;
                 &lt;/li&gt;
-                &lt;li 
-                  *ngIf&#x3D;&quot;groups.length &#x3D;&#x3D;&#x3D; 0&quot; 
-                  class&#x3D;&quot;nalej-tab&quot;&gt;
+                &lt;li *ngIf&#x3D;&quot;groups.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;
                   &lt;span class&#x3D;&quot;active&quot;&gt;ALL&lt;/span&gt;
                 &lt;/li&gt;
                 &lt;li 
@@ -5445,10 +5425,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                   class&#x3D;&quot;tabs-arrow&quot; &gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;arrow_left&lt;/i&gt;
                 &lt;/li&gt;
-                &lt;li 
-                  *ngFor&#x3D;&quot;let group of displayedGroups&quot;
-                  class&#x3D;&quot;nalej-tab&quot;
-                  (click)&#x3D;&quot;changeActiveGroup(group.device_group_id)&quot;&gt;
+                &lt;li *ngFor&#x3D;&quot;let group of displayedGroups&quot; (click)&#x3D;&quot;changeActiveGroup(group.device_group_id)&quot;&gt;
                   &lt;span *ngIf&#x3D;&quot;displayedGroups.length &gt; 0&quot; [ngClass]&#x3D;&quot;amIactive(group.device_group_id)&quot;&gt;
                     {{group.name}}
                   &lt;/span&gt;
@@ -5463,25 +5440,25 @@ export class DevicesComponent implements OnInit, OnDestroy  {
             &lt;/div&gt;  
           &lt;/div&gt;
         &lt;/div&gt;
-        &lt;div class&#x3D;&quot;row justify-content-between&quot;&gt;
+        &lt;div class&#x3D;&quot;row mb-3&quot;&gt;
           &lt;!-- Sorting mesages --&gt;
           &lt;div class&#x3D;&quot;col-9&quot;&gt;  
             &lt;p *ngIf&#x3D;&quot;searchTerm &amp;&amp; !filterField&quot; class&#x3D;&quot;sorting-message&quot;&gt;
               Filtered by term &quot;{{ searchTerm }}&quot;.
-              &lt;span class&#x3D;&quot;blue reset-search&quot; (click)&#x3D;&quot;resetFilters(filterField)&quot;&gt;Reset&lt;/span&gt;
+              &lt;span class&#x3D;&quot;reset-search&quot; (click)&#x3D;&quot;resetFilters(filterField)&quot;&gt;Reset&lt;/span&gt;
             &lt;/p&gt;
             &lt;p *ngIf&#x3D;&quot;filterField &amp;&amp; !searchTerm&quot; class&#x3D;&quot;sorting-message&quot;&gt;
               Sorted by {{ getBeautyCategoryName(sortedBy) }},
               &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;ascendant. &lt;/span&gt;
               &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;descendant. &lt;/span&gt;
-              &lt;span class&#x3D;&quot;blue reset-search&quot; (click)&#x3D;&quot;resetFilters(filterField)&quot;&gt;Reset&lt;/span&gt;
+              &lt;span class&#x3D;&quot;reset-search&quot; (click)&#x3D;&quot;resetFilters(filterField)&quot;&gt;Reset&lt;/span&gt;
             &lt;/p&gt;
             &lt;p *ngIf&#x3D;&quot;filterField &amp;&amp; searchTerm&quot; class&#x3D;&quot;sorting-message&quot;&gt;
               Sorted by {{ getBeautyCategoryName(sortedBy) }}
               &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;ascendant &lt;/span&gt;
               &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;descendant &lt;/span&gt;
               and filtered by term &quot;{{ searchTerm }}&quot;.
-              &lt;span class&#x3D;&quot;blue reset-search&quot; (click)&#x3D;&quot;resetFilters(filterField)&quot;&gt;Reset&lt;/span&gt;
+              &lt;span class&#x3D;&quot;reset-search&quot; (click)&#x3D;&quot;resetFilters(filterField)&quot;&gt;Reset&lt;/span&gt;
             &lt;/p&gt; 
           &lt;/div&gt;
           &lt;!-- Search input --&gt;
@@ -5505,13 +5482,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           &lt;/div&gt;      
         &lt;/div&gt;
         &lt;!-- No devices to show --&gt;
-        &lt;div 
-          *ngIf&#x3D;&quot;groups.length &gt; 0 &amp;&amp; countGroupDevices(activeGroupId) &#x3D;&#x3D;&#x3D; 0 &amp;&amp; loadedData&quot;
-          class&#x3D;&quot;no-elements-in-group&quot;&gt;
-            No available devices registered in this group
+        &lt;div *ngIf&#x3D;&quot;groups.length &gt; 0 &amp;&amp; countGroupDevices(activeGroupId) &#x3D;&#x3D;&#x3D; 0 &amp;&amp; loadedData&quot; class&#x3D;&quot;no-elements-in-group&quot;&gt;
+          No available devices registered in this group
         &lt;/div&gt;
         &lt;!-- Devices table --&gt;
-        &lt;div class&#x3D;&quot;table-h&quot; *ngIf&#x3D;&quot;devices &amp;&amp; devices.length &gt; 0 &amp;&amp; groups.length &gt; 0 &amp;&amp; !requestError&quot; &gt;
+        &lt;div class&#x3D;&quot;table-h&quot; *ngIf&#x3D;&quot;devices &amp;&amp; devices.length &gt; 0 &amp;&amp; groups.length &gt; 0 &amp;&amp; !requestError&quot;&gt;
           &lt;table class&#x3D;&quot;table-responsive table-fixed&quot;&gt;
             &lt;thead&gt;
               &lt;tr&gt;
@@ -5671,18 +5646,18 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                       class&#x3D;&quot;tooltip-fix text-capitalize&quot; 
                       placement&#x3D;&quot;auto&quot;&gt;
                     &lt;/span&gt;
-                    &lt;span class&#x3D;&quot;hide&quot;&gt;
+                    &lt;span class&#x3D;&quot;hide-lg&quot;&gt;
                       {{device.device_status_name}}
                     &lt;/span&gt;
                   &lt;/td&gt;
                   &lt;td *ngIf&#x3D;&quot;!device.labels&quot; class&#x3D;&quot;col-4&quot;&gt;
-                      &lt;div 
-                        tooltip&#x3D;&quot;Add&quot; 
-                        placement&#x3D;&quot;right&quot;
-                        class&#x3D;&quot;label-btn-add&quot;
-                        (click)&#x3D;&quot;addLabel(device)&quot;&gt;
-                          &lt;i class&#x3D;&quot;material-icons i-add&quot;&gt;add&lt;/i&gt;  
-                      &lt;/div&gt;
+                    &lt;div 
+                      tooltip&#x3D;&quot;Add&quot; 
+                      placement&#x3D;&quot;right&quot;
+                      class&#x3D;&quot;label-btn-blue&quot;
+                      (click)&#x3D;&quot;addLabel(device)&quot;&gt;
+                        &lt;i class&#x3D;&quot;material-icons i-add&quot;&gt;add&lt;/i&gt;  
+                    &lt;/div&gt;
                   &lt;/td&gt;
                   &lt;td *ngIf&#x3D;&quot;device.labels&quot; class&#x3D;&quot;col-4&quot;&gt;
                     &lt;button 
@@ -5698,7 +5673,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                     &lt;div class&#x3D;&quot;label-btns&quot;&gt;
                       &lt;div 
                         *ngIf&#x3D;&quot;isAnyLabelSelected(device.device_id) &#x3D;&#x3D;&#x3D; false&quot;
-                        class&#x3D;&quot;label-btn-add&quot; 
+                        class&#x3D;&quot;label-btn-blue&quot; 
                         (click)&#x3D;&quot;addLabel(device)&quot;
                         tooltip&#x3D;&quot;Add&quot; 
                         placement&#x3D;&quot;right&quot;
@@ -5733,11 +5708,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                 &lt;/span&gt;
                 &lt;!-- device.device_group_id tab selected --&gt;
                 &lt;span *ngIf&#x3D;&quot;activeGroupId &#x3D;&#x3D;&#x3D; device.device_group_id&quot; &gt;
-                    &lt;td 
-                      *ngIf&#x3D;&quot;groups.length &gt; 0 &amp;&amp; countGroupDevices(device.device_group_id) &#x3D;&#x3D;&#x3D; 0&quot;
-                      class&#x3D;&quot;col-12&quot;&gt;
-                        No available devices registered in this group
-                    &lt;/td&gt;
+                  &lt;td 
+                    *ngIf&#x3D;&quot;groups.length &gt; 0 &amp;&amp; countGroupDevices(device.device_group_id) &#x3D;&#x3D;&#x3D; 0&quot;
+                    class&#x3D;&quot;col-12&quot;&gt;
+                      No available devices registered in this group
+                  &lt;/td&gt;
                   &lt;td class&#x3D;&quot;col-3&quot;&gt;{{device.device_id}}&lt;/td&gt;
                   &lt;td class&#x3D;&quot;col-2&quot;&gt;{{parseTimestampToDate(device.register_since) | date: &#x27;dd/MM/yyyy&#x27;}}&lt;/td&gt;  
                   &lt;td  
@@ -5751,13 +5726,13 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                       class&#x3D;&quot;tooltip-fix text-capitalize&quot; 
                       placement&#x3D;&quot;auto&quot;&gt;
                     &lt;/span&gt;
-                    &lt;span class&#x3D;&quot;hide&quot;&gt;
+                    &lt;span class&#x3D;&quot;hide-lg&quot;&gt;
                       {{device.device_status_name}}
                     &lt;/span&gt;
                   &lt;/td&gt;
                   &lt;td *ngIf&#x3D;&quot;!device.labels&quot; class&#x3D;&quot;col-4&quot;&gt;
-                      &lt;div 
-                      class&#x3D;&quot;label-btn-add&quot;
+                    &lt;div 
+                      class&#x3D;&quot;label-btn-blue&quot;
                       tooltip&#x3D;&quot;Add&quot; 
                       placement&#x3D;&quot;right&quot;
                       (click)&#x3D;&quot;addLabel(device)&quot;&gt;
@@ -5765,7 +5740,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                     &lt;/div&gt;
                   &lt;/td&gt;
                   &lt;td *ngIf&#x3D;&quot;device.labels&quot; class&#x3D;&quot;col-4&quot;&gt;
-                    
                     &lt;button 
                       (click)&#x3D;&quot;onLabelClick(device.device_id, label[0], label[1])&quot;
                       [ngClass]&#x3D;
@@ -5777,25 +5751,25 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                       {{label[0]}}: {{label[1]}}
                     &lt;/button&gt;
                     &lt;div class&#x3D;&quot;label-btns&quot;&gt;
-                        &lt;div 
-                          *ngIf&#x3D;&quot;isAnyLabelSelected(device.device_id) &#x3D;&#x3D;&#x3D; false&quot;
-                          class&#x3D;&quot;label-btn-add&quot; 
-                          (click)&#x3D;&quot;addLabel(device)&quot;
-                          tooltip&#x3D;&quot;Add&quot; 
-                          placement&#x3D;&quot;right&quot;
-                          &gt;
-                          &lt;i class&#x3D;&quot;material-icons i-add&quot;&gt;add&lt;/i&gt;
-                        &lt;/div&gt;
-                        &lt;div 
-                          *ngIf&#x3D;&quot;isAnyLabelSelected(device.device_id) &#x3D;&#x3D;&#x3D; true&quot;
-                          class&#x3D;&quot;label-btn-red&quot; 
-                          (click)&#x3D;&quot;deleteLabel(device)&quot;
-                          tooltip&#x3D;&quot;Delete&quot; 
-                          placement&#x3D;&quot;right&quot;
-                          &gt;
-                          &lt;i class&#x3D;&quot;material-icons i-delete&quot;&gt;delete&lt;/i&gt;
-                        &lt;/div&gt;
+                      &lt;div 
+                        *ngIf&#x3D;&quot;isAnyLabelSelected(device.device_id) &#x3D;&#x3D;&#x3D; false&quot;
+                        class&#x3D;&quot;label-btn-blue&quot; 
+                        (click)&#x3D;&quot;addLabel(device)&quot;
+                        tooltip&#x3D;&quot;Add&quot; 
+                        placement&#x3D;&quot;right&quot;
+                        &gt;
+                        &lt;i class&#x3D;&quot;material-icons i-add&quot;&gt;add&lt;/i&gt;
                       &lt;/div&gt;
+                      &lt;div 
+                        *ngIf&#x3D;&quot;isAnyLabelSelected(device.device_id) &#x3D;&#x3D;&#x3D; true&quot;
+                        class&#x3D;&quot;label-btn-red&quot; 
+                        (click)&#x3D;&quot;deleteLabel(device)&quot;
+                        tooltip&#x3D;&quot;Delete&quot; 
+                        placement&#x3D;&quot;right&quot;
+                        &gt;
+                        &lt;i class&#x3D;&quot;material-icons i-delete&quot;&gt;delete&lt;/i&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
                   &lt;/td&gt;
                   &lt;td class&#x3D;&quot;col-1 text-center&quot;&gt;
                     &lt;span 
@@ -5817,24 +5791,18 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           &lt;/table&gt;
         &lt;/div&gt;
           &lt;!-- No info to show --&gt;
-        &lt;div 
-          *ngIf&#x3D;&quot;groups.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; !requestError&quot;
-          class&#x3D;&quot;no-elements&quot;&gt;
+        &lt;div *ngIf&#x3D;&quot;groups.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; !requestError&quot; class&#x3D;&quot;no-elements&quot;&gt;
           No available groups have been created. Add a new group to be able to register devices in it.
         &lt;/div&gt;
           &lt;!-- Requested error --&gt;
-        &lt;div
-          *ngIf&#x3D;&quot;requestError&quot;
-          class&#x3D;&quot;no-elements&quot;&gt;
+        &lt;div *ngIf&#x3D;&quot;requestError&quot; class&#x3D;&quot;no-elements&quot;&gt;
           &lt;p&gt;{{ requestError }}&lt;/p&gt;
         &lt;/div&gt;
       &lt;/span&gt;
       &lt;!-- Loader --&gt;
       &lt;div class&#x3D;&quot;nalej-loader-box h-100 w-100&quot; *ngIf&#x3D;&quot;!loadedData&quot;&gt;
         &lt;div class&#x3D;&quot;loader&quot;&gt;
-          &lt;svg 
-            class&#x3D;&quot;circular&quot; 
-            viewBox&#x3D;&quot;25 25 50 50&quot;&gt;
+          &lt;svg  class&#x3D;&quot;circular&quot; viewBox&#x3D;&quot;25 25 50 50&quot;&gt;
             &lt;circle 
               class&#x3D;&quot;path&quot; 
               cx&#x3D;&quot;50&quot; 
@@ -5876,8 +5844,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Component title --><div class="row row-title">  <div class="col-lg-2">    <h2 class="section-title">Devices</h2>  </div>  <div class="col-lg-8">    <div       class="close-group-button">      <button          *ngIf="activeGroupId !== \'ALL\'"         (click)="changeActiveGroup(\'ALL\')"        class="button">        <span>  {{getGroupName(activeGroupId) | abbreviate}}<span class="close-trigger">X</span></span>      </button>    </div>  </div>  <div class="col-lg-2"></div></div><!-- Summary and devices status timeline row --><div *ngIf="devices.length === 0 ||  activeGroupId === \'ALL\'"  class="row row-info">  <!-- Summary group info card for all -->  <div class="col-lg-4 h-100">    <div class="card h-100">      <div class="card-title-name">        <h5>SUMMARY</h5>      </div>      <div *ngIf="groups.length > 0" class="summary-card">        <div>          <div class="circle summary-box">            <span class="align-self-center mt-1">{{groups.length}}</span>          </div>          <p class="circle-name">GROUPS</p>        </div>        <div>          <div class="circle summary-box">            <span class="align-self-center mt-1">{{countDevices()}}</span>          </div>          <p class="circle-name">DEVICES</p>        </div>      </div>      <div         *ngIf="groups.length === 0"        class="no-elements">        No available groups detected      </div>    </div>  </div>  <!-- Devices status timeline info card for all -->  <div class="col-lg-8 h-100">    <div class="card p-4 h-100">      <div class="card-title-name">        <h5>DEVICES STATUS TIMELINE</h5>      </div>      <div         *ngIf="countGroupDevices(activeGroupId) === 0"         class="h-100 no-elements">         No devices      </div>      <div *ngIf="countGroupDevices(activeGroupId) > 0" class="line-chart-box">        <ngx-charts-line-chart          [scheme]="colorScheme"          [results]="devicesChart"          [xAxis]="showXAxis"          [yAxis]="showYAxis"          [gradient]="gradient"           [showXAxisLabel]="showXAxisLabel"          [showYAxisLabel]="showYAxisLabel"          [yScaleMin]="0"          [yScaleMax]="100"          [showGridLines]="showGridLines"          [showRefLines]="showRefLines"          [schemeType]="schemeType"          [customColors]="customColors"          [rangeFillOpacity]="rangeFillOpacity"          [referenceLines]="referenceLines"          [showRefLabels]="showRefLabels"          >        </ngx-charts-line-chart>        <div class="y-axis-line-chart">          <span class="grey">100%</span>          <span class="grey mb-4">0%</span>        </div>        </div>    </div>  </div></div><span *ngIf="groups && groups.length > 0">  <span *ngFor="let group of groups">    <div *ngIf="activeGroupId === group.device_group_id"  class="row row-info">      <!-- Summary group info card -->      <div  class="col-lg-4 h-100">        <div  class="card h-100">          <div class="card-title-name">            <h5 class="text-uppercase">Summary {{group.name}}</h5>          </div>          <div class="summary-card" >            <table class="table summary-devices-table">              <tr>                <th class="grey">                  Availability                </th>                <td                   *ngIf="group.enabled"                   class="summary-devices-availability blue">                  ENABLED                </td>                <td                   *ngIf="!group.enabled"                   class="summary-devices-availability red">                  DISABLED                </td>              </tr>              <tr>                <th class="grey">                  API Key                </th>                <td                   class="dark-grey"                   tooltip= "API Key"                   placement="bottom">                  {{group.device_group_api_key}}                </td>               </tr>              <tr>                <th class="grey">                  Devices                </th>                <td class="summary-devices-running">{{countGroupDevices(group.device_group_id)}}</td>              </tr>              <tr>                <th class="grey">                    Device connectivity                  </th>                  <td                     *ngIf="group.default_device_connectivity"                     class="devices-availability-size blue">                    ENABLED                  </td>                  <td                     *ngIf="!group.default_device_connectivity "                     class=" devices-availability-size red">                    DISABLED                  </td>              </tr>            </table>          </div>        </div>      </div>      <!-- Devices status timeline info card -->      <div class="col-lg-8 h-100">        <div class="card p-4 h-100">          <div class="card-title-name">            <h5 class="text-uppercase">{{group.name}} DEVICES STATUS TIMELINE</h5>          </div>          <div             *ngIf="countGroupDevices(activeGroupId) === 0"             class="h-100 no-elements">             No devices          </div>          <div *ngIf="countGroupDevices(activeGroupId) > 0" class="line-chart-box">            <ngx-charts-line-chart              [scheme]="colorScheme"              [results]="devicesChart"              [xAxis]="showXAxis"              [yAxis]="showYAxis"              [gradient]="gradient"               [showXAxisLabel]="showXAxisLabel"              [showYAxisLabel]="showYAxisLabel"              [yScaleMin]="0"              [yScaleMax]="100"              [showGridLines]="showGridLines"              [showRefLines]="showRefLines"              [schemeType]="schemeType"              [customColors]="customColors"              [rangeFillOpacity]="rangeFillOpacity"              [referenceLines]="referenceLines"              [showRefLabels]="showRefLabels"              >            </ngx-charts-line-chart>            <div class="y-axis-line-chart">              <span class="grey">100%</span>              <span class="grey mb-4">0%</span>            </div>            </div>        </div>      </div>    </div>  </span></span><!-- Deployed devices list panel card--><div class="row row-main">  <div class="col-lg-12 col-md-12 col-sm-12 h-100">    <div class="card h-100 p-4">      <div class="row">        <div class="col-2 card-title-name-mb">          <h5>DEVICES</h5>        </div>        <!-- Devices tabs buttons -->        <div class="col-10 devices-tab-btns-box">          <ul class="devices-tab-btn" *ngIf="activeGroupId === \'ALL\' || groups.length === 0">            <li>              <span class="devices-button-item blue devices-button-item-pr" (click)="addGroup()">                <i class="material-icons">add</i>                ADD GROUP               </span>            </li>          </ul>          <ul class="devices-tab-btn" *ngIf="activeGroupId !== \'ALL\' && groups.length > 0">            <li>              <span class="devices-button-item blue" (click)="addGroup()">                <i class="material-icons">add</i>                ADD GROUP               </span>            </li>            <li>              <span class="devices-button-item" (click)="deleteGroup()" >                <i class="material-icons">delete</i>                DELETE GROUP              </span>            </li>            <li>              <span                 (click)="openGroupConfiguration()"                 class="devices-button-item">                <i class="material-icons">settings</i>                CONFIGURATION              </span>            </li>          </ul>         </div>      </div>      <span class="h-75 w-100" *ngIf="loadedData">        <!-- Devices tabs -->        <div class="row">          <div class="col">            <div class="nalej-tab-box">              <ul>                <li *ngIf="displayedGroupsNamesLength < maxLabelsLength" class="nalej-tab nalej-tab-title">                  <span class="grey">GROUPS</span>                </li>                <li                   *ngIf="groups.length > 0"                   class="nalej-tab"                   (click)="changeActiveGroup(\'ALL\')">                  <span [ngClass]="amIactive(\'ALL\')">ALL</span>                </li>                <li                   *ngIf="groups.length === 0"                   class="nalej-tab">                  <span class="active">ALL</span>                </li>                <li                   [ngClass]="haveIGroups(groups)"                  (click)="swipeLeft()"                   class="tabs-arrow" >                  <i class="material-icons">arrow_left</i>                </li>                <li                   *ngFor="let group of displayedGroups"                  class="nalej-tab"                  (click)="changeActiveGroup(group.device_group_id)">                  <span *ngIf="displayedGroups.length > 0" [ngClass]="amIactive(group.device_group_id)">                    {{group.name}}                  </span>                </li>                <li                   [ngClass]="haveIGroups(groups)"                  (click)="swipeRight()"                  class="tabs-arrow">                  <i class="material-icons">arrow_right</i>                </li>              </ul>            </div>            </div>        </div>        <div class="row justify-content-between">          <!-- Sorting mesages -->          <div class="col-9">              <p *ngIf="searchTerm && !filterField" class="sorting-message">              Filtered by term "{{ searchTerm }}".              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>            </p>            <p *ngIf="filterField && !searchTerm" class="sorting-message">              Sorted by {{ getBeautyCategoryName(sortedBy) }},              <span *ngIf="reverse">ascendant. </span>              <span *ngIf="!reverse">descendant. </span>              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>            </p>            <p *ngIf="filterField && searchTerm" class="sorting-message">              Sorted by {{ getBeautyCategoryName(sortedBy) }}              <span *ngIf="reverse">ascendant </span>              <span *ngIf="!reverse">descendant </span>              and filtered by term "{{ searchTerm }}".              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>            </p>           </div>          <!-- Search input -->          <div class="col-3">            <form>              <div class="search-box">                <input                   type="text"                   class="form-control"                   name="searchTerm"                   placeholder="Search..."                   [(ngModel)]="searchTerm">                   <div class="search-icon" *ngIf="searchTerm === \'\'">                    <i class="material-icons">search</i>                  </div>                       <div class="close-icon" *ngIf="searchTerm !== \'\'">                    <i class="material-icons" (click)="resetFilters(filterField)">close</i>                  </div>              </div>            </form>          </div>              </div>        <!-- No devices to show -->        <div           *ngIf="groups.length > 0 && countGroupDevices(activeGroupId) === 0 && loadedData"          class="no-elements-in-group">            No available devices registered in this group        </div>        <!-- Devices table -->        <div class="table-h" *ngIf="devices && devices.length > 0 && groups.length > 0 && !requestError" >          <table class="table-responsive table-fixed">            <thead>              <tr>                <th                   *ngIf="activeGroupId !== \'ALL\' && countGroupDevices(activeGroupId) > 0 "                  (click)="setOrder(\'id\')"                  [ngClass]="getCategoryCSSClass(\'id\')"                  scope="col"                   class="col-3">                  ID                  <span class="expand-chevron" *ngIf="sortedBy === \'id\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'id\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                <th                   *ngIf="activeGroupId === \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'id\')"                  [ngClass]="getCategoryCSSClass(\'id\')"                  scope="col"                   class="col-2">                  ID                  <span class="expand-chevron" *ngIf="sortedBy === \'id\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'id\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                <th                   *ngIf="activeGroupId === \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'group\')"                  [ngClass]="getCategoryCSSClass(\'group\')"                  scope="col"                   class="col-2">                  Group                  <span class="expand-chevron" *ngIf="sortedBy === \'group\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'group\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                <th                   *ngIf="activeGroupId !== \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'register_since\')"                   [ngClass]="getCategoryCSSClass(\'register_since\')"                  scope="col"                   class="col-2">                  Date                  <span class="expand-chevron" *ngIf="sortedBy === \'register_since\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'register_since\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                <th                   *ngIf="activeGroupId === \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'register_since\')"                   [ngClass]="getCategoryCSSClass(\'register_since\')"                  scope="col"                   class="col-1">                  Date                  <span class="expand-chevron" *ngIf="sortedBy === \'register_since\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'register_since\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                <th                   *ngIf="activeGroupId === \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'device_status_name\')"                   [ngClass]="getCategoryCSSClass(\'device_status_name\')"                  scope="col"                   class="col-2 text-center">                  Status                  <span class="expand-chevron" *ngIf="sortedBy === \'device_status_name\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'device_status_name\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                 <th                   *ngIf="activeGroupId !== \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'device_status_name\')"                   [ngClass]="getCategoryCSSClass(\'device_status_name\')"                  scope="col"                   class="col-2 text-center">                  Status                  <span class="expand-chevron" *ngIf="sortedBy === \'device_status_name\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'device_status_name\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                 <th                   *ngIf="activeGroupId === \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'labels\')"                   [ngClass]="getCategoryCSSClass(\'labels\')"                  scope="col"                   class="col-4">                  Labels                  <span class="expand-chevron" *ngIf="sortedBy === \'labels\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'labels\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                <th                   *ngIf="activeGroupId !== \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'labels\')"                   [ngClass]="getCategoryCSSClass(\'labels\')"                  scope="col"                   class="col-4">                  Labels                  <span class="expand-chevron" *ngIf="sortedBy === \'labels\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'labels\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                <th                  *ngIf="activeGroupId === \'ALL\' && countGroupDevices(activeGroupId) > 0"                  scope="col" class="col-1 text-center">                  Enabled                </th>                <th                  *ngIf="activeGroupId !== \'ALL\' && countGroupDevices(activeGroupId) > 0"                  scope="col" class="col-1 text-center">                  Enabled                </th>              </tr>            </thead>            <tbody>              <tr *ngFor="let device of getDevices() | sortBy : sortedBy : reverse : \'case-insensitive\' | filter : searchTerm">                <!-- "All" tab selected -->                <span *ngIf="activeGroupId === \'ALL\'">                  <td class="col-2">{{device.device_id}}</td>                  <td class="col-2">{{getGroupName(device.device_group_id)}}</td>                  <td class="col-1">{{parseTimestampToDate(device.register_since) | date: \'dd/MM/yyyy\'}}</td>                    <td                     class="col-2 col-center-lowercase"                    [ngClass]=                    "{\'status-dot\':classStatusCheck(device.device_status_name, \'online\'),                    \'status-dot-error\':classStatusCheck(device.device_status_name, \'offline\'),                    \'status-dot-process\':classStatusCheck(device.device_status_name, \'process\')}">                     <span                       tooltip="{{device.device_status_name}}"                       class="tooltip-fix text-capitalize"                       placement="auto">                    </span>                    <span class="hide">                      {{device.device_status_name}}                    </span>                  </td>                  <td *ngIf="!device.labels" class="col-4">                      <div                         tooltip="Add"                         placement="right"                        class="label-btn-add"                        (click)="addLabel(device)">                          <i class="material-icons i-add">add</i>                        </div>                  </td>                  <td *ngIf="device.labels" class="col-4">                    <button                       (click)="onLabelClick(device.device_id, label[0], label[1])"                      [ngClass]=                      "{\'label-btn-selected\': indexOfLabelSelected(device.device_id, label[0], label[1]) >= 0 ,                        \'btn-outline-primary\': indexOfLabelSelected(device.device_id, label[0], label[1]) === -1}"                       *ngFor="let label of labelsToString(device.labels)"                       class="btn-sm btn-outline-primary"                       >                      {{label[0]}}: {{label[1]}}                     </button>                    <div class="label-btns">                      <div                         *ngIf="isAnyLabelSelected(device.device_id) === false"                        class="label-btn-add"                         (click)="addLabel(device)"                        tooltip="Add"                         placement="right"                        >                        <i class="material-icons i-add">add</i>                      </div>                      <div                         *ngIf="isAnyLabelSelected(device.device_id) === true"                        class="label-btn-red"                         (click)="deleteLabel(device)"                        tooltip="Delete"                         placement="right"                        >                        <i class="material-icons i-delete">delete</i>                      </div>                    </div>                  </td>                  <td class="col-1 text-center">                    <span                       *ngIf="!device.enabled"                       (click)="enableSwitcher(device)"                      class="devices-checkbox">                      <i class="material-icons grey">check_box_outline_blank</i>                    </span>                    <span                       *ngIf="device.enabled"                        (click)="enableSwitcher(device)"                       class="devices-checkbox">                      <i class="material-icons blue">check_box</i>                    </span>                  </td>                </span>                <!-- device.device_group_id tab selected -->                <span *ngIf="activeGroupId === device.device_group_id" >                    <td                       *ngIf="groups.length > 0 && countGroupDevices(device.device_group_id) === 0"                      class="col-12">                        No available devices registered in this group                    </td>                  <td class="col-3">{{device.device_id}}</td>                  <td class="col-2">{{parseTimestampToDate(device.register_since) | date: \'dd/MM/yyyy\'}}</td>                    <td                      class="col-2 col-center-lowercase"                    [ngClass]=                    "{\'status-dot\':classStatusCheck(device.device_status_name, \'online\'),                    \'status-dot-error\':classStatusCheck(device.device_status_name, \'offline\'),                    \'status-dot-process\':classStatusCheck(device.device_status_name, \'process\')}">                     <span                       tooltip="{{device.device_status_name}}"                       class="tooltip-fix text-capitalize"                       placement="auto">                    </span>                    <span class="hide">                      {{device.device_status_name}}                    </span>                  </td>                  <td *ngIf="!device.labels" class="col-4">                      <div                       class="label-btn-add"                      tooltip="Add"                       placement="right"                      (click)="addLabel(device)">                        <i class="material-icons i-add">add</i>                      </div>                  </td>                  <td *ngIf="device.labels" class="col-4">                                        <button                       (click)="onLabelClick(device.device_id, label[0], label[1])"                      [ngClass]=                      "{\'label-btn-selected\': indexOfLabelSelected(device.device_id, label[0], label[1]) >= 0 ,                        \'btn-outline-primary\': indexOfLabelSelected(device.device_id, label[0], label[1]) === -1}"                       *ngFor="let label of labelsToString(device.labels)"                       class="btn-sm btn-outline-primary"                       >                      {{label[0]}}: {{label[1]}}                    </button>                    <div class="label-btns">                        <div                           *ngIf="isAnyLabelSelected(device.device_id) === false"                          class="label-btn-add"                           (click)="addLabel(device)"                          tooltip="Add"                           placement="right"                          >                          <i class="material-icons i-add">add</i>                        </div>                        <div                           *ngIf="isAnyLabelSelected(device.device_id) === true"                          class="label-btn-red"                           (click)="deleteLabel(device)"                          tooltip="Delete"                           placement="right"                          >                          <i class="material-icons i-delete">delete</i>                        </div>                      </div>                  </td>                  <td class="col-1 text-center">                    <span                       *ngIf="!checkBox"                       class="devices-checkbox"                      (click)="enableSwitcher(device)">                      <i class="material-icons grey">check_box_outline_blank</i>                    </span>                    <span                       *ngIf="checkBox"                        (click)="enableSwitcher(device)"                       class="devices-checkbox">                      <i class="material-icons blue">check_box</i>                    </span>                  </td>                </span>              </tr>            </tbody>          </table>        </div>          <!-- No info to show -->        <div           *ngIf="groups.length === 0 && !requestError"          class="no-elements">          No available groups have been created. Add a new group to be able to register devices in it.        </div>          <!-- Requested error -->        <div          *ngIf="requestError"          class="no-elements">          <p>{{ requestError }}</p>        </div>      </span>      <!-- Loader -->      <div class="nalej-loader-box h-100 w-100" *ngIf="!loadedData">        <div class="loader">          <svg             class="circular"             viewBox="25 25 50 50">            <circle               class="path"               cx="50"               cy="50"               r="20"               fill="none"               stroke-width="2"               stroke-miterlimit="10"/>          </svg>        </div>      </div>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AppsInfoComponent', 'selector': 'app-apps-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><!-- Component title --><div class="row row-title">  <div class="col-lg-2">    <h2 class="section-title">Devices</h2>  </div>  <div class="col-lg-8">    <div class="close-group-button">      <button          *ngIf="activeGroupId !== \'ALL\'"         (click)="changeActiveGroup(\'ALL\')"        class="button">        <span>{{getGroupName(activeGroupId) | abbreviate}}<span class="close-trigger">X</span></span>      </button>    </div>  </div>  <div class="col-lg-2"></div></div><!-- Summary and devices status timeline row --><div *ngIf="devices.length === 0 ||  activeGroupId === \'ALL\'"  class="row row-info">  <!-- Summary group info card for all -->  <div class="col-lg-4 h-100">    <div class="card">      <div class="card-title-name">        <h5>SUMMARY</h5>      </div>      <div *ngIf="groups.length > 0" class="summary-card">        <div class="summary-box">          <div class="circle">            <span>{{groups.length}}</span>          </div>          <p class="circle-name">GROUPS</p>        </div>        <div class="summary-box">          <div class="circle">            <span>{{countDevices()}}</span>          </div>          <p class="circle-name">DEVICES</p>        </div>      </div>      <div  *ngIf="groups.length === 0" class="no-elements">        No available groups detected      </div>    </div>  </div>  <!-- Devices status timeline info card for all -->  <div class="col-lg-8 h-100">    <div class="card p-4">      <div class="card-title-name">        <h5>DEVICES STATUS TIMELINE</h5>      </div>      <div  *ngIf="countGroupDevices(activeGroupId) === 0"  class="no-elements">         No devices      </div>      <div *ngIf="countGroupDevices(activeGroupId) > 0" class="line-chart-box">        <ngx-charts-line-chart          [scheme]="colorScheme"          [results]="devicesChart"          [xAxis]="showXAxis"          [yAxis]="showYAxis"          [gradient]="gradient"           [showXAxisLabel]="showXAxisLabel"          [showYAxisLabel]="showYAxisLabel"          [yScaleMin]="0"          [yScaleMax]="100"          [showGridLines]="showGridLines"          [showRefLines]="showRefLines"          [schemeType]="schemeType"          [customColors]="customColors"          [rangeFillOpacity]="rangeFillOpacity"          [referenceLines]="referenceLines"          [showRefLabels]="showRefLabels"          >        </ngx-charts-line-chart>        <div class="line-chart-y-axis">          <span class="grey">100%</span>          <span class="grey mb-4">0%</span>        </div>        </div>    </div>  </div></div><span *ngIf="groups && groups.length > 0">  <span *ngFor="let group of groups">    <div *ngIf="activeGroupId === group.device_group_id"  class="row row-info">      <!-- Summary group info card -->      <div class="col-lg-4 h-100">        <div class="card">          <div class="card-title-name">            <h5 class="text-uppercase">Summary {{group.name}}</h5>          </div>          <div class="summary-card">            <table class="table summary-devices-table">              <tr>                <th>Availability</th>                <td                   *ngIf="group.enabled"                   class="summary-devices-availability blue">                  ENABLED                </td>                <td                   *ngIf="!group.enabled"                   class="summary-devices-availability red">                  DISABLED                </td>              </tr>              <tr>                <th>API Key</th>                <td                   class="dark-grey"                   tooltip= "API Key"                   placement="bottom">                  {{group.device_group_api_key}}                </td>               </tr>              <tr>                <th>Devices</th>                <td class="summary-devices-running">                  {{countGroupDevices(group.device_group_id)}}                </td>              </tr>              <tr>                <th>Device connectivity</th>                <td                   *ngIf="group.default_device_connectivity"                   class="summary-devices-conectivity blue">                  ENABLED                </td>                <td                   *ngIf="!group.default_device_connectivity "                   class="summary-devices-conectivity red">                  DISABLED                </td>              </tr>            </table>          </div>        </div>      </div>      <!-- Devices status timeline info card -->      <div class="col-lg-8 h-100">        <div class="card">          <div class="card-title-name">            <h5 class="text-uppercase">{{group.name}} DEVICES STATUS TIMELINE</h5>          </div>          <div  *ngIf="countGroupDevices(activeGroupId) === 0"  class="no-elements">             No devices          </div>          <div *ngIf="countGroupDevices(activeGroupId) > 0" class="line-chart-box">            <ngx-charts-line-chart              [scheme]="colorScheme"              [results]="devicesChart"              [xAxis]="showXAxis"              [yAxis]="showYAxis"              [gradient]="gradient"               [showXAxisLabel]="showXAxisLabel"              [showYAxisLabel]="showYAxisLabel"              [yScaleMin]="0"              [yScaleMax]="100"              [showGridLines]="showGridLines"              [showRefLines]="showRefLines"              [schemeType]="schemeType"              [customColors]="customColors"              [rangeFillOpacity]="rangeFillOpacity"              [referenceLines]="referenceLines"              [showRefLabels]="showRefLabels"              >            </ngx-charts-line-chart>            <div class="line-chart-y-axis">              <span class="grey">100%</span>              <span class="grey mb-4">0%</span>            </div>            </div>        </div>      </div>    </div>  </span></span><!-- Deployed devices list panel card--><div class="row row-main">  <div class="col-lg-12 h-100">    <div class="card p-4">      <div class="row">        <div class="col-2 card-title-name-mb">          <h5>DEVICES</h5>        </div>        <!-- Devices tabs buttons -->        <div class="col-10 devices-tab-btns-box">          <ul class="devices-tab-btn" *ngIf="activeGroupId === \'ALL\' || groups.length === 0">            <li>              <span class="blue devices-button-item-pr" (click)="addGroup()">                <i class="material-icons">add</i>                ADD GROUP               </span>            </li>          </ul>          <ul class="devices-tab-btn" *ngIf="activeGroupId !== \'ALL\' && groups.length > 0">            <li>              <span class="blue" (click)="addGroup()">                <i class="material-icons">add</i>                ADD GROUP               </span>            </li>            <li>              <span (click)="deleteGroup()">                <i class="material-icons">delete</i>                DELETE GROUP              </span>            </li>            <li>              <span (click)="openGroupConfiguration()">                <i class="material-icons">settings</i>                CONFIGURATION              </span>            </li>          </ul>         </div>      </div>      <span class="h-75 w-100" *ngIf="loadedData">        <!-- Devices tabs -->        <div class="row">          <div class="col">            <div class="nalej-tab-box">              <ul>                <li *ngIf="displayedGroupsNamesLength < maxLabelsLength" class="nalej-tab-title">                  <span class="grey">GROUPS</span>                </li>                <li *ngIf="groups.length > 0" (click)="changeActiveGroup(\'ALL\')">                  <span [ngClass]="amIactive(\'ALL\')">ALL</span>                </li>                <li *ngIf="groups.length === 0">                  <span class="active">ALL</span>                </li>                <li                   [ngClass]="haveIGroups(groups)"                  (click)="swipeLeft()"                   class="tabs-arrow" >                  <i class="material-icons">arrow_left</i>                </li>                <li *ngFor="let group of displayedGroups" (click)="changeActiveGroup(group.device_group_id)">                  <span *ngIf="displayedGroups.length > 0" [ngClass]="amIactive(group.device_group_id)">                    {{group.name}}                  </span>                </li>                <li                   [ngClass]="haveIGroups(groups)"                  (click)="swipeRight()"                  class="tabs-arrow">                  <i class="material-icons">arrow_right</i>                </li>              </ul>            </div>            </div>        </div>        <div class="row mb-3">          <!-- Sorting mesages -->          <div class="col-9">              <p *ngIf="searchTerm && !filterField" class="sorting-message">              Filtered by term "{{ searchTerm }}".              <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>            </p>            <p *ngIf="filterField && !searchTerm" class="sorting-message">              Sorted by {{ getBeautyCategoryName(sortedBy) }},              <span *ngIf="reverse">ascendant. </span>              <span *ngIf="!reverse">descendant. </span>              <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>            </p>            <p *ngIf="filterField && searchTerm" class="sorting-message">              Sorted by {{ getBeautyCategoryName(sortedBy) }}              <span *ngIf="reverse">ascendant </span>              <span *ngIf="!reverse">descendant </span>              and filtered by term "{{ searchTerm }}".              <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>            </p>           </div>          <!-- Search input -->          <div class="col-3">            <form>              <div class="search-box">                <input                   type="text"                   class="form-control"                   name="searchTerm"                   placeholder="Search..."                   [(ngModel)]="searchTerm">                   <div class="search-icon" *ngIf="searchTerm === \'\'">                    <i class="material-icons">search</i>                  </div>                       <div class="close-icon" *ngIf="searchTerm !== \'\'">                    <i class="material-icons" (click)="resetFilters(filterField)">close</i>                  </div>              </div>            </form>          </div>              </div>        <!-- No devices to show -->        <div *ngIf="groups.length > 0 && countGroupDevices(activeGroupId) === 0 && loadedData" class="no-elements-in-group">          No available devices registered in this group        </div>        <!-- Devices table -->        <div class="table-h" *ngIf="devices && devices.length > 0 && groups.length > 0 && !requestError">          <table class="table-responsive table-fixed">            <thead>              <tr>                <th                   *ngIf="activeGroupId !== \'ALL\' && countGroupDevices(activeGroupId) > 0 "                  (click)="setOrder(\'id\')"                  [ngClass]="getCategoryCSSClass(\'id\')"                  scope="col"                   class="col-3">                  ID                  <span class="expand-chevron" *ngIf="sortedBy === \'id\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'id\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                <th                   *ngIf="activeGroupId === \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'id\')"                  [ngClass]="getCategoryCSSClass(\'id\')"                  scope="col"                   class="col-2">                  ID                  <span class="expand-chevron" *ngIf="sortedBy === \'id\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'id\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                <th                   *ngIf="activeGroupId === \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'group\')"                  [ngClass]="getCategoryCSSClass(\'group\')"                  scope="col"                   class="col-2">                  Group                  <span class="expand-chevron" *ngIf="sortedBy === \'group\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'group\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                <th                   *ngIf="activeGroupId !== \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'register_since\')"                   [ngClass]="getCategoryCSSClass(\'register_since\')"                  scope="col"                   class="col-2">                  Date                  <span class="expand-chevron" *ngIf="sortedBy === \'register_since\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'register_since\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                <th                   *ngIf="activeGroupId === \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'register_since\')"                   [ngClass]="getCategoryCSSClass(\'register_since\')"                  scope="col"                   class="col-1">                  Date                  <span class="expand-chevron" *ngIf="sortedBy === \'register_since\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'register_since\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                <th                   *ngIf="activeGroupId === \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'device_status_name\')"                   [ngClass]="getCategoryCSSClass(\'device_status_name\')"                  scope="col"                   class="col-2 text-center">                  Status                  <span class="expand-chevron" *ngIf="sortedBy === \'device_status_name\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'device_status_name\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                 <th                   *ngIf="activeGroupId !== \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'device_status_name\')"                   [ngClass]="getCategoryCSSClass(\'device_status_name\')"                  scope="col"                   class="col-2 text-center">                  Status                  <span class="expand-chevron" *ngIf="sortedBy === \'device_status_name\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'device_status_name\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                 <th                   *ngIf="activeGroupId === \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'labels\')"                   [ngClass]="getCategoryCSSClass(\'labels\')"                  scope="col"                   class="col-4">                  Labels                  <span class="expand-chevron" *ngIf="sortedBy === \'labels\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'labels\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                <th                   *ngIf="activeGroupId !== \'ALL\' && countGroupDevices(activeGroupId) > 0"                  (click)="setOrder(\'labels\')"                   [ngClass]="getCategoryCSSClass(\'labels\')"                  scope="col"                   class="col-4">                  Labels                  <span class="expand-chevron" *ngIf="sortedBy === \'labels\' && !reverse">                    <i class="material-icons">expand_more</i>                  </span>                  <span class="expand-chevron" *ngIf="sortedBy === \'labels\' && reverse">                    <i class="material-icons">expand_less</i>                  </span>                </th>                <th                  *ngIf="activeGroupId === \'ALL\' && countGroupDevices(activeGroupId) > 0"                  scope="col" class="col-1 text-center">                  Enabled                </th>                <th                  *ngIf="activeGroupId !== \'ALL\' && countGroupDevices(activeGroupId) > 0"                  scope="col" class="col-1 text-center">                  Enabled                </th>              </tr>            </thead>            <tbody>              <tr *ngFor="let device of getDevices() | sortBy : sortedBy : reverse : \'case-insensitive\' | filter : searchTerm">                <!-- "All" tab selected -->                <span *ngIf="activeGroupId === \'ALL\'">                  <td class="col-2">{{device.device_id}}</td>                  <td class="col-2">{{getGroupName(device.device_group_id)}}</td>                  <td class="col-1">{{parseTimestampToDate(device.register_since) | date: \'dd/MM/yyyy\'}}</td>                    <td                     class="col-2 col-center-lowercase"                    [ngClass]=                    "{\'status-dot\':classStatusCheck(device.device_status_name, \'online\'),                    \'status-dot-error\':classStatusCheck(device.device_status_name, \'offline\'),                    \'status-dot-process\':classStatusCheck(device.device_status_name, \'process\')}">                     <span                       tooltip="{{device.device_status_name}}"                       class="tooltip-fix text-capitalize"                       placement="auto">                    </span>                    <span class="hide-lg">                      {{device.device_status_name}}                    </span>                  </td>                  <td *ngIf="!device.labels" class="col-4">                    <div                       tooltip="Add"                       placement="right"                      class="label-btn-blue"                      (click)="addLabel(device)">                        <i class="material-icons i-add">add</i>                      </div>                  </td>                  <td *ngIf="device.labels" class="col-4">                    <button                       (click)="onLabelClick(device.device_id, label[0], label[1])"                      [ngClass]=                      "{\'label-btn-selected\': indexOfLabelSelected(device.device_id, label[0], label[1]) >= 0 ,                        \'btn-outline-primary\': indexOfLabelSelected(device.device_id, label[0], label[1]) === -1}"                       *ngFor="let label of labelsToString(device.labels)"                       class="btn-sm btn-outline-primary"                       >                      {{label[0]}}: {{label[1]}}                     </button>                    <div class="label-btns">                      <div                         *ngIf="isAnyLabelSelected(device.device_id) === false"                        class="label-btn-blue"                         (click)="addLabel(device)"                        tooltip="Add"                         placement="right"                        >                        <i class="material-icons i-add">add</i>                      </div>                      <div                         *ngIf="isAnyLabelSelected(device.device_id) === true"                        class="label-btn-red"                         (click)="deleteLabel(device)"                        tooltip="Delete"                         placement="right"                        >                        <i class="material-icons i-delete">delete</i>                      </div>                    </div>                  </td>                  <td class="col-1 text-center">                    <span                       *ngIf="!device.enabled"                       (click)="enableSwitcher(device)"                      class="devices-checkbox">                      <i class="material-icons grey">check_box_outline_blank</i>                    </span>                    <span                       *ngIf="device.enabled"                        (click)="enableSwitcher(device)"                       class="devices-checkbox">                      <i class="material-icons blue">check_box</i>                    </span>                  </td>                </span>                <!-- device.device_group_id tab selected -->                <span *ngIf="activeGroupId === device.device_group_id" >                  <td                     *ngIf="groups.length > 0 && countGroupDevices(device.device_group_id) === 0"                    class="col-12">                      No available devices registered in this group                  </td>                  <td class="col-3">{{device.device_id}}</td>                  <td class="col-2">{{parseTimestampToDate(device.register_since) | date: \'dd/MM/yyyy\'}}</td>                    <td                      class="col-2 col-center-lowercase"                    [ngClass]=                    "{\'status-dot\':classStatusCheck(device.device_status_name, \'online\'),                    \'status-dot-error\':classStatusCheck(device.device_status_name, \'offline\'),                    \'status-dot-process\':classStatusCheck(device.device_status_name, \'process\')}">                     <span                       tooltip="{{device.device_status_name}}"                       class="tooltip-fix text-capitalize"                       placement="auto">                    </span>                    <span class="hide-lg">                      {{device.device_status_name}}                    </span>                  </td>                  <td *ngIf="!device.labels" class="col-4">                    <div                       class="label-btn-blue"                      tooltip="Add"                       placement="right"                      (click)="addLabel(device)">                        <i class="material-icons i-add">add</i>                      </div>                  </td>                  <td *ngIf="device.labels" class="col-4">                    <button                       (click)="onLabelClick(device.device_id, label[0], label[1])"                      [ngClass]=                      "{\'label-btn-selected\': indexOfLabelSelected(device.device_id, label[0], label[1]) >= 0 ,                        \'btn-outline-primary\': indexOfLabelSelected(device.device_id, label[0], label[1]) === -1}"                       *ngFor="let label of labelsToString(device.labels)"                       class="btn-sm btn-outline-primary"                       >                      {{label[0]}}: {{label[1]}}                    </button>                    <div class="label-btns">                      <div                         *ngIf="isAnyLabelSelected(device.device_id) === false"                        class="label-btn-blue"                         (click)="addLabel(device)"                        tooltip="Add"                         placement="right"                        >                        <i class="material-icons i-add">add</i>                      </div>                      <div                         *ngIf="isAnyLabelSelected(device.device_id) === true"                        class="label-btn-red"                         (click)="deleteLabel(device)"                        tooltip="Delete"                         placement="right"                        >                        <i class="material-icons i-delete">delete</i>                      </div>                    </div>                  </td>                  <td class="col-1 text-center">                    <span                       *ngIf="!checkBox"                       class="devices-checkbox"                      (click)="enableSwitcher(device)">                      <i class="material-icons grey">check_box_outline_blank</i>                    </span>                    <span                       *ngIf="checkBox"                        (click)="enableSwitcher(device)"                       class="devices-checkbox">                      <i class="material-icons blue">check_box</i>                    </span>                  </td>                </span>              </tr>            </tbody>          </table>        </div>          <!-- No info to show -->        <div *ngIf="groups.length === 0 && !requestError" class="no-elements">          No available groups have been created. Add a new group to be able to register devices in it.        </div>          <!-- Requested error -->        <div *ngIf="requestError" class="no-elements">          <p>{{ requestError }}</p>        </div>      </span>      <!-- Loader -->      <div class="nalej-loader-box h-100 w-100" *ngIf="!loadedData">        <div class="loader">          <svg  class="circular" viewBox="25 25 50 50">            <circle               class="path"               cx="50"               cy="50"               r="20"               fill="none"               stroke-width="2"               stroke-miterlimit="10"/>          </svg>        </div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'DevicesComponent'};
 </script>

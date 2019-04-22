@@ -116,7 +116,6 @@
     }
 }
 /* - - - Medias Servivces summary card - - - */
-// TODO: 1550
 @media screen and (max-width:1440px) {
     .table-fixed tbody td:last-child {
         padding: 0.75rem 0;
@@ -124,14 +123,6 @@
 }
 
 /* - - -  Labels card - - - */
-.reg-labels {
-    height: 100%;
-    overflow: hidden;
-    padding-top: 1.5em;
-    button {
-        font-size: 0.8em;
-    }
-}
 .i-add {
     font-size: 1em;
     top: 3px;
@@ -142,22 +133,12 @@
     top: 3px;
     left: 3px;
 }
-
-@media screen and (max-width:1366px), screen and (max-height: 768px) {
-    .reg-labels {
-        padding-top: 0em;
-        overflow: scroll;
-    }
-}
-
 /* - - -  Tables card - - - */
 .search-box {
     width: 237px;
     margin-right: 1em;
 }
-.nalej-tab-box {
-    margin-right: 1em;
-}
+
 .typo-small{
     font-size: .7em;
 }
@@ -171,35 +152,11 @@
 .table-h-fix {
     padding-top: 0em;
 }
-.show-sm {
-    display: none;
-}
-@media screen and (max-width:1720px), screen and (max-height: 780px)  {
-    .hide-sm {
-        display: none;
-    }
-    .show-sm {
-        display: block;
-    }
-}
+
 @media screen and (max-height: 780px) {
     .hide-title-sm {
         display: none;
     }
-}
-
-/* - - - Info table button - - - */
-.info-btn {
-    height: 26px;
-    width: 26px;
-    border-radius: 50%;
-    position: relative;
-}
-.i-info {
-    font-size: 1.2em;
-    position: absolute;
-    top: 1px;
-    left: 11px;
 }
 
 /* - - -  Config card - - - */

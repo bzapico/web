@@ -4,10 +4,10 @@
     <div class="modal-header">
       <h3 class="nalej-form-title">Add new devices group</h3>
       <button 
+        (click)="discardChanges(f)"
         type="button" 
-        class="close" 
         aria-label="Close"
-        (click)="discardChanges(f)">
+        class="close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -18,13 +18,13 @@
           <label>Group name*</label>
           <input 
             formControlName="groupName"
+            type="text" 
             placeholder="e.g. Device group"
             pattern="^[A-Za-z0-9_]+$"
-            type="text" 
             appAutofocus="true"
-            class="form-control" 
             [ngClass]="{ 'is-invalid': submitted && f.groupName.errors }"
-            required>
+            required
+            class="form-control">
           <div *ngIf="!submitted && f.groupName.errors" class="error-message"></div>
           <div class="error-h">
             <div *ngIf="submitted && f.groupName.errors" class="error-message">
@@ -41,14 +41,14 @@
             <p class="grey">Group device availability</p>
             <div class="add-dev-checkbox">
               <span 
-              *ngIf="!enabled" 
-              (click)="enabled = true"
-              class="devices-checkbox">
+                *ngIf="!enabled" 
+                (click)="enabled = true"
+                class="devices-checkbox">
                 <i class="material-icons grey">check_box_outline_blank</i>
               </span>
               <span 
-              *ngIf="enabled" 
-              (click)="enabled = false"
+                *ngIf="enabled" 
+                (click)="enabled = false"
                 class="devices-checkbox">
                 <i class="material-icons blue">check_box</i>
               </span>
@@ -71,12 +71,12 @@
             </div>   
           </div>
         </div>
-        <div class="form-group-btn mt-5">
+        <div class="form-group-btn">
           <button class="nalej-form-btn-blue" [disabled]="loading">
             <span class="align-bottom">Add devices group</span>
           </button>
         </div>
-    </form>
+      </form>
     </div>
   </div>
 </div>

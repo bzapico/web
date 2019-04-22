@@ -21,6 +21,9 @@
 .apps-run {
     font-size: .8em;
     margin-top: -1em;
+    color: #0937FF;
+    text-align: center;
+    margin-bottom: 0;
 }
 /* - - - Medias Summary app card - - - */
 @media screen and (max-width:1720px), screen and (max-height: 780px) {
@@ -35,15 +38,6 @@
 @media screen and (max-width:1440px), screen and (max-height: 900px){
     .circle {
         margin-top: 2em;
-    }
-    .info-btn {
-        height: 25px !important;
-        width: 25px !important;
-    }
-    .i-info {
-        font-size: 1.2em !important;
-        top: 2px !important;
-        left: 10px !important;
     }
     .donut-chart {
         height: 85%;
@@ -67,40 +61,17 @@
     width:93%;
 }
 
-/* - - - Deployed app list table card - - - */
-.row-info-btn {
-    padding-right: 0.3em;
-    padding-left: 0.3em;
-}
-.info-btn {
-    height: 32px;
-    width:32px;
-    border-radius: 50%;
-    position: relative;
-    margin-right: 2px;
-}
-.i-info {
-    font-size: 1.2em;
-    font-weight: 700;
-    position: absolute;
-    top: 5px;
-    left: 13px;
-}
+/* - - - Apps table card - - - */
 .app-info {
     color: #0937FF;
     cursor: pointer;
     outline: none;
+    text-transform: capitalize;
 }
-/* - - - Medias Apps tabs - - - */
-@media screen and (max-width:1440px) {
-    .app-tab-container {
-        margin-right: 1em !important;
-    }
-    .apps-options .apps-actions-btn {
-        bottom: -9px !important;
-        right: 45px !important;
-    }
+.actions-col-fix {
+    padding: 0.75rem 0;
 }
+
 /* - - - Apps buttons - - - */
 .apps-options {
     position: relative;
@@ -132,80 +103,10 @@
         }
     }
 }
-.btn-grey {
-    background-color: #E8E8E8;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    position: relative;
-    cursor: pointer;
-    color: #F25272;
-    border: none;
-    font-size: .7em;
-    outline: none;
-    &:hover {
-        color: #fff;
-        transition: 0.3s;
-        background-color: #F25272;
-      }
-    .i-red {
-        font-size: 1.7em;
-        font-weight: 700;
-        position: absolute;
-        top: 8px;
-        left: 7px;
+/* - - - Medias Apps tabs - - - */
+@media screen and (max-width:1440px) {
+    .apps-options .apps-actions-btn {
+        bottom: -9px;
+        right: 45px;
     }
 }
-.btn-grey-mr {
-    margin-right: 1.2em;
-}
-.btn-blue {
-    background-color: #0937FF;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    position: relative;
-    cursor: pointer;
-    color: white;
-    border: none;
-    font-size: .7em;
-    outline: none;
-    &:hover {
-        color: #fff;
-        transition: 0.3s;
-        background-color: #4f71fd;
-      }
-    .i-white {
-        font-size: 1.7em;
-        font-weight: 700;
-        position: absolute;
-        top: 8px;
-        left: 7px;
-    }
-}
-.btn-blue-mr {
-    margin-right: 1.2em;
-}
-
-/* - - - Medias Apps buttons - - - */
-@media screen and (max-width:1567px) {
-    .btn-grey {
-        width: 25px;
-        height: 25px;
-        .i-red {
-            top: 4px;
-            left: 4px;
-        }
-    }
-    .btn-blue {
-        width: 25px;
-        height: 25px;
-        .i-white {
-            top: 4px;
-            left: 4px;
-        }
-    }
-}
-
-
-

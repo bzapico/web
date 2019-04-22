@@ -1,11 +1,13 @@
 /* - - - Company card - - - */
-.company-img-hide {
-    height: 32%; 
-    display: none;
+.company-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
 }
 .company-img {
-    height: 50%;
-    border-radius: 50%;
     display: block;
     img {
         height: 112px;
@@ -14,97 +16,87 @@
 }
 .company-name {
     font-size: 1em;
+    text-transform: capitalize;
 }
-.subscription {
+.company-subscription {
     font-size: .8em;
+    color: #0937FF;
+    margin-bottom: 0;
 }
-.users{
+.company-users {
     color: #949494;
     font-size: .8em;
+    margin-bottom: 0;
 }
 
-/* - - - Members table card - - - */
-.add-user-btn{
-    margin: 0.75rem auto;
-}
-.info-btn {
-    height: 32px;
-    width:32px;
-    border-radius: 50%;
-    position: relative;
-}
-.info-btn-fix{
-    margin-right: 1em;
-    margin-left: 1em;
-}
-.i-edit{
-    font-size: 1.2em;
-    position: absolute;
-    top: 6px;
-    left: 7px;
-}
-.i-info{
-    font-size: 1.2em;
-    font-weight: 700;
-    position: absolute;
-    top: 5px;
-    left: 13px;
-}
-
-/* - - - Subscription card - - - */
-.subs-v {
-    height: 87px;
-    width:87px;
-    border-radius: 50%;
-    font-size: 1em;
-    text-align: center;
-    margin: 0 auto;
-    i {
-        font-size: 2.2em;
-        margin: 25px;
-    }
-}
-.subs-check {
-    font-size: .9em;
-    color: #949494;  
+/* - - - Users table card - - - */
+.actions-col {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+  }
+.table-users {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
 }
 .search-box {
     width: 250px;
 }
-@media screen and (max-width:1440px){
-    h2{
-        font-size: 1.5rem;
-    }
-    .info-btn {
-        height: 25px;
-        width: 25px;
-    }
-    .subs-v {
-        height: 70px;
-        width: 70px;
-    }
-    .subs-v i {
-        margin: 18px;
-    }
-    .i-edit{
+.add-user-btn{
+    margin-top: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* - - - Subscription card - - - */
+.subscription-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    text-align: center;
+    .subscription-icon {
+        height: 87px;
+        width: 87px;
+        border-radius: 50%;
         font-size: 1em;
-        top: 4px;
-        left: 5px;
+        margin: 0 auto;
+        background-color: #0937FF;
+        color: white;
+        i {
+            font-size: 2.2em;
+            margin: 25px;
+        }
     }
-    .i-info{
-        font-size: 1.2em;
-        top: 2px;
-        left: 10px;
+    .subscription-check {
+        font-size: .9em;
+        color: #949494;  
+    }
+    .subscription-plan {
+        color: #0937FF;
+    }
+}
+
+@media screen and (max-width:1440px){
+    .subscription-card {
+        .subscription-plan {
+            font-size: 1.5rem;
+        }
+        .subscription-icon {
+            height: 70px;
+            width: 70px;
+            i {
+                margin: 18px;
+            }
+        }
     }
     .company-img{
         display: none;
     }
-    .company-img-hide {
-        height: 11%;
-        display: block;
-    }
     .search-box {
-        margin-bottom: 2em;
         margin-right: 0em;
        .search-icon i {
             right: 7px;
@@ -113,14 +105,14 @@
             right: 7px;
        }
     }
-
 }
-@media screen and (max-height:900px){
+@media screen and (max-height: 900px){
     .company-img {
         display: none;
-        height: 0;
     }
-    .company-img img{
-        display: none;
+}
+@media screen and (max-width: 1366px) {
+    .table-h {
+        padding-top: 0; 
     }
 }

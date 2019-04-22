@@ -1,15 +1,20 @@
-<div *ngIf="alerts.length > 0" class="container alert-top-right" id="alert-container">
-  <div  *ngFor="let alert of alerts" class="row">
+<div 
+  *ngIf="alerts.length > 0" 
+  id="alert-container" 
+  class="container alert-top-right">
+  <div *ngFor="let alert of alerts" class="row">
     <div class="col-12">
       <alert 
-        [dismissible]="dismissible" 
         (onClosed)="onClosed(alert)" 
+        [dismissible]="dismissible" 
         [type]="alert.type" 
         [dismissOnTimeout]="alert.timeout">
         <span class="alert-icon">
           <i class="material-icons">info</i>
         </span>
-        <span class="alert-message" [innerHtml]="alert.message">{{alert.message}}</span>
+        <span [innerHtml]="alert.message" class="alert-message">
+          {{alert.message}}
+        </span>
       </alert>
     </div>
   </div>

@@ -86,13 +86,4 @@ describe('OrganizationComponent', () => {
     expect(updateUserList).toHaveBeenCalledWith(user);
   });
 
-  it('It should render organization name', () => {
-    component.organizationName = 'nike';
-    fixture.detectChanges();
-
-    de.query(By.css('.company-name'));
-
-    expect(el.innerText).toContain('nike');
-  });
-
 });

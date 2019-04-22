@@ -4,10 +4,10 @@
     <div class="modal-header">
       <h3 class="nalej-form-title">Add user</h3>
       <button 
+        (click)="discardChanges(f)"
         type="button" 
-        class="close" 
         aria-label="Close"
-        (click)="discardChanges(f)">
+        class="close" >
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -18,13 +18,13 @@
           <label>Name*</label>
           <input 
             formControlName="userName"
+            type="text" 
             placeholder="e.g. John"
             pattern="[a-zA-Z0-9]+"
-            type="text" 
             appAutofocus="true"
-            class="form-control" 
             [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
-            required>
+            required
+            class="form-control" >
           <div *ngIf="!submitted && f.userName.errors" class="error-message"></div>
           <div class="error-h">
             <div *ngIf="submitted && f.userName.errors" class="error-message">
@@ -38,12 +38,12 @@
           <label >Email*</label>
           <input 
             formControlName="email" 
-            placeholder="e.g. john@nalej.com"
             type="text" 
-            class="form-control"
+            placeholder="e.g. john@nalej.com"
             [ngClass]="{ 'is-invalid': submitted && f.email.errors }" 
             pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"
-            required>
+            required
+            class="form-control">
           <div class="error-h">
             <div *ngIf="submitted && f.email.errors" class="error-message">
               <div *ngIf="f.email.errors.required">Email is required</div>
@@ -55,11 +55,11 @@
           <label >Password*</label>
           <input 
             formControlName="password" 
-            placeholder="Type your password here"
             type="password" 
-            class="form-control" 
+            placeholder="Type your password here"
             [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-            required>
+            required
+            class="form-control">
           <div class="error-h">
             <div *ngIf="submitted && f.password.errors" class="error-message">
               <div *ngIf="f.password.errors.required">Password is required</div>
@@ -73,9 +73,9 @@
             formControlName="passwordConfirm" 
             type="password" 
             placeholder="Type your password again"
-            class="form-control" 
             [ngClass]="{ 'is-invalid': submitted && !samePasswords(addUserForm) }"
-            required>
+            required
+            class="form-control">
           <div class="error-h">
             <div *ngIf="submitted && !samePasswords(addUserForm)" class="error-message">
               Set passwords do not match
@@ -96,13 +96,17 @@
             <i class="material-icons">arrow_drop_down</i>
           </div>
           <div class="error-h">
-            <div *ngIf="submitted && f.role.errors && !userRole" class="error-message">
+            <div *ngIf=
+              "submitted &&
+              f.role.errors &&
+              !userRole" 
+              class="error-message">
               <div *ngIf="f.role.errors.required">A role is required</div>
             </div>
           </div>
         </div>
         <!-- Save new user -->
-        <div class="form-group d-flex flex-row justify-content-center">
+        <div class="form-group-btn">
           <button class="nalej-form-btn-blue" [disabled]="loading">
             <span class="align-bottom">Add user</span>
           </button>

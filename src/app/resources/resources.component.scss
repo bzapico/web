@@ -1,39 +1,5 @@
-/* - - - Cluster table card - - - */
-.info-btn {
-    height: 32px;
-    width:32px;
-    border-radius: 50%;
-    position: relative;
-}
-.i-info {
-    font-size: 1.2em;
-    position: absolute;
-    top: 6px;
-    left: 7px;
-}
-/* - - - Medias Cluster table card - - - */
-@media screen and (max-width:1440px) {
-    .card-title-c {
-        font-size: 1em;
-    }
-    h2 {
-        font-size: 1.5rem;
-    }
-    .info-btn {
-        height: 25px;
-        width: 25px;
-    }
-    .i-info {
-        font-size: 1em;
-        position: absolute;
-        top: 5px;
-        left: 5px;
-    }
-}
-
 
 /* - - - Cluster card Slider - - - */
-
 // slide animations
 .animated {
     -webkit-animation-duration: 1s;
@@ -61,30 +27,24 @@
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn;
 }
+
+// slide boxes
+.cluster-card { 
+    padding: 1.5rem 1.5rem 0 1.5rem;
+    height: 100%;
+} 
+.cluster-availability {
+    margin-bottom: 0;
+    float: right;
+    color: #949494;
+}
 .slide-box {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     height: 100%!important;
 }
-.cluster-name {
-    text-transform: uppercase;
-    color: #949494;
-    text-align: center;
-}
-.nodes-run {
-    font-size: .8em;
-    cursor: pointer;
-    text-align: center;
-}
-.carousel-big {
-    .nodes-run {
-        position: absolute;
-        bottom: 2.5em;
-        margin-bottom: 0.3em;
-    }
-}
-.box {
+.donut-chart-box {
     width: 27%;
     display: inline-flex;
     flex-direction: column;
@@ -97,20 +57,28 @@
     text-align: center;
     position: relative;
 }
-.cluster-number {
-    margin-bottom: 0;
-    float: right;
+.cluster-name {
+    text-transform: uppercase;
     color: #949494;
+    text-align: center;
 }
-.card-clus { 
-    padding: 1.5rem 1.5rem 0 1.5rem;
-    height: 100%;
-}       
+.nodes-run {
+    font-size: .8em;
+    cursor: pointer;
+    text-align: center;
+    color: #0937FF;
+}
+.carousel-big {
+    .nodes-run {
+        position: absolute;
+        bottom: 2.5em;
+        margin-bottom: 0.3em;
+    }
+}
 
 /* - - - Media Cluster card Slider - - - */
-@media screen and (max-width:1440px) {
-    .cluster-number {
-        margin-bottom: 0;
+@media screen and (max-width: 1440px) {
+    .cluster-availability {
         font-size: 0.8em;
     }
     .slide-box {
@@ -120,7 +88,7 @@
       width: 269px;
       max-height: 124px;
     }
-    .box {
+    .donut-chart-box {
       width: 100%;
       display: flex;
       flex-direction: row;
@@ -133,7 +101,7 @@
     }
 }
 @media screen and (min-width:2560px) {
-    .box {
+    .donut-chart-box {
         width: 31%;
     }
     .slide-box {
@@ -143,25 +111,14 @@
 /* - - - Node Status card - - - */
 .line-chart-box {
     width: 92%;
-    margin-left: 8px;
 }
-
+@media screen and (max-width:1440px) {
+    .line-chart-box {
+        width: 100%;
+    }
+}
 @media screen and (max-width:1686px){
     .hide-all-word {
         display: none;
-    }
-    .nodes-run {
-        &:nth-child(2) { 
-         text-transform: capitalize;
-        }
-    }    
-}
-@media screen and (max-width:1440px) {
-    .y-axis-line-chart  {
-        display: none;
-    }
-    .box-line-chart {
-        width: 100%;
-        margin-left: 0;
     }
 }

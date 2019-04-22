@@ -7,18 +7,21 @@
 <!-- Cluster info card -->
 <div class="row row-info">
   <div class="col-lg-3 h-100">
-    <div class="card p-4 h-100">
+    <div class="card">
       <div class="card-title-name">
         <h5 class="d-inline text-uppercase">{{clusterData.name | truncate}}</h5>
-        <p class="d-inline cluster-number grey hide">STATUS</p>
+        <p class="cluster-number hide-lg">STATUS</p>
       </div>
       <!-- Cluster card -->
-        <div class="box-card">
+        <div class="cluster-card-box">
           <h3 
             class="text-center text-uppercase"
-            [ngClass]="{'blue':classStatusCheck(clusterData.status_name, 'running'),
-            'red':classStatusCheck(clusterData.status_name, 'error'),
-            'teal':classStatusCheck(clusterData.status_name, 'process')}">
+            [ngClass]=
+            "{
+              'blue':classStatusCheck(clusterData.status_name, 'running'),
+              'red':classStatusCheck(clusterData.status_name, 'error'),
+              'teal':classStatusCheck(clusterData.status_name, 'process')
+            }">
             {{clusterData.status_name}}
           </h3>
         </div>
@@ -26,50 +29,42 @@
   </div>
   <!-- Summary cluster info card -->
   <div class="col-lg-9 h-100">
-    <div class="card card-clus p-4 h-100">
+    <div class="card">
       <div class="card-title-name">
         <h5>SUMMARY</h5>
       </div>
-      <div class="box-card">
-        <div class="box circles-box ">
-          <div class="box">
-              <div class="donut-chart">
-                <ngx-charts-pie-chart
-                  [scheme]="colorScheme" 
-                  [results]="clusterPieChart" 
-                  [doughnut]= "doughnut"
-                  [gradient]="gradient"
-                  [explodeSlices]="false"
-                  >
-                </ngx-charts-pie-chart>
-                <div class="donut-number">
-                  {{clusterData.running_nodes}}/{{clusterData.total_nodes}}
-                </div>
+      <div class="cluster-card-box">
+        <div class="cluster-box circles-box">
+          <div class="cluster-box">
+            <div class="donut-chart">
+              <ngx-charts-pie-chart
+                [scheme]="colorScheme" 
+                [results]="clusterPieChart" 
+                [doughnut]= "doughnut"
+                [gradient]="gradient"
+                [explodeSlices]="false">
+              </ngx-charts-pie-chart>
+              <div class="donut-number">
+                {{clusterData.running_nodes}}/{{clusterData.total_nodes}}
               </div>
-              <p class="blue nodes-run mb-0">{{clusterData.running_nodes}} running</p>
-              <p class="grey nodes-run-node">NODES</p>
-            </div> 
+            </div>
+            <p class="nodes-run">{{clusterData.running_nodes}} running</p>
+            <p class="nodes-run-node">NODES</p>
+          </div> 
         </div>
-        <div class="box flex-grow-1"  id="scroll-table">
-          <table class="table cluster-summary">
+        <div class="cluster-box" id="scroll-cluster-table">
+          <table class="table cluster-summary-table">
             <tr>
-              <th class="grey">
-                id
-              </th>
+              <th>ID</th>
               <td>{{clusterData.cluster_id}}</td>
             </tr>
             <tr>
-              <th class="grey">
-                types
-              </th>
+              <th>Types</th>
               <td class="text-lowercase">{{clusterData.cluster_type_name}}</td> 
             </tr>
             <tr>
-              <th class="grey">
-                Labels
-              </th>
+              <th>Labels</th>
               <td *ngIf="!clusterData.labels || clusterData.labels === {} "> no </td>
-              
               <td *ngIf="clusterData.labels">
                 <button *ngFor="let label of labelsToString(clusterData.labels)" class="btn-sm btn-outline-primary" disabled>
                   <span *ngIf="label[1]">{{label[0]}}: {{label[1]}}</span>  
@@ -77,9 +72,7 @@
               </td>
             </tr>
             <tr>
-              <th class="grey">
-                Multitenant
-              </th>
+              <th>Multitenant</th>
               <td class="text-lowercase">{{clusterData.multitenant_support}}</td>
             </tr>
           </table>
@@ -90,8 +83,8 @@
 </div>
 <!-- Nodes panel card-->
 <div class="row row-main">
-  <div class="col-lg-12 col-md-12 col-sm-12 h-100">
-    <div class="card h-100">
+  <div class="col-lg-12 h-100">
+    <div class="card">
       <div class="card-title-name">
         <h5>
           <a 
@@ -100,32 +93,32 @@
             class="blue">
             CLUSTER
           </a>
-          <span class="grey"> > </span>
+          <span class="grey"> > </span> 
           <b>NODES</b>
           <span class="grey text-uppercase">
              > {{clusterData.name}} 
           </span>
         </h5>
       </div>
-      <div class="row justify-content-between">
+      <div class="row mb-3">
         <!-- Sorting mesages -->
           <div class="col-9">  
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
               Filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
             </p>
             <p *ngIf="filterField && !searchTerm" class="sorting-message">
               Sorted by {{ sortedBy }},
               <span *ngIf="reverse">ascendant. </span>
               <span *ngIf="!reverse">descendant. </span>
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
               Sorted by {{ sortedBy }}
               <span *ngIf="reverse">ascendant </span>
               <span *ngIf="!reverse">descendant </span>
               and filtered by term "{{ searchTerm }}".
-              <span class="blue reset-search" (click)="resetFilters(filterField)">Reset</span>
+              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
             </p> 
           </div>
           <!-- Search input -->
@@ -133,22 +126,27 @@
             <form>
               <div class="search-box">
                 <input 
-                  type="text" 
-                  class="form-control" 
                   name="searchTerm" 
-                  placeholder="Search..." 
-                  [(ngModel)]="searchTerm"> 
-                  <div class="search-icon" *ngIf="searchTerm === ''">
+                  [(ngModel)]="searchTerm"
+                  type="text" 
+                  placeholder="Search..."
+                  class="form-control"> 
+                  <div *ngIf="searchTerm === ''" class="search-icon">
                     <i class="material-icons">search</i>
                   </div>     
-                  <div class="close-icon" *ngIf="searchTerm !== ''">
+                  <div *ngIf="searchTerm !== ''" class="close-icon">
                     <i class="material-icons" (click)="resetFilters(filterField)">close</i>
                   </div>
               </div>
             </form>
           </div>      
       </div>
-      <div class="table-h" *ngIf="loadedData && nodes && nodes.length > 0 && !requestError">
+      <div *ngIf=
+        "loadedData &&
+        nodes &&
+        nodes.length > 0 &&
+        !requestError"
+        class="table-h">
         <table class="table-responsive table-fixed">
           <thead>
             <tr>
@@ -158,10 +156,10 @@
                 scope="col" 
                 class="col-3">
                 ID
-                <span class="expand-chevron" *ngIf="sortedBy === 'id' && !reverse">
+                <span *ngIf="sortedBy === 'id' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'id' && reverse">
+                <span *ngIf="sortedBy === 'id' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -171,10 +169,10 @@
                 scope="col" 
                 class="col-2">
                 IP
-                <span class="expand-chevron" *ngIf="sortedBy === 'ip' && !reverse">
+                <span *ngIf="sortedBy === 'ip' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'ip' && reverse">
+                <span *ngIf="sortedBy === 'ip' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -184,10 +182,10 @@
                 scope="col" 
                 class="col-2">
                 State
-                <span class="expand-chevron" *ngIf="sortedBy === 'state' && !reverse">
+                <span *ngIf="sortedBy === 'state' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'state' && reverse">
+                <span *ngIf="sortedBy === 'state' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -197,10 +195,10 @@
                 scope="col" 
                 class="col-3">
                 Labels
-                <span class="expand-chevron" *ngIf="sortedBy === 'labels' && !reverse">
+                <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'labels' && reverse">
+                <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
@@ -210,47 +208,49 @@
                 scope="col" 
                 class="col-2 text-center">
                 Status
-                <span class="expand-chevron" *ngIf="sortedBy === 'status' && !reverse">
+                <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'status' && reverse">
+                <span *ngIf="sortedBy === 'status' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let node of nodes | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
+            <tr *ngFor=
+              "let node of nodes |
+              sortBy : sortedBy : reverse : 'case-insensitive' |
+              filter : searchTerm">
               <td class="col-3">{{node.node_id}}</td>
               <td class="col-2">{{node.ip}}</td>  
-              <td class="text-lowercase col-2">{{node.state_name}}</td>
+              <td class="col-2 text-lowercase ">{{node.state_name}}</td>
               <td class="col-3" *ngIf="!node.labels"> no </td>
               <td class="col-3" *ngIf="node.labels">
                 <button 
+                  *ngFor="let label of labelsToString(node.labels)" 
                   (click)="onLabelClick(node.node_id, label[0], label[1])"
                   [ngClass]=
                   "{'label-btn-selected': indexOfLabelSelected(node.node_id, label[0], label[1]) >= 0 ,
                     'btn-outline-primary': indexOfLabelSelected(node.node_id, label[0], label[1]) === -1}" 
-                  *ngFor="let label of labelsToString(node.labels)" 
-                  class="btn-sm btn-outline-primary" 
-                  >
+                  class="btn-sm btn-outline-primary">
                   {{label[0]}}: {{label[1]}} 
                 </button>
                 <div class="label-btns">
                   <div 
                     *ngIf="isAnyLabelSelected(node.node_id) === false"
-                    class="label-btn-blue" 
+                    (click)="addLabel(node)"
                     tooltip="Add" 
                     placement="right"
-                    (click)="addLabel(node)">
+                    class="label-btn-blue">
                     <i class="material-icons i-add">add</i>
                   </div>
                   <div 
                     *ngIf="isAnyLabelSelected(node.node_id) === true"
-                    class="label-btn-red" 
+                    (click)="deleteLabel(node)"
                     tooltip="Delete" 
                     placement="right"
-                    (click)="deleteLabel(node)">
+                    class="label-btn-red">
                     <i class="material-icons i-delete">delete</i>
                   </div>
                 </div>
@@ -258,12 +258,17 @@
               <td 
                 class="col-2 col-center-lowercase"
                 [ngClass]=
-                "{'status-dot':classStatusCheck(node.status_name, 'running'),
-                'status-dot-error':classStatusCheck(node.status_name, 'error'),
-                'status-dot-process':classStatusCheck(node.status_name, 'process')}">
-                <span tooltip= "{{node.status_name | lowercase}}" class="tooltip-fix" placement="auto">
+                "{
+                  'status-dot':classStatusCheck(node.status_name, 'running'),
+                  'status-dot-error':classStatusCheck(node.status_name, 'error'),
+                  'status-dot-process':classStatusCheck(node.status_name, 'process')
+                }">
+                <span 
+                tooltip= "{{node.status_name | lowercase}}" 
+                placement="auto"
+                class="tooltip-fix">
                 </span>
-                <span class="hide">
+                <span class="hide-lg">
                   {{node.status_name}}
                 </span>
               </td>
@@ -272,23 +277,21 @@
         </table>
       </div>
       <!-- No info to show -->
-      <div
-        *ngIf="loadedData && nodes && nodes.length === 0 && !requestError"
+      <div *ngIf=
+        "loadedData &&
+        nodes && nodes.length === 0 &&
+        !requestError"
         class="no-elements">
         <p>There are not registered nodes in this cluster</p>
       </div>
        <!-- Requested error -->
-      <div
-        *ngIf="loadedData && requestError"
-        class="no-elements">
+      <div *ngIf="loadedData && requestError" class="no-elements">
         <p>{{requestError}}</p>
       </div>
       <!-- Loader -->
-      <div class="nalej-loader-box" *ngIf="!loadedData">
+      <div *ngIf="!loadedData"class="nalej-loader-box">
         <div class="loader">
-          <svg 
-            class="circular" 
-            viewBox="25 25 50 50">
+          <svg class="circular" viewBox="25 25 50 50">
             <circle 
               class="path" 
               cx="50" 

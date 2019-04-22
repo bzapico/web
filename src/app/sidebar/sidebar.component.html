@@ -1,16 +1,14 @@
 <div class="sidebar">
   <ul class="nav">
     <li 
+      (click)="openDebugPanel()"
       class="nav-title" 
-      style="visibility:hidden" 
-      (click)="openDebugPanel()">
+      style="visibility:hidden">
       NALEJ
     </li>
     <li class="nav-item">
-      <a 
-        routerLinkActive="active" 
-        class="nav-link">
-        <div class="profile" (click)="openEditUser()">
+      <a routerLinkActive="active" class="nav-link">
+        <div (click)="openEditUser()" class="profile" >
           <div class="avatar-frame">
             <i class="material-icons">person</i>
           </div>
@@ -20,9 +18,7 @@
         </div>
       </a>
     </li>
-    <li 
-      *ngIf="role === 'Owner'" 
-      class="nav-item nav-item-page">
+    <li *ngIf="role === 'Owner'" class="nav-item nav-item-page">
       <a
         routerLinkActive="active" 
         routerLink="/organization" 
@@ -31,9 +27,7 @@
         Organization
       </a>
     </li>
-    <li
-      *ngIf="role === 'Owner' || role === 'Operator'"
-      class="nav-item nav-item-page">
+    <li *ngIf="role === 'Owner' || role === 'Operator'" class="nav-item nav-item-page">
       <a         
         routerLinkActive="active" 
         routerLink="/resources" 
@@ -42,9 +36,7 @@
         Resources
       </a>
     </li>
-    <li
-      *ngIf="role === 'Owner' || role === 'Developer'" 
-      class="nav-item nav-item-page">
+    <li *ngIf="role === 'Owner' || role === 'Developer'" class="nav-item nav-item-page">
       <a         
         routerLinkActive="active" 
         routerLink="/devices" 
@@ -53,9 +45,7 @@
         Devices
       </a>
     </li>
-    <li 
-      *ngIf="role === 'Owner' || role === 'Developer'" 
-      class="nav-item nav-item-page">
+    <li *ngIf="role === 'Owner' || role === 'Developer'" class="nav-item nav-item-page">
       <a         
         routerLinkActive="active" 
         routerLink="/applications" 
@@ -64,9 +54,7 @@
         Applications
       </a>
     </li>
-    <li 
-      class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn" 
-      (click)="logout()">
+    <li (click)="logout()" class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn">
       <button class="btn info-btn logout-btn logout my-4">
         Logout
       </button>
