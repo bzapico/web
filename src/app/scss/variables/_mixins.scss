@@ -27,7 +27,7 @@
     @media all and (max-width: 1440px) { @content; }
 }
 @mixin for-quarter-only {
-    @media all and (max-width:1720px) and (max-height: 780px) { @content; }
+    @media all and (max-width: 1720px) and (max-height: 780px) { @content; }
 }
 @mixin for-quarter-up {
     @media all and (max-width: 1720px) { @content; }

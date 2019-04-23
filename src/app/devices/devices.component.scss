@@ -6,7 +6,7 @@
 }
 /* - - - Device Status card - - - */
 .line-chart-box {
-    width:93%;
+    width: 93%;
 }
 /* - - - Devices tabs buttons - - - */
 .devices-tab-btns-box {
@@ -23,10 +23,10 @@
             cursor: pointer;
             position: relative;
             @include for-quarter-only {
-                padding: 0rem 1.2rem !important;
+                padding: 0 1.2rem;
             }
             @include for-desktop-up {
-                padding: 0rem .9rem !important;
+                padding: 0 .9rem;
             }
         }
         span {
@@ -56,7 +56,7 @@
         .devices-button-item-pr {
             padding-right: 3em;
             @include for-desktop-up {
-                padding-right: 0em !important;
+                padding-right: 0;
             }
         }
     }
@@ -70,7 +70,7 @@
         border: none;
     } 
     th {
-        padding: 0.2em;
+        padding: .2em;
         border: none;
         font-size:  .9em;
         font-weight: 200;
@@ -79,7 +79,7 @@
         }
     }
     td {
-        padding: 0.2rem;
+        padding: .2rem;
         vertical-align: middle;
         font-size:  .9em;
         border: none;

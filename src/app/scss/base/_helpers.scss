@@ -27,6 +27,11 @@
     display: none;
   }
 }
+.hide-title-sm {
+  @media screen and (max-height: 780px) {
+    display: none;
+  }
+}
 
 /* - - - Tooltip fix - - - */
 .tooltip-fix {

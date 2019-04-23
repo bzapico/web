@@ -1,3 +1,10 @@
+@mixin for-desktop-up {
+    @media all and (max-width: 1440px) { @content; }
+}
+@mixin for-desktop-only {
+    @media all and (max-width: 1440px) and (max-height: 900px) { @content; }
+}
+
 /* - - - Card heights - - */
 .h-reg {
     height: 96%; 
@@ -52,6 +59,9 @@
         transition: 0.3s;
         background-color: #4f71fd;
     }
+    @include for-desktop-up {
+        width: 114px;
+    }
 }
 .reg-undeploy {
     border: none;
@@ -70,6 +80,9 @@
         transition: 0.3s;
         background-color: #ff437d;
     }
+    @include for-desktop-up {
+        width: 114px;
+    }
 }
 .i-options {
     position: absolute;
@@ -78,6 +91,9 @@
     transform: translate(-50%, -50%);
     display: block;
     font-size: 1.7em;
+    @include for-desktop-up {
+        left: 20%;
+    }
 }
 .reg-info-box {
     display: flex;
@@ -103,21 +119,8 @@
     justify-content: space-around;
 }
 
-/* - - - Media apps info card buttons - - - */
-@media screen and (max-width:1440px) {
-    .reg-deploy {
-        width: 114px;
-    }
-    .reg-undeploy {
-        width: 114px;
-    }
-    .i-options{
-        left: 20%;
-    }
-}
-/* - - - Medias Servivces summary card - - - */
-@media screen and (max-width:1440px) {
-    .table-fixed tbody td:last-child {
+.table-fixed tbody td:last-child {
+    @include for-desktop-up {
         padding: 0.75rem 0;
     }
 }
@@ -169,9 +172,7 @@
     overflow: scroll;
     height: 83%;
     word-wrap: break-word;
-}
-@media screen and (max-width:1440px), screen and (max-height: 900px)  {
-    .config-card {
+    @include for-desktop-only {
         text-align: left;
         justify-content: end;
     }

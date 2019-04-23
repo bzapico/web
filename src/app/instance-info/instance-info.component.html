@@ -30,7 +30,7 @@
               <table class="table summary-instances-table">
                 <tr>
                   <th>Status</th>
-                  <td [ngClass]="instanceClassStatusCheck(instance.status_name)" class="summary-instances-status">
+                  <td [ngClass]="instanceClassStatusCheck(instance.status_name)" id="summary-instances-status">
                     {{instance.status_name}}
                   </td>
                 </tr>
@@ -49,12 +49,12 @@
                 </tr>
                 <tr>
                   <th>Groups</th>
-                  <td *ngIf="instance && instance.groups" class="summary-instances-data">{{instance.groups.length}}</td> 
-                  <td *ngIf="!instance || !instance.groups" class="summary-instances-data">0</td> 
+                  <td *ngIf="instance && instance.groups" id="summary-instances-data">{{instance.groups.length}}</td> 
+                  <td *ngIf="!instance || !instance.groups" id="summary-instances-data">0</td> 
                 </tr>
                 <tr>
                   <th>Service instances</th>
-                  <td class="summary-instances-data">{{countGroupServices('ALL')}}</td> 
+                  <td id="summary-instances-data">{{countGroupServices('ALL')}}</td> 
                 </tr>
               </table>
             </div>

@@ -1,3 +1,13 @@
+@mixin for-desktop-only {
+    @media all and (max-width: 1440px) and (max-height: 900px) { @content; }
+}
+@mixin for-md-desktop-only {
+    @media all and (max-width: 1366px) and (max-height: 768px) { @content; }
+}
+@mixin for-big-desktop-up {
+    @media all and (min-width: 2560px) { @content; }
+}
+
 .sidebar {
     display: flex;
     -ms-flex-direction: column;
@@ -13,7 +23,6 @@
     background: linear-gradient(to bottom, #545454 0%, #000000 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#545454', endColorstr='#000000',GradientType=0 );
-    /* IE6-9 */
 }
 .nav {
     width: 100%;
@@ -40,15 +49,14 @@
             position: absolute;
             top: 0;
             background-color: #0937FF;
+            @include for-desktop-only {
+                height: 62px;
+            }
         }
     }
 }
 .active {
     background-color: #0937FF!important;
-}
-
-@mixin for-big-desktop-up {
-    @media all and (min-width: 2560px) { @content; }
 }
 .nav-title {
     margin: 40px 0;
@@ -62,12 +70,15 @@
     align-self: center;
     font-weight: 600;
     position: relative;
+    @include for-desktop-only {
+        font-size: 13px;
+        letter-spacing: 26px;
+    }
 }
 .nav-item {
     position: relative;
     margin: 0;
     cursor: pointer;
-   
     .nav-item-page {
         height: 71px;
     }
@@ -78,6 +89,9 @@
         background: 0 0;
         font-size: 18px;
         padding: 20px 0;
+        @include for-desktop-only {
+            font-size: 15px;
+        }
         .material-icons {
             display: inline-block;
             margin-left: 37px;
@@ -90,11 +104,17 @@
                 margin-left: 50px;
                 margin-right: 50px;
             }
+            @include for-desktop-only {
+                margin-right: 20px;
+            }
         }
         .arrow {
             float: right;
             margin-right: 25px;
             font-weight: 800;
+            @include for-desktop-only {
+                margin-right: 13px;
+            }
         }
     }
     .profile {
@@ -109,14 +129,24 @@
             padding-top: 32px;
             color: white;
             font-size: 24px;
+            @include for-desktop-only {
+                font-size: 21px;
+                padding: 0;
+            }
         }
         .type{
             color: #0937FF;
             font-size: 18px;
+            @include for-desktop-only {
+                font-size: 16px;
+            }
         }
         .email {
             color: #B7B7B7;
             font-size: 18px;
+            @include for-desktop-only {
+                font-size: 15px;
+            }
         }
         .avatar-frame {
             border: 2px solid #707070;
@@ -131,6 +161,9 @@
                 font-size: 100px;
                 margin: 0 auto;
                 margin-left: 6px;
+            }
+            @include for-md-desktop-only {
+                display: none;
             }
         }
     }
@@ -150,7 +183,7 @@
         color: #fff;
         transition: 0.3s;
         background-color: #ff6897;
-      }
+    }
 }
 .logout {
     position: fixed;
@@ -161,41 +194,36 @@
 }
 @media screen and (max-width:1440px), screen and (max-height: 900px) {
     .sidebar .nav-item .nav-link {
-        font-size: 15px;
+        // font-size: 15px;
+
     }
-    .nav .active::before {
-        height: 62px;
-    }
+    // .nav .active::before {
+    //     height: 62px;
+    // }
     .sidebar {
         .nav-item {
-            .material-icons {
-                margin-right: 20px;
-            }
+            // .material-icons {
+            //     margin-right: 20px;
+            // }
             .profile {
-                .name {
-                    font-size: 21px;
-                    padding: 0;
-                }
-                .email {
-                    font-size: 15px;
-                }
-                .type {
-                    font-size: 16px;
-                }
+                // .name {
+                //     font-size: 21px;
+                //     padding: 0;
+                // }
+                // .email {
+                //     font-size: 15px;
+                // }
+                // .type {
+                //     font-size: 16px;
+                // }
             }
-            .nav-link .arrow {
-                margin-right: 13px;
-            }
+            // .nav-link .arrow {
+            //     margin-right: 13px;
+            // }
         }
-        .nav-title {
-            font-size: 13px;
-            letter-spacing: 26px;
-        }
+        // .nav-title {
+        //     font-size: 13px;
+        //     letter-spacing: 26px;
+        // }
     }
-}
-
-@media screen and (max-width:1366px), screen and (max-height: 768px) {
-    .avatar-frame {
-        display: none;
-     }
 }
