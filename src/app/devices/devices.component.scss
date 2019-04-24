@@ -112,6 +112,12 @@
     }
 }
 
+.loaded-devices {
+    height: 100%;
+    width: 100%;
+    margin-top: -1em;
+    overflow: hidden;
+}
 /* - - - Close group button - - - */
 .close-group-button {
     display: flex;
