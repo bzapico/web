@@ -13,7 +13,7 @@
     flex-direction: row;
     text-transform: uppercase;
     @include for-quarter-up {
-        padding: 0.5rem 1rem;
+        padding: 0 1rem;
     }
     ul {
         list-style: none;

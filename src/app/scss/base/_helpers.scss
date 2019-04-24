@@ -17,6 +17,12 @@
     display: none;
   }
 }
+.show-md {
+  display: none;
+  @include for-desktop-only{
+    display: block;
+  }
+}
 .hide-md {
   @include for-desktop-only {
     display: none;
