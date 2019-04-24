@@ -359,7 +359,7 @@
                   (click)="setOrder('register_since')" 
                   [ngClass]="getCategoryCSSClass('register_since')"
                   scope="col" 
-                  class="col-1">
+                  class="col-2">
                   Date
                   <span *ngIf="sortedBy === 'register_since' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
@@ -401,7 +401,7 @@
                   (click)="setOrder('labels')" 
                   [ngClass]="getCategoryCSSClass('labels')"
                   scope="col" 
-                  class="col-4">
+                  class="col-3">
                   Labels
                   <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
@@ -443,11 +443,10 @@
                 "let device of getDevices() |
                 sortBy : sortedBy : reverse : 'case-insensitive' |
                 filter : searchTerm">
-    
                 <span *ngIf="activeGroupId === 'ALL'">
                   <td class="col-2">{{device.device_id}}</td>
                   <td class="col-2">{{getGroupName(device.device_group_id)}}</td>
-                  <td class="col-1">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</td>  
+                  <td class="col-2">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</td>  
                   <td 
                     class="col-2 col-center-lowercase"
                     [ngClass]=
@@ -465,7 +464,7 @@
                       {{device.device_status_name}}
                     </span>
                   </td>
-                  <td *ngIf="!device.labels" class="col-4">
+                  <td *ngIf="!device.labels" class="col-3">
                     <div 
                       (click)="addLabel(device)"
                       tooltip="Add" 
@@ -474,7 +473,7 @@
                         <i class="material-icons i-add">add</i>  
                     </div>
                   </td>
-                  <td *ngIf="device.labels" class="col-4">
+                  <td *ngIf="device.labels" class="col-3">
                     <button 
                       *ngFor="let label of labelsToString(device.labels)" 
                       (click)="onLabelClick(device.device_id, label[0], label[1])"
@@ -520,7 +519,6 @@
                     </span>
                   </td>
                 </span>
-             
                 <span *ngIf="activeGroupId === device.device_group_id" >
                   <td *ngIf="groups.length > 0 && countGroupDevices(device.device_group_id) === 0" class="col-12">
                       No available devices registered in this group
