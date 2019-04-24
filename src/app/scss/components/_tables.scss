@@ -69,6 +69,14 @@
         }
     }   
 
+    .nalej-thead {
+        position: sticky;
+        top: 0;
+        background-color: white;
+        max-height: 25px;
+        z-index: 1;
+    }
+
     tr:after {
         content: ' ';
         display: block;
