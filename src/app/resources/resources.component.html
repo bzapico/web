@@ -323,8 +323,8 @@
                 (click)="setOrder('status_name')" 
                 [ngClass]="getCategoryCSSClass('status_name')"
                 scope="col" 
-                class="col-1 text-center">
-                Status
+                class="col-1 text-center status-initial-text">
+                <span class="status-full-text">Status</span> 
                 <span *ngIf="sortedBy === 'status_name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -335,9 +335,11 @@
               <th 
                 (click)="setOrder('multitenant_support')" 
                 [ngClass]="getCategoryCSSClass('multitenant_support')"
+                tooltip="Multitenant" 
+                placement="auto"
                 scope="col" 
-                class="col-1 text-center multitenant-th">
-                Multitenant
+                class="col-1 text-center multitenant-short-text multitenant-initial-text">
+                <span class="multitenant-full-text">Multitenant</span> 
                 <span *ngIf="sortedBy === 'multitenant_support' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>

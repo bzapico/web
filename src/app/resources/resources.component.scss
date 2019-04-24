@@ -117,8 +117,36 @@
         width: 100%;
     }
 }
+
+/* - - - Table headers show or hide options - - - */
 @media screen and (max-width:1686px){
     .hide-all-word {
         display: none;
     }
 }
+@media screen and (max-width:1898px){
+    .multitenant-short-text .multitenant-full-text {
+        display: none;
+    }
+    .multitenant-short-text {
+        &::after {
+            content: 'Multi';
+        }
+    }
+}
+@media screen and (max-width:1326px){
+    .multitenant-initial-text .multitenant-full-text, .status-full-text {
+        display: none;
+    }
+    .multitenant-initial-text {
+        &::after {
+            content: 'M';
+        }
+    }
+    .status-initial-text {
+        &::after {
+            content: 'S';
+        }
+    }
+}
+
