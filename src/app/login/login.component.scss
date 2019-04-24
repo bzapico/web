@@ -1,3 +1,7 @@
+@mixin for-desktop-only {
+  @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
+}
+
 .login {
   height: 100vh;
   padding-top: 40px;
@@ -30,6 +34,12 @@
 }
 .nalej-loader-container {
   min-height: 4em !important;
+}
+
+.form-group-btn {
+  @include for-desktop-only {
+    margin-top: 3em;
+  }
 }
 .btn-h {
   height: 1.6em;
