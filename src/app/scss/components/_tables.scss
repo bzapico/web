@@ -12,6 +12,24 @@
     text-align: right;
     text-transform: lowercase;
 }
+.nalej-table {
+    border: 2px solid purple;
+    width: 100%;
+    height: 100%;
+}
+.nalej-table-header {
+
+    div {
+        border: 1px solid blue;
+    }
+    
+}
+
+.nalej-table-body {
+    div {
+        border: 1px solid green;
+    }
+}
 .table-fixed {
     width: 100%;
     height: 100%;

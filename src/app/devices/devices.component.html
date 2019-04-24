@@ -289,8 +289,54 @@
           class="no-elements-in-group">
           No available devices registered in this group
         </div>
-        <!-- Devices table -->
-        <div *ngIf=
+
+
+
+
+
+<div *ngIf=
+  "devices &&
+  devices.length > 0 &&
+  groups.length > 0 &&
+  !requestError" 
+  class="nalej-table">
+  <div class="container-fluid">
+    <div class="row nalej-table-header">
+      <div class="col-3">ID</div>
+      <div class="col-2">Group</div>
+      <div class="col-2">Date</div>
+      <div class="col-1">Status</div>
+      <div class="col-3">Labels</div>
+      <div class="col-1">Enabled</div>
+    </div>
+    <div *ngFor="let device of getDevices() | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm" class="row nalej-table-body">
+      <div class="col-3">{{device.device_id}}</div>
+      <div class="col-2">{{getGroupName(device.device_group_id)}}</div>
+      <div class="col-2">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</div>
+      <div class="col-1">{{device.device_status_name}}</div>
+      <div class="col-3">ghjghjghj</div>
+      <div class="col-1">
+          <span 
+          *ngIf="!device.enabled" 
+          (click)="enableSwitcher(device)"
+          class="devices-checkbox">
+          <i class="material-icons grey">check_box_outline_blank</i>
+        </span>
+        <span 
+          *ngIf="device.enabled"  
+          (click)="enableSwitcher(device)" 
+          class="devices-checkbox">
+          <i class="material-icons blue">check_box</i>
+        </span>
+    </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+        <!-- <div *ngIf=
           "devices &&
           devices.length > 0 &&
           groups.length > 0 &&
@@ -441,7 +487,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let device of getDevices() | sortBy : sortedBy : reverse : 'case-insensitive' | filter : searchTerm">
-                <!-- "All" tab selected -->
+    
                 <span *ngIf="activeGroupId === 'ALL'">
                   <td class="col-2">{{device.device_id}}</td>
                   <td class="col-2">{{getGroupName(device.device_group_id)}}</td>
@@ -518,7 +564,7 @@
                     </span>
                   </td>
                 </span>
-                <!-- device.device_group_id tab selected -->
+             
                 <span *ngIf="activeGroupId === device.device_group_id" >
                   <td *ngIf="groups.length > 0 && countGroupDevices(device.device_group_id) === 0" class="col-12">
                       No available devices registered in this group
@@ -600,7 +646,7 @@
               </tr>
             </tbody>
           </table>
-        </div>
+        </div> -->
           <!-- No info to show -->
         <div *ngIf="groups.length === 0 && !requestError" class="no-elements">
           No available groups have been created. Add a new group to be able to register devices in it.
