@@ -1,5 +1,5 @@
 @mixin for-desktop-only {
-  @media all and (max-width: 1440px) and (max-height: 900px) { @content; }
+  @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
 }
 
 hr {

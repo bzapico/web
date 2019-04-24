@@ -993,70 +993,61 @@ export class DebugPanelComponent implements OnInit {
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;debug-panel&quot;&gt;
   &lt;!-- Header --&gt;
-&lt;div class&#x3D;&quot;modal-header&quot;&gt;
+  &lt;div class&#x3D;&quot;modal-header&quot;&gt;
     &lt;h4 class&#x3D;&quot;modal-title pull-left mb-3&quot;&gt;
       Debug panel
     &lt;/h4&gt;
     &lt;button
+      (click)&#x3D;&quot;bsModalRef.hide()&quot;
       type&#x3D;&quot;button&quot;
-      class&#x3D;&quot;close pull-right&quot;
       aria-label&#x3D;&quot;Close&quot;
-      (click)&#x3D;&quot;bsModalRef.hide()&quot;&gt;
-      &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;
-        &amp;times;
-      &lt;/span&gt;
+      class&#x3D;&quot;close pull-right&quot;&gt;
+      &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
     &lt;/button&gt;
   &lt;/div&gt;
   &lt;!-- Body --&gt;
   &lt;div class&#x3D;&quot;modal-body&quot;&gt;
-      &lt;h5 class&#x3D;&quot;mb-3&quot;&gt;Backend URL&lt;/h5&gt;
-      &lt;input 
-        class&#x3D;&quot;w-100 form-control mb-3&quot;
-        type&#x3D;&quot;text&quot;
-        [ngModel]&#x3D;&quot;url&quot;
-        (ngModelChange)&#x3D;&quot;urlChange($event)&quot;
-        &gt;
+    &lt;h5 class&#x3D;&quot;mb-3&quot;&gt;Backend URL&lt;/h5&gt;
+    &lt;input 
+      (ngModelChange)&#x3D;&quot;urlChange($event)&quot;
+      type&#x3D;&quot;text&quot;
+      [ngModel]&#x3D;&quot;url&quot;
+      class&#x3D;&quot;w-100 form-control mb-3&quot;&gt;
     &lt;hr/&gt;
     &lt;h5 class&#x3D;&quot;mb-3&quot;&gt;Backend control&lt;/h5&gt;
-    &lt;div class&#x3D;&quot;dp-height&quot; *ngIf&#x3D;&quot;components.length&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;components.length&quot; class&#x3D;&quot;dp-height&quot; &gt;
       &lt;div class&#x3D;&quot;d-flex justify-content-center align-items-center&quot;&gt;
-          &lt;div
-            class&#x3D;&quot;btn btn-outline-primary mb-3 small-font&quot;
-            (click)&#x3D;&quot;changeAll(&#x27;false&#x27;)&quot;
-            &gt;All real
-          &lt;/div&gt;
-          &lt;div
-            class&#x3D;&quot;btn btn-outline-primary mb-3 small-font&quot;
-            (click)&#x3D;&quot;changeAll(&#x27;true&#x27;)&quot;
-            &gt;All mock
-          &lt;/div&gt;
+        &lt;div (click)&#x3D;&quot;changeAll(&#x27;false&#x27;)&quot; class&#x3D;&quot;btn btn-outline-primary mb-3 small-font&quot;&gt;
+          All real
+        &lt;/div&gt;
+        &lt;div (click)&#x3D;&quot;changeAll(&#x27;true&#x27;)&quot; class&#x3D;&quot;btn btn-outline-primary mb-3 small-font&quot;&gt;
+          All mock
+        &lt;/div&gt;
       &lt;/div&gt;
       &lt;hr/&gt;
-      &lt;div
-        class&#x3D;&quot;row&quot;
-        *ngFor&#x3D;&quot;let item of components; let index &#x3D; index&quot;&gt;
+      &lt;div *ngFor&#x3D;&quot;let item of components; let index &#x3D; index&quot; class&#x3D;&quot;row&quot;&gt;
         &lt;!-- Option name --&gt;
         &lt;span class&#x3D;&quot;col-3 small-font&quot;&gt;
           {{item.name}}
         &lt;/span&gt;
         &lt;!-- Option buttons --&gt;
-          &lt;div 
-          class&#x3D;&quot;btn-group offset-5&quot;
-          btnRadioGroup
+        &lt;div 
+          (click)&#x3D;&quot;optionChange(components[index])&quot;
           [(ngModel)]&#x3D;&quot;components[index].mock&quot;
-          (click)&#x3D;&quot;optionChange(components[index])&quot;&gt;
+          btnRadioGroup
+          class&#x3D;&quot;btn-group offset-5&quot;&gt;
           &lt;label
-            class&#x3D;&quot;btn btn-outline-primary small-font&quot;
             btnRadio&#x3D;&quot;false&quot;
             tabindex&#x3D;&quot;0&quot;
-            role&#x3D;&quot;button&quot;&gt;
+            role&#x3D;&quot;button&quot;
+            class&#x3D;&quot;btn btn-outline-primary small-font&quot;&gt;
             Real
           &lt;/label&gt;
           &lt;label
-            class&#x3D;&quot;btn btn-outline-primary small-font&quot;
             btnRadio&#x3D;&quot;true&quot;
             tabindex&#x3D;&quot;0&quot;
-            role&#x3D;&quot;button&quot;&gt;
+            role&#x3D;&quot;button&quot;
+            class&#x3D;&quot;btn btn-outline-primary small-font&quot;&gt;
             Mock
           &lt;/label&gt;
         &lt;/div&gt;
@@ -1064,18 +1055,16 @@ export class DebugPanelComponent implements OnInit {
     &lt;/div&gt;
     &lt;hr/&gt;
     &lt;h5 class&#x3D;&quot;mb-3&quot;&gt;Notifications&lt;/h5&gt;
-    &lt;div 
-      class&#x3D;&quot;btn btn-outline-primary offset-6 mb-3 small-font&quot;
-      (click)&#x3D;&quot;spamNotification()&quot;
-      &gt;Spam test notification
+    &lt;div (click)&#x3D;&quot;spamNotification()&quot; class&#x3D;&quot;btn btn-outline-primary offset-6 mb-3 small-font&quot;&gt;
+      Spam test notification
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;!-- Footer --&gt;
   &lt;div class&#x3D;&quot;modal-footer&quot;&gt;
     &lt;button
+      (click)&#x3D;&quot;bsModalRef.hide()&quot;
       type&#x3D;&quot;button&quot;
-      class&#x3D;&quot;btn btn-default&quot;
-      (click)&#x3D;&quot;bsModalRef.hide()&quot;&gt;
+      class&#x3D;&quot;btn btn-default&quot;&gt;
       Close
     &lt;/button&gt;
   &lt;/div&gt;
@@ -1108,7 +1097,7 @@ export class DebugPanelComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="debug-panel">  <!-- Header --><div class="modal-header">    <h4 class="modal-title pull-left mb-3">      Debug panel    </h4>    <button      type="button"      class="close pull-right"      aria-label="Close"      (click)="bsModalRef.hide()">      <span aria-hidden="true">        &times;      </span>    </button>  </div>  <!-- Body -->  <div class="modal-body">      <h5 class="mb-3">Backend URL</h5>      <input         class="w-100 form-control mb-3"        type="text"        [ngModel]="url"        (ngModelChange)="urlChange($event)"        >    <hr/>    <h5 class="mb-3">Backend control</h5>    <div class="dp-height" *ngIf="components.length">      <div class="d-flex justify-content-center align-items-center">          <div            class="btn btn-outline-primary mb-3 small-font"            (click)="changeAll(\'false\')"            >All real          </div>          <div            class="btn btn-outline-primary mb-3 small-font"            (click)="changeAll(\'true\')"            >All mock          </div>      </div>      <hr/>      <div        class="row"        *ngFor="let item of components; let index = index">        <!-- Option name -->        <span class="col-3 small-font">          {{item.name}}        </span>        <!-- Option buttons -->          <div           class="btn-group offset-5"          btnRadioGroup          [(ngModel)]="components[index].mock"          (click)="optionChange(components[index])">          <label            class="btn btn-outline-primary small-font"            btnRadio="false"            tabindex="0"            role="button">            Real          </label>          <label            class="btn btn-outline-primary small-font"            btnRadio="true"            tabindex="0"            role="button">            Mock          </label>        </div>      </div>    </div>    <hr/>    <h5 class="mb-3">Notifications</h5>    <div       class="btn btn-outline-primary offset-6 mb-3 small-font"      (click)="spamNotification()"      >Spam test notification    </div>  </div>  <!-- Footer -->  <div class="modal-footer">    <button      type="button"      class="btn btn-default"      (click)="bsModalRef.hide()">      Close    </button>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="debug-panel">  <!-- Header -->  <div class="modal-header">    <h4 class="modal-title pull-left mb-3">      Debug panel    </h4>    <button      (click)="bsModalRef.hide()"      type="button"      aria-label="Close"      class="close pull-right">      <span aria-hidden="true">&times;</span>    </button>  </div>  <!-- Body -->  <div class="modal-body">    <h5 class="mb-3">Backend URL</h5>    <input       (ngModelChange)="urlChange($event)"      type="text"      [ngModel]="url"      class="w-100 form-control mb-3">    <hr/>    <h5 class="mb-3">Backend control</h5>    <div *ngIf="components.length" class="dp-height" >      <div class="d-flex justify-content-center align-items-center">        <div (click)="changeAll(\'false\')" class="btn btn-outline-primary mb-3 small-font">          All real        </div>        <div (click)="changeAll(\'true\')" class="btn btn-outline-primary mb-3 small-font">          All mock        </div>      </div>      <hr/>      <div *ngFor="let item of components; let index = index" class="row">        <!-- Option name -->        <span class="col-3 small-font">          {{item.name}}        </span>        <!-- Option buttons -->        <div           (click)="optionChange(components[index])"          [(ngModel)]="components[index].mock"          btnRadioGroup          class="btn-group offset-5">          <label            btnRadio="false"            tabindex="0"            role="button"            class="btn btn-outline-primary small-font">            Real          </label>          <label            btnRadio="true"            tabindex="0"            role="button"            class="btn btn-outline-primary small-font">            Mock          </label>        </div>      </div>    </div>    <hr/>    <h5 class="mb-3">Notifications</h5>    <div (click)="spamNotification()" class="btn btn-outline-primary offset-6 mb-3 small-font">      Spam test notification    </div>  </div>  <!-- Footer -->  <div class="modal-footer">    <button      (click)="bsModalRef.hide()"      type="button"      class="btn btn-default">      Close    </button>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'DebugPanelComponent'};

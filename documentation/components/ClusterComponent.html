@@ -2873,9 +2873,12 @@ export class ClusterComponent implements OnInit {
         &lt;div class&#x3D;&quot;cluster-card-box&quot;&gt;
           &lt;h3 
             class&#x3D;&quot;text-center text-uppercase&quot;
-            [ngClass]&#x3D;&quot;{&#x27;blue&#x27;:classStatusCheck(clusterData.status_name, &#x27;running&#x27;),
-            &#x27;red&#x27;:classStatusCheck(clusterData.status_name, &#x27;error&#x27;),
-            &#x27;teal&#x27;:classStatusCheck(clusterData.status_name, &#x27;process&#x27;)}&quot;&gt;
+            [ngClass]&#x3D;
+            &quot;{
+              &#x27;blue&#x27;:classStatusCheck(clusterData.status_name, &#x27;running&#x27;),
+              &#x27;red&#x27;:classStatusCheck(clusterData.status_name, &#x27;error&#x27;),
+              &#x27;teal&#x27;:classStatusCheck(clusterData.status_name, &#x27;process&#x27;)
+            }&quot;&gt;
             {{clusterData.status_name}}
           &lt;/h3&gt;
         &lt;/div&gt;
@@ -2896,8 +2899,7 @@ export class ClusterComponent implements OnInit {
                 [results]&#x3D;&quot;clusterPieChart&quot; 
                 [doughnut]&#x3D; &quot;doughnut&quot;
                 [gradient]&#x3D;&quot;gradient&quot;
-                [explodeSlices]&#x3D;&quot;false&quot;
-                &gt;
+                [explodeSlices]&#x3D;&quot;false&quot;&gt;
               &lt;/ngx-charts-pie-chart&gt;
               &lt;div class&#x3D;&quot;donut-number&quot;&gt;
                 {{clusterData.running_nodes}}/{{clusterData.total_nodes}}
@@ -2960,20 +2962,20 @@ export class ClusterComponent implements OnInit {
           &lt;div class&#x3D;&quot;col-9&quot;&gt;  
             &lt;p *ngIf&#x3D;&quot;searchTerm &amp;&amp; !filterField&quot; class&#x3D;&quot;sorting-message&quot;&gt;
               Filtered by term &quot;{{ searchTerm }}&quot;.
-              &lt;span class&#x3D;&quot;reset-search&quot; (click)&#x3D;&quot;resetFilters(filterField)&quot;&gt;Reset&lt;/span&gt;
+              &lt;span (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;reset-search&quot;&gt;Reset&lt;/span&gt;
             &lt;/p&gt;
             &lt;p *ngIf&#x3D;&quot;filterField &amp;&amp; !searchTerm&quot; class&#x3D;&quot;sorting-message&quot;&gt;
               Sorted by {{ sortedBy }},
               &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;ascendant. &lt;/span&gt;
               &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;descendant. &lt;/span&gt;
-              &lt;span class&#x3D;&quot;reset-search&quot; (click)&#x3D;&quot;resetFilters(filterField)&quot;&gt;Reset&lt;/span&gt;
+              &lt;span (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;reset-search&quot;&gt;Reset&lt;/span&gt;
             &lt;/p&gt;
             &lt;p *ngIf&#x3D;&quot;filterField &amp;&amp; searchTerm&quot; class&#x3D;&quot;sorting-message&quot;&gt;
               Sorted by {{ sortedBy }}
               &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;ascendant &lt;/span&gt;
               &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;descendant &lt;/span&gt;
               and filtered by term &quot;{{ searchTerm }}&quot;.
-              &lt;span class&#x3D;&quot;reset-search&quot; (click)&#x3D;&quot;resetFilters(filterField)&quot;&gt;Reset&lt;/span&gt;
+              &lt;span (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;reset-search&quot;&gt;Reset&lt;/span&gt;
             &lt;/p&gt; 
           &lt;/div&gt;
           &lt;!-- Search input --&gt;
@@ -2981,22 +2983,27 @@ export class ClusterComponent implements OnInit {
             &lt;form&gt;
               &lt;div class&#x3D;&quot;search-box&quot;&gt;
                 &lt;input 
-                  type&#x3D;&quot;text&quot; 
-                  class&#x3D;&quot;form-control&quot; 
                   name&#x3D;&quot;searchTerm&quot; 
-                  placeholder&#x3D;&quot;Search...&quot; 
-                  [(ngModel)]&#x3D;&quot;searchTerm&quot;&gt; 
-                  &lt;div class&#x3D;&quot;search-icon&quot; *ngIf&#x3D;&quot;searchTerm &#x3D;&#x3D;&#x3D; &#x27;&#x27;&quot;&gt;
+                  [(ngModel)]&#x3D;&quot;searchTerm&quot;
+                  type&#x3D;&quot;text&quot; 
+                  placeholder&#x3D;&quot;Search...&quot;
+                  class&#x3D;&quot;form-control&quot;&gt; 
+                  &lt;div *ngIf&#x3D;&quot;searchTerm &#x3D;&#x3D;&#x3D; &#x27;&#x27;&quot; class&#x3D;&quot;search-icon&quot;&gt;
                     &lt;i class&#x3D;&quot;material-icons&quot;&gt;search&lt;/i&gt;
                   &lt;/div&gt;     
-                  &lt;div class&#x3D;&quot;close-icon&quot; *ngIf&#x3D;&quot;searchTerm !&#x3D;&#x3D; &#x27;&#x27;&quot;&gt;
+                  &lt;div *ngIf&#x3D;&quot;searchTerm !&#x3D;&#x3D; &#x27;&#x27;&quot; class&#x3D;&quot;close-icon&quot;&gt;
                     &lt;i class&#x3D;&quot;material-icons&quot; (click)&#x3D;&quot;resetFilters(filterField)&quot;&gt;close&lt;/i&gt;
                   &lt;/div&gt;
               &lt;/div&gt;
             &lt;/form&gt;
           &lt;/div&gt;      
       &lt;/div&gt;
-      &lt;div class&#x3D;&quot;table-h&quot; *ngIf&#x3D;&quot;loadedData &amp;&amp; nodes &amp;&amp; nodes.length &gt; 0 &amp;&amp; !requestError&quot;&gt;
+      &lt;div *ngIf&#x3D;
+        &quot;loadedData &amp;&amp;
+        nodes &amp;&amp;
+        nodes.length &gt; 0 &amp;&amp;
+        !requestError&quot;
+        class&#x3D;&quot;table-h&quot;&gt;
         &lt;table class&#x3D;&quot;table-responsive table-fixed&quot;&gt;
           &lt;thead&gt;
             &lt;tr&gt;
@@ -3006,10 +3013,10 @@ export class ClusterComponent implements OnInit {
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-3&quot;&gt;
                 ID
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;id&#x27; &amp;&amp; !reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;id&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;id&#x27; &amp;&amp; reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;id&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/th&gt;
@@ -3019,10 +3026,10 @@ export class ClusterComponent implements OnInit {
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-2&quot;&gt;
                 IP
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;ip&#x27; &amp;&amp; !reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;ip&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;ip&#x27; &amp;&amp; reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;ip&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/th&gt;
@@ -3032,10 +3039,10 @@ export class ClusterComponent implements OnInit {
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-2&quot;&gt;
                 State
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;state&#x27; &amp;&amp; !reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;state&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;state&#x27; &amp;&amp; reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;state&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/th&gt;
@@ -3045,10 +3052,10 @@ export class ClusterComponent implements OnInit {
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-3&quot;&gt;
                 Labels
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;labels&#x27; &amp;&amp; !reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;labels&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;labels&#x27; &amp;&amp; reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;labels&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/th&gt;
@@ -3058,47 +3065,49 @@ export class ClusterComponent implements OnInit {
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-2 text-center&quot;&gt;
                 Status
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;status&#x27; &amp;&amp; !reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;status&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;status&#x27; &amp;&amp; reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;status&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/th&gt;
             &lt;/tr&gt;
           &lt;/thead&gt;
           &lt;tbody&gt;
-            &lt;tr *ngFor&#x3D;&quot;let node of nodes | sortBy : sortedBy : reverse : &#x27;case-insensitive&#x27; | filter : searchTerm&quot;&gt;
+            &lt;tr *ngFor&#x3D;
+              &quot;let node of nodes |
+              sortBy : sortedBy : reverse : &#x27;case-insensitive&#x27; |
+              filter : searchTerm&quot;&gt;
               &lt;td class&#x3D;&quot;col-3&quot;&gt;{{node.node_id}}&lt;/td&gt;
               &lt;td class&#x3D;&quot;col-2&quot;&gt;{{node.ip}}&lt;/td&gt;  
               &lt;td class&#x3D;&quot;col-2 text-lowercase &quot;&gt;{{node.state_name}}&lt;/td&gt;
               &lt;td class&#x3D;&quot;col-3&quot; *ngIf&#x3D;&quot;!node.labels&quot;&gt; no &lt;/td&gt;
               &lt;td class&#x3D;&quot;col-3&quot; *ngIf&#x3D;&quot;node.labels&quot;&gt;
                 &lt;button 
+                  *ngFor&#x3D;&quot;let label of labelsToString(node.labels)&quot; 
                   (click)&#x3D;&quot;onLabelClick(node.node_id, label[0], label[1])&quot;
                   [ngClass]&#x3D;
                   &quot;{&#x27;label-btn-selected&#x27;: indexOfLabelSelected(node.node_id, label[0], label[1]) &gt;&#x3D; 0 ,
                     &#x27;btn-outline-primary&#x27;: indexOfLabelSelected(node.node_id, label[0], label[1]) &#x3D;&#x3D;&#x3D; -1}&quot; 
-                  *ngFor&#x3D;&quot;let label of labelsToString(node.labels)&quot; 
-                  class&#x3D;&quot;btn-sm btn-outline-primary&quot; 
-                  &gt;
+                  class&#x3D;&quot;btn-sm btn-outline-primary&quot;&gt;
                   {{label[0]}}: {{label[1]}} 
                 &lt;/button&gt;
                 &lt;div class&#x3D;&quot;label-btns&quot;&gt;
                   &lt;div 
                     *ngIf&#x3D;&quot;isAnyLabelSelected(node.node_id) &#x3D;&#x3D;&#x3D; false&quot;
-                    class&#x3D;&quot;label-btn-blue&quot; 
+                    (click)&#x3D;&quot;addLabel(node)&quot;
                     tooltip&#x3D;&quot;Add&quot; 
                     placement&#x3D;&quot;right&quot;
-                    (click)&#x3D;&quot;addLabel(node)&quot;&gt;
+                    class&#x3D;&quot;label-btn-blue&quot;&gt;
                     &lt;i class&#x3D;&quot;material-icons i-add&quot;&gt;add&lt;/i&gt;
                   &lt;/div&gt;
                   &lt;div 
                     *ngIf&#x3D;&quot;isAnyLabelSelected(node.node_id) &#x3D;&#x3D;&#x3D; true&quot;
-                    class&#x3D;&quot;label-btn-red&quot; 
+                    (click)&#x3D;&quot;deleteLabel(node)&quot;
                     tooltip&#x3D;&quot;Delete&quot; 
                     placement&#x3D;&quot;right&quot;
-                    (click)&#x3D;&quot;deleteLabel(node)&quot;&gt;
+                    class&#x3D;&quot;label-btn-red&quot;&gt;
                     &lt;i class&#x3D;&quot;material-icons i-delete&quot;&gt;delete&lt;/i&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
@@ -3106,10 +3115,15 @@ export class ClusterComponent implements OnInit {
               &lt;td 
                 class&#x3D;&quot;col-2 col-center-lowercase&quot;
                 [ngClass]&#x3D;
-                &quot;{&#x27;status-dot&#x27;:classStatusCheck(node.status_name, &#x27;running&#x27;),
-                &#x27;status-dot-error&#x27;:classStatusCheck(node.status_name, &#x27;error&#x27;),
-                &#x27;status-dot-process&#x27;:classStatusCheck(node.status_name, &#x27;process&#x27;)}&quot;&gt;
-                &lt;span tooltip&#x3D; &quot;{{node.status_name | lowercase}}&quot; class&#x3D;&quot;tooltip-fix&quot; placement&#x3D;&quot;auto&quot;&gt;
+                &quot;{
+                  &#x27;status-dot&#x27;:classStatusCheck(node.status_name, &#x27;running&#x27;),
+                  &#x27;status-dot-error&#x27;:classStatusCheck(node.status_name, &#x27;error&#x27;),
+                  &#x27;status-dot-process&#x27;:classStatusCheck(node.status_name, &#x27;process&#x27;)
+                }&quot;&gt;
+                &lt;span 
+                tooltip&#x3D; &quot;{{node.status_name | lowercase}}&quot; 
+                placement&#x3D;&quot;auto&quot;
+                class&#x3D;&quot;tooltip-fix&quot;&gt;
                 &lt;/span&gt;
                 &lt;span class&#x3D;&quot;hide-lg&quot;&gt;
                   {{node.status_name}}
@@ -3120,7 +3134,11 @@ export class ClusterComponent implements OnInit {
         &lt;/table&gt;
       &lt;/div&gt;
       &lt;!-- No info to show --&gt;
-      &lt;div *ngIf&#x3D;&quot;loadedData &amp;&amp; nodes &amp;&amp; nodes.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; !requestError&quot; class&#x3D;&quot;no-elements&quot;&gt;
+      &lt;div *ngIf&#x3D;
+        &quot;loadedData &amp;&amp;
+        nodes &amp;&amp; nodes.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp;
+        !requestError&quot;
+        class&#x3D;&quot;no-elements&quot;&gt;
         &lt;p&gt;There are not registered nodes in this cluster&lt;/p&gt;
       &lt;/div&gt;
        &lt;!-- Requested error --&gt;
@@ -3128,7 +3146,7 @@ export class ClusterComponent implements OnInit {
         &lt;p&gt;{{requestError}}&lt;/p&gt;
       &lt;/div&gt;
       &lt;!-- Loader --&gt;
-      &lt;div class&#x3D;&quot;nalej-loader-box&quot; *ngIf&#x3D;&quot;!loadedData&quot;&gt;
+      &lt;div *ngIf&#x3D;&quot;!loadedData&quot;class&#x3D;&quot;nalej-loader-box&quot;&gt;
         &lt;div class&#x3D;&quot;loader&quot;&gt;
           &lt;svg class&#x3D;&quot;circular&quot; viewBox&#x3D;&quot;25 25 50 50&quot;&gt;
             &lt;circle 
@@ -3172,7 +3190,7 @@ export class ClusterComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Component title --><div class="row row-title">  <div class="col-lg-12">    <h2 class="section-title">Resources</h2>  </div></div><!-- Cluster info card --><div class="row row-info">  <div class="col-lg-3 h-100">    <div class="card">      <div class="card-title-name">        <h5 class="d-inline text-uppercase">{{clusterData.name | truncate}}</h5>        <p class="cluster-number hide-lg">STATUS</p>      </div>      <!-- Cluster card -->        <div class="cluster-card-box">          <h3             class="text-center text-uppercase"            [ngClass]="{\'blue\':classStatusCheck(clusterData.status_name, \'running\'),            \'red\':classStatusCheck(clusterData.status_name, \'error\'),            \'teal\':classStatusCheck(clusterData.status_name, \'process\')}">            {{clusterData.status_name}}          </h3>        </div>    </div>  </div>  <!-- Summary cluster info card -->  <div class="col-lg-9 h-100">    <div class="card">      <div class="card-title-name">        <h5>SUMMARY</h5>      </div>      <div class="cluster-card-box">        <div class="cluster-box circles-box">          <div class="cluster-box">            <div class="donut-chart">              <ngx-charts-pie-chart                [scheme]="colorScheme"                 [results]="clusterPieChart"                 [doughnut]= "doughnut"                [gradient]="gradient"                [explodeSlices]="false"                >              </ngx-charts-pie-chart>              <div class="donut-number">                {{clusterData.running_nodes}}/{{clusterData.total_nodes}}              </div>            </div>            <p class="nodes-run">{{clusterData.running_nodes}} running</p>            <p class="nodes-run-node">NODES</p>          </div>         </div>        <div class="cluster-box" id="scroll-cluster-table">          <table class="table cluster-summary-table">            <tr>              <th>ID</th>              <td>{{clusterData.cluster_id}}</td>            </tr>            <tr>              <th>Types</th>              <td class="text-lowercase">{{clusterData.cluster_type_name}}</td>             </tr>            <tr>              <th>Labels</th>              <td *ngIf="!clusterData.labels || clusterData.labels === {} "> no </td>              <td *ngIf="clusterData.labels">                <button *ngFor="let label of labelsToString(clusterData.labels)" class="btn-sm btn-outline-primary" disabled>                  <span *ngIf="label[1]">{{label[0]}}: {{label[1]}}</span>                  </button>              </td>            </tr>            <tr>              <th>Multitenant</th>              <td class="text-lowercase">{{clusterData.multitenant_support}}</td>            </tr>          </table>        </div>      </div>    </div>  </div></div><!-- Nodes panel card--><div class="row row-main">  <div class="col-lg-12 h-100">    <div class="card">      <div class="card-title-name">        <h5>          <a             [routerLink]="[\'/resources\']"             routerLinkActive="active"             class="blue">            CLUSTER          </a>          <span class="grey"> > </span>           <b>NODES</b>          <span class="grey text-uppercase">             > {{clusterData.name}}           </span>        </h5>      </div>      <div class="row mb-3">        <!-- Sorting mesages -->          <div class="col-9">              <p *ngIf="searchTerm && !filterField" class="sorting-message">              Filtered by term "{{ searchTerm }}".              <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>            </p>            <p *ngIf="filterField && !searchTerm" class="sorting-message">              Sorted by {{ sortedBy }},              <span *ngIf="reverse">ascendant. </span>              <span *ngIf="!reverse">descendant. </span>              <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>            </p>            <p *ngIf="filterField && searchTerm" class="sorting-message">              Sorted by {{ sortedBy }}              <span *ngIf="reverse">ascendant </span>              <span *ngIf="!reverse">descendant </span>              and filtered by term "{{ searchTerm }}".              <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>            </p>           </div>          <!-- Search input -->          <div class="col-3">            <form>              <div class="search-box">                <input                   type="text"                   class="form-control"                   name="searchTerm"                   placeholder="Search..."                   [(ngModel)]="searchTerm">                   <div class="search-icon" *ngIf="searchTerm === \'\'">                    <i class="material-icons">search</i>                  </div>                       <div class="close-icon" *ngIf="searchTerm !== \'\'">                    <i class="material-icons" (click)="resetFilters(filterField)">close</i>                  </div>              </div>            </form>          </div>            </div>      <div class="table-h" *ngIf="loadedData && nodes && nodes.length > 0 && !requestError">        <table class="table-responsive table-fixed">          <thead>            <tr>              <th                 (click)="setOrder(\'id\')"                [ngClass]="getCategoryCSSClass(\'id\')"                scope="col"                 class="col-3">                ID                <span class="expand-chevron" *ngIf="sortedBy === \'id\' && !reverse">                  <i class="material-icons">expand_more</i>                </span>                <span class="expand-chevron" *ngIf="sortedBy === \'id\' && reverse">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'ip\')"                [ngClass]="getCategoryCSSClass(\'ip\')"                scope="col"                 class="col-2">                IP                <span class="expand-chevron" *ngIf="sortedBy === \'ip\' && !reverse">                  <i class="material-icons">expand_more</i>                </span>                <span class="expand-chevron" *ngIf="sortedBy === \'ip\' && reverse">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'state\')"                [ngClass]="getCategoryCSSClass(\'state\')"                scope="col"                 class="col-2">                State                <span class="expand-chevron" *ngIf="sortedBy === \'state\' && !reverse">                  <i class="material-icons">expand_more</i>                </span>                <span class="expand-chevron" *ngIf="sortedBy === \'state\' && reverse">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'labels\')"                [ngClass]="getCategoryCSSClass(\'labels\')"                scope="col"                 class="col-3">                Labels                <span class="expand-chevron" *ngIf="sortedBy === \'labels\' && !reverse">                  <i class="material-icons">expand_more</i>                </span>                <span class="expand-chevron" *ngIf="sortedBy === \'labels\' && reverse">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'status\')"                [ngClass]="getCategoryCSSClass(\'status\')"                scope="col"                 class="col-2 text-center">                Status                <span class="expand-chevron" *ngIf="sortedBy === \'status\' && !reverse">                  <i class="material-icons">expand_more</i>                </span>                <span class="expand-chevron" *ngIf="sortedBy === \'status\' && reverse">                  <i class="material-icons">expand_less</i>                </span>              </th>            </tr>          </thead>          <tbody>            <tr *ngFor="let node of nodes | sortBy : sortedBy : reverse : \'case-insensitive\' | filter : searchTerm">              <td class="col-3">{{node.node_id}}</td>              <td class="col-2">{{node.ip}}</td>                <td class="col-2 text-lowercase ">{{node.state_name}}</td>              <td class="col-3" *ngIf="!node.labels"> no </td>              <td class="col-3" *ngIf="node.labels">                <button                   (click)="onLabelClick(node.node_id, label[0], label[1])"                  [ngClass]=                  "{\'label-btn-selected\': indexOfLabelSelected(node.node_id, label[0], label[1]) >= 0 ,                    \'btn-outline-primary\': indexOfLabelSelected(node.node_id, label[0], label[1]) === -1}"                   *ngFor="let label of labelsToString(node.labels)"                   class="btn-sm btn-outline-primary"                   >                  {{label[0]}}: {{label[1]}}                 </button>                <div class="label-btns">                  <div                     *ngIf="isAnyLabelSelected(node.node_id) === false"                    class="label-btn-blue"                     tooltip="Add"                     placement="right"                    (click)="addLabel(node)">                    <i class="material-icons i-add">add</i>                  </div>                  <div                     *ngIf="isAnyLabelSelected(node.node_id) === true"                    class="label-btn-red"                     tooltip="Delete"                     placement="right"                    (click)="deleteLabel(node)">                    <i class="material-icons i-delete">delete</i>                  </div>                </div>              </td>              <td                 class="col-2 col-center-lowercase"                [ngClass]=                "{\'status-dot\':classStatusCheck(node.status_name, \'running\'),                \'status-dot-error\':classStatusCheck(node.status_name, \'error\'),                \'status-dot-process\':classStatusCheck(node.status_name, \'process\')}">                <span tooltip= "{{node.status_name | lowercase}}" class="tooltip-fix" placement="auto">                </span>                <span class="hide-lg">                  {{node.status_name}}                </span>              </td>            </tr>          </tbody>        </table>      </div>      <!-- No info to show -->      <div *ngIf="loadedData && nodes && nodes.length === 0 && !requestError" class="no-elements">        <p>There are not registered nodes in this cluster</p>      </div>       <!-- Requested error -->      <div *ngIf="loadedData && requestError" class="no-elements">        <p>{{requestError}}</p>      </div>      <!-- Loader -->      <div class="nalej-loader-box" *ngIf="!loadedData">        <div class="loader">          <svg class="circular" viewBox="25 25 50 50">            <circle               class="path"               cx="50"               cy="50"               r="20"               fill="none"               stroke-width="2"               stroke-miterlimit="10"/>          </svg>        </div>      </div>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- Component title --><div class="row row-title">  <div class="col-lg-12">    <h2 class="section-title">Resources</h2>  </div></div><!-- Cluster info card --><div class="row row-info">  <div class="col-lg-3 h-100">    <div class="card">      <div class="card-title-name">        <h5 class="d-inline text-uppercase">{{clusterData.name | truncate}}</h5>        <p class="cluster-number hide-lg">STATUS</p>      </div>      <!-- Cluster card -->        <div class="cluster-card-box">          <h3             class="text-center text-uppercase"            [ngClass]=            "{              \'blue\':classStatusCheck(clusterData.status_name, \'running\'),              \'red\':classStatusCheck(clusterData.status_name, \'error\'),              \'teal\':classStatusCheck(clusterData.status_name, \'process\')            }">            {{clusterData.status_name}}          </h3>        </div>    </div>  </div>  <!-- Summary cluster info card -->  <div class="col-lg-9 h-100">    <div class="card">      <div class="card-title-name">        <h5>SUMMARY</h5>      </div>      <div class="cluster-card-box">        <div class="cluster-box circles-box">          <div class="cluster-box">            <div class="donut-chart">              <ngx-charts-pie-chart                [scheme]="colorScheme"                 [results]="clusterPieChart"                 [doughnut]= "doughnut"                [gradient]="gradient"                [explodeSlices]="false">              </ngx-charts-pie-chart>              <div class="donut-number">                {{clusterData.running_nodes}}/{{clusterData.total_nodes}}              </div>            </div>            <p class="nodes-run">{{clusterData.running_nodes}} running</p>            <p class="nodes-run-node">NODES</p>          </div>         </div>        <div class="cluster-box" id="scroll-cluster-table">          <table class="table cluster-summary-table">            <tr>              <th>ID</th>              <td>{{clusterData.cluster_id}}</td>            </tr>            <tr>              <th>Types</th>              <td class="text-lowercase">{{clusterData.cluster_type_name}}</td>             </tr>            <tr>              <th>Labels</th>              <td *ngIf="!clusterData.labels || clusterData.labels === {} "> no </td>              <td *ngIf="clusterData.labels">                <button *ngFor="let label of labelsToString(clusterData.labels)" class="btn-sm btn-outline-primary" disabled>                  <span *ngIf="label[1]">{{label[0]}}: {{label[1]}}</span>                  </button>              </td>            </tr>            <tr>              <th>Multitenant</th>              <td class="text-lowercase">{{clusterData.multitenant_support}}</td>            </tr>          </table>        </div>      </div>    </div>  </div></div><!-- Nodes panel card--><div class="row row-main">  <div class="col-lg-12 h-100">    <div class="card">      <div class="card-title-name">        <h5>          <a             [routerLink]="[\'/resources\']"             routerLinkActive="active"             class="blue">            CLUSTER          </a>          <span class="grey"> > </span>           <b>NODES</b>          <span class="grey text-uppercase">             > {{clusterData.name}}           </span>        </h5>      </div>      <div class="row mb-3">        <!-- Sorting mesages -->          <div class="col-9">              <p *ngIf="searchTerm && !filterField" class="sorting-message">              Filtered by term "{{ searchTerm }}".              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>            </p>            <p *ngIf="filterField && !searchTerm" class="sorting-message">              Sorted by {{ sortedBy }},              <span *ngIf="reverse">ascendant. </span>              <span *ngIf="!reverse">descendant. </span>              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>            </p>            <p *ngIf="filterField && searchTerm" class="sorting-message">              Sorted by {{ sortedBy }}              <span *ngIf="reverse">ascendant </span>              <span *ngIf="!reverse">descendant </span>              and filtered by term "{{ searchTerm }}".              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>            </p>           </div>          <!-- Search input -->          <div class="col-3">            <form>              <div class="search-box">                <input                   name="searchTerm"                   [(ngModel)]="searchTerm"                  type="text"                   placeholder="Search..."                  class="form-control">                   <div *ngIf="searchTerm === \'\'" class="search-icon">                    <i class="material-icons">search</i>                  </div>                       <div *ngIf="searchTerm !== \'\'" class="close-icon">                    <i class="material-icons" (click)="resetFilters(filterField)">close</i>                  </div>              </div>            </form>          </div>            </div>      <div *ngIf=        "loadedData &&        nodes &&        nodes.length > 0 &&        !requestError"        class="table-h">        <table class="table-responsive table-fixed">          <thead>            <tr>              <th                 (click)="setOrder(\'id\')"                [ngClass]="getCategoryCSSClass(\'id\')"                scope="col"                 class="col-3">                ID                <span *ngIf="sortedBy === \'id\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'id\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'ip\')"                [ngClass]="getCategoryCSSClass(\'ip\')"                scope="col"                 class="col-2">                IP                <span *ngIf="sortedBy === \'ip\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'ip\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'state\')"                [ngClass]="getCategoryCSSClass(\'state\')"                scope="col"                 class="col-2">                State                <span *ngIf="sortedBy === \'state\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'state\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'labels\')"                [ngClass]="getCategoryCSSClass(\'labels\')"                scope="col"                 class="col-3">                Labels                <span *ngIf="sortedBy === \'labels\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'labels\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'status\')"                [ngClass]="getCategoryCSSClass(\'status\')"                scope="col"                 class="col-2 text-center">                Status                <span *ngIf="sortedBy === \'status\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'status\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </th>            </tr>          </thead>          <tbody>            <tr *ngFor=              "let node of nodes |              sortBy : sortedBy : reverse : \'case-insensitive\' |              filter : searchTerm">              <td class="col-3">{{node.node_id}}</td>              <td class="col-2">{{node.ip}}</td>                <td class="col-2 text-lowercase ">{{node.state_name}}</td>              <td class="col-3" *ngIf="!node.labels"> no </td>              <td class="col-3" *ngIf="node.labels">                <button                   *ngFor="let label of labelsToString(node.labels)"                   (click)="onLabelClick(node.node_id, label[0], label[1])"                  [ngClass]=                  "{\'label-btn-selected\': indexOfLabelSelected(node.node_id, label[0], label[1]) >= 0 ,                    \'btn-outline-primary\': indexOfLabelSelected(node.node_id, label[0], label[1]) === -1}"                   class="btn-sm btn-outline-primary">                  {{label[0]}}: {{label[1]}}                 </button>                <div class="label-btns">                  <div                     *ngIf="isAnyLabelSelected(node.node_id) === false"                    (click)="addLabel(node)"                    tooltip="Add"                     placement="right"                    class="label-btn-blue">                    <i class="material-icons i-add">add</i>                  </div>                  <div                     *ngIf="isAnyLabelSelected(node.node_id) === true"                    (click)="deleteLabel(node)"                    tooltip="Delete"                     placement="right"                    class="label-btn-red">                    <i class="material-icons i-delete">delete</i>                  </div>                </div>              </td>              <td                 class="col-2 col-center-lowercase"                [ngClass]=                "{                  \'status-dot\':classStatusCheck(node.status_name, \'running\'),                  \'status-dot-error\':classStatusCheck(node.status_name, \'error\'),                  \'status-dot-process\':classStatusCheck(node.status_name, \'process\')                }">                <span                 tooltip= "{{node.status_name | lowercase}}"                 placement="auto"                class="tooltip-fix">                </span>                <span class="hide-lg">                  {{node.status_name}}                </span>              </td>            </tr>          </tbody>        </table>      </div>      <!-- No info to show -->      <div *ngIf=        "loadedData &&        nodes && nodes.length === 0 &&        !requestError"        class="no-elements">        <p>There are not registered nodes in this cluster</p>      </div>       <!-- Requested error -->      <div *ngIf="loadedData && requestError" class="no-elements">        <p>{{requestError}}</p>      </div>      <!-- Loader -->      <div *ngIf="!loadedData"class="nalej-loader-box">        <div class="loader">          <svg class="circular" viewBox="25 25 50 50">            <circle               class="path"               cx="50"               cy="50"               r="20"               fill="none"               stroke-width="2"               stroke-miterlimit="10"/>          </svg>        </div>      </div>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'ClusterComponent'};

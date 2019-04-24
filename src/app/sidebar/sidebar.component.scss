@@ -1,8 +1,8 @@
 @mixin for-desktop-only {
-    @media all and (max-width: 1440px) and (max-height: 900px) { @content; }
+    @media all and (max-width: 1440px), all and (max-height: 900px) { @content; }
 }
 @mixin for-md-desktop-only {
-    @media all and (max-width: 1366px) and (max-height: 768px) { @content; }
+    @media all and (max-width: 1366px), all and (max-height: 768px) { @content; }
 }
 @mixin for-big-desktop-up {
     @media all and (min-width: 2560px) { @content; }
@@ -191,39 +191,4 @@
 }
 .lo-btn {
     position: relative;
-}
-@media screen and (max-width:1440px), screen and (max-height: 900px) {
-    .sidebar .nav-item .nav-link {
-        // font-size: 15px;
-
-    }
-    // .nav .active::before {
-    //     height: 62px;
-    // }
-    .sidebar {
-        .nav-item {
-            // .material-icons {
-            //     margin-right: 20px;
-            // }
-            .profile {
-                // .name {
-                //     font-size: 21px;
-                //     padding: 0;
-                // }
-                // .email {
-                //     font-size: 15px;
-                // }
-                // .type {
-                //     font-size: 16px;
-                // }
-            }
-            // .nav-link .arrow {
-            //     margin-right: 13px;
-            // }
-        }
-        // .nav-title {
-        //     font-size: 13px;
-        //     letter-spacing: 26px;
-        // }
-    }
 }

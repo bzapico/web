@@ -538,18 +538,23 @@ export class NotificationsComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;alerts.length &gt; 0&quot; class&#x3D;&quot;container alert-top-right&quot; id&#x3D;&quot;alert-container&quot;&gt;
-  &lt;div  *ngFor&#x3D;&quot;let alert of alerts&quot; class&#x3D;&quot;row&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div 
+  *ngIf&#x3D;&quot;alerts.length &gt; 0&quot; 
+  id&#x3D;&quot;alert-container&quot; 
+  class&#x3D;&quot;container alert-top-right&quot;&gt;
+  &lt;div *ngFor&#x3D;&quot;let alert of alerts&quot; class&#x3D;&quot;row&quot;&gt;
     &lt;div class&#x3D;&quot;col-12&quot;&gt;
       &lt;alert 
-        [dismissible]&#x3D;&quot;dismissible&quot; 
         (onClosed)&#x3D;&quot;onClosed(alert)&quot; 
+        [dismissible]&#x3D;&quot;dismissible&quot; 
         [type]&#x3D;&quot;alert.type&quot; 
         [dismissOnTimeout]&#x3D;&quot;alert.timeout&quot;&gt;
         &lt;span class&#x3D;&quot;alert-icon&quot;&gt;
           &lt;i class&#x3D;&quot;material-icons&quot;&gt;info&lt;/i&gt;
         &lt;/span&gt;
-        &lt;span class&#x3D;&quot;alert-message&quot; [innerHtml]&#x3D;&quot;alert.message&quot;&gt;{{alert.message}}&lt;/span&gt;
+        &lt;span [innerHtml]&#x3D;&quot;alert.message&quot; class&#x3D;&quot;alert-message&quot;&gt;
+          {{alert.message}}
+        &lt;/span&gt;
       &lt;/alert&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -581,7 +586,7 @@ export class NotificationsComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngIf="alerts.length > 0" class="container alert-top-right" id="alert-container">  <div  *ngFor="let alert of alerts" class="row">    <div class="col-12">      <alert         [dismissible]="dismissible"         (onClosed)="onClosed(alert)"         [type]="alert.type"         [dismissOnTimeout]="alert.timeout">        <span class="alert-icon">          <i class="material-icons">info</i>        </span>        <span class="alert-message" [innerHtml]="alert.message">{{alert.message}}</span>      </alert>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div   *ngIf="alerts.length > 0"   id="alert-container"   class="container alert-top-right">  <div *ngFor="let alert of alerts" class="row">    <div class="col-12">      <alert         (onClosed)="onClosed(alert)"         [dismissible]="dismissible"         [type]="alert.type"         [dismissOnTimeout]="alert.timeout">        <span class="alert-icon">          <i class="material-icons">info</i>        </span>        <span [innerHtml]="alert.message" class="alert-message">          {{alert.message}}        </span>      </alert>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'NotificationsComponent'};
