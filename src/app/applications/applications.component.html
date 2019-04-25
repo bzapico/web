@@ -121,7 +121,7 @@
       </div>
       <div class="row mb-3">
       <!-- Sorting mesages -->
-        <div class="col-9">  
+        <div class="col-8">  
           <p *ngIf="searchTerm && !filterField" class="sorting-message">
             Filtered by term "{{ searchTerm }}".
             <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
@@ -141,7 +141,7 @@
           </p> 
         </div>
         <!-- Search input -->
-        <div class="col-3">
+        <div class="col-4">
           <form>
             <div class="search-box">
               <input 
@@ -176,7 +176,7 @@
                 [ngClass]="getCategoryCSSClass('name')"
                 scope="col" 
                 class="col-2">
-                Name 
+                <span tooltip="Name" placement="bottom">Name</span>
                 <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -189,7 +189,7 @@
                 [ngClass]="getCategoryCSSClass('id')"
                 scope="col" 
                 class="col-3">
-                ID
+                <span tooltip="ID" placement="bottom">ID</span>
                 <span *ngIf="sortedBy === 'id' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -202,7 +202,7 @@
                 [ngClass]="getCategoryCSSClass('labels')"
                 scope="col" 
                 class="col-4">
-                Labels
+                <span tooltip="Labels" placement="bottom">Labels</span>
                 <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -215,7 +215,7 @@
                 [ngClass]="getCategoryCSSClass('status')"
                 scope="col" 
                 class="col-2 text-center">
-                Status
+                <span tooltip="Status" placement="bottom">Status</span>
                 <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -223,8 +223,12 @@
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
-              <th scope="col" class="col-1 text-center">
-                Actions
+              <th 
+                tooltip="Actions" 
+                placement="bottom"
+                scope="col" 
+                class="col-1 text-center app-actions-initial-text">
+                <span class="app-actions-full-text">Actions</span>
               </th>
             </tr>
           </thead>
@@ -236,10 +240,8 @@
               <td 
                 [routerLink]="['instance', app.app_instance_id]" 
                 routerLinkActive="active"
-                tooltip="Info"
-                placement="top"
                 class="col-2 app-info">
-                {{app.name}}
+                <span tooltip="App info" placement="top">{{app.name}}</span>
               </td>
               <td class="col-3">{{app.app_instance_id}}</td>
               <td class="col-4">
@@ -259,7 +261,7 @@
                 class="col-2 col-center-lowercase"> 
                 <span 
                   tooltip="{{app.status_name | lowercase}}" 
-                  placement="auto"
+                  placement="bottom"
                   class="tooltip-fix">
                 </span>
                 <span class="hide-lg">
@@ -305,7 +307,7 @@
                 [ngClass]="getCategoryCSSClass('name')"
                 scope="col" 
                 class="col-2">
-                Name 
+                <span tooltip="Name" placement="bottom">Name</span>
                 <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -318,7 +320,7 @@
                 [ngClass]="getCategoryCSSClass('id')"
                 scope="col" 
                 class="col-3">
-                ID
+                <span tooltip="ID" placement="bottom">ID</span>
                 <span *ngIf="sortedBy === 'id' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -331,7 +333,7 @@
                 [ngClass]="getCategoryCSSClass('labels')"
                 scope="col" 
                 class="col-4">
-                Labels
+                <span tooltip="Labels" placement="bottom">Labels</span>
                 <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -344,7 +346,7 @@
                 [ngClass]="getCategoryCSSClass('services')"
                 scope="col" 
                 class="col-2 text-center">
-                Services
+                <span tooltip="Services" placement="bottom">Services</span>
                 <span *ngIf="sortedBy === 'services' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -352,9 +354,12 @@
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
-              <th scope="col" class="col-1 text-center">
-                Actions
-              </th>
+              <th 
+                tooltip="Actions" 
+                placement="bottom"
+                scope="col"        
+                class="col-1 text-center app-actions-initial-text">
+                <span class="app-actions-full-text">Actions</span>
             </tr>
           </thead>
           <tbody>
@@ -365,10 +370,8 @@
               <td 
                 [routerLink]="['registered', app.app_descriptor_id]" 
                 routerLinkActive="active" 
-                tooltip="Info"
-                placement="top"
                 class="col-2 app-info">
-                {{app.name}}
+                <span tooltip="App info" placement="top">{{app.name}}</span>
               </td>
               <td class="col-3">{{app.app_descriptor_id}}</td>
               <td class="col-4">

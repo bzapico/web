@@ -115,3 +115,13 @@
         }
     }
 }
+@media screen and (max-width:1399px){
+    .app-actions-full-text {
+        display: none;
+    }
+    .app-actions-initial-text {
+        &::before {
+            content: 'A';
+        }
+    }
+}

@@ -156,10 +156,6 @@
     width: 237px;
     margin-right: 1em;
 }
-
-.typo-small{
-    font-size: .7em;
-}
 .show-graph-icons {
     cursor: pointer;
     color: #949494;
@@ -174,6 +170,17 @@
 @media screen and (max-height: 780px) {
     .hide-title-sm {
         display: none;
+    }
+}
+
+@media screen and (max-width:1907px){
+    .reg-access-full-text {
+        display: none;
+    }
+    .reg-access-initial-text {
+        &::before {
+            content: 'A';
+        }
     }
 }
 
@@ -229,8 +236,4 @@
         width: 400px;
         height: 250px;
     }
-}
-
-.auth-lh-fix {
-    line-height: 12px;
 }

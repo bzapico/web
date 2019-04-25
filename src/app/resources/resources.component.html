@@ -206,7 +206,7 @@
       </div>
       <div class="row mb-3">
         <!-- Sorting mesages -->
-        <div class="col">  
+        <div class="col-8">  
           <p *ngIf="searchTerm && !filterField" class="sorting-message">
             Filtered by term "{{ searchTerm }}".
             <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
@@ -257,11 +257,9 @@
               <th 
                 (click)="setOrder('name')"            
                 [ngClass]="getCategoryCSSClass('name')"
-                tooltip="Name" 
-                placement="auto"
                 scope="col" 
                 class="col-2">
-                Name 
+                <span tooltip="Name" placement="bottom">Name</span>
                 <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -272,11 +270,9 @@
               <th 
                 (click)="setOrder('id')"
                 [ngClass]="getCategoryCSSClass('id')"
-                tooltip="ID" 
-                placement="auto"
                 scope="col" 
                 class="col-2">
-                ID
+                <span tooltip="ID" placement="bottom">ID</span>
                 <span *ngIf="sortedBy === 'id' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -288,7 +284,7 @@
                 (click)="setOrder('total_nodes')"
                 [ngClass]="getCategoryCSSClass('total_nodes')"
                 tooltip="Nodes" 
-                placement="auto"
+                placement="bottom"
                 scope="col" 
                 class="col-1 text-center nodes-initial-text">
                 <span class="nodes-full-text">Nodes</span> 
@@ -302,11 +298,9 @@
               <th 
                 (click)="setOrder('labels')" 
                 [ngClass]="getCategoryCSSClass('labels')"
-                tooltip="Labels" 
-                placement="auto"
                 scope="col" 
                 class="col-3">
-                Labels
+                <span tooltip="Labels" placement="bottom">Labels</span>
                 <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -318,7 +312,7 @@
                 (click)="setOrder('cluster_type_name')" 
                 [ngClass]="getCategoryCSSClass('cluster_type_name')"
                 tooltip="Type" 
-                placement="auto"
+                placement="bottom"
                 scope="col" 
                 class="col-1 text-center types-initial-text">
                 <span class="types-full-text">Types</span> 
@@ -333,7 +327,7 @@
                 (click)="setOrder('status_name')" 
                 [ngClass]="getCategoryCSSClass('status_name')"
                 tooltip="Status" 
-                placement="auto"
+                placement="bottom"
                 scope="col" 
                 class="col-1 text-center status-initial-text">
                 <span class="status-full-text">Status</span> 
@@ -346,9 +340,9 @@
               </th>
               <th 
                 (click)="setOrder('multitenant_support')" 
-                [ngClass]="getCategoryCSSClass('multitenant_support')"
+                [ngClass]="getCategoryCSSClass('multitenant_support')"  
                 tooltip="Multitenant" 
-                placement="auto"
+                placement="bottom" 
                 scope="col" 
                 class="col-1 text-center multitenant-short-text multitenant-initial-text">
                 <span class="multitenant-full-text">Multitenant</span> 
@@ -359,12 +353,8 @@
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
-              <th 
-                tooltip="Edit" 
-                placement="auto"
-                scope="col" 
-                class="col-1 text-center">
-                Edit
+              <th scope="col" class="col-1 text-center">
+                <span tooltip="Edit" placement="bottom">Edit</span> 
               </th>
             </tr>
           </thead>
@@ -441,7 +431,7 @@
                   class="col-1 col-center-lowercase">
                 <span 
                   tooltip= "{{cluster.status_name | lowercase}}" 
-                  placement="auto" 
+                  placement="bottom" 
                   class="tooltip-fix">
                 </span>
                 <span class="hide-lg">

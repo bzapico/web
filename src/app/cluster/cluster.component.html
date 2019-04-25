@@ -102,7 +102,7 @@
       </div>
       <div class="row mb-3">
         <!-- Sorting mesages -->
-          <div class="col-9">  
+          <div class="col-8">  
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
               Filtered by term "{{ searchTerm }}".
               <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
@@ -122,7 +122,7 @@
             </p> 
           </div>
           <!-- Search input -->
-          <div class="col-3">
+          <div class="col-4">
             <form>
               <div class="search-box">
                 <input 
@@ -153,11 +153,9 @@
               <th 
                 (click)="setOrder('node_id')"
                 [ngClass]="getCategoryCSSClass('node_id')"
-                tooltip="ID" 
-                placement="auto"
                 scope="col" 
                 class="col-3">
-                ID
+                <span tooltip="ID" placement="bottom">ID</span>
                 <span *ngIf="sortedBy === 'node_id' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -168,11 +166,9 @@
               <th 
                 (click)="setOrder('ip')"
                 [ngClass]="getCategoryCSSClass('ip')"
-                tooltip="IP" 
-                placement="auto"
                 scope="col" 
                 class="col-2">
-                IP
+                <span tooltip="IP" placement="bottom">IP</span>
                 <span *ngIf="sortedBy === 'ip' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -183,11 +179,9 @@
               <th 
                 (click)="setOrder('state_name')"
                 [ngClass]="getCategoryCSSClass('state_name')"
-                tooltip="State" 
-                placement="auto"
                 scope="col" 
                 class="col-2">
-                State
+                <span tooltip="State" placement="bottom">State</span>
                 <span *ngIf="sortedBy === 'state_name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -198,11 +192,9 @@
               <th 
                 (click)="setOrder('labels')"
                 [ngClass]="getCategoryCSSClass('labels')"
-                tooltip="Labels" 
-                placement="auto"
                 scope="col" 
                 class="col-3">
-                Labels
+                <span tooltip="Labels" placement="bottom">Labels</span>
                 <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -213,11 +205,9 @@
               <th 
                 (click)="setOrder('status_name')"
                 [ngClass]="getCategoryCSSClass('status_name')"
-                tooltip="Status" 
-                placement="auto"
                 scope="col" 
                 class="col-2 text-center">
-                Status
+                <span tooltip="Status" placement="bottom">Status</span>
                 <span *ngIf="sortedBy === 'status_name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -275,7 +265,7 @@
                 }">
                 <span 
                 tooltip= "{{node.status_name | lowercase}}" 
-                placement="auto"
+                placement="bottom"
                 class="tooltip-fix">
                 </span>
                 <span class="hide-lg">

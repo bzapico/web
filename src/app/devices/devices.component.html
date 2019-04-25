@@ -240,9 +240,14 @@
             </div>  
           </div>
         </div>
-        <div class="row mb-3">
+        <div  
+          *ngIf=
+          "groups.length > 0 &&
+          countGroupDevices(activeGroupId) != 0 &&
+          loadedData"
+          class="row mb-3">
           <!-- Sorting mesages -->
-          <div class="col-9">  
+          <div class="col-8">  
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
               Filtered by term "{{ searchTerm }}".
               <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
@@ -262,7 +267,7 @@
             </p> 
           </div>
           <!-- Search input -->
-          <div class="col-3">
+          <div class="col-4">
             <form>
               <div class="search-box">
                 <input 
@@ -300,29 +305,29 @@
               <tr>
                 <th 
                   *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0 "
-                  (click)="setOrder('id')"
-                  [ngClass]="getCategoryCSSClass('id')"
+                  (click)="setOrder('device_id')"
+                  [ngClass]="getCategoryCSSClass('device_id')"
                   scope="col" 
                   class="col-3">
-                  ID
-                  <span *ngIf="sortedBy === 'id' && !reverse" class="expand-chevron">
+                  <span tooltip="ID" placement="bottom">ID</span>
+                  <span *ngIf="sortedBy === 'device_id' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
-                  <span *ngIf="sortedBy === 'id' && reverse" class="expand-chevron">
+                  <span *ngIf="sortedBy === 'device_id' && reverse" class="expand-chevron">
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th>
                 <th 
                   *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
-                  (click)="setOrder('id')"
-                  [ngClass]="getCategoryCSSClass('id')"
+                  (click)="setOrder('device_id')"
+                  [ngClass]="getCategoryCSSClass('device_id')"
                   scope="col" 
                   class="col-2">
-                  ID
-                  <span *ngIf="sortedBy === 'id' && !reverse" class="expand-chevron">
+                  <span tooltip="ID" placement="bottom">ID</span>
+                  <span *ngIf="sortedBy === 'device_id' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
-                  <span *ngIf="sortedBy === 'id' && reverse" class="expand-chevron">
+                  <span *ngIf="sortedBy === 'device_id' && reverse" class="expand-chevron">
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th>
@@ -332,7 +337,7 @@
                   [ngClass]="getCategoryCSSClass('group')"
                   scope="col" 
                   class="col-2">
-                  Group
+                  <span tooltip="Group" placement="bottom">Group</span>
                   <span *ngIf="sortedBy === 'group' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -346,7 +351,7 @@
                   [ngClass]="getCategoryCSSClass('register_since')"
                   scope="col" 
                   class="col-2">
-                  Date
+                  <span tooltip="Date" placement="bottom">Date</span>
                   <span *ngIf="sortedBy === 'register_since' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -360,7 +365,7 @@
                   [ngClass]="getCategoryCSSClass('register_since')"
                   scope="col" 
                   class="col-2">
-                  Date
+                  <span tooltip="Date" placement="bottom">Date</span>
                   <span *ngIf="sortedBy === 'register_since' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -374,7 +379,7 @@
                   [ngClass]="getCategoryCSSClass('device_status_name')"
                   scope="col" 
                   class="col-2 text-center">
-                  Status
+                  <span tooltip="Status" placement="bottom">Status</span>
                   <span *ngIf="sortedBy === 'device_status_name' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -388,7 +393,7 @@
                   [ngClass]="getCategoryCSSClass('device_status_name')"
                   scope="col" 
                   class="col-2 text-center">
-                  Status
+                  <span tooltip="Status" placement="bottom">Status</span>
                   <span *ngIf="sortedBy === 'device_status_name' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -402,7 +407,7 @@
                   [ngClass]="getCategoryCSSClass('labels')"
                   scope="col" 
                   class="col-3">
-                  Labels
+                  <span tooltip="Labels" placement="bottom">Labels</span>
                   <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -416,7 +421,7 @@
                   [ngClass]="getCategoryCSSClass('labels')"
                   scope="col" 
                   class="col-4">
-                  Labels
+                  <span tooltip="Labels" placement="bottom">Labels</span>
                   <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -426,15 +431,19 @@
                 </th>
                 <th 
                   *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
+                  tooltip="Enabled" 
+                  placement="bottom"
                   scope="col" 
-                  class="col-1 text-center">
-                  Enabled
+                  class="col-1 text-center enabled-initial-text">
+                  <span class="enabled-full-text">Enabled</span> 
                 </th>
                 <th
                   *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0"
+                  tooltip="Enabled" 
+                  placement="bottom"
                   scope="col" 
-                  class="col-1 text-center">
-                  Enabled
+                  class="col-1 text-center enabled-initial-text">
+                  <span class="enabled-full-text">Enabled</span> 
                 </th>
               </tr>
             </thead>
@@ -457,7 +466,7 @@
                     }"> 
                     <span 
                       tooltip="{{device.device_status_name}}" 
-                      placement="auto"
+                      placement="bottom"
                       class="tooltip-fix text-capitalize" >
                     </span>
                     <span class="hide-lg">
@@ -535,7 +544,7 @@
                     }"> 
                     <span 
                       tooltip="{{device.device_status_name}}" 
-                      placement="auto"
+                      placement="bottom"
                       class="tooltip-fix text-capitalize">
                     </span>
                     <span class="hide-lg">

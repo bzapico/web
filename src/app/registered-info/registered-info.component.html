@@ -356,7 +356,7 @@
                   [ngClass]="getCategoryCSSClass('services','name')" 
                   scope="col" 
                   class="col-2">
-                  Name
+                  <span tooltip="Name" placement="bottom">Name</span>
                   <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -369,7 +369,7 @@
                   [ngClass]="getCategoryCSSClass('services','image')" 
                   scope="col" 
                   class="col-5">
-                  Image
+                  <span tooltip="Image" placement="bottom">Image</span>
                   <span *ngIf="sortedBy === 'image' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -382,7 +382,7 @@
                   [ngClass]="getCategoryCSSClass('services','labels')" 
                   scope="col" 
                   class="col-4">
-                  Labels
+                  <span tooltip="Labels" placement="bottom">Labels</span>
                   <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -390,8 +390,8 @@
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th>
-                <th scope="col" class="col-1 text-center p-0">
-                  Info
+                <th scope="col"class="col-1 text-center p-0">
+                  <span tooltip="Info" placement="bottom">Info</span>
                 </th>
               </tr>
             </thead>
@@ -459,7 +459,12 @@
           <div class="card-title-name-mb">
             <h5>RULES</h5>
           </div>
-          <div class="row mb-3 hide-md">
+          <div *ngIf=
+            "loadedData &&
+            registeredData.rules &&
+            registeredData.rules.length > 0 &&
+            !requestError" 
+            class="row mb-3 hide-md">
             <!-- Sorting mesages -->
             <div class="col">
               <p *ngIf="searchTermRules && !filterFieldRules" class="sorting-message">
@@ -515,7 +520,7 @@
                     [ngClass]="getCategoryCSSClass('rules','name')" 
                     scope="col" 
                     class="col-2">
-                    Name
+                    <span tooltip="Name" placement="bottom">Name</span>
                     <span *ngIf="sortedByRules === 'name' && !reverseRules" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
                     </span>
@@ -526,9 +531,11 @@
                   <th 
                     (click)="setOrder('rules','access')" 
                     [ngClass]="getCategoryCSSClass('rules','access')" 
+                    tooltip="Access" 
+                    placement="bottom"
                     scope="col" 
-                    class="col-2">
-                    Access
+                    class="col-2 reg-access-initial-text">
+                    <span class="reg-access-full-text">Access</span> 
                     <span *ngIf="sortedByRules === 'access' && !reverseRules" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
                     </span>
@@ -540,8 +547,8 @@
                     (click)="setOrder('rules','target')" 
                     [ngClass]="getCategoryCSSClass('rules','target')" 
                     scope="col"
-                    class="col-4 auth-lh-fix">
-                    Target <span class="grey typo-small">(group, service, port)</span>
+                    class="col-4">
+                    <span tooltip="Target (group, service, port)"  placement="bottom">Target</span>
                     <span *ngIf="sortedByRules === 'target' && !reverseRules" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
                     </span>
@@ -553,8 +560,8 @@
                     (click)="setOrder('rules','auth')" 
                     [ngClass]="getCategoryCSSClass('rules','auth')" 
                     scope="col" 
-                    class="col-3 auth-lh-fix">
-                    Auth <span class="grey typo-small ">(group, service / device group)</span>
+                    class="col-3">
+                    <span tooltip="Auth (group, service / device group)" placement="bottom">Auth</span>
                     <span *ngIf="sortedByRules === 'auth' && !reverseRules" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
                     </span>
@@ -562,8 +569,8 @@
                       <i class="material-icons">expand_less</i>
                     </span>
                   </th>
-                  <th scope="col" class="col-1 text-center p-0">
-                    Info
+                  <th scope="col"class="col-1 text-center p-0">
+                    <span tooltip="Info" placement="bottom">Info</span>
                   </th>
                 </tr>
               </thead>
@@ -605,7 +612,7 @@
           <div *ngIf=
             "loadedData &&
             registeredData &&
-            registeredData.groups.length === 0
+            !registeredData.rules
             !requestError"
             class="no-elements">
             No available rules detected
