@@ -257,6 +257,8 @@
               <th 
                 (click)="setOrder('name')"            
                 [ngClass]="getCategoryCSSClass('name')"
+                tooltip="Name" 
+                placement="auto"
                 scope="col" 
                 class="col-2">
                 Name 
@@ -270,6 +272,8 @@
               <th 
                 (click)="setOrder('id')"
                 [ngClass]="getCategoryCSSClass('id')"
+                tooltip="ID" 
+                placement="auto"
                 scope="col" 
                 class="col-2">
                 ID
@@ -283,9 +287,11 @@
               <th 
                 (click)="setOrder('total_nodes')"
                 [ngClass]="getCategoryCSSClass('total_nodes')"
+                tooltip="Nodes" 
+                placement="auto"
                 scope="col" 
-                class="col-1 text-center">
-                Nodes 
+                class="col-1 text-center nodes-initial-text">
+                <span class="nodes-full-text">Nodes</span> 
                 <span *ngIf="sortedBy === 'total_nodes' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -294,24 +300,28 @@
                 </span>
               </th>
               <th 
-                (click)="setOrder('description')" 
-                [ngClass]="getCategoryCSSClass('description')"
+                (click)="setOrder('labels')" 
+                [ngClass]="getCategoryCSSClass('labels')"
+                tooltip="Labels" 
+                placement="auto"
                 scope="col" 
                 class="col-3">
                 Labels
                 <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
+                <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
               <th 
                 (click)="setOrder('cluster_type_name')" 
                 [ngClass]="getCategoryCSSClass('cluster_type_name')"
+                tooltip="Type" 
+                placement="auto"
                 scope="col" 
-                class="col-1">
-                Types
+                class="col-1 text-center types-initial-text">
+                <span class="types-full-text">Types</span> 
                 <span *ngIf="sortedBy === 'cluster_type_name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -322,6 +332,8 @@
               <th 
                 (click)="setOrder('status_name')" 
                 [ngClass]="getCategoryCSSClass('status_name')"
+                tooltip="Status" 
+                placement="auto"
                 scope="col" 
                 class="col-1 text-center status-initial-text">
                 <span class="status-full-text">Status</span> 
@@ -347,7 +359,11 @@
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
-              <th scope="col" class="col-1 text-center">
+              <th 
+                tooltip="Edit" 
+                placement="auto"
+                scope="col" 
+                class="col-1 text-center">
                 Edit
               </th>
             </tr>

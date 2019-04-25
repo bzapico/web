@@ -35,11 +35,11 @@
           <div class="reg-info">
             <button (click)="deployRegistered(registeredData)" class="reg-deploy btn-p-fix">
               <i class="material-icons i-options">play_arrow</i>
-              Deploy <span class="hide-sm">instance</span> 
+              Deploy <span class="hide-reg-btn-text">instance</span> 
             </button>
             <button (click)="deleteApp(registeredData)" class="reg-undeploy btn-p-fix">
               <i class="material-icons i-options">delete</i>
-              Delete <span class="hide-sm">app</span>
+              Delete <span class="hide-reg-btn-text">app</span>
             </button>
           </div>
         </div>
@@ -296,7 +296,7 @@
           registeredData &&
           registeredData.groups &&
           registeredData.groups.length > 0" 
-          class="row mb-3">
+          class="row mb-3 hide-md">
           <!-- Sorting mesages -->
           <div class="col-9">
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
@@ -459,7 +459,7 @@
           <div class="card-title-name">
             <h5>RULES</h5>
           </div>
-          <div class="row mb-3 hide-sm">
+          <div class="row mb-3 hide-md">
             <!-- Sorting mesages -->
             <div class="col">
               <p *ngIf="searchTermRules && !filterFieldRules" class="sorting-message">
@@ -508,7 +508,7 @@
             !requestError"
             class="nalej-table-box nalej-table-box-fix">
             <table class="nalej-table">
-              <thead class="nalej-thead hide-sm">
+              <thead class="nalej-thead hide-md">
                 <tr>
                   <th 
                     (click)="setOrder('rules','name')" 
@@ -633,8 +633,7 @@
         <!-- Configuration card -->
         <div class="card">
           <div class="card-title-name">
-            <h5 class="hide-sm">CONFIGURATION</h5>
-            <h5 class="show-sm">CONF...</h5>
+            <h5>CONFIGURATION</h5>
           </div>
           <div class="config-card">
             <div *ngIf="registeredData.environment_variables">

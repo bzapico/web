@@ -4,6 +4,9 @@
 @mixin for-desktop-only {
     @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
 }
+@mixin for-md-desktop-fix {
+    @media all and (max-width: 1614px) { @content; }
+}
 
 /* - - - Card heights - - */
 .h-reg {
@@ -54,12 +57,13 @@
     color: white;
     width: 159px;
     height: 42px;
+    line-height: 1.1;
     &:hover {
         color: #fff;
         transition: 0.3s;
         background-color: #4f71fd;
     }
-    @include for-desktop-up {
+    @include for-md-desktop-fix {
         width: 114px;
     }
 }
@@ -75,12 +79,13 @@
     color: #F25272;
     width: 159px;
     height: 42px;
+    line-height: 1.1;
     &:hover {
         color: #fff;
         transition: 0.3s;
         background-color: #ff437d;
     }
-    @include for-desktop-up {
+    @include for-md-desktop-fix {
         width: 114px;
     }
 }
@@ -91,7 +96,7 @@
     transform: translate(-50%, -50%);
     display: block;
     font-size: 1.7em;
-    @include for-desktop-up {
+    @include for-md-desktop-fix {
         left: 20%;
     }
 }
@@ -122,6 +127,11 @@
 .nalej-table tbody td:last-child {
     @include for-desktop-up {
         padding: 0.75rem 0;
+    }
+}
+.hide-reg-btn-text {
+    @include for-md-desktop-fix {
+        display: none; 
     }
 }
 
@@ -155,7 +165,7 @@
 .nalej-table-box-fix {
     padding-top: 0em;
 }
-
+ 
 @media screen and (max-height: 780px) {
     .hide-title-sm {
         display: none;

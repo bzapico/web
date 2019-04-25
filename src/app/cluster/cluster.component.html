@@ -151,21 +151,25 @@
           <thead class="nalej-thead">
             <tr>
               <th 
-                (click)="setOrder('id')"
-                [ngClass]="getCategoryCSSClass('id')"
+                (click)="setOrder('node_id')"
+                [ngClass]="getCategoryCSSClass('node_id')"
+                tooltip="ID" 
+                placement="auto"
                 scope="col" 
                 class="col-3">
                 ID
-                <span *ngIf="sortedBy === 'id' && !reverse" class="expand-chevron">
+                <span *ngIf="sortedBy === 'node_id' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span *ngIf="sortedBy === 'id' && reverse" class="expand-chevron">
+                <span *ngIf="sortedBy === 'node_id' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
               <th 
                 (click)="setOrder('ip')"
                 [ngClass]="getCategoryCSSClass('ip')"
+                tooltip="IP" 
+                placement="auto"
                 scope="col" 
                 class="col-2">
                 IP
@@ -177,21 +181,25 @@
                 </span>
               </th>
               <th 
-                (click)="setOrder('state')"
-                [ngClass]="getCategoryCSSClass('state')"
+                (click)="setOrder('state_name')"
+                [ngClass]="getCategoryCSSClass('state_name')"
+                tooltip="State" 
+                placement="auto"
                 scope="col" 
                 class="col-2">
                 State
-                <span *ngIf="sortedBy === 'state' && !reverse" class="expand-chevron">
+                <span *ngIf="sortedBy === 'state_name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span *ngIf="sortedBy === 'state' && reverse" class="expand-chevron">
+                <span *ngIf="sortedBy === 'state_name' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
               <th 
                 (click)="setOrder('labels')"
                 [ngClass]="getCategoryCSSClass('labels')"
+                tooltip="Labels" 
+                placement="auto"
                 scope="col" 
                 class="col-3">
                 Labels
@@ -203,15 +211,17 @@
                 </span>
               </th>
               <th 
-                (click)="setOrder('status')"
-                [ngClass]="getCategoryCSSClass('status')"
+                (click)="setOrder('status_name')"
+                [ngClass]="getCategoryCSSClass('status_name')"
+                tooltip="Status" 
+                placement="auto"
                 scope="col" 
                 class="col-2 text-center">
                 Status
-                <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
+                <span *ngIf="sortedBy === 'status_name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span *ngIf="sortedBy === 'status' && reverse" class="expand-chevron">
+                <span *ngIf="sortedBy === 'status_name' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>

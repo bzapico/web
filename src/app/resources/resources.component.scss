@@ -124,28 +124,53 @@
         display: none;
     }
 }
-@media screen and (max-width:1898px){
+@media screen and (max-width:2127px){
     .multitenant-short-text .multitenant-full-text {
         display: none;
     }
     .multitenant-short-text {
-        &::after {
+        &::before {
             content: 'Multi';
         }
     }
 }
-@media screen and (max-width:1326px){
-    .multitenant-initial-text .multitenant-full-text, .status-full-text {
+@media screen and (max-width:1600px){
+    .status-full-text {
+        display: none;
+    }
+    .status-initial-text {
+        &::before {
+            content: 'S';
+        }
+    }
+}
+@media screen and (max-width:1528px){
+    .nodes-full-text {
+        display: none;
+    }
+    .nodes-initial-text {
+        &::before {
+            content: 'N';
+        }
+    }
+}
+@media screen and (max-width:1464px){
+    .types-full-text {
+        display: none;
+    }
+    .types-initial-text {
+        &::before {
+            content: 'T';
+        }
+    }
+}
+@media screen and (max-width:1357px){
+    .multitenant-initial-text .multitenant-full-text {
         display: none;
     }
     .multitenant-initial-text {
-        &::after {
+        &::before {
             content: 'M';
-        }
-    }
-    .status-initial-text {
-        &::after {
-            content: 'S';
         }
     }
 }

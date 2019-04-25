@@ -63,6 +63,7 @@
             cursor: pointer;
             top: 3px;
             right: 3px;
+            // background-color: red;
             i {
                 font-size: 1.1em;
             }
@@ -73,8 +74,9 @@
         position: sticky;
         top: 0;
         background-color: white;
-        max-height: 25px;
+        // max-height: 25px;
         z-index: 1;
+        min-height: 26px;
     }
 
     tr:after {
