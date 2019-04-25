@@ -8,34 +8,34 @@
 .show-sm {
   display: none;
   @include for-quarter-only {
-    display: block;
+    display: block !important;
   }
 }
 .hide-sm {
   display: block;
   @include for-quarter-only {
-    display: none;
+    display: none !important;
   }
 }
 .show-md {
   display: none;
   @include for-desktop-only{
-    display: block;
+    display: block !important;
   }
 }
 .hide-md {
   @include for-desktop-only {
-    display: none;
+    display: none !important;
   }
 }
 .hide-lg {
   @include for-quarter-up {
-    display: none;
+    display: none !important;
   }
 }
 .hide-title-sm {
   @media screen and (max-height: 780px) {
-    display: none;
+    display: none !important;
   }
 }
 
