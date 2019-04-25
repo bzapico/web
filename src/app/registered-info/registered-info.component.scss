@@ -25,7 +25,12 @@
 }
 .h-reg-services {
     margin-bottom: 2em;
+    height: 517px;
+    @media screen and (max-width: 1557px) {
+        height: 373px;
+    }
 }
+
 .h-reg-rules {
     height: 38%;
     display: flex;
