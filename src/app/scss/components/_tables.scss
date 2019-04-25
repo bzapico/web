@@ -94,59 +94,65 @@
     }
 }
 
-
-.lela {
+.tomato-table-box {
     width: 100%;
     overflow: scroll;
     height: 100%;
-    table.tomato-table { 
+    .tomato-table { 
         width: 100%;
+    }
+    .tomato-table tr { 
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        border-bottom: .8px solid #EEEEEE;
     }
     .tomato-table th {
         font-size: .9em;
         font-weight: 200;
         border: 1px dotted purple;
+        flex: 1 1 150px;
     }
     .tomato-table td { 
+        flex: 1 1 150px;
         padding: 0.75rem;
         font-size: .9em;
         // border-top: .8px solid #EEEEEE;
         color: #949494;
+        width: 100%;
         // border: 1px dotted red;
     }
     .tomato-table th, .tomato-table td { 
-        text-align: left; 
+        // text-align: left; 
         // padding: 0.25em;
         // border: 1px dotted red;
     }
-    .tomato-table tr { 
-        border-bottom: .8px solid #EEEEEE;
-    }
-    td.edit-buttons { 
-        text-align: right; 
-    }
-  
-    @media screen and (max-width: 1440px) {
-        tr { 
-            display: flex; 
-            flex-direction: row;
-            flex-wrap: wrap;
-            // margin: 0.5em 0;
-            border: 1px solid orange;
+
+    // @media screen and (max-width: 1440px) {
+    //     tr { 
+    //         display: flex; 
+    //         flex-direction: row;
+    //         flex-wrap: wrap;
+    //         // margin: 0.5em 0;
+    //         border: 1px solid orange;
             
-        }
-        td, th {
-            flex: 1 1 150px;
-            border: 0.5px solid green;
-        }
-        td.edit-buttons {
-            /*flex: 1 0 90%;
-            text-align: center;*/
-        }
-    }
+    //     }
+    //     td{
+    //         flex: 1 1 150px;
+    //         border: 0.5px solid green;
+    //     }
+    //     th {
+    //         flex: 1 1 150px;
+    //         border: 0.5px solid green;
+    //     }
+    //     td.edit-buttons {
+    //         /*flex: 1 0 90%;
+    //         text-align: center;*/
+    //     }
+    // }
 }
-.lechuga {
-    background-color: orange;
+.tomato-table-span {
+    background-color: pink;
 }
 
 

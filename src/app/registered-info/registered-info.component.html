@@ -347,7 +347,7 @@
           registeredData.groups &&
           registeredData.groups.length > 0 &&
           !requestError"
-          class="nalej-table-box lela">
+          class="tomato-table-box">
           <!-- <table class="nalej-table"> -->
             <table class="tomato-table">
             <thead class="nalej-thead">
@@ -414,13 +414,15 @@
                 </th> -->
               </tr>
             </thead>
+          
             <tbody>
-              <span *ngIf="getGroupServices(activeGroupId)" class="lechuga">
+                <span *ngIf="getGroupServices(activeGroupId)" class="tomato-table-span">
+                 
                 <tr *ngFor=
                   "let service of getGroupServices(activeGroupId) |
                   sortBy : sortedBy : reverse : 'case-insensitive' |
                   filter : searchTerm">
-                                    <td >{{service.name}}</td>
+                     <td >{{service.name}}</td>
                     <td >{{service.image}}</td>
                     <td >
                       <button 
@@ -460,7 +462,9 @@
                   </td> -->
                 </tr>
               </span>
-            </tbody>
+              </tbody>
+       
+       
           </table>
         </div>
         <!-- No info to show -->
@@ -545,11 +549,17 @@
           </div>
           <!-- Rules table -->
           <div *ngIf=
+          "loadedData &&
+          registeredData.rules &&
+          registeredData.rules.length > 0 &&
+          !requestError"
+          class="tomato-table-box">
+          <!-- <div *ngIf=
             "loadedData &&
             registeredData.rules &&
             registeredData.rules.length > 0 &&
             !requestError"
-            class="nalej-table-box nalej-table-box-fix lela">
+            class="nalej-table-box nalej-table-box-fix tomato-table-box"> -->
             <table class="tomato-table">
             <!-- <table class="nalej-table tomato-table"> -->
               <!-- <thead class="nalej-thead hide-md"> -->
@@ -653,7 +663,7 @@
                     <td class="">
                       {{rule.target_service_group_name}} - {{rule.target_service_name}} - {{rule.target_port}}
                     </td>
-                    <td class="text-lowercase col-3">
+                    <td class="text-lowercase">
                       {{rule.auth_service_group_name}}
                     <span *ngIf="rule.auth_services"> - </span>
                     {{rule.auth_services}}
