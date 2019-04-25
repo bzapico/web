@@ -127,7 +127,7 @@
       <!-- Graph card -->
       <div *ngIf="showGraph" class="card h-reg-services flex-grow-1">
         <div class="row">
-          <div class="col-10 card-title-name">
+          <div class="col-10 card-title-name-mb">
             <h5>SERVICES</h5>
           </div>
           <div class="col-2">
@@ -221,7 +221,7 @@
       <!-- Services card -->
       <div *ngIf="!showGraph" class="card h-reg-services flex-grow-1">
         <div class="row">
-          <div class="col-10 card-title-name">
+          <div class="col-10 card-title-name-mb">
             <h5>SERVICES</h5>
           </div>
           <div class="col-2">
@@ -296,7 +296,7 @@
           registeredData &&
           registeredData.groups &&
           registeredData.groups.length > 0" 
-          class="row mb-3 hide-md">
+          class="row mb-3">
           <!-- Sorting mesages -->
           <div class="col-9">
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
@@ -456,7 +456,7 @@
       <div class="h-reg-rules flex-grow-0">
         <!-- Rules card -->
         <div class="card mr-4 w-75">
-          <div class="card-title-name">
+          <div class="card-title-name-mb">
             <h5>RULES</h5>
           </div>
           <div class="row mb-3 hide-md">
