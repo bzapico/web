@@ -1,0 +1,71 @@
+// -----------------------------------------------------------------------------
+// This file contains SCSS helper classes.
+// -----------------------------------------------------------------------------
+
+@import  'app/scss/variables/mixins';
+
+/* - - - Hide and show styles - - - */
+.show-sm {
+  display: none;
+  @include for-quarter-only {
+    display: block !important;
+  }
+}
+.hide-sm {
+  display: block;
+  @include for-quarter-only {
+    display: none !important;
+  }
+}
+.show-md {
+  display: none;
+  @include for-desktop-only{
+    display: block !important;
+  }
+}
+.hide-md {
+  @include for-desktop-only {
+    display: none !important;
+  }
+}
+.hide-lg {
+  @include for-quarter-up {
+    display: none !important;
+  }
+}
+.hide-title-sm {
+  @media screen and (max-height: 780px) {
+    display: none !important;
+  }
+}
+
+/* - - - Tooltip fix - - - */
+.tooltip-fix {
+  @include for-desktop-up {
+    height: 20px;
+    width: 30px;
+    position: absolute;
+    top: 33%;
+    left: 40%;
+    cursor: pointer;
+  }
+}
+
+/* - - - No elements in tables - - - */
+.no-elements {
+  height: 80%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.no-elements-in-group {
+  position: absolute;
+  bottom: 33%;
+  left: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

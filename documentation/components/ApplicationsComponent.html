@@ -4350,8 +4350,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
                 [results]&#x3D;&quot;instancesPieChart&quot; 
                 [doughnut]&#x3D; &quot;doughnut&quot;
                 [gradient]&#x3D;&quot;gradient&quot;
-                [explodeSlices]&#x3D;&quot;false&quot;
-                &gt;
+                [explodeSlices]&#x3D;&quot;false&quot;&gt;
               &lt;/ngx-charts-pie-chart&gt;
               &lt;div class&#x3D;&quot;donut-number&quot;&gt;{{countRunning}}/{{instances.length}}&lt;/div&gt;
             &lt;/div&gt;
@@ -4395,8 +4394,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           [customColors]&#x3D;&quot;customColors&quot;
           [rangeFillOpacity]&#x3D;&quot;rangeFillOpacity&quot;
           [referenceLines]&#x3D;&quot;referenceLines&quot;
-          [showRefLabels]&#x3D;&quot;showRefLabels&quot;
-          &gt;
+          [showRefLabels]&#x3D;&quot;showRefLabels&quot;&gt;
         &lt;/ngx-charts-line-chart&gt;
         &lt;div class&#x3D;&quot;line-chart-y-axis&quot;&gt;
           &lt;span class&#x3D;&quot;grey&quot;&gt;100%&lt;/span&gt;
@@ -4424,8 +4422,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         &lt;button
           (click)&#x3D;&quot;registerApp()&quot;
           *ngIf&#x3D;&quot;!showInstances&quot;
-          class&#x3D;&quot;apps-actions-btn btn-p-fix&quot;
-          &gt;
+          class&#x3D;&quot;apps-actions-btn btn-p-fix&quot;&gt;
           &lt;i class&#x3D;&quot;material-icons i-options&quot;&gt;publish&lt;/i&gt;
           Register application
         &lt;/button&gt;
@@ -4457,20 +4454,20 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         &lt;div class&#x3D;&quot;col-9&quot;&gt;  
           &lt;p *ngIf&#x3D;&quot;searchTerm &amp;&amp; !filterField&quot; class&#x3D;&quot;sorting-message&quot;&gt;
             Filtered by term &quot;{{ searchTerm }}&quot;.
-            &lt;span class&#x3D;&quot;reset-search&quot; (click)&#x3D;&quot;resetFilters(filterField)&quot;&gt;Reset&lt;/span&gt;
+            &lt;span (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;reset-search&quot;&gt;Reset&lt;/span&gt;
           &lt;/p&gt;
           &lt;p *ngIf&#x3D;&quot;filterField &amp;&amp; !searchTerm&quot; class&#x3D;&quot;sorting-message&quot;&gt;
             Sorted by {{ sortedBy }},
             &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;ascendant. &lt;/span&gt;
             &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;descendant. &lt;/span&gt;
-            &lt;span class&#x3D;&quot;reset-search&quot; (click)&#x3D;&quot;resetFilters(filterField)&quot;&gt;Reset&lt;/span&gt;
+            &lt;span (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;reset-search&quot;&gt;Reset&lt;/span&gt;
           &lt;/p&gt;
           &lt;p *ngIf&#x3D;&quot;filterField &amp;&amp; searchTerm&quot; class&#x3D;&quot;sorting-message&quot;&gt;
             Sorted by {{ sortedBy }}
             &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;ascendant &lt;/span&gt;
             &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;descendant &lt;/span&gt;
             and filtered by term &quot;{{ searchTerm }}&quot;.
-            &lt;span class&#x3D;&quot;reset-search&quot; (click)&#x3D;&quot;resetFilters(filterField)&quot;&gt;Reset&lt;/span&gt;
+            &lt;span (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;reset-search&quot;&gt;Reset&lt;/span&gt;
           &lt;/p&gt; 
         &lt;/div&gt;
         &lt;!-- Search input --&gt;
@@ -4478,23 +4475,29 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           &lt;form&gt;
             &lt;div class&#x3D;&quot;search-box&quot;&gt;
               &lt;input 
-                type&#x3D;&quot;text&quot; 
-                class&#x3D;&quot;form-control&quot; 
                 name&#x3D;&quot;searchTerm&quot; 
-                placeholder&#x3D;&quot;Search...&quot; 
-                [(ngModel)]&#x3D;&quot;searchTerm&quot;&gt; 
-                &lt;div class&#x3D;&quot;search-icon&quot; *ngIf&#x3D;&quot;searchTerm &#x3D;&#x3D;&#x3D; &#x27;&#x27;&quot;&gt;
+                [(ngModel)]&#x3D;&quot;searchTerm&quot;
+                type&#x3D;&quot;text&quot; 
+                placeholder&#x3D;&quot;Search...&quot;
+                class&#x3D;&quot;form-control&quot;&gt; 
+                &lt;div *ngIf&#x3D;&quot;searchTerm &#x3D;&#x3D;&#x3D; &#x27;&#x27;&quot; class&#x3D;&quot;search-icon&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;search&lt;/i&gt;
                 &lt;/div&gt;     
-                &lt;div class&#x3D;&quot;close-icon&quot; *ngIf&#x3D;&quot;searchTerm !&#x3D;&#x3D; &#x27;&#x27;&quot;&gt;
-                  &lt;i class&#x3D;&quot;material-icons&quot; (click)&#x3D;&quot;resetFilters(filterField)&quot;&gt;close&lt;/i&gt;
+                &lt;div *ngIf&#x3D;&quot;searchTerm !&#x3D;&#x3D; &#x27;&#x27;&quot; class&#x3D;&quot;close-icon&quot;&gt;
+                  &lt;i (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;material-icons&quot;&gt;close&lt;/i&gt;
                 &lt;/div&gt;
             &lt;/div&gt;
           &lt;/form&gt;
         &lt;/div&gt;      
       &lt;/div&gt;
       &lt;!-- App Instances --&gt;
-      &lt;div class&#x3D;&quot;table-h&quot; *ngIf&#x3D;&quot;loadedData &amp;&amp; instances &amp;&amp; instances.length &gt; 0 &amp;&amp; !requestError &amp;&amp; showInstances&quot;&gt;
+      &lt;div *ngIf&#x3D;
+        &quot;loadedData &amp;&amp;
+        instances &amp;&amp;
+        instances.length &gt; 0 &amp;&amp;
+        !requestError &amp;&amp; 
+        showInstances&quot; 
+        class&#x3D;&quot;table-h&quot;&gt;
         &lt;table class&#x3D;&quot;table-responsive table-fixed&quot;&gt;
           &lt;thead&gt;
             &lt;tr&gt;
@@ -4504,10 +4507,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-2&quot;&gt;
                 Name 
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;name&#x27; &amp;&amp; !reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;name&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;name&#x27; &amp;&amp; reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;name&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/th&gt;
@@ -4517,10 +4520,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-3&quot;&gt;
                 ID
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;id&#x27; &amp;&amp; !reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;id&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;id&#x27; &amp;&amp; reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;id&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/th&gt;
@@ -4530,10 +4533,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-4&quot;&gt;
                 Labels
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;labels&#x27; &amp;&amp; !reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;labels&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;labels&#x27; &amp;&amp; reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;labels&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/th&gt;
@@ -4543,10 +4546,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-2 text-center&quot;&gt;
                 Status
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;status&#x27; &amp;&amp; !reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;status&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;status&#x27; &amp;&amp; reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;status&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/th&gt;
@@ -4556,36 +4559,49 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
             &lt;/tr&gt;
           &lt;/thead&gt;
           &lt;tbody&gt;
-            &lt;tr *ngFor&#x3D;&quot;let app of instances | sortBy : sortedBy : reverse : &#x27;case-insensitive&#x27; | filter : searchTerm&quot;&gt;
+            &lt;tr *ngFor&#x3D;
+              &quot;let app of instances |
+              sortBy : sortedBy : reverse : &#x27;case-insensitive&#x27; |
+              filter : searchTerm&quot;&gt;
               &lt;td 
-                tooltip&#x3D;&quot;Info&quot;
-                placement&#x3D;&quot;top&quot;
-                class&#x3D;&quot;col-2 app-info&quot; 
                 [routerLink]&#x3D;&quot;[&#x27;instance&#x27;, app.app_instance_id]&quot; 
                 routerLinkActive&#x3D;&quot;active&quot;
-                &gt;
+                tooltip&#x3D;&quot;Info&quot;
+                placement&#x3D;&quot;top&quot;
+                class&#x3D;&quot;col-2 app-info&quot;&gt;
                 {{app.name}}
               &lt;/td&gt;
               &lt;td class&#x3D;&quot;col-3&quot;&gt;{{app.app_instance_id}}&lt;/td&gt;
               &lt;td class&#x3D;&quot;col-4&quot;&gt;
-                &lt;button *ngFor&#x3D;&quot;let label of labelsToString(app.labels)&quot; class&#x3D;&quot;btn-sm btn-outline-primary&quot; disabled&gt;
+                &lt;button 
+                *ngFor&#x3D;&quot;let label of labelsToString(app.labels)&quot; 
+                disabled
+                class&#x3D;&quot;btn-sm btn-outline-primary&quot;&gt;
                   {{label[0]}}: {{label[1]}}
                 &lt;/button&gt;
               &lt;/td&gt;
-              &lt;td 
-                class&#x3D;&quot;col-2 col-center-lowercase&quot;
-                [ngClass]&#x3D;
-                &quot;{&#x27;status-dot&#x27;:classStatusCheck(app.status_name, &#x27;running&#x27;),
-                &#x27;status-dot-error&#x27;:classStatusCheck(app.status_name, &#x27;error&#x27;),
-                &#x27;status-dot-process&#x27;:classStatusCheck(app.status_name, &#x27;process&#x27;)}&quot;&gt; 
-                &lt;span tooltip&#x3D;&quot;{{app.status_name | lowercase}}&quot; class&#x3D;&quot;tooltip-fix&quot; placement&#x3D;&quot;auto&quot;&gt;
+              &lt;td [ngClass]&#x3D;
+                &quot;{&#x27;
+                  status-dot&#x27;:classStatusCheck(app.status_name, &#x27;running&#x27;),
+                  &#x27;status-dot-error&#x27;:classStatusCheck(app.status_name, &#x27;error&#x27;),
+                  &#x27;status-dot-process&#x27;:classStatusCheck(app.status_name, &#x27;process&#x27;)
+                }&quot;
+                class&#x3D;&quot;col-2 col-center-lowercase&quot;&gt; 
+                &lt;span 
+                  tooltip&#x3D;&quot;{{app.status_name | lowercase}}&quot; 
+                  placement&#x3D;&quot;auto&quot;
+                  class&#x3D;&quot;tooltip-fix&quot;&gt;
                 &lt;/span&gt;
                 &lt;span class&#x3D;&quot;hide-lg&quot;&gt;
                   {{app.status_name}}
                 &lt;/span&gt;
               &lt;/td&gt;
               &lt;td class&#x3D;&quot;col-1 row-info-btn text-center&quot;&gt;
-                &lt;button tooltip&#x3D;&quot;Undeploy&quot; placement&#x3D;&quot;left&quot; class&#x3D;&quot;action-btn-red&quot; (click)&#x3D;&quot;undeploy(app)&quot;&gt;
+                &lt;button 
+                  (click)&#x3D;&quot;undeploy(app)&quot;
+                  tooltip&#x3D;&quot;Undeploy&quot; 
+                  placement&#x3D;&quot;left&quot; 
+                  class&#x3D;&quot;action-btn-red&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons i-red&quot;&gt;close&lt;/i&gt;
                 &lt;/button&gt;
               &lt;/td&gt;
@@ -4594,11 +4610,23 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         &lt;/table&gt;
       &lt;/div&gt;
        &lt;!-- No app instances to show --&gt;
-      &lt;div *ngIf&#x3D;&quot;loadedData &amp;&amp; instances &amp;&amp; instances.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; !requestError &amp;&amp; showInstances&quot; class&#x3D;&quot;no-elements&quot;&gt;
+      &lt;div *ngIf&#x3D;
+        &quot;loadedData &amp;&amp;
+        instances &amp;&amp;
+        instances.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp;
+        !requestError &amp;&amp;
+        showInstances&quot; 
+        class&#x3D;&quot;no-elements&quot;&gt;
         No application instances deployed
       &lt;/div&gt;
       &lt;!-- Registered Apps --&gt;
-      &lt;div class&#x3D;&quot;table-h&quot; *ngIf&#x3D;&quot;loadedData &amp;&amp; registered &amp;&amp; registered.length &gt; 0 &amp;&amp; !requestError &amp;&amp; !showInstances&quot;&gt;
+      &lt;div *ngIf&#x3D;
+        &quot;loadedData &amp;&amp;
+        registered &amp;&amp;
+        registered.length &gt; 0 &amp;&amp;
+        !requestError &amp;&amp; 
+        !showInstances&quot; 
+        class&#x3D;&quot;table-h&quot;&gt;
         &lt;table class&#x3D;&quot;table-responsive table-fixed&quot;&gt;
           &lt;thead&gt;
             &lt;tr&gt;
@@ -4608,10 +4636,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-2&quot;&gt;
                 Name 
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;name&#x27; &amp;&amp; !reverse&quot;&gt;
+                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;name&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;name&#x27; &amp;&amp; reverse&quot;&gt;
+                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;name&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/th&gt;
@@ -4621,10 +4649,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-3&quot;&gt;
                 ID
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;id&#x27; &amp;&amp; !reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;id&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;id&#x27; &amp;&amp; reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;id&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/th&gt;
@@ -4634,10 +4662,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-4&quot;&gt;
                 Labels
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;labels&#x27; &amp;&amp; !reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;labels&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;labels&#x27; &amp;&amp; reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;labels&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/th&gt;
@@ -4647,10 +4675,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-2 text-center&quot;&gt;
                 Services
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;services&#x27; &amp;&amp; !reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;services&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span class&#x3D;&quot;expand-chevron&quot; *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;services&#x27; &amp;&amp; reverse&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;services&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/th&gt;
@@ -4660,44 +4688,46 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
             &lt;/tr&gt;
           &lt;/thead&gt;
           &lt;tbody&gt;
-            &lt;tr *ngFor&#x3D;&quot;let app of registered| sortBy : sortedBy : reverse : &#x27;case-insensitive&#x27; | filter : searchTerm&quot;&gt;
+            &lt;tr *ngFor&#x3D;
+              &quot;let app of registered |
+              sortBy : sortedBy : reverse : &#x27;case-insensitive&#x27; |
+              filter : searchTerm&quot;&gt;
               &lt;td 
+                [routerLink]&#x3D;&quot;[&#x27;registered&#x27;, app.app_descriptor_id]&quot; 
+                routerLinkActive&#x3D;&quot;active&quot; 
                 tooltip&#x3D;&quot;Info&quot;
                 placement&#x3D;&quot;top&quot;
-                class&#x3D;&quot;col-2 app-info&quot; 
-                [routerLink]&#x3D;&quot;[&#x27;registered&#x27;, app.app_descriptor_id]&quot; 
-                routerLinkActive&#x3D;&quot;active&quot; &gt;
+                class&#x3D;&quot;col-2 app-info&quot;&gt;
                 {{app.name}}
               &lt;/td&gt;
               &lt;td class&#x3D;&quot;col-3&quot;&gt;{{app.app_descriptor_id}}&lt;/td&gt;
               &lt;td class&#x3D;&quot;col-4&quot;&gt;
                 &lt;button 
+                  *ngFor&#x3D;&quot;let label of labelsToString(app.labels)&quot; 
                   (click)&#x3D;&quot;onLabelClick(app.app_descriptor_id, label[0], label[1])&quot;
                   [ngClass]&#x3D;
-                  &quot;{&#x27;label-btn-selected&#x27;: indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) &gt;&#x3D; 0 ,
-                    &#x27;btn-outline-primary&#x27;: indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) &#x3D;&#x3D;&#x3D; -1}&quot; 
-                  *ngFor&#x3D;&quot;let label of labelsToString(app.labels)&quot; 
-                  class&#x3D;&quot;btn-sm btn-outline-primary&quot; 
-                  &gt;
+                  &quot;{
+                    &#x27;label-btn-selected&#x27;: indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) &gt;&#x3D; 0 ,
+                    &#x27;btn-outline-primary&#x27;: indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) &#x3D;&#x3D;&#x3D; -1
+                  }&quot; 
+                  class&#x3D;&quot;btn-sm btn-outline-primary&quot;&gt;
                   {{label[0]}}: {{label[1]}} 
                 &lt;/button&gt;
                 &lt;div class&#x3D;&quot;label-btns&quot;&gt;
                   &lt;div 
                     *ngIf&#x3D;&quot;isAnyLabelSelected(app.app_descriptor_id) &#x3D;&#x3D;&#x3D; false&quot;
-                    class&#x3D;&quot;label-btn-blue&quot; 
                     (click)&#x3D;&quot;addLabel(app)&quot;
                     tooltip&#x3D;&quot;Add&quot; 
                     placement&#x3D;&quot;right&quot;
-                    &gt;
+                    class&#x3D;&quot;label-btn-blue&quot;&gt;
                     &lt;i class&#x3D;&quot;material-icons i-add&quot;&gt;add&lt;/i&gt;
                   &lt;/div&gt;
                   &lt;div 
                     *ngIf&#x3D;&quot;isAnyLabelSelected(app.app_descriptor_id) &#x3D;&#x3D;&#x3D; true&quot;
-                    class&#x3D;&quot;label-btn-red&quot; 
                     (click)&#x3D;&quot;deleteLabel(app)&quot;
                     tooltip&#x3D;&quot;Delete&quot; 
                     placement&#x3D;&quot;right&quot;
-                    &gt;
+                    class&#x3D;&quot;label-btn-red&quot;&gt;
                     &lt;i class&#x3D;&quot;material-icons i-delete&quot;&gt;delete&lt;/i&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
@@ -4710,11 +4740,14 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
                   (click)&#x3D;&quot;deployRegistered(app)&quot;
                   tooltip&#x3D;&quot;Deploy&quot; 
                   placement&#x3D;&quot;left&quot; 
-                  class&#x3D;&quot;action-btn-blue-2&quot;
-                  &gt;
+                  class&#x3D;&quot;action-btn-blue-2&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons i-white-2&quot;&gt;play_arrow&lt;/i&gt;
                 &lt;/button&gt;
-                &lt;button tooltip&#x3D;&quot;Delete&quot; placement&#x3D;&quot;left&quot; class&#x3D;&quot;action-btn-red-2&quot; (click)&#x3D;&quot;deleteApp(app)&quot;&gt;
+                &lt;button 
+                  (click)&#x3D;&quot;deleteApp(app)&quot;
+                  tooltip&#x3D;&quot;Delete&quot; 
+                  placement&#x3D;&quot;left&quot; 
+                  class&#x3D;&quot;action-btn-red-2&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons i-red-2&quot;&gt;delete&lt;/i&gt;
                 &lt;/button&gt;
               &lt;/td&gt;
@@ -4723,7 +4756,13 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         &lt;/table&gt;
       &lt;/div&gt;
         &lt;!-- No registered app to show --&gt;
-      &lt;div *ngIf&#x3D;&quot;loadedData &amp;&amp; registered &amp;&amp; registered.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; !requestError &amp;&amp; !showInstances&quot; class&#x3D;&quot;no-elements&quot;&gt;
+      &lt;div *ngIf&#x3D;
+        &quot;loadedData &amp;&amp; 
+        registered &amp;&amp;
+        registered.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp;
+        !requestError &amp;&amp;
+        !showInstances&quot; 
+        class&#x3D;&quot;no-elements&quot;&gt;
         No registered applications detected
       &lt;/div&gt;
        &lt;!-- Requested error --&gt;
@@ -4731,7 +4770,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         &lt;p&gt;{{requestError}}&lt;/p&gt;
       &lt;/div&gt;
       &lt;!-- Loader --&gt;
-      &lt;div class&#x3D;&quot;nalej-loader-box&quot; *ngIf&#x3D;&quot;!loadedData&quot;&gt;
+      &lt;div *ngIf&#x3D;&quot;!loadedData&quot; class&#x3D;&quot;nalej-loader-box&quot;&gt;
         &lt;div class&#x3D;&quot;loader&quot;&gt;
           &lt;svg class&#x3D;&quot;circular&quot; viewBox&#x3D;&quot;25 25 50 50&quot;&gt;
             &lt;circle 
@@ -4775,7 +4814,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Component title --><div class="row row-title">  <div class="col-lg-12">    <h2 class="section-title">Applications</h2>  </div></div><div class="row row-info">  <!-- Summary app info card -->  <div class="col-lg-4 h-100">    <div class="card">      <div class="card-title-name">        <h5>SUMMARY</h5>      </div>      <div class="summary-card">        <div>          <div class="deployed-box">            <div *ngIf="instances.length >0" class="donut-chart">              <ngx-charts-pie-chart                [scheme]="colorScheme"                 [results]="instancesPieChart"                 [doughnut]= "doughnut"                [gradient]="gradient"                [explodeSlices]="false"                >              </ngx-charts-pie-chart>              <div class="donut-number">{{countRunning}}/{{instances.length}}</div>            </div>            <p *ngIf="instances.length > 0" class="apps-run">Apps running</p>            <p *ngIf="instances.length === 0" class="circle-name no-deployed">NO APPS DEPLOYED</p>            <p *ngIf="instances.length > 0" class="circle-name my-0">DEPLOYED</p>          </div>        </div>        <div class="summary-box">          <div class="circle">            <span>{{registered.length}}</span>          </div>          <p class="circle-name">REGISTERED</p>        </div>      </div>    </div>  </div>  <!-- App status timeline info card -->  <div class="col-lg-8 h-100">    <div class="card">      <div class="card-title-name">        <h5>APP STATUS TIMELINE</h5>      </div>      <div *ngIf="instances.length === 0" class="no-elements">         No applications deployed yet      </div>      <div *ngIf="instances.length>0" class="line-chart-box">        <ngx-charts-line-chart          [scheme]="colorScheme"          [results]="appsChart"          [xAxis]="showXAxis"          [yAxis]="showYAxis"          [gradient]="gradient"           [showXAxisLabel]="showXAxisLabel"          [showYAxisLabel]="showYAxisLabel"          [yScaleMin]="0"          [yScaleMax]="100"          [showGridLines]="showGridLines"          [showRefLines]="showRefLines"          [schemeType]="schemeType"          [customColors]="customColors"          [rangeFillOpacity]="rangeFillOpacity"          [referenceLines]="referenceLines"          [showRefLabels]="showRefLabels"          >        </ngx-charts-line-chart>        <div class="line-chart-y-axis">          <span class="grey">100%</span>          <span class="grey mb-4">0%</span>        </div>        </div>    </div>  </div></div><!-- Deployed app list panel card--><div class="row row-main">  <div class="col-lg-12 h-100">    <div class="card">      <div class="card-title-name-mb">        <h5>APPLICATIONS</h5>      </div>      <div class="apps-options">        <button           (click)="deployInstance()"          *ngIf="showInstances"           class="apps-actions-btn btn-p-fix">          <i class="material-icons i-options">play_arrow</i>          Deploy instance        </button>        <button          (click)="registerApp()"          *ngIf="!showInstances"          class="apps-actions-btn btn-p-fix"          >          <i class="material-icons i-options">publish</i>          Register application        </button>      </div>      <!-- Applications tabs -->      <div class="row">        <div class="col">          <div class="nalej-tab-box">            <ul>              <li class="nalej-tab-title">                <span class="grey">LISTS</span>              </li>              <li (click)="changeActiveList(\'instances\')">                <span [ngClass]="{\'active\': showInstances}">                  INSTANCES                </span>              </li>              <li (click)="changeActiveList(\'registered\')">                <span [ngClass]="{\'active\': !showInstances}">                  REGISTERED                </span>              </li>            </ul>          </div>          </div>      </div>      <div class="row mb-3">      <!-- Sorting mesages -->        <div class="col-9">            <p *ngIf="searchTerm && !filterField" class="sorting-message">            Filtered by term "{{ searchTerm }}".            <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>          </p>          <p *ngIf="filterField && !searchTerm" class="sorting-message">            Sorted by {{ sortedBy }},            <span *ngIf="reverse">ascendant. </span>            <span *ngIf="!reverse">descendant. </span>            <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>          </p>          <p *ngIf="filterField && searchTerm" class="sorting-message">            Sorted by {{ sortedBy }}            <span *ngIf="reverse">ascendant </span>            <span *ngIf="!reverse">descendant </span>            and filtered by term "{{ searchTerm }}".            <span class="reset-search" (click)="resetFilters(filterField)">Reset</span>          </p>         </div>        <!-- Search input -->        <div class="col-3">          <form>            <div class="search-box">              <input                 type="text"                 class="form-control"                 name="searchTerm"                 placeholder="Search..."                 [(ngModel)]="searchTerm">                 <div class="search-icon" *ngIf="searchTerm === \'\'">                  <i class="material-icons">search</i>                </div>                     <div class="close-icon" *ngIf="searchTerm !== \'\'">                  <i class="material-icons" (click)="resetFilters(filterField)">close</i>                </div>            </div>          </form>        </div>            </div>      <!-- App Instances -->      <div class="table-h" *ngIf="loadedData && instances && instances.length > 0 && !requestError && showInstances">        <table class="table-responsive table-fixed">          <thead>            <tr>              <th                 (click)="setOrder(\'name\')"                            [ngClass]="getCategoryCSSClass(\'name\')"                scope="col"                 class="col-2">                Name                 <span class="expand-chevron" *ngIf="sortedBy === \'name\' && !reverse">                  <i class="material-icons">expand_more</i>                </span>                <span class="expand-chevron" *ngIf="sortedBy === \'name\' && reverse">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'id\')"                [ngClass]="getCategoryCSSClass(\'id\')"                scope="col"                 class="col-3">                ID                <span class="expand-chevron" *ngIf="sortedBy === \'id\' && !reverse">                  <i class="material-icons">expand_more</i>                </span>                <span class="expand-chevron" *ngIf="sortedBy === \'id\' && reverse">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'labels\')"                 [ngClass]="getCategoryCSSClass(\'labels\')"                scope="col"                 class="col-4">                Labels                <span class="expand-chevron" *ngIf="sortedBy === \'labels\' && !reverse">                  <i class="material-icons">expand_more</i>                </span>                <span class="expand-chevron" *ngIf="sortedBy === \'labels\' && reverse">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'status\')"                 [ngClass]="getCategoryCSSClass(\'status\')"                scope="col"                 class="col-2 text-center">                Status                <span class="expand-chevron" *ngIf="sortedBy === \'status\' && !reverse">                  <i class="material-icons">expand_more</i>                </span>                <span class="expand-chevron" *ngIf="sortedBy === \'status\' && reverse">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th scope="col" class="col-1 text-center">                Actions              </th>            </tr>          </thead>          <tbody>            <tr *ngFor="let app of instances | sortBy : sortedBy : reverse : \'case-insensitive\' | filter : searchTerm">              <td                 tooltip="Info"                placement="top"                class="col-2 app-info"                 [routerLink]="[\'instance\', app.app_instance_id]"                 routerLinkActive="active"                >                {{app.name}}              </td>              <td class="col-3">{{app.app_instance_id}}</td>              <td class="col-4">                <button *ngFor="let label of labelsToString(app.labels)" class="btn-sm btn-outline-primary" disabled>                  {{label[0]}}: {{label[1]}}                </button>              </td>              <td                 class="col-2 col-center-lowercase"                [ngClass]=                "{\'status-dot\':classStatusCheck(app.status_name, \'running\'),                \'status-dot-error\':classStatusCheck(app.status_name, \'error\'),                \'status-dot-process\':classStatusCheck(app.status_name, \'process\')}">                 <span tooltip="{{app.status_name | lowercase}}" class="tooltip-fix" placement="auto">                </span>                <span class="hide-lg">                  {{app.status_name}}                </span>              </td>              <td class="col-1 row-info-btn text-center">                <button tooltip="Undeploy" placement="left" class="action-btn-red" (click)="undeploy(app)">                  <i class="material-icons i-red">close</i>                </button>              </td>            </tr>          </tbody>        </table>      </div>       <!-- No app instances to show -->      <div *ngIf="loadedData && instances && instances.length === 0 && !requestError && showInstances" class="no-elements">        No application instances deployed      </div>      <!-- Registered Apps -->      <div class="table-h" *ngIf="loadedData && registered && registered.length > 0 && !requestError && !showInstances">        <table class="table-responsive table-fixed">          <thead>            <tr>              <th                 (click)="setOrder(\'name\')"                            [ngClass]="getCategoryCSSClass(\'name\')"                scope="col"                 class="col-2">                Name                 <span class="expand-chevron" *ngIf="sortedBy === \'name\' && !reverse">                  <i class="material-icons">expand_more</i>                </span>                <span class="expand-chevron" *ngIf="sortedBy === \'name\' && reverse">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'id\')"                [ngClass]="getCategoryCSSClass(\'id\')"                scope="col"                 class="col-3">                ID                <span class="expand-chevron" *ngIf="sortedBy === \'id\' && !reverse">                  <i class="material-icons">expand_more</i>                </span>                <span class="expand-chevron" *ngIf="sortedBy === \'id\' && reverse">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'labels\')"                 [ngClass]="getCategoryCSSClass(\'labels\')"                scope="col"                 class="col-4">                Labels                <span class="expand-chevron" *ngIf="sortedBy === \'labels\' && !reverse">                  <i class="material-icons">expand_more</i>                </span>                <span class="expand-chevron" *ngIf="sortedBy === \'labels\' && reverse">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'services\')"                 [ngClass]="getCategoryCSSClass(\'services\')"                scope="col"                 class="col-2 text-center">                Services                <span class="expand-chevron" *ngIf="sortedBy === \'services\' && !reverse">                  <i class="material-icons">expand_more</i>                </span>                <span class="expand-chevron" *ngIf="sortedBy === \'services\' && reverse">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th scope="col" class="col-1 text-center">                Actions              </th>            </tr>          </thead>          <tbody>            <tr *ngFor="let app of registered| sortBy : sortedBy : reverse : \'case-insensitive\' | filter : searchTerm">              <td                 tooltip="Info"                placement="top"                class="col-2 app-info"                 [routerLink]="[\'registered\', app.app_descriptor_id]"                 routerLinkActive="active" >                {{app.name}}              </td>              <td class="col-3">{{app.app_descriptor_id}}</td>              <td class="col-4">                <button                   (click)="onLabelClick(app.app_descriptor_id, label[0], label[1])"                  [ngClass]=                  "{\'label-btn-selected\': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) >= 0 ,                    \'btn-outline-primary\': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) === -1}"                   *ngFor="let label of labelsToString(app.labels)"                   class="btn-sm btn-outline-primary"                   >                  {{label[0]}}: {{label[1]}}                 </button>                <div class="label-btns">                  <div                     *ngIf="isAnyLabelSelected(app.app_descriptor_id) === false"                    class="label-btn-blue"                     (click)="addLabel(app)"                    tooltip="Add"                     placement="right"                    >                    <i class="material-icons i-add">add</i>                  </div>                  <div                     *ngIf="isAnyLabelSelected(app.app_descriptor_id) === true"                    class="label-btn-red"                     (click)="deleteLabel(app)"                    tooltip="Delete"                     placement="right"                    >                    <i class="material-icons i-delete">delete</i>                  </div>                </div>              </td>              <td class="col-2 text-center">                 {{getServicesCount(app)}}              </td>              <td class="col-1 actions-col actions-col-fix">                <button                             (click)="deployRegistered(app)"                  tooltip="Deploy"                   placement="left"                   class="action-btn-blue-2"                  >                  <i class="material-icons i-white-2">play_arrow</i>                </button>                <button tooltip="Delete" placement="left" class="action-btn-red-2" (click)="deleteApp(app)">                  <i class="material-icons i-red-2">delete</i>                </button>              </td>            </tr>          </tbody>        </table>      </div>        <!-- No registered app to show -->      <div *ngIf="loadedData && registered && registered.length === 0 && !requestError && !showInstances" class="no-elements">        No registered applications detected      </div>       <!-- Requested error -->      <div *ngIf="loadedData && requestError" class="no-elements">        <p>{{requestError}}</p>      </div>      <!-- Loader -->      <div class="nalej-loader-box" *ngIf="!loadedData">        <div class="loader">          <svg class="circular" viewBox="25 25 50 50">            <circle               class="path"               cx="50"               cy="50"               r="20"               fill="none"               stroke-width="2"               stroke-miterlimit="10"/>          </svg>        </div>      </div>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- Component title --><div class="row row-title">  <div class="col-lg-12">    <h2 class="section-title">Applications</h2>  </div></div><div class="row row-info">  <!-- Summary app info card -->  <div class="col-lg-4 h-100">    <div class="card">      <div class="card-title-name">        <h5>SUMMARY</h5>      </div>      <div class="summary-card">        <div>          <div class="deployed-box">            <div *ngIf="instances.length >0" class="donut-chart">              <ngx-charts-pie-chart                [scheme]="colorScheme"                 [results]="instancesPieChart"                 [doughnut]= "doughnut"                [gradient]="gradient"                [explodeSlices]="false">              </ngx-charts-pie-chart>              <div class="donut-number">{{countRunning}}/{{instances.length}}</div>            </div>            <p *ngIf="instances.length > 0" class="apps-run">Apps running</p>            <p *ngIf="instances.length === 0" class="circle-name no-deployed">NO APPS DEPLOYED</p>            <p *ngIf="instances.length > 0" class="circle-name my-0">DEPLOYED</p>          </div>        </div>        <div class="summary-box">          <div class="circle">            <span>{{registered.length}}</span>          </div>          <p class="circle-name">REGISTERED</p>        </div>      </div>    </div>  </div>  <!-- App status timeline info card -->  <div class="col-lg-8 h-100">    <div class="card">      <div class="card-title-name">        <h5>APP STATUS TIMELINE</h5>      </div>      <div *ngIf="instances.length === 0" class="no-elements">         No applications deployed yet      </div>      <div *ngIf="instances.length>0" class="line-chart-box">        <ngx-charts-line-chart          [scheme]="colorScheme"          [results]="appsChart"          [xAxis]="showXAxis"          [yAxis]="showYAxis"          [gradient]="gradient"           [showXAxisLabel]="showXAxisLabel"          [showYAxisLabel]="showYAxisLabel"          [yScaleMin]="0"          [yScaleMax]="100"          [showGridLines]="showGridLines"          [showRefLines]="showRefLines"          [schemeType]="schemeType"          [customColors]="customColors"          [rangeFillOpacity]="rangeFillOpacity"          [referenceLines]="referenceLines"          [showRefLabels]="showRefLabels">        </ngx-charts-line-chart>        <div class="line-chart-y-axis">          <span class="grey">100%</span>          <span class="grey mb-4">0%</span>        </div>        </div>    </div>  </div></div><!-- Deployed app list panel card--><div class="row row-main">  <div class="col-lg-12 h-100">    <div class="card">      <div class="card-title-name-mb">        <h5>APPLICATIONS</h5>      </div>      <div class="apps-options">        <button           (click)="deployInstance()"          *ngIf="showInstances"           class="apps-actions-btn btn-p-fix">          <i class="material-icons i-options">play_arrow</i>          Deploy instance        </button>        <button          (click)="registerApp()"          *ngIf="!showInstances"          class="apps-actions-btn btn-p-fix">          <i class="material-icons i-options">publish</i>          Register application        </button>      </div>      <!-- Applications tabs -->      <div class="row">        <div class="col">          <div class="nalej-tab-box">            <ul>              <li class="nalej-tab-title">                <span class="grey">LISTS</span>              </li>              <li (click)="changeActiveList(\'instances\')">                <span [ngClass]="{\'active\': showInstances}">                  INSTANCES                </span>              </li>              <li (click)="changeActiveList(\'registered\')">                <span [ngClass]="{\'active\': !showInstances}">                  REGISTERED                </span>              </li>            </ul>          </div>          </div>      </div>      <div class="row mb-3">      <!-- Sorting mesages -->        <div class="col-9">            <p *ngIf="searchTerm && !filterField" class="sorting-message">            Filtered by term "{{ searchTerm }}".            <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>          </p>          <p *ngIf="filterField && !searchTerm" class="sorting-message">            Sorted by {{ sortedBy }},            <span *ngIf="reverse">ascendant. </span>            <span *ngIf="!reverse">descendant. </span>            <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>          </p>          <p *ngIf="filterField && searchTerm" class="sorting-message">            Sorted by {{ sortedBy }}            <span *ngIf="reverse">ascendant </span>            <span *ngIf="!reverse">descendant </span>            and filtered by term "{{ searchTerm }}".            <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>          </p>         </div>        <!-- Search input -->        <div class="col-3">          <form>            <div class="search-box">              <input                 name="searchTerm"                 [(ngModel)]="searchTerm"                type="text"                 placeholder="Search..."                class="form-control">                 <div *ngIf="searchTerm === \'\'" class="search-icon">                  <i class="material-icons">search</i>                </div>                     <div *ngIf="searchTerm !== \'\'" class="close-icon">                  <i (click)="resetFilters(filterField)" class="material-icons">close</i>                </div>            </div>          </form>        </div>            </div>      <!-- App Instances -->      <div *ngIf=        "loadedData &&        instances &&        instances.length > 0 &&        !requestError &&         showInstances"         class="table-h">        <table class="table-responsive table-fixed">          <thead>            <tr>              <th                 (click)="setOrder(\'name\')"                            [ngClass]="getCategoryCSSClass(\'name\')"                scope="col"                 class="col-2">                Name                 <span *ngIf="sortedBy === \'name\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'name\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'id\')"                [ngClass]="getCategoryCSSClass(\'id\')"                scope="col"                 class="col-3">                ID                <span *ngIf="sortedBy === \'id\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'id\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'labels\')"                 [ngClass]="getCategoryCSSClass(\'labels\')"                scope="col"                 class="col-4">                Labels                <span *ngIf="sortedBy === \'labels\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'labels\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'status\')"                 [ngClass]="getCategoryCSSClass(\'status\')"                scope="col"                 class="col-2 text-center">                Status                <span *ngIf="sortedBy === \'status\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'status\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th scope="col" class="col-1 text-center">                Actions              </th>            </tr>          </thead>          <tbody>            <tr *ngFor=              "let app of instances |              sortBy : sortedBy : reverse : \'case-insensitive\' |              filter : searchTerm">              <td                 [routerLink]="[\'instance\', app.app_instance_id]"                 routerLinkActive="active"                tooltip="Info"                placement="top"                class="col-2 app-info">                {{app.name}}              </td>              <td class="col-3">{{app.app_instance_id}}</td>              <td class="col-4">                <button                 *ngFor="let label of labelsToString(app.labels)"                 disabled                class="btn-sm btn-outline-primary">                  {{label[0]}}: {{label[1]}}                </button>              </td>              <td [ngClass]=                "{\'                  status-dot\':classStatusCheck(app.status_name, \'running\'),                  \'status-dot-error\':classStatusCheck(app.status_name, \'error\'),                  \'status-dot-process\':classStatusCheck(app.status_name, \'process\')                }"                class="col-2 col-center-lowercase">                 <span                   tooltip="{{app.status_name | lowercase}}"                   placement="auto"                  class="tooltip-fix">                </span>                <span class="hide-lg">                  {{app.status_name}}                </span>              </td>              <td class="col-1 row-info-btn text-center">                <button                   (click)="undeploy(app)"                  tooltip="Undeploy"                   placement="left"                   class="action-btn-red">                  <i class="material-icons i-red">close</i>                </button>              </td>            </tr>          </tbody>        </table>      </div>       <!-- No app instances to show -->      <div *ngIf=        "loadedData &&        instances &&        instances.length === 0 &&        !requestError &&        showInstances"         class="no-elements">        No application instances deployed      </div>      <!-- Registered Apps -->      <div *ngIf=        "loadedData &&        registered &&        registered.length > 0 &&        !requestError &&         !showInstances"         class="table-h">        <table class="table-responsive table-fixed">          <thead>            <tr>              <th                 (click)="setOrder(\'name\')"                            [ngClass]="getCategoryCSSClass(\'name\')"                scope="col"                 class="col-2">                Name                 <span class="expand-chevron" *ngIf="sortedBy === \'name\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span class="expand-chevron" *ngIf="sortedBy === \'name\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'id\')"                [ngClass]="getCategoryCSSClass(\'id\')"                scope="col"                 class="col-3">                ID                <span *ngIf="sortedBy === \'id\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'id\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'labels\')"                 [ngClass]="getCategoryCSSClass(\'labels\')"                scope="col"                 class="col-4">                Labels                <span *ngIf="sortedBy === \'labels\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'labels\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th                 (click)="setOrder(\'services\')"                 [ngClass]="getCategoryCSSClass(\'services\')"                scope="col"                 class="col-2 text-center">                Services                <span *ngIf="sortedBy === \'services\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'services\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </th>              <th scope="col" class="col-1 text-center">                Actions              </th>            </tr>          </thead>          <tbody>            <tr *ngFor=              "let app of registered |              sortBy : sortedBy : reverse : \'case-insensitive\' |              filter : searchTerm">              <td                 [routerLink]="[\'registered\', app.app_descriptor_id]"                 routerLinkActive="active"                 tooltip="Info"                placement="top"                class="col-2 app-info">                {{app.name}}              </td>              <td class="col-3">{{app.app_descriptor_id}}</td>              <td class="col-4">                <button                   *ngFor="let label of labelsToString(app.labels)"                   (click)="onLabelClick(app.app_descriptor_id, label[0], label[1])"                  [ngClass]=                  "{                    \'label-btn-selected\': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) >= 0 ,                    \'btn-outline-primary\': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) === -1                  }"                   class="btn-sm btn-outline-primary">                  {{label[0]}}: {{label[1]}}                 </button>                <div class="label-btns">                  <div                     *ngIf="isAnyLabelSelected(app.app_descriptor_id) === false"                    (click)="addLabel(app)"                    tooltip="Add"                     placement="right"                    class="label-btn-blue">                    <i class="material-icons i-add">add</i>                  </div>                  <div                     *ngIf="isAnyLabelSelected(app.app_descriptor_id) === true"                    (click)="deleteLabel(app)"                    tooltip="Delete"                     placement="right"                    class="label-btn-red">                    <i class="material-icons i-delete">delete</i>                  </div>                </div>              </td>              <td class="col-2 text-center">                 {{getServicesCount(app)}}              </td>              <td class="col-1 actions-col actions-col-fix">                <button                             (click)="deployRegistered(app)"                  tooltip="Deploy"                   placement="left"                   class="action-btn-blue-2">                  <i class="material-icons i-white-2">play_arrow</i>                </button>                <button                   (click)="deleteApp(app)"                  tooltip="Delete"                   placement="left"                   class="action-btn-red-2">                  <i class="material-icons i-red-2">delete</i>                </button>              </td>            </tr>          </tbody>        </table>      </div>        <!-- No registered app to show -->      <div *ngIf=        "loadedData &&         registered &&        registered.length === 0 &&        !requestError &&        !showInstances"         class="no-elements">        No registered applications detected      </div>       <!-- Requested error -->      <div *ngIf="loadedData && requestError" class="no-elements">        <p>{{requestError}}</p>      </div>      <!-- Loader -->      <div *ngIf="!loadedData" class="nalej-loader-box">        <div class="loader">          <svg class="circular" viewBox="25 25 50 50">            <circle               class="path"               cx="50"               cy="50"               r="20"               fill="none"               stroke-width="2"               stroke-miterlimit="10"/>          </svg>        </div>      </div>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'ApplicationsComponent'};

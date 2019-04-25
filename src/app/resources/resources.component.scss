@@ -1,5 +1,12 @@
+@mixin for-desktop-up {
+    @media all and (max-width: 1440px) { @content; }
+}
+@mixin for-big-desktop-up {
+    @media all and (min-width: 2560px) { @content; }
+}
 
 /* - - - Cluster card Slider - - - */
+
 // slide animations
 .animated {
     -webkit-animation-duration: 1s;
@@ -37,12 +44,25 @@
     margin-bottom: 0;
     float: right;
     color: #949494;
+    @include for-desktop-up {
+        font-size: .8em;
+    }
 }
 .slide-box {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     height: 100%!important;
+    @include for-desktop-up {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 269px;
+        max-height: 124px;
+    }
+    @include for-big-desktop-up {
+        padding-top: 2em;
+    }
 }
 .donut-chart-box {
     width: 27%;
@@ -50,12 +70,23 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    @include for-desktop-up {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
 }
 .donut-chart {
     width: 100px;
     height: 100px;
     text-align: center;
     position: relative;
+    @include for-big-desktop-up {
+        width: 31%;
+    }
 }
 .cluster-name {
     text-transform: uppercase;
@@ -67,53 +98,22 @@
     cursor: pointer;
     text-align: center;
     color: #0937FF;
+    @include for-desktop-up {
+        display: inline;
+    }
 }
 .carousel-big {
     .nodes-run {
         position: absolute;
         bottom: 2.5em;
-        margin-bottom: 0.3em;
+        margin-bottom: .3em;
     }
 }
 
-/* - - - Media Cluster card Slider - - - */
-@media screen and (max-width: 1440px) {
-    .cluster-availability {
-        font-size: 0.8em;
-    }
-    .slide-box {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 269px;
-      max-height: 124px;
-    }
-    .donut-chart-box {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    }
-    .nodes-run {
-        display: inline;
-    }
-}
-@media screen and (min-width:2560px) {
-    .donut-chart-box {
-        width: 31%;
-    }
-    .slide-box {
-        padding-top: 2em;
-    }
-}
 /* - - - Node Status card - - - */
 .line-chart-box {
     width: 92%;
-}
-@media screen and (max-width:1440px) {
-    .line-chart-box {
+    @include for-desktop-up {
         width: 100%;
     }
 }

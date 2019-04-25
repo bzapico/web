@@ -1020,54 +1020,53 @@ export class RegisterApplicationComponent implements OnInit {
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;modal-card&quot;&gt;
   &lt;div class&#x3D;&quot;modal-content&quot;&gt;
-      &lt;!-- Header --&gt;
-      &lt;div class&#x3D;&quot;modal-header&quot;&gt;
-        &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;Register application&lt;/h3&gt;
-        &lt;button 
-          type&#x3D;&quot;button&quot; 
-          class&#x3D;&quot;close&quot; 
-          aria-label&#x3D;&quot;Close&quot;
-          (click)&#x3D;&quot;discardChanges()&quot;&gt;
-          &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+    &lt;!-- Header --&gt;
+    &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+      &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;Register application&lt;/h3&gt;
+      &lt;button 
+        (click)&#x3D;&quot;discardChanges()&quot;
+        type&#x3D;&quot;button&quot; 
+        aria-label&#x3D;&quot;Close&quot;
+        class&#x3D;&quot;close&quot;&gt;
+        &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;!-- Body --&gt;
+    &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+      &lt;p class&#x3D;&quot;upload-descriptor&quot;&gt;Upload app descriptor file&lt;/p&gt;
+      &lt;file-drop 
+        *ngIf&#x3D;&quot;!readyToUpload&quot;
+        (onFileDrop)&#x3D;&quot;onFileDrop($event)&quot; 
+        dropZoneClassName&#x3D;&quot;file-drop&quot;&gt;
+        &lt;span class&#x3D;&quot;drop-title&quot;&gt;
+          Drop here
+          &lt;p class&#x3D;&quot;drop-note&quot;&gt;
+            &lt;input
+              (change)&#x3D;&quot;fileSelectorChange($event)&quot;
+              name&#x3D;&quot;file&quot;
+              type&#x3D;&quot;file&quot;
+              accept&#x3D;&quot;application/json&quot;
+              id&#x3D;&quot;file&quot;
+              class&#x3D;&quot;inputfile&quot;/&gt;
+            &lt;label for&#x3D;&quot;file&quot; class&#x3D;&quot;cursor-pointer blue&quot;&gt;Or click here to choose your .json file&lt;/label&gt;
+          &lt;/p&gt;
+        &lt;/span&gt;
+      &lt;/file-drop&gt;
+      &lt;div *ngIf&#x3D;&quot;readyToUpload&quot; class&#x3D;&quot;drop-note-uploaded&quot;&gt; 
+        &lt;span class&#x3D;&quot;drop-title-uploaded&quot;&gt;{{jsonFile.name}}&lt;/span&gt; 
+        &lt;span class&#x3D;&quot;subtitle&quot;&gt;
+          from {{fileName}}
+        &lt;/span&gt;
+        &lt;span class&#x3D;&quot;green subtitle-2&quot;&gt;ready to be uploaded&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;form-group-btn&quot;&gt;
+        &lt;button (click)&#x3D;&quot;registerApp()&quot; class&#x3D;&quot;nalej-form-btn-blue&quot;&gt;
+          &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Register&lt;/span&gt;
         &lt;/button&gt;
       &lt;/div&gt;
-      &lt;!-- Body --&gt;
-      &lt;div class&#x3D;&quot;modal-body&quot;&gt;
-        &lt;p class&#x3D;&quot;upload-descriptor&quot;&gt;Upload app descriptor file&lt;/p&gt;
-        &lt;file-drop 
-          *ngIf&#x3D;&quot;!readyToUpload&quot;
-          dropZoneClassName&#x3D;&quot;file-drop&quot;
-          (onFileDrop)&#x3D;&quot;onFileDrop($event)&quot; &gt;
-          &lt;span class&#x3D;&quot;drop-title&quot;&gt;
-            Drop here
-            &lt;p class&#x3D;&quot;drop-note&quot;&gt;
-              &lt;input
-                class&#x3D;&quot;inputfile&quot;
-                type&#x3D;&quot;file&quot;
-                id&#x3D;&quot;file&quot;
-                name&#x3D;&quot;file&quot;
-                (change)&#x3D;&quot;fileSelectorChange($event)&quot;
-                accept&#x3D;&quot;application/json&quot;
-                /&gt;
-                &lt;label class&#x3D;&quot;cursor-pointer blue&quot; for&#x3D;&quot;file&quot;&gt;Or click here to choose your .json file&lt;/label&gt;
-            &lt;/p&gt;
-          &lt;/span&gt;
-        &lt;/file-drop&gt;
-        &lt;div class&#x3D;&quot;drop-note-uploaded&quot; *ngIf&#x3D;&quot;readyToUpload&quot;&gt; 
-          &lt;span class&#x3D;&quot;drop-title-uploaded&quot;&gt;{{jsonFile.name}}&lt;/span&gt; 
-          &lt;span class&#x3D;&quot;subtitle&quot;&gt;
-            from {{fileName}}
-          &lt;/span&gt;
-          &lt;span class&#x3D;&quot;green subtitle-2&quot;&gt;ready to be uploaded&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;form-group-btn&quot;&gt;
-          &lt;button class&#x3D;&quot;nalej-form-btn-blue&quot; (click)&#x3D;&quot;registerApp()&quot;&gt;
-            &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Register&lt;/span&gt;
-          &lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/div&gt;</code></pre>
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -1095,7 +1094,7 @@ export class RegisterApplicationComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">      <!-- Header -->      <div class="modal-header">        <h3 class="nalej-form-title">Register application</h3>        <button           type="button"           class="close"           aria-label="Close"          (click)="discardChanges()">          <span aria-hidden="true">&times;</span>        </button>      </div>      <!-- Body -->      <div class="modal-body">        <p class="upload-descriptor">Upload app descriptor file</p>        <file-drop           *ngIf="!readyToUpload"          dropZoneClassName="file-drop"          (onFileDrop)="onFileDrop($event)" >          <span class="drop-title">            Drop here            <p class="drop-note">              <input                class="inputfile"                type="file"                id="file"                name="file"                (change)="fileSelectorChange($event)"                accept="application/json"                />                <label class="cursor-pointer blue" for="file">Or click here to choose your .json file</label>            </p>          </span>        </file-drop>        <div class="drop-note-uploaded" *ngIf="readyToUpload">           <span class="drop-title-uploaded">{{jsonFile.name}}</span>           <span class="subtitle">            from {{fileName}}          </span>          <span class="green subtitle-2">ready to be uploaded</span>        </div>        <div class="form-group-btn">          <button class="nalej-form-btn-blue" (click)="registerApp()">            <span class="align-bottom">Register</span>          </button>        </div>      </div>    </div>  </div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Register application</h3>      <button         (click)="discardChanges()"        type="button"         aria-label="Close"        class="close">        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <p class="upload-descriptor">Upload app descriptor file</p>      <file-drop         *ngIf="!readyToUpload"        (onFileDrop)="onFileDrop($event)"         dropZoneClassName="file-drop">        <span class="drop-title">          Drop here          <p class="drop-note">            <input              (change)="fileSelectorChange($event)"              name="file"              type="file"              accept="application/json"              id="file"              class="inputfile"/>            <label for="file" class="cursor-pointer blue">Or click here to choose your .json file</label>          </p>        </span>      </file-drop>      <div *ngIf="readyToUpload" class="drop-note-uploaded">         <span class="drop-title-uploaded">{{jsonFile.name}}</span>         <span class="subtitle">          from {{fileName}}        </span>        <span class="green subtitle-2">ready to be uploaded</span>      </div>      <div class="form-group-btn">        <button (click)="registerApp()" class="nalej-form-btn-blue">          <span class="align-bottom">Register</span>        </button>      </div>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'RegisterApplicationComponent'};

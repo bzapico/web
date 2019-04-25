@@ -942,10 +942,10 @@ export class EditClusterComponent implements OnInit {
     &lt;div class&#x3D;&quot;modal-header&quot;&gt;
       &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;Edit {{clusterName}}&lt;/h3&gt;
       &lt;button 
+        (click)&#x3D;&quot;discardChanges(f)&quot;
         type&#x3D;&quot;button&quot; 
-        class&#x3D;&quot;close&quot; 
         aria-label&#x3D;&quot;Close&quot;
-        (click)&#x3D;&quot;discardChanges(f)&quot;&gt;
+        class&#x3D;&quot;close&quot;&gt;
         &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
       &lt;/button&gt;
     &lt;/div&gt;
@@ -956,18 +956,18 @@ export class EditClusterComponent implements OnInit {
           &lt;label&gt;Name&lt;/label&gt;
           &lt;input 
             formControlName&#x3D;&quot;clusterName&quot;
+            type&#x3D;&quot;text&quot; 
             placeholder&#x3D;&quot;{{clusterName}}&quot;
             value&#x3D;&quot;{{clusterName}}&quot;
             appAutofocus&#x3D;&quot;true&quot;
             pattern&#x3D;&quot;[a-zA-Z0-9]+&quot;
             [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: submitted &amp;&amp; f.clusterName.errors }&quot;
-            type&#x3D;&quot;text&quot; 
             class&#x3D;&quot;form-control&quot;&gt;
             &lt;div *ngIf&#x3D;&quot;!submitted &amp;&amp; f.clusterName.errors&quot; class&#x3D;&quot;error-message&quot;&gt;&lt;/div&gt;
             &lt;div class&#x3D;&quot;error-h&quot;&gt;
               &lt;div *ngIf&#x3D;&quot;submitted &amp;&amp; f.clusterName.errors&quot; class&#x3D;&quot;error-message&quot;&gt;
                 &lt;div *ngIf&#x3D;&quot;f.clusterName.errors.minlength&quot;&gt;Cluster name is too short&lt;/div&gt;
-                &lt;div *ngIf&#x3D;&quot;f.clusterName.errors.pattern&quot;&gt;Cannot contain spectial characters&lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;f.clusterName.errors.pattern&quot;&gt;Cannot contain special ial characters&lt;/div&gt;
               &lt;/div&gt;
             &lt;/div&gt;
         &lt;/div&gt;
@@ -1007,7 +1007,7 @@ export class EditClusterComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Edit {{clusterName}}</h3>      <button         type="button"         class="close"         aria-label="Close"        (click)="discardChanges(f)">        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <form [formGroup]="editClusterForm" (ngSubmit)="saveClusterChanges(f)">        <div class="form-group">          <label>Name</label>          <input             formControlName="clusterName"            placeholder="{{clusterName}}"            value="{{clusterName}}"            appAutofocus="true"            pattern="[a-zA-Z0-9]+"            [ngClass]="{ \'is-invalid\': submitted && f.clusterName.errors }"            type="text"             class="form-control">            <div *ngIf="!submitted && f.clusterName.errors" class="error-message"></div>            <div class="error-h">              <div *ngIf="submitted && f.clusterName.errors" class="error-message">                <div *ngIf="f.clusterName.errors.minlength">Cluster name is too short</div>                <div *ngIf="f.clusterName.errors.pattern">Cannot contain spectial characters</div>              </div>            </div>        </div>        <div class="form-group-btn">          <button class="nalej-form-btn-blue" [disabled]="loading">            <span class="align-bottom">Save changes</span>          </button>        </div>      </form>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Edit {{clusterName}}</h3>      <button         (click)="discardChanges(f)"        type="button"         aria-label="Close"        class="close">        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <form [formGroup]="editClusterForm" (ngSubmit)="saveClusterChanges(f)">        <div class="form-group">          <label>Name</label>          <input             formControlName="clusterName"            type="text"             placeholder="{{clusterName}}"            value="{{clusterName}}"            appAutofocus="true"            pattern="[a-zA-Z0-9]+"            [ngClass]="{ \'is-invalid\': submitted && f.clusterName.errors }"            class="form-control">            <div *ngIf="!submitted && f.clusterName.errors" class="error-message"></div>            <div class="error-h">              <div *ngIf="submitted && f.clusterName.errors" class="error-message">                <div *ngIf="f.clusterName.errors.minlength">Cluster name is too short</div>                <div *ngIf="f.clusterName.errors.pattern">Cannot contain special ial characters</div>              </div>            </div>        </div>        <div class="form-group-btn">          <button class="nalej-form-btn-blue" [disabled]="loading">            <span class="align-bottom">Save changes</span>          </button>        </div>      </form>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'EditClusterComponent'};

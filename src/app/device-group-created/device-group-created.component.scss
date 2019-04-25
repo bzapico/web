@@ -1,3 +1,7 @@
+@mixin for-sm-desktop-up {
+    @media all and (max-width: 1280px) { @content; }
+}
+
 .btn-md {
     border: 0px;
     border-radius: 5px;
@@ -35,6 +39,10 @@
     .dev-group-api {
         padding-top: 1em;
         padding-bottom: 2em;
+        @include for-sm-desktop-up {
+            padding-top: 2em !important;
+            padding-bottom: 3em !important;
+        }
         span {
             text-align: center;
             font-size: .7em;
@@ -42,15 +50,3 @@
         }
     } 
 }
-
-
-@media screen and (max-width: 1280px) {
-    .buttons {
-        padding: 0;
-    }
-    .dev-group-api {
-        padding-top: 2em !important;
-        padding-bottom: 3em !important;
-    }
-}
-

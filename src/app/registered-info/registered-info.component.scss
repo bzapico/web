@@ -1,3 +1,13 @@
+@mixin for-desktop-up {
+    @media all and (max-width: 1440px) { @content; }
+}
+@mixin for-desktop-only {
+    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
+}
+@mixin for-md-desktop-fix {
+    @media all and (max-width: 1614px) { @content; }
+}
+
 /* - - - Card heights - - */
 .h-reg {
     height: 96%; 
@@ -15,7 +25,12 @@
 }
 .h-reg-services {
     margin-bottom: 2em;
+    height: 517px;
+    @media screen and (max-width: 1557px) {
+        height: 373px;
+    }
 }
+
 .h-reg-rules {
     height: 38%;
     display: flex;
@@ -47,10 +62,14 @@
     color: white;
     width: 159px;
     height: 42px;
+    line-height: 1.1;
     &:hover {
         color: #fff;
         transition: 0.3s;
         background-color: #4f71fd;
+    }
+    @include for-md-desktop-fix {
+        width: 114px;
     }
 }
 .reg-undeploy {
@@ -65,10 +84,14 @@
     color: #F25272;
     width: 159px;
     height: 42px;
+    line-height: 1.1;
     &:hover {
         color: #fff;
         transition: 0.3s;
         background-color: #ff437d;
+    }
+    @include for-md-desktop-fix {
+        width: 114px;
     }
 }
 .i-options {
@@ -78,6 +101,9 @@
     transform: translate(-50%, -50%);
     display: block;
     font-size: 1.7em;
+    @include for-md-desktop-fix {
+        left: 20%;
+    }
 }
 .reg-info-box {
     display: flex;
@@ -103,22 +129,14 @@
     justify-content: space-around;
 }
 
-/* - - - Media apps info card buttons - - - */
-@media screen and (max-width:1440px) {
-    .reg-deploy {
-        width: 114px;
-    }
-    .reg-undeploy {
-        width: 114px;
-    }
-    .i-options{
-        left: 20%;
+.table-fixed tbody td:last-child {
+    @include for-desktop-up {
+        padding: 0.75rem 0;
     }
 }
-/* - - - Medias Servivces summary card - - - */
-@media screen and (max-width:1440px) {
-    .table-fixed tbody td:last-child {
-        padding: 0.75rem 0;
+.hide-reg-btn-text {
+    @include for-md-desktop-fix {
+        display: none; 
     }
 }
 
@@ -152,10 +170,15 @@
 .table-h-fix {
     padding-top: 0em;
 }
-
+ 
 @media screen and (max-height: 780px) {
     .hide-title-sm {
         display: none;
+    }
+}
+@media screen and (max-width: 1550px) {
+    .table-fixed tbody td:last-child {
+        padding: 0.75rem 0;
     }
 }
 
@@ -169,9 +192,7 @@
     overflow: scroll;
     height: 83%;
     word-wrap: break-word;
-}
-@media screen and (max-width:1440px), screen and (max-height: 900px)  {
-    .config-card {
+    @include for-desktop-only {
         text-align: left;
         justify-content: end;
     }

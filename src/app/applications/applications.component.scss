@@ -1,3 +1,16 @@
+@mixin for-desktop-only {
+    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
+}
+@mixin for-desktop-up {
+    @media all and (max-width: 1440px) { @content; }
+}
+@mixin for-quarter-only {
+    @media all and (max-width:1720px), all and  (max-height: 780px) { @content; }
+}
+@mixin for-big-desktop-up {
+    @media all and (min-width: 2560px) { @content; }
+}
+
 /* - - - Summary app card - - - */
 .summary-card {
     margin-top: -1em;
@@ -10,6 +23,9 @@
     height: 100%;
     max-width: 156px;
     align-items: center;
+    @include for-big-desktop-up {
+        max-width: 176px;
+    }
 }
 .donut-chart {
     width: 100%;
@@ -17,6 +33,14 @@
     text-align: center;
     position: relative;
     margin-top: -1em;
+    @include for-quarter-only {
+        height: 85%;
+        max-width: 120px;
+    }
+    @include for-desktop-only {
+        height: 85%;
+        max-width: 100px;
+    }
 }
 .apps-run {
     font-size: .8em;
@@ -24,36 +48,20 @@
     color: #0937FF;
     text-align: center;
     margin-bottom: 0;
-}
-/* - - - Medias Summary app card - - - */
-@media screen and (max-width:1720px), screen and (max-height: 780px) {
-    .donut-chart {
-        height: 85%;
-        max-width: 120px;
-    }
-    .apps-run {
+    @include for-quarter-only {
         margin-top: -2em;
     }
-}
-@media screen and (max-width:1440px), screen and (max-height: 900px){
-    .circle {
-        margin-top: 2em;
-    }
-    .donut-chart {
-        height: 85%;
-        max-width: 100px;
-    }
-    .apps-run {
+    @include for-desktop-only {
         margin-top: -3em;
     }
-}
-@media screen and (min-width:2560px) {
-    .apps-run {
+    @include for-big-desktop-up {
         font-size: 1em;
         margin-top: 0em;
     }
-    .deployed-box {
-        max-width: 176px;
+}
+.circle {
+    @include for-desktop-only {
+        margin-top: 2em;
     }
 }
 /* - - - App Status card - - - */
@@ -93,7 +101,11 @@
             color: #fff;
             transition: 0.3s;
             background-color: #4f71fd;
-          }
+        }
+        @include for-desktop-up {
+            bottom: -9px;
+            right: 45px;
+        }
         .i-options {
             font-size: 1.8em;
             font-weight: 700;
@@ -101,12 +113,5 @@
             top: 6px;
             left: -13px;
         }
-    }
-}
-/* - - - Medias Apps tabs - - - */
-@media screen and (max-width:1440px) {
-    .apps-options .apps-actions-btn {
-        bottom: -9px;
-        right: 45px;
     }
 }

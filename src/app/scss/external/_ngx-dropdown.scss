@@ -1,0 +1,64 @@
+// -----------------------------------------------------------------------------
+// Ngx-dropdown
+// -----------------------------------------------------------------------------
+
+.ngx-dropdown-container .ngx-dropdown-button {
+    height: 40px;
+    font-size: .9em;
+    &:focus {
+        border: 2px solid blue !important;
+        z-index: 2;
+        border-color: #0937FF;
+        outline: none;
+        box-shadow: none;
+        &::placeholder {
+        color: white;
+        }
+    }
+}
+.ngx-dropdown-container .ngx-dropdown-list-container {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.ngx-dropdown-container .ngx-dropdown-list-container ul.available-items li.active {
+    background-color: #ECECEC !important;
+    color: #ffff;
+}
+.ngx-dropdown-container .ngx-dropdown-list-container ul.selected-items li {
+    background-color: #ECECEC !important;
+}
+.ngx-dropdown-container .ngx-dropdown-list-container ul li {
+    text-align: center;
+    font-size: .8em !important;
+    padding: .5em !important;
+    color: #949494 !important;
+    &:hover {
+        background-color: #ECECEC !important;
+    }
+}
+.ngx-dropdown-container button {
+    border: 2px solid #EEEEEE !important;
+    font-size: 0.9em;
+}
+.ngx-dropdown-container button span {
+    color: #949494;
+    font-size: .9em;
+    float: inherit !important;
+}
+.ngx-error {
+    .ngx-dropdown-container button {
+        border: 2px solid #F25272 !important;
+    }
+}
+
+.form-group-drop {
+    position: relative;
+}
+.form-group-drop-arrow {
+    position: absolute;
+    top: 32px;
+    right: 16px;
+    color: #949494;
+    cursor: pointer;
+}
+  

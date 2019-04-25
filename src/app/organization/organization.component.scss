@@ -1,3 +1,13 @@
+@mixin for-md-desktop-up {
+    @media all and (max-width: 1366px) { @content; }
+}
+@mixin for-desktop-up {
+    @media all and (max-width: 1440px) { @content; }
+}
+@mixin for-desktop-only {
+    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
+}
+
 /* - - - Company card - - - */
 .company-info {
     display: flex;
@@ -12,6 +22,9 @@
     img {
         height: 112px;
         width: 112px;
+    }
+    @media all and  (max-height: 900px){
+        display: none;
     }
 }
 .company-name {
@@ -34,7 +47,7 @@
     justify-content: center;
     display: flex;
     flex-direction: row;
-  }
+}
 .table-users {
     height: 80%;
     display: flex;
@@ -43,6 +56,19 @@
 }
 .search-box {
     width: 250px;
+    @include for-desktop-up {
+        margin-right: 0em;
+    }
+    .search-icon i {
+        @include for-desktop-up {
+            right: 7px;
+        }
+    }
+    .close-icon i {
+        @include for-desktop-up {
+            right: 7px;
+        }
+    }
 }
 .add-user-btn{
     margin-top: 2em;
@@ -50,12 +76,16 @@
     flex-direction: row;
     justify-content: center;
 }
-
+.table-h {
+    @include for-md-desktop-up {
+        padding-top: 0; 
+    }
+}
 /* - - - Subscription card - - - */
 .subscription-card {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     height: 100%;
     text-align: center;
     .subscription-icon {
@@ -66,9 +96,16 @@
         margin: 0 auto;
         background-color: #0937FF;
         color: white;
+        @include for-desktop-up {
+            height: 70px;
+            width: 70px;
+        }
         i {
             font-size: 2.2em;
             margin: 25px;
+            @include for-desktop-up {
+                margin: 18px;
+            }
         }
     }
     .subscription-check {
@@ -77,42 +114,9 @@
     }
     .subscription-plan {
         color: #0937FF;
+        @include for-desktop-up {
+            font-size: 1.5rem;
+        }
     }
 }
 
-@media screen and (max-width:1440px){
-    .subscription-card {
-        .subscription-plan {
-            font-size: 1.5rem;
-        }
-        .subscription-icon {
-            height: 70px;
-            width: 70px;
-            i {
-                margin: 18px;
-            }
-        }
-    }
-    .company-img{
-        display: none;
-    }
-    .search-box {
-        margin-right: 0em;
-       .search-icon i {
-            right: 7px;
-       }
-       .close-icon i {
-            right: 7px;
-       }
-    }
-}
-@media screen and (max-height: 900px){
-    .company-img {
-        display: none;
-    }
-}
-@media screen and (max-width: 1366px) {
-    .table-h {
-        padding-top: 0; 
-    }
-}

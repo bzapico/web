@@ -1,0 +1,101 @@
+// -----------------------------------------------------------------------------
+// Cards
+// -----------------------------------------------------------------------------
+
+@import  'app/scss/variables/mixins';
+
+/* - - - Basic card styles- - - */
+.card {
+  -webkit-box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
+  -moz-box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
+  box-shadow: 0px 16px 50px 2px rgba(0,0,0,0.16);
+  border-radius: 10px;
+  border: 0;
+  overflow: hidden;
+  padding: 1.5rem;
+  height: 100%;
+}
+.card-title-name {
+    @include for-desktop-only {
+        h5 {
+            font-size: 1em;
+        }
+    }
+}
+.card-title-name-mb {
+    margin-bottom: 1em;
+    @include for-desktop-only {
+        margin-bottom: 0em;
+        h5 {
+            font-size: 1em;
+        }
+    }
+}
+
+/* - - - Summary card styles- - - */
+.summary-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    @include for-desktop-only {
+        margin-top: 0em;
+    }
+    @include for-sm-desktop-only {
+        margin-top: 0em;
+        height: 82%;
+    }
+
+}
+.summary-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+/* - - - Summary circles styles - - - */
+.circle {
+    width: 112px;
+    height: 112px;
+    line-height: 112px;
+    border: 1px solid #949494;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 auto;
+    span {
+      color: black;
+      font-size: 1.7em;
+    }
+    @include for-desktop-only {
+        width: 90px;
+        height: 90px;
+        line-height: 90px;
+    }
+    @include for-sm-desktop-only {
+        max-width: 65px;
+        max-height: 65px;
+        line-height: 65px;
+        span {
+            font-size: 1em;
+        }
+    }
+    @include for-big-desktop-up {
+        min-width: 140px;
+        min-height: 140px;
+        line-height: 140px;
+    }
+}
+.circle-name {
+    font-size: 1.2em;
+    color:#949494;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 0;
+    @include for-sm-desktop-only {
+        font-size: .9em;
+    }
+}
+  

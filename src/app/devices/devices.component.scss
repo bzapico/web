@@ -1,6 +1,12 @@
+@mixin for-quarter-only {
+    @media all and (max-width:1720px), all and  (max-height: 780px) { @content; }
+}
+@mixin for-desktop-up {
+    @media all and (max-width: 1440px) { @content; }
+}
 /* - - - Device Status card - - - */
 .line-chart-box {
-    width:93%;
+    width: 93%;
 }
 /* - - - Devices tabs buttons - - - */
 .devices-tab-btns-box {
@@ -16,6 +22,12 @@
             padding: 0rem 1.5rem;
             cursor: pointer;
             position: relative;
+            @include for-quarter-only {
+                padding: 0 1.2rem;
+            }
+            @include for-desktop-up {
+                padding: 0 .9rem;
+            }
         }
         span {
             display: block;
@@ -43,6 +55,9 @@
         }
         .devices-button-item-pr {
             padding-right: 3em;
+            @include for-desktop-up {
+                padding-right: 0;
+            }
         }
     }
 }
@@ -55,65 +70,47 @@
         border: none;
     } 
     th {
-        padding: 0.2em;
+        padding: .2em;
         border: none;
         font-size:  .9em;
         font-weight: 200;
+        @include for-desktop-up {
+            display: none;
+        }
     }
     td {
-        padding: 0.2rem;
+        padding: .2rem;
         vertical-align: middle;
         font-size:  .9em;
         border: none;
         text-align: right;
         max-width: 180px;
+        @include for-desktop-up {
+            font-size:  .7em;
+        }
+    }
+    .summary-devices-lh {
+        line-height: 1;
     }
     .summary-devices-availability {
         font-size: 1.4em;
         text-transform: uppercase;
+        @include for-quarter-only {
+            font-size: 1em;
+        }
     }
     .summary-devices-running {
         font-size: 2em;
         color: black;
+        @include for-quarter-only {
+            font-size: 1em;
+        }
     }
     .summary-devices-conectivity {
         font-size: 1.0em;
         text-transform: uppercase;
-    }
-}
-
-/* - - - Medias summary card devices table - - - */
-@media screen and (max-width: 1720px), screen and (max-height: 780px) {
-    .summary-devices-table {
-        .summary-devices-conectivity {
-            font-size: 0.8em;
-        }
-        .summary-devices-availability, 
-        .summary-devices-running {
-            font-size: 1em;
-        }
-    }
-    .devices-tab-btn {
-        li {
-            padding: 0rem 1.2rem !important;
-        }
-    }
-}
-@media screen and (max-width: 1440px) {
-    .summary-devices-table {
-        th {
-            display: none;
-        } 
-        td {
-            font-size: .7em;
-        }
-    }
-    .devices-button-item-pr {
-        padding-right: 0em !important;
-    }
-    .devices-tab-btn {
-        li {
-            padding: 0rem .9rem !important;
+        @include for-quarter-only {
+            font-size: .8em;
         }
     }
 }

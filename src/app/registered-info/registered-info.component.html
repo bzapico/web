@@ -35,11 +35,11 @@
           <div class="reg-info">
             <button (click)="deployRegistered(registeredData)" class="reg-deploy btn-p-fix">
               <i class="material-icons i-options">play_arrow</i>
-              Deploy <span class="hide-sm">instance</span> 
+              Deploy <span class="hide-reg-btn-text">instance</span> 
             </button>
             <button (click)="deleteApp(registeredData)" class="reg-undeploy btn-p-fix">
               <i class="material-icons i-options">delete</i>
-              Delete <span class="hide-sm">app</span>
+              Delete <span class="hide-reg-btn-text">app</span>
             </button>
           </div>
         </div>
@@ -127,7 +127,7 @@
       <!-- Graph card -->
       <div *ngIf="showGraph" class="card h-reg-services flex-grow-1">
         <div class="row">
-          <div class="col-10 card-title-name">
+          <div class="col-10 card-title-name-mb">
             <h5>SERVICES</h5>
           </div>
           <div class="col-2">
@@ -221,7 +221,7 @@
       <!-- Services card -->
       <div *ngIf="!showGraph" class="card h-reg-services flex-grow-1">
         <div class="row">
-          <div class="col-10 card-title-name">
+          <div class="col-10 card-title-name-mb">
             <h5>SERVICES</h5>
           </div>
           <div class="col-2">
@@ -456,10 +456,10 @@
       <div class="h-reg-rules flex-grow-0">
         <!-- Rules card -->
         <div class="card mr-4 w-75">
-          <div class="card-title-name">
+          <div class="card-title-name-mb">
             <h5>RULES</h5>
           </div>
-          <div class="row mb-3 hide-sm">
+          <div class="row mb-3 hide-md">
             <!-- Sorting mesages -->
             <div class="col">
               <p *ngIf="searchTermRules && !filterFieldRules" class="sorting-message">
@@ -508,7 +508,7 @@
             !requestError"
             class="table-h table-h-fix">
             <table class="table-responsive table-fixed">
-              <thead class="hide-sm">
+              <thead class="hide-md">
                 <tr>
                   <th 
                     (click)="setOrder('rules','name')" 
@@ -633,8 +633,7 @@
         <!-- Configuration card -->
         <div class="card">
           <div class="card-title-name">
-            <h5 class="hide-sm">CONFIGURATION</h5>
-            <h5 class="show-sm">CONF...</h5>
+            <h5>CONFIGURATION</h5>
           </div>
           <div class="config-card">
             <div *ngIf="registeredData.environment_variables">

@@ -804,7 +804,12 @@ export class LoginComponent implements OnInit {
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;login&quot;&gt;
     &lt;!-- Login form --&gt;
     &lt;div&gt;
-    &lt;h2 class&#x3D;&quot;form-login-heading&quot; style&#x3D;&quot;visibility:hidden&quot; (click)&#x3D;&quot;openDebugPanel()&quot;&gt;NALEJ&lt;/h2&gt;
+    &lt;h2 
+        (click)&#x3D;&quot;openDebugPanel()&quot; 
+        class&#x3D;&quot;form-login-heading&quot;
+        style&#x3D;&quot;visibility:hidden&quot;&gt;
+        NALEJ
+    &lt;/h2&gt;
     &lt;div class&#x3D;&quot;login-card&quot;&gt;
         &lt;!-- Header --&gt;
         &lt;div class&#x3D;&quot;modal-header&quot;&gt;
@@ -812,18 +817,18 @@ export class LoginComponent implements OnInit {
         &lt;/div&gt;
         &lt;!-- Body --&gt;
         &lt;div class&#x3D;&quot;modal-body&quot;&gt;
-            &lt;form [formGroup]&#x3D;&quot;loginForm&quot; &gt;
+            &lt;form [formGroup]&#x3D;&quot;loginForm&quot;&gt;
                 &lt;div class&#x3D;&quot;form-group&quot;&gt;
                     &lt;label&gt;Email&lt;/label&gt;
                     &lt;input 
                         formControlName&#x3D;&quot;email&quot; 
-                        placeholder&#x3D;&quot;{{email}}&quot;
                         type&#x3D;&quot;text&quot; 
-                        appAutofocus&#x3D;&quot;true&quot;
                         [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: submitted &amp;&amp; f.email.errors }&quot; 
+                        placeholder&#x3D;&quot;{{email}}&quot;
+                        appAutofocus&#x3D;&quot;true&quot;
                         pattern&#x3D;&quot;^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$&quot;
-                        class&#x3D;&quot;form-control&quot;
-                        required&gt;
+                        required
+                        class&#x3D;&quot;form-control&quot;&gt;
                     &lt;div class&#x3D;&quot;error-h&quot;&gt;
                         &lt;div *ngIf&#x3D;&quot;submitted &amp;&amp; f.email.errors&quot; class&#x3D;&quot;error-message&quot;&gt;
                             &lt;div *ngIf&#x3D;&quot;f.email.errors.required&quot;&gt;Email is required&lt;/div&gt;
@@ -836,9 +841,9 @@ export class LoginComponent implements OnInit {
                     &lt;input 
                         formControlName&#x3D;&quot;password&quot; 
                         type&#x3D;&quot;password&quot; 
-                        class&#x3D;&quot;form-control&quot; 
                         [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: submitted &amp;&amp; f.password.errors }&quot;
-                        required&gt;
+                        required
+                        class&#x3D;&quot;form-control&quot; &gt;
                     &lt;div class&#x3D;&quot;error-h&quot;&gt;
                         &lt;div *ngIf&#x3D;&quot;submitted &amp;&amp; f.password.errors&quot; class&#x3D;&quot;error-message&quot;&gt;
                             &lt;div *ngIf&#x3D;&quot;f.password.errors.required&quot;&gt;Password is required&lt;/div&gt;
@@ -854,7 +859,7 @@ export class LoginComponent implements OnInit {
                     &lt;/div&gt;
                 &lt;/div&gt;
                 &lt;div class&#x3D;&quot;btn-h&quot;&gt;
-                    &lt;div class&#x3D;&quot;nalej-loader-container&quot; *ngIf&#x3D;&quot;loginRequest&quot; &gt;
+                    &lt;div *ngIf&#x3D;&quot;loginRequest&quot; class&#x3D;&quot;nalej-loader-container&quot;&gt;
                         &lt;div class&#x3D;&quot;loader loader-position&quot;&gt;
                             &lt;svg class&#x3D;&quot;circular&quot; viewBox&#x3D;&quot;25 25 50 50&quot;&gt;
                                 &lt;circle 
@@ -901,7 +906,7 @@ export class LoginComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="login">    <!-- Login form -->    <div>    <h2 class="form-login-heading" style="visibility:hidden" (click)="openDebugPanel()">NALEJ</h2>    <div class="login-card">        <!-- Header -->        <div class="modal-header">            <h3 class="nalej-form-title">Log in</h3>        </div>        <!-- Body -->        <div class="modal-body">            <form [formGroup]="loginForm" >                <div class="form-group">                    <label>Email</label>                    <input                         formControlName="email"                         placeholder="{{email}}"                        type="text"                         appAutofocus="true"                        [ngClass]="{ \'is-invalid\': submitted && f.email.errors }"                         pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"                        class="form-control"                        required>                    <div class="error-h">                        <div *ngIf="submitted && f.email.errors" class="error-message">                            <div *ngIf="f.email.errors.required">Email is required</div>                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>                        </div>                    </div>                </div>                <div class="form-group">                    <label>Password*</label>                    <input                         formControlName="password"                         type="password"                         class="form-control"                         [ngClass]="{ \'is-invalid\': submitted && f.password.errors }"                        required>                    <div class="error-h">                        <div *ngIf="submitted && f.password.errors" class="error-message">                            <div *ngIf="f.password.errors.required">Password is required</div>                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>                        </div>                    </div>                </div>                <div class="btn-h">                    <div *ngIf="!loginRequest" class="form-group-btn mt-3">                        <button class="nalej-form-btn-blue" (click)="onSubmit(f)">                            <span class="align-bottom">Log in</span>                        </button>                    </div>                </div>                <div class="btn-h">                    <div class="nalej-loader-container" *ngIf="loginRequest" >                        <div class="loader loader-position">                            <svg class="circular" viewBox="25 25 50 50">                                <circle                                 class="path"                                 cx="50"                                 cy="50"                                 r="20"                                 fill="none"                                 stroke-width="2"                                 stroke-miterlimit="10"/>                            </svg>                        </div>                    </div>                </div>            </form>        </div>    </div>    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="login">    <!-- Login form -->    <div>    <h2         (click)="openDebugPanel()"         class="form-login-heading"        style="visibility:hidden">        NALEJ    </h2>    <div class="login-card">        <!-- Header -->        <div class="modal-header">            <h3 class="nalej-form-title">Log in</h3>        </div>        <!-- Body -->        <div class="modal-body">            <form [formGroup]="loginForm">                <div class="form-group">                    <label>Email</label>                    <input                         formControlName="email"                         type="text"                         [ngClass]="{ \'is-invalid\': submitted && f.email.errors }"                         placeholder="{{email}}"                        appAutofocus="true"                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"                        required                        class="form-control">                    <div class="error-h">                        <div *ngIf="submitted && f.email.errors" class="error-message">                            <div *ngIf="f.email.errors.required">Email is required</div>                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>                        </div>                    </div>                </div>                <div class="form-group">                    <label>Password*</label>                    <input                         formControlName="password"                         type="password"                         [ngClass]="{ \'is-invalid\': submitted && f.password.errors }"                        required                        class="form-control" >                    <div class="error-h">                        <div *ngIf="submitted && f.password.errors" class="error-message">                            <div *ngIf="f.password.errors.required">Password is required</div>                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>                        </div>                    </div>                </div>                <div class="btn-h">                    <div *ngIf="!loginRequest" class="form-group-btn mt-3">                        <button class="nalej-form-btn-blue" (click)="onSubmit(f)">                            <span class="align-bottom">Log in</span>                        </button>                    </div>                </div>                <div class="btn-h">                    <div *ngIf="loginRequest" class="nalej-loader-container">                        <div class="loader loader-position">                            <svg class="circular" viewBox="25 25 50 50">                                <circle                                 class="path"                                 cx="50"                                 cy="50"                                 r="20"                                 fill="none"                                 stroke-width="2"                                 stroke-miterlimit="10"/>                            </svg>                        </div>                    </div>                </div>            </form>        </div>    </div>    </div></div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'LoginComponent'};
