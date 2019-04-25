@@ -12,9 +12,6 @@
     display: flex;
     flex-direction: row;
     text-transform: uppercase;
-    @include for-quarter-up {
-        padding: 0 1rem;
-    }
     ul {
         list-style: none;
         text-align: center;
@@ -27,6 +24,12 @@
         padding: 0.5rem 2.5rem;
         cursor: pointer;
         position: relative;
+        @media screen and (max-width: 1570px) {
+            padding: 0.5rem .9rem;
+        }
+        @media screen and (max-width: 1779px) {
+            padding: 0.5rem 1.2rem;
+        }
     }
     .tabs-arrow {
         color: #949494;

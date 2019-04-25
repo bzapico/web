@@ -176,6 +176,11 @@
         display: none;
     }
 }
+@media screen and (max-width: 1550px) {
+    .table-fixed tbody td:last-child {
+        padding: 0.75rem 0;
+    }
+}
 
 /* - - -  Config card - - - */
 .config-card {
