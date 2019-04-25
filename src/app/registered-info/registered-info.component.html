@@ -296,7 +296,7 @@
           registeredData &&
           registeredData.groups &&
           registeredData.groups.length > 0" 
-          class="row mb-3">
+          class="row mb-3 hide-md">
           <!-- Sorting mesages -->
           <div class="col-9">
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
@@ -459,7 +459,7 @@
           <div class="card-title-name">
             <h5>RULES</h5>
           </div>
-          <div class="row mb-3 hide-sm">
+          <div class="row mb-3 hide-md">
             <!-- Sorting mesages -->
             <div class="col">
               <p *ngIf="searchTermRules && !filterFieldRules" class="sorting-message">
@@ -508,7 +508,7 @@
             !requestError"
             class="table-h table-h-fix">
             <table class="table-responsive table-fixed">
-              <thead class="hide-sm">
+              <thead class="hide-md">
                 <tr>
                   <th 
                     (click)="setOrder('rules','name')" 
