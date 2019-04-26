@@ -347,125 +347,84 @@
           registeredData.groups &&
           registeredData.groups.length > 0 &&
           !requestError"
-          class="tomato-table-box">
-          <!-- <table class="nalej-table"> -->
-            <table class="tomato-table">
-            <thead class="nalej-thead">
-              <tr>
-                              <th 
-                  (click)="setOrder('services', 'name')" 
-                  [ngClass]="getCategoryCSSClass('services','name')" 
-                  scope="col" 
-                  >
-                <!-- <th 
-                  (click)="setOrder('services', 'name')" 
-                  [ngClass]="getCategoryCSSClass('services','name')" 
-                  scope="col" 
-                  class="col-2"> -->
-                  <span tooltip="Name" placement="bottom">Name</span>
-                  <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                       <th 
-                  (click)="setOrder('services','image')" 
-                  [ngClass]="getCategoryCSSClass('services','image')" 
-                  scope="col" 
-                  >
-                <!-- <th 
-                  (click)="setOrder('services','image')" 
-                  [ngClass]="getCategoryCSSClass('services','image')" 
-                  scope="col" 
-                  class="col-5"> -->
-                  <span tooltip="Image" placement="bottom">Image</span>
-                  <span *ngIf="sortedBy === 'image' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span  *ngIf="sortedBy === 'image' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th> 
-                         <th 
-                  (click)="setOrder('services','labels')" 
-                  [ngClass]="getCategoryCSSClass('services','labels')" 
-                  scope="col" 
-                  >
-                <!-- <th 
-                  (click)="setOrder('services','labels')" 
-                  [ngClass]="getCategoryCSSClass('services','labels')" 
-                  scope="col" 
-                  class="col-4"> -->
-                  <span tooltip="Labels" placement="bottom">Labels</span>
-                  <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span  *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                              <th scope="col"class=" text-center p-0">
-                  <span tooltip="Info" placement="bottom">Info</span>
-                </th>
-                <!-- <th scope="col"class="col-1 text-center p-0">
-                  <span tooltip="Info" placement="bottom">Info</span>
-                </th> -->
-              </tr>
-            </thead>
-          
-            <tbody>
-                <span *ngIf="getGroupServices(activeGroupId)" class="tomato-table-span">
-                 
-                <tr *ngFor=
-                  "let service of getGroupServices(activeGroupId) |
-                  sortBy : sortedBy : reverse : 'case-insensitive' |
-                  filter : searchTerm">
-                     <td >{{service.name}}</td>
-                    <td >{{service.image}}</td>
-                    <td >
-                      <button 
-                        *ngFor="let label of objectToString(service.labels)"
-                        class="btn-sm btn-outline-primary"
-                        disabled> 
-                        {{label[0]}}: {{label[1]}} 
-                      </button>
-                    </td>
-                    <td class=" text-center">
-                      <button 
-                        (click)="openServicesInfo(service)"
-                        tooltip="Info" 
-                        placement="left" 
-                        class="action-btn-blue">
-                        <span class="i-info" >i</span>
-                      </button>
-                    </td>
-                  <!-- <td class="col-2">{{service.name}}</td>
-                  <td class="col-5">{{service.image}}</td>
-                  <td class="col-4">
-                    <button 
-                      *ngFor="let label of objectToString(service.labels)"
-                      class="btn-sm btn-outline-primary"
-                      disabled> 
-                      {{label[0]}}: {{label[1]}} 
-                    </button>
-                  </td>
-                  <td class="col-1 text-center">
-                    <button 
-                      (click)="openServicesInfo(service)"
-                      tooltip="Info" 
-                      placement="left" 
-                      class="action-btn-blue">
-                      <span class="i-info" >i</span>
-                    </button>
-                  </td> -->
-                </tr>
-              </span>
-              </tbody>
-       
-       
-          </table>
+          class="nalej-flex-table-box" 
+          role="table" 
+          aria-label="Services table">
+            <div class="nalej-flex-table nalej-flex-th" role="rowgroup">
+              <div 
+                class="nalej-flex-row-4 services-cell-1" 
+                role="columnheader" 
+                (click)="setOrder('services','name')"
+                [ngClass]="getCategoryCSSClass('services','name')">
+                <span tooltip="Name" placement="bottom">Name</span>
+                <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </div>
+              <div 
+                class="nalej-flex-row-4 services-cell-2" 
+                role="columnheader"   
+                (click)="setOrder('services','image')" 
+                [ngClass]="getCategoryCSSClass('services','image')">
+                <span tooltip="Image" placement="bottom">Image</span>
+                <span *ngIf="sortedBy === 'image' && !reverse" class="expand-chevron">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span  *ngIf="sortedBy === 'image' && reverse" class="expand-chevron">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </div>
+              <div 
+                class="nalej-flex-row-4 services-cell-3 wider-cell" 
+                role="columnheader"  
+                (click)="setOrder('services','labels')" 
+                [ngClass]="getCategoryCSSClass('services','labels')">
+                <span tooltip="Labels" placement="bottom">Labels</span>
+                <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span  *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </div>
+              <div class="nalej-flex-row-4 services-cell-4" role="columnheader">
+                <span tooltip="Info" placement="bottom">Info</span>
+              </div>
+            </div>
+            <span *ngIf="getGroupServices(activeGroupId)">
+              <div 
+              class="nalej-flex-table row" 
+              role="rowgroup" 
+              *ngFor=
+                "let service of getGroupServices(activeGroupId) |
+                sortBy : sortedBy : reverse : 'case-insensitive' |
+                filter : searchTerm">
+                <div class="nalej-flex-row-4 services-cell-1 nalej-flex-td" role="cell"> 
+                  {{service.name}}
+                </div>
+                <div class="nalej-flex-row-4 services-cell-2 nalej-flex-td" role="cell">{{service.image}}</div>
+                <div class="nalej-flex-row-4 services-cell-3 nalej-flex-td wider-cell" role="cell">
+                  <button 
+                    *ngFor="let label of objectToString(service.labels)"
+                    class="btn-sm btn-outline-primary"
+                    disabled> 
+                    {{label[0]}}: {{label[1]}} 
+                  </button>
+                </div>
+                <div class="nalej-flex-row-4 services-cell-4 nalej-flex-td " role="cell">
+                  <button 
+                    (click)="openServicesInfo(service)" 
+                    tooltip="Info" 
+                    placement="left" 
+                    class="action-btn-blue">
+                    <span class="i-info">i</span>
+                  </button>
+                </div>
+              </div>
+            </span>
         </div>
         <!-- No info to show -->
         <div *ngIf=
@@ -553,166 +512,98 @@
           registeredData.rules &&
           registeredData.rules.length > 0 &&
           !requestError"
-          class="tomato-table-box">
-          <!-- <div *ngIf=
-            "loadedData &&
-            registeredData.rules &&
-            registeredData.rules.length > 0 &&
-            !requestError"
-            class="nalej-table-box nalej-table-box-fix tomato-table-box"> -->
-            <table class="tomato-table">
-            <!-- <table class="nalej-table tomato-table"> -->
-              <!-- <thead class="nalej-thead hide-md"> -->
-                  <thead class="nalej-thead">
-                <tr>
-                    <th 
-                    (click)="setOrder('rules','name')" 
-                    [ngClass]="getCategoryCSSClass('rules','name')" 
-                    scope="col" 
-                    >
-                  <!-- <th 
-                    (click)="setOrder('rules','name')" 
-                    [ngClass]="getCategoryCSSClass('rules','name')" 
-                    scope="col" 
-                    class="col-2"> -->
-                    <span tooltip="Name" placement="bottom">Name</span>
-                    <span *ngIf="sortedByRules === 'name' && !reverseRules" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedByRules === 'name' && reverseRules" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                  (click)="setOrder('rules','access')" 
-                  [ngClass]="getCategoryCSSClass('rules','access')" 
-                  tooltip="Access" 
-                  placement="bottom"
-                  scope="col" 
-                  class="reg-access-initial-text">
-                  <!-- <th 
-                    (click)="setOrder('rules','access')" 
-                    [ngClass]="getCategoryCSSClass('rules','access')" 
-                    tooltip="Access" 
-                    placement="bottom"
-                    scope="col" 
-                    class="col-2 reg-access-initial-text"> -->
-                    <span class="reg-access-full-text">Access</span> 
-                    <span *ngIf="sortedByRules === 'access' && !reverseRules" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedByRules === 'access' && reverseRules" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                  (click)="setOrder('rules','target')" 
-                  [ngClass]="getCategoryCSSClass('rules','target')" 
-                  scope="col"
-                  >
-                  <!-- <th 
-                    (click)="setOrder('rules','target')" 
-                    [ngClass]="getCategoryCSSClass('rules','target')" 
-                    scope="col"
-                    class="col-4"> -->
-                    <span tooltip="Target (group, service, port)"  placement="bottom">Target</span>
-                    <span *ngIf="sortedByRules === 'target' && !reverseRules" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedByRules === 'target' && reverseRules" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                  (click)="setOrder('rules','auth')" 
-                  [ngClass]="getCategoryCSSClass('rules','auth')" 
-                  scope="col" 
-                >
-                  <!-- <th 
-                    (click)="setOrder('rules','auth')" 
-                    [ngClass]="getCategoryCSSClass('rules','auth')" 
-                    scope="col" 
-                    class="col-3"> -->
-                    <span tooltip="Auth (group, service / device group)" placement="bottom">Auth</span>
-                    <span *ngIf="sortedByRules === 'auth' && !reverseRules" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedByRules === 'auth' && reverseRules" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th scope="col"class=" text-center p-0">
-                      <span tooltip="Info" placement="bottom">Info</span>
-                    </th>
-                  <!-- <th scope="col"class="col-1 text-center p-0">
-                    <span tooltip="Info" placement="bottom">Info</span>
-                  </th> -->
-                </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor=
-                  "let rule of registeredData.rules |
-                  sortBy : sortedByRules : reverseRules : 'case-insensitive' |
-                  filter : searchTermRules">
-                  <td class="">
-                    <a class="blue text-capitalize text-left">
-                      {{rule.name | truncate}}
-                    </a>
-                    </td>
-                    <td class=" text-lowercase">{{rule.access}}</td>
-                    <td class="">
-                      {{rule.target_service_group_name}} - {{rule.target_service_name}} - {{rule.target_port}}
-                    </td>
-                    <td class="text-lowercase">
-                      {{rule.auth_service_group_name}}
-                    <span *ngIf="rule.auth_services"> - </span>
-                    {{rule.auth_services}}
-                    <span *ngIf="rule.device_group_names"></span>
-                    {{rule.device_group_names}}
-                    </td>
-                  <td class=" text-center">
-                    <button 
-                      (click)="openRulesInfo(rule)"
-                      tooltip="Info" 
-                      placement="left" 
-                      class="action-btn-blue">
-                      <span class="i-info">i</span>
-                    </button>
-                  </td>
-                </tr>
-                <!-- <tr *ngFor=
-                  "let rule of registeredData.rules |
-                  sortBy : sortedByRules : reverseRules : 'case-insensitive' |
-                  filter : searchTermRules">
-                  <td class="col-2">
-                    <a class="blue text-capitalize text-left">
-                      {{rule.name | truncate}}
-                    </a>
-                    </td>
-                    <td class="col-2 text-lowercase">{{rule.access}}</td>
-                    <td class="col-4">
-                      {{rule.target_service_group_name}} - {{rule.target_service_name}} - {{rule.target_port}}
-                    </td>
-                    <td class="text-lowercase col-3">
-                      {{rule.auth_service_group_name}}
-                    <span *ngIf="rule.auth_services"> - </span>
-                    {{rule.auth_services}}
-                    <span *ngIf="rule.device_group_names"></span>
-                    {{rule.device_group_names}}
-                    </td>
-                  <td class="col-1 text-center">
-                    <button 
-                      (click)="openRulesInfo(rule)"
-                      tooltip="Info" 
-                      placement="left" 
-                      class="action-btn-blue">
-                      <span class="i-info">i</span>
-                    </button>
-                  </td>
-                </tr> -->
-              </tbody>
-            </table>
-          </div>
+          class="nalej-flex-table-box" 
+          role="table" 
+          aria-label="Services table">
+            <div class="nalej-flex-table nalej-flex-th" role="rowgroup">
+              <div 
+                class="nalej-flex-row-5 rules-cell-1" 
+                role="columnheader" 
+                (click)="setOrder('services','name')"
+                [ngClass]="getCategoryCSSClass('services','name')">
+                <span tooltip="Name" placement="bottom">Name</span>
+                <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </div>
+              <div 
+                class="nalej-flex-row-5 rules-cell-2" 
+                role="columnheader"   
+                (click)="setOrder('rules','access')" 
+                [ngClass]="getCategoryCSSClass('rules','access')" >
+                <span class="reg-access-full-text">Access</span> 
+                <span *ngIf="sortedByRules === 'access' && !reverseRules" class="expand-chevron">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span *ngIf="sortedByRules === 'access' && reverseRules" class="expand-chevron">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </div>
+              <div 
+                class="nalej-flex-row-5 rules-cell-3 wider-cell" 
+                role="columnheader"  
+                (click)="setOrder('rules','target')" 
+                [ngClass]="getCategoryCSSClass('rules','target')" >
+                <span tooltip="Target (group, service, port)"  placement="bottom">Target</span>
+                <span *ngIf="sortedByRules === 'target' && !reverseRules" class="expand-chevron">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span *ngIf="sortedByRules === 'target' && reverseRules" class="expand-chevron">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </div>
+              <div 
+                class="nalej-flex-row-5 rules-cell-4" 
+                role="columnheader"  
+                (click)="setOrder('rules','auth')" 
+                  [ngClass]="getCategoryCSSClass('rules','auth')" >
+                <span tooltip="Auth (group, service / device group)" placement="bottom">Auth</span>
+                <span *ngIf="sortedByRules === 'auth' && !reverseRules" class="expand-chevron">
+                  <i class="material-icons">expand_more</i>
+                </span>
+                <span *ngIf="sortedByRules === 'auth' && reverseRules" class="expand-chevron">
+                  <i class="material-icons">expand_less</i>
+                </span>
+              </div>
+              <div class="nalej-flex-row-5 rules-cell-4" role="columnheader">
+                <span tooltip="Info" placement="bottom">Info</span>
+              </div>
+            </div>
+            <div 
+              class="nalej-flex-table row" 
+              role="rowgroup" 
+              *ngFor=
+                "let rule of registeredData.rules |
+                sortBy : sortedByRules : reverseRules : 'case-insensitive' |
+                filter : searchTermRules">
+              <div class="nalej-flex-row-5 rules-cell-1 nalej-flex-td" role="cell"> 
+                  {{rule.name | truncate}}
+              </div>
+              <div class="nalej-flex-row-5 rules-cell-2 nalej-flex-td" role="cell">{{rule.access}}</div>
+              <div class="nalej-flex-row-5 rules-cell-3 nalej-flex-td wider-cell" role="cell">
+                  {{rule.target_service_group_name}} - {{rule.target_service_name}} - {{rule.target_port}}
+              </div>
+              <div class="nalej-flex-row-5 rules-cell-4 nalej-flex-td" role="cell">
+                  {{rule.auth_service_group_name}}
+                  <span *ngIf="rule.auth_services"> - </span>
+                  {{rule.auth_services}}
+                  <span *ngIf="rule.device_group_names"></span>
+                  {{rule.device_group_names}}
+              </div>
+              <div class="nalej-flex-row-5 rules-cell-5 nalej-flex-td " role="cell">
+                <button 
+                (click)="openRulesInfo(rule)"
+                  tooltip="Info" 
+                  placement="left" 
+                  class="action-btn-blue">
+                  <span class="i-info">i</span>
+                </button>
+              </div>
+            </div>
+         </div>
           <!-- No info to show -->
           <div *ngIf=
             "loadedData &&
@@ -784,3 +675,7 @@
     </div>
   </div>
 </div>
+
+
+
+

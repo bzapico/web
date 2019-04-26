@@ -17,6 +17,8 @@
     width: 100%;
     overflow: hidden;
 }
+
+/* - - -  Nalej big table - - - */
 .nalej-table {
     height: 100%;
     display: block;
@@ -94,67 +96,221 @@
     }
 }
 
-.tomato-table-box {
+/* - - -  Nalej flex table fot 4 adn 5 cols - - - */
+.nalej-flex-table-box {
+    display: block;
     width: 100%;
     overflow: scroll;
     height: 100%;
-    .tomato-table { 
-        width: 100%;
+    div {
+        box-sizing: border-box;
     }
-    .tomato-table tr { 
-        display:flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        border-bottom: .8px solid #EEEEEE;
+}
+.nalej-flex-table {
+  display: flex;
+  flex-flow: row wrap;
+  transition: 0.5s;
+  margin-right: 0;
+  margin-left: 0;
+}
+.nalej-flex-th {
+    color: black;
+    font-size: .9em;
+    font-weight: 200;
+    border-bottom: none;
+}
+.nalej-flex-td {
+    font-size: .9em;
+    color: #949494;
+    border-bottom: .8px solid #EEEEEE;
+    padding: .75em;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    button {
+        margin: 2px auto;
     }
-    .tomato-table th {
-        font-size: .9em;
-        font-weight: 200;
-        border: 1px dotted purple;
-        flex: 1 1 150px;
+}
+.nalej-flex-row-4 {
+    width: calc(100% / 4);
+    text-align: center;
+    cursor: pointer;
+    &.default{
+        color: black;
+        i {
+        color: black;
+        }
     }
-    .tomato-table td { 
-        flex: 1 1 150px;
-        padding: 0.75rem;
-        font-size: .9em;
-        // border-top: .8px solid #EEEEEE;
+    &.enabled {
+        i {
+            color: #0937FF;
+        }
+        span i{
+            visibility: visible;
+        }
+    }
+    &.disabled {
+            color: #949494;
+        i {
+            color: #949494;
+        }
+    }
+    .expand-chevron {
+        position: relative;
+        cursor: pointer;
+        top: 3px;
+        right: 0;
+        i {
+            font-size: 1.1em;
+        }
+    }
+}
+.nalej-flex-row-5 {
+    width: calc(100% / 5);
+    text-align: center;
+    cursor: pointer;
+    &.default{
+        color: black;
+        i {
+        color: black;
+        }
+    }
+    &.enabled {
+        i {
+            color: #0937FF;
+        }
+        span i {
+            visibility: visible;
+        }
+    }
+    &.disabled {
         color: #949494;
+        i {
+            color: #949494;
+        }
+    }
+    .expand-chevron {
+        position: relative;
+        cursor: pointer;
+        top: 3px;
+        right: 0;
+        i {
+            font-size: 1.1em;
+        }
+    }
+}
+.rowspan {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+.nalej-flex-column {
+    display: flex;
+    flex-flow: column wrap;
+    width: 75%;
+    padding: 0;
+    .nalej-flex-row-4, .nalej-flex-row-5 {
+        display: flex;
+        flex-flow: row wrap;
         width: 100%;
-        // border: 1px dotted red;
+        padding: 0;
+        border: 0;
     }
-    .tomato-table th, .tomato-table td { 
-        // text-align: left; 
-        // padding: 0.25em;
-        // border: 1px dotted red;
-    }
+}
+// .nalej-flex-cell {
+//     // the division
+//     width: calc(100% / 4); //1px = border right
+//     text-align: center;
+//     //   flex: 1 1 33.3%;
+// }
 
-    // @media screen and (max-width: 1440px) {
-    //     tr { 
-    //         display: flex; 
-    //         flex-direction: row;
-    //         flex-wrap: wrap;
-    //         // margin: 0.5em 0;
-    //         border: 1px solid orange;
-            
-    //     }
-    //     td{
-    //         flex: 1 1 150px;
-    //         border: 0.5px solid green;
-    //     }
-    //     th {
-    //         flex: 1 1 150px;
-    //         border: 0.5px solid green;
-    //     }
-    //     td.edit-buttons {
-    //         /*flex: 1 0 90%;
-    //         text-align: center;*/
-    //     }
+@media all and (max-width: 1440px) {
+    .nalej-flex-row-4 {
+        border-bottom: none;
+        width: calc(100% / 3); //1px = border right
+        &.wider-cell{
+            justify-content: center;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+        }
+        &.wider-cell.nalej-flex-td {
+            border-bottom: .8px solid #EEEEEE;
+        }
+    }
+    .nalej-flex-row-5 {
+        border-bottom: none;
+        width: calc(100% / 4); //1px = border right
+        &.wider-cell{
+            justify-content: center;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+        }
+        &.wider-cell.nalej-flex-td {
+            border-bottom: .8px solid #EEEEEE;
+        }
+    }
+    .nalej-flex-column  {
+        width: 100%;
+    }
+    // Order of services cells when his viewport appears
+    // .services-cell-1 {
+    //     order: 1;
+    // }
+    // .services-cell-2 {
+    //     order: 2;
+    // }
+    // .services-cell-3 {
+    //     order: 4;
+    // }
+    // .services-cell-4 {
+    //     order: 3;
+    // }
+    // // Order of rules cells when his viewport appears
+    // .rules-cell-1 {
+    //     order: 1;
+    // }
+    // .rules-cell-2 {
+    //     order: 2;
+    // }
+    // .rules-cell-3 {
+    //     order: 5;
+    // }
+    // .rules-cell-4 {
+    //     order: 3;
+    // }
+    // .rules-cell-5 {
+    //     order: 4;
     // }
 }
-.tomato-table-span {
-    background-color: pink;
-}
 
+@media all and (max-width: 1000px) {
+    .nalej-flex-table {
+        .nalej-flex-row-4, .nalej-flex-row-5 {
+        border-bottom: 0;
+        }
+    }
+    .nalej-flex-row-4, .nalej-flex-row-5 {
+        width: 100%; //1px = border right
+        &.wider-cell{
+            width: 100%;
+        }
+    }
+    .nalej-flex-column {
+        width: 100%;
+        .nalej-flex-row-4, .nalej-flex-row-5 {
+            border-bottom: solid 1px purple;
+        }
+    }
+    .nalej-flex-cell {
+        width: 100%; //1px = border right
+    }
+    .nalej-flex-td {
+        padding: .2em;
+    }
+}
 
 /* - - -  Search and sort in tables - - - */
 
