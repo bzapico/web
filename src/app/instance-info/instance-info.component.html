@@ -407,13 +407,12 @@
                 <span *ngIf="!service.endpoints">No</span>
               </div>
               <div role="cell" class="nalej-flex-row-5 services-cell-5 nalej-flex-td">
-                <button 
+                <div    
                   (click)="openServicesInfo(service)" 
                   tooltip="Info" 
-                  placement="left" 
-                  class="action-btn-blue">
-                  <span class="i-info">i</span>
-                </button>
+                  placement="left">
+                  <i class="material-icons info-icon">info</i>
+                </div>
               </div>
             </div>
           </span>
@@ -506,7 +505,7 @@
             !requestError" 
             role="table" 
             aria-label="Rules table"
-            class="nalej-flex-table-box rules-flex-table-box" >
+            class="nalej-flex-table-box hide-xs" >
             <div role="rowgroup" class="nalej-flex-table nalej-flex-th">
               <div 
                 (click)="setOrder('rules','name')"
@@ -555,7 +554,7 @@
                 role="columnheader"  
                 class="nalej-flex-row-5 rules-cell-4">
                 <span tooltip="Auth (group, service / device group)" placement="bottom">
-                  Auth<span class="grey typo-small">(g - s/d)</span>
+                  Auth <span class="grey typo-small">(g - s/d)</span>
                 </span>
                 <span *ngIf="sortedByRules === 'auth' && !reverseRules" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
@@ -589,13 +588,12 @@
                   {{rule.device_group_names}}
               </div>
               <div role="cell" class="nalej-flex-row-5 rules-cell-5 nalej-flex-td">
-                <button 
-                (click)="openRulesInfo(rule)"
+                <div    
+                  (click)="openRulesInfo(rule)"
                   tooltip="Info" 
-                  placement="left" 
-                  class="action-btn-blue">
-                  <span class="i-info">i</span>
-                </button>
+                  placement="left">
+                  <i class="material-icons info-icon">info</i>
+                </div>
               </div>
             </div>
          </div>
@@ -605,12 +603,15 @@
             instance.rules &&
             instance.rules.length > 0 &&
             !requestError"
-            class="rules-info-btn-box">
-            <div *ngFor="let rule of instance.rules">
-              <button (click)="openRulesInfo(rule)" class="rules-info-btn btn-p-fix">
-                <i class="material-icons i-info-rules">info</i>
-                Rules info
-              </button>
+            class="rules-info-sm-table-box">
+            <div *ngFor="let rule of instance.rules"class="rules-info-sm-table">
+              <div class="rules-info-sm-text">{{rule.name}}</div>
+              <div    
+                (click)="openRulesInfo(rule)"
+                tooltip="Info" 
+                placement="left">
+                <i class="material-icons info-icon">info</i>
+              </div>
             </div>
           </div>
           <!-- No info to show -->

@@ -276,6 +276,26 @@
         padding: .2em;
     }
 }
+.rules-info-sm-table-box {
+    height: 100%;
+    overflow: scroll;
+    display: none;
+    @include for-xs-desktop-h  {
+        display: block;
+        .rules-info-sm-table {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: .5em;
+            overflow: scroll;
+        }
+        .rules-info-sm-text {
+            font-size: .8em;
+            color: #949494;
+        }
+    }
+}
 
 /* - - -  Search and sort in tables - - - */
 

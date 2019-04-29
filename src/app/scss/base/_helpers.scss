@@ -5,6 +5,11 @@
 @import  'app/scss/variables/mixins';
 
 /* - - - Hide and show styles - - - */
+.hide-xs {
+  @include for-xs-desktop-h  {
+    display: none !important;
+  }
+}
 .show-sm {
   display: none;
   @include for-quarter-only {
