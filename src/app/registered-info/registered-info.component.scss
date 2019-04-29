@@ -169,46 +169,6 @@
 .nalej-table-box-fix {
     padding-top: 0em;
 }
-
-.rules-flex-table-box {
-    @include for-xs-desktop-h  {
-        display: none;
-    }
-}
-.rules-info-btn-box {
-    display: none;
-    @include for-xs-desktop-h  {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-    }
-    .rules-info-btn {
-        background-color: #0937FF;
-        border-radius: 5px;
-        padding: .5em 1.8em;
-        cursor: pointer;
-        color: white;
-        border: none;
-        width: 233px;
-        height: 42px;
-        text-indent: 2em;
-        position: relative;
-        font-size: .8em;
-        outline: none;
-    }
-    .i-info-rules {
-        color: white;
-        position: absolute;
-        top: 50%;
-        left: 12%;
-        -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        display: block;
-        font-size: 1.7em;
-    }
-}
 @media screen and (max-height: 780px) {
     .hide-title-sm {
         display: none;

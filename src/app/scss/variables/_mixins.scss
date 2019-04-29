@@ -8,6 +8,9 @@
 @mixin for-third-up {
     @media all and (max-width: 1146px) { @content; }
 }
+@mixin for-xs-desktop-h {
+    @media all and (max-height: 687px) { @content; }
+}
 @mixin for-sm-desktop-only {
     @media all and (max-width: 1280px), all and  (max-height: 790px) { @content; }
 }
