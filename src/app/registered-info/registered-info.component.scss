@@ -10,18 +10,30 @@
 @mixin for-xs-desktop-h {
     @media all and (max-height: 687px) { @content; }
 }
+@mixin for-desktop-h {
+    @media all and  (max-height: 900px) { @content; }
+}
 
 /* - - - Card heights - - */
 .h-reg {
-    height: 96%; 
+    height: 97%; 
+    @include for-desktop-h {
+        height: 100%;
+    }
 }
 .h-reg-info {
     height: 301px;
     margin-bottom: 2em;
+    @include for-desktop-only  { 
+        margin-bottom: 1.8em;
+    }
 }
 .h-reg-services-info {
     height: 261px;
     margin-bottom: 2em;
+    @include for-desktop-only  { 
+        margin-bottom: 1.8em;
+    }
 }
 .h-reg-labels {
     height: 29%;
@@ -31,6 +43,7 @@
     height: 517px;
     @media screen and (max-width: 1557px) {
         height: 373px;
+        margin-bottom: 1.8em;
     }
 }
 
@@ -44,8 +57,10 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 90%;
-    min-height: 90%;
+    height: 94%;
+    @include for-desktop-h {
+        height: 100%;
+    }
 }
 .graph-subtext {
     color: #949494;

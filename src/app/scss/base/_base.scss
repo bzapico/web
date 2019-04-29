@@ -29,21 +29,32 @@ a {
     }
 }
 .row-title {
-    height: 4%;
-    margin-bottom: 2%;
+    margin-bottom: 1em;
+    @include for-desktop-only  { 
+    }
+    @include for-desktop-h {
+        display: none;
+    }
 }
 .row-info {
     height: 29%;
-    margin-bottom: 2%;
+    margin-bottom: 2em;
     @include for-desktop-only  { 
-        height: 31%;
-        margin-bottom: 1.9rem;
+        margin-bottom: 1.8em;
     }
 }
 .row-main {
-    height: 54%;
+    height: 61%;
+    @include for-desktop-h {
+        height: 67%;
+    }
+    @include for-quarter-h {
+        height: 65%;
+    }
+
 } 
 .section-title {
+    margin-bottom: 0;
     @include for-desktop-only  { 
         font-size: 1.5rem;
     }
