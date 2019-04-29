@@ -90,7 +90,7 @@
             float: left;
             padding: 0.75rem;
             font-size: .9em;
-            border-top: .8px solid #EEEEEE;
+            border-top: .8px solid #F3F6FF;
             color: #949494;
         }
     }
@@ -122,7 +122,7 @@
 .nalej-flex-td {
     font-size: .9em;
     color: #949494;
-    border-bottom: .8px solid #EEEEEE;
+    border-bottom: .8px solid #F3F6FF;
     padding: .75em;
     justify-content: center;
     display: flex;
@@ -226,9 +226,10 @@
         &.wider-cell{
             justify-content: center;
             display: flex;
+            border-radius: 7px;
             flex-direction: row;
             width: 100%;
-            background-color: #f1f1f1;
+            background-color: #F3F6FF;
         }
     }
     .nalej-flex-row-5 {
@@ -237,9 +238,10 @@
         &.wider-cell{
             justify-content: center;
             display: flex;
+            border-radius: 7px;
             flex-direction: row;
             width: 100%;
-            background-color: #f1f1f1;
+            background-color: #F3F6FF;
         }
 
     }

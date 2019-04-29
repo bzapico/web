@@ -4,6 +4,9 @@
 @mixin for-desktop-only {
     @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
 }
+@mixin for-xs-desktop-h {
+    @media all and (max-height: 687px) { @content; }
+}
 
 /* - - - Card heights - - */
 .h-ins {
@@ -172,6 +175,46 @@
 .nalej-table-box-fix {
     padding-top: 0em;
 }
+.rules-flex-table-box {
+    @include for-xs-desktop-h  {
+        display: none;
+    }
+}
+.rules-info-btn-box {
+    display: none;
+    @include for-xs-desktop-h  {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    .rules-info-btn {
+        background-color: #0937FF;
+        border-radius: 5px;
+        padding: .5em 1.8em;
+        cursor: pointer;
+        color: white;
+        border: none;
+        width: 233px;
+        height: 42px;
+        text-indent: 2em;
+        position: relative;
+        font-size: .8em;
+        outline: none;
+    }
+    .i-info-rules {
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 12%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        display: block;
+        font-size: 1.7em;
+    }
+}
+
 @media all and (max-width: 1440px) {
     // Order of services cells when his viewport appears
     .services-cell-1 {
@@ -232,7 +275,7 @@
 
 /* - - -  Graph - - - */
 .graph {
-    background-color: #f9f9f9;
+    background-color: #F3F6FF;
     height: 80%;
     position: relative;
     display: block;
@@ -266,7 +309,4 @@
         width: 400px;
         height: 250px;
     }
-}
-.typo-small {
-    font-size: .6em;
 }
