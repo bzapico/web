@@ -11,8 +11,9 @@
     justify-content: space-around;
     align-items: center;
     height: 100%;
+    border: 1px dotted orange;
     @include  for-desktop-up{
-        height: 82% !important;
+        height: 82%;
     } 
 }
 .cluster-box {
@@ -21,24 +22,32 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    margin-top: .5rem;
+    // width: 50%;
+    // margin-top: .5rem;
+    border: 1px solid greenyellow;
     @include  for-desktop-up{
-        margin-top: 0;
+        // margin-top: 0;
     } 
+}
+
+.circles-box{
+    // margin-right: 2em;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    // height: 100%;
+    border: 1px solid blue;
+    @include  for-desktop-up{
+        // margin-right: 2em;
+        // flex-direction: row; 
+    }   
 }
 .cluster-number {
     float: right;
     color: #949494;
     font-size: 0.8em;
-}
-.circles-box{
-    margin-right: 2em;
-    flex-direction: row;  
-    width: 40%;
-    @include  for-desktop-up{
-        margin-right: 2em;
-        flex-direction: row; 
-    }   
 }
 
 /* - - - Cluster table card - - - */
@@ -91,11 +100,12 @@
 }
 /* - - - Cluster card pie chart - - - */
 .donut-chart {
-    height: 85%;
+    height: 92%;
     text-align: center;
     position: relative;
+    border: 1px solid red;
     @include for-desktop-up {
-        height: 85%;
+        // height: 85%;
     }
 }
 .nodes-run-node {
