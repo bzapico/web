@@ -321,7 +321,7 @@
           aria-label="Services table">
           <div class="nalej-flex-table nalej-flex-th" role="rowgroup">
             <div 
-              class="nalej-flex-row-5 services-cell-1" 
+              class="nalej-flex-row-5 services-cell-1 wider-cell" 
               role="columnheader" 
               (click)="setOrder('services','name')"
               [ngClass]="getCategoryCSSClass('services','name')">
@@ -360,7 +360,7 @@
               </span>
             </div>
             <div 
-              class="nalej-flex-row-5 services-cell-4 wider-cell" 
+              class="nalej-flex-row-5 services-cell-4" 
               role="columnheader"  
               (click)="setOrder('services','endpoints')" 
               [ngClass]="getCategoryCSSClass('services','endpoints')" >
@@ -384,7 +384,7 @@
               "let service of getGroupServices(activeGroupId) |
               sortBy : sortedBy : reverse : 'case-insensitive' |
               filter : searchTerm">
-              <div class="nalej-flex-row-5 services-cell-1 nalej-flex-td" role="cell"> 
+              <div class="nalej-flex-row-5 services-cell-1 nalej-flex-td wider-cell" role="cell"> 
                 {{service.name}}
               </div>
               <div class="nalej-flex-row-5 services-cell-2 nalej-flex-td" role="cell">
@@ -393,7 +393,7 @@
               <div class="nalej-flex-row-5 services-cell-3 nalej-flex-td text-lowercase" role="cell" [ngClass]="getServiceStatusClass(service.status_name)">
                   {{getBeautyStatusName(service.status_name)}}
               </div>
-              <div class="nalej-flex-row-5 services-cell-4 nalej-flex-td wider-cell" role="cell">
+              <div class="nalej-flex-row-5 services-cell-4 nalej-flex-td" role="cell">
                 <span *ngFor="let endpoint of service.endpoints">
                     <a 
                       *ngIf="endpoint" 
@@ -504,18 +504,18 @@
           !requestError" 
           class="nalej-flex-table-box" 
           role="table" 
-          aria-label="Services table">
+          aria-label="Rules table">
             <div class="nalej-flex-table nalej-flex-th" role="rowgroup">
               <div 
-                class="nalej-flex-row-5 rules-cell-1" 
+                class="nalej-flex-row-5 rules-cell-1 wider-cell" 
                 role="columnheader" 
-                (click)="setOrder('services','name')"
-                [ngClass]="getCategoryCSSClass('services','name')">
+                (click)="setOrder('rules','name')"
+                [ngClass]="getCategoryCSSClass('rules','name')">
                 <span tooltip="Name" placement="bottom">Name</span>
-                <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
+                <span *ngIf="sortedByRules === 'name' && !reverseRules" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
+                <span *ngIf="sortedByRules === 'name' && reverseRules" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </div>
@@ -524,7 +524,7 @@
                 role="columnheader"   
                 (click)="setOrder('rules','access')" 
                 [ngClass]="getCategoryCSSClass('rules','access')" >
-                <span class="reg-access-full-text">Access</span> 
+                <span tooltip="Access" placement="bottom">Access</span> 
                 <span *ngIf="sortedByRules === 'access' && !reverseRules" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -533,11 +533,13 @@
                 </span>
               </div>
               <div 
-                class="nalej-flex-row-5 rules-cell-3 wider-cell" 
+                class="nalej-flex-row-5 rules-cell-3" 
                 role="columnheader"  
                 (click)="setOrder('rules','target')" 
                 [ngClass]="getCategoryCSSClass('rules','target')" >
-                <span tooltip="Target (group, service, port)"  placement="bottom">Target</span>
+                <span tooltip="Target (group, service, port)"  placement="bottom">
+                  Target <span class="grey typo-small">(g - s - p)</span>
+                </span>
                 <span *ngIf="sortedByRules === 'target' && !reverseRules" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -550,7 +552,9 @@
                 role="columnheader"  
                 (click)="setOrder('rules','auth')" 
                   [ngClass]="getCategoryCSSClass('rules','auth')" >
-                <span tooltip="Auth (group, service / device group)" placement="bottom">Auth</span>
+                <span tooltip="Auth (group, service / device group)" placement="bottom">
+                  Auth<span class="grey typo-small">(g - s/d)</span>
+                </span>
                 <span *ngIf="sortedByRules === 'auth' && !reverseRules" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -569,11 +573,11 @@
                   "let rule of instance.rules |
                   sortBy : sortedByRules : reverseRules : 'case-insensitive' |
                   filter : searchTermRules">
-              <div class="nalej-flex-row-5 rules-cell-1 nalej-flex-td" role="cell"> 
+              <div class="nalej-flex-row-5 rules-cell-1 nalej-flex-td wider-cell" role="cell"> 
                   {{rule.name | truncate}}
               </div>
               <div class="nalej-flex-row-5 rules-cell-2 nalej-flex-td" role="cell">{{rule.access_name}}</div>
-              <div class="nalej-flex-row-5 rules-cell-3 nalej-flex-td wider-cell" role="cell">
+              <div class="nalej-flex-row-5 rules-cell-3 nalej-flex-td" role="cell">
                   {{rule.target_service_group_name}} - {{rule.target_service_name}} - {{rule.target_port}}
               </div>
               <div class="nalej-flex-row-5 rules-cell-4 nalej-flex-td" role="cell">

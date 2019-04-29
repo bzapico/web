@@ -172,16 +172,6 @@
 .nalej-table-box-fix {
     padding-top: 0em;
 }
-@media screen and (max-width:1907px){
-    // .reg-access-full-text {
-    //     display: none;
-    // }
-    // .reg-access-initial-text {
-    //     &::before {
-    //         content: 'A';
-    //     }
-    // }
-}
 @media all and (max-width: 1440px) {
     // Order of services cells when his viewport appears
     .services-cell-1 {
@@ -194,10 +184,10 @@
         order: 3;
     }
     .services-cell-4 {
-        order: 5;
+        order: 4;
     }
     .services-cell-5 {
-        order: 4;
+        order: 5;
     }
     // Order of rules cells when his viewport appears
     .rules-cell-1 {
@@ -207,13 +197,13 @@
         order: 2;
     }
     .rules-cell-3 {
-        order: 5;
-    }
-    .rules-cell-4 {
         order: 3;
     }
-    .rules-cell-5 {
+    .rules-cell-4 {
         order: 4;
+    }
+    .rules-cell-5 {
+        order: 5;
     }
 }
 
@@ -276,4 +266,7 @@
         width: 400px;
         height: 250px;
     }
+}
+.typo-small {
+    font-size: .6em;
 }

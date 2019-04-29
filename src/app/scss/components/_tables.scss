@@ -218,12 +218,6 @@
         border: 0;
     }
 }
-// .nalej-flex-cell {
-//     // the division
-//     width: calc(100% / 4); //1px = border right
-//     text-align: center;
-//     //   flex: 1 1 33.3%;
-// }
 
 @media all and (max-width: 1440px) {
     .nalej-flex-row-4 {
@@ -234,9 +228,7 @@
             display: flex;
             flex-direction: row;
             width: 100%;
-        }
-        &.wider-cell.nalej-flex-td {
-            border-bottom: .8px solid #EEEEEE;
+            background-color: #f1f1f1;
         }
     }
     .nalej-flex-row-5 {
@@ -247,43 +239,13 @@
             display: flex;
             flex-direction: row;
             width: 100%;
+            background-color: #f1f1f1;
         }
-        &.wider-cell.nalej-flex-td {
-            border-bottom: .8px solid #EEEEEE;
-        }
+
     }
     .nalej-flex-column  {
         width: 100%;
     }
-    // Order of services cells when his viewport appears
-    // .services-cell-1 {
-    //     order: 1;
-    // }
-    // .services-cell-2 {
-    //     order: 2;
-    // }
-    // .services-cell-3 {
-    //     order: 4;
-    // }
-    // .services-cell-4 {
-    //     order: 3;
-    // }
-    // // Order of rules cells when his viewport appears
-    // .rules-cell-1 {
-    //     order: 1;
-    // }
-    // .rules-cell-2 {
-    //     order: 2;
-    // }
-    // .rules-cell-3 {
-    //     order: 5;
-    // }
-    // .rules-cell-4 {
-    //     order: 3;
-    // }
-    // .rules-cell-5 {
-    //     order: 4;
-    // }
 }
 
 @media all and (max-width: 1000px) {
@@ -295,6 +257,7 @@
     .nalej-flex-row-4, .nalej-flex-row-5 {
         width: 100%; //1px = border right
         &.wider-cell{
+            position: relative;
             width: 100%;
         }
     }
