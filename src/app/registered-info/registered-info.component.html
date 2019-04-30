@@ -4,11 +4,11 @@
     <h2 class="section-title">Applications</h2>
   </div>
 </div>
-<div class="row h-reg">
+<div class="row row-app-main">
   <div class="col-4 h-100">
-    <div class="reg-flex-col">
+    <div class="flex-col-app">
       <!-- Registered application id card -->
-      <div class="card h-reg-info flex-grow-0">
+      <div class="card row-info-app flex-grow-0">
         <div class="card-title-name">
           <h5>
             <a 
@@ -45,7 +45,7 @@
         </div>
       </div>
       <!-- Services summary card -->
-      <div class="card h-reg-services-info flex-grow-0">
+      <div class="card row-summary-app flex-grow-0">
         <div class="card-title-name">
           <h5>SERVICES SUMMARY</h5>
         </div>
@@ -68,7 +68,7 @@
         </div>
       </div>
       <!-- Labels card-->
-      <div class="card h-reg-labels flex-grow-1">
+      <div class="card row-app-labels flex-grow-1">
         <div class="card-title-name hide-title-sm mb-3">
           <h5>LABELS</h5>
         </div>
@@ -123,9 +123,9 @@
     </div>
   </div>
   <div class="col-8 h-100">
-    <div class="reg-flex-col">
+    <div class="flex-col-app">
       <!-- Graph card -->
-      <div *ngIf="showGraph" class="card h-reg-services flex-grow-1">
+      <div *ngIf="showGraph" class="card row-app-services">
         <div class="row">
           <div class="col-10 card-title-name-mb">
             <h5>SERVICES</h5>
@@ -219,7 +219,7 @@
         <div *ngIf="!graphDataLoaded" class="loader"></div>
       </div>
       <!-- Services card -->
-      <div *ngIf="!showGraph" class="card h-reg-services flex-grow-1">
+      <div *ngIf="!showGraph" class="card row-app-services">
         <div class="row">
           <div class="col-10 card-title-name-mb">
             <h5>SERVICES</h5>
@@ -452,9 +452,10 @@
           </div>
         </div>
       </div>
-      <div class="h-reg-rules flex-grow-0">
+      <div class="row row-app-rules">
+          <div class="col-lg-8">
         <!-- Rules card -->
-        <div class="card mr-4 w-75">
+        <div class="card">
           <div class="card-title-name-mb">
             <h5>RULES</h5>
           </div>
@@ -650,6 +651,8 @@
             </div>
           </div>
         </div>
+        </div>
+        <div class="col-lg-4">
         <!-- Configuration card -->
         <div class="card">
           <div class="card-title-name">
@@ -687,6 +690,7 @@
               <p class="grey">No extra settings have been set</p>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

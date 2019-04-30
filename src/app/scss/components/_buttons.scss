@@ -108,7 +108,7 @@ button[type="submit"]:disabled {
     color: #0937FF;
     cursor: pointer;
     font-size: 39px;
-    @include for-desktop-only {
+    @include for-desktop-up {
         font-size: 31px;
     }
     &:hover {

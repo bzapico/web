@@ -28,22 +28,8 @@ a {
       text-decoration: none;
     }
 }
-.row-title {
-    height: 4%;
-    margin-bottom: 2%;
-}
-.row-info {
-    height: 29%;
-    margin-bottom: 2%;
-    @include for-desktop-only  { 
-        height: 31%;
-        margin-bottom: 1.9rem;
-    }
-}
-.row-main {
-    height: 54%;
-} 
 .section-title {
+    margin-bottom: 0;
     @include for-desktop-only  { 
         font-size: 1.5rem;
     }

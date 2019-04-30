@@ -7,49 +7,23 @@
 @mixin for-md-desktop-fix {
     @media all and (max-width: 1614px) { @content; }
 }
-@mixin for-xs-desktop-h {
-    @media all and (max-height: 687px) { @content; }
+@mixin for-desktop-h {
+    @media all and  (max-height: 900px) { @content; }
 }
 
 /* - - - Card heights - - */
-.h-reg {
-    height: 96%; 
-}
-.h-reg-info {
+.row-info-app {
     height: 301px;
-    margin-bottom: 2em;
 }
-.h-reg-services-info {
+.row-summary-app {
     height: 261px;
-    margin-bottom: 2em;
-}
-.h-reg-labels {
-    height: 29%;
-}
-.h-reg-services {
-    margin-bottom: 2em;
-    height: 517px;
-    @media screen and (max-width: 1557px) {
-        height: 373px;
+    margin-bottom: 30px;
+    @include for-desktop-h {
+        margin-bottom: 20px;
     }
 }
-
-.h-reg-rules {
-    height: 38%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.reg-flex-col {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    height: 90%;
-    min-height: 90%;
-}
-.graph-subtext {
-    color: #949494;
-    font-size: 0.7em;
+.row-app-labels {
+    height: 29%;
 }
 
 /* - - - Apps info card  buttons - - - */
@@ -219,50 +193,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    overflow: scroll;
-    height: 83%;
     word-wrap: break-word;
-    @include for-desktop-only {
+    height: 100%;
+    @include for-desktop-h {
         text-align: left;
         justify-content: end;
     }
 }
-
-/* - - -  Graph - - - */
-.graph {
-    background-color: #f6f6f6;
-    height: 80%;
-    position: relative;
-    display: block;
-    border-radius: 10px;
-    .chart-container {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        overflow: hidden;
-        border-radius: 10px;
-    }
-    .node {
-        text {
-            fill: #fff;
-            font-size: 12px;
-        }
-    }
-    .edge {
-        path {
-          stroke: #CDCDCD;
-        }
-    }
-    .graph-click-fix {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        overflow: hidden;
-        z-index: 20;
-        width: 400px;
-        height: 250px;
-    }
-}
- 
