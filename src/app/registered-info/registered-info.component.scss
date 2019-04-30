@@ -15,35 +15,29 @@
 }
 
 /* - - - Card heights - - */
-.h-reg {
-    height: 97%; 
-    @include for-desktop-h {
-        height: 100%;
-    }
-}
 .h-reg-info {
     height: 301px;
-    margin-bottom: 2em;
-    @include for-desktop-only  { 
-        margin-bottom: 1.8em;
+    margin-bottom: 30px;
+    @include for-desktop-h {
+        margin-bottom: 20px;
     }
 }
 .h-reg-services-info {
     height: 261px;
-    margin-bottom: 2em;
-    @include for-desktop-only  { 
-        margin-bottom: 1.8em;
+    margin-bottom: 30px;
+    @include for-desktop-h {
+        margin-bottom: 20px;
     }
 }
 .h-reg-labels {
     height: 29%;
 }
 .h-reg-services {
-    margin-bottom: 2em;
+    margin-bottom: 30px;
     height: 517px;
     @media screen and (max-width: 1557px) {
         height: 373px;
-        margin-bottom: 1.8em;
+        margin-bottom: 20px;
     }
 }
 
@@ -57,7 +51,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 94%;
+    height: 96%;
     @include for-desktop-h {
         height: 100%;
     }

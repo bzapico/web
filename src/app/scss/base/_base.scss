@@ -28,31 +28,6 @@ a {
       text-decoration: none;
     }
 }
-.row-title {
-    margin-bottom: 1em;
-    @include for-desktop-only  { 
-    }
-    @include for-desktop-h {
-        display: none;
-    }
-}
-.row-info {
-    height: 29%;
-    margin-bottom: 2em;
-    @include for-desktop-only  { 
-        margin-bottom: 1.8em;
-    }
-}
-.row-main {
-    height: 61%;
-    @include for-desktop-h {
-        height: 67%;
-    }
-    @include for-quarter-h {
-        height: 65%;
-    }
-
-} 
 .section-title {
     margin-bottom: 0;
     @include for-desktop-only  { 

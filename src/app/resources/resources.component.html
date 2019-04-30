@@ -1,12 +1,12 @@
 <!-- Component title -->
 <div class="row row-title">
-  <div class="col-lg-12">
+  <div class="col-xl-12">
     <h2 class="section-title">Resources</h2>
   </div>
 </div>
 <div class="row row-info">
   <!-- Summary info card -->
-  <div class="col-lg-4 h-100">
+  <div class="col-xl-4 col-lg-4 h-100">
     <div class="card">
       <div class="card-title-name">
         <h5>SUMMARY</h5>
@@ -28,7 +28,7 @@
     </div>
   </div>
   <!-- Clusters info card -->
-  <div class="col-lg-4 h-100">
+  <div class="col-xl-4 col-lg-4 h-100">
     <div class="card cluster-card">
       <div class="card-title-name">
         <h5 class="d-inline">CLUSTERS STATUS</h5>
@@ -161,7 +161,7 @@
     </div>
   </div>
   <!-- Node status timeline info card -->
-  <div class="col-lg-4 h-100">
+  <div class="col-xl-4 col-lg-4 h-100">
     <div class="card">
       <div class="card-title-name">
         <h5>NODES STATUS TIMELINE</h5>
@@ -199,7 +199,7 @@
 </div>
 <!-- Clusters panel card-->
 <div class="row row-main">
-  <div class="col-lg-12 h-100">
+  <div class="col-xl-12 h-100 card-m-fix">
     <div class="card">
       <div class="card-title-name-mb">
         <h5>CLUSTERS</h5>
@@ -314,7 +314,7 @@
                 tooltip="Type" 
                 placement="bottom"
                 scope="col" 
-                class="col-1 text-center types-initial-text">
+                class="col-1 types-initial-text">
                 <span class="types-full-text">Types</span> 
                 <span *ngIf="sortedBy === 'cluster_type_name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>

@@ -84,9 +84,6 @@
     height: 100px;
     text-align: center;
     position: relative;
-    @include for-big-desktop-up {
-        width: 31%;
-    }
 }
 .cluster-name {
     text-transform: uppercase;

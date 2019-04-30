@@ -12,24 +12,19 @@
 }
 
 /* - - - Card heights - - */
-.h-ins {
-    height: 97%; 
-    @include for-desktop-h {
-        height: 100%;
-    }
-}
+
 .h-ins-info {
     height: 587px;
-    margin-bottom: 2em;
-    @include for-desktop-only  { 
-        margin-bottom: 1.8em;
+    margin-bottom: 30px;
+    @include for-desktop-h {
+        margin-bottom: 20px;
     }
 }
 .h-ins-services-info {
     height: 261px;
-    margin-bottom: 2em;
-    @include for-desktop-only  { 
-        margin-bottom: 1.8em;
+    margin-bottom: 30px;
+    @include for-desktop-h {
+        margin-bottom: 20px;
     }
 }
 .h-ins-labels {
@@ -37,23 +32,23 @@
 }
 .h-ins-services {
     height: 517px;
-    margin-bottom: 2em;
-    @include for-desktop-only {
+    margin-bottom: 30px;
+    @include for-desktop-h {
         height: 373px;
-        margin-bottom: 1.8em;
+        margin-bottom: 20px;
     }
 }
 .h-ins-rules {
     height: 38%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: space-between;
 }
 .ins-flex-col {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 94%;
+    height: 96%;
     @include for-desktop-h {
         height: 100%;
     }
