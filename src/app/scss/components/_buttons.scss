@@ -107,9 +107,9 @@ button[type="submit"]:disabled {
 .info-icon {
     color: #0937FF;
     cursor: pointer;
-    font-size: 2.7em;
+    font-size: 39px;
     @include for-desktop-only {
-        font-size: 2.2em;
+        font-size: 31px;
     }
     &:hover {
        color: #4f71fd;
