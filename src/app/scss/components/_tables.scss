@@ -100,7 +100,7 @@
 .nalej-flex-table-box {
     display: block;
     width: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
     height: 100%;
     div {
         box-sizing: border-box;
@@ -278,7 +278,7 @@
 }
 .rules-info-sm-table-box {
     height: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
     display: none;
     @include for-xs-desktop-h  {
         display: block;
@@ -288,7 +288,6 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: .5em;
-            overflow: scroll;
         }
         .rules-info-sm-text {
             font-size: .8em;
