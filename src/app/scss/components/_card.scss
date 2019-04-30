@@ -66,20 +66,14 @@
     }
 }
 .row-app-services {
-    height: 100%;
     margin-bottom: 30px;
     @include for-desktop-h {
         margin-bottom: 20px;
     }
 }
 .row-app-rules {
-    // height: 100%;
     @extend .no-gutters-fix;
-    @include for-desktop-h {
-
-    }
 }
-
 
 /* - - - Basic card styles- - - */
 .card {

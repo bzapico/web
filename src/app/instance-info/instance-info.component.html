@@ -87,7 +87,7 @@
   <div class="col-8 h-100">
     <div class="flex-col-app">
       <!-- Graph card -->
-      <div *ngIf="showGraph" class="card row-app-services flex-grow-1">
+      <div *ngIf="showGraph" class="card row-app-services">
         <div class="row">
           <div class="col-10 card-title-name">
             <h5>SERVICES</h5>
@@ -189,7 +189,7 @@
         </div>
       </div>
       <!-- Services card -->
-      <div *ngIf="!showGraph" class="card row-app-services flex-grow-1">
+      <div *ngIf="!showGraph" class="card row-app-services">
         <div class="row">
           <div class="col-10 card-title-name">
             <h5>SERVICES</h5>
@@ -445,7 +445,7 @@
           </div>
         </div>
       </div>
-      <div class="row row-app-rules flex-grow-0">
+      <div class="row row-app-rules ">
         <!-- Rules card -->
         <div class="col-lg-8">
           <div class="card">
@@ -629,7 +629,7 @@
               <p>{{requestError}}</p>
             </div>
             <!-- Loader -->
-            <div *ngIf="!loadedData" class="nalej-loader-box" >
+            <div *ngIf="!loadedData" class="nalej-loader-box">
               <div class="loader">
                 <svg class="circular" viewBox="25 25 50 50">
                   <circle 
