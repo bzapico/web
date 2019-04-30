@@ -75,16 +75,16 @@
         users.length > 0 && 
         !requestError" 
         class="table-users">
-        <div  class="table-h">
-          <table class="table-responsive table-fixed">
-            <thead>
+        <div class="nalej-table-box">
+          <table class="nalej-table">
+            <thead class="nalej-thead">
               <tr>
                 <th 
                   (click)="setOrder('name')"            
                   [ngClass]="getCategoryCSSClass('name')"
                   scope="col" 
                   class="col-3">
-                  Name 
+                  <span tooltip="Name" placement="bottom">Name</span>
                   <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -97,7 +97,7 @@
                   [ngClass]="getCategoryCSSClass('role')"
                   scope="col" 
                   class="col-2">
-                  Role 
+                  <span tooltip="Role" placement="bottom">Role</span>
                   <span *ngIf="sortedBy === 'role' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -110,7 +110,7 @@
                   [ngClass]="getCategoryCSSClass('email')"
                   scope="col" 
                   class="col-5">
-                  Email
+                  <span tooltip="Email" placement="bottom">Email</span>
                   <span *ngIf="sortedBy === 'email' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -119,7 +119,7 @@
                   </span>
                 </th>
                 <th scope="col" class="col-2 text-center">
-                  Actions 
+                  <span tooltip="Actions" placement="bottom">Actions</span>
                 </th>
               </tr>
             </thead>
@@ -132,13 +132,12 @@
                 <td (click)="openUserInfo(user)" class="col-2 blue">{{user.role_name}}</td>
                 <td class="col-5">{{user.email}}</td>
                 <td class="col-2 actions-col">
-                  <button 
+                  <div    
                     (click)="openUserInfo(user)" 
                     tooltip="Info" 
-                    placement="left" 
-                    class="action-btn-blue-2">
-                    <span class="i-info-2">i</span>
-                  </button>
+                    placement="left">
+                    <i class="material-icons info-icon">info</i>
+                  </div>
                   <button 
                     (click)="openEditUser(user)" 
                     tooltip="Edit" 

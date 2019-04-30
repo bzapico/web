@@ -206,7 +206,7 @@
       </div>
       <div class="row mb-3">
         <!-- Sorting mesages -->
-        <div class="col">  
+        <div class="col-8">  
           <p *ngIf="searchTerm && !filterField" class="sorting-message">
             Filtered by term "{{ searchTerm }}".
             <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
@@ -250,16 +250,16 @@
         clusters && 
         clusters.length > 0 && 
         !requestError" 
-        class="table-h">
-        <table class="table-responsive table-fixed">
-          <thead>
+        class="nalej-table-box">
+        <table class="nalej-table">
+          <thead class="nalej-thead">
             <tr>
               <th 
                 (click)="setOrder('name')"            
                 [ngClass]="getCategoryCSSClass('name')"
                 scope="col" 
                 class="col-2">
-                Name 
+                <span tooltip="Name" placement="bottom">Name</span>
                 <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -272,7 +272,7 @@
                 [ngClass]="getCategoryCSSClass('id')"
                 scope="col" 
                 class="col-2">
-                ID
+                <span tooltip="ID" placement="bottom">ID</span>
                 <span *ngIf="sortedBy === 'id' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -283,9 +283,11 @@
               <th 
                 (click)="setOrder('total_nodes')"
                 [ngClass]="getCategoryCSSClass('total_nodes')"
+                tooltip="Nodes" 
+                placement="bottom"
                 scope="col" 
-                class="col-1 text-center">
-                Nodes 
+                class="col-1 text-center nodes-initial-text">
+                <span class="nodes-full-text">Nodes</span> 
                 <span *ngIf="sortedBy === 'total_nodes' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -294,24 +296,26 @@
                 </span>
               </th>
               <th 
-                (click)="setOrder('description')" 
-                [ngClass]="getCategoryCSSClass('description')"
+                (click)="setOrder('labels')" 
+                [ngClass]="getCategoryCSSClass('labels')"
                 scope="col" 
                 class="col-3">
-                Labels
+                <span tooltip="Labels" placement="bottom">Labels</span>
                 <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
-                <span class="expand-chevron" *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
+                <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
                   <i class="material-icons">expand_less</i>
                 </span>
               </th>
               <th 
                 (click)="setOrder('cluster_type_name')" 
                 [ngClass]="getCategoryCSSClass('cluster_type_name')"
+                tooltip="Type" 
+                placement="bottom"
                 scope="col" 
-                class="col-1">
-                Types
+                class="col-1 text-center types-initial-text">
+                <span class="types-full-text">Types</span> 
                 <span *ngIf="sortedBy === 'cluster_type_name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -322,9 +326,11 @@
               <th 
                 (click)="setOrder('status_name')" 
                 [ngClass]="getCategoryCSSClass('status_name')"
+                tooltip="Status" 
+                placement="bottom"
                 scope="col" 
-                class="col-1 text-center">
-                Status
+                class="col-1 text-center status-initial-text">
+                <span class="status-full-text">Status</span> 
                 <span *ngIf="sortedBy === 'status_name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -334,10 +340,12 @@
               </th>
               <th 
                 (click)="setOrder('multitenant_support')" 
-                [ngClass]="getCategoryCSSClass('multitenant_support')"
+                [ngClass]="getCategoryCSSClass('multitenant_support')"  
+                tooltip="Multitenant" 
+                placement="bottom" 
                 scope="col" 
-                class="col-1 text-center">
-                Multitenant
+                class="col-1 text-center multitenant-short-text multitenant-initial-text">
+                <span class="multitenant-full-text">Multitenant</span> 
                 <span *ngIf="sortedBy === 'multitenant_support' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -346,7 +354,7 @@
                 </span>
               </th>
               <th scope="col" class="col-1 text-center">
-                Edit
+                <span tooltip="Edit" placement="bottom">Edit</span> 
               </th>
             </tr>
           </thead>
@@ -423,7 +431,7 @@
                   class="col-1 col-center-lowercase">
                 <span 
                   tooltip= "{{cluster.status_name | lowercase}}" 
-                  placement="auto" 
+                  placement="bottom" 
                   class="tooltip-fix">
                 </span>
                 <span class="hide-lg">

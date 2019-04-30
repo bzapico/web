@@ -8,8 +8,14 @@
 @mixin for-third-up {
     @media all and (max-width: 1146px) { @content; }
 }
+@mixin for-xs-desktop-h {
+    @media all and (max-height: 687px) { @content; }
+}
 @mixin for-sm-desktop-only {
     @media all and (max-width: 1280px), all and  (max-height: 790px) { @content; }
+}
+@mixin for-sm-desktop-h {
+    @media all and (max-height: 687px) { @content; }
 }
 @mixin for-sm-desktop-up {
     @media all and (max-width: 1280px) { @content; }
@@ -17,17 +23,26 @@
 @mixin for-md-desktop-only {
     @media all and (max-width: 1366px), all and  (max-height: 768px) { @content; }
 }
+@mixin for-md-desktop-h {
+    @media all and  (max-height: 768px) { @content; }
+}
 @mixin for-md-desktop-up {
     @media all and (max-width: 1366px) { @content; }
 }
 @mixin for-desktop-only {
     @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
 }
+@mixin for-desktop-h {
+    @media all and  (max-height: 900px) { @content; }
+}
 @mixin for-desktop-up {
     @media all and (max-width: 1440px) { @content; }
 }
 @mixin for-quarter-only {
     @media all and (max-width: 1720px), all and  (max-height: 780px) { @content; }
+}
+@mixin for-quarter-h {
+    @media all and (max-height: 780px) { @content; }
 }
 @mixin for-quarter-up {
     @media all and (max-width: 1720px) { @content; }

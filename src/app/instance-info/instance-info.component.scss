@@ -4,6 +4,9 @@
 @mixin for-desktop-only {
     @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
 }
+@mixin for-xs-desktop-h {
+    @media all and (max-height: 687px) { @content; }
+}
 
 /* - - - Card heights - - */
 .h-ins {
@@ -138,6 +141,13 @@
     height: 100%;
     margin-top: 1em;
 }
+
+.nalej-table tbody td {
+    @include for-desktop-only {
+        padding: 0.75rem 0;
+    }
+}
+
 /* - - -  Labels card - - - */
 .i-add {
     font-size: 1em;
@@ -155,9 +165,6 @@
     width: 237px;
     margin-right: 1em;
 }
-.typo-small{
-    font-size: .7em;
-}
 .show-graph-icons {
     cursor: pointer;
     color: #949494;
@@ -165,9 +172,44 @@
 .mr-bars {
     margin-right: 11px;
 }
-.table-h-fix {
+.nalej-table-box-fix {
     padding-top: 0em;
 }
+@media all and (max-width: 1440px) {
+    // Order of services cells when his viewport appears
+    .services-cell-1 {
+        order: 1;
+    }
+    .services-cell-2 {
+        order: 2;
+    }
+    .services-cell-3 {
+        order: 3;
+    }
+    .services-cell-4 {
+        order: 4;
+    }
+    .services-cell-5 {
+        order: 5;
+    }
+    // Order of rules cells when his viewport appears
+    .rules-cell-1 {
+        order: 1;
+    }
+    .rules-cell-2 {
+        order: 2;
+    }
+    .rules-cell-3 {
+        order: 3;
+    }
+    .rules-cell-4 {
+        order: 4;
+    }
+    .rules-cell-5 {
+        order: 5;
+    }
+}
+
 @media screen and (max-width: 1550px) {
     .table-fixed tbody td:last-child {
         padding: 0.75rem 0;
@@ -193,7 +235,7 @@
 
 /* - - -  Graph - - - */
 .graph {
-    background-color: #f9f9f9;
+    background-color: #f6f6f6;
     height: 80%;
     position: relative;
     display: block;
@@ -227,7 +269,4 @@
         width: 400px;
         height: 250px;
     }
-}
-.auth-lh-fix {
-    line-height: 12px;
 }
