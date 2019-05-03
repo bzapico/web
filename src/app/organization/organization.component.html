@@ -132,13 +132,12 @@
                 <td (click)="openUserInfo(user)" class="col-2 blue">{{user.role_name}}</td>
                 <td class="col-5">{{user.email}}</td>
                 <td class="col-2 actions-col">
-                  <button 
+                  <div    
                     (click)="openUserInfo(user)" 
                     tooltip="Info" 
-                    placement="left" 
-                    class="action-btn-blue-2">
-                    <span class="i-info-2">i</span>
-                  </button>
+                    placement="left">
+                    <i class="material-icons info-icon">info</i>
+                  </div>
                   <button 
                     (click)="openEditUser(user)" 
                     tooltip="Edit" 

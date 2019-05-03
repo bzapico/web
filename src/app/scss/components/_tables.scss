@@ -37,9 +37,9 @@
             font-weight: 200;
             cursor: pointer;
             &.default{
-                color: black;
+                color: #212529;
                 i {
-                color: black;
+                color: #212529;
                 }
             }
             &.enabled {
@@ -90,7 +90,7 @@
             float: left;
             padding: 0.75rem;
             font-size: .9em;
-            border-top: .8px solid #EEEEEE;
+            border-top: .8px solid #f6f6f6;
             color: #949494;
         }
     }
@@ -100,7 +100,7 @@
 .nalej-flex-table-box {
     display: block;
     width: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
     height: 100%;
     div {
         box-sizing: border-box;
@@ -114,7 +114,7 @@
   margin-left: 0;
 }
 .nalej-flex-th {
-    color: black;
+    color: #212529;
     font-size: .9em;
     font-weight: 200;
     border-bottom: none;
@@ -122,7 +122,7 @@
 .nalej-flex-td {
     font-size: .9em;
     color: #949494;
-    border-bottom: .8px solid #EEEEEE;
+    border-bottom: .8px solid #f6f6f6;
     padding: .75em;
     justify-content: center;
     display: flex;
@@ -136,9 +136,9 @@
     text-align: center;
     cursor: pointer;
     &.default{
-        color: black;
+        color: #212529;
         i {
-        color: black;
+        color: #212529;
         }
     }
     &.enabled {
@@ -170,9 +170,9 @@
     text-align: center;
     cursor: pointer;
     &.default{
-        color: black;
+        color: #212529;
         i {
-        color: black;
+        color: #212529;
         }
     }
     &.enabled {
@@ -218,12 +218,6 @@
         border: 0;
     }
 }
-// .nalej-flex-cell {
-//     // the division
-//     width: calc(100% / 4); //1px = border right
-//     text-align: center;
-//     //   flex: 1 1 33.3%;
-// }
 
 @media all and (max-width: 1440px) {
     .nalej-flex-row-4 {
@@ -232,11 +226,10 @@
         &.wider-cell{
             justify-content: center;
             display: flex;
+            border-radius: 7px;
             flex-direction: row;
             width: 100%;
-        }
-        &.wider-cell.nalej-flex-td {
-            border-bottom: .8px solid #EEEEEE;
+            background-color: #f6f6f6;
         }
     }
     .nalej-flex-row-5 {
@@ -245,45 +238,16 @@
         &.wider-cell{
             justify-content: center;
             display: flex;
+            border-radius: 7px;
             flex-direction: row;
             width: 100%;
+            background-color: #f6f6f6;
         }
-        &.wider-cell.nalej-flex-td {
-            border-bottom: .8px solid #EEEEEE;
-        }
+
     }
     .nalej-flex-column  {
         width: 100%;
     }
-    // Order of services cells when his viewport appears
-    // .services-cell-1 {
-    //     order: 1;
-    // }
-    // .services-cell-2 {
-    //     order: 2;
-    // }
-    // .services-cell-3 {
-    //     order: 4;
-    // }
-    // .services-cell-4 {
-    //     order: 3;
-    // }
-    // // Order of rules cells when his viewport appears
-    // .rules-cell-1 {
-    //     order: 1;
-    // }
-    // .rules-cell-2 {
-    //     order: 2;
-    // }
-    // .rules-cell-3 {
-    //     order: 5;
-    // }
-    // .rules-cell-4 {
-    //     order: 3;
-    // }
-    // .rules-cell-5 {
-    //     order: 4;
-    // }
 }
 
 @media all and (max-width: 1000px) {
@@ -295,6 +259,7 @@
     .nalej-flex-row-4, .nalej-flex-row-5 {
         width: 100%; //1px = border right
         &.wider-cell{
+            position: relative;
             width: 100%;
         }
     }
@@ -309,6 +274,25 @@
     }
     .nalej-flex-td {
         padding: .2em;
+    }
+}
+.rules-info-sm-table-box {
+    height: 100%;
+    overflow-y: scroll;
+    display: none;
+    @include for-xs-desktop-h  {
+        display: block;
+        .rules-info-sm-table {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: .5em;
+        }
+        .rules-info-sm-text {
+            font-size: .9em;
+            color: #949494;
+        }
     }
 }
 

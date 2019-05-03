@@ -1,13 +1,16 @@
 @mixin for-desktop-up {
     @media all and (max-width: 1440px) { @content; }
 }
+@mixin for-desktop-h {
+    @media all and  (max-height: 900px) { @content; }
+}
 .main-view {
     background-color:#F5F5F5;
-    padding: 3em;
+    padding: 2em 3em 3em 3em;
     height: 100vh;
     box-sizing: border-box;
     @include for-desktop-up {
-        padding: 1.8em;
+        padding: 2em;
     }
 }
 .side {
@@ -21,6 +24,9 @@
     @include for-desktop-up {
         top: 20px;
         right: 30px;
+    }
+    @include for-desktop-h {
+        display: none;
     }
 }
 .help-btn {

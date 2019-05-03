@@ -5,6 +5,11 @@
 @import  'app/scss/variables/mixins';
 
 /* - - - Hide and show styles - - - */
+.hide-xs {
+  @include for-xs-desktop-h  {
+    display: none !important;
+  }
+}
 .show-sm {
   display: none;
   @include for-quarter-only {
@@ -17,6 +22,11 @@
     display: none !important;
   }
 }
+.hide-sm-h {
+  @include for-sm-desktop-h {
+    display: none !important;
+  }
+}
 .show-md {
   display: none;
   @include for-desktop-only{
@@ -25,6 +35,14 @@
 }
 .hide-md {
   @include for-desktop-only {
+    display: none !important;
+  }
+}
+.hide-md-h {
+  @include for-desktop-h {
+    display: none !important;
+  }
+  @include for-sm-desktop-up {
     display: none !important;
   }
 }
@@ -67,5 +85,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+/* - - - Font sizes - - - */
+.typo-small {
+  font-size: .6em;
 }
 
