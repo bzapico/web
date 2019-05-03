@@ -33,8 +33,8 @@
       <div class="card-title-name">
         <h5>SUMMARY</h5>
       </div>
-      <div class="cluster-card-box">
-        <div class="cluster-box">
+      <div class="summary-card">
+        <div class="summary-box">
           <div class="donut-chart">
             <ngx-charts-pie-chart
               [scheme]="colorScheme" 
@@ -48,9 +48,9 @@
             </div>
           </div>
           <p class="nodes-run">{{clusterData.running_nodes}} running</p>
-          <p class="nodes-run-node">NODES</p>
+          <p class="circle-name mt-0">NODES</p>
         </div>
-        <div class="cluster-box" id="scroll-cluster-table">
+        <div class="summary-box" id="scroll-cluster-table">
           <table class="table cluster-summary-table">
             <tr>
               <th>ID</th>
