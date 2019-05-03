@@ -35,22 +35,20 @@
       </div>
       <div class="cluster-card-box">
         <div class="cluster-box">
-          <div class="circles-box">
-            <div class="donut-chart">
-              <ngx-charts-pie-chart
-                [scheme]="colorScheme" 
-                [results]="clusterPieChart" 
-                [doughnut]= "doughnut"
-                [gradient]="gradient"
-                [explodeSlices]="false">
-              </ngx-charts-pie-chart>
-              <div class="donut-number">
-                {{clusterData.running_nodes}}/{{clusterData.total_nodes}}
-              </div>
+          <div class="donut-chart">
+            <ngx-charts-pie-chart
+              [scheme]="colorScheme" 
+              [results]="clusterPieChart" 
+              [doughnut]= "doughnut"
+              [gradient]="gradient"
+              [explodeSlices]="false">
+            </ngx-charts-pie-chart>
+            <div class="donut-number">
+              {{clusterData.running_nodes}}/{{clusterData.total_nodes}}
             </div>
-            <p class="nodes-run">{{clusterData.running_nodes}} running</p>
-            <p class="nodes-run-node">NODES</p>
-          </div> 
+          </div>
+          <p class="nodes-run">{{clusterData.running_nodes}} running</p>
+          <p class="nodes-run-node">NODES</p>
         </div>
         <div class="cluster-box" id="scroll-cluster-table">
           <table class="table cluster-summary-table">
