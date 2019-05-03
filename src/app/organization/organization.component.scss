@@ -7,6 +7,9 @@
 @mixin for-desktop-only {
     @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
 }
+@mixin for-desktop-h {
+    @media all and (max-height: 900px) { @content; }
+}
 
 /* - - - Company card - - - */
 .company-info {
@@ -16,15 +19,27 @@
     align-items: center;
     text-align: center;
     height: 100%;
+   @include for-desktop-h {
+        flex-direction: row;
+        text-align: left;
+    }
 }
 .company-img {
     display: block;
     img {
         height: 112px;
         width: 112px;
+        @include for-desktop-h {
+            height: 100px;
+            width: 100px;
+        }
     }
-    @media all and  (max-height: 900px){
-        display: none;
+}
+.company-info-text {
+    margin-top: 1.5rem;
+    margin-bottom: .5rem;
+    @include for-desktop-h {
+        margin-left: 2em;
     }
 }
 .company-name {
