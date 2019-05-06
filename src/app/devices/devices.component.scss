@@ -4,10 +4,7 @@
 @mixin for-desktop-up {
     @media all and (max-width: 1440px) { @content; }
 }
-/* - - - Device Status card - - - */
-.line-chart-box {
-    width: 93%;
-}
+
 /* - - - Devices tabs buttons - - - */
 .devices-tab-btns-box {
     font-size: .6em;

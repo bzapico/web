@@ -6,6 +6,11 @@
 }
 
 /* - - - Cluster card Slider - - - */
+.line-chart-y-axis {
+    @include for-desktop-up {
+        display: none;
+    }
+}
 
 // slide animations
 .animated {

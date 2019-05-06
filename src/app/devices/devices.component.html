@@ -23,24 +23,23 @@
       <div class="card-title-name">
         <h5>SUMMARY</h5>
       </div>
-      <!-- <div *ngIf="groups.length > 0" class="summary-card"> -->
-      <div class="summary-card">
+      <div *ngIf="groups.length > 0" class="summary-card">
         <div class="summary-box">
-            <div class="circle-responsive">
-                <span>{{groups.length}}</span>
-            </div>
-            <p class="circle-name">GROUPS</p>
+          <div class="circle">
+              <span >{{groups.length}}</span>
+          </div>
+          <p class="circle-name">GROUPS</p>
         </div>        
         <div class="summary-box">
-          <div class="circle-responsive">
+          <div class="circle">
             <span>{{countDevices()}}</span> 
           </div>
             <p class="circle-name">DEVICES</p> 
         </div>
       </div>
-      <!-- <div *ngIf="groups.length === 0" class="no-elements">
+      <div *ngIf="groups.length === 0" class="no-elements">
         No available groups detected
-      </div> -->
+      </div>
     </div>
   </div>
   <!-- Devices status timeline info card for all -->
