@@ -37,15 +37,15 @@
                 <tr>
                   <th>Instance of</th>
                   <!-- GET REGISTERED AND SET THE RIGHT NAME --> 
-                  <td class="dark-grey text-uppercase">{{getDescriptorName(instance.app_descriptor_id)}}</td> 
+                  <td class="text-uppercase">{{getDescriptorName(instance.app_descriptor_id)}}</td> 
                 </tr>
                 <tr>
                   <th>ID</th>
-                  <td class="dark-grey">{{instance.app_instance_id}}</td>
+                  <td>{{instance.app_instance_id}}</td>
                 </tr>
-                <tr class="hide-md">
+                <tr >
                   <th>Registered app ID</th>
-                  <td class="dark-grey">{{instance.app_descriptor_id}}</td> 
+                  <td>{{instance.app_descriptor_id}}</td> 
                 </tr>
                 <tr>
                   <th>Groups</th>
@@ -430,7 +430,7 @@
           <p>{{ requestError }}</p>
         </div>
         <!-- Loader -->
-        <div *ngIf="!loadedData" class="nalej-loader-box" >
+        <div *ngIf="!loadedData" class="nalej-loader-box">
           <div class="loader">
             <svg class="circular" viewBox="25 25 50 50">
               <circle 

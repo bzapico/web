@@ -92,34 +92,31 @@
               <tr>
                 <th>Availability</th>
                 <td *ngIf="group.enabled" class="summary-devices-availability blue">
-                  ENABLED
+                 <span tooltip="Availability" placement="bottom">ENABLED</span> 
                 </td>
                 <td *ngIf="!group.enabled" class="summary-devices-availability red">
-                  DISABLED
+                  <span tooltip="Availability"placement="bottom">DISABLED</span> 
                 </td>
               </tr>
               <tr>
                 <th>API Key</th>
-                <td 
-                  tooltip= "API Key" 
-                  placement="bottom"
-                  class="dark-grey">
-                  {{group.device_group_api_key}}
+                <td>
+                  <span tooltip= "API Key" placement="bottom">{{group.device_group_api_key}}</span>
                 </td> 
               </tr>
               <tr>
                 <th>Devices</th>
                 <td class="summary-devices-running">
-                  {{countGroupDevices(group.device_group_id)}}
+                  <span  tooltip= "Devices" placement="bottom">{{countGroupDevices(group.device_group_id)}}</span> 
                 </td>
               </tr>
               <tr>
                 <th class="summary-devices-lh">Device connectivity</th>
                 <td *ngIf="group.default_device_connectivity" class="summary-devices-conectivity blue">
-                  ENABLED
+                  <span tooltip="Device connectivity" placement="top">ENABLED</span>
                 </td>
                 <td *ngIf="!group.default_device_connectivity" class="summary-devices-conectivity red">
-                  DISABLED
+                  <span tooltip="Device connectivity" placement="top">DISABLED</span> 
                 </td>
               </tr>
             </table>
