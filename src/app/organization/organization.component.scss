@@ -39,7 +39,9 @@
     margin-top: 1.5rem;
     margin-bottom: .5rem;
     @include for-desktop-h {
-        margin-left: 2em;
+        margin-left: 1.5em;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 }
 .company-name {

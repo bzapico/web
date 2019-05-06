@@ -26,7 +26,7 @@
     width: 97%;
     height: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: column;
 }
 .summary-instance-card {
@@ -50,7 +50,7 @@
     }
 }
 .summary-instances-table {
-    height: 95%;
+    height: 75%;
     font-size:  .9em;
     tr {
         border: none;
@@ -61,6 +61,7 @@
         font-weight: 200;
         padding: .2em;
         vertical-align: inherit;
+
         @include for-desktop-only {
             font-size: .8em;
         }
@@ -70,7 +71,8 @@
         vertical-align: inherit;
         border: none;
         text-align: right;
-        max-width: 180px;
+        color: #212529;
+
         @include for-desktop-only {
             font-size: .8em;
             text-align: right;
