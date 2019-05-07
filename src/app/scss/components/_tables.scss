@@ -106,9 +106,6 @@
         box-sizing: border-box;
     }
 }
-.nalej-flex-rules-mh {
-    max-height: 217px;
-}
 .nalej-flex-table {
   display: flex;
   flex-flow: row wrap;
@@ -281,7 +278,7 @@
 }
 .rules-info-sm-table-box {
     height: 100%;
-    max-height: 129px;
+    // max-height: 129px;
     overflow-y: scroll;
     display: none;
     @include for-xs-desktop-h  {
