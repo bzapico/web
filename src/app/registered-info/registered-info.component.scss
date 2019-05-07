@@ -10,6 +10,9 @@
 @mixin for-desktop-h {
     @media all and  (max-height: 900px) { @content; }
 }
+@mixin for-xs-desktop-h {
+    @media all and (max-height: 687px) { @content; }
+}
 
 /* - - - Card heights - - */
 .row-info-app {
@@ -195,6 +198,10 @@
     justify-content: space-evenly;
     word-wrap: break-word;
     height: 100%;
+    @include for-xs-desktop-h  {
+        max-height: 129px;
+        overflow-x: scroll;
+    }
     @include for-desktop-h {
         text-align: left;
         justify-content: end;
