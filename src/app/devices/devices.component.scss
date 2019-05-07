@@ -63,27 +63,32 @@
 .summary-devices-table {
     margin-bottom: -1em;
     color: #949494;
+    height: 75%;
     tr {
         border: none;
     } 
     th {
-        padding: .2em;
+        padding: .6em;
         border: none;
         font-size:  .9em;
         font-weight: 200;
+        vertical-align: inherit;
         @include for-desktop-up {
             display: none;
         }
     }
     td {
-        padding: .2rem;
+        padding: .6rem;
         vertical-align: middle;
         font-size:  .9em;
         border: none;
         text-align: right;
         max-width: 180px;
+        color: #212529;
+        cursor: pointer;
         @include for-desktop-up {
             font-size:  .7em;
+            padding: .2em;
         }
     }
     .summary-devices-lh {

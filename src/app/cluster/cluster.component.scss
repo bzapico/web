@@ -4,6 +4,9 @@
 @mixin for-big-desktop-up {
     @media all and (min-width: 2560px) { @content; }
 }
+@mixin for-desktop-h {
+    @media all and (max-height: 900px) { @content; }
+}
 .cluster-number {
     float: right;
     color: #949494;
@@ -18,7 +21,7 @@
     width: 51%;
     overflow-y: auto;
     overflow-x: hidden;
-    font-size:  .9em;
+    margin-bottom: -1rem;
     &::-webkit-scrollbar {
       -webkit-appearance: none;
       width: 8px;
@@ -31,12 +34,8 @@
     }
 }
 .cluster-summary-table {
-    margin-bottom: 0.5rem;
     font-size:  .9em;
-    font-weight: 200;
-    @include  for-desktop-up{
-        margin-bottom: 10px;
-    } 
+    height: 80%;
     @include for-big-desktop-up {
         padding: 4em 3em 0 3em;
     }
@@ -47,17 +46,20 @@
         padding: 0.2em;
         border: none;
         color: #949494;
-        @include  for-desktop-up{
+        vertical-align: top;
+        @include for-desktop-h {
             font-size: .8em;
-            vertical-align: inherit;
         } 
     }
     td {
         padding: 0.2rem;
-        vertical-align: middle;
+        vertical-align: top;
         border: none;
         margin-left: 20%;
         text-align: right;
+        @include for-desktop-h {
+            font-size: .8em;
+        } 
     }
 }
 /* - - - Cluster card pie chart - - - */

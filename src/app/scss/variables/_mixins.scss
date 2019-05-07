@@ -41,6 +41,9 @@
 @mixin for-quarter-only {
     @media all and (max-width: 1720px), all and  (max-height: 780px) { @content; }
 }
+@mixin for-quarter-up {
+    @media all and (max-width: 1720px) { @content; }
+}
 @mixin for-quarter-h {
     @media all and (max-height: 780px) { @content; }
 }

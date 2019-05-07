@@ -4,6 +4,12 @@
 @mixin for-big-desktop-up {
     @media all and (min-width: 2560px) { @content; }
 }
+@mixin for-desktop-only {
+    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
+}
+@mixin for-quarter-up {
+    @media all and (max-width: 1720px) { @content; }
+}
 
 /* - - - Cluster card Slider - - - */
 .line-chart-y-axis {
@@ -49,7 +55,7 @@
     margin-bottom: 0;
     float: right;
     color: #949494;
-    @include for-desktop-up {
+    @include for-desktop-only{
         font-size: .8em;
     }
 }
@@ -58,7 +64,7 @@
     flex-direction: row;
     justify-content: space-around;
     height: 100%!important;
-    @include for-desktop-up {
+    @include for-desktop-only {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -75,7 +81,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    @include for-desktop-up {
+    @include for-desktop-only{
         width: 100%;
         display: flex;
         flex-direction: row;
@@ -85,10 +91,14 @@
     }
 }
 .donut-chart {
-    width: 100px;
-    height: 100px;
+    width: 126px;
+    height: 126px;
     text-align: center;
     position: relative;
+    @include for-quarter-up  {
+        width: 100px;
+        height: 100px;
+    }
 }
 .cluster-name {
     text-transform: uppercase;
@@ -100,15 +110,16 @@
     cursor: pointer;
     text-align: center;
     color: #0937FF;
-    @include for-desktop-up {
+    @include for-desktop-only {
         display: inline;
     }
 }
 .carousel-big {
     .nodes-run {
-        position: absolute;
-        bottom: 2.5em;
-        margin-bottom: .3em;
+        // position: absolute;
+        // bottom: 2.5em;
+        // margin-bottom: .3em;
+        margin-bottom: 0;
     }
 }
 
