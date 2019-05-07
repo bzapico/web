@@ -5,44 +5,16 @@
     @media all and (min-width: 2560px) { @content; }
 }
 @mixin for-desktop-h {
-    @media all and  (max-height: 900px) { @content; }
-}
-.cluster-card-box {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    @include  for-desktop-up{
-        height: 82% !important;
-    } 
-}
-.cluster-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    margin-top: .5rem;
-    @include  for-desktop-up{
-        margin-top: 0;
-    } 
+    @media all and (max-height: 900px) { @content; }
 }
 .cluster-number {
     float: right;
     color: #949494;
     font-size: 0.8em;
+    @include for-desktop-up {
+        margin-bottom: 0;
+    }
 }
-.circles-box{
-    margin-right: 2em;
-    flex-direction: row;  
-    width: 40%;
-    @include  for-desktop-up{
-        margin-right: 2em;
-        flex-direction: row; 
-    }   
-}
-
 /* - - - Cluster table card - - - */
 #scroll-cluster-table {
     min-height: 128px;
@@ -92,11 +64,11 @@
 }
 /* - - - Cluster card pie chart - - - */
 .donut-chart {
-    height: 85%;
+    height: 92%;
     text-align: center;
     position: relative;
     @include for-desktop-up {
-        height: 85%;
+        height: 80%;
     }
 }
 .nodes-run-node {
@@ -114,10 +86,5 @@
     @include for-big-desktop-up {
         font-size: 1em;
         margin-top: 0em;
-    }
-}
-.cluster-number {
-    @include for-desktop-up {
-        margin-bottom: 0;
     }
 }
