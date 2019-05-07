@@ -13,7 +13,7 @@
         <p class="cluster-number hide-lg">STATUS</p>
       </div>
       <!-- Cluster card -->
-        <div class="cluster-card-box">
+        <div class="summary-box">
           <h3 
             class="text-center text-uppercase"
             [ngClass]=
@@ -33,26 +33,24 @@
       <div class="card-title-name">
         <h5>SUMMARY</h5>
       </div>
-      <div class="cluster-card-box">
-        <div class="cluster-box circles-box">
-          <div class="cluster-box">
-            <div class="donut-chart">
-              <ngx-charts-pie-chart
-                [scheme]="colorScheme" 
-                [results]="clusterPieChart" 
-                [doughnut]= "doughnut"
-                [gradient]="gradient"
-                [explodeSlices]="false">
-              </ngx-charts-pie-chart>
-              <div class="donut-number">
-                {{clusterData.running_nodes}}/{{clusterData.total_nodes}}
-              </div>
+      <div class="summary-card">
+        <div class="summary-box">
+          <div class="donut-chart">
+            <ngx-charts-pie-chart
+              [scheme]="colorScheme" 
+              [results]="clusterPieChart" 
+              [doughnut]= "doughnut"
+              [gradient]="gradient"
+              [explodeSlices]="false">
+            </ngx-charts-pie-chart>
+            <div class="donut-number">
+              {{clusterData.running_nodes}}/{{clusterData.total_nodes}}
             </div>
-            <p class="nodes-run">{{clusterData.running_nodes}} running</p>
-            <p class="nodes-run-node">NODES</p>
-          </div> 
+          </div>
+          <p class="nodes-run">{{clusterData.running_nodes}} running</p>
+          <p class="circle-name mt-0">NODES</p>
         </div>
-        <div class="cluster-box" id="scroll-cluster-table">
+        <div class="summary-box" id="scroll-cluster-table">
           <table class="table cluster-summary-table">
             <tr>
               <th>ID</th>
