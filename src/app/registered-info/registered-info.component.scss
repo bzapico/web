@@ -195,6 +195,7 @@
     justify-content: space-evenly;
     word-wrap: break-word;
     height: 100%;
+    overflow-x: scroll;
     @include for-desktop-h {
         text-align: left;
         justify-content: end;

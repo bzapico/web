@@ -292,6 +292,96 @@ export const mockAppsInstancesList = [
                 'target_service_name': '2',
                 'target_port': 80,
                 'access_name': 'PUBLIC'
+            },
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                'rule_id': 'fefec0af-ac57-42f1-9741-a25abfa77db6',
+                'name': 'allow access to wordpress',
+                'target_service_group_name': 'g1',
+                'target_service_name': '2',
+                'target_port': 80,
+                'access_name': 'PUBLIC'
+            },
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                'rule_id': 'fefec0af-ac57-42f1-9741-a25abfa77db6',
+                'name': 'allow access to wordpress',
+                'target_service_group_name': 'g1',
+                'target_service_name': '2',
+                'target_port': 80,
+                'access_name': 'PUBLIC'
+            },
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                'rule_id': 'fefec0af-ac57-42f1-9741-a25abfa77db6',
+                'name': 'allow access to wordpress',
+                'target_service_group_name': 'g1',
+                'target_service_name': '2',
+                'target_port': 80,
+                'access_name': 'PUBLIC'
+            },
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                'rule_id': 'fefec0af-ac57-42f1-9741-a25abfa77db6',
+                'name': 'allow access to wordpress',
+                'target_service_group_name': 'g1',
+                'target_service_name': '2',
+                'target_port': 80,
+                'access_name': 'PUBLIC'
+            },
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                'rule_id': 'fefec0af-ac57-42f1-9741-a25abfa77db6',
+                'name': 'allow access to wordpress',
+                'target_service_group_name': 'g1',
+                'target_service_name': '2',
+                'target_port': 80,
+                'access_name': 'PUBLIC'
+            },
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                'rule_id': 'fefec0af-ac57-42f1-9741-a25abfa77db6',
+                'name': 'allow access to wordpress',
+                'target_service_group_name': 'g1',
+                'target_service_name': '2',
+                'target_port': 80,
+                'access_name': 'PUBLIC'
+            },
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                'rule_id': 'fefec0af-ac57-42f1-9741-a25abfa77db6',
+                'name': 'allow access to wordpress',
+                'target_service_group_name': 'g1',
+                'target_service_name': '2',
+                'target_port': 80,
+                'access_name': 'PUBLIC'
+            },
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                'rule_id': 'fefec0af-ac57-42f1-9741-a25abfa77db6',
+                'name': 'allow access to wordpress',
+                'target_service_group_name': 'g1',
+                'target_service_name': '2',
+                'target_port': 80,
+                'access_name': 'PUBLIC'
+            },
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                'rule_id': 'fefec0af-ac57-42f1-9741-a25abfa77db6',
+                'name': 'allow access to wordpress',
+                'target_service_group_name': 'g1',
+                'target_service_name': '2',
+                'target_port': 80,
+                'access_name': 'PUBLIC'
             }
         ],
         'groups': [
@@ -548,7 +638,8 @@ export const mockRegisteredAppsList = [
         'configuration_options': {
             'config007': '007'
         },
-        'rules': [{
+        'rules': [
+            {
             'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
             'app_descriptor_id': '0b2ccec5-be21-4ad2-9df8-afa703b5c600',
             'rule_id': '7694974f-4638-43db-8a0c-46dd7ac3b191',
@@ -558,7 +649,41 @@ export const mockRegisteredAppsList = [
             'target_port': 80,
             'access': 2,
             'auth_service_group_name': 'g1'
-        }],
+            },
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '0b2ccec5-be21-4ad2-9df8-afa703b5c600',
+                'rule_id': '7694974f-4638-43db-8a0c-46dd7ac3b191',
+                'name': 'allow access to wordpress',
+                'target_service_group_name': 'g1',
+                'target_service_name': '2',
+                'target_port': 80,
+                'access': 2,
+                'auth_service_group_name': 'g1'
+            },
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '0b2ccec5-be21-4ad2-9df8-afa703b5c600',
+                'rule_id': '7694974f-4638-43db-8a0c-46dd7ac3b191',
+                'name': 'allow access to wordpress',
+                'target_service_group_name': 'g1',
+                'target_service_name': '2',
+                'target_port': 80,
+                'access': 2,
+                'auth_service_group_name': 'g1'
+                },
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '0b2ccec5-be21-4ad2-9df8-afa703b5c600',
+                'rule_id': '7694974f-4638-43db-8a0c-46dd7ac3b191',
+                'name': 'allow access to wordpress',
+                'target_service_group_name': 'g1',
+                'target_service_name': '2',
+                'target_port': 80,
+                'access': 2,
+                'auth_service_group_name': 'g1'
+            }
+        ],
         'groups':
             [{
                 'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',

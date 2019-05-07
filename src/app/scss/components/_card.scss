@@ -72,6 +72,8 @@
     }
 }
 .row-app-rules {
+    max-height: 40%;
+    flex-wrap: nowrap;
     @extend .no-gutters-fix;
 }
 
