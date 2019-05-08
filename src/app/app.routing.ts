@@ -13,6 +13,7 @@ import { ClusterComponent } from './cluster/cluster.component';
 import { DevicesComponent } from './devices/devices.component';
 import { RegisteredInfoComponent } from './registered-info/registered-info.component';
 import { InstanceInfoComponent } from './instance-info/instance-info.component';
+import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 
 const appRoutes: Routes = [
     {
@@ -59,6 +60,11 @@ const appRoutes: Routes = [
             {
                 path: 'devices',
                 component: DevicesComponent,
+                canActivate: [AuthGuard]
+            },
+            {
+                path: 'infrastructure',
+                component: InfrastructureComponent,
                 canActivate: [AuthGuard]
             },
         ]
