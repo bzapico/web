@@ -18,9 +18,9 @@
     background: linear-gradient(to bottom, #545454 0%, #000000 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#545454', endColorstr='#000000',GradientType=0 );
-    width: 270px;
+    width: 290px;
     @include for-md-desktop-only  {
-        width: 200px;
+        width: 220px;
     }
 }
 .nalej-nav {

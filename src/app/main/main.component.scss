@@ -14,12 +14,12 @@
     padding: 3em 1.3em;
     height: 100vh;
     box-sizing: border-box;
-    width: calc(100% - 270px);
-    margin-left: 270px;
+    width: calc(100% - 290px);
+    margin-left: 290px;
     
     @include for-md-desktop-only  {
-        width: calc(100% - 200px);
-        margin-left: 200px;
+        width: calc(100% - 220px);
+        margin-left: 220px;
     }
 }
 .help-center {
