@@ -1,21 +1,26 @@
+
 @mixin for-desktop-up {
     @media all and (max-width: 1440px) { @content; }
 }
 @mixin for-desktop-h {
     @media all and  (max-height: 900px) { @content; }
 }
-.main-view {
+@mixin for-md-desktop-only {
+    @media all and (max-width: 1366px), all and  (max-height: 768px) { @content; }
+}
+
+.main {
     background-color:#F5F5F5;
-    padding: 2em 3em 3em 3em;
+    padding: 3em 1.3em;
     height: 100vh;
     box-sizing: border-box;
-    @include for-desktop-up {
-        padding: 2em;
+    width: calc(100% - 290px);
+    margin-left: 290px;
+    
+    @include for-md-desktop-only  {
+        width: calc(100% - 220px);
+        margin-left: 220px;
     }
-}
-.side {
-    padding-right: 0px !important;
-    padding-left: 0px !important;
 }
 .help-center {
     position: fixed;

@@ -1,3 +1,15 @@
+## v0.3.0
+
+Overall:
+- HTLM and CSS code optimization
+- Unified media queries breackpoints
+- Cards refactor for elasticity
+- Creation of flexible tables
+- Optimize [graph](https://swimlane.github.io/ngx-graph/), pie and line charts
+- Sidebar and main info optimization
+
+
+        
 ## v0.2.0
 
 Overall:
