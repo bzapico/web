@@ -1,0 +1,120 @@
+@mixin for-desktop-only {
+    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
+}
+@mixin for-desktop-up {
+    @media all and (max-width: 1440px) { @content; }
+}
+@mixin for-big-desktop-up {
+    @media all and (min-width: 2560px) { @content; }
+}
+
+.row-sorting-lg {
+    min-height: 41px;
+}
+.summary-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+.infrastructure-summary-card {
+    width: 240px;
+    height: 100%;
+    max-width: 240px;
+}
+.circle-name {
+    margin-top: 0em; 
+}
+.quick-filters-title {
+    color: #707070;
+    font-size: .7em;
+    display: initial;
+    margin-right: 4em;
+}
+.quick-filters-btn {
+    background-color: #707070;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    text-indent: 1em;
+    font-size: .6em;
+    outline: none;
+    position: relative;
+    margin: 0 1em;
+    width: 100px;
+    height: 31px;
+    padding-top: 4px;
+    &:hover {
+        color: #fff;
+        transition: 0.3s;
+        background-color: #0937FF;
+    }
+    .i-filters {
+        font-size: 1.8em;
+        font-weight: 700;
+        position: absolute;
+        top: 7px;
+        left: -1px;
+    }
+}
+
+/* - - - Install buttons - - - */
+.install-options {
+    position: relative;
+    height: 35px;
+    margin-bottom: 1.7em;
+    .install-options-box {
+        position: absolute;
+        right: 23px;
+        top: 0;
+    }
+    .install-options-btn {
+        background-color: #0937FF;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+        border: none;
+        text-indent: 1em;
+        font-size: .7em;
+        outline: none;
+        position: relative;
+        margin: 0 1em;
+        width: 129px;
+        height: 31px;
+        &:hover {
+            color: #fff;
+            transition: 0.3s;
+            background-color: #4f71fd;
+        }
+        @include for-desktop-up {
+            bottom: -9px;
+            right: 45px;
+        }
+        .i-options {
+            font-size: 1.7em;
+            position: absolute;
+            top: 6px;
+            left: 0px;
+        }
+    }
+}
+
+@media screen and (max-width:1399px){
+    .infrastructure-actions-full-text {
+        display: none;
+    }
+    .infrastructure-actions-initial-text {
+        &::before {
+            content: 'A';
+        }
+    }
+    .infrastructure-type-full-text {
+        display: none;
+    }
+    .infrastructure-type-initial-text {
+        &::before {
+            content: 'T';
+        }
+    }
+}
