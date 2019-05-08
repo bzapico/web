@@ -5,6 +5,9 @@
 @mixin for-md-desktop-only {
     @media all and (max-width: 1366px), all and (max-height: 768px) { @content; }
 }
+@mixin for-xs-desktop-h {
+    @media all and (max-height: 687px) { @content; }
+}
 
 .sidebar {
     color: #fff;
@@ -73,7 +76,6 @@ nav.sidebar{
             }
         }
     }
-   
 } 
 
 .nav-profile-info {
@@ -83,6 +85,9 @@ nav.sidebar{
     position: relative;
     @include for-desktop-only {
         padding: 4em 0;
+    }
+    @include for-xs-desktop-h {
+        padding: 2em 0;
     }
     .name, .type, .email{
         margin: 0 auto;
