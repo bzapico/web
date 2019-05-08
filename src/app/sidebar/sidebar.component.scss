@@ -1,17 +1,12 @@
+
 @mixin for-desktop-only {
     @media all and (max-width: 1440px), all and (max-height: 900px) { @content; }
 }
 @mixin for-md-desktop-only {
     @media all and (max-width: 1366px), all and (max-height: 768px) { @content; }
 }
-@mixin for-big-desktop-up {
-    @media all and (min-width: 2560px) { @content; }
-}
 
 .sidebar {
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
     color: #fff;
     height: 100vh;
     background: #545454;
@@ -23,54 +18,32 @@
     background: linear-gradient(to bottom, #545454 0%, #000000 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#545454', endColorstr='#000000',GradientType=0 );
-}
-.nav {
-    width: 100%;
-    flex-direction: column;
-    min-height: 100vh;
-    padding: 0;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
-    position: relative;
-    .active {
-        left: 0;
-        z-index: 10;
-        position: relative;
-        &::before {
-            content: "";
-            height: 67px;
-            width: 10px;
-            display: block;
-            position: absolute;
-            top: 0;
-            background-color: #0937FF;
-            @include for-desktop-only {
-                height: 62px;
-            }
-        }
+    width: 290px;
+    @include for-md-desktop-only  {
+        width: 220px;
     }
 }
-.active {
-    background-color: #0937FF!important;
+.nalej-nav {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
 }
-.nav-title {
-    margin: 40px 0;
+nav.sidebar{
+    margin-left: 0;
+    float: left;
+}
+.active {
+    background-color: #0937FF;
+}
+.nav-company-name {
+    text-align: center;
+    width: 100%;
+    margin-left: 15px;
     font-size: 20px;
-    line-height: 1.2;
     color: #e4e7ea;
     letter-spacing: 34px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-self: center;
-    font-weight: 600;
-    position: relative;
-    @include for-desktop-only {
+    padding-top: 10px;
+        @include for-desktop-only {
         font-size: 13px;
         letter-spacing: 26px;
     }
@@ -79,102 +52,103 @@
     position: relative;
     margin: 0;
     cursor: pointer;
-    .nav-item-page {
-        height: 71px;
-    }
+    height: 71px;
     .nav-link {
-        display: block;
         color: #fff;
-        text-decoration: none;
-        background: 0 0;
         font-size: 18px;
         padding: 20px 0;
         @include for-desktop-only {
             font-size: 15px;
         }
         .material-icons {
-            display: inline-block;
             margin-left: 37px;
             margin-right: 37px;
             font-size: 24px;
             color: white;
             text-align: center;
             vertical-align: middle;
-            @include for-big-desktop-up  { 
-                margin-left: 50px;
-                margin-right: 50px;
-            }
-            @include for-desktop-only {
+            @include for-md-desktop-only  {
                 margin-right: 20px;
-            }
-        }
-        .arrow {
-            float: right;
-            margin-right: 25px;
-            font-weight: 800;
-            @include for-desktop-only {
-                margin-right: 13px;
+                margin-left: 27px;
             }
         }
     }
-    .profile {
-        margin: 0 auto;
-        padding-bottom: 50px;
-        position: relative;
-        .name, .type, .email{
-            margin: 0 auto;
-            text-align: center;
-        }
-        .name {
-            padding-top: 32px;
-            color: white;
-            font-size: 24px;
-            @include for-desktop-only {
-                font-size: 21px;
-                padding: 0;
-            }
-        }
-        .type{
-            color: #0937FF;
-            font-size: 18px;
-            @include for-desktop-only {
-                font-size: 16px;
-            }
-        }
-        .email {
-            color: #B7B7B7;
-            font-size: 18px;
-            @include for-desktop-only {
-                font-size: 15px;
-            }
-        }
-        .avatar-frame {
-            border: 2px solid #707070;
-            margin: 0 auto;
-            width: 118px;
-            height: 118px;
-            -webkit-border-radius: 50%;
-            /* Saf3+, Chrome */
-            border-radius: 50%;
-            /* Opera 10.5, IE 9 */
-            i {
-                font-size: 100px;
-                margin: 0 auto;
-                margin-left: 6px;
-            }
-            @include for-md-desktop-only {
-                display: none;
-            }
-        }
-    }
+   
 } 
+
+.nav-profile-info {
+    padding: 6em 0;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    @include for-desktop-only {
+        padding: 4em 0;
+    }
+    .name, .type, .email{
+        margin: 0 auto;
+        text-align: center;
+    }
+    .name {
+        padding-top: 1em;
+        color: white;
+        font-size: 24px;
+        @include for-desktop-only {
+            font-size: 21px;
+            padding-top: .5em;
+        }
+    }
+    .type{
+        color: #0937FF;
+        font-size: 18px;
+        @include for-desktop-only {
+            font-size: 16px;
+        }
+    }
+    .email {
+        color: #B7B7B7;
+        font-size: 18px;
+        @include for-desktop-only {
+            font-size: 15px;
+        }
+    }
+    .avatar-frame {
+        border: 2px solid #707070;
+        margin: 0 auto;
+        width: 118px;
+        height: 118px;
+        -webkit-border-radius: 50%;
+        /* Saf3+, Chrome */
+        border-radius: 50%;
+        /* Opera 10.5, IE 9 */
+        i {
+            font-size: 100px;
+            margin: 0 auto;
+            margin-left: 6px;
+        }
+        @include for-md-desktop-only {
+            display: none;
+        }
+    }
+}
+
+.logout-btn-box {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: auto;
+}
 .logout-btn {
-    width:112px;
+    width: 112px;
     font-size: .8em;
     color: #fff;
     border: 0px;
     border-radius: 5px;
-    background: #ff437d; 
+    position: fixed;
+    bottom: 32px;
+    background: #ff437d;
+    padding: .5em;
+    cursor: pointer;
     &:focus {
         outline: none;
         box-shadow: none;
@@ -184,11 +158,4 @@
         transition: 0.3s;
         background-color: #ff6897;
     }
-}
-.logout {
-    position: fixed;
-    bottom: 26px;
-}
-.lo-btn {
-    position: relative;
 }

@@ -1,24 +1,20 @@
-<div class="sidebar">
-  <ul class="nav">
-    <li 
+<nav class="sidebar">
+  <div class="nalej-nav">
+    <div 
       (click)="openDebugPanel()"
-      class="nav-title" 
+      class="nav-company-name" 
       style="visibility:hidden">
       NALEJ
-    </li>
-    <li class="nav-item">
-      <a routerLinkActive="active" class="nav-link">
-        <div (click)="openEditUser()" class="profile" >
-          <div class="avatar-frame">
-            <i class="material-icons">person</i>
-          </div>
-          <p class="name">{{name}}</p>
-          <p class="type">{{role}}</p>
-          <p class="email">{{email}}</p>
-        </div>
-      </a>
-    </li>
-    <li *ngIf="role === 'Owner'" class="nav-item nav-item-page">
+    </div>
+    <div (click)="openEditUser()" class="nav-profile-info">
+      <div class="avatar-frame">
+        <i class="material-icons">person</i>
+      </div>
+      <p class="name">{{name}}</p>
+      <p class="type">{{role}}</p>
+      <p class="email">{{email}}</p>
+    </div>
+    <div *ngIf="role === 'Owner'" class="nav-item">
       <a
         routerLinkActive="active" 
         routerLink="/organization" 
@@ -26,8 +22,8 @@
         <i class="material-icons">group_work</i>
         Organization
       </a>
-    </li>
-    <li *ngIf="role === 'Owner' || role === 'Operator'" class="nav-item nav-item-page">
+    </div>
+    <div *ngIf="role === 'Owner' || role === 'Operator'" class="nav-item">
       <a         
         routerLinkActive="active" 
         routerLink="/resources" 
@@ -35,8 +31,8 @@
         <i class="material-icons">dns</i>
         Resources
       </a>
-    </li>
-    <li *ngIf="role === 'Owner' || role === 'Developer'" class="nav-item nav-item-page">
+    </div>
+    <div *ngIf="role === 'Owner' || role === 'Developer'" class="nav-item">
       <a         
         routerLinkActive="active" 
         routerLink="/devices" 
@@ -44,8 +40,8 @@
         <i class="material-icons">device_hub</i>
         Devices
       </a>
-    </li>
-    <li *ngIf="role === 'Owner' || role === 'Developer'" class="nav-item nav-item-page">
+    </div>
+    <div *ngIf="role === 'Owner' || role === 'Developer'" class="nav-item">
       <a         
         routerLinkActive="active" 
         routerLink="/applications" 
@@ -53,11 +49,11 @@
         <i class="material-icons">apps</i>
         Applications
       </a>
-    </li>
-    <li (click)="logout()" class="d-flex flex-col justify-content-center margin-bottom-auto lo-btn">
-      <button class="btn info-btn logout-btn logout my-4">
-        Logout
-      </button>
-    </li>
-  </ul>
-</div>
+    </div>
+  </div>
+  <div (click)="logout()" class="logout-btn-box">
+    <button class="logout-btn">
+      Logout
+    </button>
+  </div>
+</nav>
