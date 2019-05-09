@@ -51,12 +51,14 @@ jobs:
     displayName: 'Install dependencies'
 
   - script: "ng run nalej:test-ci --watch=false --code-coverage"
+    continueOnError: true
     displayName: 'Run unit tests'
   
   - task: PublishTestResults@2
     inputs:
       testRunner: JUnit
       testResultsFiles: "$(System.DefaultWorkingDirectory)/junit/TESTS-*.xml"
+      failTaskOnFailedTests: true
     displayName: "Publish test results"
 
   - task: PublishCodeCoverageResults@1
