@@ -14,16 +14,22 @@
         </div>
         <div class="summary-card">
           <div class="summary-box">
-            <div class="circle">
-              <span>15</span>
-              <span class="circle-measure">Mzh</span>
+              <div class="donut-chart">
+                <ngx-charts-pie-chart
+                  [scheme]="colorScheme" 
+                  [results]="infrastructurePieChart" 
+                  [doughnut]= "doughnut"
+                  [gradient]="gradient"
+                  [explodeSlices]="false">
+                </ngx-charts-pie-chart>
+                <div class="donut-number">4/5</div>
+              </div>
+              <p class="ecs-run">All ECS online</p>
+              <p class="circle-name">ECs</p>
             </div>
-            <span class="circle-name-sm">OVERALL</span> 
-            <p class="circle-name">CPU</p>
-          </div> 
           <div class="summary-box">
             <div class="circle">
-              <span>150</span>
+              <span class="circle-measure-number">150</span>
               <span class="circle-measure">Mhz</span>
             </div>
             <span class="circle-name-sm">OVERALL</span> 
@@ -73,23 +79,32 @@
         </div>
         <div class="row">
           <!-- Quick filters -->
-          <div class="col-5">
+          <div class="col">
             <div class="quick-filters-title">QUICK FILTERS</div>
-            <button class="quick-filters-btn">
-              <i class="material-icons i-filters">filter_list</i>
-              ECS
+            <button   
+              tooltip="ECS" 
+              placement="bottom"
+              class="quick-filters-btn">
+              <i class="material-icons i-filters">storage</i>
+              <span>ECS</span>
             </button>
-            <button class="quick-filters-btn">
-              <i class="material-icons i-filters">filter_list</i>
-              ASSETS
+            <button  
+              tooltip="ASSETS" 
+              placement="bottom"
+              class="quick-filters-btn">
+              <i class="material-icons i-filters">computer</i>
+               <span>ASSETS</span>
             </button>
-            <button class="quick-filters-btn"> 
-              <i class="material-icons i-filters">filter_list</i>
-              DEVICES
+            <button 
+              tooltip="DEVICES" 
+              placement="bottom"
+              class="quick-filters-btn"> 
+              <i class="material-icons i-filters">devices_other</i>
+               <span>DEVICES</span>
             </button>
           </div>
           <!-- Search input -->
-          <div class="col-7">
+          <div class="col-4">
             <form>
               <div class="search-box">
                 <input 
@@ -138,9 +153,11 @@
                 <th 
                   (click)="setOrder('type')"            
                   [ngClass]="getCategoryCSSClass('type')"
+                  tooltip="Type" 
+                  placement="bottom"
                   scope="col" 
                   class="col-1 infrastructure-type-initial-text">
-                  <span tooltip="Type" placement="bottom" class="infrastructure-type-full-text">Type</span>
+                  <span class="infrastructure-type-full-text">Type</span>
                   <span *ngIf="sortedBy === 'type' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -211,12 +228,10 @@
             </thead>
             <tbody>
               <tr>
-                <td 
-                  class="col-1 ">
+                <td class="col-1">
                   <span tooltip="Type" placement="top">Asset</span>
                 </td>
-                <td 
-                  class="col-2 ">
+                <td class="col-2">
                   <span tooltip="ID" placement="top">0804651321a35</span>
                 </td>
                 <td class="col-2">
@@ -245,21 +260,8 @@
                       class="label-btn-blue">
                       <i class="material-icons i-add">add</i>
                     </div>
-                    <!-- <div 
-                      (click)="deleteLabel()"
-                      tooltip="Delete" 
-                      placement="right"
-                      class="label-btn-red">
-                      <i class="material-icons i-delete">delete</i>
-                    </div> -->
                   </div>
                 </td>
-                <!-- [ngClass]=
-                  "{'
-                    status-dot':classStatusCheck(),
-                    'status-dot-error':classStatusCheck(),
-                    'status-dot-process':classStatusCheck()
-                  }" -->
                 <td 
                   class="col-2 col-center-lowercase"> 
                   <span 
@@ -272,43 +274,33 @@
                   </span>
                 </td>
                 <td class="col-1 text-center">
-                  <button 
-                    class="action-btn-grey">
-                    <i class="material-icons i-black">
-                        more_vert
-                        </i>
+                  <button class="action-btn-grey">
+                    <i class="material-icons i-black">more_vert</i>
                   </button>
                 </td>
               </tr>
-
               <tr>
-                  <td 
-                    class="col-1 ">
-                    <span tooltip="ID" placement="top">Asset</span>
-                  </td>
-                  <td 
-                    class="col-2 ">
-                    <span tooltip="ID" placement="top">0804651321a35</span>
-                  </td>
-                  <td class="col-2">
-                    <span tooltip="Location" placement="top">Madrid, Spain</span>
-                  </td>
-                  <td class="col-4">
-                    <button 
-                    class="btn-sm btn-outline-primary">
-                      label 1: label 2
-                    </button>
-                    <button 
-                    class="btn-sm btn-outline-primary">
-                      label 1: label 2
-                    </button>
-                    <button 
-                    class="btn-sm btn-outline-primary">
-                      label 1: label 2
-                    </button>
-                    <button 
-                  class="btn-sm btn-outline-primary">
+                <td class="col-1">
+                  <span tooltip="ID" placement="top">Asset</span>
+                </td>
+                <td class="col-2">
+                  <span tooltip="ID" placement="top">0804651321a35</span>
+                </td>
+                <td class="col-2">
+                  <span tooltip="Location" placement="top">Madrid, Spain</span>
+                </td>
+                <td class="col-4">
+                  <button class="btn-sm btn-outline-primary">
                     label 1: label 2
+                  </button>
+                  <button class="btn-sm btn-outline-primary">
+                    label 1: label 2
+                  </button>
+                  <button class="btn-sm btn-outline-primary">
+                    label 1: label 2
+                  </button>
+                  <button  class="btn-sm btn-outline-primary">
+                  label 1: label 2
                   </button>
                   <button 
                     (click)="onLabelClick()"
@@ -328,39 +320,26 @@
                       class="label-btn-blue">
                       <i class="material-icons i-add">add</i>
                     </div>
-                    <!-- <div 
-                      (click)="deleteLabel()"
-                      tooltip="Delete" 
-                      placement="right"
-                      class="label-btn-red">
-                      <i class="material-icons i-delete">delete</i>
-                    </div> -->
                   </div>
-                  </td>
-                  <!-- [ngClass]=
-                    "{'
-                      status-dot':classStatusCheck(),
-                      'status-dot-error':classStatusCheck(),
-                      'status-dot-process':classStatusCheck()
-                    }" -->
-                  <td 
-                    class="col-2 col-center-lowercase"> 
-                    <span 
-                      tooltip="online" 
-                      placement="bottom"
-                      class="status-dot">
-                    </span>
-                    <span class="hide-lg">
-                      online
-                    </span>
-                  </td>
-                  <td class="col-1 text-center">
-                    <button 
-                      class="action-btn-grey">
-                      <i class="material-icons i-black">more_vert</i>
-                    </button>
-                  </td>
-                </tr>
+                </td>
+                <td 
+                  class="col-2 col-center-lowercase"> 
+                  <span 
+                    tooltip="online" 
+                    placement="bottom"
+                    class="status-dot">
+                  </span>
+                  <span class="hide-lg">
+                    online
+                  </span>
+                </td>
+                <td class="col-1 text-center">
+                  <button 
+                    class="action-btn-grey">
+                    <i class="material-icons i-black">more_vert</i>
+                  </button>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
