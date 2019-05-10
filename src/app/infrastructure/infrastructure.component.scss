@@ -160,24 +160,24 @@
         cursor: pointer;
         color: white;
         border: none;
-        text-indent: 1.3em;
-        font-size: .7em;
+        text-indent: 19px;
+        font-size: .8em;
         outline: none;
         position: relative;
         margin: 0 1em;
         width: 129px;
         height: 31px;
-        padding-top: 2px;
+        padding-top: 4px;
         &:hover {
             color: #fff;
             transition: 0.3s;
             background-color: #4f71fd;
         }
         .i-options {
-            font-size: 1.7em;
+            font-size: 1.8em;
             position: absolute;
-            top: 6px;
-            left: -5px;
+            top: 4px;
+            left: -12px;
         }
     }
 }

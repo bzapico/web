@@ -109,16 +109,12 @@
               <div class="search-box">
                 <input 
                   name="searchTerm" 
-                  [(ngModel)]="searchTerm"
                   type="text" 
                   placeholder="Search..."
                   class="form-control"> 
-                  <div *ngIf="searchTerm === ''" class="search-icon">
+                  <div class="search-icon">
                     <i class="material-icons">search</i>
                   </div>     
-                  <div *ngIf="searchTerm !== ''" class="close-icon">
-                    <i (click)="resetFilters(filterField)" class="material-icons">close</i>
-                  </div>
               </div>
             </form>
           </div>      
@@ -126,23 +122,6 @@
           <!-- Sorting mesages -->
         <div class="row row-sorting-lg">      
           <div class="col">  
-            <p *ngIf="searchTerm && !filterField" class="sorting-message">
-              Filtered by term "{{ searchTerm }}".
-              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
-            </p>
-            <p *ngIf="filterField && !searchTerm" class="sorting-message">
-              Sorted by {{ sortedBy }},
-              <span *ngIf="reverse">ascendant. </span>
-              <span *ngIf="!reverse">descendant. </span>
-              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
-            </p>
-            <p *ngIf="filterField && searchTerm" class="sorting-message">
-              Sorted by {{ sortedBy }}
-              <span *ngIf="reverse">ascendant </span>
-              <span *ngIf="!reverse">descendant </span>
-              and filtered by term "{{ searchTerm }}".
-              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
-            </p> 
           </div>
         </div>
         <div 
@@ -150,72 +129,32 @@
           <table class="nalej-table">
             <thead class="nalej-thead">
               <tr>
-                <th 
-                  (click)="setOrder('type')"            
-                  [ngClass]="getCategoryCSSClass('type')"
+                <th    
                   tooltip="Type" 
                   placement="bottom"
                   scope="col" 
                   class="col-1 infrastructure-type-initial-text">
-                  <span class="infrastructure-type-full-text">Type</span>
-                  <span *ngIf="sortedBy === 'type' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'type' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
+                  <span class="infrastructure-type-full-text">Type</span>     
                 </th>
                 <th 
-                  (click)="setOrder('id')"            
-                  [ngClass]="getCategoryCSSClass('id')"
                   scope="col" 
                   class="col-2">
                   <span tooltip="ID" placement="bottom">ID</span>
-                  <span *ngIf="sortedBy === 'id' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'id' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
                 </th>
                 <th 
-                  (click)="setOrder('location')"
-                  [ngClass]="getCategoryCSSClass('location')"
                   scope="col" 
                   class="col-2">
                   <span tooltip="ID" placement="bottom">Location</span>
-                  <span *ngIf="sortedBy === 'location' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'location' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
                 </th>
                 <th 
-                  (click)="setOrder('labels')" 
-                  [ngClass]="getCategoryCSSClass('labels')"
                   scope="col" 
                   class="col-4">
                   <span tooltip="Labels" placement="bottom">Labels</span>
-                  <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
                 </th>
                 <th 
-                  (click)="setOrder('status')" 
-                  [ngClass]="getCategoryCSSClass('status')"
                   scope="col" 
                   class="col-2 text-center">
                   <span tooltip="Status" placement="bottom">Status</span>
-                  <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'status' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
                 </th>
                 <th 
                   tooltip="Actions" 
@@ -242,14 +181,11 @@
                   class="btn-sm btn-outline-primary">
                     label 1: label 2
                   </button>
-                  <button 
-       
-                    class="btn-sm btn-outline-primary">
+                  <button class="btn-sm btn-outline-primary">
                     label 1: label 2
                   </button>
                   <div class="label-btns">
                     <div 
-                      (click)="addLabel()"
                       tooltip="Add" 
                       placement="right"
                       class="label-btn-blue">
@@ -297,14 +233,11 @@
                   <button  class="btn-sm btn-outline-primary">
                   label 1: label 2
                   </button>
-                  <button 
-            
-                    class="btn-sm btn-outline-primary">
+                  <button  class="btn-sm btn-outline-primary">
                     label 1: label 2
                   </button>
                   <div class="label-btns">
                     <div 
-                      (click)="addLabel()"
                       tooltip="Add" 
                       placement="right"
                       class="label-btn-blue">
