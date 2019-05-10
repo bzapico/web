@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList} from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList } from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 
 @Injectable({
@@ -153,6 +153,24 @@ export class MockupBackendService implements Backend {
     return of(new Response(new ResponseOptions({
       status: 200
     }))).pipe(
+      map(response => response.json())
+    );
+  }
+
+  /********************
+   * Infrstructure
+   ********************/
+
+  /**
+   * Simulates to request assets
+   * @param organizationId Organization identifier
+   */
+  getInventory(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({assets: mockInventoryList}),
+      status: 200
+    })))
+    .pipe(
       map(response => response.json())
     );
   }

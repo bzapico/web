@@ -175,6 +175,21 @@ export class BackendService implements Backend {
     );
   }
 
+   /********************
+   * Infrastructure
+   ********************/
+
+  // GET 'apps/inst/{organization_id}/list'
+  /**
+   * Requests assets list
+   * @param organizationId Organization identifier
+   */
+  getInventory(organizationId: string) {
+    return this.get(
+      API_URL + 'assets/inventory/' + organizationId + '/list'
+    );
+  }
+
   /********************
    * Resources
    ********************/
