@@ -149,10 +149,10 @@
     flex-direction: row-reverse;
     .install-options-btn {
         position: relative;
-        margin: 0 1em;
+        margin-right: 15px;
         background-color: #0937FF;
         border-radius: 5px;
-        padding: .5em 1.8em;
+        padding: .5em 1.1em;
         cursor: pointer;
         color: white;
         border: none;
@@ -170,7 +170,7 @@
             font-weight: 700;
             position: absolute;
             top: 6px;
-            left: -12px;
+            left: -16px;
         }
     }
 }
