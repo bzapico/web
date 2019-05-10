@@ -1301,3 +1301,49 @@ export const mockGroupList: Group[] = [
        'device_group_api_key': 'cd9e76b1-bfb8-4f51-ba73-3336d8051948'
     }
 ];
+
+/**
+ * Mocked Infrastructure Pie Chart
+ */
+export const mockInfrastructurePieChart= [
+    {
+        name: 'Online',
+        value: 5
+    },
+    {
+        name: 'Offline',
+        value: 4
+    }
+];
+
+/**
+ * Mocked inventory assets list
+ */
+export const mockInventoryList = [
+    {
+       'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+       'asset_id': 'a2ed54d9b79a5',
+       'agent_id?': '65456465465a56',
+       'show': true,
+       'created': '15/03/2019',
+       'labels': {
+            'lab1': 'label1',
+            'lab2': 'label2'
+        },
+       'status': 'online',
+    },
+    {
+        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'asset_id': 'a2ed54d9b79a4',
+        'agent_id?': '65456465465a54',
+        'show': false,
+        'created': '4/03/2019',
+        'labels': {
+         'lab3': 'label3',
+         'lab4': 'label4'
+         },
+        'status': 'offline',
+     }
+
+];
+
