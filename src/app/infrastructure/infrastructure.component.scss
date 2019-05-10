@@ -143,31 +143,23 @@
 
 /* - - - Install buttons - - - */
 .install-options {
-    position: relative;
-    height: 35px;
     margin-bottom: 1.7em;
-    .install-options-box {
-        position: absolute;
-        right: 23px;
-        top: 0;
-        @include for-quarter-up {
-            right: 7px;
-        }
-    }
+    float: right;
+    display: flex;
+    flex-direction: row-reverse;
     .install-options-btn {
+        position: relative;
+        margin-right: 15px;
         background-color: #0937FF;
         border-radius: 5px;
+        padding: .5em 1.1em;
         cursor: pointer;
         color: white;
         border: none;
-        text-indent: 19px;
+        text-indent: 2em;
         font-size: .8em;
         outline: none;
-        position: relative;
-        margin: 0 1em;
-        width: 129px;
-        height: 31px;
-        padding-top: 4px;
+        padding-top: 10px;
         &:hover {
             color: #fff;
             transition: 0.3s;
@@ -175,9 +167,10 @@
         }
         .i-options {
             font-size: 1.8em;
+            font-weight: 700;
             position: absolute;
-            top: 4px;
-            left: -12px;
+            top: 6px;
+            left: -16px;
         }
     }
 }
