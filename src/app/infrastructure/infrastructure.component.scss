@@ -1,0 +1,207 @@
+@mixin for-desktop-only {
+    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
+}
+@mixin for-desktop-up {
+    @media all and (max-width: 1440px) { @content; }
+}
+@mixin for-big-desktop-up {
+    @media all and (min-width: 2560px) { @content; }
+}
+@mixin for-quarter-up {
+    @media all and (max-width: 1720px) { @content; }
+}
+@mixin for-third-up {
+    @media all and (max-width: 1146px) { @content; }
+}
+@mixin for-sm-desktop-only {
+    @media all and (max-width: 1280px), all and  (max-height: 790px) { @content; }
+}
+
+/* - - - Summary infrastructure card - - - */
+
+.row-sorting-lg {
+    min-height: 41px;
+}
+.summary-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+.infrastructure-summary-card {
+    width: 240px;
+    height: 100%;
+    max-width: 270px;
+    @include for-desktop-only {
+        max-width: 220px;
+    }
+}
+.circle {
+    min-width: 112px;
+    min-height: 112px;
+    span.circle-measure-number {
+        margin-top: 0.5em;
+    }
+    @include for-desktop-only {
+        min-width: 90px;
+        min-height: 90px;
+    }
+    @include for-sm-desktop-only {
+        min-width: 65px;
+        min-height: 65px;
+    }
+    @media all and (min-width: 2560px), all and (min-height: 901px) {
+        max-height: 112px;
+        max-width: 112px;
+    }
+}
+.circle-name {
+    margin-top: 0em; 
+}
+.summary-box {
+    min-height: 124px;
+}
+
+/* - - - Pie chart- - - */
+.donut-chart {
+    text-align: center;
+    position: relative;
+    max-width: 100%;
+    @include for-desktop-only {
+        max-width: 110px;
+        max-height: 110px;
+    }
+}
+.donut-number {
+    font-size: 1em;
+    @include for-desktop-only {
+        font-size: .8em;
+    }
+}
+.ecs-run {
+    font-size: .8em;
+    margin-top: -1em;
+    color: #0937FF;
+    text-align: center;
+    margin-bottom: 0;
+    @include for-big-desktop-up {
+        font-size: 1em;
+        margin-top: 0em;
+    }
+}
+
+/* - - - Inventory card - - - */
+.quick-filters-title {
+    color: #707070;
+    font-size: .6em;
+    display: initial;
+    margin-right: 6em;
+    margin-left: 15px;
+    @include for-quarter-up {
+        display: block;
+        margin-left: 7.5px;
+        margin-bottom: 4px;
+    }
+}
+.quick-filters-btn {
+    background-color: #707070;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    text-indent: 1em;
+    font-size: .6em;
+    outline: none;
+    position: relative;
+    margin: 0 7.5px;
+    width: 100px;
+    height: 31px;
+    padding-top: 4px;
+    &:hover {
+        color: #fff;
+        transition: 0.3s;
+        background-color: #03D7E8;
+    }
+    .i-filters {
+        font-size: 1.8em;
+        font-weight: 700;
+        position: absolute;
+        top: 7px;
+        left: -1px;
+    }
+    @include for-third-up {
+        width: 46px;
+        margin: 0 3.5px;
+        span {
+            display: none;
+        }
+        .i-filters {
+            left: 4.5px;
+        }
+    }
+}
+
+/* - - - Install buttons - - - */
+.install-options {
+    margin-bottom: 1.7em;
+    float: right;
+    display: flex;
+    flex-direction: row-reverse;
+    .install-options-btn {
+        position: relative;
+        margin-right: 15px;
+        background-color: #0937FF;
+        border-radius: 5px;
+        padding: .5em 1.1em;
+        cursor: pointer;
+        color: white;
+        border: none;
+        text-indent: 2em;
+        font-size: .8em;
+        outline: none;
+        padding-top: 10px;
+        &:hover {
+            color: #fff;
+            transition: 0.3s;
+            background-color: #4f71fd;
+        }
+        .i-options {
+            font-size: 1.8em;
+            font-weight: 700;
+            position: absolute;
+            top: 6px;
+            left: -16px;
+        }
+    }
+}
+.search-box {
+    @include for-desktop-up {
+        width: 210px;
+    }
+    @include for-quarter-up {
+        margin-right: 1em;
+        margin-top: 1em;
+    }
+}
+
+@include for-quarter-up {
+    .infrastructure-actions-full-text {
+        display: none;
+    }
+    .infrastructure-actions-initial-text {
+        &::before {
+            content: 'A';
+        }
+    }
+}
+
+@include for-desktop-up {
+    .infrastructure-type-full-text {
+        display: none;
+    }
+    .infrastructure-type-initial-text {
+        &::before {
+            content: 'T';
+        }
+    }
+}

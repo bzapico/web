@@ -20,6 +20,7 @@
     @include for-md-desktop-only  {
         width: calc(100% - 220px);
         margin-left: 220px;
+        padding: 2em 1.3em;
     }
 }
 .help-center {

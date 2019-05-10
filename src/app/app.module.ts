@@ -50,6 +50,7 @@ import { RuleInfoComponent } from './rule-info/rule-info.component';
 import { ServiceInfoComponent } from './service-info/service-info.component';
 import { AutofocusDirective } from './directives/autofocus.directive';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
     ServiceInstancesInfoComponent,
     RuleInfoComponent,
     ServiceInfoComponent,
-    AutofocusDirective
+    AutofocusDirective,
+    InfrastructureComponent
   ],
   entryComponents: [
     DebugPanelComponent,

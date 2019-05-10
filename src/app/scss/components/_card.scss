@@ -166,15 +166,34 @@
             font-size: 1em;
         }
     }
+    span.circle-measure {
+        margin-top: -.7em;
+        font-size: 1.1em;
+        @include for-desktop-only {
+            font-size: .9em;
+        }
+        @include for-sm-desktop-only {
+            font-size: .7em;
+        }
+    }
 }
 .circle-name {
     margin-top: 1em;
     margin-bottom: 0;
     color: #949494;
     font-size: 1.2em;
-    @include for-desktop-up {
+    @include for-desktop-only {
         font-size: .8em;
         margin-top: .4em;
+    }
+}
+.circle-name-sm {
+    font-size: .9em;
+    color: #949494;
+    line-height: .7;
+    margin-top: 1em;
+    @include for-desktop-only {
+        font-size: .7em;
     }
 }
 .circle-name-mt {
