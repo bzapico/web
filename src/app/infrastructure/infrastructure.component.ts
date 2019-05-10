@@ -1,11 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MockupBackendService } from '../services/mockup-backend.service';
+import { NotificationsService } from '../services/notifications.service';
+import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { Backend } from '../definitions/interfaces/backend';
+import { BackendService } from '../services/backend.service';
+import { mockInfrastructurePieChart } from '../utils/mocks';
+import { Asset } from '../definitions/interfaces/asset';
 
 @Component({
   selector: 'app-infrastructure',
   templateUrl: './infrastructure.component.html',
   styleUrls: ['./infrastructure.component.scss']
 })
-export class InfrastructureComponent implements OnInit {
+export class InfrastructureComponent implements OnInit, OnDestroy {
+  /**
+   * Backend reference
+   */
+  backend: Backend;
+
+  /**
+   * Model that hold organization ID
+   */
+  organizationId: string;
+
+  /**
+   * Loaded Data status
+   */
+  loadedData: boolean;
+
+  /**
+   * List of available assets
+   */
+  assets: any[];
 
   /**
    * NGX-Charts object-assign required object references (for rendering)
@@ -52,27 +78,138 @@ export class InfrastructureComponent implements OnInit {
    */
   selectedLabels = [];
 
+  /**
+   * List of labels
+   */
+  labels: any[];
 
-  constructor() {
+  /**
+   * Number of online assets
+   */
+  countOnline: number;
+
+  /**
+   * Interval reference
+   */
+  refreshIntervalRef: any;
+
+  /**
+   * Refresh ratio reference
+   */
+  REFRESH_RATIO = 20000; // 20 seconds
+
+  /**
+   * Hold request error message or undefined
+   */
+  requestError: string;
+
+
+  constructor(
+    private backendService: BackendService,
+    private mockupBackendService: MockupBackendService,
+    private notificationsService: NotificationsService
+  ) {
+
+    const mock = localStorage.getItem(LocalStorageKeys.infrastructureMock) || null;
+    // Check which backend is required (fake or real)
+    if (mock && mock === 'true') {
+      this.backend = mockupBackendService;
+    } else {
+      this.backend = backendService;
+    }
+
+   // Default initialization
+   this.labels = [];
+   this.loadedData = false;
+   this.requestError = '';
 
     // SortBy
     this.sortedBy = '';
     this.reverse = false;
     this.searchTerm = '';
+
+    // Filter field
+    this.filterField = false;
+
+    /**
+     * Charts reference init
+     */
+    Object.assign(this, { mockInfrastructurePieChart });
   }
 
   ngOnInit() {
-    this.infrastructurePieChart =
-    [
+    // Get User data from localStorage
+    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+    if (jwtData !== null) {
+      this.organizationId = JSON.parse(jwtData).organizationID;
+        this.updateAssets(this.organizationId);
+        this.refreshIntervalRef = setInterval(() => {
+          this.updateAssets(this.organizationId);
+        }, this.REFRESH_RATIO); // Refresh each 60 seconds
+    }
+
+    this.infrastructurePieChart = mockInfrastructurePieChart;
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.refreshIntervalRef);
+  }
+
+    /**
+   * Updates asset array
+   * @param organizationId Organization identifier
+   */
+  updateAssets(organizationId: string) {
+    if (organizationId !== null) {
+      // Request to get apps asset
+      this.backend.getInventory(this.organizationId)
+      .subscribe(response => {
+          this.assets = response.assets || [];
+          this.updatePieChartStats(this.assets);
+
+          if (!this.loadedData) {
+            this.loadedData = true;
+          }
+      }, errorResponse => {
+        this.loadedData = true;
+        this.requestError = errorResponse.error.message;
+      });
+    }
+  }
+
+  /**
+   * Updates pie chart status
+   * @param assets Array of instance objects
+   */
+  updatePieChartStats(asset: any[]) {
+    // let online = 0;
+    // if (assets) {
+    //   assets.forEach(asset => {
+    //     if (asset.status === 'ONLINE') {
+    //       online += 1;
+    //     }
+    //   });
+    //   this.countOnline = online;
+    //   this.infrastructurePieChart = this.generateSummaryChartData(this.countOnline, this.assets.length);
+    // }
+  }
+
+  /**
+   * Generates the NGX-Chart required JSON object for pie chart rendering
+   * @param online Number of online assets
+   * @param total Number of total 
+   * @returns anonym array with the required object structure for pie chart rendering
+   */
+  generateSummaryChartData(online: number, total: number): any[] {
+    return [
       {
-        'name': 'One',
-        'value': 8940000
+        name: 'Online',
+        value: online
       },
       {
-        'name': 'Two',
-        'value': 5000000
-      }
-    ];
+        name: 'Offline',
+        value: total - online
+      }];
   }
 
 
@@ -110,6 +247,30 @@ export class InfrastructureComponent implements OnInit {
       } else if (this.sortedBy !== categoryName) {
         return 'disabled';
       }
+    }
+  }
+
+  /**
+   * Parse to string labels map
+   * @param labels Key-value map that contains the labels
+   */
+  labelsToString(labels: any) {
+    if (!labels || labels === '-') {
+      return ;
+    }
+    return Object.entries(labels);
+  }
+
+  /**
+   * Fulfill nulls to avoid data binding failure
+   * @param asset Asset interface
+   */
+  preventEmptyFields(asset: Asset) {
+    if (!asset.labels) {
+      asset.labels = '-';
+    }
+    if (!asset.status) {
+      asset.status = '-';
     }
   }
 
