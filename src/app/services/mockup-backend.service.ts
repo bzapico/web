@@ -158,21 +158,44 @@ export class MockupBackendService implements Backend {
   }
 
   /********************
-   * Infrstructure
+   * Infrastructure
    ********************/
 
   /**
-   * Simulates to request assets
+   * Simulates to request infrastructure inventory list
    * @param organizationId Organization identifier
    */
   getInventory(organizationId: string) {
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify({assets: mockInventoryList}),
+      body: JSON.stringify({item: mockInventoryList}),
       status: 200
     })))
     .pipe(
       map(response => response.json())
     );
+  }
+  /**
+   * Simulates update inventory changes
+   * @param itemId String containing the item identifier - used to replicate expected backend behavior
+   */
+  saveInventoryChanges(organizationId: string, itemId: string, changes: any) {
+    const index = mockInventoryList.map(x => x.id).indexOf(itemId);
+    if (index !== -1) {
+      if (changes.remove_labels) {
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          delete mockInventoryList[index].labels[key];
+        });
+      } else if (changes.add_labels) {
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          mockInventoryList[index].labels[key] = changes.labels[key];
+        });
+      }
+    }
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
   }
 
 
