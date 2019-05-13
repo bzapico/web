@@ -14,19 +14,19 @@
         </div>
         <div class="summary-card">
           <div class="summary-box">
-              <div class="donut-chart">
-                <ngx-charts-pie-chart
-                  [scheme]="colorScheme" 
-                  [results]="infrastructurePieChart" 
-                  [doughnut]= "doughnut"
-                  [gradient]="gradient"
-                  [explodeSlices]="false">
-                </ngx-charts-pie-chart>
-                <div class="donut-number">{{onlineCount}}/{{onlineTotal}}</div>
-              </div>
-              <p class="apps-run">All ECS online</p>
-              <p class="circle-name">ECs</p>
+            <div class="donut-chart">
+              <ngx-charts-pie-chart
+                [scheme]="colorScheme" 
+                [results]="infrastructurePieChart" 
+                [doughnut]= "doughnut"
+                [gradient]="gradient"
+                [explodeSlices]="false">
+              </ngx-charts-pie-chart>
+              <div class="donut-number">{{onlineCount}}/{{onlineTotalCount}}</div>
             </div>
+            <p class="apps-run">All ECS online</p>
+            <p class="circle-name">ECs</p>
+          </div>
           <div class="summary-box">
             <div class="circle">
               <span>{{cpuCount}}</span>
@@ -161,7 +161,11 @@
             </p> 
           </div>
         </div>
-        <div 
+        <div *ngIf=
+          "loadedData && 
+          inventory && 
+          inventory.length > 0 && 
+          !requestError" 
           class="nalej-table-box">
           <table class="nalej-table">
             <thead class="nalej-thead">
@@ -312,6 +316,33 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        <!-- No info to show -->
+        <div *ngIf=
+          "loadedData &&
+          inventory.length === 0 &&
+          !requestError" 
+          class="no-elements">
+          No available inventory detected
+        </div>
+        <!-- Requested error -->
+        <div *ngIf="loadedData && requestError" class="no-elements">
+          <p>{{requestError}}</p>
+        </div>
+        <!-- Loader -->
+        <div *ngIf="!loadedData" class="nalej-loader-box">
+          <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+              <circle 
+                class="path" 
+                cx="50" 
+                cy="50" 
+                r="20" 
+                fill="none" 
+                stroke-width="2" 
+                stroke-miterlimit="10"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
