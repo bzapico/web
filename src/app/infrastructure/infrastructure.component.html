@@ -22,14 +22,14 @@
                   [gradient]="gradient"
                   [explodeSlices]="false">
                 </ngx-charts-pie-chart>
-                <div class="donut-number">4/5</div>
+                <div class="donut-number">{{onlineCount}}/{{onlineTotal}}</div>
               </div>
               <p class="apps-run">All ECS online</p>
               <p class="circle-name">ECs</p>
             </div>
           <div class="summary-box">
             <div class="circle">
-              <span>150</span>
+              <span>{{cpuCount}}</span>
               <span class="circle-measure">Mhz</span>
             </div>
             <span class="circle-name-sm">OVERALL</span> 
@@ -37,7 +37,7 @@
           </div>  
           <div class="summary-box">
             <div class="circle">
-              <span>100</span>
+              <span>{{memoryCount}}</span>
               <span class="circle-measure">Gb</span>
             </div>
             <span class="circle-name-sm">OVERALL</span> 
@@ -45,7 +45,7 @@
           </div> 
           <div class="summary-box">
             <div class="circle">
-              <span>15</span>
+              <span>{{storageCount}}</span>
               <span class="circle-measure">Tb</span>
             </div>
             <span class="circle-name-sm">OVERALL</span> 
@@ -79,7 +79,8 @@
           <!-- Quick filters -->
           <div class="col">
             <div class="quick-filters-title">QUICK FILTERS</div>
-            <button   
+            <button 
+              (click)="addQuickFilter('EC')"     
               tooltip="ECS" 
               placement="bottom"
               class="quick-filters-btn">
@@ -87,6 +88,7 @@
               <span>ECS</span>
             </button>
             <button  
+              (click)="addQuickFilter('ASSET')"     
               tooltip="ASSETS" 
               placement="bottom"
               class="quick-filters-btn">
@@ -94,6 +96,7 @@
                <span>ASSETS</span>
             </button>
             <button 
+              (click)="addQuickFilter('DEVICE')"     
               tooltip="DEVICES" 
               placement="bottom"
               class="quick-filters-btn"> 
@@ -121,253 +124,196 @@
             </form>
           </div>      
         </div>
-          <!-- Sorting mesages -->
-          <div class="row row-sorting-lg">      
-            <div class="col">  
-              <p *ngIf="searchTerm && !filterField" class="sorting-message">
-                Filtered by term "{{ searchTerm }}".
-                <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
-              </p>
-              <p *ngIf="filterField && !searchTerm" class="sorting-message">
-                Sorted by {{ sortedBy }},
-                <span *ngIf="reverse">ascendant. </span>
-                <span *ngIf="!reverse">descendant. </span>
-                <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
-              </p>
-              <p *ngIf="filterField && searchTerm" class="sorting-message">
-                Sorted by {{ sortedBy }}
-                <span *ngIf="reverse">ascendant </span>
-                <span *ngIf="!reverse">descendant </span>
-                and filtered by term "{{ searchTerm }}".
-                <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
-              </p> 
-            </div>
+        <!-- Sorting mesages -->
+        <div class="row row-sorting-lg">      
+          <div class="col">  
+            <p *ngIf="searchTerm && !filterField && !quickFilter" class="sorting-message">
+              Filtered by term "{{ searchTerm }}".
+              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
+            </p>
+            <p *ngIf="filterField && !searchTerm && !quickFilter" class="sorting-message">
+              Sorted by {{ sortedBy }},
+              <span *ngIf="reverse">ascendant. </span>
+              <span *ngIf="!reverse">descendant. </span>
+              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
+            </p>
+            <p *ngIf="quickFilter && !filterField && !searchTerm" class="sorting-message">
+              Filtered by type "{{ quickFilter }}".
+              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
+            </p> 
+            <p *ngIf="filterField && searchTerm" class="sorting-message">
+              Sorted by {{ sortedBy }}
+              <span *ngIf="reverse">ascendant </span>
+              <span *ngIf="!reverse">descendant </span>
+              and filtered by term "{{ searchTerm }}".
+              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
+            </p> 
+            <p *ngIf="filterField && quickFilter && !searchTerm" class="sorting-message">
+              Sorted by {{ sortedBy }}
+              <span *ngIf="reverse">ascendant </span>
+              <span *ngIf="!reverse">descendant </span>
+              and quick filtered by "{{ quickFilter }}".
+              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
+            </p> 
+            <p *ngIf="quickFilter && searchTerm && !filterField" class="sorting-message">
+              Filtered by term "{{ searchTerm }}" and by type "{{ quickFilter }}".
+              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
+            </p> 
           </div>
-          <div 
-            class="nalej-table-box">
-            <table class="nalej-table">
-              <thead class="nalej-thead">
-                <tr>
-                  <th 
-                    (click)="setOrder('type')"            
-                    [ngClass]="getCategoryCSSClass('type')"
-                    tooltip="Type" 
-                    placement="bottom"
-                    scope="col" 
-                    class="col-1 infrastructure-type-initial-text">
-                    <span class="infrastructure-type-full-text">Type</span>
-                    <span *ngIf="sortedBy === 'type' && !reverse" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedBy === 'type' && reverse" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    (click)="setOrder('id')"            
-                    [ngClass]="getCategoryCSSClass('id')"
-                    scope="col" 
-                    class="col-2">
-                    <span tooltip="ID" placement="bottom">ID</span>
-                    <span *ngIf="sortedBy === 'id' && !reverse" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedBy === 'id' && reverse" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    (click)="setOrder('location')"
-                    [ngClass]="getCategoryCSSClass('location')"
-                    scope="col" 
-                    class="col-2">
-                    <span tooltip="ID" placement="bottom">Location</span>
-                    <span *ngIf="sortedBy === 'location' && !reverse" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedBy === 'location' && reverse" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    (click)="setOrder('labels')" 
-                    [ngClass]="getCategoryCSSClass('labels')"
-                    scope="col" 
-                    class="col-4">
-                    <span tooltip="Labels" placement="bottom">Labels</span>
-                    <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    (click)="setOrder('status')" 
-                    [ngClass]="getCategoryCSSClass('status')"
-                    scope="col" 
-                    class="col-2 text-center">
-                    <span tooltip="Status" placement="bottom">Status</span>
-                    <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedBy === 'status' && reverse" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    tooltip="Actions" 
-                    placement="bottom"
-                    scope="col" 
-                    class="col-1 text-center infrastructure-actions-initial-text">
-                    <span class="infrastructure-actions-full-text">Actions</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="col-1">
-                    <span tooltip="Type" placement="top">Asset</span>
-                  </td>
-                  <td class="col-2">
-                    <span tooltip="ID" placement="top">0804651321a35</span>
-                  </td>
-                  <td class="col-2">
-                    <span tooltip="Location" placement="top">Madrid, Spain</span>
-                  </td>
-                  <td class="col-4">
-                    <button 
+        </div>
+        <div 
+          class="nalej-table-box">
+          <table class="nalej-table">
+            <thead class="nalej-thead">
+              <tr>
+                <th 
+                  (click)="setOrder('type')"            
+                  [ngClass]="getCategoryCSSClass('type')"
+                  tooltip="Type" 
+                  placement="bottom"
+                  scope="col" 
+                  class="col-1 infrastructure-type-initial-text">
+                  <span class="infrastructure-type-full-text">Type</span>
+                  <span *ngIf="sortedBy === 'type' && !reverse" class="expand-chevron">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span *ngIf="sortedBy === 'type' && reverse" class="expand-chevron">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  (click)="setOrder('id')"            
+                  [ngClass]="getCategoryCSSClass('id')"
+                  scope="col" 
+                  class="col-2">
+                  <span tooltip="ID" placement="bottom">ID</span>
+                  <span *ngIf="sortedBy === 'id' && !reverse" class="expand-chevron">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span *ngIf="sortedBy === 'id' && reverse" class="expand-chevron">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  (click)="setOrder('location')"
+                  [ngClass]="getCategoryCSSClass('location')"
+                  scope="col" 
+                  class="col-2">
+                  <span tooltip="ID" placement="bottom">Location</span>
+                  <span *ngIf="sortedBy === 'location' && !reverse" class="expand-chevron">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span *ngIf="sortedBy === 'location' && reverse" class="expand-chevron">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  (click)="setOrder('labels')" 
+                  [ngClass]="getCategoryCSSClass('labels')"
+                  scope="col" 
+                  class="col-4">
+                  <span tooltip="Labels" placement="bottom">Labels</span>
+                  <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  (click)="setOrder('status')" 
+                  [ngClass]="getCategoryCSSClass('status')"
+                  scope="col" 
+                  class="col-2 text-center">
+                  <span tooltip="Status" placement="bottom">Status</span>
+                  <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span *ngIf="sortedBy === 'status' && reverse" class="expand-chevron">
+                    <i class="material-icons">expand_less</i>
+                  </span>
+                </th>
+                <th 
+                  tooltip="Actions" 
+                  placement="bottom"
+                  scope="col" 
+                  class="col-1 text-center infrastructure-actions-initial-text">
+                  <span class="infrastructure-actions-full-text">Actions</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor=
+                "let item of inventory |
+                sortBy : sortedBy : reverse : 'case-insensitive' |
+                filter : searchTerm |
+                filter : quickFilter : 'type'">
+                <td class="col-1">
+                  <span tooltip="Type" placement="top">{{item.type}}</span>
+                </td>
+                <td class="col-2">
+                  <span tooltip="ID" placement="top">{{item.id}}</span>
+                </td>
+                <td class="col-2">
+                  <span tooltip="Location" placement="top">{{item.location}}</span>
+                </td>
+                <td *ngIf="item.labels" class="col-4">
+                  <button 
+                    *ngFor="let label of labelsToString(item.labels)"
+                    (click)="onLabelClick(item.id, label[0], label[1])"
+                    [ngClass]=
+                    "{
+                      'label-btn-selected': indexOfLabelSelected(item.id, label[0], label[1]) >= 0 ,
+                      'btn-outline-primary': indexOfLabelSelected(item.id, label[0], label[1]) === -1
+                    }" 
                     class="btn-sm btn-outline-primary">
-                      label 1: label 2
-                    </button>
-                    <button 
-                      (click)="onLabelClick()"
-                      [ngClass]=
-                      "{
-                        'label-btn-selected': indexOfLabelSelected() >= 0 ,
-                        'btn-outline-primary': indexOfLabelSelected() === -1
-                      }" 
-                      class="btn-sm btn-outline-primary">
-                      label 1: label 2
-                    </button>
-                    <div class="label-btns">
-                      <div 
-                        (click)="addLabel()"
-                        tooltip="Add" 
-                        placement="right"
-                        class="label-btn-blue">
-                        <i class="material-icons i-add">add</i>
-                      </div>
-                      <!-- <div 
-                        (click)="deleteLabel()"
-                        tooltip="Delete" 
-                        placement="right"
-                        class="label-btn-red">
-                        <i class="material-icons i-delete">delete</i>
-                      </div> -->
+                    {{label[0]}}: {{label[1]}} 
+                  </button>
+                  <div class="label-btns">
+                    <div 
+                      *ngIf="isAnyLabelSelected(item.id) === false"
+                      (click)="addLabel(item)"
+                      tooltip="Add" 
+                      placement="right"
+                      class="label-btn-blue">
+                      <i class="material-icons i-add">add</i>
                     </div>
-                  </td>
-                  <!-- [ngClass]=
-                    "{'
-                      status-dot':classStatusCheck(),
-                      'status-dot-error':classStatusCheck(),
-                      'status-dot-process':classStatusCheck()
-                    }" -->
-                  <td 
-                    class="col-2 col-center-lowercase"> 
-                    <span 
-                      tooltip="online" 
-                      placement="bottom"
-                      class="status-dot">
-                    </span>
-                    <span class="hide-lg">
-                      online
-                    </span>
-                  </td>
-                  <td class="col-1 text-center">
-                    <button class="action-btn-grey">
-                      <i class="material-icons i-black">more_vert</i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="col-1">
-                    <span tooltip="ID" placement="top">Asset</span>
-                  </td>
-                  <td class="col-2">
-                    <span tooltip="ID" placement="top">0804651321a35</span>
-                  </td>
-                  <td class="col-2">
-                    <span tooltip="Location" placement="top">Madrid, Spain</span>
-                  </td>
-                  <td class="col-4">
-                    <button class="btn-sm btn-outline-primary">
-                      label 1: label 2
-                    </button>
-                    <button class="btn-sm btn-outline-primary">
-                      label 1: label 2
-                    </button>
-                    <button class="btn-sm btn-outline-primary">
-                      label 1: label 2
-                    </button>
-                    <button  class="btn-sm btn-outline-primary">
-                    label 1: label 2
-                    </button>
-                    <button 
-                      (click)="onLabelClick()"
-                      [ngClass]=
-                      "{
-                        'label-btn-selected': indexOfLabelSelected() >= 0 ,
-                        'btn-outline-primary': indexOfLabelSelected() === -1
-                      }" 
-                      class="btn-sm btn-outline-primary">
-                      label 1: label 2
-                    </button>
-                    <div class="label-btns">
-                      <div 
-                        (click)="addLabel()"
-                        tooltip="Add" 
-                        placement="right"
-                        class="label-btn-blue">
-                        <i class="material-icons i-add">add</i>
-                      </div>
-                    <!-- <div 
-                      (click)="deleteLabel()"
+                    <div 
+                      *ngIf="isAnyLabelSelected(item.id) === true"
+                      (click)="deleteLabel(item)"
                       tooltip="Delete" 
                       placement="right"
                       class="label-btn-red">
                       <i class="material-icons i-delete">delete</i>
-                    </div> -->
                     </div>
-                  </td>
-                  <!-- [ngClass]=
-                    "{'
-                      status-dot':classStatusCheck(),
-                      'status-dot-error':classStatusCheck(),
-                      'status-dot-process':classStatusCheck()
-                    }" -->
-                  <td 
-                    class="col-2 col-center-lowercase"> 
-                    <span 
-                      tooltip="online" 
-                      placement="bottom"
-                      class="status-dot">
-                    </span>
-                    <span class="hide-lg">
-                      online
-                    </span>
-                  </td>
-                  <td class="col-1 text-center">
-                    <button 
-                      class="action-btn-grey">
-                      <i class="material-icons i-black">more_vert</i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                  </div>
+                </td>
+                <td class="col-2 col-center-lowercase"> 
+                  <span 
+                      [ngClass]=
+                    "{
+                      'status-dot':classStatusCheck(item.status, 'online'),
+                      'status-dot-error':classStatusCheck(item.status, 'offline'),
+                      'status-dot-process':classStatusCheck(item.status, 'process')
+                    }"
+                    tooltip="online" 
+                    placement="bottom"
+                    class="status-dot">
+                  </span>
+                  <span class="hide-lg">
+                  {{item.status}}
+                  </span>
+                </td>
+                <td class="col-1 text-center">
+                  <button class="action-btn-grey">
+                    <i class="material-icons i-black">more_vert</i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
+</div>
