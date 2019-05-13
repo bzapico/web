@@ -1,18 +1,20 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
-import { mockInfrastructurePieChart } from '../utils/mocks';
-import { Asset } from '../definitions/interfaces/asset';
+import { mockInfrastructurePieChart, mockInventoryList } from '../utils/mocks';
+import { Item } from '../definitions/interfaces/item';
+import { AddLabelComponent } from '../add-label/add-label.component';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-infrastructure',
   templateUrl: './infrastructure.component.html',
   styleUrls: ['./infrastructure.component.scss']
 })
-export class InfrastructureComponent implements OnInit, OnDestroy {
+export class InfrastructureComponent implements OnInit {
   /**
    * Backend reference
    */
@@ -29,9 +31,9 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
   loadedData: boolean;
 
   /**
-   * List of available assets
+   * List of available inventory
    */
-  assets: any[];
+  inventory: any[];
 
   /**
    * NGX-Charts object-assign required object references (for rendering)
@@ -46,16 +48,15 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
   colorScheme = {
     domain: ['#0937FF', '#949494']
   };
-  customColors = [
-    {
-      name: 'Running',
-      value: '#0000ff'
-    },
-    {
-      name: 'error',
-      value: '#00ff00'
-    }
-  ];
+
+  /**
+   * Count of total cpu, memory, storage, online ECs
+   */
+  cpuCount: number;
+  memoryCount: number;
+  storageCount: number;
+  onlineCount: number;
+  onlineTotalCount: number;
 
   /**
    * Models that hold the sort info needed to sortBy pipe
@@ -69,6 +70,12 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
   searchTerm: string;
 
   /**
+   * Model that hold the quick filter with specificKey pipe
+   */
+  quickFilter: string;
+  specificKey: string;
+
+  /**
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
@@ -77,6 +84,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
    * List of selected labels from an entity
    */
   selectedLabels = [];
+  entityId: boolean;
 
   /**
    * List of labels
@@ -84,19 +92,10 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
   labels: any[];
 
   /**
-   * Number of online assets
+   * Reference for the service that allows the user info component
    */
-  countOnline: number;
+  modalRef: BsModalRef;
 
-  /**
-   * Interval reference
-   */
-  refreshIntervalRef: any;
-
-  /**
-   * Refresh ratio reference
-   */
-  REFRESH_RATIO = 20000; // 20 seconds
 
   /**
    * Hold request error message or undefined
@@ -105,6 +104,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
 
 
   constructor(
+    private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
@@ -118,15 +118,22 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
       this.backend = backendService;
     }
 
-   // Default initialization
-   this.labels = [];
-   this.loadedData = false;
-   this.requestError = '';
+    // Default initialization
+    this.inventory = [];
+    this.labels = [];
+    this.loadedData = false;
+    this.requestError = '';
+    this.cpuCount = 0;
+    this.memoryCount = 0;
+    this.storageCount = 0;
+    this.onlineCount = 0;
+    this.onlineTotalCount = 0;
 
     // SortBy
     this.sortedBy = '';
     this.reverse = false;
     this.searchTerm = '';
+    this.quickFilter = '';
 
     // Filter field
     this.filterField = false;
@@ -142,61 +149,33 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
-        this.updateAssets(this.organizationId);
-        this.refreshIntervalRef = setInterval(() => {
-          this.updateAssets(this.organizationId);
-        }, this.REFRESH_RATIO); // Refresh each 60 seconds
+      this.updateInventoryList();
     }
-
+    this.inventory = mockInventoryList;
     this.infrastructurePieChart = mockInfrastructurePieChart;
   }
 
-  ngOnDestroy() {
-    clearInterval(this.refreshIntervalRef);
-  }
-
     /**
-   * Updates asset array
+   * Updates inventory array
    * @param organizationId Organization identifier
    */
-  updateAssets(organizationId: string) {
-    if (organizationId !== null) {
-      // Request to get apps asset
-      this.backend.getInventory(this.organizationId)
-      .subscribe(response => {
-          this.assets = response.assets || [];
-          this.updatePieChartStats(this.assets);
-
-          if (!this.loadedData) {
-            this.loadedData = true;
-          }
-      }, errorResponse => {
-        this.loadedData = true;
-        this.requestError = errorResponse.error.message;
-      });
-    }
-  }
-
-  /**
-   * Updates pie chart status
-   * @param assets Array of instance objects
-   */
-  updatePieChartStats(asset: any[]) {
-    // let online = 0;
-    // if (assets) {
-    //   assets.forEach(asset => {
-    //     if (asset.status === 'ONLINE') {
-    //       online += 1;
-    //     }
-    //   });
-    //   this.countOnline = online;
-    //   this.infrastructurePieChart = this.generateSummaryChartData(this.countOnline, this.assets.length);
-    // }
+  updateInventoryList() {
+    // Request to get inventory
+    this.backend.getInventory(this.organizationId)
+    .subscribe(response => {
+        this.inventory = response.inventory || [];
+        if (!this.loadedData) {
+          this.loadedData = true;
+        }
+    }, errorResponse => {
+      this.loadedData = true;
+      this.requestError = errorResponse.error.message;
+    });
   }
 
   /**
    * Generates the NGX-Chart required JSON object for pie chart rendering
-   * @param online Number of online assets
+   * @param online Number of online ECs
    * @param total Number of total 
    * @returns anonym array with the required object structure for pie chart rendering
    */
@@ -212,7 +191,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
       }];
   }
 
-
   /**
    * Sortby pipe in the component
    */
@@ -226,12 +204,21 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Adds a quick filter
+   */
+  addQuickFilter(quickFilter: string) {
+    this.quickFilter = quickFilter;
+
+  }
+
+  /**
    * Reset all the filters fields
    */
   resetFilters() {
     this.filterField = false;
     this.searchTerm = '';
     this.sortedBy = '';
+    this.quickFilter = '';
   }
 
   /**
@@ -263,14 +250,14 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
 
   /**
    * Fulfill nulls to avoid data binding failure
-   * @param asset Asset interface
+   * @param item Item interface
    */
-  preventEmptyFields(asset: Asset) {
-    if (!asset.labels) {
-      asset.labels = '-';
+  preventEmptyFields(item: Item) {
+    if (!item.labels) {
+      item.labels = '-';
     }
-    if (!asset.status) {
-      asset.status = '-';
+    if (!item.status) {
+      item.status = '-';
     }
   }
 
@@ -281,19 +268,19 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
    */
   classStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case 'running': {
-        if (className.toLowerCase() === 'running') {
+      case 'online': {
+        if (className.toLowerCase() === 'online') {
           return true;
         }
         break;
       }
-      case 'deployment_error': {
-        if (className.toLowerCase() === 'error') {
+      case 'offline': {
+        if (className.toLowerCase() === 'offline') {
           return true;
         }
         break;
       }
-      case 'queued': {
+      case 'process': {
         if (className.toLowerCase() === 'process') {
           return true;
         }
@@ -311,8 +298,19 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
   /**
    * Opens the modal view that holds add label component
    */
-  addLabel() {
+  addLabel(item) {
+    const initialState = {
+      organizationId: this.organizationId,
+      entityType: 'inventory',
+      entity: item,
+      modalTitle: item.type
+    };
 
+    this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { 
+      this.updateInventoryList();
+    });
   }
 
   /**
@@ -320,6 +318,24 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
    * @param entity selected label entity
    */
   deleteLabel(entity) {
+    const deleteConfirm = confirm('Delete labels?');
+    if (deleteConfirm) {
+      const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.id);
+      this.backend.saveInventoryChanges(
+        this.organizationId,
+        entity.id,
+        {
+          organizationId: this.organizationId,
+          itemId: entity.id,
+          remove_labels: true,
+          labels: this.selectedLabels[index].labels
+        }).subscribe(updateInventoryResponse => {
+          this.selectedLabels.splice(index, 1);
+          this.updateInventoryList();
+        });
+    } else {
+      // Do nothing
+    }
   }
 
   /**

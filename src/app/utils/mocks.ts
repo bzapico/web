@@ -1305,7 +1305,7 @@ export const mockGroupList: Group[] = [
 /**
  * Mocked Infrastructure Pie Chart
  */
-export const mockInfrastructurePieChart= [
+export const mockInfrastructurePieChart = [
     {
         name: 'Online',
         value: 3
@@ -1351,7 +1351,6 @@ export const mockInventoryList = [
             'More info',
             'Command log',
             'Execute command 1',
-            'Execute command 2',
         ]
     },
     {
@@ -1384,7 +1383,6 @@ export const mockInventoryList = [
         'actions': [
             'More info',
             'Command log',
-            'Execute command 1',
             'Execute command 2',
         ]
     },

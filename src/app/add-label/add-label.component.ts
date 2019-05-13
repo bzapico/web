@@ -180,6 +180,37 @@ export class AddLabelComponent implements OnInit {
           });
           this.bsModalRef.hide();
           break;
+        case 'inventory':
+          if (!updatedEntity.labels || updatedEntity.labels === '-') {
+            updatedEntity.labels = {};
+          }
+          updatedEntity.labels[form.labelName.value] = form.labelValue.value;
+          updatedEntity.add_labels = true;
+          this.backend.saveInventoryChanges(
+            this.organizationId,
+            this.entity.id,
+            {
+              organization_id: this.organizationId,
+              id: updatedEntity.id,
+              labels: updatedEntity.labels
+            }
+          ).subscribe(updateInventoryResponse => {
+            this.loading = false;
+            this.notificationsService.add({
+              message: 'Updated ' + this.entity.id,
+              timeout: 3000,
+            });
+            this.bsModalRef.hide();
+          }, error => {
+            this.loading = false;
+            this.notificationsService.add({
+              message: error.error.message,
+              timeout: 5000,
+              type: 'warning'
+            });
+          });
+          this.bsModalRef.hide();
+        break;
         case 'app':
           if (!updatedEntity.labels || updatedEntity.labels === '-') {
             updatedEntity.labels = {};
