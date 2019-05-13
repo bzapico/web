@@ -9,12 +9,20 @@ export class FilterPipe implements PipeTransform {
   /**
    * @param items List of items to filter
    * @param term  a string term to compare with every property of the list
+   * @param specificKey a key to add to the filter
    */
-  static filter(items: Array<{ [key: string]: any }>, term: string): Array<{ [key: string]: any }> {
+  static filter(items: Array<{ [key: string]: any }>, term: string,  specificKey?: string ): Array<{ [key: string]: any}> {
 
     const toCompare = term.toLowerCase();
 
     return items.filter(function (item: any) {
+      if ( specificKey ) {
+
+        if (item[specificKey].toString().toLowerCase().includes(toCompare)) {
+          return true;
+        }
+        return false;
+      } else {
       for (const property in item) {
         if (item[property] === null || item[property] === undefined) {
           continue;
@@ -24,16 +32,21 @@ export class FilterPipe implements PipeTransform {
         }
       }
       return false;
-    });
+    }
+  });
   }
 
   /**
    * @param items object from array
    * @param term term's search
+   * @param specificKey key to be filtered by
    */
-  transform(items: any, term: string): any {
+  transform(items: any, term: string, specificKey?: string): any {
     if (!term || !items) { return items; }
-
-    return FilterPipe.filter(items, term);
+    if (specificKey) {
+      return FilterPipe.filter(items, term, specificKey);
+    } else {
+      return FilterPipe.filter(items, term);
+    }
   }
 }

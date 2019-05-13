@@ -1308,11 +1308,11 @@ export const mockGroupList: Group[] = [
 export const mockInfrastructurePieChart= [
     {
         name: 'Online',
-        value: 5
+        value: 3
     },
     {
         name: 'Offline',
-        value: 4
+        value: 5
     }
 ];
 
@@ -1321,29 +1321,89 @@ export const mockInfrastructurePieChart= [
  */
 export const mockInventoryList = [
     {
-       'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-       'asset_id': 'a2ed54d9b79a5',
-       'agent_id?': '65456465465a56',
-       'show': true,
-       'created': '15/03/2019',
-       'labels': {
-            'lab1': 'label1',
-            'lab2': 'label2'
-        },
-       'status': 'online',
+        'organization_id': '46ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'type': 'EC',
+        'id': 'a2ed54d9b79a5',
+        'location': 'Madrid, Spain',
+        'labels': {
+                'lab1': 'label1',
+                'lab2': 'label2'
+            },
+        'status': 'online',
+        'actions': [
+            'More info',
+            'Command log',
+            'Execute command 1',
+            'Execute command 2',
+        ]
     },
     {
-        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-        'asset_id': 'a2ed54d9b79a4',
-        'agent_id?': '65456465465a54',
-        'show': false,
-        'created': '4/03/2019',
+        'organization_id': '36ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'type': 'Asset',
+        'id': '22ed54d9b79a5',
+        'location': 'Santander, Spain',
         'labels': {
-         'lab3': 'label3',
-         'lab4': 'label4'
-         },
+                'lab3': 'label3',
+                'lab4': 'label4'
+            },
         'status': 'offline',
-     }
-
+        'actions': [
+            'More info',
+            'Command log',
+            'Execute command 1',
+            'Execute command 2',
+        ]
+    },
+    {
+        'organization_id': '26ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'type': 'Device',
+        'id': '32ed54d9b79a5',
+        'location': 'Madrid, Spain',
+        'labels': {
+                'lab5': 'label5',
+                'lab6': 'label6'
+            },
+        'status': 'online',
+        'actions': [
+            'More info',
+            'Command log',
+            'Execute command 1',
+            'Execute command 2',
+        ]
+    },
+    {
+        'organization_id': '16ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'type': 'EC',
+        'id': 'a2ed54d9b793',
+        'location': 'Leon, Spain',
+        'labels': {
+                'lab7': 'label7',
+                'lab8': 'label8'
+            },
+        'status': 'online',
+        'actions': [
+            'More info',
+            'Command log',
+            'Execute command 1',
+            'Execute command 2',
+        ]
+    },
+    {
+        'organization_id': '996ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+        'type': 'Device',
+        'id': '62ed54d9b79a5',
+        'location': 'Madrid, Spain',
+        'labels': {
+                'lab9': 'label9',
+                'lab10': 'label10'
+            },
+        'status': 'offline',
+        'actions': [
+            'More info',
+            'Command log',
+            'Execute command 1',
+            'Execute command 2',
+        ]
+    },
 ];
 
