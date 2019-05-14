@@ -52,7 +52,7 @@ export class InfrastructureComponent implements OnInit {
   /**
    * Count of total cpu, memory, storage, online ECs
    */
-  cpuCount: number;
+  cpuCoresCount: number;
   memoryCount: number;
   storageCount: number;
   onlineCount: number;
@@ -96,12 +96,10 @@ export class InfrastructureComponent implements OnInit {
    */
   modalRef: BsModalRef;
 
-
   /**
    * Hold request error message or undefined
    */
   requestError: string;
-
 
   constructor(
     private modalService: BsModalService,
@@ -109,7 +107,6 @@ export class InfrastructureComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-
     const mock = localStorage.getItem(LocalStorageKeys.infrastructureMock) || null;
     // Check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -123,7 +120,7 @@ export class InfrastructureComponent implements OnInit {
     this.labels = [];
     this.loadedData = false;
     this.requestError = '';
-    this.cpuCount = 0;
+    this.cpuCoresCount = 0;
     this.memoryCount = 0;
     this.storageCount = 0;
     this.onlineCount = 0;
@@ -149,21 +146,33 @@ export class InfrastructureComponent implements OnInit {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
-      this.updateInventoryList();
+      if (this.organizationId !== null) {
+        // Requests left card summary data
+        this.mockupBackendService.getInventorySummary(this.organizationId)
+        .subscribe(summary => {
+          this.cpuCoresCount = summary['total_num_cpu'];
+          this.memoryCount = summary['total_ram'];
+          this.storageCount = summary['total_storage'];
+        });
+        this.updateInventoryList();
+      }
     }
-    this.inventory = mockInventoryList;
-    this.infrastructurePieChart = mockInfrastructurePieChart;
+    this.infrastructurePieChart = this.generateSummaryChartData(this.onlineCount, this.onlineTotalCount);
   }
 
-    /**
-   * Updates inventory array
-   * @param organizationId Organization identifier
+  /**
+   * Requests an updated list of inventory
    */
   updateInventoryList() {
+    this.requestError = ''; // Empty error before requesting new list
     // Request to get inventory
-    this.backend.getInventory(this.organizationId)
+    this.mockupBackendService.getInventory(this.organizationId)
     .subscribe(response => {
-        this.inventory = response.inventory || [];
+        this.inventory = response.item || [];
+        this.onlineTotalCount = this.inventory.length;
+        const itemStatus =
+          this.inventory.filter((status: { status: string; }) => status.status === 'online');
+        this.onlineCount = itemStatus.length;
         if (!this.loadedData) {
           this.loadedData = true;
         }
@@ -176,7 +185,7 @@ export class InfrastructureComponent implements OnInit {
   /**
    * Generates the NGX-Chart required JSON object for pie chart rendering
    * @param online Number of online ECs
-   * @param total Number of total 
+   * @param total Number of total ECs online
    * @returns anonym array with the required object structure for pie chart rendering
    */
   generateSummaryChartData(online: number, total: number): any[] {
@@ -208,7 +217,6 @@ export class InfrastructureComponent implements OnInit {
    */
   addQuickFilter(quickFilter: string) {
     this.quickFilter = quickFilter;
-
   }
 
   /**
@@ -308,9 +316,7 @@ export class InfrastructureComponent implements OnInit {
 
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { 
-      this.updateInventoryList();
-    });
+    this.modalService.onHide.subscribe((reason: string) => { });
   }
 
   /**
@@ -321,7 +327,7 @@ export class InfrastructureComponent implements OnInit {
     const deleteConfirm = confirm('Delete labels?');
     if (deleteConfirm) {
       const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.id);
-      this.backend.saveInventoryChanges(
+      this.mockupBackendService.saveInventoryChanges(
         this.organizationId,
         entity.id,
         {

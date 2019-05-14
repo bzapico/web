@@ -17,6 +17,7 @@ export interface Backend {
     // Infrastructure
     getInventory(organizationId: string);
     saveInventoryChanges(organizationId: string, itemId: string, changes: any);
+    getInventorySummary(organizationId: string);
     // Resources
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);
     getClusters(organizationId: string);

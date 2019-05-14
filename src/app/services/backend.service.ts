@@ -190,7 +190,7 @@ export class BackendService implements Backend {
     );
   }
 
-    // POST '/v1/infrastructure/{organization_id}/{id}/update'
+  // POST '/infrastructure/{organization_id}/{id}/update'
   /**
    * Request to modify inventory data
    * @param organizationId Organization identifier
@@ -201,6 +201,17 @@ export class BackendService implements Backend {
     return this.post(
       API_URL + 'infrastructure/' + organizationId + '/' + itemId + '/update',
       changes
+    );
+  }
+
+  // GET 'infrastructure/{organization_id}/summary'
+  /**
+   * Requests to get the infrastructure inventory summary 
+   * @param organizationId Organization identifier
+   */
+  getInventorySummary(organizationId: string) {
+    return this.get(
+      API_URL + 'infrastructure/' + organizationId + '/summary'
     );
   }
 

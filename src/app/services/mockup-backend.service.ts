@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList, mockInventorySummary } from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 
 @Injectable({
@@ -174,6 +174,21 @@ export class MockupBackendService implements Backend {
       map(response => response.json())
     );
   }
+
+  /**
+   * Simulates to request inventory summary data
+   * @param organizationId Organization identifier
+   */
+  getInventorySummary(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockInventorySummary),
+      status: 200
+    })))
+    .pipe(
+      map(response => response.json())
+    );
+  }
+
   /**
    * Simulates update inventory changes
    * @param itemId String containing the item identifier - used to replicate expected backend behavior

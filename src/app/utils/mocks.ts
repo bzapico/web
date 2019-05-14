@@ -1405,3 +1405,12 @@ export const mockInventoryList = [
     },
 ];
 
+/**
+ * Mock inventory summary containing total cpu, moemory and storage
+ */
+export const mockInventorySummary = {
+    total_num_cpu: 10,
+    total_ram: 20,
+    total_storage: 30,
+};
+

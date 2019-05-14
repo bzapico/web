@@ -275,7 +275,7 @@ export class DebugPanelComponent implements OnInit {
       case AvailableComponents.serviceInfo:
       localStorage.setItem(LocalStorageKeys.serviceInfoMock, componentMockOption.mock);
       break;
-      case AvailableComponents.serviceInfo:
+      case AvailableComponents.infrastructure:
       localStorage.setItem(LocalStorageKeys.infrastructureMock, componentMockOption.mock);
       break;
       default:

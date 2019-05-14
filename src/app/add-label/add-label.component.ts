@@ -186,7 +186,7 @@ export class AddLabelComponent implements OnInit {
           }
           updatedEntity.labels[form.labelName.value] = form.labelValue.value;
           updatedEntity.add_labels = true;
-          this.backend.saveInventoryChanges(
+          this.mockupBackendService.saveInventoryChanges(
             this.organizationId,
             this.entity.id,
             {

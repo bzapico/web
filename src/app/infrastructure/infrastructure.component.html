@@ -24,12 +24,12 @@
               </ngx-charts-pie-chart>
               <div class="donut-number">{{onlineCount}}/{{onlineTotalCount}}</div>
             </div>
-            <p class="apps-run">All ECS online</p>
+            <p class="ecs-run">All ECS online</p>
             <p class="circle-name">ECs</p>
           </div>
           <div class="summary-box">
             <div class="circle">
-              <span>{{cpuCount}}</span>
+              <span>{{cpuCoresCount}}</span>
               <span class="circle-measure">Mhz</span>
             </div>
             <span class="circle-name-sm">OVERALL</span> 
@@ -300,7 +300,7 @@
                       'status-dot-error':classStatusCheck(item.status, 'offline'),
                       'status-dot-process':classStatusCheck(item.status, 'process')
                     }"
-                    tooltip="online" 
+                    tooltip="{{item.status}}" 
                     placement="bottom"
                     class="status-dot">
                   </span>
