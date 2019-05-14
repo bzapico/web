@@ -1316,8 +1316,170 @@ export const mockInfrastructurePieChart = [
     }
 ];
 
+
 /**
  * Mocked inventory assets list
+ */
+export const mockInventoryList1 = [
+    {
+        devices: [
+            {
+                'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+                'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+                'name': 'dg1',
+                'created': '1550746520',
+                'enabled': true,
+                'default_device_connectivity': true,
+                'device_group_api_key': '6ca7ab9c-54be-4f74-be44-bb58977fb37e'
+             },
+             {
+                'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+                'device_group_id': 'a56b9900-0fef-41b0-bb7c-adf0055274cd',
+                'name': 'dg3',
+                'created': '1550746676',
+                'enabled': true,
+                'default_device_connectivity': true,
+                'device_group_api_key': '585fc4d1-f364-415d-be51-be0eda39e632'
+             },
+             {
+                'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+                'device_group_id': 'd94ac398-fd77-4937-b7f7-9fa0ff8b1eab',
+                'name': 'dg2',
+                'created': '1550746669',
+                'enabled': true,
+                'default_device_connectivity': true,
+                'device_group_api_key': 'cd9e76b1-bfb8-4f51-ba73-3336d8051948'
+             }
+        ],
+        assets: [
+            {
+                'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+                'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+                'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
+                'show': true,
+                'created': '1550746520',
+                'labels': {
+                    'lab1': 'label1',
+                    'lab2': 'label2'
+                },
+                'os': {
+                    'name': 'petra',
+                    'version': 'v1',
+                    'class': 'linux',
+                    'architecture': 'chagal'
+                },
+                'hardware': {
+                    'cpus': {
+                        'manufacturer': 'Apple',
+                        'model': 'yes',
+                        'architecture': 'Fanix',
+                        'num_cores': 3
+                    },
+                    'installed_ram': 2,
+                    'net_interfaces': {
+                        'type': 'capacity',
+                        'link_capacity': 5
+                    }
+
+                },
+                'storage': {
+                    'type': 'ram',
+                    'total_capacity': 7
+                },
+                'eic_net_ip': 'http/knon'
+             },
+             {
+                'organization_id': 'c6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+                'asset_id': 'a56b9900-4444-41b0-bb7c-adf0055274cd',
+                'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
+                'show': true,
+                'created': '1550746676',
+                'labels': {
+                    'lab1': 'label1',
+                    'lab2': 'label2'
+                },
+                'os': {
+                    'name': 'petra',
+                    'version': 'v1',
+                    'class': 'linux',
+                    'architecture': 'chagal'
+                },
+                'hardware': {
+                    'cpus': {
+                        'manufacturer': 'Windows',
+                        'model': 'yes',
+                        'architecture': 'Unix',
+                        'num_cores': 3
+                    },
+                    'installed_ram': 2,
+                    'net_interfaces': {
+                        'type': 'capacity',
+                        'link_capacity': 5
+                    }
+
+                },
+                'storage': {
+                    'type': 'ram',
+                    'total_capacity': 7
+                },
+                'eic_net_ip': 'http/qweqwe'
+             },
+             {
+                'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+                'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+                'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
+                'show': true,
+                'created': '1550746669',
+                'labels': {
+                    'lab1': 'label1',
+                    'lab2': 'label2'
+                },
+                'os': {
+                    'name': 'petra',
+                    'version': 'v1',
+                    'class': 'linux',
+                    'architecture': 'chagal'
+                },
+                'hardware': {
+                    'cpus': {
+                        'manufacturer': 'Linux',
+                        'model': 'yes',
+                        'architecture': 'Ubuntu',
+                        'num_cores': 3
+                    },
+                    'installed_ram': 2,
+                    'net_interfaces': {
+                        'type': 'capacity',
+                        'link_capacity': 5
+                    }
+
+                },
+                'storage': {
+                    'type': 'ram',
+                    'total_capacity': 7
+                },
+                'eic_net_ip': 'http/qweqwe'
+             }
+        ],
+        edgeController:
+        [
+            {
+                'organization_id': '8888-2ed7-41c1-90fb-f561eb81ea42',
+                'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
+                'show': true,
+                'created': '1550746676',
+                'name': 'edge25',
+                'labels': {
+                    'lab1': 'label1',
+                    'lab2': 'label2'
+                },
+            }
+        ]
+    }
+];
+
+/**
+ * Test for Mocked inventory assets list
  */
 export const mockInventoryList = [
     {

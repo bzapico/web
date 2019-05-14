@@ -19,8 +19,8 @@ export interface Asset {
     os?: any;
     // Hardware information.
     hardware?: any;
+    // Storage information.
+    storage?: string;
     // EicNetIp contains the current IP address that connects the asset to the EIC.
     eic_net_ip?: string;
-    // Status of the agent.
-    status?: string;
 }

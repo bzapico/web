@@ -14,5 +14,5 @@ export interface EdgeController {
     // Labels defined by the user.
     labels?: any;
     // Name of the EIC.
-    name: string;
+    name?: string;
 }
