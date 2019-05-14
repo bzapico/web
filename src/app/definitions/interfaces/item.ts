@@ -9,5 +9,5 @@ export interface Item {
     location?: string;
     labels?: any;
     status?: string;
-    actions: string;
+    actions?: string;
 }
