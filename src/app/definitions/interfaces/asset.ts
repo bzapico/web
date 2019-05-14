@@ -1,7 +1,5 @@
 /**
  * Interface that defines the Asset Data model
- * Asset represents an element in the network from which we register some type of information.
- * Example of assets could be workstations, nodes in a cluster, or other type of hardware.
  */
 export interface Asset {
     // OrganizationId with the organization identifier.
