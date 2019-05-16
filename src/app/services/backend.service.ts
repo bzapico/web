@@ -190,20 +190,6 @@ export class BackendService implements Backend {
     );
   }
 
-  // POST '/infrastructure/{organization_id}/{id}/update'
-  /**
-   * Request to modify inventory data
-   * @param organizationId Organization identifier
-   * @param itemId Item identifier
-   * @param changes Object holding cluster changes
-   */
-  saveInventoryChanges(organizationId: string, itemId: string, changes: any) {
-    return this.post(
-      API_URL + 'infrastructure/' + organizationId + '/' + itemId + '/update',
-      changes
-    );
-  }
-
   // GET 'infrastructure/{organization_id}/summary'
   /**
    * Requests to get the infrastructure inventory summary 
