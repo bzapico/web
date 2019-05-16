@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-contextual-menu',
@@ -8,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class ContextualMenuComponent implements OnInit {
 
   constructor() { }
+
+  @Input() visible: boolean;
+  options: string[];
 
   ngOnInit() {
   }
