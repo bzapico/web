@@ -259,54 +259,38 @@
                   <span tooltip="ID" placement="top">{{item.id}}</span>
                 </td>
                 <td class="col-2">
-                  <span tooltip="Location" placement="top">{{item.location}}</span>
+                  <span 
+                    *ngIf="item.location" 
+                    tooltip="Location" 
+                    placement="top">
+                    {{item.location}}
+                  </span>
+                  <span *ngIf="!item.location">undefined</span>
                 </td>
                 <td *ngIf="item.labels" class="col-4">
                   <button 
-                    *ngFor="let label of labelsToString(item.labels)"
-                    (click)="onLabelClick(item.id, label[0], label[1])"
-                    [ngClass]=
-                    "{
-                      'label-btn-selected': indexOfLabelSelected(item.id, label[0], label[1]) >= 0 ,
-                      'btn-outline-primary': indexOfLabelSelected(item.id, label[0], label[1]) === -1
-                    }" 
+                    *ngFor="let label of labelsToString(item.labels)" 
+                    disabled
                     class="btn-sm btn-outline-primary">
-                    {{label[0]}}: {{label[1]}} 
+                      {{label[0]}}: {{label[1]}}
                   </button>
-                  <div class="label-btns">
-                    <div 
-                      *ngIf="isAnyLabelSelected(item.id) === false"
-                      (click)="addLabel(item)"
-                      tooltip="Add" 
-                      placement="right"
-                      class="label-btn-blue">
-                      <i class="material-icons i-add">add</i>
-                    </div>
-                    <div 
-                      *ngIf="isAnyLabelSelected(item.id) === true"
-                      (click)="deleteLabel(item)"
-                      tooltip="Delete" 
-                      placement="right"
-                      class="label-btn-red">
-                      <i class="material-icons i-delete">delete</i>
-                    </div>
-                  </div>
                 </td>
                 <td class="col-2 col-center-lowercase"> 
-                  <span 
-                      [ngClass]=
-                    "{
-                      'status-dot':classStatusCheck(item.status, 'online'),
-                      'status-dot-error':classStatusCheck(item.status, 'offline'),
-                      'status-dot-process':classStatusCheck(item.status, 'process')
-                    }"
+                  <span *ngIf="item.status"
+                    [ngClass]=
+                      "{
+                        'status-dot':classStatusCheck(item.status, 'online'),
+                        'status-dot-error':classStatusCheck(item.status, 'offline'),
+                        'status-dot-process':classStatusCheck(item.status, 'process')
+                      }"
                     tooltip="{{item.status}}" 
                     placement="bottom"
                     class="status-dot">
                   </span>
-                  <span class="hide-lg">
-                  {{item.status}}
-                  </span>
+                  <span  *ngIf="item.status" class="hide-lg">
+                    {{item.status}}
+                    </span>
+                  <span *ngIf="!item.status"> - </span>
                 </td>
                 <td class="col-1 text-center">
                   <button class="action-btn-grey">

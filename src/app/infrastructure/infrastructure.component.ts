@@ -4,9 +4,7 @@ import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
-import { mockInfrastructurePieChart, mockInventoryList } from '../utils/mocks';
-import { Item } from '../definitions/interfaces/item';
-import { AddLabelComponent } from '../add-label/add-label.component';
+import { mockInfrastructurePieChart } from '../utils/mocks';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 
 @Component({
@@ -34,6 +32,13 @@ export class InfrastructureComponent implements OnInit {
    * List of available inventory
    */
   inventory: any[];
+
+  /**
+   * List of available devices, assets and edge controllers
+   */
+  devices: any[];
+  assets: any[];
+  edgeControllers: any [];
 
   /**
    * NGX-Charts object-assign required object references (for rendering)
@@ -117,6 +122,9 @@ export class InfrastructureComponent implements OnInit {
 
     // Default initialization
     this.inventory = [];
+    this.assets = [];
+    this.devices = [];
+    this.edgeControllers = [];
     this.labels = [];
     this.loadedData = false;
     this.requestError = '';
@@ -124,7 +132,7 @@ export class InfrastructureComponent implements OnInit {
     this.memoryCount = 0;
     this.storageCount = 0;
     this.onlineCount = 0;
-    this.onlineTotalCount = 0;
+    this.onlineTotalCount = 1;
 
     // SortBy
     this.sortedBy = '';
@@ -148,7 +156,7 @@ export class InfrastructureComponent implements OnInit {
       this.organizationId = JSON.parse(jwtData).organizationID;
       if (this.organizationId !== null) {
         // Requests left card summary data
-        this.mockupBackendService.getInventorySummary(this.organizationId)
+        this.backend.getInventorySummary(this.organizationId)
         .subscribe(summary => {
           this.cpuCoresCount = summary['total_num_cpu'];
           this.memoryCount = summary['total_ram'];
@@ -157,7 +165,6 @@ export class InfrastructureComponent implements OnInit {
         this.updateInventoryList();
       }
     }
-    this.infrastructurePieChart = this.generateSummaryChartData(this.onlineCount, this.onlineTotalCount);
   }
 
   /**
@@ -166,20 +173,52 @@ export class InfrastructureComponent implements OnInit {
   updateInventoryList() {
     this.requestError = ''; // Empty error before requesting new list
     // Request to get inventory
-    this.mockupBackendService.getInventory(this.organizationId)
+    this.backend.getInventory(this.organizationId)
     .subscribe(response => {
-        this.inventory = response.item || [];
-        this.onlineTotalCount = this.inventory.length;
-        const itemStatus =
-          this.inventory.filter((status: { status: string; }) => status.status === 'online');
-        this.onlineCount = itemStatus.length;
-        if (!this.loadedData) {
-          this.loadedData = true;
-        }
+      this.normalizeInventoryItems(response);
+      if (!this.loadedData) {
+        this.loadedData = true;
+      }
+      this.updateOnlineEcsPieChart(response);
     }, errorResponse => {
       this.loadedData = true;
       this.requestError = errorResponse.error.message;
     });
+  }
+
+  /**
+   * Normalize the inventroy list and added type
+   * @param response Backend response where to modify the data
+   */
+  normalizeInventoryItems(response) {
+    this.inventory = [];
+    response.devices.forEach(device => {
+      device.type = 'Device';
+      device.id = device.device_id;
+      this.inventory.push(device);
+    });
+    response.assets.forEach(asset => {
+      asset.type = 'Asset';
+      asset.id = asset.asset_id;
+      this.inventory.push(asset);
+    });
+    response.edgeControllers.forEach(edgeController => {
+      edgeController.type = 'EC';
+      edgeController.id = edgeController.edge_controller_id;
+      this.inventory.push(edgeController);
+    });
+  }
+
+  /**
+   * Updates the pie chart with latest changes
+   * @param response Backend response where to modify the data
+   */
+  updateOnlineEcsPieChart(response) {
+    this.onlineTotalCount = response.edgeControllers.length;
+    const itemStatus =
+    response.edgeControllers.filter(item => item.status === 'online');
+    this.onlineCount = itemStatus.length;
+    this.infrastructurePieChart = this.generateSummaryChartData(this.onlineCount, this.onlineTotalCount);
   }
 
   /**
@@ -257,19 +296,6 @@ export class InfrastructureComponent implements OnInit {
   }
 
   /**
-   * Fulfill nulls to avoid data binding failure
-   * @param item Item interface
-   */
-  preventEmptyFields(item: Item) {
-    if (!item.labels) {
-      item.labels = '-';
-    }
-    if (!item.status) {
-      item.status = '-';
-    }
-  }
-
-  /**
    * Checks if the status requires an special css class
    * @param status  status name
    * @param className CSS class name
@@ -302,106 +328,4 @@ export class InfrastructureComponent implements OnInit {
       }
     }
   }
-
-  /**
-   * Opens the modal view that holds add label component
-   */
-  addLabel(item) {
-    const initialState = {
-      organizationId: this.organizationId,
-      entityType: 'inventory',
-      entity: item,
-      modalTitle: item.type
-    };
-
-    this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { });
-  }
-
-  /**
-   * Deletes a selected label
-   * @param entity selected label entity
-   */
-  deleteLabel(entity) {
-    const deleteConfirm = confirm('Delete labels?');
-    if (deleteConfirm) {
-      const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.id);
-      this.mockupBackendService.saveInventoryChanges(
-        this.organizationId,
-        entity.id,
-        {
-          organizationId: this.organizationId,
-          itemId: entity.id,
-          remove_labels: true,
-          labels: this.selectedLabels[index].labels
-        }).subscribe(updateInventoryResponse => {
-          this.selectedLabels.splice(index, 1);
-          this.updateInventoryList();
-        });
-    } else {
-      // Do nothing
-    }
-  }
-
-  /**
-   * Selects a label
-   * @param entityId entity from selected label
-   * @param labelKey label key from selected label
-   * @param labelValue label value from selected label
-   */
-  onLabelClick(entityId, labelKey, labelValue) {
-    const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
-    const newLabel = {
-      entityId: entityId,
-      labels: {}
-    } ;
-    if (selectedIndex === -1 ) {
-      const selected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
-      if (selected === -1) {
-        newLabel.labels[labelKey] = labelValue;
-        this.selectedLabels.push(newLabel);
-      } else {
-        this.selectedLabels[selected].labels[labelKey] = labelValue;
-      }
-    } else {
-      if (Object.keys(this.selectedLabels[selectedIndex].labels).length > 1) {
-        delete this.selectedLabels[selectedIndex].labels[labelKey];
-      } else {
-        this.selectedLabels.splice(selectedIndex, 1);
-      }
-    }
-  }
-
- /**
-  * Check if the label is selected. Returs index number in selected labels or -1 if the label is not found.
-  * @param entityId entity from selected label
-  * @param labelKey label key from selected label
-  * @param labelValue label value from selected label
-  */
-  indexOfLabelSelected(entityId, labelKey, labelValue) {
-    for (let index = 0; index < this.selectedLabels.length; index++) {
-      if (this.selectedLabels[index].entityId === entityId &&
-          this.selectedLabels[index].labels[labelKey] === labelValue
-        ) {
-          return index;
-      }
-    }
-  return -1;
-  }
-
-  /**
-   * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
-   * @param entityId entity from selected label
-   */
-  isAnyLabelSelected(entityId) {
-    if (this.selectedLabels.length > 0) {
-      const indexSelected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
-      if (indexSelected >= 0) {
-          return true;
-      }
-    }
-    return false;
-  }
-
 }
