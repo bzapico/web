@@ -17,7 +17,6 @@ export class FilterPipe implements PipeTransform {
 
     return items.filter(function (item: any) {
       if ( specificKey ) {
-
         if (item[specificKey].toString().toLowerCase().includes(toCompare)) {
           return true;
         }
