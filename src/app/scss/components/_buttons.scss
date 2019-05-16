@@ -96,6 +96,17 @@ button[type="submit"]:disabled {
         min-width: 25px;
     }
 }
+.action-btn-grey-selected {
+    @extend .action-btn;
+    color: #E8E8E8;
+    background-color:  #404040;
+    @include for-desktop-up {
+        height: 25px;
+        width: 25px;
+        min-height: 25px;
+        min-width: 25px;
+    }
+}
 .i-white {
     font-size: 1.2em;
     position: absolute;
