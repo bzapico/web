@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
@@ -6,6 +6,7 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { mockInfrastructurePieChart } from '../utils/mocks';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { ContextualMenuComponent } from '../contextual-menu/contextual-menu.component';
 
 @Component({
   selector: 'app-infrastructure',
@@ -13,6 +14,10 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
   styleUrls: ['./infrastructure.component.scss']
 })
 export class InfrastructureComponent implements OnInit {
+
+  @ViewChild('contextMenu') private contextMenu: ContextualMenuComponent;
+  @ViewChild('contextMenu2') private contextMenu2: ContextualMenuComponent;
+
   /**
    * Backend reference
    */
@@ -106,6 +111,12 @@ export class InfrastructureComponent implements OnInit {
    */
   requestError: string;
 
+  /**
+   * Open contextual menu button style trigger
+   */
+  toggle: boolean;
+
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -195,15 +206,18 @@ export class InfrastructureComponent implements OnInit {
     response.devices.forEach(device => {
       device.type = 'Device';
       device.id = device.device_id;
+      device.toggle = true;
       this.inventory.push(device);
     });
     response.assets.forEach(asset => {
       asset.type = 'Asset';
       asset.id = asset.asset_id;
+      asset.toggle = true;
       this.inventory.push(asset);
     });
     response.edgeControllers.forEach(edgeController => {
       edgeController.type = 'EC';
+      edgeController.toggle = true;
       edgeController.id = edgeController.edge_controller_id;
       this.inventory.push(edgeController);
     });
@@ -328,4 +342,24 @@ export class InfrastructureComponent implements OnInit {
       }
     }
   }
+
+  /**
+   * Opens contextual Menu
+   * @param options the options for each contextual menu
+   */
+  openContextualMenu(item, options: string) {
+
+    item.toggle = !item.toggle;
+
+    if (options === 'options1') {
+      console.log('mostrar context 1');
+      this.contextMenu.visible = !this.contextMenu.visible ;
+      this.contextMenu.options = ['More info', 'Unlink EC', 'Install agent'];
+    } else {
+      console.log('mostrar context 2');
+      this.contextMenu2.visible = !this.contextMenu2.visible;
+      this.contextMenu2.options = ['option 3', 'option 4', 'option 5'];
+    }
+  }
+
 }
