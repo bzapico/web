@@ -26,8 +26,19 @@ export class FilterPipe implements PipeTransform {
         if (item[property] === null || item[property] === undefined) {
           continue;
         }
-        if (item[property].toString().toLowerCase().includes(toCompare)) {
-          return true;
+        if (item[property] instanceof Object) {
+          if ( JSON.stringify(item[property]).toLowerCase().includes(toCompare)) {
+            return true;
+          }
+        } else {
+          console.log('term ', toCompare);
+          // console.log('item property ', item[property].toString()); 
+          // console.log('condition ' , item[property].toString().toLowerCase().includes(toCompare));
+
+          if (item[property].toString().toLowerCase().includes(toCompare)) {
+            console.log('item property ', item[property], item[property].toString().toLowerCase().includes(toCompare));
+            return true;
+          }
         }
       }
       return false;
