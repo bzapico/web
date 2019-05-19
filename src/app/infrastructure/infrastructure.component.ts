@@ -16,7 +16,7 @@ import { ContextualMenuComponent } from '../contextual-menu/contextual-menu.comp
 export class InfrastructureComponent implements OnInit {
 
   @ViewChild('contextMenu') private contextMenu: ContextualMenuComponent;
-  @ViewChild('contextMenu2') private contextMenu2: ContextualMenuComponent;
+  buttonSelected: boolean = false; 
 
   /**
    * Backend reference
@@ -347,19 +347,30 @@ export class InfrastructureComponent implements OnInit {
    * Opens contextual Menu
    * @param options the options for each contextual menu
    */
-  openContextualMenu(item, options: string) {
+  openContextualMenu(item, boton) {
 
-    item.toggle = !item.toggle;
-
-    if (options === 'options1') {
+    this.buttonSelected = true;
+    console.log(boton);
+    // item.toggle = !item.toggle;
+    
       console.log('mostrar context 1');
-      this.contextMenu.visible = !this.contextMenu.visible ;
+      if(item.id == this.contextMenu.itemId)
+      {
+        console.log('he clicado el mismo botón, oculto o muestro');
+        this.contextMenu.visible = !this.contextMenu.visible ;
+      }
+      else
+      {
+        console.log('he clicado otro botón, muestro sí o sí');
+        this.contextMenu.visible = true;
+        this.buttonSelected = false;
+      }
+      
+      item.toggle = !this.contextMenu.visible;
+      
       this.contextMenu.options = ['More info', 'Unlink EC', 'Install agent'];
-    } else {
-      console.log('mostrar context 2');
-      this.contextMenu2.visible = !this.contextMenu2.visible;
-      this.contextMenu2.options = ['option 3', 'option 4', 'option 5'];
-    }
+      this.contextMenu.itemId = item.id;
+    
   }
 
 }
