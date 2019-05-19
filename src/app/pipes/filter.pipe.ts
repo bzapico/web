@@ -15,36 +15,63 @@ export class FilterPipe implements PipeTransform {
 
     const toCompare = term.toLowerCase();
 
-    return items.filter(function (item: any) {
-      if ( specificKey ) {
-        if (item[specificKey].toString().toLowerCase().includes(toCompare)) {
-          return true;
-        }
-        return false;
-      } else {
-      for (const property in item) {
-        if (item[property] === null || item[property] === undefined) {
-          continue;
-        }
-        if (item[property] instanceof Object) {
-          if ( JSON.stringify(item[property]).toLowerCase().includes(toCompare)) {
-            return true;
-          }
-        } else {
-          console.log('term ', toCompare);
-          // console.log('item property ', item[property].toString()); 
-          // console.log('condition ' , item[property].toString().toLowerCase().includes(toCompare));
+  //   return items.filter(function (item: any) {
+  //     if ( specificKey ) {
+  //       if (item[specificKey].toString().toLowerCase().includes(toCompare)) {
+  //         return true;
+  //       }
+  //       return false;
+  //     } else {
+  //     for (const property in item) {
+  //       if (item[property] === null || item[property] === undefined) {
+  //         continue;
+  //       }
+  //       if (item[property] instanceof Object) {
+  //         if ( JSON.stringify(item[property]).toLowerCase().includes(toCompare)) {
+  //           return true;
+  //         }
+  //       } else {
+  //         console.log('term ', toCompare);
+  //          console.log('item property ', item[property].toString()); 
+  //          console.log('condition ' , item[property].toString().toLowerCase().includes(toCompare));
 
-          if (item[property].toString().toLowerCase().includes(toCompare)) {
-            console.log('item property ', item[property], item[property].toString().toLowerCase().includes(toCompare));
-            return true;
-          }
-        }
+  //         if (item[property].toString().toLowerCase().includes(toCompare)) {
+  //           console.log('item property ', item[property], item[property].toString().toLowerCase().includes(toCompare));
+  //           return true;
+  //         }
+  //       }
+  //     }
+  //     return false;
+  //   } 
+  // });
+  // }
+
+  return items.filter(function (item: any) {
+    console.log('specificKey', specificKey);
+    if ( specificKey ) {
+      if (item[specificKey].toString().toLowerCase().includes(toCompare)) {
+        return true;
       }
       return false;
+    } else {
+console.log('fila o item', item);
+console.log('item.type',item.type);
+    for (const property in item) {
+      console.log('cada columna de item', item[property]);
+      if (item[property] === null || item[property] === undefined) {
+        continue;
+      }
+      if (item[property].toString().toLowerCase().includes(toCompare)) {
+        console.log('term ', toCompare);
+        console.log('item[property].toString() ', item[property].toString());
+        console.log('JSON.stringify(item[property]).toLowerCase(). ', JSON.stringify(item[property]).toLowerCase());
+        return true;
+      }
     }
-  });
+    return false;
   }
+});
+}
 
   /**
    * @param items object from array
