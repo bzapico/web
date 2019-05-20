@@ -131,7 +131,7 @@ export class InfrastructureComponent implements OnInit {
     this.memoryCount = 0;
     this.storageCount = 0;
     this.onlineCount = 0;
-    this.onlineTotalCount = 1;
+    this.onlineTotalCount = 0;
 
     // SortBy
     this.sortedBy = '';

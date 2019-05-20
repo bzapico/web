@@ -132,7 +132,7 @@
                 <tr>
                     <td class="col-md-4">
                             <span class="modifier-icon icon ion-ios-reset"></span>
-                        <code>filter(items: Array<literal type>, term: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, specificKey?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                        <code>filter(items: Array<literal type>, term: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, propertiesToFilterBy?: string[])</code>
                     </td>
                 </tr>
 
@@ -192,9 +192,9 @@
                                                         </td>
                                                 </tr>
                                                 <tr>
-                                                        <td>specificKey</td>
+                                                        <td>propertiesToFilterBy</td>
                                                         <td>
-                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    <code>string[]</code>
                                                         </td>
                                                     
                                                     <td>
@@ -238,14 +238,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>transform(items: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, term: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, specificKey?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>transform(items: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, term: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, propertiesToFilterBy?: string[])</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pipes/filter.pipe.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/pipes/filter.pipe.ts:52</a></div>
                             </td>
                         </tr>
 
@@ -298,9 +298,9 @@
                                                         </td>
                                                 </tr>
                                                 <tr>
-                                                        <td>specificKey</td>
+                                                        <td>propertiesToFilterBy</td>
                                                         <td>
-                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    <code>string[]</code>
                                                         </td>
                                                     
                                                     <td>
@@ -347,41 +347,50 @@ export class FilterPipe implements PipeTransform {
   /**
    * @param items List of items to filter
    * @param term  a string term to compare with every property of the list
-   * @param specificKey a key to add to the filter
+   * @param propertiesToFilterBy a key to add to the filter
    */
-  static filter(items: Array&lt;{ [key: string]: any }&gt;, term: string,  specificKey?: string ): Array&lt;{ [key: string]: any}&gt; {
+  static filter(items: Array&lt;{ [key: string]: any }&gt;, term: string,  propertiesToFilterBy?: string[] ): Array&lt;{ [key: string]: any}&gt; {
 
     const toCompare &#x3D; term.toLowerCase();
 
     return items.filter(function (item: any) {
-      if ( specificKey ) {
-        if (item[specificKey].toString().toLowerCase().includes(toCompare)) {
-          return true;
+      if ( propertiesToFilterBy ) {
+        for (const property of propertiesToFilterBy) {
+          if (item[property] instanceof Object) {
+            if (JSON.stringify(item[property]).toLowerCase().includes(toCompare)) {
+              return true;
+            }
+           } else if (item[property].toString().toLowerCase().includes(toCompare)) {
+            return true;
+          }
         }
-        return false;
       } else {
-      for (const property in item) {
-        if (item[property] &#x3D;&#x3D;&#x3D; null || item[property] &#x3D;&#x3D;&#x3D; undefined) {
-          continue;
-        }
-        if (item[property].toString().toLowerCase().includes(toCompare)) {
-          return true;
-        }
+        for (const property  in item) {
+          if (item[property] &#x3D;&#x3D;&#x3D; null || item[property] &#x3D;&#x3D;&#x3D; undefined) {
+            continue;
+          }
+          if (item[property] instanceof Object) {
+            if (JSON.stringify(item[property]).toLowerCase().includes(toCompare)) {
+              return true;
+            }
+           } else if (item[property].toString().toLowerCase().includes(toCompare)) {
+            return true;
+          }
       }
       return false;
-    }
-  });
+      }
+    });
   }
 
   /**
    * @param items object from array
    * @param term term&#x27;s search
-   * @param specificKey key to be filtered by
+   * @param propertiesToFilterBy key to be filtered by
    */
-  transform(items: any, term: string, specificKey?: string): any {
+  transform(items: any, term: string, propertiesToFilterBy?: string[]): any {
     if (!term || !items) { return items; }
-    if (specificKey) {
-      return FilterPipe.filter(items, term, specificKey);
+    if (propertiesToFilterBy) {
+      return FilterPipe.filter(items, term, propertiesToFilterBy);
     } else {
       return FilterPipe.filter(items, term);
     }
