@@ -16,7 +16,7 @@ import { ContextualMenuComponent } from '../contextual-menu/contextual-menu.comp
 export class InfrastructureComponent implements OnInit {
 
   @ViewChild('contextMenu') private contextMenu: ContextualMenuComponent;
-  buttonSelected: boolean = false; 
+  buttonSelected: boolean = false;
 
   /**
    * Backend reference
@@ -80,10 +80,9 @@ export class InfrastructureComponent implements OnInit {
   searchTerm: string;
 
   /**
-   * Model that hold the quick filter with specificKey pipe
+   * Model that hold the quick filter
    */
   quickFilter: string;
-  specificKey: string;
 
   /**
    * Variable to store the value of the filter search text and sortBy pipe
@@ -143,7 +142,7 @@ export class InfrastructureComponent implements OnInit {
     this.memoryCount = 0;
     this.storageCount = 0;
     this.onlineCount = 0;
-    this.onlineTotalCount = 1;
+    this.onlineTotalCount = 0;
 
     // SortBy
     this.sortedBy = '';
@@ -206,19 +205,26 @@ export class InfrastructureComponent implements OnInit {
     response.devices.forEach(device => {
       device.type = 'Device';
       device.id = device.device_id;
-      device.toggle = true;
+      if (!device.location || device.location === undefined || device.location === null) {
+        device.location = 'undefined';
+      }
       this.inventory.push(device);
     });
     response.assets.forEach(asset => {
       asset.type = 'Asset';
       asset.id = asset.asset_id;
-      asset.toggle = true;
+      if (!asset.location || asset.location === undefined || asset.location === null) {
+        asset.location = 'undefined';
+      }
       this.inventory.push(asset);
     });
     response.edgeControllers.forEach(edgeController => {
       edgeController.type = 'EC';
       edgeController.toggle = true;
       edgeController.id = edgeController.edge_controller_id;
+      if (!edgeController.location || edgeController.location === undefined || edgeController.location === null) {
+        edgeController.location = 'undefined';
+      }
       this.inventory.push(edgeController);
     });
   }
@@ -352,25 +358,22 @@ export class InfrastructureComponent implements OnInit {
     this.buttonSelected = true;
     console.log(boton);
     // item.toggle = !item.toggle;
-    
+
       console.log('mostrar context 1');
-      if(item.id == this.contextMenu.itemId)
-      {
+      if (item.id === this.contextMenu.itemId) {
         console.log('he clicado el mismo botón, oculto o muestro');
         this.contextMenu.visible = !this.contextMenu.visible ;
-      }
-      else
-      {
+      } else {
         console.log('he clicado otro botón, muestro sí o sí');
         this.contextMenu.visible = true;
         this.buttonSelected = false;
       }
-      
+
       item.toggle = !this.contextMenu.visible;
-      
+
       this.contextMenu.options = ['More info', 'Unlink EC', 'Install agent'];
       this.contextMenu.itemId = item.id;
-    
+
   }
 
 }
