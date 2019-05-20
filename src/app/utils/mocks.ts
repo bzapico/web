@@ -1477,7 +1477,7 @@ export const mockInventoryList = {
             'status' : 'online'
             }
     ],
-    edgeControllers:
+    controllers:
     [
         {
             'organization_id': '8888-2ed7-41c1-90fb-f561eb81ea42',
