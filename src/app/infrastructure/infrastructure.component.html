@@ -250,8 +250,8 @@
               <tr *ngFor=
                 "let item of inventory |
                 sortBy : sortedBy : reverse : 'case-insensitive' |
-                filter : searchTerm |
-                filter : quickFilter : 'type'">
+                filter : searchTerm : ['type', 'id', 'location', 'labels', 'status']|
+                filter : quickFilter : ['type']">
                 <td class="col-1">
                   <span tooltip="Type" placement="top">{{item.type}}</span>
                 </td>
@@ -259,13 +259,9 @@
                   <span tooltip="ID" placement="top">{{item.id}}</span>
                 </td>
                 <td class="col-2">
-                  <span 
-                    *ngIf="item.location" 
-                    tooltip="Location" 
-                    placement="top">
+                  <span tooltip="Location" placement="top">
                     {{item.location}}
                   </span>
-                  <span *ngIf="!item.location">undefined</span>
                 </td>
                 <td *ngIf="item.labels" class="col-4">
                   <button 

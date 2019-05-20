@@ -75,10 +75,9 @@ export class InfrastructureComponent implements OnInit {
   searchTerm: string;
 
   /**
-   * Model that hold the quick filter with specificKey pipe
+   * Model that hold the quick filter
    */
   quickFilter: string;
-  specificKey: string;
 
   /**
    * Variable to store the value of the filter search text and sortBy pipe
@@ -195,16 +194,25 @@ export class InfrastructureComponent implements OnInit {
     response.devices.forEach(device => {
       device.type = 'Device';
       device.id = device.device_id;
+      if (!device.location || device.location === undefined || device.location === null) {
+        device.location = 'undefined';
+      }
       this.inventory.push(device);
     });
     response.assets.forEach(asset => {
       asset.type = 'Asset';
       asset.id = asset.asset_id;
+      if (!asset.location || asset.location === undefined || asset.location === null) {
+        asset.location = 'undefined';
+      }
       this.inventory.push(asset);
     });
     response.edgeControllers.forEach(edgeController => {
       edgeController.type = 'EC';
       edgeController.id = edgeController.edge_controller_id;
+      if (!edgeController.location || edgeController.location === undefined || edgeController.location === null) {
+        edgeController.location = 'undefined';
+      }
       this.inventory.push(edgeController);
     });
   }
