@@ -1301,3 +1301,209 @@ export const mockGroupList: Group[] = [
        'device_group_api_key': 'cd9e76b1-bfb8-4f51-ba73-3336d8051948'
     }
 ];
+
+/**
+ * Mocked Infrastructure Pie Chart
+ */
+export const mockInfrastructurePieChart = [
+    {
+        name: 'Online',
+        value: 3
+    },
+    {
+        name: 'Offline',
+        value: 5
+    }
+];
+
+/**
+ * Mock inventory summary containing total cpu, moemory and storage
+ */
+export const mockInventorySummary = {
+    total_num_cpu: 10,
+    total_ram: 20,
+    total_storage: 30,
+};
+
+/**
+ * Mocked inventory list
+ */
+export const mockInventoryList = {
+    devices: [
+        {
+            'organization_id': '222-2ed7-41c1-90fb-f561eb81ea42',
+            'device_group_id': '333-76b7-4085-98fb-27c1cd9b79a5',
+            'device_id': 'dh005',
+            'register_since': '1550746520',
+            'labels': {
+                'lab11': 'label11',
+                'lab21': 'label21'
+            },
+            'status' : 'online'
+            },
+            {
+            'organization_id': '444-41c1-90fb-f561eb81ea42',
+            'device_group_id': '555-4085-98fb-27c1cd9b79a5',
+            'device_id': 'dh007',
+            'register_since': '1550746520',
+            'labels': {
+                'lab12': 'label12',
+                'lab22': 'label22'
+            },
+            'status' : 'online'
+            },
+            {
+            'organization_id': '666-2ed7-41c1-90fb-f561eb81ea42',
+            'device_group_id': '777-76b7-4085-98fb-27c1cd9b79a5',
+            'device_id': 'dh006',
+            'register_since': '1550746520',
+            'labels': {
+                'lab13': 'label13',
+                'lab23': 'label23'
+            },
+            'status' : 'online'
+            }
+    ],
+    assets: [
+        {
+            'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
+            'show': true,
+            'created': '1550746520',
+            'labels': {
+                'lab1': 'label1',
+                'lab2': 'label2'
+            },
+            'os': {
+                'name': 'petra',
+                'version': 'v1',
+                'class': 'linux',
+                'architecture': 'chagal'
+            },
+            'hardware': {
+                'cpus': {
+                    'manufacturer': 'Apple',
+                    'model': 'yes',
+                    'architecture': 'Fanix',
+                    'num_cores': 3
+                },
+                'installed_ram': 2,
+                'net_interfaces': {
+                    'type': 'capacity',
+                    'link_capacity': 5
+                }
+
+            },
+            'storage': {
+                'type': 'ram',
+                'total_capacity': 7
+            },
+            'eic_net_ip': 'http/knon',
+            'status' : 'offline'
+            },
+            {
+            'organization_id': 'c6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'asset_id': 'a56b9900-4444-41b0-bb7c-adf0055274cd',
+            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
+            'show': true,
+            'created': '1550746676',
+            'labels': {
+                'lab1': 'label1',
+                'lab2': 'label2'
+            },
+            'os': {
+                'name': 'petra',
+                'version': 'v1',
+                'class': 'linux',
+                'architecture': 'chagal'
+            },
+            'hardware': {
+                'cpus': {
+                    'manufacturer': 'Windows',
+                    'model': 'yes',
+                    'architecture': 'Unix',
+                    'num_cores': 3
+                },
+                'installed_ram': 2,
+                'net_interfaces': {
+                    'type': 'capacity',
+                    'link_capacity': 5
+                }
+
+            },
+            'storage': {
+                'type': 'ram',
+                'total_capacity': 7
+            },
+            'eic_net_ip': 'http/qweqwe',
+            'status' : 'online'
+            },
+            {
+            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
+            'show': true,
+            'created': '1550746669',
+            'labels': {
+                'lab1': 'label1',
+                'lab2': 'label2'
+            },
+            'os': {
+                'name': 'petra',
+                'version': 'v1',
+                'class': 'linux',
+                'architecture': 'chagal'
+            },
+            'hardware': {
+                'cpus': {
+                    'manufacturer': 'Linux',
+                    'model': 'yes',
+                    'architecture': 'Ubuntu',
+                    'num_cores': 3
+                },
+                'installed_ram': 2,
+                'net_interfaces': {
+                    'type': 'capacity',
+                    'link_capacity': 5
+                }
+
+            },
+            'storage': {
+                'type': 'ram',
+                'total_capacity': 7
+            },
+            'eic_net_ip': 'http/qweqwe',
+            'status' : 'online'
+            }
+    ],
+    controllers:
+    [
+        {
+            'organization_id': '8888-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
+            'show': true,
+            'created': '1550746676',
+            'name': 'edge25',
+            'labels': {
+                'lab1': 'label1',
+                'lab2': 'label2'
+            },
+            'status': 'offline'
+        },
+        {
+            'organization_id': '999-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
+            'show': true,
+            'created': '1550746676',
+            'name': 'edge65',
+            'labels': {
+                'lab334': 'label344',
+                'lab244': 'label244'
+            },
+            'status': 'online'
+        }
+    ]
+};
+
+

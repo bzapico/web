@@ -175,6 +175,29 @@ export class BackendService implements Backend {
     );
   }
 
+   /********************
+   * Infrastructure
+   ********************/
+
+  // GET 'infrastructure/{organization_id}/list'
+  /**
+   * Requests the inventory list
+   * @param organizationId Organization identifier
+   */
+  getInventory(organizationId: string) {
+    throw new Error('Method not implemented.');
+  }
+
+  // GET 'infrastructure/{organization_id}/summary'
+  /**
+   * Requests to get the infrastructure inventory summary 
+   * @param organizationId Organization identifier
+   */
+  getInventorySummary(organizationId: string) {
+    throw new Error('Method not implemented.');
+  }
+
+
   /********************
    * Resources
    ********************/

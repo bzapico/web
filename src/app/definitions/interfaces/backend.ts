@@ -14,6 +14,9 @@ export interface Backend {
     saveUserChanges(organizationId: string, changes: any);
     listRoles(organizationId: string);
     changeRole(organizationId: string, userId: string, roleId: string);
+    // Infrastructure
+    getInventory(organizationId: string);
+    getInventorySummary(organizationId: string);
     // Resources
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);
     getClusters(organizationId: string);
@@ -41,4 +44,5 @@ export interface Backend {
     addGroup(organizationId: string, groupData: any);
     deleteGroup(organizationId: string, groupId: any);
     updateGroup(organizationId: string, groupData: any);
+
 }
