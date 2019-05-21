@@ -156,7 +156,7 @@
               <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
             </p>
             <p *ngIf="quickFilter && !filterField && !searchTerm" class="sorting-message">
-              {{ ( inventory | filter : quickFilter : ['type'] | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }} results found. Filtered by type "{{ quickFilter }}".
+              {{ ( inventory | filter : quickFilter : ['type'] | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }} results found. Filtered by {{ quickFilter }}.
               <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
             </p> 
             <p *ngIf="filterField && searchTerm" class="sorting-message">
@@ -170,11 +170,11 @@
               {{ ( inventory | filter : quickFilter : ['type'] | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }}  results found. Sorted by {{ sortedBy }}
               <span *ngIf="reverse">ascendant </span>
               <span *ngIf="!reverse">descendant </span>
-              and quick filtered by "{{ quickFilter }}".
+              and filtered by {{ quickFilter }}.
               <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
             </p> 
             <p *ngIf="quickFilter && searchTerm && !filterField" class="sorting-message">
-              {{ ( inventory | filter : quickFilter : ['type'] | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }} results found. Filtered by term "{{ searchTerm }}" and by type "{{ quickFilter }}".
+              {{ ( inventory | filter : quickFilter : ['type'] | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }} results found. Filtered by term "{{ searchTerm }}" and by {{ quickFilter }}.
               <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
             </p> 
           </div>
