@@ -296,8 +296,8 @@
                     (click)="openContextualMenu(item, $event.target)"
                     [ngClass]=
                       "{
-                        'action-btn-grey': item.toggle,
-                        'action-btn-grey-selected': !item.toggle 
+                        'action-btn-grey': !item.toggle,
+                        'action-btn-grey-selected': item.toggle 
                       }" 
                       class="action-btn-grey position-relative" 
                       >
