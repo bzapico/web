@@ -1,3 +1,77 @@
-<p>
-  edge-controller works!
-</p>
+
+<div class="modal-card modal-card-info">
+  <div class="modal-content">
+      <!-- Header -->
+      <div class="modal-header">
+        <h3 class="edge-title mb-4">Edge Controller info</h3>
+      </div>
+      <!-- Body -->
+      <div class="modal-body">
+      <h3 class="edge-h3-title">EC NAME</h3>
+      <p class="edge-image">Attached on 4/14/2019</p>
+      <p class="edge-title-sm">654654654654654654654654654654654</p>
+      <div class="scroll-app-info">
+        <div class="row">
+          <div class="col-sm grey mb-3">Status</div>
+          <h3 class="edge-h3-title col-sm text-right blue">ONLINE</h3>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm grey mb-3">Labels</div>
+        </div>
+        <div *ngFor="let label of objectToString(labels)" class="row">
+          <div *ngIf="labels" class="col-sm text-right">
+            <button class="btn-sm btn-outline-primary" disabled>
+              {{label[0]}} : {{label[1]}}
+            </button>
+          </div>
+          <div *ngIf="!labels" class="col-sm text-right">No</div>
+        </div>
+        <br>
+        <span *ngIf="assets">
+          <div class="row">
+            <div class="col-sm grey mb-3">Assets</div>
+          </div>
+            <div class="row">
+              <div class="col-sm"></div>
+              <div class="col-sm">IP</div>
+              <div class="col-sm text-right">Status</div>
+            </div>
+          </span>
+          <div *ngFor="let asset of assets">
+            <span *ngIf="assets">
+              <div class="row">
+                <div class="col-sm"></div>
+                <div class="col-sm blue">90.105.55.542</div>
+                <div class="col-sm text-right blue">ONLINE</div>
+              </div>
+            </span>
+            <span *ngIf="!assetss">
+            <div class="row">
+              <div class="col-sm text-right">No</div>
+            </div>
+          </span>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm grey mb-3">Edge Controller ID</div>
+          <div class="col-sm text-right">654654654654654</div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm grey mb-3">Show</div>
+          <div class="col-sm text-right">True</div>
+        </div>
+        <br>
+      </div>      
+      <!-- Option button -->
+      <div class="form-group-btn">
+        <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">
+          <span class="align-bottom">Close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
