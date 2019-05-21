@@ -6,6 +6,7 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { mockInfrastructurePieChart } from '../utils/mocks';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { EdgeControllerComponent } from '../edge-controller/edge-controller.component';
 
 @Component({
   selector: 'app-infrastructure',
@@ -344,5 +345,25 @@ export class InfrastructureComponent implements OnInit {
         return false;
       }
     }
+  }
+
+  /**
+  * Open Edge Controllers info modal window
+  *  @param controller Edge controller object
+  */
+  openEdgeControllerInfo(controller) {
+    const initialState = {
+      organizationId: this.organizationId,
+      controllerId: controller.edge_controller_id,
+      show: controller.show,
+      created: controller.created,
+      name: controller.name,
+      labels: controller.labels,
+      status: controller.status
+    };
+
+    this.modalRef = this.modalService.show(EdgeControllerComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+
   }
 }

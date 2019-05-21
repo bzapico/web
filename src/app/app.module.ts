@@ -105,7 +105,8 @@ import { EdgeControllerComponent } from './edge-controller/edge-controller.compo
     DeployInstanceComponent,
     ServiceInstancesInfoComponent,
     RuleInfoComponent,
-    ServiceInfoComponent
+    ServiceInfoComponent,
+    EdgeControllerComponent
   ],
   imports: [
     BrowserModule,
