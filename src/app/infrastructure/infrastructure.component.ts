@@ -43,7 +43,7 @@ export class InfrastructureComponent implements OnInit {
    */
   devices: any[];
   assets: any[];
-  edgeControllers: any [];
+  controllers: any [];
 
   /**
    * NGX-Charts object-assign required object references (for rendering)
@@ -134,7 +134,7 @@ export class InfrastructureComponent implements OnInit {
     this.inventory = [];
     this.assets = [];
     this.devices = [];
-    this.edgeControllers = [];
+    this.controllers = [];
     this.labels = [];
     this.loadedData = false;
     this.requestError = '';
@@ -197,36 +197,44 @@ export class InfrastructureComponent implements OnInit {
   }
 
   /**
-   * Normalize the inventroy list and added type
+   * Normalize the inventory list and added type
    * @param response Backend response where to modify the data
    */
   normalizeInventoryItems(response) {
     this.inventory = [];
-    response.devices.forEach(device => {
-      device.type = 'Device';
-      device.id = device.device_id;
-      if (!device.location || device.location === undefined || device.location === null) {
-        device.location = 'undefined';
+    if (!response || response === null) {
+    } else {
+      if (response.devices) {
+        response.devices.forEach(device => {
+          device.type = 'Device';
+          device.id = device.device_id;
+          if (!device.location || device.location === undefined || device.location === null) {
+            device.location = 'undefined';
+          }
+          this.inventory.push(device);
+        });
       }
-      this.inventory.push(device);
-    });
-    response.assets.forEach(asset => {
-      asset.type = 'Asset';
-      asset.id = asset.asset_id;
-      if (!asset.location || asset.location === undefined || asset.location === null) {
-        asset.location = 'undefined';
+      if (response.assets) {
+        response.assets.forEach(asset => {
+          asset.type = 'Asset';
+          asset.id = asset.asset_id;
+          if (!asset.location || asset.location === undefined || asset.location === null) {
+            asset.location = 'undefined';
+          }
+          this.inventory.push(asset);
+        });
       }
-      this.inventory.push(asset);
-    });
-    response.edgeControllers.forEach(edgeController => {
-      edgeController.type = 'EC';
-      edgeController.toggle = true;
-      edgeController.id = edgeController.edge_controller_id;
-      if (!edgeController.location || edgeController.location === undefined || edgeController.location === null) {
-        edgeController.location = 'undefined';
+      if (response.controllers) {
+        response.controllers.forEach(controller => {
+          controller.type = 'EC';
+          controller.id = controller.edge_controller_id;
+          if (!controller.location || controller.location === undefined || controller.location === null) {
+            controller.location = 'undefined';
+          }
+          this.inventory.push(controller);
+        });
       }
-      this.inventory.push(edgeController);
-    });
+    }
   }
 
   /**
@@ -234,9 +242,9 @@ export class InfrastructureComponent implements OnInit {
    * @param response Backend response where to modify the data
    */
   updateOnlineEcsPieChart(response) {
-    this.onlineTotalCount = response.edgeControllers.length;
+    this.onlineTotalCount = response.controllers.length;
     const itemStatus =
-    response.edgeControllers.filter(item => item.status === 'online');
+    response.controllers.filter(item => item.status === 'online');
     this.onlineCount = itemStatus.length;
     this.infrastructurePieChart = this.generateSummaryChartData(this.onlineCount, this.onlineTotalCount);
   }
