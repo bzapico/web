@@ -140,6 +140,10 @@
         }
     }
 }
+.quick-filters-btn-selected {
+    @extend .quick-filters-btn;
+    background-color: #03D7E8;
+}
 
 /* - - - Install buttons - - - */
 .install-options {
@@ -183,7 +187,10 @@
         margin-top: 1em;
     }
 }
-
+.sorting-message {
+    text-align: right;
+    margin-right: 2em;
+}
 @include for-quarter-up {
     .infrastructure-actions-full-text {
         display: none;
