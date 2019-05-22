@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EdgeControllerComponent } from './edge-controller.component';
+import { BsModalRef } from 'ngx-bootstrap';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('EdgeControllerComponent', () => {
   let component: EdgeControllerComponent;
@@ -8,7 +10,13 @@ describe('EdgeControllerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EdgeControllerComponent ]
+      declarations: [ EdgeControllerComponent ],
+      imports: [
+        HttpClientTestingModule,
+      ],
+      providers: [
+        BsModalRef,
+      ]
     })
     .compileComponents();
   }));
