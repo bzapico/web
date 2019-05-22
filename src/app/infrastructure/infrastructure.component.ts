@@ -273,7 +273,11 @@ export class InfrastructureComponent implements OnInit {
    * Adds a quick filter
    */
   addQuickFilter(quickFilter: string) {
-    this.quickFilter = quickFilter;
+    if (this.quickFilter === quickFilter) {
+      this.quickFilter = '';
+    } else {
+      this.quickFilter = quickFilter;
+    }
   }
 
   /**
