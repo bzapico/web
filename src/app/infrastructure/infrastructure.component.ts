@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
@@ -17,21 +17,6 @@ export class InfrastructureComponent implements OnInit {
 
   @ViewChild('contextMenu') private contextMenu: ContextualMenuComponent;
   buttonSelected: boolean = false;
-
-  menuState: boolean;
-  menuPositionY: any;
-  menuPositionX: any;
-  menuPosition: any;
-  menuWidth: any;
-  menuHeight: any;
-  innerHeight: any;
-  innerWidth: any;
-  windowWidth: any;
-  windowHeight: any;
-
-  @HostListener('document:click', ['$event'])
-
-  @HostListener('document:contextmenu', ['$event'])
 
   /**
    * Backend reference
@@ -397,64 +382,11 @@ export class InfrastructureComponent implements OnInit {
         this.buttonSelected = false;
 
       }
-
       item.toggle = !this.contextMenu.visible;
-// TODO 
-      this.buttonSelected = item;
-      event.stopPropagation();
-      this.menuState = true;
-      this.positionMenu(event);
 
       this.contextMenu.options = ['More info', 'Unlink EC', 'Install agent'];
       this.contextMenu.itemId = item.id;
 
-  }
-
-  getPosition(e) {
-    let posx = 0;
-    let posy = 0;
-    if (e.pageX || e.pageY) {
-      posx = e.pageX;
-      posy = e.pageY;
-    } else if (e.clientX || e.clientY) {
-      posx = e.clientX + document.body.scrollLeft +
-      document.documentElement.scrollLeft;
-      posy = e.clientY + document.body.scrollTop +
-      document.documentElement.scrollTop;
-    }
-    console.log(posy, posx);
-    return {x: posx, y: posy };
-  }
-
-  positionMenu(e) {
-    this.menuPosition = this.getPosition(e);
-    this.menuPositionX = this.menuPosition.x;
-    this.menuPositionY = this.menuPosition.y;
-
-    this.cdRef.detectChanges();
-
-    this.menuWidth = this.contextMenu.nativeElement.offsetWidth;
-    this.menuHeight = this.contextMenu.nativeElement.offsetHeight;
-    this.windowWidth = window.innerWidth;
-    this.windowHeight = window.innerHeight;
-
-    if ( [this.windowWidth — this.menuPositionX] < this.menuWidth ) {
-      this.menuPositionX = this.windowWidth — this.menuWidth + 'px';
-    } else {
-      this.menuPositionX = this.menuPositionX + 'px';
-    }
-
-    if ( [this.windowHeight — this.menuPositionY] < this.menuHeight ) {
-      this.menuPositionY = this.windowHeight — this.menuHeight + 'px';
-    } else {
-      this.menuPositionY = this.menuPositionY + 'px';
-    }
-  }
-  documentClick(event: Event): void {
-    this.menuState = false;
-  }
-  documentRClick(event: Event): void {
-    this.menuState = false;
   }
 
 }

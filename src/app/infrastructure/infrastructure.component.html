@@ -301,7 +301,7 @@
                     placement="bottom"
                     class="status-dot">
                   </span>
-                  <span  *ngIf="item.status" class="hide-lg">
+                  <span *ngIf="item.status" class="hide-lg">
                     {{item.status}}
                     </span>
                   <span *ngIf="!item.status"> - </span>
@@ -314,52 +314,12 @@
                         'action-btn-grey': item.toggle,
                         'action-btn-grey-selected': !item.toggle 
                       }" 
-                      [ngClass]="this.menuState ? 'context-active' : 'context-menu'"
-                      [ngStyle]=
-                      "{
-                        'left':this.menuPositionX, 
-                        'top':this.menuPositionY
-                      }"
                       class="action-btn-grey position-relative" 
                       >
                       <i class="material-icons i-black">more_vert</i>
                       <app-contextual-menu [visible]="false" #contextMenu></app-contextual-menu>
                   </button>
                 </td>
-
-                <!-- <td class="col-1 text-center">
-                    <button title={{buttonSelected}}
-                      (click)="openContextualMenu(item, $event.target)"
-                      [ngClass]=
-                        "{
-                          'action-btn-grey': 'item !== buttonSelected',
-                          'action-btn-grey-selected': 'item === buttonSelected' 
-                        }" 
-                        class="action-btn-grey position-relative" 
-                        >
-                        <i class="material-icons i-black">more_vert</i>
-                        <app-contextual-menu [visible]="false" #contextMenu></app-contextual-menu>
-                    </button>
-                  </td> -->
-                <!-- <td class="col-1 text-center">
-                  <div style="
-                  ; border: 1px solid red; ">
-                      <button 
-                      (click)="openContextualMenu(item,'options1')"
-                      [ngClass]=
-                        "{
-                          'action-btn-grey': item.toggle,
-                          'action-btn-grey-selected': !item.toggle 
-                        }" 
-                        class="action-btn-grey" 
-                        >
-                        <i class="material-icons i-black">more_vert</i>
-                      </button>
-                        
-                      <app-contextual-menu [visible]="false" #contextMenu></app-contextual-menu>
-                  </div>
-                 
-                </td> -->
               </tr>
             </tbody>
           </table>
@@ -395,4 +355,3 @@
     </div>
   </div>
 </div>
-<!-- <app-contextual-menu [visible]="false" #contextMenu></app-contextual-menu> -->
