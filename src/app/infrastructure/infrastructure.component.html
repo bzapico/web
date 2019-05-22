@@ -311,15 +311,36 @@
                     (click)="openContextualMenu(item, $event.target)"
                     [ngClass]=
                       "{
-                        'action-btn-grey': !item.toggle,
-                        'action-btn-grey-selected': item.toggle 
+                        'action-btn-grey': item.toggle,
+                        'action-btn-grey-selected': !item.toggle 
                       }" 
+                      [ngClass]="this.menuState ? 'context-active' : 'context-menu'"
+                      [ngStyle]=
+                      "{
+                        'left':this.menuPositionX, 
+                        'top':this.menuPositionY
+                      }"
                       class="action-btn-grey position-relative" 
                       >
                       <i class="material-icons i-black">more_vert</i>
                       <app-contextual-menu [visible]="false" #contextMenu></app-contextual-menu>
                   </button>
                 </td>
+
+                <!-- <td class="col-1 text-center">
+                    <button title={{buttonSelected}}
+                      (click)="openContextualMenu(item, $event.target)"
+                      [ngClass]=
+                        "{
+                          'action-btn-grey': 'item !== buttonSelected',
+                          'action-btn-grey-selected': 'item === buttonSelected' 
+                        }" 
+                        class="action-btn-grey position-relative" 
+                        >
+                        <i class="material-icons i-black">more_vert</i>
+                        <app-contextual-menu [visible]="false" #contextMenu></app-contextual-menu>
+                    </button>
+                  </td> -->
                 <!-- <td class="col-1 text-center">
                   <div style="
                   ; border: 1px solid red; ">
