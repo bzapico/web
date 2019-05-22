@@ -8,7 +8,7 @@
       <!-- Body -->
       <div class="modal-body">
         <h3 class="asset-h3-title">80.3.35.105</h3>
-        <p class="asset-image blue">on EdgeController NAME</p>
+        <p class="asset-image">on <span class="blue">EdgeController NAME</span></p>
         <p class="asset-title-sm">{{agentId}}</p>
         <div class="scroll-app-info">
           <div class="row">
@@ -68,30 +68,28 @@
             <div class="col-sm text-right">16 Gb</div>
           </div>
           <br>
-          <span *ngIf="networkingSpecs">
+          <span *ngIf="hardware.net_interfaces">
             <div class="row">
               <div class="col-sm grey mb-3">Networking specs</div>
             </div>
               <div class="row">
                 <div class="col-sm"></div>
-                <div class="col-sm">Type</div>
-                <div class="col-sm text-right">Capacity</div>
+                <div class="col-sm grey">Type</div>
+                <div class="col-sm text-right grey">Capacity</div>
               </div>
             </span>
-            <div *ngFor="let networkingSpec of networkingSpecs">
-              <span *ngIf="networkingSpecs">
-                <div class="row">
-                  <div class="col-sm"></div>
-                  <div class="col-sm grey">654654</div>
-                  <div class="col-sm text-right grey">654654</div>
-                </div>
-              </span>
-              <span *ngIf="!networkingSpecs">
+            <span *ngIf="hardware.net_interfaces">
               <div class="row">
-                <div class="col-sm text-right">No</div>
+                <div class="col-sm"></div>
+                <div class="col-sm">{{hardware.net_interfaces.type}}</div>
+                <div class="col-sm text-right">{{hardware.net_interfaces.link_capacity}}</div>
               </div>
             </span>
-          </div>
+            <span *ngIf="!hardware.net_interfaces">
+            <div class="row">
+              <div class="col-sm text-right">No</div>
+            </div>
+          </span>
         </div>      
         <!-- Option button -->
         <div class="form-group-btn">
