@@ -274,7 +274,7 @@
                   <span tooltip="Type" placement="top">{{item.type}}</span>
                 </td>
                 <td class="col-2">
-                  <span tooltip="ID" placement="top">{{item.id}}</span>
+                  <span tooltip="ID" placement="top" (click)="openAssetInfo(item)">{{item.id}}</span>
                 </td>
                 <td class="col-2">
                   <span tooltip="Location" placement="top">

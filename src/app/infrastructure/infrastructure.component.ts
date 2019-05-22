@@ -6,6 +6,7 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { mockInfrastructurePieChart } from '../utils/mocks';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { AssetInfoComponent } from '../asset-info/asset-info.component';
 
 @Component({
   selector: 'app-infrastructure',
@@ -349,4 +350,31 @@ export class InfrastructureComponent implements OnInit {
       }
     }
   }
+
+
+  /**
+  * Open Asset info modal window
+  *  @param asset asset object
+  */
+  openAssetInfo(asset) {
+    const initialState = {
+    organizationId: this.organizationId,
+    assetId: asset.asset_id,
+    agentId: asset.agent_id,
+    show: asset.show,
+    created: asset.created,
+    name: asset.name,
+    labels: asset.labels,
+    os: asset.os,
+    hardware: asset.hardware,
+    storage: asset.storage,
+    eic: asset.eic_net_ip,
+    status: asset.status
+  };
+
+  this.modalRef = this.modalService.show(AssetInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+  this.modalRef.content.closeBtnName = 'Close';
+
+}
+
 }

@@ -105,7 +105,8 @@ import { AssetInfoComponent } from './asset-info/asset-info.component';
     DeployInstanceComponent,
     ServiceInstancesInfoComponent,
     RuleInfoComponent,
-    ServiceInfoComponent
+    ServiceInfoComponent,
+    AssetInfoComponent
   ],
   imports: [
     BrowserModule,
