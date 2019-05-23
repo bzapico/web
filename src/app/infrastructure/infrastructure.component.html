@@ -314,10 +314,12 @@
                         'action-btn-grey': item.id !== activeContextMenuItemId,
                         'action-btn-grey-selected': item.id === activeContextMenuItemId
                       }" 
-                      class="action-btn-grey position-relative" 
-                      >
-                      <i class="material-icons i-black">more_vert</i>
-                      <app-contextual-menu [visible]="item.id === activeContextMenuItemId" [options]="item.options"></app-contextual-menu>
+                    class="action-btn-grey position-relative">
+                    <i class="material-icons i-black">more_vert</i>
+                    <app-contextual-menu 
+                      [visible]="item.id === activeContextMenuItemId" 
+                      [options]="item.options">
+                    </app-contextual-menu>
                   </button>
                 </td>
               </tr>

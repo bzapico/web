@@ -6,7 +6,6 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { mockInfrastructurePieChart } from '../utils/mocks';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
-import { ContextualMenuComponent } from '../contextual-menu/contextual-menu.component';
 
 @Component({
   selector: 'app-infrastructure',
@@ -107,9 +106,9 @@ export class InfrastructureComponent implements OnInit {
   requestError: string;
 
   /**
-   * Open contextual menu button style trigger
+   * Active context menu item ID
    */
-activeContextMenuItemId = '';
+  activeContextMenuItemId: string;
 
 
   constructor(
@@ -139,6 +138,7 @@ activeContextMenuItemId = '';
     this.storageCount = 0;
     this.onlineCount = 0;
     this.onlineTotalCount = 0;
+    this.activeContextMenuItemId = '';
 
     // SortBy
     this.sortedBy = '';
@@ -359,7 +359,7 @@ activeContextMenuItemId = '';
 
   /**
    * Opens contextual Menu
-   * @param options the options for each contextual menu
+   * @param Item inventory item
    */
   openContextualMenu(item) {
     if (item.id === this. activeContextMenuItemId) {
@@ -368,11 +368,20 @@ activeContextMenuItemId = '';
       this.activeContextMenuItemId = item.id;
     }
 
-    item.options = [{
-      name: 'opt1',
-      actions: 'ea'
-    }];
-
+    item.options = [
+      {
+        name: 'More info',
+        actions: ''
+      },
+      {
+        name: 'Unlink EC',
+        actions: ''
+      },
+      {
+        name: 'Install agent',
+        actions: ''
+      }
+    ];
   }
 
 }
