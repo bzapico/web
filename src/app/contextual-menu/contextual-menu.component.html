@@ -1,0 +1,7 @@
+<div class="contextual-menu" *ngIf="visible">
+  <ul>
+    <li *ngFor="let option of options" (click)="onClick(option)">
+      {{option.name}}
+    </li>
+  </ul>
+</div>
