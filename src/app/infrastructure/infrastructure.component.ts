@@ -380,16 +380,142 @@ export class InfrastructureComponent implements OnInit {
         const ecOptions1 = {
           name: 'More info',
           action: (inventoryItem) => {
-            // debugg log to test functions inside context menu
-            console.log(inventoryItem);
+            this.openECInfo(inventoryItem);
+          },
+          item: item
+        };
+        const ecOptions2 = {
+          name: 'Unlink EC',
+          action: (inventoryItem) => {
+            this.unlinkEC(inventoryItem);
+          },
+          item: item
+        };
+        const ecOptions3 = {
+          name: 'Install agent',
+          action: (inventoryItem) => {
+            this.installAgent(inventoryItem);
           },
           item: item
         };
         ecOptions.push(ecOptions1);
-
+        ecOptions.push(ecOptions2);
+        ecOptions.push(ecOptions3);
       return ecOptions;
+      case 'Asset':
+        const assetOptions = [];
+        const assetOptions1 = {
+          name: 'More info',
+          action: (inventoryItem) => {
+            this.openAssetInfo(inventoryItem);
+          },
+          item: item
+        };
+        const assetOptions2 = {
+          name: 'Command log',
+          action: (inventoryItem) => {
+            this.commandLog(inventoryItem);
+          },
+          item: item
+        };
+        const assetOptions3 = {
+          name: 'Execute command 1',
+          action: (inventoryItem) => {
+            this.executeCommand1(inventoryItem);
+          },
+          item: item
+        };
+        const assetOptions4 = {
+          name: 'Execute command 2',
+          action: (inventoryItem) => {
+            this.executeCommand2(inventoryItem);
+          },
+          item: item
+        };
+        assetOptions.push(assetOptions1);
+        assetOptions.push(assetOptions2);
+        assetOptions.push(assetOptions3);
+        assetOptions.push(assetOptions4);
+      return assetOptions;
+      case 'Device':
+        const deviceOptions = [];
+        const deviceOptions1 = {
+          name: 'More info',
+          action: (inventoryItem) => {
+            this.openDeviceInfo(inventoryItem);
+          },
+          item: item
+        };
+        deviceOptions.push(deviceOptions1);
+      return deviceOptions;
       default:
         break;
     }
   }
+
+  /**
+   * Opens the modal view that holds the Edge Controller info component
+   * @param inventoryItem inventory item
+   */
+  openECInfo(inventoryItem) {
+    alert('EC info');
+  }
+
+  /**
+   * Unlinks the Edge Controller
+   * @param inventoryItem inventory item
+   */
+  unlinkEC(inventoryItem) {
+    alert('EC unlinked');
+  }
+
+  /**
+   * Opens the modal view that holds the install Agent component
+   * @param inventoryItem inventory item
+   */
+  installAgent(inventoryItem) {
+    alert('Install agent');
+  }
+
+  /**
+   * Opens the modal view that holds the asset info component
+   * @param inventoryItem inventory item
+   */
+  openAssetInfo(inventoryItem) {
+    alert('Assets info');
+  }
+
+  /**
+   * Command the logs in assets
+   * @param inventoryItem inventory item
+   */
+  commandLog(inventoryItem) {
+    alert('Command log');
+  }
+
+  /**
+   * Executes command 1 in assets
+   * @param inventoryItem inventory item
+   */
+  executeCommand1(inventoryItem) {
+    alert('Execute command 1');
+  }
+
+  /**
+   * Executes command 1 in assets
+   * @param inventoryItem inventory item
+   */
+  executeCommand2(inventoryItem) {
+    alert('Execute command 1');
+  }
+
+  /**
+   * Opens the modal view that holds the devie info component
+   * @param inventoryItem inventory item
+   */
+  openDeviceInfo(inventoryItem) {
+    alert('Devices info');
+  }
+
 }
+

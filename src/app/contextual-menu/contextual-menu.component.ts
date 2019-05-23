@@ -12,10 +12,8 @@ export class ContextualMenuComponent implements OnInit {
   @Input() visible: boolean;
   @Input() options: any[];
 
-  ngOnInit() {
+  ngOnInit() {}
 
-
-  }
   onClick(option) {
     option.action(option.item);
   }
