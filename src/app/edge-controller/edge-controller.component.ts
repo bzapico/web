@@ -17,6 +17,7 @@ export class EdgeControllerComponent implements OnInit {
   backend: Backend;
 
   controllerId: string;
+  assets: any;
   show: string;
   created: string;
   name: string;

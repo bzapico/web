@@ -7,13 +7,14 @@
     </div>
     <!-- Body -->
     <div class="modal-body">
-      <h3 class="edge-h3-title">{{name}}</h3>
+      <h3 class="edge-h3-title text-uppercase">{{name}}</h3>
       <p class="edge-image">Attached on {{parseTimestampToDate(created)}}</p>
       <p class="edge-title-sm">{{controllerId}}</p>
       <div class="scroll-app-info">
         <div class="row">
           <div class="col-sm grey mb-3">Status</div>
-          <h3 class="edge-h3-title col-sm text-right blue text-uppercase">{{status}}</h3>
+          <h3 *ngIf="status === 'online'" class="edge-h3-title col-sm text-right blue text-uppercase">{{status}}</h3>
+          <h3 *ngIf="status === 'offline'" class="edge-h3-title col-sm text-right red text-uppercase">{{status}}</h3>
         </div>
         <br>
         <div class="row">
@@ -34,28 +35,24 @@
           </div>
             <div class="row">
               <div class="col-sm"></div>
-              <div class="col-sm">IP</div>
-              <div class="col-sm text-right">Status</div>
+              <div class="col-sm grey">IP</div>
+              <div class="col-sm text-right grey">Status</div>
             </div>
+            <br>
           </span>
           <div *ngFor="let asset of assets">
             <span *ngIf="assets">
               <div class="row">
                 <div class="col-sm"></div>
-                <div class="col-sm blue">90.105.55.542</div>
-                <div class="col-sm text-right blue">ONLINE</div>
+                <div class="col-sm blue">{{asset.asset_ip}}</div>
+                <div class="col-sm text-right blue">{{asset.asset_status}}</div>
               </div>
             </span>
-            <span *ngIf="!assetss">
+            <span *ngIf="!assets">
             <div class="row">
               <div class="col-sm text-right">No</div>
             </div>
           </span>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-sm grey mb-3">Show</div>
-          <div class="col-sm text-right blue">{{show}}</div>
         </div>
         <br>
       </div>      

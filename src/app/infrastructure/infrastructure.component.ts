@@ -366,6 +366,7 @@ export class InfrastructureComponent implements OnInit {
     const initialState = {
       organizationId: this.organizationId,
       controllerId: controller.edge_controller_id,
+      assets: controller.assets,
       show: controller.show,
       created: controller.created,
       name: controller.name,
