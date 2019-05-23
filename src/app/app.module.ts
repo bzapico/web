@@ -52,6 +52,7 @@ import { AutofocusDirective } from './directives/autofocus.directive';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 import { EdgeControllerComponent } from './edge-controller/edge-controller.component';
+import { ContextualMenuComponent } from './contextual-menu/contextual-menu.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { EdgeControllerComponent } from './edge-controller/edge-controller.compo
     ServiceInfoComponent,
     AutofocusDirective,
     InfrastructureComponent,
-    EdgeControllerComponent
+    EdgeControllerComponent,
+    ContextualMenuComponent
   ],
   entryComponents: [
     DebugPanelComponent,

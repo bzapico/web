@@ -106,6 +106,12 @@ export class InfrastructureComponent implements OnInit {
    */
   requestError: string;
 
+  /**
+   * Active context menu item ID
+   */
+  activeContextMenuItemId: string;
+
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -133,6 +139,7 @@ export class InfrastructureComponent implements OnInit {
     this.storageCount = 0;
     this.onlineCount = 0;
     this.onlineTotalCount = 0;
+    this.activeContextMenuItemId = '';
 
     // SortBy
     this.sortedBy = '';
@@ -368,6 +375,41 @@ export class InfrastructureComponent implements OnInit {
 
     this.modalRef = this.modalService.show(EdgeControllerComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
+  }
 
+  /**
+   * Opens context menu
+   * @param Item inventory item
+   */
+  openContextualMenu(item) {
+    if (item.id === this. activeContextMenuItemId) {
+      this.activeContextMenuItemId = '';
+    } else {
+      this.activeContextMenuItemId = item.id;
+    }
+  }
+
+  /**
+   * Get the item options to show in the context menu
+   * @param item inventory item
+   */
+  getItemOptions(item) {
+    switch (item.type) {
+      case 'EC':
+        const ecOptions = [];
+        const ecOptions1 = {
+          name: 'More info',
+          action: (inventoryItem) => {
+            // debugg log to test functions inside context menu
+            console.log(inventoryItem);
+          },
+          item: item
+        };
+        ecOptions.push(ecOptions1);
+
+      return ecOptions;
+      default:
+        break;
+    }
   }
 }
