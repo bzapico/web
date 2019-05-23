@@ -34,7 +34,7 @@ export class EdgeControllerComponent implements OnInit {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.serviceInstancesInfoMock) || null;
+    const mock = localStorage.getItem(LocalStorageKeys.edgeControllerInfoMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
