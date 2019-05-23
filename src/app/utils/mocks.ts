@@ -1489,6 +1489,24 @@ export const mockInventoryList = {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
+            'assets':  [
+                {
+                    'asset_ip': '90.105.55.38',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.38',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.38',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.38',
+                    'asset_status': 'online'
+                }
+            ],
             'status': 'offline'
         },
         {
@@ -1501,6 +1519,16 @@ export const mockInventoryList = {
                 'lab334': 'label344',
                 'lab244': 'label244'
             },
+            'assets':  [
+                {
+                    'asset_ip': '90.105.55.38',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.38',
+                    'asset_status': 'online'
+                }
+            ],
             'status': 'online'
         }
     ]
