@@ -377,76 +377,76 @@ export class InfrastructureComponent implements OnInit {
     switch (item.type) {
       case 'EC':
         const ecOptions = [];
-        const ecOptions1 = {
+        const ecOption1 = {
           name: 'More info',
           action: (inventoryItem) => {
             this.openECInfo(inventoryItem);
           },
           item: item
         };
-        const ecOptions2 = {
+        const ecOption2 = {
           name: 'Unlink EC',
           action: (inventoryItem) => {
             this.unlinkEC(inventoryItem);
           },
           item: item
         };
-        const ecOptions3 = {
+        const ecOption3 = {
           name: 'Install agent',
           action: (inventoryItem) => {
             this.installAgent(inventoryItem);
           },
           item: item
         };
-        ecOptions.push(ecOptions1);
-        ecOptions.push(ecOptions2);
-        ecOptions.push(ecOptions3);
+        ecOptions.push(ecOption1);
+        ecOptions.push(ecOption2);
+        ecOptions.push(ecOption3);
       return ecOptions;
       case 'Asset':
         const assetOptions = [];
-        const assetOptions1 = {
+        const assetOption1 = {
           name: 'More info',
           action: (inventoryItem) => {
             this.openAssetInfo(inventoryItem);
           },
           item: item
         };
-        const assetOptions2 = {
+        const assetOption2 = {
           name: 'Command log',
           action: (inventoryItem) => {
             this.commandLog(inventoryItem);
           },
           item: item
         };
-        const assetOptions3 = {
+        const assetOption3 = {
           name: 'Execute command 1',
           action: (inventoryItem) => {
             this.executeCommand1(inventoryItem);
           },
           item: item
         };
-        const assetOptions4 = {
+        const assetOption4 = {
           name: 'Execute command 2',
           action: (inventoryItem) => {
             this.executeCommand2(inventoryItem);
           },
           item: item
         };
-        assetOptions.push(assetOptions1);
-        assetOptions.push(assetOptions2);
-        assetOptions.push(assetOptions3);
-        assetOptions.push(assetOptions4);
+        assetOptions.push(assetOption1);
+        assetOptions.push(assetOption2);
+        assetOptions.push(assetOption3);
+        assetOptions.push(assetOption4);
       return assetOptions;
       case 'Device':
         const deviceOptions = [];
-        const deviceOptions1 = {
+        const deviceOption1 = {
           name: 'More info',
           action: (inventoryItem) => {
             this.openDeviceInfo(inventoryItem);
           },
           item: item
         };
-        deviceOptions.push(deviceOptions1);
+        deviceOptions.push(deviceOption1);
       return deviceOptions;
       default:
         break;
