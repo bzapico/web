@@ -318,7 +318,7 @@
                     <i class="material-icons i-black">more_vert</i>
                     <app-contextual-menu 
                       [visible]="item.id === activeContextMenuItemId" 
-                      [options]="item.options">
+                      [options]=getItemOptions(item)>
                     </app-contextual-menu>
                   </button>
                 </td>

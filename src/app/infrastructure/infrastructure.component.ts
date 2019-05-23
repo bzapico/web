@@ -358,7 +358,7 @@ export class InfrastructureComponent implements OnInit {
   }
 
   /**
-   * Opens contextual Menu
+   * Opens context menu
    * @param Item inventory item
    */
   openContextualMenu(item) {
@@ -367,21 +367,29 @@ export class InfrastructureComponent implements OnInit {
     } else {
       this.activeContextMenuItemId = item.id;
     }
-
-    item.options = [
-      {
-        name: 'More info',
-        actions: ''
-      },
-      {
-        name: 'Unlink EC',
-        actions: ''
-      },
-      {
-        name: 'Install agent',
-        actions: ''
-      }
-    ];
   }
 
+  /**
+   * Get the item options to show in the context menu
+   * @param item inventory item
+   */
+  getItemOptions(item) {
+    switch (item.type) {
+      case 'EC':
+        const ecOptions = [];
+        const ecOptions1 = {
+          name: 'More info',
+          action: (inventoryItem) => {
+            // debugg log to test functions inside context menu
+            console.log(inventoryItem);
+          },
+          item: item
+        };
+        ecOptions.push(ecOptions1);
+
+      return ecOptions;
+      default:
+        break;
+    }
+  }
 }
