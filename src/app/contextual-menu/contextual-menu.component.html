@@ -1,8 +1,7 @@
 <div class="contextual-menu" *ngIf="visible">
-  {{itemId}}
   <ul>
-    <li *ngFor="let option of options">
-      {{option}}
+    <li *ngFor="let option of options" (click)="option.actions">
+      {{option.name}}
     </li>
   </ul>
 </div>

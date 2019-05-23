@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
@@ -14,10 +14,6 @@ import { ContextualMenuComponent } from '../contextual-menu/contextual-menu.comp
   styleUrls: ['./infrastructure.component.scss']
 })
 export class InfrastructureComponent implements OnInit {
-
-  @ViewChild('contextMenu') private contextMenu: ContextualMenuComponent;
-  buttonSelected: boolean = false;
-
   /**
    * Backend reference
    */
@@ -113,7 +109,7 @@ export class InfrastructureComponent implements OnInit {
   /**
    * Open contextual menu button style trigger
    */
-  toggle: boolean;
+activeContextMenuItemId = '';
 
 
   constructor(
@@ -365,27 +361,17 @@ export class InfrastructureComponent implements OnInit {
    * Opens contextual Menu
    * @param options the options for each contextual menu
    */
-  openContextualMenu(item, boton) {
+  openContextualMenu(item) {
+    if (item.id === this. activeContextMenuItemId) {
+      this.activeContextMenuItemId = '';
+    } else {
+      this.activeContextMenuItemId = item.id;
+    }
 
-    this.buttonSelected = false;
-    console.log('botón ', boton);
-    // item.toggle = !item.toggle;
-
-      console.log('mostrar context 1');
-      if (item.id === this.contextMenu.itemId) {
-        console.log('he clicado el mismo botón, oculto o muestro');
-        this.contextMenu.visible = !this.contextMenu.visible ;
-        this.buttonSelected = true;
-      } else {
-        console.log('he clicado otro botón, muestro sí o sí');
-        this.contextMenu.visible = true;
-        this.buttonSelected = false;
-
-      }
-      item.toggle = !this.contextMenu.visible;
-
-      this.contextMenu.options = ['More info', 'Unlink EC', 'Install agent'];
-      this.contextMenu.itemId = item.id;
+    item.options = [{
+      name: 'opt1',
+      actions: 'ea'
+    }];
 
   }
 

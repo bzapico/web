@@ -307,17 +307,17 @@
                   <span *ngIf="!item.status"> - </span>
                 </td>
                 <td class="col-1 text-center">
-                  <button title={{buttonSelected}}
-                    (click)="openContextualMenu(item, $event.target)"
+                  <button 
+                    (click)="openContextualMenu(item)"
                     [ngClass]=
                       "{
-                        'action-btn-grey': item.toggle,
-                        'action-btn-grey-selected': !item.toggle 
+                        'action-btn-grey': item.id !== activeContextMenuItemId,
+                        'action-btn-grey-selected': item.id === activeContextMenuItemId
                       }" 
                       class="action-btn-grey position-relative" 
                       >
                       <i class="material-icons i-black">more_vert</i>
-                      <app-contextual-menu [visible]="false" #contextMenu></app-contextual-menu>
+                      <app-contextual-menu [visible]="item.id === activeContextMenuItemId" [options]="item.options"></app-contextual-menu>
                   </button>
                 </td>
               </tr>
