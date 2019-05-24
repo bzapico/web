@@ -35,7 +35,7 @@
           <br>
           <div class="row">
             <div class="col-sm grey mb-3">OS</div>
-            <div class="col-sm text-right">{{os.class}} {{os.version}}</div>
+            <div class="col-sm text-right">{{class}} {{version}}</div>
           </div>
           <br>
           <div class="row">
@@ -44,28 +44,28 @@
           <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-4 grey">Manufacturer</div>
-            <div class="col-sm text-right">{{hardware.cpus.manufacturer}}</div>
+            <div class="col-sm text-right">{{manufacturer}}</div>
           </div>
           <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-4 grey">Model</div>
-            <div class="col-sm text-right">{{hardware.cpus.model}}</div>
+            <div class="col-sm text-right">{{model}}</div>
           </div>
           <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-4 grey">Architecture</div>
-            <div class="col-sm col-right-low">{{hardware.cpus.architecture}}</div>
+            <div class="col-sm col-right-low">{{architecture}}</div>
           </div>
           <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-4 grey">Cores</div>
-            <div class="col-sm col-right-low">{{hardware.cpus.num_cores}}</div>
+            <div class="col-sm col-right-low">{{cores}}</div>
           </div>
           <br>
           <br>
           <div class="row">
             <div class="col-sm grey mb-3">RAM</div>
-            <div class="col-sm text-right">{{storage.total_capacity}} Gb</div>
+            <div class="col-sm text-right">{{capacity}} Gb</div>
           </div>
           <br>
           <span *ngIf="netInterfaces">

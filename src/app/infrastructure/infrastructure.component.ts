@@ -374,10 +374,15 @@ export class InfrastructureComponent implements OnInit {
     created: asset.created,
     name: asset.name,
     labels: asset.labels,
-    os: asset.os,
-    hardware: asset.hardware,
+    class: asset.os.class,
+    version: asset.os.version,
+    architecture: asset.hardware.cpus.architecture,
+    model: asset.hardware.cpus.model,
+    manufacturer: asset.hardware.cpus.manufacturer,
+    cores: asset.hardware.cpus.num_cores,
     netInterfaces: asset.hardware.net_interfaces,
     storage: asset.storage,
+    capacity: asset.storage.total_capacity,
     eic: asset.eic_net_ip,
     status: asset.status
   };

@@ -20,14 +20,18 @@ export class AssetInfoComponent implements OnInit {
   agentId: string;
   assetIp: string;
   ecName: string;
+  architecture: string;
+  model: string;
+  manufacturer: string;
+  cores: string;
   show: string;
   created: string;
   name: string;
   labels: any;
-  os: string;
-  hardware: string;
+  class: string;
+  version: string;
   netInterfaces: string;
-  storage: string;
+  capacity: string;
   eic: string;
   status: string;
 
