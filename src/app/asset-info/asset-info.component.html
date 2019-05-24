@@ -7,8 +7,8 @@
       </div>
       <!-- Body -->
       <div class="modal-body">
-        <h3 class="asset-h3-title">80.3.35.105</h3>
-        <p class="asset-image">on <span class="blue">EdgeController NAME</span></p>
+        <h3 class="asset-h3-title">{{assetIp}}</h3>
+        <p class="asset-image">on <span class="blue text-uppercase">{{ecName}}</span></p>
         <p class="asset-title-sm">{{agentId}}</p>
         <div class="scroll-app-info">
           <div class="row">
@@ -65,10 +65,10 @@
           <br>
           <div class="row">
             <div class="col-sm grey mb-3">RAM</div>
-            <div class="col-sm text-right">16 Gb</div>
+            <div class="col-sm text-right">{{storage.total_capacity}} Gb</div>
           </div>
           <br>
-          <span *ngIf="hardware.net_interfaces">
+          <span *ngIf="netInterfaces">
             <div class="row">
               <div class="col-sm grey mb-3">Networking specs</div>
             </div>
@@ -78,14 +78,14 @@
                 <div class="col-sm text-right grey">Capacity</div>
               </div>
             </span>
-            <span *ngIf="hardware.net_interfaces">
+            <span *ngIf="netInterfaces">
               <div class="row">
                 <div class="col-sm"></div>
-                <div class="col-sm">{{hardware.net_interfaces.type}}</div>
-                <div class="col-sm text-right">{{hardware.net_interfaces.link_capacity}}</div>
+                <div class="col-sm">{{netInterfaces.type}}</div>
+                <div class="col-sm text-right">{{netInterfaces.link_capacity}}</div>
               </div>
             </span>
-            <span *ngIf="!hardware.net_interfaces">
+            <span *ngIf="!netInterfaces">
             <div class="row">
               <div class="col-sm text-right">No</div>
             </div>
