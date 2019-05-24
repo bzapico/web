@@ -1489,6 +1489,44 @@ export const mockInventoryList = {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
+            'assets':  [
+                {
+                    'asset_ip': '90.105.55.31',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.32',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.33',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.34',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.35',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.36',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.37',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.38',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.39',
+                    'asset_status': 'online'
+                },
+            ],
             'status': 'offline'
         },
         {
@@ -1501,6 +1539,40 @@ export const mockInventoryList = {
                 'lab334': 'label344',
                 'lab244': 'label244'
             },
+            'assets':  [
+                {
+                    'asset_ip': '90.105.55.18',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.28',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.58',
+                    'asset_status': 'offline'
+                },
+                {
+                    'asset_ip': '98.105.55.48',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.68',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.78',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.88',
+                    'asset_status': 'online'
+                },
+                {
+                    'asset_ip': '98.105.55.98',
+                    'asset_status': 'online'
+                },
+            ],
             'status': 'online'
         }
     ]
