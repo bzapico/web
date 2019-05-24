@@ -8,7 +8,11 @@
       <!-- Body -->
       <div class="modal-body">
         <h3 class="asset-h3-title">{{assetIp}}</h3>
-        <p class="asset-image">on <span class="blue text-uppercase">{{ecName}}</span></p>
+        <p class="asset-image">on 
+          <span (click)="openEdgeControllerInfo(controller)" class="blue text-uppercase cursor-pointer">
+            {{ecName}}
+          </span>
+        </p>
         <p class="asset-title-sm">{{agentId}}</p>
         <div class="scroll-app-info">
           <div class="row">

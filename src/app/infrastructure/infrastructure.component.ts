@@ -385,7 +385,7 @@ export class InfrastructureComponent implements OnInit {
     storage: asset.storage,
     capacity: asset.storage.total_capacity,
     eic: asset.eic_net_ip,
-    status: asset.status
+    status: asset.status,
   };
 
   this.modalRef = this.modalService.show(AssetInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });

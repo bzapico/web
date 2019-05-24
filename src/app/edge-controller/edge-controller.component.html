@@ -44,8 +44,8 @@
             <span *ngIf="assets">
               <div class="row">
                 <div class="col-sm"></div>
-                <div class="col-sm blue">{{asset.asset_ip}}</div>
-                <div *ngIf="asset.asset_status === 'online'" class="col-sm text-right">
+                <div (click)="openAssetInfo(asset)"  class="col-sm blue cursor-pointer">{{asset.asset_ip}}</div>
+                <div *ngIf="asset.asset_status === 'online'"  class="col-sm text-right">
                   <div class="text-uppercase blue">{{asset.asset_status}}</div>
                 </div>
                 <div *ngIf="asset.asset_status === 'offline'" class="col-sm text-right">

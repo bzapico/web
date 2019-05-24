@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { AssetInfoComponent } from '../asset-info/asset-info.component';
 
 @Component({
   selector: 'app-edge-controller',
@@ -16,6 +17,10 @@ export class EdgeControllerComponent implements OnInit {
    */
   backend: Backend;
 
+  /**
+   * Models that hold organization id and more // TODO
+   */
+  organizationId: string;
   controllerId: string;
   assets: any;
   show: string;
@@ -25,12 +30,26 @@ export class EdgeControllerComponent implements OnInit {
   status: string;
 
   /**
+   * Change Edge Controller modal window reference
+   */
+  bsAssetModalRef: BsModalRef;
+
+  /**
+   * Models that removes the possibility for the user to close the modal by clicking outside the content card
+   */
+  config = {
+    backdrop: false,
+    ignoreBackdropClick: true
+  };
+
+  /**
    * Loaded Data status
    */
   loadedData: boolean;
 
   constructor(
     public bsModalRef: BsModalRef,
+    private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService
   ) {
@@ -74,5 +93,38 @@ export class EdgeControllerComponent implements OnInit {
       const formattedDate = month + '/' + day + '/' + year;
 
     return formattedDate;
+  }
+
+  /**
+   * Opens the modal view that holds asset component //TODO
+   */
+  openAssetInfo(asset) {
+    const initialState = {
+      organizationId: this.organizationId,
+      assetId: asset.asset_id,
+      agentId: asset.agent_id,
+      assetIp: asset.asset_ip,
+      ecName: asset.ec_name,
+      show: asset.show,
+      created: asset.created,
+      name: asset.name,
+      labels: asset.labels,
+      class: asset.os.class,
+      version: asset.os.version,
+      architecture: asset.hardware.cpus.architecture,
+      model: asset.hardware.cpus.model,
+      manufacturer: asset.hardware.cpus.manufacturer,
+      cores: asset.hardware.cpus.num_cores,
+      netInterfaces: asset.hardware.net_interfaces,
+      storage: asset.storage,
+      capacity: asset.storage.total_capacity,
+      eic: asset.eic_net_ip,
+      status: asset.status,
+    };
+
+    this.bsAssetModalRef =
+      this.modalService.show(AssetInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.bsAssetModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.hide();
   }
 }
