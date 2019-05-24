@@ -36,7 +36,8 @@ export const AvailableComponents = {
   serviceInstancesInfo: 'Service Instances Info',
   ruleInfo: 'Rule Info',
   serviceInfo: 'Service Info',
-  infrastructure: 'Infrastructure'
+  infrastructure: 'Infrastructure',
+  assetInfo: 'Asset Info'
 };
 
 @Component({
@@ -158,6 +159,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.infrastructure,
       mock: localStorage.getItem(LocalStorageKeys.infrastructureMock) === 'false' ? 'false' : 'true'
     });
+    this.components.push({
+      name: AvailableComponents.assetInfo,
+      mock: localStorage.getItem(LocalStorageKeys.assetInfoMock) === 'false' ? 'false' : 'true'
+    });
   }
 
   /**
@@ -194,6 +199,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.ruleInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.serviceInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.infrastructureMock, newValue);
+    localStorage.setItem(LocalStorageKeys.assetInfoMock, newValue);
   }
 
   /**
@@ -277,6 +283,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.infrastructure:
       localStorage.setItem(LocalStorageKeys.infrastructureMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.assetInfo:
+        localStorage.setItem(LocalStorageKeys.assetInfoMock, componentMockOption.mock);
       break;
       default:
         console.log('Selected option not registered as available component');
