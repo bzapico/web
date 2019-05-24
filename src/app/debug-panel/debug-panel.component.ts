@@ -37,7 +37,8 @@ export const AvailableComponents = {
   ruleInfo: 'Rule Info',
   serviceInfo: 'Service Info',
   infrastructure: 'Infrastructure',
-  assetInfo: 'Asset Info'
+  assetInfo: 'Asset Info',
+  edgeControllerInfo: 'EC Info'
 };
 
 @Component({
@@ -163,6 +164,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.assetInfo,
       mock: localStorage.getItem(LocalStorageKeys.assetInfoMock) === 'false' ? 'false' : 'true'
     });
+    this.components.push({
+      name: AvailableComponents.edgeControllerInfo,
+      mock: localStorage.getItem(LocalStorageKeys.edgeControllerInfoMock) === 'false' ? 'false' : 'true'
+    });
   }
 
   /**
@@ -200,6 +205,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.serviceInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.infrastructureMock, newValue);
     localStorage.setItem(LocalStorageKeys.assetInfoMock, newValue);
+    localStorage.setItem(LocalStorageKeys.edgeControllerInfoMock, newValue);
   }
 
   /**
@@ -273,16 +279,19 @@ export class DebugPanelComponent implements OnInit {
         localStorage.setItem(LocalStorageKeys.instanceInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.serviceInstancesInfo:
-      localStorage.setItem(LocalStorageKeys.serviceInstancesInfoMock, componentMockOption.mock);
+        localStorage.setItem(LocalStorageKeys.serviceInstancesInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.ruleInfo:
-      localStorage.setItem(LocalStorageKeys.ruleInfoMock, componentMockOption.mock);
+        localStorage.setItem(LocalStorageKeys.ruleInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.serviceInfo:
-      localStorage.setItem(LocalStorageKeys.serviceInfoMock, componentMockOption.mock);
+        localStorage.setItem(LocalStorageKeys.serviceInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.infrastructure:
-      localStorage.setItem(LocalStorageKeys.infrastructureMock, componentMockOption.mock);
+        localStorage.setItem(LocalStorageKeys.infrastructureMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.edgeControllerInfo:
+        localStorage.setItem(LocalStorageKeys.edgeControllerInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.assetInfo:
         localStorage.setItem(LocalStorageKeys.assetInfoMock, componentMockOption.mock);
