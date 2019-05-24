@@ -45,7 +45,12 @@
               <div class="row">
                 <div class="col-sm"></div>
                 <div class="col-sm blue">{{asset.asset_ip}}</div>
-                <div class="col-sm text-right blue">{{asset.asset_status}}</div>
+                <div *ngIf="asset.asset_status === 'online'" class="col-sm text-right">
+                  <div class="text-uppercase blue">{{asset.asset_status}}</div>
+                </div>
+                <div *ngIf="asset.asset_status === 'offline'" class="col-sm text-right">
+                  <div class="text-uppercase red">{{asset.asset_status}}</div>
+                </div>
               </div>
             </span>
             <span *ngIf="!assets">

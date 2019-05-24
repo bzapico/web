@@ -1550,7 +1550,7 @@ export const mockInventoryList = {
                 },
                 {
                     'asset_ip': '98.105.55.58',
-                    'asset_status': 'online'
+                    'asset_status': 'offline'
                 },
                 {
                     'asset_ip': '98.105.55.48',
