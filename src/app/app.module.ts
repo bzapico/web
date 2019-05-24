@@ -52,6 +52,7 @@ import { AutofocusDirective } from './directives/autofocus.directive';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 import { ContextualMenuComponent } from './contextual-menu/contextual-menu.component';
+import { DeviceInfoComponent } from './device-info/device-info.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { ContextualMenuComponent } from './contextual-menu/contextual-menu.compo
     ServiceInfoComponent,
     AutofocusDirective,
     InfrastructureComponent,
-    ContextualMenuComponent
+    ContextualMenuComponent,
+    DeviceInfoComponent
   ],
   entryComponents: [
     DebugPanelComponent,
