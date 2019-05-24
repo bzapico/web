@@ -186,7 +186,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:54</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:55</a></div>
                             </td>
                         </tr>
 
@@ -267,7 +267,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:167</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:172</a></div>
                             </td>
                         </tr>
 
@@ -339,7 +339,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:65</a></div>
                             </td>
                         </tr>
 
@@ -377,7 +377,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:203</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:209</a></div>
                             </td>
                         </tr>
 
@@ -449,7 +449,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:289</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="298" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:298</a></div>
                             </td>
                         </tr>
 
@@ -489,7 +489,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="297" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:297</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="306" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:306</a></div>
                             </td>
                         </tr>
 
@@ -567,7 +567,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:57</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -606,7 +606,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:53</a></div>
                             </td>
                         </tr>
 
@@ -646,7 +646,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:54</a></div>
                             </td>
                         </tr>
 
@@ -680,7 +680,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:55</a></div>
                             </td>
                         </tr>
 
@@ -731,7 +731,8 @@ export const AvailableComponents &#x3D; {
   serviceInstancesInfo: &#x27;Service Instances Info&#x27;,
   ruleInfo: &#x27;Rule Info&#x27;,
   serviceInfo: &#x27;Service Info&#x27;,
-  infrastructure: &#x27;Infrastructure&#x27;
+  infrastructure: &#x27;Infrastructure&#x27;,
+  assetInfo: &#x27;Asset Info&#x27;
 };
 
 @Component({
@@ -853,6 +854,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.infrastructure,
       mock: localStorage.getItem(LocalStorageKeys.infrastructureMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
+    this.components.push({
+      name: AvailableComponents.assetInfo,
+      mock: localStorage.getItem(LocalStorageKeys.assetInfoMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
   }
 
   /**
@@ -889,6 +894,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.ruleInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.serviceInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.infrastructureMock, newValue);
+    localStorage.setItem(LocalStorageKeys.assetInfoMock, newValue);
   }
 
   /**
@@ -972,6 +978,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.infrastructure:
       localStorage.setItem(LocalStorageKeys.infrastructureMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.assetInfo:
+        localStorage.setItem(LocalStorageKeys.assetInfoMock, componentMockOption.mock);
       break;
       default:
         console.log(&#x27;Selected option not registered as available component&#x27;);
@@ -1106,7 +1115,7 @@ export class DebugPanelComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="debug-panel">  <!-- Header -->  <div class="modal-header">    <h4 class="modal-title pull-left mb-3">      Debug panel    </h4>    <button      (click)="bsModalRef.hide()"      type="button"      aria-label="Close"      class="close pull-right">      <span aria-hidden="true">&times;</span>    </button>  </div>  <!-- Body -->  <div class="modal-body">    <h5 class="mb-3">Backend URL</h5>    <input       (ngModelChange)="urlChange($event)"      type="text"      [ngModel]="url"      class="w-100 form-control mb-3">    <hr/>    <h5 class="mb-3">Backend control</h5>    <div *ngIf="components.length" class="dp-height" >      <div class="d-flex justify-content-center align-items-center">        <div (click)="changeAll(\'false\')" class="btn btn-outline-primary mb-3 small-font">          All real        </div>        <div (click)="changeAll(\'true\')" class="btn btn-outline-primary mb-3 small-font">          All mock        </div>      </div>      <hr/>      <div *ngFor="let item of components; let index = index" class="row">        <!-- Option name -->        <span class="col-3 small-font">          {{item.name}}        </span>        <!-- Option buttons -->        <div           (click)="optionChange(components[index])"          [(ngModel)]="components[index].mock"          btnRadioGroup          class="btn-group offset-5">          <label            btnRadio="false"            tabindex="0"            role="button"            class="btn btn-outline-primary small-font">            Real          </label>          <label            btnRadio="true"            tabindex="0"            role="button"            class="btn btn-outline-primary small-font">            Mock          </label>        </div>      </div>    </div>    <hr/>    <h5 class="mb-3">Notifications</h5>    <div (click)="spamNotification()" class="btn btn-outline-primary offset-6 mb-3 small-font">      Spam test notification    </div>  </div>  <!-- Footer -->  <div class="modal-footer">    <button      (click)="bsModalRef.hide()"      type="button"      class="btn btn-default">      Close    </button>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'DebugPanelComponent'};
 </script>
