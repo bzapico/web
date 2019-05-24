@@ -301,14 +301,25 @@
                     placement="bottom"
                     class="status-dot">
                   </span>
-                  <span  *ngIf="item.status" class="hide-lg">
+                  <span *ngIf="item.status" class="hide-lg">
                     {{item.status}}
                     </span>
                   <span *ngIf="!item.status"> - </span>
                 </td>
                 <td class="col-1 text-center">
-                  <button class="action-btn-grey">
+                  <button 
+                    (click)="openContextualMenu(item)"
+                    [ngClass]=
+                      "{
+                        'action-btn-grey': item.id !== activeContextMenuItemId,
+                        'action-btn-grey-selected': item.id === activeContextMenuItemId
+                      }" 
+                    class="action-btn-grey position-relative">
                     <i class="material-icons i-black">more_vert</i>
+                    <app-contextual-menu 
+                      [visible]="item.id === activeContextMenuItemId" 
+                      [options]=getItemOptions(item)>
+                    </app-contextual-menu>
                   </button>
                 </td>
               </tr>

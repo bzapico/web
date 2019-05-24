@@ -52,6 +52,7 @@ import { AutofocusDirective } from './directives/autofocus.directive';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 import { AssetInfoComponent } from './asset-info/asset-info.component';
+import { ContextualMenuComponent } from './contextual-menu/contextual-menu.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { AssetInfoComponent } from './asset-info/asset-info.component';
     ServiceInfoComponent,
     AutofocusDirective,
     InfrastructureComponent,
-    AssetInfoComponent
+    AssetInfoComponent,
+    ContextualMenuComponent
   ],
   entryComponents: [
     DebugPanelComponent,

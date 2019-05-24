@@ -1369,6 +1369,8 @@ export const mockInventoryList = {
             'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
+            'asset_ip': '90.105.55.38',
+            'ec_name': 'edge65',
             'show': true,
             'created': '1550746520',
             'labels': {
@@ -1406,6 +1408,8 @@ export const mockInventoryList = {
             'organization_id': 'c6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             'asset_id': 'a56b9900-4444-41b0-bb7c-adf0055274cd',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
+            'asset_ip': '90.105.55.38',
+            'ec_name': 'edge66',
             'show': true,
             'created': '1550746676',
             'labels': {
@@ -1443,6 +1447,8 @@ export const mockInventoryList = {
             'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
+            'asset_ip': '90.105.55.38',
+            'ec_name': 'edge67',
             'show': true,
             'created': '1550746669',
             'labels': {

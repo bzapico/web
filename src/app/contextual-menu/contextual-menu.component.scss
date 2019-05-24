@@ -1,0 +1,28 @@
+@mixin for-desktop-up {
+    @media all and (max-width: 1440px) { @content; }
+}
+
+.contextual-menu {
+    min-width: 148px;
+    color: #fff;
+    border-radius: 5px;
+    position: absolute;
+    top: 0px;
+    right: 35px;
+    background-color: #404040;
+    padding: .5em 1em;
+    z-index: 1;
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li {   
+            font-size: .8em;
+            text-align: right;
+            padding: .2em 0;
+        }
+    }
+    @include for-desktop-up {           
+        right: 27px;
+    }
+}
