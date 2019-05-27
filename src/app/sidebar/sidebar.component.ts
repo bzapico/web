@@ -93,7 +93,6 @@ export class SidebarComponent implements OnInit {
       organizationId: this.organizationId,
       selfEditProfile: true,
     };
-    console.log(initialState);
 
     this.modalRef = this.modalService.show(EditUserComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';

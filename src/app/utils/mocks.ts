@@ -2032,7 +2032,7 @@ export const mockInventoryList = {
             'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'show': true,
             'created': '1550746676',
-            'name': 'edge25',
+            'ec_name': 'edge25',
             'labels': {
                 'lab1': 'label1',
                 'lab2': 'label2'
@@ -2082,7 +2082,7 @@ export const mockInventoryList = {
             'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'show': true,
             'created': '1550746676',
-            'name': 'edge65',
+            'ec_name': 'edge65',
             'labels': {
                 'lab334': 'label344',
                 'lab244': 'label244'

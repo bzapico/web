@@ -5,7 +5,6 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { AssetInfoComponent } from '../asset-info/asset-info.component';
-import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-edge-controller',
@@ -22,14 +21,13 @@ export class EdgeControllerComponent implements OnInit {
    * Models that hold organization ID, Edge Controller ID, list of assets, show, created, name, labels and status
    */
   organizationId: string;
-  controllerId: string;
-  assets: any;
-  show: string;
-  created: string;
-  name: string;
-  labels: any;
-  status: string;
-  asset: any[];
+  ecId: string;
+  ecAssets: any[];
+  ecShow: string;
+  ecCreated: string;
+  ecName: string;
+  ecLabels: any;
+  ecStatus: string;
 
   /**
    * Models that hold all inventory list
@@ -115,7 +113,7 @@ export class EdgeControllerComponent implements OnInit {
     const assetLocated = {
       type: 'Asset',
       asset_ip: assetReduced.asset_ip,
-      ec_name: this.name
+      ec_name: this.ecName
     };
 
     let asset: any;
@@ -141,7 +139,6 @@ export class EdgeControllerComponent implements OnInit {
       ecName: asset.ec_name,
       show: asset.show,
       created: asset.created,
-      name: asset.name,
       labels: asset.labels,
       class: asset.os.class,
       version: asset.os.version,

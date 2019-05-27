@@ -18,7 +18,9 @@ export class AssetInfoComponent implements OnInit {
   backend: Backend;
 
   /**
-   * Models that hold organization id and more // TODO
+   * Models that hold organization id, asset ID, agent ID, asset IP, Edge Controller name, architecture,
+   *  model, manugacturer, cores, show, created, name, labels, class, version, net interfaces, capacity,
+   * EIC and status
    */
   organizationId: string;
   assetId: string;
@@ -31,7 +33,6 @@ export class AssetInfoComponent implements OnInit {
   cores: string;
   show: string;
   created: string;
-  name: string;
   labels: any;
   class: string;
   version: string;
@@ -39,6 +40,16 @@ export class AssetInfoComponent implements OnInit {
   capacity: string;
   eic: string;
   status: string;
+
+  /**
+   * Models that hold all inventory list
+   */
+  inventory: any[];
+
+  /**
+  * Index of the found EC in inventory list
+  */
+  ecIndexFound: number;
 
   /**
    * Change Edge Controller modal window reference
@@ -109,17 +120,32 @@ export class AssetInfoComponent implements OnInit {
   /**
    * Opens the modal view that holds Edge Controller component //TODO
    */
-  openEdgeControllerInfo(controller) {
+  openEdgeControllerInfo() {
+
+    let controller: any;
+
+    for (let i = 0; i < this.inventory.length; i++) {
+      if (this.inventory[i].ec_name === this.ecName &&
+        this.inventory[i].type === 'EC'
+        ) {
+        this.ecIndexFound = i;
+      }
+    }
+
+    controller = this.inventory[this.ecIndexFound];
+
     const initialState = {
       organizationId: this.organizationId,
-      controllerId: controller.edge_controller_id,
-      assets: controller.assets,
-      show: controller.show,
-      created: controller.created,
-      name: controller.name,
-      labels: controller.labels,
-      status: controller.status
+      ecId: controller.edge_controller_id,
+      ecAssets: controller.assets,
+      ecShow: controller.show,
+      ecCreated: controller.created,
+      ecName: this.ecName,
+      ecLabels: controller.labels,
+      ecStatus: controller.status,
+      inventory: this.inventory
     };
+
     this.bsEdgeModalRef =
       this.modalService.show(EdgeControllerComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.bsEdgeModalRef.content.closeBtnName = 'Close';

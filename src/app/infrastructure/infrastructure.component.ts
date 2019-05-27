@@ -364,8 +364,8 @@ export class InfrastructureComponent implements OnInit {
   * Open Asset info modal window
   *  @param asset asset object
   */
-  openAssetInfo(asset) {
-    const initialState = {
+  openAssetInfo(asset, inventory) {
+  const initialState = {
     organizationId: this.organizationId,
     assetId: asset.asset_id,
     agentId: asset.agent_id,
@@ -373,7 +373,6 @@ export class InfrastructureComponent implements OnInit {
     ecName: asset.ec_name,
     show: asset.show,
     created: asset.created,
-    name: asset.name,
     labels: asset.labels,
     class: asset.os.class,
     version: asset.os.version,
@@ -386,6 +385,7 @@ export class InfrastructureComponent implements OnInit {
     capacity: asset.storage.total_capacity,
     eic: asset.eic_net_ip,
     status: asset.status,
+    inventory: this.inventory
   };
 
   this.modalRef = this.modalService.show(AssetInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
@@ -397,16 +397,17 @@ export class InfrastructureComponent implements OnInit {
   * Open Edge Controllers info modal window
   *  @param controller Edge controller object
   */
-  openEdgeControllerInfo(controller) {
+  openEdgeControllerInfo(controller, inventory) {
     const initialState = {
       organizationId: this.organizationId,
-      controllerId: controller.edge_controller_id,
-      assets: controller.assets,
-      show: controller.show,
-      created: controller.created,
-      name: controller.name,
-      labels: controller.labels,
-      status: controller.status
+      ecId: controller.edge_controller_id,
+      ecAssets: controller.assets,
+      ecShow: controller.show,
+      ecCreated: controller.created,
+      ecName: controller.ec_name,
+      ecLabels: controller.labels,
+      ecStatus: controller.status,
+      inventory: this.inventory
     };
 
     this.modalRef = this.modalService.show(EdgeControllerComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
