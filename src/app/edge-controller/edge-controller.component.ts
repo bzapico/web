@@ -5,6 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { AssetInfoComponent } from '../asset-info/asset-info.component';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-edge-controller',
@@ -18,7 +19,7 @@ export class EdgeControllerComponent implements OnInit {
   backend: Backend;
 
   /**
-   * Models that hold organization id and more // TODO
+   * Models that hold organization ID, Edge Controller ID, list of assets, show, created, name, labels and status
    */
   organizationId: string;
   controllerId: string;
@@ -28,6 +29,17 @@ export class EdgeControllerComponent implements OnInit {
   name: string;
   labels: any;
   status: string;
+  asset: any[];
+
+  /**
+   * Models that hold all inventory list
+   */
+  inventory: any[];
+
+  /**
+  * Index of the found asset in inventory list
+  */
+  assetIndexFound: number;
 
   /**
    * Change Edge Controller modal window reference
@@ -60,6 +72,7 @@ export class EdgeControllerComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
+    this.assetIndexFound = -1;
 
     // Default initialization
     this.loadedData = true;
@@ -98,9 +111,30 @@ export class EdgeControllerComponent implements OnInit {
   /**
    * Opens the modal view that holds asset component //TODO
    */
-  openAssetInfo(asset) {
+  openAssetInfo(assetReduced) {
+    const assetLocated = {
+      type: 'Asset',
+      asset_ip: assetReduced.asset_ip,
+      ec_name: this.name
+    };
+
+    let asset: any;
+
+    for (let i = 0; i < this.inventory.length && this.assetIndexFound === -1 ; i++) {
+      if (
+        this.inventory[i].type === assetLocated.type &&
+        this.inventory[i].asset_ip === assetLocated.asset_ip &&
+        this.inventory[i].ec_name === assetLocated.ec_name
+        ) {
+        this.assetIndexFound = i;
+      }
+    }
+
+    asset = this.inventory[this.assetIndexFound];
+
     const initialState = {
       organizationId: this.organizationId,
+      inventory: this.inventory,
       assetId: asset.asset_id,
       agentId: asset.agent_id,
       assetIp: asset.asset_ip,
@@ -127,4 +161,5 @@ export class EdgeControllerComponent implements OnInit {
     this.bsAssetModalRef.content.closeBtnName = 'Close';
     this.bsModalRef.hide();
   }
+
 }
