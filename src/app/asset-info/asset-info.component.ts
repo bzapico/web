@@ -122,33 +122,40 @@ export class AssetInfoComponent implements OnInit {
    */
   openEdgeControllerInfo() {
 
-    let controller: any;
+    // let controller: any;
 
-    for (let i = 0; i < this.inventory.length; i++) {
-      if (this.inventory[i].ec_name === this.ecName &&
-        this.inventory[i].type === 'EC'
-        ) {
-        this.ecIndexFound = i;
-      }
-    }
+    // for (let i = 0; i < this.inventory.length; i++) {
+    //   if (this.inventory[i].ec_name === this.ecName &&
+    //     this.inventory[i].type === 'EC'
+    //     ) {
+    //     this.ecIndexFound = i;
+    //   }
+    // }
 
-    controller = this.inventory[this.ecIndexFound];
+    // controller = this.inventory[this.ecIndexFound];
 
-    const initialState = {
-      organizationId: this.organizationId,
-      ecId: controller.edge_controller_id,
-      ecAssets: controller.assets,
-      ecShow: controller.show,
-      ecCreated: controller.created,
-      ecName: this.ecName,
-      ecLabels: controller.labels,
-      ecStatus: controller.status,
-      inventory: this.inventory
-    };
+    // const initialState = {
+    //   organizationId: this.organizationId,
+    //   ecId: controller.edge_controller_id,
+    //   ecAssets: controller.assets,
+    //   ecShow: controller.show,
+    //   ecCreated: controller.created,
+    //   ecName: this.ecName,
+    //   ecLabels: controller.labels,
+    //   ecStatus: controller.status,
+    //   inventory: this.inventory,
+    //   fromModal: true
+    // };
 
-    this.bsEdgeModalRef =
-      this.modalService.show(EdgeControllerComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.bsEdgeModalRef.content.closeBtnName = 'Close';
+    // this.bsEdgeModalRef =
+    //   this.modalService.show(EdgeControllerComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    // this.bsEdgeModalRef.content.closeBtnName = 'Close';
     this.bsModalRef.hide();
+    this.modalService.onHide.subscribe((reason: string) => {
+
+      const _reason = reason ? `, dismissed by ${reason}` : '';
+      console.log(`onHide event has been fired${_reason}`);
+      console.log('movidas del asset');
+          });
   }
 }

@@ -385,7 +385,8 @@ export class InfrastructureComponent implements OnInit {
     capacity: asset.storage.total_capacity,
     eic: asset.eic_net_ip,
     status: asset.status,
-    inventory: this.inventory
+    inventory: this.inventory,
+    fromModal: false
   };
 
   this.modalRef = this.modalService.show(AssetInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
@@ -407,10 +408,25 @@ export class InfrastructureComponent implements OnInit {
       ecName: controller.ec_name,
       ecLabels: controller.labels,
       ecStatus: controller.status,
-      inventory: this.inventory
+      inventory: this.inventory,
+      fromModal: false
     };
 
     this.modalRef = this.modalService.show(EdgeControllerComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+
+// if data, open the other 
+
+// if (data ){
+
+// }
+    this.modalRef.content.onClose = (data) => {
+      // Do something with myData and then hide
+      console.log(data);
+      this.modalRef.hide();
+    };
+
+
+
     this.modalRef.content.closeBtnName = 'Close';
   }
 
