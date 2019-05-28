@@ -107,7 +107,8 @@ import { DeviceInfoComponent } from './device-info/device-info.component';
     DeployInstanceComponent,
     ServiceInstancesInfoComponent,
     RuleInfoComponent,
-    ServiceInfoComponent
+    ServiceInfoComponent,
+    DeviceInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -36,7 +36,8 @@ export const AvailableComponents = {
   serviceInstancesInfo: 'Service Instances Info',
   ruleInfo: 'Rule Info',
   serviceInfo: 'Service Info',
-  infrastructure: 'Infrastructure'
+  infrastructure: 'Infrastructure',
+  deviceInfo: 'Device Info'
 };
 
 @Component({
@@ -158,6 +159,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.infrastructure,
       mock: localStorage.getItem(LocalStorageKeys.infrastructureMock) === 'false' ? 'false' : 'true'
     });
+    this.components.push({
+      name: AvailableComponents.deviceInfo,
+      mock: localStorage.getItem(LocalStorageKeys.deviceInfoMock) === 'false' ? 'false' : 'true'
+    });
   }
 
   /**
@@ -194,6 +199,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.ruleInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.serviceInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.infrastructureMock, newValue);
+    localStorage.setItem(LocalStorageKeys.deviceInfoMock, newValue);
   }
 
   /**
@@ -267,16 +273,19 @@ export class DebugPanelComponent implements OnInit {
         localStorage.setItem(LocalStorageKeys.instanceInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.serviceInstancesInfo:
-      localStorage.setItem(LocalStorageKeys.serviceInstancesInfoMock, componentMockOption.mock);
+        localStorage.setItem(LocalStorageKeys.serviceInstancesInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.ruleInfo:
-      localStorage.setItem(LocalStorageKeys.ruleInfoMock, componentMockOption.mock);
+        localStorage.setItem(LocalStorageKeys.ruleInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.serviceInfo:
-      localStorage.setItem(LocalStorageKeys.serviceInfoMock, componentMockOption.mock);
+        localStorage.setItem(LocalStorageKeys.serviceInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.infrastructure:
-      localStorage.setItem(LocalStorageKeys.infrastructureMock, componentMockOption.mock);
+        localStorage.setItem(LocalStorageKeys.infrastructureMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.deviceInfo:
+        localStorage.setItem(LocalStorageKeys.deviceInfoMock, componentMockOption.mock);
       break;
       default:
         console.log('Selected option not registered as available component');
