@@ -4,7 +4,6 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { EdgeControllerComponent } from '../edge-controller/edge-controller.component';
 
 @Component({
   selector: 'app-asset-info',
@@ -42,6 +41,11 @@ export class AssetInfoComponent implements OnInit {
   status: string;
 
   /**
+   * Model that holds onclose method defined in Infrastructure component
+   */
+  onClose: any;
+
+  /**
    * Models that hold all inventory list
    */
   inventory: any[];
@@ -50,11 +54,6 @@ export class AssetInfoComponent implements OnInit {
   * Index of the found EC in inventory list
   */
   ecIndexFound: number;
-
-  /**
-   * Change Edge Controller modal window reference
-   */
-  bsEdgeModalRef: BsModalRef;
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -118,44 +117,25 @@ export class AssetInfoComponent implements OnInit {
   }
 
   /**
-   * Opens the modal view that holds Edge Controller component //TODO
+   * Gets the return Edge Controller value from the modal and gives it to infrastructure 
+   * component to open the Edge Controller Info modal window
    */
   openEdgeControllerInfo() {
+    let controller: any;
 
-    // let controller: any;
+    for (let i = 0; i < this.inventory.length; i++) {
+      if (this.inventory[i].ec_name === this.ecName &&
+        this.inventory[i].type === 'EC'
+        ) {
+        this.ecIndexFound = i;
+      }
+    }
 
-    // for (let i = 0; i < this.inventory.length; i++) {
-    //   if (this.inventory[i].ec_name === this.ecName &&
-    //     this.inventory[i].type === 'EC'
-    //     ) {
-    //     this.ecIndexFound = i;
-    //   }
-    // }
+    controller = this.inventory[this.ecIndexFound];
 
-    // controller = this.inventory[this.ecIndexFound];
+    this.onClose(controller);
 
-    // const initialState = {
-    //   organizationId: this.organizationId,
-    //   ecId: controller.edge_controller_id,
-    //   ecAssets: controller.assets,
-    //   ecShow: controller.show,
-    //   ecCreated: controller.created,
-    //   ecName: this.ecName,
-    //   ecLabels: controller.labels,
-    //   ecStatus: controller.status,
-    //   inventory: this.inventory,
-    //   fromModal: true
-    // };
-
-    // this.bsEdgeModalRef =
-    //   this.modalService.show(EdgeControllerComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    // this.bsEdgeModalRef.content.closeBtnName = 'Close';
     this.bsModalRef.hide();
-    this.modalService.onHide.subscribe((reason: string) => {
-
-      const _reason = reason ? `, dismissed by ${reason}` : '';
-      console.log(`onHide event has been fired${_reason}`);
-      console.log('movidas del asset');
-          });
   }
+
 }

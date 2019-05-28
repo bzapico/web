@@ -4,14 +4,13 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { AssetInfoComponent } from '../asset-info/asset-info.component';
 
 @Component({
-  selector: 'app-edge-controller',
-  templateUrl: './edge-controller.component.html',
-  styleUrls: ['./edge-controller.component.scss']
+  selector: 'app-edge-controller-info',
+  templateUrl: './edge-controller-info.component.html',
+  styleUrls: ['./edge-controller-info.component.scss']
 })
-export class EdgeControllerComponent implements OnInit {
+export class EdgeControllerInfoComponent implements OnInit {
    /**
    * Backend reference
    */
@@ -28,8 +27,10 @@ export class EdgeControllerComponent implements OnInit {
   ecName: string;
   ecLabels: any;
   ecStatus: string;
-  fromModal: boolean;
 
+  /**
+   * Model that holds onclose method defined in Infrastructure component
+   */
   onClose: any;
 
   /**
@@ -41,11 +42,6 @@ export class EdgeControllerComponent implements OnInit {
   * Index of the found asset in inventory list
   */
   assetIndexFound: number;
-
-  /**
-   * Change Edge Controller modal window reference
-   */
-  bsAssetModalRef: BsModalRef;
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -80,9 +76,6 @@ export class EdgeControllerComponent implements OnInit {
    }
 
   ngOnInit() {
-    if (  this.fromModal === true) {
-
-    }
   }
 
   /**
@@ -113,69 +106,33 @@ export class EdgeControllerComponent implements OnInit {
   }
 
   /**
-   * Opens the modal view that holds asset component //TODO
+   * Gets the return asset value from the modal and gives it to infrastructure component 
+   * to open the Asset Info modal window
+   *  @param assetReduced Reduced asset info to locate the whole asset object
    */
   openAssetInfo(assetReduced) {
-    // const assetLocated = {
-    //   type: 'Asset',
-    //   asset_ip: assetReduced.asset_ip,
-    //   ec_name: this.ecName
-    // };
+    const assetLocated = {
+      type: 'Asset',
+      asset_ip: assetReduced.asset_ip,
+      ec_name: this.ecName
+    };
 
-    // let asset: any;
+    let asset: any;
 
-    // for (let i = 0; i < this.inventory.length && this.assetIndexFound === -1 ; i++) {
-    //   if (
-    //     this.inventory[i].type === assetLocated.type &&
-    //     this.inventory[i].asset_ip === assetLocated.asset_ip &&
-    //     this.inventory[i].ec_name === assetLocated.ec_name
-    //     ) {
-    //     this.assetIndexFound = i;
-    //   }
-    // }
+    for (let i = 0; i < this.inventory.length && this.assetIndexFound === -1 ; i++) {
+      if (
+        this.inventory[i].type === assetLocated.type &&
+        this.inventory[i].asset_ip === assetLocated.asset_ip &&
+        this.inventory[i].ec_name === assetLocated.ec_name
+        ) {
+        this.assetIndexFound = i;
+      }
+    }
 
-    // asset = this.inventory[this.assetIndexFound];
+    asset = this.inventory[this.assetIndexFound];
 
-    // const initialState = {
-    //   organizationId: this.organizationId,
-    //   inventory: this.inventory,
-    //   assetId: asset.asset_id,
-    //   agentId: asset.agent_id,
-    //   assetIp: asset.asset_ip,
-    //   ecName: asset.ec_name,
-    //   show: asset.show,
-    //   created: asset.created,
-    //   labels: asset.labels,
-    //   class: asset.os.class,
-    //   version: asset.os.version,
-    //   architecture: asset.hardware.cpus.architecture,
-    //   model: asset.hardware.cpus.model,
-    //   manufacturer: asset.hardware.cpus.manufacturer,
-    //   cores: asset.hardware.cpus.num_cores,
-    //   netInterfaces: asset.hardware.net_interfaces,
-    //   storage: asset.storage,
-    //   capacity: asset.storage.total_capacity,
-    //   eic: asset.eic_net_ip,
-    //   status: asset.status,
-    //   fromModal: true
-    // };
-
-    // this.bsAssetModalRef =
-    //   this.modalService.show(AssetInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    // this.bsAssetModalRef.content.closeBtnName = 'Close';
-
-    this.onClose('hola');
+    this.onClose(asset);
     this.bsModalRef.hide();
-//     this.modalService.onHide.subscribe((reason: string) => {
-//       const _reason = reason ? `, dismissed by ${reason}` : '';
-//       console.log(`onHide event has been fired${_reason}`);
-// console.log('movidas del edge');
-//     });
-// this.bsModalRef.content.onClose.subscribe(result => {
-//   console.log('results ', result);
-// });
-
-
   }
 
 }

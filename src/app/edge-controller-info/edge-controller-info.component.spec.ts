@@ -1,28 +1,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EdgeControllerComponent } from './edge-controller.component';
-import { BsModalRef } from 'ngx-bootstrap';
+import { EdgeControllerInfoComponent } from './edge-controller-info.component';
+import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('EdgeControllerComponent', () => {
-  let component: EdgeControllerComponent;
-  let fixture: ComponentFixture<EdgeControllerComponent>;
+  let component: EdgeControllerInfoComponent;
+  let fixture: ComponentFixture<EdgeControllerInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EdgeControllerComponent ],
+      declarations: [ EdgeControllerInfoComponent ],
       imports: [
         HttpClientTestingModule,
+        ModalModule.forRoot(),
       ],
       providers: [
         BsModalRef,
+        BsModalService
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EdgeControllerComponent);
+    fixture = TestBed.createComponent(EdgeControllerInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

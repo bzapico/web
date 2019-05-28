@@ -52,7 +52,7 @@ import { AutofocusDirective } from './directives/autofocus.directive';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 import { AssetInfoComponent } from './asset-info/asset-info.component';
-import { EdgeControllerComponent } from './edge-controller/edge-controller.component';
+import { EdgeControllerInfoComponent } from './edge-controller-info/edge-controller-info.component';
 import { ContextualMenuComponent } from './contextual-menu/contextual-menu.component';
 
 @NgModule({
@@ -91,7 +91,7 @@ import { ContextualMenuComponent } from './contextual-menu/contextual-menu.compo
     AutofocusDirective,
     InfrastructureComponent,
     AssetInfoComponent,
-    EdgeControllerComponent,
+    EdgeControllerInfoComponent,
     ContextualMenuComponent
   ],
   entryComponents: [
@@ -111,7 +111,7 @@ import { ContextualMenuComponent } from './contextual-menu/contextual-menu.compo
     RuleInfoComponent,
     ServiceInfoComponent,
     AssetInfoComponent,
-    EdgeControllerComponent
+    EdgeControllerInfoComponent
   ],
   imports: [
     BrowserModule,

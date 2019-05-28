@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AssetInfoComponent } from './asset-info.component';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AssetInfoComponent', () => {
@@ -12,10 +12,12 @@ describe('AssetInfoComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AssetInfoComponent ],
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        ModalModule.forRoot(),
       ],
       providers: [
-        BsModalRef
+        BsModalRef,
+        BsModalService
       ]
     })
     .compileComponents();

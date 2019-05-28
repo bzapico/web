@@ -7,7 +7,7 @@ import { BackendService } from '../services/backend.service';
 import { mockInfrastructurePieChart } from '../utils/mocks';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { AssetInfoComponent } from '../asset-info/asset-info.component';
-import { EdgeControllerComponent } from '../edge-controller/edge-controller.component';
+import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-controller-info.component';
 
 @Component({
   selector: 'app-infrastructure',
@@ -98,9 +98,10 @@ export class InfrastructureComponent implements OnInit {
   labels: any[];
 
   /**
-   * Reference for the service that allows the user info component
+   * Reference for the service that allows Edge Controller info and asset info component components
    */
-  modalRef: BsModalRef;
+  ecModalRef: BsModalRef;
+  assetModalRef: BsModalRef;
 
   /**
    * Hold request error message or undefined
@@ -158,7 +159,6 @@ export class InfrastructureComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Get User data from localStorage
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
@@ -359,13 +359,12 @@ export class InfrastructureComponent implements OnInit {
     }
   }
 
-
   /**
   * Open Asset info modal window
   *  @param asset asset object
   */
-  openAssetInfo(asset, inventory) {
-  const initialState = {
+  openAssetInfo(asset) {
+  const initialStateAsset = {
     organizationId: this.organizationId,
     assetId: asset.asset_id,
     agentId: asset.agent_id,
@@ -386,20 +385,31 @@ export class InfrastructureComponent implements OnInit {
     eic: asset.eic_net_ip,
     status: asset.status,
     inventory: this.inventory,
-    fromModal: false
   };
 
-  this.modalRef = this.modalService.show(AssetInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-  this.modalRef.content.closeBtnName = 'Close';
+    this.assetModalRef = this.modalService.show(
+    AssetInfoComponent, {
+      initialState: initialStateAsset,
+      backdrop: 'static',
+      ignoreBackdropClick: false
+    });
 
-}
+    this.assetModalRef.content.onClose = (ecFromAsset) => {
+
+    if (ecFromAsset) {
+      this.openEdgeControllerInfo(ecFromAsset);
+      }
+    };
+    this.assetModalRef.hide();
+    this.assetModalRef.content.closeBtnName = 'Close';
+  }
 
   /**
   * Open Edge Controllers info modal window
   *  @param controller Edge controller object
   */
-  openEdgeControllerInfo(controller, inventory) {
-    const initialState = {
+  openEdgeControllerInfo(controller) {
+    const initialStateEC = {
       organizationId: this.organizationId,
       ecId: controller.edge_controller_id,
       ecAssets: controller.assets,
@@ -409,25 +419,23 @@ export class InfrastructureComponent implements OnInit {
       ecLabels: controller.labels,
       ecStatus: controller.status,
       inventory: this.inventory,
-      fromModal: false
     };
 
-    this.modalRef = this.modalService.show(EdgeControllerComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.ecModalRef = this.modalService.show(
+      EdgeControllerInfoComponent, {
+        initialState: initialStateEC,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+       });
 
-// if data, open the other 
-
-// if (data ){
-
-// }
-    this.modalRef.content.onClose = (data) => {
-      // Do something with myData and then hide
-      console.log(data);
-      this.modalRef.hide();
+    this.ecModalRef.content.onClose = (assetFromEC) => {
+      if (assetFromEC) {
+        this.openAssetInfo(assetFromEC);
+      }
     };
 
-
-
-    this.modalRef.content.closeBtnName = 'Close';
+    this.ecModalRef.hide();
+    this.ecModalRef.content.closeBtnName = 'Close';
   }
 
   /**
