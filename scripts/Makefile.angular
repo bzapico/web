@@ -1,0 +1,55 @@
+# REQUIRES Makefile.common, Makefile.docker and Makefile.k8s
+
+NPMCMD=npm
+NGCMD=ng
+NGCLEAN=$(NGCMD) clean
+NGTEST=$(NGCMD) test
+NGE2E=$(NGCMD) e2e
+
+.PHONY: all
+all: dep build test yaml image
+
+# Dependency download
+.PHONY: dep
+dep:
+	@echo ">>> Updating dependencies"
+	@${NPMCMD} install
+	@echo ">>> Finished updating dependencies"
+
+# Build
+.PHONY: build
+build:
+	@echo ">>> Building Web UI"
+	@${NPMCMD} build
+	@echo ">>> Built Web UI"
+
+image: CONTEXTPATH=.
+image: docker-build
+
+# Test
+.PHONY: test test-e2e
+test:
+	@echo ">>> Launching tests..."
+	@$(NGTEST) --watch=false
+
+test-e2e:
+	@echo ">>> Launching End-to-end tests..."
+	@$(NGE2E)
+
+# Other
+.PHONY: clean
+clean:
+	@echo ">>> Cleaning project..."
+	@$(NGCLEAN)
+	@rm -rf $(TARGET)
+
+.PHONY: dev
+dev:
+	@echo ">>> Serving project..."
+	@${NGCMD} serve -o
+
+# DEPRECATED TARGETS
+.PHONY: local create-image publish-image
+local: 
+	@echo "'make local' is DEPRECATED and will be removed soon. Use 'make build' instead"
+	@$(MAKE) build
