@@ -271,7 +271,7 @@
                 filter : searchTerm : ['type', 'id', 'location', 'labels', 'status']|
                 filter : quickFilter : ['type']" >
                 <td class="col-1">
-                  <span tooltip="Type" placement="top">{{item.type}}</span>
+                  <span tooltip="Type" placement="top"  (click)="openEdgeControllerInfo(item)" >{{item.type}}</span>
                 </td>
                 <td class="col-2">
                   <span tooltip="ID" placement="top">{{item.id}}</span>

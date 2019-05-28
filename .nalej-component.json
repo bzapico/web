@@ -1,0 +1,11 @@
+{
+    "language": "angular",
+    "application_list": [
+        "web"
+    ],
+    "tools": [
+        "azure",
+        "docker",
+        "k8s"
+    ]
+}
