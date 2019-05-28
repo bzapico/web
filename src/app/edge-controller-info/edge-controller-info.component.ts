@@ -20,13 +20,13 @@ export class EdgeControllerInfoComponent implements OnInit {
    * Models that hold organization ID, Edge Controller ID, list of assets, show, created, name, labels and status
    */
   organizationId: string;
-  ecId: string;
-  ecAssets: any[];
-  ecShow: string;
-  ecCreated: string;
-  ecName: string;
-  ecLabels: any;
-  ecStatus: string;
+  id: string;
+  assets: any[];
+  show: string;
+  created: string;
+  name: string;
+  labels: any;
+  status: string;
 
   /**
    * Model that holds onclose method defined in Infrastructure component
@@ -37,11 +37,6 @@ export class EdgeControllerInfoComponent implements OnInit {
    * Models that hold all inventory list
    */
   inventory: any[];
-
-  /**
-  * Index of the found asset in inventory list
-  */
-  assetIndexFound: number;
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -69,7 +64,6 @@ export class EdgeControllerInfoComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-    this.assetIndexFound = -1;
 
     // Default initialization
     this.loadedData = true;
@@ -100,9 +94,9 @@ export class EdgeControllerInfoComponent implements OnInit {
       const month = date.getMonth();
       const day = date.getDate();
 
-      const formattedDate = month + '/' + day + '/' + year;
+      const formatedDate = month + '/' + day + '/' + year;
 
-    return formattedDate;
+    return formatedDate;
   }
 
   /**
@@ -114,22 +108,24 @@ export class EdgeControllerInfoComponent implements OnInit {
     const assetLocated = {
       type: 'Asset',
       asset_ip: assetReduced.asset_ip,
-      ec_name: this.ecName
+      ec_name: this.name
     };
 
     let asset: any;
+    let assetIndexFound: number;
+    assetIndexFound = -1;
 
-    for (let i = 0; i < this.inventory.length && this.assetIndexFound === -1 ; i++) {
+    for (let i = 0; i < this.inventory.length && assetIndexFound === -1 ; i++) {
       if (
         this.inventory[i].type === assetLocated.type &&
         this.inventory[i].asset_ip === assetLocated.asset_ip &&
         this.inventory[i].ec_name === assetLocated.ec_name
         ) {
-        this.assetIndexFound = i;
+        assetIndexFound = i;
       }
     }
 
-    asset = this.inventory[this.assetIndexFound];
+    asset = this.inventory[assetIndexFound];
 
     this.onClose(asset);
     this.bsModalRef.hide();

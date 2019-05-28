@@ -7,29 +7,29 @@
     </div>
     <!-- Body -->
     <div class="modal-body">
-      <h3 class="edge-h3-title text-uppercase">{{ecName}}</h3>
-      <p class="edge-image">Attached on {{parseTimestampToDate(ecCreated)}}</p>
-      <p class="edge-title-sm">{{ecId}}</p>
+      <h3 class="edge-h3-title text-uppercase">{{name}}</h3>
+      <p class="edge-image">Attached on {{parseTimestampToDate(created)}}</p>
+      <p class="edge-title-sm">{{idd}}</p>
       <div class="scroll-app-info">
         <div class="row">
           <div class="col-sm grey mb-3">Status</div>
-          <h3 *ngIf="ecStatus === 'online'" class="edge-h3-title col-sm text-right blue text-uppercase">{{ecStatus}}</h3>
-          <h3 *ngIf="ecStatus === 'offline'" class="edge-h3-title col-sm text-right red text-uppercase">{{ecStatus}}</h3>
+          <h3 *ngIf="status === 'online'" class="edge-h3-title col-sm text-right blue text-uppercase">{{status}}</h3>
+          <h3 *ngIf="status === 'offline'" class="edge-h3-title col-sm text-right red text-uppercase">{{status}}</h3>
         </div>
         <br>
         <div class="row">
           <div class="col-sm grey mb-3">Labels</div>
         </div>
-        <div *ngFor="let label of objectToString(ecLabels)" class="row">
-          <div *ngIf="ecLabels" class="col-sm text-right">
+        <div *ngFor="let label of objectToString(labels)" class="row">
+          <div *ngIf="labels" class="col-sm text-right">
             <button class="btn-sm btn-outline-primary" disabled>
               {{label[0]}} : {{label[1]}}
             </button>
           </div>
-          <div *ngIf="!ecLabels" class="col-sm text-right">No</div>
+          <div *ngIf="!labels" class="col-sm text-right">No</div>
         </div>
         <br>
-        <span *ngIf="ecAssets">
+        <span *ngIf="assets">
           <div class="row">
             <div class="col-sm grey mb-3">Assets</div>
           </div>
@@ -40,8 +40,8 @@
             </div>
             <br>
           </span>
-          <div *ngFor="let asset of ecAssets">
-            <span *ngIf="ecAssets">
+          <div *ngFor="let asset of assets">
+            <span *ngIf="assets">
               <div class="row">
                 <div class="col-sm"></div>
                 <div (click)="openAssetInfo(asset)"  class="col-sm blue cursor-pointer">{{asset.asset_ip}}</div>
@@ -53,7 +53,7 @@
                 </div>
               </div>
             </span>
-            <span *ngIf="!ecAssets">
+            <span *ngIf="!assets">
             <div class="row">
               <div class="col-sm text-right">No</div>
             </div>

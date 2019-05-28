@@ -394,12 +394,13 @@ export class InfrastructureComponent implements OnInit {
       ignoreBackdropClick: false
     });
 
+    // onClose is used if the Asset modal comes while closing it, which means that we need to trigger a new edge controller modal
     this.assetModalRef.content.onClose = (ecFromAsset) => {
-
     if (ecFromAsset) {
       this.openEdgeControllerInfo(ecFromAsset);
       }
     };
+
     this.assetModalRef.hide();
     this.assetModalRef.content.closeBtnName = 'Close';
   }
@@ -411,13 +412,13 @@ export class InfrastructureComponent implements OnInit {
   openEdgeControllerInfo(controller) {
     const initialStateEC = {
       organizationId: this.organizationId,
-      ecId: controller.edge_controller_id,
-      ecAssets: controller.assets,
-      ecShow: controller.show,
-      ecCreated: controller.created,
-      ecName: controller.ec_name,
-      ecLabels: controller.labels,
-      ecStatus: controller.status,
+      id: controller.edge_controller_id,
+      assets: controller.assets,
+      show: controller.show,
+      created: controller.created,
+      name: controller.ec_name,
+      labels: controller.labels,
+      status: controller.status,
       inventory: this.inventory,
     };
 
@@ -428,6 +429,7 @@ export class InfrastructureComponent implements OnInit {
         ignoreBackdropClick: false
        });
 
+    // onClose is used if the EC modal comes while closing it, which means that we need to trigger a new edge controller modal
     this.ecModalRef.content.onClose = (assetFromEC) => {
       if (assetFromEC) {
         this.openAssetInfo(assetFromEC);
@@ -473,4 +475,22 @@ export class InfrastructureComponent implements OnInit {
         break;
     }
   }
+
+  /**
+   * Temporary method by which we open all the modal windows
+   * @param item inventory item
+   */
+  openInfo(item) {
+    switch (item.type) {
+      case 'Asset':
+       this.openAssetInfo(item);
+      break;
+      case 'EC':
+        this.openEdgeControllerInfo(item);
+      break;
+      default:
+        break;
+    }
+  }
+
 }

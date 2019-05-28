@@ -51,11 +51,6 @@ export class AssetInfoComponent implements OnInit {
   inventory: any[];
 
   /**
-  * Index of the found EC in inventory list
-  */
-  ecIndexFound: number;
-
-  /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
   config = {
@@ -111,9 +106,9 @@ export class AssetInfoComponent implements OnInit {
       const month = date.getMonth();
       const day = date.getDate();
 
-      const formattedDate = month + '/' + day + '/' + year;
+      const formatedDate = month + '/' + day + '/' + year;
 
-    return formattedDate;
+    return formatedDate;
   }
 
   /**
@@ -122,16 +117,17 @@ export class AssetInfoComponent implements OnInit {
    */
   openEdgeControllerInfo() {
     let controller: any;
+    let ecIndexFound;
 
     for (let i = 0; i < this.inventory.length; i++) {
       if (this.inventory[i].ec_name === this.ecName &&
         this.inventory[i].type === 'EC'
         ) {
-        this.ecIndexFound = i;
+        ecIndexFound = i;
       }
     }
 
-    controller = this.inventory[this.ecIndexFound];
+    controller = this.inventory[ecIndexFound];
 
     this.onClose(controller);
 
