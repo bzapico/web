@@ -206,7 +206,10 @@ export const AvailableComponents &#x3D; {
   serviceInstancesInfo: &#x27;Service Instances Info&#x27;,
   ruleInfo: &#x27;Rule Info&#x27;,
   serviceInfo: &#x27;Service Info&#x27;,
-  infrastructure: &#x27;Infrastructure&#x27;
+  infrastructure: &#x27;Infrastructure&#x27;,
+  deviceInfo: &#x27;Device Info&#x27;,
+  assetInfo: &#x27;Asset Info&#x27;,
+  edgeControllerInfo: &#x27;EC Info&#x27;
 };
 
 @Component({
@@ -328,6 +331,18 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.infrastructure,
       mock: localStorage.getItem(LocalStorageKeys.infrastructureMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
+    this.components.push({
+      name: AvailableComponents.deviceInfo,
+      mock: localStorage.getItem(LocalStorageKeys.deviceInfoMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
+    this.components.push({
+      name: AvailableComponents.assetInfo,
+      mock: localStorage.getItem(LocalStorageKeys.assetInfoMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
+    this.components.push({
+      name: AvailableComponents.edgeControllerInfo,
+      mock: localStorage.getItem(LocalStorageKeys.edgeControllerInfoMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
   }
 
   /**
@@ -364,6 +379,9 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.ruleInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.serviceInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.infrastructureMock, newValue);
+    localStorage.setItem(LocalStorageKeys.deviceInfoMock, newValue);
+    localStorage.setItem(LocalStorageKeys.assetInfoMock, newValue);
+    localStorage.setItem(LocalStorageKeys.edgeControllerInfoMock, newValue);
   }
 
   /**
@@ -437,16 +455,25 @@ export class DebugPanelComponent implements OnInit {
         localStorage.setItem(LocalStorageKeys.instanceInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.serviceInstancesInfo:
-      localStorage.setItem(LocalStorageKeys.serviceInstancesInfoMock, componentMockOption.mock);
+        localStorage.setItem(LocalStorageKeys.serviceInstancesInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.ruleInfo:
-      localStorage.setItem(LocalStorageKeys.ruleInfoMock, componentMockOption.mock);
+        localStorage.setItem(LocalStorageKeys.ruleInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.serviceInfo:
-      localStorage.setItem(LocalStorageKeys.serviceInfoMock, componentMockOption.mock);
+        localStorage.setItem(LocalStorageKeys.serviceInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.infrastructure:
-      localStorage.setItem(LocalStorageKeys.infrastructureMock, componentMockOption.mock);
+        localStorage.setItem(LocalStorageKeys.infrastructureMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.deviceInfo:
+        localStorage.setItem(LocalStorageKeys.deviceInfoMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.edgeControllerInfo:
+        localStorage.setItem(LocalStorageKeys.edgeControllerInfoMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.assetInfo:
+        localStorage.setItem(LocalStorageKeys.assetInfoMock, componentMockOption.mock);
       break;
       default:
         console.log(&#x27;Selected option not registered as available component&#x27;);

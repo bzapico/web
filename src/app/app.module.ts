@@ -51,6 +51,8 @@ import { ServiceInfoComponent } from './service-info/service-info.component';
 import { AutofocusDirective } from './directives/autofocus.directive';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
+import { AssetInfoComponent } from './asset-info/asset-info.component';
+import { EdgeControllerInfoComponent } from './edge-controller-info/edge-controller-info.component';
 import { ContextualMenuComponent } from './contextual-menu/contextual-menu.component';
 import { DeviceInfoComponent } from './device-info/device-info.component';
 
@@ -90,7 +92,9 @@ import { DeviceInfoComponent } from './device-info/device-info.component';
     AutofocusDirective,
     InfrastructureComponent,
     ContextualMenuComponent,
-    DeviceInfoComponent
+    DeviceInfoComponent,
+    AssetInfoComponent,
+    EdgeControllerInfoComponent,
   ],
   entryComponents: [
     DebugPanelComponent,
@@ -108,7 +112,9 @@ import { DeviceInfoComponent } from './device-info/device-info.component';
     ServiceInstancesInfoComponent,
     RuleInfoComponent,
     ServiceInfoComponent,
-    DeviceInfoComponent
+    DeviceInfoComponent,
+    AssetInfoComponent,
+    EdgeControllerInfoComponent
   ],
   imports: [
     BrowserModule,

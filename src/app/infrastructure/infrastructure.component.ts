@@ -7,6 +7,8 @@ import { BackendService } from '../services/backend.service';
 import { mockInfrastructurePieChart } from '../utils/mocks';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DeviceInfoComponent } from '../device-info/device-info.component';
+import { AssetInfoComponent } from '../asset-info/asset-info.component';
+import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-controller-info.component';
 
 @Component({
   selector: 'app-infrastructure',
@@ -97,9 +99,11 @@ export class InfrastructureComponent implements OnInit {
   groups: any[];
 
   /**
-   * Reference for the service that allows the user info component
+   * Reference for the service that allows Edge Controller info and asset info component components
    */
-  modalRef: BsModalRef;
+  ecModalRef: BsModalRef;
+  assetModalRef: BsModalRef;
+  deviceModalRef: BsModalRef;
 
   /**
    * Hold request error message or undefined
@@ -156,7 +160,6 @@ export class InfrastructureComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Get User data from localStorage
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
@@ -362,6 +365,87 @@ export class InfrastructureComponent implements OnInit {
   }
 
   /**
+  * Open Asset info modal window
+  *  @param asset asset object
+  */
+  openAssetInfo(asset) {
+  const initialStateAsset = {
+    organizationId: this.organizationId,
+    assetId: asset.asset_id,
+    agentId: asset.agent_id,
+    assetIp: asset.asset_ip,
+    ecName: asset.ec_name,
+    show: asset.show,
+    created: asset.created,
+    labels: asset.labels,
+    class: asset.os.class,
+    version: asset.os.version,
+    architecture: asset.hardware.cpus.architecture,
+    model: asset.hardware.cpus.model,
+    manufacturer: asset.hardware.cpus.manufacturer,
+    cores: asset.hardware.cpus.num_cores,
+    netInterfaces: asset.hardware.net_interfaces,
+    storage: asset.storage,
+    capacity: asset.storage.total_capacity,
+    eic: asset.eic_net_ip,
+    status: asset.status,
+    inventory: this.inventory,
+  };
+
+    this.assetModalRef = this.modalService.show(
+    AssetInfoComponent, {
+      initialState: initialStateAsset,
+      backdrop: 'static',
+      ignoreBackdropClick: false
+    });
+
+    // onClose is used if the Asset modal comes while closing it, which means that we need to trigger a new edge controller modal
+    this.assetModalRef.content.onClose = (ecFromAsset) => {
+    if (ecFromAsset) {
+      this.openEdgeControllerInfo(ecFromAsset);
+      }
+    };
+
+    this.assetModalRef.hide();
+    this.assetModalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+  * Open Edge Controllers info modal window
+  *  @param controller Edge controller object
+  */
+  openEdgeControllerInfo(controller) {
+    const initialStateEC = {
+      organizationId: this.organizationId,
+      id: controller.edge_controller_id,
+      assets: controller.assets,
+      show: controller.show,
+      created: controller.created,
+      name: controller.ec_name,
+      labels: controller.labels,
+      status: controller.status,
+      inventory: this.inventory,
+    };
+
+    this.ecModalRef = this.modalService.show(
+      EdgeControllerInfoComponent, {
+        initialState: initialStateEC,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+       });
+
+    // onClose is used if the EC modal comes while closing it, which means that we need to trigger a new edge controller modal
+    this.ecModalRef.content.onClose = (assetFromEC) => {
+      if (assetFromEC) {
+        this.openAssetInfo(assetFromEC);
+      }
+    };
+
+    this.ecModalRef.hide();
+    this.ecModalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
    * Opens context menu
    * @param Item inventory item
    */
@@ -413,8 +497,8 @@ export class InfrastructureComponent implements OnInit {
       groupName: this.getGroupName(device.device_group_id)
     };
 
-    this.modalRef = this.modalService.show(DeviceInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.modalRef.content.closeBtnName = 'Close';
+    this.deviceModalRef = this.modalService.show(DeviceInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.deviceModalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
 
     });
@@ -441,13 +525,13 @@ export class InfrastructureComponent implements OnInit {
   openInfo(item) {
     switch (item.type) {
       case 'Asset':
-      //  this.openAssetInfo(item);
-      break;
-      case 'EC':
-        // this.openEdgeControllerInfo(item);
+        this.openAssetInfo(item);
       break;
       case 'Device':
         this.openDeviceInfo(item);
+      break;
+      case 'EC':
+        this.openEdgeControllerInfo(item);
       break;
       default:
         break;
