@@ -434,4 +434,24 @@ export class InfrastructureComponent implements OnInit {
     return 'Not found';
   }
 
+    /**
+   * Temporary method by which we open all the modal windows
+   * @param item inventory item
+   */
+  openInfo(item) {
+    switch (item.type) {
+      case 'Asset':
+      //  this.openAssetInfo(item);
+      break;
+      case 'EC':
+        // this.openEdgeControllerInfo(item);
+      break;
+      case 'Device':
+        this.openDeviceInfo(item);
+      break;
+      default:
+        break;
+    }
+  }
+
 }

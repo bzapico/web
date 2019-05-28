@@ -85,9 +85,9 @@ export class DeviceInfoComponent implements OnInit {
       const month = date.getMonth();
       const day = date.getDate();
 
-      const formattedDate = month + '/' + day + '/' + year;
+      const formatedDate = month + '/' + day + '/' + year;
 
-    return formattedDate;
+    return formatedDate;
   }
 }
 

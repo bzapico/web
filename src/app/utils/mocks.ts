@@ -1351,7 +1351,7 @@ export const mockInventoryList = {
                 'lab12': 'label12',
                 'lab22': 'label22'
             },
-            'enabled': false,
+            'enabled': true,
             'device_status_name' : 'online'
         },
         {
@@ -1363,7 +1363,7 @@ export const mockInventoryList = {
                 'lab13': 'label13',
                 'lab23': 'label23'
             },
-            'enabled': true,
+            'enabled': false,
             'device_status_name' : 'offline'
         }
     ],
