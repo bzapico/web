@@ -1331,38 +1331,41 @@ export const mockInventorySummary = {
 export const mockInventoryList = {
     devices: [
         {
-            'organization_id': '222-2ed7-41c1-90fb-f561eb81ea42',
-            'device_group_id': '333-76b7-4085-98fb-27c1cd9b79a5',
+            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'device_id': 'dh005',
             'register_since': '1550746520',
             'labels': {
                 'lab11': 'label11',
                 'lab21': 'label21'
             },
-            'status' : 'online'
-            },
-            {
-            'organization_id': '444-41c1-90fb-f561eb81ea42',
-            'device_group_id': '555-4085-98fb-27c1cd9b79a5',
+            'enabled': true,
+            'device_status_name' : 'online'
+        },
+        {
+            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'device_group_id': 'a56b9900-0fef-41b0-bb7c-adf0055274cd',
             'device_id': 'dh007',
             'register_since': '1550746520',
             'labels': {
                 'lab12': 'label12',
                 'lab22': 'label22'
             },
-            'status' : 'online'
-            },
-            {
-            'organization_id': '666-2ed7-41c1-90fb-f561eb81ea42',
-            'device_group_id': '777-76b7-4085-98fb-27c1cd9b79a5',
+            'enabled': false,
+            'device_status_name' : 'online'
+        },
+        {
+            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'device_group_id': 'd94ac398-fd77-4937-b7f7-9fa0ff8b1eab',
             'device_id': 'dh006',
             'register_since': '1550746520',
             'labels': {
                 'lab13': 'label13',
                 'lab23': 'label23'
             },
-            'status' : 'online'
-            }
+            'enabled': true,
+            'device_status_name' : 'offline'
+        }
     ],
     assets: [
         {
