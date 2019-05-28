@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DeviceInfoComponent } from './device-info.component';
+import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('DeviceInfoComponent', () => {
   let component: DeviceInfoComponent;
@@ -8,7 +10,15 @@ describe('DeviceInfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeviceInfoComponent ]
+      declarations: [ DeviceInfoComponent ],
+      imports: [
+        HttpClientTestingModule,
+        ModalModule.forRoot(),
+      ],
+      providers: [
+        BsModalRef,
+        BsModalService
+      ]
     })
     .compileComponents();
   }));

@@ -6,6 +6,7 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { mockInfrastructurePieChart } from '../utils/mocks';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { DeviceInfoComponent } from '../device-info/device-info.component';
 
 @Component({
   selector: 'app-infrastructure',
@@ -91,9 +92,9 @@ export class InfrastructureComponent implements OnInit {
   entityId: boolean;
 
   /**
-   * List of labels
+   * List of available devices groups
    */
-  labels: any[];
+  groups: any[];
 
   /**
    * Reference for the service that allows the user info component
@@ -130,7 +131,6 @@ export class InfrastructureComponent implements OnInit {
     this.assets = [];
     this.devices = [];
     this.controllers = [];
-    this.labels = [];
     this.loadedData = false;
     this.requestError = '';
     this.cpuCoresCount = 0;
@@ -167,6 +167,10 @@ export class InfrastructureComponent implements OnInit {
           this.cpuCoresCount = summary['total_num_cpu'];
           this.memoryCount = summary['total_ram'];
           this.storageCount = summary['total_storage'];
+        });
+        this.backend.getGroups(this.organizationId)
+        .subscribe(response => {
+          this.groups = response.groups || [];
         });
         this.updateInventoryList();
       }
@@ -392,4 +396,42 @@ export class InfrastructureComponent implements OnInit {
         break;
     }
   }
+
+  /**
+   * Opens the modal view that holds the device info component
+   * @param device device to be opened
+   */
+  openDeviceInfo(device) {
+    const initialState = {
+      organizationId: this.organizationId,
+      deviceGroupId: device.device_group_id,
+      deviceId: device.device_id,
+      created: device.register_since,
+      labels: device.labels,
+      status: device.device_status_name,
+      enabled: device.enabled,
+      groupName: this.getGroupName(device.device_group_id)
+    };
+
+    this.modalRef = this.modalService.show(DeviceInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+
+    });
+  }
+
+ /**
+   * Locate the name of a group through an id
+   * @param deviceGroupId group id
+   */
+  getGroupName(deviceGroupId) {
+    if (this.groups && this.groups.length > 0) {
+      const index = this.groups.map(x => x.device_group_id).indexOf(deviceGroupId);
+      if (index !== -1) {
+        return this.groups[index].name;
+      }
+    }
+    return 'Not found';
+  }
+
 }
