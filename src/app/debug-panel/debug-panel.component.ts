@@ -37,6 +37,7 @@ export const AvailableComponents = {
   ruleInfo: 'Rule Info',
   serviceInfo: 'Service Info',
   infrastructure: 'Infrastructure',
+  assetInfo: 'Asset Info',
   edgeControllerInfo: 'EC Info'
 };
 
@@ -160,6 +161,10 @@ export class DebugPanelComponent implements OnInit {
       mock: localStorage.getItem(LocalStorageKeys.infrastructureMock) === 'false' ? 'false' : 'true'
     });
     this.components.push({
+      name: AvailableComponents.assetInfo,
+      mock: localStorage.getItem(LocalStorageKeys.assetInfoMock) === 'false' ? 'false' : 'true'
+    });
+    this.components.push({
       name: AvailableComponents.edgeControllerInfo,
       mock: localStorage.getItem(LocalStorageKeys.edgeControllerInfoMock) === 'false' ? 'false' : 'true'
     });
@@ -199,6 +204,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.ruleInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.serviceInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.infrastructureMock, newValue);
+    localStorage.setItem(LocalStorageKeys.assetInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.edgeControllerInfoMock, newValue);
   }
 
@@ -286,6 +292,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.edgeControllerInfo:
         localStorage.setItem(LocalStorageKeys.edgeControllerInfoMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.assetInfo:
+        localStorage.setItem(LocalStorageKeys.assetInfoMock, componentMockOption.mock);
       break;
       default:
         console.log('Selected option not registered as available component');

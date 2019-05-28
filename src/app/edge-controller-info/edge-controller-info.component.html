@@ -9,7 +9,7 @@
     <div class="modal-body">
       <h3 class="edge-h3-title text-uppercase">{{name}}</h3>
       <p class="edge-image">Attached on {{parseTimestampToDate(created)}}</p>
-      <p class="edge-title-sm">{{controllerId}}</p>
+      <p class="edge-title-sm">{{id}}</p>
       <div class="scroll-app-info">
         <div class="row">
           <div class="col-sm grey mb-3">Status</div>
@@ -44,8 +44,8 @@
             <span *ngIf="assets">
               <div class="row">
                 <div class="col-sm"></div>
-                <div class="col-sm blue">{{asset.asset_ip}}</div>
-                <div *ngIf="asset.asset_status === 'online'" class="col-sm text-right">
+                <div (click)="openAssetInfo(asset)"  class="col-sm blue cursor-pointer">{{asset.asset_ip}}</div>
+                <div *ngIf="asset.asset_status === 'online'"  class="col-sm text-right">
                   <div class="text-uppercase blue">{{asset.asset_status}}</div>
                 </div>
                 <div *ngIf="asset.asset_status === 'offline'" class="col-sm text-right">
