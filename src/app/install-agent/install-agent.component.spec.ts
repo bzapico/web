@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InstallAgentComponent } from './install-agent.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ButtonsModule, BsModalRef, TooltipModule } from 'ngx-bootstrap';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 describe('InstallAgentComponent', () => {
   let component: InstallAgentComponent;
@@ -8,7 +13,19 @@ describe('InstallAgentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InstallAgentComponent ]
+      declarations: [ InstallAgentComponent ],
+      imports: [
+        FormsModule,
+        ButtonsModule,
+        HttpClientTestingModule,
+        TooltipModule,
+        SelectDropDownModule,
+        RouterTestingModule,
+        ReactiveFormsModule
+      ],
+      providers: [
+        BsModalRef,
+      ]
     })
     .compileComponents();
   }));

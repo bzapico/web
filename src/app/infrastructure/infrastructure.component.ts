@@ -8,6 +8,7 @@ import { mockInfrastructurePieChart } from '../utils/mocks';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { AssetInfoComponent } from '../asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-controller-info.component';
+import { InstallAgentComponent } from '../install-agent/install-agent.component';
 
 @Component({
   selector: 'app-infrastructure',
@@ -102,6 +103,7 @@ export class InfrastructureComponent implements OnInit {
    */
   ecModalRef: BsModalRef;
   assetModalRef: BsModalRef;
+  agentModalRef: BsModalRef;
 
   /**
    * Hold request error message or undefined
@@ -439,6 +441,21 @@ export class InfrastructureComponent implements OnInit {
     this.ecModalRef.hide();
     this.ecModalRef.content.closeBtnName = 'Close';
   }
+
+  /**
+  * Open Install Agent info modal window
+  */
+  openInstallAgent() {
+    const initialState = {
+      organizationId: this.organizationId,
+    };
+
+    this.agentModalRef = this.modalService.show(InstallAgentComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.agentModalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { });
+
+  }
+
 
   /**
    * Opens context menu
