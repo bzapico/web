@@ -38,7 +38,8 @@ export const AvailableComponents = {
   serviceInfo: 'Service Info',
   infrastructure: 'Infrastructure',
   assetInfo: 'Asset Info',
-  edgeControllerInfo: 'EC Info'
+  edgeControllerInfo: 'EC Info',
+  installAgent: 'Install Agent'
 };
 
 @Component({
@@ -168,6 +169,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.edgeControllerInfo,
       mock: localStorage.getItem(LocalStorageKeys.edgeControllerInfoMock) === 'false' ? 'false' : 'true'
     });
+    this.components.push({
+      name: AvailableComponents.installAgent,
+      mock: localStorage.getItem(LocalStorageKeys.installAgentMock) === 'false' ? 'false' : 'true'
+    });
   }
 
   /**
@@ -206,6 +211,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.infrastructureMock, newValue);
     localStorage.setItem(LocalStorageKeys.assetInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.edgeControllerInfoMock, newValue);
+    localStorage.setItem(LocalStorageKeys.installAgentMock, newValue);
   }
 
   /**
@@ -295,6 +301,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.assetInfo:
         localStorage.setItem(LocalStorageKeys.assetInfoMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.installAgent:
+        localStorage.setItem(LocalStorageKeys.installAgentMock, componentMockOption.mock);
       break;
       default:
         console.log('Selected option not registered as available component');

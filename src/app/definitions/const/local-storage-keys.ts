@@ -28,6 +28,7 @@ export const LocalStorageKeys = {
     infrastructureMock: 'infrastructure_mock',
     assetInfoMock: 'asset_info_mock',
     edgeControllerInfoMock: 'edge_controller_info_mock',
+    installAgentMock: 'install_agent_mock',
 
     // Data
     jwt: 'jwt',

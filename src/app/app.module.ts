@@ -113,7 +113,8 @@ import { InstallAgentComponent } from './install-agent/install-agent.component';
     RuleInfoComponent,
     ServiceInfoComponent,
     AssetInfoComponent,
-    EdgeControllerInfoComponent
+    EdgeControllerInfoComponent,
+    InstallAgentComponent
   ],
   imports: [
     BrowserModule,
