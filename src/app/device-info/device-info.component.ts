@@ -30,6 +30,11 @@ export class DeviceInfoComponent implements OnInit {
   groupName: string;
 
   /**
+   * Model that holds onclose method defined in Infrastructure component
+   */
+  onClose: any;
+
+  /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
   config = {
@@ -46,7 +51,7 @@ export class DeviceInfoComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private modalService: BsModalService,
     private backendService: BackendService,
-    private mockupBackendService: MockupBackendService
+    private mockupBackendService: MockupBackendService,
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.deviceInfoMock) || null;
     // check which backend is required (fake or real)
@@ -88,6 +93,15 @@ export class DeviceInfoComponent implements OnInit {
       const formatedDate = month + '/' + day + '/' + year;
 
     return formatedDate;
+  }
+
+  /**
+   * Gets the return group ID value from the modal and gives it to infrastructure component
+   */
+  getGroupId() {
+    const groupId = this.deviceGroupId;
+    this.onClose(groupId);
+    this.bsModalRef.hide();
   }
 }
 

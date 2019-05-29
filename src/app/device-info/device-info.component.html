@@ -10,7 +10,11 @@
       <h3 class="device-h3-title">{{deviceId}}</h3>
       <p class="device-image">on 
         <span class="blue text-uppercase cursor-pointer">
-          {{groupName}}
+          <a 
+            (click)="getGroupId()"
+            class="blue">
+            {{groupName}}
+          </a>     
         </span>
       </p>
       <p class="device-title-sm">{{deviceGroupId}}</p>

@@ -9,6 +9,8 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DeviceInfoComponent } from '../device-info/device-info.component';
 import { AssetInfoComponent } from '../asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-controller-info.component';
+import { Router, ActivatedRoute } from '@angular/router';
+import { select } from 'd3-selection';
 
 @Component({
   selector: 'app-infrastructure',
@@ -115,12 +117,13 @@ export class InfrastructureComponent implements OnInit {
    */
   activeContextMenuItemId: string;
 
-
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.infrastructureMock) || null;
     // Check which backend is required (fake or real)
@@ -203,7 +206,7 @@ export class InfrastructureComponent implements OnInit {
    * Normalize the inventory list and added type
    * @param response Backend response where to modify the data
    */
-  normalizeInventoryItems(response) {
+  normalizeInventoryItems(response: any) {
     this.inventory = [];
     if (!response || response === null) {
     } else {
@@ -368,7 +371,7 @@ export class InfrastructureComponent implements OnInit {
   * Open Asset info modal window
   *  @param asset asset object
   */
-  openAssetInfo(asset) {
+  openAssetInfo(asset: any) {
   const initialStateAsset = {
     organizationId: this.organizationId,
     assetId: asset.asset_id,
@@ -400,7 +403,7 @@ export class InfrastructureComponent implements OnInit {
     });
 
     // onClose is used if the Asset modal comes while closing it, which means that we need to trigger a new edge controller modal
-    this.assetModalRef.content.onClose = (ecFromAsset) => {
+    this.assetModalRef.content.onClose = (ecFromAsset: any) => {
     if (ecFromAsset) {
       this.openEdgeControllerInfo(ecFromAsset);
       }
@@ -435,7 +438,7 @@ export class InfrastructureComponent implements OnInit {
        });
 
     // onClose is used if the EC modal comes while closing it, which means that we need to trigger a new edge controller modal
-    this.ecModalRef.content.onClose = (assetFromEC) => {
+    this.ecModalRef.content.onClose = (assetFromEC: any) => {
       if (assetFromEC) {
         this.openAssetInfo(assetFromEC);
       }
@@ -449,7 +452,7 @@ export class InfrastructureComponent implements OnInit {
    * Opens context menu
    * @param Item inventory item
    */
-  openContextualMenu(item) {
+  openContextualMenu(item: any) {
     if (item.id === this. activeContextMenuItemId) {
       this.activeContextMenuItemId = '';
     } else {
@@ -461,7 +464,7 @@ export class InfrastructureComponent implements OnInit {
    * Get the item options to show in the context menu
    * @param item inventory item
    */
-  getItemOptions(item) {
+  getItemOptions(item: any) {
     switch (item.type) {
       case 'EC':
         const ecOptions = [];
@@ -485,7 +488,7 @@ export class InfrastructureComponent implements OnInit {
    * Opens the modal view that holds the device info component
    * @param device device to be opened
    */
-  openDeviceInfo(device) {
+  openDeviceInfo(device: any) {
     const initialState = {
       organizationId: this.organizationId,
       deviceGroupId: device.device_group_id,
@@ -497,18 +500,36 @@ export class InfrastructureComponent implements OnInit {
       groupName: this.getGroupName(device.device_group_id)
     };
 
-    this.deviceModalRef = this.modalService.show(DeviceInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.deviceModalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
+    this.deviceModalRef = this.modalService.show(
+      DeviceInfoComponent, {
+        initialState,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+      });
 
-    });
+    // onClose is used if the device info modal comes while closing it with the clicked groupid
+    this.deviceModalRef.content.onClose = (groupId: string) => {
+      if (groupId) {
+        this.navigateToDevices(groupId);
+      }
+    };
+
+    this.deviceModalRef.hide();
+    this.deviceModalRef.content.closeBtnName = 'Close';
   }
 
- /**
+  /**
+   * Navigates to devices group view
+   */
+  navigateToDevices(groupId: string) {
+    window.location.href = '/#/devices?groupId=' + groupId;
+  }
+
+  /**
    * Locate the name of a group through an id
    * @param deviceGroupId group id
    */
-  getGroupName(deviceGroupId) {
+  getGroupName(deviceGroupId: string) {
     if (this.groups && this.groups.length > 0) {
       const index = this.groups.map(x => x.device_group_id).indexOf(deviceGroupId);
       if (index !== -1) {
@@ -518,11 +539,11 @@ export class InfrastructureComponent implements OnInit {
     return 'Not found';
   }
 
-    /**
+  /**
    * Temporary method by which we open all the modal windows
    * @param item inventory item
    */
-  openInfo(item) {
+  openInfo(item: { type: any; }) {
     switch (item.type) {
       case 'Asset':
         this.openAssetInfo(item);
@@ -537,5 +558,4 @@ export class InfrastructureComponent implements OnInit {
         break;
     }
   }
-
 }

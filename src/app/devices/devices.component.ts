@@ -9,7 +9,7 @@ import { mockDevicesChart } from '../utils/mocks';
 import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group.component';
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-devices',
@@ -163,7 +163,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
-    private router: Router,
     private route: ActivatedRoute,
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.devicesMock) || null;
