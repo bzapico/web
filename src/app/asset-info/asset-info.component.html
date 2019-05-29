@@ -1,0 +1,108 @@
+
+<div class="modal-card modal-card-info">
+    <div class="modal-content">
+      <!-- Header -->
+      <div class="modal-header">
+        <h3 class="asset-title mb-4">Asset info</h3>
+      </div>
+      <!-- Body -->
+      <div class="modal-body">
+        <h3 class="asset-h3-title">{{assetIp}}</h3>
+        <p class="asset-image">on 
+          <span (click)="openEdgeControllerInfo()" class="blue text-uppercase cursor-pointer">
+            {{ecName}}
+          </span>
+        </p>
+        <p class="asset-title-sm">{{agentId}}</p>
+        <div class="scroll-app-info">
+          <div class="row">
+            <div class="col-sm grey mb-3">Status</div>
+            <h3 class="asset-h3-title col-sm text-right blue text-uppercase">{{status}}</h3>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm grey mb-3">Creation date</div>
+            <div class="col-sm text-right">{{parseTimestampToDate(created)}}</div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm grey mb-3">Labels</div>
+          </div>
+          <div *ngFor="let label of objectToString(labels)" class="row">
+            <div *ngIf="labels" class="col-sm text-right">
+              <button class="btn-sm btn-outline-primary" disabled>
+                {{label[0]}} : {{label[1]}}
+              </button>
+            </div>
+            <div *ngIf="!labels" class="col-sm text-right">No</div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm grey mb-3">OS</div>
+            <div class="col-sm text-right">{{class}} {{version}}</div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm grey mb-3">CPU</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4 grey">Manufacturer</div>
+            <div class="col-sm text-right">{{manufacturer}}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4 grey">Model</div>
+            <div class="col-sm text-right">{{model}}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4 grey">Architecture</div>
+            <div class="col-sm col-right-low">{{architecture}}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4 grey">Cores</div>
+            <div class="col-sm col-right-low">{{cores}}</div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+            <div class="col-sm grey mb-3">RAM</div>
+            <div class="col-sm text-right">{{capacity}} Gb</div>
+          </div>
+          <br>
+          <span *ngIf="netInterfaces">
+            <div class="row">
+              <div class="col-sm grey mb-3">Networking specs</div>
+            </div>
+              <div class="row">
+                <div class="col-sm"></div>
+                <div class="col-sm grey">Type</div>
+                <div class="col-sm text-right grey">Capacity</div>
+              </div>
+            </span>
+            <span *ngIf="netInterfaces">
+              <div class="row">
+                <div class="col-sm"></div>
+                <div class="col-sm">{{netInterfaces.type}}</div>
+                <div class="col-sm text-right">{{netInterfaces.link_capacity}}</div>
+              </div>
+            </span>
+            <span *ngIf="!netInterfaces">
+            <div class="row">
+              <div class="col-sm text-right">No</div>
+            </div>
+          </span>
+        </div>      
+        <!-- Option button -->
+        <div class="form-group-btn">
+          <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">
+            <span class="align-bottom">Close</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+        

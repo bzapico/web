@@ -239,6 +239,7 @@
   ruleInfo: &#x27;Rule Info&#x27;,
   serviceInfo: &#x27;Service Info&#x27;,
   infrastructure: &#x27;Infrastructure&#x27;,
+  assetInfo: &#x27;Asset Info&#x27;,
   edgeControllerInfo: &#x27;EC Info&#x27;
 }</code>
                         </td>
@@ -387,6 +388,7 @@
     ruleInfoMock: &#x27;rule_info_mock&#x27;,
     serviceInfoMock: &#x27;service_info_mock&#x27;,
     infrastructureMock: &#x27;infrastructure_mock&#x27;,
+    assetInfoMock: &#x27;asset_info_mock&#x27;,
     edgeControllerInfoMock: &#x27;edge_controller_info_mock&#x27;,
 
     // Data
@@ -1557,6 +1559,8 @@
             &#x27;organization_id&#x27;: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             &#x27;asset_id&#x27;: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
             &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.31&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge25&#x27;,
             &#x27;show&#x27;: true,
             &#x27;created&#x27;: &#x27;1550746520&#x27;,
             &#x27;labels&#x27;: {
@@ -1589,13 +1593,15 @@
             },
             &#x27;eic_net_ip&#x27;: &#x27;http/knon&#x27;,
             &#x27;status&#x27; : &#x27;offline&#x27;
-            },
-            {
-            &#x27;organization_id&#x27;: &#x27;c6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
-            &#x27;asset_id&#x27;: &#x27;a56b9900-4444-41b0-bb7c-adf0055274cd&#x27;,
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;asset_id&#x27;: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
             &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.32&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge25&#x27;,
             &#x27;show&#x27;: true,
-            &#x27;created&#x27;: &#x27;1550746676&#x27;,
+            &#x27;created&#x27;: &#x27;1550746520&#x27;,
             &#x27;labels&#x27;: {
                 &#x27;lab1&#x27;: &#x27;label1&#x27;,
                 &#x27;lab2&#x27;: &#x27;label2&#x27;
@@ -1608,9 +1614,161 @@
             },
             &#x27;hardware&#x27;: {
                 &#x27;cpus&#x27;: {
-                    &#x27;manufacturer&#x27;: &#x27;Windows&#x27;,
+                    &#x27;manufacturer&#x27;: &#x27;Apple&#x27;,
                     &#x27;model&#x27;: &#x27;yes&#x27;,
-                    &#x27;architecture&#x27;: &#x27;Unix&#x27;,
+                    &#x27;architecture&#x27;: &#x27;Fanix&#x27;,
+                    &#x27;num_cores&#x27;: 3
+                },
+                &#x27;installed_ram&#x27;: 2,
+                &#x27;net_interfaces&#x27;: {
+                    &#x27;type&#x27;: &#x27;capacity&#x27;,
+                    &#x27;link_capacity&#x27;: 5
+                }
+            },
+            &#x27;storage&#x27;: {
+                &#x27;type&#x27;: &#x27;ram&#x27;,
+                &#x27;total_capacity&#x27;: 7
+            },
+            &#x27;eic_net_ip&#x27;: &#x27;http/knon&#x27;,
+            &#x27;status&#x27; : &#x27;offline&#x27;
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;asset_id&#x27;: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.33&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge25&#x27;,
+            &#x27;show&#x27;: true,
+            &#x27;created&#x27;: &#x27;1550746520&#x27;,
+            &#x27;labels&#x27;: {
+                &#x27;lab1&#x27;: &#x27;label1&#x27;,
+                &#x27;lab2&#x27;: &#x27;label2&#x27;
+            },
+            &#x27;os&#x27;: {
+                &#x27;name&#x27;: &#x27;petra&#x27;,
+                &#x27;version&#x27;: &#x27;v1&#x27;,
+                &#x27;class&#x27;: &#x27;linux&#x27;,
+                &#x27;architecture&#x27;: &#x27;chagal&#x27;
+            },
+            &#x27;hardware&#x27;: {
+                &#x27;cpus&#x27;: {
+                    &#x27;manufacturer&#x27;: &#x27;Apple&#x27;,
+                    &#x27;model&#x27;: &#x27;yes&#x27;,
+                    &#x27;architecture&#x27;: &#x27;Fanix&#x27;,
+                    &#x27;num_cores&#x27;: 3
+                },
+                &#x27;installed_ram&#x27;: 2,
+                &#x27;net_interfaces&#x27;: {
+                    &#x27;type&#x27;: &#x27;capacity&#x27;,
+                    &#x27;link_capacity&#x27;: 5
+                }
+            },
+            &#x27;storage&#x27;: {
+                &#x27;type&#x27;: &#x27;ram&#x27;,
+                &#x27;total_capacity&#x27;: 7
+            },
+            &#x27;eic_net_ip&#x27;: &#x27;http/knon&#x27;,
+            &#x27;status&#x27; : &#x27;offline&#x27;
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;asset_id&#x27;: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.34&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge25&#x27;,
+            &#x27;show&#x27;: true,
+            &#x27;created&#x27;: &#x27;1550746520&#x27;,
+            &#x27;labels&#x27;: {
+                &#x27;lab1&#x27;: &#x27;label1&#x27;,
+                &#x27;lab2&#x27;: &#x27;label2&#x27;
+            },
+            &#x27;os&#x27;: {
+                &#x27;name&#x27;: &#x27;petra&#x27;,
+                &#x27;version&#x27;: &#x27;v1&#x27;,
+                &#x27;class&#x27;: &#x27;linux&#x27;,
+                &#x27;architecture&#x27;: &#x27;chagal&#x27;
+            },
+            &#x27;hardware&#x27;: {
+                &#x27;cpus&#x27;: {
+                    &#x27;manufacturer&#x27;: &#x27;Apple&#x27;,
+                    &#x27;model&#x27;: &#x27;yes&#x27;,
+                    &#x27;architecture&#x27;: &#x27;Fanix&#x27;,
+                    &#x27;num_cores&#x27;: 3
+                },
+                &#x27;installed_ram&#x27;: 2,
+                &#x27;net_interfaces&#x27;: {
+                    &#x27;type&#x27;: &#x27;capacity&#x27;,
+                    &#x27;link_capacity&#x27;: 5
+                }
+            },
+            &#x27;storage&#x27;: {
+                &#x27;type&#x27;: &#x27;ram&#x27;,
+                &#x27;total_capacity&#x27;: 7
+            },
+            &#x27;eic_net_ip&#x27;: &#x27;http/knon&#x27;,
+            &#x27;status&#x27; : &#x27;offline&#x27;
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;asset_id&#x27;: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.35&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge25&#x27;,
+            &#x27;show&#x27;: true,
+            &#x27;created&#x27;: &#x27;1550746520&#x27;,
+            &#x27;labels&#x27;: {
+                &#x27;lab1&#x27;: &#x27;label1&#x27;,
+                &#x27;lab2&#x27;: &#x27;label2&#x27;
+            },
+            &#x27;os&#x27;: {
+                &#x27;name&#x27;: &#x27;petra&#x27;,
+                &#x27;version&#x27;: &#x27;v1&#x27;,
+                &#x27;class&#x27;: &#x27;linux&#x27;,
+                &#x27;architecture&#x27;: &#x27;chagal&#x27;
+            },
+            &#x27;hardware&#x27;: {
+                &#x27;cpus&#x27;: {
+                    &#x27;manufacturer&#x27;: &#x27;Apple&#x27;,
+                    &#x27;model&#x27;: &#x27;yes&#x27;,
+                    &#x27;architecture&#x27;: &#x27;Fanix&#x27;,
+                    &#x27;num_cores&#x27;: 3
+                },
+                &#x27;installed_ram&#x27;: 2,
+                &#x27;net_interfaces&#x27;: {
+                    &#x27;type&#x27;: &#x27;capacity&#x27;,
+                    &#x27;link_capacity&#x27;: 5
+                }
+            },
+            &#x27;storage&#x27;: {
+                &#x27;type&#x27;: &#x27;ram&#x27;,
+                &#x27;total_capacity&#x27;: 7
+            },
+            &#x27;eic_net_ip&#x27;: &#x27;http/knon&#x27;,
+            &#x27;status&#x27; : &#x27;offline&#x27;
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;asset_id&#x27;: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.36&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge25&#x27;,
+            &#x27;show&#x27;: true,
+            &#x27;created&#x27;: &#x27;1550746520&#x27;,
+            &#x27;labels&#x27;: {
+                &#x27;lab1&#x27;: &#x27;label1&#x27;,
+                &#x27;lab2&#x27;: &#x27;label2&#x27;
+            },
+            &#x27;os&#x27;: {
+                &#x27;name&#x27;: &#x27;petra&#x27;,
+                &#x27;version&#x27;: &#x27;v1&#x27;,
+                &#x27;class&#x27;: &#x27;linux&#x27;,
+                &#x27;architecture&#x27;: &#x27;chagal&#x27;
+            },
+            &#x27;hardware&#x27;: {
+                &#x27;cpus&#x27;: {
+                    &#x27;manufacturer&#x27;: &#x27;Apple&#x27;,
+                    &#x27;model&#x27;: &#x27;yes&#x27;,
+                    &#x27;architecture&#x27;: &#x27;Fanix&#x27;,
                     &#x27;num_cores&#x27;: 3
                 },
                 &#x27;installed_ram&#x27;: 2,
@@ -1624,13 +1782,132 @@
                 &#x27;type&#x27;: &#x27;ram&#x27;,
                 &#x27;total_capacity&#x27;: 7
             },
-            &#x27;eic_net_ip&#x27;: &#x27;http/qweqwe&#x27;,
-            &#x27;status&#x27; : &#x27;online&#x27;
+            &#x27;eic_net_ip&#x27;: &#x27;http/knon&#x27;,
+            &#x27;status&#x27; : &#x27;offline&#x27;
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;asset_id&#x27;: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.37&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge25&#x27;,
+            &#x27;show&#x27;: true,
+            &#x27;created&#x27;: &#x27;1550746520&#x27;,
+            &#x27;labels&#x27;: {
+                &#x27;lab1&#x27;: &#x27;label1&#x27;,
+                &#x27;lab2&#x27;: &#x27;label2&#x27;
             },
-            {
+            &#x27;os&#x27;: {
+                &#x27;name&#x27;: &#x27;petra&#x27;,
+                &#x27;version&#x27;: &#x27;v1&#x27;,
+                &#x27;class&#x27;: &#x27;linux&#x27;,
+                &#x27;architecture&#x27;: &#x27;chagal&#x27;
+            },
+            &#x27;hardware&#x27;: {
+                &#x27;cpus&#x27;: {
+                    &#x27;manufacturer&#x27;: &#x27;Apple&#x27;,
+                    &#x27;model&#x27;: &#x27;yes&#x27;,
+                    &#x27;architecture&#x27;: &#x27;Fanix&#x27;,
+                    &#x27;num_cores&#x27;: 3
+                },
+                &#x27;installed_ram&#x27;: 2,
+                &#x27;net_interfaces&#x27;: {
+                    &#x27;type&#x27;: &#x27;capacity&#x27;,
+                    &#x27;link_capacity&#x27;: 5
+                }
+
+            },
+            &#x27;storage&#x27;: {
+                &#x27;type&#x27;: &#x27;ram&#x27;,
+                &#x27;total_capacity&#x27;: 7
+            },
+            &#x27;eic_net_ip&#x27;: &#x27;http/knon&#x27;,
+            &#x27;status&#x27; : &#x27;offline&#x27;
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;asset_id&#x27;: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.38&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge25&#x27;,
+            &#x27;show&#x27;: true,
+            &#x27;created&#x27;: &#x27;1550746520&#x27;,
+            &#x27;labels&#x27;: {
+                &#x27;lab1&#x27;: &#x27;label1&#x27;,
+                &#x27;lab2&#x27;: &#x27;label2&#x27;
+            },
+            &#x27;os&#x27;: {
+                &#x27;name&#x27;: &#x27;petra&#x27;,
+                &#x27;version&#x27;: &#x27;v1&#x27;,
+                &#x27;class&#x27;: &#x27;linux&#x27;,
+                &#x27;architecture&#x27;: &#x27;chagal&#x27;
+            },
+            &#x27;hardware&#x27;: {
+                &#x27;cpus&#x27;: {
+                    &#x27;manufacturer&#x27;: &#x27;Apple&#x27;,
+                    &#x27;model&#x27;: &#x27;yes&#x27;,
+                    &#x27;architecture&#x27;: &#x27;Fanix&#x27;,
+                    &#x27;num_cores&#x27;: 3
+                },
+                &#x27;installed_ram&#x27;: 2,
+                &#x27;net_interfaces&#x27;: {
+                    &#x27;type&#x27;: &#x27;capacity&#x27;,
+                    &#x27;link_capacity&#x27;: 5
+                }
+
+            },
+            &#x27;storage&#x27;: {
+                &#x27;type&#x27;: &#x27;ram&#x27;,
+                &#x27;total_capacity&#x27;: 7
+            },
+            &#x27;eic_net_ip&#x27;: &#x27;http/knon&#x27;,
+            &#x27;status&#x27; : &#x27;offline&#x27;
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;asset_id&#x27;: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.39&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge25&#x27;,
+            &#x27;show&#x27;: true,
+            &#x27;created&#x27;: &#x27;1550746520&#x27;,
+            &#x27;labels&#x27;: {
+                &#x27;lab1&#x27;: &#x27;label1&#x27;,
+                &#x27;lab2&#x27;: &#x27;label2&#x27;
+            },
+            &#x27;os&#x27;: {
+                &#x27;name&#x27;: &#x27;petra&#x27;,
+                &#x27;version&#x27;: &#x27;v1&#x27;,
+                &#x27;class&#x27;: &#x27;linux&#x27;,
+                &#x27;architecture&#x27;: &#x27;chagal&#x27;
+            },
+            &#x27;hardware&#x27;: {
+                &#x27;cpus&#x27;: {
+                    &#x27;manufacturer&#x27;: &#x27;Apple&#x27;,
+                    &#x27;model&#x27;: &#x27;yes&#x27;,
+                    &#x27;architecture&#x27;: &#x27;Fanix&#x27;,
+                    &#x27;num_cores&#x27;: 3
+                },
+                &#x27;installed_ram&#x27;: 2,
+                &#x27;net_interfaces&#x27;: {
+                    &#x27;type&#x27;: &#x27;capacity&#x27;,
+                    &#x27;link_capacity&#x27;: 5
+                }
+
+            },
+            &#x27;storage&#x27;: {
+                &#x27;type&#x27;: &#x27;ram&#x27;,
+                &#x27;total_capacity&#x27;: 7
+            },
+            &#x27;eic_net_ip&#x27;: &#x27;http/knon&#x27;,
+            &#x27;status&#x27; : &#x27;offline&#x27;
+        },
+        {
             &#x27;organization_id&#x27;: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             &#x27;asset_id&#x27;: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
             &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.18&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge65&#x27;,
             &#x27;show&#x27;: true,
             &#x27;created&#x27;: &#x27;1550746669&#x27;,
             &#x27;labels&#x27;: {
@@ -1663,7 +1940,280 @@
             },
             &#x27;eic_net_ip&#x27;: &#x27;http/qweqwe&#x27;,
             &#x27;status&#x27; : &#x27;online&#x27;
-            }
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;asset_id&#x27;: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
+            &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.28&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge65&#x27;,
+            &#x27;show&#x27;: true,
+            &#x27;created&#x27;: &#x27;1550746669&#x27;,
+            &#x27;labels&#x27;: {
+                &#x27;lab1&#x27;: &#x27;label1&#x27;,
+                &#x27;lab2&#x27;: &#x27;label2&#x27;
+            },
+            &#x27;os&#x27;: {
+                &#x27;name&#x27;: &#x27;petra&#x27;,
+                &#x27;version&#x27;: &#x27;v1&#x27;,
+                &#x27;class&#x27;: &#x27;linux&#x27;,
+                &#x27;architecture&#x27;: &#x27;chagal&#x27;
+            },
+            &#x27;hardware&#x27;: {
+                &#x27;cpus&#x27;: {
+                    &#x27;manufacturer&#x27;: &#x27;Linux&#x27;,
+                    &#x27;model&#x27;: &#x27;yes&#x27;,
+                    &#x27;architecture&#x27;: &#x27;Ubuntu&#x27;,
+                    &#x27;num_cores&#x27;: 3
+                },
+                &#x27;installed_ram&#x27;: 2,
+                &#x27;net_interfaces&#x27;: {
+                    &#x27;type&#x27;: &#x27;capacity&#x27;,
+                    &#x27;link_capacity&#x27;: 5
+                }
+
+            },
+            &#x27;storage&#x27;: {
+                &#x27;type&#x27;: &#x27;ram&#x27;,
+                &#x27;total_capacity&#x27;: 7
+            },
+            &#x27;eic_net_ip&#x27;: &#x27;http/qweqwe&#x27;,
+            &#x27;status&#x27; : &#x27;online&#x27;
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;asset_id&#x27;: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
+            &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.48&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge65&#x27;,
+            &#x27;show&#x27;: true,
+            &#x27;created&#x27;: &#x27;1550746669&#x27;,
+            &#x27;labels&#x27;: {
+                &#x27;lab1&#x27;: &#x27;label1&#x27;,
+                &#x27;lab2&#x27;: &#x27;label2&#x27;
+            },
+            &#x27;os&#x27;: {
+                &#x27;name&#x27;: &#x27;petra&#x27;,
+                &#x27;version&#x27;: &#x27;v1&#x27;,
+                &#x27;class&#x27;: &#x27;linux&#x27;,
+                &#x27;architecture&#x27;: &#x27;chagal&#x27;
+            },
+            &#x27;hardware&#x27;: {
+                &#x27;cpus&#x27;: {
+                    &#x27;manufacturer&#x27;: &#x27;Linux&#x27;,
+                    &#x27;model&#x27;: &#x27;yes&#x27;,
+                    &#x27;architecture&#x27;: &#x27;Ubuntu&#x27;,
+                    &#x27;num_cores&#x27;: 3
+                },
+                &#x27;installed_ram&#x27;: 2,
+                &#x27;net_interfaces&#x27;: {
+                    &#x27;type&#x27;: &#x27;capacity&#x27;,
+                    &#x27;link_capacity&#x27;: 5
+                }
+
+            },
+            &#x27;storage&#x27;: {
+                &#x27;type&#x27;: &#x27;ram&#x27;,
+                &#x27;total_capacity&#x27;: 7
+            },
+            &#x27;eic_net_ip&#x27;: &#x27;http/qweqwe&#x27;,
+            &#x27;status&#x27; : &#x27;online&#x27;
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;asset_id&#x27;: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
+            &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.58&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge65&#x27;,
+            &#x27;show&#x27;: true,
+            &#x27;created&#x27;: &#x27;1550746669&#x27;,
+            &#x27;labels&#x27;: {
+                &#x27;lab1&#x27;: &#x27;label1&#x27;,
+                &#x27;lab2&#x27;: &#x27;label2&#x27;
+            },
+            &#x27;os&#x27;: {
+                &#x27;name&#x27;: &#x27;petra&#x27;,
+                &#x27;version&#x27;: &#x27;v1&#x27;,
+                &#x27;class&#x27;: &#x27;linux&#x27;,
+                &#x27;architecture&#x27;: &#x27;chagal&#x27;
+            },
+            &#x27;hardware&#x27;: {
+                &#x27;cpus&#x27;: {
+                    &#x27;manufacturer&#x27;: &#x27;Linux&#x27;,
+                    &#x27;model&#x27;: &#x27;yes&#x27;,
+                    &#x27;architecture&#x27;: &#x27;Ubuntu&#x27;,
+                    &#x27;num_cores&#x27;: 3
+                },
+                &#x27;installed_ram&#x27;: 2,
+                &#x27;net_interfaces&#x27;: {
+                    &#x27;type&#x27;: &#x27;capacity&#x27;,
+                    &#x27;link_capacity&#x27;: 5
+                }
+
+            },
+            &#x27;storage&#x27;: {
+                &#x27;type&#x27;: &#x27;ram&#x27;,
+                &#x27;total_capacity&#x27;: 7
+            },
+            &#x27;eic_net_ip&#x27;: &#x27;http/qweqwe&#x27;,
+            &#x27;status&#x27; : &#x27;online&#x27;
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;asset_id&#x27;: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
+            &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.68&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge65&#x27;,
+            &#x27;show&#x27;: true,
+            &#x27;created&#x27;: &#x27;1550746669&#x27;,
+            &#x27;labels&#x27;: {
+                &#x27;lab1&#x27;: &#x27;label1&#x27;,
+                &#x27;lab2&#x27;: &#x27;label2&#x27;
+            },
+            &#x27;os&#x27;: {
+                &#x27;name&#x27;: &#x27;petra&#x27;,
+                &#x27;version&#x27;: &#x27;v1&#x27;,
+                &#x27;class&#x27;: &#x27;linux&#x27;,
+                &#x27;architecture&#x27;: &#x27;chagal&#x27;
+            },
+            &#x27;hardware&#x27;: {
+                &#x27;cpus&#x27;: {
+                    &#x27;manufacturer&#x27;: &#x27;Linux&#x27;,
+                    &#x27;model&#x27;: &#x27;yes&#x27;,
+                    &#x27;architecture&#x27;: &#x27;Ubuntu&#x27;,
+                    &#x27;num_cores&#x27;: 3
+                },
+                &#x27;installed_ram&#x27;: 2,
+                &#x27;net_interfaces&#x27;: {
+                    &#x27;type&#x27;: &#x27;capacity&#x27;,
+                    &#x27;link_capacity&#x27;: 5
+                }
+
+            },
+            &#x27;storage&#x27;: {
+                &#x27;type&#x27;: &#x27;ram&#x27;,
+                &#x27;total_capacity&#x27;: 7
+            },
+            &#x27;eic_net_ip&#x27;: &#x27;http/qweqwe&#x27;,
+            &#x27;status&#x27; : &#x27;online&#x27;
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;asset_id&#x27;: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
+            &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.78&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge65&#x27;,
+            &#x27;show&#x27;: true,
+            &#x27;created&#x27;: &#x27;1550746669&#x27;,
+            &#x27;labels&#x27;: {
+                &#x27;lab1&#x27;: &#x27;label1&#x27;,
+                &#x27;lab2&#x27;: &#x27;label2&#x27;
+            },
+            &#x27;os&#x27;: {
+                &#x27;name&#x27;: &#x27;petra&#x27;,
+                &#x27;version&#x27;: &#x27;v1&#x27;,
+                &#x27;class&#x27;: &#x27;linux&#x27;,
+                &#x27;architecture&#x27;: &#x27;chagal&#x27;
+            },
+            &#x27;hardware&#x27;: {
+                &#x27;cpus&#x27;: {
+                    &#x27;manufacturer&#x27;: &#x27;Linux&#x27;,
+                    &#x27;model&#x27;: &#x27;yes&#x27;,
+                    &#x27;architecture&#x27;: &#x27;Ubuntu&#x27;,
+                    &#x27;num_cores&#x27;: 3
+                },
+                &#x27;installed_ram&#x27;: 2,
+                &#x27;net_interfaces&#x27;: {
+                    &#x27;type&#x27;: &#x27;capacity&#x27;,
+                    &#x27;link_capacity&#x27;: 5
+                }
+
+            },
+            &#x27;storage&#x27;: {
+                &#x27;type&#x27;: &#x27;ram&#x27;,
+                &#x27;total_capacity&#x27;: 7
+            },
+            &#x27;eic_net_ip&#x27;: &#x27;http/qweqwe&#x27;,
+            &#x27;status&#x27; : &#x27;online&#x27;
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;asset_id&#x27;: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
+            &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.88&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge65&#x27;,
+            &#x27;show&#x27;: true,
+            &#x27;created&#x27;: &#x27;1550746669&#x27;,
+            &#x27;labels&#x27;: {
+                &#x27;lab1&#x27;: &#x27;label1&#x27;,
+                &#x27;lab2&#x27;: &#x27;label2&#x27;
+            },
+            &#x27;os&#x27;: {
+                &#x27;name&#x27;: &#x27;petra&#x27;,
+                &#x27;version&#x27;: &#x27;v1&#x27;,
+                &#x27;class&#x27;: &#x27;linux&#x27;,
+                &#x27;architecture&#x27;: &#x27;chagal&#x27;
+            },
+            &#x27;hardware&#x27;: {
+                &#x27;cpus&#x27;: {
+                    &#x27;manufacturer&#x27;: &#x27;Linux&#x27;,
+                    &#x27;model&#x27;: &#x27;yes&#x27;,
+                    &#x27;architecture&#x27;: &#x27;Ubuntu&#x27;,
+                    &#x27;num_cores&#x27;: 3
+                },
+                &#x27;installed_ram&#x27;: 2,
+                &#x27;net_interfaces&#x27;: {
+                    &#x27;type&#x27;: &#x27;capacity&#x27;,
+                    &#x27;link_capacity&#x27;: 5
+                }
+
+            },
+            &#x27;storage&#x27;: {
+                &#x27;type&#x27;: &#x27;ram&#x27;,
+                &#x27;total_capacity&#x27;: 7
+            },
+            &#x27;eic_net_ip&#x27;: &#x27;http/qweqwe&#x27;,
+            &#x27;status&#x27; : &#x27;online&#x27;
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;asset_id&#x27;: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
+            &#x27;agent_id&#x27;: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
+            &#x27;asset_ip&#x27;: &#x27;98.105.55.98&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge65&#x27;,
+            &#x27;show&#x27;: true,
+            &#x27;created&#x27;: &#x27;1550746669&#x27;,
+            &#x27;labels&#x27;: {
+                &#x27;lab1&#x27;: &#x27;label1&#x27;,
+                &#x27;lab2&#x27;: &#x27;label2&#x27;
+            },
+            &#x27;os&#x27;: {
+                &#x27;name&#x27;: &#x27;petra&#x27;,
+                &#x27;version&#x27;: &#x27;v1&#x27;,
+                &#x27;class&#x27;: &#x27;linux&#x27;,
+                &#x27;architecture&#x27;: &#x27;chagal&#x27;
+            },
+            &#x27;hardware&#x27;: {
+                &#x27;cpus&#x27;: {
+                    &#x27;manufacturer&#x27;: &#x27;Linux&#x27;,
+                    &#x27;model&#x27;: &#x27;yes&#x27;,
+                    &#x27;architecture&#x27;: &#x27;Ubuntu&#x27;,
+                    &#x27;num_cores&#x27;: 3
+                },
+                &#x27;installed_ram&#x27;: 2,
+                &#x27;net_interfaces&#x27;: {
+                    &#x27;type&#x27;: &#x27;capacity&#x27;,
+                    &#x27;link_capacity&#x27;: 5
+                }
+
+            },
+            &#x27;storage&#x27;: {
+                &#x27;type&#x27;: &#x27;ram&#x27;,
+                &#x27;total_capacity&#x27;: 7
+            },
+            &#x27;eic_net_ip&#x27;: &#x27;http/qweqwe&#x27;,
+            &#x27;status&#x27; : &#x27;online&#x27;
+        }
     ],
     controllers:
     [
@@ -1672,14 +2222,14 @@
             &#x27;edge_controller_id&#x27;: &#x27;7777-0fef-41b0-bb7c-adf0055274cd&#x27;,
             &#x27;show&#x27;: true,
             &#x27;created&#x27;: &#x27;1550746676&#x27;,
-            &#x27;name&#x27;: &#x27;edge25&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge25&#x27;,
             &#x27;labels&#x27;: {
                 &#x27;lab1&#x27;: &#x27;label1&#x27;,
                 &#x27;lab2&#x27;: &#x27;label2&#x27;
             },
             &#x27;assets&#x27;:  [
                 {
-                    &#x27;asset_ip&#x27;: &#x27;90.105.55.31&#x27;,
+                    &#x27;asset_ip&#x27;: &#x27;98.105.55.31&#x27;,
                     &#x27;asset_status&#x27;: &#x27;online&#x27;
                 },
                 {
@@ -1722,14 +2272,14 @@
             &#x27;edge_controller_id&#x27;: &#x27;1010101-0fef-41b0-bb7c-adf0055274cd&#x27;,
             &#x27;show&#x27;: true,
             &#x27;created&#x27;: &#x27;1550746676&#x27;,
-            &#x27;name&#x27;: &#x27;edge65&#x27;,
+            &#x27;ec_name&#x27;: &#x27;edge65&#x27;,
             &#x27;labels&#x27;: {
                 &#x27;lab334&#x27;: &#x27;label344&#x27;,
                 &#x27;lab244&#x27;: &#x27;label244&#x27;
             },
             &#x27;assets&#x27;:  [
                 {
-                    &#x27;asset_ip&#x27;: &#x27;90.105.55.18&#x27;,
+                    &#x27;asset_ip&#x27;: &#x27;98.105.55.18&#x27;,
                     &#x27;asset_status&#x27;: &#x27;online&#x27;
                 },
                 {
@@ -1737,11 +2287,11 @@
                     &#x27;asset_status&#x27;: &#x27;online&#x27;
                 },
                 {
-                    &#x27;asset_ip&#x27;: &#x27;98.105.55.58&#x27;,
+                    &#x27;asset_ip&#x27;: &#x27;98.105.55.48&#x27;,
                     &#x27;asset_status&#x27;: &#x27;offline&#x27;
                 },
                 {
-                    &#x27;asset_ip&#x27;: &#x27;98.105.55.48&#x27;,
+                    &#x27;asset_ip&#x27;: &#x27;98.105.55.58&#x27;,
                     &#x27;asset_status&#x27;: &#x27;online&#x27;
                 },
                 {
