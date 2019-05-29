@@ -54,6 +54,7 @@ import { InfrastructureComponent } from './infrastructure/infrastructure.compone
 import { AssetInfoComponent } from './asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from './edge-controller-info/edge-controller-info.component';
 import { ContextualMenuComponent } from './contextual-menu/contextual-menu.component';
+import { InstallAgentComponent } from './install-agent/install-agent.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { ContextualMenuComponent } from './contextual-menu/contextual-menu.compo
     InfrastructureComponent,
     AssetInfoComponent,
     EdgeControllerInfoComponent,
-    ContextualMenuComponent
+    ContextualMenuComponent,
+    InstallAgentComponent
   ],
   entryComponents: [
     DebugPanelComponent,
