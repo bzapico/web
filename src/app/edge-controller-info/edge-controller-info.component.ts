@@ -105,21 +105,15 @@ export class EdgeControllerInfoComponent implements OnInit {
    *  @param assetReduced Reduced asset info to locate the whole asset object
    */
   openAssetInfo(assetReduced) {
-    const assetLocated = {
-      type: 'Asset',
-      asset_ip: assetReduced.asset_ip,
-      ec_name: this.name
-    };
-
     let asset: any;
     let assetIndexFound: number;
     assetIndexFound = -1;
 
     for (let i = 0; i < this.inventory.length && assetIndexFound === -1 ; i++) {
       if (
-        this.inventory[i].type === assetLocated.type &&
-        this.inventory[i].asset_ip === assetLocated.asset_ip &&
-        this.inventory[i].ec_name === assetLocated.ec_name
+        this.inventory[i].type === 'Asset' &&
+        this.inventory[i].asset_ip === assetReduced.asset_ip &&
+        this.inventory[i].ec_name === this.name
         ) {
         assetIndexFound = i;
       }
