@@ -235,13 +235,13 @@
                                 <a href="#getCategoryCSSClass">getCategoryCSSClass</a>
                             </li>
                             <li>
-                                <a href="#getGroupName">getGroupName</a>
-                            </li>
-                            <li>
                                 <a href="#getItemOptions">getItemOptions</a>
                             </li>
                             <li>
                                 <a href="#labelsToString">labelsToString</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToDevices">navigateToDevices</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit">ngOnInit</a>
@@ -294,12 +294,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(modalService: BsModalService, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>)</code>
+<code>constructor(modalService: BsModalService, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:116</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:119</a></div>
                             </td>
                         </tr>
 
@@ -364,6 +364,30 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -404,7 +428,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="288" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:288</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:289</a></div>
                             </td>
                         </tr>
 
@@ -475,7 +499,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="338" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:338</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="339" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:339</a></div>
                             </td>
                         </tr>
 
@@ -660,7 +684,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="310" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:310</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="311" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:311</a></div>
                             </td>
                         </tr>
 
@@ -718,78 +742,6 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="getGroupName"></a>
-                        <span class="name">
-                            <b>
-                            getGroupName
-                            </b>
-                            <a href="#getGroupName"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>getGroupName(deviceGroupId: )</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="511" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:511</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Locate the name of a group through an id</p>
-</div>
-
-                            <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>deviceGroupId</td>
-                                                    
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-
-                                                        <td>
-                                                                <code><p>group id</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                            </div>
-                                <div class="io-description">
-                                    
-                                </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
                         <a name="getItemOptions"></a>
                         <span class="name">
                             <b>
@@ -801,14 +753,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>getItemOptions(item: )</code>
+<code>getItemOptions(item: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="464" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:464</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="463" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:463</a></div>
                             </td>
                         </tr>
 
@@ -824,6 +776,7 @@
                                         <thead>
                                             <tr>
                                                 <td>Name</td>
+                                                    <td>Type</td>
                                                 <td>Optional</td>
                                                     <td>Description</td>
                                             </tr>
@@ -831,6 +784,9 @@
                                         <tbody>
                                                 <tr>
                                                         <td>item</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
                                                     
                                                     <td>
                                                             No
@@ -880,7 +836,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="326" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:326</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="327" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:327</a></div>
                             </td>
                         </tr>
 
@@ -938,6 +894,77 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="navigateToDevices"></a>
+                        <span class="name">
+                            <b>
+                            navigateToDevices
+                            </b>
+                            <a href="#navigateToDevices"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>navigateToDevices(groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="517" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:517</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Navigates to devices group view</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>groupId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="ngOnInit"></a>
                         <span class="name">
                             <b>
@@ -956,7 +983,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:162</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:166</a></div>
                             </td>
                         </tr>
 
@@ -987,7 +1014,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>normalizeInventoryItems(response: )</code>
+<code>normalizeInventoryItems(response: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
@@ -1010,6 +1037,7 @@
                                         <thead>
                                             <tr>
                                                 <td>Name</td>
+                                                    <td>Type</td>
                                                 <td>Optional</td>
                                                     <td>Description</td>
                                             </tr>
@@ -1017,6 +1045,9 @@
                                         <tbody>
                                                 <tr>
                                                         <td>response</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
                                                     
                                                     <td>
                                                             No
@@ -1059,14 +1090,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>openAssetInfo(asset: )</code>
+<code>openAssetInfo(asset: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="371" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:371</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="372" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:372</a></div>
                             </td>
                         </tr>
 
@@ -1082,6 +1113,7 @@
                                         <thead>
                                             <tr>
                                                 <td>Name</td>
+                                                    <td>Type</td>
                                                 <td>Optional</td>
                                                     <td>Description</td>
                                             </tr>
@@ -1089,6 +1121,9 @@
                                         <tbody>
                                                 <tr>
                                                         <td>asset</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
                                                     
                                                     <td>
                                                             No
@@ -1131,14 +1166,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>openContextualMenu(item: )</code>
+<code>openContextualMenu(item: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="452" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:452</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="451" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:451</a></div>
                             </td>
                         </tr>
 
@@ -1154,12 +1189,16 @@
                                         <thead>
                                             <tr>
                                                 <td>Name</td>
+                                                    <td>Type</td>
                                                 <td>Optional</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                                 <tr>
                                                         <td>item</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
                                                     
                                                     <td>
                                                             No
@@ -1198,14 +1237,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>openDeviceInfo(device: )</code>
+<code>openDeviceInfo(device: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="488" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:488</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="486" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:486</a></div>
                             </td>
                         </tr>
 
@@ -1221,6 +1260,7 @@
                                         <thead>
                                             <tr>
                                                 <td>Name</td>
+                                                    <td>Type</td>
                                                 <td>Optional</td>
                                                     <td>Description</td>
                                             </tr>
@@ -1228,6 +1268,9 @@
                                         <tbody>
                                                 <tr>
                                                         <td>device</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
                                                     
                                                     <td>
                                                             No
@@ -1342,7 +1385,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>openInfo(item: )</code>
+<code>openInfo(item: literal type)</code>
                     </td>
                 </tr>
 
@@ -1365,6 +1408,7 @@
                                         <thead>
                                             <tr>
                                                 <td>Name</td>
+                                                    <td>Type</td>
                                                 <td>Optional</td>
                                                     <td>Description</td>
                                             </tr>
@@ -1372,6 +1416,9 @@
                                         <tbody>
                                                 <tr>
                                                         <td>item</td>
+                                                        <td>
+                                                                    <code>literal type</code>
+                                                        </td>
                                                     
                                                     <td>
                                                             No
@@ -1421,7 +1468,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:299</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="300" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:300</a></div>
                             </td>
                         </tr>
 
@@ -1461,7 +1508,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:276</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:277</a></div>
                             </td>
                         </tr>
 
@@ -1656,7 +1703,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:119</a></div>
                             </td>
                         </tr>
 
@@ -1696,7 +1743,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:108</a></div>
                             </td>
                         </tr>
 
@@ -1730,7 +1777,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:46</a></div>
                             </td>
                         </tr>
 
@@ -1764,7 +1811,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -1811,7 +1858,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -1845,7 +1892,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -1879,7 +1926,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:66</a></div>
                             </td>
                         </tr>
 
@@ -1919,7 +1966,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:109</a></div>
                             </td>
                         </tr>
 
@@ -1953,7 +2000,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:45</a></div>
                             </td>
                         </tr>
 
@@ -1992,7 +2039,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -2026,7 +2073,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:104</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:107</a></div>
                             </td>
                         </tr>
 
@@ -2066,7 +2113,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:97</a></div>
                             </td>
                         </tr>
 
@@ -2100,7 +2147,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:88</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:91</a></div>
                             </td>
                         </tr>
 
@@ -2139,7 +2186,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:57</a></div>
                             </td>
                         </tr>
 
@@ -2179,7 +2226,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:102</a></div>
                             </td>
                         </tr>
 
@@ -2219,7 +2266,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:52</a></div>
                             </td>
                         </tr>
 
@@ -2259,7 +2306,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:40</a></div>
                             </td>
                         </tr>
 
@@ -2299,7 +2346,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:35</a></div>
                             </td>
                         </tr>
 
@@ -2339,7 +2386,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:67</a></div>
                             </td>
                         </tr>
 
@@ -2373,7 +2420,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:69</a></div>
                             </td>
                         </tr>
 
@@ -2407,7 +2454,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:70</a></div>
                             </td>
                         </tr>
 
@@ -2441,7 +2488,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -2481,7 +2528,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:86</a></div>
                             </td>
                         </tr>
 
@@ -2521,7 +2568,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:114</a></div>
                             </td>
                         </tr>
 
@@ -2561,7 +2608,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:76</a></div>
                             </td>
                         </tr>
 
@@ -2595,7 +2642,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:81</a></div>
                             </td>
                         </tr>
 
@@ -2640,7 +2687,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:96</a></div>
                             </td>
                         </tr>
 
@@ -2680,7 +2727,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:75</a></div>
                             </td>
                         </tr>
 
@@ -2720,7 +2767,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/infrastructure/infrastructure.component.ts:68</a></div>
                             </td>
                         </tr>
 
@@ -2744,6 +2791,9 @@ import { BsModalService, BsModalRef } from &#x27;ngx-bootstrap&#x27;;
 import { DeviceInfoComponent } from &#x27;../device-info/device-info.component&#x27;;
 import { AssetInfoComponent } from &#x27;../asset-info/asset-info.component&#x27;;
 import { EdgeControllerInfoComponent } from &#x27;../edge-controller-info/edge-controller-info.component&#x27;;
+import { Router, ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { select } from &#x27;d3-selection&#x27;;
+import { delay } from &#x27;rxjs/operators&#x27;;
 
 @Component({
   selector: &#x27;app-infrastructure&#x27;,
@@ -2850,12 +2900,13 @@ export class InfrastructureComponent implements OnInit {
    */
   activeContextMenuItemId: string;
 
-
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
     const mock &#x3D; localStorage.getItem(LocalStorageKeys.infrastructureMock) || null;
     // Check which backend is required (fake or real)
@@ -2906,10 +2957,6 @@ export class InfrastructureComponent implements OnInit {
           this.memoryCount &#x3D; summary[&#x27;total_ram&#x27;];
           this.storageCount &#x3D; summary[&#x27;total_storage&#x27;];
         });
-        this.backend.getGroups(this.organizationId)
-        .subscribe(response &#x3D;&gt; {
-          this.groups &#x3D; response.groups || [];
-        });
         this.updateInventoryList();
       }
     }
@@ -2938,7 +2985,7 @@ export class InfrastructureComponent implements OnInit {
    * Normalize the inventory list and added type
    * @param response Backend response where to modify the data
    */
-  normalizeInventoryItems(response) {
+  normalizeInventoryItems(response: any) {
     this.inventory &#x3D; [];
     if (!response || response &#x3D;&#x3D;&#x3D; null) {
     } else {
@@ -3002,7 +3049,8 @@ export class InfrastructureComponent implements OnInit {
       {
         name: &#x27;Offline&#x27;,
         value: total - online
-      }];
+      }
+    ];
   }
 
   /**
@@ -3103,29 +3151,29 @@ export class InfrastructureComponent implements OnInit {
   * Open Asset info modal window
   *  @param asset asset object
   */
-  openAssetInfo(asset) {
-  const initialStateAsset &#x3D; {
-    organizationId: this.organizationId,
-    assetId: asset.asset_id,
-    agentId: asset.agent_id,
-    assetIp: asset.asset_ip,
-    ecName: asset.ec_name,
-    show: asset.show,
-    created: asset.created,
-    labels: asset.labels,
-    class: asset.os.class,
-    version: asset.os.version,
-    architecture: asset.hardware.cpus.architecture,
-    model: asset.hardware.cpus.model,
-    manufacturer: asset.hardware.cpus.manufacturer,
-    cores: asset.hardware.cpus.num_cores,
-    netInterfaces: asset.hardware.net_interfaces,
-    storage: asset.storage,
-    capacity: asset.storage.total_capacity,
-    eic: asset.eic_net_ip,
-    status: asset.status,
-    inventory: this.inventory,
-  };
+  openAssetInfo(asset: any) {
+    const initialStateAsset &#x3D; {
+      organizationId: this.organizationId,
+      assetId: asset.asset_id,
+      agentId: asset.agent_id,
+      assetIp: asset.asset_ip,
+      ecName: asset.ec_name,
+      show: asset.show,
+      created: asset.created,
+      labels: asset.labels,
+      class: asset.os.class,
+      version: asset.os.version,
+      architecture: asset.hardware.cpus.architecture,
+      model: asset.hardware.cpus.model,
+      manufacturer: asset.hardware.cpus.manufacturer,
+      cores: asset.hardware.cpus.num_cores,
+      netInterfaces: asset.hardware.net_interfaces,
+      storage: asset.storage,
+      capacity: asset.storage.total_capacity,
+      eic: asset.eic_net_ip,
+      status: asset.status,
+      inventory: this.inventory,
+    };
 
     this.assetModalRef &#x3D; this.modalService.show(
     AssetInfoComponent, {
@@ -3135,12 +3183,11 @@ export class InfrastructureComponent implements OnInit {
     });
 
     // onClose is used if the Asset modal comes while closing it, which means that we need to trigger a new edge controller modal
-    this.assetModalRef.content.onClose &#x3D; (ecFromAsset) &#x3D;&gt; {
+    this.assetModalRef.content.onClose &#x3D; (ecFromAsset: any) &#x3D;&gt; {
     if (ecFromAsset) {
       this.openEdgeControllerInfo(ecFromAsset);
       }
     };
-
     this.assetModalRef.hide();
     this.assetModalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
   }
@@ -3170,12 +3217,11 @@ export class InfrastructureComponent implements OnInit {
        });
 
     // onClose is used if the EC modal comes while closing it, which means that we need to trigger a new edge controller modal
-    this.ecModalRef.content.onClose &#x3D; (assetFromEC) &#x3D;&gt; {
+    this.ecModalRef.content.onClose &#x3D; (assetFromEC: any) &#x3D;&gt; {
       if (assetFromEC) {
         this.openAssetInfo(assetFromEC);
       }
     };
-
     this.ecModalRef.hide();
     this.ecModalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
   }
@@ -3184,7 +3230,7 @@ export class InfrastructureComponent implements OnInit {
    * Opens context menu
    * @param Item inventory item
    */
-  openContextualMenu(item) {
+  openContextualMenu(item: any) {
     if (item.id &#x3D;&#x3D;&#x3D; this. activeContextMenuItemId) {
       this.activeContextMenuItemId &#x3D; &#x27;&#x27;;
     } else {
@@ -3196,7 +3242,7 @@ export class InfrastructureComponent implements OnInit {
    * Get the item options to show in the context menu
    * @param item inventory item
    */
-  getItemOptions(item) {
+  getItemOptions(item: any) {
     switch (item.type) {
       case &#x27;EC&#x27;:
         const ecOptions &#x3D; [];
@@ -3209,7 +3255,6 @@ export class InfrastructureComponent implements OnInit {
           item: item
         };
         ecOptions.push(ecOptions1);
-
       return ecOptions;
       default:
         break;
@@ -3220,7 +3265,7 @@ export class InfrastructureComponent implements OnInit {
    * Opens the modal view that holds the device info component
    * @param device device to be opened
    */
-  openDeviceInfo(device) {
+  openDeviceInfo(device: any) {
     const initialState &#x3D; {
       organizationId: this.organizationId,
       deviceGroupId: device.device_group_id,
@@ -3229,35 +3274,37 @@ export class InfrastructureComponent implements OnInit {
       labels: device.labels,
       status: device.device_status_name,
       enabled: device.enabled,
-      groupName: this.getGroupName(device.device_group_id)
     };
 
-    this.deviceModalRef &#x3D; this.modalService.show(DeviceInfoComponent, { initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
-    this.deviceModalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
-    this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; {
+    this.deviceModalRef &#x3D; this.modalService.show(
+      DeviceInfoComponent, {
+        initialState,
+        backdrop: &#x27;static&#x27;,
+        ignoreBackdropClick: false
+      });
 
-    });
-  }
-
- /**
-   * Locate the name of a group through an id
-   * @param deviceGroupId group id
-   */
-  getGroupName(deviceGroupId) {
-    if (this.groups &amp;&amp; this.groups.length &gt; 0) {
-      const index &#x3D; this.groups.map(x &#x3D;&gt; x.device_group_id).indexOf(deviceGroupId);
-      if (index !&#x3D;&#x3D; -1) {
-        return this.groups[index].name;
+    // onClose is used if the device info modal comes while closing it with the clicked groupid
+    this.deviceModalRef.content.onClose &#x3D; (groupId: string) &#x3D;&gt; {
+      if (groupId) {
+        this.navigateToDevices(groupId);
       }
-    }
-    return &#x27;Not found&#x27;;
+    };
+    this.deviceModalRef.hide();
+    this.deviceModalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
   }
 
-    /**
+  /**
+   * Navigates to devices group view
+   */
+  navigateToDevices(groupId: string) {
+    window.location.href &#x3D; &#x27;/#/devices?groupId&#x3D;&#x27; + groupId;
+  }
+
+  /**
    * Temporary method by which we open all the modal windows
    * @param item inventory item
    */
-  openInfo(item) {
+  openInfo(item: { type: any; }) {
     switch (item.type) {
       case &#x27;Asset&#x27;:
         this.openAssetInfo(item);
@@ -3272,7 +3319,6 @@ export class InfrastructureComponent implements OnInit {
         break;
     }
   }
-
 }
 </code></pre>
     </div>

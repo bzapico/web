@@ -11,6 +11,7 @@ import { AssetInfoComponent } from '../asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-controller-info.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { select } from 'd3-selection';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-infrastructure',
@@ -174,10 +175,6 @@ export class InfrastructureComponent implements OnInit {
           this.memoryCount = summary['total_ram'];
           this.storageCount = summary['total_storage'];
         });
-        this.backend.getGroups(this.organizationId)
-        .subscribe(response => {
-          this.groups = response.groups || [];
-        });
         this.updateInventoryList();
       }
     }
@@ -270,7 +267,8 @@ export class InfrastructureComponent implements OnInit {
       {
         name: 'Offline',
         value: total - online
-      }];
+      }
+    ];
   }
 
   /**
@@ -372,28 +370,28 @@ export class InfrastructureComponent implements OnInit {
   *  @param asset asset object
   */
   openAssetInfo(asset: any) {
-  const initialStateAsset = {
-    organizationId: this.organizationId,
-    assetId: asset.asset_id,
-    agentId: asset.agent_id,
-    assetIp: asset.asset_ip,
-    ecName: asset.ec_name,
-    show: asset.show,
-    created: asset.created,
-    labels: asset.labels,
-    class: asset.os.class,
-    version: asset.os.version,
-    architecture: asset.hardware.cpus.architecture,
-    model: asset.hardware.cpus.model,
-    manufacturer: asset.hardware.cpus.manufacturer,
-    cores: asset.hardware.cpus.num_cores,
-    netInterfaces: asset.hardware.net_interfaces,
-    storage: asset.storage,
-    capacity: asset.storage.total_capacity,
-    eic: asset.eic_net_ip,
-    status: asset.status,
-    inventory: this.inventory,
-  };
+    const initialStateAsset = {
+      organizationId: this.organizationId,
+      assetId: asset.asset_id,
+      agentId: asset.agent_id,
+      assetIp: asset.asset_ip,
+      ecName: asset.ec_name,
+      show: asset.show,
+      created: asset.created,
+      labels: asset.labels,
+      class: asset.os.class,
+      version: asset.os.version,
+      architecture: asset.hardware.cpus.architecture,
+      model: asset.hardware.cpus.model,
+      manufacturer: asset.hardware.cpus.manufacturer,
+      cores: asset.hardware.cpus.num_cores,
+      netInterfaces: asset.hardware.net_interfaces,
+      storage: asset.storage,
+      capacity: asset.storage.total_capacity,
+      eic: asset.eic_net_ip,
+      status: asset.status,
+      inventory: this.inventory,
+    };
 
     this.assetModalRef = this.modalService.show(
     AssetInfoComponent, {
@@ -408,7 +406,6 @@ export class InfrastructureComponent implements OnInit {
       this.openEdgeControllerInfo(ecFromAsset);
       }
     };
-
     this.assetModalRef.hide();
     this.assetModalRef.content.closeBtnName = 'Close';
   }
@@ -443,7 +440,6 @@ export class InfrastructureComponent implements OnInit {
         this.openAssetInfo(assetFromEC);
       }
     };
-
     this.ecModalRef.hide();
     this.ecModalRef.content.closeBtnName = 'Close';
   }
@@ -477,7 +473,6 @@ export class InfrastructureComponent implements OnInit {
           item: item
         };
         ecOptions.push(ecOptions1);
-
       return ecOptions;
       default:
         break;
@@ -497,7 +492,6 @@ export class InfrastructureComponent implements OnInit {
       labels: device.labels,
       status: device.device_status_name,
       enabled: device.enabled,
-      groupName: this.getGroupName(device.device_group_id)
     };
 
     this.deviceModalRef = this.modalService.show(
@@ -513,7 +507,6 @@ export class InfrastructureComponent implements OnInit {
         this.navigateToDevices(groupId);
       }
     };
-
     this.deviceModalRef.hide();
     this.deviceModalRef.content.closeBtnName = 'Close';
   }
@@ -523,20 +516,6 @@ export class InfrastructureComponent implements OnInit {
    */
   navigateToDevices(groupId: string) {
     window.location.href = '/#/devices?groupId=' + groupId;
-  }
-
-  /**
-   * Locate the name of a group through an id
-   * @param deviceGroupId group id
-   */
-  getGroupName(deviceGroupId: string) {
-    if (this.groups && this.groups.length > 0) {
-      const index = this.groups.map(x => x.device_group_id).indexOf(deviceGroupId);
-      if (index !== -1) {
-        return this.groups[index].name;
-      }
-    }
-    return 'Not found';
   }
 
   /**

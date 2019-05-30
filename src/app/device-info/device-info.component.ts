@@ -30,6 +30,16 @@ export class DeviceInfoComponent implements OnInit {
   groupName: string;
 
   /**
+   * List of available devices groups
+   */
+  groups: any[];
+
+  /**
+   * Hold request error message or undefined
+   */
+  requestError: string;
+
+  /**
    * Model that holds onclose method defined in Infrastructure component
    */
   onClose: any;
@@ -62,11 +72,36 @@ export class DeviceInfoComponent implements OnInit {
     }
 
     // Default initialization
-    this.loadedData = true;
+    this.loadedData = false;
    }
 
   ngOnInit() {
+    this.backend.getGroups(this.organizationId)
+    .subscribe(response => {
+      if (response.groups) {
+        this.groups = response.groups || [];
+        this.groupName = this.getGroupName();
+      }
+    }, errorResponse => {
+      this.requestError = errorResponse.error.message;
+    });
   }
+
+  /**
+   * Locate the name of a group through an id
+   * @param deviceGroupId group id
+   */
+  getGroupName() {
+    if (this.groups && this.groups.length > 0) {
+      const index = this.groups.map(x => x.device_group_id).indexOf(this.deviceGroupId);
+      if (index !== -1) {
+        this.loadedData = true;
+        return this.groups[index].name;
+      }
+    }
+    return 'Not found';
+  }
+
 
   /**
    * Transforms objects to arrays to be parsed to string and performed in the view
@@ -99,6 +134,7 @@ export class DeviceInfoComponent implements OnInit {
    * Gets the return group ID value from the modal and gives it to infrastructure component
    */
   getGroupId() {
+
     const groupId = this.deviceGroupId;
     this.onClose(groupId);
     this.bsModalRef.hide();

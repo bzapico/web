@@ -10,6 +10,7 @@ import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { ActivatedRoute } from '@angular/router';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-devices',
@@ -205,14 +206,14 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   ngOnInit() {
-    if (this.route.snapshot.queryParamMap.get('groupId')) {
-      this.activeGroupId = this.route.snapshot.queryParamMap.get('groupId');
-    }
     // Get User data from localStorage
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
-        this.updateGroupsList(this.organizationId);
+      this.updateGroupsList(this.organizationId);
+        if (this.route.snapshot.queryParamMap.get('groupId')) {
+          this.activeGroupId = this.route.snapshot.queryParamMap.get('groupId');
+        }
         this.refreshIntervalRef = setInterval(() => {
           this.updateGroupsList(this.organizationId);
         },

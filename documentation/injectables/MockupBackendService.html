@@ -352,7 +352,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="556" class="link-to-prism">src/app/services/mockup-backend.service.ts:556</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="557" class="link-to-prism">src/app/services/mockup-backend.service.ts:557</a></div>
                             </td>
                         </tr>
 
@@ -444,7 +444,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="605" class="link-to-prism">src/app/services/mockup-backend.service.ts:605</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="606" class="link-to-prism">src/app/services/mockup-backend.service.ts:606</a></div>
                             </td>
                         </tr>
 
@@ -716,7 +716,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="583" class="link-to-prism">src/app/services/mockup-backend.service.ts:583</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="584" class="link-to-prism">src/app/services/mockup-backend.service.ts:584</a></div>
                             </td>
                         </tr>
 
@@ -2492,7 +2492,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="623" class="link-to-prism">src/app/services/mockup-backend.service.ts:623</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="624" class="link-to-prism">src/app/services/mockup-backend.service.ts:624</a></div>
                             </td>
                         </tr>
 
@@ -3128,7 +3128,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="598" class="link-to-prism">src/app/services/mockup-backend.service.ts:598</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="599" class="link-to-prism">src/app/services/mockup-backend.service.ts:599</a></div>
                             </td>
                         </tr>
 
@@ -3328,7 +3328,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="640" class="link-to-prism">src/app/services/mockup-backend.service.ts:640</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="641" class="link-to-prism">src/app/services/mockup-backend.service.ts:641</a></div>
                             </td>
                         </tr>
 
@@ -3936,8 +3936,9 @@ export class MockupBackendService implements Backend {
    */
   getGroups(organizationId: string) {
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify({groups: mockGroupList}),
-      status: 200
+      body: JSON.stringify({
+      groups: mockGroupList}),
+      status: 200,
     })))
     .pipe(
       map(response &#x3D;&gt; response.json())

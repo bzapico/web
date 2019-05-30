@@ -4,6 +4,9 @@
 @mixin for-desktop-up {
     @media all and (max-width: 1440px) { @content; }
 }
+@mixin for-desktop-only {
+    @media all and (max-width: 1440px), all and (max-height: 900px) { @content; }
+}
 
 /* - - - Devices tabs buttons - - - */
 .devices-tab-btns-box {
@@ -73,7 +76,7 @@
         font-size:  .9em;
         font-weight: 200;
         vertical-align: inherit;
-        @include for-desktop-up {
+        @include for-desktop-only {
             display: none;
         }
     }
@@ -86,7 +89,7 @@
         max-width: 180px;
         color: #212529;
         cursor: pointer;
-        @include for-desktop-up {
+        @include for-desktop-only {
             font-size:  .7em;
             padding: .2em;
         }
