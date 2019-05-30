@@ -188,6 +188,7 @@ export class InfrastructureComponent implements OnInit {
     // Request to get inventory
     this.backend.getInventory(this.organizationId)
     .subscribe(response => {
+      console.log('response ' , response);
       this.normalizeInventoryItems(response);
       if (!this.loadedData) {
         this.loadedData = true;
@@ -444,6 +445,111 @@ export class InfrastructureComponent implements OnInit {
     this.ecModalRef.content.closeBtnName = 'Close';
   }
 
+  /*
+   * Opens the modal view that holds the device info component
+   * @param device device to be opened
+   */
+  openDeviceInfo(device: any) {
+    const initialState = {
+      organizationId: this.organizationId,
+      deviceGroupId: device.device_group_id,
+      deviceId: device.device_id,
+      created: device.register_since,
+      labels: device.labels,
+      status: device.device_status_name,
+      enabled: device.enabled,
+    };
+
+    this.deviceModalRef = this.modalService.show(
+      DeviceInfoComponent, {
+        initialState,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+      });
+
+    // onClose is used if the device info modal comes while closing it with the clicked groupid
+    this.deviceModalRef.content.onClose = (groupId: string) => {
+      if (groupId) {
+        this.navigateToDevices(groupId);
+      }
+    };
+    this.deviceModalRef.hide();
+    this.deviceModalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+   * Navigates to devices group view
+   */
+  navigateToDevices(groupId: string) {
+    window.location.href = '/#/devices?groupId=' + groupId;
+  }
+
+  /**
+   * Unlinks the Edge Controller
+   * @param inventoryItem inventory item
+   */
+  unlinkEC(inventoryItem) {
+    alert('EC unlinked');
+  }
+
+  /**
+   * Opens the modal view that holds the install Agent component
+   * @param inventoryItem inventory item
+   */
+  installAgent(inventoryItem) {
+    alert('Install agent');
+  }
+
+  /**
+   * Command the logs in assets
+   * @param inventoryItem inventory item
+   */
+  commandLog(inventoryItem) {
+    alert('Command log');
+  }
+
+  /**
+   * Executes command 1 in assets
+   * @param inventoryItem inventory item
+   */
+  executeCommand1(inventoryItem) {
+    alert('Execute command 1');
+  }
+
+  /**
+   * Executes command 2 in assets
+   * @param inventoryItem inventory item
+   */
+  executeCommand2(inventoryItem) {
+    alert('Execute command 1');
+  }
+
+  /**
+   * Executes devices enablement switcher statement to select one of enabled device to be executed.
+   * @param inventoryItem inventory item
+   */
+  deviceEnablement(device) {
+    console.log('a ver ' , device.enabled);
+    device.enabled = !device.enabled;
+    // backend call
+    this.backend.updateDevice(this.organizationId, {
+       organizationId: this.organizationId,
+       deviceGroupId: device.device_group_id,
+       deviceId: device.device_id,
+       enabled: device.enabled
+    }).subscribe( updateDeviceResponse => {
+      console.log('update response ', updateDeviceResponse);
+      let notificationText = 'enabled';
+      if (!updateDeviceResponse.enabled) {
+       notificationText = 'disabled';
+      }
+     this.notificationsService.add({
+       message: 'The device is now ' + notificationText,
+       timeout: 3000
+     });
+    });
+  }
+
   /**
    * Opens context menu
    * @param Item inventory item
@@ -455,6 +561,7 @@ export class InfrastructureComponent implements OnInit {
       this.activeContextMenuItemId = item.id;
     }
   }
+
 
   /**
    * Get the item options to show in the context menu
@@ -533,107 +640,16 @@ export class InfrastructureComponent implements OnInit {
           },
           item: item
         };
+        const deviceOption2 = {
+          name: 'Toggle enablement',
+          action: (inventoryItem) => {
+            this.deviceEnablement(inventoryItem);
+          },
+          item: item
+        };
         deviceOptions.push(deviceOption1);
+        deviceOptions.push(deviceOption2);
       return deviceOptions;
-      default:
-        break;
-    }
-  }
-
-  /**
-   * Unlinks the Edge Controller
-   * @param inventoryItem inventory item
-   */
-  unlinkEC(inventoryItem) {
-    alert('EC unlinked');
-  }
-
-  /**
-   * Opens the modal view that holds the install Agent component
-   * @param inventoryItem inventory item
-   */
-  installAgent(inventoryItem) {
-    alert('Install agent');
-  }
-
-  /**
-   * Command the logs in assets
-   * @param inventoryItem inventory item
-   */
-  commandLog(inventoryItem) {
-    alert('Command log');
-  }
-
-  /**
-   * Executes command 1 in assets
-   * @param inventoryItem inventory item
-   */
-  executeCommand1(inventoryItem) {
-    alert('Execute command 1');
-  }
-
-  /**
-   * Executes command 1 in assets
-   * @param inventoryItem inventory item
-   */
-  executeCommand2(inventoryItem) {
-    alert('Execute command 1');
-  }
-
-    /*
-   * Opens the modal view that holds the device info component
-   * @param device device to be opened
-   */
-  openDeviceInfo(device: any) {
-    const initialState = {
-      organizationId: this.organizationId,
-      deviceGroupId: device.device_group_id,
-      deviceId: device.device_id,
-      created: device.register_since,
-      labels: device.labels,
-      status: device.device_status_name,
-      enabled: device.enabled,
-    };
-
-    this.deviceModalRef = this.modalService.show(
-      DeviceInfoComponent, {
-        initialState,
-        backdrop: 'static',
-        ignoreBackdropClick: false
-      });
-
-    // onClose is used if the device info modal comes while closing it with the clicked groupid
-    this.deviceModalRef.content.onClose = (groupId: string) => {
-      if (groupId) {
-        this.navigateToDevices(groupId);
-      }
-    };
-    this.deviceModalRef.hide();
-    this.deviceModalRef.content.closeBtnName = 'Close';
-  }
-
-  /**
-   * Navigates to devices group view
-   */
-  navigateToDevices(groupId: string) {
-    window.location.href = '/#/devices?groupId=' + groupId;
-  }
-
-  /**
-   * Temporary method by which we open all the modal windows
-   * @param item inventory item
-   */
-  openInfo(item: { type: any; }) {
-    switch (item.type) {
-      case 'Asset':
-        this.openAssetInfo(item);
-      break;
-      case 'Device':
-        this.openDeviceInfo(item);
-      break;
-      case 'EC':
-        this.openEdgeControllerInfo(item);
-      break;
       default:
         break;
     }
