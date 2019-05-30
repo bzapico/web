@@ -293,18 +293,17 @@
                   <span *ngIf="item.status"
                     [ngClass]=
                       "{
-                        'status-dot':classStatusCheck(item.status, 'online'),
-                        'status-dot-error':classStatusCheck(item.status, 'offline'),
-                        'status-dot-process':classStatusCheck(item.status, 'process')
+                        'status-dot': classStatusCheck(item.status, 'online'),
+                        'status-dot-error': classStatusCheck(item.status, 'offline'),
+                        'status-dot-process': classStatusCheck(item.status, 'process')
                       }"
-                    tooltip="{{item.status}}" 
+                    tooltip="{{item.status}" 
                     placement="bottom"
                     class="status-dot">
                   </span>
                   <span *ngIf="item.status" class="hide-lg">
                     {{item.status}}
-                    </span>
-                  <span *ngIf="!item.status"> - </span>
+                  </span>
                 </td>
                 <td class="col-1 text-center">
                   <button 

@@ -6,8 +6,11 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { mockInfrastructurePieChart } from '../utils/mocks';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { DeviceInfoComponent } from '../device-info/device-info.component';
 import { AssetInfoComponent } from '../asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-controller-info.component';
+import { Router, ActivatedRoute } from '@angular/router';
+import { select } from 'd3-selection';
 
 @Component({
   selector: 'app-infrastructure',
@@ -93,15 +96,11 @@ export class InfrastructureComponent implements OnInit {
   entityId: boolean;
 
   /**
-   * List of labels
-   */
-  labels: any[];
-
-  /**
    * Reference for the service that allows Edge Controller info and asset info component components
    */
   ecModalRef: BsModalRef;
   assetModalRef: BsModalRef;
+  deviceModalRef: BsModalRef;
 
   /**
    * Hold request error message or undefined
@@ -113,12 +112,13 @@ export class InfrastructureComponent implements OnInit {
    */
   activeContextMenuItemId: string;
 
-
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.infrastructureMock) || null;
     // Check which backend is required (fake or real)
@@ -133,7 +133,6 @@ export class InfrastructureComponent implements OnInit {
     this.assets = [];
     this.devices = [];
     this.controllers = [];
-    this.labels = [];
     this.loadedData = false;
     this.requestError = '';
     this.cpuCoresCount = 0;
@@ -198,7 +197,7 @@ export class InfrastructureComponent implements OnInit {
    * Normalize the inventory list and added type
    * @param response Backend response where to modify the data
    */
-  normalizeInventoryItems(response) {
+  normalizeInventoryItems(response: any) {
     this.inventory = [];
     if (!response || response === null) {
     } else {
@@ -206,6 +205,7 @@ export class InfrastructureComponent implements OnInit {
         response.devices.forEach(device => {
           device.type = 'Device';
           device.id = device.device_id;
+          device.status = device.device_status_name;
           if (!device.location || device.location === undefined || device.location === null) {
             device.location = 'undefined';
           }
@@ -262,7 +262,8 @@ export class InfrastructureComponent implements OnInit {
       {
         name: 'Offline',
         value: total - online
-      }];
+      }
+    ];
   }
 
   /**
@@ -363,29 +364,29 @@ export class InfrastructureComponent implements OnInit {
   * Open Asset info modal window
   *  @param asset asset object
   */
-  openAssetInfo(asset) {
-  const initialStateAsset = {
-    organizationId: this.organizationId,
-    assetId: asset.asset_id,
-    agentId: asset.agent_id,
-    assetIp: asset.asset_ip,
-    ecName: asset.ec_name,
-    show: asset.show,
-    created: asset.created,
-    labels: asset.labels,
-    class: asset.os.class,
-    version: asset.os.version,
-    architecture: asset.hardware.cpus.architecture,
-    model: asset.hardware.cpus.model,
-    manufacturer: asset.hardware.cpus.manufacturer,
-    cores: asset.hardware.cpus.num_cores,
-    netInterfaces: asset.hardware.net_interfaces,
-    storage: asset.storage,
-    capacity: asset.storage.total_capacity,
-    eic: asset.eic_net_ip,
-    status: asset.status,
-    inventory: this.inventory,
-  };
+  openAssetInfo(asset: any) {
+    const initialStateAsset = {
+      organizationId: this.organizationId,
+      assetId: asset.asset_id,
+      agentId: asset.agent_id,
+      assetIp: asset.asset_ip,
+      ecName: asset.ec_name,
+      show: asset.show,
+      created: asset.created,
+      labels: asset.labels,
+      class: asset.os.class,
+      version: asset.os.version,
+      architecture: asset.hardware.cpus.architecture,
+      model: asset.hardware.cpus.model,
+      manufacturer: asset.hardware.cpus.manufacturer,
+      cores: asset.hardware.cpus.num_cores,
+      netInterfaces: asset.hardware.net_interfaces,
+      storage: asset.storage,
+      capacity: asset.storage.total_capacity,
+      eic: asset.eic_net_ip,
+      status: asset.status,
+      inventory: this.inventory,
+    };
 
     this.assetModalRef = this.modalService.show(
     AssetInfoComponent, {
@@ -395,12 +396,11 @@ export class InfrastructureComponent implements OnInit {
     });
 
     // onClose is used if the Asset modal comes while closing it, which means that we need to trigger a new edge controller modal
-    this.assetModalRef.content.onClose = (ecFromAsset) => {
+    this.assetModalRef.content.onClose = (ecFromAsset: any) => {
     if (ecFromAsset) {
       this.openEdgeControllerInfo(ecFromAsset);
       }
     };
-
     this.assetModalRef.hide();
     this.assetModalRef.content.closeBtnName = 'Close';
   }
@@ -430,12 +430,11 @@ export class InfrastructureComponent implements OnInit {
        });
 
     // onClose is used if the EC modal comes while closing it, which means that we need to trigger a new edge controller modal
-    this.ecModalRef.content.onClose = (assetFromEC) => {
+    this.ecModalRef.content.onClose = (assetFromEC: any) => {
       if (assetFromEC) {
         this.openAssetInfo(assetFromEC);
       }
     };
-
     this.ecModalRef.hide();
     this.ecModalRef.content.closeBtnName = 'Close';
   }
@@ -444,7 +443,7 @@ export class InfrastructureComponent implements OnInit {
    * Opens context menu
    * @param Item inventory item
    */
-  openContextualMenu(item) {
+  openContextualMenu(item: any) {
     if (item.id === this. activeContextMenuItemId) {
       this.activeContextMenuItemId = '';
     } else {
@@ -456,7 +455,7 @@ export class InfrastructureComponent implements OnInit {
    * Get the item options to show in the context menu
    * @param item inventory item
    */
-  getItemOptions(item) {
+  getItemOptions(item: any) {
     switch (item.type) {
       case 'EC':
         const ecOptions = [];
@@ -469,7 +468,6 @@ export class InfrastructureComponent implements OnInit {
           item: item
         };
         ecOptions.push(ecOptions1);
-
       return ecOptions;
       default:
         break;
@@ -477,13 +475,55 @@ export class InfrastructureComponent implements OnInit {
   }
 
   /**
+   * Opens the modal view that holds the device info component
+   * @param device device to be opened
+   */
+  openDeviceInfo(device: any) {
+    const initialState = {
+      organizationId: this.organizationId,
+      deviceGroupId: device.device_group_id,
+      deviceId: device.device_id,
+      created: device.register_since,
+      labels: device.labels,
+      status: device.device_status_name,
+      enabled: device.enabled,
+    };
+
+    this.deviceModalRef = this.modalService.show(
+      DeviceInfoComponent, {
+        initialState,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+      });
+
+    // onClose is used if the device info modal comes while closing it with the clicked groupid
+    this.deviceModalRef.content.onClose = (groupId: string) => {
+      if (groupId) {
+        this.navigateToDevices(groupId);
+      }
+    };
+    this.deviceModalRef.hide();
+    this.deviceModalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+   * Navigates to devices group view
+   */
+  navigateToDevices(groupId: string) {
+    window.location.href = '/#/devices?groupId=' + groupId;
+  }
+
+  /**
    * Temporary method by which we open all the modal windows
    * @param item inventory item
    */
-  openInfo(item) {
+  openInfo(item: { type: any; }) {
     switch (item.type) {
       case 'Asset':
-       this.openAssetInfo(item);
+        this.openAssetInfo(item);
+      break;
+      case 'Device':
+        this.openDeviceInfo(item);
       break;
       case 'EC':
         this.openEdgeControllerInfo(item);
@@ -492,5 +532,4 @@ export class InfrastructureComponent implements OnInit {
         break;
     }
   }
-
 }
