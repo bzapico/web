@@ -9,6 +9,8 @@ import { mockDevicesChart } from '../utils/mocks';
 import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group.component';
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
+import { ActivatedRoute } from '@angular/router';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-devices',
@@ -65,7 +67,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * List of active displayed group
    */
   displayedGroups: any[];
-
   devicesOnTimeline: any[];
 
   /**
@@ -163,6 +164,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
+    private route: ActivatedRoute,
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.devicesMock) || null;
     // Check which backend is required (fake or real)
@@ -208,7 +210,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
-        this.updateGroupsList(this.organizationId);
+      this.updateGroupsList(this.organizationId);
+        if (this.route.snapshot.queryParamMap.get('groupId')) {
+          this.activeGroupId = this.route.snapshot.queryParamMap.get('groupId');
+        }
         this.refreshIntervalRef = setInterval(() => {
           this.updateGroupsList(this.organizationId);
         },

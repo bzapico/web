@@ -6,37 +6,43 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
 @Component({
-  selector: 'app-edge-controller-info',
-  templateUrl: './edge-controller-info.component.html',
-  styleUrls: ['./edge-controller-info.component.scss']
+  selector: 'app-device-info',
+  templateUrl: './device-info.component.html',
+  styleUrls: ['./device-info.component.scss']
 })
-export class EdgeControllerInfoComponent implements OnInit {
-   /**
+export class DeviceInfoComponent implements OnInit {
+
+  /**
    * Backend reference
    */
   backend: Backend;
 
   /**
-   * Models that hold organization ID, Edge Controller ID, list of assets, show, created, name, labels and status
+   * Models that hold organization id, device group ID, device ID, created, labels and status
    */
   organizationId: string;
-  id: string;
-  assets: any[];
-  show: string;
+  deviceGroupId: string;
+  deviceId: string;
   created: string;
-  name: string;
   labels: any;
   status: string;
+  enabled: boolean;
+  groupName: string;
+
+  /**
+   * List of available devices groups
+   */
+  groups: any[];
+
+  /**
+   * Hold request error message or undefined
+   */
+  requestError: string;
 
   /**
    * Model that holds onclose method defined in Infrastructure component
    */
   onClose: any;
-
-  /**
-   * Models that hold all inventory list
-   */
-  inventory: any[];
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -55,9 +61,9 @@ export class EdgeControllerInfoComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private modalService: BsModalService,
     private backendService: BackendService,
-    private mockupBackendService: MockupBackendService
+    private mockupBackendService: MockupBackendService,
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.edgeControllerInfoMock) || null;
+    const mock = localStorage.getItem(LocalStorageKeys.deviceInfoMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
@@ -66,11 +72,36 @@ export class EdgeControllerInfoComponent implements OnInit {
     }
 
     // Default initialization
-    this.loadedData = true;
+    this.loadedData = false;
    }
 
   ngOnInit() {
+    this.backend.getGroups(this.organizationId)
+    .subscribe(response => {
+      if (response.groups) {
+        this.groups = response.groups || [];
+        this.groupName = this.getGroupName();
+      }
+    }, errorResponse => {
+      this.requestError = errorResponse.error.message;
+    });
   }
+
+  /**
+   * Locate the name of a group through an id
+   * @param deviceGroupId group id
+   */
+  getGroupName() {
+    if (this.groups && this.groups.length > 0) {
+      const index = this.groups.map(x => x.device_group_id).indexOf(this.deviceGroupId);
+      if (index !== -1) {
+        this.loadedData = true;
+        return this.groups[index].name;
+      }
+    }
+    return 'Not found';
+  }
+
 
   /**
    * Transforms objects to arrays to be parsed to string and performed in the view
@@ -100,29 +131,13 @@ export class EdgeControllerInfoComponent implements OnInit {
   }
 
   /**
-   * Gets the return asset value from the modal and gives it to infrastructure component 
-   * to open the Asset Info modal window
-   *  @param assetReduced Reduced asset info to locate the whole asset object
+   * Gets the return group ID value from the modal and gives it to infrastructure component
    */
-  openAssetInfo(assetReduced) {
-    let asset: any;
-    let assetIndexFound: number;
-    assetIndexFound = -1;
+  getGroupId() {
 
-    for (let i = 0; i < this.inventory.length && assetIndexFound === -1 ; i++) {
-      if (
-        this.inventory[i].type === 'Asset' &&
-        this.inventory[i].asset_ip === assetReduced.asset_ip &&
-        this.inventory[i].ec_name === this.name
-        ) {
-        assetIndexFound = i;
-      }
-    }
-
-    asset = this.inventory[assetIndexFound];
-
-    this.onClose(asset);
+    const groupId = this.deviceGroupId;
+    this.onClose(groupId);
     this.bsModalRef.hide();
   }
-
 }
+

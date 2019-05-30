@@ -54,6 +54,7 @@ import { InfrastructureComponent } from './infrastructure/infrastructure.compone
 import { AssetInfoComponent } from './asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from './edge-controller-info/edge-controller-info.component';
 import { ContextualMenuComponent } from './contextual-menu/contextual-menu.component';
+import { DeviceInfoComponent } from './device-info/device-info.component';
 
 @NgModule({
   declarations: [
@@ -90,9 +91,10 @@ import { ContextualMenuComponent } from './contextual-menu/contextual-menu.compo
     ServiceInfoComponent,
     AutofocusDirective,
     InfrastructureComponent,
+    ContextualMenuComponent,
+    DeviceInfoComponent,
     AssetInfoComponent,
     EdgeControllerInfoComponent,
-    ContextualMenuComponent
   ],
   entryComponents: [
     DebugPanelComponent,
@@ -110,6 +112,7 @@ import { ContextualMenuComponent } from './contextual-menu/contextual-menu.compo
     ServiceInstancesInfoComponent,
     RuleInfoComponent,
     ServiceInfoComponent,
+    DeviceInfoComponent,
     AssetInfoComponent,
     EdgeControllerInfoComponent
   ],

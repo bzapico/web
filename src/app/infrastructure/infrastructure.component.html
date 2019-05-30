@@ -290,21 +290,20 @@
                   </button>
                 </td>
                 <td class="col-2 col-center-lowercase"> 
-                  <span *ngIf="item.status"
+                  <span *ngIf="item.status || item.device_status_name"
                     [ngClass]=
                       "{
-                        'status-dot':classStatusCheck(item.status, 'online'),
-                        'status-dot-error':classStatusCheck(item.status, 'offline'),
-                        'status-dot-process':classStatusCheck(item.status, 'process')
+                        'status-dot': classStatusCheck(item.status || item.device_status_name, 'online'),
+                        'status-dot-error': classStatusCheck(item.status || item.device_status_name, 'offline'),
+                        'status-dot-process': classStatusCheck(item.status || item.device_status_name, 'process')
                       }"
-                    tooltip="{{item.status}}" 
+                    tooltip="{{item.status || item.device_status_name}}" 
                     placement="bottom"
                     class="status-dot">
                   </span>
-                  <span *ngIf="item.status" class="hide-lg">
-                    {{item.status}}
-                    </span>
-                  <span *ngIf="!item.status"> - </span>
+                  <span *ngIf="item.status || item.device_status_name" class="hide-lg">
+                    {{item.status || item.device_status_name}}
+                  </span>
                 </td>
                 <td class="col-1 text-center">
                   <button 

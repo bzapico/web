@@ -239,6 +239,7 @@
   ruleInfo: &#x27;Rule Info&#x27;,
   serviceInfo: &#x27;Service Info&#x27;,
   infrastructure: &#x27;Infrastructure&#x27;,
+  deviceInfo: &#x27;Device Info&#x27;,
   assetInfo: &#x27;Asset Info&#x27;,
   edgeControllerInfo: &#x27;EC Info&#x27;
 }</code>
@@ -388,6 +389,7 @@
     ruleInfoMock: &#x27;rule_info_mock&#x27;,
     serviceInfoMock: &#x27;service_info_mock&#x27;,
     infrastructureMock: &#x27;infrastructure_mock&#x27;,
+    deviceInfoMock: &#x27;device_info_mock&#x27;,
     assetInfoMock: &#x27;asset_info_mock&#x27;,
     edgeControllerInfoMock: &#x27;edge_controller_info_mock&#x27;,
 
@@ -1521,38 +1523,41 @@
                             <i>Default value : </i><code>{
     devices: [
         {
-            &#x27;organization_id&#x27;: &#x27;222-2ed7-41c1-90fb-f561eb81ea42&#x27;,
-            &#x27;device_group_id&#x27;: &#x27;333-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            &#x27;organization_id&#x27;: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;device_group_id&#x27;: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
             &#x27;device_id&#x27;: &#x27;dh005&#x27;,
             &#x27;register_since&#x27;: &#x27;1550746520&#x27;,
             &#x27;labels&#x27;: {
                 &#x27;lab11&#x27;: &#x27;label11&#x27;,
                 &#x27;lab21&#x27;: &#x27;label21&#x27;
             },
-            &#x27;status&#x27; : &#x27;online&#x27;
-            },
-            {
-            &#x27;organization_id&#x27;: &#x27;444-41c1-90fb-f561eb81ea42&#x27;,
-            &#x27;device_group_id&#x27;: &#x27;555-4085-98fb-27c1cd9b79a5&#x27;,
+            &#x27;enabled&#x27;: true,
+            &#x27;device_status_name&#x27; : &#x27;online&#x27;
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;device_group_id&#x27;: &#x27;a56b9900-0fef-41b0-bb7c-adf0055274cd&#x27;,
             &#x27;device_id&#x27;: &#x27;dh007&#x27;,
             &#x27;register_since&#x27;: &#x27;1550746520&#x27;,
             &#x27;labels&#x27;: {
                 &#x27;lab12&#x27;: &#x27;label12&#x27;,
                 &#x27;lab22&#x27;: &#x27;label22&#x27;
             },
-            &#x27;status&#x27; : &#x27;online&#x27;
-            },
-            {
-            &#x27;organization_id&#x27;: &#x27;666-2ed7-41c1-90fb-f561eb81ea42&#x27;,
-            &#x27;device_group_id&#x27;: &#x27;777-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            &#x27;enabled&#x27;: true,
+            &#x27;device_status_name&#x27; : &#x27;online&#x27;
+        },
+        {
+            &#x27;organization_id&#x27;: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+            &#x27;device_group_id&#x27;: &#x27;d94ac398-fd77-4937-b7f7-9fa0ff8b1eab&#x27;,
             &#x27;device_id&#x27;: &#x27;dh006&#x27;,
             &#x27;register_since&#x27;: &#x27;1550746520&#x27;,
             &#x27;labels&#x27;: {
                 &#x27;lab13&#x27;: &#x27;label13&#x27;,
                 &#x27;lab23&#x27;: &#x27;label23&#x27;
             },
-            &#x27;status&#x27; : &#x27;online&#x27;
-            }
+            &#x27;enabled&#x27;: false,
+            &#x27;device_status_name&#x27; : &#x27;offline&#x27;
+        }
     ],
     assets: [
         {
