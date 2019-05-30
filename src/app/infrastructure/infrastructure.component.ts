@@ -11,7 +11,6 @@ import { AssetInfoComponent } from '../asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-controller-info.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { select } from 'd3-selection';
-import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-infrastructure',
@@ -95,11 +94,6 @@ export class InfrastructureComponent implements OnInit {
    */
   selectedLabels = [];
   entityId: boolean;
-
-  /**
-   * List of available devices groups
-   */
-  groups: any[];
 
   /**
    * Reference for the service that allows Edge Controller info and asset info component components
@@ -211,6 +205,7 @@ export class InfrastructureComponent implements OnInit {
         response.devices.forEach(device => {
           device.type = 'Device';
           device.id = device.device_id;
+          device.status = device.device_status_name;
           if (!device.location || device.location === undefined || device.location === null) {
             device.location = 'undefined';
           }

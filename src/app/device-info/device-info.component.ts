@@ -83,7 +83,7 @@ export class DeviceInfoComponent implements OnInit {
         this.groupName = this.getGroupName();
       }
     }, errorResponse => {
-      this.requestError = errorResponse.error.message;
+      this.loadedData = true;
     });
   }
 
@@ -101,7 +101,6 @@ export class DeviceInfoComponent implements OnInit {
     }
     return 'Not found';
   }
-
 
   /**
    * Transforms objects to arrays to be parsed to string and performed in the view
@@ -131,10 +130,9 @@ export class DeviceInfoComponent implements OnInit {
   }
 
   /**
-   * Gets the return group ID value from the modal and gives it to infrastructure component
+   * Go to devices group view
    */
-  getGroupId() {
-
+ goToDevices() {
     const groupId = this.deviceGroupId;
     this.onClose(groupId);
     this.bsModalRef.hide();

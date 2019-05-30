@@ -10,7 +10,6 @@ import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { ActivatedRoute } from '@angular/router';
-import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-devices',
