@@ -510,6 +510,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       deviceId: device.device_id,
       enabled: device.enabled
    }).subscribe( updateDeviceResponse => {
+     console.log('update from devices ', updateDeviceResponse);
      let notificationText = 'enabled';
      if (!updateDeviceResponse.enabled) {
       notificationText = 'disabled';

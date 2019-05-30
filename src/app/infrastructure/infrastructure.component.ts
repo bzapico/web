@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
-import { mockInfrastructurePieChart } from '../utils/mocks';
+import { mockInfrastructurePieChart, mockDevicesList } from '../utils/mocks';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DeviceInfoComponent } from '../device-info/device-info.component';
 import { AssetInfoComponent } from '../asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-controller-info.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { select } from 'd3-selection';
+import { DevicesComponent } from '../devices/devices.component';
 
 @Component({
   selector: 'app-infrastructure',
   templateUrl: './infrastructure.component.html',
   styleUrls: ['./infrastructure.component.scss']
 })
-export class InfrastructureComponent implements OnInit {
+export class InfrastructureComponent implements OnInit, OnDestroy {
   /**
    * Backend reference
    */
@@ -67,6 +68,16 @@ export class InfrastructureComponent implements OnInit {
   storageCount: number;
   onlineCount: number;
   onlineTotalCount: number;
+
+  /**
+   * Interval reference
+   */
+  refreshIntervalRef: any;
+
+  /**
+   * Refresh ratio reference
+   */
+  REFRESH_RATIO = 20000; // 20 seconds
 
   /**
    * Models that hold the sort info needed to sortBy pipe
@@ -170,8 +181,16 @@ export class InfrastructureComponent implements OnInit {
           this.storageCount = summary['total_storage'];
         });
         this.updateInventoryList();
+        this.refreshIntervalRef = setInterval(() => {
+          this.updateInventoryList();
+        },
+        this.REFRESH_RATIO); // Refresh each 60 seconds
       }
     }
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.refreshIntervalRef);
   }
 
   /**
@@ -203,6 +222,8 @@ export class InfrastructureComponent implements OnInit {
     if (!response || response === null) {
     } else {
       if (response.devices) {
+        // TODO
+        // response.devices = mockDevicesList;
         response.devices.forEach(device => {
           device.type = 'Device';
           device.id = device.device_id;
@@ -528,11 +549,12 @@ export class InfrastructureComponent implements OnInit {
     device.enabled = !device.enabled;
     // backend call
     this.backend.updateDevice(this.organizationId, {
-       organizationId: this.organizationId,
-       deviceGroupId: device.device_group_id,
-       deviceId: device.device_id,
+      //  organizationId: this.organizationId,
+      //  deviceGroupId: device.device_group_id,
+      //  deviceId: device.device_id,
        enabled: device.enabled
     }).subscribe( updateDeviceResponse => {
+
       console.log('update response ', updateDeviceResponse);
       let notificationText = 'enabled';
       if (!updateDeviceResponse.enabled) {
