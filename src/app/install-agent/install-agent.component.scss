@@ -1,0 +1,9 @@
+@mixin for-desktop-only {
+    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
+}
+
+.form-group-btn {
+    @include for-desktop-only { 
+        margin-top: 1em;
+    }
+}

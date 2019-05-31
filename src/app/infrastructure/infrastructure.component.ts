@@ -9,6 +9,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DeviceInfoComponent } from '../device-info/device-info.component';
 import { AssetInfoComponent } from '../asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-controller-info.component';
+import { InstallAgentComponent } from '../install-agent/install-agent.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { select } from 'd3-selection';
 import { DevicesComponent } from '../devices/devices.component';
@@ -111,6 +112,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
    */
   ecModalRef: BsModalRef;
   assetModalRef: BsModalRef;
+  agentModalRef: BsModalRef;
   deviceModalRef: BsModalRef;
 
   /**
@@ -462,6 +464,57 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
   }
 
   /*
+  /**
+  * Open Install Agent info modal window
+  */
+  openInstallAgent() {
+    const initialState = {
+      organizationId: this.organizationId,
+    };
+
+    this.agentModalRef = this.modalService.show(InstallAgentComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.agentModalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { });
+
+  }
+
+
+  /**
+   * Opens context menu
+   * @param Item inventory item
+   */
+  // openContextualMenu(item: any) {
+  //   if (item.id === this. activeContextMenuItemId) {
+  //     this.activeContextMenuItemId = '';
+  //   } else {
+  //     this.activeContextMenuItemId = item.id;
+  //   }
+  // }
+
+  // /**
+  //  * Get the item options to show in the context menu
+  //  * @param item inventory item
+  //  */
+  // getItemOptions(item: any) {
+  //   switch (item.type) {
+  //     case 'EC':
+  //       const ecOptions = [];
+  //       const ecOptions1 = {
+  //         name: 'More info',
+  //         action: (inventoryItem) => {
+  //           // debugg log to test functions inside context menu
+  //           console.log(inventoryItem);
+  //         },
+  //         item: item
+  //       };
+  //       ecOptions.push(ecOptions1);
+  //     return ecOptions;
+  //     default:
+  //       break;
+  //   }
+  // }
+
+  /**
    * Opens the modal view that holds the device info component
    * @param device device to be opened
    */

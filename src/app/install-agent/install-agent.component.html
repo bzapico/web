@@ -1,0 +1,145 @@
+<div class="modal-card">
+  <div class="modal-content">
+    <!-- Header -->
+    <div class="modal-header">
+      <h3 class="nalej-form-title">Install agent</h3>
+      <button 
+        (click)="discardChanges(f)"
+        type="button" 
+        aria-label="Close"
+        class="close" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- Body -->
+    <div class="modal-body">
+      <form [formGroup]="installAgentForm" (ngSubmit)="installAgent(f)">
+      <div class="scroll-modal-form">
+        <div class="form-group form-group-drop">
+          <label>Agent type</label>
+          <ngx-select-dropdown 
+            formControlName="type" 
+            [multiple]="false" 
+            [ngClass]="{ 'ngx-error': submitted && f.type.errors && !agentType }"
+            [config]="agentTypeSelectConfig" 
+            [options]="agentTypeOptions">
+            {{agentType}}
+          </ngx-select-dropdown>
+          <div class="form-group-drop-arrow"> 
+            <i class="material-icons">arrow_drop_down</i>
+          </div>
+          <div class="error-h">
+            <div *ngIf=
+              "submitted &&
+              f.type.errors &&
+              !agentType" 
+              class="error-message">
+              <div *ngIf="f.type.errors.required">An agent type is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-drop d-none">
+          <label>Architecture</label>
+          <ngx-select-dropdown 
+            formControlName="archi" 
+            [multiple]="false" 
+            [ngClass]="{ 'ngx-error': submitted && f.archi.errors && !architecture }"
+            [config]="architectureSelectConfig" 
+            [options]="archiOptions">
+            {{architecture}}
+          </ngx-select-dropdown>
+          <div class="form-group-drop-arrow"> 
+            <i class="material-icons">arrow_drop_down</i>
+          </div>
+          <div class="error-h">
+            <div *ngIf=
+              "submitted &&
+              f.archi.errors &&
+              !architecture" 
+              class="error-message">
+              <div *ngIf="f.archi.errors.required">The architecture is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-drop">
+          <label>Edge inventory Controller</label>
+          <ngx-select-dropdown 
+            formControlName="ec" 
+            [multiple]="false" 
+            [ngClass]="{ 'ngx-error': submitted && f.ec.errors && !edgeControllerId }"
+            [config]="edgeControllerIdSelectConfig" 
+            [options]="edgeControllerIdOptions">
+            {{edgeControllerId}}
+          </ngx-select-dropdown>
+          <div class="form-group-drop-arrow"> 
+            <i class="material-icons">arrow_drop_down</i>
+          </div>
+          <div class="error-h">
+            <div *ngIf=
+              "submitted &&
+              f.ec.errors &&
+              !edgeControllerId" 
+              class="error-message">
+              <div *ngIf="f.ec.errors.required">A ec is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>SSH username</label>
+          <input 
+            formControlName="sshUsername" 
+            type="text" 
+            placeholder="SSH username"
+            [ngClass]="{ 'is-invalid': submitted && f.sshUsername.errors }" 
+            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"
+            required
+            class="form-control">
+          <div class="error-h">
+            <div *ngIf="submitted && f.sshUsername.errors" class="error-message">
+              <div *ngIf="f.sshUsername.errors.required">SSH username is required</div>
+              <div *ngIf="f.sshUsername.errors.minlength">Password must be at least 3 characters</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>SSH password</label>
+          <input 
+            formControlName="sshPassword" 
+            type="password" 
+            placeholder="Type the SSH password here"
+            [ngClass]="{ 'is-invalid': submitted && f.sshPassword.errors }"
+            required
+            class="form-control">
+          <div class="error-h">
+            <div *ngIf="submitted && f.sshPassword.errors" class="error-message">
+              <div *ngIf="f.sshPassword.errors.required">Password is required</div>
+              <div *ngIf="f.sshPassword.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Tarhet host</label>
+          <input 
+            formControlName="target" 
+            type="text" 
+            placeholder="Target host"
+            [ngClass]="{ 'is-invalid': submitted && f.target.errors }"
+            required
+            class="form-control">
+          <div class="error-h">
+            <div *ngIf="submitted && f.target.errors" class="error-message">
+              <div *ngIf="f.target.errors.required">Target is required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- Install agent -->
+        <div class="form-group-btn">
+          <button class="nalej-form-btn-blue" [disabled]="loading">
+            <span class="align-bottom">Install</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
