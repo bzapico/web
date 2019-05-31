@@ -478,42 +478,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
 
   }
 
-
-  /**
-   * Opens context menu
-   * @param Item inventory item
-   */
-  // openContextualMenu(item: any) {
-  //   if (item.id === this. activeContextMenuItemId) {
-  //     this.activeContextMenuItemId = '';
-  //   } else {
-  //     this.activeContextMenuItemId = item.id;
-  //   }
-  // }
-
-  // /**
-  //  * Get the item options to show in the context menu
-  //  * @param item inventory item
-  //  */
-  // getItemOptions(item: any) {
-  //   switch (item.type) {
-  //     case 'EC':
-  //       const ecOptions = [];
-  //       const ecOptions1 = {
-  //         name: 'More info',
-  //         action: (inventoryItem) => {
-  //           // debugg log to test functions inside context menu
-  //           console.log(inventoryItem);
-  //         },
-  //         item: item
-  //       };
-  //       ecOptions.push(ecOptions1);
-  //     return ecOptions;
-  //     default:
-  //       break;
-  //   }
-  // }
-
   /**
    * Opens the modal view that holds the device info component
    * @param device device to be opened
