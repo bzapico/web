@@ -88,6 +88,22 @@ export class InstallAgentComponent implements OnInit {
      'WINDOWS'
     ];
 
+    //  Architecture TODO is hide because there is not implementation yet
+    // this.architecture = null;
+    // this.architectureSelectConfig = {
+    //   displayKey: 'architecture',
+    //   search: false,
+    //   height: 'auto',
+    //   placeholder: 'Architecture',
+    //   limitTo: 3,
+    //   moreText: 'more',
+    //   noResultsFound: 'No results found!'
+    // };
+    // this.architectureOptions = [
+    //  'a',
+    //  'b',
+    // ];
+
     //  edgeControllerId
     this.edgeControllerId = null;
     this.edgeControllerIdSelectConfig = {
@@ -120,6 +136,7 @@ export class InstallAgentComponent implements OnInit {
       sshPassword: ['', [Validators.required, Validators.minLength(6)]],
       target: [null, Validators.required],
       type: [null, Validators.required],
+      // archi: [null, Validators.required],
       ec: [null, Validators.required],
     });
   }

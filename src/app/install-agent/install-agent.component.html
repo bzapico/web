@@ -38,6 +38,29 @@
             </div>
           </div>
         </div>
+        <div class="form-group form-group-drop d-none">
+          <label>Architecture</label>
+          <ngx-select-dropdown 
+            formControlName="archi" 
+            [multiple]="false" 
+            [ngClass]="{ 'ngx-error': submitted && f.archi.errors && !architecture }"
+            [config]="architectureSelectConfig" 
+            [options]="archiOptions">
+            {{architecture}}
+          </ngx-select-dropdown>
+          <div class="form-group-drop-arrow"> 
+            <i class="material-icons">arrow_drop_down</i>
+          </div>
+          <div class="error-h">
+            <div *ngIf=
+              "submitted &&
+              f.archi.errors &&
+              !architecture" 
+              class="error-message">
+              <div *ngIf="f.archi.errors.required">The architecture is required</div>
+            </div>
+          </div>
+        </div>
         <div class="form-group form-group-drop">
           <label>Edge inventory Controller</label>
           <ngx-select-dropdown 
