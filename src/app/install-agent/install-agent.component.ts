@@ -20,10 +20,11 @@ export class InstallAgentComponent implements OnInit {
 
   organizationId: string;
   edgeControllerId: string;
-  agentType: string;
+  agentType: FormControl;
   sshCredentials: string;
-  targetHost: string;
-  architecture: string;
+  targetHost: FormControl;
+  architecture: FormControl;
+  type: FormControl;
   submitted = false;
   loading: boolean;
 
@@ -87,22 +88,6 @@ export class InstallAgentComponent implements OnInit {
      'WINDOWS'
     ];
 
-    //  Architecture
-    this.architecture = null;
-    this.architectureSelectConfig = {
-      displayKey: 'architecture',
-      search: false,
-      height: 'auto',
-      placeholder: 'Architecture',
-      limitTo: 3,
-      moreText: 'more',
-      noResultsFound: 'No results found!'
-    };
-    this.architectureOptions = [
-     'a',
-     'b',
-    ];
-
     //  edgeControllerId
     this.edgeControllerId = null;
     this.edgeControllerIdSelectConfig = {
@@ -115,8 +100,8 @@ export class InstallAgentComponent implements OnInit {
       noResultsFound: 'No results found!'
     };
     this.edgeControllerIdOptions = [
-      'c',
-      'de',
+      'edge65',
+      'edge66',
     ];
 
 
@@ -135,7 +120,6 @@ export class InstallAgentComponent implements OnInit {
       sshPassword: ['', [Validators.required, Validators.minLength(6)]],
       target: [null, Validators.required],
       type: [null, Validators.required],
-      archi: [null, Validators.required],
       ec: [null, Validators.required],
     });
   }
