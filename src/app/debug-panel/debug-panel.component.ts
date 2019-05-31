@@ -37,6 +37,7 @@ export const AvailableComponents = {
   ruleInfo: 'Rule Info',
   serviceInfo: 'Service Info',
   infrastructure: 'Infrastructure',
+  deviceInfo: 'Device Info',
   assetInfo: 'Asset Info',
   edgeControllerInfo: 'EC Info',
   installAgent: 'Install Agent'
@@ -162,6 +163,10 @@ export class DebugPanelComponent implements OnInit {
       mock: localStorage.getItem(LocalStorageKeys.infrastructureMock) === 'false' ? 'false' : 'true'
     });
     this.components.push({
+      name: AvailableComponents.deviceInfo,
+      mock: localStorage.getItem(LocalStorageKeys.deviceInfoMock) === 'false' ? 'false' : 'true'
+    });
+    this.components.push({
       name: AvailableComponents.assetInfo,
       mock: localStorage.getItem(LocalStorageKeys.assetInfoMock) === 'false' ? 'false' : 'true'
     });
@@ -209,6 +214,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.ruleInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.serviceInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.infrastructureMock, newValue);
+    localStorage.setItem(LocalStorageKeys.deviceInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.assetInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.edgeControllerInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.installAgentMock, newValue);
@@ -295,6 +301,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.infrastructure:
         localStorage.setItem(LocalStorageKeys.infrastructureMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.deviceInfo:
+        localStorage.setItem(LocalStorageKeys.deviceInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.edgeControllerInfo:
         localStorage.setItem(LocalStorageKeys.edgeControllerInfoMock, componentMockOption.mock);

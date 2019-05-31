@@ -55,6 +55,7 @@ import { AssetInfoComponent } from './asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from './edge-controller-info/edge-controller-info.component';
 import { ContextualMenuComponent } from './contextual-menu/contextual-menu.component';
 import { InstallAgentComponent } from './install-agent/install-agent.component';
+import { DeviceInfoComponent } from './device-info/device-info.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,8 @@ import { InstallAgentComponent } from './install-agent/install-agent.component';
     ServiceInfoComponent,
     AutofocusDirective,
     InfrastructureComponent,
+    ContextualMenuComponent,
+    DeviceInfoComponent,
     AssetInfoComponent,
     EdgeControllerInfoComponent,
     ContextualMenuComponent,
@@ -112,6 +115,7 @@ import { InstallAgentComponent } from './install-agent/install-agent.component';
     ServiceInstancesInfoComponent,
     RuleInfoComponent,
     ServiceInfoComponent,
+    DeviceInfoComponent,
     AssetInfoComponent,
     EdgeControllerInfoComponent,
     InstallAgentComponent
