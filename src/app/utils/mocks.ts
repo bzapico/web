@@ -1373,7 +1373,7 @@ export const mockInventoryList = {
             'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.31',
+            'eic_net_ip': '98.105.55.31',
             'ec_name': 'edge25',
             'show': true,
             'created': '1550746520',
@@ -1405,8 +1405,7 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/knon',
-            'agentOpSummary': {
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -1420,7 +1419,7 @@ export const mockInventoryList = {
             'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.32',
+            'eic_net_ip': '98.105.55.32',
             'ec_name': 'edge25',
             'show': true,
             'created': '1550746520',
@@ -1451,8 +1450,7 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/knon',
-            'agentOpSummary': {
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -1466,7 +1464,7 @@ export const mockInventoryList = {
             'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.33',
+            'eic_net_ip': '98.105.55.33',
             'ec_name': 'edge25',
             'show': true,
             'created': '1550746520',
@@ -1497,8 +1495,7 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/knon',
-            'agentOpSummary': {
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -1512,7 +1509,7 @@ export const mockInventoryList = {
             'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.34',
+            'eic_net_ip': '98.105.55.34',
             'ec_name': 'edge25',
             'show': true,
             'created': '1550746520',
@@ -1543,8 +1540,7 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/knon',
-            'agentOpSummary': {
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -1558,7 +1554,7 @@ export const mockInventoryList = {
             'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.35',
+            'eic_net_ip': '98.105.55.35',
             'ec_name': 'edge25',
             'show': true,
             'created': '1550746520',
@@ -1589,8 +1585,7 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/knon',
-            'agentOpSummary': {
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -1604,54 +1599,7 @@ export const mockInventoryList = {
             'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.36',
-            'ec_name': 'edge25',
-            'show': true,
-            'created': '1550746520',
-            'labels': {
-                'lab1': 'label1',
-                'lab2': 'label2'
-            },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
-            },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Apple',
-                    'model': 'yes',
-                    'architecture': 'Fanix',
-                    'num_cores': 3
-                },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
-                }
-
-            },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
-            },
-            'eic_net_ip': 'http/knon',
-            'agentOpSummary': {
-                'operation_id': '54654asd-654654-qweqwe',
-                'timestamp':  '1550746669',
-                'status': 'scheduled',
-                'info': 'info'
-            },
-            'last_alive_timestamp': '654654654',
-            'status' : 'offline'
-        },
-        {
-            'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
-            'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.37',
+            'eic_net_ip': '98.105.55.36',
             'ec_name': 'edge25',
             'show': true,
             'created': '1550746520',
@@ -1683,8 +1631,7 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/knon',
-            'agentOpSummary': {
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -1698,7 +1645,7 @@ export const mockInventoryList = {
             'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.38',
+            'eic_net_ip': '98.105.55.37',
             'ec_name': 'edge25',
             'show': true,
             'created': '1550746520',
@@ -1730,8 +1677,7 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/knon',
-            'agentOpSummary': {
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -1745,7 +1691,7 @@ export const mockInventoryList = {
             'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.39',
+            'eic_net_ip': '98.105.55.38',
             'ec_name': 'edge25',
             'show': true,
             'created': '1550746520',
@@ -1777,8 +1723,53 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/knon',
-            'agentOpSummary': {
+            'agent_op_summary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
+            'status' : 'offline'
+        },
+        {
+            'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
+            'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
+            'eic_net_ip': '98.105.55.39',
+            'ec_name': 'edge25',
+            'show': true,
+            'created': '1550746520',
+            'labels': {
+                'lab1': 'label1',
+                'lab2': 'label2'
+            },
+            'os': {
+                'name': 'petra',
+                'version': 'v1',
+                'class': 'linux',
+                'architecture': 'chagal'
+            },
+            'hardware': {
+                'cpus': {
+                    'manufacturer': 'Apple',
+                    'model': 'yes',
+                    'architecture': 'Fanix',
+                    'num_cores': 3
+                },
+                'installed_ram': 2,
+                'net_interfaces': {
+                    'type': 'capacity',
+                    'link_capacity': 5
+                }
+
+            },
+            'storage': {
+                'type': 'ram',
+                'total_capacity': 7
+            },
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -1792,7 +1783,7 @@ export const mockInventoryList = {
             'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.18',
+            'eic_net_ip': '98.105.55.18',
             'ec_name': 'edge65',
             'show': true,
             'created': '1550746669',
@@ -1824,8 +1815,7 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'agentOpSummary': {
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -1839,7 +1829,7 @@ export const mockInventoryList = {
             'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.28',
+            'eic_net_ip': '98.105.55.28',
             'ec_name': 'edge65',
             'show': true,
             'created': '1550746669',
@@ -1871,8 +1861,7 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'agentOpSummary': {
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -1886,7 +1875,7 @@ export const mockInventoryList = {
             'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.48',
+            'eic_net_ip': '98.105.55.48',
             'ec_name': 'edge65',
             'show': true,
             'created': '1550746669',
@@ -1918,8 +1907,7 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'agentOpSummary': {
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -1933,7 +1921,7 @@ export const mockInventoryList = {
             'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.58',
+            'eic_net_ip': '98.105.55.58',
             'ec_name': 'edge65',
             'show': true,
             'created': '1550746669',
@@ -1965,8 +1953,7 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'agentOpSummary': {
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -1980,7 +1967,7 @@ export const mockInventoryList = {
             'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.68',
+            'eic_net_ip': '98.105.55.68',
             'ec_name': 'edge65',
             'show': true,
             'created': '1550746669',
@@ -2012,8 +1999,7 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'agentOpSummary': {
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -2027,7 +2013,7 @@ export const mockInventoryList = {
             'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.78',
+            'eic_net_ip': '98.105.55.78',
             'ec_name': 'edge65',
             'show': true,
             'created': '1550746669',
@@ -2059,8 +2045,7 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'agentOpSummary': {
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -2074,7 +2059,7 @@ export const mockInventoryList = {
             'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.88',
+            'eic_net_ip': '98.105.55.88',
             'ec_name': 'edge65',
             'show': true,
             'created': '1550746669',
@@ -2106,8 +2091,7 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'agentOpSummary': {
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -2121,7 +2105,7 @@ export const mockInventoryList = {
             'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
-            'asset_ip': '98.105.55.98',
+            'eic_net_ip': '98.105.55.98',
             'ec_name': 'edge65',
             'show': true,
             'created': '1550746669',
@@ -2150,8 +2134,7 @@ export const mockInventoryList = {
                 'type': 'ram',
                 'total_capacity': 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'agentOpSummary': {
+            'agent_op_summary': {
                 'operation_id': '54654asd-654654-qweqwe',
                 'timestamp':  '1550746669',
                 'status': 'scheduled',
@@ -2175,39 +2158,39 @@ export const mockInventoryList = {
             },
             'assets':  [
                 {
-                    'asset_ip': '98.105.55.31',
+                    'eic_net_ip': '98.105.55.31',
                     'asset_status': 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.32',
+                    'eic_net_ip': '98.105.55.32',
                     'asset_status': 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.33',
+                    'eic_net_ip': '98.105.55.33',
                     'asset_status': 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.34',
+                    'eic_net_ip': '98.105.55.34',
                     'asset_status': 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.35',
+                    'eic_net_ip': '98.105.55.35',
                     'asset_status': 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.36',
+                    'eic_net_ip': '98.105.55.36',
                     'asset_status': 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.37',
+                    'eic_net_ip': '98.105.55.37',
                     'asset_status': 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.38',
+                    'eic_net_ip': '98.105.55.38',
                     'asset_status': 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.39',
+                    'eic_net_ip': '98.105.55.39',
                     'asset_status': 'online'
                 },
             ],
@@ -2225,35 +2208,35 @@ export const mockInventoryList = {
             },
             'assets':  [
                 {
-                    'asset_ip': '98.105.55.18',
+                    'eic_net_ip': '98.105.55.18',
                     'asset_status': 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.28',
+                    'eic_net_ip': '98.105.55.28',
                     'asset_status': 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.48',
+                    'eic_net_ip': '98.105.55.48',
                     'asset_status': 'offline'
                 },
                 {
-                    'asset_ip': '98.105.55.58',
+                    'eic_net_ip': '98.105.55.58',
                     'asset_status': 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.68',
+                    'eic_net_ip': '98.105.55.68',
                     'asset_status': 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.78',
+                    'eic_net_ip': '98.105.55.78',
                     'asset_status': 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.88',
+                    'eic_net_ip': '98.105.55.88',
                     'asset_status': 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.98',
+                    'eic_net_ip': '98.105.55.98',
                     'asset_status': 'online'
                 },
             ],
