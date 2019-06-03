@@ -1370,6 +1370,7 @@ export const mockInventoryList = {
     assets: [
         {
             'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.31',
@@ -1405,10 +1406,18 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/knon',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'offline'
         },
         {
             'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.32',
@@ -1443,10 +1452,18 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/knon',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'offline'
         },
         {
             'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.33',
@@ -1481,10 +1498,18 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/knon',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'offline'
         },
         {
             'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.34',
@@ -1519,10 +1544,18 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/knon',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'offline'
         },
         {
             'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.35',
@@ -1557,10 +1590,18 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/knon',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'offline'
         },
         {
             'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.36',
@@ -1596,10 +1637,18 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/knon',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'offline'
         },
         {
             'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.37',
@@ -1635,10 +1684,18 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/knon',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'offline'
         },
         {
             'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.38',
@@ -1674,10 +1731,18 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/knon',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'offline'
         },
         {
             'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.39',
@@ -1713,10 +1778,18 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/knon',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'offline'
         },
         {
             'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.18',
@@ -1752,10 +1825,18 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/qweqwe',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'online'
         },
         {
             'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.28',
@@ -1791,10 +1872,18 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/qweqwe',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'online'
         },
         {
             'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.48',
@@ -1830,10 +1919,18 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/qweqwe',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'online'
         },
         {
             'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.58',
@@ -1869,10 +1966,18 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/qweqwe',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+              },
+            'last_alive_timestamp': '654654654',
             'status' : 'online'
         },
         {
             'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.68',
@@ -1908,10 +2013,18 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/qweqwe',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'online'
         },
         {
             'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.78',
@@ -1947,10 +2060,18 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/qweqwe',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'online'
         },
         {
             'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.88',
@@ -1986,20 +2107,25 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/qweqwe',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'online'
         },
         {
             'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
             'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             'agent_id': 'a2ed5462-98fb-27c1cd9b79a5',
             'asset_ip': '98.105.55.98',
             'ec_name': 'edge65',
             'show': true,
             'created': '1550746669',
-            'labels': {
-                'lab1': 'label1',
-                'lab2': 'label2'
-            },
+            'labels': {},
             'os': {
                 'name': 'petra',
                 'version': 'v1',
@@ -2025,6 +2151,13 @@ export const mockInventoryList = {
                 'total_capacity': 7
             },
             'eic_net_ip': 'http/qweqwe',
+            'agentOpSummary': {
+                'operation_id': '54654asd-654654-qweqwe',
+                'timestamp':  '1550746669',
+                'status': 'scheduled',
+                'info': 'info'
+            },
+            'last_alive_timestamp': '654654654',
             'status' : 'online'
         }
     ],
