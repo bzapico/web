@@ -179,13 +179,15 @@ export class BackendService implements Backend {
    * Infrastructure
    ********************/
 
-  // GET 'infrastructure/{organization_id}/list'
+  // GET '/v1/inventory/{organization_id}/list'
   /**
    * Requests the inventory list
    * @param organizationId Organization identifier
    */
   getInventory(organizationId: string) {
-    throw new Error('Method not implemented.');
+    return this.get(
+      API_URL + 'inventory/' + organizationId + '/list'
+    );
   }
 
   // GET 'infrastructure/{organization_id}/summary'
@@ -197,6 +199,18 @@ export class BackendService implements Backend {
     throw new Error('Method not implemented.');
   }
 
+  // POST '/v1/agent/{organization_id}/{edge_controller_id}/install'
+  /**
+   * Requests to install an agent
+   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge controller id
+   * @param agent Agent installer
+   */
+  installAgent(organizationId: string, edgeControllerId: string, agent: any) {
+    return this.post(
+      API_URL + 'agent/' + organizationId + '/' + edgeControllerId + '/install', agent
+    );
+  }
 
   /********************
    * Resources

@@ -13,11 +13,21 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
   styleUrls: ['./install-agent.component.scss']
 })
 export class InstallAgentComponent implements OnInit {
- /**
+  /**
+   * Backend reference
+   */
+  backend: Backend;
+
+  /**
    * Models that holds forms info
    */
   installAgentForm: FormGroup;
+  submitted = false;
+  loading: boolean;
 
+  /**
+   * Model that hold Edge Controller ID and its info
+   */
   organizationId: string;
   edgeControllerId: string;
   agentType: FormControl;
@@ -25,21 +35,13 @@ export class InstallAgentComponent implements OnInit {
   targetHost: FormControl;
   architecture: FormControl;
   type: FormControl;
-  submitted = false;
-  loading: boolean;
-
-//  const InstallAgentRequest: any {
-//   'edgeControllerId': 'ss',
-//   ' agentType': '',
-//   ' sshCredentials': 'string;',
-//   ' targetHost': 's'
-//   }
-
+  controllersList: any[];
+  openFromEc: boolean;
 
   /**
-   * Backend reference
+   * Models that hold all inventory list
    */
-  backend: Backend;
+  inventory: any[];
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -60,8 +62,8 @@ export class InstallAgentComponent implements OnInit {
   agentTypeSelectConfig = {};
   architectureOptions: any[];
   architectureSelectConfig = {};
-  edgeControllerIdOptions: any[];
-  edgeControllerIdSelectConfig = {};
+  edgeControllerOptions: any[];
+  edgeControllerSelectConfig = {};
 
   constructor(
     private formBuilder: FormBuilder,
@@ -70,14 +72,15 @@ export class InstallAgentComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
+
     //  Agent type
+    this.openFromEc = false;
     this.agentType = null;
     this.agentTypeSelectConfig = {
-      displayKey: 'agentType',
       search: false,
       height: 'auto',
       placeholder: 'Agent type',
-      limitTo: 3,
+      limitTo: 4,
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
@@ -88,38 +91,8 @@ export class InstallAgentComponent implements OnInit {
      'WINDOWS'
     ];
 
-    //  Architecture TODO is hide because there is not implementation yet
-    // this.architecture = null;
-    // this.architectureSelectConfig = {
-    //   displayKey: 'architecture',
-    //   search: false,
-    //   height: 'auto',
-    //   placeholder: 'Architecture',
-    //   limitTo: 3,
-    //   moreText: 'more',
-    //   noResultsFound: 'No results found!'
-    // };
-    // this.architectureOptions = [
-    //  'a',
-    //  'b',
-    // ];
-
     //  edgeControllerId
     this.edgeControllerId = null;
-    this.edgeControllerIdSelectConfig = {
-      displayKey: 'edgeControllerId',
-      search: false,
-      height: 'auto',
-      placeholder: 'Edge Inventory Controller',
-      limitTo: 3,
-      moreText: 'more',
-      noResultsFound: 'No results found!'
-    };
-    this.edgeControllerIdOptions = [
-      'edge65',
-      'edge66',
-    ];
-
 
     const mock = localStorage.getItem(LocalStorageKeys.installAgentMock) || null;
     // check which backend is required (fake or real)
@@ -132,13 +105,36 @@ export class InstallAgentComponent implements OnInit {
 
   ngOnInit() {
     this.installAgentForm = this.formBuilder.group({
-      sshUsername: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]],
-      sshPassword: ['', [Validators.required, Validators.minLength(6)]],
-      target: [null, Validators.required],
       type: [null, Validators.required],
-      // archi: [null, Validators.required],
       ec: [null, Validators.required],
+      sshUsername: ['', Validators.required],
+      sshPassword: ['', Validators.required],
+      target: [null, Validators.required],
     });
+
+    this.edgeControllerSelectConfig = {
+      displayKey: 'ec_name',
+      search: false,
+      height: 'auto',
+      placeholder: 'Edge Inventory Controller',
+      limitTo: this.getControllersList().length,
+      moreText: 'more',
+      noResultsFound: 'No results found!'
+    };
+  }
+
+  /**
+   * Gets the controllers list
+   */
+  getControllersList() {
+    const controllersList = [];
+
+    for (let i = 0; i < this.inventory.length; i++) {
+      if (this.inventory[i].type === 'EC') {
+        controllersList.push(this.inventory[i]);
+      }
+    }
+    return controllersList;
   }
 
   /**
@@ -162,7 +158,41 @@ export class InstallAgentComponent implements OnInit {
    */
   installAgent(f) {
     this.submitted = true;
+    const agent = {
+      agent_type: f.type.value,
+      edge_controller_id: f.ec.value.edge_controller_id,
+      username: f.sshUsername.value,
+      password: f.sshPassword.value,
+      target_host: f.target.value
+    };
 
+    console.log('agent desde install ', agent);
+    if (f.type.invalid === true ||
+      f.ec.invalid === true ||
+      f.sshUsername.invalid === true ||
+      f.sshPassword.invalid === true ||
+      f.target.value === true
+      ) {
+      return;
+    }
+    this.loading = true;
+
+    this.backend.installAgent(this.organizationId, this.edgeControllerId, agent)
+      .subscribe(response => {
+        this.loading = false;
+        this.notificationsService.add({
+          message: 'Installing agent on ' + agent.target_host + ' target host',
+          timeout: 3000
+        });
+        this.bsModalRef.hide();
+      }, error => {
+        this.loading = false;
+        this.notificationsService.add({
+          message: 'ERROR: ' + error.error.message,
+          timeout: 5000,
+          type: 'warning'
+        });
+      });
   }
 
   /**

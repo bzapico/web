@@ -112,7 +112,7 @@ export class EdgeControllerInfoComponent implements OnInit {
     for (let i = 0; i < this.inventory.length && assetIndexFound === -1 ; i++) {
       if (
         this.inventory[i].type === 'Asset' &&
-        this.inventory[i].asset_ip === assetReduced.asset_ip &&
+        this.inventory[i].eic_net_ip === assetReduced.eic_net_ip &&
         this.inventory[i].ec_name === this.name
         ) {
         assetIndexFound = i;

@@ -371,7 +371,7 @@ export class InfrastructureComponent implements OnInit {
       organizationId: this.organizationId,
       assetId: asset.asset_id,
       agentId: asset.agent_id,
-      assetIp: asset.asset_ip,
+      assetIp: asset.eic_net_ip,
       ecName: asset.ec_name,
       show: asset.show,
       created: asset.created,
@@ -387,6 +387,8 @@ export class InfrastructureComponent implements OnInit {
       capacity: asset.storage.total_capacity,
       eic: asset.eic_net_ip,
       status: asset.status,
+      summary: asset.agent_op_summary,
+      lastAlive: asset.last_alive_timestamp,
       inventory: this.inventory,
     };
 
@@ -442,19 +444,51 @@ export class InfrastructureComponent implements OnInit {
   }
 
   /**
-  * Open Install Agent info modal window
+  * Open install Agent info modal window
   */
-  openInstallAgent() {
+  installAgent() {
     const initialState = {
       organizationId: this.organizationId,
+      inventory: this.inventory,
+      defaultAutofocus: false
     };
 
-    this.agentModalRef = this.modalService.show(InstallAgentComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.agentModalRef = this.modalService.show(
+      InstallAgentComponent, {
+        initialState,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+      });
     this.agentModalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { });
-
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateInventoryList();
+     });
   }
 
+
+  /**
+   * Opens the modal view that holds the install Agent modal component
+   * @param agent registered app to deploy
+   */
+  installAgentFromEC(agent) {
+    const initialState = {
+      organizationId: this.organizationId,
+      edgeControllerId: agent.edge_controller_id,
+      openFromEc: true,
+      defaultAutofocus: true
+    };
+
+    this.agentModalRef = this.modalService.show(
+      InstallAgentComponent, {
+        initialState,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+      });
+    this.agentModalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateInventoryList();
+    });
+  }
 
   /**
    * Opens context menu

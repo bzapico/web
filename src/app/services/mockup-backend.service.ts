@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
 import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList, mockInventorySummary } from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
+import { extendsDirectlyFromObject } from '@angular/core/src/render3/jit/directive';
 
 @Injectable({
   providedIn: 'root'
@@ -182,6 +183,76 @@ export class MockupBackendService implements Backend {
   getInventorySummary(organizationId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockInventorySummary),
+      status: 200
+    })))
+    .pipe(
+      map(response => response.json())
+    );
+  }
+
+
+  /**
+  * Simulates install an agent
+  */
+
+  installAgent(organizationId: string, edgeControllerId: any, agent: any) {
+    console.log('dentro ', organizationId, edgeControllerId, agent);
+    function generateRandomString() {
+      return Math.floor(Math.random() * Math.floor(1000000)).toString();
+    }
+
+    for (let index = 0; index < mockInventoryList.controllers.length; index++) {
+      const controllersArray = mockInventoryList.controllers[index].ec_name;
+      console.log('teto ', controllersArray);
+    }
+
+    const asset = {
+      'organization_id': organizationId,
+      'edge_controller_id': edgeControllerId,
+      'asset_id': generateRandomString(),
+      'agent_id': generateRandomString(),
+      'eic_net_ip': agent.target_host,
+      'ec_name': 'edge65',
+      'show': true,
+      'created': '1550746669',
+      'labels': {},
+      'os': {
+          'name': 'petra',
+          'version': 'v1',
+          'class': 'linux',
+          'architecture': 'chagal'
+      },
+      'hardware': {
+          'cpus': {
+              'manufacturer': 'Linux',
+              'model': 'yes',
+              'architecture': 'Ubuntu',
+              'num_cores': 3
+          },
+          'installed_ram': 2,
+          'net_interfaces': {
+              'type': 'capacity',
+              'link_capacity': 5
+          }
+
+      },
+      'storage': {
+          'type': 'ram',
+          'total_capacity': 7
+      },
+      'agent_op_summary': {
+        'operation_id': '54654asd-654654-qweqwe',
+        'timestamp':  '1550746669',
+        'status': 'scheduled',
+        'info': 'info'
+      },
+      'last_alive_timestamp': '654654654',
+      'status' : 'online'
+  };
+
+    mockInventoryList.assets.push(asset);
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(asset),
       status: 200
     })))
     .pipe(
