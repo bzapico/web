@@ -197,13 +197,14 @@ export class MockupBackendService implements Backend {
 
   installAgent(organizationId: string, edgeControllerId: any, agent: any) {
     // const asset: Asset = {
+      // TODO
       const asset = {
       organization_id: organizationId,
       edge_controller_id: edgeControllerId,
       asset_id: this.uuidv4(),
       agent_id: this.uuidv4(),
       eic_net_ip: agent.target_host,
-      name: agent.name,
+      name: 'edge65',
       show: true,
       created: '1550746669',
       labels: {
@@ -230,8 +231,8 @@ export class MockupBackendService implements Backend {
         }
       },
       storage: {
-          type: 'ram',
-          total_capacity: 7
+        type: 'ram',
+        total_capacity: 7
       },
       last_op_summary: {
         operation_id: '54654asd-654654-qweqwe',
@@ -244,9 +245,9 @@ export class MockupBackendService implements Backend {
     };
 
     for (let index = 0; index < mockInventoryList.controllers.length; index++) {
-      const controllersNames = mockInventoryList.controllers[index].name;
+      const controllersIds = mockInventoryList.controllers[index].edge_controller_id;
 
-      if (controllersNames === asset.name) {
+      if (controllersIds === asset.edge_controller_id) {
         mockInventoryList.controllers[index].assets.push({
           eic_net_ip: agent.target_host,
           status: 'online'

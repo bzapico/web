@@ -1,7 +1,5 @@
 import { Group } from '../definitions/interfaces/group';
-import { Controller } from '../definitions/interfaces/controller';
-import { Asset } from '../definitions/interfaces/asset';
-import { Device } from '../definitions/interfaces/device';
+import { Inventory } from '../definitions/interfaces/inventory';
 
 export const mockJwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
     // tslint:disable-next-line:max-line-length
@@ -1331,10 +1329,8 @@ export const mockInventorySummary = {
 /**
  * Mocked inventory list
  */
-
-// export const mockGroupList: Group[] = [
-    // export const mockInventoryList: { device: Device , asset: Asset, controller: Controller}
-    // Item[] = []
+// export const mockInventoryList: Inventory = {
+      // TODO
 export const mockInventoryList = {
     devices: [
         {

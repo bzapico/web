@@ -25,7 +25,7 @@ export class AssetInfoComponent implements OnInit {
   assetId: string;
   agentId: string;
   assetIp: string;
-  ecName: string;
+  name: string;
   architecture: string;
   model: string;
   manufacturer: string;
@@ -120,7 +120,7 @@ export class AssetInfoComponent implements OnInit {
     let ecIndexFound;
 
     for (let i = 0; i < this.inventory.length; i++) {
-      if (this.inventory[i].name === this.ecName &&
+      if (this.inventory[i].name === this.name &&
         this.inventory[i].type === 'EC'
         ) {
         ecIndexFound = i;

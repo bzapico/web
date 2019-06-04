@@ -1,7 +1,6 @@
 /**
  * Interface that defines the Edge Controller info needed for creating the Edge Controller object instance
  */
-
 export interface Controller {
     // OrganizationId with the organization identifier.
     organization_id: string;
@@ -15,10 +14,10 @@ export interface Controller {
     // Created time
     created?: number;
      // Labels defined by the user.
-    labels?: object;
+    labels?: any;
     // LastAliveTimestamp contains the last alive message received
     last_alive_timestamp?: number;
-    assets?: string;
+    assets?: any;
     // Status for the UI.
     status?: string;
     // location with the EC location

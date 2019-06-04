@@ -399,7 +399,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       assetId: asset.asset_id,
       agentId: asset.agent_id,
       assetIp: asset.eic_net_ip,
-      ecName: asset.name,
+      name: asset.name,
       show: asset.show,
       created: asset.created,
       labels: asset.labels,
