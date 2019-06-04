@@ -38,7 +38,7 @@ export class InstallAgentComponent implements OnInit {
   type: FormControl;
   controllersList: any[];
   openFromEc: boolean;
-  countECs: number;
+  ecCount: number;
 
   /**
    * Models that hold all inventory list
@@ -75,6 +75,7 @@ export class InstallAgentComponent implements OnInit {
     private notificationsService: NotificationsService
   ) {
 
+    this.inventory = [];
     //  Agent type
     this.openFromEc = false;
     this.agentType = null;
@@ -115,11 +116,11 @@ export class InstallAgentComponent implements OnInit {
     });
 
     this.edgeControllerSelectConfig = {
-      displayKey: 'ec_name',
+      displayKey: 'name',
       search: false,
       height: 'auto',
       placeholder: 'Edge Inventory Controller',
-      limitTo: this.countECs,
+      limitTo: this.ecCount,
       moreText: 'more',
       noResultsFound: 'No results found!'
     };

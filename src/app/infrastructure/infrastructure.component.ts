@@ -57,11 +57,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   REFRESH_RATIO = 20000; // 20 seconds
 
   /**
-   * Number of Edge Controllers
-   */
-  countECs: number;
-
-  /**
    * NGX-Charts object-assign required object references (for rendering)
    */
   infrastructurePieChart: any;
@@ -157,7 +152,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     this.storageCount = 0;
     this.onlineCount = 0;
     this.onlineTotalCount = 0;
-    this.countECs = 0;
     this.activeContextMenuItemId = '';
 
     // SortBy
@@ -247,7 +241,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         });
       }
       if (response.controllers) {
-        this.countECs =  response.controllers.length;
         response.controllers.forEach(controller => {
           controller.type = 'EC';
           controller.id = controller.edge_controller_id;
@@ -260,6 +253,16 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     }
   }
 
+  getECsCount() {
+    let ecCount = 0;
+
+    this.inventory.forEach(item => {
+      if (item.type === 'EC') {
+        ecCount += 1;
+      }
+    });
+    return ecCount;
+  }
 
   /**
    * Updates the pie chart with latest changes
@@ -396,7 +399,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       assetId: asset.asset_id,
       agentId: asset.agent_id,
       assetIp: asset.eic_net_ip,
-      ecName: asset.ec_name,
+      ecName: asset.name,
       show: asset.show,
       created: asset.created,
       labels: asset.labels,
@@ -444,7 +447,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       assets: controller.assets,
       show: controller.show,
       created: controller.created,
-      name: controller.ec_name,
+      name: controller.name,
       labels: controller.labels,
       status: controller.status,
       inventory: this.inventory
@@ -475,7 +478,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       organizationId: this.organizationId,
       inventory: this.inventory,
       defaultAutofocus: false,
-      countECs: this.countECs
+      ecCount: this.getECsCount()
     };
 
     this.agentModalRef = this.modalService.show(
@@ -501,7 +504,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       edgeControllerId: agent.edge_controller_id,
       openFromEc: true,
       defaultAutofocus: true,
-      countECs: this.countECs
+      ecCount: this.getECsCount()
     };
 
     this.agentModalRef = this.modalService.show(

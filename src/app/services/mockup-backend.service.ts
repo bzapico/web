@@ -6,7 +6,6 @@ import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
 import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList, mockInventorySummary } from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
-import { extendsDirectlyFromObject } from '@angular/core/src/render3/jit/directive';
 
 @Injectable({
   providedIn: 'root'
@@ -197,58 +196,58 @@ export class MockupBackendService implements Backend {
 
   installAgent(organizationId: string, edgeControllerId: any, agent: any) {
     const asset = {
-      'organization_id': organizationId,
-      'edge_controller_id': edgeControllerId,
-      'asset_id': this.uuidv4(),
-      'agent_id': this.uuidv4(),
-      'eic_net_ip': agent.target_host,
-      'ec_name': agent.ec_name,
-      'show': true,
-      'created': '1550746669',
-      'labels': {
+      organization_id: organizationId,
+      edge_controller_id: edgeControllerId,
+      asset_id: this.uuidv4(),
+      agent_id: this.uuidv4(),
+      eic_net_ip: agent.target_host,
+      name: agent.name,
+      show: true,
+      created: '1550746669',
+      labels: {
         'lab1': 'asdasdasd',
         'lab2': 'asdasd'
       },
-      'os': {
-        'name': 'petra',
-        'version': 'v1',
-        'class': 'linux',
-        'architecture': 'chagal'
+      os: {
+        name: 'petra',
+        version: 'v1',
+        class: 'linux',
+        architecture: 'chagal'
       },
-      'hardware': {
-        'cpus': {
-          'manufacturer': 'Linux',
-          'model': 'yes',
-          'architecture': 'Ubuntu',
-          'num_cores': 3
+      hardware: {
+        cpus: {
+          manufacturer: 'Linux',
+          model: 'yes',
+          architecture: 'Ubuntu',
+          num_cores: 3
         },
-        'installed_ram': 2,
-        'net_interfaces': {
-          'type': 'capacity',
-          'link_capacity': 5
+        installed_ram: 2,
+        net_interfaces: {
+          type: 'capacity',
+          link_capacity: 5
         }
       },
-      'storage': {
-          'type': 'ram',
-          'total_capacity': 7
+      storage: {
+          type: 'ram',
+          total_capacity: 7
       },
-      'agent_op_summary': {
-        'operation_id': '54654asd-654654-qweqwe',
-        'timestamp':  '1550746669',
-        'status': 'scheduled',
-        'info': 'info'
+      agent_op_summary: {
+        operation_id: '54654asd-654654-qweqwe',
+        timestamp:  '1550746669',
+        status: 'scheduled',
+        info: 'info'
       },
-      'last_alive_timestamp': '654654654',
-      'status' : 'online'
+      last_alive_timestamp: '654654654',
+      status : 'online'
     };
 
     for (let index = 0; index < mockInventoryList.controllers.length; index++) {
-      const controllersNames = mockInventoryList.controllers[index].ec_name;
+      const controllersNames = mockInventoryList.controllers[index].name;
 
-      if (controllersNames === asset.ec_name) {
+      if (controllersNames === asset.name) {
         mockInventoryList.controllers[index].assets.push({
-          'eic_net_ip': agent.target_host,
-          'asset_status': 'online'
+          eic_net_ip: agent.target_host,
+          status: 'online'
         });
       }
     }
