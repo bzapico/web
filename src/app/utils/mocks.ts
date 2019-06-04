@@ -1,4 +1,7 @@
 import { Group } from '../definitions/interfaces/group';
+import { Controller } from '../definitions/interfaces/controller';
+import { Asset } from '../definitions/interfaces/asset';
+import { Device } from '../definitions/interfaces/device';
 
 export const mockJwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
     // tslint:disable-next-line:max-line-length
@@ -1216,55 +1219,55 @@ export const mockDevicesList = [
     [
         {
            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-           'device_group_id': 'a56b9900-0fef-41b0-bb7c-adf0055274cd',
-           'device_id': 'dh006',
-           'register_since': '1550746714',
+           device_group_id: 'a56b9900-0fef-41b0-bb7c-adf0055274cd',
+           device_id: 'dh006',
+           register_since: '1550746714',
            'enabled': true,
-           'device_status_name': 'OFFLINE'
+           device_status_name: 'OFFLINE'
         }
     ],
     [
         {
         'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-        'device_id': 'dh001',
-        'register_since': '1550746644',
+        device_group_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        device_id: 'dh001',
+        register_since: '1550746644',
         'enabled': true,
-        'device_status_name': 'OFFLINE',
+        device_status_name: 'OFFLINE',
         'labels': {
         }
         },
         {
         'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-        'device_id': 'dh002',
-        'register_since': '1550746647',
+        device_group_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        device_id: 'dh002',
+        register_since: '1550746647',
         'enabled': true,
-        'device_status_name': 'OFFLINE'
+        device_status_name: 'OFFLINE'
         },
         {
         'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-        'device_id': 'dh003',
-        'register_since': '1550746651',
+        device_group_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        device_id: 'dh003',
+        register_since: '1550746651',
         'enabled': true,
-        'device_status_name': 'OFFLINE'
+        device_status_name: 'OFFLINE'
         },
         {
         'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-        'device_id': 'dh004',
-        'register_since': '1550746653',
+        device_group_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        device_id: 'dh004',
+        register_since: '1550746653',
         'enabled': true,
-        'device_status_name': 'OFFLINE'
+        device_status_name: 'OFFLINE'
         },
         {
         'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-        'device_id': 'dh005',
-        'register_since': '1550746656',
+        device_group_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        device_id: 'dh005',
+        register_since: '1550746656',
         'enabled': true,
-        'device_status_name': 'OFFLINE'
+        device_status_name: 'OFFLINE'
         }
     ]
 ];
@@ -1275,7 +1278,7 @@ export const mockDevicesList = [
 export const mockGroupList: Group[] = [
     {
        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-       'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+        'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
        'name': 'dg1',
        'created': '1550746520',
        'enabled': true,
@@ -1328,834 +1331,923 @@ export const mockInventorySummary = {
 /**
  * Mocked inventory list
  */
+
+// export const mockGroupList: Group[] = [
+    // export const mockInventoryList: { device: Device , asset: Asset, controller: Controller}
+    // Item[] = []
 export const mockInventoryList = {
     devices: [
         {
-            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'device_group_id': 'a56b9900-0fef-41b0-bb7c-adf0055274cd',
-            'device_id': 'dh006',
-            'register_since': '1550746714',
-            'enabled': true,
-            'device_status_name': 'OFFLINE',
-            'labels': {
+            organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            device_group_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            device_id: 'dh005',
+            register_since: '1550746520',
+            labels: {
+                'lab11': 'label11',
+                'lab21': 'label21'
+            },
+            enabled: true,
+            device_status_name : 'online'
+        },
+        {
+            organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            device_group_id: 'a56b9900-0fef-41b0-bb7c-adf0055274cd',
+            device_id: 'dh007',
+            register_since: '1550746520',
+            labels: {
                 'lab12': 'label12',
                 'lab22': 'label22'
-            }
+            },
+            enabled: true,
+            device_status_name : 'online'
         },
         {
-            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            'device_id': 'dh001',
-            'register_since': '1550746644',
-            'enabled': true,
-            'device_status_name': 'OFFLINE',
-            'labels': {
-                'lab99': 'label99',
-                'lab22': 'label22'
-            }
-        },
-        {
-            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            'device_id': 'dh002',
-            'register_since': '1550746647',
-            'enabled': true,
-            'device_status_name': 'OFFLINE',
-            'labels': {
-                'lab12': 'label12',
-                'lab22': 'label22'
-            }
-        },
-        {
-            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            'device_id': 'dh003',
-            'register_since': '1550746651',
-            'enabled': true,
-            'device_status_name': 'OFFLINE',
-            'labels': {}
-        },
-        {
-            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            'device_id': 'dh004',
-            'register_since': '1550746653',
-            'enabled': true,
-            'device_status_name': 'OFFLINE',
-            'labels': {
-                'lab100': 'label00',
-                'lab7': 'label7'
-            }
-        },
-        {
-            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            'device_id': 'dh005',
-            'register_since': '1550746656',
-            'enabled': true,
-            'device_status_name': 'OFFLINE',
-            'labels': {
-            }
+            organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            device_group_id: 'd94ac398-fd77-4937-b7f7-9fa0ff8b1eab',
+            device_id: 'dh006',
+            register_since: '1550746520',
+            labels: {
+                'lab13': 'label13',
+                'lab23': 'label23'
+            },
+            enabled: false,
+            device_status_name : 'offline'
         }
     ],
     assets: [
         {
-            'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5k',
-            'asset_ip': '98.105.55.31',
-            'ec_name': 'edge25',
-            'show': true,
-            'created': '1550746520',
-            'labels': {
+            organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.31',
+            name: 'edge25',
+            show: true,
+            created: '1550746520',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Apple',
-                    'model': 'yes',
-                    'architecture': 'Fanix',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Apple',
+                    model: 'yes',
+                    architecture: 'Fanix',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
 
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/knon',
-            'status' : 'offline'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'offline'
         },
         {
-            'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5l',
-            'asset_ip': '98.105.55.32',
-            'ec_name': 'edge25',
-            'show': true,
-            'created': '1550746520',
-            'labels': {
+            organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.32',
+            name: 'edge25',
+            show: true,
+            created: '1550746520',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Apple',
-                    'model': 'yes',
-                    'architecture': 'Fanix',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Apple',
+                    model: 'yes',
+                    architecture: 'Fanix',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/knon',
-            'status' : 'offline'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'offline'
         },
         {
-            'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5m',
-            'asset_ip': '98.105.55.33',
-            'ec_name': 'edge25',
-            'show': true,
-            'created': '1550746520',
-            'labels': {
+            organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.33',
+            name: 'edge25',
+            show: true,
+            created: '1550746520',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Apple',
-                    'model': 'yes',
-                    'architecture': 'Fanix',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Apple',
+                    model: 'yes',
+                    architecture: 'Fanix',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/knon',
-            'status' : 'offline'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'offline'
         },
         {
-            'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5n',
-            'asset_ip': '98.105.55.34',
-            'ec_name': 'edge25',
-            'show': true,
-            'created': '1550746520',
-            'labels': {
+            organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.34',
+            name: 'edge25',
+            show: true,
+            created: '1550746520',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Apple',
-                    'model': 'yes',
-                    'architecture': 'Fanix',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Apple',
+                    model: 'yes',
+                    architecture: 'Fanix',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/knon',
-            'status' : 'offline'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'offline'
         },
         {
-            'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5o',
-            'asset_ip': '98.105.55.35',
-            'ec_name': 'edge25',
-            'show': true,
-            'created': '1550746520',
-            'labels': {
+            organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.35',
+            name: 'edge25',
+            show: true,
+            created: '1550746520',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Apple',
-                    'model': 'yes',
-                    'architecture': 'Fanix',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Apple',
+                    model: 'yes',
+                    architecture: 'Fanix',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/knon',
-            'status' : 'offline'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'offline'
         },
         {
-            'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5p',
-            'asset_ip': '98.105.55.36',
-            'ec_name': 'edge25',
-            'show': true,
-            'created': '1550746520',
-            'labels': {
+            organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.36',
+            name: 'edge25',
+            show: true,
+            created: '1550746520',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Apple',
-                    'model': 'yes',
-                    'architecture': 'Fanix',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Apple',
+                    model: 'yes',
+                    architecture: 'Fanix',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
-                }
-
-            },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
-            },
-            'eic_net_ip': 'http/knon',
-            'status' : 'offline'
-        },
-        {
-            'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5q',
-            'asset_ip': '98.105.55.37',
-            'ec_name': 'edge25',
-            'show': true,
-            'created': '1550746520',
-            'labels': {
-                'lab1': 'label1',
-                'lab2': 'label2'
-            },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
-            },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Apple',
-                    'model': 'yes',
-                    'architecture': 'Fanix',
-                    'num_cores': 3
-                },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
 
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/knon',
-            'status' : 'offline'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'offline'
         },
         {
-            'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5v',
-            'asset_ip': '98.105.55.38',
-            'ec_name': 'edge25',
-            'show': true,
-            'created': '1550746520',
-            'labels': {
+            organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.37',
+            name: 'edge25',
+            show: true,
+            created: '1550746520',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Apple',
-                    'model': 'yes',
-                    'architecture': 'Fanix',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Apple',
+                    model: 'yes',
+                    architecture: 'Fanix',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
 
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/knon',
-            'status' : 'offline'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'offline'
         },
         {
-            'organization_id': 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5a',
-            'asset_ip': '98.105.55.39',
-            'ec_name': 'edge25',
-            'show': true,
-            'created': '1550746520',
-            'labels': {
+            organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.38',
+            name: 'edge25',
+            show: true,
+            created: '1550746520',
+            labels: {
+                'lab44': 'label133',
+                'lab33': 'label233'
+            },
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
+            },
+            hardware: {
+                cpus: {
+                    manufacturer: 'Apple',
+                    model: 'yes',
+                    architecture: 'Fanix',
+                    num_cores: 3
+                },
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
+                }
+
+            },
+            storage: {
+                type: 'ram',
+                total_capacity: 7
+            },
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'offline'
+        },
+        {
+            organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.39',
+            name: 'edge25',
+            show: true,
+            created: '1550746520',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Apple',
-                    'model': 'yes',
-                    'architecture': 'Fanix',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Apple',
+                    model: 'yes',
+                    architecture: 'Fanix',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
 
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/knon',
-            'status' : 'offline'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'offline'
         },
         {
-            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5b',
-            'asset_ip': '98.105.55.18',
-            'ec_name': 'edge65',
-            'show': true,
-            'created': '1550746669',
-            'labels': {
+            organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.18',
+            name: 'edge65',
+            show: true,
+            created: '1550746669',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Linux',
-                    'model': 'yes',
-                    'architecture': 'Ubuntu',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Linux',
+                    model: 'yes',
+                    architecture: 'Ubuntu',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
 
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'status' : 'online'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'online'
         },
         {
-            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5c',
-            'asset_ip': '98.105.55.28',
-            'ec_name': 'edge65',
-            'show': true,
-            'created': '1550746669',
-            'labels': {
+            organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.28',
+            name: 'edge65',
+            show: true,
+            created: '1550746669',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Linux',
-                    'model': 'yes',
-                    'architecture': 'Ubuntu',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Linux',
+                    model: 'yes',
+                    architecture: 'Ubuntu',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
 
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'status' : 'online'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'online'
         },
         {
-            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5d',
-            'asset_ip': '98.105.55.48',
-            'ec_name': 'edge65',
-            'show': true,
-            'created': '1550746669',
-            'labels': {
+            organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.48',
+            name: 'edge65',
+            show: true,
+            created: '1550746669',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Linux',
-                    'model': 'yes',
-                    'architecture': 'Ubuntu',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Linux',
+                    model: 'yes',
+                    architecture: 'Ubuntu',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
 
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'status' : 'online'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'online'
         },
         {
-            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5e',
-            'asset_ip': '98.105.55.58',
-            'ec_name': 'edge65',
-            'show': true,
-            'created': '1550746669',
-            'labels': {
+            organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.58',
+            name: 'edge65',
+            show: true,
+            created: '1550746669',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Linux',
-                    'model': 'yes',
-                    'architecture': 'Ubuntu',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Linux',
+                    model: 'yes',
+                    architecture: 'Ubuntu',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
 
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'status' : 'online'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+              },
+            last_alive_timestamp: '654654654',
+            status : 'online'
         },
         {
-            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5w',
-            'asset_ip': '98.105.55.68',
-            'ec_name': 'edge65',
-            'show': true,
-            'created': '1550746669',
-            'labels': {
+            organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.68',
+            name: 'edge65',
+            show: true,
+            created: '1550746669',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Linux',
-                    'model': 'yes',
-                    'architecture': 'Ubuntu',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Linux',
+                    model: 'yes',
+                    architecture: 'Ubuntu',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
 
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'status' : 'online'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'online'
         },
         {
-            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5x',
-            'asset_ip': '98.105.55.78',
-            'ec_name': 'edge65',
-            'show': true,
-            'created': '1550746669',
-            'labels': {
+            organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.78',
+            name: 'edge65',
+            show: true,
+            created: '1550746669',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Linux',
-                    'model': 'yes',
-                    'architecture': 'Ubuntu',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Linux',
+                    model: 'yes',
+                    architecture: 'Ubuntu',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
 
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'status' : 'online'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'online'
         },
         {
-            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5i',
-            'asset_ip': '98.105.55.88',
-            'ec_name': 'edge65',
-            'show': true,
-            'created': '1550746669',
-            'labels': {
+            organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.88',
+            name: 'edge65',
+            show: true,
+            created: '1550746669',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Linux',
-                    'model': 'yes',
-                    'architecture': 'Ubuntu',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Linux',
+                    model: 'yes',
+                    architecture: 'Ubuntu',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
 
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'status' : 'online'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'online'
         },
         {
-            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'asset_id': 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
-            'agent_id': 'a2ed5462-98fb-27c1cd9b79a5j',
-            'asset_ip': '98.105.55.98',
-            'ec_name': 'edge65',
-            'show': true,
-            'created': '1550746669',
-            'labels': {
-                'lab1': 'label1',
-                'lab2': 'label2'
+            organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+            eic_net_ip: '98.105.55.98',
+            name: 'edge65',
+            show: true,
+            created: '1550746669',
+            labels: {},
+            os: {
+                name: 'petra',
+                version: 'v1',
+                class: 'linux',
+                architecture: 'chagal'
             },
-            'os': {
-                'name': 'petra',
-                'version': 'v1',
-                'class': 'linux',
-                'architecture': 'chagal'
-            },
-            'hardware': {
-                'cpus': {
-                    'manufacturer': 'Linux',
-                    'model': 'yes',
-                    'architecture': 'Ubuntu',
-                    'num_cores': 3
+            hardware: {
+                cpus: {
+                    manufacturer: 'Linux',
+                    model: 'yes',
+                    architecture: 'Ubuntu',
+                    num_cores: 3
                 },
-                'installed_ram': 2,
-                'net_interfaces': {
-                    'type': 'capacity',
-                    'link_capacity': 5
+                installed_ram: 2,
+                net_interfaces: {
+                    type: 'capacity',
+                    link_capacity: 5
                 }
 
             },
-            'storage': {
-                'type': 'ram',
-                'total_capacity': 7
+            storage: {
+                type: 'ram',
+                total_capacity: 7
             },
-            'eic_net_ip': 'http/qweqwe',
-            'status' : 'online'
+            last_op_summary: {
+                operation_id: '54654asd-654654-qweqwe',
+                timestamp:  '1550746669',
+                status: 'scheduled',
+                info: 'info'
+            },
+            last_alive_timestamp: '654654654',
+            status : 'online'
         }
     ],
     controllers:
     [
         {
-            'organization_id': '8888-2ed7-41c1-90fb-f561eb81ea42',
-            'edge_controller_id': '7777-0fef-41b0-bb7c-adf0055274cd',
-            'show': true,
-            'created': '1550746676',
-            'ec_name': 'edge25',
-            'labels': {
+            organization_id: '8888-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
+            show: true,
+            created: '1550746676',
+            name: 'edge25',
+            labels: {
                 'lab1': 'label1',
                 'lab2': 'label2'
             },
-            'assets':  [
+            assets:  [
                 {
-                    'asset_ip': '98.105.55.31',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.31',
+                    status: 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.32',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.32',
+                    status: 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.33',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.33',
+                    status: 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.34',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.34',
+                    status: 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.35',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.35',
+                    status: 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.36',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.36',
+                    status: 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.37',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.37',
+                    status: 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.38',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.38',
+                    status: 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.39',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.39',
+                    status: 'online'
                 },
             ],
-            'status': 'offline'
+            status: 'offline'
         },
         {
-            'organization_id': '999-2ed7-41c1-90fb-f561eb81ea42',
-            'edge_controller_id': '1010101-0fef-41b0-bb7c-adf0055274cd',
-            'show': true,
-            'created': '1550746676',
-            'ec_name': 'edge65',
-            'labels': {
+            organization_id: '999-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
+            show: true,
+            created: '1550746676',
+            name: 'edge65',
+            labels: {
                 'lab334': 'label344',
                 'lab244': 'label244'
             },
-            'assets':  [
+            assets:  [
                 {
-                    'asset_ip': '98.105.55.18',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.18',
+                    status: 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.28',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.28',
+                    status: 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.48',
-                    'asset_status': 'offline'
+                    eic_net_ip: '98.105.55.48',
+                    status: 'offline'
                 },
                 {
-                    'asset_ip': '98.105.55.58',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.58',
+                    status: 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.68',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.68',
+                    status: 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.78',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.78',
+                    status: 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.88',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.88',
+                    status: 'online'
                 },
                 {
-                    'asset_ip': '98.105.55.98',
-                    'asset_status': 'online'
+                    eic_net_ip: '98.105.55.98',
+                    status: 'online'
                 },
             ],
-            'status': 'online'
+            status: 'online'
         }
     ]
 };

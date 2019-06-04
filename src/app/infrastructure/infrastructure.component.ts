@@ -19,7 +19,7 @@ import { DevicesComponent } from '../devices/devices.component';
   templateUrl: './infrastructure.component.html',
   styleUrls: ['./infrastructure.component.scss']
 })
-export class InfrastructureComponent implements OnInit, OnDestroy {
+export class InfrastructureComponent implements OnInit, OnDestroy  {
   /**
    * Backend reference
    */
@@ -48,6 +48,16 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
   controllers: any [];
 
   /**
+   * Interval reference
+   */
+  refreshIntervalRef: any;
+
+  /**
+   * Refresh ratio reference
+   */
+  REFRESH_RATIO = 20000; // 20 seconds
+
+  /**
    * NGX-Charts object-assign required object references (for rendering)
    */
   infrastructurePieChart: any;
@@ -69,16 +79,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
   storageCount: number;
   onlineCount: number;
   onlineTotalCount: number;
-
-  /**
-   * Interval reference
-   */
-  refreshIntervalRef: any;
-
-  /**
-   * Refresh ratio reference
-   */
-  REFRESH_RATIO = 20000; // 20 seconds
 
   /**
    * Models that hold the sort info needed to sortBy pipe
@@ -185,12 +185,10 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
         this.updateInventoryList();
         this.refreshIntervalRef = setInterval(() => {
           this.updateInventoryList();
-        },
-        this.REFRESH_RATIO); // Refresh each 60 seconds
+        }, this.REFRESH_RATIO); // Refresh each 60 seconds
       }
     }
   }
-
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
   }
@@ -257,6 +255,17 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
         });
       }
     }
+  }
+
+  getECsCount() {
+    let ecCount = 0;
+
+    this.inventory.forEach(item => {
+      if (item.type === 'EC') {
+        ecCount += 1;
+      }
+    });
+    return ecCount;
   }
 
   /**
@@ -393,8 +402,8 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
       organizationId: this.organizationId,
       assetId: asset.asset_id,
       agentId: asset.agent_id,
-      assetIp: asset.asset_ip,
-      ecName: asset.ec_name,
+      assetIp: asset.eic_net_ip,
+      ecName: asset.name,
       show: asset.show,
       created: asset.created,
       labels: asset.labels,
@@ -409,6 +418,8 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
       capacity: asset.storage.total_capacity,
       eic: asset.eic_net_ip,
       status: asset.status,
+      summary: asset.last_op_summary,
+      lastAlive: asset.last_alive_timestamp,
       inventory: this.inventory,
     };
 
@@ -440,10 +451,10 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
       assets: controller.assets,
       show: controller.show,
       created: controller.created,
-      name: controller.ec_name,
+      name: controller.name,
       labels: controller.labels,
       status: controller.status,
-      inventory: this.inventory,
+      inventory: this.inventory
     };
 
     this.ecModalRef = this.modalService.show(
@@ -465,17 +476,52 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
 
   /*
   /**
-  * Open Install Agent info modal window
+  * Open install Agent info modal window
   */
-  openInstallAgent() {
+  installAgent() {
     const initialState = {
       organizationId: this.organizationId,
+      inventory: this.inventory,
+      defaultAutofocus: false,
+      ecCount: this.getECsCount()
     };
 
-    this.agentModalRef = this.modalService.show(InstallAgentComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.agentModalRef = this.modalService.show(
+      InstallAgentComponent, {
+        initialState,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+      });
     this.agentModalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { });
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateInventoryList();
+     });
+  }
 
+
+  /**
+   * Opens the modal view that holds the install Agent modal component
+   * @param agent registered app to deploy
+   */
+  installAgentFromEC(agent) {
+    const initialState = {
+      organizationId: this.organizationId,
+      edgeControllerId: agent.edge_controller_id,
+      openFromEc: true,
+      defaultAutofocus: true,
+      ecCount: this.getECsCount()
+    };
+
+    this.agentModalRef = this.modalService.show(
+      InstallAgentComponent, {
+        initialState,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+      });
+    this.agentModalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateInventoryList();
+    });
   }
 
   /**
@@ -523,14 +569,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
    */
   unlinkEC(inventoryItem) {
     alert('EC unlinked');
-  }
-
-  /**
-   * Opens the modal view that holds the install Agent component
-   * @param inventoryItem inventory item
-   */
-  installAgent(inventoryItem) {
-    alert('Install agent');
   }
 
   /**
@@ -622,7 +660,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy {
         const ecOption3 = {
           name: 'Install agent',
           action: (inventoryItem) => {
-            this.installAgent(inventoryItem);
+            this.installAgent();
           },
           item: item
         };

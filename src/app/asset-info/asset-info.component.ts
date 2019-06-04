@@ -120,7 +120,7 @@ export class AssetInfoComponent implements OnInit {
     let ecIndexFound;
 
     for (let i = 0; i < this.inventory.length; i++) {
-      if (this.inventory[i].ec_name === this.ecName &&
+      if (this.inventory[i].name === this.ecName &&
         this.inventory[i].type === 'EC'
         ) {
         ecIndexFound = i;
