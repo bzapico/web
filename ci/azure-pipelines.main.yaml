@@ -44,15 +44,9 @@ jobs:
       buildUrl: $(buildUrl)$(Build.BuildId)
       slackWebhook: $(slackBuilds)
 
-  - script: |
-      sudo npm install -g @angular/cli
-      sudo chown -R $(whoami):$(id -gn) /home/$(whoami)
-      npm install
-    displayName: 'Install dependencies'
-
-  - script: "ng run nalej:test-ci --watch=false --code-coverage"
-    continueOnError: true
-    displayName: 'Run unit tests'
+  - template: angular/dependencies.yaml@ci_templates
+    
+  - template: angular/test.yaml@ci_templates
   
   - task: PublishTestResults@2
     inputs:
@@ -67,8 +61,7 @@ jobs:
       summaryFileLocation: "$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml"
     displayName: "Publish code coverage results"
   
-  - script: "ng build"
-    displayName: "Build Web UI"
+  - template: angular/build.yaml@ci_templates
       
   - template: docker/login.yaml@ci_templates
     parameters:
@@ -78,13 +71,23 @@ jobs:
   
   - script: |
       VERSION=$(cat .version)
-      docker build --no-cache -t $(stagingDockerRegistry)/nalej/web:$VERSION -f components/web/Dockerfile.ci .
+      build_output=$(docker build --no-cache -t $(stagingDockerRegistry)/nalej/web:$VERSION -f components/web/Dockerfile.ci .)
+
+      if [ $? -ne 0 ]; then
+        echo "##vso[task.logissue type=error]There was an error creating the docker image $(stagingDockerRegistry)/nalej/web:$VERSION.%0D%0ACommand output:%0D%0A${build_output//$'\n'/'%0D%0A'}%0D%0AError CIE0025"
+        echo "##vso[task.complete result=Failed;]"
+      fi
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     displayName: Build the docker images
   
   - script: |
       VERSION=$(cat .version)
-      docker push $(stagingDockerRegistry)/nalej/web:$VERSION
+      push_output=$(docker push $(stagingDockerRegistry)/nalej/web:$VERSION)
+
+      if [ $? -ne 0 ]; then
+        echo "##vso[task.logissue type=error]There was an error pushing the docker image $(stagingDockerRegistry)/nalej/web:$VERSION.%0D%0ACommand output:%0D%0A${push_output//$'\n'/'%0D%0A'}%0D%0AError CIE0025"
+        echo "##vso[task.complete result=Failed;]"
+      fi
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     displayName: Push docker images
     
