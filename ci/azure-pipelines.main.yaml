@@ -85,7 +85,7 @@ jobs:
       push_output=$(docker push $(stagingDockerRegistry)/nalej/web:$VERSION)
 
       if [ $? -ne 0 ]; then
-        echo "##vso[task.logissue type=error]There was an error pushing the docker image $(stagingDockerRegistry)/nalej/web:$VERSION.%0D%0ACommand output:%0D%0A${push_output//$'\n'/'%0D%0A'}%0D%0AError CIE0025"
+        echo "##vso[task.logissue type=error]There was an error pushing the docker image $(stagingDockerRegistry)/nalej/web:$VERSION.%0D%0ACommand output:%0D%0A${push_output//$'\n'/'%0D%0A'}%0D%0AError CIE0026"
         echo "##vso[task.complete result=Failed;]"
       fi
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
