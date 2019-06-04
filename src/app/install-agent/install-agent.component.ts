@@ -112,12 +112,16 @@ export class InstallAgentComponent implements OnInit {
       target: [null, Validators.required],
     });
 
+    this.controllersList = this.getControllersList();
+    console.log(this.controllersList.length);
+
+console.log('tomate ', this.inventory.length);
     this.edgeControllerSelectConfig = {
       displayKey: 'ec_name',
       search: false,
       height: 'auto',
       placeholder: 'Edge Inventory Controller',
-      limitTo: this.getControllersList().length,
+      limitTo: this.controllersList.length,
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
@@ -166,17 +170,18 @@ export class InstallAgentComponent implements OnInit {
       target_host: f.target.value
     };
 
-    console.log('agent desde install ', agent);
     if (f.type.invalid === true ||
       f.ec.invalid === true ||
       f.sshUsername.invalid === true ||
       f.sshPassword.invalid === true ||
       f.target.value === true
       ) {
-      return;
+        return;
+      }
+    if (!this.edgeControllerId) {
+      this.edgeControllerId = f.ec.value.edge_controller_id;
     }
     this.loading = true;
-
     this.backend.installAgent(this.organizationId, this.edgeControllerId, agent)
       .subscribe(response => {
         this.loading = false;

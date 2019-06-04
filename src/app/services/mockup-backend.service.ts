@@ -196,14 +196,9 @@ export class MockupBackendService implements Backend {
   */
 
   installAgent(organizationId: string, edgeControllerId: any, agent: any) {
-    console.log('dentro ', organizationId, edgeControllerId, agent);
+    console.log('orid ', organizationId, 'edid ' , edgeControllerId, 'agent ', agent);
     function generateRandomString() {
       return Math.floor(Math.random() * Math.floor(1000000)).toString();
-    }
-
-    for (let index = 0; index < mockInventoryList.controllers.length; index++) {
-      const controllersArray = mockInventoryList.controllers[index].ec_name;
-      console.log('teto ', controllersArray);
     }
 
     const asset = {
@@ -212,29 +207,28 @@ export class MockupBackendService implements Backend {
       'asset_id': generateRandomString(),
       'agent_id': generateRandomString(),
       'eic_net_ip': agent.target_host,
-      'ec_name': 'edge65',
+      'ec_name': agent.ec_name,
       'show': true,
       'created': '1550746669',
       'labels': {},
       'os': {
-          'name': 'petra',
-          'version': 'v1',
-          'class': 'linux',
-          'architecture': 'chagal'
+        'name': 'petra',
+        'version': 'v1',
+        'class': 'linux',
+        'architecture': 'chagal'
       },
       'hardware': {
-          'cpus': {
-              'manufacturer': 'Linux',
-              'model': 'yes',
-              'architecture': 'Ubuntu',
-              'num_cores': 3
-          },
-          'installed_ram': 2,
-          'net_interfaces': {
-              'type': 'capacity',
-              'link_capacity': 5
-          }
-
+        'cpus': {
+          'manufacturer': 'Linux',
+          'model': 'yes',
+          'architecture': 'Ubuntu',
+          'num_cores': 3
+        },
+        'installed_ram': 2,
+        'net_interfaces': {
+          'type': 'capacity',
+          'link_capacity': 5
+        }
       },
       'storage': {
           'type': 'ram',
@@ -248,9 +242,21 @@ export class MockupBackendService implements Backend {
       },
       'last_alive_timestamp': '654654654',
       'status' : 'online'
-  };
+    };
+
+    for (let index = 0; index < mockInventoryList.controllers.length; index++) {
+      const controllersNames = mockInventoryList.controllers[index].ec_name;
+
+      if (controllersNames === asset.ec_name) {
+        mockInventoryList.controllers[index].assets.push({
+          'eic_net_ip': agent.target_host,
+          'asset_status': 'online'
+        });
+      }
+    }
 
     mockInventoryList.assets.push(asset);
+
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(asset),
       status: 200
