@@ -414,7 +414,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       capacity: asset.storage.total_capacity,
       eic: asset.eic_net_ip,
       status: asset.status,
-      summary: asset.agent_op_summary,
+      summary: asset.last_op_summary,
       lastAlive: asset.last_alive_timestamp,
       inventory: this.inventory,
     };

@@ -1334,6 +1334,7 @@ export const mockInventorySummary = {
 
 // export const mockGroupList: Group[] = [
     // export const mockInventoryList: { device: Device , asset: Asset, controller: Controller}
+    // Item[] = []
 export const mockInventoryList = {
     devices: [
         {
@@ -1411,7 +1412,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -1456,7 +1457,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -1501,7 +1502,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -1546,7 +1547,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -1591,7 +1592,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -1637,7 +1638,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -1683,7 +1684,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -1729,7 +1730,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -1775,7 +1776,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -1821,7 +1822,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -1867,7 +1868,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -1913,7 +1914,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -1959,7 +1960,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -2005,7 +2006,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -2051,7 +2052,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -2097,7 +2098,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',
@@ -2140,7 +2141,7 @@ export const mockInventoryList = {
                 type: 'ram',
                 total_capacity: 7
             },
-            agent_op_summary: {
+            last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
                 timestamp:  '1550746669',
                 status: 'scheduled',

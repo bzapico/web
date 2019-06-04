@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
 import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList, mockInventorySummary } from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
+import { Asset } from '../definitions/interfaces/asset';
 
 @Injectable({
   providedIn: 'root'
@@ -195,7 +196,8 @@ export class MockupBackendService implements Backend {
   */
 
   installAgent(organizationId: string, edgeControllerId: any, agent: any) {
-    const asset = {
+    // const asset: Asset = {
+      const asset = {
       organization_id: organizationId,
       edge_controller_id: edgeControllerId,
       asset_id: this.uuidv4(),
@@ -231,7 +233,7 @@ export class MockupBackendService implements Backend {
           type: 'ram',
           total_capacity: 7
       },
-      agent_op_summary: {
+      last_op_summary: {
         operation_id: '54654asd-654654-qweqwe',
         timestamp:  '1550746669',
         status: 'scheduled',
