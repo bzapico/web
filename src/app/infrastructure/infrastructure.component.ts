@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
@@ -18,7 +18,7 @@ import { select } from 'd3-selection';
   templateUrl: './infrastructure.component.html',
   styleUrls: ['./infrastructure.component.scss']
 })
-export class InfrastructureComponent implements OnInit {
+export class InfrastructureComponent implements OnInit, OnDestroy  {
   /**
    * Backend reference
    */
@@ -45,6 +45,21 @@ export class InfrastructureComponent implements OnInit {
   devices: any[];
   assets: any[];
   controllers: any [];
+
+  /**
+   * Interval reference
+   */
+  refreshIntervalRef: any;
+
+  /**
+   * Refresh ratio reference
+   */
+  REFRESH_RATIO = 20000; // 20 seconds
+
+  /**
+   * Number of Edge Controllers
+   */
+  countECs: number;
 
   /**
    * NGX-Charts object-assign required object references (for rendering)
@@ -142,6 +157,7 @@ export class InfrastructureComponent implements OnInit {
     this.storageCount = 0;
     this.onlineCount = 0;
     this.onlineTotalCount = 0;
+    this.countECs = 0;
     this.activeContextMenuItemId = '';
 
     // SortBy
@@ -172,8 +188,14 @@ export class InfrastructureComponent implements OnInit {
           this.storageCount = summary['total_storage'];
         });
         this.updateInventoryList();
+        this.refreshIntervalRef = setInterval(() => {
+          this.updateInventoryList();
+        }, this.REFRESH_RATIO); // Refresh each 60 seconds
       }
     }
+  }
+  ngOnDestroy() {
+    clearInterval(this.refreshIntervalRef);
   }
 
   /**
@@ -225,6 +247,7 @@ export class InfrastructureComponent implements OnInit {
         });
       }
       if (response.controllers) {
+        this.countECs =  response.controllers.length;
         response.controllers.forEach(controller => {
           controller.type = 'EC';
           controller.id = controller.edge_controller_id;
@@ -236,6 +259,7 @@ export class InfrastructureComponent implements OnInit {
       }
     }
   }
+
 
   /**
    * Updates the pie chart with latest changes
@@ -423,7 +447,7 @@ export class InfrastructureComponent implements OnInit {
       name: controller.ec_name,
       labels: controller.labels,
       status: controller.status,
-      inventory: this.inventory,
+      inventory: this.inventory
     };
 
     this.ecModalRef = this.modalService.show(
@@ -450,7 +474,8 @@ export class InfrastructureComponent implements OnInit {
     const initialState = {
       organizationId: this.organizationId,
       inventory: this.inventory,
-      defaultAutofocus: false
+      defaultAutofocus: false,
+      countECs: this.countECs
     };
 
     this.agentModalRef = this.modalService.show(
@@ -475,7 +500,8 @@ export class InfrastructureComponent implements OnInit {
       organizationId: this.organizationId,
       edgeControllerId: agent.edge_controller_id,
       openFromEc: true,
-      defaultAutofocus: true
+      defaultAutofocus: true,
+      countECs: this.countECs
     };
 
     this.agentModalRef = this.modalService.show(

@@ -196,21 +196,19 @@ export class MockupBackendService implements Backend {
   */
 
   installAgent(organizationId: string, edgeControllerId: any, agent: any) {
-    console.log('orid ', organizationId, 'edid ' , edgeControllerId, 'agent ', agent);
-    function generateRandomString() {
-      return Math.floor(Math.random() * Math.floor(1000000)).toString();
-    }
-
     const asset = {
       'organization_id': organizationId,
       'edge_controller_id': edgeControllerId,
-      'asset_id': generateRandomString(),
-      'agent_id': generateRandomString(),
+      'asset_id': this.uuidv4(),
+      'agent_id': this.uuidv4(),
       'eic_net_ip': agent.target_host,
       'ec_name': agent.ec_name,
       'show': true,
       'created': '1550746669',
-      'labels': {},
+      'labels': {
+        'lab1': 'asdasdasd',
+        'lab2': 'asdasd'
+      },
       'os': {
         'name': 'petra',
         'version': 'v1',

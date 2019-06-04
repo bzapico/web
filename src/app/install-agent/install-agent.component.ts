@@ -6,6 +6,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { constructDependencies } from '@angular/core/src/di/reflective_provider';
 
 @Component({
   selector: 'app-install-agent',
@@ -37,6 +38,7 @@ export class InstallAgentComponent implements OnInit {
   type: FormControl;
   controllersList: any[];
   openFromEc: boolean;
+  countECs: number;
 
   /**
    * Models that hold all inventory list
@@ -106,25 +108,22 @@ export class InstallAgentComponent implements OnInit {
   ngOnInit() {
     this.installAgentForm = this.formBuilder.group({
       type: [null, Validators.required],
-      ec: [null, Validators.required],
+      edgeController: [null, Validators.required],
       sshUsername: ['', Validators.required],
       sshPassword: ['', Validators.required],
       target: [null, Validators.required],
     });
 
-    this.controllersList = this.getControllersList();
-    console.log(this.controllersList.length);
-
-console.log('tomate ', this.inventory.length);
     this.edgeControllerSelectConfig = {
       displayKey: 'ec_name',
       search: false,
       height: 'auto',
       placeholder: 'Edge Inventory Controller',
-      limitTo: this.controllersList.length,
+      limitTo: this.countECs,
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
+
   }
 
   /**
@@ -164,14 +163,14 @@ console.log('tomate ', this.inventory.length);
     this.submitted = true;
     const agent = {
       agent_type: f.type.value,
-      edge_controller_id: f.ec.value.edge_controller_id,
+      edge_controller_id: f.edgeController.value.edge_controller_id,
       username: f.sshUsername.value,
       password: f.sshPassword.value,
       target_host: f.target.value
     };
 
     if (f.type.invalid === true ||
-      f.ec.invalid === true ||
+      f.edgeController.invalid === true ||
       f.sshUsername.invalid === true ||
       f.sshPassword.invalid === true ||
       f.target.value === true
@@ -179,7 +178,7 @@ console.log('tomate ', this.inventory.length);
         return;
       }
     if (!this.edgeControllerId) {
-      this.edgeControllerId = f.ec.value.edge_controller_id;
+      this.edgeControllerId = f.edgeController.value.edge_controller_id;
     }
     this.loading = true;
     this.backend.installAgent(this.organizationId, this.edgeControllerId, agent)

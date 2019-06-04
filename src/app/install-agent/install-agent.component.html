@@ -41,9 +41,9 @@
         <div class="form-group form-group-drop">
           <label>Edge inventory Controller*</label>
           <ngx-select-dropdown 
-            formControlName="ec" 
+            formControlName="edgeController" 
             [multiple]="false" 
-            [ngClass]="{ 'ngx-error': submitted && f.ec.errors && !edgeControllerId }"
+            [ngClass]="{ 'ngx-error': submitted && f.edgeController.errors && !edgeControllerId }"
             [config]="edgeControllerSelectConfig" 
             [options]="getControllersList()">
             {{edgeControllerId}}
@@ -54,10 +54,10 @@
           <div class="error-h">
             <div *ngIf=
               "submitted &&
-              f.ec.errors &&
+              f.edgeController.errors &&
               !edgeControllerId" 
               class="error-message">
-              <div *ngIf="f.ec.errors.required">A ec is required</div>
+              <div *ngIf="f.edgeController.errors.required">An Edge Controller is required</div>
             </div>
           </div>
         </div>
