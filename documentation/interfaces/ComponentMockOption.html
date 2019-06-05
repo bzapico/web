@@ -209,7 +209,8 @@ export const AvailableComponents &#x3D; {
   infrastructure: &#x27;Infrastructure&#x27;,
   deviceInfo: &#x27;Device Info&#x27;,
   assetInfo: &#x27;Asset Info&#x27;,
-  edgeControllerInfo: &#x27;EC Info&#x27;
+  edgeControllerInfo: &#x27;EC Info&#x27;,
+  installAgent: &#x27;Install Agent&#x27;
 };
 
 @Component({
@@ -343,6 +344,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.edgeControllerInfo,
       mock: localStorage.getItem(LocalStorageKeys.edgeControllerInfoMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
+    this.components.push({
+      name: AvailableComponents.installAgent,
+      mock: localStorage.getItem(LocalStorageKeys.installAgentMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
   }
 
   /**
@@ -382,6 +387,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.deviceInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.assetInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.edgeControllerInfoMock, newValue);
+    localStorage.setItem(LocalStorageKeys.installAgentMock, newValue);
   }
 
   /**
@@ -474,6 +480,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.assetInfo:
         localStorage.setItem(LocalStorageKeys.assetInfoMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.installAgent:
+        localStorage.setItem(LocalStorageKeys.installAgentMock, componentMockOption.mock);
       break;
       default:
         console.log(&#x27;Selected option not registered as available component&#x27;);

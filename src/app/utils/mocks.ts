@@ -1379,7 +1379,7 @@ export const mockInventoryList: Inventory = {
             created: 1550746520,
             labels: {
                 lab1: 'label1',
-               lab2: 'label2'
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1399,7 +1399,6 @@ export const mockInventoryList: Inventory = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1424,7 +1423,7 @@ export const mockInventoryList: Inventory = {
             created: 1550746520,
             labels: {
                 lab1: 'label1',
-               lab2: 'label2'
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1600,7 +1599,7 @@ export const mockInventoryList: Inventory = {
             created: 1550746520,
             labels: {
                 lab1: 'label1',
-               lab2: 'label2'
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1620,7 +1619,6 @@ export const mockInventoryList: Inventory = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1645,7 +1643,7 @@ export const mockInventoryList: Inventory = {
             created: 1550746520,
             labels: {
                 lab1: 'label1',
-               lab2: 'label2'
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1665,7 +1663,6 @@ export const mockInventoryList: Inventory = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1689,8 +1686,8 @@ export const mockInventoryList: Inventory = {
             show: true,
             created: 1550746520,
             labels: {
-                'lab44': 'label133',
-                'lab33': 'label233'
+                lab44: 'label133',
+                lab33: 'label233'
             },
             os: {
                 name: 'petra',
@@ -1735,7 +1732,7 @@ export const mockInventoryList: Inventory = {
             created: 1550746520,
             labels: {
                 lab1: 'label1',
-               lab2: 'label2'
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1755,7 +1752,6 @@ export const mockInventoryList: Inventory = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1780,7 +1776,7 @@ export const mockInventoryList: Inventory = {
             created: 1550746669,
             labels: {
                 lab1: 'label1',
-               lab2: 'label2'
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1800,7 +1796,6 @@ export const mockInventoryList: Inventory = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1825,7 +1820,7 @@ export const mockInventoryList: Inventory = {
             created: 1550746669,
             labels: {
                 lab1: 'label1',
-               lab2: 'label2'
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1845,7 +1840,6 @@ export const mockInventoryList: Inventory = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1870,7 +1864,7 @@ export const mockInventoryList: Inventory = {
             created: 1550746669,
             labels: {
                 lab1: 'label1',
-               lab2: 'label2'
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1890,7 +1884,6 @@ export const mockInventoryList: Inventory = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1915,7 +1908,7 @@ export const mockInventoryList: Inventory = {
             created: 1550746669,
             labels: {
                 lab1: 'label1',
-               lab2: 'label2'
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1935,7 +1928,6 @@ export const mockInventoryList: Inventory = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1960,7 +1952,7 @@ export const mockInventoryList: Inventory = {
             created: 1550746669,
             labels: {
                 lab1: 'label1',
-               lab2: 'label2'
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1980,7 +1972,6 @@ export const mockInventoryList: Inventory = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -2005,7 +1996,7 @@ export const mockInventoryList: Inventory = {
             created: 1550746669,
             labels: {
                 lab1: 'label1',
-               lab2: 'label2'
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -2025,7 +2016,6 @@ export const mockInventoryList: Inventory = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -2050,7 +2040,7 @@ export const mockInventoryList: Inventory = {
             created: 1550746669,
             labels: {
                 lab1: 'label1',
-               lab2: 'label2'
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -2070,7 +2060,6 @@ export const mockInventoryList: Inventory = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -2112,7 +2101,6 @@ export const mockInventoryList: Inventory = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',

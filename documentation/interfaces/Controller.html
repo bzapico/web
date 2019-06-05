@@ -46,7 +46,7 @@
 
 <ol class="breadcrumb">
   <li>Interfaces</li>
-  <li>Device</li>
+  <li>Controller</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,14 +64,14 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/definitions/interfaces/device.ts</code>
+            <code>src/app/definitions/interfaces/controller.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Interface that defines the Device info needed for creating the Device object instance</p>
+                <p>Interface that defines the Edge Controller info needed for creating the Edge Controller object instance</p>
 
             </p>
 
@@ -90,23 +90,14 @@
                             <ul class="index-list">
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#device_api_key">device_api_key</a>
+                                        <a href="#assets">assets</a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#device_group_id">device_group_id</a>
+                                        <a href="#created">created</a>
                                 </li>
                                 <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#device_id">device_id</a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#device_status_name">device_status_name</a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#enabled">enabled</a>
+                                        <a href="#edge_controller_id">edge_controller_id</a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
@@ -114,11 +105,26 @@
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
+                                        <a href="#last_alive_timestamp">last_alive_timestamp</a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#location">location</a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#name">name</a>
+                                </li>
+                                <li>
                                         <a href="#organization_id">organization_id</a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#register_since">register_since</a>
+                                        <a href="#show">show</a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#status">status</a>
                                 </li>
                             </ul>
                         </td>
@@ -135,13 +141,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="device_api_key"></a>
-                                        <span class="name"><b>device_api_key</b><a href="#device_api_key"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="assets"></a>
+                                        <span class="name"><b>assets</b><a href="#assets"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>device_api_key:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>assets:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -149,7 +155,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                                         </td>
                                     </tr>
@@ -169,13 +175,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="device_group_id"></a>
-                                        <span class="name"><b>device_group_id</b><a href="#device_group_id"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="created"></a>
+                                        <span class="name"><b>created</b><a href="#created"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>device_group_id:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>created:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -183,7 +189,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                                         </td>
                                     </tr>
@@ -203,13 +209,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="device_id"></a>
-                                        <span class="name"><b>device_id</b><a href="#device_id"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="edge_controller_id"></a>
+                                        <span class="name"><b>edge_controller_id</b><a href="#edge_controller_id"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>device_id:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>edge_controller_id:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -222,79 +228,6 @@
                                         </td>
                                     </tr>
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="device_status_name"></a>
-                                        <span class="name"><b>device_status_name</b><a href="#device_status_name"><span class="icon ion-ios-link"></span></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>device_status_name:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="enabled"></a>
-                                        <span class="name"><b>enabled</b><a href="#enabled"><span class="icon ion-ios-link"></span></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>enabled:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
 
 
 
@@ -339,13 +272,47 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="organization_id"></a>
-                                        <span class="name"><b>organization_id</b><a href="#organization_id"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="last_alive_timestamp"></a>
+                                        <span class="name"><b>last_alive_timestamp</b><a href="#last_alive_timestamp"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>organization_id:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>last_alive_timestamp:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="location"></a>
+                                        <span class="name"><b>location</b><a href="#location"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>location:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -373,13 +340,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="register_since"></a>
-                                        <span class="name"><b>register_since</b><a href="#register_since"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="name"></a>
+                                        <span class="name"><b>name</b><a href="#name"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>register_since:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>name:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -387,7 +354,104 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="organization_id"></a>
+                                        <span class="name"><b>organization_id</b><a href="#organization_id"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>organization_id:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="show"></a>
+                                        <span class="name"><b>show</b><a href="#show"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>show:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="status"></a>
+                                        <span class="name"><b>status</b><a href="#status"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>status:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                                         </td>
                                     </tr>
@@ -408,23 +472,28 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface Device {
-  // OrganizationId with the organization identifier.
-  organization_id?: string;
-  // DevicesGroupId with the device group identifier.
-  device_group_id?: string;
-  // DeviceId with the device identifier.
-  device_id?: string;
-  // RegisterSince is the timestamp when the device joined the group.
-  register_since?: number;
-  // Labels defined by the user.
-  labels?: any;
-  // Enabled determines if the device can interact with the running applications.
-  enabled?: boolean;
-  // DeviceApiKey contains the API KEY used by the device to send data.
-  device_api_key?: string;
-  // Status of device.
-  device_status_name?: string;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface Controller {
+    // OrganizationId with the organization identifier.
+    organization_id: string;
+    // EdgeControllerId with the EIC identifier.
+    edge_controller_id: string;
+    // Name of the EIC.
+    name?: string;
+    // Show flag to determine if this asset should be shown on the UI. This flag is internally used
+    // for the async uninstall/removal of the asset.
+    show?: boolean;
+    // Created time
+    created?: number;
+     // Labels defined by the user.
+    labels?: any;
+    // LastAliveTimestamp contains the last alive message received
+    last_alive_timestamp?: number;
+    // List of assets
+    assets?: any;
+    // Status for the UI.
+    status?: string;
+    // location with the EC location
+    location?: string;
 }
 </code></pre>
     </div>
@@ -452,7 +521,7 @@
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'Device.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'Controller.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

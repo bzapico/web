@@ -89,7 +89,6 @@ export class AssetInfoComponent implements OnInit {
 
   ngOnInit() {
     this.name = this.getECname();
-    console.log(this.name);
   }
 
   /**

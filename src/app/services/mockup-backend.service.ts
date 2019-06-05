@@ -191,15 +191,18 @@ export class MockupBackendService implements Backend {
   }
 
   /**
-  * Simulates install an agent
-  */
+   * Simulates install an agent
+   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge Controller identifier
+   * @param agent Agent identifier
+   */
   installAgent(organizationId: string, edgeControllerId: any, agent: any) {
     const asset: Asset = {
       organization_id: organizationId,
       edge_controller_id: edgeControllerId,
       asset_id: this.uuidv4(),
       agent_id: this.uuidv4(),
-      eic_net_ip: '98.105.55.31',
+      eic_net_ip: agent.target_host,
       show: true,
       created: 1550746520,
       labels: {
