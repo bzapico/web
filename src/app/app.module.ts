@@ -54,6 +54,7 @@ import { InfrastructureComponent } from './infrastructure/infrastructure.compone
 import { AssetInfoComponent } from './asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from './edge-controller-info/edge-controller-info.component';
 import { ContextualMenuComponent } from './contextual-menu/contextual-menu.component';
+import { InstallAgentComponent } from './install-agent/install-agent.component';
 import { DeviceInfoComponent } from './device-info/device-info.component';
 
 @NgModule({
@@ -95,6 +96,8 @@ import { DeviceInfoComponent } from './device-info/device-info.component';
     DeviceInfoComponent,
     AssetInfoComponent,
     EdgeControllerInfoComponent,
+    ContextualMenuComponent,
+    InstallAgentComponent
   ],
   entryComponents: [
     DebugPanelComponent,
@@ -114,7 +117,8 @@ import { DeviceInfoComponent } from './device-info/device-info.component';
     ServiceInfoComponent,
     DeviceInfoComponent,
     AssetInfoComponent,
-    EdgeControllerInfoComponent
+    EdgeControllerInfoComponent,
+    InstallAgentComponent
   ],
   imports: [
     BrowserModule,

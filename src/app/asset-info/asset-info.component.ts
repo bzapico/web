@@ -17,15 +17,15 @@ export class AssetInfoComponent implements OnInit {
   backend: Backend;
 
   /**
-   * Models that hold organization id, asset ID, agent ID, asset IP, Edge Controller name, architecture,
-   *  model, manugacturer, cores, show, created, name, labels, class, version, net interfaces, capacity,
+   * Models that hold organization id, asset ID, agent ID, asset IP, architecture,
+   * model, manugacturer, cores, show, created, labels, class, version, net interfaces, capacity,
    * EIC and status
    */
   organizationId: string;
+  edgeControllerId: string;
   assetId: string;
   agentId: string;
   assetIp: string;
-  ecName: string;
   architecture: string;
   model: string;
   manufacturer: string;
@@ -39,6 +39,11 @@ export class AssetInfoComponent implements OnInit {
   capacity: string;
   eic: string;
   status: string;
+
+  /**
+   * Models that hold the Edge Controller name
+   */
+  ecName: string;
 
   /**
    * Model that holds onclose method defined in Infrastructure component
@@ -76,12 +81,31 @@ export class AssetInfoComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-
     // Default initialization
     this.loadedData = true;
+    this.inventory = [];
+    this.ecName = '';
    }
 
   ngOnInit() {
+    this.ecName = this.getECname();
+  }
+
+  /**
+   * Gets the Edge Controller name
+   */
+  getECname() {
+    let edgeControllerName: any;
+
+    for (let index = 0; index < this.inventory.length; index++) {
+      if (
+        this.inventory[index].edge_controller_id &&
+        this.inventory[index].name &&
+        this.inventory[index].edge_controller_id === this.edgeControllerId
+        ) {
+      edgeControllerName = this.inventory[index].name;
+      }
+    } return edgeControllerName;
   }
 
   /**
@@ -120,7 +144,7 @@ export class AssetInfoComponent implements OnInit {
     let ecIndexFound;
 
     for (let i = 0; i < this.inventory.length; i++) {
-      if (this.inventory[i].ec_name === this.ecName &&
+      if (this.inventory[i].edge_controller_id === this.edgeControllerId &&
         this.inventory[i].type === 'EC'
         ) {
         ecIndexFound = i;

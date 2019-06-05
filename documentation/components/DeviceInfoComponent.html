@@ -182,10 +182,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getGroupId">getGroupId</a>
+                                <a href="#getGroupName">getGroupName</a>
                             </li>
                             <li>
-                                <a href="#getGroupName">getGroupName</a>
+                                <a href="#goToDevices">goToDevices</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit">ngOnInit</a>
@@ -306,46 +306,6 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="getGroupId"></a>
-                        <span class="name">
-                            <b>
-                            getGroupId
-                            </b>
-                            <a href="#getGroupId"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>getGroupId()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/device-info/device-info.component.ts:136</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Gets the return group ID value from the modal and gives it to infrastructure component</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
                         <a name="getGroupName"></a>
                         <span class="name">
                             <b>
@@ -376,6 +336,46 @@
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="goToDevices"></a>
+                        <span class="name">
+                            <b>
+                            goToDevices
+                            </b>
+                            <a href="#goToDevices"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>goToDevices()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/app/device-info/device-info.component.ts:135</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Go to devices group view</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
                     </td>
@@ -442,7 +442,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/device-info/device-info.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/device-info/device-info.component.ts:109</a></div>
                             </td>
                         </tr>
 
@@ -518,7 +518,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/device-info/device-info.component.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/device-info/device-info.component.ts:121</a></div>
                             </td>
                         </tr>
 
@@ -1232,7 +1232,7 @@ export class DeviceInfoComponent implements OnInit {
         this.groupName &#x3D; this.getGroupName();
       }
     }, errorResponse &#x3D;&gt; {
-      this.requestError &#x3D; errorResponse.error.message;
+      this.loadedData &#x3D; true;
     });
   }
 
@@ -1250,7 +1250,6 @@ export class DeviceInfoComponent implements OnInit {
     }
     return &#x27;Not found&#x27;;
   }
-
 
   /**
    * Transforms objects to arrays to be parsed to string and performed in the view
@@ -1280,10 +1279,9 @@ export class DeviceInfoComponent implements OnInit {
   }
 
   /**
-   * Gets the return group ID value from the modal and gives it to infrastructure component
+   * Go to devices group view
    */
-  getGroupId() {
-
+ goToDevices() {
     const groupId &#x3D; this.deviceGroupId;
     this.onClose(groupId);
     this.bsModalRef.hide();
@@ -1308,7 +1306,7 @@ export class DeviceInfoComponent implements OnInit {
         &lt;p class&#x3D;&quot;device-image&quot;&gt;on 
           &lt;span class&#x3D;&quot;blue text-uppercase cursor-pointer&quot;&gt;
             &lt;a 
-              (click)&#x3D;&quot;getGroupId()&quot;
+              (click)&#x3D;&quot;goToDevices()&quot;
               class&#x3D;&quot;blue&quot;&gt;
               {{groupName}}
             &lt;/a&gt;     
@@ -1399,8 +1397,8 @@ export class DeviceInfoComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card modal-card-info">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="device-title mb-4">Device info</h3>    </div>    <!-- Body -->    <div class="modal-body">      <h3 class="device-h3-title">{{deviceId}}</h3>      <div *ngIf="loadedData">        <p class="device-image">on           <span class="blue text-uppercase cursor-pointer">            <a               (click)="getGroupId()"              class="blue">              {{groupName}}            </a>               </span>        </p>        <div class="scroll-app-info">          <div class="row">            <div class="col-sm grey mb-3">Status</div>            <h3 *ngIf="status === \'online\'" class="device-h3-title col-sm text-right blue text-uppercase">{{status}}</h3>            <h3 *ngIf="status === \'offline\'" class="device-h3-title col-sm text-right red text-uppercase">{{status}}</h3>          </div>          <br>          <div class="row">            <div class="col-sm grey mb-3">Creation date</div>            <div class="col-sm text-right">{{parseTimestampToDate(created)}}</div>          </div>          <br>          <div class="row">            <div class="col-sm grey mb-3">Enablement</div>            <div *ngIf="enabled" class="col-sm text-right blue">ENABLED</div>            <div *ngIf="!enabled" class="col-sm text-right red">DISABLED</div>          </div>          <br>          <div class="row">            <div class="col-sm grey mb-3">Labels</div>          </div>          <div *ngFor="let label of objectToString(labels)" class="row">            <div *ngIf="labels" class="col-sm text-right">              <button class="btn-sm btn-outline-primary" disabled>                {{label[0]}} : {{label[1]}}              </button>            </div>            <div *ngIf="!labels" class="col-sm text-right">No</div>          </div>          <br>          </div>        </div>       <!-- Loader -->      <div *ngIf="!loadedData" class="nalej-loader-box">        <div class="loader">          <svg class="circular" viewBox="25 25 50 50">            <circle             class="path"             cx="50"             cy="50"             r="20"             fill="none"             stroke-width="2"             stroke-miterlimit="10"/>          </svg>        </div>      </div>      <!-- Option button -->      <div class="form-group-btn">        <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">          <span class="align-bottom">Close</span>        </button>      </div>    </div>  </div></div>        </div>'
-    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card modal-card-info">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="device-title mb-4">Device info</h3>    </div>    <!-- Body -->    <div class="modal-body">      <h3 class="device-h3-title">{{deviceId}}</h3>      <div *ngIf="loadedData">        <p class="device-image">on           <span class="blue text-uppercase cursor-pointer">            <a               (click)="goToDevices()"              class="blue">              {{groupName}}            </a>               </span>        </p>        <div class="scroll-app-info">          <div class="row">            <div class="col-sm grey mb-3">Status</div>            <h3 *ngIf="status === \'online\'" class="device-h3-title col-sm text-right blue text-uppercase">{{status}}</h3>            <h3 *ngIf="status === \'offline\'" class="device-h3-title col-sm text-right red text-uppercase">{{status}}</h3>          </div>          <br>          <div class="row">            <div class="col-sm grey mb-3">Creation date</div>            <div class="col-sm text-right">{{parseTimestampToDate(created)}}</div>          </div>          <br>          <div class="row">            <div class="col-sm grey mb-3">Enablement</div>            <div *ngIf="enabled" class="col-sm text-right blue">ENABLED</div>            <div *ngIf="!enabled" class="col-sm text-right red">DISABLED</div>          </div>          <br>          <div class="row">            <div class="col-sm grey mb-3">Labels</div>          </div>          <div *ngFor="let label of objectToString(labels)" class="row">            <div *ngIf="labels" class="col-sm text-right">              <button class="btn-sm btn-outline-primary" disabled>                {{label[0]}} : {{label[1]}}              </button>            </div>            <div *ngIf="!labels" class="col-sm text-right">No</div>          </div>          <br>          </div>        </div>       <!-- Loader -->      <div *ngIf="!loadedData" class="nalej-loader-box">        <div class="loader">          <svg class="circular" viewBox="25 25 50 50">            <circle             class="path"             cx="50"             cy="50"             r="20"             fill="none"             stroke-width="2"             stroke-miterlimit="10"/>          </svg>        </div>      </div>      <!-- Option button -->      <div class="form-group-btn">        <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">          <span class="align-bottom">Close</span>        </button>      </div>    </div>  </div></div>        </div>'
+    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'DeviceInfoComponent'};
 </script>

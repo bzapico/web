@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
@@ -9,6 +9,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DeviceInfoComponent } from '../device-info/device-info.component';
 import { AssetInfoComponent } from '../asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-controller-info.component';
+import { InstallAgentComponent } from '../install-agent/install-agent.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { select } from 'd3-selection';
 
@@ -17,7 +18,7 @@ import { select } from 'd3-selection';
   templateUrl: './infrastructure.component.html',
   styleUrls: ['./infrastructure.component.scss']
 })
-export class InfrastructureComponent implements OnInit {
+export class InfrastructureComponent implements OnInit, OnDestroy  {
   /**
    * Backend reference
    */
@@ -44,6 +45,16 @@ export class InfrastructureComponent implements OnInit {
   devices: any[];
   assets: any[];
   controllers: any [];
+
+  /**
+   * Interval reference
+   */
+  refreshIntervalRef: any;
+
+  /**
+   * Refresh ratio reference
+   */
+  REFRESH_RATIO = 20000; // 20 seconds
 
   /**
    * NGX-Charts object-assign required object references (for rendering)
@@ -100,6 +111,7 @@ export class InfrastructureComponent implements OnInit {
    */
   ecModalRef: BsModalRef;
   assetModalRef: BsModalRef;
+  agentModalRef: BsModalRef;
   deviceModalRef: BsModalRef;
 
   /**
@@ -170,8 +182,15 @@ export class InfrastructureComponent implements OnInit {
           this.storageCount = summary['total_storage'];
         });
         this.updateInventoryList();
+        this.refreshIntervalRef = setInterval(() => {
+          this.updateInventoryList();
+        }, this.REFRESH_RATIO); // Refresh each 60 seconds
       }
     }
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.refreshIntervalRef);
   }
 
   /**
@@ -233,6 +252,20 @@ export class InfrastructureComponent implements OnInit {
         });
       }
     }
+  }
+
+  /**
+   * Gets the Edge Controllers count in inventory list
+   */
+  getECsCount() {
+    let ecCount = 0;
+
+    this.inventory.forEach(item => {
+      if (item.type === 'EC') {
+        ecCount += 1;
+      }
+    });
+    return ecCount;
   }
 
   /**
@@ -367,10 +400,10 @@ export class InfrastructureComponent implements OnInit {
   openAssetInfo(asset: any) {
     const initialStateAsset = {
       organizationId: this.organizationId,
+      edgeControllerId: asset.edge_controller_id,
       assetId: asset.asset_id,
       agentId: asset.agent_id,
-      assetIp: asset.asset_ip,
-      ecName: asset.ec_name,
+      assetIp: asset.eic_net_ip,
       show: asset.show,
       created: asset.created,
       labels: asset.labels,
@@ -385,6 +418,8 @@ export class InfrastructureComponent implements OnInit {
       capacity: asset.storage.total_capacity,
       eic: asset.eic_net_ip,
       status: asset.status,
+      summary: asset.last_op_summary,
+      lastAlive: asset.last_alive_timestamp,
       inventory: this.inventory,
     };
 
@@ -416,10 +451,10 @@ export class InfrastructureComponent implements OnInit {
       assets: controller.assets,
       show: controller.show,
       created: controller.created,
-      name: controller.ec_name,
+      name: controller.name,
       labels: controller.labels,
       status: controller.status,
-      inventory: this.inventory,
+      inventory: this.inventory
     };
 
     this.ecModalRef = this.modalService.show(
@@ -437,6 +472,55 @@ export class InfrastructureComponent implements OnInit {
     };
     this.ecModalRef.hide();
     this.ecModalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+  * Open install Agent info modal window
+  */
+  installAgent() {
+    const initialState = {
+      organizationId: this.organizationId,
+      inventory: this.inventory,
+      defaultAutofocus: false,
+      ecCount: this.getECsCount()
+    };
+
+    this.agentModalRef = this.modalService.show(
+      InstallAgentComponent, {
+        initialState,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+      });
+    this.agentModalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateInventoryList();
+     });
+  }
+
+  /**
+   * Opens the modal view that holds the install Agent modal component
+   * @param Edge edge controller to install
+   */
+  installAgentFromEC(edge: any) {
+    const initialState = {
+      organizationId: this.organizationId,
+      edgeControllerId: edge.edge_controller_id,
+      openFromEc: true,
+      defaultAutofocus: true,
+      ecCount: this.getECsCount(),
+      name: edge.name
+    };
+
+    this.agentModalRef = this.modalService.show(
+      InstallAgentComponent, {
+        initialState,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+      });
+    this.agentModalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateInventoryList();
+    });
   }
 
   /**

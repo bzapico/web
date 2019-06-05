@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
 import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList, mockInventorySummary } from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
+import { Asset } from '../definitions/interfaces/asset';
 
 @Injectable({
   providedIn: 'root'
@@ -182,6 +183,77 @@ export class MockupBackendService implements Backend {
   getInventorySummary(organizationId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockInventorySummary),
+      status: 200
+    })))
+    .pipe(
+      map(response => response.json())
+    );
+  }
+
+  /**
+   * Simulates install an agent
+   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge Controller identifier
+   * @param agent Agent identifier
+   */
+  installAgent(organizationId: string, edgeControllerId: any, agent: any) {
+    const asset: Asset = {
+      organization_id: organizationId,
+      edge_controller_id: edgeControllerId,
+      asset_id: this.uuidv4(),
+      agent_id: this.uuidv4(),
+      eic_net_ip: agent.target_host,
+      show: true,
+      created: 1550746520,
+      labels: {},
+      os: {
+        name: 'petra',
+        version: 'v1',
+        class: 'linux',
+        architecture: 'chagal'
+      },
+      hardware: {
+        cpus: {
+          manufacturer: 'Apple',
+          model: 'yes',
+          architecture: 'Fanix',
+          num_cores: 3
+        },
+        installed_ram: 2,
+        net_interfaces: {
+          type: 'capacity',
+          link_capacity: 5
+        }
+      },
+      storage: {
+        type: 'ram',
+        total_capacity: 7
+      },
+      last_op_summary: {
+        operation_id: '54654asd-654654-qweqwe',
+        timestamp:  '1550746669',
+        status: 'scheduled',
+        info: 'info'
+      },
+      last_alive_timestamp: '654654654',
+      status : 'offline'
+    };
+
+    for (let index = 0; index < mockInventoryList.controllers.length; index++) {
+      const controllersIds = mockInventoryList.controllers[index].edge_controller_id;
+
+      if (controllersIds === asset.edge_controller_id) {
+        mockInventoryList.controllers[index].assets.push({
+          eic_net_ip: agent.target_host,
+          status: 'online'
+        });
+      }
+    }
+
+    mockInventoryList.assets.push(asset);
+
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(asset),
       status: 200
     })))
     .pipe(
