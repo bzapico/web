@@ -38,7 +38,7 @@
             </div>
           </div>
         </div>
-        <div class="form-group form-group-drop">
+        <div *ngIf="!openFromEc" class="form-group form-group-drop">
           <label>Edge inventory Controller*</label>
           <ngx-select-dropdown 
             formControlName="edgeController" 
@@ -60,6 +60,23 @@
               <div *ngIf="f.edgeController.errors.required">An Edge Controller is required</div>
             </div>
           </div>
+        </div>
+        <div *ngIf="openFromEc" class="form-group">
+          <label>Edge inventory Controller</label>
+          <input 
+            formControlName="edgeControllerFromEC" 
+            type="text" 
+            placeholder="{{name}}"
+            class="form-control">
+            <div class="error-h">
+              <div *ngIf=
+                "submitted &&
+                f.edgeController.errors &&
+                !edgeControllerId" 
+                class="error-message">
+                <div *ngIf="f.edgeController.errors.required">An Edge Controller is required</div>
+              </div>
+            </div>
         </div>
         <div class="form-group">
           <label>SSH username*</label>

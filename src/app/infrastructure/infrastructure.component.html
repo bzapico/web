@@ -274,7 +274,10 @@
                 <td class="col-1">
                   <span tooltip="Type" placement="top" (click)="openInfo(item)">{{item.type}}</span>
                 </td>
-                <td class="col-2">
+                <td *ngIf="item.type === 'EC'" class="col-2">
+                  <span  tooltip="ID" placement="top" (click)="installAgentFromEC(item)">{{item.id}}</span>
+                </td>
+                <td *ngIf="item.type !== 'EC'"class="col-2">
                   <span tooltip="ID" placement="top">{{item.id}}</span>
                 </td>
                 <td class="col-2">
