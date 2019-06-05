@@ -499,16 +499,16 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
 
   /**
    * Opens the modal view that holds the install Agent modal component
-   * @param Item item to install
+   * @param Edge edge controller to install
    */
-  installAgentFromEC(item: any) {
-    console.log('item tu instaaaaaa', item);
+  installAgentFromEC(edge: any) {
     const initialState = {
       organizationId: this.organizationId,
-      edgeControllerId: item.edge_controller_id,
+      edgeControllerId: edge.edge_controller_id,
       openFromEc: true,
       defaultAutofocus: true,
-      ecCount: this.getECsCount()
+      ecCount: this.getECsCount(),
+      name: edge.name
     };
 
     this.agentModalRef = this.modalService.show(
