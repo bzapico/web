@@ -548,6 +548,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param organizationId Organization identifier
    */
   createEICToken(organizationId: string) {
+    console.log('create ec token');
 
   }
 
@@ -556,6 +557,26 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param organizationId Organization identifier
    */
   unlinkEIC(organizationId: string) {
+    const unlinkConfirm = confirm('Unlink Edge Controller?');
+    if (unlinkConfirm) {
+      if (this.organizationId !== null) {
+        this.backend.unlinkEIC(this.organizationId)
+          .subscribe(response => {
+            this.notificationsService.add({
+              message: 'Edge Controller ' + '' + ' has been unlinked',
+              timeout: 3000
+            });
+          }, error => {
+            this.notificationsService.add({
+              message: error.error.message,
+              timeout: 5000,
+              type: 'warning'
+            });
+          });
+      }
+    } else {
+      // Do nothing
+    }
   }
 
   /**
@@ -602,7 +623,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param inventoryItem inventory item
    */
   deviceEnablement(device: any) {
-    console.log('a ver ' , device.enabled);
+    console.log('device.enabled ' , device.enabled);
     device.enabled = !device.enabled;
     // backend call
     this.backend.updateDevice(this.organizationId, {
@@ -622,6 +643,35 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
        timeout: 3000
      });
     });
+  }
+
+   /**
+   * Operation to unlink a device
+   * @param organizationId Organization identifier
+   */
+  unlinkDevice(organizationId: string) {
+    const unlinkConfirm = confirm('Unlink device?');
+    if (unlinkConfirm) {
+
+      // TODO
+      // if (this.organizationId !== null) {
+      //   this.backend.unlinkDevice(this.organizationId)
+      //     .subscribe(response => {
+      //       this.notificationsService.add({
+      //         message: 'Edge Controller ' + '' + ' has been unlinked',
+      //         timeout: 3000
+      //       });
+      //     }, error => {
+      //       this.notificationsService.add({
+      //         message: error.error.message,
+      //         timeout: 5000,
+      //         type: 'warning'
+      //       });
+      //     });
+    //   }
+    // } else {
+    //   // Do nothing
+    }
   }
 
   /**
@@ -661,14 +711,14 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         const ecOption3 = {
           name: 'Create agent token',
           action: (inventoryItem: any) => {
-            // this.createEICToken(inventoryItem);
+            this.createEICToken(inventoryItem);
           },
           item: item
         };
         const ecOption4 = {
           name: 'Unlink EC',
           action: (inventoryItem: any) => {
-            // this.unlinkEIC(inventoryItem);
+            this.unlinkEIC(inventoryItem);
           },
           item: item
         };
@@ -731,7 +781,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         const deviceOption3 = {
           name: 'Unlink device',
           action: (inventoryItem: any) => {
-            // this.deviceEnablement(inventoryItem);
+            this.unlinkDevice(inventoryItem);
           },
           item: item
         };

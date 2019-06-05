@@ -2217,4 +2217,17 @@ export const mockInventoryList: Inventory = {
     ]
 };
 
+/**
+ * Mocked Edge Controller token
+ */
+export const EICJoinToken = {
+    organization_id: '999-2ed7-41c1-90fb-f561eb81ea42',
+    // tslint:disable-next-line: max-line-length
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+    cacert: 'MIIEczCCA1ugAwIBAgIBADANBgkqhkiG9w0BAQQFADAkGA1UEBhMCR0IEzARBgNVBAgTClNvbWUtU3RhdGUxFDASBgNVBAoTC0',
+    join_url: 'http://qwerty',
+    ecpires_on: 1550746676,
+    dns_url: 'asdad1231.es'
+};
+
 
