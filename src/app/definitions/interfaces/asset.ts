@@ -1,5 +1,5 @@
 /**
- * Interface that defines the Asset info needed for creating the Asset object instance
+ * Interface that defines the Asset info needed for creating the Asset any instance
  */
 
 export interface Asset {
@@ -16,19 +16,20 @@ export interface Asset {
     // Show flag to determine if this asset should be shown on the UI. This flag is internally used
     // for the async uninstall/removal of the asset.
     show?: boolean;
-    name: string;
     // Created time
-    created?: string;
+    created?: number;
     // Labels defined by the user.
-    labels?: object;
+    labels?: any;
+    // Edge Controller name
+    // name?: string;
     // OS contains Operating System information.
-    os?: object;
+    os?: any;
     // Hardware information.
-    hardware?: object;
+    hardware?: any;
     // Storage information.
-    storage?: object;
+    storage?: any;
     // LastOpSummary contains the result of the last operation fr this asset
-    last_op_summary?: object;
+    last_op_summary?: any;
     // LastAliveTimestamp contains the last alive message received
     last_alive_timestamp?: string;
     // Status of the agent.

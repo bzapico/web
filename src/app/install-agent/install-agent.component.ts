@@ -114,7 +114,6 @@ export class InstallAgentComponent implements OnInit {
       sshPassword: ['', Validators.required],
       target: [null, Validators.required],
     });
-
     this.edgeControllerSelectConfig = {
       displayKey: 'name',
       search: false,
@@ -124,7 +123,6 @@ export class InstallAgentComponent implements OnInit {
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
-
   }
 
   /**
@@ -197,6 +195,7 @@ export class InstallAgentComponent implements OnInit {
           timeout: 5000,
           type: 'warning'
         });
+        this.bsModalRef.hide();
       });
   }
 

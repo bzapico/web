@@ -190,25 +190,24 @@ export class MockupBackendService implements Backend {
     );
   }
 
-
   /**
-  * Simulates install an agent
-  */
-
+   * Simulates install an agent
+   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge Controller identifier
+   * @param agent Agent identifier
+   */
   installAgent(organizationId: string, edgeControllerId: any, agent: any) {
-    // const asset: Asset = {
-      const asset = {
+    const asset: Asset = {
       organization_id: organizationId,
       edge_controller_id: edgeControllerId,
       asset_id: this.uuidv4(),
       agent_id: this.uuidv4(),
       eic_net_ip: agent.target_host,
-      name: agent.name,
       show: true,
-      created: '1550746669',
+      created: 1550746520,
       labels: {
-        'lab1': 'asdasdasd',
-        'lab2': 'asdasd'
+        labsdfs1: 'label1',
+        lab2: 'label2'
       },
       os: {
         name: 'petra',
@@ -218,9 +217,9 @@ export class MockupBackendService implements Backend {
       },
       hardware: {
         cpus: {
-          manufacturer: 'Linux',
+          manufacturer: 'Apple',
           model: 'yes',
-          architecture: 'Ubuntu',
+          architecture: 'Fanix',
           num_cores: 3
         },
         installed_ram: 2,
@@ -230,8 +229,8 @@ export class MockupBackendService implements Backend {
         }
       },
       storage: {
-          type: 'ram',
-          total_capacity: 7
+        type: 'ram',
+        total_capacity: 7
       },
       last_op_summary: {
         operation_id: '54654asd-654654-qweqwe',
@@ -240,13 +239,13 @@ export class MockupBackendService implements Backend {
         info: 'info'
       },
       last_alive_timestamp: '654654654',
-      status : 'online'
+      status : 'offline'
     };
 
     for (let index = 0; index < mockInventoryList.controllers.length; index++) {
-      const controllersNames = mockInventoryList.controllers[index].name;
+      const controllersIds = mockInventoryList.controllers[index].edge_controller_id;
 
-      if (controllersNames === asset.name) {
+      if (controllersIds === asset.edge_controller_id) {
         mockInventoryList.controllers[index].assets.push({
           eic_net_ip: agent.target_host,
           status: 'online'

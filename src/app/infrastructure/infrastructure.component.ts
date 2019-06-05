@@ -189,6 +189,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       }
     }
   }
+
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
   }
@@ -257,6 +258,9 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     }
   }
 
+  /**
+   * Gets the Edge Controllers count in inventory list
+   */
   getECsCount() {
     let ecCount = 0;
 
@@ -400,10 +404,11 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   openAssetInfo(asset: any) {
     const initialStateAsset = {
       organizationId: this.organizationId,
+      edgeControllerId: asset.edge_controller_id,
       assetId: asset.asset_id,
       agentId: asset.agent_id,
       assetIp: asset.eic_net_ip,
-      ecName: asset.name,
+      // name: asset.name,
       show: asset.show,
       created: asset.created,
       labels: asset.labels,
@@ -498,12 +503,11 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
      });
   }
 
-
   /**
    * Opens the modal view that holds the install Agent modal component
    * @param agent registered app to deploy
    */
-  installAgentFromEC(agent) {
+  installAgentFromEC(agent: any) {
     const initialState = {
       organizationId: this.organizationId,
       edgeControllerId: agent.edge_controller_id,

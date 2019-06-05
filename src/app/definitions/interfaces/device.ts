@@ -11,9 +11,11 @@ export interface Device {
   // RegisterSince is the timestamp when the device joined the group.
   register_since?: number;
   // Labels defined by the user.
-  labels?: string;
+  labels?: any;
   // Enabled determines if the device can interact with the running applications.
   enabled?: boolean;
   // DeviceApiKey contains the API KEY used by the device to send data.
   device_api_key?: string;
+  // Status of device.
+  device_status_name?: string;
 }

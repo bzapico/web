@@ -1,7 +1,5 @@
 import { Group } from '../definitions/interfaces/group';
-import { Controller } from '../definitions/interfaces/controller';
-import { Asset } from '../definitions/interfaces/asset';
-import { Device } from '../definitions/interfaces/device';
+import { Inventory } from '../definitions/interfaces/inventory';
 
 export const mockJwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
     // tslint:disable-next-line:max-line-length
@@ -1219,55 +1217,55 @@ export const mockDevicesList = [
     [
         {
            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-           device_group_id: 'a56b9900-0fef-41b0-bb7c-adf0055274cd',
-           device_id: 'dh006',
-           register_since: '1550746714',
+           'device_group_id': 'a56b9900-0fef-41b0-bb7c-adf0055274cd',
+           'device_id': 'dh006',
+           'register_since': '1550746714',
            'enabled': true,
-           device_status_name: 'OFFLINE'
+           'device_status_name': 'OFFLINE'
         }
     ],
     [
         {
-        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-        device_group_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-        device_id: 'dh001',
-        register_since: '1550746644',
-        'enabled': true,
-        device_status_name: 'OFFLINE',
-        'labels': {
+            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            'device_id': 'dh001',
+            'register_since': '1550746644',
+            'enabled': true,
+            'device_status_name': 'OFFLINE',
+            'labels': {
         }
         },
         {
-        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-        device_group_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-        device_id: 'dh002',
-        register_since: '1550746647',
-        'enabled': true,
-        device_status_name: 'OFFLINE'
+            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            'device_id': 'dh002',
+            'register_since': '1550746647',
+            'enabled': true,
+            'device_status_name': 'OFFLINE'
         },
         {
-        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-        device_group_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-        device_id: 'dh003',
-        register_since: '1550746651',
-        'enabled': true,
-        device_status_name: 'OFFLINE'
+            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            'device_id': 'dh003',
+            'register_since': '1550746651',
+            'enabled': true,
+            'device_status_name': 'OFFLINE'
         },
         {
-        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-        device_group_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-        device_id: 'dh004',
-        register_since: '1550746653',
-        'enabled': true,
-        device_status_name: 'OFFLINE'
+            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            'device_id': 'dh004',
+            'register_since': '1550746653',
+            'enabled': true,
+            'device_status_name': 'OFFLINE'
         },
         {
-        'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-        device_group_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-        device_id: 'dh005',
-        register_since: '1550746656',
-        'enabled': true,
-        device_status_name: 'OFFLINE'
+            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'device_group_id': 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            'device_id': 'dh005',
+            'register_since': '1550746656',
+            'enabled': true,
+            'device_status_name': 'OFFLINE'
         }
     ]
 ];
@@ -1331,20 +1329,16 @@ export const mockInventorySummary = {
 /**
  * Mocked inventory list
  */
-
-// export const mockGroupList: Group[] = [
-    // export const mockInventoryList: { device: Device , asset: Asset, controller: Controller}
-    // Item[] = []
-export const mockInventoryList = {
+export const mockInventoryList: Inventory = {
     devices: [
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             device_group_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             device_id: 'dh005',
-            register_since: '1550746520',
+            register_since: 1550746520,
             labels: {
-                'lab11': 'label11',
-                'lab21': 'label21'
+                lab11: 'label11',
+                lab21: 'label21'
             },
             enabled: true,
             device_status_name : 'online'
@@ -1353,10 +1347,10 @@ export const mockInventoryList = {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             device_group_id: 'a56b9900-0fef-41b0-bb7c-adf0055274cd',
             device_id: 'dh007',
-            register_since: '1550746520',
+            register_since: 1550746520,
             labels: {
-                'lab12': 'label12',
-                'lab22': 'label22'
+                lab12: 'label12',
+                lab22: 'label22'
             },
             enabled: true,
             device_status_name : 'online'
@@ -1365,10 +1359,10 @@ export const mockInventoryList = {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             device_group_id: 'd94ac398-fd77-4937-b7f7-9fa0ff8b1eab',
             device_id: 'dh006',
-            register_since: '1550746520',
+            register_since: 1550746520,
             labels: {
-                'lab13': 'label13',
-                'lab23': 'label23'
+                lab1: 'label13',
+                lab23: 'label23'
             },
             enabled: false,
             device_status_name : 'offline'
@@ -1381,12 +1375,11 @@ export const mockInventoryList = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.31',
-            name: 'edge25',
             show: true,
-            created: '1550746520',
+            created: 1550746520,
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1406,7 +1399,6 @@ export const mockInventoryList = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1414,7 +1406,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -1427,12 +1419,11 @@ export const mockInventoryList = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.32',
-            name: 'edge25',
             show: true,
-            created: '1550746520',
+            created: 1550746520,
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1459,7 +1450,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -1472,12 +1463,11 @@ export const mockInventoryList = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.33',
-            name: 'edge25',
             show: true,
-            created: '1550746520',
+            created: 1550746520,
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+               lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1504,7 +1494,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -1517,12 +1507,11 @@ export const mockInventoryList = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.34',
-            name: 'edge25',
             show: true,
-            created: '1550746520',
+            created: 1550746520,
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+               lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1549,7 +1538,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -1562,12 +1551,11 @@ export const mockInventoryList = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.35',
-            name: 'edge25',
             show: true,
-            created: '1550746520',
+            created: 1550746520,
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+               lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1594,7 +1582,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -1607,12 +1595,11 @@ export const mockInventoryList = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.36',
-            name: 'edge25',
             show: true,
-            created: '1550746520',
+            created: 1550746520,
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1632,7 +1619,6 @@ export const mockInventoryList = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1640,7 +1626,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -1653,12 +1639,11 @@ export const mockInventoryList = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.37',
-            name: 'edge25',
             show: true,
-            created: '1550746520',
+            created: 1550746520,
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1678,7 +1663,6 @@ export const mockInventoryList = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1686,7 +1670,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -1699,12 +1683,11 @@ export const mockInventoryList = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.38',
-            name: 'edge25',
             show: true,
-            created: '1550746520',
+            created: 1550746520,
             labels: {
-                'lab44': 'label133',
-                'lab33': 'label233'
+                lab44: 'label133',
+                lab33: 'label233'
             },
             os: {
                 name: 'petra',
@@ -1732,7 +1715,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -1745,12 +1728,11 @@ export const mockInventoryList = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.39',
-            name: 'edge25',
             show: true,
-            created: '1550746520',
+            created: 1550746520,
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1770,7 +1752,6 @@ export const mockInventoryList = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1778,7 +1759,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -1791,12 +1772,11 @@ export const mockInventoryList = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.18',
-            name: 'edge65',
             show: true,
-            created: '1550746669',
+            created: 1550746669,
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1816,7 +1796,6 @@ export const mockInventoryList = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1824,7 +1803,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -1837,12 +1816,11 @@ export const mockInventoryList = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.28',
-            name: 'edge65',
             show: true,
-            created: '1550746669',
+            created: 1550746669,
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1862,7 +1840,6 @@ export const mockInventoryList = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1870,7 +1847,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -1883,12 +1860,11 @@ export const mockInventoryList = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.48',
-            name: 'edge65',
             show: true,
-            created: '1550746669',
+            created: 1550746669,
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1908,7 +1884,6 @@ export const mockInventoryList = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1916,7 +1891,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -1929,12 +1904,11 @@ export const mockInventoryList = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.58',
-            name: 'edge65',
             show: true,
-            created: '1550746669',
+            created: 1550746669,
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -1954,7 +1928,6 @@ export const mockInventoryList = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -1962,7 +1935,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
               },
@@ -1975,12 +1948,11 @@ export const mockInventoryList = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.68',
-            name: 'edge65',
             show: true,
-            created: '1550746669',
+            created: 1550746669,
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -2000,7 +1972,6 @@ export const mockInventoryList = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -2008,7 +1979,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -2021,12 +1992,11 @@ export const mockInventoryList = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.78',
-            name: 'edge65',
             show: true,
-            created: '1550746669',
+            created: 1550746669,
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -2046,7 +2016,6 @@ export const mockInventoryList = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -2054,7 +2023,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -2067,12 +2036,11 @@ export const mockInventoryList = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.88',
-            name: 'edge65',
             show: true,
-            created: '1550746669',
+            created: 1550746669,
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+                lab2: 'label2'
             },
             os: {
                 name: 'petra',
@@ -2092,7 +2060,6 @@ export const mockInventoryList = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -2100,7 +2067,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -2113,9 +2080,8 @@ export const mockInventoryList = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.98',
-            name: 'edge65',
             show: true,
-            created: '1550746669',
+            created: 1550746669,
             labels: {},
             os: {
                 name: 'petra',
@@ -2135,7 +2101,6 @@ export const mockInventoryList = {
                     type: 'capacity',
                     link_capacity: 5
                 }
-
             },
             storage: {
                 type: 'ram',
@@ -2143,7 +2108,7 @@ export const mockInventoryList = {
             },
             last_op_summary: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  '1550746669',
+                timestamp:  1550746669,
                 status: 'scheduled',
                 info: 'info'
             },
@@ -2157,11 +2122,11 @@ export const mockInventoryList = {
             organization_id: '8888-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
             show: true,
-            created: '1550746676',
+            created: 1550746676,
             name: 'edge25',
             labels: {
-                'lab1': 'label1',
-                'lab2': 'label2'
+                lab1: 'label1',
+               lab2: 'label2'
             },
             assets:  [
                 {
@@ -2207,7 +2172,7 @@ export const mockInventoryList = {
             organization_id: '999-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
             show: true,
-            created: '1550746676',
+            created: 1550746676,
             name: 'edge65',
             labels: {
                 'lab334': 'label344',
