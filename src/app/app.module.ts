@@ -120,7 +120,8 @@ import { SimpleLogComponent } from './simple-log/simple-log.component';
     DeviceInfoComponent,
     AssetInfoComponent,
     EdgeControllerInfoComponent,
-    InstallAgentComponent
+    InstallAgentComponent,
+    SimpleLogComponent
   ],
   imports: [
     BrowserModule,

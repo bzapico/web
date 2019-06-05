@@ -11,6 +11,7 @@ import { AssetInfoComponent } from '../asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-controller-info.component';
 import { InstallAgentComponent } from '../install-agent/install-agent.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SimpleLogComponent } from '../simple-log/simple-log.component';
 
 @Component({
   selector: 'app-infrastructure',
@@ -112,6 +113,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   assetModalRef: BsModalRef;
   agentModalRef: BsModalRef;
   deviceModalRef: BsModalRef;
+  lastOpModalRef: BsModalRef;
 
   /**
    * Hold request error message or undefined
@@ -460,6 +462,26 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   }
 
   /**
+  * Open last operation log
+  *  @param asset asset object
+  */
+  lastOperationLog(asset: any) {
+    const initialState = {
+      organizationId: this.organizationId,
+      summary: asset.last_op_summary
+    };
+
+    this.lastOpModalRef = this.modalService.show(
+    SimpleLogComponent, {
+      initialState: initialState,
+      backdrop: 'static',
+      ignoreBackdropClick: false
+    });
+    this.lastOpModalRef.hide();
+    this.lastOpModalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
   * Open Edge Controllers info modal window
   *  @param controller Edge controller object
   */
@@ -746,7 +768,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         const assetOption3 = {
           name: 'Last operarion log',
           action: (inventoryItem: any) => {
-            // this.executeCommand1(inventoryItem);
+            this.lastOperationLog(inventoryItem);
           },
           item: item
         };

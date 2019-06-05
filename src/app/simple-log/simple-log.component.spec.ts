@@ -1,4 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BsModalRef, ModalModule, BsModalService } from 'ngx-bootstrap';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { SimpleLogComponent } from './simple-log.component';
 
@@ -8,7 +11,17 @@ describe('SimpleLogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SimpleLogComponent ]
+      declarations: [ SimpleLogComponent
+      ],
+      imports: [
+       HttpClientTestingModule,
+       RouterTestingModule,
+       ModalModule.forRoot(),
+     ],
+     providers: [
+       BsModalRef,
+       BsModalService
+     ]
     })
     .compileComponents();
   }));

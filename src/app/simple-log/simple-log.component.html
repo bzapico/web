@@ -1,3 +1,21 @@
-<p>
-  simple-log works!
-</p>
+<div class="modal-card">
+  <div class="modal-content dev-group-content">
+    <!-- Header -->
+    <div class="modal-header">
+      <h3 class="nalej-form-title">Last operation info</h3>
+      <button 
+        (click)="closeModal()"
+        type="button" 
+        aria-label="Close"
+        class="close" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- Body -->
+    <div class="modal-body">
+      <div class="simple-log">
+        [Status: {{summary.status}}] {{parseTimestampToDate(summary.timestamp)}} - {{summary.info}}
+      </div>
+    </div>
+  </div>
+</div>
