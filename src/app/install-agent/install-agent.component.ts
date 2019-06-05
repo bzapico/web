@@ -145,16 +145,6 @@ export class InstallAgentComponent implements OnInit {
   }
 
   /**
-   * Custom validator for checking the passwords,
-   * @param group passwords group
-   */
-  samePasswords(group: FormGroup) {
-    const password = group.controls.password.value;
-    const passwordConfirm = group.controls.passwordConfirm.value;
-    return password === passwordConfirm ? true : false;
-  }
-
-  /**
    * Convenience getter for easy access to form fields
    */
   get f() { return this.installAgentForm.controls; }
@@ -166,25 +156,26 @@ export class InstallAgentComponent implements OnInit {
   installAgent(f) {
     this.submitted = true;
 
+    if (!this.openFromEc && f.edgeController && f.edgeController.value) {
+      this.edgeControllerId = f.edgeController.value.edge_controller_id;
+    }
     const agent = {
       agent_type: f.type.value,
-      edge_controller_id: f.edgeController.value.edge_controller_id,
+      edge_controller_id: this.edgeControllerId,
       username: f.sshUsername.value,
       password: f.sshPassword.value,
       target_host: f.target.value
     };
 
     if (f.type.invalid === true ||
-      f.edgeController.invalid === true ||
+      (!this.openFromEc && f.edgeController.invalid === true) ||
       f.sshUsername.invalid === true ||
       f.sshPassword.invalid === true ||
       f.target.value === true
       ) {
         return;
       }
-    if (!this.edgeControllerId) {
-      this.edgeControllerId = f.edgeController.value.edge_controller_id;
-    }
+
     this.loading = true;
     this.backend.installAgent(this.organizationId, this.edgeControllerId, agent)
       .subscribe(response => {
