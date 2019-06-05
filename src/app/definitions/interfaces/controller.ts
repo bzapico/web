@@ -17,6 +17,7 @@ export interface Controller {
     labels?: any;
     // LastAliveTimestamp contains the last alive message received
     last_alive_timestamp?: number;
+    // List of assets
     assets?: any;
     // Status for the UI.
     status?: string;

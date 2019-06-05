@@ -190,26 +190,22 @@ export class MockupBackendService implements Backend {
     );
   }
 
-
   /**
   * Simulates install an agent
   */
-
   installAgent(organizationId: string, edgeControllerId: any, agent: any) {
-    // const asset: Asset = {
-      // TODO
-      const asset = {
-      organization_id: organizationId,
-      edge_controller_id: edgeControllerId,
-      asset_id: this.uuidv4(),
-      agent_id: this.uuidv4(),
-      eic_net_ip: agent.target_host,
-      name: 'edge65',
+    const asset: Asset = {
+      organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+      edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
+      asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+      agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
+      eic_net_ip: '98.105.55.31',
+      name: 'eeee',
       show: true,
-      created: '1550746669',
+      created: 1550746520,
       labels: {
-        'lab1': 'asdasdasd',
-        'lab2': 'asdasd'
+        labsdfs1: 'label1',
+        lab2: 'label2'
       },
       os: {
         name: 'petra',
@@ -218,17 +214,17 @@ export class MockupBackendService implements Backend {
         architecture: 'chagal'
       },
       hardware: {
-        cpus: {
-          manufacturer: 'Linux',
-          model: 'yes',
-          architecture: 'Ubuntu',
-          num_cores: 3
-        },
-        installed_ram: 2,
-        net_interfaces: {
-          type: 'capacity',
-          link_capacity: 5
-        }
+          cpus: {
+            manufacturer: 'Apple',
+            model: 'yes',
+            architecture: 'Fanix',
+            num_cores: 3
+          },
+          installed_ram: 2,
+          net_interfaces: {
+            type: 'capacity',
+            link_capacity: 5
+          }
       },
       storage: {
         type: 'ram',
@@ -241,7 +237,7 @@ export class MockupBackendService implements Backend {
         info: 'info'
       },
       last_alive_timestamp: '654654654',
-      status : 'online'
+      status : 'offline'
     };
 
     for (let index = 0; index < mockInventoryList.controllers.length; index++) {

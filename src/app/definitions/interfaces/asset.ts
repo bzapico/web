@@ -17,9 +17,11 @@ export interface Asset {
     // for the async uninstall/removal of the asset.
     show?: boolean;
     // Created time
-    created?: string;
+    created?: number;
     // Labels defined by the user.
     labels?: any;
+    // Edge Controller name
+    name?: string;
     // OS contains Operating System information.
     os?: any;
     // Hardware information.
