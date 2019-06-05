@@ -155,27 +155,27 @@ export class InstallAgentComponent implements OnInit {
    */
   installAgent(f) {
     this.submitted = true;
-    if (!this.edgeControllerId) {
+
+    if (!this.openFromEc && f.edgeController && f.edgeController.value) {
       this.edgeControllerId = f.edgeController.value.edge_controller_id;
     }
     const agent = {
       agent_type: f.type.value,
-      edge_controller_id: f.edgeController.value.edge_controller_id,
+      edge_controller_id: this.edgeControllerId,
       username: f.sshUsername.value,
       password: f.sshPassword.value,
       target_host: f.target.value
     };
-    console.log(agent);
 
     if (f.type.invalid === true ||
-      f.edgeController.invalid === true ||
+      (!this.openFromEc && f.edgeController.invalid === true) ||
       f.sshUsername.invalid === true ||
       f.sshPassword.invalid === true ||
       f.target.value === true
       ) {
         return;
       }
-    
+
     this.loading = true;
     this.backend.installAgent(this.organizationId, this.edgeControllerId, agent)
       .subscribe(response => {
