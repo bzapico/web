@@ -18,6 +18,8 @@ export interface Backend {
     getInventory(organizationId: string);
     getInventorySummary(organizationId: string);
     installAgent(organizationId: string, edgeControllerId: string, agent: any);
+    createEICToken(organizationId: string);
+    unlinkEIC(organizationId: string);
     // Resources
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);
     getClusters(organizationId: string);

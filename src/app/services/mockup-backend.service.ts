@@ -264,6 +264,23 @@ export class MockupBackendService implements Backend {
     );
   }
 
+  /**
+   * Creates a new token for an EIC to join the platform
+   * @param organizationId Organization identifier
+   */
+  createEICToken(organizationId: string) {
+// TODO
+  }
+
+
+  /**
+   * Operation to remove/uninstall an EIC
+   * @param organizationId Organization identifier
+   */
+  unlinkEIC(organizationId: string) {
+// TODO
+  }
+
   /********************
    * Resources
    ********************/

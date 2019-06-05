@@ -200,7 +200,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     // Request to get inventory
     this.backend.getInventory(this.organizationId)
     .subscribe(response => {
-      console.log('response ' , response);
+      // console.log('response ' , response);
       this.normalizeInventoryItems(response);
       if (!this.loadedData) {
         this.loadedData = true;
@@ -544,6 +544,21 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   }
 
   /**
+   * Creates a new token for an EIC to join the platform
+   * @param organizationId Organization identifier
+   */
+  createEICToken(organizationId: string) {
+
+  }
+
+  /**
+   * Operation to remove/uninstall an EIC
+   * @param organizationId Organization identifier
+   */
+  unlinkEIC(organizationId: string) {
+  }
+
+  /**
    * Opens the modal view that holds the device info component
    * @param device device to be opened
    */
@@ -611,7 +626,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
 
   /**
    * Opens context menu
-   * @param Item inventory item
+   * @param item inventory item
    */
   openContextualMenu(item: any) {
     if (item.id === this. activeContextMenuItemId) {
@@ -620,7 +635,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       this.activeContextMenuItemId = item.id;
     }
   }
-
 
   /**
    * Get the item options to show in the context menu
@@ -647,14 +661,14 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         const ecOption3 = {
           name: 'Create agent token',
           action: (inventoryItem: any) => {
-            // this.installAgentFromEC(inventoryItem);
+            // this.createEICToken(inventoryItem);
           },
           item: item
         };
         const ecOption4 = {
           name: 'Unlink EC',
           action: (inventoryItem: any) => {
-            // this.unlinkEC(inventoryItem);
+            // this.unlinkEIC(inventoryItem);
           },
           item: item
         };

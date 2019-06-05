@@ -1372,7 +1372,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a1',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.31',
             show: true,
@@ -1416,7 +1416,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a2',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.32',
             show: true,
@@ -1460,7 +1460,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a3',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.33',
             show: true,
@@ -1504,7 +1504,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a4',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.34',
             show: true,
@@ -1592,7 +1592,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a6',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.36',
             show: true,
@@ -1636,7 +1636,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a7',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.37',
             show: true,
@@ -1680,7 +1680,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a8',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.38',
             show: true,
@@ -1725,7 +1725,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a9',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.39',
             show: true,
@@ -1769,7 +1769,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab1',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.18',
             show: true,
@@ -1813,7 +1813,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab2',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.28',
             show: true,
@@ -1857,7 +1857,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab3',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.48',
             show: true,
@@ -1901,7 +1901,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab4',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.58',
             show: true,
@@ -1945,7 +1945,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.68',
             show: true,
@@ -1989,7 +1989,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: '6asdasdasd-asd---asd455122asd',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.78',
             show: true,
@@ -2033,7 +2033,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab7',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.88',
             show: true,
@@ -2077,7 +2077,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab8',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.98',
             show: true,

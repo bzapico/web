@@ -212,6 +212,28 @@ export class BackendService implements Backend {
     );
   }
 
+  // POST '/v1/ec/{organization_id}/token/create'
+  /**
+   * Creates a new token for an EIC to join the platform
+   * @param organizationId Organization identifier
+   */
+  createEICToken(organizationId: string) {
+    return this.post(
+      API_URL + 'ec/' + organizationId + '/token/create'
+    );
+  }
+
+  // POST '/v1/ec/{organization_id}/unlink'
+  /**
+   * Operation to remove/uninstall an EIC
+   * @param organizationId Organization identifier
+   */
+  unlinkEIC(organizationId: string) {
+    return this.post(
+      API_URL + 'ec/' + organizationId + '/unlink'
+    );
+  }
+
   /********************
    * Resources
    ********************/
