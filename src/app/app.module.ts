@@ -56,6 +56,7 @@ import { EdgeControllerInfoComponent } from './edge-controller-info/edge-control
 import { ContextualMenuComponent } from './contextual-menu/contextual-menu.component';
 import { InstallAgentComponent } from './install-agent/install-agent.component';
 import { DeviceInfoComponent } from './device-info/device-info.component';
+import { SimpleLogComponent } from './simple-log/simple-log.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { DeviceInfoComponent } from './device-info/device-info.component';
     AssetInfoComponent,
     EdgeControllerInfoComponent,
     ContextualMenuComponent,
-    InstallAgentComponent
+    InstallAgentComponent,
+    SimpleLogComponent
   ],
   entryComponents: [
     DebugPanelComponent,

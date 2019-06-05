@@ -4,15 +4,13 @@ import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
-import { mockInfrastructurePieChart, mockDevicesList } from '../utils/mocks';
+import { mockInfrastructurePieChart } from '../utils/mocks';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DeviceInfoComponent } from '../device-info/device-info.component';
 import { AssetInfoComponent } from '../asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-controller-info.component';
 import { InstallAgentComponent } from '../install-agent/install-agent.component';
 import { Router, ActivatedRoute } from '@angular/router';
-import { select } from 'd3-selection';
-import { DevicesComponent } from '../devices/devices.component';
 
 @Component({
   selector: 'app-infrastructure',
@@ -208,7 +206,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         this.loadedData = true;
       }
       this.updateOnlineEcsPieChart(response);
-    }, errorResponse => {
+    }, (errorResponse: { error: { message: string; }; }) => {
       this.loadedData = true;
       this.requestError = errorResponse.error.message;
     });
@@ -225,7 +223,14 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       if (response.devices) {
         // TODO
         // response.devices = mockDevicesList;
-        response.devices.forEach(device => {
+        response.devices.forEach((device: {
+            type: string;
+            id: any;
+            device_id: any;
+            status: any;
+            device_status_name: any;
+            location: string;
+          }) => {
           device.type = 'Device';
           device.id = device.device_id;
           device.status = device.device_status_name;
@@ -236,7 +241,12 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         });
       }
       if (response.assets) {
-        response.assets.forEach(asset => {
+        response.assets.forEach((asset: {
+            type: string;
+            id: any;
+            asset_id: any;
+            location: string;
+          }) => {
           asset.type = 'Asset';
           asset.id = asset.asset_id;
           if (!asset.location || asset.location === undefined || asset.location === null) {
@@ -246,7 +256,12 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         });
       }
       if (response.controllers) {
-        response.controllers.forEach(controller => {
+        response.controllers.forEach((controller: {
+            type: string;
+            id: any;
+            edge_controller_id: any;
+            location: string;
+          }) => {
           controller.type = 'EC';
           controller.id = controller.edge_controller_id;
           if (!controller.location || controller.location === undefined || controller.location === null) {
@@ -279,7 +294,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   updateOnlineEcsPieChart(response) {
     this.onlineTotalCount = response.controllers.length;
     const itemStatus =
-    response.controllers.filter(item => item.status === 'online');
+    response.controllers.filter((item: { status: string; }) => item.status === 'online');
     this.onlineCount = itemStatus.length;
     this.infrastructurePieChart = this.generateSummaryChartData(this.onlineCount, this.onlineTotalCount);
   }
@@ -408,7 +423,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       assetId: asset.asset_id,
       agentId: asset.agent_id,
       assetIp: asset.eic_net_ip,
-      // name: asset.name,
       show: asset.show,
       created: asset.created,
       labels: asset.labels,
@@ -449,7 +463,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   * Open Edge Controllers info modal window
   *  @param controller Edge controller object
   */
-  openEdgeControllerInfo(controller) {
+  openEdgeControllerInfo(controller: any) {
     const initialStateEC = {
       organizationId: this.organizationId,
       id: controller.edge_controller_id,
@@ -513,7 +527,8 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       edgeControllerId: agent.edge_controller_id,
       openFromEc: true,
       defaultAutofocus: true,
-      ecCount: this.getECsCount()
+      ecCount: this.getECsCount(),
+      name: agent.name
     };
 
     this.agentModalRef = this.modalService.show(
@@ -568,42 +583,10 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Unlinks the Edge Controller
-   * @param inventoryItem inventory item
-   */
-  unlinkEC(inventoryItem) {
-    alert('EC unlinked');
-  }
-
-  /**
-   * Command the logs in assets
-   * @param inventoryItem inventory item
-   */
-  commandLog(inventoryItem) {
-    alert('Command log');
-  }
-
-  /**
-   * Executes command 1 in assets
-   * @param inventoryItem inventory item
-   */
-  executeCommand1(inventoryItem) {
-    alert('Execute command 1');
-  }
-
-  /**
-   * Executes command 2 in assets
-   * @param inventoryItem inventory item
-   */
-  executeCommand2(inventoryItem) {
-    alert('Execute command 1');
-  }
-
-  /**
    * Executes devices enablement switcher statement to select one of enabled device to be executed.
    * @param inventoryItem inventory item
    */
-  deviceEnablement(device) {
+  deviceEnablement(device: any) {
     console.log('a ver ' , device.enabled);
     device.enabled = !device.enabled;
     // backend call
@@ -649,56 +632,64 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         const ecOptions = [];
         const ecOption1 = {
           name: 'More info',
-          action: (inventoryItem) => {
+          action: (inventoryItem: any) => {
             this.openEdgeControllerInfo(inventoryItem);
           },
           item: item
         };
         const ecOption2 = {
-          name: 'Unlink EC',
-          action: (inventoryItem) => {
-            this.unlinkEC(inventoryItem);
+          name: 'Install agent',
+          action: (inventoryItem: any) => {
+            this.installAgentFromEC(inventoryItem);
           },
           item: item
         };
         const ecOption3 = {
-          name: 'Install agent',
-          action: (inventoryItem) => {
-            this.installAgent();
+          name: 'Create agent token',
+          action: (inventoryItem: any) => {
+            // this.installAgentFromEC(inventoryItem);
+          },
+          item: item
+        };
+        const ecOption4 = {
+          name: 'Unlink EC',
+          action: (inventoryItem: any) => {
+            // this.unlinkEC(inventoryItem);
           },
           item: item
         };
         ecOptions.push(ecOption1);
         ecOptions.push(ecOption2);
         ecOptions.push(ecOption3);
+        ecOptions.push(ecOption4);
       return ecOptions;
       case 'Asset':
         const assetOptions = [];
         const assetOption1 = {
           name: 'More info',
-          action: (inventoryItem) => {
+          action: (inventoryItem: any) => {
             this.openAssetInfo(inventoryItem);
           },
           item: item
         };
         const assetOption2 = {
-          name: 'Command log',
-          action: (inventoryItem) => {
-            this.commandLog(inventoryItem);
+          name: 'Toggle operations',
+          action: (inventoryItem: any) => {
+            // this.commandLog(inventoryItem);
           },
           item: item
         };
         const assetOption3 = {
-          name: 'Execute command 1',
-          action: (inventoryItem) => {
-            this.executeCommand1(inventoryItem);
+          name: 'Last operarion log',
+          action: (inventoryItem: any) => {
+            // this.executeCommand1(inventoryItem);
           },
           item: item
         };
         const assetOption4 = {
-          name: 'Execute command 2',
-          action: (inventoryItem) => {
-            this.executeCommand2(inventoryItem);
+          name: 'Uninstall agent',
+          action: (inventoryItem: any) => {
+            // this.executeCommand2(inventoryItem);
           },
           item: item
         };
@@ -711,20 +702,28 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         const deviceOptions = [];
         const deviceOption1 = {
           name: 'More info',
-          action: (inventoryItem) => {
+          action: (inventoryItem: any) => {
             this.openDeviceInfo(inventoryItem);
           },
           item: item
         };
         const deviceOption2 = {
           name: 'Toggle enablement',
-          action: (inventoryItem) => {
+          action: (inventoryItem: any) => {
             this.deviceEnablement(inventoryItem);
+          },
+          item: item
+        };
+        const deviceOption3 = {
+          name: 'Unlink device',
+          action: (inventoryItem: any) => {
+            // this.deviceEnablement(inventoryItem);
           },
           item: item
         };
         deviceOptions.push(deviceOption1);
         deviceOptions.push(deviceOption2);
+        deviceOptions.push(deviceOption3);
       return deviceOptions;
       default:
         break;

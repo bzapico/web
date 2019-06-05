@@ -39,6 +39,7 @@ export class InstallAgentComponent implements OnInit {
   controllersList: any[];
   openFromEc: boolean;
   ecCount: number;
+  edgeControllerFromEC: string;
 
   /**
    * Models that hold all inventory list
@@ -108,6 +109,7 @@ export class InstallAgentComponent implements OnInit {
 
   ngOnInit() {
     this.installAgentForm = this.formBuilder.group({
+      edgeControllerFromEC: [{value: '', disabled: true}],
       type: [null, Validators.required],
       edgeController: [null, Validators.required],
       sshUsername: ['', Validators.required],
@@ -123,6 +125,9 @@ export class InstallAgentComponent implements OnInit {
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
+    if (!this.edgeControllerFromEC) {
+      this.edgeControllerFromEC = 'Select any Edge Controller';
+    }
   }
 
   /**
@@ -160,6 +165,7 @@ export class InstallAgentComponent implements OnInit {
    */
   installAgent(f) {
     this.submitted = true;
+
     const agent = {
       agent_type: f.type.value,
       edge_controller_id: f.edgeController.value.edge_controller_id,
