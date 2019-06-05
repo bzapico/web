@@ -21,7 +21,7 @@ export interface Asset {
     // Labels defined by the user.
     labels?: any;
     // Edge Controller name
-    name?: string;
+    // name?: string;
     // OS contains Operating System information.
     os?: any;
     // Hardware information.

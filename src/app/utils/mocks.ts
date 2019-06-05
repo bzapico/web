@@ -1375,7 +1375,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.31',
-            name: 'edge25',
             show: true,
             created: 1550746520,
             labels: {
@@ -1421,7 +1420,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.32',
-            name: 'edge25',
             show: true,
             created: 1550746520,
             labels: {
@@ -1466,7 +1464,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.33',
-            name: 'edge25',
             show: true,
             created: 1550746520,
             labels: {
@@ -1511,7 +1508,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.34',
-            name: 'edge25',
             show: true,
             created: 1550746520,
             labels: {
@@ -1556,7 +1552,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.35',
-            name: 'edge25',
             show: true,
             created: 1550746520,
             labels: {
@@ -1601,7 +1596,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.36',
-            name: 'edge25',
             show: true,
             created: 1550746520,
             labels: {
@@ -1647,7 +1641,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.37',
-            name: 'edge25',
             show: true,
             created: 1550746520,
             labels: {
@@ -1693,7 +1686,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.38',
-            name: 'edge25',
             show: true,
             created: 1550746520,
             labels: {
@@ -1739,7 +1731,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.39',
-            name: 'edge25',
             show: true,
             created: 1550746520,
             labels: {
@@ -1785,7 +1776,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.18',
-            name: 'edge65',
             show: true,
             created: 1550746669,
             labels: {
@@ -1831,7 +1821,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.28',
-            name: 'edge65',
             show: true,
             created: 1550746669,
             labels: {
@@ -1877,7 +1866,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.48',
-            name: 'edge65',
             show: true,
             created: 1550746669,
             labels: {
@@ -1923,7 +1911,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.58',
-            name: 'edge65',
             show: true,
             created: 1550746669,
             labels: {
@@ -1969,7 +1956,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.68',
-            name: 'edge65',
             show: true,
             created: 1550746669,
             labels: {
@@ -2015,7 +2001,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.78',
-            name: 'edge65',
             show: true,
             created: 1550746669,
             labels: {
@@ -2061,7 +2046,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.88',
-            name: 'edge65',
             show: true,
             created: 1550746669,
             labels: {
@@ -2107,7 +2091,6 @@ export const mockInventoryList: Inventory = {
             asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.98',
-            name: 'edge65',
             show: true,
             created: 1550746669,
             labels: {},
