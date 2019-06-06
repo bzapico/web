@@ -2243,3 +2243,13 @@ export const mockAgentJoinToken = {
 };
 
 
+export const mockAgentOpResponse = {
+    organization_id: '999-2ed7-41c1-90fb-f561eb81ea42',
+    edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
+    asset_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
+    operation_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
+    timestamp: 1550746676,
+    status: 'activated',
+    info: 'info'
+};
+

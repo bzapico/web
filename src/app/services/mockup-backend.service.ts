@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList, mockInventorySummary, mockEICJoinToken, mockAgentJoinToken } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList, mockInventorySummary, mockEICJoinToken, mockAgentJoinToken, mockAgentOpResponse } from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 import { Asset } from '../definitions/interfaces/asset';
 
@@ -283,6 +283,22 @@ export class MockupBackendService implements Backend {
   createAgentJoinToken(organizationId: string,  edgeControllerId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockAgentJoinToken),
+      status: 200
+    })))
+    .pipe(
+      map(response => response.json())
+    );
+  }
+
+  /**
+   * Activate monitoring in asset
+   * @param organizationId Organization identifier
+   * @param edgeControllerId  Edge controller id
+   * @param assetId Asset identifier
+   */
+  activateMonitoring(organizationId: string,  edgeControllerId: string, assetId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockAgentOpResponse),
       status: 200
     })))
     .pipe(
@@ -637,6 +653,25 @@ export class MockupBackendService implements Backend {
    *  @param deviceData Device data
    */
   updateDevice(organizationId: string, deviceData: any) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({ result: '' }),
+      status: 200
+    })));
+  }
+
+  /**
+   * Operation that allows to remove a device from the system
+  * @param organizationId Organization identifier
+  * @param deviceId device identifier
+   */
+  removeDevice(organizationId: string, deviceId: any) {
+    for (let index = 0; index < mockDevicesList.length; index++) {
+      for (let indexDevice = 0; indexDevice < mockDevicesList[index].length; indexDevice++) {
+        if (mockDevicesList[index][indexDevice].device_id === deviceId) {
+          delete mockDevicesList[index][indexDevice];
+        }
+      }
+    }
     return of (new Response(new ResponseOptions({
       body: JSON.stringify({ result: '' }),
       status: 200

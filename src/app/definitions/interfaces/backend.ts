@@ -21,6 +21,7 @@ export interface Backend {
     createEICToken(organizationId: string);
     createAgentJoinToken(organizationId: string,  edgeControllerId: string);
     unlinkEIC(organizationId: string);
+    activateMonitoring(organizationId: string,  edgeControllerId: string, assetId: string);
     // Resources
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);
     getClusters(organizationId: string);
@@ -43,6 +44,7 @@ export interface Backend {
     updateDevice(organizationId: string, deviceData: any);
     addLabelToDevice(organizationId: string, label: any);
     removeLabelFromDevice(organizationId: string, label: any);
+    removeDevice(organizationId: string, deviceId: any);
     // Groups
     getGroups(organizationId: string);
     addGroup(organizationId: string, groupData: any);

@@ -224,8 +224,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     if (!response || response === null) {
     } else {
       if (response.devices) {
-        // TODO
-        // response.devices = mockDevicesList;
         response.devices.forEach((device: {
             type: string;
             id: any;
@@ -481,6 +479,29 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     this.lastOpModalRef.hide();
     this.lastOpModalRef.content.closeBtnName = 'Close';
   }
+  /**
+  * Open last operation log
+  *  @param asset asset object
+  */
+  toggleMonitoring(asset: any) {
+    console.log('asset yes  ' , asset);
+    asset.status = !asset.status;
+    // backend call
+    this.backend.activateMonitoring(this.organizationId, asset.edge_controller_id, asset.asset_id)
+    .subscribe( toggleResponse => {
+
+      console.log('update response ', toggleResponse);
+      let notificationText = 'activated';
+      if (!toggleResponse.status) {
+       notificationText = 'deactivated';
+      }
+     this.notificationsService.add({
+       message: 'The agent is now ' + notificationText,
+       timeout: 3000
+     });
+    });
+
+  }
 
   /**
   * Open Edge Controllers info modal window
@@ -542,16 +563,16 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
 
   /**
    * Opens the modal view that holds the install Agent modal component
-   * @param Edge edge controller to install
+   * @param controller edge controller to install
    */
-  installAgentFromEC(edge: any) {
+  installAgentFromEC(controller: any) {
     const initialState = {
       organizationId: this.organizationId,
-      edgeControllerId: edge.edge_controller_id,
+      edgeControllerId: controller.edge_controller_id,
       openFromEc: true,
       defaultAutofocus: true,
       ecCount: this.getECsCount(),
-      name: edge.name
+      name: controller.name
     };
 
     this.agentModalRef = this.modalService.show(
@@ -568,12 +589,12 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
 
   /**
    * Creates a new token for an Agent to join the platform
-   * @param Edge edge controller identifier
+   * @param controller edge controller identifier
    */
-  createAgentToken(edge: any) {
+  createAgentToken(controller: any) {
     const initialState = {
       organizationId: this.organizationId,
-      edgeControllerId: edge.edge_controller_id
+      edgeControllerId: controller.edge_controller_id
     };
 
     this.agentModalRef = this.modalService.show(
@@ -656,22 +677,19 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
 
   /**
    * Executes devices enablement switcher statement to select one of enabled device to be executed.
-   * @param inventoryItem inventory item
+   * @param device device in inventory item
    */
   deviceEnablement(device: any) {
-    console.log('device.enabled ' , device.enabled);
     device.enabled = !device.enabled;
     // backend call
     this.backend.updateDevice(this.organizationId, {
-      //  organizationId: this.organizationId,
-      //  deviceGroupId: device.device_group_id,
-      //  deviceId: device.device_id,
+       organizationId: this.organizationId,
+       deviceGroupId: device.device_group_id,
+       deviceId: device.device_id,
        enabled: device.enabled
-    }).subscribe( updateDeviceResponse => {
-
-      console.log('update response ', updateDeviceResponse);
+    }).subscribe((response: any) => {
       let notificationText = 'enabled';
-      if (!updateDeviceResponse.enabled) {
+      if (!device.enabled) {
        notificationText = 'disabled';
       }
      this.notificationsService.add({
@@ -683,30 +701,40 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
 
    /**
    * Operation to unlink a device
-   * @param organizationId Organization identifier
+   * @param device device in inventory item
    */
-  unlinkDevice(organizationId: string) {
+  unlinkDevice(device: any) {
     const unlinkConfirm = confirm('Unlink device?');
     if (unlinkConfirm) {
-
-      // TODO
-      // if (this.organizationId !== null) {
-      //   this.backend.unlinkDevice(this.organizationId)
-      //     .subscribe(response => {
-      //       this.notificationsService.add({
-      //         message: 'Edge Controller ' + '' + ' has been unlinked',
-      //         timeout: 3000
-      //       });
-      //     }, error => {
-      //       this.notificationsService.add({
-      //         message: error.error.message,
-      //         timeout: 5000,
-      //         type: 'warning'
-      //       });
-      //     });
-    //   }
-    // } else {
-    //   // Do nothing
+      const index = this.inventory.map(x => x.device_id).indexOf(device.device_id);
+      console.log('index', index);
+      console.log('device.device_id ', device.device_id);
+      console.log('condition ', this.organizationId,
+        {
+          organizationId: this.organizationId,
+          device_id: device.device_id
+        });
+      this.backend.removeDevice(this.organizationId,
+        {
+          organizationId: this.organizationId,
+          device_id: device.device_id
+        })
+        .subscribe(response => {
+          this.notificationsService.add({
+            message: 'Device ' + '' + ' has been unlinked',
+            timeout: 3000
+          });
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 5000,
+            type: 'warning'
+          });
+        });
+        this.inventory.splice(index, 1);
+        this.updateInventoryList();
+    } else {
+      // Do nothing
     }
   }
 
@@ -773,9 +801,9 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
           item: item
         };
         const assetOption2 = {
-          name: 'Toggle operations',
+          name: 'Toggle monitoring',
           action: (inventoryItem: any) => {
-            // this.commandLog(inventoryItem);
+            this.toggleMonitoring(inventoryItem);
           },
           item: item
         };

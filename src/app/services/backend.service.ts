@@ -228,6 +228,19 @@ export class BackendService implements Backend {
     );
   }
 
+  // POST '/v1/agent/{organization_id}/{edge_controller_id}/{asset_id}/activate_monitoring'
+  /**
+   * Activate monitoring in asset
+   * @param organizationId Organization identifier
+   * @param edgeControllerId  Edge controller id
+   * @param assetId Asset identifier
+   */
+  activateMonitoring(organizationId: string,  edgeControllerId: string, assetId: string) {
+    return this.post(
+      API_URL + 'agent/' + organizationId + '/' + edgeControllerId + '/' + assetId + '/activate_monitoring'
+    );
+  }
+
   /********************
    * Infrastructure - Edge Controller
    ********************/
@@ -253,10 +266,6 @@ export class BackendService implements Backend {
       API_URL + 'ec/' + organizationId + '/unlink'
     );
   }
-
-   /********************
-   * Infrastructure - Asset
-   ********************/
 
   /********************
    * Resources
@@ -528,6 +537,22 @@ export class BackendService implements Backend {
     return this.post(
       API_URL + 'device/' + organizationId + '/update',
       deviceData
+    );
+  }
+
+  // POST '/v1/device/{organization_id}/remove'
+  /**
+   * Operation that allows to remove a device from the system
+  * @param organizationId Organization identifier
+  * @param deviceId device identifier
+   */
+  removeDevice(organizationId: string, deviceId: any) {
+    return this.post(
+      API_URL + 'device/' + organizationId + '/remove',
+      {
+        organization_id: organizationId,
+        device_id: deviceId
+      }
     );
   }
 
