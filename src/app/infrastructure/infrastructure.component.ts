@@ -12,6 +12,7 @@ import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-contro
 import { InstallAgentComponent } from '../install-agent/install-agent.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SimpleLogComponent } from '../simple-log/simple-log.component';
+import { EicJoinTokenInfoComponent } from '../eic-join-token-info/eic-join-token-info.component';
 
 @Component({
   selector: 'app-infrastructure',
@@ -570,7 +571,21 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param organizationId Organization identifier
    */
   createEICToken(organizationId: string) {
-    console.log('create ec token');
+    const initialState = {
+      organizationId: this.organizationId,
+    };
+
+    this.agentModalRef = this.modalService.show(
+      EicJoinTokenInfoComponent, {
+        initialState,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+      });
+    this.agentModalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateInventoryList();
+    });
+
 
   }
 
