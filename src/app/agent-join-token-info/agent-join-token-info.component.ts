@@ -7,11 +7,11 @@ import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
 @Component({
-  selector: 'app-eic-join-token-info',
-  templateUrl: './eic-join-token-info.component.html',
-  styleUrls: ['./eic-join-token-info.component.scss']
+  selector: 'app-agent-join-token-info',
+  templateUrl: './agent-join-token-info.component.html',
+  styleUrls: ['./agent-join-token-info.component.scss']
 })
-export class EicJoinTokenInfoComponent implements OnInit {
+export class AgentJoinTokenInfoComponent implements OnInit {
   /**
    * Backend reference
    */
@@ -23,9 +23,11 @@ export class EicJoinTokenInfoComponent implements OnInit {
   loadedData: boolean;
 
   /**
-   * Model that hold organization ID
+   * Model that hold organization ID, Edge Controller ID and agent
    */
   organizationId: string;
+  edgeControllerId: string;
+  agent: any;
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -41,16 +43,38 @@ export class EicJoinTokenInfoComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.eicJoinTokenInfoMock) || null;
+    const mock = localStorage.getItem(LocalStorageKeys.agentJoinTokenInfoMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;
     } else {
       this.backend = backendService;
     }
+    this.agent = {};
   }
 
   ngOnInit() {
+    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+    if (jwtData !== null) {
+      this.organizationId = JSON.parse(jwtData).organizationID;
+        if (this.organizationId !== null) {
+          this.getAgentToken(this.organizationId, this.edgeControllerId);
+        }
+    }
+  }
+
+  /**
+   * Gets the new agent related operation to EIC
+   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge controller id
+   */
+  getAgentToken(organizationId: string, edgeControllerId: string) {
+    if (organizationId !== null && edgeControllerId !== null) {
+      this.backend.createAgentJoinToken(this.organizationId,  this.edgeControllerId)
+      .subscribe((agent: any[]) => {
+        this.agent = agent || [];
+      });
+    }
   }
 
   /**
@@ -63,11 +87,8 @@ export class EicJoinTokenInfoComponent implements OnInit {
     const year = date.getFullYear();
     const month = date.getMonth();
     const day = date.getDate();
-    const hour = date.getHours();
-    const min = date.getMinutes();
-    const sec = date.getSeconds();
 
-    const formatedDate = month + '/' + day + '/' + year + ' - ' + hour + ':' + min + ':' + sec ;
+    const formatedDate = month + '/' + day + '/' + year;
 
     return formatedDate;
   }

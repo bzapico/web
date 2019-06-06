@@ -22,9 +22,11 @@
 .buttons {
     padding-top: 1em;
 }
-
-.eic-content {
-    .eic-modal-header{
+.scroll-app-info {
+    margin: 0;
+}
+.agent-content {
+    .agent-modal-header{
         text-align: center;
         padding: 1rem;
         font-size: 1em;
@@ -36,15 +38,13 @@
     .modal-body {
         text-align: center;
     }
-    .eic-token-box {
-        padding-top: 1em;
-        padding-bottom: 2em;
+    .agent-token-box {
         span, p {
             text-align: center;
             font-size: .7em;
             display: block;
         }
-        .eic-token {
+        .agent-token {
             width: 100%;
             height: auto;
             word-wrap: break-word;

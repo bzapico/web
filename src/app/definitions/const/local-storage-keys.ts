@@ -32,6 +32,7 @@ export const LocalStorageKeys = {
     installAgentMock: 'install_agent_mock',
     simpleLogMock: 'simple_log_mock',
     eicJoinTokenInfoMock: 'eic_join_token_info_mock',
+    agentJoinTokenInfoMock: 'agent_join_token_info_mock',
 
     // Data
     jwt: 'jwt',

@@ -23,10 +23,10 @@ export class SimpleLogComponent implements OnInit {
   loadedData: boolean;
 
   /**
-   * Model that hold organization ID
+   * Model that hold organization ID and last operations summary
    */
   organizationId: string;
-  summary: string;
+  lastOpSummary: any;
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -49,9 +49,22 @@ export class SimpleLogComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
+    this.lastOpSummary = {};
+    // Default initialization
+    // this.timestamp = 0;
+    // this.status = 'Loading ...';
+    // this.info = 'Loading ...';
+
+  //   last_op_summary: {
+  //     operation_id: '54654asd-654654-qweqwe',
+  //     timestamp:  1550746669,
+  //     status: 'scheduled',
+  //     info: 'info'
+  // },
    }
 
   ngOnInit() {
+    console.log(this.lastOpSummary  , 'summary ');
   }
 
   /**

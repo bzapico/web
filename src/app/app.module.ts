@@ -57,7 +57,7 @@ import { ContextualMenuComponent } from './contextual-menu/contextual-menu.compo
 import { InstallAgentComponent } from './install-agent/install-agent.component';
 import { DeviceInfoComponent } from './device-info/device-info.component';
 import { SimpleLogComponent } from './simple-log/simple-log.component';
-import { EicJoinTokenInfoComponent } from './eic-join-token-info/eic-join-token-info.component';
+import { AgentJoinTokenInfoComponent } from './agent-join-token-info/agent-join-token-info.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +101,7 @@ import { EicJoinTokenInfoComponent } from './eic-join-token-info/eic-join-token-
     ContextualMenuComponent,
     InstallAgentComponent,
     SimpleLogComponent,
-    EicJoinTokenInfoComponent
+    AgentJoinTokenInfoComponent
   ],
   entryComponents: [
     DebugPanelComponent,
@@ -124,7 +124,7 @@ import { EicJoinTokenInfoComponent } from './eic-join-token-info/eic-join-token-
     EdgeControllerInfoComponent,
     InstallAgentComponent,
     SimpleLogComponent,
-    EicJoinTokenInfoComponent
+    AgentJoinTokenInfoComponent
   ],
   imports: [
     BrowserModule,

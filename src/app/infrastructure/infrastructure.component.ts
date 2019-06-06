@@ -12,7 +12,7 @@ import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-contro
 import { InstallAgentComponent } from '../install-agent/install-agent.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SimpleLogComponent } from '../simple-log/simple-log.component';
-import { EicJoinTokenInfoComponent } from '../eic-join-token-info/eic-join-token-info.component';
+import { AgentJoinTokenInfoComponent } from '../agent-join-token-info/agent-join-token-info.component';
 
 @Component({
   selector: 'app-infrastructure',
@@ -469,7 +469,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   lastOperationLog(asset: any) {
     const initialState = {
       organizationId: this.organizationId,
-      summary: asset.last_op_summary
+      lastOpSummary: asset.last_op_summary
     };
 
     this.lastOpModalRef = this.modalService.show(
@@ -567,16 +567,17 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Creates a new token for an EIC to join the platform
-   * @param organizationId Organization identifier
+   * Creates a new token for an Agent to join the platform
+   * @param Edge edge controller identifier
    */
-  createEICToken(organizationId: string) {
+  createAgentToken(edge: any) {
     const initialState = {
       organizationId: this.organizationId,
+      edgeControllerId: edge.edge_controller_id
     };
 
     this.agentModalRef = this.modalService.show(
-      EicJoinTokenInfoComponent, {
+      AgentJoinTokenInfoComponent, {
         initialState,
         backdrop: 'static',
         ignoreBackdropClick: false
@@ -585,8 +586,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     this.modalService.onHide.subscribe((reason: string) => {
       this.updateInventoryList();
     });
-
-
   }
 
   /**
@@ -748,7 +747,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         const ecOption3 = {
           name: 'Create agent token',
           action: (inventoryItem: any) => {
-            this.createEICToken(inventoryItem);
+            this.createAgentToken(inventoryItem);
           },
           item: item
         };

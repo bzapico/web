@@ -3,31 +3,31 @@ import { BsModalRef, ModalModule, BsModalService } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { EicJoinTokenInfoComponent } from './eic-join-token-info.component';
+import { AgentJoinTokenInfoComponent } from './agent-join-token-info.component';
 
-describe('EicJoinTokenInfoComponent', () => {
-  let component: EicJoinTokenInfoComponent;
-  let fixture: ComponentFixture<EicJoinTokenInfoComponent>;
+describe('AgentJoinTokenInfoComponent', () => {
+  let component: AgentJoinTokenInfoComponent;
+  let fixture: ComponentFixture<AgentJoinTokenInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EicJoinTokenInfoComponent
+      declarations: [ AgentJoinTokenInfoComponent
       ],
       imports: [
-       HttpClientTestingModule,
-       RouterTestingModule,
-       ModalModule.forRoot(),
+        HttpClientTestingModule,
+        RouterTestingModule,
+        ModalModule.forRoot(),
      ],
      providers: [
-       BsModalRef,
-       BsModalService
+        BsModalRef,
+        BsModalService
      ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EicJoinTokenInfoComponent);
+    fixture = TestBed.createComponent(AgentJoinTokenInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

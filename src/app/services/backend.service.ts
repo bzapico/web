@@ -190,14 +190,18 @@ export class BackendService implements Backend {
     );
   }
 
-  // GET 'infrastructure/{organization_id}/summary'
+  // GET '/v1/inventory/{organization_id}/summary'
   /**
-   * Requests to get the infrastructure inventory summary 
+   * Requests to get the infrastructure inventory summary
    * @param organizationId Organization identifier
    */
   getInventorySummary(organizationId: string) {
     throw new Error('Method not implemented.');
   }
+
+  /********************
+   * Infrastructure - Agent
+   ********************/
 
   // POST '/v1/agent/{organization_id}/{edge_controller_id}/install'
   /**
@@ -211,6 +215,22 @@ export class BackendService implements Backend {
       API_URL + 'agent/' + organizationId + '/' + edgeControllerId + '/install', agent
     );
   }
+
+  // POST '/v1/agent/{organization_id}/{edge_controller_id}/token/create'
+  /**
+   * Agent related operation to EIC token creation
+   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge controller id
+   */
+  createAgentJoinToken(organizationId: string,  edgeControllerId: string) {
+    return this.post(
+      API_URL + 'agent/' + organizationId + '/' + edgeControllerId + '/token/create'
+    );
+  }
+
+  /********************
+   * Infrastructure - Edge Controller
+   ********************/
 
   // POST '/v1/ec/{organization_id}/token/create'
   /**
@@ -233,6 +253,10 @@ export class BackendService implements Backend {
       API_URL + 'ec/' + organizationId + '/unlink'
     );
   }
+
+   /********************
+   * Infrastructure - Asset
+   ********************/
 
   /********************
    * Resources
