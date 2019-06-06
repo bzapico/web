@@ -57,6 +57,7 @@ import { ContextualMenuComponent } from './contextual-menu/contextual-menu.compo
 import { InstallAgentComponent } from './install-agent/install-agent.component';
 import { DeviceInfoComponent } from './device-info/device-info.component';
 import { SimpleLogComponent } from './simple-log/simple-log.component';
+import { EicJoinTokenInfoComponent } from './eic-join-token-info/eic-join-token-info.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { SimpleLogComponent } from './simple-log/simple-log.component';
     EdgeControllerInfoComponent,
     ContextualMenuComponent,
     InstallAgentComponent,
-    SimpleLogComponent
+    SimpleLogComponent,
+    EicJoinTokenInfoComponent
   ],
   entryComponents: [
     DebugPanelComponent,

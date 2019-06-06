@@ -14,7 +14,9 @@
     <!-- Body -->
     <div class="modal-body">
       <div class="simple-log">
-        [Status: {{summary.status}}] {{parseTimestampToDate(summary.timestamp)}} - {{summary.info}}
+        <p>Date: {{parseTimestampToDate(summary.timestamp)}}</p>
+        <p>Status: {{summary.status}}</p>
+        <p>Info: {{summary.info}}</p>
       </div>
     </div>
   </div>

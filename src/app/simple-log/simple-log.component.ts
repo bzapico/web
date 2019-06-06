@@ -64,8 +64,11 @@ export class SimpleLogComponent implements OnInit {
     const year = date.getFullYear();
     const month = date.getMonth();
     const day = date.getDate();
-// TODO
-    const formatedDate =  date.getTime() + '-' + month + '/' + day + '/' + year;
+    const hour = date.getHours();
+    const min = date.getMinutes();
+    const sec = date.getSeconds();
+
+    const formatedDate = month + '/' + day + '/' + year + ' - ' + hour + ':' + min + ':' + sec ;
 
     return formatedDate;
   }
