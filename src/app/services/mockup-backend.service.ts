@@ -205,10 +205,7 @@ export class MockupBackendService implements Backend {
       eic_net_ip: agent.target_host,
       show: true,
       created: 1550746520,
-      labels: {
-        labsdfs1: 'label1',
-        lab2: 'label2'
-      },
+      labels: {},
       os: {
         name: 'petra',
         version: 'v1',

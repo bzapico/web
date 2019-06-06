@@ -43,7 +43,7 @@ export class AssetInfoComponent implements OnInit {
   /**
    * Models that hold the Edge Controller name
    */
-  name: string;
+  ecName: string;
 
   /**
    * Model that holds onclose method defined in Infrastructure component
@@ -84,25 +84,28 @@ export class AssetInfoComponent implements OnInit {
     // Default initialization
     this.loadedData = true;
     this.inventory = [];
-    this.name = '';
+    this.ecName = '';
    }
 
   ngOnInit() {
-    this.name = this.getECname();
+    this.ecName = this.getECname();
   }
 
   /**
    * Gets the Edge Controller name
    */
   getECname() {
-    let edgeControllerName;
+    let edgeControllerName: any;
 
-    this.inventory.forEach(item => {
-      if (item.edge_controller_id === this.edgeControllerId) {
-        edgeControllerName = item.name;
+    for (let index = 0; index < this.inventory.length; index++) {
+      if (
+        this.inventory[index].edge_controller_id &&
+        this.inventory[index].name &&
+        this.inventory[index].edge_controller_id === this.edgeControllerId
+        ) {
+      edgeControllerName = this.inventory[index].name;
       }
-    });
-    return edgeControllerName;
+    } return edgeControllerName;
   }
 
   /**
