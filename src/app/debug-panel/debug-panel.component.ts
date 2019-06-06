@@ -40,7 +40,9 @@ export const AvailableComponents = {
   deviceInfo: 'Device Info',
   assetInfo: 'Asset Info',
   edgeControllerInfo: 'EC Info',
-  installAgent: 'Install Agent'
+  installAgent: 'Install Agent',
+  simpleLogInfo: 'Simple Log Info',
+  eicJoinTokenInfo: 'EIC Join Token Info'
 };
 
 @Component({
@@ -178,6 +180,14 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.installAgent,
       mock: localStorage.getItem(LocalStorageKeys.installAgentMock) === 'false' ? 'false' : 'true'
     });
+    this.components.push({
+      name: AvailableComponents.simpleLogInfo,
+      mock: localStorage.getItem(LocalStorageKeys.simpleLogMock) === 'false' ? 'false' : 'true'
+    });
+    this.components.push({
+      name: AvailableComponents.eicJoinTokenInfo,
+      mock: localStorage.getItem(LocalStorageKeys.eicJoinTokenInfoMock) === 'false' ? 'false' : 'true'
+    });
   }
 
   /**
@@ -218,6 +228,8 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.assetInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.edgeControllerInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.installAgentMock, newValue);
+    localStorage.setItem(LocalStorageKeys.simpleLogMock, newValue);
+    localStorage.setItem(LocalStorageKeys.eicJoinTokenInfoMock, newValue);
   }
 
   /**
@@ -313,6 +325,12 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.installAgent:
         localStorage.setItem(LocalStorageKeys.installAgentMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.simpleLogInfo:
+        localStorage.setItem(LocalStorageKeys.simpleLogMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.eicJoinTokenInfo:
+        localStorage.setItem(LocalStorageKeys.eicJoinTokenInfoMock, componentMockOption.mock);
       break;
       default:
         console.log('Selected option not registered as available component');
