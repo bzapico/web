@@ -42,7 +42,7 @@ export class SimpleLogComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.createdGroupMock) || null;
+    const mock = localStorage.getItem(LocalStorageKeys.simpleLogMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
       this.backend = mockupBackendService;

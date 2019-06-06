@@ -123,7 +123,8 @@ import { EicJoinTokenInfoComponent } from './eic-join-token-info/eic-join-token-
     AssetInfoComponent,
     EdgeControllerInfoComponent,
     InstallAgentComponent,
-    SimpleLogComponent
+    SimpleLogComponent,
+    EicJoinTokenInfoComponent
   ],
   imports: [
     BrowserModule,
