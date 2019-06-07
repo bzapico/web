@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList, mockInventorySummary, mockEICJoinToken, mockAgentJoinToken, mockAgentOpResponse } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList, mockInventorySummary, mockEICJoinToken, mockAgentJoinToken } from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 import { Asset } from '../definitions/interfaces/asset';
 
@@ -283,22 +283,6 @@ export class MockupBackendService implements Backend {
   createAgentJoinToken(organizationId: string,  edgeControllerId: string) {
     return of (new Response(new ResponseOptions({
       body: JSON.stringify(mockAgentJoinToken),
-      status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
-  }
-
-  /**
-   * Activate monitoring in asset
-   * @param organizationId Organization identifier
-   * @param edgeControllerId  Edge controller id
-   * @param assetId Asset identifier
-   */
-  activateMonitoring(organizationId: string,  edgeControllerId: string, assetId: string) {
-    return of (new Response(new ResponseOptions({
-      body: JSON.stringify(mockAgentOpResponse),
       status: 200
     })))
     .pipe(

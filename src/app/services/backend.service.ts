@@ -228,19 +228,6 @@ export class BackendService implements Backend {
     );
   }
 
-  // POST '/v1/agent/{organization_id}/{edge_controller_id}/{asset_id}/activate_monitoring'
-  /**
-   * Activate monitoring in asset
-   * @param organizationId Organization identifier
-   * @param edgeControllerId  Edge controller id
-   * @param assetId Asset identifier
-   */
-  activateMonitoring(organizationId: string,  edgeControllerId: string, assetId: string) {
-    return this.post(
-      API_URL + 'agent/' + organizationId + '/' + edgeControllerId + '/' + assetId + '/activate_monitoring'
-    );
-  }
-
   /********************
    * Infrastructure - Edge Controller
    ********************/

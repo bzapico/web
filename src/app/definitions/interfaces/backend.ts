@@ -21,7 +21,6 @@ export interface Backend {
     createEICToken(organizationId: string);
     createAgentJoinToken(organizationId: string,  edgeControllerId: string);
     unlinkEIC(organizationId: string, edgeControllerId: string);
-    activateMonitoring(organizationId: string,  edgeControllerId: string, assetId: string);
     removeDeviceFromInventoryMockup(organizationId: string, deviceId: any);
     // Resources
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);

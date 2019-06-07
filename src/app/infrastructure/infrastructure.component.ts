@@ -479,29 +479,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     this.lastOpModalRef.hide();
     this.lastOpModalRef.content.closeBtnName = 'Close';
   }
-  /**
-  * Open last operation log
-  *  @param asset asset object
-  */
-  toggleMonitoring(asset: any) {
-    console.log('asset yes  ' , asset);
-    asset.status = !asset.status;
-    // backend call
-    this.backend.activateMonitoring(this.organizationId, asset.edge_controller_id, asset.asset_id)
-    .subscribe( toggleResponse => {
-
-      console.log('update response ', toggleResponse);
-      let notificationText = 'activated';
-      if (!toggleResponse.status) {
-       notificationText = 'deactivated';
-      }
-     this.notificationsService.add({
-       message: 'The agent is now ' + notificationText,
-       timeout: 3000
-     });
-    });
-
-  }
 
   /**
   * Open Edge Controllers info modal window
@@ -807,20 +784,13 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
           item: item
         };
         const assetOption2 = {
-          name: 'Toggle monitoring',
-          action: (inventoryItem: any) => {
-            this.toggleMonitoring(inventoryItem);
-          },
-          item: item
-        };
-        const assetOption3 = {
           name: 'Last operarion log',
           action: (inventoryItem: any) => {
             this.lastOperationLog(inventoryItem);
           },
           item: item
         };
-        const assetOption4 = {
+        const assetOption3 = {
           name: 'Uninstall agent',
           action: (inventoryItem: any) => {
             // this.executeCommand2(inventoryItem);
@@ -830,7 +800,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         assetOptions.push(assetOption1);
         assetOptions.push(assetOption2);
         assetOptions.push(assetOption3);
-        assetOptions.push(assetOption4);
       return assetOptions;
       case 'Device':
         const deviceOptions = [];
