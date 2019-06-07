@@ -15,11 +15,14 @@
         <div class="agent-token-box"> 
           <div class="agent-token">
             <span class="grey">Certificate:</span>
-            <p class="blue">{{agent.ca_cert}}</p>
+            <p *ngIf="agent.ca_cert" class="blue">{{agent.ca_cert}}</p>
+            <p *ngIf="!agent.ca_cert">-</p>
             <span class="grey">Expires on:</span>  
-            <p>{{parseTimestampToDate(agent.expires_on)}}</p>
+            <p *ngIf="agent.expires_on">{{parseTimestampToDate(agent.expires_on)}}</p>
+            <p *ngIf="!agent.expires_on">-</p>
             <span class="grey">Token:</span>  
-            <p>{{agent.token}}</p>
+            <p *ngIf="agent.token">{{agent.token}}</p>
+            <p *ngIf="!agent.token">-</p>
           </div>
         </div>
       </div>

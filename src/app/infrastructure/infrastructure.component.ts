@@ -55,7 +55,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   /**
    * Refresh ratio reference
    */
-  REFRESH_RATIO = 20000; // 20 seconds
+  REFRESH_RATIO = 5000; // 5 seconds
 
   /**
    * NGX-Charts object-assign required object references (for rendering)
