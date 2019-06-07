@@ -50,21 +50,9 @@ export class SimpleLogComponent implements OnInit {
       this.backend = backendService;
     }
     this.lastOpSummary = {};
-    // Default initialization
-    // this.timestamp = 0;
-    // this.status = 'Loading ...';
-    // this.info = 'Loading ...';
-
-  //   last_op_summary: {
-  //     operation_id: '54654asd-654654-qweqwe',
-  //     timestamp:  1550746669,
-  //     status: 'scheduled',
-  //     info: 'info'
-  // },
    }
 
   ngOnInit() {
-    console.log(this.lastOpSummary  , 'summary ');
   }
 
   /**

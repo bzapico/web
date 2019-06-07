@@ -203,7 +203,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     // Request to get inventory
     this.backend.getInventory(this.organizationId)
     .subscribe(response => {
-      // console.log('response ' , response);
       this.normalizeInventoryItems(response);
       if (!this.loadedData) {
         this.loadedData = true;
@@ -481,6 +480,33 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   }
 
   /**
+  * Uninstall agent
+  *  @param asset asset object
+  */
+  uninstallAgent(asset: any) {
+    const uninstallConfirm = confirm('Uninstall Agent?');
+    if (uninstallConfirm) {
+      if (this.organizationId !== null) {
+        this.backend.uninstallAgent(this.organizationId, asset.edge_controller_id, asset.asset_id)
+          .subscribe(response => {
+            this.notificationsService.add({
+              message: 'Agent ' + '' + ' has been uninstalled',
+              timeout: 3000
+            });
+          }, error => {
+            this.notificationsService.add({
+              message: error.error.message,
+              timeout: 5000,
+              type: 'warning'
+            });
+          });
+      }
+    } else {
+      // Do nothing
+    }
+  }
+
+  /**
   * Open Edge Controllers info modal window
   *  @param controller Edge controller object
   */
@@ -588,18 +614,16 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
 
   /**
    * Operation to remove/uninstall an EIC
-   * @param edgeControllerId Edge identifier
+   * @param controller identifier
    */
-  unlinkEIC(edgeControllerId: string) {
-    console.log('unlink ec', edgeControllerId);
-// if assets in edege controller, alert
-    // if (edgeControllerId) {
-    //   alert('Cannot unlink EC. Agents on associated assets should be uninstalled before.');
-    // } else {
+  unlinkEIC(controller: any) {
+    if (controller.assets !== 0) {
+      alert('Cannot unlink EC. Agents on associated assets should be uninstalled before.');
+    } else {
       const unlinkConfirm = confirm('Unlink Edge Controller?');
       if (unlinkConfirm) {
         if (this.organizationId !== null) {
-          this.backend.unlinkEIC(this.organizationId, edgeControllerId)
+          this.backend.unlinkEIC(this.organizationId, controller.edge_controller_id)
             .subscribe(response => {
               this.notificationsService.add({
                 message: 'Edge Controller ' + '' + ' has been unlinked',
@@ -616,7 +640,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       } else {
         // Do nothing
       }
-    // }
+    }
   }
 
   /**
@@ -689,19 +713,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   unlinkDevice(device: any) {
     const unlinkConfirm = confirm('Unlink device?');
     if (unlinkConfirm) {
-      const index = this.inventory.map(x => x.device_id).indexOf(device.device_id);
-      console.log('index', index);
-      console.log('device.device_id ', device.device_id);
-      console.log('condition ', this.organizationId,
-        {
-          organizationId: this.organizationId,
-          device_id: device.device_id
-        });
-      this.backend.removeDeviceFromInventoryMockup(this.organizationId,
-        {
-          organizationId: this.organizationId,
-          device_id: device.device_id
-        })
+      this.backend.removeDeviceFromInventoryMockup(this.organizationId, device.device_id)
         .subscribe(response => {
           this.notificationsService.add({
             message: 'Device ' + '' + ' has been unlinked',
@@ -714,8 +726,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             type: 'warning'
           });
         });
-        // this.inventory.splice(index, 1);
-        this.updateInventoryList();
     } else {
       // Do nothing
     }
@@ -793,7 +803,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         const assetOption3 = {
           name: 'Uninstall agent',
           action: (inventoryItem: any) => {
-            // this.executeCommand2(inventoryItem);
+            this.uninstallAgent(inventoryItem);
           },
           item: item
         };

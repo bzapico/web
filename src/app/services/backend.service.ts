@@ -216,6 +216,24 @@ export class BackendService implements Backend {
     );
   }
 
+  // POST '/v1/agent/{organization_id}/{edge_controller_id}/uninstall'
+  /**
+   * Requests to uninstall an agent
+   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge controller id
+   * @param assetId Asset identifier
+   */
+  uninstallAgent(organizationId: string, edgeControllerId: string, assetId: any) {
+    return this.post(
+      API_URL + 'agent/' + organizationId + '/' + edgeControllerId + '/uninstall',
+      {
+        organization_id: organizationId,
+        edge_controller_id: edgeControllerId,
+        asset_id: assetId
+      }
+    );
+  }
+
   // POST '/v1/agent/{organization_id}/{edge_controller_id}/token/create'
   /**
    * Agent related operation to EIC token creation

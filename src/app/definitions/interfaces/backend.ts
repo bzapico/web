@@ -18,6 +18,7 @@ export interface Backend {
     getInventory(organizationId: string);
     getInventorySummary(organizationId: string);
     installAgent(organizationId: string, edgeControllerId: string, agent: any);
+    uninstallAgent(organizationId: string, edgeControllerId: string, assetId: any);
     createEICToken(organizationId: string);
     createAgentJoinToken(organizationId: string,  edgeControllerId: string);
     unlinkEIC(organizationId: string, edgeControllerId: string);

@@ -262,6 +262,29 @@ export class MockupBackendService implements Backend {
   }
 
   /**
+   * Simulates uninstall an agent
+   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge Controller identifier
+   * @param assetId Asset identifier
+   */
+  uninstallAgent(organizationId: string, edgeControllerId: string, assetId: any) {
+    for (let indexEc = 0; indexEc < mockInventoryList.controllers.length; indexEc++) {
+      const controllersIds = mockInventoryList.controllers[indexEc].edge_controller_id;
+
+      if (controllersIds === edgeControllerId) {
+        mockInventoryList.controllers[indexEc].assets.splice(indexEc, 1);
+      }
+    }
+    const indexAsset = mockInventoryList.assets.map(x => x.asset_id).indexOf(assetId);
+      if (indexAsset !== -1) {
+        mockInventoryList.assets.splice(indexAsset, 1);
+      }
+      return of (new Response(new ResponseOptions({
+        status: 200
+      })));
+  }
+
+  /**
    * Creates a new token for an EIC to join the platform
    * @param organizationId Organization identifier
    */
@@ -665,7 +688,6 @@ export class MockupBackendService implements Backend {
       }
     }
     return of (new Response(new ResponseOptions({
-      body: JSON.stringify({ result: '' }),
       status: 200
     })));
   }
@@ -676,17 +698,13 @@ export class MockupBackendService implements Backend {
   * @param deviceId device identifier
    */
   removeDeviceFromInventoryMockup(organizationId: string, deviceId: any) {
-  {
-      for (let index = 0; index < mockInventoryList.devices.length; index++) {
-          if (mockInventoryList.devices[index].device_id === deviceId) {
-            delete mockInventoryList.devices[index];
-        }
+    const index = mockInventoryList.devices.map(x => x.device_id).indexOf(deviceId);
+      if (index !== -1) {
+        mockInventoryList.devices.splice(index, 1);
       }
       return of (new Response(new ResponseOptions({
-        body: JSON.stringify({ result: '' }),
         status: 200
       })));
-    }
   }
 
   /**
