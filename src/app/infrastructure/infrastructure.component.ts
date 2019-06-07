@@ -792,7 +792,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
           item: item
         };
         const assetOption2 = {
-          name: 'Last operarion log',
+          name: 'Last operation log',
           action: (inventoryItem: any) => {
             this.lastOperationLog(inventoryItem);
           },
