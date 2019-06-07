@@ -20,8 +20,9 @@ export interface Backend {
     installAgent(organizationId: string, edgeControllerId: string, agent: any);
     createEICToken(organizationId: string);
     createAgentJoinToken(organizationId: string,  edgeControllerId: string);
-    unlinkEIC(organizationId: string);
+    unlinkEIC(organizationId: string, edgeControllerId: string);
     activateMonitoring(organizationId: string,  edgeControllerId: string, assetId: string);
+    removeDeviceFromInventoryMockup(organizationId: string, deviceId: any);
     // Resources
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);
     getClusters(organizationId: string);

@@ -260,8 +260,9 @@ export class BackendService implements Backend {
   /**
    * Operation to remove/uninstall an EIC
    * @param organizationId Organization identifier
+   * @param edgeControllerId  Edge controller id
    */
-  unlinkEIC(organizationId: string) {
+  unlinkEIC(organizationId: string, edgeControllerId: string) {
     return this.post(
       API_URL + 'ec/' + organizationId + '/unlink'
     );
@@ -543,10 +544,25 @@ export class BackendService implements Backend {
   // POST '/v1/device/{organization_id}/remove'
   /**
    * Operation that allows to remove a device from the system
-  * @param organizationId Organization identifier
-  * @param deviceId device identifier
+   * @param organizationId Organization identifier
+    * @param deviceId device identifier
    */
   removeDevice(organizationId: string, deviceId: any) {
+    return this.post(
+      API_URL + 'device/' + organizationId + '/remove',
+      {
+        organization_id: organizationId,
+        device_id: deviceId
+      }
+    );
+  }
+
+/**
+ * Operation that allows to remove a device from the system (Temporary mock response)
+ * @param organizationId Organization identifier
+ * @param deviceId device identifier
+ */
+  removeDeviceFromInventoryMockup(organizationId: string, deviceId: any) {
     return this.post(
       API_URL + 'device/' + organizationId + '/remove',
       {

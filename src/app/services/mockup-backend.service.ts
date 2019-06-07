@@ -310,8 +310,16 @@ export class MockupBackendService implements Backend {
    * Operation to remove/uninstall an EIC
    * @param organizationId Organization identifier
    */
-  unlinkEIC(organizationId: string) {
-// TODO
+  unlinkEIC(organizationId: string, edgeControllerId: string) {
+    for (let index = 0; index < mockInventoryList.controllers.length; index++) {
+      if (mockInventoryList.controllers[index].edge_controller_id === edgeControllerId) {
+        delete mockInventoryList.controllers[index];
+      }
+    }
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({ result: '' }),
+      status: 200
+    })));
   }
 
   /********************
@@ -676,6 +684,25 @@ export class MockupBackendService implements Backend {
       body: JSON.stringify({ result: '' }),
       status: 200
     })));
+  }
+
+  /**
+   * Operation that allows to remove a device from the system
+  * @param organizationId Organization identifier
+  * @param deviceId device identifier
+   */
+  removeDeviceFromInventoryMockup(organizationId: string, deviceId: any) {
+  {
+      for (let index = 0; index < mockInventoryList.devices.length; index++) {
+          if (mockInventoryList.devices[index].device_id === deviceId) {
+            delete mockInventoryList.devices[index];
+        }
+      }
+      return of (new Response(new ResponseOptions({
+        body: JSON.stringify({ result: '' }),
+        status: 200
+      })));
+    }
   }
 
   /**

@@ -611,29 +611,35 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
 
   /**
    * Operation to remove/uninstall an EIC
-   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge identifier
    */
-  unlinkEIC(organizationId: string) {
-    const unlinkConfirm = confirm('Unlink Edge Controller?');
-    if (unlinkConfirm) {
-      if (this.organizationId !== null) {
-        this.backend.unlinkEIC(this.organizationId)
-          .subscribe(response => {
-            this.notificationsService.add({
-              message: 'Edge Controller ' + '' + ' has been unlinked',
-              timeout: 3000
+  unlinkEIC(edgeControllerId: string) {
+    console.log('unlink ec', edgeControllerId);
+// if assets in edege controller, alert
+    // if (edgeControllerId) {
+    //   alert('Cannot unlink EC. Agents on associated assets should be uninstalled before.');
+    // } else {
+      const unlinkConfirm = confirm('Unlink Edge Controller?');
+      if (unlinkConfirm) {
+        if (this.organizationId !== null) {
+          this.backend.unlinkEIC(this.organizationId, edgeControllerId)
+            .subscribe(response => {
+              this.notificationsService.add({
+                message: 'Edge Controller ' + '' + ' has been unlinked',
+                timeout: 3000
+              });
+            }, error => {
+              this.notificationsService.add({
+                message: error.error.message,
+                timeout: 5000,
+                type: 'warning'
+              });
             });
-          }, error => {
-            this.notificationsService.add({
-              message: error.error.message,
-              timeout: 5000,
-              type: 'warning'
-            });
-          });
+        }
+      } else {
+        // Do nothing
       }
-    } else {
-      // Do nothing
-    }
+    // }
   }
 
   /**
@@ -714,7 +720,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
           organizationId: this.organizationId,
           device_id: device.device_id
         });
-      this.backend.removeDevice(this.organizationId,
+      this.backend.removeDeviceFromInventoryMockup(this.organizationId,
         {
           organizationId: this.organizationId,
           device_id: device.device_id
@@ -731,7 +737,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             type: 'warning'
           });
         });
-        this.inventory.splice(index, 1);
+        // this.inventory.splice(index, 1);
         this.updateInventoryList();
     } else {
       // Do nothing
