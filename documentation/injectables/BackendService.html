@@ -107,6 +107,12 @@
                                 <a href="#changeRole">changeRole</a>
                             </li>
                             <li>
+                                <a href="#createAgentJoinToken">createAgentJoinToken</a>
+                            </li>
+                            <li>
+                                <a href="#createEICToken">createEICToken</a>
+                            </li>
+                            <li>
                                 <a href="#deleteGroup">deleteGroup</a>
                             </li>
                             <li>
@@ -182,6 +188,12 @@
                                 <a href="#post">post</a>
                             </li>
                             <li>
+                                <a href="#removeDevice">removeDevice</a>
+                            </li>
+                            <li>
+                                <a href="#removeDeviceFromInventoryMockup">removeDeviceFromInventoryMockup</a>
+                            </li>
+                            <li>
                                 <a href="#removeLabelFromDevice">removeLabelFromDevice</a>
                             </li>
                             <li>
@@ -195,6 +207,12 @@
                             </li>
                             <li>
                                 <a href="#undeploy">undeploy</a>
+                            </li>
+                            <li>
+                                <a href="#uninstallAgent">uninstallAgent</a>
+                            </li>
+                            <li>
+                                <a href="#unlinkEIC">unlinkEIC</a>
                             </li>
                             <li>
                                 <a href="#updateAppDescriptor">updateAppDescriptor</a>
@@ -296,7 +314,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="321" class="link-to-prism">src/app/services/backend.service.ts:321</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="382" class="link-to-prism">src/app/services/backend.service.ts:382</a></div>
                             </td>
                         </tr>
 
@@ -388,7 +406,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="505" class="link-to-prism">src/app/services/backend.service.ts:505</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="597" class="link-to-prism">src/app/services/backend.service.ts:597</a></div>
                             </td>
                         </tr>
 
@@ -480,7 +498,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="541" class="link-to-prism">src/app/services/backend.service.ts:541</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="633" class="link-to-prism">src/app/services/backend.service.ts:633</a></div>
                             </td>
                         </tr>
 
@@ -728,6 +746,171 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="createAgentJoinToken"></a>
+                        <span class="name">
+                            <b>
+                            createAgentJoinToken
+                            </b>
+                            <a href="#createAgentJoinToken"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>createAgentJoinToken(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, edgeControllerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="243" class="link-to-prism">src/app/services/backend.service.ts:243</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Agent related operation to EIC token creation</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>edgeControllerId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Edge controller id</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="createEICToken"></a>
+                        <span class="name">
+                            <b>
+                            createEICToken
+                            </b>
+                            <a href="#createEICToken"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>createEICToken(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="258" class="link-to-prism">src/app/services/backend.service.ts:258</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><hr>
+<p>Infrastructure - Edge Controller</p>
+<hr>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="deleteGroup"></a>
                         <span class="name">
                             <b>
@@ -746,7 +929,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="518" class="link-to-prism">src/app/services/backend.service.ts:518</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="610" class="link-to-prism">src/app/services/backend.service.ts:610</a></div>
                             </td>
                         </tr>
 
@@ -838,7 +1021,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="380" class="link-to-prism">src/app/services/backend.service.ts:380</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="441" class="link-to-prism">src/app/services/backend.service.ts:441</a></div>
                             </td>
                         </tr>
 
@@ -1022,7 +1205,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="348" class="link-to-prism">src/app/services/backend.service.ts:348</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="409" class="link-to-prism">src/app/services/backend.service.ts:409</a></div>
                             </td>
                         </tr>
 
@@ -1130,7 +1313,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="422" class="link-to-prism">src/app/services/backend.service.ts:422</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="483" class="link-to-prism">src/app/services/backend.service.ts:483</a></div>
                             </td>
                         </tr>
 
@@ -1206,7 +1389,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="309" class="link-to-prism">src/app/services/backend.service.ts:309</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="370" class="link-to-prism">src/app/services/backend.service.ts:370</a></div>
                             </td>
                         </tr>
 
@@ -1298,7 +1481,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="298" class="link-to-prism">src/app/services/backend.service.ts:298</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="359" class="link-to-prism">src/app/services/backend.service.ts:359</a></div>
                             </td>
                         </tr>
 
@@ -1390,7 +1573,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="412" class="link-to-prism">src/app/services/backend.service.ts:412</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="473" class="link-to-prism">src/app/services/backend.service.ts:473</a></div>
                             </td>
                         </tr>
 
@@ -1482,7 +1665,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="234" class="link-to-prism">src/app/services/backend.service.ts:234</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="295" class="link-to-prism">src/app/services/backend.service.ts:295</a></div>
                             </td>
                         </tr>
 
@@ -1558,7 +1741,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="469" class="link-to-prism">src/app/services/backend.service.ts:469</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="530" class="link-to-prism">src/app/services/backend.service.ts:530</a></div>
                             </td>
                         </tr>
 
@@ -1643,7 +1826,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="493" class="link-to-prism">src/app/services/backend.service.ts:493</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="585" class="link-to-prism">src/app/services/backend.service.ts:585</a></div>
                             </td>
                         </tr>
 
@@ -1719,7 +1902,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/app/services/backend.service.ts:277</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="338" class="link-to-prism">src/app/services/backend.service.ts:338</a></div>
                             </td>
                         </tr>
 
@@ -1872,7 +2055,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Requests to get the infrastructure inventory summary </p>
+                            <div class="io-description"><p>Requests to get the infrastructure inventory summary</p>
 </div>
 
                             <div class="io-description">
@@ -1941,7 +2124,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="401" class="link-to-prism">src/app/services/backend.service.ts:401</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="462" class="link-to-prism">src/app/services/backend.service.ts:462</a></div>
                             </td>
                         </tr>
 
@@ -2178,7 +2361,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="287" class="link-to-prism">src/app/services/backend.service.ts:287</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="348" class="link-to-prism">src/app/services/backend.service.ts:348</a></div>
                             </td>
                         </tr>
 
@@ -2254,7 +2437,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">src/app/services/backend.service.ts:224</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/app/services/backend.service.ts:285</a></div>
                             </td>
                         </tr>
 
@@ -2412,14 +2595,16 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/app/services/backend.service.ts:209</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/app/services/backend.service.ts:213</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Requests to install an agent</p>
+                            <div class="io-description"><hr>
+<p>Infrastructure - Agent</p>
+<hr>
 </div>
 
                             <div class="io-description">
@@ -2430,7 +2615,6 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -2445,10 +2629,6 @@
                                                     </td>
                                                     
 
-                                                        <td>
-                                                                <code><p>Organization identifier</p>
-</code>
-                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>edgeControllerId</td>
@@ -2461,10 +2641,6 @@
                                                     </td>
                                                     
 
-                                                        <td>
-                                                                <code><p>Edge controller id</p>
-</code>
-                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>agent</td>
@@ -2477,10 +2653,6 @@
                                                     </td>
                                                     
 
-                                                        <td>
-                                                                <code><p>Agent installer</p>
-</code>
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -2723,7 +2895,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="442" class="link-to-prism">src/app/services/backend.service.ts:442</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="503" class="link-to-prism">src/app/services/backend.service.ts:503</a></div>
                             </td>
                         </tr>
 
@@ -2797,6 +2969,190 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="removeDevice"></a>
+                        <span class="name">
+                            <b>
+                            removeDevice
+                            </b>
+                            <a href="#removeDevice"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>removeDevice(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, deviceId: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="555" class="link-to-prism">src/app/services/backend.service.ts:555</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Operation that allows to remove a device from the system</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceId</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>device identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="removeDeviceFromInventoryMockup"></a>
+                        <span class="name">
+                            <b>
+                            removeDeviceFromInventoryMockup
+                            </b>
+                            <a href="#removeDeviceFromInventoryMockup"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>removeDeviceFromInventoryMockup(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, deviceId: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="570" class="link-to-prism">src/app/services/backend.service.ts:570</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Operation that allows to remove a device from the system (Temporary mock response)</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceId</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>device identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="removeLabelFromDevice"></a>
                         <span class="name">
                             <b>
@@ -2815,7 +3171,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="548" class="link-to-prism">src/app/services/backend.service.ts:548</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="640" class="link-to-prism">src/app/services/backend.service.ts:640</a></div>
                             </td>
                         </tr>
 
@@ -2981,7 +3337,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/app/services/backend.service.ts:247</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="308" class="link-to-prism">src/app/services/backend.service.ts:308</a></div>
                             </td>
                         </tr>
 
@@ -3181,7 +3537,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="365" class="link-to-prism">src/app/services/backend.service.ts:365</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="426" class="link-to-prism">src/app/services/backend.service.ts:426</a></div>
                             </td>
                         </tr>
 
@@ -3255,6 +3611,206 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="uninstallAgent"></a>
+                        <span class="name">
+                            <b>
+                            uninstallAgent
+                            </b>
+                            <a href="#uninstallAgent"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>uninstallAgent(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, edgeControllerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, assetId: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/app/services/backend.service.ts:226</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Requests to uninstall an agent</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>edgeControllerId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Edge controller id</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>assetId</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Asset identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="unlinkEIC"></a>
+                        <span class="name">
+                            <b>
+                            unlinkEIC
+                            </b>
+                            <a href="#unlinkEIC"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>unlinkEIC(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, edgeControllerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="270" class="link-to-prism">src/app/services/backend.service.ts:270</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Operation to remove/uninstall an EIC</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>edgeControllerId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Edge controller id</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="updateAppDescriptor"></a>
                         <span class="name">
                             <b>
@@ -3273,7 +3829,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="334" class="link-to-prism">src/app/services/backend.service.ts:334</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="395" class="link-to-prism">src/app/services/backend.service.ts:395</a></div>
                             </td>
                         </tr>
 
@@ -3381,7 +3937,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="481" class="link-to-prism">src/app/services/backend.service.ts:481</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="542" class="link-to-prism">src/app/services/backend.service.ts:542</a></div>
                             </td>
                         </tr>
 
@@ -3473,7 +4029,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="534" class="link-to-prism">src/app/services/backend.service.ts:534</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="626" class="link-to-prism">src/app/services/backend.service.ts:626</a></div>
                             </td>
                         </tr>
 
@@ -3563,7 +4119,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/app/services/backend.service.ts:261</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="322" class="link-to-prism">src/app/services/backend.service.ts:322</a></div>
                             </td>
                         </tr>
 
@@ -3894,14 +4450,18 @@ export class BackendService implements Backend {
     );
   }
 
-  // GET &#x27;infrastructure/{organization_id}/summary&#x27;
+  // GET &#x27;/v1/inventory/{organization_id}/summary&#x27;
   /**
-   * Requests to get the infrastructure inventory summary 
+   * Requests to get the infrastructure inventory summary
    * @param organizationId Organization identifier
    */
   getInventorySummary(organizationId: string) {
     throw new Error(&#x27;Method not implemented.&#x27;);
   }
+
+  /********************
+   * Infrastructure - Agent
+   ********************/
 
   // POST &#x27;/v1/agent/{organization_id}/{edge_controller_id}/install&#x27;
   /**
@@ -3913,6 +4473,63 @@ export class BackendService implements Backend {
   installAgent(organizationId: string, edgeControllerId: string, agent: any) {
     return this.post(
       API_URL + &#x27;agent/&#x27; + organizationId + &#x27;/&#x27; + edgeControllerId + &#x27;/install&#x27;, agent
+    );
+  }
+
+  // POST &#x27;/v1/agent/{organization_id}/{edge_controller_id}/uninstall&#x27;
+  /**
+   * Requests to uninstall an agent
+   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge controller id
+   * @param assetId Asset identifier
+   */
+  uninstallAgent(organizationId: string, edgeControllerId: string, assetId: any) {
+    return this.post(
+      API_URL + &#x27;agent/&#x27; + organizationId + &#x27;/&#x27; + edgeControllerId + &#x27;/uninstall&#x27;,
+      {
+        organization_id: organizationId,
+        edge_controller_id: edgeControllerId,
+        asset_id: assetId
+      }
+    );
+  }
+
+  // POST &#x27;/v1/agent/{organization_id}/{edge_controller_id}/token/create&#x27;
+  /**
+   * Agent related operation to EIC token creation
+   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge controller id
+   */
+  createAgentJoinToken(organizationId: string,  edgeControllerId: string) {
+    return this.post(
+      API_URL + &#x27;agent/&#x27; + organizationId + &#x27;/&#x27; + edgeControllerId + &#x27;/token/create&#x27;
+    );
+  }
+
+  /********************
+   * Infrastructure - Edge Controller
+   ********************/
+
+  // POST &#x27;/v1/ec/{organization_id}/token/create&#x27;
+  /**
+   * Creates a new token for an EIC to join the platform
+   * @param organizationId Organization identifier
+   */
+  createEICToken(organizationId: string) {
+    return this.post(
+      API_URL + &#x27;ec/&#x27; + organizationId + &#x27;/token/create&#x27;
+    );
+  }
+
+  // POST &#x27;/v1/ec/{organization_id}/unlink&#x27;
+  /**
+   * Operation to remove/uninstall an EIC
+   * @param organizationId Organization identifier
+   * @param edgeControllerId  Edge controller id
+   */
+  unlinkEIC(organizationId: string, edgeControllerId: string) {
+    return this.post(
+      API_URL + &#x27;ec/&#x27; + organizationId + &#x27;/unlink&#x27;
     );
   }
 
@@ -4186,6 +4803,37 @@ export class BackendService implements Backend {
     return this.post(
       API_URL + &#x27;device/&#x27; + organizationId + &#x27;/update&#x27;,
       deviceData
+    );
+  }
+
+  // POST &#x27;/v1/device/{organization_id}/remove&#x27;
+  /**
+   * Operation that allows to remove a device from the system
+   * @param organizationId Organization identifier
+    * @param deviceId device identifier
+   */
+  removeDevice(organizationId: string, deviceId: any) {
+    return this.post(
+      API_URL + &#x27;device/&#x27; + organizationId + &#x27;/remove&#x27;,
+      {
+        organization_id: organizationId,
+        device_id: deviceId
+      }
+    );
+  }
+
+/**
+ * Operation that allows to remove a device from the system (Temporary mock response)
+ * @param organizationId Organization identifier
+ * @param deviceId device identifier
+ */
+  removeDeviceFromInventoryMockup(organizationId: string, deviceId: any) {
+    return this.post(
+      API_URL + &#x27;device/&#x27; + organizationId + &#x27;/remove&#x27;,
+      {
+        organization_id: organizationId,
+        device_id: deviceId
+      }
     );
   }
 

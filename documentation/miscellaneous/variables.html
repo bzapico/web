@@ -75,6 +75,9 @@
                             <a href="#LocalStorageKeys" title="src/app/definitions/const/local-storage-keys.ts"><b>LocalStorageKeys</b>&nbsp;&nbsp;&nbsp;(src/.../local-storage-keys.ts)</a>
                         </li>
                         <li>
+                            <a href="#mockAgentJoinToken" title="src/app/utils/mocks.ts"><b>mockAgentJoinToken</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
+                        </li>
+                        <li>
                             <a href="#mockAppChart" title="src/app/utils/mocks.ts"><b>mockAppChart</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
                         </li>
                         <li>
@@ -97,6 +100,9 @@
                         </li>
                         <li>
                             <a href="#mockDevicesList" title="src/app/utils/mocks.ts"><b>mockDevicesList</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#mockEICJoinToken" title="src/app/utils/mocks.ts"><b>mockEICJoinToken</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
                         </li>
                         <li>
                             <a href="#mockGroupList" title="src/app/utils/mocks.ts"><b>mockGroupList</b>&nbsp;&nbsp;&nbsp;(src/.../mocks.ts)</a>
@@ -242,7 +248,10 @@
   deviceInfo: &#x27;Device Info&#x27;,
   assetInfo: &#x27;Asset Info&#x27;,
   edgeControllerInfo: &#x27;EC Info&#x27;,
-  installAgent: &#x27;Install Agent&#x27;
+  installAgent: &#x27;Install Agent&#x27;,
+  simpleLogInfo: &#x27;Simple Log Info&#x27;,
+  eicJoinTokenInfo: &#x27;EIC Join Token Info&#x27;,
+  agentJoinTokenInfo: &#x27;Agent Join Token Info&#x27;
 }</code>
                         </td>
                     </tr>
@@ -394,6 +403,9 @@
     assetInfoMock: &#x27;asset_info_mock&#x27;,
     edgeControllerInfoMock: &#x27;edge_controller_info_mock&#x27;,
     installAgentMock: &#x27;install_agent_mock&#x27;,
+    simpleLogMock: &#x27;simple_log_mock&#x27;,
+    eicJoinTokenInfoMock: &#x27;eic_join_token_info_mock&#x27;,
+    agentJoinTokenInfoMock: &#x27;agent_join_token_info_mock&#x27;,
 
     // Data
     jwt: &#x27;jwt&#x27;,
@@ -412,6 +424,53 @@
     <h3>src/app/utils/mocks.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mockAgentJoinToken"></a>
+                        <span class="name">
+                            <b>
+                            mockAgentJoinToken
+                            </b>
+                            <a href="#mockAgentJoinToken"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>mockAgentJoinToken:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    organization_id: &#x27;999-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+    edge_controller_id: &#x27;7777-0fef-41b0-bb7c-adf0055274cd&#x27;,
+    token: &#x27;9wf59-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+    expires_on: 1550746676,
+    // tslint:disable-next-line: max-line-length
+    ca_cert: &#x27;-----BEGIN CERTIFICATE----- MIIC9zCCAd+gAwIBAgIBATANBgkqhkiG9w0BAQsFADAQMQ4wDAYDVQQKEwVOYWxlajAeFw0xOTA1MjgxMzQ0NDBaFw0yMTA1MjcxMzQ0NDBaMBAxDjAMBgNVBAoTBU5hbGVqMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwGJffV/afFQ2SEe7G3rvUFJCjBUCeQX+LsQevY8DSc9LRuWl67TwfzrS2fyFMOUeVZyd5D/9nwreTun3FhvyMkQKHOpoa2cYcYOFcxHGrSeE0iL+VH5+/g7bBiaAZUUh0paHQE6xiKpGxBQhGJrPDyMxlbBrb5fb5VDJA09ph3eZ4DXfC30MiB0Doc/GNEBAlN8qMXschgQV+w/PVtNObUz8jvrxYHM36vT7iWtJQ7zdzv4SxYB21emPrBdzbVkB36fVyQ7RqheLKu6rqYMUV4Nj5kPP6eTza4N32IYvB6SKOnT1Ro1iTHvTPdZhM48d7txQ1ff+cVgG+5EiBi8MKwIDAQABo1wwWjAOBgNVHQ8BAf8EBAMCAqQwEwYDVR0lBAwwCgYIKwYBBQUHAwEwEgYDVR0TAQH/BAgwBgEB/wIBADAfBgNVHREEGDAWghQqLm5hbGVqNDgubmFsZWoudGVjaDANBgkqhkiG9w0BAQsFAAOCAQEAclw2YqEuvWtTaw+fJzX4ByfZh8nrfT1mKoAcJDDHXcEbvES0b8xqXqrGYW1QO92tUgFEw23C43wKJPdzmqIYmy0sR6sghsZJLEQzY3DOXNx2GirREm7jrv66REs1tohhukB1s9PU8oxp+lYzdFtWYW88BB2tg75MMTxS/KxW10966j4aSO53osHXC1/NgWJM/Mm4WG3jAgZFFZc6BBxmjmH8O98KEsQqQOOl3zmOQAtikuE0K2hHOa5dEM5ft5569Fh53WeQr+PFlfNhlaFmmRpKHU9k2eeB7VTTwxIqx3TvA5t41RRyb5X4dr2MVizh04hMhyf4MNGuVy94B6yVw&#x3D;&#x3D; -----END CERTIFICATE-----&#x27;,
+}</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Mocked Agent Join Token</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
@@ -1382,6 +1441,54 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="mockEICJoinToken"></a>
+                        <span class="name">
+                            <b>
+                            mockEICJoinToken
+                            </b>
+                            <a href="#mockEICJoinToken"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>mockEICJoinToken:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    organization_id: &#x27;999-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+    token: &#x27;9wf59-2ed7-41c1-90fb-f561eb81ea42&#x27;,
+    // tslint:disable-next-line: max-line-length
+    cacert: &#x27;-----BEGIN CERTIFICATE----- MIIC9zCCAd+gAwIBAgIBATANBgkqhkiG9w0BAQsFADAQMQ4wDAYDVQQKEwVOYWxlajAeFw0xOTA1MjgxMzQ0NDBaFw0yMTA1MjcxMzQ0NDBaMBAxDjAMBgNVBAoTBU5hbGVqMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwGJffV/afFQ2SEe7G3rvUFJCjBUCeQX+LsQevY8DSc9LRuWl67TwfzrS2fyFMOUeVZyd5D/9nwreTun3FhvyMkQKHOpoa2cYcYOFcxHGrSeE0iL+VH5+/g7bBiaAZUUh0paHQE6xiKpGxBQhGJrPDyMxlbBrb5fb5VDJA09ph3eZ4DXfC30MiB0Doc/GNEBAlN8qMXschgQV+w/PVtNObUz8jvrxYHM36vT7iWtJQ7zdzv4SxYB21emPrBdzbVkB36fVyQ7RqheLKu6rqYMUV4Nj5kPP6eTza4N32IYvB6SKOnT1Ro1iTHvTPdZhM48d7txQ1ff+cVgG+5EiBi8MKwIDAQABo1wwWjAOBgNVHQ8BAf8EBAMCAqQwEwYDVR0lBAwwCgYIKwYBBQUHAwEwEgYDVR0TAQH/BAgwBgEB/wIBADAfBgNVHREEGDAWghQqLm5hbGVqNDgubmFsZWoudGVjaDANBgkqhkiG9w0BAQsFAAOCAQEAclw2YqEuvWtTaw+fJzX4ByfZh8nrfT1mKoAcJDDHXcEbvES0b8xqXqrGYW1QO92tUgFEw23C43wKJPdzmqIYmy0sR6sghsZJLEQzY3DOXNx2GirREm7jrv66REs1tohhukB1s9PU8oxp+lYzdFtWYW88BB2tg75MMTxS/KxW10966j4aSO53osHXC1/NgWJM/Mm4WG3jAgZFFZc6BBxmjmH8O98KEsQqQOOl3zmOQAtikuE0K2hHOa5dEM5ft5569Fh53WeQr+PFlfNhlaFmmRpKHU9k2eeB7VTTwxIqx3TvA5t41RRyb5X4dr2MVizh04hMhyf4MNGuVy94B6yVw&#x3D;&#x3D; -----END CERTIFICATE-----&#x27;,
+    join_url: &#x27;http://qwerty&#x27;,
+    expires_on: 1550746676,
+    dns_url: &#x27;asdad1231.es&#x27;
+}</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Mocked Edge Controller Join Token</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="mockGroupList"></a>
                         <span class="name">
                             <b>
@@ -1565,7 +1672,7 @@
         {
             organization_id: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;7777-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a1&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.31&#x27;,
             show: true,
@@ -1609,7 +1716,7 @@
         {
             organization_id: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;7777-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a2&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.32&#x27;,
             show: true,
@@ -1653,7 +1760,7 @@
         {
             organization_id: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;7777-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a3&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.33&#x27;,
             show: true,
@@ -1697,7 +1804,7 @@
         {
             organization_id: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;7777-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a4&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.34&#x27;,
             show: true,
@@ -1785,7 +1892,7 @@
         {
             organization_id: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;7777-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a6&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.36&#x27;,
             show: true,
@@ -1829,7 +1936,7 @@
         {
             organization_id: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;7777-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a7&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.37&#x27;,
             show: true,
@@ -1873,7 +1980,7 @@
         {
             organization_id: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;7777-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a8&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.38&#x27;,
             show: true,
@@ -1918,7 +2025,7 @@
         {
             organization_id: &#x27;b6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;7777-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a5&#x27;,
+            asset_id: &#x27;a2ed5462-76b7-4085-98fb-27c1cd9b79a9&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.39&#x27;,
             show: true,
@@ -1962,7 +2069,7 @@
         {
             organization_id: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;1010101-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
+            asset_id: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab1&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.18&#x27;,
             show: true,
@@ -2006,7 +2113,7 @@
         {
             organization_id: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;1010101-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
+            asset_id: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab2&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.28&#x27;,
             show: true,
@@ -2050,7 +2157,7 @@
         {
             organization_id: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;1010101-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
+            asset_id: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab3&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.48&#x27;,
             show: true,
@@ -2094,7 +2201,7 @@
         {
             organization_id: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;1010101-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
+            asset_id: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab4&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.58&#x27;,
             show: true,
@@ -2138,7 +2245,7 @@
         {
             organization_id: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;1010101-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
+            asset_id: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab5&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.68&#x27;,
             show: true,
@@ -2182,7 +2289,7 @@
         {
             organization_id: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;1010101-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
+            asset_id: &#x27;6asdasdasd-asd---asd455122asd&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.78&#x27;,
             show: true,
@@ -2226,7 +2333,7 @@
         {
             organization_id: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;1010101-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
+            asset_id: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab7&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.88&#x27;,
             show: true,
@@ -2270,7 +2377,7 @@
         {
             organization_id: &#x27;a6ccf95e-2ed7-41c1-90fb-f561eb81ea42&#x27;,
             edge_controller_id: &#x27;1010101-0fef-41b0-bb7c-adf0055274cd&#x27;,
-            asset_id: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab&#x27;,
+            asset_id: &#x27;e94ac398-5555-4937-b7f7-9fa0ff8b1eab8&#x27;,
             agent_id: &#x27;a2ed5462-98fb-27c1cd9b79a5&#x27;,
             eic_net_ip: &#x27;98.105.55.98&#x27;,
             show: true,

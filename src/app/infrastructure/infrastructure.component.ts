@@ -176,7 +176,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
       if (this.organizationId !== null) {
-        // Requests left card summary data
         this.backend.getInventorySummary(this.organizationId)
         .subscribe(summary => {
           this.cpuCoresCount = summary['total_num_cpu'];
@@ -688,7 +687,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    */
   deviceEnablement(device: any) {
     device.enabled = !device.enabled;
-    // backend call
     this.backend.updateDevice(this.organizationId, {
        organizationId: this.organizationId,
        deviceGroupId: device.device_group_id,
