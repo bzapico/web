@@ -1989,7 +1989,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: '6asdasdasd-asd---asd455122asd',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a1',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.78',
             show: true,
