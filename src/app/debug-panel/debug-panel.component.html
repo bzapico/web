@@ -34,7 +34,7 @@
       <hr/>
       <div *ngFor="let item of components; let index = index" class="row">
         <!-- Option name -->
-        <span class="col-3 small-font">
+        <span class="col-4 small-font">
           {{item.name}}
         </span>
         <!-- Option buttons -->
@@ -42,7 +42,7 @@
           (click)="optionChange(components[index])"
           [(ngModel)]="components[index].mock"
           btnRadioGroup
-          class="btn-group offset-5">
+          class="btn-group offset-4">
           <label
             btnRadio="false"
             tabindex="0"

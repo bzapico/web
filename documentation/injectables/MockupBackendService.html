@@ -107,6 +107,12 @@
                                 <a href="#changeRole">changeRole</a>
                             </li>
                             <li>
+                                <a href="#createAgentJoinToken">createAgentJoinToken</a>
+                            </li>
+                            <li>
+                                <a href="#createEICToken">createEICToken</a>
+                            </li>
+                            <li>
                                 <a href="#deleteGroup">deleteGroup</a>
                             </li>
                             <li>
@@ -176,6 +182,12 @@
                                 <a href="#logout">logout</a>
                             </li>
                             <li>
+                                <a href="#removeDevice">removeDevice</a>
+                            </li>
+                            <li>
+                                <a href="#removeDeviceFromInventoryMockup">removeDeviceFromInventoryMockup</a>
+                            </li>
+                            <li>
                                 <a href="#removeLabelFromDevice">removeLabelFromDevice</a>
                             </li>
                             <li>
@@ -189,6 +201,12 @@
                             </li>
                             <li>
                                 <a href="#undeploy">undeploy</a>
+                            </li>
+                            <li>
+                                <a href="#uninstallAgent">uninstallAgent</a>
+                            </li>
+                            <li>
+                                <a href="#unlinkEIC">unlinkEIC</a>
                             </li>
                             <li>
                                 <a href="#updateAppDescriptor">updateAppDescriptor</a>
@@ -263,7 +281,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="459" class="link-to-prism">src/app/services/mockup-backend.service.ts:459</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="524" class="link-to-prism">src/app/services/mockup-backend.service.ts:524</a></div>
                             </td>
                         </tr>
 
@@ -355,7 +373,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="632" class="link-to-prism">src/app/services/mockup-backend.service.ts:632</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="730" class="link-to-prism">src/app/services/mockup-backend.service.ts:730</a></div>
                             </td>
                         </tr>
 
@@ -447,7 +465,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="681" class="link-to-prism">src/app/services/mockup-backend.service.ts:681</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="779" class="link-to-prism">src/app/services/mockup-backend.service.ts:779</a></div>
                             </td>
                         </tr>
 
@@ -611,7 +629,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="356" class="link-to-prism">src/app/services/mockup-backend.service.ts:356</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="421" class="link-to-prism">src/app/services/mockup-backend.service.ts:421</a></div>
                             </td>
                         </tr>
 
@@ -701,6 +719,174 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="createAgentJoinToken"></a>
+                        <span class="name">
+                            <b>
+                            createAgentJoinToken
+                            </b>
+                            <a href="#createAgentJoinToken"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>createAgentJoinToken(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, edgeControllerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="306" class="link-to-prism">src/app/services/mockup-backend.service.ts:306</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates a new agent related operation to EIC </p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>edgeControllerId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Edge controller id</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="createEICToken"></a>
+                        <span class="name">
+                            <b>
+                            createEICToken
+                            </b>
+                            <a href="#createEICToken"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>createEICToken(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="291" class="link-to-prism">src/app/services/mockup-backend.service.ts:291</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates a new token for an EIC to join the platform</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="deleteGroup"></a>
                         <span class="name">
                             <b>
@@ -719,7 +905,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="659" class="link-to-prism">src/app/services/mockup-backend.service.ts:659</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="757" class="link-to-prism">src/app/services/mockup-backend.service.ts:757</a></div>
                             </td>
                         </tr>
 
@@ -811,7 +997,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="532" class="link-to-prism">src/app/services/mockup-backend.service.ts:532</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="597" class="link-to-prism">src/app/services/mockup-backend.service.ts:597</a></div>
                             </td>
                         </tr>
 
@@ -986,7 +1172,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="501" class="link-to-prism">src/app/services/mockup-backend.service.ts:501</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="566" class="link-to-prism">src/app/services/mockup-backend.service.ts:566</a></div>
                             </td>
                         </tr>
 
@@ -1094,7 +1280,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="443" class="link-to-prism">src/app/services/mockup-backend.service.ts:443</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="508" class="link-to-prism">src/app/services/mockup-backend.service.ts:508</a></div>
                             </td>
                         </tr>
 
@@ -1186,7 +1372,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="427" class="link-to-prism">src/app/services/mockup-backend.service.ts:427</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="492" class="link-to-prism">src/app/services/mockup-backend.service.ts:492</a></div>
                             </td>
                         </tr>
 
@@ -1278,7 +1464,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="560" class="link-to-prism">src/app/services/mockup-backend.service.ts:560</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="625" class="link-to-prism">src/app/services/mockup-backend.service.ts:625</a></div>
                             </td>
                         </tr>
 
@@ -1361,7 +1547,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="380" class="link-to-prism">src/app/services/mockup-backend.service.ts:380</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="445" class="link-to-prism">src/app/services/mockup-backend.service.ts:445</a></div>
                             </td>
                         </tr>
 
@@ -1437,7 +1623,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="580" class="link-to-prism">src/app/services/mockup-backend.service.ts:580</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="645" class="link-to-prism">src/app/services/mockup-backend.service.ts:645</a></div>
                             </td>
                         </tr>
 
@@ -1522,7 +1708,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="616" class="link-to-prism">src/app/services/mockup-backend.service.ts:616</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="714" class="link-to-prism">src/app/services/mockup-backend.service.ts:714</a></div>
                             </td>
                         </tr>
 
@@ -1598,7 +1784,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="398" class="link-to-prism">src/app/services/mockup-backend.service.ts:398</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="463" class="link-to-prism">src/app/services/mockup-backend.service.ts:463</a></div>
                             </td>
                         </tr>
 
@@ -1820,7 +2006,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="547" class="link-to-prism">src/app/services/mockup-backend.service.ts:547</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="612" class="link-to-prism">src/app/services/mockup-backend.service.ts:612</a></div>
                             </td>
                         </tr>
 
@@ -2057,7 +2243,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="412" class="link-to-prism">src/app/services/mockup-backend.service.ts:412</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="477" class="link-to-prism">src/app/services/mockup-backend.service.ts:477</a></div>
                             </td>
                         </tr>
 
@@ -2133,7 +2319,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="366" class="link-to-prism">src/app/services/mockup-backend.service.ts:366</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="431" class="link-to-prism">src/app/services/mockup-backend.service.ts:431</a></div>
                             </td>
                         </tr>
 
@@ -2402,7 +2588,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="326" class="link-to-prism">src/app/services/mockup-backend.service.ts:326</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="391" class="link-to-prism">src/app/services/mockup-backend.service.ts:391</a></div>
                             </td>
                         </tr>
 
@@ -2585,6 +2771,190 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="removeDevice"></a>
+                        <span class="name">
+                            <b>
+                            removeDevice
+                            </b>
+                            <a href="#removeDevice"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>removeDevice(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, deviceId: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="682" class="link-to-prism">src/app/services/mockup-backend.service.ts:682</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Operation that allows to remove a device from the system</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceId</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>device identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="removeDeviceFromInventoryMockup"></a>
+                        <span class="name">
+                            <b>
+                            removeDeviceFromInventoryMockup
+                            </b>
+                            <a href="#removeDeviceFromInventoryMockup"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>removeDeviceFromInventoryMockup(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, deviceId: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="700" class="link-to-prism">src/app/services/mockup-backend.service.ts:700</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Operation that allows to remove a device from the system</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceId</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>device identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="removeLabelFromDevice"></a>
                         <span class="name">
                             <b>
@@ -2603,7 +2973,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="699" class="link-to-prism">src/app/services/mockup-backend.service.ts:699</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="797" class="link-to-prism">src/app/services/mockup-backend.service.ts:797</a></div>
                             </td>
                         </tr>
 
@@ -2767,7 +3137,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="275" class="link-to-prism">src/app/services/mockup-backend.service.ts:275</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="340" class="link-to-prism">src/app/services/mockup-backend.service.ts:340</a></div>
                             </td>
                         </tr>
 
@@ -2947,7 +3317,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="519" class="link-to-prism">src/app/services/mockup-backend.service.ts:519</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="584" class="link-to-prism">src/app/services/mockup-backend.service.ts:584</a></div>
                             </td>
                         </tr>
 
@@ -3021,6 +3391,204 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="uninstallAgent"></a>
+                        <span class="name">
+                            <b>
+                            uninstallAgent
+                            </b>
+                            <a href="#uninstallAgent"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>uninstallAgent(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, edgeControllerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, assetId: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="270" class="link-to-prism">src/app/services/mockup-backend.service.ts:270</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Simulates uninstall an agent</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>edgeControllerId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Edge Controller identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>assetId</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Asset identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="unlinkEIC"></a>
+                        <span class="name">
+                            <b>
+                            unlinkEIC
+                            </b>
+                            <a href="#unlinkEIC"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>unlinkEIC(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, edgeControllerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="320" class="link-to-prism">src/app/services/mockup-backend.service.ts:320</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Operation to remove/uninstall an EIC</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>organizationId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Organization identifier</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>edgeControllerId</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="updateAppDescriptor"></a>
                         <span class="name">
                             <b>
@@ -3039,7 +3607,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="475" class="link-to-prism">src/app/services/mockup-backend.service.ts:475</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="540" class="link-to-prism">src/app/services/mockup-backend.service.ts:540</a></div>
                             </td>
                         </tr>
 
@@ -3147,7 +3715,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="605" class="link-to-prism">src/app/services/mockup-backend.service.ts:605</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="670" class="link-to-prism">src/app/services/mockup-backend.service.ts:670</a></div>
                             </td>
                         </tr>
 
@@ -3239,7 +3807,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="674" class="link-to-prism">src/app/services/mockup-backend.service.ts:674</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="772" class="link-to-prism">src/app/services/mockup-backend.service.ts:772</a></div>
                             </td>
                         </tr>
 
@@ -3331,7 +3899,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="303" class="link-to-prism">src/app/services/mockup-backend.service.ts:303</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="368" class="link-to-prism">src/app/services/mockup-backend.service.ts:368</a></div>
                             </td>
                         </tr>
 
@@ -3439,7 +4007,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="716" class="link-to-prism">src/app/services/mockup-backend.service.ts:716</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="814" class="link-to-prism">src/app/services/mockup-backend.service.ts:814</a></div>
                             </td>
                         </tr>
 
@@ -3511,7 +4079,7 @@ import { Response, ResponseOptions } from &#x27;@angular/http&#x27;;
 import { of, Observable } from &#x27;rxjs&#x27;;
 import { map } from &#x27;rxjs/operators&#x27;;
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList, mockInventorySummary } from &#x27;../utils/mocks&#x27;;
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList, mockInventorySummary, mockEICJoinToken, mockAgentJoinToken } from &#x27;../utils/mocks&#x27;;
 import { Group } from &#x27;../definitions/interfaces/group&#x27;;
 import { Asset } from &#x27;../definitions/interfaces/asset&#x27;;
 
@@ -3712,10 +4280,7 @@ export class MockupBackendService implements Backend {
       eic_net_ip: agent.target_host,
       show: true,
       created: 1550746520,
-      labels: {
-        labsdfs1: &#x27;label1&#x27;,
-        lab2: &#x27;label2&#x27;
-      },
+      labels: {},
       os: {
         name: &#x27;petra&#x27;,
         version: &#x27;v1&#x27;,
@@ -3769,6 +4334,74 @@ export class MockupBackendService implements Backend {
     .pipe(
       map(response &#x3D;&gt; response.json())
     );
+  }
+
+  /**
+   * Simulates uninstall an agent
+   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge Controller identifier
+   * @param assetId Asset identifier
+   */
+  uninstallAgent(organizationId: string, edgeControllerId: string, assetId: any) {
+    for (let indexEc &#x3D; 0; indexEc &lt; mockInventoryList.controllers.length; indexEc++) {
+      const controllersIds &#x3D; mockInventoryList.controllers[indexEc].edge_controller_id;
+
+      if (controllersIds &#x3D;&#x3D;&#x3D; edgeControllerId) {
+        mockInventoryList.controllers[indexEc].assets.splice(indexEc, 1);
+      }
+    }
+    const indexAsset &#x3D; mockInventoryList.assets.map(x &#x3D;&gt; x.asset_id).indexOf(assetId);
+      if (indexAsset !&#x3D;&#x3D; -1) {
+        mockInventoryList.assets.splice(indexAsset, 1);
+      }
+      return of (new Response(new ResponseOptions({
+        status: 200
+      })));
+  }
+
+  /**
+   * Creates a new token for an EIC to join the platform
+   * @param organizationId Organization identifier
+   */
+  createEICToken(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockEICJoinToken),
+      status: 200
+    })))
+    .pipe(
+      map(response &#x3D;&gt; response.json())
+    );
+  }
+
+  /**
+   * Creates a new agent related operation to EIC 
+   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge controller id
+   */
+  createAgentJoinToken(organizationId: string,  edgeControllerId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockAgentJoinToken),
+      status: 200
+    })))
+    .pipe(
+      map(response &#x3D;&gt; response.json())
+    );
+  }
+
+  /**
+   * Operation to remove/uninstall an EIC
+   * @param organizationId Organization identifier
+   */
+  unlinkEIC(organizationId: string, edgeControllerId: string) {
+    for (let index &#x3D; 0; index &lt; mockInventoryList.controllers.length; index++) {
+      if (mockInventoryList.controllers[index].edge_controller_id &#x3D;&#x3D;&#x3D; edgeControllerId) {
+        delete mockInventoryList.controllers[index];
+      }
+    }
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({ result: &#x27;&#x27; }),
+      status: 200
+    })));
   }
 
   /********************
@@ -4114,6 +4747,39 @@ export class MockupBackendService implements Backend {
       body: JSON.stringify({ result: &#x27;&#x27; }),
       status: 200
     })));
+  }
+
+  /**
+   * Operation that allows to remove a device from the system
+  * @param organizationId Organization identifier
+  * @param deviceId device identifier
+   */
+  removeDevice(organizationId: string, deviceId: any) {
+    for (let index &#x3D; 0; index &lt; mockDevicesList.length; index++) {
+      for (let indexDevice &#x3D; 0; indexDevice &lt; mockDevicesList[index].length; indexDevice++) {
+        if (mockDevicesList[index][indexDevice].device_id &#x3D;&#x3D;&#x3D; deviceId) {
+          delete mockDevicesList[index][indexDevice];
+        }
+      }
+    }
+    return of (new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+
+  /**
+   * Operation that allows to remove a device from the system
+  * @param organizationId Organization identifier
+  * @param deviceId device identifier
+   */
+  removeDeviceFromInventoryMockup(organizationId: string, deviceId: any) {
+    const index &#x3D; mockInventoryList.devices.map(x &#x3D;&gt; x.device_id).indexOf(deviceId);
+      if (index !&#x3D;&#x3D; -1) {
+        mockInventoryList.devices.splice(index, 1);
+      }
+      return of (new Response(new ResponseOptions({
+        status: 200
+      })));
   }
 
   /**

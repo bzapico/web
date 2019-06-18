@@ -4,7 +4,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList, mockInventorySummary } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList, mockInventorySummary, mockEICJoinToken, mockAgentJoinToken } from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 import { Asset } from '../definitions/interfaces/asset';
 
@@ -259,6 +259,74 @@ export class MockupBackendService implements Backend {
     .pipe(
       map(response => response.json())
     );
+  }
+
+  /**
+   * Simulates uninstall an agent
+   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge Controller identifier
+   * @param assetId Asset identifier
+   */
+  uninstallAgent(organizationId: string, edgeControllerId: string, assetId: any) {
+    for (let indexEc = 0; indexEc < mockInventoryList.controllers.length; indexEc++) {
+      const controllersIds = mockInventoryList.controllers[indexEc].edge_controller_id;
+
+      if (controllersIds === edgeControllerId) {
+        mockInventoryList.controllers[indexEc].assets.splice(indexEc, 1);
+      }
+    }
+    const indexAsset = mockInventoryList.assets.map(x => x.asset_id).indexOf(assetId);
+      if (indexAsset !== -1) {
+        mockInventoryList.assets.splice(indexAsset, 1);
+      }
+      return of (new Response(new ResponseOptions({
+        status: 200
+      })));
+  }
+
+  /**
+   * Creates a new token for an EIC to join the platform
+   * @param organizationId Organization identifier
+   */
+  createEICToken(organizationId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockEICJoinToken),
+      status: 200
+    })))
+    .pipe(
+      map(response => response.json())
+    );
+  }
+
+  /**
+   * Creates a new agent related operation to EIC 
+   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge controller id
+   */
+  createAgentJoinToken(organizationId: string,  edgeControllerId: string) {
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify(mockAgentJoinToken),
+      status: 200
+    })))
+    .pipe(
+      map(response => response.json())
+    );
+  }
+
+  /**
+   * Operation to remove/uninstall an EIC
+   * @param organizationId Organization identifier
+   */
+  unlinkEIC(organizationId: string, edgeControllerId: string) {
+    for (let index = 0; index < mockInventoryList.controllers.length; index++) {
+      if (mockInventoryList.controllers[index].edge_controller_id === edgeControllerId) {
+        delete mockInventoryList.controllers[index];
+      }
+    }
+    return of (new Response(new ResponseOptions({
+      body: JSON.stringify({ result: '' }),
+      status: 200
+    })));
   }
 
   /********************
@@ -604,6 +672,39 @@ export class MockupBackendService implements Backend {
       body: JSON.stringify({ result: '' }),
       status: 200
     })));
+  }
+
+  /**
+   * Operation that allows to remove a device from the system
+  * @param organizationId Organization identifier
+  * @param deviceId device identifier
+   */
+  removeDevice(organizationId: string, deviceId: any) {
+    for (let index = 0; index < mockDevicesList.length; index++) {
+      for (let indexDevice = 0; indexDevice < mockDevicesList[index].length; indexDevice++) {
+        if (mockDevicesList[index][indexDevice].device_id === deviceId) {
+          delete mockDevicesList[index][indexDevice];
+        }
+      }
+    }
+    return of (new Response(new ResponseOptions({
+      status: 200
+    })));
+  }
+
+  /**
+   * Operation that allows to remove a device from the system
+  * @param organizationId Organization identifier
+  * @param deviceId device identifier
+   */
+  removeDeviceFromInventoryMockup(organizationId: string, deviceId: any) {
+    const index = mockInventoryList.devices.map(x => x.device_id).indexOf(deviceId);
+      if (index !== -1) {
+        mockInventoryList.devices.splice(index, 1);
+      }
+      return of (new Response(new ResponseOptions({
+        status: 200
+      })));
   }
 
   /**

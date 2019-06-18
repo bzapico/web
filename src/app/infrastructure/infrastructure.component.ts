@@ -11,7 +11,8 @@ import { AssetInfoComponent } from '../asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-controller-info.component';
 import { InstallAgentComponent } from '../install-agent/install-agent.component';
 import { Router, ActivatedRoute } from '@angular/router';
-import { select } from 'd3-selection';
+import { SimpleLogComponent } from '../simple-log/simple-log.component';
+import { AgentJoinTokenInfoComponent } from '../agent-join-token-info/agent-join-token-info.component';
 
 @Component({
   selector: 'app-infrastructure',
@@ -54,7 +55,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   /**
    * Refresh ratio reference
    */
-  REFRESH_RATIO = 20000; // 20 seconds
+  REFRESH_RATIO = 5000; // 5 seconds
 
   /**
    * NGX-Charts object-assign required object references (for rendering)
@@ -113,6 +114,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   assetModalRef: BsModalRef;
   agentModalRef: BsModalRef;
   deviceModalRef: BsModalRef;
+  lastOpModalRef: BsModalRef;
 
   /**
    * Hold request error message or undefined
@@ -174,7 +176,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
       if (this.organizationId !== null) {
-        // Requests left card summary data
         this.backend.getInventorySummary(this.organizationId)
         .subscribe(summary => {
           this.cpuCoresCount = summary['total_num_cpu'];
@@ -206,7 +207,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         this.loadedData = true;
       }
       this.updateOnlineEcsPieChart(response);
-    }, errorResponse => {
+    }, (errorResponse: { error: { message: string; }; }) => {
       this.loadedData = true;
       this.requestError = errorResponse.error.message;
     });
@@ -221,7 +222,14 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     if (!response || response === null) {
     } else {
       if (response.devices) {
-        response.devices.forEach(device => {
+        response.devices.forEach((device: {
+            type: string;
+            id: any;
+            device_id: any;
+            status: any;
+            device_status_name: any;
+            location: string;
+          }) => {
           device.type = 'Device';
           device.id = device.device_id;
           device.status = device.device_status_name;
@@ -232,7 +240,12 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         });
       }
       if (response.assets) {
-        response.assets.forEach(asset => {
+        response.assets.forEach((asset: {
+            type: string;
+            id: any;
+            asset_id: any;
+            location: string;
+          }) => {
           asset.type = 'Asset';
           asset.id = asset.asset_id;
           if (!asset.location || asset.location === undefined || asset.location === null) {
@@ -242,7 +255,12 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         });
       }
       if (response.controllers) {
-        response.controllers.forEach(controller => {
+        response.controllers.forEach((controller: {
+            type: string;
+            id: any;
+            edge_controller_id: any;
+            location: string;
+          }) => {
           controller.type = 'EC';
           controller.id = controller.edge_controller_id;
           if (!controller.location || controller.location === undefined || controller.location === null) {
@@ -275,7 +293,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   updateOnlineEcsPieChart(response) {
     this.onlineTotalCount = response.controllers.length;
     const itemStatus =
-    response.controllers.filter(item => item.status === 'online');
+    response.controllers.filter((item: { status: string; }) => item.status === 'online');
     this.onlineCount = itemStatus.length;
     this.infrastructurePieChart = this.generateSummaryChartData(this.onlineCount, this.onlineTotalCount);
   }
@@ -441,10 +459,57 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   }
 
   /**
+  * Open last operation log
+  *  @param asset asset object
+  */
+  lastOperationLog(asset: any) {
+    const initialState = {
+      organizationId: this.organizationId,
+      lastOpSummary: asset.last_op_summary
+    };
+
+    this.lastOpModalRef = this.modalService.show(
+    SimpleLogComponent, {
+      initialState: initialState,
+      backdrop: 'static',
+      ignoreBackdropClick: false
+    });
+    this.lastOpModalRef.hide();
+    this.lastOpModalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+  * Uninstall agent
+  *  @param asset asset object
+  */
+  uninstallAgent(asset: any) {
+    const uninstallConfirm = confirm('Uninstall Agent?');
+    if (uninstallConfirm) {
+      if (this.organizationId !== null) {
+        this.backend.uninstallAgent(this.organizationId, asset.edge_controller_id, asset.asset_id)
+          .subscribe(response => {
+            this.notificationsService.add({
+              message: 'Agent ' + '' + ' has been uninstalled',
+              timeout: 3000
+            });
+          }, error => {
+            this.notificationsService.add({
+              message: error.error.message,
+              timeout: 5000,
+              type: 'warning'
+            });
+          });
+      }
+    } else {
+      // Do nothing
+    }
+  }
+
+  /**
   * Open Edge Controllers info modal window
   *  @param controller Edge controller object
   */
-  openEdgeControllerInfo(controller) {
+  openEdgeControllerInfo(controller: any) {
     const initialStateEC = {
       organizationId: this.organizationId,
       id: controller.edge_controller_id,
@@ -474,6 +539,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     this.ecModalRef.content.closeBtnName = 'Close';
   }
 
+  /*
   /**
   * Open install Agent info modal window
   */
@@ -499,16 +565,16 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
 
   /**
    * Opens the modal view that holds the install Agent modal component
-   * @param Edge edge controller to install
+   * @param controller edge controller to install
    */
-  installAgentFromEC(edge: any) {
+  installAgentFromEC(controller: any) {
     const initialState = {
       organizationId: this.organizationId,
-      edgeControllerId: edge.edge_controller_id,
+      edgeControllerId: controller.edge_controller_id,
       openFromEc: true,
       defaultAutofocus: true,
       ecCount: this.getECsCount(),
-      name: edge.name
+      name: controller.name
     };
 
     this.agentModalRef = this.modalService.show(
@@ -524,37 +590,55 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Opens context menu
-   * @param Item inventory item
+   * Creates a new token for an Agent to join the platform
+   * @param controller edge controller identifier
    */
-  openContextualMenu(item: any) {
-    if (item.id === this. activeContextMenuItemId) {
-      this.activeContextMenuItemId = '';
-    } else {
-      this.activeContextMenuItemId = item.id;
-    }
+  createAgentToken(controller: any) {
+    const initialState = {
+      organizationId: this.organizationId,
+      edgeControllerId: controller.edge_controller_id
+    };
+
+    this.agentModalRef = this.modalService.show(
+      AgentJoinTokenInfoComponent, {
+        initialState,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+      });
+    this.agentModalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateInventoryList();
+    });
   }
 
   /**
-   * Get the item options to show in the context menu
-   * @param item inventory item
+   * Operation to remove/uninstall an EIC
+   * @param controller identifier
    */
-  getItemOptions(item: any) {
-    switch (item.type) {
-      case 'EC':
-        const ecOptions = [];
-        const ecOptions1 = {
-          name: 'More info',
-          action: (inventoryItem) => {
-            // debugg log to test functions inside context menu
-            console.log(inventoryItem);
-          },
-          item: item
-        };
-        ecOptions.push(ecOptions1);
-      return ecOptions;
-      default:
-        break;
+  unlinkEIC(controller: any) {
+    if (controller.assets !== 0) {
+      alert('Cannot unlink EC. Agents on associated assets should be uninstalled before.');
+    } else {
+      const unlinkConfirm = confirm('Unlink Edge Controller?');
+      if (unlinkConfirm) {
+        if (this.organizationId !== null) {
+          this.backend.unlinkEIC(this.organizationId, controller.edge_controller_id)
+            .subscribe(response => {
+              this.notificationsService.add({
+                message: 'Edge Controller ' + '' + ' has been unlinked',
+                timeout: 3000
+              });
+            }, error => {
+              this.notificationsService.add({
+                message: error.error.message,
+                timeout: 5000,
+                type: 'warning'
+              });
+            });
+        }
+      } else {
+        // Do nothing
+      }
     }
   }
 
@@ -598,22 +682,163 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Temporary method by which we open all the modal windows
+   * Executes devices enablement switcher statement to select one of enabled device to be executed.
+   * @param device device in inventory item
+   */
+  deviceEnablement(device: any) {
+    device.enabled = !device.enabled;
+    this.backend.updateDevice(this.organizationId, {
+       organizationId: this.organizationId,
+       deviceGroupId: device.device_group_id,
+       deviceId: device.device_id,
+       enabled: device.enabled
+    }).subscribe((response: any) => {
+      let notificationText = 'enabled';
+      if (!device.enabled) {
+       notificationText = 'disabled';
+      }
+     this.notificationsService.add({
+       message: 'The device is now ' + notificationText,
+       timeout: 3000
+     });
+    });
+  }
+
+   /**
+   * Operation to unlink a device
+   * @param device device in inventory item
+   */
+  unlinkDevice(device: any) {
+    const unlinkConfirm = confirm('Unlink device?');
+    if (unlinkConfirm) {
+      this.backend.removeDeviceFromInventoryMockup(this.organizationId, device.device_id)
+        .subscribe(response => {
+          this.notificationsService.add({
+            message: 'Device ' + '' + ' has been unlinked',
+            timeout: 3000
+          });
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 5000,
+            type: 'warning'
+          });
+        });
+    } else {
+      // Do nothing
+    }
+  }
+
+  /**
+   * Opens context menu
    * @param item inventory item
    */
-  openInfo(item: { type: any; }) {
+  openContextualMenu(item: any) {
+    if (item.id === this. activeContextMenuItemId) {
+      this.activeContextMenuItemId = '';
+    } else {
+      this.activeContextMenuItemId = item.id;
+    }
+  }
+
+  /**
+   * Get the item options to show in the context menu
+   * @param item inventory item
+   */
+  getItemOptions(item: any) {
     switch (item.type) {
-      case 'Asset':
-        this.openAssetInfo(item);
-      break;
-      case 'Device':
-        this.openDeviceInfo(item);
-      break;
       case 'EC':
-        this.openEdgeControllerInfo(item);
-      break;
+        const ecOptions = [];
+        const ecOption1 = {
+          name: 'More info',
+          action: (inventoryItem: any) => {
+            this.openEdgeControllerInfo(inventoryItem);
+          },
+          item: item
+        };
+        const ecOption2 = {
+          name: 'Install agent',
+          action: (inventoryItem: any) => {
+            this.installAgentFromEC(inventoryItem);
+          },
+          item: item
+        };
+        const ecOption3 = {
+          name: 'Create agent token',
+          action: (inventoryItem: any) => {
+            this.createAgentToken(inventoryItem);
+          },
+          item: item
+        };
+        const ecOption4 = {
+          name: 'Unlink EC',
+          action: (inventoryItem: any) => {
+            this.unlinkEIC(inventoryItem);
+          },
+          item: item
+        };
+        ecOptions.push(ecOption1);
+        ecOptions.push(ecOption2);
+        ecOptions.push(ecOption3);
+        ecOptions.push(ecOption4);
+      return ecOptions;
+      case 'Asset':
+        const assetOptions = [];
+        const assetOption1 = {
+          name: 'More info',
+          action: (inventoryItem: any) => {
+            this.openAssetInfo(inventoryItem);
+          },
+          item: item
+        };
+        const assetOption2 = {
+          name: 'Last operation log',
+          action: (inventoryItem: any) => {
+            this.lastOperationLog(inventoryItem);
+          },
+          item: item
+        };
+        const assetOption3 = {
+          name: 'Uninstall agent',
+          action: (inventoryItem: any) => {
+            this.uninstallAgent(inventoryItem);
+          },
+          item: item
+        };
+        assetOptions.push(assetOption1);
+        assetOptions.push(assetOption2);
+        assetOptions.push(assetOption3);
+      return assetOptions;
+      case 'Device':
+        const deviceOptions = [];
+        const deviceOption1 = {
+          name: 'More info',
+          action: (inventoryItem: any) => {
+            this.openDeviceInfo(inventoryItem);
+          },
+          item: item
+        };
+        const deviceOption2 = {
+          name: 'Toggle enablement',
+          action: (inventoryItem: any) => {
+            this.deviceEnablement(inventoryItem);
+          },
+          item: item
+        };
+        const deviceOption3 = {
+          name: 'Unlink device',
+          action: (inventoryItem: any) => {
+            this.unlinkDevice(inventoryItem);
+          },
+          item: item
+        };
+        deviceOptions.push(deviceOption1);
+        deviceOptions.push(deviceOption2);
+        deviceOptions.push(deviceOption3);
+      return deviceOptions;
       default:
         break;
     }
   }
 }
+

@@ -18,6 +18,11 @@ export interface Backend {
     getInventory(organizationId: string);
     getInventorySummary(organizationId: string);
     installAgent(organizationId: string, edgeControllerId: string, agent: any);
+    uninstallAgent(organizationId: string, edgeControllerId: string, assetId: any);
+    createEICToken(organizationId: string);
+    createAgentJoinToken(organizationId: string,  edgeControllerId: string);
+    unlinkEIC(organizationId: string, edgeControllerId: string);
+    removeDeviceFromInventoryMockup(organizationId: string, deviceId: any);
     // Resources
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);
     getClusters(organizationId: string);
@@ -40,6 +45,7 @@ export interface Backend {
     updateDevice(organizationId: string, deviceData: any);
     addLabelToDevice(organizationId: string, label: any);
     removeLabelFromDevice(organizationId: string, label: any);
+    removeDevice(organizationId: string, deviceId: any);
     // Groups
     getGroups(organizationId: string);
     addGroup(organizationId: string, groupData: any);

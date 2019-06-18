@@ -116,9 +116,6 @@ export class InstallAgentComponent implements OnInit {
       sshPassword: ['', Validators.required],
       target: [null, Validators.required],
     });
-    if (!this.edgeControllerFromEC) {
-      this.edgeControllerFromEC = 'Select any Edge Controller';
-    }
     this.edgeControllerSelectConfig = {
       displayKey: 'name',
       search: false,
@@ -128,6 +125,9 @@ export class InstallAgentComponent implements OnInit {
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
+    if (!this.edgeControllerFromEC) {
+      this.edgeControllerFromEC = 'Select any Edge Controller';
+    }
   }
 
   /**

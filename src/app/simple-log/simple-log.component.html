@@ -1,0 +1,23 @@
+<div class="modal-card">
+  <div class="modal-content dev-group-content">
+    <!-- Header -->
+    <div class="modal-header">
+      <h3 class="nalej-form-title">Last operation info</h3>
+      <button 
+        (click)="closeModal()"
+        type="button" 
+        aria-label="Close"
+        class="close" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- Body -->
+    <div class="modal-body">
+      <div class="simple-log">
+        <p>Date: {{parseTimestampToDate(lastOpSummary.timestamp)}}</p>
+        <p>Status: {{lastOpSummary.status}}</p>
+        <p>Info: {{lastOpSummary.info}}</p>
+      </div>
+    </div>
+  </div>
+</div>

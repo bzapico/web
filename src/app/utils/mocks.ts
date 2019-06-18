@@ -1372,7 +1372,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a1',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.31',
             show: true,
@@ -1416,7 +1416,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a2',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.32',
             show: true,
@@ -1460,7 +1460,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a3',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.33',
             show: true,
@@ -1504,7 +1504,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a4',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.34',
             show: true,
@@ -1592,7 +1592,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a6',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.36',
             show: true,
@@ -1636,7 +1636,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a7',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.37',
             show: true,
@@ -1680,7 +1680,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a8',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.38',
             show: true,
@@ -1725,7 +1725,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'b6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a9',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.39',
             show: true,
@@ -1769,7 +1769,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab1',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.18',
             show: true,
@@ -1813,7 +1813,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab2',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.28',
             show: true,
@@ -1857,7 +1857,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab3',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.48',
             show: true,
@@ -1901,7 +1901,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab4',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.58',
             show: true,
@@ -1945,7 +1945,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab5',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.68',
             show: true,
@@ -1989,7 +1989,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a1e',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.78',
             show: true,
@@ -2033,7 +2033,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab7',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.88',
             show: true,
@@ -2077,7 +2077,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab',
+            asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab8',
             agent_id: 'a2ed5462-98fb-27c1cd9b79a5',
             eic_net_ip: '98.105.55.98',
             show: true,
@@ -2217,4 +2217,27 @@ export const mockInventoryList: Inventory = {
     ]
 };
 
+/**
+ * Mocked Edge Controller Join Token
+ */
+export const mockEICJoinToken = {
+    organization_id: '999-2ed7-41c1-90fb-f561eb81ea42',
+    token: '9wf59-2ed7-41c1-90fb-f561eb81ea42',
+    // tslint:disable-next-line: max-line-length
+    cacert: '-----BEGIN CERTIFICATE----- MIIC9zCCAd+gAwIBAgIBATANBgkqhkiG9w0BAQsFADAQMQ4wDAYDVQQKEwVOYWxlajAeFw0xOTA1MjgxMzQ0NDBaFw0yMTA1MjcxMzQ0NDBaMBAxDjAMBgNVBAoTBU5hbGVqMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwGJffV/afFQ2SEe7G3rvUFJCjBUCeQX+LsQevY8DSc9LRuWl67TwfzrS2fyFMOUeVZyd5D/9nwreTun3FhvyMkQKHOpoa2cYcYOFcxHGrSeE0iL+VH5+/g7bBiaAZUUh0paHQE6xiKpGxBQhGJrPDyMxlbBrb5fb5VDJA09ph3eZ4DXfC30MiB0Doc/GNEBAlN8qMXschgQV+w/PVtNObUz8jvrxYHM36vT7iWtJQ7zdzv4SxYB21emPrBdzbVkB36fVyQ7RqheLKu6rqYMUV4Nj5kPP6eTza4N32IYvB6SKOnT1Ro1iTHvTPdZhM48d7txQ1ff+cVgG+5EiBi8MKwIDAQABo1wwWjAOBgNVHQ8BAf8EBAMCAqQwEwYDVR0lBAwwCgYIKwYBBQUHAwEwEgYDVR0TAQH/BAgwBgEB/wIBADAfBgNVHREEGDAWghQqLm5hbGVqNDgubmFsZWoudGVjaDANBgkqhkiG9w0BAQsFAAOCAQEAclw2YqEuvWtTaw+fJzX4ByfZh8nrfT1mKoAcJDDHXcEbvES0b8xqXqrGYW1QO92tUgFEw23C43wKJPdzmqIYmy0sR6sghsZJLEQzY3DOXNx2GirREm7jrv66REs1tohhukB1s9PU8oxp+lYzdFtWYW88BB2tg75MMTxS/KxW10966j4aSO53osHXC1/NgWJM/Mm4WG3jAgZFFZc6BBxmjmH8O98KEsQqQOOl3zmOQAtikuE0K2hHOa5dEM5ft5569Fh53WeQr+PFlfNhlaFmmRpKHU9k2eeB7VTTwxIqx3TvA5t41RRyb5X4dr2MVizh04hMhyf4MNGuVy94B6yVw== -----END CERTIFICATE-----',
+    join_url: 'http://qwerty',
+    expires_on: 1550746676,
+    dns_url: 'asdad1231.es'
+};
 
+/**
+ * Mocked Agent Join Token
+ */
+export const mockAgentJoinToken = {
+    organization_id: '999-2ed7-41c1-90fb-f561eb81ea42',
+    edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
+    token: '9wf59-2ed7-41c1-90fb-f561eb81ea42',
+    expires_on: 1550746676,
+    // tslint:disable-next-line: max-line-length
+    ca_cert: '-----BEGIN CERTIFICATE----- MIIC9zCCAd+gAwIBAgIBATANBgkqhkiG9w0BAQsFADAQMQ4wDAYDVQQKEwVOYWxlajAeFw0xOTA1MjgxMzQ0NDBaFw0yMTA1MjcxMzQ0NDBaMBAxDjAMBgNVBAoTBU5hbGVqMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwGJffV/afFQ2SEe7G3rvUFJCjBUCeQX+LsQevY8DSc9LRuWl67TwfzrS2fyFMOUeVZyd5D/9nwreTun3FhvyMkQKHOpoa2cYcYOFcxHGrSeE0iL+VH5+/g7bBiaAZUUh0paHQE6xiKpGxBQhGJrPDyMxlbBrb5fb5VDJA09ph3eZ4DXfC30MiB0Doc/GNEBAlN8qMXschgQV+w/PVtNObUz8jvrxYHM36vT7iWtJQ7zdzv4SxYB21emPrBdzbVkB36fVyQ7RqheLKu6rqYMUV4Nj5kPP6eTza4N32IYvB6SKOnT1Ro1iTHvTPdZhM48d7txQ1ff+cVgG+5EiBi8MKwIDAQABo1wwWjAOBgNVHQ8BAf8EBAMCAqQwEwYDVR0lBAwwCgYIKwYBBQUHAwEwEgYDVR0TAQH/BAgwBgEB/wIBADAfBgNVHREEGDAWghQqLm5hbGVqNDgubmFsZWoudGVjaDANBgkqhkiG9w0BAQsFAAOCAQEAclw2YqEuvWtTaw+fJzX4ByfZh8nrfT1mKoAcJDDHXcEbvES0b8xqXqrGYW1QO92tUgFEw23C43wKJPdzmqIYmy0sR6sghsZJLEQzY3DOXNx2GirREm7jrv66REs1tohhukB1s9PU8oxp+lYzdFtWYW88BB2tg75MMTxS/KxW10966j4aSO53osHXC1/NgWJM/Mm4WG3jAgZFFZc6BBxmjmH8O98KEsQqQOOl3zmOQAtikuE0K2hHOa5dEM5ft5569Fh53WeQr+PFlfNhlaFmmRpKHU9k2eeB7VTTwxIqx3TvA5t41RRyb5X4dr2MVizh04hMhyf4MNGuVy94B6yVw== -----END CERTIFICATE-----',
+};
