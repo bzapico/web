@@ -12,8 +12,6 @@ export class MainComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    // Initialized mock to true until there is a backend to be called
-    localStorage.setItem(LocalStorageKeys.infrastructureMock, 'true');
   }
 
 }
