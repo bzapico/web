@@ -387,17 +387,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Parse to string labels map
-   * @param labels Key-value map that contains the labels
-   */
-  labelsToString(labels: any) {
-    if (!labels || labels === '-') {
-      return ;
-    }
-    return Object.entries(labels);
-  }
-
-  /**
    * Checks if the status requires an special css class
    * @param status  status name
    * @param className CSS class name
