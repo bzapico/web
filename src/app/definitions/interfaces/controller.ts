@@ -21,6 +21,8 @@ export interface Controller {
     assets?: any;
     // Status for the UI.
     status?: string;
+    // Status beauty name for the UI.
+    status_name?: string;
     // location with the EC location
     location?: string;
 }

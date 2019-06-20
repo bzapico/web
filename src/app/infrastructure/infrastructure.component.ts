@@ -74,9 +74,9 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   /**
    * Count of total cpu, memory, storage, online ECs
    */
-  cpuCoresCount: number;
-  memoryCount: number;
-  storageCount: number;
+  cpuCores: number;
+  RAM: number;
+  storage: number;
   ecsOnline: number;
   ecsTotal: number;
 
@@ -149,9 +149,9 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     this.controllers = [];
     this.loadedData = false;
     this.requestError = '';
-    this.cpuCoresCount = 0;
-    this.memoryCount = 0;
-    this.storageCount = 0;
+    this.cpuCores = 0;
+    this.RAM = 0;
+    this.storage = 0;
     this.ecsOnline = 0;
     this.ecsTotal = 0;
     this.activeContextMenuItemId = '';
@@ -176,16 +176,18 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
       if (this.organizationId !== null) {
-        this.backend.getInventorySummary(this.organizationId)
-        .subscribe(summary => {
-          this.cpuCoresCount = summary['total_num_cpu'];
-          this.memoryCount = summary['total_ram'];
-          this.storageCount = summary['total_storage'];
-        });
         this.updateInventoryList();
         this.refreshIntervalRef = setInterval(() => {
           this.updateInventoryList();
         }, this.REFRESH_RATIO); // Refresh each 60 seconds
+        this.backend.getInventorySummary(this.organizationId)
+        .subscribe(summary => {
+          if (summary) {
+            this.cpuCores = summary['total_num_cpu'];
+            this.RAM = summary['total_ram'];
+            this.storage = summary['total_storage'];
+          }
+        });
       }
     }
   }
