@@ -285,21 +285,26 @@
                 <td *ngIf="item.labels" class="col-4">
                   <button 
                     *ngFor="let label of item.labels | keyvalue" 
-                    disabled
+                    (click)="onLabelClick(item, label.key, label.value)"
+                    [ngClass]=
+                    "{
+                      'label-btn-selected': indexOfLabelSelected(item.id, label.key, label.value) >= 0 ,
+                      'btn-outline-primary': indexOfLabelSelected(item.id, label.key, label.value) === -1
+                    }" 
                     class="btn-sm btn-outline-primary">
                       {{label.key}}: {{label.value}}
                   </button>
                   <div class="label-btns">
                     <div 
-                      *ngIf="true"
-                      (click)="addLabel(device)"
+                      *ngIf="isAnyLabelSelected(item.id) === false"
+                      (click)="addLabel(item)"
                       tooltip="Add" 
                       placement="right"
                       class="label-btn-blue">
                       <i class="material-icons i-add">add</i>
                     </div>
                     <div 
-                      *ngIf="false"
+                      *ngIf="isAnyLabelSelected(item.id) === true"
                       (click)="deleteLabel(device)"
                       tooltip="Delete" 
                       placement="right"
