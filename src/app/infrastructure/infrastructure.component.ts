@@ -77,8 +77,8 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   cpuCoresCount: number;
   memoryCount: number;
   storageCount: number;
-  onlineCount: number;
-  onlineTotalCount: number;
+  ecsOnline: number;
+  ecsTotal: number;
 
   /**
    * Models that hold the sort info needed to sortBy pipe
@@ -152,8 +152,8 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     this.cpuCoresCount = 0;
     this.memoryCount = 0;
     this.storageCount = 0;
-    this.onlineCount = 0;
-    this.onlineTotalCount = 0;
+    this.ecsOnline = 0;
+    this.ecsTotal = 0;
     this.activeContextMenuItemId = '';
 
     // SortBy
@@ -219,6 +219,8 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    */
   normalizeInventoryItems(response: any) {
     this.inventory = [];
+    this.ecsOnline = 0;
+    this.ecsTotal = response.controllers.length;
     if (!response || response === null) {
     } else {
       if (response.devices) {
@@ -229,12 +231,16 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             status: any;
             device_status_name: any;
             location: string;
+            labels: any;
           }) => {
           device.type = 'Device';
           device.id = device.device_id;
           device.status = device.device_status_name;
           if (!device.location || device.location === undefined || device.location === null) {
             device.location = 'undefined';
+          }
+          if (!device.labels || device.labels === undefined || device.labels === null) {
+            device.labels = [];
           }
           this.inventory.push(device);
         });
@@ -245,11 +251,15 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             id: any;
             asset_id: any;
             location: string;
+            labels: any;
           }) => {
           asset.type = 'Asset';
           asset.id = asset.asset_id;
           if (!asset.location || asset.location === undefined || asset.location === null) {
             asset.location = 'undefined';
+          }
+          if (!asset.labels || asset.labels === undefined || asset.labels === null) {
+            asset.labels = [];
           }
           this.inventory.push(asset);
         });
@@ -259,13 +269,24 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             type: string;
             id: any;
             edge_controller_id: any;
-            location: string;
+            location: any;
+            status: string;
+            status_name: string;
           }) => {
           controller.type = 'EC';
           controller.id = controller.edge_controller_id;
-          if (!controller.location || controller.location === undefined || controller.location === null) {
+          if (!controller.location
+            || controller.location === undefined
+            || controller.location === null
+            || !controller.location.geolocation) {
             controller.location = 'undefined';
+          } else {
+            controller.location = controller.location.geolocation;
           }
+          if (controller.status_name.toLowerCase() === 'online') {
+            this.ecsOnline += 1;
+          }
+          controller.status = controller.status_name;
           this.inventory.push(controller);
         });
       }
@@ -291,11 +312,8 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param response Backend response where to modify the data
    */
   updateOnlineEcsPieChart(response) {
-    this.onlineTotalCount = response.controllers.length;
-    const itemStatus =
-    response.controllers.filter((item: { status: string; }) => item.status === 'online');
-    this.onlineCount = itemStatus.length;
-    this.infrastructurePieChart = this.generateSummaryChartData(this.onlineCount, this.onlineTotalCount);
+    this.ecsTotal = response.controllers.length;
+    this.infrastructurePieChart = this.generateSummaryChartData(this.ecsOnline, this.ecsTotal);
   }
 
   /**
@@ -416,6 +434,26 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   *  @param asset asset object
   */
   openAssetInfo(asset: any) {
+    if (!asset.hardware || Object.keys(asset.hardware).length === 0) {
+      asset.hardware = {
+        os: {
+        version: '-',
+        class_name: '-',
+        },
+        cpus: {
+          architecture: '-',
+          model: '-',
+          num_cores: '-',
+          manufacturer: '-',
+        },
+        net_interfaces: []
+      };
+    }
+    if (!asset.storage || Object.keys(asset.storage).length === 0) {
+        asset.storage = {
+          total_capacity: '-'
+         };
+    }
     const initialStateAsset = {
       organizationId: this.organizationId,
       edgeControllerId: asset.edge_controller_id,
@@ -425,7 +463,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       show: asset.show,
       created: asset.created,
       labels: asset.labels,
-      class: asset.os.class,
+      class: asset.os.class_name,
       version: asset.os.version,
       architecture: asset.hardware.cpus.architecture,
       model: asset.hardware.cpus.model,
@@ -653,7 +691,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       deviceId: device.device_id,
       created: device.register_since,
       labels: device.labels,
-      status: device.device_status_name,
+      status: device.status,
       enabled: device.enabled,
     };
 

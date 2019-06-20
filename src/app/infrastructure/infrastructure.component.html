@@ -13,7 +13,7 @@
           <h5>SUMMARY</h5>
         </div>
         <div class="summary-card">
-          <div *ngIf="onlineCount > 0" class="summary-box">
+          <div *ngIf="ecsTotal > 0" class="summary-box">
             <div class="donut-chart">
               <ngx-charts-pie-chart
                 [scheme]="colorScheme" 
@@ -22,13 +22,13 @@
                 [gradient]="gradient"
                 [explodeSlices]="false">
               </ngx-charts-pie-chart>
-              <div class="donut-number">{{onlineCount}}/{{onlineTotalCount}}</div>
+              <div class="donut-number">{{ecsOnline}}/{{ecsTotal}}</div>
             </div>
-            <p class="ecs-run">{{onlineCount}} ECS online</p>
+            <p class="ecs-run">{{ecsOnline}} ECS online</p>
             <p class="circle-name">ECs</p>
           </div>
-          <div *ngIf="onlineCount === 0"  class="no-elements">
-            <p>NO ECS DETECTED</p>
+          <div *ngIf="ecsTotal === 0"  class="no-elements">
+            <p>NO ECs DETECTED</p>
           </div>
           <div class="summary-box">
             <div class="circle">
