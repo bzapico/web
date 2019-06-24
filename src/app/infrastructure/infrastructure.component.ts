@@ -13,6 +13,7 @@ import { InstallAgentComponent } from '../install-agent/install-agent.component'
 import { Router, ActivatedRoute } from '@angular/router';
 import { SimpleLogComponent } from '../simple-log/simple-log.component';
 import { AgentJoinTokenInfoComponent } from '../agent-join-token-info/agent-join-token-info.component';
+import { AddLabelComponent } from '../add-label/add-label.component';
 
 @Component({
   selector: 'app-infrastructure',
@@ -74,11 +75,11 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   /**
    * Count of total cpu, memory, storage, online ECs
    */
-  cpuCoresCount: number;
-  memoryCount: number;
-  storageCount: number;
-  onlineCount: number;
-  onlineTotalCount: number;
+  cpuCores: number;
+  RAM: number;
+  storage: number;
+  ecsOnline: number;
+  ecsTotal: number;
 
   /**
    * Models that hold the sort info needed to sortBy pipe
@@ -115,6 +116,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   agentModalRef: BsModalRef;
   deviceModalRef: BsModalRef;
   lastOpModalRef: BsModalRef;
+  addLabelModalRef: BsModalRef;
 
   /**
    * Hold request error message or undefined
@@ -149,11 +151,11 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     this.controllers = [];
     this.loadedData = false;
     this.requestError = '';
-    this.cpuCoresCount = 0;
-    this.memoryCount = 0;
-    this.storageCount = 0;
-    this.onlineCount = 0;
-    this.onlineTotalCount = 0;
+    this.cpuCores = 0;
+    this.RAM = 0;
+    this.storage = 0;
+    this.ecsOnline = 0;
+    this.ecsTotal = 0;
     this.activeContextMenuItemId = '';
 
     // SortBy
@@ -176,16 +178,18 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
       if (this.organizationId !== null) {
-        this.backend.getInventorySummary(this.organizationId)
-        .subscribe(summary => {
-          this.cpuCoresCount = summary['total_num_cpu'];
-          this.memoryCount = summary['total_ram'];
-          this.storageCount = summary['total_storage'];
-        });
         this.updateInventoryList();
         this.refreshIntervalRef = setInterval(() => {
           this.updateInventoryList();
         }, this.REFRESH_RATIO); // Refresh each 60 seconds
+        this.backend.getInventorySummary(this.organizationId)
+        .subscribe(summary => {
+          if (summary) {
+            this.cpuCores = summary['total_num_cpu'];
+            this.RAM = summary['total_ram'];
+            this.storage = summary['total_storage'];
+          }
+        });
       }
     }
   }
@@ -219,6 +223,8 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    */
   normalizeInventoryItems(response: any) {
     this.inventory = [];
+    this.ecsOnline = 0;
+    this.ecsTotal = response.controllers.length;
     if (!response || response === null) {
     } else {
       if (response.devices) {
@@ -228,13 +234,23 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             device_id: any;
             status: any;
             device_status_name: any;
-            location: string;
+            location: any;
+            labels: any;
           }) => {
           device.type = 'Device';
           device.id = device.device_id;
           device.status = device.device_status_name;
-          if (!device.location || device.location === undefined || device.location === null) {
+          if (!device.location
+            || device.location === undefined
+            || device.location === null
+            || !device.location.geolocation
+            ) {
             device.location = 'undefined';
+          } else {
+            device.location = device.location.geolocation;
+          }
+          if (!device.labels || device.labels === undefined || device.labels === null) {
+            device.labels = [];
           }
           this.inventory.push(device);
         });
@@ -244,12 +260,21 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             type: string;
             id: any;
             asset_id: any;
-            location: string;
+            location: any;
+            labels: any;
           }) => {
           asset.type = 'Asset';
           asset.id = asset.asset_id;
-          if (!asset.location || asset.location === undefined || asset.location === null) {
+          if (!asset.location
+            || asset.location === undefined
+            || asset.location === null
+            || !asset.location.geolocation) {
             asset.location = 'undefined';
+          } else {
+            asset.location = asset.location.geolocation;
+          }
+          if (!asset.labels || asset.labels === undefined || asset.labels === null) {
+            asset.labels = [];
           }
           this.inventory.push(asset);
         });
@@ -259,13 +284,28 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             type: string;
             id: any;
             edge_controller_id: any;
-            location: string;
+            location: any;
+            status: string;
+            status_name: string;
+            labels: any;
           }) => {
           controller.type = 'EC';
           controller.id = controller.edge_controller_id;
-          if (!controller.location || controller.location === undefined || controller.location === null) {
+          if (!controller.location
+            || controller.location === undefined
+            || controller.location === null
+            || !controller.location.geolocation) {
             controller.location = 'undefined';
+          } else {
+            controller.location = controller.location.geolocation;
           }
+          if (!controller.labels || controller.labels === undefined || controller.labels === null) {
+            controller.labels = [];
+          }
+          if (controller.status_name.toLowerCase() === 'online') {
+            this.ecsOnline += 1;
+          }
+          controller.status = controller.status_name;
           this.inventory.push(controller);
         });
       }
@@ -291,11 +331,8 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param response Backend response where to modify the data
    */
   updateOnlineEcsPieChart(response) {
-    this.onlineTotalCount = response.controllers.length;
-    const itemStatus =
-    response.controllers.filter((item: { status: string; }) => item.status === 'online');
-    this.onlineCount = itemStatus.length;
-    this.infrastructurePieChart = this.generateSummaryChartData(this.onlineCount, this.onlineTotalCount);
+    this.ecsTotal = response.controllers.length;
+    this.infrastructurePieChart = this.generateSummaryChartData(this.ecsOnline, this.ecsTotal);
   }
 
   /**
@@ -367,17 +404,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Parse to string labels map
-   * @param labels Key-value map that contains the labels
-   */
-  labelsToString(labels: any) {
-    if (!labels || labels === '-') {
-      return ;
-    }
-    return Object.entries(labels);
-  }
-
-  /**
    * Checks if the status requires an special css class
    * @param status  status name
    * @param className CSS class name
@@ -416,6 +442,26 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   *  @param asset asset object
   */
   openAssetInfo(asset: any) {
+    if (!asset.hardware || Object.keys(asset.hardware).length === 0) {
+      asset.hardware = {
+        os: {
+        version: '-',
+        class_name: '-',
+        },
+        cpus: {
+          architecture: '-',
+          model: '-',
+          num_cores: '-',
+          manufacturer: '-',
+        },
+        net_interfaces: []
+      };
+    }
+    if (!asset.storage || Object.keys(asset.storage).length === 0) {
+        asset.storage = {
+          total_capacity: '-'
+         };
+    }
     const initialStateAsset = {
       organizationId: this.organizationId,
       edgeControllerId: asset.edge_controller_id,
@@ -425,7 +471,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       show: asset.show,
       created: asset.created,
       labels: asset.labels,
-      class: asset.os.class,
+      class: asset.os.class_name,
       version: asset.os.version,
       architecture: asset.hardware.cpus.architecture,
       model: asset.hardware.cpus.model,
@@ -653,7 +699,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       deviceId: device.device_id,
       created: device.register_since,
       labels: device.labels,
-      status: device.device_status_name,
+      status: device.status,
       enabled: device.enabled,
     };
 
@@ -739,6 +785,96 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     } else {
       this.activeContextMenuItemId = item.id;
     }
+  }
+
+  addLabel(item: any) {
+    const initialState = {
+      organizationId: this.organizationId,
+      entityType: item.type,
+      entity: item,
+      modalTitle: ''
+    };
+
+    switch (item.type) {
+      case 'EC':
+        initialState.modalTitle = item.type + ' ' + item.name;
+        break;
+      case 'Asset':
+        initialState.modalTitle = item.type + ' ' + item.eic_net_ip;
+        break;
+      case 'Device':
+        initialState.modalTitle = item.type + ' ' + item.id;
+        break;
+      default:
+        break;
+    }
+
+    this.addLabelModalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.addLabelModalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => { });
+  }
+  deleteLabel(item: any) {
+  }
+
+  /**
+   * Selects a label
+   * @param item entity object
+   * @param labelKey label key from selected label
+   * @param labelValue label value from selected label
+   */
+  onLabelClick(item: any, labelKey: any, labelValue: any) {
+    const selectedIndex = this.indexOfLabelSelected(item.id, labelKey, labelValue);
+    const newLabel = {
+      id: item.id,
+      labels: {}
+    } ;
+    if (selectedIndex === -1 ) {
+      const selected = this.selectedLabels.map(x => x.id).indexOf(item.id);
+      if (selected === -1) {
+        newLabel.labels[labelKey] = labelValue;
+        this.selectedLabels.push(newLabel);
+      } else {
+        this.selectedLabels[selected].labels[labelKey] = labelValue;
+      }
+    } else {
+      if (Object.keys(this.selectedLabels[selectedIndex].labels).length > 1) {
+        console.log(this.selectedLabels[selectedIndex].labels[labelKey]);
+        delete this.selectedLabels[selectedIndex].labels[labelKey];
+      } else {
+        this.selectedLabels.splice(selectedIndex, 1);
+      }
+    }
+  }
+
+  /**
+   * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
+   * @param id entity from selected label
+   */
+  isAnyLabelSelected(id) {
+    if (this.selectedLabels.length > 0) {
+      const indexSelected = this.selectedLabels.map(x => x.id).indexOf(id);
+      if (indexSelected >= 0) {
+          return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Check if the label is selected. Returns the index number in selected labels or -1 if the label is not found.
+   * @param entityId entity from selected label
+   * @param labelKey label key from selected label
+   * @param labelValue label value from selected label
+   */
+  indexOfLabelSelected(id, labelKey, labelValue) {
+    for (let index = 0; index < this.selectedLabels.length; index++) {
+      if (this.selectedLabels[index].id === id &&
+        this.selectedLabels[index].labels[labelKey] === labelValue
+      ) {
+        return index;
+      }
+    }
+    return -1;
   }
 
   /**

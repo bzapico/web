@@ -196,7 +196,7 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
    */
   getInventorySummary(organizationId: string) {
-    throw new Error('Method not implemented.');
+    throw new Error('Method not implemented yet');
   }
 
   /********************

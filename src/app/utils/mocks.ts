@@ -2166,7 +2166,8 @@ export const mockInventoryList: Inventory = {
                     status: 'online'
                 },
             ],
-            status: 'offline'
+            status: 'offline',
+            status_name: 'OFFLINE'
         },
         {
             organization_id: '999-2ed7-41c1-90fb-f561eb81ea42',
@@ -2212,7 +2213,8 @@ export const mockInventoryList: Inventory = {
                     status: 'online'
                 },
             ],
-            status: 'online'
+            status: 'online',
+            status_name: 'OFFLINE'
         }
     ]
 };
