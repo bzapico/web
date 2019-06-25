@@ -509,9 +509,19 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   *  @param asset asset object
   */
   lastOperationLog(asset: any) {
+    let lastOpSummary;
+    if (asset.last_op_summary) {
+      lastOpSummary = asset.last_op_summary;
+    } else {
+      lastOpSummary = {
+        timestamp: 0,
+        status: 'undefined',
+        info: 'No info available'
+      };
+    }
     const initialState = {
       organizationId: this.organizationId,
-      lastOpSummary: asset.last_op_summary
+      lastOpSummary: lastOpSummary
     };
 
     this.lastOpModalRef = this.modalService.show(

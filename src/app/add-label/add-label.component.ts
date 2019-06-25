@@ -211,6 +211,10 @@ export class AddLabelComponent implements OnInit {
             });
           });
           break;
+        case 'ec':
+          break;
+        case 'asset':
+          break;
         default:
           break;
       }
