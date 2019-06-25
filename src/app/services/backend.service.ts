@@ -225,10 +225,8 @@ export class BackendService implements Backend {
    */
   uninstallAgent(organizationId: string, edgeControllerId: string, assetId: any) {
     return this.post(
-      API_URL + 'agent/' + organizationId + '/' + edgeControllerId + '/uninstall',
+      API_URL + 'agent/' + organizationId + '/' + assetId + '/uninstall',
       {
-        organization_id: organizationId,
-        edge_controller_id: edgeControllerId,
         asset_id: assetId
       }
     );
