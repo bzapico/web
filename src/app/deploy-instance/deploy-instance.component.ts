@@ -99,6 +99,7 @@ export class DeployInstanceComponent implements OnInit {
     this.backend.getRegisteredApps(this.organizationId)
     .subscribe(response => {
         this.registeredApps = response.descriptors || [];
+        console.log(this.registeredApps);
     });
   }
 
