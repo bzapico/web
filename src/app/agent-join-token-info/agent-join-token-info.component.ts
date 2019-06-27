@@ -54,13 +54,7 @@ export class AgentJoinTokenInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
-    if (jwtData !== null) {
-      this.organizationId = JSON.parse(jwtData).organizationID;
-        if (this.organizationId !== null) {
-          this.getAgentToken(this.organizationId, this.edgeControllerId);
-        }
-    }
+    this.getAgentToken(this.organizationId, this.edgeControllerId);
   }
 
   /**
