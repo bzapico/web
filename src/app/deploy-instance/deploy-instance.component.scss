@@ -4,8 +4,22 @@
     align-items: center;
     width: 100%;
     height: 3em;
-    background-color: #ededed;
+    background-color: #F4F3F4;
     cursor: pointer;
     color: #0937ff;
     border-radius: 5px;
+    font-size: .8em;
+    text-indent: 17px;
+}
+.accordion {
+    border: 2px solid #EEEEEE;
+    border-radius: 5px;
+}
+.accordion-body {
+    width: 322px;
+    margin: 0 auto;
+}
+.accordion-foot {
+    color: #cacaca;
+    text-transform: lowercase;
 }
