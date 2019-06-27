@@ -599,7 +599,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       registeredId: app.app_descriptor_id,
       registeredName: app.name,
       openFromRegistered: true,
-      defaultAutofocus: true
+      defaultAutofocus: true,
+      appFromRegistered: app
     };
 
     this.modalRef = this.modalService.show(DeployInstanceComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });

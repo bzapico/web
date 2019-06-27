@@ -41,6 +41,7 @@ export class DeployInstanceComponent implements OnInit {
   registeredApps: any[];
   instanceName: string;
   selectedApp: any;
+  appFromRegistered: any;
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -112,6 +113,29 @@ export class DeployInstanceComponent implements OnInit {
     .subscribe(response => {
         this.registeredApps = response.descriptors || [];
     });
+    if (this.openFromRegistered && this.appFromRegistered) {
+      this.selectedApp = this.appFromRegistered;
+      this.registeredName = this.selectedApp.name;
+      this.availableParamsCategory.basic = false;
+      this.availableParamsCategory.advanced = false;
+      this.params = this.deployInstanceForm.get('params') as FormArray;
+      if (this.selectedApp.parameters) {
+        this.defaultParamsOpened = true;
+        this.selectedApp.parameters.forEach(param => {
+          param.value = param.default_value;
+        });
+        this.selectedApp.parameters.forEach(param => {
+          this.params.push(this.formBuilder.group(
+            [param]
+          ));
+          if (!param.category) {
+            this.availableParamsCategory.basic = true;
+          } else {
+            this.availableParamsCategory.advanced = true;
+          }
+        });
+      }
+    }
   }
 
   /**
@@ -220,12 +244,17 @@ export class DeployInstanceComponent implements OnInit {
       this.bsModalRef.hide();
     }
   }
-
+  /**
+   * Toggle advanced parameters
+   */
   toggleAdvancedParameters() {
     this.defaultParamsOpened = false;
     this.advParamsOpened = !this.advParamsOpened;
   }
 
+  /**
+   * Toggle default parameters
+   */
   toggleDefaultParameters () {
     this.advParamsOpened = false;
     this.defaultParamsOpened = !this.defaultParamsOpened;
