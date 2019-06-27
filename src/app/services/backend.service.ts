@@ -196,7 +196,7 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
    */
   getInventorySummary(organizationId: string) {
-    return this.get(
+    return this.post(
       API_URL + 'inventory/' + organizationId + '/summary'
     );
   }
