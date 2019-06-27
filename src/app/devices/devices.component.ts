@@ -501,7 +501,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Checkbox switcher statement to select one of enabled device to be executed.
    * @param device device data to update
    */
-  enableSwitcher(device) {
+  enableSwitcher(device: { enabled: boolean; device_group_id: any; device_id: any; }) {
    device.enabled = !device.enabled;
    // backend call
    this.backend.updateDevice(this.organizationId, {
@@ -536,7 +536,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Checks if the device group is active to show in the tabs
    * @param groupId device group identifier
    */
-  amIactive(groupId) {
+  amIactive(groupId: string) {
     if (groupId === this.activeGroupId) {
       return 'active';
     }
@@ -548,7 +548,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Checks if there are less than a maximum number groups in groups list
    * @param groups groups list identifier
    */
-  haveIGroups(groups) {
+  haveIGroups(groups: { length: number; }) {
     if (groups.length > this.DISPLAYED_GROUP_MAX) {
       return '';
     }
@@ -694,7 +694,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Locate the name of a group through an id
    * @param groupId group id
    */
-  getGroupName(groupId) {
+  getGroupName(groupId: any) {
     if (this.groups && this.groups.length > 0) {
       const index = this.groups.map(x => x.device_group_id).indexOf(groupId);
       if (index !== -1) {
@@ -727,19 +727,21 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
     let devices = 0;
     const devicesList = this.getDevices();
+    console.log('deviceslist from count  ', devicesList);
     devicesList.forEach(device => {
-      if (device.device_group_id === groupId) {
+      if (device && device.device_group_id === groupId) {
         devices += 1;
       }
     });
     return devices;
   }
+
   /**
    * Search for an specific array of devices that are part of the same group
    * @param groupId Group identifier
    */
   getGroupDevices(groupId: string): any[] {
-    let devicesGroup;
+    let devicesGroup: any[] | { device_group_id: string; }[];
     for (let indexGroup = 0; indexGroup < this.devices.length; indexGroup++) {
       devicesGroup = this.devices[indexGroup];
       if (devicesGroup && devicesGroup[0] && devicesGroup[0].device_group_id) {
@@ -782,8 +784,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   /**
    * Opens the modal view that holds add label component
+   * @param device Device object
    */
-  addLabel(device) {
+  addLabel(device: { device_id: any; }) {
     const initialState = {
       organizationId: this.organizationId,
       entityType: 'device',
@@ -794,14 +797,13 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { });
-
   }
 
   /**
    * Deletes a selected label
    * @param entity selected label entity
    */
-  deleteLabel(entity) {
+  deleteLabel(entity: { device_id: any; device_group_id: any; }) {
     const deleteConfirm = confirm('Delete labels?');
     if (deleteConfirm) {
       const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.device_id);
@@ -827,7 +829,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param labelKey label key from selected label
    * @param labelValue label value from selected label
    */
-  onLabelClick(entityId, labelKey, labelValue) {
+  onLabelClick(entityId: any, labelKey: string | number, labelValue: any) {
     const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
     const newLabel = {
       entityId: entityId,
@@ -856,7 +858,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   * @param labelKey label key from selected label
   * @param labelValue label value from selected label
   */
-  indexOfLabelSelected(entityId, labelKey, labelValue) {
+  indexOfLabelSelected(entityId: any, labelKey: string | number, labelValue: any) {
     for (let index = 0; index < this.selectedLabels.length; index++) {
       if (this.selectedLabels[index].entityId === entityId &&
           this.selectedLabels[index].labels[labelKey] === labelValue
@@ -871,7 +873,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
    * @param entityId entity from selected label
    */
-  isAnyLabelSelected(entityId) {
+  isAnyLabelSelected(entityId: any) {
     if (this.selectedLabels.length > 0) {
       const indexSelected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
       if (indexSelected >= 0) {
@@ -899,4 +901,28 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
   }
 
+  /**
+   * Requests to unlink the selected device
+   * @param device Device object
+   */
+  unlinkDevice(device: { device_id: string; }) {
+    const unlinkConfirm = confirm('Unlink ' + device.device_id + '?');
+    if (unlinkConfirm) {
+      this.backend.removeDevice(this.organizationId, device.device_id)
+        .subscribe(unlinkResponse => {
+          console.log('unlinkResponse ', unlinkResponse);
+        this.notificationsService.add({
+          message: 'Unlinking ' + device.device_id,
+          timeout: 3000
+        });
+        this.updateGroupsList(this.organizationId);
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 5000,
+            type: 'warning'
+          });
+        });
+    }
+  }
 }

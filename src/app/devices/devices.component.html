@@ -510,17 +510,21 @@
                       </div>
                     </div>
                   </td>
-                  <td class="col-1 text-center actions-col actions-col-fix">
+                  <td class="col-1 actions-col">
                     <span class="checkbox-box">
                       <span 
                         *ngIf="!device.enabled" 
                         (click)="enableSwitcher(device)"
+                        tooltip="Disabled" 
+                        placement="left" 
                         class="devices-checkbox">
                         <i class="material-icons grey">check_box_outline_blank</i>
                       </span>
                       <span 
                         *ngIf="device.enabled"  
                         (click)="enableSwitcher(device)" 
+                        tooltip="Enabled" 
+                        placement="left" 
                         class="devices-checkbox">
                         <i class="material-icons blue">check_box</i>
                       </span>
@@ -597,17 +601,21 @@
                       </div>
                     </div>
                   </td>
-                  <td class="col-1 text-center actions-col actions-col-fix">
+                  <td class="col-1 actions-col">
                     <span class="checkbox-box">
                       <span 
-                        *ngIf="!checkBox" 
+                        *ngIf="!device.enabled" 
                         (click)="enableSwitcher(device)"
+                        tooltip="Disabled" 
+                        placement="left" 
                         class="devices-checkbox">
                         <i class="material-icons grey">check_box_outline_blank</i>
                       </span>
                       <span 
-                        *ngIf="checkBox"  
+                        *ngIf="device.enabled"  
                         (click)="enableSwitcher(device)" 
+                        tooltip="Enabled" 
+                        placement="left" 
                         class="devices-checkbox">
                         <i class="material-icons blue">check_box</i>
                       </span>
@@ -625,11 +633,11 @@
             </tbody>
           </table>
         </div> 
-          <!-- No info to show -->
+        <!-- No info to show -->
         <div *ngIf="groups.length === 0 && !requestError" class="no-elements">
           No available groups have been created. Add a new group to be able to register devices in it.
         </div>
-          <!-- Requested error -->
+        <!-- Requested error -->
         <div *ngIf="requestError" class="no-elements">
           <p>{{ requestError }}</p>
         </div>
