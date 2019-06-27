@@ -1047,7 +1047,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>deploy(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, descriptorId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>deploy(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, descriptorId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, params?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
@@ -1105,6 +1105,18 @@
                                                     
                                                     <td>
                                                             No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>params</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            Yes
                                                     </td>
                                                     
 
@@ -3660,7 +3672,7 @@ export interface Backend {
     getAppDescriptor(organizationId: string, descriptorId: string);
     addAppDescriptor(organizationId: string, descriptor: any);
     updateAppDescriptor(organizationId: string, descriptorId: string, changes: any);
-    deploy(organizationId: string, descriptorId: string, name: string);
+    deploy(organizationId: string, descriptorId: string, name: string, params?: any);
     undeploy(organizationId: string, instanceId: string);
     deleteRegistered(organizationId: string, descriptorId: string);
     // Devices
