@@ -1,0 +1,11 @@
+.accordion-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 3em;
+    background-color: #ededed;
+    cursor: pointer;
+    color: #0937ff;
+    border-radius: 5px;
+}

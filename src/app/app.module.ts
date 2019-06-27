@@ -8,7 +8,7 @@ import { routes } from './app.routing';
 import { AppComponent } from './app.component';
 import { DebugPanelComponent } from './debug-panel/debug-panel.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { ButtonsModule, CarouselModule, AccordionModule } from 'ngx-bootstrap';
+import { ButtonsModule, CarouselModule } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { NotificationsComponent } from './notifications/notifications.component';
@@ -144,7 +144,6 @@ import { AgentJoinTokenInfoComponent } from './agent-join-token-info/agent-join-
     AlertModule.forRoot(),
     CarouselModule.forRoot(),
     TooltipModule.forRoot(),
-    AccordionModule.forRoot(),
     // ROUTES
     routes
   ],

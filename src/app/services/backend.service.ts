@@ -405,15 +405,25 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
    * @param descriptorId Descriptor identifier
    * @param name Instance name
+   * @param params? optional parameters that may be included for deploying an instance
    */
-  deploy(organizationId: string, descriptorId: string, name: string) {
-    return this.post(
-      API_URL + 'apps/inst/' + organizationId + '/' + descriptorId + '/deploy',
-      {
+  deploy(organizationId: string, descriptorId: string, name: string, params?: any) {
+    let postObject: any = {
+      organization_id: organizationId,
+      app_descriptor_id: descriptorId,
+      name: name
+    };
+    if (params) {
+      postObject = {
         organization_id: organizationId,
         app_descriptor_id: descriptorId,
-        name: name
-      }
+        name: name,
+        params: params
+      };
+    }
+    return this.post(
+      API_URL + 'apps/inst/' + organizationId + '/' + descriptorId + '/deploy',
+      postObject
     );
   }
 
