@@ -213,8 +213,15 @@ export class BackendService implements Backend {
    * @param agent Agent installer
    */
   installAgent(organizationId: string, edgeControllerId: string, agent: any) {
+    const installAgentRequestObj = {
+      organization_id: organizationId,
+      edge_controller_id: edgeControllerId,
+      agent_type: agent.agent_type,
+      credentials: {username: agent.username, password: agent.password},
+      target_host: agent.target_host
+    };
     return this.post(
-      API_URL + 'agent/' + organizationId + '/' + edgeControllerId + '/install', agent
+      API_URL + 'ec/' + organizationId + '/agent/install', installAgentRequestObj
     );
   }
 
