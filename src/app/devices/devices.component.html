@@ -510,27 +510,36 @@
                       </div>
                     </div>
                   </td>
-                  <td class="col-1 text-center">
-                    <span 
-                      *ngIf="!device.enabled" 
-                      (click)="enableSwitcher(device)"
-                      class="devices-checkbox">
-                      <i class="material-icons grey">check_box_outline_blank</i>
+                  <td class="col-1 text-center actions-col actions-col-fix">
+                    <span class="checkbox-box">
+                      <span 
+                        *ngIf="!device.enabled" 
+                        (click)="enableSwitcher(device)"
+                        class="devices-checkbox">
+                        <i class="material-icons grey">check_box_outline_blank</i>
+                      </span>
+                      <span 
+                        *ngIf="device.enabled"  
+                        (click)="enableSwitcher(device)" 
+                        class="devices-checkbox">
+                        <i class="material-icons blue">check_box</i>
+                      </span>
                     </span>
-                    <span 
-                      *ngIf="device.enabled"  
-                      (click)="enableSwitcher(device)" 
-                      class="devices-checkbox">
-                      <i class="material-icons blue">check_box</i>
-                    </span>
+                    <button 
+                      (click)="unlinkDevice(device)"
+                      tooltip="Unlink device" 
+                      placement="left" 
+                      class="action-btn-red-2">
+                      <i class="material-icons i-red-2">delete</i>
+                    </button>
                   </td>
                 </span>
-                <span *ngIf="activeGroupId === device.device_group_id" >
+                <span *ngIf="activeGroupId === device.device_group_id">
                   <td *ngIf="groups.length > 0 && countGroupDevices(device.device_group_id) === 0" class="col-12">
                       No available devices registered in this group
                   </td>
                   <td class="col-3">{{device.device_id}}</td>
-                  <td class="col-2">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</td>  
+                  <td class="col-2">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</td>
                   <td  
                     class="col-2 col-center-lowercase"
                     [ngClass]=
@@ -588,19 +597,28 @@
                       </div>
                     </div>
                   </td>
-                  <td class="col-1 text-center">
-                    <span 
-                      *ngIf="!checkBox" 
-                      (click)="enableSwitcher(device)"
-                      class="devices-checkbox">
-                      <i class="material-icons grey">check_box_outline_blank</i>
+                  <td class="col-1 text-center actions-col actions-col-fix">
+                    <span class="checkbox-box">
+                      <span 
+                        *ngIf="!checkBox" 
+                        (click)="enableSwitcher(device)"
+                        class="devices-checkbox">
+                        <i class="material-icons grey">check_box_outline_blank</i>
+                      </span>
+                      <span 
+                        *ngIf="checkBox"  
+                        (click)="enableSwitcher(device)" 
+                        class="devices-checkbox">
+                        <i class="material-icons blue">check_box</i>
+                      </span>
                     </span>
-                    <span 
-                      *ngIf="checkBox"  
-                      (click)="enableSwitcher(device)" 
-                      class="devices-checkbox">
-                      <i class="material-icons blue">check_box</i>
-                    </span>
+                    <button 
+                      (click)="unlinkDevice(device)"
+                      tooltip="Unlink device" 
+                      placement="left" 
+                      class="action-btn-red-2">
+                      <i class="material-icons i-red-2">delete</i>
+                    </button>
                   </td>
                 </span>
               </tr>
