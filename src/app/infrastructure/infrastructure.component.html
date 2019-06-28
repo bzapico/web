@@ -305,7 +305,7 @@
                     </div>
                     <div 
                       *ngIf="isAnyLabelSelected(item.id) === true"
-                      (click)="deleteLabel(device)"
+                      (click)="deleteLabel(item)"
                       tooltip="Delete" 
                       placement="right"
                       class="label-btn-red">

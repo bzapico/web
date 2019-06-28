@@ -261,6 +261,14 @@ export class MockupBackendService implements Backend {
     );
   }
 
+  updateAsset(organizationId: string, assetId: string, asset: any) {
+    // TODO
+  }
+
+  updateEC(organizationId: string, ecId: string, ec: any) {
+    // TODO
+  }
+
   /**
    * Simulates uninstall an agent
    * @param organizationId Organization identifier

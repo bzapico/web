@@ -250,8 +250,9 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             device.location = device.location.geolocation;
           }
           if (!device.labels || device.labels === undefined || device.labels === null) {
-            device.labels = [];
+            device.labels = {};
           }
+          device.status = device.device_status_name;
           this.inventory.push(device);
         });
       }
@@ -262,6 +263,8 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             asset_id: any;
             location: any;
             labels: any;
+            status?: string;
+            status_name: string;
           }) => {
           asset.type = 'Asset';
           asset.id = asset.asset_id;
@@ -274,8 +277,9 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             asset.location = asset.location.geolocation;
           }
           if (!asset.labels || asset.labels === undefined || asset.labels === null) {
-            asset.labels = [];
+            asset.labels = {};
           }
+          asset.status = asset.status_name;
           this.inventory.push(asset);
         });
       }
@@ -300,7 +304,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             controller.location = controller.location.geolocation;
           }
           if (!controller.labels || controller.labels === undefined || controller.labels === null) {
-            controller.labels = [];
+            controller.labels = {};
           }
           if (controller.status_name.toLowerCase() === 'online') {
             this.ecsOnline += 1;
@@ -823,13 +827,17 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
 
     switch (item.type) {
       case 'EC':
-        initialState.modalTitle = item.type + ' ' + item.name;
+        initialState.modalTitle = item.name;
         break;
       case 'Asset':
-        initialState.modalTitle = item.type + ' ' + item.eic_net_ip;
+        if (item.eic_net_ip) {
+          initialState.modalTitle = item.eic_net_ip;
+        } else {
+          initialState.modalTitle = item.asset_id;
+        }
         break;
       case 'Device':
-        initialState.modalTitle = item.type + ' ' + item.id;
+        initialState.modalTitle =  item.id;
         break;
       default:
         break;
@@ -840,6 +848,61 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     this.modalService.onHide.subscribe((reason: string) => { });
   }
   deleteLabel(item: any) {
+    const deleteConfirm = confirm('Delete labels?');
+    if (deleteConfirm) {
+      switch (item.type) {
+        case 'EC':
+            console.log(item);
+            const indexEC = this.selectedLabels.map(x => x.id).indexOf(item.id);
+            console.log(indexEC);
+            this.backend.updateEC(
+              this.organizationId,
+              item.edge_controller_id,
+              {
+                organizationId: this.organizationId,
+                edge_controller_id: item.edge_controller_id,
+                remove_labels: true,
+                labels: this.selectedLabels[indexEC].labels
+              }).subscribe(deleteLabelResponse => {
+                this.selectedLabels.splice(index, 1);
+                this.updateInventoryList();
+              });
+          break;
+        case 'Asset':
+          const indexAsset = this.selectedLabels.map(x => x.id).indexOf(item.id);
+          this.backend.updateAsset(
+            this.organizationId,
+            item.asset_id,
+            {
+              organizationId: this.organizationId,
+              asset_id: item.asset_id,
+              remove_labels: true,
+              labels: this.selectedLabels[indexAsset].labels
+            }).subscribe(deleteLabelResponse => {
+              this.selectedLabels.splice(index, 1);
+              this.updateInventoryList();
+            });
+          break;
+        case 'Device':
+            const index = this.selectedLabels.map(x => x.id).indexOf(item.id);
+            this.backend.removeLabelFromDevice(
+              this.organizationId,
+              {
+                organizationId: this.organizationId,
+                device_id: item.device_id,
+                device_group_id: item.device_group_id,
+                labels: this.selectedLabels[index].labels
+              }).subscribe(deleteLabelResponse => {
+                this.selectedLabels.splice(index, 1);
+                this.updateInventoryList();
+              });
+          break;
+        default:
+          break;
+      }
+    } else {
+      // Do nothing
+    }
   }
 
   /**

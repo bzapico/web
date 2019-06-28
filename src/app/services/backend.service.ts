@@ -268,6 +268,19 @@ export class BackendService implements Backend {
     );
   }
 
+  // POST '/v1/inventory/{organization_id}/ec/{ec_id}/update'
+  /**
+   * Requests to uninstall an agent
+   * @param organizationId Organization identifier
+   * @param ecId Edge controller id
+   * @param ec Edge controller updated object
+   */
+  updateEC(organizationId: string, ecId: any, ec: any) {
+    return this.post(
+      API_URL + 'inventory/' + organizationId + '/ec/' + ecId + '/update',
+      ec
+    );
+  }
   // POST '/v1/ec/{organization_id}/unlink'
   /**
    * Operation to remove/uninstall an EIC
@@ -277,6 +290,23 @@ export class BackendService implements Backend {
   unlinkEIC(organizationId: string, edgeControllerId: string) {
     return this.post(
       API_URL + 'ec/' + organizationId + '/unlink'
+    );
+  }
+
+    /********************
+   * Infrastructure - Asset
+   ********************/
+    // POST '/v1/inventory/{organization_id}/asset/{asset_id}/update'
+  /**
+   * Requests to uninstall an agent
+   * @param organizationId Organization identifier
+   * @param assetId Edge controller id
+   * @param asset Asset object updated
+   */
+  updateAsset(organizationId: string, assetId: any, asset: any) {
+    return this.post(
+      API_URL + 'inventory/' + organizationId + '/asset/' + assetId + '/update',
+      asset
     );
   }
 
