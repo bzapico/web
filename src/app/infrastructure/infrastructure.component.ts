@@ -676,7 +676,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param controller identifier
    */
   unlinkEIC(controller: any) {
-    if (controller.assets !== 0) {
+    if (controller.assets) {
       alert('Cannot unlink EC. Agents on associated assets should be uninstalled before.');
     } else {
       const unlinkConfirm = confirm('Unlink Edge Controller?');
