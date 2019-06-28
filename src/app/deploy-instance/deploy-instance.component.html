@@ -11,9 +11,11 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <!-- Body -->
-    <div class="modal-body">
-      <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">
+  </div>
+  <!-- Body -->
+  <div class="modal-body">
+    <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">
+      <div class="scroll-modal-form">
         <div *ngIf="!openFromRegistered" class="form-group form-group-drop">
           <label>Registered name</label>
           <ngx-select-dropdown 
@@ -104,12 +106,12 @@
             </div>
           <!-- ADVANCED PARAMETERS-->
         </div>
-        <div class="form-group-btn">
-          <button class="nalej-form-btn-blue" [disabled]="loading">
-            <span class="align-bottom">Deploy</span>
-          </button>
-        </div>
-      </form>
+      </div>
+    </form>
+    <div class="form-group-btn">
+      <button class="nalej-form-btn-blue" [disabled]="loading">
+        <span class="align-bottom">Deploy</span>
+      </button>
     </div>
   </div>
 </div>
