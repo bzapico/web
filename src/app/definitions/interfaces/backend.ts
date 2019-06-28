@@ -45,7 +45,7 @@ export interface Backend {
     updateDevice(organizationId: string, deviceData: any);
     addLabelToDevice(organizationId: string, label: any);
     removeLabelFromDevice(organizationId: string, label: any);
-    removeDevice(organizationId: string, deviceId: any);
+    removeDevice(organizationId: string, groupId: string, deviceId: any);
     // Groups
     getGroups(organizationId: string);
     addGroup(organizationId: string, groupData: any);

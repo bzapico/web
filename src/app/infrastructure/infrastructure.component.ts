@@ -709,7 +709,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       deviceId: device.device_id,
       created: device.register_since,
       labels: device.labels,
-      status: device.status,
+      status: device.device_status,
       enabled: device.enabled,
     };
 
@@ -742,22 +742,38 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param device device in inventory item
    */
   deviceEnablement(device: any) {
-    device.enabled = !device.enabled;
-    this.backend.updateDevice(this.organizationId, {
-       organizationId: this.organizationId,
-       deviceGroupId: device.device_group_id,
-       deviceId: device.device_id,
-       enabled: device.enabled
-    }).subscribe((response: any) => {
-      let notificationText = 'enabled';
-      if (!device.enabled) {
-       notificationText = 'disabled';
-      }
-     this.notificationsService.add({
-       message: 'The device is now ' + notificationText,
-       timeout: 3000
-     });
-    });
+    let deviceCurrentEnablementStr = 'DISABLED';
+    let deviceFutureEnablementStr = 'enable';
+    if (device.enabled) {
+      deviceCurrentEnablementStr = 'ENABLED';
+      deviceFutureEnablementStr = 'disable';
+    }
+    const confirmResult = confirm('Device '
+      + device.device_id
+      + ' is currently '
+      + deviceCurrentEnablementStr
+      + '. Do you want to '
+      + deviceFutureEnablementStr
+      + ' it?');
+
+    if (confirmResult ) {
+      device.enabled = !device.enabled;
+      this.backend.updateDevice(this.organizationId, {
+         organizationId: this.organizationId,
+         deviceGroupId: device.device_group_id,
+         deviceId: device.device_id,
+         enabled: device.enabled
+      }).subscribe((response: any) => {
+        let notificationText = 'enabled';
+        if (!device.enabled) {
+         notificationText = 'disabled';
+        }
+       this.notificationsService.add({
+         message: 'The device is now ' + notificationText,
+         timeout: 3000
+       });
+      });
+    }
   }
 
    /**
@@ -767,7 +783,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   unlinkDevice(device: any) {
     const unlinkConfirm = confirm('Unlink device?');
     if (unlinkConfirm) {
-      this.backend.removeDeviceFromInventoryMockup(this.organizationId, device.device_id)
+      this.backend.removeDevice(this.organizationId, device.device_group_id , device.device_id)
         .subscribe(response => {
           this.notificationsService.add({
             message: 'Device ' + '' + ' has been unlinked',

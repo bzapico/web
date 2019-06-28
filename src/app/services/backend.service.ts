@@ -559,11 +559,12 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
     * @param deviceId device identifier
    */
-  removeDevice(organizationId: string, deviceId: any) {
+  removeDevice(organizationId: string, groupId: string, deviceId: any) {
     return this.post(
       API_URL + 'device/' + organizationId + '/remove',
       {
         organization_id: organizationId,
+        device_group_id: groupId,
         device_id: deviceId
       }
     );
