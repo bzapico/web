@@ -852,9 +852,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     if (deleteConfirm) {
       switch (item.type) {
         case 'EC':
-            console.log(item);
             const indexEC = this.selectedLabels.map(x => x.id).indexOf(item.id);
-            console.log(indexEC);
             this.backend.updateEC(
               this.organizationId,
               item.edge_controller_id,
@@ -927,7 +925,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       }
     } else {
       if (Object.keys(this.selectedLabels[selectedIndex].labels).length > 1) {
-        console.log(this.selectedLabels[selectedIndex].labels[labelKey]);
         delete this.selectedLabels[selectedIndex].labels[labelKey];
       } else {
         this.selectedLabels.splice(selectedIndex, 1);

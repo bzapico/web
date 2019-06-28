@@ -236,7 +236,9 @@ export class BackendService implements Backend {
     return this.post(
       API_URL + 'agent/' + organizationId + '/' + assetId + '/uninstall',
       {
-        asset_id: assetId
+        organization_id: organizationId,
+        asset_id: assetId,
+        force: true
       }
     );
   }
