@@ -291,7 +291,8 @@ export class BackendService implements Backend {
    */
   unlinkEIC(organizationId: string, edgeControllerId: string) {
     return this.post(
-      API_URL + 'ec/' + organizationId + '/unlink'
+      API_URL + 'ec/' + organizationId + '/unlink',
+      {edge_controller_id: edgeControllerId}
     );
   }
 
