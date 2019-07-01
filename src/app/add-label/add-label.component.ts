@@ -78,10 +78,6 @@ export class AddLabelComponent implements OnInit {
    */
   addLabel(form) {
     this.submitted = true;
-    const label = {
-      key: form.labelName.value,
-      value: form.labelValue.value,
-    };
     const updatedEntity = this.entity;
     if (!form.labelName.errors && !form.labelValue.errors) {
       this.loading = true;
@@ -210,6 +206,67 @@ export class AddLabelComponent implements OnInit {
               type: 'warning'
             });
           });
+          break;
+        case 'ec':
+            if (!updatedEntity.labels || updatedEntity.labels === '-') {
+              updatedEntity.labels = {};
+            }
+            updatedEntity.labels[form.labelName.value] = form.labelValue.value;
+            updatedEntity.add_labels = true;
+            this.backend.updateEC(
+              this.organizationId,
+              updatedEntity.edge_controller_id,
+              {
+                edge_controller_id: updatedEntity.edge_controller_id,
+                add_labels: true,
+                labels: updatedEntity.labels
+              }
+            ).subscribe(updateECResponse => {
+              this.loading = false;
+              this.notificationsService.add({
+                message: 'Updated ' + this.entity.edge_controller_id,
+                timeout: 3000,
+              });
+              this.bsModalRef.hide();
+            }, error => {
+              this.loading = false;
+              this.notificationsService.add({
+                message: error.error.message,
+                timeout: 5000,
+                type: 'warning'
+              });
+            });
+            this.bsModalRef.hide();
+          break;
+        case 'asset':
+            if (!updatedEntity.labels || updatedEntity.labels === '-') {
+              updatedEntity.labels = {};
+            }
+            updatedEntity.labels[form.labelName.value] = form.labelValue.value;
+            this.backend.updateAsset(
+              this.organizationId,
+              updatedEntity.asset_id,
+              {
+                asset_id: updatedEntity.asset_id,
+                add_labels: true,
+                labels: updatedEntity.labels
+              }
+            ).subscribe(updateAssetResponse => {
+              this.loading = false;
+              this.notificationsService.add({
+                message: 'Updated ' + this.entity.asset_id,
+                timeout: 3000,
+              });
+              this.bsModalRef.hide();
+            }, error => {
+              this.loading = false;
+              this.notificationsService.add({
+                message: error.error.message,
+                timeout: 5000,
+                type: 'warning'
+              });
+            });
+            this.bsModalRef.hide();
           break;
         default:
           break;
