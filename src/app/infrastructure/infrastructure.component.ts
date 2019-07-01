@@ -292,6 +292,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             status: string;
             status_name: string;
             labels: any;
+            assets?: any;
           }) => {
           controller.type = 'EC';
           controller.id = controller.edge_controller_id;
@@ -310,6 +311,18 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             this.ecsOnline += 1;
           }
           controller.status = controller.status_name;
+          controller.assets = [];
+          response.assets.forEach(asset => {
+            if (asset.edge_controller_id === controller.edge_controller_id) {
+              const assetIp = asset.eic_net_ip ? asset.eic_net_ip : 'undefined';
+              controller.assets.push({
+                asset_id: asset.asset_id,
+                eic_net_ip: assetIp,
+                status: asset.status_name,
+                edge_controller_id:
+                asset.edge_controller_id});
+            }
+          });
           this.inventory.push(controller);
         });
       }
@@ -570,6 +583,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   *  @param controller Edge controller object
   */
   openEdgeControllerInfo(controller: any) {
+    console.log(controller);
     const initialStateEC = {
       organizationId: this.organizationId,
       id: controller.edge_controller_id,
