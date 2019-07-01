@@ -596,11 +596,12 @@ export class BackendService implements Backend {
     );
   }
 
-  // POST '/v1/device/{organization_id}/remove'
+   // POST '/v1/device/{organization_id}/remove'
   /**
    * Operation that allows to remove a device from the system
    * @param organizationId Organization identifier
-    * @param deviceId device identifier
+   * @param groupId Device Group identifier
+   * @param deviceId device identifier
    */
   removeDevice(organizationId: string, groupId: string, deviceId: any) {
     return this.post(

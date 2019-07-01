@@ -61,7 +61,6 @@
         }
     }
 }
-
 /* - - -Summary card devices table - - - */
 .summary-devices-table {
     margin-bottom: -1em;
@@ -119,14 +118,15 @@
         }
     }
 }
-
+.actions-col-fix {
+    padding: 0.75rem 0;
+}
 .loaded-devices {
     height: 100%;
     width: 100%;
     margin-top: -1em;
     overflow: hidden;
 }
-
 @media screen and (max-width:1464px){
     .enabled-full-text {
         display: none;

@@ -684,8 +684,8 @@ export class MockupBackendService implements Backend {
 
   /**
    * Operation that allows to remove a device from the system
-  * @param organizationId Organization identifier
-  * @param deviceId device identifier
+   * @param organizationId Organization identifier
+   * @param deviceId device identifier
    */
   removeDevice(organizationId: string, groupId: string, deviceId: any) {
     for (let index = 0; index < mockDevicesList.length; index++) {
@@ -699,6 +699,7 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
+
 
   /**
    * Operation that allows to remove a device from the system

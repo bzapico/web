@@ -160,12 +160,16 @@ button[type="submit"]:disabled {
     display: flex !important;
     flex-direction: row;
 }
-  .action-btn-blue-2 {
+.action-btn-blue-2 {
     @extend .action-btn-blue;
     margin: 3px 6px;
 }
 .action-btn-red-2 {
     @extend .action-btn-red;
+    margin: 3px 6px;
+}
+.action-btn-grey-2 {
+    @extend .action-btn-grey;
     margin: 3px 6px;
 }
 .i-white-2 {
@@ -182,6 +186,17 @@ button[type="submit"]:disabled {
     @extend .i-white;
     top: 7px;
     left: 8px;
+    @include for-desktop-up {
+        font-size: 1em;
+        top: 5px;
+        left: 6px;
+    }
+}
+.i-black-2 {
+    @extend .i-black;
+    font-size: 1.4em;
+    top: 6px;
+    left: 6px;
     @include for-desktop-up {
         font-size: 1em;
         top: 5px;
