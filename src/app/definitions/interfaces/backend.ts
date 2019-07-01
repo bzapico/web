@@ -39,7 +39,7 @@ export interface Backend {
     getAppDescriptor(organizationId: string, descriptorId: string);
     addAppDescriptor(organizationId: string, descriptor: any);
     updateAppDescriptor(organizationId: string, descriptorId: string, changes: any);
-    deploy(organizationId: string, descriptorId: string, name: string);
+    deploy(organizationId: string, descriptorId: string, name: string, params?: any);
     undeploy(organizationId: string, instanceId: string);
     deleteRegistered(organizationId: string, descriptorId: string);
     // Devices
