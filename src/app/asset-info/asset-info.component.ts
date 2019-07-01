@@ -38,6 +38,7 @@ export class AssetInfoComponent implements OnInit {
   netInterfaces: string;
   capacity: string;
   eic: string;
+  storage: any;
   status: string;
 
   /**
