@@ -728,7 +728,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       deviceId: device.device_id,
       created: device.register_since,
       labels: device.labels,
-      status: device.device_status,
+      status: device.device_status_name,
       enabled: device.enabled,
     };
 
