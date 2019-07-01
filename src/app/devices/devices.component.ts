@@ -727,7 +727,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
     let devices = 0;
     const devicesList = this.getDevices();
-    console.log('deviceslist from count  ', devicesList);
     devicesList.forEach(device => {
       if (device && device.device_group_id === groupId) {
         devices += 1;
@@ -903,14 +902,13 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 
   /**
    * Requests to unlink the selected device
-   * @param device Device object
+   * @param device device in inventory item
    */
-  unlinkDevice(device: { device_id: string; }) {
+  unlinkDevice(device: any) {
     const unlinkConfirm = confirm('Unlink ' + device.device_id + '?');
     if (unlinkConfirm) {
-      this.backend.removeDevice(this.organizationId, device.device_id)
+      this.backend.removeDevice(this.organizationId, device.device_group_id , device.device_id)
         .subscribe(unlinkResponse => {
-          console.log('unlinkResponse ', unlinkResponse);
         this.notificationsService.add({
           message: 'Unlinking ' + device.device_id,
           timeout: 3000
