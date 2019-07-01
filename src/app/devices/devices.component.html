@@ -511,22 +511,22 @@
                     </div>
                   </td>
                   <td class="col-1 actions-col actions-col-fix">
-                    <span *ngIf="device.enabled">
-                      <div    
-                        (click)="enableSwitcher(device)"
-                        tooltip="Enabled" 
-                        placement="left">
-                        <i class="material-icons info-icon">play_circle_filled</i>
-                      </div>
-                    </span>
-                    <span *ngIf="!device.enabled">
-                      <div    
-                        (click)="enableSwitcher(device)"
-                        tooltip="Disabled" 
-                        placement="left">
-                        <i class="material-icons info-icon">pause_circle_filled</i>
-                      </div>
-                    </span>
+                    <button 
+                      *ngIf="device.enabled"
+                      (click)="enableSwitcher(device)"
+                      tooltip="Disabled" 
+                      placement="left"
+                      class="action-btn-blue-2">
+                      <i class="material-icons i-white-2">play_arrow</i>
+                    </button>
+                    <button
+                      *ngIf="!device.enabled" 
+                      (click)="enableSwitcher(device)"
+                      tooltip="Disabled" 
+                      placement="left"
+                      class="action-btn-grey-2 position-relative">
+                      <i class="material-icons i-black-2">pause</i>
+                    </button>
                     <button 
                       (click)="unlinkDevice(device)"
                       tooltip="Unlink device" 
@@ -600,22 +600,22 @@
                     </div>
                   </td>
                   <td class="col-1 actions-col actions-col-fix">
-                    <span *ngIf="device.enabled">
-                      <div    
-                        (click)="enableSwitcher(device)"
-                        tooltip="Enabled" 
-                        placement="left">
-                        <i class="material-icons info-icon">play_circle_filled</i>
-                      </div>
-                    </span>
-                    <span *ngIf="!device.enabled">
-                      <div    
-                        (click)="enableSwitcher(device)"
-                        tooltip="Disabled" 
-                        placement="left">
-                        <i class="material-icons info-icon">pause_circle_filled</i>
-                      </div>
-                    </span>
+                    <button 
+                      *ngIf="device.enabled"
+                      (click)="enableSwitcher(device)"
+                      tooltip="Disabled" 
+                      placement="left"
+                      class="action-btn-blue-2">
+                      <i class="material-icons i-white-2">play_arrow</i>
+                    </button>
+                    <button
+                      *ngIf="!device.enabled" 
+                      (click)="enableSwitcher(device)"
+                      tooltip="Disabled" 
+                      placement="left"
+                      class="action-btn-grey-2 position-relative">
+                      <i class="material-icons i-black-2">pause</i>
+                    </button>
                     <button 
                       (click)="unlinkDevice(device)"
                       tooltip="Unlink device" 
