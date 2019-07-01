@@ -160,7 +160,7 @@ button[type="submit"]:disabled {
     display: flex !important;
     flex-direction: row;
 }
-  .action-btn-blue-2 {
+.action-btn-blue-2 {
     @extend .action-btn-blue;
     margin: 3px 6px;
 }

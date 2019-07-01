@@ -510,24 +510,22 @@
                       </div>
                     </div>
                   </td>
-                  <td class="col-1 actions-col">
-                    <span  
-                      *ngIf="!device.enabled"  
-                      tooltip="Disabled" 
-                      placement="left" 
-                      class="checkbox-box">
-                      <span (click)="enableSwitcher(device)" class="devices-checkbox">
-                        <i class="material-icons grey">check_box_outline_blank</i>
-                      </span>
+                  <td class="col-1 actions-col actions-col-fix">
+                    <span *ngIf="device.enabled">
+                      <div    
+                        (click)="enableSwitcher(device)"
+                        tooltip="Enabled" 
+                        placement="left">
+                        <i class="material-icons info-icon">play_circle_filled</i>
+                      </div>
                     </span>
-                    <span  
-                      *ngIf="device.enabled"  
-                      tooltip="Enabled" 
-                      placement="left" 
-                      class="checkbox-box">
-                      <span (click)="enableSwitcher(device)" class="devices-checkbox">
-                        <i class="material-icons blue">check_box</i>
-                      </span>
+                    <span *ngIf="!device.enabled">
+                      <div    
+                        (click)="enableSwitcher(device)"
+                        tooltip="Disabled" 
+                        placement="left">
+                        <i class="material-icons info-icon">pause_circle_filled</i>
+                      </div>
                     </span>
                     <button 
                       (click)="unlinkDevice(device)"
@@ -601,24 +599,22 @@
                       </div>
                     </div>
                   </td>
-                  <td class="col-1 actions-col">
-                    <span  
-                      *ngIf="!device.enabled"  
-                      tooltip="Disabled" 
-                      placement="left" 
-                      class="checkbox-box">
-                      <span (click)="enableSwitcher(device)" class="devices-checkbox">
-                        <i class="material-icons grey">check_box_outline_blank</i>
-                      </span>
+                  <td class="col-1 actions-col actions-col-fix">
+                    <span *ngIf="device.enabled">
+                      <div    
+                        (click)="enableSwitcher(device)"
+                        tooltip="Enabled" 
+                        placement="left">
+                        <i class="material-icons info-icon">play_circle_filled</i>
+                      </div>
                     </span>
-                    <span  
-                      *ngIf="device.enabled"  
-                      tooltip="Enabled" 
-                      placement="left" 
-                      class="checkbox-box">
-                      <span (click)="enableSwitcher(device)" class="devices-checkbox">
-                        <i class="material-icons blue">check_box</i>
-                      </span>
+                    <span *ngIf="!device.enabled">
+                      <div    
+                        (click)="enableSwitcher(device)"
+                        tooltip="Disabled" 
+                        placement="left">
+                        <i class="material-icons info-icon">pause_circle_filled</i>
+                      </div>
                     </span>
                     <button 
                       (click)="unlinkDevice(device)"
