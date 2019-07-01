@@ -459,6 +459,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   *  @param asset asset object
   */
   openAssetInfo(asset: any) {
+    console.log(asset);
     if (!asset.hardware || Object.keys(asset.hardware).length === 0) {
       asset.hardware = {
         os: {
@@ -490,13 +491,13 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       labels: asset.labels,
       class: asset.os.class_name,
       version: asset.os.version,
-      architecture: asset.hardware.cpus.architecture,
-      model: asset.hardware.cpus.model,
-      manufacturer: asset.hardware.cpus.manufacturer,
-      cores: asset.hardware.cpus.num_cores,
+      architecture: asset.os.architecture,
+      model: asset.hardware.cpus[0].model,
+      manufacturer: asset.hardware.cpus[0].manufacturer,
+      cores: asset.hardware.cpus[0].num_cores,
       netInterfaces: asset.hardware.net_interfaces,
       storage: asset.storage,
-      capacity: asset.storage.total_capacity,
+      capacity: asset.hardware.installed_ram,
       eic: asset.eic_net_ip,
       status: asset.status,
       summary: asset.last_op_summary,

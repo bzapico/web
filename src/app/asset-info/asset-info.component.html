@@ -7,17 +7,19 @@
       </div>
       <!-- Body -->
       <div class="modal-body">
-        <h3 class="asset-h3-title">{{assetIp}}</h3>
+        <h3 class="asset-h3-title">{{assetId}}</h3>
         <p class="asset-image">on 
           <span (click)="openEdgeControllerInfo()" class="blue text-uppercase cursor-pointer">
             {{ecName}}
           </span>
         </p>
-        <p class="asset-title-sm">{{agentId}}</p>
+        <p *ngIf="!assetIp" class="asset-title-sm">IP address undefined</p>
+        <p *ngIf="assetIp" class="asset-title-sm">{{assetIp}}</p>
         <div class="scroll-app-info">
           <div class="row">
             <div class="col-sm grey mb-3">Status</div>
-            <h3 class="asset-h3-title col-sm text-right blue text-uppercase">{{status}}</h3>
+            <h3 *ngIf="status === 'OFFLINE'" class="asset-h3-title col-sm text-right red text-uppercase">{{status}}</h3>
+            <h3 *ngIf="status === 'ONLINE'" class="asset-h3-title col-sm text-right blue text-uppercase">{{status}}</h3>
           </div>
           <br>
           <div class="row">
@@ -72,6 +74,20 @@
             <div class="col-sm text-right">{{capacity}} Gb</div>
           </div>
           <br>
+          <div *ngIf="storage" class="row">
+              <div class="col-sm grey mb-3">STORAGE</div>
+          </div>
+          <div *ngIf="storage" class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4 grey">Type</div>
+            <div class="col-sm text-right">{{storage[0].type}}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4 grey">Total capacity</div>
+            <div class="col-sm text-right">{{storage[0].total_capacity}}</div>
+          </div>
+          <br>
           <span *ngIf="netInterfaces">
             <div class="row">
               <div class="col-sm grey mb-3">Networking specs</div>
@@ -85,8 +101,8 @@
             <span *ngIf="netInterfaces">
               <div class="row">
                 <div class="col-sm"></div>
-                <div class="col-sm">{{netInterfaces.type}}</div>
-                <div class="col-sm text-right">{{netInterfaces.link_capacity}}</div>
+                <div class="col-sm">{{netInterfaces[0].type}}</div>
+                <div class="col-sm text-right">{{netInterfaces[0].link_capacity}}</div>
               </div>
             </span>
             <span *ngIf="!netInterfaces">
