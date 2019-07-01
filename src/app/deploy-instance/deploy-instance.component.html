@@ -109,7 +109,7 @@
       </div>
     </form>
     <div class="form-group-btn">
-      <button class="nalej-form-btn-blue" [disabled]="loading">
+      <button class="nalej-form-btn-blue" (click)="deployInstance(f)" [disabled]="loading">
         <span class="align-bottom">Deploy</span>
       </button>
     </div>

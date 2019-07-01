@@ -144,6 +144,7 @@ export class DeployInstanceComponent implements OnInit {
   get f() { return this.deployInstanceForm.controls; }
 
   deployInstance(f) {
+    console.log(f);
     this.instanceName = f.instanceName.value;
     this.submitted = true;
     if (!f.instanceName.errors) {
