@@ -11,16 +11,19 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <!-- Body -->
-    <div class="modal-body">
-      <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">
+  </div>
+  <!-- Body -->
+  <div class="modal-body">
+    <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">
+      <div class="scroll-modal-form">
         <div *ngIf="!openFromRegistered" class="form-group form-group-drop">
           <label>Registered name</label>
           <ngx-select-dropdown 
             formControlName="selectDrop" 
             [multiple]="false" 
             [config]="selectConfig" 
-            [options]="registeredApps">
+            [options]="registeredApps"
+            (change)="onRegisteredChange(f)">
           </ngx-select-dropdown>
           <div class="form-group-drop-arrow"> 
             <i class="material-icons">arrow_drop_down</i>
@@ -54,12 +57,61 @@
             </div>
           </div>
         </div>
-        <div class="form-group-btn">
-          <button class="nalej-form-btn-blue" [disabled]="loading">
-            <span class="align-bottom">Deploy</span>
-          </button>
+        <div *ngIf="selectedApp && availableParamsCategory.basic" class="form-group">
+          <label>Parameters</label>
+          <!-- DEFAULT PARAMETERS -->
+          <div class="accordion">
+            <div class="accordion-header" (click)="toggleDefaultParameters()">Default</div>
+            <div 
+              *ngIf="defaultParamsOpened"
+              class="accordion-body">
+              <div 
+                *ngFor="let param of selectedApp.parameters"
+                class="form-group">
+                <div *ngIf="!param.category || param.category==='BASIC'">
+                  <label>{{param.name}}</label>
+                  <input 
+                    type="text" 
+                    placeholder="{{param.name}}"
+                    class="form-control"
+                    value="{{param.value}}"
+                    (input)="param.value = $event.target.value"
+                    >
+                  <label class="accordion-foot">Type restrictions: {{param.type}}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion" *ngIf="selectedApp && availableParamsCategory.advanced" >
+              <div class="accordion-header" (click)="toggleAdvancedParameters()">Advanced</div>
+              <div 
+                *ngIf="advParamsOpened"
+                class="accordion-body">
+                <div 
+                  *ngFor="let param of selectedApp.parameters"
+                  class="form-group">
+                  <div *ngIf="param.category==='ADVANCED'">
+                    <label>{{param.name}}</label>
+                    <input 
+                      type="text" 
+                      placeholder="{{param.name}}"
+                      class="form-control"
+                      value="{{param.value}}"
+                      (input)="param.value = $event.target.value"
+                      >
+                    <label class="accordion-foot">Type restrictions: {{param.type}}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- ADVANCED PARAMETERS-->
         </div>
-      </form>
+      </div>
+    </form>
+    <div class="form-group-btn">
+      <button class="nalej-form-btn-blue" (click)="deployInstance(f)" [disabled]="loading">
+        <span class="align-bottom">Deploy</span>
+      </button>
     </div>
   </div>
 </div>
