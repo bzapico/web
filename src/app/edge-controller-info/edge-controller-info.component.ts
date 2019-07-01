@@ -84,7 +84,7 @@ export class EdgeControllerInfoComponent implements OnInit {
   }
 
   /**
-   * Create a new JavaScript Date object based on the timestamp 
+   * Create a new JavaScript Date object based on the timestamp
    * and multiplied by 1000 so that the argument is in milliseconds, not seconds.
    * @param timestamp is an integer that represents the number of seconds elapsed
    */
@@ -100,7 +100,7 @@ export class EdgeControllerInfoComponent implements OnInit {
   }
 
   /**
-   * Gets the return asset value from the modal and gives it to infrastructure component 
+   * Gets the return asset value from the modal and gives it to infrastructure component
    * to open the Asset Info modal window
    *  @param assetReduced Reduced asset info to locate the whole asset object
    */
@@ -112,8 +112,8 @@ export class EdgeControllerInfoComponent implements OnInit {
     for (let i = 0; i < this.inventory.length && assetIndexFound === -1 ; i++) {
       if (
         this.inventory[i].type === 'Asset' &&
-        this.inventory[i].eic_net_ip === assetReduced.eic_net_ip &&
-        this.inventory[i].edge_controller_id === this.id
+        this.inventory[i].asset_id === assetReduced.asset_id &&
+        this.inventory[i].edge_controller_id === assetReduced.edge_controller_id
         ) {
         assetIndexFound = i;
       }

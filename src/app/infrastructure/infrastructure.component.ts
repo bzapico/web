@@ -250,8 +250,9 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             device.location = device.location.geolocation;
           }
           if (!device.labels || device.labels === undefined || device.labels === null) {
-            device.labels = [];
+            device.labels = {};
           }
+          device.status = device.device_status_name;
           this.inventory.push(device);
         });
       }
@@ -262,6 +263,8 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             asset_id: any;
             location: any;
             labels: any;
+            status?: string;
+            status_name: string;
           }) => {
           asset.type = 'Asset';
           asset.id = asset.asset_id;
@@ -274,8 +277,9 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             asset.location = asset.location.geolocation;
           }
           if (!asset.labels || asset.labels === undefined || asset.labels === null) {
-            asset.labels = [];
+            asset.labels = {};
           }
+          asset.status = asset.status_name;
           this.inventory.push(asset);
         });
       }
@@ -288,6 +292,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             status: string;
             status_name: string;
             labels: any;
+            assets?: any;
           }) => {
           controller.type = 'EC';
           controller.id = controller.edge_controller_id;
@@ -300,12 +305,24 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             controller.location = controller.location.geolocation;
           }
           if (!controller.labels || controller.labels === undefined || controller.labels === null) {
-            controller.labels = [];
+            controller.labels = {};
           }
           if (controller.status_name.toLowerCase() === 'online') {
             this.ecsOnline += 1;
           }
           controller.status = controller.status_name;
+          controller.assets = [];
+          response.assets.forEach(asset => {
+            if (asset.edge_controller_id === controller.edge_controller_id) {
+              const assetIp = asset.eic_net_ip ? asset.eic_net_ip : 'undefined';
+              controller.assets.push({
+                asset_id: asset.asset_id,
+                eic_net_ip: assetIp,
+                status: asset.status_name,
+                edge_controller_id:
+                asset.edge_controller_id});
+            }
+          });
           this.inventory.push(controller);
         });
       }
@@ -473,13 +490,13 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       labels: asset.labels,
       class: asset.os.class_name,
       version: asset.os.version,
-      architecture: asset.hardware.cpus.architecture,
-      model: asset.hardware.cpus.model,
-      manufacturer: asset.hardware.cpus.manufacturer,
-      cores: asset.hardware.cpus.num_cores,
+      architecture: asset.os.architecture,
+      model: asset.hardware.cpus[0].model,
+      manufacturer: asset.hardware.cpus[0].manufacturer,
+      cores: asset.hardware.cpus[0].num_cores,
       netInterfaces: asset.hardware.net_interfaces,
-      storage: asset.storage,
-      capacity: asset.storage.total_capacity,
+      storage: asset.storage[0],
+      capacity: asset.hardware.installed_ram,
       eic: asset.eic_net_ip,
       status: asset.status,
       summary: asset.last_op_summary,
@@ -509,9 +526,19 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   *  @param asset asset object
   */
   lastOperationLog(asset: any) {
+    let lastOpSummary;
+    if (asset.last_op_summary) {
+      lastOpSummary = asset.last_op_summary;
+    } else {
+      lastOpSummary = {
+        timestamp: 0,
+        status: 'undefined',
+        info: 'No info available'
+      };
+    }
     const initialState = {
       organizationId: this.organizationId,
-      lastOpSummary: asset.last_op_summary
+      lastOpSummary: lastOpSummary
     };
 
     this.lastOpModalRef = this.modalService.show(
@@ -662,7 +689,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param controller identifier
    */
   unlinkEIC(controller: any) {
-    if (controller.assets !== 0) {
+    if (controller.assets) {
       alert('Cannot unlink EC. Agents on associated assets should be uninstalled before.');
     } else {
       const unlinkConfirm = confirm('Unlink Edge Controller?');
@@ -699,7 +726,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       deviceId: device.device_id,
       created: device.register_since,
       labels: device.labels,
-      status: device.status,
+      status: device.device_status,
       enabled: device.enabled,
     };
 
@@ -732,22 +759,38 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param device device in inventory item
    */
   deviceEnablement(device: any) {
-    device.enabled = !device.enabled;
-    this.backend.updateDevice(this.organizationId, {
-       organizationId: this.organizationId,
-       deviceGroupId: device.device_group_id,
-       deviceId: device.device_id,
-       enabled: device.enabled
-    }).subscribe((response: any) => {
-      let notificationText = 'enabled';
-      if (!device.enabled) {
-       notificationText = 'disabled';
-      }
-     this.notificationsService.add({
-       message: 'The device is now ' + notificationText,
-       timeout: 3000
-     });
-    });
+    let deviceCurrentEnablementStr = 'DISABLED';
+    let deviceFutureEnablementStr = 'enable';
+    if (device.enabled) {
+      deviceCurrentEnablementStr = 'ENABLED';
+      deviceFutureEnablementStr = 'disable';
+    }
+    const confirmResult = confirm('Device '
+      + device.device_id
+      + ' is currently '
+      + deviceCurrentEnablementStr
+      + '. Do you want to '
+      + deviceFutureEnablementStr
+      + ' it?');
+
+    if (confirmResult ) {
+      device.enabled = !device.enabled;
+      this.backend.updateDevice(this.organizationId, {
+         organizationId: this.organizationId,
+         deviceGroupId: device.device_group_id,
+         deviceId: device.device_id,
+         enabled: device.enabled
+      }).subscribe((response: any) => {
+        let notificationText = 'enabled';
+        if (!device.enabled) {
+         notificationText = 'disabled';
+        }
+       this.notificationsService.add({
+         message: 'The device is now ' + notificationText,
+         timeout: 3000
+       });
+      });
+    }
   }
 
    /**
@@ -757,7 +800,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   unlinkDevice(device: any) {
     const unlinkConfirm = confirm('Unlink device?');
     if (unlinkConfirm) {
-      this.backend.removeDeviceFromInventoryMockup(this.organizationId, device.device_id)
+      this.backend.removeDevice(this.organizationId, device.device_group_id , device.device_id)
         .subscribe(response => {
           this.notificationsService.add({
             message: 'Device ' + '' + ' has been unlinked',
@@ -797,13 +840,17 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
 
     switch (item.type) {
       case 'EC':
-        initialState.modalTitle = item.type + ' ' + item.name;
+        initialState.modalTitle = item.name;
         break;
       case 'Asset':
-        initialState.modalTitle = item.type + ' ' + item.eic_net_ip;
+        if (item.eic_net_ip) {
+          initialState.modalTitle = item.eic_net_ip;
+        } else {
+          initialState.modalTitle = item.asset_id;
+        }
         break;
       case 'Device':
-        initialState.modalTitle = item.type + ' ' + item.id;
+        initialState.modalTitle =  item.id;
         break;
       default:
         break;
@@ -814,6 +861,59 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     this.modalService.onHide.subscribe((reason: string) => { });
   }
   deleteLabel(item: any) {
+    const deleteConfirm = confirm('Delete labels?');
+    if (deleteConfirm) {
+      switch (item.type) {
+        case 'EC':
+            const indexEC = this.selectedLabels.map(x => x.id).indexOf(item.id);
+            this.backend.updateEC(
+              this.organizationId,
+              item.edge_controller_id,
+              {
+                organizationId: this.organizationId,
+                edge_controller_id: item.edge_controller_id,
+                remove_labels: true,
+                labels: this.selectedLabels[indexEC].labels
+              }).subscribe(deleteLabelResponse => {
+                this.selectedLabels.splice(index, 1);
+                this.updateInventoryList();
+              });
+          break;
+        case 'Asset':
+          const indexAsset = this.selectedLabels.map(x => x.id).indexOf(item.id);
+          this.backend.updateAsset(
+            this.organizationId,
+            item.asset_id,
+            {
+              organizationId: this.organizationId,
+              asset_id: item.asset_id,
+              remove_labels: true,
+              labels: this.selectedLabels[indexAsset].labels
+            }).subscribe(deleteLabelResponse => {
+              this.selectedLabels.splice(index, 1);
+              this.updateInventoryList();
+            });
+          break;
+        case 'Device':
+            const index = this.selectedLabels.map(x => x.id).indexOf(item.id);
+            this.backend.removeLabelFromDevice(
+              this.organizationId,
+              {
+                organizationId: this.organizationId,
+                device_id: item.device_id,
+                device_group_id: item.device_group_id,
+                labels: this.selectedLabels[index].labels
+              }).subscribe(deleteLabelResponse => {
+                this.selectedLabels.splice(index, 1);
+                this.updateInventoryList();
+              });
+          break;
+        default:
+          break;
+      }
+    } else {
+      // Do nothing
+    }
   }
 
   /**
@@ -838,7 +938,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       }
     } else {
       if (Object.keys(this.selectedLabels[selectedIndex].labels).length > 1) {
-        console.log(this.selectedLabels[selectedIndex].labels[labelKey]);
         delete this.selectedLabels[selectedIndex].labels[labelKey];
       } else {
         this.selectedLabels.splice(selectedIndex, 1);

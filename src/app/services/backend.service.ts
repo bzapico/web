@@ -196,7 +196,9 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
    */
   getInventorySummary(organizationId: string) {
-    throw new Error('Method not implemented yet');
+    return this.get(
+      API_URL + 'inventory/' + organizationId + '/summary'
+    );
   }
 
   /********************
@@ -211,8 +213,15 @@ export class BackendService implements Backend {
    * @param agent Agent installer
    */
   installAgent(organizationId: string, edgeControllerId: string, agent: any) {
+    const installAgentRequestObj = {
+      organization_id: organizationId,
+      edge_controller_id: edgeControllerId,
+      agent_type: agent.agent_type,
+      credentials: {username: agent.username, password: agent.password},
+      target_host: agent.target_host
+    };
     return this.post(
-      API_URL + 'agent/' + organizationId + '/' + edgeControllerId + '/install', agent
+      API_URL + 'ec/' + organizationId + '/agent/install', installAgentRequestObj
     );
   }
 
@@ -225,11 +234,11 @@ export class BackendService implements Backend {
    */
   uninstallAgent(organizationId: string, edgeControllerId: string, assetId: any) {
     return this.post(
-      API_URL + 'agent/' + organizationId + '/' + edgeControllerId + '/uninstall',
+      API_URL + 'agent/' + organizationId + '/' + assetId + '/uninstall',
       {
         organization_id: organizationId,
-        edge_controller_id: edgeControllerId,
-        asset_id: assetId
+        asset_id: assetId,
+        force: true
       }
     );
   }
@@ -261,6 +270,19 @@ export class BackendService implements Backend {
     );
   }
 
+  // POST '/v1/inventory/{organization_id}/ec/{ec_id}/update'
+  /**
+   * Requests to uninstall an agent
+   * @param organizationId Organization identifier
+   * @param ecId Edge controller id
+   * @param ec Edge controller updated object
+   */
+  updateEC(organizationId: string, ecId: any, ec: any) {
+    return this.post(
+      API_URL + 'inventory/' + organizationId + '/ec/' + ecId + '/update',
+      ec
+    );
+  }
   // POST '/v1/ec/{organization_id}/unlink'
   /**
    * Operation to remove/uninstall an EIC
@@ -269,7 +291,25 @@ export class BackendService implements Backend {
    */
   unlinkEIC(organizationId: string, edgeControllerId: string) {
     return this.post(
-      API_URL + 'ec/' + organizationId + '/unlink'
+      API_URL + 'ec/' + organizationId + '/unlink',
+      {edge_controller_id: edgeControllerId}
+    );
+  }
+
+    /********************
+   * Infrastructure - Asset
+   ********************/
+    // POST '/v1/inventory/{organization_id}/asset/{asset_id}/update'
+  /**
+   * Requests to uninstall an agent
+   * @param organizationId Organization identifier
+   * @param assetId Edge controller id
+   * @param asset Asset object updated
+   */
+  updateAsset(organizationId: string, assetId: any, asset: any) {
+    return this.post(
+      API_URL + 'inventory/' + organizationId + '/asset/' + assetId + '/update',
+      asset
     );
   }
 
@@ -562,11 +602,12 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
     * @param deviceId device identifier
    */
-  removeDevice(organizationId: string, deviceId: any) {
+  removeDevice(organizationId: string, groupId: string, deviceId: any) {
     return this.post(
       API_URL + 'device/' + organizationId + '/remove',
       {
         organization_id: organizationId,
+        device_group_id: groupId,
         device_id: deviceId
       }
     );
