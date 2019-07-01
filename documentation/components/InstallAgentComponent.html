@@ -383,7 +383,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/app/install-agent/install-agent.component.ts:203</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/app/install-agent/install-agent.component.ts:211</a></div>
                             </td>
                         </tr>
 
@@ -455,7 +455,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/install-agent/install-agent.component.ts:136</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/install-agent/install-agent.component.ts:144</a></div>
                             </td>
                         </tr>
 
@@ -495,7 +495,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/app/install-agent/install-agent.component.ts:156</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/app/install-agent/install-agent.component.ts:164</a></div>
                             </td>
                         </tr>
 
@@ -567,7 +567,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/install-agent/install-agent.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/install-agent/install-agent.component.ts:118</a></div>
                             </td>
                         </tr>
 
@@ -1604,7 +1604,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/app/install-agent/install-agent.component.ts:150</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/app/install-agent/install-agent.component.ts:158</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1705,6 +1705,7 @@ export class InstallAgentComponent implements OnInit {
     this.openFromEc &#x3D; false;
     this.agentType &#x3D; null;
     this.agentTypeSelectConfig &#x3D; {
+      displayKey: &#x27;name&#x27;,
       search: false,
       height: &#x27;auto&#x27;,
       placeholder: &#x27;Agent type&#x27;,
@@ -1712,12 +1713,19 @@ export class InstallAgentComponent implements OnInit {
       moreText: &#x27;more&#x27;,
       noResultsFound: &#x27;No results found!&#x27;
     };
-    this.agentTypeOptions &#x3D; [
-     &#x27;LINUX_X86&#x27;,
-     &#x27;LINUX-ARM32&#x27;,
-     &#x27;LINUX-ARM64&#x27;,
-     &#x27;WINDOWS&#x27;
-    ];
+    this.agentTypeOptions &#x3D; [{
+      name: &#x27;LINUX_AMD64&#x27;,
+      code: 0
+    }, {
+      name: &#x27;LINUX_ARM32&#x27;,
+      code: 1
+    }, {
+      name: &#x27;LINUX_ARM64&#x27;,
+      code: 2
+    }, {
+      name: &#x27;WINDOWS_AMD64&#x27;,
+      code: 3
+    }];
 
     //  edgeControllerId
     this.edgeControllerId &#x3D; null;
@@ -1784,7 +1792,7 @@ export class InstallAgentComponent implements OnInit {
       this.edgeControllerId &#x3D; f.edgeController.value.edge_controller_id;
     }
     const agent &#x3D; {
-      agent_type: f.type.value,
+      agent_type: f.type.value.code,
       edge_controller_id: this.edgeControllerId,
       username: f.sshUsername.value,
       password: f.sshPassword.value,
@@ -1866,7 +1874,6 @@ export class InstallAgentComponent implements OnInit {
             [ngClass]&#x3D;&quot;{ &#x27;ngx-error&#x27;: submitted &amp;&amp; f.type.errors &amp;&amp; !agentType }&quot;
             [config]&#x3D;&quot;agentTypeSelectConfig&quot; 
             [options]&#x3D;&quot;agentTypeOptions&quot;&gt;
-            {{agentType}}
           &lt;/ngx-select-dropdown&gt;
           &lt;div class&#x3D;&quot;form-group-drop-arrow&quot;&gt; 
             &lt;i class&#x3D;&quot;material-icons&quot;&gt;arrow_drop_down&lt;/i&gt;
@@ -1996,7 +2003,7 @@ export class InstallAgentComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Install agent</h3>      <button         (click)="discardChanges(f)"        type="button"         aria-label="Close"        class="close" >        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <form [formGroup]="installAgentForm" (ngSubmit)="installAgent(f)">      <div class="scroll-modal-form">        <div class="form-group form-group-drop">          <label>Agent type*</label>          <ngx-select-dropdown             formControlName="type"             [multiple]="false"             [ngClass]="{ \'ngx-error\': submitted && f.type.errors && !agentType }"            [config]="agentTypeSelectConfig"             [options]="agentTypeOptions">            {{agentType}}          </ngx-select-dropdown>          <div class="form-group-drop-arrow">             <i class="material-icons">arrow_drop_down</i>          </div>          <div class="error-h">            <div *ngIf=              "submitted &&              f.type.errors &&              !agentType"               class="error-message">              <div *ngIf="f.type.errors.required">An agent type is required</div>            </div>          </div>        </div>        <div *ngIf="!openFromEc" class="form-group form-group-drop">          <label>Edge inventory Controller*</label>          <ngx-select-dropdown             formControlName="edgeController"             [multiple]="false"             [ngClass]="{ \'ngx-error\': submitted && f.edgeController.errors && !edgeControllerId }"            [config]="edgeControllerSelectConfig"             [options]="getControllersList()">            {{edgeControllerId}}          </ngx-select-dropdown>          <div class="form-group-drop-arrow">             <i class="material-icons">arrow_drop_down</i>          </div>          <div class="error-h">            <div *ngIf=              "submitted &&              f.edgeController.errors &&              !edgeControllerId"               class="error-message">              <div *ngIf="f.edgeController.errors.required">An Edge Controller is required</div>            </div>          </div>        </div>        <div *ngIf="openFromEc" class="form-group">          <label>Edge inventory Controller</label>          <input             formControlName="edgeControllerFromEC"             type="text"             placeholder="{{name}}"            class="form-control">          <div class="error-h"></div>        </div>        <div class="form-group">          <label>SSH username*</label>          <input             formControlName="sshUsername"             type="text"             placeholder="SSH username"            [ngClass]="{ \'is-invalid\': submitted && f.sshUsername.errors }"             required            class="form-control">          <div class="error-h">            <div *ngIf="submitted && f.sshUsername.errors" class="error-message">              <div *ngIf="f.sshUsername.errors.required">SSH username is required</div>            </div>          </div>        </div>        <div class="form-group">          <label>SSH password*</label>          <input             formControlName="sshPassword"             type="password"             placeholder="Type the SSH password here"            [ngClass]="{ \'is-invalid\': submitted && f.sshPassword.errors }"            required            class="form-control">          <div class="error-h">            <div *ngIf="submitted && f.sshPassword.errors" class="error-message">              <div *ngIf="f.sshPassword.errors.required">SSH password is required</div>            </div>          </div>        </div>        <div class="form-group">          <label>Target host*</label>          <input             formControlName="target"             type="text"             placeholder="Target host"            [ngClass]="{ \'is-invalid\': submitted && f.target.errors }"            required            class="form-control">          <div class="error-h">            <div *ngIf="submitted && f.target.errors" class="error-message">              <div *ngIf="f.target.errors.required">Target is required</div>            </div>          </div>        </div>      </div>        <!-- Install agent -->        <div class="form-group-btn">          <button class="nalej-form-btn-blue" [disabled]="loading">            <span class="align-bottom">Install</span>          </button>        </div>      </form>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Install agent</h3>      <button         (click)="discardChanges(f)"        type="button"         aria-label="Close"        class="close" >        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <form [formGroup]="installAgentForm" (ngSubmit)="installAgent(f)">      <div class="scroll-modal-form">        <div class="form-group form-group-drop">          <label>Agent type*</label>          <ngx-select-dropdown             formControlName="type"             [multiple]="false"             [ngClass]="{ \'ngx-error\': submitted && f.type.errors && !agentType }"            [config]="agentTypeSelectConfig"             [options]="agentTypeOptions">          </ngx-select-dropdown>          <div class="form-group-drop-arrow">             <i class="material-icons">arrow_drop_down</i>          </div>          <div class="error-h">            <div *ngIf=              "submitted &&              f.type.errors &&              !agentType"               class="error-message">              <div *ngIf="f.type.errors.required">An agent type is required</div>            </div>          </div>        </div>        <div *ngIf="!openFromEc" class="form-group form-group-drop">          <label>Edge inventory Controller*</label>          <ngx-select-dropdown             formControlName="edgeController"             [multiple]="false"             [ngClass]="{ \'ngx-error\': submitted && f.edgeController.errors && !edgeControllerId }"            [config]="edgeControllerSelectConfig"             [options]="getControllersList()">            {{edgeControllerId}}          </ngx-select-dropdown>          <div class="form-group-drop-arrow">             <i class="material-icons">arrow_drop_down</i>          </div>          <div class="error-h">            <div *ngIf=              "submitted &&              f.edgeController.errors &&              !edgeControllerId"               class="error-message">              <div *ngIf="f.edgeController.errors.required">An Edge Controller is required</div>            </div>          </div>        </div>        <div *ngIf="openFromEc" class="form-group">          <label>Edge inventory Controller</label>          <input             formControlName="edgeControllerFromEC"             type="text"             placeholder="{{name}}"            class="form-control">          <div class="error-h"></div>        </div>        <div class="form-group">          <label>SSH username*</label>          <input             formControlName="sshUsername"             type="text"             placeholder="SSH username"            [ngClass]="{ \'is-invalid\': submitted && f.sshUsername.errors }"             required            class="form-control">          <div class="error-h">            <div *ngIf="submitted && f.sshUsername.errors" class="error-message">              <div *ngIf="f.sshUsername.errors.required">SSH username is required</div>            </div>          </div>        </div>        <div class="form-group">          <label>SSH password*</label>          <input             formControlName="sshPassword"             type="password"             placeholder="Type the SSH password here"            [ngClass]="{ \'is-invalid\': submitted && f.sshPassword.errors }"            required            class="form-control">          <div class="error-h">            <div *ngIf="submitted && f.sshPassword.errors" class="error-message">              <div *ngIf="f.sshPassword.errors.required">SSH password is required</div>            </div>          </div>        </div>        <div class="form-group">          <label>Target host*</label>          <input             formControlName="target"             type="text"             placeholder="Target host"            [ngClass]="{ \'is-invalid\': submitted && f.target.errors }"            required            class="form-control">          <div class="error-h">            <div *ngIf="submitted && f.target.errors" class="error-message">              <div *ngIf="f.target.errors.required">Target is required</div>            </div>          </div>        </div>      </div>        <!-- Install agent -->        <div class="form-group-btn">          <button class="nalej-form-btn-blue" [disabled]="loading">            <span class="align-bottom">Install</span>          </button>        </div>      </form>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'InstallAgentComponent'};
