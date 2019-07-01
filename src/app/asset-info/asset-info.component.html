@@ -77,15 +77,15 @@
           <div *ngIf="storage" class="row">
               <div class="col-sm grey mb-3">STORAGE</div>
           </div>
-          <div *ngIf="storage" class="row">
+          <div *ngIf="storage.type" class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-4 grey">Type</div>
-            <div class="col-sm text-right">{{storage[0].type}}</div>
+            <div class="col-sm text-right">{{storage.type}}</div>
           </div>
-          <div class="row">
+          <div *ngIf="storage.total_capacity" class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-4 grey">Total capacity</div>
-            <div class="col-sm text-right">{{storage[0].total_capacity}}</div>
+            <div class="col-sm text-right">{{storage.total_capacity}}</div>
           </div>
           <br>
           <span *ngIf="netInterfaces">

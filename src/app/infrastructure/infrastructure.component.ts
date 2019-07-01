@@ -459,7 +459,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   *  @param asset asset object
   */
   openAssetInfo(asset: any) {
-    console.log(asset);
     if (!asset.hardware || Object.keys(asset.hardware).length === 0) {
       asset.hardware = {
         os: {
@@ -496,7 +495,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       manufacturer: asset.hardware.cpus[0].manufacturer,
       cores: asset.hardware.cpus[0].num_cores,
       netInterfaces: asset.hardware.net_interfaces,
-      storage: asset.storage,
+      storage: asset.storage[0],
       capacity: asset.hardware.installed_ram,
       eic: asset.eic_net_ip,
       status: asset.status,
@@ -584,7 +583,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   *  @param controller Edge controller object
   */
   openEdgeControllerInfo(controller: any) {
-    console.log(controller);
     const initialStateEC = {
       organizationId: this.organizationId,
       id: controller.edge_controller_id,

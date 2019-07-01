@@ -38,7 +38,7 @@ export class AssetInfoComponent implements OnInit {
   netInterfaces: string;
   capacity: string;
   eic: string;
-  storage: any;
+  storage: {type: string, total_capacity: any};
   status: string;
 
   /**
@@ -86,6 +86,7 @@ export class AssetInfoComponent implements OnInit {
     this.loadedData = true;
     this.inventory = [];
     this.ecName = '';
+    this.storage = { type: 'unknown', total_capacity: 'undefined'};
    }
 
   ngOnInit() {
@@ -121,7 +122,7 @@ export class AssetInfoComponent implements OnInit {
   }
 
   /**
-   * Create a new JavaScript Date object based on the timestamp 
+   * Create a new JavaScript Date object based on the timestamp
    * and multiplied by 1000 so that the argument is in milliseconds, not seconds.
    * @param timestamp is an integer that represents the number of seconds elapsed
    */
@@ -137,7 +138,7 @@ export class AssetInfoComponent implements OnInit {
   }
 
   /**
-   * Gets the return Edge Controller value from the modal and gives it to infrastructure 
+   * Gets the return Edge Controller value from the modal and gives it to infrastructure
    * component to open the Edge Controller Info modal window
    */
   openEdgeControllerInfo() {
