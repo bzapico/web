@@ -13,8 +13,8 @@
       <div class="scroll-app-info">
         <div class="row">
           <div class="col-sm grey mb-3">Status</div>
-          <h3 *ngIf="status === 'online'" class="edge-h3-title col-sm text-right blue text-uppercase">{{status}}</h3>
-          <h3 *ngIf="status === 'offline'" class="edge-h3-title col-sm text-right red text-uppercase">{{status}}</h3>
+          <h3 *ngIf="status === 'ONLINE'" class="edge-h3-title col-sm text-right blue text-uppercase">{{status}}</h3>
+          <h3 *ngIf="status === 'OFFLINE'" class="edge-h3-title col-sm text-right red text-uppercase">{{status}}</h3>
         </div>
         <br>
         <div class="row">
@@ -34,21 +34,21 @@
             <div class="col-sm grey mb-3">Assets</div>
           </div>
             <div class="row">
-              <div class="col-sm"></div>
-              <div class="col-sm grey">IP</div>
-              <div class="col-sm text-right grey">Status</div>
+              <div class="col-sm-3"></div>
+              <div class="col-sm-6 grey"> ID</div>
+              <div class="col-sm-3 text-right grey">Status</div>
             </div>
             <br>
           </span>
           <div *ngFor="let asset of assets">
             <span *ngIf="assets">
-              <div class="row">
-                <div class="col-sm"></div>
-                <div (click)="openAssetInfo(asset)"  class="col-sm blue cursor-pointer">{{asset.eic_net_ip}}</div>
-                <div *ngIf="asset.status === 'online'"  class="col-sm text-right">
+              <div class="row mb-4">
+                <div class="col-sm-3"></div>
+                <div (click)="openAssetInfo(asset)"  class="col-sm-6 blue cursor-pointer">{{asset.asset_id}}</div>
+                <div *ngIf="asset.status === 'ONLINE'"  class="col-sm-3 text-right">
                   <div class="text-uppercase blue">{{asset.status}}</div>
                 </div>
-                <div *ngIf="asset.status === 'offline'" class="col-sm text-right">
+                <div *ngIf="asset.status === 'OFFLINE'" class="col-sm-3 text-right">
                   <div class="text-uppercase red">{{asset.status}}</div>
                 </div>
               </div>

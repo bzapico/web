@@ -407,7 +407,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">src/app/add-label/add-label.component.ts:224</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/app/add-label/add-label.component.ts:281</a></div>
                             </td>
                         </tr>
 
@@ -1062,10 +1062,6 @@ export class AddLabelComponent implements OnInit {
    */
   addLabel(form) {
     this.submitted &#x3D; true;
-    const label &#x3D; {
-      key: form.labelName.value,
-      value: form.labelValue.value,
-    };
     const updatedEntity &#x3D; this.entity;
     if (!form.labelName.errors &amp;&amp; !form.labelValue.errors) {
       this.loading &#x3D; true;
@@ -1194,6 +1190,67 @@ export class AddLabelComponent implements OnInit {
               type: &#x27;warning&#x27;
             });
           });
+          break;
+        case &#x27;ec&#x27;:
+            if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
+              updatedEntity.labels &#x3D; {};
+            }
+            updatedEntity.labels[form.labelName.value] &#x3D; form.labelValue.value;
+            updatedEntity.add_labels &#x3D; true;
+            this.backend.updateEC(
+              this.organizationId,
+              updatedEntity.edge_controller_id,
+              {
+                edge_controller_id: updatedEntity.edge_controller_id,
+                add_labels: true,
+                labels: updatedEntity.labels
+              }
+            ).subscribe(updateECResponse &#x3D;&gt; {
+              this.loading &#x3D; false;
+              this.notificationsService.add({
+                message: &#x27;Updated &#x27; + this.entity.edge_controller_id,
+                timeout: 3000,
+              });
+              this.bsModalRef.hide();
+            }, error &#x3D;&gt; {
+              this.loading &#x3D; false;
+              this.notificationsService.add({
+                message: error.error.message,
+                timeout: 5000,
+                type: &#x27;warning&#x27;
+              });
+            });
+            this.bsModalRef.hide();
+          break;
+        case &#x27;asset&#x27;:
+            if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
+              updatedEntity.labels &#x3D; {};
+            }
+            updatedEntity.labels[form.labelName.value] &#x3D; form.labelValue.value;
+            this.backend.updateAsset(
+              this.organizationId,
+              updatedEntity.asset_id,
+              {
+                asset_id: updatedEntity.asset_id,
+                add_labels: true,
+                labels: updatedEntity.labels
+              }
+            ).subscribe(updateAssetResponse &#x3D;&gt; {
+              this.loading &#x3D; false;
+              this.notificationsService.add({
+                message: &#x27;Updated &#x27; + this.entity.asset_id,
+                timeout: 3000,
+              });
+              this.bsModalRef.hide();
+            }, error &#x3D;&gt; {
+              this.loading &#x3D; false;
+              this.notificationsService.add({
+                message: error.error.message,
+                timeout: 5000,
+                type: &#x27;warning&#x27;
+              });
+            });
+            this.bsModalRef.hide();
           break;
         default:
           break;

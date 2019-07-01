@@ -81,6 +81,7 @@ export class InstallAgentComponent implements OnInit {
     this.openFromEc = false;
     this.agentType = null;
     this.agentTypeSelectConfig = {
+      displayKey: 'name',
       search: false,
       height: 'auto',
       placeholder: 'Agent type',
@@ -88,12 +89,19 @@ export class InstallAgentComponent implements OnInit {
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
-    this.agentTypeOptions = [
-     'LINUX_X86',
-     'LINUX-ARM32',
-     'LINUX-ARM64',
-     'WINDOWS'
-    ];
+    this.agentTypeOptions = [{
+      name: 'LINUX_AMD64',
+      code: 0
+    }, {
+      name: 'LINUX_ARM32',
+      code: 1
+    }, {
+      name: 'LINUX_ARM64',
+      code: 2
+    }, {
+      name: 'WINDOWS_AMD64',
+      code: 3
+    }];
 
     //  edgeControllerId
     this.edgeControllerId = null;
@@ -160,7 +168,7 @@ export class InstallAgentComponent implements OnInit {
       this.edgeControllerId = f.edgeController.value.edge_controller_id;
     }
     const agent = {
-      agent_type: f.type.value,
+      agent_type: f.type.value.code,
       edge_controller_id: this.edgeControllerId,
       username: f.sshUsername.value,
       password: f.sshPassword.value,

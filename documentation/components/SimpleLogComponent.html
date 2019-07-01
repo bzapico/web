@@ -291,7 +291,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/simple-log/simple-log.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/simple-log/simple-log.component.ts:96</a></div>
                             </td>
                         </tr>
 
@@ -331,7 +331,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/simple-log/simple-log.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/simple-log/simple-log.component.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -362,14 +362,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>parseTimestampToDate(timestamp: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>parseTimestampToDate()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/simple-log/simple-log.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/simple-log/simple-log.component.ts:67</a></div>
                             </td>
                         </tr>
 
@@ -381,45 +381,9 @@ and multiplied by 1000 so that the argument is in milliseconds, not seconds.</p>
 </div>
 
                             <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>timestamp</td>
-                                                        <td>
-                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                                        </td>
-                                                    
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-
-                                                        <td>
-                                                                <code><p>is an integer that represents the number of seconds elapsed</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                            <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                             </div>
-                                <div class="io-description">
-                                    
-                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -725,7 +689,11 @@ export class SimpleLogComponent implements OnInit {
     } else {
       this.backend &#x3D; backendService;
     }
-    this.lastOpSummary &#x3D; {};
+    this.lastOpSummary &#x3D; {
+      timestamp: 0,
+      info: &#x27;No info available&#x27;,
+      status: &#x27;-&#x27;
+    };
    }
 
   ngOnInit() {
@@ -736,18 +704,30 @@ export class SimpleLogComponent implements OnInit {
    * and multiplied by 1000 so that the argument is in milliseconds, not seconds.
    * @param timestamp is an integer that represents the number of seconds elapsed
    */
-  parseTimestampToDate(timestamp: any) {
-    const date &#x3D; new Date(timestamp * 1000);
-    const year &#x3D; date.getFullYear();
-    const month &#x3D; date.getMonth();
-    const day &#x3D; date.getDate();
-    const hour &#x3D; date.getHours();
-    const min &#x3D; date.getMinutes();
-    const sec &#x3D; date.getSeconds();
+  parseTimestampToDate() {
+    if (this.lastOpSummary &amp;&amp; this.lastOpSummary.timestamp) {
+      const date &#x3D; new Date(this.lastOpSummary.timestamp * 1000);
+      const year &#x3D; date.getFullYear();
+      const month &#x3D; date.getMonth();
+      const day &#x3D; date.getDate();
+      let hour: any &#x3D; date.getHours();
+      let min: any &#x3D; date.getMinutes();
+      let sec: any &#x3D; date.getSeconds();
+ 
+      if (hour &lt; 10) {
+        hour &#x3D; &#x27;0&#x27; + hour;
+      }
+      if (min &lt; 10) {
+        min &#x3D; &#x27;0&#x27; + min;
+      }
+      if (sec &lt; 10) {
+        sec &#x3D; &#x27;0&#x27; + sec;
+      }
+      const formatedDate &#x3D; month + &#x27;/&#x27; + day + &#x27;/&#x27; + year + &#x27; - &#x27; + hour + &#x27;:&#x27; + min + &#x27;:&#x27; + sec ;
 
-    const formatedDate &#x3D; month + &#x27;/&#x27; + day + &#x27;/&#x27; + year + &#x27; - &#x27; + hour + &#x27;:&#x27; + min + &#x27;:&#x27; + sec ;
-
-    return formatedDate;
+      return formatedDate;
+    }
+    return &#x27;undefined&#x27;;
   }
 
   /**
@@ -778,9 +758,12 @@ export class SimpleLogComponent implements OnInit {
     &lt;!-- Body --&gt;
     &lt;div class&#x3D;&quot;modal-body&quot;&gt;
       &lt;div class&#x3D;&quot;simple-log&quot;&gt;
-        &lt;p&gt;Date: {{parseTimestampToDate(lastOpSummary.timestamp)}}&lt;/p&gt;
-        &lt;p&gt;Status: {{lastOpSummary.status}}&lt;/p&gt;
-        &lt;p&gt;Info: {{lastOpSummary.info}}&lt;/p&gt;
+        &lt;p *ngIf&#x3D;&quot;!lastOpSummary || !lastOpSummary.timestamp&quot;&gt;Date: No info&lt;/p&gt;
+        &lt;p *ngIf&#x3D;&quot;lastOpSummary.timestamp&quot;&gt;Date: {{parseTimestampToDate()}}&lt;/p&gt;
+        &lt;p *ngIf&#x3D;&quot;!lastOpSummary || !lastOpSummary.status&quot;&gt;Status: unknown&lt;/p&gt;
+        &lt;p *ngIf&#x3D;&quot;lastOpSummary.status&quot;&gt;Status: {{lastOpSummary.status}}&lt;/p&gt;
+        &lt;p *ngIf&#x3D;&quot;!lastOpSummary || !lastOpSummary.info&quot;&gt;No info&lt;/p&gt;
+        &lt;p *ngIf&#x3D;&quot;lastOpSummary.info&quot;&gt;Info: {{lastOpSummary.info}}&lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -812,7 +795,7 @@ export class SimpleLogComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content dev-group-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Last operation info</h3>      <button         (click)="closeModal()"        type="button"         aria-label="Close"        class="close" >        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <div class="simple-log">        <p>Date: {{parseTimestampToDate(lastOpSummary.timestamp)}}</p>        <p>Status: {{lastOpSummary.status}}</p>        <p>Info: {{lastOpSummary.info}}</p>      </div>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content dev-group-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Last operation info</h3>      <button         (click)="closeModal()"        type="button"         aria-label="Close"        class="close" >        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <div class="simple-log">        <p *ngIf="!lastOpSummary || !lastOpSummary.timestamp">Date: No info</p>        <p *ngIf="lastOpSummary.timestamp">Date: {{parseTimestampToDate()}}</p>        <p *ngIf="!lastOpSummary || !lastOpSummary.status">Status: unknown</p>        <p *ngIf="lastOpSummary.status">Status: {{lastOpSummary.status}}</p>        <p *ngIf="!lastOpSummary || !lastOpSummary.info">No info</p>        <p *ngIf="lastOpSummary.info">Info: {{lastOpSummary.info}}</p>      </div>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'SimpleLogComponent'};

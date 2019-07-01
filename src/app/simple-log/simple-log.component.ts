@@ -49,7 +49,11 @@ export class SimpleLogComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-    this.lastOpSummary = {};
+    this.lastOpSummary = {
+      timestamp: 0,
+      info: 'No info available',
+      status: '-'
+    };
    }
 
   ngOnInit() {
@@ -60,18 +64,30 @@ export class SimpleLogComponent implements OnInit {
    * and multiplied by 1000 so that the argument is in milliseconds, not seconds.
    * @param timestamp is an integer that represents the number of seconds elapsed
    */
-  parseTimestampToDate(timestamp: any) {
-    const date = new Date(timestamp * 1000);
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const day = date.getDate();
-    const hour = date.getHours();
-    const min = date.getMinutes();
-    const sec = date.getSeconds();
+  parseTimestampToDate() {
+    if (this.lastOpSummary && this.lastOpSummary.timestamp) {
+      const date = new Date(this.lastOpSummary.timestamp * 1000);
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const day = date.getDate();
+      let hour: any = date.getHours();
+      let min: any = date.getMinutes();
+      let sec: any = date.getSeconds();
+ 
+      if (hour < 10) {
+        hour = '0' + hour;
+      }
+      if (min < 10) {
+        min = '0' + min;
+      }
+      if (sec < 10) {
+        sec = '0' + sec;
+      }
+      const formatedDate = month + '/' + day + '/' + year + ' - ' + hour + ':' + min + ':' + sec ;
 
-    const formatedDate = month + '/' + day + '/' + year + ' - ' + hour + ':' + min + ':' + sec ;
-
-    return formatedDate;
+      return formatedDate;
+    }
+    return 'undefined';
   }
 
   /**
