@@ -848,14 +848,14 @@ export class MockupBackendService implements Backend {
         }
       }
     }
-    for (let indexIN = 0; indexIN < mockInventoryList.devices.length; indexIN++) {
-      if (mockInventoryList.devices[indexIN].device_id === changes.device_id) {
-        if (!mockInventoryList.devices[indexIN].labels) {
-          mockInventoryList.devices[indexIN].labels = {};
+    for (let index = 0; index < mockInventoryList.devices.length; index++) {
+      if (mockInventoryList.devices[index].device_id === changes.device_id) {
+        if (!mockInventoryList.devices[index].labels) {
+          mockInventoryList.devices[index].labels = {};
         }
         const keys = Object.keys(changes.labels);
         keys.forEach(key => {
-          mockInventoryList.devices[indexIN].labels[key] = changes.labels[key];
+          mockInventoryList.devices[index].labels[key] = changes.labels[key];
         });
 
         return of (new Response(new ResponseOptions({
@@ -880,7 +880,10 @@ export class MockupBackendService implements Backend {
     }
     for (let index = 0; index < mockInventoryList.devices.length; index++) {
       if (mockInventoryList.devices[index].device_id === changes.device_id) {
-        delete mockInventoryList.devices[index].labels[Object.keys(changes.labels)[0]];
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          delete mockInventoryList.devices[index].labels[key];
+        });
       }
     }
     return of (new Response(new ResponseOptions({
