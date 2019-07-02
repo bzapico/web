@@ -238,7 +238,6 @@ export class BackendService implements Backend {
       {
         organization_id: organizationId,
         asset_id: assetId,
-        force: true
       }
     );
   }
