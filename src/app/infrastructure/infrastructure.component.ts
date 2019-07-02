@@ -562,7 +562,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         this.backend.uninstallAgent(this.organizationId, asset.edge_controller_id, asset.asset_id)
           .subscribe(response => {
             this.notificationsService.add({
-              message: 'Agent ' + '' + ' has been uninstalled',
+              message: 'Agent on ' + asset.asset_id + ' started uninstalling',
               timeout: 3000
             });
           }, error => {
