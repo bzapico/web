@@ -150,7 +150,6 @@ export class AddLabelComponent implements OnInit {
             updatedEntity.labels = {};
           }
           updatedEntity.labels[form.labelName.value] = form.labelValue.value;
-          updatedEntity.add_labels = true;
           this.backend.addLabelToDevice(
             this.organizationId,
             {
