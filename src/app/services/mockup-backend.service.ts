@@ -261,6 +261,14 @@ export class MockupBackendService implements Backend {
     );
   }
 
+  updateAsset(organizationId: string, assetId: string, asset: any) {
+    // TODO
+  }
+
+  updateEC(organizationId: string, ecId: string, ec: any) {
+    // TODO
+  }
+
   /**
    * Simulates uninstall an agent
    * @param organizationId Organization identifier
@@ -676,10 +684,10 @@ export class MockupBackendService implements Backend {
 
   /**
    * Operation that allows to remove a device from the system
-  * @param organizationId Organization identifier
-  * @param deviceId device identifier
+   * @param organizationId Organization identifier
+   * @param deviceId device identifier
    */
-  removeDevice(organizationId: string, deviceId: any) {
+  removeDevice(organizationId: string, groupId: string, deviceId: any) {
     for (let index = 0; index < mockDevicesList.length; index++) {
       for (let indexDevice = 0; indexDevice < mockDevicesList[index].length; indexDevice++) {
         if (mockDevicesList[index][indexDevice].device_id === deviceId) {
@@ -691,6 +699,7 @@ export class MockupBackendService implements Backend {
       status: 200
     })));
   }
+
 
   /**
    * Operation that allows to remove a device from the system

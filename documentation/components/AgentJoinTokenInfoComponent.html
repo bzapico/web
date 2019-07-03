@@ -297,7 +297,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/agent-join-token-info/agent-join-token-info.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/agent-join-token-info/agent-join-token-info.component.ts:93</a></div>
                             </td>
                         </tr>
 
@@ -337,7 +337,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/agent-join-token-info/agent-join-token-info.component.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/agent-join-token-info/agent-join-token-info.component.ts:65</a></div>
                             </td>
                         </tr>
 
@@ -467,7 +467,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/agent-join-token-info/agent-join-token-info.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/agent-join-token-info/agent-join-token-info.component.ts:79</a></div>
                             </td>
                         </tr>
 
@@ -862,13 +862,7 @@ export class AgentJoinTokenInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    const jwtData &#x3D; localStorage.getItem(LocalStorageKeys.jwtData) || null;
-    if (jwtData !&#x3D;&#x3D; null) {
-      this.organizationId &#x3D; JSON.parse(jwtData).organizationID;
-        if (this.organizationId !&#x3D;&#x3D; null) {
-          this.getAgentToken(this.organizationId, this.edgeControllerId);
-        }
-    }
+    this.getAgentToken(this.organizationId, this.edgeControllerId);
   }
 
   /**
