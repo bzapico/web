@@ -428,7 +428,7 @@
                 </th>
                 <th 
                   *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
-                  tooltip="Enabled" 
+                  tooltip="Actions" 
                   placement="bottom"
                   scope="col" 
                   class="col-1 text-center enabled-initial-text">
@@ -436,7 +436,7 @@
                 </th>
                 <th
                   *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0"
-                  tooltip="Enabled" 
+                  tooltip="Actions" 
                   placement="bottom"
                   scope="col" 
                   class="col-1 text-center enabled-initial-text">
@@ -464,7 +464,7 @@
                     <span 
                       tooltip="{{device.device_status_name}}" 
                       placement="bottom"
-                      class="tooltip-fix text-capitalize" >
+                      class="tooltip-fix">
                     </span>
                     <span class="hide-lg">
                       {{device.device_status_name}}
@@ -553,7 +553,7 @@
                     <span 
                       tooltip="{{device.device_status_name}}" 
                       placement="bottom"
-                      class="tooltip-fix text-capitalize">
+                      class="tooltip-fix">
                     </span>
                     <span class="hide-lg">
                       {{device.device_status_name}}
