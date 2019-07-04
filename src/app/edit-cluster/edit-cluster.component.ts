@@ -53,7 +53,7 @@ export class EditClusterComponent implements OnInit {
 
   ngOnInit() {
     this.editClusterForm = this.formBuilder.group({
-      clusterName: ['',  [Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]],
+      clusterName: ['',  [Validators.minLength(3), Validators.pattern('^[a-zA-Z0-9]+$')]],
     });
   }
 
