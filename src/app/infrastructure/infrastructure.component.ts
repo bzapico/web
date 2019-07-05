@@ -1001,7 +1001,14 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         const ecOption3 = {
           name: 'Create agent token',
           action: (inventoryItem: any) => {
-            this.createAgentToken(inventoryItem);
+            if (inventoryItem.status === 'ONLINE') {
+              this.createAgentToken(inventoryItem);
+            } else {
+              this.notificationsService.add({
+                message: 'Cannot create an agent when the EC is offline',
+                timeout: 3000
+              });
+            }
           },
           item: item
         };
