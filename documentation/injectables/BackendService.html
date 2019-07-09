@@ -412,7 +412,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="648" class="link-to-prism">src/app/services/backend.service.ts:648</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="649" class="link-to-prism">src/app/services/backend.service.ts:649</a></div>
                             </td>
                         </tr>
 
@@ -504,7 +504,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="684" class="link-to-prism">src/app/services/backend.service.ts:684</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="685" class="link-to-prism">src/app/services/backend.service.ts:685</a></div>
                             </td>
                         </tr>
 
@@ -935,7 +935,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="661" class="link-to-prism">src/app/services/backend.service.ts:661</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="662" class="link-to-prism">src/app/services/backend.service.ts:662</a></div>
                             </td>
                         </tr>
 
@@ -1848,7 +1848,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="636" class="link-to-prism">src/app/services/backend.service.ts:636</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="637" class="link-to-prism">src/app/services/backend.service.ts:637</a></div>
                             </td>
                         </tr>
 
@@ -3009,7 +3009,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="605" class="link-to-prism">src/app/services/backend.service.ts:605</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="606" class="link-to-prism">src/app/services/backend.service.ts:606</a></div>
                             </td>
                         </tr>
 
@@ -3059,6 +3059,8 @@
                                                     
 
                                                         <td>
+                                                                <code><p>Device Group identifier</p>
+</code>
                                                         </td>
                                                 </tr>
                                                 <tr>
@@ -3115,7 +3117,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="621" class="link-to-prism">src/app/services/backend.service.ts:621</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="622" class="link-to-prism">src/app/services/backend.service.ts:622</a></div>
                             </td>
                         </tr>
 
@@ -3207,7 +3209,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="691" class="link-to-prism">src/app/services/backend.service.ts:691</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="692" class="link-to-prism">src/app/services/backend.service.ts:692</a></div>
                             </td>
                         </tr>
 
@@ -4270,7 +4272,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="677" class="link-to-prism">src/app/services/backend.service.ts:677</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="678" class="link-to-prism">src/app/services/backend.service.ts:678</a></div>
                             </td>
                         </tr>
 
@@ -5097,11 +5099,12 @@ export class BackendService implements Backend {
     );
   }
 
-  // POST &#x27;/v1/device/{organization_id}/remove&#x27;
+   // POST &#x27;/v1/device/{organization_id}/remove&#x27;
   /**
    * Operation that allows to remove a device from the system
    * @param organizationId Organization identifier
-    * @param deviceId device identifier
+   * @param groupId Device Group identifier
+   * @param deviceId device identifier
    */
   removeDevice(organizationId: string, groupId: string, deviceId: any) {
     return this.post(

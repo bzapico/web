@@ -612,7 +612,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     this.ecModalRef.content.closeBtnName = 'Close';
   }
 
-  /*
   /**
   * Open install Agent info modal window
   */
@@ -793,7 +792,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     }
   }
 
-   /**
+  /**
    * Operation to unlink a device
    * @param device device in inventory item
    */
@@ -830,6 +829,10 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     }
   }
 
+  /**
+   * Opens the modal view that holds add label component
+   * @param item Item object
+   */
   addLabel(item: any) {
     const initialState = {
       organizationId: this.organizationId,
@@ -860,6 +863,11 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     this.addLabelModalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { });
   }
+
+  /**
+   * Deletes a selected label
+   * @param item selected label item
+   */
   deleteLabel(item: any) {
     const deleteConfirm = confirm('Delete labels?');
     if (deleteConfirm) {
@@ -875,7 +883,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
                 remove_labels: true,
                 labels: this.selectedLabels[indexEC].labels
               }).subscribe(deleteLabelResponse => {
-                this.selectedLabels.splice(index, 1);
+                this.selectedLabels.splice(indexEC, 1);
                 this.updateInventoryList();
               });
           break;
@@ -890,21 +898,21 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
               remove_labels: true,
               labels: this.selectedLabels[indexAsset].labels
             }).subscribe(deleteLabelResponse => {
-              this.selectedLabels.splice(index, 1);
+              this.selectedLabels.splice(indexAsset, 1);
               this.updateInventoryList();
             });
           break;
         case 'Device':
-            const index = this.selectedLabels.map(x => x.id).indexOf(item.id);
+            const indexDevice = this.selectedLabels.map(x => x.id).indexOf(item.id);
             this.backend.removeLabelFromDevice(
               this.organizationId,
               {
                 organizationId: this.organizationId,
                 device_id: item.device_id,
                 device_group_id: item.device_group_id,
-                labels: this.selectedLabels[index].labels
+                labels: this.selectedLabels[indexDevice].labels
               }).subscribe(deleteLabelResponse => {
-                this.selectedLabels.splice(index, 1);
+                this.selectedLabels.splice(indexDevice, 1);
                 this.updateInventoryList();
               });
           break;

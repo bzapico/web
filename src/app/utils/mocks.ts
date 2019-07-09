@@ -1334,7 +1334,7 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             device_group_id: 'a2ed5462-76b7-4085-98fb-27c1cd9b79a5',
-            device_id: 'dh005',
+            device_id: 'dh0011',
             register_since: 1550746520,
             labels: {
                 lab11: 'label11',
@@ -1358,11 +1358,23 @@ export const mockInventoryList: Inventory = {
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
             device_group_id: 'd94ac398-fd77-4937-b7f7-9fa0ff8b1eab',
-            device_id: 'dh006',
+            device_id: 'dh010',
             register_since: 1550746520,
             labels: {
                 lab1: 'label13',
                 lab23: 'label23'
+            },
+            enabled: false,
+            device_status_name : 'offline'
+        },
+        {
+            organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            device_group_id: 'e94ac398-fd77-4937-b7f7-9fa0ff8b1eab',
+            device_id: 'dh009',
+            register_since: 1550746520,
+            labels: {
+                lab4: 'label14',
+                lab24: 'label24'
             },
             enabled: false,
             device_status_name : 'offline'

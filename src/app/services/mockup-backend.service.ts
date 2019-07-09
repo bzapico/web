@@ -261,12 +261,56 @@ export class MockupBackendService implements Backend {
     );
   }
 
+  /**
+   * Simulates to update asset in inventory list
+   * @param organizationId Organization identifier
+   * @param assetId Asset identifier
+   * @param asset Asset updated object
+   */
   updateAsset(organizationId: string, assetId: string, asset: any) {
-    // TODO
+    const index = mockInventoryList.assets.map(x => x.asset_id).indexOf(assetId);
+    if (index !== -1) {
+      if (asset.remove_labels) {
+        const keys = Object.keys(asset.labels);
+        keys.forEach(key => {
+          delete mockInventoryList.assets[index].labels[key];
+        });
+      } else if (asset.add_labels) {
+        const keys = Object.keys(asset.labels);
+        keys.forEach(key => {
+          mockInventoryList.assets[index].labels[key] = asset.labels[key];
+        });
+      }
+    }
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
   }
 
+  /**
+   * Simulates to update Edge Controller in inventory list
+   * @param organizationId Organization identifier
+   * @param edgeControllerId Edge Controller identifier
+   * @param ec Edge controller updated object
+   */
   updateEC(organizationId: string, ecId: string, ec: any) {
-    // TODO
+    const index = mockInventoryList.controllers.map(x => x.edge_controller_id).indexOf(ecId);
+    if (index !== -1) {
+      if (ec.remove_labels) {
+        const keys = Object.keys(ec.labels);
+        keys.forEach(key => {
+          delete mockInventoryList.controllers[index].labels[key];
+        });
+      } else if (ec.add_labels) {
+        const keys = Object.keys(ec.labels);
+        keys.forEach(key => {
+          mockInventoryList.controllers[index].labels[key] = ec.labels[key];
+        });
+      }
+    }
+    return of(new Response(new ResponseOptions({
+      status: 200
+    })));
   }
 
   /**
@@ -785,6 +829,11 @@ export class MockupBackendService implements Backend {
     })));
   }
 
+  /**
+   * Simulates to add labels to devices
+   * @param organizationId Organization identifier
+   * @param changes changes to address
+   */
   addLabelToDevice(organizationId: string, changes: any) {
     for (let index = 0; index < mockDevicesList.length; index++) {
       for (let indexDevice = 0; indexDevice < mockDevicesList[index].length; indexDevice++) {
@@ -799,10 +848,28 @@ export class MockupBackendService implements Backend {
         }
       }
     }
-    return of (new Response(new ResponseOptions({
-      status: 200
-    })));
+    for (let index = 0; index < mockInventoryList.devices.length; index++) {
+      if (mockInventoryList.devices[index].device_id === changes.device_id) {
+        if (!mockInventoryList.devices[index].labels) {
+          mockInventoryList.devices[index].labels = {};
+        }
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          mockInventoryList.devices[index].labels[key] = changes.labels[key];
+        });
+
+        return of (new Response(new ResponseOptions({
+          status: 200
+        })));
+      }
+    }
   }
+
+  /**
+   * Simulates to remove labels from devices
+   * @param organizationId Organization identifier
+   * @param changes changes to address
+   */
   removeLabelFromDevice(organizationId: string, changes: any) {
     for (let index = 0; index < mockDevicesList.length; index++) {
       for (let indexDevice = 0; indexDevice < mockDevicesList[index].length; indexDevice++) {
@@ -811,12 +878,20 @@ export class MockupBackendService implements Backend {
         }
       }
     }
+    for (let index = 0; index < mockInventoryList.devices.length; index++) {
+      if (mockInventoryList.devices[index].device_id === changes.device_id) {
+        const keys = Object.keys(changes.labels);
+        keys.forEach(key => {
+          delete mockInventoryList.devices[index].labels[key];
+        });
+      }
+    }
     return of (new Response(new ResponseOptions({
       status: 200
     })));
   }
 
-    /**
+  /**
    * Generates UUID v4
    * https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
    */
