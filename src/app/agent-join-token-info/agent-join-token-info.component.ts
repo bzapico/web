@@ -51,6 +51,9 @@ export class AgentJoinTokenInfoComponent implements OnInit {
       this.backend = backendService;
     }
     this.agent = {};
+
+    // Default initialization
+    this.loadedData = false;
   }
 
   ngOnInit() {
@@ -67,7 +70,10 @@ export class AgentJoinTokenInfoComponent implements OnInit {
       this.backend.createAgentJoinToken(this.organizationId,  this.edgeControllerId)
       .subscribe((agent: any[]) => {
         this.agent = agent || [];
-      });
+        this.loadedData = true;
+    }, errorResponse => {
+      this.loadedData = true;
+    });
     }
   }
 
