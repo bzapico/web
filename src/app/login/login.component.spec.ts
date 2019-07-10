@@ -49,10 +49,8 @@ describe('LoginComponent', () => {
     service = null;
   });
 
-  it('onSubmit() - It should be submitted to true', async() => {
-    component.onSubmit();
-
-    expect(component.loginRequest).toBeTruthy();
+  it('Form invalid when empty', () => {
+    expect(component.loginForm.valid).toBeFalsy();
   });
 
   it('Form shoud be invalid', async() => {
@@ -60,6 +58,20 @@ describe('LoginComponent', () => {
     component.loginForm.controls['password'].setValue('');
 
     expect(component.loginForm.valid).toBeFalsy();
+  });
+
+  it('Email field validity', () => {
+    const email = component.loginForm.controls['email'];
+
+    expect(email.valid).toBeFalsy();
+  });
+
+  it('Email field validity when there are any errors', () => {
+    let errors = {};
+    const email = component.loginForm.controls['email'];
+    errors = email.errors || {};
+
+    expect(errors['required']).toBeTruthy();
   });
 
   it('onSubmit() - Should return false when the user is not authenticated', () => {
