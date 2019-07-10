@@ -4478,7 +4478,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         this.backend.uninstallAgent(this.organizationId, asset.edge_controller_id, asset.asset_id)
           .subscribe(response &#x3D;&gt; {
             this.notificationsService.add({
-              message: &#x27;Agent &#x27; + &#x27;&#x27; + &#x27; has been uninstalled&#x27;,
+              message: &#x27;Agent on &#x27; + asset.asset_id + &#x27; started uninstalling&#x27;,
               timeout: 3000
             });
           }, error &#x3D;&gt; {
@@ -4604,7 +4604,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param controller identifier
    */
   unlinkEIC(controller: any) {
-    if (controller.assets) {
+    if (controller.assets.length &gt; 0) {
       alert(&#x27;Cannot unlink EC. Agents on associated assets should be uninstalled before.&#x27;);
     } else {
       const unlinkConfirm &#x3D; confirm(&#x27;Unlink Edge Controller?&#x27;);
