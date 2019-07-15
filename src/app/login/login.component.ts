@@ -70,6 +70,12 @@ export class LoginComponent implements OnInit {
    */
   onSubmit() {
     this.submitted = true;
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      this.submitted = true;
+      this.loginRequest = false;
+      return;
+    }
     this.loginRequest = true;
     this.authService.login(this.f.email.value, this.f.password.value)
       .subscribe(response => {

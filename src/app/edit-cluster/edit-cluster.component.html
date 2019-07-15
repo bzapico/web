@@ -22,7 +22,6 @@
             placeholder="{{clusterName}}"
             value="{{clusterName}}"
             appAutofocus="true"
-            pattern="[a-zA-Z0-9]+"
             [ngClass]="{ 'is-invalid': submitted && f.clusterName.errors }"
             class="form-control">
             <div *ngIf="!submitted && f.clusterName.errors" class="error-message"></div>

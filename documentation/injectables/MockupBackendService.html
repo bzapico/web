@@ -4263,7 +4263,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="895" class="link-to-prism">src/app/services/mockup-backend.service.ts:895</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="898" class="link-to-prism">src/app/services/mockup-backend.service.ts:898</a></div>
                             </td>
                         </tr>
 
@@ -5179,14 +5179,14 @@ export class MockupBackendService implements Backend {
         }
       }
     }
-    for (let indexIN &#x3D; 0; indexIN &lt; mockInventoryList.devices.length; indexIN++) {
-      if (mockInventoryList.devices[indexIN].device_id &#x3D;&#x3D;&#x3D; changes.device_id) {
-        if (!mockInventoryList.devices[indexIN].labels) {
-          mockInventoryList.devices[indexIN].labels &#x3D; {};
+    for (let index &#x3D; 0; index &lt; mockInventoryList.devices.length; index++) {
+      if (mockInventoryList.devices[index].device_id &#x3D;&#x3D;&#x3D; changes.device_id) {
+        if (!mockInventoryList.devices[index].labels) {
+          mockInventoryList.devices[index].labels &#x3D; {};
         }
         const keys &#x3D; Object.keys(changes.labels);
         keys.forEach(key &#x3D;&gt; {
-          mockInventoryList.devices[indexIN].labels[key] &#x3D; changes.labels[key];
+          mockInventoryList.devices[index].labels[key] &#x3D; changes.labels[key];
         });
 
         return of (new Response(new ResponseOptions({
@@ -5211,7 +5211,10 @@ export class MockupBackendService implements Backend {
     }
     for (let index &#x3D; 0; index &lt; mockInventoryList.devices.length; index++) {
       if (mockInventoryList.devices[index].device_id &#x3D;&#x3D;&#x3D; changes.device_id) {
-        delete mockInventoryList.devices[index].labels[Object.keys(changes.labels)[0]];
+        const keys &#x3D; Object.keys(changes.labels);
+        keys.forEach(key &#x3D;&gt; {
+          delete mockInventoryList.devices[index].labels[key];
+        });
       }
     }
     return of (new Response(new ResponseOptions({

@@ -14,7 +14,7 @@
         </div>
         <!-- Body -->
         <div class="modal-body">
-            <form [formGroup]="loginForm">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label>Email</label>
                     <input 
@@ -50,7 +50,7 @@
                 </div>
                 <div class="btn-h">
                     <div *ngIf="!loginRequest" class="form-group-btn">
-                        <button class="nalej-form-btn-blue" (click)="onSubmit(f)">
+                        <button class="nalej-form-btn-blue">
                             <span class="align-bottom">Log in</span>
                         </button>
                     </div>
