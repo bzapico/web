@@ -185,9 +185,9 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         this.backend.getInventorySummary(this.organizationId)
         .subscribe(summary => {
           if (summary) {
-            this.cpuCores = summary['total_num_cpu'];
-            this.RAM = summary['total_ram'];
-            this.storage = summary['total_storage'];
+            this.cpuCores = summary['total_num_cpu'] || 0;
+            this.RAM = summary['total_ram'] || 0;
+            this.storage = summary['total_storage'] || 0;
           }
         });
       }
@@ -224,7 +224,11 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   normalizeInventoryItems(response: any) {
     this.inventory = [];
     this.ecsOnline = 0;
-    this.ecsTotal = response.controllers.length;
+    if (response.controllers) {
+      this.ecsTotal = response.controllers.length;
+    } else {
+      this.ecsTotal = 0;
+    }
     if (!response || response === null) {
     } else {
       if (response.devices) {
@@ -348,7 +352,11 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param response Backend response where to modify the data
    */
   updateOnlineEcsPieChart(response) {
-    this.ecsTotal = response.controllers.length;
+    if (response.controllers) {
+      this.ecsTotal = response.controllers.length;
+    } else {
+      this.ecsTotal = 0;
+    }
     this.infrastructurePieChart = this.generateSummaryChartData(this.ecsOnline, this.ecsTotal);
   }
 
