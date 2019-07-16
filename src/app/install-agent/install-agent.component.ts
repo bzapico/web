@@ -163,9 +163,20 @@ export class InstallAgentComponent implements OnInit {
    */
   installAgent(f) {
     this.submitted = true;
+    this.loading = true;
 
     if (!this.openFromEc && f.edgeController && f.edgeController.value) {
       this.edgeControllerId = f.edgeController.value.edge_controller_id;
+    }
+    // Local validator check
+    if (f.type.invalid === true ||
+      (!this.openFromEc && f.edgeController.invalid === true) ||
+      f.sshUsername.invalid === true ||
+      f.sshPassword.invalid === true ||
+      f.target.value === true
+      ) {
+        this.loading = false;
+        return;
     }
     const agent = {
       agent_type: f.type.value.code,
@@ -174,17 +185,6 @@ export class InstallAgentComponent implements OnInit {
       password: f.sshPassword.value,
       target_host: f.target.value
     };
-
-    if (f.type.invalid === true ||
-      (!this.openFromEc && f.edgeController.invalid === true) ||
-      f.sshUsername.invalid === true ||
-      f.sshPassword.invalid === true ||
-      f.target.value === true
-      ) {
-        return;
-      }
-
-    this.loading = true;
     this.backend.installAgent(this.organizationId, this.edgeControllerId, agent)
       .subscribe(response => {
         this.loading = false;

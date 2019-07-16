@@ -13,7 +13,10 @@
     </div>
     <!-- Body -->
     <div class="modal-body">
-      <form [formGroup]="installAgentForm" (ngSubmit)="installAgent(f)">
+      <form 
+        *ngIf="!loading"
+        [formGroup]="installAgentForm" 
+        (ngSubmit)="installAgent(f)">
       <div class="scroll-modal-form">
         <div class="form-group form-group-drop">
           <label>Agent type*</label>
@@ -117,11 +120,28 @@
       </div>
         <!-- Install agent -->
         <div class="form-group-btn">
-          <button class="nalej-form-btn-blue" [disabled]="loading">
+          <button 
+            class="nalej-form-btn-blue" 
+            [disabled]="loading">
             <span class="align-bottom">Install</span>
           </button>
         </div>
       </form>
+      <!-- Loader -->
+      <div *ngIf="loading" class="nalej-loader-box">
+        <div class="loader">
+          <svg class="circular" viewBox="25 25 50 50">
+            <circle 
+            class="path" 
+            cx="50" 
+            cy="50" 
+            r="20" 
+            fill="none" 
+            stroke-width="2" 
+            stroke-miterlimit="10"/>
+          </svg>
+        </div>
+      </div>
     </div>
   </div>
 </div>
