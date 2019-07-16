@@ -173,7 +173,7 @@ export class InstallAgentComponent implements OnInit {
       (!this.openFromEc && f.edgeController.invalid === true) ||
       f.sshUsername.invalid === true ||
       f.sshPassword.invalid === true ||
-      f.target.value === true
+      f.target.invalid === true
       ) {
         this.loading = false;
         return;
