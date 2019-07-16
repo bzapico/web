@@ -69,7 +69,14 @@
         <div class="install-options">
           <button
             (click)="installAgent()"
-            class="install-options-btn">
+            [ngClass]= 
+            "{
+              'install-options-btn': ecsTotal > 0,
+              'install-options-btn-disabled': ecsTotal === 0
+            }"
+            [disabled]="ecsTotal===0"
+            
+            >
             <i class="material-icons i-options">publish</i>
             Install agent
           </button>
