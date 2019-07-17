@@ -177,6 +177,27 @@
             left: -16px;
         }
     }
+    .install-options-btn-disabled {
+        position: relative;
+        margin-right: 15px;
+        background-color:#949494;
+        border-radius: 5px;
+        padding: .5em 1.1em;
+        cursor: default;
+        color: white;
+        border: none;
+        text-indent: 2em;
+        font-size: .8em;
+        outline: none;
+        padding-top: 10px;
+        .i-options {
+            font-size: 1.8em;
+            font-weight: 700;
+            position: absolute;
+            top: 6px;
+            left: -16px;
+        }
+    }
 }
 .search-box {
     @include for-desktop-up {
