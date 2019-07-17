@@ -607,15 +607,13 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       let deleteGroupName;
       const indexActive = this.groups.map(x => x.device_group_id).indexOf(this.activeGroupId);
       if (indexActive !== -1) {
-        debugger;
         deleteGroupName = this.groups[indexActive].name;
         this.backend.deleteGroup(this.organizationId, this.activeGroupId)
           .subscribe(response => {
             this.backend.getGroups(this.organizationId)
               .subscribe(getGroupsResponse => {
                 this.groups = getGroupsResponse.groups;
-                debugger;
-                if(!this.groups){
+                if (!this.groups){
                   this.groups = [];
                 }
                 if (this.groups.length === 0) {
@@ -647,8 +645,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
               }
               this.updateDisplayedGroupsNamesLength();
               this.changeActiveGroup('ALL');
-              debugger;
-                console.log(this.groups);
               });
               this.notificationsService.add({
                 message: 'Group "' + deleteGroupName + '" has been deleted',
