@@ -316,6 +316,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
           }
           controller.status = controller.status_name;
           controller.assets = [];
+          if (response.assets) {
             response.assets.forEach(asset => {
               if (asset.edge_controller_id === controller.edge_controller_id) {
                 const assetIp = asset.eic_net_ip ? asset.eic_net_ip : 'undefined';
@@ -327,6 +328,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
                   asset.edge_controller_id});
               }
             });
+          }
           this.inventory.push(controller);
         });
       }
