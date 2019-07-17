@@ -338,7 +338,7 @@
                 </td>
                 <td class="col-1 text-center">
                   <button 
-                    (click)="openContextualMenu(item)"
+                    (click)="openContextualMenu($event, item)"
                     [ngClass]=
                       "{
                         'action-btn-grey': item.id !== activeContextMenuItemId,
@@ -348,7 +348,8 @@
                     <i class="material-icons i-black">more_vert</i>
                     <app-contextual-menu 
                       [visible]="item.id === activeContextMenuItemId" 
-                      [options]=getItemOptions(item)>
+                      [options]="getItemOptions(item)"
+                      (closed)="onContextualMenuClose(item)">
                     </app-contextual-menu>
                   </button>
                 </td>
