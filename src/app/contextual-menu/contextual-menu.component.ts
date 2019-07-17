@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-contextual-menu',
@@ -7,10 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ContextualMenuComponent implements OnInit {
 
-  constructor() { }
+  innerClick: boolean;
+
+  constructor() {}
 
   @Input() visible: boolean;
   @Input() options: any[];
+  @Output() closed = new EventEmitter<boolean>();
 
   ngOnInit() {}
 
@@ -18,4 +21,16 @@ export class ContextualMenuComponent implements OnInit {
     option.action(option.item);
   }
 
+  @HostListener('click')
+  onclickin() {
+    this.innerClick = true;
+  }
+
+  @HostListener('document:click')
+  onclickout() {
+    if (this.visible && !this.innerClick) {
+      this.closed.emit(false);
+    }
+    this.innerClick = false;
+  }
 }

@@ -127,6 +127,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Active context menu item ID
    */
   activeContextMenuItemId: string;
+  opened: boolean;
 
   constructor(
     private modalService: BsModalService,
@@ -316,17 +317,19 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
           }
           controller.status = controller.status_name;
           controller.assets = [];
-          response.assets.forEach(asset => {
-            if (asset.edge_controller_id === controller.edge_controller_id) {
-              const assetIp = asset.eic_net_ip ? asset.eic_net_ip : 'undefined';
-              controller.assets.push({
-                asset_id: asset.asset_id,
-                eic_net_ip: assetIp,
-                status: asset.status_name,
-                edge_controller_id:
-                asset.edge_controller_id});
-            }
-          });
+          if (response.assets) {
+            response.assets.forEach(asset => {
+              if (asset.edge_controller_id === controller.edge_controller_id) {
+                const assetIp = asset.eic_net_ip ? asset.eic_net_ip : 'undefined';
+                controller.assets.push({
+                  asset_id: asset.asset_id,
+                  eic_net_ip: assetIp,
+                  status: asset.status_name,
+                  edge_controller_id:
+                  asset.edge_controller_id});
+              }
+            });
+          }
           this.inventory.push(controller);
         });
       }
@@ -829,12 +832,17 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Opens context menu
    * @param item inventory item
    */
-  openContextualMenu(item: any) {
-    if (item.id === this. activeContextMenuItemId) {
+  openContextualMenu(event, item: any) {
+    event.stopPropagation();
+    if (item.id === this.activeContextMenuItemId) {
       this.activeContextMenuItemId = '';
     } else {
       this.activeContextMenuItemId = item.id;
     }
+  }
+
+  onContextualMenuClose(item) {
+    this.activeContextMenuItemId = '';
   }
 
   /**
