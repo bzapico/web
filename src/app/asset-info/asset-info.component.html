@@ -48,7 +48,7 @@
             <div class="col">
             <div class="row">
               <div class="col-sm grey mb-3">CPU</div>
-              <div class="col-sm text-right">{{countCpus(i)}}</div>
+              <div class="col-sm text-right">{{i + 1}}</div>
             </div>
             <div class="row">
               <div class="col-sm-2"></div>
@@ -82,7 +82,7 @@
           <div class="col">
             <div *ngIf="storage" class="row">
               <div class="col-sm grey mb-3">STORAGE</div>
-              <div class="col-sm text-right">{{countStorages(i)}}</div>
+              <div class="col-sm text-right">{{i + 1}}</div>
             </div>
             <div *ngIf="storage.type" class="row">
               <div class="col-sm-2"></div>

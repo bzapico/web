@@ -157,25 +157,4 @@ export class AssetInfoComponent implements OnInit {
 
     this.bsModalRef.hide();
   }
-
-  /**
-   * Adds order to the CPUs list
-   * @param i index of CPU
-   */
-  countCpus(i: number) {
-    for (let index = 0; index < this.cpus.length; index++) {
-      return i + index + 1;
-    }
-  }
-
-  /**
-   * Adds order to the storages list
-   * @param i index of Storage
-   */
-  countStorages(i: number) {
-    for (let index = 0; index < this.cpus.length; index++) {
-      return i + index + 1;
-    }
-  }
-
 }
