@@ -457,7 +457,7 @@ export class BackendService implements Backend {
         organization_id: organizationId,
         app_descriptor_id: descriptorId,
         name: name,
-        params: params
+        parameters: { parameters: params }
       };
     }
     return this.post(

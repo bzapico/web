@@ -10,6 +10,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { RegisterApplicationComponent } from '../register-application/register-application.component';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
+import { Router } from '@angular/router';
+import { AttachSession } from 'protractor/built/driverProviders';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -160,7 +162,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private router: Router
     ) {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
@@ -222,6 +225,22 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       // Request to get apps instances
       this.backend.getInstances(this.organizationId)
       .subscribe(response => {
+        // Temporal workaround to avoid losing undeploying status on update,
+        // until the backend updates the app status after triggering undeploy action
+        // (https://daisho.atlassian.net/browse/NP-1679
+          const instancesUndeploying = [];
+          for (let index = 0; index < this.instances.length; index++) {
+            if (this.instances[index].undeploying) {
+              instancesUndeploying.push(this.instances[index].app_instance_id);
+            }
+          }
+          instancesUndeploying.forEach(instanceUndeployingId => {
+            const index = response.instances.map(x => x.app_instance_id).indexOf(instanceUndeployingId);
+            if (index !== -1) {
+              response.instances[index].undeploying = true;
+            }
+          });
+          // End of temporal workaround
           this.instances = response.instances || [];
           this.updatePieChartStats(this.instances);
           this.updateRunningAppsLineChart(this.instances);
@@ -620,6 +639,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     if (undeployConfirm) {
       this.backend.undeploy(this.organizationId, app.app_instance_id)
         .subscribe(undeployResponse => {
+          app.undeploying = true;
           this.notificationsService.add({
             message: 'Undeploying ' + app.name,
             timeout: 3000
@@ -670,6 +690,19 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
             type: 'warning'
           });
         });
+    }
+  }
+
+  /**
+   * Triggers the navigation to app instance detailed view if the app is not being undeployed
+   * @param app App instance data
+   */
+  goToInstanceView(app): void {
+    // This solution applies when the backend updates the app status after triggering undeploy action
+    // (https://daisho.atlassian.net/browse/NP-1679)
+    // if (app.status_name.toLocaleLowerCase() !== 'undeploying') {
+    if (!app.undeploying) {
+      this.router.navigate(['/applications/instance/' + app.app_instance_id]);
     }
   }
 }
