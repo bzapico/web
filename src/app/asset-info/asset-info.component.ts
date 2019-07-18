@@ -18,7 +18,7 @@ export class AssetInfoComponent implements OnInit {
 
   /**
    * Models that hold organization id, asset ID, agent ID, asset IP, architecture,
-   * model, manugacturer, cores, show, created, labels, class, version, net interfaces, capacity,
+   * cpus, show, created, labels, class, version, net interfaces, capacity,
    * EIC and status
    */
   organizationId: string;
@@ -27,9 +27,7 @@ export class AssetInfoComponent implements OnInit {
   agentId: string;
   assetIp: string;
   architecture: string;
-  model: string;
-  manufacturer: string;
-  cores: string;
+  cpus: [];
   show: string;
   created: string;
   labels: any;
@@ -38,7 +36,7 @@ export class AssetInfoComponent implements OnInit {
   netInterfaces: string;
   capacity: string;
   eic: string;
-  storage: {type: string, total_capacity: any};
+  storages: [];
   status: string;
 
   /**
@@ -86,7 +84,7 @@ export class AssetInfoComponent implements OnInit {
     this.loadedData = true;
     this.inventory = [];
     this.ecName = '';
-    this.storage = { type: 'unknown', total_capacity: 'undefined'};
+    // this.storage = { type: 'unknown', total_capacity: 'undefined'};
    }
 
   ngOnInit() {
@@ -159,5 +157,4 @@ export class AssetInfoComponent implements OnInit {
 
     this.bsModalRef.hide();
   }
-
 }
