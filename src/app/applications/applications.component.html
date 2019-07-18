@@ -234,11 +234,18 @@
             <tr *ngFor=
               "let app of instances |
               sortBy : sortedBy : reverse : 'case-insensitive' |
-              filter : searchTerm">
+              filter : searchTerm"
+              >
+              <!-- This solution applies when the backend updates the app status after triggering undeploy action 
+                (https://daisho.atlassian.net/browse/NP-1679)
+                <td 
+                (click)="goToInstanceView(app)"
+                [ngClass]="(app.status_name === 'UNDEPLOYING')? 'instance-disabled': 'app-info'" 
+                class="col-2"> -->
               <td 
-                [routerLink]="['instance', app.app_instance_id]" 
-                routerLinkActive="active"
-                class="col-2 app-info">
+                (click)="goToInstanceView(app)"
+                [ngClass]="(app.undeploying)? 'instance-disabled': 'app-info'" 
+                class="col-2">
                 <span tooltip="App info" placement="top">{{app.name}}</span>
               </td>
               <td class="col-3">{{app.app_instance_id}}</td>

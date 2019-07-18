@@ -51,6 +51,13 @@
     padding: 0.75rem 0;
 }
 
+.instance-disabled {
+    color: #939393;
+    cursor: default;
+    outline: none;
+    text-transform: capitalize;
+}
+
 /* - - - Apps buttons - - - */
 .apps-options {
     position: relative;
