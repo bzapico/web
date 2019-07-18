@@ -144,7 +144,6 @@ export class DeployInstanceComponent implements OnInit {
   get f() { return this.deployInstanceForm.controls; }
 
   deployInstance(f) {
-    console.log(f);
     this.instanceName = f.instanceName.value;
     this.submitted = true;
     if (!f.instanceName.errors) {
@@ -158,7 +157,7 @@ export class DeployInstanceComponent implements OnInit {
             this.loading = false;
             this.bsModalRef.hide();
             this.notificationsService.add({
-              message: 'Deploying instance of ' + this.registeredName,
+              message: 'Deploying instane of ' + this.registeredName,
               timeout: 3000
             });
           }, error => {
