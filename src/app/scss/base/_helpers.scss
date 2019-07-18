@@ -59,7 +59,7 @@
 
 /* - - - Tooltip fix - - - */
 .tooltip-fix {
-  @include for-desktop-up {
+  @include for-quarter-up{
     height: 20px;
     width: 30px;
     position: absolute;
