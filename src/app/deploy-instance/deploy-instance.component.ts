@@ -174,7 +174,7 @@ export class DeployInstanceComponent implements OnInit {
         const instanceParams = [];
         f.params.value.forEach(param => {
          instanceParams.push({
-           parameter_name: param[0].name,
+           parameterName: param[0].name,
            value: param[0].value
           });
         });
