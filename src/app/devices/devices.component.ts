@@ -608,55 +608,67 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       const indexActive = this.groups.map(x => x.device_group_id).indexOf(this.activeGroupId);
       if (indexActive !== -1) {
         deleteGroupName = this.groups[indexActive].name;
+        if (this.countGroupDevices(this.activeGroupId) === 0) {
         this.backend.deleteGroup(this.organizationId, this.activeGroupId)
-          .subscribe(response => {
-            this.backend.getGroups(this.organizationId)
-              .subscribe(getGroupsResponse => {
-                this.groups = getGroupsResponse.groups;
-                if (this.groups.length === 0) {
-                  this.displayedGroups = [];
-                } else if (this.displayedGroups.length > 0) {
-                  const indexDisplayed = this.displayedGroups.map(x => x.device_group_id).indexOf(this.activeGroupId);
-                  if (indexDisplayed !== -1) {
-                    this.displayedGroups.splice(indexDisplayed, 1);
-                    if (this.displayedGroups[this.displayedGroups.length - 1]) {
-                      const lastElementId = this.displayedGroups[this.displayedGroups.length - 1].device_group_id;
-                      if (this.groups && this.groups.length > 0) {
-                        const indexGroups = this.groups.map(x => x.device_group_id).indexOf(lastElementId);
-                        if (indexGroups !== -1) {
-                          if (this.groups[indexGroups + 1]) {
-                            this.displayedGroups.push(this.groups[indexGroups + 1]);
-                          } else {
-                              const firstElementId = this.displayedGroups[0].device_group_id;
-                              const indexGroupsFirst = this.groups.map(x => x.device_group_id).indexOf(firstElementId);
-                              if (indexGroupsFirst !== -1) {
-                                if (this.groups[indexGroupsFirst - 1]) {
-                                  this.displayedGroups.unshift(this.groups[indexGroupsFirst - 1]);
-                                }
+        .subscribe(response => {
+          this.backend.getGroups(this.organizationId)
+          .subscribe(getGroupsResponse => {
+              this.groups = getGroupsResponse.groups;
+              if (!this.groups){
+                this.groups = [];
+              }
+              if (this.groups.length === 0) {
+                this.displayedGroups = [];
+              } else if (this.displayedGroups.length > 0) {
+                const indexDisplayed = this.displayedGroups.map(x => x.device_group_id).indexOf(this.activeGroupId);
+                if (indexDisplayed !== -1) {
+                  this.displayedGroups.splice(indexDisplayed, 1);
+                  if (this.displayedGroups[this.displayedGroups.length - 1]) {
+                    const lastElementId = this.displayedGroups[this.displayedGroups.length - 1].device_group_id;
+                    if (this.groups && this.groups.length > 0) {
+                      const indexGroups = this.groups.map(x => x.device_group_id).indexOf(lastElementId);
+                      if (indexGroups !== -1) {
+                        if (this.groups[indexGroups + 1]) {
+                          this.displayedGroups.push(this.groups[indexGroups + 1]);
+                        } else {
+                            const firstElementId = this.displayedGroups[0].device_group_id;
+                            const indexGroupsFirst = this.groups.map(x => x.device_group_id).indexOf(firstElementId);
+                            if (indexGroupsFirst !== -1) {
+                              if (this.groups[indexGroupsFirst - 1]) {
+                                this.displayedGroups.unshift(this.groups[indexGroupsFirst - 1]);
                               }
-                          }
+                            }
                         }
                       }
                     }
                   }
-              }
-              this.updateDisplayedGroupsNamesLength();
-              this.changeActiveGroup('ALL');
-              });
-              this.notificationsService.add({
-                message: 'Group "' + deleteGroupName + '" has been deleted',
-                timeout: 3000
-              });
-          }, error => {
-            this.notificationsService.add({
-              message: error.error.message,
-              timeout: 5000,
-              type: 'warning'
+                }
+            }
+            this.updateDisplayedGroupsNamesLength();
+            this.changeActiveGroup('ALL');
             });
+            this.notificationsService.add({
+              message: 'Group "' + deleteGroupName + '" has been deleted',
+              timeout: 3000
+            });
+        },
+        error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 5000,
+            type: 'warning'
           });
+        });
+        } else {
+          this.notificationsService.add({
+            message: 'It is not possible to delete a group with devices in it ',
+            timeout: 5000,
+            type: 'warning'
+          });
+        }
+        }
       }
     }
-  }
 
   /**
    * Opens the modal view that holds group configuration component
