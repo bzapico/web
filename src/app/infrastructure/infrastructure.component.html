@@ -41,7 +41,7 @@
           <div class="summary-box">
             <div class="circle">
               <span>{{RAM}}</span>
-              <span class="circle-measure">Gb</span>
+              <span class="circle-measure">GB</span>
             </div>
             <span class="circle-name-sm">OVERALL</span> 
             <p class="circle-name">RAM</p>
@@ -49,7 +49,7 @@
           <div class="summary-box">
             <div class="circle">
               <span>{{storage}}</span>
-              <span class="circle-measure">Gb</span>
+              <span class="circle-measure">GB</span>
             </div>
             <span class="circle-name-sm">OVERALL</span> 
             <p class="circle-name">STORAGE</p>
@@ -344,7 +344,8 @@
                         'action-btn-grey': item.id !== activeContextMenuItemId,
                         'action-btn-grey-selected': item.id === activeContextMenuItemId
                       }" 
-                    class="action-btn-grey position-relative">
+                    class="action-btn-grey position-relative"
+                    tooltip="Actions">
                     <i class="material-icons i-black">more_vert</i>
                     <app-contextual-menu 
                       [visible]="item.id === activeContextMenuItemId" 
