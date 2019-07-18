@@ -44,49 +44,59 @@
             <div class="col-sm text-right">{{class}} {{version}}</div>
           </div>
           <br>
-          <div class="row">
-            <div class="col-sm grey mb-3">CPU</div>
+          <div *ngFor="let cpu of cpus; index as i" class="row"> 
+            <div class="col">
+            <div class="row">
+              <div class="col-sm grey mb-3">CPU</div>
+              <div class="col-sm text-right">{{i + 1}}</div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-4 grey">Manufacturer</div>
+              <div class="col-sm text-right">{{cpu.manufacturer}}</div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-4 grey">Model</div>
+              <div class="col-sm text-right">{{cpu.model}}</div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-4 grey">Architecture</div>
+              <div class="col-sm col-right-low">{{cpu.architecture}}</div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-4 grey">Cores</div>
+              <div class="col-sm col-right-low">{{cpu.cores}}</div>
+            </div>
           </div>
-          <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4 grey">Manufacturer</div>
-            <div class="col-sm text-right">{{manufacturer}}</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4 grey">Model</div>
-            <div class="col-sm text-right">{{model}}</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4 grey">Architecture</div>
-            <div class="col-sm col-right-low">{{architecture}}</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4 grey">Cores</div>
-            <div class="col-sm col-right-low">{{cores}}</div>
-          </div>
-          <br>
-          <br>
-          <div class="row">
-            <div class="col-sm grey mb-3">RAM</div>
-            <div class="col-sm text-right">{{capacity}} Gb</div>
-          </div>
-          <br>
-          <div *ngIf="storage" class="row">
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm grey mb-3">RAM</div>
+          <div class="col-sm text-right">{{capacity}} Gb</div>
+        </div>
+        <br>
+        <div *ngFor="let storage of storages; index as i" class="row"> 
+          <div class="col">
+            <div *ngIf="storage" class="row">
               <div class="col-sm grey mb-3">STORAGE</div>
-          </div>
-          <div *ngIf="storage.type" class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4 grey">Type</div>
-            <div class="col-sm text-right">{{storage.type}}</div>
-          </div>
-          <div *ngIf="storage.total_capacity" class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4 grey">Total capacity</div>
-            <div class="col-sm text-right">{{storage.total_capacity}}</div>
-          </div>
+              <div class="col-sm text-right">{{i + 1}}</div>
+            </div>
+            <div *ngIf="storage.type" class="row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-4 grey">Type</div>
+              <div class="col-sm text-right">{{storage.type}}</div>
+            </div>
+            <div *ngIf="storage.total_capacity" class="row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-4 grey">Total capacity</div>
+              <div class="col-sm text-right">{{storage.total_capacity}}</div>
+            </div>
+            <br>
+         </div>  
+        </div>
           <br>
           <span *ngIf="netInterfaces">
             <div class="row">
