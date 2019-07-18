@@ -20,6 +20,7 @@ export class DeployInstanceComponent implements OnInit {
   deployInstanceForm: FormGroup;
   submitted = false;
   loading: boolean;
+  loadedData: boolean;
 
   /**
    * Backend reference
@@ -81,6 +82,9 @@ export class DeployInstanceComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
+
+    // Default initialization
+    this.loadedData = false;
     this.openFromRegistered = false;
     this.registeredApps = [];
     this.selectConfig = {
@@ -105,13 +109,14 @@ export class DeployInstanceComponent implements OnInit {
     this.deployInstanceForm = this.formBuilder.group({
       registeredName: [{value: '', disabled: true}],
       selectDrop: [null, Validators.required],
-      instanceName: ['', [Validators.minLength(3), Validators.pattern('^[a-zA-Z0-9]+$')]],
+      instanceName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z0-9]+$')]],
       params: this.formBuilder.array([ ])
     });
 
     this.backend.getRegisteredApps(this.organizationId)
     .subscribe(response => {
         this.registeredApps = response.descriptors || [];
+        this.loadedData = true;
     });
     if (this.openFromRegistered && this.appFromRegistered) {
       this.selectedApp = this.appFromRegistered;
