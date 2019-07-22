@@ -67,6 +67,11 @@ export class DeployInstanceComponent implements OnInit {
   options = [];
   selectConfig = {};
 
+  /**
+   * Model that holds onclose method
+   */
+  onClose: any;
+
   constructor(
     private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
@@ -160,9 +165,10 @@ export class DeployInstanceComponent implements OnInit {
         this.backend.deploy(this.organizationId, this.registeredId, this.instanceName)
           .subscribe(deployResponse => {
             this.loading = false;
+            this.onClose(false);
             this.bsModalRef.hide();
             this.notificationsService.add({
-              message: 'Deploying instane of ' + this.registeredName,
+              message: 'Deploying instance of ' + this.registeredName,
               timeout: 3000
             });
           }, error => {
@@ -172,6 +178,7 @@ export class DeployInstanceComponent implements OnInit {
               timeout: 5000,
               type: 'warning'
             });
+            this.onClose(true);
             this.bsModalRef.hide();
           });
       } else {
@@ -185,6 +192,7 @@ export class DeployInstanceComponent implements OnInit {
         this.backend.deploy(this.organizationId, this.registeredId, this.instanceName, instanceParams)
           .subscribe(deployResponse => {
             this.loading = false;
+            this.onClose(false);
             this.bsModalRef.hide();
             this.notificationsService.add({
               message: 'Deploying instance of ' + this.registeredName,
@@ -197,6 +205,7 @@ export class DeployInstanceComponent implements OnInit {
               timeout: 5000,
               type: 'warning'
             });
+            this.onClose(true);
             this.bsModalRef.hide();
           });
       }
@@ -241,11 +250,13 @@ export class DeployInstanceComponent implements OnInit {
     if (form.dirty) {
       const discard = confirm('Discard changes?');
       if (discard) {
+        this.onClose(true);
         this.bsModalRef.hide();
       } else {
         // Do nothing
       }
     } else {
+      this.onClose(true);
       this.bsModalRef.hide();
     }
   }

@@ -603,9 +603,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
     this.modalRef = this.modalService.show(DeployInstanceComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
+    this.modalRef.content.onClose = (cancelled: boolean) => {
       this.updateAppInstances(this.organizationId);
-     });
+     };
   }
 
   /**
@@ -624,10 +624,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
     this.modalRef = this.modalService.show(DeployInstanceComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
+    this.modalRef.content.onClose = (cancelled: boolean) => {
       this.updateAppInstances(this.organizationId);
-      this.changeActiveList('instances');
-    });
+      if (!cancelled) {
+        this.changeActiveList('instances');
+      }
+    };
 
   }
   /**
