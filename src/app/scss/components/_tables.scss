@@ -334,6 +334,7 @@
         text-indent: 1em;
         text-align: left;
         background-color: transparent;
+        padding-right: 2.7rem!important;
         &::placeholder {
             font-size: .9em;
             color: #ccc;
@@ -343,6 +344,7 @@
             border-color: #0937FF;
             outline: none;
             box-shadow: none;
+            padding-right: 0!important;
             &::placeholder {
             color: white;
             }
