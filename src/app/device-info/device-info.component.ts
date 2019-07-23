@@ -114,7 +114,7 @@ export class DeviceInfoComponent implements OnInit {
   }
 
   /**
-   * Create a new JavaScript Date object based on the timestamp 
+   * Create a new JavaScript Date object based on the timestamp
    * and multiplied by 1000 so that the argument is in milliseconds, not seconds.
    * @param timestamp is an integer that represents the number of seconds elapsed
    */
