@@ -7,21 +7,35 @@ Overall:
 - Creation of flexible tables
 - Optimize [graph](https://swimlane.github.io/ngx-graph/), pie and line charts
 - Sidebar and main info optimization
+- Modified icons to ease understanding
+
+- Infrastructure view
+    - Vertical aggregated capabilities summary
+    - Improved search box with results count
+    - Static quick filters by inventory item type
+    - Inventory list with specific type actions menu
+        - ECs/Asset/Device modal windows navigation
+        - Install agent form
+        - Create agent token modal view
+        - Unlink EC capabilities
+        - Last operation logs modal view for assets
+        - Uninstall agent from asset capability
+        - Toggle enablement capability for devices
+        - Unlink devices capability
 
 
-        
 ## v0.2.0
 
 Overall:
-- Added sorting and filtering capabilities 
+- Added sorting and filtering capabilities
 - Label management in tables
 - Forms refactor
 
 - IoT Devices view
-    - Top indicators 
-        - Summary info  
+    - Top indicators
+        - Summary info
         - Devices status timeline
-    - Devices list  
+    - Devices list
         - Tabs functionality
     - Add group modal view
     - Configuration group modal view
@@ -34,13 +48,13 @@ Overall:
         - Rule extended info modal view
     - Regisered instances tab divider
         - Register application modal view
-        - App registered extended view    
+        - App registered extended view
         - Service extended info modal view
         - Rule extended info modal view
-        
+
 
 ## v0.1.0
-Created the brand new UI Frontend for Nalej. 
+Created the brand new UI Frontend for Nalej
 - Sidebar with navigation
     - Edit profile
     - Organization
@@ -54,18 +68,18 @@ Created the brand new UI Frontend for Nalej.
     - Subscription plan
 
 - Resources view
-    - Top indicators 
+    - Top indicators
         - Summary info
-        - Clusters info [carousel](https://valor-software.com/ngx-bootstrap/#/carousel) with cluster [pie charts](https://swimlane.gitbook.io/ngx-charts/examples/pie-charts/pie-chart) 
+        - Clusters info [carousel](https://valor-software.com/ngx-bootstrap/#/carousel) with cluster [pie charts](https://swimlane.gitbook.io/ngx-charts/examples/pie-charts/pie-chart)
         - Nodes status [timeline chart](https://swimlane.gitbook.io/ngx-charts/examples/line-area-charts/line-chart)
     - Clusters linst info with action buttons
 
 - Clusters view
-    - Top indicators 
-        - Cluster status info  
+    - Top indicators
+        - Cluster status info
         - Summary info
     - Breadcrumbs
-    - Nodes list  
+    - Nodes list
 
 - Appications view
     - Top indicators
@@ -75,4 +89,3 @@ Created the brand new UI Frontend for Nalej.
     - Deployed app instances list with info button
         - App info graph based on [Ngx-graph](https://github.com/swimlane/ngx-graph)
         - App info list
- 

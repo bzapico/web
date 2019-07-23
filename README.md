@@ -17,6 +17,12 @@ Brand new UI Frontend for Nalej.
     - Members user list with action buttons
     - Subscription plan
 
+- Infrastructure view
+    - Vertical aggregated capabilities summary
+    - Static quick filters by inventory item type
+    - Inventory list with specific type actions menu
+    - ECs/Asset modal windows navigation
+
 - Resources view
     - Top indicators 
         - Summary info
