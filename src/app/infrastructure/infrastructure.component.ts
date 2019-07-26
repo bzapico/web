@@ -469,25 +469,35 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   *  @param asset asset object
   */
   openAssetInfo(asset: any) {
-    if (!asset.hardware || Object.keys(asset.hardware).length === 0) {
-      asset.hardware = {
-        os: {
+    if (!asset.os || Object.keys(asset.os).length === 0) {
+      asset.os = {
         version: '-',
         class_name: '-',
-        },
-        cpus: {
-          architecture: '-',
-          model: '-',
-          num_cores: '-',
-          manufacturer: '-',
-        },
-        net_interfaces: []
+      };
+    }
+    if (!asset.hardware || Object.keys(asset.hardware).length === 0) {
+      asset.hardware = {
+        cpus: [
+          {
+            manufacturer: '-',
+            model: '-',
+            architecture: '-',
+            num_cores: '-',
+          }
+        ],
+        installed_ram: '-',
+        net_interfaces: [
+          {
+            type: '-',
+            link_capacity: '-'
+          }
+        ]
       };
     }
     if (!asset.storage || Object.keys(asset.storage).length === 0) {
-        asset.storage = {
-          total_capacity: '-'
-         };
+      asset.storage = [{
+        total_capacity: '-'
+      }];
     }
     const initialStateAsset = {
       organizationId: this.organizationId,
@@ -506,7 +516,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       storages: asset.storage,
       capacity: asset.hardware.installed_ram,
       eic: asset.eic_net_ip,
-      status: asset.status,
+      status: asset.status_name,
       summary: asset.last_op_summary,
       lastAlive: asset.last_alive_timestamp,
       inventory: this.inventory,
@@ -600,6 +610,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       name: controller.name,
       labels: controller.labels,
       status: controller.status,
+      type: controller.type,
       inventory: this.inventory
     };
 
@@ -733,7 +744,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       deviceId: device.device_id,
       created: device.register_since,
       labels: device.labels,
-      status: device.device_status,
+      status: device.device_status_name,
       enabled: device.enabled,
     };
 

@@ -86,7 +86,6 @@ export class AssetInfoComponent implements OnInit {
     this.loadedData = true;
     this.inventory = [];
     this.ecName = '';
-    // this.storage = { type: 'unknown', total_capacity: 'undefined'};
    }
 
   ngOnInit() {
