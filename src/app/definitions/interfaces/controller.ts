@@ -6,14 +6,14 @@ export interface Controller {
     organization_id: string;
     // EdgeControllerId with the EIC identifier.
     edge_controller_id: string;
-    // Name of the EIC.
-    name?: string;
     // Show flag to determine if this asset should be shown on the UI. This flag is internally used
     // for the async uninstall/removal of the asset.
     show?: boolean;
     // Created time
     created?: number;
-     // Labels defined by the user.
+    // Name of the EIC.
+    name?: string;
+    // Labels defined by the user.
     labels?: any;
     // LastAliveTimestamp contains the last alive message received
     last_alive_timestamp?: number;
@@ -21,8 +21,12 @@ export interface Controller {
     assets?: any;
     // Status for the UI.
     status?: string;
-    // Status beauty name for the UI.
+    // StatusName with the status of the asset.
     status_name?: string;
     // location with the EC location
     location?: string;
+    // ECOpSummary contains the result of the last operation for this edge controller
+    last_op_result?: any;
+    // AssetInfo with the information related to Hw, Storage and OS
+    asset_info?: any;
 }

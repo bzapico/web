@@ -214,9 +214,9 @@ export class MockupBackendService implements Backend {
       },
       hardware: {
         cpus: {
-          manufacturer: 'Apple',
-          model: 'yes',
-          architecture: 'Fanix',
+          manufacturer: 'GenuineIntel',
+          model: 'Intel(R) Core(TM) i7-5557U CPU @ 3.10GHz',
+          architecture: 'amd64',
           num_cores: 3
         },
         installed_ram: 2,
@@ -236,7 +236,7 @@ export class MockupBackendService implements Backend {
         info: 'info'
       },
       last_alive_timestamp: '654654654',
-      status : 'offline'
+      status_name: 'ONLINE'
     };
 
     for (let index = 0; index < mockInventoryList.controllers.length; index++) {

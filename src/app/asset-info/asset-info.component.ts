@@ -26,18 +26,20 @@ export class AssetInfoComponent implements OnInit {
   assetId: string;
   agentId: string;
   assetIp: string;
-  architecture: string;
-  cpus: [];
   show: string;
   created: string;
   labels: any;
   class: string;
   version: string;
+  architecture: string;
+  cpus: [];
   netInterfaces: string;
+  storages: [];
   capacity: string;
   eic: string;
-  storages: [];
   status: string;
+  summary: any;
+  lastAlive: number;
 
   /**
    * Models that hold the Edge Controller name
@@ -84,7 +86,6 @@ export class AssetInfoComponent implements OnInit {
     this.loadedData = true;
     this.inventory = [];
     this.ecName = '';
-    // this.storage = { type: 'unknown', total_capacity: 'undefined'};
    }
 
   ngOnInit() {

@@ -68,7 +68,7 @@
             <div class="row">
               <div class="col-sm-2"></div>
               <div class="col-sm-4 grey">Cores</div>
-              <div class="col-sm col-right-low">{{cpu.cores}}</div>
+              <div class="col-sm col-right-low">{{cpu.num_cores}}</div>
             </div>
           </div>
         </div>
@@ -81,8 +81,7 @@
         <div *ngFor="let storage of storages; index as i" class="row"> 
           <div class="col">
             <div *ngIf="storage" class="row">
-              <div class="col-sm grey mb-3">STORAGE</div>
-              <div class="col-sm text-right">{{i + 1}}</div>
+              <div class="col-sm grey mb-3">Storage #{{i + 1}}</div>
             </div>
             <div *ngIf="storage.type" class="row">
               <div class="col-sm-2"></div>
@@ -97,30 +96,24 @@
             <br>
          </div>  
         </div>
-          <br>
-          <span *ngIf="netInterfaces">
-            <div class="row">
-              <div class="col-sm grey mb-3">Networking specs</div>
-            </div>
-              <div class="row">
-                <div class="col-sm"></div>
-                <div class="col-sm grey">Type</div>
-                <div class="col-sm text-right grey">Capacity</div>
-              </div>
-            </span>
-            <span *ngIf="netInterfaces">
-              <div class="row">
-                <div class="col-sm"></div>
-                <div class="col-sm">{{netInterfaces[0].type}}</div>
-                <div class="col-sm text-right">{{netInterfaces[0].link_capacity}}</div>
-              </div>
-            </span>
-            <span *ngIf="!netInterfaces">
-            <div class="row">
-              <div class="col-sm text-right">No</div>
-            </div>
-          </span>
-        </div>      
+        <br>
+        <div class="row">
+          <div class="col-sm grey mb-3">Networking specs</div>
+        </div>
+        <div *ngIf="netInterfaces" class="row">
+          <div class="col-sm"></div>
+          <div class="col-sm grey">Type</div>
+          <div class="col-sm text-right grey">Capacity</div>
+        </div>
+        <div *ngFor="let netInterface of netInterfaces" class="row">
+          <div class="col-sm"></div>
+          <div *ngIf="netInterface.type" class="col-sm">{{netInterface.type}}</div>
+          <div *ngIf="!netInterface.type" class="col-sm">-</div>
+          <div *ngIf="netInterface.link_capacity" class="col-sm text-right">{{netInterface.link_capacity}}</div>
+          <div *ngIf="!netInterface.link_capacity" class="col-sm text-right">-</div>
+        </div>
+        <br>
+      </div>      
         <!-- Option button -->
         <div class="form-group-btn">
           <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">
