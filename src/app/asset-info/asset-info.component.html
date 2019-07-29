@@ -81,8 +81,7 @@
         <div *ngFor="let storage of storages; index as i" class="row"> 
           <div class="col">
             <div *ngIf="storage" class="row">
-              <div class="col-sm grey mb-3">STORAGE</div>
-              <div class="col-sm text-right">{{i + 1}}</div>
+              <div class="col-sm grey mb-3">Storage #{{i + 1}}</div>
             </div>
             <div *ngIf="storage.type" class="row">
               <div class="col-sm-2"></div>
