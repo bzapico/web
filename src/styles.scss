@@ -11,11 +11,17 @@
 
 // 3. Fonts
 @font-face {
-  font-family: 'Aldrich';
-  src: url('./assets/fonts/Aldrich-Regular.ttf');
+  font-family: 'Lato';
+  src: url('./assets/fonts/Lato-Regular.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('./assets/fonts/Lato-Bold.ttf');
+  font-weight: bold;
 }
 
-// 4. Varibles
+// 4. Variables
 @import 
   'app/scss/variables/colors',
   'app/scss/variables/mixins';
