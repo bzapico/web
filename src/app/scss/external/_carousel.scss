@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------------
 
 @import  'app/scss/variables/mixins';
+@import  'app/scss/variables/colors';
 
 .carousel-small {
     display: none;
@@ -64,7 +65,7 @@
     list-style: none;
     margin-bottom: 0;
     .active {
-        background-color: #0937FF;
+        background-color: $base-purple;
     }
     li {
         position: relative;

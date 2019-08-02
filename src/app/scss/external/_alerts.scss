@@ -2,6 +2,7 @@
 // Alerts
 // -----------------------------------------------------------------------------
 
+@import  'app/scss/variables/colors';
 
 .alert-message {
     -ms-word-wrap: break-word;
@@ -53,10 +54,10 @@
     }
 }
 .alert {
-    background: #0937ff;
+    background: $base-purple;
 }
 .alert-warning {
-    background-color: #F25272;
+    background-color: $base-pink;
 }
 .alert-icon {
     position: absolute;

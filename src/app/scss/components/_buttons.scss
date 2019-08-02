@@ -3,12 +3,13 @@
 // -----------------------------------------------------------------------------
 
 @import  'app/scss/variables/mixins';
+@import  'app/scss/variables/colors';
 
 /* - - - Basic buttons styles- - - */
 .btn-primary {
     width: 257px;
     color: #fff;
-    background-color: #0937FF;
+    background-color: $base-purple;
     border: 0px;
     border-radius: 5px;
     &:focus {
@@ -51,7 +52,7 @@ button[type="submit"]:disabled {
 .action-btn-blue {
     @extend .action-btn;
     color: #fff;
-    background-color: #0937FF;
+    background-color: $base-purple;
     &:hover {
       color: #fff;
       transition: 0.3s;
@@ -66,12 +67,12 @@ button[type="submit"]:disabled {
 }
 .action-btn-red {
     @extend .action-btn;
-    color: #F25272;
+    color: $base-pink;
     background-color: #E8E8E8;
     &:hover {
       color: #fff;
       transition: 0.3s;
-      background-color: #F25272;
+      background-color: $base-pink;
     }
     @include for-desktop-up {
         height: 25px;
@@ -143,7 +144,7 @@ button[type="submit"]:disabled {
 }
 
 .info-icon {
-    color: #0937FF;
+    color: $base-purple;
     cursor: pointer;
     font-size: 39px;
     @include for-desktop-up {
@@ -211,21 +212,21 @@ button[type="submit"]:disabled {
     margin:1px;
     text-align: left;
     max-width: -webkit-fill-available;
-    border-color: #0937FF;
-    color:#0937FF;
+    border-color: $base-purple;
+    color: $base-purple;
     &:hover:enabled{
         background-color: #707070;
         border-color: #707070;
         color: white;
     }
     &:hover:disabled{
-        border-color: #0937FF;
+        border-color: $base-purple;
     }
     &:focus {
         outline: none;
     }
     &:disabled {
-        color: #0937FF;
+        color: $base-purple;
         background-color: transparent;   
     }
 }
@@ -236,7 +237,7 @@ button[type="submit"]:disabled {
     max-width: -webkit-fill-available;
     margin: 1px;
     color: #fff;
-    background-color: #0937FF;
+    background-color: $base-purple;
     border-radius: 5px;
     -webkit-box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
     -moz-box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
@@ -281,7 +282,7 @@ button[type="submit"]:disabled {
 }
 .label-btn-red {
     @extend .label-btn;
-    background-color: #F25272;
+    background-color: $base-pink;
     &:hover {
         background-color: #ff8eb1;
     }
@@ -295,7 +296,7 @@ button[type="submit"]:disabled {
 }
 .label-btn-blue {
     @extend .label-btn;
-    background-color: #0937FF;
+    background-color: $base-purple;
     &:hover {
         background-color: #4f71fd;
     }

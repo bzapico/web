@@ -1,6 +1,12 @@
+$base-purple: #5800FF;
+$base-pink: #FF00D3;
+$base-teal: #00FFB1;
+
 .blue {
-    color: #0937FF !important;
+    // color: #0937FF !important;
+    color: $base-purple;
 }
+
 .light-blue {
    color: #F3F6FF !important;
 }
@@ -14,10 +20,12 @@
     color: #d2d2d2 !important;
 }
 .red {
-    color: #F25272 !important;
+    // color: #F25272 !important;
+    color: $base-pink;
 }
 .teal {
-    color: #03D7E8 !important;
+    // color: #03D7E8 !important;
+    color: $base-teal;
 }
 .bg-light-grey {
     background-color: #ededed !important;

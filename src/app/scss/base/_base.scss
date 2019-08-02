@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------------
 
 @import  'app/scss/variables/mixins';
+@import  'app/scss/variables/colors';
 
 html, body {
     margin: 0px;
@@ -18,57 +19,16 @@ html, body {
     box-sizing: inherit;
     font-family: 'Lato', sans-serif;
 }
-
-/* - - - Typo styles - - - */
-.l200 {
-    font-family: 'Lato', sans-serif;
-    font-weight: 200;
-    font-style: normal;
-} 
-
-.l400 {
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-    font-style: normal;
+h1 { 
+    font-weight: bold; 
 }
-
-.l600b {
-    font-family: 'Lato', sans-serif;
-    font-weight: 600;
-    font-style: bolder;
-}
-
-.l900 {
-    font-family: 'Lato', sans-serif;
-    font-weight: 900;
-    font-style: bold;
-}
-
-/* - - - Paragraph styles - - - */
-// p.light {
-//     font-family: 'LatoLight', sans-serif;
-//     font-weight: 300;
-//     font-style: normal;
-// }
- 
-// p {
-//     font-family: 'LatoRegular', sans-serif;
-//     font-weight: normal;
-//     font-style: normal;
-// }
- 
-// p.medium {
-//     font-family: 'LatoBold', sans-serif;
-//     font-weight: 500;
-//     font-style: normal;
-// }
 
 /* - - - Basic styles for links - - - */
 a {
-    color: #0937FF;
+    color: $base-purple;
     text-decoration: none;
     &:hover {
-      color: #0937FF;
+      color: $base-purple;
       text-decoration: none;
     }
 }

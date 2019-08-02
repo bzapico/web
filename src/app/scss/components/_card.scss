@@ -89,8 +89,9 @@
   height: 100%;
 }
 .card-title-name {
-    @include for-desktop-only {
-        h5 {
+    h5 {
+        font-weight: 600;
+        @include for-desktop-only {
             font-size: 1em;
         }
     }
@@ -101,6 +102,7 @@
         margin-bottom: 0em;
         h5 {
             font-size: 1em;
+            font-weight: 600;
         }
     }
 }
@@ -143,6 +145,7 @@
     border-radius: 100%;
     min-width: 65px;
     min-height: 65px;
+    font-weight: 600;
     @include for-desktop-only {
         max-width: 90px;
         max-height: 90px;

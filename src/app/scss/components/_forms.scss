@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------------
 
 @import  'app/scss/variables/mixins';
+@import  'app/scss/variables/colors';
 
 /* - - - Forms styles - - - */
 .nalej-form-title{
@@ -47,11 +48,11 @@
     font-size: .8em;
     text-align: center;
     border: 2px solid #EEEEEE;
-    caret-color: #0937FF;
+    caret-color: $base-purple;
     padding-top: 10px;
     &:focus {
         z-index: 2;
-        border-color: #0937FF;
+        border-color: $base-purple;
         outline: none;
         box-shadow: none;
         &::placeholder {
@@ -93,7 +94,7 @@
 .nalej-form-btn-blue {
     @extend .nalej-form-btn;
     color: #fff;
-    background-color: #0937FF;
+    background-color: $base-purple;
     &:hover {
         color: #fff;
         transition: 0.3s;
@@ -103,18 +104,18 @@
 .nalej-form-btn-red {
     @extend .nalej-form-btn;
     background-color: #ececec;
-    color: #F25272;
+    color: $base-pink;
     position: relative;
     text-indent: 18px;
     .delete-icon {
-        color: #F25272;
+        color: $base-pink;
         position: absolute;
         top: 15px;
         left: 35px;
         font-size: 21px;
     }
     &:hover {
-        background-color: #F25272;
+        background-color: $base-pink;
         color: #ececec;
         transition: 0.3s;
         .delete-icon {
@@ -129,11 +130,11 @@
     margin-top: .2em;
     .error-message {
         font-size: 0.8em;
-        color: #F25272;
+        color: $base-pink;
     }
   }
   .is-invalid {
-    border: 2px solid #F25272!important;
+    border: 2px solid $base-pink !important;
     &:focus {
          border-color: transparent;
         -webkit-box-shadow: none;

@@ -2,13 +2,15 @@
 // Ngx-dropdown
 // -----------------------------------------------------------------------------
 
+@import  'app/scss/variables/colors';
+
 .ngx-dropdown-container .ngx-dropdown-button {
     height: 40px;
     font-size: .9em;
     &:focus {
-        border: 2px solid blue !important;
+        border: 2px solid $base-purple !important;
         z-index: 2;
-        border-color: #0937FF;
+        border-color: $base-purple;
         outline: none;
         box-shadow: none;
         &::placeholder {
@@ -47,7 +49,7 @@
 }
 .ngx-error {
     .ngx-dropdown-container button {
-        border: 2px solid #F25272 !important;
+        border: 2px solid $base-pink !important;
     }
 }
 

@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------------
 
 @import  'app/scss/variables/mixins';
+@import  'app/scss/variables/colors';
 
 /* - - - Nalej tabs - - - */
 .nalej-tab-box {
@@ -45,7 +46,7 @@
         display: block;
         transition: .3s background-color;
         &.active {
-            color: #0937FF;
+            color: $base-purple;
             &::before {
             content: "";
             height: 5px;
@@ -54,7 +55,7 @@
             position: absolute;
             bottom: -1px;
             left: 0;
-            background-color: #0937FF;
+            background-color: $base-purple;
             }
         }
     }

@@ -34,7 +34,7 @@
             float: left;
             border: none;
             font-size: .9em;
-            font-weight: 200;
+            font-weight: 600;
             cursor: pointer;
             &.default{
                 color: #212529;
@@ -44,7 +44,7 @@
             }
             &.enabled {
                 i {
-                color: #0937FF;
+                color: $base-purple;;
                 }
                 span i{
                 visibility: visible;
@@ -143,7 +143,7 @@
     }
     &.enabled {
         i {
-            color: #0937FF;
+            color: $base-purple;;
         }
         span i{
             visibility: visible;
@@ -177,7 +177,7 @@
     }
     &.enabled {
         i {
-            color: #0937FF;
+            color: $base-purple;
         }
         span i {
             visibility: visible;
@@ -304,9 +304,10 @@
     font-size: .9em;
     padding: .55rem;
     margin-bottom: 0;
+    font-weight: 600;
     .reset-search{
         cursor: pointer;
-        color: #0937FF
+        color: $base-purple;
     }
     @include for-sm-desktop-up {
         padding: .4rem .75rem;
@@ -341,7 +342,7 @@
         }
         &:focus {
             z-index: 2;
-            border-color: #0937FF;
+            border-color: $base-purple;;
             outline: none;
             box-shadow: none;
             padding-right: 0!important;
@@ -363,7 +364,7 @@
         right: 23px;
         font-size: 16px;
         font-weight: bold;
-        color: #0937FF;
+        color: $base-purple;
         cursor: pointer;
     }
 }
@@ -383,7 +384,7 @@
     }
     &:before {
         @extend .status-dot-nalej;
-        background: #0937FF;
+        background: $base-purple;
         @include for-desktop-up {
             margin: 0 23px;
         }
@@ -395,7 +396,7 @@
     }
     &:before {
         @extend .status-dot-nalej;
-        background: #F25272;
+        background: $base-pink;
         @include for-desktop-up {
             margin: 0 23px;
         }

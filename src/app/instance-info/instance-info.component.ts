@@ -154,7 +154,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   nextColorIndex: number;
   STATUS_COLORS = {
     RUNNING: '#0937FF',
-    ERROR: '#F25272',
+    ERROR: '#FF00D3',
     OTHER: '#03D7E8'
   };
 

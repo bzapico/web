@@ -11,6 +11,9 @@
     @media all and  (max-height: 900px) { @content; }
 }
 
+$base-purple: #5800FF;
+$base-pink: #FF00D3;
+
 /* - - - Card heights - - */
 .row-info-app {
     height: 301px;
@@ -35,7 +38,7 @@
     position: relative;
     font-size: .8em;
     outline: none; 
-    background-color: #0937FF;
+    background-color: $base-purple;
     color: white;
     width: 159px;
     height: 42px;
@@ -58,7 +61,7 @@
     font-size: .8em;
     outline: none; 
     background-color: #ececec;
-    color: #F25272;
+    color: $base-pink;
     width: 159px;
     height: 42px;
     line-height: 1.1;
