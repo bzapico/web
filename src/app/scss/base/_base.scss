@@ -9,7 +9,6 @@ html, body {
     height: 100%;
     overflow-x: hidden;
     font-family: 'Lato';
-    font-weight: normal;
     box-sizing: border-box;
 }
 
@@ -19,6 +18,50 @@ html, body {
     box-sizing: inherit;
     font-family: 'Lato', sans-serif;
 }
+
+/* - - - Typo styles - - - */
+.l200 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 200;
+    font-style: normal;
+} 
+
+.l400 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.l600b {
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    font-style: bolder;
+}
+
+.l900 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-style: bold;
+}
+
+/* - - - Paragraph styles - - - */
+// p.light {
+//     font-family: 'LatoLight', sans-serif;
+//     font-weight: 300;
+//     font-style: normal;
+// }
+ 
+// p {
+//     font-family: 'LatoRegular', sans-serif;
+//     font-weight: normal;
+//     font-style: normal;
+// }
+ 
+// p.medium {
+//     font-family: 'LatoBold', sans-serif;
+//     font-weight: 500;
+//     font-style: normal;
+// }
 
 /* - - - Basic styles for links - - - */
 a {
@@ -30,6 +73,7 @@ a {
     }
 }
 .section-title {
+  font-weight: 900;
     margin-bottom: 0;
     @include for-desktop-only  { 
         font-size: 1.5rem;
