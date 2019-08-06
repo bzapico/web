@@ -29,9 +29,25 @@
             <div class="ins-info-box">
               <table class="table summary-instances-table">
                 <tr>
-                  <th>Status</th>
-                  <td [ngClass]="instanceClassStatusCheck(instance.status_name)" id="summary-instances-status">
-                    {{instance.status_name}}
+                  <th>Status</th> 
+                  <td id="summary-instances-status">
+                    <span 
+                      [ngClass]=
+                      "{
+                        'status-dot':  instance.status_name === 'RUNNING',
+                        'status-dot-error': instance.status_name === 'ERROR',
+                        'status-dot-error': instance.status_name ===  'PLANNING_ERROR' ,
+                        'status-dot-process': instance.status_name !== 'RUNNING',
+                        'status-dot-process': instance.status_name !== 'ERROR',
+                        'status-dot-process': instance.status_name !== 'PLANNING_ERROR'
+                      }"
+                      tooltip="{{instance.status_name}}" 
+                      placement="bottom"
+                      class="status-dot">
+                    </span>
+                    <span class="hide-lg">
+                      {{instance.status_name}}
+                    </span>
                   </td>
                 </tr>
                 <tr>
@@ -133,6 +149,7 @@
               <ng-template #nodeTemplate let-node>
                 <svg:g 
                   class="node"
+                  [ngClass]="{'node-text-grey': node.color === '#FFEB6C'}"
                   ngx-tooltip
                   [tooltipPlacement]="'top'"
                   [tooltipType]="'tooltip'"
@@ -149,7 +166,7 @@
                     [attr.x]="10" 
                     [attr.y]="node.height/2">
                     {{node.label}}
-                </svg:text>
+                  </svg:text>
                 </svg:g>
               </ng-template>
               <ng-template #linkTemplate let-link>

@@ -176,21 +176,21 @@ button[type="submit"]:disabled {
 .i-white-2 {
     @extend .i-white;
     top: 7px;
-    left: 8px;
+    left: 7px;
     @include for-desktop-up {
         font-size: 1em;
         top: 5px;
-        left: 6px;
+        left: 5px;
     }
 }
 .i-red-2 {
     @extend .i-white;
     top: 7px;
-    left: 8px;
+    left: 7px;
     @include for-desktop-up {
         font-size: 1em;
         top: 5px;
-        left: 6px;
+        left: 5px;
     }
 }
 .i-black-2 {

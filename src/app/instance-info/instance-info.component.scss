@@ -92,15 +92,16 @@ $super-light-grey: #F8F8F8;
 .btn-undeploy {
     border: none;
     border-radius: 5px;
-    padding: .5em 1.8em .5em 3em;
+    padding-left: 2em;
     cursor: pointer;
     position: relative;
     font-size: .8em;
     outline: none; 
-    background-color: super-light-grey;
+    background-color: $super-light-grey;
     color: $base-red;
     width: 233px;
     height: 42px;
+    font-weight: 500;
     &:hover {
         color: #ffffff;
         transition: 0.3s;

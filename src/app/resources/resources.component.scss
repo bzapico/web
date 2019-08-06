@@ -111,7 +111,6 @@ $base-grey: #828282;
 .nodes-run {
     font-size: .8em;
     font-weight: 500;
-    cursor: pointer;
     text-align: center;
     color: $base-violet;
     @include for-desktop-only {

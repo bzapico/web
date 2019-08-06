@@ -673,47 +673,56 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Checks if the cluster status requires an special css class
-   * @param className CSS class name
-   */
-  instanceClassStatusCheck(status: string): string {
-    if (this.instance && this.instance.status_name) {
-      switch (status.toLowerCase()) {
-        case 'running': {
-            return 'blue';
-          break;
-        }
-        case 'planning_error':
-        case 'incomplete':
-        case 'deployment_error':
-        case 'error': {
-            return 'red';
-          break;
-        }
-       default: {
-            return 'teal';
-        }
-      }
-    }
-  }
-
-  /**
    * Depending on the service status, returns the css class name that is required
    * @param status Service status string
    */
   getServiceStatusClass (status: string ) {
     switch (status.toLowerCase()) {
       case 'service_running':
-        return 'blue';
+        return 'teal';
       break;
       case 'service_error':
         return 'red';
       break;
       case 'service_waiting':
-        return 'teal';
+        return 'yellow';
       break;
       default:
-        return 'teal';
+        return 'yellow';
+    }
+  }
+
+    /**
+   * Checks if the status requires an special css class
+   * @param status  status name
+   * @param className CSS class name
+   */
+  classStatusCheck(status: string, className: string): boolean {
+    switch (status.toLowerCase()) {
+      case 'service_running': {
+        if (className.toLowerCase() === 'service_running') {
+          return true;
+        }
+        break;
+      }
+      case 'service_error': {
+        if (className.toLowerCase() === 'service_error') {
+          return true;
+        }
+        break;
+      }
+      case 'service_waiting': {
+        if (className.toLowerCase() === 'service_waiting') {
+          return true;
+        }
+        break;
+      }
+     default: {
+        if (className.toLowerCase() === 'service_waiting') {
+          return true;
+        }
+        return false;
+      }
     }
   }
 
