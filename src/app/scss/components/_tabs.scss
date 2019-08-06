@@ -6,7 +6,7 @@
 .nalej-tab-box {
     margin: 0em 3em 2em 1em;
     font-size: .6em;
-    border-bottom: 1px solid #ececec;
+    border-bottom: 1px solid $super-light-grey;
     display: flex;
     flex-direction: row;
     text-transform: uppercase;
@@ -36,11 +36,13 @@
     .nalej-tab-title {
         cursor: default;
         padding-right: 8em;
+        font-weight: 500;
     }
     span {
         display: block;
         text-decoration: none;
         display: block;
+        font-weight: 500;
         transition: .3s background-color;
         &.active {
             color: $base-violet;

@@ -14,6 +14,7 @@
 $base-violet: #5800FF;
 $base-red: #F7478A;
 $base-grey: #828282;
+$super-light-grey: #F8F8F8;
 
 /* - - - Card heights - - */
 .row-info-app {
@@ -64,7 +65,7 @@ $base-grey: #828282;
     font-size: .8em;
     font-weight: 500;
     outline: none; 
-    background-color: #ececec;
+    background-color: $super-light-grey;
     color: $base-red;
     width: 159px;
     height: 42px;

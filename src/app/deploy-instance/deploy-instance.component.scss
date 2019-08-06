@@ -1,7 +1,8 @@
 $base-violet: #5800FF; 
+$light-grey: #EEEEEE;
 
 .accordion {
-    border: 2px solid #EEEEEE;
+    border: 2px solid $light-grey;
     border-radius: 5px;
     max-height: 338px;
     overflow-y: scroll;

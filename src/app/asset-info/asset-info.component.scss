@@ -4,11 +4,14 @@ $dark-grey: #444444;
 .asset-h3-title {
     font-size: 1.5rem;
     margin-bottom: .1rem;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 .asset-image {
     font-size: .9em;
     color:  $dark-grey;
     margin-bottom: .2em;
+    font-weight: 500;
 }
 .asset-title {
     font-size: .9em;

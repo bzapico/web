@@ -38,9 +38,12 @@
 .modal-header {
     padding-bottom: 0;
     border: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: $base-grey;
 }
 .close {
-    font-weight: 200;
+    font-weight: 500;
     &:focus {
         outline: none;
     }
@@ -91,3 +94,50 @@
        max-height: 380px;
     }
 }
+
+
+.status-dot-nalej {
+    content:'\A';
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    display:inline-block;
+    margin: 0 5px 0 0;
+}
+.status-dot {
+    @include for-desktop-up {
+        text-align: center;
+    }
+    &:before {
+        @extend .status-dot-nalej;
+        background: $status-teal;
+        @include for-desktop-up {
+            margin: 0 23px;
+        }
+    }
+}
+.status-dot-error{
+    @include for-desktop-up {
+        text-align: center;
+    }
+    &:before {
+        @extend .status-dot-nalej;
+        background: $base-red;
+        @include for-desktop-up {
+            margin: 0 23px;
+        }
+    }
+}
+.status-dot-process {
+    @include for-desktop-up {
+        text-align: center;
+    }
+    &:before {
+        @extend .status-dot-nalej;
+        background: $status-yellow;
+        @include for-desktop-up {
+            margin: 0 23px;
+        }
+    }
+}
+  

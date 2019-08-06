@@ -7,7 +7,7 @@
     font-size: .9em;
     display: inline;
     button span {
-      color: #888888;
+      color: $base-grey;
     }
 }
 .form-group {
@@ -16,10 +16,11 @@
         font-size: .8em;
         color: $base-grey;
         margin-bottom: 0;
+        font-weight: 500;
     }
     input {
         &::placeholder {
-                color: #888888;
+                color:$base-grey;
         }
         &:focus {
             &::placeholder {
@@ -44,9 +45,9 @@
     height: 40px;
     font-size: .8em;
     text-align: center;
-    border: 2px solid #EEEEEE;
+    color: $base-light-grey;
+    border: 2px solid $light-grey;
     caret-color: $base-violet;
-    padding-top: 10px;
     &:focus {
         z-index: 2;
         border-color: $base-violet;
@@ -65,8 +66,8 @@
         }
     }
     &:disabled, &[readonly] {
-        background-color: #ececec;
-        border-color: #ececec;
+        background-color: $super-light-grey;
+        border-color: $super-light-grey;
     }
 }
   
@@ -79,6 +80,7 @@
     text-align: center;
     height: 51px;
     padding-top: 6px;
+    font-weight: 500;
     cursor: pointer;
     &:focus {
         outline: none;
@@ -101,7 +103,7 @@
 }
 .nalej-form-btn-red {
     @extend .nalej-form-btn;
-    background-color: #ececec;
+    background-color: $super-light-grey;
     color: $base-red;
     position: relative;
     text-indent: 18px;
@@ -114,10 +116,10 @@
     }
     &:hover {
         background-color: $base-red;
-        color: #ececec;
+        color: $super-light-grey;
         transition: 0.3s;
         .delete-icon {
-            color: #ececec;
+            color: $super-light-grey;
             transition: 0.3s;
         }
     }

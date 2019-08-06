@@ -23,11 +23,11 @@
     box-shadow: none !important;
 }
 .ngx-dropdown-container .ngx-dropdown-list-container ul.available-items li.active {
-    background-color: #ECECEC !important;
+    background-color: $super-light-grey !important;
     color: #ffffff;
 }
 .ngx-dropdown-container .ngx-dropdown-list-container ul.selected-items li {
-    background-color: #ECECEC !important;
+    background-color: $super-light-grey !important;
 }
 .ngx-dropdown-container .ngx-dropdown-list-container ul li {
     text-align: center;
@@ -35,11 +35,11 @@
     padding: .5em !important;
     color: $base-grey !important;
     &:hover {
-        background-color: #ECECEC !important;
+        background-color: $super-light-grey !important;
     }
 }
 .ngx-dropdown-container button {
-    border: 2px solid #EEEEEE !important;
+    border: 2px solid $light-grey !important;
     font-size: 0.9em;
 }
 .ngx-dropdown-container button span {

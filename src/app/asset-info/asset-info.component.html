@@ -17,18 +17,18 @@
         <p *ngIf="assetIp" class="asset-title-sm">{{assetIp}}</p>
         <div class="scroll-app-info">
           <div class="row">
-            <div class="col-sm grey mb-3">Status</div>
+            <div class="col-sm grey fw-bold mb-3">Status</div>
             <h3 *ngIf="status === 'OFFLINE'" class="asset-h3-title col-sm text-right red text-uppercase">{{status}}</h3>
             <h3 *ngIf="status === 'ONLINE'" class="asset-h3-title col-sm text-right blue text-uppercase">{{status}}</h3>
           </div>
           <br>
           <div class="row">
-            <div class="col-sm grey mb-3">Creation date</div>
+            <div class="col-sm grey fw-bold mb-3">Creation date</div>
             <div class="col-sm text-right">{{parseTimestampToDate(created)}}</div>
           </div>
           <br>
           <div class="row">
-            <div class="col-sm grey mb-3">Labels</div>
+            <div class="col-sm grey fw-bold mb-3">Labels</div>
           </div>
           <div *ngFor="let label of objectToString(labels)" class="row">
             <div *ngIf="labels" class="col-sm text-right">
@@ -40,57 +40,57 @@
           </div>
           <br>
           <div class="row">
-            <div class="col-sm grey mb-3">OS</div>
+            <div class="col-sm grey fw-bold mb-3">OS</div>
             <div class="col-sm text-right">{{class}} {{version}}</div>
           </div>
           <br>
           <div *ngFor="let cpu of cpus; index as i" class="row"> 
             <div class="col">
             <div class="row">
-              <div class="col-sm grey mb-3">CPU</div>
+              <div class="col-sm grey fw-bold mb-3">CPU</div>
               <div class="col-sm text-right">{{i + 1}}</div>
             </div>
             <div class="row">
               <div class="col-sm-2"></div>
-              <div class="col-sm-4 grey">Manufacturer</div>
+              <div class="col-sm-4 grey fw-bold">Manufacturer</div>
               <div class="col-sm text-right">{{cpu.manufacturer}}</div>
             </div>
             <div class="row">
               <div class="col-sm-2"></div>
-              <div class="col-sm-4 grey">Model</div>
+              <div class="col-sm-4 grey fw-bold">Model</div>
               <div class="col-sm text-right">{{cpu.model}}</div>
             </div>
             <div class="row">
               <div class="col-sm-2"></div>
-              <div class="col-sm-4 grey">Architecture</div>
+              <div class="col-sm-4 grey fw-bold">Architecture</div>
               <div class="col-sm col-right-low">{{cpu.architecture}}</div>
             </div>
             <div class="row">
               <div class="col-sm-2"></div>
-              <div class="col-sm-4 grey">Cores</div>
+              <div class="col-sm-4 grey fw-bold">Cores</div>
               <div class="col-sm col-right-low">{{cpu.num_cores}}</div>
             </div>
           </div>
         </div>
         <br>
         <div class="row">
-          <div class="col-sm grey mb-3">RAM</div>
+          <div class="col-sm grey fw-bold mb-3">RAM</div>
           <div class="col-sm text-right">{{capacity}} Gb</div>
         </div>
         <br>
         <div *ngFor="let storage of storages; index as i" class="row"> 
           <div class="col">
             <div *ngIf="storage" class="row">
-              <div class="col-sm grey mb-3">Storage #{{i + 1}}</div>
+              <div class="col-sm grey fw-bold mb-3">Storage #{{i + 1}}</div>
             </div>
             <div *ngIf="storage.type" class="row">
               <div class="col-sm-2"></div>
-              <div class="col-sm-4 grey">Type</div>
+              <div class="col-sm-4 grey fw-bold">Type</div>
               <div class="col-sm text-right">{{storage.type}}</div>
             </div>
             <div *ngIf="storage.total_capacity" class="row">
               <div class="col-sm-2"></div>
-              <div class="col-sm-4 grey">Total capacity</div>
+              <div class="col-sm-4 grey fw-bold">Total capacity</div>
               <div class="col-sm text-right">{{storage.total_capacity}}</div>
             </div>
             <br>
@@ -98,12 +98,12 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-sm grey mb-3">Networking specs</div>
+          <div class="col-sm grey fw-bold mb-3">Networking specs</div>
         </div>
         <div *ngIf="netInterfaces" class="row">
           <div class="col-sm"></div>
-          <div class="col-sm grey">Type</div>
-          <div class="col-sm text-right grey">Capacity</div>
+          <div class="col-sm grey fw-bold">Type</div>
+          <div class="col-sm text-right grey fw-bold">Capacity</div>
         </div>
         <div *ngFor="let netInterface of netInterfaces" class="row">
           <div class="col-sm"></div>

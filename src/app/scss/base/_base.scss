@@ -28,6 +28,7 @@ h1 {
 }
 
 /* - - - Basic styles for links - - - */
+
 a {
     color: $base-violet;
     text-decoration: none;
@@ -43,4 +44,24 @@ a {
     @include for-desktop-only  { 
         font-size: 1.5rem;
     }
+}
+
+.fw-link {
+    font-weight: 500;
+    color: $base-violet;
+    cursor: pointer;
+}
+
+/* - - - Basic styles for typography - - - */
+.fw-light {
+    font-weight: 200;
+}
+.fw-regular {
+    font-weight: 400;
+}
+.fw-bold {
+    font-weight: 500;
+}
+.fw-black {
+    font-weight: 700;
 }
