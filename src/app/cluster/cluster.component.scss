@@ -51,6 +51,7 @@ $base-grey: #828282;
         border: none;
         color: $base-grey;
         vertical-align: top;
+        font-weight: 400;
         @include for-desktop-h {
             font-size: .8em;
         } 
@@ -61,6 +62,7 @@ $base-grey: #828282;
         border: none;
         margin-left: 20%;
         text-align: right;
+        font-weight: 500;
         @include for-desktop-h {
             font-size: .8em;
         } 
