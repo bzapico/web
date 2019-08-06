@@ -2,9 +2,6 @@
 // Tabs
 // -----------------------------------------------------------------------------
 
-@import  'app/scss/variables/mixins';
-@import  'app/scss/variables/colors';
-
 /* - - - Nalej tabs - - - */
 .nalej-tab-box {
     margin: 0em 3em 2em 1em;
@@ -33,7 +30,7 @@
         }
     }
     .tabs-arrow {
-        color: #949494;
+        color: $base-grey;
         padding: 0rem 2rem;
     }
     .nalej-tab-title {
@@ -46,7 +43,7 @@
         display: block;
         transition: .3s background-color;
         &.active {
-            color: $base-purple;
+            color: $base-violet;
             &::before {
             content: "";
             height: 5px;
@@ -55,7 +52,7 @@
             position: absolute;
             bottom: -1px;
             left: 0;
-            background-color: $base-purple;
+            background-color: $base-violet;
             }
         }
     }

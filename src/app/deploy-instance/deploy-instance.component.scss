@@ -1,3 +1,5 @@
+$base-violet: #5800FF; 
+
 .accordion {
     border: 2px solid #EEEEEE;
     border-radius: 5px;
@@ -13,7 +15,7 @@
     height: 3em;
     background-color: #F4F3F4;
     cursor: pointer;
-    color: #0937ff;
+    color: $base-violet;
     font-size: .8em;
     text-indent: 17px;
 }

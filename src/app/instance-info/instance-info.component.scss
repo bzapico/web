@@ -8,8 +8,8 @@
     @media all and (max-height: 900px) { @content; }
 }
 
-$base-purple: #5800FF;
-$base-pink: #FF00D3;
+$base-red: #F7478A;
+$base-grey: #828282;
 
 /* - - - Card heights - - */
 .row-info-app {
@@ -60,7 +60,7 @@ $base-pink: #FF00D3;
         border: none;
     } 
     th {
-        color: #949494;
+        color: $base-grey;
         border: none;
         font-weight: 200;
         padding: .2em;
@@ -95,13 +95,14 @@ $base-pink: #FF00D3;
     font-size: .8em;
     outline: none; 
     background-color: #ececec;
-    color: $base-pink;
+    color: $base-red;
     width: 233px;
     height: 42px;
     &:hover {
-        color: #fff;
+        color: #ffffff;
         transition: 0.3s;
-        background-color: #ff437d;
+        background-color: $base-red;
+        opacity: 0.6;
     }
 }
 .i-options {
@@ -137,7 +138,7 @@ $base-pink: #FF00D3;
 }
 .show-graph-icons {
     cursor: pointer;
-    color: #949494;
+    color: $base-grey;
 }
 .mr-bars {
     margin-right: 11px;

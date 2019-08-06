@@ -153,9 +153,9 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   nalejColorScheme: string[];
   nextColorIndex: number;
   STATUS_COLORS = {
-    RUNNING: '#0937FF',
-    ERROR: '#FF00D3',
-    OTHER: '#03D7E8'
+    RUNNING: '#5800FF',
+    ERROR: '#F7478A',
+    OTHER: '#FFEB6C'
   };
 
   constructor(
@@ -215,8 +215,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
        nodes: [],
        links: []
      };
-
-
 
      this.nalejColorScheme = [
        '#1725AE',

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file contains very basic styles.
+// Basic styles.
 // -----------------------------------------------------------------------------
 
 @import  'app/scss/variables/mixins';
@@ -9,8 +9,12 @@ html, body {
     margin: 0px;
     height: 100%;
     overflow-x: hidden;
-    font-family: 'Lato';
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
     box-sizing: border-box;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
 }
 
 *,
@@ -20,20 +24,21 @@ html, body {
     font-family: 'Lato', sans-serif;
 }
 h1 { 
-    font-weight: bold; 
+    font-weight: 500; 
 }
 
 /* - - - Basic styles for links - - - */
 a {
-    color: $base-purple;
+    color: $base-violet;
     text-decoration: none;
+    font-weight: 500;
     &:hover {
-      color: $base-purple;
+      color: $base-violet;
       text-decoration: none;
     }
 }
 .section-title {
-  font-weight: 900;
+  font-weight: 700;
     margin-bottom: 0;
     @include for-desktop-only  { 
         font-size: 1.5rem;

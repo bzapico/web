@@ -2,9 +2,6 @@
 // Forms
 // -----------------------------------------------------------------------------
 
-@import  'app/scss/variables/mixins';
-@import  'app/scss/variables/colors';
-
 /* - - - Forms styles - - - */
 .nalej-form-title{
     font-size: .9em;
@@ -17,7 +14,7 @@
     margin-bottom: 0rem;
     label {
         font-size: .8em;
-        color: #949494;
+        color: $base-grey;
         margin-bottom: 0;
     }
     input {
@@ -26,7 +23,7 @@
         }
         &:focus {
             &::placeholder {
-                color: white;
+                color: #ffffff;
             }
         }
     }
@@ -48,15 +45,15 @@
     font-size: .8em;
     text-align: center;
     border: 2px solid #EEEEEE;
-    caret-color: $base-purple;
+    caret-color: $base-violet;
     padding-top: 10px;
     &:focus {
         z-index: 2;
-        border-color: $base-purple;
+        border-color: $base-violet;
         outline: none;
         box-shadow: none;
         &::placeholder {
-            color: white;
+            color: #ffffff;
         }
     }
     input {
@@ -64,7 +61,7 @@
             outline: none;
         }
         &:-webkit-autofill {
-            background-color: #fff;
+            background-color: #ffffff;
         }
     }
     &:disabled, &[readonly] {
@@ -88,34 +85,35 @@
         box-shadow: none;
     }
     &:disabled {
-        background-color: #707070;
+        background-color: $dark-grey;
     }
 }
 .nalej-form-btn-blue {
     @extend .nalej-form-btn;
-    color: #fff;
-    background-color: $base-purple;
+    color: #ffffff;
+    background-color: $base-violet;
     &:hover {
-        color: #fff;
+        color: #ffffff;
         transition: 0.3s;
-        background-color: #4f71fd;
+        background-color: $base-violet;
+        opacity: 0.6;
     }
 }
 .nalej-form-btn-red {
     @extend .nalej-form-btn;
     background-color: #ececec;
-    color: $base-pink;
+    color: $base-red;
     position: relative;
     text-indent: 18px;
     .delete-icon {
-        color: $base-pink;
+        color: $base-red;
         position: absolute;
         top: 15px;
         left: 35px;
         font-size: 21px;
     }
     &:hover {
-        background-color: $base-pink;
+        background-color: $base-red;
         color: #ececec;
         transition: 0.3s;
         .delete-icon {
@@ -130,11 +128,11 @@
     margin-top: .2em;
     .error-message {
         font-size: 0.8em;
-        color: $base-pink;
+        color: $base-red;
     }
   }
   .is-invalid {
-    border: 2px solid $base-pink !important;
+    border: 2px solid $base-red !important;
     &:focus {
          border-color: transparent;
         -webkit-box-shadow: none;

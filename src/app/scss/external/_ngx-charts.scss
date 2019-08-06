@@ -2,8 +2,6 @@
 // Ngx-charts
 // -----------------------------------------------------------------------------
 
-@import  'app/scss/variables/mixins';
-
 /* - - -  Pie charts - - - */
 .ngx-charts .label {
     display: none;
@@ -13,7 +11,7 @@
     display: block;
 }
 .ngx-charts text { 
-    fill: #949494; 
+    fill: $base-grey; 
 }
   
 /* - - -  Line charts  - - - */

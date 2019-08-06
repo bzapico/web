@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------
 
 .graph-subtext {
-    color: #949494;
+    color: $base-grey;
     font-size: 0.7em;
 }
 .graph {
@@ -22,7 +22,7 @@
     }
     .node {
         text {
-            fill: #fff;
+            fill: #ffffff;
             font-size: 12px;
         }
     }

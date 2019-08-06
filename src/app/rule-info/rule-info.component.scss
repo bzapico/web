@@ -1,14 +1,17 @@
+$base-violet: #5800FF;
+$base-grey: #828282;
+
 .rule-h3-title {
     font-size: 1.5rem;
     margin-bottom: 0.1rem;
 }
 .rule-access {
     font-size: 1.4em;
-    color: #0937FF;
+    color: $base-violet;
 }
 .rule-title {
     font-size: .9em;
-    color:  #949494;
+    color:  $base-grey;
 }
 .btn-primary {
     text-indent: -7px;

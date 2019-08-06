@@ -7,9 +7,13 @@
 @mixin for-desktop-h {
     @media all and (max-height: 900px) { @content; }
 }
+
+$base-violet: #5800FF;
+$base-grey: #828282;
+
 .cluster-number {
     float: right;
-    color: #949494;
+    color: $base-grey;
     font-size: 0.8em;
     @include for-desktop-up {
         margin-bottom: 0;
@@ -45,7 +49,7 @@
     th {
         padding: 0.2em;
         border: none;
-        color: #949494;
+        color: $base-grey;
         vertical-align: top;
         @include for-desktop-h {
             font-size: .8em;
@@ -73,15 +77,16 @@
 }
 .nodes-run-node {
     margin-top: -0.1em;
-    color: #949494;
+    color: $base-grey;
     @include for-desktop-up {
         font-size: .8em;
     }
 }
 .nodes-run {
     font-size: .8em;
+    font-weight: 500;
     margin-top: -1em;
-    color: #0937FF;
+    color: $base-violet;
     margin-bottom: 0;
     @include for-big-desktop-up {
         font-size: 1em;

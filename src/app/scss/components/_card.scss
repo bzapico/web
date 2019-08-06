@@ -2,9 +2,6 @@
 // Cards
 // -----------------------------------------------------------------------------
 
-@import  'app/scss/variables/mixins';
-
-
 /* - - - Main row styles- - - */
 .row-title {
     margin-bottom: 15px;
@@ -90,7 +87,7 @@
 }
 .card-title-name {
     h5 {
-        font-weight: 600;
+        font-weight: 500;
         @include for-desktop-only {
             font-size: 1em;
         }
@@ -102,7 +99,7 @@
         margin-bottom: 0em;
         h5 {
             font-size: 1em;
-            font-weight: 600;
+            font-weight: 500;
         }
     }
 }
@@ -141,11 +138,11 @@
     justify-content: center;
     width: 6vw;
     height: 6vw;
-    border: 1px solid #949494;
+    border: 1px solid $base-grey;
     border-radius: 100%;
     min-width: 65px;
     min-height: 65px;
-    font-weight: 600;
+    font-weight: 500;
     @include for-desktop-only {
         max-width: 90px;
         max-height: 90px;
@@ -159,7 +156,7 @@
         max-width: 140px;
     }   
     span {
-        color: black;
+        color: $super-dark-grey;
         font-size: 1.7em;
         margin-top: .25em;
         @include for-desktop-only {
@@ -183,8 +180,9 @@
 .circle-name {
     margin-top: 1em;
     margin-bottom: 0;
-    color: #949494;
+    color: $base-grey;
     font-size: 1.2em;
+    font-weight: 500;
     @include for-desktop-only {
         font-size: .8em;
         margin-top: .4em;
@@ -192,9 +190,10 @@
 }
 .circle-name-sm {
     font-size: .9em;
-    color: #949494;
+    color: $base-grey;
     line-height: .7;
     margin-top: 1em;
+    font-weight: 500;
     @include for-desktop-only {
         font-size: .7em;
     }

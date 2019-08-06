@@ -1,3 +1,4 @@
+$base-grey: #828282;
 .upload-descriptor {
     font-size: 1em;
     margin-top: 3em;
@@ -22,7 +23,7 @@
         color: #52FBA7;
     }
     .subtitle {
-        color: #949494;
+        color: $base-grey;
         font-size: 1.1em;
     }
     .subtitle-2 {
@@ -31,11 +32,11 @@
     }
 }
 .file-to-upload{
-    border:2px dotted #949494;
+    border:2px dotted $base-grey;
     cursor: pointer;
 }
 .file-uploaded {
-    background-color: #949494;
+    background-color: $base-grey;
 }
 #fileElem {
     display: none;
