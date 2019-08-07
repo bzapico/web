@@ -217,11 +217,10 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
      };
 
      this.nalejColorScheme = [
-       '#1725AE',
-       '#040D5A',
-       '#0F1B8C',
-       '#01073A',
-       '#091374'
+       '#4900d4',
+       '#4000ba',
+       '#3902a3',
+       '#2e0480',
      ];
      this.nextColorIndex = 0;
 
@@ -726,6 +725,41 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Checks if the instances status requires an special css class
+   * @param status instances status name
+   * @param className CSS class name
+   */
+  classInstanceStatusCheck(status: string, className: string): boolean {
+    if (status) {
+      switch (status.toLowerCase()) {
+        case 'RUNNING': {
+          if (className.toLowerCase() === 'RUNNING') {
+            return true;
+          }
+          break;
+        }
+        case 'ERROR': {
+          if (className.toLowerCase() === 'ERROR') {
+            return true;
+          }
+          break;
+        }
+        case 'PLANNING_ERROR': {
+          if (className.toLowerCase() === 'ERROR') {
+            return true;
+          }
+          break;
+        }
+       default: {
+          if (className.toLowerCase() === 'process') {
+            return true;
+          }
+          return false;
+        }
+      }
+    }
+  }
 
   /**
    * Shows the graph in services card

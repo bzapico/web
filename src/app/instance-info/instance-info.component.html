@@ -33,14 +33,11 @@
                   <td id="summary-instances-status">
                     <span 
                       [ngClass]=
-                      "{
-                        'status-dot':  instance.status_name === 'RUNNING',
-                        'status-dot-error': instance.status_name === 'ERROR',
-                        'status-dot-error': instance.status_name ===  'PLANNING_ERROR' ,
-                        'status-dot-process': instance.status_name !== 'RUNNING',
-                        'status-dot-process': instance.status_name !== 'ERROR',
-                        'status-dot-process': instance.status_name !== 'PLANNING_ERROR'
-                      }"
+                        "{
+                          'status-dot':classInstanceStatusCheck(instance.status_name, 'RUNNING'),
+                          'status-dot-error':classInstanceStatusCheck(instance.status_name, 'ERROR'),
+                          'status-dot-process':classInstanceStatusCheck(instance.status_name, 'process')
+                        }"
                       tooltip="{{instance.status_name}}" 
                       placement="bottom"
                       class="status-dot">
@@ -149,7 +146,7 @@
               <ng-template #nodeTemplate let-node>
                 <svg:g 
                   class="node"
-                  [ngClass]="{'node-text-grey': node.color === '#FFEB6C'}"
+
                   ngx-tooltip
                   [tooltipPlacement]="'top'"
                   [tooltipType]="'tooltip'"

@@ -158,7 +158,6 @@
     span {
         color: $super-dark-grey;
         font-size: 1.7em;
-        margin-top: .25em;
         @include for-desktop-only {
             font-size: 1.2em;
         }
