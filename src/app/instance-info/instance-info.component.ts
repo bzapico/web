@@ -157,7 +157,11 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     ERROR: '#F7478A',
     OTHER: '#FFEB6C'
   };
-
+  STATUS_TEXT_COLORS = {
+    RUNNING: '#FFFFFF',
+    ERROR: '#FFFFFF',
+    OTHER: '#444444'
+  };
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -277,6 +281,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           label: group.name,
           tooltip: 'GROUP ' + group.name + ': ' + this.getBeautyStatusName(group.status_name),
           color: this.getNodeColor(group.status_name),
+          text: this.getNodeTextColor(group.status_name),
           group: group.service_group_instance_id
         };
         this.graphData.nodes.push(nodeGroup);
@@ -286,6 +291,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
             label: service.name,
             tooltip: 'SERVICE ' + service.name + ': ' + this.getBeautyStatusName(service.status_name),
             color: this.getNodeColor(service.status_name),
+            text: this.getNodeTextColor(group.status_name),
             group: group.service_group_instance_id
           };
           this.graphData.nodes.push(nodeService);
@@ -358,6 +364,26 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       break;
       default:
         return this.STATUS_COLORS.OTHER;
+    }
+  }
+
+    /**
+   * Return an specific color depending on the node status
+   * @param status Status name
+   */
+  getNodeTextColor(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'service_running':
+        return this.STATUS_TEXT_COLORS.RUNNING;
+      break;
+      case 'service_error':
+        return this.STATUS_TEXT_COLORS.ERROR;
+      break;
+      case 'service_waiting':
+        return this.STATUS_TEXT_COLORS.OTHER;
+      break;
+      default:
+        return this.STATUS_TEXT_COLORS.OTHER;
     }
   }
 

@@ -146,7 +146,7 @@
               <ng-template #nodeTemplate let-node>
                 <svg:g 
                   class="node"
-                  [ngClass]="{'node-text-grey': node.color === '#FFEB6C'}"
+                
                   ngx-tooltip
                   [tooltipPlacement]="'top'"
                   [tooltipType]="'tooltip'"
@@ -159,6 +159,7 @@
                   ry="14"
                   />
                   <svg:text 
+                    [attr.fill]="node.text" 
                     alignment-baseline="central" 
                     [attr.x]="10" 
                     [attr.y]="node.height/2">
