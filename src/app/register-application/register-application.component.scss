@@ -1,9 +1,13 @@
 $base-grey: #828282;
+$light-grey: #EEEEEE;
+$status-teal: #00E6A0;
+$dark-grey: #444444;
+
 .upload-descriptor {
     font-size: 1em;
     margin-top: 3em;
+    font-weight: 500;
 }
-
 .drop-note-uploaded {
     width: 100%;
     height: 250px;
@@ -11,16 +15,14 @@ $base-grey: #828282;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #f4f4f4;
+    background-color: $light-grey;
     font-size: .8em;
     text-align: center;
     margin-bottom: 0;
     .drop-title-uploaded {
         font-size: 1.7em;
-        color: #555;
-    }
-    .green {
-        color: #52FBA7;
+        color: $dark-grey;
+        font-weight: 500;
     }
     .subtitle {
         color: $base-grey;
@@ -29,6 +31,7 @@ $base-grey: #828282;
     .subtitle-2 {
         font-size: 1em;
         margin-top: -3px;
+        color: $status-teal
     }
 }
 .file-to-upload{

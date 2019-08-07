@@ -406,11 +406,19 @@
               <div role="cell" class="nalej-flex-row-5 services-cell-2 nalej-flex-td">
                 {{service.specs.replicas}}
               </div>
-              <div 
-                [ngClass]="getServiceStatusClass(service.status_name)"
-                role="cell" 
-                class="nalej-flex-row-5 services-cell-3 nalej-flex-td text-lowercase">
+              <div role="cell" class="nalej-flex-row-5 services-cell-3 nalej-flex-td text-lowercase">
+                <span 
+                  [ngClass]=
+                    "{
+                      'status-dot': classStatusCheck(service.status_name, 'service_running'),
+                      'status-dot-error': classStatusCheck(service.status_name, 'service_error'),
+                      'status-dot-process': classStatusCheck(service.status_name, 'service_waiting')
+                    }"
+                  tooltip="{{service.status_name}}" 
+                  placement="bottom"
+                  class="status-dot">
                   {{getBeautyStatusName(service.status_name)}}
+                </span>
               </div>
               <div role="cell" class="nalej-flex-row-5 services-cell-4 nalej-flex-td">
                 <span *ngFor="let endpoint of service.endpoints">

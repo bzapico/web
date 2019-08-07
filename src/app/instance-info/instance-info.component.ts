@@ -676,7 +676,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Depending on the service status, returns the css class name that is required
    * @param status Service status string
    */
-  getServiceStatusClass (status: string ) {
+  getServiceStatusClass(status: string ) {
     switch (status.toLowerCase()) {
       case 'service_running':
         return 'teal';
