@@ -6,6 +6,7 @@
 .nalej-form-title{
     font-size: .9em;
     display: inline;
+    color: $dark-grey;
     button span {
       color: $base-grey;
     }
@@ -76,10 +77,9 @@
     border: 0px;
     border-radius: 5px;
     width: 232px;
-    font-size: 0.8em;
+    font-size: .9em;
     text-align: center;
     height: 51px;
-    padding-top: 6px;
     font-weight: 500;
     cursor: pointer;
     &:focus {
@@ -96,9 +96,9 @@
     background-color: $base-violet;
     &:hover {
         color: #ffffff;
-        transition: 0.3s;
+        transition: .3s;
         background-color: $base-violet;
-        opacity: 0.6;
+        opacity: .6;
     }
 }
 .nalej-form-btn-red {
@@ -117,10 +117,10 @@
     &:hover {
         background-color: $base-red;
         color: $super-light-grey;
-        transition: 0.3s;
+        transition: .3s;
         .delete-icon {
             color: $super-light-grey;
-            transition: 0.3s;
+            transition: .3s;
         }
     }
 }
@@ -129,7 +129,7 @@
     height: 19px;
     margin-top: .2em;
     .error-message {
-        font-size: 0.8em;
+        font-size: .8em;
         color: $base-red;
     }
   }

@@ -12,6 +12,7 @@ $base-red: #F7478A;
 $base-grey: #828282;
 $super-light-grey: #F8F8F8;
 
+
 /* - - - Card heights - - */
 .row-info-app {
     min-height: 587px;
@@ -56,6 +57,9 @@ $super-light-grey: #F8F8F8;
     }
 }
 .summary-instances-table {
+    .status-dot-nalej, .status-dot:before, .status-dot-error:before, .status-dot-process:before {
+        margin: 3px;
+    }
     height: 75%;
     font-size:  .9em;
     tr {
