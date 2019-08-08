@@ -23,7 +23,11 @@
           <ngx-select-dropdown 
             formControlName="type" 
             [multiple]="false" 
-            [ngClass]="{ 'ngx-error': submitted && f.type.errors && !agentType }"
+            [ngClass]=
+              "{ 
+                'ngx-error': submitted && f.type.errors && !agentType,
+                'base-light-grey': !f.type.value
+              }"
             [config]="agentTypeSelectConfig" 
             [options]="agentTypeOptions">
           </ngx-select-dropdown>

@@ -7,6 +7,7 @@
 .ngx-dropdown-container .ngx-dropdown-button {
     height: 40px;
     font-size: .9em;
+    color: inherit;
     &:focus {
         border: 2px solid $base-violet !important;
         z-index: 2;
@@ -41,9 +42,9 @@
 .ngx-dropdown-container button {
     border: 2px solid $light-grey !important;
     font-size: 0.9em;
+    color: inherit !important;
 }
 .ngx-dropdown-container button span {
-    color: $base-grey;
     float: inherit !important;
 }
 .ngx-error {
