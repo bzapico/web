@@ -326,7 +326,7 @@
     }
     .form-control {
         font-size: 1rem;
-        padding: .375rem 2.1rem .375rem 0rem;
+        padding: .375rem 2.1rem .5rem 0rem;
     }
     > input {
         border: 2px solid $light-grey;
@@ -337,7 +337,7 @@
         padding-right: 2.7rem!important;
         &::placeholder {
             font-size: .9em;
-            color: #ccc;
+            color: $base-light-grey;
         }
         &:focus {
             z-index: 2;
@@ -354,7 +354,7 @@
         position: absolute;
         top: 7px;
         right: 23px;
-        color: #ccc;
+        color: $base-light-grey;
         cursor: pointer;
     }
     .close-icon i {

@@ -16,16 +16,16 @@
         <div class="modal-body">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label>Email</label>
+                    <label>Email*</label>
                     <input 
                         formControlName="email" 
                         type="text" 
                         [ngClass]="{ 'is-invalid': submitted && f.email.errors }" 
-                        placeholder="{{email}}"
+                        placeholder="email"
                         appAutofocus="true"
                         pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"
                         required
-                        class="form-control">
+                        class="form-control">{{email}}
                     <div class="error-h">
                         <div *ngIf="submitted && f.email.errors" class="error-message">
                             <div *ngIf="f.email.errors.required">Email is required</div>
@@ -40,6 +40,7 @@
                         type="password" 
                         [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
                         required
+                        placeholder="password"
                         class="form-control" >
                     <div class="error-h">
                         <div *ngIf="submitted && f.password.errors" class="error-message">
