@@ -423,38 +423,32 @@
     margin-right: 7px;
 }
 .big-status-dot {
-    @include for-desktop-up {
-        text-align: center;
-    }
     &:before {
         @extend .big-status-dot-nalej;
         background: $status-teal;
         @include for-desktop-up {
-            margin: 0 23px;
+            width: 12px;
+            height: 12px;
         }
     }
 }
 .big-status-dot-error{
-    @include for-desktop-up {
-        text-align: center;
-    }
     &:before {
         @extend .big-status-dot-nalej;
         background: $base-red;
         @include for-desktop-up {
-            margin: 0 23px;
+            width: 12px;
+            height: 12px;
         }
     }
 }
 .big-status-dot-process {
-    @include for-desktop-up {
-        text-align: center;
-    }
     &:before {
         @extend .big-status-dot-nalej;
         background: $status-yellow;
         @include for-desktop-up {
-            margin: 0 23px;
+            width: 12px;
+            height: 12px;
         }
     }
 }
