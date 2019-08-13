@@ -25,12 +25,12 @@
               <span 
                 [ngClass]=
                 "{
-                  'status-dot': status === 'ONLINE',
-                  'status-dot-error': status === 'OFFLINE'
+                  'big-status-dot': status === 'ONLINE',
+                  'big-status-dot-error': status === 'OFFLINE'
                 }"
                 tooltip="{{status}}" 
                 placement="bottom"
-                class="status-dot">
+                class="big-status-dot">
               </span>
               <span class="fw-black">
                 {{status}}

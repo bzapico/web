@@ -17,13 +17,13 @@
             <span 
               [ngClass]=
               "{
-                'status-dot': classStatusCheck(statusName, 'service_running'),
-                'status-dot-error': classStatusCheck(statusName, 'service_error'),
-                'status-dot-process': classStatusCheck(statusName, 'service_waiting') || classStatusCheck (statusName, 'service_scheduled')
+                'big-status-dot': classStatusCheck(statusName, 'service_running'),
+                'big-status-dot-error': classStatusCheck(statusName, 'service_error'),
+                'big-status-dot-process': classStatusCheck(statusName, 'service_waiting') || classStatusCheck (statusName, 'service_scheduled')
               }"
               tooltip="{{statusName}}" 
               placement="bottom"
-              class="status-dot">
+              class="big-status-dot">
               <span class="fw-black">
                 {{getBeautyStatusName(statusName)}}
               </span>

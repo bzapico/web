@@ -141,6 +141,54 @@
     }
 }
 
+.modal-body {
+    .big-status-dot-nalej {
+        content:'\A';
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        display:inline-block;
+        margin-right: 7px;
+        margin-bottom: 1px;
+    }
+    .big-status-dot {
+        @include for-desktop-up {
+            text-align: center;
+        }
+        &:before {
+            @extend .big-status-dot-nalej;
+            background: $status-teal;
+            @include for-desktop-up {
+                margin: 0 23px;
+            }
+        }
+    }
+    .big-status-dot-error{
+        @include for-desktop-up {
+            text-align: center;
+        }
+        &:before {
+            @extend .big-status-dot-nalej;
+            background: $base-red;
+            @include for-desktop-up {
+                margin: 0 23px;
+            }
+        }
+    }
+    .big-status-dot-process {
+        @include for-desktop-up {
+            text-align: center;
+        }
+        &:before {
+            @extend .big-status-dot-nalej;
+            background: $status-yellow;
+            @include for-desktop-up {
+                margin: 0 23px;
+            }
+        }
+    }
+}
+
 /* - - - Modal info- - - */
 
 .modal-info-h3-title {

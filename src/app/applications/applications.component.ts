@@ -365,8 +365,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Checks if the cluster status requires an special css class
-   * @param status Cluster status name
+   * Checks if the app status requires an special css class
+   * @param status app status name
    * @param className CSS class name
    */
   classStatusCheck(status: string, className: string): boolean {

@@ -34,13 +34,13 @@
                     <span 
                       [ngClass]=
                         "{
-                          'status-dot':classInstanceStatusCheck(instance.status_name, 'RUNNING'),
-                          'status-dot-error':classInstanceStatusCheck(instance.status_name, 'ERROR'),
-                          'status-dot-process':classInstanceStatusCheck(instance.status_name, 'process')
+                          'big-status-dot':classInstanceStatusCheck(instance.status_name, 'running'),
+                          'big-status-dot-error':classInstanceStatusCheck(instance.status_name, 'error'),
+                          'big-status-dot-process':classInstanceStatusCheck(instance.status_name, 'process')
                         }"
                       tooltip="{{instance.status_name}}" 
                       placement="bottom"
-                      class="status-dot">
+                      class="big-status-dot">
                     </span>
                     <span class="hide-lg">
                       {{instance.status_name}}

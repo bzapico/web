@@ -757,32 +757,60 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * @param className CSS class name
    */
   classInstanceStatusCheck(status: string, className: string): boolean {
-    if (status) {
-      switch (status.toLowerCase()) {
-        case 'RUNNING': {
-          if (className.toLowerCase() === 'RUNNING') {
-            return true;
-          }
-          break;
+    switch (status.toLowerCase()) {
+      case 'running': {
+        if (className.toLowerCase() === 'running') {
+          return true;
         }
-        case 'ERROR': {
-          if (className.toLowerCase() === 'ERROR') {
-            return true;
-          }
-          break;
+        break;
+      }
+      case 'deployment_error': {
+        if (className.toLowerCase() === 'error') {
+          return true;
         }
-        case 'PLANNING_ERROR': {
-          if (className.toLowerCase() === 'ERROR') {
-            return true;
-          }
-          break;
+        break;
+      }
+      case 'planning_error': {
+        if (className.toLowerCase() === 'error') {
+          return true;
         }
-       default: {
-          if (className.toLowerCase() === 'process') {
-            return true;
-          }
-          return false;
+        break;
+      }
+      case 'incomplete': {
+        if (className.toLowerCase() === 'error') {
+          return true;
         }
+        break;
+      }
+      case 'error': {
+        if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
+      case 'queued': {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        break;
+      }
+      case 'planning': {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        break;
+      }
+      case 'scheduled': {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        break;
+      }
+     default: {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        return false;
       }
     }
   }
