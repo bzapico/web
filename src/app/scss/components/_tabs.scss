@@ -36,13 +36,15 @@
     .nalej-tab-title {
         cursor: default;
         padding-right: 8em;
-        font-weight: 500;
+        > span {
+            font-weight: 700;
+        }
     }
     span {
+        font-weight: 500;
+        color: $base-grey;
         display: block;
         text-decoration: none;
-        display: block;
-        font-weight: 500;
         transition: .3s background-color;
         &.active {
             color: $base-violet;

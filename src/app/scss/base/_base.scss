@@ -39,7 +39,8 @@ a {
     }
 }
 .section-title {
-  font-weight: 700;
+    color: $super-dark-grey;
+    font-weight: 700;
     margin-bottom: 0;
     @include for-desktop-only  { 
         font-size: 1.5rem;

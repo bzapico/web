@@ -44,6 +44,7 @@
 }
 .close {
     font-weight: 500;
+    color: $super-dark-grey;
     &:focus {
         outline: none;
     }
@@ -95,48 +96,31 @@
     }
 }
 
-
-.status-dot-nalej {
-    content:'\A';
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    display:inline-block;
-    margin: 0 5px 0 0;
-}
-.status-dot {
-    @include for-desktop-up {
-        text-align: center;
+.modal-body {
+    .status-dot-nalej {
+        content:'\A';
+        width:10px;
+        height:10px;
+        border-radius:50%;
+        display:inline-block;
+        margin: 0 5px 0 0;
     }
-    &:before {
-        @extend .status-dot-nalej;
-        background: $status-teal;
-        @include for-desktop-up {
-            margin: 0 23px;
+    .status-dot {
+        &:before {
+            @extend .status-dot-nalej;
+            background: $status-teal;
         }
     }
-}
-.status-dot-error{
-    @include for-desktop-up {
-        text-align: center;
-    }
-    &:before {
-        @extend .status-dot-nalej;
-        background: $base-red;
-        @include for-desktop-up {
-            margin: 0 23px;
+    .status-dot-error{
+        &:before {
+            @extend .status-dot-nalej;
+            background: $base-red;
         }
     }
-}
-.status-dot-process {
-    @include for-desktop-up {
-        text-align: center;
-    }
-    &:before {
-        @extend .status-dot-nalej;
-        background: $status-yellow;
-        @include for-desktop-up {
-            margin: 0 23px;
+    .status-dot-process {
+        &:before {
+            @extend .status-dot-nalej;
+            background: $status-yellow;
         }
     }
 }
@@ -174,6 +158,7 @@
 /* - - - Modal info- - - */
 
 .modal-info-h3-title {
+    color: $super-dark-grey;
     font-size: 1.5rem;
     margin-bottom: .1rem;
     text-transform: uppercase;

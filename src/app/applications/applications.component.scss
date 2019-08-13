@@ -9,6 +9,7 @@
 }
 
 $base-violet: #5800FF;
+$super-dark-grey: #151515;
 
 /* - - - Summary app card - - - */
 .donut-chart {
@@ -25,6 +26,7 @@ $base-violet: #5800FF;
     }  
 }
 .donut-number {
+    color: $super-dark-grey;
     font-size: 1em;
     @include for-desktop-only {
         font-size: .8em;
@@ -91,7 +93,7 @@ $base-violet: #5800FF;
             right: 45px;
         }
         .i-options {
-            font-size: 1.8em;
+            font-size: 1.5em;
             font-weight: 700;
             position: absolute;
             top: 6px;

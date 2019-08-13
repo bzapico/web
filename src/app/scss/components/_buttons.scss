@@ -212,11 +212,11 @@ button[type="submit"]:disabled {
     margin:1px;
     text-align: left;
     max-width: -webkit-fill-available;
-    border-color: $dark-grey;
-    color: $dark-grey;
+    border-color: $super-dark-grey;
+    color: $super-dark-grey;
     &:hover:enabled{
-        background-color: $dark-grey;
-        border-color: $dark-grey;
+        background-color: $super-dark-grey;
+        border-color: $super-dark-grey;
         color: #ffffff;
     }
     &:hover:disabled{

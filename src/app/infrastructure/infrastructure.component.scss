@@ -20,6 +20,7 @@
 $base-violet: #5800FF;
 $base-grey: #828282;
 $dark-grey: #444444;
+$super-dark-grey: #151515;
 
 /* - - - Summary infrastructure card - - - */
 
@@ -77,6 +78,7 @@ $dark-grey: #444444;
     }
 }
 .donut-number {
+    color: $super-dark-grey;
     font-size: 1em;
     @include for-desktop-only {
         font-size: .8em;
@@ -97,7 +99,7 @@ $dark-grey: #444444;
 
 /* - - - Inventory card - - - */
 .quick-filters-title {
-    color: $dark-grey;
+    color: $base-grey;
     font-size: .6em;
     display: initial;
     margin-right: 6em;
@@ -179,7 +181,7 @@ $dark-grey: #444444;
             opacity: 0.6;
         }
         .i-options {
-            font-size: 1.8em;
+            font-size: 1.5em;
             font-weight: 700;
             position: absolute;
             top: 6px;
