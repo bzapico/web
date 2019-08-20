@@ -8,6 +8,11 @@
     @media all and (max-height: 900px) { @content; }
 }
 
+$base-red: #F7478A;
+$base-grey: #828282;
+$super-light-grey: #F8F8F8;
+
+
 /* - - - Card heights - - */
 .row-info-app {
     min-height: 587px;
@@ -40,6 +45,7 @@
 #summary-instances-status {
     font-size: 1.4em;
     text-transform: uppercase;
+    font-weight: 700;
     @include for-desktop-only {
         font-size: 1em !important;
     }
@@ -51,15 +57,18 @@
     }
 }
 .summary-instances-table {
+    .status-dot-nalej, .status-dot:before, .status-dot-error:before, .status-dot-process:before {
+        margin: 3px;
+    }
     height: 75%;
     font-size:  .9em;
     tr {
         border: none;
     } 
     th {
-        color: #949494;
+        color: $base-grey;
         border: none;
-        font-weight: 200;
+        font-weight: 400;
         padding: .2em;
         vertical-align: inherit;
 
@@ -73,6 +82,7 @@
         border: none;
         text-align: right;
         color: #212529;
+        font-weight: 500;
 
         @include for-desktop-only {
             font-size: .8em;
@@ -86,19 +96,21 @@
 .btn-undeploy {
     border: none;
     border-radius: 5px;
-    padding: .5em 1.8em .5em 3em;
+    padding-left: 2em;
     cursor: pointer;
     position: relative;
     font-size: .8em;
     outline: none; 
-    background-color: #ececec;
-    color: #F25272;
+    background-color: $super-light-grey;
+    color: $base-red;
     width: 233px;
     height: 42px;
+    font-weight: 500;
     &:hover {
-        color: #fff;
+        color: #ffffff;
         transition: 0.3s;
-        background-color: #ff437d;
+        background-color: $base-red;
+        opacity: 0.6;
     }
 }
 .i-options {
@@ -134,7 +146,7 @@
 }
 .show-graph-icons {
     cursor: pointer;
-    color: #949494;
+    color: $base-grey;
 }
 .mr-bars {
     margin-right: 11px;

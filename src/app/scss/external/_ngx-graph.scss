@@ -3,11 +3,12 @@
 // -----------------------------------------------------------------------------
 
 .graph-subtext {
-    color: #949494;
+    color: $base-light-grey;
     font-size: 0.7em;
+    font-weight: 500;
 }
 .graph {
-    background-color: #f6f6f6;
+    background-color: $super-light-grey;
     height: 90%;
     position: relative;
     display: block;
@@ -22,13 +23,12 @@
     }
     .node {
         text {
-            fill: #fff;
             font-size: 12px;
         }
     }
     .edge {
         path {
-          stroke: #CDCDCD;
+          stroke: $base-light-grey;
         }
     }
     .graph-click-fix {
@@ -40,5 +40,14 @@
         z-index: 20;
         width: 400px;
         height: 250px;
+    }
+}
+
+.node-grey-text {
+    .node {
+        text {
+            fill: red;
+            font-size: 12px;
+        }
     }
 }

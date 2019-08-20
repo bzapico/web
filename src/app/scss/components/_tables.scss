@@ -2,8 +2,6 @@
 // Tables
 // -----------------------------------------------------------------------------
 
-@import  'app/scss/variables/mixins';
-
 .col-center-lowercase {
     text-align: center;
     text-transform: lowercase;
@@ -29,12 +27,12 @@
         display: block;
     }
     thead {
-        background-color: white;
+        background-color: #ffffff;
         th {
             float: left;
             border: none;
             font-size: .9em;
-            font-weight: 200;
+            font-weight: 500;
             cursor: pointer;
             &.default{
                 color: #212529;
@@ -44,16 +42,16 @@
             }
             &.enabled {
                 i {
-                color: #0937FF;
+                color: $base-violet;;
                 }
                 span i{
                 visibility: visible;
                 }
             }
             &.disabled {
-                color: #949494;
+                color: $base-grey;
                 i {
-                color: #949494;
+                color: $base-grey;
                 }
             }
         }
@@ -71,7 +69,7 @@
     .nalej-thead {
         position: sticky;
         top: 0;
-        background-color: white;
+        background-color: #ffffff;
         z-index: 1;
         min-height: 26px;
     }
@@ -91,7 +89,7 @@
             padding: 0.75rem;
             font-size: .9em;
             border-top: .8px solid #f6f6f6;
-            color: #949494;
+            color: $base-grey;
         }
     }
 }
@@ -118,10 +116,11 @@
     font-size: .9em;
     font-weight: 200;
     border-bottom: none;
+    font-weight: 500;
 }
 .nalej-flex-td {
     font-size: .9em;
-    color: #949494;
+    color: $base-grey;
     border-bottom: .8px solid #f6f6f6;
     padding: .75em;
     justify-content: center;
@@ -143,16 +142,16 @@
     }
     &.enabled {
         i {
-            color: #0937FF;
+            color: $base-violet;;
         }
         span i{
             visibility: visible;
         }
     }
     &.disabled {
-            color: #949494;
+            color: $base-grey;
         i {
-            color: #949494;
+            color: $base-grey;
         }
     }
     .expand-chevron {
@@ -177,16 +176,16 @@
     }
     &.enabled {
         i {
-            color: #0937FF;
+            color: $base-violet;
         }
         span i {
             visibility: visible;
         }
     }
     &.disabled {
-        color: #949494;
+        color: $base-grey;
         i {
-            color: #949494;
+            color: $base-grey;
         }
     }
     .expand-chevron {
@@ -291,7 +290,7 @@
         }
         .rules-info-sm-text {
             font-size: .9em;
-            color: #949494;
+            color: $base-grey;
         }
     }
 }
@@ -300,13 +299,14 @@
 
 // Sorting styles
 .sorting-message {
-    color: #949494;
+    color: $base-light-grey;
     font-size: .9em;
     padding: .55rem;
     margin-bottom: 0;
+    font-weight: 500;
     .reset-search{
         cursor: pointer;
-        color: #0937FF
+        color: $base-violet;
     }
     @include for-sm-desktop-up {
         padding: .4rem .75rem;
@@ -326,10 +326,10 @@
     }
     .form-control {
         font-size: 1rem;
-        padding: .375rem 2.1rem .375rem 0rem;
+        padding: .375rem 2.1rem .5rem 0rem;
     }
     > input {
-        border: 2px solid #ededed;
+        border: 2px solid $light-grey;
         border-radius: 5px;
         text-indent: 1em;
         text-align: left;
@@ -337,16 +337,16 @@
         padding-right: 2.7rem!important;
         &::placeholder {
             font-size: .9em;
-            color: #ccc;
+            color: $base-light-grey;
         }
         &:focus {
             z-index: 2;
-            border-color: #0937FF;
+            border-color: $base-violet;;
             outline: none;
             box-shadow: none;
             padding-right: 0!important;
             &::placeholder {
-            color: white;
+                color: #ffffff;
             }
         }
     }
@@ -354,7 +354,7 @@
         position: absolute;
         top: 7px;
         right: 23px;
-        color: #ccc;
+        color: $base-light-grey;
         cursor: pointer;
     }
     .close-icon i {
@@ -362,8 +362,8 @@
         top: 11px;
         right: 23px;
         font-size: 16px;
-        font-weight: bold;
-        color: #0937FF;
+        font-weight: 500;
+        color: $base-violet;
         cursor: pointer;
     }
 }
@@ -383,7 +383,7 @@
     }
     &:before {
         @extend .status-dot-nalej;
-        background: #0937FF;
+        background: $status-teal;
         @include for-desktop-up {
             margin: 0 23px;
         }
@@ -395,7 +395,7 @@
     }
     &:before {
         @extend .status-dot-nalej;
-        background: #F25272;
+        background: $base-red;
         @include for-desktop-up {
             margin: 0 23px;
         }
@@ -407,9 +407,48 @@
     }
     &:before {
         @extend .status-dot-nalej;
-        background: #03D7E8;
+        background: $status-yellow;
         @include for-desktop-up {
             margin: 0 23px;
+        }
+    }
+}
+
+.big-status-dot-nalej {
+    content:'\A';
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display:inline-block;
+    margin-right: 7px;
+}
+.big-status-dot {
+    &:before {
+        @extend .big-status-dot-nalej;
+        background: $status-teal;
+        @include for-desktop-up {
+            width: 12px;
+            height: 12px;
+        }
+    }
+}
+.big-status-dot-error{
+    &:before {
+        @extend .big-status-dot-nalej;
+        background: $base-red;
+        @include for-desktop-up {
+            width: 12px;
+            height: 12px;
+        }
+    }
+}
+.big-status-dot-process {
+    &:before {
+        @extend .big-status-dot-nalej;
+        background: $status-yellow;
+        @include for-desktop-up {
+            width: 12px;
+            height: 12px;
         }
     }
 }

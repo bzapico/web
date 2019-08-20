@@ -1,7 +1,7 @@
 <!-- Component title -->
 <div class="row row-title">
   <div class="col-lg-12">
-    <h2 class="section-title">Applications</h2>
+    <h2 class="section-title">APPLICATIONS</h2>
   </div>
 </div>
 <div class="row row-info">
@@ -83,14 +83,14 @@
         <button 
           (click)="deployInstance()"
           *ngIf="showInstances" 
-          class="apps-actions-btn btn-p-fix">
+          class="apps-actions-btn">
           <i class="material-icons i-options">play_arrow</i>
           Deploy instance
         </button>
         <button
           (click)="registerApp()"
           *ngIf="!showInstances"
-          class="apps-actions-btn btn-p-fix">
+          class="apps-actions-btn">
           <i class="material-icons i-options">publish</i>
           Register application
         </button>
@@ -101,7 +101,7 @@
           <div class="nalej-tab-box">
             <ul>
               <li class="nalej-tab-title">
-                <span class="grey">LISTS</span>
+                <span>LISTS</span>
               </li>
               <li (click)="changeActiveList('instances')">
                 <span [ngClass]="{'active': showInstances}">

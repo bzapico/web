@@ -38,9 +38,13 @@
 .modal-header {
     padding-bottom: 0;
     border: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: $base-grey;
 }
 .close {
-    font-weight: 200;
+    font-weight: 500;
+    color: $super-dark-grey;
     &:focus {
         outline: none;
     }
@@ -91,3 +95,93 @@
        max-height: 380px;
     }
 }
+
+.modal-body {
+    .status-dot-nalej {
+        content:'\A';
+        width:10px;
+        height:10px;
+        border-radius:50%;
+        display:inline-block;
+        margin: 0 5px 0 0;
+    }
+    .status-dot {
+        &:before {
+            @extend .status-dot-nalej;
+            background: $status-teal;
+        }
+    }
+    .status-dot-error{
+        &:before {
+            @extend .status-dot-nalej;
+            background: $base-red;
+        }
+    }
+    .status-dot-process {
+        &:before {
+            @extend .status-dot-nalej;
+            background: $status-yellow;
+        }
+    }
+}
+
+.modal-body {
+    .big-status-dot-nalej {
+        content:'\A';
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        display:inline-block;
+        margin-right: 7px;
+        margin-bottom: 1px;
+    }
+    .big-status-dot {
+        &:before {
+            @extend .big-status-dot-nalej;
+            background: $status-teal;
+        }
+    }
+    .big-status-dot-error{
+        &:before {
+            @extend .big-status-dot-nalej;
+            background: $base-red;
+        }
+    }
+    .big-status-dot-process {
+        &:before {
+            @extend .big-status-dot-nalej;
+            background: $status-yellow;
+        }
+    }
+}
+
+/* - - - Modal info- - - */
+
+.modal-info-h3-title {
+    color: $super-dark-grey;
+    font-size: 1.5rem;
+    margin-bottom: .1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.modal-info-image {
+    font-size: .9em;
+    color:  $dark-grey;
+    margin-bottom: .2em;
+    font-weight: 500;
+}
+.modal-info-title {
+    font-size: .9em;
+    color:  $super-dark-grey;
+    margin-bottom: 0;
+}
+.modal-info-title-sm {
+    font-size: .8em;
+    color:  $base-grey;
+    margin-bottom: 0;
+}
+.modal-info-table-title {
+    color: $base-grey;
+    font-weight: 500;
+}
+  

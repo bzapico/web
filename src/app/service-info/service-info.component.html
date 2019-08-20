@@ -3,22 +3,22 @@
   <div class="modal-content">
       <!-- Header -->
       <div class="modal-header">
-        <h3 class="service-title mb-4">Service info</h3>
+        <h3 class="modal-info-title mb-4">Service info</h3>
       </div>
       <!-- Body -->
       <div class="modal-body">
-      <h3 class="service-h3-title">{{name}}</h3>
-      <p class="service-image">{{image}}</p>
-      <p class="service-title-sm">{{serviceId}}</p>
+      <h3 class="modal-info-h3-title">{{name}}</h3>
+      <p class="modal-info-image">{{image}}</p>
+      <p class="modal-info-title-sm">{{serviceId}}</p>
       <div class="scroll-app-info">
         <div class="row">
-          <div class="col-sm grey mb-3">Replicas</div>
-          <h3 class="service-h3-title col-sm text-right">{{specs.replicas}}</h3>
+          <div class="col-sm modal-info-table-title mb-3">Replicas</div>
+          <h3 class="modal-info-h3-title col-sm text-right">{{specs.replicas}}</h3>
         </div>
         <br>
         <span *ngIf="exposedPorts">
           <div class="row">
-            <div class="col-sm grey mb-3">Exposed ports</div>
+            <div class="col-sm modal-info-table-title mb-3">Exposed ports</div>
           </div>
             <div class="row">
               <div class="col-sm"></div>
@@ -45,7 +45,7 @@
           <br>
           <span *ngIf="endpoints">
           <div class="row">
-            <div class="col-sm grey mb-3">Endpoints</div>
+            <div class="col-sm modal-info-table-title mb-3">Endpoints</div>
           </div>
             <div class="row">
               <div class="col-sm"></div>
@@ -66,7 +66,7 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-sm grey mb-3">Environment variables</div>
+          <div class="col-sm modal-info-table-title mb-3">Environment variables</div>
         </div>
         <div *ngFor="let environmentVariable of objectToString(environmentVariables)" class="row">
           <div *ngIf="environmentVariables" class="col-sm text-right">
@@ -77,17 +77,17 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-sm grey mb-3">Service group ID</div>
+          <div class="col-sm modal-info-table-title mb-3">Service group ID</div>
           <div class="col-sm text-right">{{groupId}}</div>
         </div>
         <br>
         <div class="row">
-          <div class="col-sm grey mb-3">App descriptor ID</div>
+          <div class="col-sm modal-info-table-title mb-3">App descriptor ID</div>
           <div class="col-sm text-right">{{appDescriptorId}}</div>
         </div>
         <br>
         <div class="row">
-          <div class="col-sm grey mb-3">Labels</div>
+          <div class="col-sm modal-info-table-title mb-3">Labels</div>
         </div>
         <div *ngFor="let label of objectToString(labels)" class="row">
           <div *ngIf="labels" class="col-sm text-right">

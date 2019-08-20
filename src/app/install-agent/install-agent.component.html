@@ -23,7 +23,11 @@
           <ngx-select-dropdown 
             formControlName="type" 
             [multiple]="false" 
-            [ngClass]="{ 'ngx-error': submitted && f.type.errors && !agentType }"
+            [ngClass]=
+              "{ 
+                'ngx-error': submitted && f.type.errors && !agentType,
+                'base-light-grey': !f.type.value
+              }"
             [config]="agentTypeSelectConfig" 
             [options]="agentTypeOptions">
           </ngx-select-dropdown>
@@ -45,7 +49,11 @@
           <ngx-select-dropdown 
             formControlName="edgeController" 
             [multiple]="false" 
-            [ngClass]="{ 'ngx-error': submitted && f.edgeController.errors && !edgeControllerId }"
+            [ngClass]=
+            "{ 
+              'ngx-error': submitted && f.edgeController.errors && !edgeControllerId,
+              'base-light-grey': !f.edgeController.value
+            }"
             [config]="edgeControllerSelectConfig" 
             [options]="getControllersList()">
             {{edgeControllerId}}

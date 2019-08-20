@@ -9,18 +9,24 @@
     @media all and (max-height: 687px) { @content; }
 }
 
+$base-violet: #5800FF;
+$base-pink: #FF00D3;
+$base-red: #F7478A;
+$hover-red: #FF0061;
+$dark-grey: #444444;
+$base-grey: #828282;
+
 .sidebar {
-    color: #fff;
+    color: #ffffff;
     height: 100vh;
-    background: #545454;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #545454 0%, #000000 100%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #545454 0%, #000000 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #545454 0%, #000000 100%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#545454', endColorstr='#000000',GradientType=0 );
+    background: $base-grey;
+    background: -moz-linear-gradient(top, $base-grey 0%, #000000 100%);
+    // /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, $base-grey 0%, #000000 100%);
+    // /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  $base-grey 0%, #000000 100%);
+    // /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#828282', endColorstr='#000000',GradientType=0 );
     width: 290px;
     @include for-md-desktop-only  {
         width: 220px;
@@ -36,7 +42,11 @@ nav.sidebar{
     float: left;
 }
 .active {
-    background-color: #0937FF;
+    background-color: $base-violet;
+    font-weight: 500;
+}
+a {
+    font-weight: 400;
 }
 .nav-company-name {
     text-align: center;
@@ -57,7 +67,7 @@ nav.sidebar{
     cursor: pointer;
     height: 71px;
     .nav-link {
-        color: #fff;
+        color: #ffffff;
         font-size: 18px;
         padding: 20px 0;
         @include for-desktop-only {
@@ -67,7 +77,7 @@ nav.sidebar{
             margin-left: 37px;
             margin-right: 37px;
             font-size: 24px;
-            color: white;
+            color: #ffffff;
             text-align: center;
             vertical-align: middle;
             @include for-md-desktop-only  {
@@ -81,6 +91,7 @@ nav.sidebar{
 .nav-profile-info {
     padding: 6em 0;
     width: 100%;
+    font-weight: 500;
     cursor: pointer;
     position: relative;
     @include for-desktop-only {
@@ -95,7 +106,7 @@ nav.sidebar{
     }
     .name {
         padding-top: 1em;
-        color: white;
+        color: #ffffff;
         font-size: 24px;
         @include for-desktop-only {
             font-size: 21px;
@@ -103,7 +114,7 @@ nav.sidebar{
         }
     }
     .type{
-        color: #0937FF;
+        color: $base-pink;
         font-size: 18px;
         @include for-desktop-only {
             font-size: 16px;
@@ -117,7 +128,7 @@ nav.sidebar{
         }
     }
     .avatar-frame {
-        border: 2px solid #707070;
+        border: 2px solid $base-grey;
         margin: 0 auto;
         width: 118px;
         height: 118px;
@@ -146,12 +157,13 @@ nav.sidebar{
 .logout-btn {
     width: 112px;
     font-size: .8em;
-    color: #fff;
+    color: #ffffff;
     border: 0px;
     border-radius: 5px;
     position: fixed;
     bottom: 32px;
-    background: #ff437d;
+    background: $base-red;
+    font-weight: 500;
     padding: .5em;
     cursor: pointer;
     &:focus {
@@ -159,8 +171,14 @@ nav.sidebar{
         box-shadow: none;
     }
     &:hover {
-        color: #fff;
+        color: #ffffff;
         transition: 0.3s;
-        background-color: #ff6897;
+        background-color: $hover-red;
     }
+}
+.user-img {
+    display: block;
+    width: 43px;
+    height: 43px;
+    margin: 36px auto;
 }

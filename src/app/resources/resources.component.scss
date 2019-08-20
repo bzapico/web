@@ -11,6 +11,9 @@
     @media all and (max-width: 1720px) { @content; }
 }
 
+$base-violet: #5800FF;
+$base-grey: #828282;
+
 /* - - - Cluster card Slider - - - */
 .line-chart-y-axis {
     @include for-desktop-up {
@@ -54,7 +57,7 @@
 .cluster-availability {
     margin-bottom: 0;
     float: right;
-    color: #949494;
+    color: $base-grey;
     @include for-desktop-only{
         font-size: .8em;
     }
@@ -102,23 +105,20 @@
 }
 .cluster-name {
     text-transform: uppercase;
-    color: #949494;
+    color: $base-grey;
     text-align: center;
 }
 .nodes-run {
     font-size: .8em;
-    cursor: pointer;
+    font-weight: 500;
     text-align: center;
-    color: #0937FF;
+    color: $base-violet;
     @include for-desktop-only {
         display: inline;
     }
 }
 .carousel-big {
     .nodes-run {
-        // position: absolute;
-        // bottom: 2.5em;
-        // margin-bottom: .3em;
         margin-bottom: 0;
     }
 }

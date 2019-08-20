@@ -11,6 +11,11 @@
     @media all and  (max-height: 900px) { @content; }
 }
 
+$base-violet: #5800FF;
+$base-red: #F7478A;
+$base-grey: #828282;
+$super-light-grey: #F8F8F8;
+
 /* - - - Card heights - - */
 .row-info-app {
     height: 301px;
@@ -34,16 +39,18 @@
     cursor: pointer;
     position: relative;
     font-size: .8em;
+    font-weight: 500;
     outline: none; 
-    background-color: #0937FF;
-    color: white;
+    background-color: $base-violet;
+    color: #ffffff;
     width: 159px;
     height: 42px;
     line-height: 1.1;
     &:hover {
-        color: #fff;
+        color: #ffffff;
         transition: 0.3s;
-        background-color: #4f71fd;
+        background-color: $base-violet;
+        opacity: 0.6;
     }
     @include for-md-desktop-fix {
         width: 114px;
@@ -52,20 +59,22 @@
 .reg-undeploy {
     border: none;
     border-radius: 5px;
-    padding: .5em 1.8em .5em 3em;
+    padding-left: 2em;
     cursor: pointer;
     position: relative;
     font-size: .8em;
+    font-weight: 500;
     outline: none; 
-    background-color: #ececec;
-    color: #F25272;
+    background-color: $super-light-grey;
+    color: $base-red;
     width: 159px;
     height: 42px;
     line-height: 1.1;
     &:hover {
-        color: #fff;
+        color: #ffffff;
         transition: 0.3s;
-        background-color: #ff437d;
+        background-color: $base-red;
+        opacity: 0.6;
     }
     @include for-md-desktop-fix {
         width: 114px;
@@ -97,7 +106,7 @@
 .reg-info-id {
     text-align: right;
     font-size:  .9em;
-    color: #949494;
+    color: $base-grey;
     display: inline;
 }
 .reg-info {
@@ -135,7 +144,7 @@
 }
 .show-graph-icons {
     cursor: pointer;
-    color: #949494;
+    color: $base-grey;
 }
 .mr-bars {
     margin-right: 11px;

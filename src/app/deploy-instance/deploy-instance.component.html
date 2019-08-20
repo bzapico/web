@@ -24,7 +24,8 @@
                 [multiple]="false" 
                 [config]="selectConfig" 
                 [options]="registeredApps"
-                (change)="onRegisteredChange(f)">
+                (change)="onRegisteredChange(f)"
+                [ngClass]="{ 'base-light-grey': !f.selectDrop.value }">
               </ngx-select-dropdown>
               <div class="form-group-drop-arrow"> 
                 <i class="material-icons">arrow_drop_down</i>

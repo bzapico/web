@@ -1,5 +1,8 @@
+$base-violet: #5800FF; 
+$light-grey: #EEEEEE;
+
 .accordion {
-    border: 2px solid #EEEEEE;
+    border: 2px solid $light-grey;
     border-radius: 5px;
     max-height: 338px;
     overflow-y: scroll;
@@ -13,7 +16,7 @@
     height: 3em;
     background-color: #F4F3F4;
     cursor: pointer;
-    color: #0937ff;
+    color: $base-violet;
     font-size: .8em;
     text-indent: 17px;
 }

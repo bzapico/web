@@ -46,7 +46,11 @@
         <ngx-select-dropdown 
           formControlName="role" 
           [multiple]="false" 
-          [ngClass]="{ 'ngx-error': submitted && !userRole }"
+          [ngClass]=
+            "{ 
+              'ngx-error': submitted && !userRole,
+              'base-light-grey': !f.role.value
+            }"
           [config]="selectConfig" 
           [options]="roleOptions">
           {{userRole}}

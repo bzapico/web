@@ -8,6 +8,9 @@
     @media all and (min-width: 2560px) { @content; }
 }
 
+$base-violet: #5800FF;
+$super-dark-grey: #151515;
+
 /* - - - Summary app card - - - */
 .donut-chart {
     text-align: center;
@@ -23,6 +26,7 @@
     }  
 }
 .donut-number {
+    color: $super-dark-grey;
     font-size: 1em;
     @include for-desktop-only {
         font-size: .8em;
@@ -31,9 +35,10 @@
 .apps-run {
     font-size: .8em;
     margin-top: -1em;
-    color: #0937FF;
+    color: $base-violet;
     text-align: center;
     margin-bottom: 0;
+    font-weight: 500;
     @include for-big-desktop-up {
         font-size: 1em;
         margin-top: 0em;
@@ -42,8 +47,9 @@
 
 /* - - - Apps table card - - - */
 .app-info {
-    color: #0937FF;
+    color: $base-violet;
     cursor: pointer;
+    font-weight: 500;
     outline: none;
     text-transform: capitalize;
 }
@@ -63,11 +69,12 @@
     position: relative;
     width: 100%;
     .apps-actions-btn {
-        background-color: #0937FF;
+        background-color: $base-violet;
         border-radius: 5px;
+        font-weight: 500;
         padding: .5em 1.8em;
         cursor: pointer;
-        color: white;
+        color: #ffffff;
         border: none;
         text-indent: 2em;
         position: absolute;
@@ -76,16 +83,17 @@
         font-size: .8em;
         outline: none;
         &:hover {
-            color: #fff;
+            color: #ffffff;
             transition: 0.3s;
-            background-color: #4f71fd;
+            background-color: $base-violet;
+            opacity: 0.6;
         }
         @include for-desktop-up {
             bottom: -9px;
             right: 45px;
         }
         .i-options {
-            font-size: 1.8em;
+            font-size: 1.5em;
             font-weight: 700;
             position: absolute;
             top: 6px;

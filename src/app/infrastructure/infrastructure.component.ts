@@ -69,7 +69,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   gradient = true;
   doughnut = true;
   colorScheme = {
-    domain: ['#0937FF', '#949494']
+    domain: ['#5800FF', '#828282']
   };
 
   /**

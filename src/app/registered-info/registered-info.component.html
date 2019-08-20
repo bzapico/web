@@ -1,7 +1,7 @@
 <!-- Component title -->
 <div class="row row-title">
   <div class="col-lg-12">
-    <h2 class="section-title">Applications</h2>
+    <h2 class="section-title">APPLICATIONS</h2>
   </div>
 </div>
 <div class="row row-app-main">
@@ -33,11 +33,11 @@
             </div>
           </div>
           <div class="reg-info">
-            <button (click)="deployRegistered(registeredData)" class="reg-deploy btn-p-fix">
+            <button (click)="deployRegistered(registeredData)" class="reg-deploy">
               <i class="material-icons i-options">play_arrow</i>
               Deploy <span class="hide-reg-btn-text">instance</span> 
             </button>
-            <button (click)="deleteApp(registeredData)" class="reg-undeploy btn-p-fix">
+            <button (click)="deleteApp(registeredData)" class="reg-undeploy">
               <i class="material-icons i-options">delete</i>
               Delete <span class="hide-reg-btn-text">app</span>
             </button>
@@ -179,6 +179,7 @@
                 ry="14"
                 />
                 <svg:text 
+                  [attr.fill]="whiteColor"
                   alignment-baseline="central" 
                   [attr.x]="10" 
                   [attr.y]="node.height / 2">
@@ -255,7 +256,7 @@
             <div class="nalej-tab-box">
               <ul>
                 <li *ngIf="displayedGroupsNamesLength < maxLabelsLength" class="nalej-tab nalej-tab-title">
-                  <span class="grey">GROUPS</span>
+                  <span>GROUPS</span>
                 </li>
                 <li 
                   *ngIf="registeredData.groups.length > 0" 

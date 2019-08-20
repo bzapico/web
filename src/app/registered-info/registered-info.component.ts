@@ -151,6 +151,7 @@ export class RegisteredInfoComponent implements OnInit {
   draggingEnabled: boolean;
   nalejColorScheme: string[];
   nextColorIndex: number;
+  whiteColor: string;
 
 
   constructor(
@@ -209,13 +210,14 @@ export class RegisteredInfoComponent implements OnInit {
      };
      this.graphReset = false;
      this.nalejColorScheme = [
-       '#1725AE',
-       '#040D5A',
-       '#0F1B8C',
-       '#01073A',
-       '#091374'
+      '#4900d4',
+      '#4000ba',
+      '#3902a3',
+      '#2e0480',
      ];
      this.nextColorIndex = 0;
+
+     this.whiteColor = '#FFFFFF';
 
   }
 

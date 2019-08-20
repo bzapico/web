@@ -2,7 +2,6 @@
 // Alerts
 // -----------------------------------------------------------------------------
 
-
 .alert-message {
     -ms-word-wrap: break-word;
     word-wrap: break-word;
@@ -10,7 +9,7 @@
       color: #ffffff;
     }
     a:hover {
-      color: #949494;
+      color: $base-grey;
       text-decoration: none;
     }
 }
@@ -47,16 +46,16 @@
             -webkit-border-radius: 10px;
             border-radius: 10px;
             opacity: 1;
-            color: white;
+            color: #ffffff;
             cursor: pointer;
         }
     }
 }
 .alert {
-    background: #0937ff;
+    background: $base-violet;
 }
 .alert-warning {
-    background-color: #F25272;
+    background-color: $base-red;
 }
 .alert-icon {
     position: absolute;
@@ -70,9 +69,9 @@
     left: 0;
     bottom: 0;
     height: 4px;
-    background-color: #000000;
+    background-color: $super-dark-grey;
     opacity: 0.4;
 }
 .alert > button.close:hover span {
-    color:white;
+    color: #ffffff;
   }

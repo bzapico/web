@@ -8,14 +8,19 @@
     @media all and (max-width: 1440px), all and (max-height: 900px) { @content; }
 }
 
+$base-violet: #5800FF; 
+$base-grey: #828282;
+$super-dark-grey: #151515;
+
 /* - - - Devices tabs buttons - - - */
 .devices-tab-btns-box {
     font-size: .6em;
     margin-bottom: 1em;
+    font-weight: 500;
         .devices-tab-btn {
         list-style: none;
         float: right;
-        color: #949494;
+        color: $base-grey;
         li {
             font-size: 1em;
             float: left;
@@ -35,7 +40,7 @@
             display: block;
             transition: .3s background-color;
             &.active {
-                color: #0937FF;
+                color: $base-violet;
                 &::before {
                     content: "";
                     height: 5px;
@@ -44,7 +49,7 @@
                     position: absolute;
                     bottom: -1px;
                     left: 0;
-                    background-color: #0937FF;
+                    background-color: $base-violet;
                 }
             }
             i {
@@ -64,7 +69,7 @@
 /* - - -Summary card devices table - - - */
 .summary-devices-table {
     margin-bottom: -1em;
-    color: #949494;
+    color: $base-grey;
     height: 75%;
     tr {
         border: none;
@@ -73,7 +78,7 @@
         padding: .6em;
         border: none;
         font-size:  .9em;
-        font-weight: 200;
+        font-weight: 400;
         vertical-align: inherit;
         @include for-desktop-only {
             display: none;
@@ -86,6 +91,7 @@
         border: none;
         text-align: right;
         max-width: 180px;
+        font-weight: 500;
         color: #212529;
         cursor: pointer;
         @include for-desktop-only {
@@ -99,19 +105,21 @@
     .summary-devices-availability {
         font-size: 1.4em;
         text-transform: uppercase;
+        font-weight: 700;
         @include for-quarter-only {
             font-size: 1em;
         }
     }
     .summary-devices-running {
         font-size: 2em;
-        color: black;
+        color: $super-dark-grey;
         @include for-quarter-only {
             font-size: 1em;
         }
     }
     .summary-devices-conectivity {
         font-size: 1.0em;
+        font-weight: 700;
         text-transform: uppercase;
         @include for-quarter-only {
             font-size: .8em;
@@ -145,12 +153,12 @@
     .button {
         outline: none;
         display: inline-block;
-        background-color: #0937FF;
+        background-color: $base-violet;
         border-radius: 50px;
         border: none;
-        color: #FFFFFF;
+        color: #ffffff;
         font-size: .8em;
-        font-weight: 100;
+        font-weight: 500;
         padding-bottom: .5em;
         padding-top: .6em;
         width: 161px;

@@ -2,8 +2,6 @@
 // Ngx-charts
 // -----------------------------------------------------------------------------
 
-@import  'app/scss/variables/mixins';
-
 /* - - -  Pie charts - - - */
 .ngx-charts .label {
     display: none;
@@ -12,8 +10,8 @@
     font-size: 1em;
     display: block;
 }
-.ngx-charts text { 
-    fill: #949494; 
+.line-chart-box .ngx-charts text { 
+    fill: $base-grey; 
 }
   
 /* - - -  Line charts  - - - */
@@ -30,7 +28,7 @@
             fill: none;
         }
         .refline-path {
-            stroke: #EEEEEE!important;
+            stroke: $light-grey!important;
             stroke-width: 1;
             stroke-dasharray: 0 !important;
             stroke-dashoffset: 0 !important;

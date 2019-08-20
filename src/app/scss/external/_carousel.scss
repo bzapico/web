@@ -2,8 +2,6 @@
 // Carusel
 // -----------------------------------------------------------------------------
 
-@import  'app/scss/variables/mixins';
-
 .carousel-small {
     display: none;
     @include for-desktop-only  {
@@ -39,8 +37,9 @@
     }
 }
 .donut-number {
-    margin-top: .1em;
+    color: $super-dark-grey;
     font-size: .9em;
+    font-weight: 500;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -64,7 +63,7 @@
     list-style: none;
     margin-bottom: 0;
     .active {
-        background-color: #0937FF;
+        background-color: $base-violet;
     }
     li {
         position: relative;
@@ -76,7 +75,7 @@
         margin-left: 5px;
         text-indent: -999px;
         cursor: pointer;
-        background-color: #949494;
+        background-color: $base-grey;
         &::before {
             position: absolute;
             top: -10px;
@@ -110,7 +109,7 @@
     &:before {
         content: '\e314';
         font-family: 'Material Icons';
-        color: black;
+        color: $super-dark-grey;
         font-size: 26px;
         left: -6px;
         position: absolute;
@@ -126,7 +125,7 @@
     &:before {
         content: '\e315';
         font-family: 'Material Icons';
-        color: black;
+        color: $super-dark-grey;
         font-size: 26px;
         bottom: 8px;
         position: absolute;

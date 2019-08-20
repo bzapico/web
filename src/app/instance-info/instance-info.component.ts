@@ -153,11 +153,15 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   nalejColorScheme: string[];
   nextColorIndex: number;
   STATUS_COLORS = {
-    RUNNING: '#0937FF',
-    ERROR: '#F25272',
-    OTHER: '#03D7E8'
+    RUNNING: '#5800FF',
+    ERROR: '#F7478A',
+    OTHER: '#FFEB6C'
   };
-
+  STATUS_TEXT_COLORS = {
+    RUNNING: '#FFFFFF',
+    ERROR: '#FFFFFF',
+    OTHER: '#444444'
+  };
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -216,14 +220,11 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
        links: []
      };
 
-
-
      this.nalejColorScheme = [
-       '#1725AE',
-       '#040D5A',
-       '#0F1B8C',
-       '#01073A',
-       '#091374'
+       '#4900d4',
+       '#4000ba',
+       '#3902a3',
+       '#2e0480',
      ];
      this.nextColorIndex = 0;
 
@@ -280,6 +281,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           label: group.name,
           tooltip: 'GROUP ' + group.name + ': ' + this.getBeautyStatusName(group.status_name),
           color: this.getNodeColor(group.status_name),
+          text: this.getNodeTextColor(group.status_name),
           group: group.service_group_instance_id
         };
         this.graphData.nodes.push(nodeGroup);
@@ -289,6 +291,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
             label: service.name,
             tooltip: 'SERVICE ' + service.name + ': ' + this.getBeautyStatusName(service.status_name),
             color: this.getNodeColor(service.status_name),
+            text: this.getNodeTextColor(group.status_name),
             group: group.service_group_instance_id
           };
           this.graphData.nodes.push(nodeService);
@@ -361,6 +364,26 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       break;
       default:
         return this.STATUS_COLORS.OTHER;
+    }
+  }
+
+    /**
+   * Return an specific color depending on the node status
+   * @param status Status name
+   */
+  getNodeTextColor(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'service_running':
+        return this.STATUS_TEXT_COLORS.RUNNING;
+      break;
+      case 'service_error':
+        return this.STATUS_TEXT_COLORS.ERROR;
+      break;
+      case 'service_waiting':
+        return this.STATUS_TEXT_COLORS.OTHER;
+      break;
+      default:
+        return this.STATUS_TEXT_COLORS.OTHER;
     }
   }
 
@@ -675,50 +698,122 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Checks if the cluster status requires an special css class
-   * @param className CSS class name
-   */
-  instanceClassStatusCheck(status: string): string {
-    if (this.instance && this.instance.status_name) {
-      switch (status.toLowerCase()) {
-        case 'running': {
-            return 'blue';
-          break;
-        }
-        case 'planning_error':
-        case 'incomplete':
-        case 'deployment_error':
-        case 'error': {
-            return 'red';
-          break;
-        }
-       default: {
-            return 'teal';
-        }
-      }
-    }
-  }
-
-  /**
    * Depending on the service status, returns the css class name that is required
    * @param status Service status string
    */
-  getServiceStatusClass (status: string ) {
+  getServiceStatusClass(status: string ) {
     switch (status.toLowerCase()) {
       case 'service_running':
-        return 'blue';
+        return 'teal';
       break;
       case 'service_error':
         return 'red';
       break;
       case 'service_waiting':
-        return 'teal';
+        return 'yellow';
       break;
       default:
-        return 'teal';
+        return 'yellow';
     }
   }
 
+    /**
+   * Checks if the status requires an special css class
+   * @param status  status name
+   * @param className CSS class name
+   */
+  classStatusCheck(status: string, className: string): boolean {
+    switch (status.toLowerCase()) {
+      case 'service_running': {
+        if (className.toLowerCase() === 'service_running') {
+          return true;
+        }
+        break;
+      }
+      case 'service_error': {
+        if (className.toLowerCase() === 'service_error') {
+          return true;
+        }
+        break;
+      }
+      case 'service_waiting': {
+        if (className.toLowerCase() === 'service_waiting') {
+          return true;
+        }
+        break;
+      }
+     default: {
+        if (className.toLowerCase() === 'service_waiting') {
+          return true;
+        }
+        return false;
+      }
+    }
+  }
+
+  /**
+   * Checks if the instances status requires an special css class
+   * @param status instances status name
+   * @param className CSS class name
+   */
+  classInstanceStatusCheck(status: string, className: string): boolean {
+    switch (status.toLowerCase()) {
+      case 'running': {
+        if (className.toLowerCase() === 'running') {
+          return true;
+        }
+        break;
+      }
+      case 'deployment_error': {
+        if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
+      case 'planning_error': {
+        if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
+      case 'incomplete': {
+        if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
+      case 'error': {
+        if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
+      case 'queued': {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        break;
+      }
+      case 'planning': {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        break;
+      }
+      case 'scheduled': {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        break;
+      }
+     default: {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        return false;
+      }
+    }
+  }
 
   /**
    * Shows the graph in services card
