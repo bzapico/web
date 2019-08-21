@@ -1,17 +1,33 @@
 @mixin for-desktop-up {
-    @media all and (max-width: 1440px) { @content; }
+    @media all and (max-width: 1440px) {
+        @content;
+    }
 }
+
 @mixin for-big-desktop-up {
-    @media all and (min-width: 2560px) { @content; }
+    @media all and (min-width: 2560px) {
+        @content;
+    }
 }
+
 @mixin for-desktop-only {
-    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
+
+    @media all and (max-width: 1440px),
+    all and (max-height: 900px) {
+        @content;
+    }
 }
+
 @mixin for-quarter-up {
-    @media all and (max-width: 1720px) { @content; }
+    @media all and (max-width: 1720px) {
+        @content;
+    }
 }
+
 @mixin for-desktop-h {
-    @media all and (max-height: 900px) { @content; }
+    @media all and (max-height: 900px) {
+        @content;
+    }
 }
 
 
@@ -21,10 +37,11 @@ $dark-grey: #444444;
 $super-dark-grey: #151515;
 $base-red: #F7478A;
 $super-light-grey: #F8F8F8;
+$base-light-grey: #BFBFBF;
 
 
 /* - - - Table headers show or hide options - - - */
-@media screen and (max-width:1686px){
+@media screen and (max-width:1686px) {
     .hide-all-word {
         display: none;
     }
@@ -35,22 +52,27 @@ $super-light-grey: #F8F8F8;
     text-align: center;
     position: relative;
     max-width: 100%;
+
     @include for-desktop-only {
         max-width: 110px;
         max-height: 110px;
     }
+
     @include for-big-desktop-up {
         min-width: 200px;
-        min-height: 200px;  
-    }  
+        min-height: 200px;
+    }
 }
+
 .donut-number {
     color: $super-dark-grey;
     font-size: 1em;
+
     @include for-desktop-only {
         font-size: .8em;
     }
 }
+
 .apps-run {
     font-size: .8em;
     margin-top: -1em;
@@ -58,29 +80,71 @@ $super-light-grey: #F8F8F8;
     text-align: center;
     margin-bottom: 0;
     font-weight: 500;
+
     @include for-big-desktop-up {
         font-size: 1em;
         margin-top: 0em;
     }
 }
+
 .row-info-app {
     max-height: 286px;
+
     @include for-desktop-h {
         // min-height: 410px;
     }
 }
+
 .nalej-table tbody td {
     @include for-desktop-only {
         padding: 0.75rem 0;
     }
 }
+
 .graph {
     height: 97%;
 }
+
+.graph-search-box { 
+    width: 80%;
+    margin-right: 1em;
+    float:left;    
+    font-size: 1em;
+    .form-control {
+        font-size: 1rem;
+    }
+    > input {
+        text-align: left;
+        &::placeholder {
+            font-size: .9em;
+            color: $base-light-grey;
+        }
+    }
+}
+
 .search-box {
     width: 100%;
     margin-right: 0em;
 }
+.search-button {
+    margin: .2em 0;
+    @include for-desktop-up {
+        margin: .4em 0px;
+    }
+    i {
+        position: absolute;
+        top: 4px;
+        left: 5px;
+        width: 24px;
+        @include for-desktop-up {
+            font-size: 1.3em;
+            top: 3px;
+            left: 2px;
+        }
+    }
+
+}
+
 .legend {
     color: $base-grey;
     font-size: .85em;
@@ -88,14 +152,23 @@ $super-light-grey: #F8F8F8;
     flex-direction: row;
     justify-content: center;
     width: 100%;
+
     .legend-title {
         color: $super-dark-grey;
         font-weight: 500;
         font-size: .7em;
-        margin-right: 6em;
+        margin-right: 68px;
         padding-top: 3px;
     }
+
     span {
         margin-right: 3em;
     }
+}
+
+.status-dot-nalej,
+.status-dot:before,
+.status-dot-error:before,
+.status-dot-process:before {
+    margin: 0 9px 0 0;
 }
