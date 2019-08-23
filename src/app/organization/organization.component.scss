@@ -11,6 +11,9 @@
     @media all and (max-height: 900px) { @content; }
 }
 
+$base-violet: #5800FF;
+$base-grey: #828282;
+
 /* - - - Company card - - - */
 .company-info {
     display: flex;
@@ -46,15 +49,17 @@
 }
 .company-name {
     font-size: 1em;
+    font-weight: 700;
     text-transform: capitalize;
 }
 .company-subscription {
     font-size: .8em;
-    color: #0937FF;
+    color: $base-violet;
     margin-bottom: 0;
+    font-weight: 500;
 }
 .company-users {
-    color: #949494;
+    color: $base-grey;
     font-size: .8em;
     margin-bottom: 0;
 }
@@ -106,8 +111,8 @@
         border-radius: 50%;
         font-size: 1em;
         margin: 0 auto;
-        background-color: #0937FF;
-        color: white;
+        background-color: $base-violet;
+        color: #ffffff;
         @include for-desktop-up {
             height: 70px;
             width: 70px;
@@ -122,10 +127,10 @@
     }
     .subscription-check {
         font-size: .9em;
-        color: #949494;  
+        color: $base-grey;  
     }
     .subscription-plan {
-        color: #0937FF;
+        color: $base-violet;
         @include for-desktop-up {
             font-size: 1.5rem;
         }

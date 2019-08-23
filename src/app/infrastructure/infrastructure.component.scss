@@ -17,6 +17,11 @@
     @media all and (max-width: 1280px), all and  (max-height: 790px) { @content; }
 }
 
+$base-violet: #5800FF;
+$base-grey: #828282;
+$dark-grey: #444444;
+$super-dark-grey: #151515;
+
 /* - - - Summary infrastructure card - - - */
 
 .row-sorting-lg {
@@ -73,6 +78,7 @@
     }
 }
 .donut-number {
+    color: $super-dark-grey;
     font-size: 1em;
     @include for-desktop-only {
         font-size: .8em;
@@ -80,8 +86,9 @@
 }
 .ecs-run {
     font-size: .8em;
+    font-weight: 500;
     margin-top: -1em;
-    color: #0937FF;
+    color:  $base-violet;
     text-align: center;
     margin-bottom: 0;
     @include for-big-desktop-up {
@@ -92,11 +99,12 @@
 
 /* - - - Inventory card - - - */
 .quick-filters-title {
-    color: #707070;
+    color: $base-grey;
     font-size: .6em;
     display: initial;
     margin-right: 6em;
     margin-left: 15px;
+    font-weight: 700;
     @include for-quarter-up {
         display: block;
         margin-left: 7.5px;
@@ -104,13 +112,14 @@
     }
 }
 .quick-filters-btn {
-    background-color: #707070;
+    background-color: $dark-grey;
     border-radius: 5px;
     cursor: pointer;
-    color: white;
+    color: #ffffff;
     border: none;
     text-indent: 1em;
     font-size: .6em;
+    font-weight: 500;
     outline: none;
     position: relative;
     margin: 0 7.5px;
@@ -118,9 +127,10 @@
     height: 31px;
     padding-top: 4px;
     &:hover {
-        color: #fff;
+        color: #ffffff;
         transition: 0.3s;
-        background-color: #03D7E8;
+        background-color: $base-violet;
+        opacity: 0.6;
     }
     .i-filters {
         font-size: 1.8em;
@@ -142,7 +152,7 @@
 }
 .quick-filters-btn-selected {
     @extend .quick-filters-btn;
-    background-color: #03D7E8;
+    background-color: $base-violet;
 }
 
 /* - - - Install buttons - - - */
@@ -154,23 +164,24 @@
     .install-options-btn {
         position: relative;
         margin-right: 15px;
-        background-color: #0937FF;
+        background-color:  $base-violet;
         border-radius: 5px;
         padding: .5em 1.1em;
         cursor: pointer;
-        color: white;
+        color: #ffffff;
         border: none;
         text-indent: 2em;
         font-size: .8em;
+        font-weight: 500;
         outline: none;
-        padding-top: 10px;
         &:hover {
-            color: #fff;
+            color: #ffffff;
             transition: 0.3s;
-            background-color: #4f71fd;
+            background-color: $base-violet;
+            opacity: 0.6;
         }
         .i-options {
-            font-size: 1.8em;
+            font-size: 1.5em;
             font-weight: 700;
             position: absolute;
             top: 6px;
@@ -180,16 +191,16 @@
     .install-options-btn-disabled {
         position: relative;
         margin-right: 15px;
-        background-color:#949494;
+        background-color:$base-grey;
         border-radius: 5px;
         padding: .5em 1.1em;
         cursor: default;
-        color: white;
+        color: #ffffff;
         border: none;
         text-indent: 2em;
         font-size: .8em;
+        font-weight: 500;
         outline: none;
-        padding-top: 10px;
         .i-options {
             font-size: 1.8em;
             font-weight: 700;

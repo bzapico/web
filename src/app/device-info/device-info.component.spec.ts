@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DeviceInfoComponent } from './device-info.component';
-import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService, ModalModule, TooltipModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('DeviceInfoComponent', () => {
@@ -14,6 +14,7 @@ describe('DeviceInfoComponent', () => {
       imports: [
         HttpClientTestingModule,
         ModalModule.forRoot(),
+        TooltipModule,
       ],
       providers: [
         BsModalRef,

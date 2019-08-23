@@ -119,4 +119,15 @@ export class ServiceInstancesInfoComponent implements OnInit {
     }
   }
 
+  /**
+   * Filters the backend incoming status to display it in removing the initial "service_"
+   * @param rawStatus string containing the status that the backend is sending
+   */
+  getBeautyStatusName (rawStatus: string): string {
+    if (rawStatus.toLowerCase().startsWith('service_')) {
+      return rawStatus.substring('service_'.length, rawStatus.length);
+    }
+    return rawStatus;
+  }
+
 }

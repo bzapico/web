@@ -114,7 +114,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   gradient = true;
   colorScheme = {
-    domain: ['#0937FF', '#949494']
+    domain: ['#5800FF', '#828282']
   };
   showXAxis = true;
   showYAxis = true;

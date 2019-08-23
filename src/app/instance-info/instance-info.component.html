@@ -1,7 +1,7 @@
 <!-- Component title -->
 <div class="row row-title">
   <div class="col-lg-12">
-    <h2 class="section-title">Applications</h2>
+    <h2 class="section-title">APPLICATIONS</h2>
   </div>
 </div>
 <div class="row row-app-main">
@@ -29,9 +29,20 @@
             <div class="ins-info-box">
               <table class="table summary-instances-table">
                 <tr>
-                  <th>Status</th>
-                  <td [ngClass]="instanceClassStatusCheck(instance.status_name)" id="summary-instances-status">
-                    {{instance.status_name}}
+                  <th>Status</th> 
+                  <td id="summary-instances-status">
+                    <span 
+                      [ngClass]=
+                        "{
+                          'big-status-dot':classInstanceStatusCheck(instance.status_name, 'running'),
+                          'big-status-dot-error':classInstanceStatusCheck(instance.status_name, 'error'),
+                          'big-status-dot-process':classInstanceStatusCheck(instance.status_name, 'process')
+                        }"
+                      tooltip="{{instance.status_name}}" 
+                      placement="bottom"
+                      class="big-status-dot">
+                      {{instance.status_name}}
+                    </span>
                   </td>
                 </tr>
                 <tr>
@@ -58,7 +69,7 @@
                 </tr>
               </table>
             </div>
-            <button (click)="undeploy(instance)" class="btn-undeploy btn-p-fix">
+            <button (click)="undeploy(instance)" class="btn-undeploy">
               <i class="material-icons i-options">close</i>
                 Undeploy instance
             </button>
@@ -133,6 +144,7 @@
               <ng-template #nodeTemplate let-node>
                 <svg:g 
                   class="node"
+                
                   ngx-tooltip
                   [tooltipPlacement]="'top'"
                   [tooltipType]="'tooltip'"
@@ -145,11 +157,12 @@
                   ry="14"
                   />
                   <svg:text 
+                    [attr.fill]="node.text" 
                     alignment-baseline="central" 
                     [attr.x]="10" 
                     [attr.y]="node.height/2">
                     {{node.label}}
-                </svg:text>
+                  </svg:text>
                 </svg:g>
               </ng-template>
               <ng-template #linkTemplate let-link>
@@ -225,7 +238,7 @@
             <div class="nalej-tab-box">
               <ul>
                 <li *ngIf="displayedGroupsNamesLength < maxLabelsLength" class="nalej-tab nalej-tab-title">
-                  <span class="grey">GROUP INSTANCES</span>
+                  <span>GROUP INSTANCES</span>
                 </li>
                 <li 
                   *ngIf="groups && groups.length > 0" 
@@ -389,11 +402,19 @@
               <div role="cell" class="nalej-flex-row-5 services-cell-2 nalej-flex-td">
                 {{service.specs.replicas}}
               </div>
-              <div 
-                [ngClass]="getServiceStatusClass(service.status_name)"
-                role="cell" 
-                class="nalej-flex-row-5 services-cell-3 nalej-flex-td text-lowercase">
+              <div role="cell" class="nalej-flex-row-5 services-cell-3 nalej-flex-td text-lowercase">
+                <span 
+                  [ngClass]=
+                    "{
+                      'status-dot': classStatusCheck(service.status_name, 'service_running'),
+                      'status-dot-error': classStatusCheck(service.status_name, 'service_error'),
+                      'status-dot-process': classStatusCheck(service.status_name, 'service_waiting')
+                    }"
+                  tooltip="{{service.status_name}}" 
+                  placement="bottom"
+                  class="status-dot">
                   {{getBeautyStatusName(service.status_name)}}
+                </span>
               </div>
               <div role="cell" class="nalej-flex-row-5 services-cell-4 nalej-flex-td">
                 <span *ngFor="let endpoint of service.endpoints">

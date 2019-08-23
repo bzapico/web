@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EdgeControllerInfoComponent } from './edge-controller-info.component';
-import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService, ModalModule, TooltipModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('EdgeControllerComponent', () => {
   let component: EdgeControllerInfoComponent;
@@ -14,6 +15,8 @@ describe('EdgeControllerComponent', () => {
       imports: [
         HttpClientTestingModule,
         ModalModule.forRoot(),
+        TooltipModule.forRoot(),
+        RouterTestingModule
       ],
       providers: [
         BsModalRef,

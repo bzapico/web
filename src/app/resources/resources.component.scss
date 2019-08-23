@@ -5,186 +5,133 @@
     @media all and (min-width: 2560px) { @content; }
 }
 @mixin for-desktop-only {
-    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
+    @media all and (max-width: 1440px), all and (max-height: 900px) { @content; }
 }
 @mixin for-quarter-up {
     @media all and (max-width: 1720px) { @content; }
 }
-
-/* - - - Cluster card Slider - - - */
-.line-chart-y-axis {
-    @include for-desktop-up {
-        display: none;
-    }
+@mixin for-desktop-h {
+    @media all and (max-height: 900px) { @content; }
 }
 
-// slide animations
-.animated {
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-}
-@-webkit-keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1 1s ease-in-out;
-    }
-  }
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1 1s ease-in-out;
-    }
-}
-.fadeIn {
-    -webkit-animation-name: fadeIn;
-    animation-name: fadeIn;
-}
+$base-violet: #5800FF;
+$base-grey: #828282;
+$dark-grey: #444444;
+$super-dark-grey: #151515;
+$super-light-grey: #F8F8F8;
+$base-light-grey: #BFBFBF;
 
-// slide boxes
-.cluster-card { 
-    padding: 1.5rem 1.5rem 0 1.5rem;
-    height: 100%;
-} 
-.cluster-availability {
-    margin-bottom: 0;
-    float: right;
-    color: #949494;
-    @include for-desktop-only{
+/* - - - Summary app card - - - */
+.donut-chart {
+    text-align: center;
+    position: relative;
+    max-width: 100%;
+    @include for-desktop-only {
+        max-width: 110px;
+        max-height: 110px;
+    }
+    @include for-big-desktop-up {
+        min-width: 200px;
+        min-height: 200px;
+    }
+}
+.donut-number {
+    color: $super-dark-grey;
+    font-size: 1em;
+    @include for-desktop-only {
         font-size: .8em;
     }
 }
-.slide-box {
+.clusters-run {
+    font-size: .8em;
+    margin-top: -1em;
+    color: $base-violet;
+    text-align: center;
+    margin-bottom: 0;
+    font-weight: 500;
+    @include for-big-desktop-up {
+        font-size: 1em;
+        margin-top: 0em;
+    }
+}
+.row-info-app {
+    max-height: 286px;
+    @include for-desktop-h {
+        max-height: 197px;
+    }
+}
+
+/* - - - List card - - - */
+.nalej-table tbody td {
+    @include for-desktop-only {
+        padding: 0.75rem 0;
+    }
+}
+
+/* - - - Cluster graph card - - - */
+.graph {
+    height: 97%;
+}
+.graph-search-box { 
+    width: 80%;
+    margin-right: 1em;
+    float:left;    
+    font-size: 1em;
+    .form-control {
+        font-size: 1rem;
+        padding: .375rem 1rem .5rem 1rem;
+    }
+    > input {
+        text-align: left;
+        &::placeholder {
+            font-size: .9em;
+            color: $base-light-grey;
+        }
+    }
+}
+.search-box {
+    width: 100%;
+    margin-right: 0em;
+}
+.search-button {
+    margin: .2em 0;
+    @include for-desktop-up {
+        margin: .4em 0px;
+    }
+    i {
+        position: absolute;
+        top: 4px;
+        left: 5px;
+        width: 24px;
+        @include for-desktop-up {
+            font-size: 1.3em;
+            top: 3px;
+            left: 2px;
+        }
+    }
+
+}
+.graph-legend {
+    color: $base-grey;
+    font-size: .85em;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    height: 100%!important;
-    @include for-desktop-only {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 269px;
-        max-height: 124px;
+    justify-content: center;
+    width: 100%;
+    .graph-legend-title {
+        color: $super-dark-grey;
+        font-weight: 500;
+        font-size: .7em;
+        margin-right: 68px;
+        padding-top: 3px;
     }
-    @include for-big-desktop-up {
-        padding-top: 2em;
-    }
-}
-.donut-chart-box {
-    width: 27%;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    @include for-desktop-only{
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
+    span {
+        margin-right: 3em;
     }
 }
-.donut-chart {
-    width: 126px;
-    height: 126px;
-    text-align: center;
-    position: relative;
-    @include for-quarter-up  {
-        width: 100px;
-        height: 100px;
-    }
+.status-dot-nalej,
+.status-dot:before,
+.status-dot-error:before,
+.status-dot-process:before {
+    margin: 0 9px 0 0;
 }
-.cluster-name {
-    text-transform: uppercase;
-    color: #949494;
-    text-align: center;
-}
-.nodes-run {
-    font-size: .8em;
-    cursor: pointer;
-    text-align: center;
-    color: #0937FF;
-    @include for-desktop-only {
-        display: inline;
-    }
-}
-.carousel-big {
-    .nodes-run {
-        // position: absolute;
-        // bottom: 2.5em;
-        // margin-bottom: .3em;
-        margin-bottom: 0;
-    }
-}
-
-/* - - - Node Status card - - - */
-.line-chart-box {
-    width: 92%;
-    @include for-desktop-up {
-        width: 100%;
-    }
-}
-
-/* - - - Table headers show or hide options - - - */
-@media screen and (max-width:1686px){
-    .hide-all-word {
-        display: none;
-    }
-}
-@media screen and (max-width:2127px){
-    .multitenant-short-text .multitenant-full-text {
-        display: none;
-    }
-    .multitenant-short-text {
-        &::before {
-            content: 'Multi';
-        }
-    }
-}
-@media screen and (max-width:1600px){
-    .status-full-text {
-        display: none;
-    }
-    .status-initial-text {
-        &::before {
-            content: 'S';
-        }
-    }
-}
-@media screen and (max-width:1528px){
-    .nodes-full-text {
-        display: none;
-    }
-    .nodes-initial-text {
-        &::before {
-            content: 'N';
-        }
-    }
-}
-@media screen and (max-width:1464px){
-    .types-full-text {
-        display: none;
-    }
-    .types-initial-text {
-        &::before {
-            content: 'T';
-        }
-    }
-}
-@media screen and (max-width:1357px){
-    .multitenant-initial-text .multitenant-full-text {
-        display: none;
-    }
-    .multitenant-initial-text {
-        &::before {
-            content: 'M';
-        }
-    }
-}
-

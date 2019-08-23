@@ -3,35 +3,41 @@
   <div class="modal-content">
     <!-- Header -->
     <div class="modal-header">
-      <h3 class="service-title mb-4">Service instances info</h3>
+      <h3 class="modal-info-title mb-4">Service instances info</h3>
     </div>
     <!-- Body -->
     <div class="modal-body">
-      <h3 class="service-h3-title">{{name}}</h3>
-      <p class="service-image">{{image}}</p>
-      <p class="service-title-sm">{{serviceId}}</p>
+      <h3 class="modal-info-h3-title">{{name}}</h3>
+      <p class="modal-info-image">{{image}}</p>
+      <p class="modal-info-title-sm">{{serviceId}}</p>
       <div class="scroll-app-info">
         <div class="row">
-          <div class="col-sm grey mb-3">Status</div>
-          <h3 
-            [ngClass]=
-            "{
-              'blue': classStatusCheck (statusName, 'service_running'),
-              'red': classStatusCheck (statusName, 'service_error'),
-              'teal': classStatusCheck (statusName, 'service_waiting') || classStatusCheck (statusName, 'service_scheduled')
-            }"
-            class="service-status col-sm text-right">
-            {{statusName}}
+          <div class="col-sm modal-info-table-title mb-3">Status</div>
+          <h3 class="modal-info-h3-title col-sm text-right">
+            <span 
+              [ngClass]=
+              "{
+                'big-status-dot': classStatusCheck(statusName, 'service_running'),
+                'big-status-dot-error': classStatusCheck(statusName, 'service_error'),
+                'big-status-dot-process': classStatusCheck(statusName, 'service_waiting') || classStatusCheck (statusName, 'service_scheduled')
+              }"
+              tooltip="{{statusName}}" 
+              placement="bottom"
+              class="big-status-dot">
+              <span class="fw-black">
+                {{getBeautyStatusName(statusName)}}
+              </span>
+            </span>
           </h3>
         </div>
         <div class="row">
-          <div class="col-sm grey">Replicas</div>
-          <h3 class="service-h3-title col-sm text-right">{{specs.replicas}}</h3>
+          <div class="col-sm modal-info-table-title">Replicas</div>
+          <h3 class="modal-info-h3-title col-sm text-right">{{specs.replicas}}</h3>
         </div>
         <br>
         <div *ngIf="endpoints">
           <div class="row">
-            <div class="col-sm grey mb-3">Endpoints</div>
+            <div class="col-sm modal-info-table-title mb-3">Endpoints</div>
           </div>
           <div class="row">
             <div class="col-sm"></div>
@@ -49,7 +55,7 @@
         </div>
         <span *ngIf="exposedPorts">
           <div class="row">
-            <div class="col-sm grey mb-3">Exposed ports</div>
+            <div class="col-sm modal-info-table-title mb-3">Exposed ports</div>
           </div>
             <div class="row">
               <div class="col-sm"></div>
@@ -76,12 +82,12 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-sm grey mb-3">Type</div>
+          <div class="col-sm modal-info-table-title mb-3">Type</div>
           <div class="col-sm text-right">{{typeName}}</div>
         </div>
         <br>
         <div class="row">
-          <div class="col-sm grey mb-3">Credentials</div>
+          <div class="col-sm modal-info-table-title mb-3">Credentials</div>
         </div>
         <div *ngFor="let credential of objectToString(credentials)" class="row">
           <div *ngIf="credentials" class="col-sm text-right">
@@ -92,7 +98,7 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-sm grey mb-3">Environment variables</div>
+          <div class="col-sm modal-info-table-title mb-3">Environment variables</div>
         </div>
         <div *ngFor="let environmentVariable of objectToString(environmentVariables)" class="row">
           <div *ngIf="environmentVariables" class="col-sm text-right">
@@ -103,7 +109,7 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-sm grey mb-3">Labels</div>
+          <div class="col-sm modal-info-table-title mb-3">Labels</div>
         </div>
         <div *ngFor="let label of objectToString(labels)" class="row">
           <div *ngIf="labels" class="col-sm text-right">
@@ -115,32 +121,32 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-sm grey mb-3">Service group ID</div>
+          <div class="col-sm modal-info-table-title mb-3">Service group ID</div>
           <div class="col-sm text-right">{{groupId}}</div>
         </div>
         <br>
         <div class="row">
-          <div class="col-sm grey mb-3">App descriptor ID</div>
+          <div class="col-sm modal-info-table-title mb-3">App descriptor ID</div>
           <div class="col-sm text-right">{{appDescriptorId}}</div>
         </div>
         <br>
         <span *ngIf="instanceId">
           <div class="row">
-            <div class="col-sm grey mb-3">Instance ID</div>
+            <div class="col-sm modal-info-table-title mb-3">Instance ID</div>
             <div class="col-sm text-right">{{instanceId}}</div>
           </div>
           <br>
         </span>
         <span *ngIf="deployAfter">
           <div class="row">
-            <div class="col-sm grey mb-3">Deploy after</div>
+            <div class="col-sm modal-info-table-title mb-3">Deploy after</div>
             <div class="col-sm text-right">{{deployAfter}}</div>
           </div>
           <br>
         </span>
         <span *ngIf="deployedOnCluster">
           <div class="row">
-            <div class="col-sm grey mb-3">Deploy on cluster ID</div>
+            <div class="col-sm modal-info-table-title mb-3">Deployed on cluster ID</div>
             <div class="col-sm text-right">{{deployedOnCluster}}</div>
           </div>
           <br>

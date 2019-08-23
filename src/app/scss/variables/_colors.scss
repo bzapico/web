@@ -1,24 +1,43 @@
+// -----------------------------------------------------------------------------
+// Color variables and styles
+// -----------------------------------------------------------------------------
+
+$base-violet: #5800FF;
+$base-pink: #FF00D3;
+
+$super-dark-grey: #151515;
+$dark-grey: #444444;
+$base-grey: #828282;
+$base-light-grey: #BFBFBF;
+$light-grey: #EEEEEE;
+$super-light-grey: #F8F8F8;
+
+$base-red: #F7478A;
+$hover-red: #FF0061;
+$status-teal: #00E6A0;
+$status-yellow:#FFEB6C;
+
 .blue {
-    color: #0937FF !important;
-}
-.light-blue {
-   color: #F3F6FF !important;
+    color: $base-violet !important;
 }
 .grey {
-    color: #949494 !important;
+    color: $base-grey !important;
 }
 .dark-grey {
-    color: #707070 !important;
-}
-.light-grey {
-    color: #d2d2d2 !important;
+    color: $dark-grey !important;
 }
 .red {
-    color: #F25272 !important;
+    color: $base-red !important;
+}
+.pink {
+    color: $base-pink !important;
 }
 .teal {
-    color: #03D7E8 !important;
+    color: $status-teal !important;
 }
-.bg-light-grey {
-    background-color: #ededed !important;
+.yellow {
+    color: $status-yellow !important;
+}
+.base-light-grey {
+    color: $base-light-grey !important;
 }

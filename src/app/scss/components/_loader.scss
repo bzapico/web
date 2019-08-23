@@ -47,13 +47,13 @@
   @keyframes color {
     100%,
     0% {
-      stroke: #0937FF;
+      stroke: $base-violet
     }
     50% {
-      stroke: #ff437d;
+      stroke: $base-red;
     }
     100% {
-      stroke: #0937FF;
+      stroke: $base-violet
     }
   }
 }

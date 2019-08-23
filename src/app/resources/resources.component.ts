@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { mockClusterChart, mockNodesChart } from '../utils/mocks';
+import { mockClusterChart } from '../utils/mocks';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
@@ -10,6 +10,7 @@ import { EditClusterComponent } from '../edit-cluster/edit-cluster.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Cluster } from '../definitions/interfaces/cluster';
 import { AddLabelComponent } from '../add-label/add-label.component';
+import * as shape from 'd3-shape';
 
 
 @Component({
@@ -49,24 +50,19 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   clusters: any[];
 
   /**
-   * Clusters list chuncked in sub-lists of 3 elements (required to show top component slider)
+   * List of available apps instances
    */
-  chunckedClusters: any[];
+  instances: any[];
 
   /**
    * Array containing charts data in the required format for NGX-Charts library rendering
    */
-  pieChartsData: any[];
+  pieChartData: any[];
 
   /**
-   * Array containing charts data in the required format for NGX-Charts library rendering
+   * Number of running clusters
    */
-  nodesChart: any[];
-
-  /**
-   * Count of total nodes
-   */
-  nodesCount: number;
+  countRunning: number;
 
   /**
    * Count of total clusters
@@ -94,7 +90,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   gradient = true;
   doughnut = true;
   colorScheme = {
-    domain: ['#0937FF', '#949494']
+    domain: ['#5800FF', '#828282']
   };
   customColors = [
     {
@@ -108,29 +104,39 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   ];
 
   /**
-   * Line Chart options
-   */
-  showXAxis = true;
-  showYAxis = true;
-  showXAxisLabel = false;
-  showYAxisLabel = false;
-  showGridLines = true;
-  showRefLines = true;
-  showRefLabels = false;
-  schemeType = 'ordinal';
-  rangeFillOpacity = 0.0;
-  referenceLines = [
-    {
-      name: 'xline',
-      value: 0
-    }
-  ];
-
-  /**
    * NGX-Charts object-assign required object references (for rendering)
    */
   mockClusterChart: any;
-  mockNodesChart: any;
+
+  /**
+   * Graph options
+   */
+  graphReset: boolean;
+  graphDataLoaded: boolean;
+  showlegend: boolean;
+  graphData: any;
+  orientation: string;
+  curve: any;
+  autoZoom: boolean;
+  autoCenter: boolean;
+  enableZoom: boolean;
+  colorSchemeGraph: any;
+  view: any[];
+  width: number;
+  height: string;
+  draggingEnabled: boolean;
+  nalejColorScheme: string[];
+  nextColorIndex: number;
+  STATUS_COLORS = {
+    RUNNING: '#5800FF',
+    ERROR: '#F7478A',
+    OTHER: '#FFEB6C'
+  };
+  STATUS_TEXT_COLORS = {
+    RUNNING: '#FFFFFF',
+    ERROR: '#FFFFFF',
+    OTHER: '#444444'
+  };
 
   /**
    * Reference for the service that allows the user info component
@@ -176,11 +182,9 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     // Default initialization
     this.loadedData = false;
     this.clusters = [];
-    this.chunckedClusters = [];
-    this.nodesCount = 0;
+    this.instances = [];
     this.clustersCount = 0;
-    this.pieChartsData = [];
-    this.nodesChart = [{'name': 'Running nodes %', 'series': []}];
+    this.pieChartData = [];
     this.requestError = '';
 
     // SortBy
@@ -191,10 +195,76 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     // Filter field
     this.filterField = false;
 
+    // Graph initialization
+    this.graphReset = false;
+    this.showlegend = false;
+    this.orientation = 'TB';
+    this.curve = shape.curveBasis;
+    this.autoZoom = true;
+    this.autoCenter = true;
+    this.enableZoom = true;
+    this.draggingEnabled = false;
+    this.colorSchemeGraph = {
+      domain: ['#6C86F7']
+    };
+    this.graphDataLoaded = false;
+    this.graphData = {
+      nodes: [
+        {
+          id: 'first',
+          label: 'frontendAppK8SCluster',
+          color: '#00E6A0',
+          text: '#fff',
+          height: '60px'
+        }, {
+          id: 'second',
+          label: 'App1',
+          color: '#00E6A0',
+          text: '#fff'
+        }, {
+          id: 'third',
+          label: 'App2',
+          color: '#00E6A0',
+          text: '#fff'
+        }, {
+        id: 'four',
+        label: 'App3',
+        color: '#00E6A0',
+        text: '#fff'
+      }
+      ],
+      links: [
+        {
+          id: 'a',
+          source: 'first',
+          target: 'second',
+          label: 'is parent of'
+        }, {
+          id: 'b',
+          source: 'first',
+          target: 'third',
+          label: 'custom label'
+      }, {
+        id: 'c',
+        source: 'first',
+        target: 'four',
+        label: 'custom label'
+      }
+      ]
+    };
+
+    this.nalejColorScheme = [
+      '#4900d4',
+      '#4000ba',
+      '#3902a3',
+      '#2e0480',
+    ];
+    this.nextColorIndex = 0;
+
     /**
      * Mocked Charts
      */
-      Object.assign(this, {mockClusterChart, mockNodesChart});
+      Object.assign(this, {mockClusterChart});
    }
 
   ngOnInit() {
@@ -207,12 +277,13 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         this.backend.getResourcesSummary(this.organizationId)
         .subscribe(summary => {
             this.clustersCount = summary['total_clusters'] || 0 ;
-            this.nodesCount = summary['total_nodes'] || 0;
         });
         this.updateClusterList();
+        this.updateAppInstances(this.organizationId);
         this.refreshIntervalRef = setInterval(() => {
           //  Request cluster list
           this.updateClusterList();
+          this.updateAppInstances(this.organizationId);
         }, this.REFRESH_INTERVAL);
       }
     }
@@ -220,6 +291,26 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
+  }
+
+  /**
+   * Updates instances array
+   * @param organizationId Organization identifier
+   */
+  updateAppInstances(organizationId: string) {
+    if (organizationId !== null) {
+      // Request to get apps instances
+      this.backend.getInstances(this.organizationId)
+      .subscribe(response => {
+          this.instances = response.instances || [];
+          if (!this.loadedData) {
+            this.loadedData = true;
+          }
+      }, errorResponse => {
+        this.loadedData = true;
+        this.requestError = errorResponse.error.message;
+      });
+    }
   }
 
   /**
@@ -241,55 +332,20 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Updates the pieChartsData with latest changes
+   * Updates the pieChartsData status
    * @param clusterList Array containing the cluster list that sources the chart values
-   * @param pieChartsData Array that contains sub-arrays that hold each chart labels and values
    */
-  updatePieChartsData (clusterList, pieChartsData) {
-    for (let i = 0; i < pieChartsData.length; i++) {
-      pieChartsData.pop();
-    }
-    if (clusterList && clusterList.length > 0) {
-      clusterList.forEach(element => {
-        pieChartsData.push(this.generateClusterChartData(element.running_nodes, element.total_nodes));
+  updatePieChartStats(clusters: any[]) {
+    let running = 0;
+    if (clusters) {
+      clusters.forEach(cluster => {
+        if (cluster.status_name === 'RUNNING') {
+          running += 1;
+        }
       });
+      this.countRunning = running;
+      this.pieChartData = this.generateClusterChartData(this.countRunning, clusters.length);
     }
-  }
-
-  /**
-   * Updates nodes timeline with new data
-   * @param runningNodesPercentage New running nodes count
-   */
-  updateNodesStatusLineChart(runningNodesPercentage) {
-    const now = new Date(Date.now());
-    let minutes: any = now.getMinutes();
-    let seconds: any = now.getSeconds();
-    const winwidth = window.innerWidth;
-    const series = this.nodesChart[0].series;
-    let numXAxisTimeStamps = 0;
-
-    if (minutes < 10) {
-      minutes = '0' + now.getMinutes();
-    }
-    if (seconds < 10) {
-      seconds = '0' + now.getSeconds();
-    }
-    const entry = {
-      'value': runningNodesPercentage,
-      'name':  now.getHours() + ':' + minutes + ':' + seconds
-    };
-    if (winwidth < 1440) {
-      numXAxisTimeStamps = 2;
-    } else if (winwidth >= 1440 && winwidth <= 1800) {
-      numXAxisTimeStamps = 3;
-    } else if (winwidth > 1800) {
-      numXAxisTimeStamps = 4;
-    }
-    if (this.nodesChart[0].series.length > numXAxisTimeStamps) {
-      this.nodesChart[0].series = series.slice(series.length - numXAxisTimeStamps);
-    }
-    this.nodesChart[0].series.push(entry);
-    this.nodesChart = [...this.nodesChart];
   }
 
   /**
@@ -312,32 +368,12 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Splits the cluster list into chunks (number of elements defined by the chunks parameter)
-   * @param chunks Number of elements per chunk
-   * @param clusterList Array containing the available clusters
-   * @returns chunked array
-    */
-  chunkClusterList(chunks, clusterList) {
-    let i, j, chunkedArray;
-    const resultChunkArray = [];
-    const chunk = chunks;
-    for (i = 0, j = clusterList.length; i < j; i += chunk) {
-      chunkedArray = clusterList.slice(i, i + chunk);
-      resultChunkArray.push(chunkedArray);
-    }
-    return resultChunkArray;
-  }
-
-  /**
    * Requests an updated list of available clusters to update the current one
    */
   updateClusterList() {
     // Requests an updated clusters list
     this.backend.getClusters(this.organizationId)
     .subscribe(response => {
-      let runningNodesCount = 0;
-      let totalNodesCount = 0;
-      let nodesRunningPercentage = 0;
         if (response.clusters && response.clusters.length) {
           response.clusters.forEach(cluster => {
             cluster.total_nodes = parseInt(cluster.total_nodes, 10);
@@ -351,14 +387,9 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         }
         this.clusters.forEach(cluster => {
           this.preventEmptyFields(cluster);
-          runningNodesCount += cluster.running_nodes;
-          totalNodesCount += cluster.total_nodes;
         });
-        nodesRunningPercentage = (runningNodesCount / totalNodesCount) * 100;
 
-        this.chunckedClusters = this.chunkClusterList(3, this.clusters);
-        this.updatePieChartsData(this.clusters, this.pieChartsData);
-        this.updateNodesStatusLineChart(nodesRunningPercentage);
+        this.updatePieChartStats(this.clusters);
     }, errorResponse => {
       this.loadedData = true;
       this.requestError = errorResponse.error.message;
@@ -376,13 +407,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     if (!cluster.description) {
       cluster.description = '-';
     }
-    if (!cluster.total_nodes) {
-      cluster.total_nodes = 0;
-    }
-    if (!cluster.running_nodes) {
-      cluster.running_nodes = 0;
-    }
   }
+
   /**
    * Checks if the cluster status requires an special css class
    * @param status Cluster status name
@@ -448,7 +474,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       }
     }
 
-   /**
+  /**
    * Parse to string labels map
    * @param labels Key-value map that contains the labels
    */
@@ -458,6 +484,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       }
       return Object.entries(labels);
     }
+
   /**
    * Opens the modal view that holds add label component
    */
@@ -472,7 +499,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {this.updateClusterList(); });
-
   }
 
   /**
@@ -559,4 +585,162 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     }
     return false;
   }
+
+  /**
+   * Transforms the data needed to create the grapho
+   * @param instance instance object
+   */
+  toGraphData(instance) {
+    this.graphData = {
+      nodes: [],
+      links: []
+    };
+    if (instance && instance.groups) {
+      instance.groups.forEach(group => {
+        const nodeGroup = {
+          id: group.service_group_instance_id,
+          label: group.name,
+          tooltip: 'GROUP ' + group.name + ': ' + this.getBeautyStatusName(group.status_name),
+          // color: this.getNodeColor(group.status_name),
+          // text: this.getNodeTextColor(group.status_name),
+          group: group.service_group_instance_id
+        };
+        this.graphData.nodes.push(nodeGroup);
+        group.service_instances.forEach(service => {
+          const nodeService = {
+            id: group.service_group_instance_id + '-s-' + service.service_id,
+            label: service.name,
+            tooltip: 'SERVICE ' + service.name + ': ' + this.getBeautyStatusName(service.status_name),
+            // color: this.getNodeColor(service.status_name),
+            // text: this.getNodeTextColor(group.status_name),
+            group: group.service_group_instance_id
+          };
+          this.graphData.nodes.push(nodeService);
+          this.graphData.links.push({
+            source: group.service_group_instance_id,
+            target: group.service_group_instance_id + '-s-' + service.service_id
+          });
+        });
+
+      });
+    }
+
+    if (instance.rules) {
+      instance.rules.forEach(rule => {
+        if (rule.auth_services) {
+          rule.auth_services.forEach(authService => {
+            const targetsIndex: number[] = [];
+            for (let index = 0; index < this.graphData.nodes.length; index++) {
+              if (this.graphData.nodes[index].label === rule.target_service_name) {
+                targetsIndex.push(index);
+              }
+            }
+            const sourcesIndex: number[] = [];
+            for (let index = 0; index < this.graphData.nodes.length; index++) {
+              if (this.graphData.nodes[index].label === authService) {
+                sourcesIndex.push(index);
+              }
+            }
+            sourcesIndex.forEach(indexSource => {
+              targetsIndex.forEach(indexTarget => {
+                const link = {
+                  source: this.graphData.nodes[indexSource].id,
+                  target: this.graphData.nodes[indexTarget].id,
+                };
+                this.graphData.links.push(link);
+              });
+            });
+          });
+        }
+      });
+    }
+    this.graphDataLoaded = true;
+  }
+
+  /**
+   * Get arrow color depending on node source color
+   * @param sourceId Link source identifier
+   */
+  getArrowColor (sourceId: string): string {
+    const index = this.graphData.nodes.map(x => x.id).indexOf(sourceId);
+    if (index !== -1) {
+      return this.graphData.nodes[index].color;
+    }
+  }
+
+  /**
+   * Return an specific color depending on the node status
+   * @param status Status name
+   */
+  getNodeColor(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'service_running':
+        return this.STATUS_COLORS.RUNNING;
+      case 'service_error':
+        return this.STATUS_COLORS.ERROR;
+      case 'service_waiting':
+        return this.STATUS_COLORS.OTHER;
+      default:
+        return this.STATUS_COLORS.OTHER;
+    }
+  }
+
+  /**
+   * Return an specific color depending on the node status
+   * @param status Status name
+   */
+  getNodeTextColor(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'service_running':
+        return this.STATUS_TEXT_COLORS.RUNNING;
+      case 'service_error':
+        return this.STATUS_TEXT_COLORS.ERROR;
+      case 'service_waiting':
+        return this.STATUS_TEXT_COLORS.OTHER;
+      default:
+        return this.STATUS_TEXT_COLORS.OTHER;
+    }
+  }
+
+  /**
+   * Return if the marker is required
+   * @param link Link object
+   */
+  getMarker(link) {
+    const index = this.graphData.nodes.map(x => x.id).indexOf(link.source);
+    if (index !== -1) {
+      if (this.graphData.nodes[index].id === this.graphData.nodes[index].group) {
+        return '';
+      } else {
+        return 'url(#arrow)';
+      }
+    }
+    return 'url(#arrow)';
+  }
+
+  /**
+   * Adds https in case of being required
+   * @param endpoint String containing the endpoint
+   */
+  getEndpointHref(endpoint: string) {
+    let URL = '';
+    if (!endpoint.startsWith('http') && !endpoint.startsWith('https')) {
+      URL = 'http://' + endpoint;
+    } else {
+      URL = endpoint;
+    }
+    return URL;
+  }
+
+  /**
+   * Filters the backend incoming status to display it in removing the initial "service_"
+   * @param rawStatus string containing the status that the backend is sending
+   */
+  getBeautyStatusName (rawStatus: string): string {
+    if (rawStatus.toLowerCase().startsWith('service_')) {
+      return rawStatus.substring('service_'.length, rawStatus.length);
+    }
+    return rawStatus;
+  }
+
 }
