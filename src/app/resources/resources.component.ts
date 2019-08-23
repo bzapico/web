@@ -77,7 +77,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Refresh ratio
    */
-  REFRESH_INTERVAL = 20000;
+  REFRESH_INTERVAL = 200000000;
 
   /**
    * Hold request error message or undefined
@@ -209,48 +209,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     };
     this.graphDataLoaded = false;
     this.graphData = {
-      nodes: [
-        {
-          id: 'first',
-          label: 'frontendAppK8SCluster',
-          color: '#00E6A0',
-          text: '#fff',
-          height: '60px'
-        }, {
-          id: 'second',
-          label: 'App1',
-          color: '#00E6A0',
-          text: '#fff'
-        }, {
-          id: 'third',
-          label: 'App2',
-          color: '#00E6A0',
-          text: '#fff'
-        }, {
-        id: 'four',
-        label: 'App3',
-        color: '#00E6A0',
-        text: '#fff'
-      }
-      ],
-      links: [
-        {
-          id: 'a',
-          source: 'first',
-          target: 'second',
-          label: 'is parent of'
-        }, {
-          id: 'b',
-          source: 'first',
-          target: 'third',
-          label: 'custom label'
-      }, {
-        id: 'c',
-        source: 'first',
-        target: 'four',
-        label: 'custom label'
-      }
-      ]
+      nodes: [],
+      links: []
     };
 
     this.nalejColorScheme = [
@@ -601,8 +561,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           id: group.service_group_instance_id,
           label: group.name,
           tooltip: 'GROUP ' + group.name + ': ' + this.getBeautyStatusName(group.status_name),
-          // color: this.getNodeColor(group.status_name),
-          // text: this.getNodeTextColor(group.status_name),
+          color: this.getNodeColor(group.status_name),
+          text: this.getNodeTextColor(group.status_name),
           group: group.service_group_instance_id
         };
         this.graphData.nodes.push(nodeGroup);
@@ -611,8 +571,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
             id: group.service_group_instance_id + '-s-' + service.service_id,
             label: service.name,
             tooltip: 'SERVICE ' + service.name + ': ' + this.getBeautyStatusName(service.status_name),
-            // color: this.getNodeColor(service.status_name),
-            // text: this.getNodeTextColor(group.status_name),
+            color: this.getNodeColor(service.status_name),
+            text: this.getNodeTextColor(group.status_name),
             group: group.service_group_instance_id
           };
           this.graphData.nodes.push(nodeService);
@@ -743,4 +703,23 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     return rawStatus;
   }
 
+  /**
+   * Returns the lenght of app instances that are part of each cluster
+   * @param clusterId Identifier for the cluster
+   */
+  countAppsInCluster(clusterId: string) {
+    let appsInCluster = 0;
+    for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
+      const groups = this.instances[indexInstance].groups;
+        for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
+          const serviceInstances = groups[indexGroup].service_instances;
+          for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
+            if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
+              appsInCluster++;
+            }
+          }
+      }
+    }
+    return appsInCluster;
+  }
 }
