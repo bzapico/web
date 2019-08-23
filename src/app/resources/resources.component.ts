@@ -651,9 +651,9 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   countAppsInCluster(clusterId: string) {
     let appsInCluster = 0;
     for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
-      const groups = this.instances[indexInstance].groups;
+      const groups = this.instances[indexInstance].groups || [];
         for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
-          const serviceInstances = groups[indexGroup].service_instances;
+          const serviceInstances = groups[indexGroup].service_instances || [];
           for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
             if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
               appsInCluster++;
