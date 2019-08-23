@@ -13,6 +13,7 @@ import { TruncatePipe } from '../pipes/truncate.pipe';
 import { AbbreviatePipe } from '../pipes/abbreviate.pipe';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { SortByPipe } from '../pipes/sort-by.pipe';
+import { NgxGraphModule } from '@swimlane/ngx-graph';
 
 describe('ResourcesComponent', () => {
   let component: ResourcesComponent;
@@ -35,6 +36,7 @@ describe('ResourcesComponent', () => {
       imports: [
         HttpClientTestingModule,
         NgxChartsModule,
+        NgxGraphModule,
         CarouselModule,
         BrowserAnimationsModule,
         FormsModule,
@@ -70,15 +72,6 @@ describe('ResourcesComponent', () => {
     openEditCluster(clusters);
 
     expect(openEditCluster).toHaveBeenCalledWith(clusters);
-  });
-
-  it('updatePieChartsData() - Should open the modal view that holds the edit cluster component', () => {
-    const updatePieChartsData = spyOn(component, 'updatePieChartsData').and.returnValue(true);
-    const clusters = {};
-
-    updatePieChartsData(clusters);
-
-    expect(updatePieChartsData).toHaveBeenCalledWith(clusters);
   });
 
   it('generateClusterChartData() - Should open the modal view that holds the edit cluster component', () => {
