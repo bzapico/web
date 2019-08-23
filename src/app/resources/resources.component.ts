@@ -125,10 +125,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   width: number;
   height: string;
   draggingEnabled: boolean;
-  nalejColorScheme: string[];
-  nextColorIndex: number;
   STATUS_COLORS = {
-    RUNNING: '#5800FF',
+    RUNNING: '#00E6A0',
     ERROR: '#F7478A',
     OTHER: '#FFEB6C'
   };
@@ -212,15 +210,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       nodes: [],
       links: []
     };
-
-    this.nalejColorScheme = [
-      '#4900d4',
-      '#4000ba',
-      '#3902a3',
-      '#2e0480',
-    ];
-    this.nextColorIndex = 0;
-
     /**
      * Mocked Charts
      */
@@ -266,6 +255,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           if (!this.loadedData) {
             this.loadedData = true;
           }
+          this.toGraphData();
       }, errorResponse => {
         this.loadedData = true;
         this.requestError = errorResponse.error.message;
@@ -348,7 +338,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         this.clusters.forEach(cluster => {
           this.preventEmptyFields(cluster);
         });
-
+        this.toGraphData();
         this.updatePieChartStats(this.clusters);
     }, errorResponse => {
       this.loadedData = true;
@@ -548,84 +538,39 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 
   /**
    * Transforms the data needed to create the grapho
-   * @param instance instance object
    */
-  toGraphData(instance) {
+  toGraphData() {
     this.graphData = {
       nodes: [],
       links: []
     };
-    if (instance && instance.groups) {
-      instance.groups.forEach(group => {
-        const nodeGroup = {
-          id: group.service_group_instance_id,
-          label: group.name,
-          tooltip: 'GROUP ' + group.name + ': ' + this.getBeautyStatusName(group.status_name),
-          color: this.getNodeColor(group.status_name),
-          text: this.getNodeTextColor(group.status_name),
-          group: group.service_group_instance_id
+    this.clusters.forEach(cluster => {
+      const nodeGroup = {
+        id: cluster.cluster_id,
+        label: cluster.name,
+        tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
+        color: this.getNodeColor(cluster.status_name),
+        text: this.getNodeTextColor(cluster.status_name),
+        group: cluster.cluster_id
+      };
+      this.graphData.nodes.push(nodeGroup);
+      this.instances.forEach(instance => {
+        const nodeInstance = {
+          id: cluster.cluster_id + '-s-' + instance.app_instance_id,
+          label: instance.name,
+          tooltip: 'APP ' + instance.name + ': ' + this.getBeautyStatusName(instance.status_name),
+          color: this.getNodeColor(instance.status_name),
+          text: this.getNodeTextColor(cluster.status_name),
+          group: cluster.cluster_id
         };
-        this.graphData.nodes.push(nodeGroup);
-        group.service_instances.forEach(service => {
-          const nodeService = {
-            id: group.service_group_instance_id + '-s-' + service.service_id,
-            label: service.name,
-            tooltip: 'SERVICE ' + service.name + ': ' + this.getBeautyStatusName(service.status_name),
-            color: this.getNodeColor(service.status_name),
-            text: this.getNodeTextColor(group.status_name),
-            group: group.service_group_instance_id
-          };
-          this.graphData.nodes.push(nodeService);
-          this.graphData.links.push({
-            source: group.service_group_instance_id,
-            target: group.service_group_instance_id + '-s-' + service.service_id
-          });
+        this.graphData.nodes.push(nodeInstance);
+        this.graphData.links.push({
+          source: cluster.cluster_id,
+          target: cluster.cluster_id + '-s-' + instance.app_instance_id
         });
-
       });
-    }
-
-    if (instance.rules) {
-      instance.rules.forEach(rule => {
-        if (rule.auth_services) {
-          rule.auth_services.forEach(authService => {
-            const targetsIndex: number[] = [];
-            for (let index = 0; index < this.graphData.nodes.length; index++) {
-              if (this.graphData.nodes[index].label === rule.target_service_name) {
-                targetsIndex.push(index);
-              }
-            }
-            const sourcesIndex: number[] = [];
-            for (let index = 0; index < this.graphData.nodes.length; index++) {
-              if (this.graphData.nodes[index].label === authService) {
-                sourcesIndex.push(index);
-              }
-            }
-            sourcesIndex.forEach(indexSource => {
-              targetsIndex.forEach(indexTarget => {
-                const link = {
-                  source: this.graphData.nodes[indexSource].id,
-                  target: this.graphData.nodes[indexTarget].id,
-                };
-                this.graphData.links.push(link);
-              });
-            });
-          });
-        }
-      });
-    }
+    });
     this.graphDataLoaded = true;
-  }
-
-  /**
-   * Get arrow color depending on node source color
-   * @param sourceId Link source identifier
-   */
-  getArrowColor (sourceId: string): string {
-    const index = this.graphData.nodes.map(x => x.id).indexOf(sourceId);
-    if (index !== -1) {
-      return this.graphData.nodes[index].color;
-    }
   }
 
   /**
@@ -634,29 +579,25 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
-      case 'service_running':
+      case 'running':
         return this.STATUS_COLORS.RUNNING;
-      case 'service_error':
+      case 'error':
         return this.STATUS_COLORS.ERROR;
-      case 'service_waiting':
-        return this.STATUS_COLORS.OTHER;
       default:
         return this.STATUS_COLORS.OTHER;
     }
   }
 
   /**
-   * Return an specific color depending on the node status
+   * Return an specific text color depending on the node status
    * @param status Status name
    */
   getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
-      case 'service_running':
+      case 'running':
         return this.STATUS_TEXT_COLORS.RUNNING;
-      case 'service_error':
+      case 'error':
         return this.STATUS_TEXT_COLORS.ERROR;
-      case 'service_waiting':
-        return this.STATUS_TEXT_COLORS.OTHER;
       default:
         return this.STATUS_TEXT_COLORS.OTHER;
     }
