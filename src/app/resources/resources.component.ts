@@ -360,34 +360,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Checks if the cluster status requires an special css class
-   * @param status Cluster status name
-   * @param className CSS class name
-   */
-  classStatusCheck(status: string, className: string): boolean {
-    switch (status.toLowerCase()) {
-      case 'running': {
-        if (className.toLowerCase() === 'running') {
-          return true;
-        }
-        break;
-      }
-      case 'error': {
-        if (className.toLowerCase() === 'error') {
-          return true;
-        }
-        break;
-      }
-     default: {
-        if (className.toLowerCase() === 'process') {
-          return true;
-        }
-        return false;
-      }
-    }
-  }
-
-  /**
    * Sortby pipe in the component
    */
   setOrder(categoryName: string) {
@@ -551,10 +523,12 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
         color: this.getNodeColor(cluster.status_name),
         text: this.getNodeTextColor(cluster.status_name),
-        group: cluster.cluster_id
+        group: cluster.cluster_id,
       };
       this.graphData.nodes.push(nodeGroup);
-      this.instances.forEach(instance => {
+
+      const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
+      instancesInCluster.forEach(instance => {
         const nodeInstance = {
           id: cluster.cluster_id + '-s-' + instance.app_instance_id,
           label: instance.name,
@@ -582,6 +556,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       case 'running':
         return this.STATUS_COLORS.RUNNING;
       case 'error':
+        return this.STATUS_COLORS.ERROR;
+      case 'deployment_error':
         return this.STATUS_COLORS.ERROR;
       default:
         return this.STATUS_COLORS.OTHER;
@@ -645,22 +621,34 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Returns the lenght of app instances that are part of each cluster
+   * It returns filtered app instances by cluster ID
    * @param clusterId Identifier for the cluster
    */
-  countAppsInCluster(clusterId: string) {
-    let appsInCluster = 0;
+  getAppsInCluster(clusterId: string) {
+    const appsInCluster = [];
     for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
       const groups = this.instances[indexInstance].groups || [];
         for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
           const serviceInstances = groups[indexGroup].service_instances || [];
           for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
             if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
-              appsInCluster++;
+              appsInCluster.push(this.instances[indexInstance]);
             }
           }
       }
     }
     return appsInCluster;
+  }
+
+  /**
+   * Returns the lenght of app instances that are part of each cluster
+   * @param clusterId Identifier for the cluster
+   */
+  getAppsNumberInCluster(clusterId: string) {
+    return this.getAppsInCluster(clusterId).length;
+  }
+
+  searchInGraph() {
+    console.log('clicked on search in graph');
   }
 }

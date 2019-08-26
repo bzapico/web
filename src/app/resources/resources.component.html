@@ -190,7 +190,7 @@
                     </div>
                   </div>
                 </td>
-                <td class="col-2 text-center">{{countAppsInCluster(cluster.cluster_id)}}
+                <td class="col-2 text-center">{{getAppsNumberInCluster(cluster.cluster_id)}}
                 </td>
                 <td class="col-2 text-center">
                   <button (click)="openEditCluster(cluster)" class="action-btn-blue">
@@ -241,19 +241,23 @@
           <!-- Sorting mesages -->
           <div class="col-7">  
           </div>
-          <!-- Search input -->
+          <!-- Search box -->
           <div class="col-5">
             <form>
               <div class="graph-search-box">
                 <input 
                   type="text" 
+                  name="search"
                   placeholder="Search..."
                   class="form-control"> 
               </div>
+              <button 
+                (click)="searchInGraph()"
+                type="submit"
+                class="action-btn-blue search-button">
+                <i class="material-icons">search-icon</i>
+              </button>
             </form>
-            <button class="action-btn-blue search-button">
-              <i class="material-icons">search-icon</i>
-            </button>
           </div>      
         </div>
         <div class="row h-100">
@@ -268,6 +272,7 @@
                 [autoZoom]="autoZoom"
                 [autoCenter]="autoCenter"
                 [curve]="curve"
+                [nodeHeight]="graphData.nodes.nodeHeight"
                 [enableZoom]="enableZoom"
                 class="chart-container">
                 <ng-template #nodeTemplate let-node>
