@@ -523,11 +523,12 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
         color: this.getNodeColor(cluster.status_name),
         text: this.getNodeTextColor(cluster.status_name),
-        group: cluster.cluster_id,
+        group: cluster.cluster_id
       };
       this.graphData.nodes.push(nodeGroup);
 
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
+
       instancesInCluster.forEach(instance => {
         const nodeInstance = {
           id: cluster.cluster_id + '-s-' + instance.app_instance_id,
