@@ -32,6 +32,7 @@
                   <th>Status</th> 
                   <td id="summary-instances-status">
                     <span 
+                      *ngIf="instance && instance.status_name"
                       [ngClass]=
                         "{
                           'big-status-dot':classInstanceStatusCheck(instance.status_name, 'running'),
