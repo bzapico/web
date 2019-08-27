@@ -96,9 +96,11 @@
                 <th 
                   (click)="setOrder('name')"            
                   [ngClass]="getCategoryCSSClass('name')"
+                  tooltip="Name" 
+                  placement="bottom"
                   scope="col" 
-                  class="col-3">
-                  <span tooltip="Name" placement="bottom">Name</span>
+                  class="col-3 cluster-name-initial-text">
+                  <span class="cluster-name-full-text">Name</span>
                   <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -122,9 +124,11 @@
                 <th 
                   (click)="setOrder('apps')"            
                   [ngClass]="getCategoryCSSClass('apps')"
+                  tooltip="Apps" 
+                  placement="bottom"
                   scope="col" 
-                  class="col-2">
-                  <span tooltip="Apps" placement="bottom">Apps</span>
+                  class="col-2 text-center cluster-apps-initial-text">
+                  <span class="cluster-apps-full-text">Apps</span>
                   <span *ngIf="sortedBy === 'apps' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -132,8 +136,12 @@
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th>
-                <th scope="col" class="col-2 text-center">
-                  <span tooltip="Edit" placement="bottom">Edit</span> 
+                <th 
+                  tooltip="Edit" 
+                  placement="bottom"
+                  scope="col"        
+                  class="col-2 text-center edit-initial-text">
+                  <span class="edit-full-text">Edit</span>
                 </th>
               </tr>
             </thead>
@@ -243,26 +251,26 @@
           </div>
           <!-- Search box -->
           <div class="col-5">
-            <form>
-              <div class="graph-search-box">
-                <input 
-                  type="text" 
-                  name="search"
-                  placeholder="Search..."
-                  class="form-control"> 
-              </div>
-              <button 
-                (click)="searchInGraph()"
-                type="submit"
-                class="action-btn-blue search-button">
-                <i class="material-icons">search-icon</i>
-              </button>
+            <form class="graph-search-box">
+              <input 
+                type="text" 
+                name="search"
+                placeholder="Search..."
+                class="form-control"> 
+              <span class="search-button"> 
+                <button 
+                  (click)="searchInGraph()"
+                  type="submit"
+                  class="action-btn-blue">
+                  <i class="material-icons i-search">search</i>
+                </button>
+              </span>
             </form>
           </div>      
         </div>
         <div class="row h-100">
           <div class="col-12">
-            <div class="graph">
+            <div *ngIf="graphData.nodes.length > 0 && graphData.links.length > 0" class="graph">
               <ngx-graph
                 [view]="view"
                 [links]="graphData.links"
