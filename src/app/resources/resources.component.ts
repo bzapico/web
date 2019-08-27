@@ -523,7 +523,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
         color: this.getNodeColor(cluster.status_name),
         text: this.getNodeTextColor(cluster.status_name),
-        group: cluster.cluster_id
+        group: cluster.cluster_id,
+        customHeight: 58
       };
       this.graphData.nodes.push(nodeGroup);
 
@@ -536,7 +537,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           tooltip: 'APP ' + instance.name + ': ' + this.getBeautyStatusName(instance.status_name),
           color: this.getNodeColor(instance.status_name),
           text: this.getNodeTextColor(cluster.status_name),
-          group: cluster.cluster_id
+          group: cluster.cluster_id,
+          customHeight: 32
         };
         this.graphData.nodes.push(nodeInstance);
         this.graphData.links.push({
