@@ -60,7 +60,7 @@ export const mockUserList = [
 export const mockClusterList = [
     {
         organization_id: '7ad1a7a8-e4b1-4798-9071-e456908fad13',
-        cluster_id: '6769d264-4ba7-4cd7-b221-a7f4f14e481d1',
+        cluster_id: '155cb041-58c5-45aa-b529-1e4ce66e71e1',
         name: 'Dhs1_k8s_cluster',
         description: 'Autodiscovered cluster',
         total_nodes: '1',
