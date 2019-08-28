@@ -151,11 +151,13 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Model that hold the search term in search box
    */
   searchTerm: string;
+  searchTermClusters: string;
 
   /**
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
+  filterFieldClusters: boolean;
 
   /**
    * List of selected labels from an entity
@@ -189,9 +191,11 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.sortedBy = '';
     this.reverse = false;
     this.searchTerm = '';
+    this.searchTermClusters = '';
 
     // Filter field
     this.filterField = false;
+    this.filterFieldClusters = false;
 
     // Graph initialization
     this.graphReset = false;
@@ -362,22 +366,30 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Sortby pipe in the component
    */
-  setOrder(categoryName: string) {
-    if (this.sortedBy === categoryName) {
-      this.reverse = !this.reverse;
-      this.filterField = false;
+  setOrder(list: string, categoryName: string) {
+    if (list === 'clusters') {
+      if (this.sortedBy === categoryName) {
+        this.reverse = !this.reverse;
+        this.filterField = false;
+      }
+      this.sortedBy = categoryName;
+      this.filterField = true;
+    } else if (list === 'graph') {
+      this.filterFieldClusters = true;
     }
-    this.sortedBy = categoryName;
-    this.filterField = true;
   }
 
   /**
    * Reset all the filters fields
    */
-  resetFilters() {
-    this.filterField = false;
-    this.searchTerm = '';
-    this.sortedBy = '';
+  resetFilters(list: string) {
+    if (list === 'clusters') {
+      this.filterField = false;
+      this.searchTerm = '';
+      this.sortedBy = '';
+    } else if (list === 'graph') {
+      this.searchTermClusters = '';
+    }
   }
 
   /**
