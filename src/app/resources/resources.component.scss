@@ -68,6 +68,23 @@ $base-light-grey: #BFBFBF;
     }
 }
 
+.nalej-table { 
+    tbody td {
+        &:first-child{
+            padding-left: 0px;
+        }
+        &:last-child{
+            padding-right: 0px;
+        }
+    }
+    tr th {
+        &:first-child{
+            padding-left: 0px;
+        }
+    }
+}
+
+
 /* - - - Cluster graph card - - - */
 .graph {
     height: 97%;

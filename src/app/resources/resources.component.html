@@ -81,7 +81,8 @@
               <span *ngIf="!reverse">descendant </span>
               and filtered by term "{{ searchTerm }}".
               <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
-            </p> 
+            </p>
+            <p *ngIf="!filterField && !searchTerm" class="sorting-message">
           </div>
         </div>
         <div *ngIf=
@@ -89,7 +90,7 @@
           clusters && 
           clusters.length > 0 && 
           !requestError" 
-          class="nalej-table-box mt-3">
+          class="nalej-table-box">
           <table class="nalej-table">
             <thead class="nalej-thead">
               <tr>
@@ -248,6 +249,7 @@
         <div class="row mb-3">
           <!-- Sorting mesages -->
           <div class="col-7">  
+            <p class="sorting-message">
           </div>
           <!-- Search box -->
           <div class="col-5">
