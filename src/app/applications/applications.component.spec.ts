@@ -28,7 +28,7 @@ describe('ApplicationsComponent', () => {
         CarouselModule,
         BrowserAnimationsModule,
         RouterTestingModule,
-        TooltipModule,
+        TooltipModule.forRoot(),
         CommonModule,
         ModalModule.forRoot(),
         FormsModule,

@@ -74,6 +74,9 @@
           "configurations": {
             "production": {
               "browserTarget": "nalej:build:production"
+            },
+            "local": {
+              "browserTarget": "nalej:build:local"
             }
           }
         },
