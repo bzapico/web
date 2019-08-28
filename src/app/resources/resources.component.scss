@@ -73,13 +73,13 @@ $base-light-grey: #BFBFBF;
     height: 97%;
 }
 .graph-search-box { 
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    width: 80%;
+    margin-right: 1em;
+    float:left;    
+    font-size: 1em;
     .form-control {
         font-size: 1rem;
         padding: .375rem 1rem .5rem 1rem;
-        margin-right: 1em;
     }
     > input {
         text-align: left;
@@ -88,28 +88,29 @@ $base-light-grey: #BFBFBF;
             color: $base-light-grey;
         }
     }
-    .search-button {
-        margin: .2em 0;
-        @include for-desktop-up {
-            margin: .4em 0px;
-        }
-        .i-search {
-            position: absolute;
-            top: 4px;
-            left: 5px;
-            @include for-desktop-up {
-                font-size: 1.3em;
-                top: 3px;
-                left: 2px;
-            }
-        }
-    }
 }
 .search-box {
     width: 100%;
     margin-right: 0em;
 }
+.search-button {
+    margin: .2em 0;
+    @include for-desktop-up {
+        margin: .4em 0px;
+    }
+    i {
+        position: absolute;
+        top: 4px;
+        left: 5px;
+        width: 24px;
+        @include for-desktop-up {
+            font-size: 1.3em;
+            top: 3px;
+            left: 2px;
+        }
+    }
 
+}
 .graph-legend {
     color: $base-grey;
     font-size: .85em;
@@ -133,36 +134,4 @@ $base-light-grey: #BFBFBF;
 .status-dot-error:before,
 .status-dot-process:before {
     margin: 0 9px 0 0;
-}
-
-@media screen and (max-width:1576px){
-    .edit-full-text {
-        display: none;
-    }
-    .edit-initial-text {
-        &::before {
-            content: 'E';
-        }
-    }
-}
-@media screen and (max-width:1696px){
-    .cluster-apps-full-text {
-        display: none;
-    }
-    .cluster-apps-initial-text {
-        &::before {
-            content: 'A';
-        }
-    }
-}
-
-@media screen and (max-width:1296px){
-    .cluster-name-full-text {
-        display: none;
-    }
-    .cluster-name-initial-text {
-        &::before {
-            content: 'N';
-        }
-    }
 }

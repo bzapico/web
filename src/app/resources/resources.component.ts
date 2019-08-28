@@ -77,7 +77,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Refresh ratio
    */
-  REFRESH_INTERVAL = 200000000;
+  REFRESH_INTERVAL = 20000;
 
   /**
    * Hold request error message or undefined
@@ -125,8 +125,10 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   width: number;
   height: string;
   draggingEnabled: boolean;
+  nalejColorScheme: string[];
+  nextColorIndex: number;
   STATUS_COLORS = {
-    RUNNING: '#00E6A0',
+    RUNNING: '#5800FF',
     ERROR: '#F7478A',
     OTHER: '#FFEB6C'
   };
@@ -207,9 +209,58 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     };
     this.graphDataLoaded = false;
     this.graphData = {
-      nodes: [],
-      links: []
+      nodes: [
+        {
+          id: 'first',
+          label: 'frontendAppK8SCluster',
+          color: '#00E6A0',
+          text: '#fff',
+          height: '60px'
+        }, {
+          id: 'second',
+          label: 'App1',
+          color: '#00E6A0',
+          text: '#fff'
+        }, {
+          id: 'third',
+          label: 'App2',
+          color: '#00E6A0',
+          text: '#fff'
+        }, {
+        id: 'four',
+        label: 'App3',
+        color: '#00E6A0',
+        text: '#fff'
+      }
+      ],
+      links: [
+        {
+          id: 'a',
+          source: 'first',
+          target: 'second',
+          label: 'is parent of'
+        }, {
+          id: 'b',
+          source: 'first',
+          target: 'third',
+          label: 'custom label'
+      }, {
+        id: 'c',
+        source: 'first',
+        target: 'four',
+        label: 'custom label'
+      }
+      ]
     };
+
+    this.nalejColorScheme = [
+      '#4900d4',
+      '#4000ba',
+      '#3902a3',
+      '#2e0480',
+    ];
+    this.nextColorIndex = 0;
+
     /**
      * Mocked Charts
      */
@@ -255,7 +306,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           if (!this.loadedData) {
             this.loadedData = true;
           }
-          this.toGraphData();
       }, errorResponse => {
         this.loadedData = true;
         this.requestError = errorResponse.error.message;
@@ -338,7 +388,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         this.clusters.forEach(cluster => {
           this.preventEmptyFields(cluster);
         });
-        this.toGraphData();
+
         this.updatePieChartStats(this.clusters);
     }, errorResponse => {
       this.loadedData = true;
@@ -356,6 +406,34 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     }
     if (!cluster.description) {
       cluster.description = '-';
+    }
+  }
+
+  /**
+   * Checks if the cluster status requires an special css class
+   * @param status Cluster status name
+   * @param className CSS class name
+   */
+  classStatusCheck(status: string, className: string): boolean {
+    switch (status.toLowerCase()) {
+      case 'running': {
+        if (className.toLowerCase() === 'running') {
+          return true;
+        }
+        break;
+      }
+      case 'error': {
+        if (className.toLowerCase() === 'error') {
+          return true;
+        }
+        break;
+      }
+     default: {
+        if (className.toLowerCase() === 'process') {
+          return true;
+        }
+        return false;
+      }
     }
   }
 
@@ -510,44 +588,84 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 
   /**
    * Transforms the data needed to create the grapho
+   * @param instance instance object
    */
-  toGraphData() {
+  toGraphData(instance) {
     this.graphData = {
       nodes: [],
       links: []
     };
-    this.clusters.forEach(cluster => {
-      const nodeGroup = {
-        id: cluster.cluster_id,
-        label: cluster.name,
-        tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
-        color: this.getNodeColor(cluster.status_name),
-        text: this.getNodeTextColor(cluster.status_name),
-        group: cluster.cluster_id,
-        customHeight: 58
-      };
-      this.graphData.nodes.push(nodeGroup);
-
-      const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
-
-      instancesInCluster.forEach(instance => {
-        const nodeInstance = {
-          id: cluster.cluster_id + '-s-' + instance.app_instance_id,
-          label: instance.name,
-          tooltip: 'APP ' + instance.name + ': ' + this.getBeautyStatusName(instance.status_name),
-          color: this.getNodeColor(instance.status_name),
-          text: this.getNodeTextColor(cluster.status_name),
-          group: cluster.cluster_id,
-          customHeight: 32
+    if (instance && instance.groups) {
+      instance.groups.forEach(group => {
+        const nodeGroup = {
+          id: group.service_group_instance_id,
+          label: group.name,
+          tooltip: 'GROUP ' + group.name + ': ' + this.getBeautyStatusName(group.status_name),
+          // color: this.getNodeColor(group.status_name),
+          // text: this.getNodeTextColor(group.status_name),
+          group: group.service_group_instance_id
         };
-        this.graphData.nodes.push(nodeInstance);
-        this.graphData.links.push({
-          source: cluster.cluster_id,
-          target: cluster.cluster_id + '-s-' + instance.app_instance_id
+        this.graphData.nodes.push(nodeGroup);
+        group.service_instances.forEach(service => {
+          const nodeService = {
+            id: group.service_group_instance_id + '-s-' + service.service_id,
+            label: service.name,
+            tooltip: 'SERVICE ' + service.name + ': ' + this.getBeautyStatusName(service.status_name),
+            // color: this.getNodeColor(service.status_name),
+            // text: this.getNodeTextColor(group.status_name),
+            group: group.service_group_instance_id
+          };
+          this.graphData.nodes.push(nodeService);
+          this.graphData.links.push({
+            source: group.service_group_instance_id,
+            target: group.service_group_instance_id + '-s-' + service.service_id
+          });
         });
+
       });
-    });
+    }
+
+    if (instance.rules) {
+      instance.rules.forEach(rule => {
+        if (rule.auth_services) {
+          rule.auth_services.forEach(authService => {
+            const targetsIndex: number[] = [];
+            for (let index = 0; index < this.graphData.nodes.length; index++) {
+              if (this.graphData.nodes[index].label === rule.target_service_name) {
+                targetsIndex.push(index);
+              }
+            }
+            const sourcesIndex: number[] = [];
+            for (let index = 0; index < this.graphData.nodes.length; index++) {
+              if (this.graphData.nodes[index].label === authService) {
+                sourcesIndex.push(index);
+              }
+            }
+            sourcesIndex.forEach(indexSource => {
+              targetsIndex.forEach(indexTarget => {
+                const link = {
+                  source: this.graphData.nodes[indexSource].id,
+                  target: this.graphData.nodes[indexTarget].id,
+                };
+                this.graphData.links.push(link);
+              });
+            });
+          });
+        }
+      });
+    }
     this.graphDataLoaded = true;
+  }
+
+  /**
+   * Get arrow color depending on node source color
+   * @param sourceId Link source identifier
+   */
+  getArrowColor (sourceId: string): string {
+    const index = this.graphData.nodes.map(x => x.id).indexOf(sourceId);
+    if (index !== -1) {
+      return this.graphData.nodes[index].color;
+    }
   }
 
   /**
@@ -556,27 +674,29 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
-      case 'running':
+      case 'service_running':
         return this.STATUS_COLORS.RUNNING;
-      case 'error':
+      case 'service_error':
         return this.STATUS_COLORS.ERROR;
-      case 'deployment_error':
-        return this.STATUS_COLORS.ERROR;
+      case 'service_waiting':
+        return this.STATUS_COLORS.OTHER;
       default:
         return this.STATUS_COLORS.OTHER;
     }
   }
 
   /**
-   * Return an specific text color depending on the node status
+   * Return an specific color depending on the node status
    * @param status Status name
    */
   getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
-      case 'running':
+      case 'service_running':
         return this.STATUS_TEXT_COLORS.RUNNING;
-      case 'error':
+      case 'service_error':
         return this.STATUS_TEXT_COLORS.ERROR;
+      case 'service_waiting':
+        return this.STATUS_TEXT_COLORS.OTHER;
       default:
         return this.STATUS_TEXT_COLORS.OTHER;
     }
@@ -623,35 +743,4 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     return rawStatus;
   }
 
-  /**
-   * It returns filtered app instances by cluster ID
-   * @param clusterId Identifier for the cluster
-   */
-  getAppsInCluster(clusterId: string) {
-    const appsInCluster = [];
-    for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
-      const groups = this.instances[indexInstance].groups || [];
-        for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
-          const serviceInstances = groups[indexGroup].service_instances || [];
-          for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
-            if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
-              appsInCluster.push(this.instances[indexInstance]);
-            }
-          }
-      }
-    }
-    return appsInCluster;
-  }
-
-  /**
-   * Returns the lenght of app instances that are part of each cluster
-   * @param clusterId Identifier for the cluster
-   */
-  getAppsNumberInCluster(clusterId: string) {
-    return this.getAppsInCluster(clusterId).length;
-  }
-
-  searchInGraph() {
-    console.log('clicked on search in graph');
-  }
 }
