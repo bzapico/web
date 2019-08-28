@@ -66,7 +66,7 @@ export const mockClusterList = [
         total_nodes: '1',
         running_nodes: '0',
         cluster_type_name: 'Kubernetes',
-        status_name: 'Running',
+        status_name: 'RUNNING',
         labels: {
             lab1: 'label1',
             lab2: 'label2'
@@ -80,7 +80,7 @@ export const mockClusterList = [
         total_nodes: '10',
         running_nodes: '2',
         cluster_type_name: 'aKubernetes',
-        status_name: 'Running',
+        status_name: 'RUNNING',
         labels: {
             lab1: 'label1',
             lab2: 'label2',
@@ -96,7 +96,7 @@ export const mockClusterList = [
         total_nodes: '4',
         running_nodes: '3',
         cluster_type_name: 'bKubernetes',
-        status_name: 'Error',
+        status_name: 'ERROR',
         labels: {
             lab1: 'label1',
             lab2: 'label2'
@@ -110,7 +110,7 @@ export const mockClusterList = [
         total_nodes: '4',
         running_nodes: '4',
         cluster_type_name: 'cKubernetes',
-        status_name: 'Running',
+        status_name: 'RUNNING',
         labels: {
             lab1: 'label1',
             lab2: 'label2'
@@ -124,7 +124,7 @@ export const mockClusterList = [
         total_nodes: '10',
         running_nodes: '5',
         cluster_type_name: 'dKubernetes',
-        status_name: 'Running',
+        status_name: 'RUNNING',
         labels: {
             lab1: 'label1',
             lab2: 'label2'
@@ -138,7 +138,7 @@ export const mockClusterList = [
         total_nodes: '6',
         running_nodes: '5',
         cluster_type_name: 'Kubernetes',
-        status_name: 'Error',
+        status_name: 'ERROR',
         labels: {
             lab1: 'label1',
             lab2: 'label2',
@@ -153,7 +153,7 @@ export const mockClusterList = [
         total_nodes: '10',
         running_nodes: '7',
         cluster_type_name: 'Kubernetes',
-        status_name: 'Running',
+        status_name: 'RUNNING',
         labels: {
             lab1: 'label1',
             lab2: 'label2'
@@ -167,7 +167,7 @@ export const mockClusterList = [
         total_nodes: '7',
         running_nodes: '7',
         cluster_type_name: 'Kubernetes',
-        status_name: 'Running',
+        status_name: 'RUNNING',
         labels: {
             lab1: 'label1',
             lab2: 'label2',
@@ -182,7 +182,7 @@ export const mockClusterList = [
         total_nodes: '10',
         running_nodes: '9',
         cluster_type_name: 'Kubernetes',
-        status_name: 'Running',
+        status_name: 'RUNNING',
         labels: {
             lab1: 'label1',
             lab2: 'label2'
@@ -196,7 +196,7 @@ export const mockClusterList = [
         total_nodes: '9',
         running_nodes: '8',
         cluster_type_name: 'Kubernetes',
-        status_name: 'Running',
+        status_name: 'RUNNING',
         labels: {
             lab1: 'label1',
             lab2: 'label2'
