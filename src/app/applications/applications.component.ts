@@ -132,6 +132,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   ];
 
   /**
+   * Graph options
+   */
+  graphDataLoaded: boolean;
+
+  /**
    * NGX-Charts object-assign required object references (for rendering)
    */
   instancesTimelineChart: any;
@@ -147,6 +152,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Model that hold the search term in search box
    */
   searchTerm: string;
+
+  /**
+   * Model that hold the quick filter
+   */
+  quickFilter: string;
 
   /**
    * Variable to store the value of the filter search text and sortBy pipe
@@ -441,6 +451,17 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Adds a quick filter
+   */
+  addQuickFilter(quickFilter: string) {
+    if (this.quickFilter === quickFilter) {
+      this.quickFilter = '';
+    } else {
+      this.quickFilter = quickFilter;
+    }
+  }
+
+  /**
    * Reset all the filters fields
    */
   resetFilters() {
@@ -706,5 +727,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     if (!app.undeploying) {
       this.router.navigate(['/applications/instance/' + app.app_instance_id]);
     }
+  }
+
+  searchInGraph() {
+    
   }
 }
