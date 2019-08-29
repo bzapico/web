@@ -162,6 +162,14 @@ th.instances-pcol-fix.default {
         }
     }
 }
+.tooltip-fix {
+    height: 20px;
+    width: 45px;
+    position: absolute;
+    top: 33%;
+    left: 24%;
+    cursor: pointer;
+}
 @media screen and (max-width:1723px){
     .app-actions-full-text {
         display: none;
@@ -305,9 +313,13 @@ th.instances-pcol-fix.default {
     padding-inline-start: 0px;
     margin-block-end: 0px;
     ul {
-        margin-bottom: 0;
+        margin-bottom: 0;     
+        
     }
     li {
+        &:first-child{
+            cursor: default;
+        }
         list-style-type: none;
         display: inline-block;
         margin-right: 20px;
