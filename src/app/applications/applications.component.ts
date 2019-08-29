@@ -11,7 +11,6 @@ import { AddLabelComponent } from '../add-label/add-label.component';
 import { RegisterApplicationComponent } from '../register-application/register-application.component';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 import { Router } from '@angular/router';
-import { AttachSession } from 'protractor/built/driverProviders';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -44,6 +43,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * List of registered apps
    */
   registered: any[];
+
+  /**
+   * List of available clusters
+   */
+  clusters: any[];
 
   /**
    * List of labels
@@ -168,6 +172,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   showInstances: boolean;
 
+  /**
+   * Active context menu item ID
+   */
+  activeContextMenuId: string;
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -191,6 +200,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.loadedData = false;
     this.appsChart = [{name: 'Running apps %', series: []}];
     this.requestError = '';
+    this.activeContextMenuId = '';
 
      // SortBy
      this.sortedBy = '';
@@ -208,18 +218,19 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-      // Get User data from localStorage
-      const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
-      if (jwtData !== null) {
-        this.organizationId = JSON.parse(jwtData).organizationID;
+    // Get User data from localStorage
+    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+    if (jwtData !== null) {
+      this.organizationId = JSON.parse(jwtData).organizationID;
+        this.updateAppInstances(this.organizationId);
+        this.updateRegisteredInstances(this.organizationId);
+        this.updateClusterList();
+        this.refreshIntervalRef = setInterval(() => {
           this.updateAppInstances(this.organizationId);
           this.updateRegisteredInstances(this.organizationId);
-          this.refreshIntervalRef = setInterval(() => {
-            this.updateAppInstances(this.organizationId);
-            this.updateRegisteredInstances(this.organizationId);
-
-          }, this.REFRESH_RATIO); // Refresh each 60 seconds
-      }
+          this.updateClusterList();
+        }, this.REFRESH_RATIO); // Refresh each 60 seconds
+    }
   }
 
   ngOnDestroy() {
@@ -276,6 +287,33 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           this.registered = response.descriptors || [];
       });
     }
+  }
+
+  /**
+   * Requests an updated list of available clusters to update the current one
+   */
+  updateClusterList() {
+    // Requests an updated clusters list
+    this.backend.getClusters(this.organizationId)
+    .subscribe(response => {
+        if (response.clusters && response.clusters.length) {
+          response.clusters.forEach(cluster => {
+            cluster.total_nodes = parseInt(cluster.total_nodes, 10);
+          });
+          this.clusters = response.clusters;
+        } else {
+          this.clusters = [];
+        }
+        if (!this.loadedData) {
+          this.loadedData = true;
+        }
+        this.clusters.forEach(cluster => {
+          this.preventEmptyFields(cluster);
+        });
+    }, errorResponse => {
+      this.loadedData = true;
+      this.requestError = errorResponse.error.message;
+    });
   }
 
   /**
@@ -728,6 +766,105 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.router.navigate(['/applications/instance/' + app.app_instance_id]);
     }
   }
+  /**
+   * Triggers the navigation to registered app detailed view
+   * @param app Registered app data
+   */
+  goToRegisteredView(app): void {
+    this.router.navigate(['/applications/registered/' + app.app_descriptor_id]);
+  }
+
+  /**
+   * Opens application instances context menu
+   * @param instance application instances
+   */
+  openInstanceContextualMenu(event, instance: any) {
+    event.stopPropagation();
+    if (instance.app_instance_id === this.activeContextMenuId) {
+      this.activeContextMenuId = '';
+    } else {
+      this.activeContextMenuId = instance.app_instance_id;
+    }
+  }
+  onInstanceContextualMenuClose(instance) {
+    this.activeContextMenuId = '';
+  }
+
+  /**
+   * Get the application instances options to show in the context menu
+   * @param instance application instances
+   */
+  getInstanceOptions(instance: any) {
+    const instanceOptions = [];
+    const instanceOption1 = {
+      name: 'Undeploy',
+      action: (applicationInstance: any) => {
+        this.undeploy(applicationInstance);
+      },
+      instance: instance
+    };
+    const instanceOption2 = {
+      name: 'More info',
+      action: (applicationInstance: any) => {
+        this.goToInstanceView(applicationInstance);
+      },
+      instance: instance
+    };
+    instanceOptions.push(instanceOption1);
+    instanceOptions.push(instanceOption2);
+    return instanceOptions;
+  }
+
+  /**
+   * Opens registered apps context menu
+   * @param registered registered app
+   */
+  openRegisteredContextualMenu(event, registered: any) {
+    event.stopPropagation();
+    if (registered.app_descriptor_id === this.activeContextMenuId) {
+      this.activeContextMenuId = '';
+    } else {
+      this.activeContextMenuId = registered.app_descriptor_id;
+    }
+  }
+
+  onRegisteredContextualMenuClose(registered) {
+    this.activeContextMenuId = '';
+  }
+
+  /**
+   * Get the registered app options to show in the context menu
+   * @param registered registered app
+   */
+  getRegisteredOptions(registered: any) {
+    const registeredOptions = [];
+    const registeredOption1 = {
+      name: 'Deploy registered',
+      action: (registeredApp: any) => {
+        this.deployRegistered(registeredApp);
+      },
+      registered: registered
+    };
+    const registeredOption2 = {
+      name: 'Delete app',
+      action: (registeredApp: any) => {
+        this.deleteApp(registeredApp);
+      },
+      registered: registered
+    };
+    const registeredOption3 = {
+      name: 'More info',
+      action: (registeredApp: any) => {
+        this.goToRegisteredView(registeredApp);
+      },
+      registered: registered
+    };
+    registeredOptions.push(registeredOption1);
+    registeredOptions.push(registeredOption2);
+    registeredOptions.push(registeredOption3);
+    return registeredOptions;
+  }
+
 
   searchInGraph() {
     

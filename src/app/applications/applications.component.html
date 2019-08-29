@@ -214,11 +214,20 @@
                 </td>
                 <td class="col-2 text-center">
                   <button 
-                    (click)="undeploy(app)"
-                    tooltip="Undeploy" 
-                    placement="left" 
-                    class="action-btn-grey position-relative">
+                    (click)="openInstanceContextualMenu($event, app)"
+                    [ngClass]=
+                      "{
+                        'action-btn-grey': app.app_instance_id !== activeContextMenuId,
+                        'action-btn-grey-selected': app.app_instance_id === activeContextMenuId
+                      }" 
+                    class="action-btn-grey position-relative"
+                    >
                     <i class="material-icons i-black">more_vert</i>
+                    <app-contextual-menu 
+                      [visible]="app.app_instance_id === activeContextMenuId" 
+                      [options]="getInstanceOptions(app)"
+                      (closed)="onInstanceContextualMenuClose(app)">
+                    </app-contextual-menu>
                   </button>
                 </td>
               </tr>
@@ -341,8 +350,21 @@
                   {{getServicesCount(app)}}
                 </td>
                 <td class="col-2 actions-col">
-                  <button class="action-btn-grey position-relative">
+                  <button 
+                    (click)="openRegisteredContextualMenu($event, app)"
+                    [ngClass]=
+                      "{
+                        'action-btn-grey': app.app_descriptor_id !== activeContextMenuId,
+                        'action-btn-grey-selected': app.app_descriptor_id === activeContextMenuId
+                      }" 
+                    class="action-btn-grey position-relative"
+                    >
                     <i class="material-icons i-black">more_vert</i>
+                    <app-contextual-menu 
+                      [visible]="app.app_descriptor_id === activeContextMenuId" 
+                      [options]="getRegisteredOptions(app)"
+                      (closed)="onRegisteredContextualMenuClose(app)">
+                    </app-contextual-menu>
                   </button>
                 </td>
               </tr>
@@ -474,8 +496,8 @@
         </div>
         <!-- Sorting mesages -->
         <div class="row row-sorting-lg"> 
-          <div class="col-7">  
-              <p *ngIf="searchTerm && !filterField" class="sorting-message">
+          <div class="col-12">  
+              <p *ngIf="searchTerm && !filterField" class="sorting-message text-right">
                   Filtered by term "{{ searchTerm }}".
                   <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
                 </p>
