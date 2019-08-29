@@ -501,7 +501,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Transforms the data needed to create the grapho
    */
-  toGraphData() {
+  toGraphData(searchTerm?: string) {
     this.graphData = {
       nodes: [],
       links: []
@@ -511,7 +511,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         id: cluster.cluster_id,
         label: cluster.name,
         tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
-        color: this.getNodeColor(cluster.status_name),
+        color: (searchTerm && cluster.name.includes(searchTerm)) ? '#FABADA' : this.getNodeColor(cluster.status_name),
         text: this.getNodeTextColor(cluster.status_name),
         group: cluster.cluster_id,
         customHeight: CUSTOM_HEIGHT_CLUSTERS
@@ -524,12 +524,13 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           id: cluster.cluster_id + '-s-' + instance.app_instance_id,
           label: instance.name,
           tooltip: 'APP ' + instance.name + ': ' + this.getBeautyStatusName(instance.status_name),
-          color: this.getNodeColor(instance.status_name),
+          color: (searchTerm && instance.name.includes(searchTerm)) ? '#FABADA' : this.getNodeColor(cluster.status_name),
           text: this.getNodeTextColor(cluster.status_name),
           group: cluster.cluster_id,
           customHeight: CUSTOM_HEIGHT_INSTANCES
         };
         this.graphData.nodes.push(nodeInstance);
+
         this.graphData.links.push({
           source: cluster.cluster_id,
           target: cluster.cluster_id + '-s-' + instance.app_instance_id
@@ -572,22 +573,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Return if the marker is required
-   * @param link Link object
-   */
-  getMarker(link) {
-    const index = this.graphData.nodes.map(x => x.id).indexOf(link.source);
-    if (index !== -1) {
-      if (this.graphData.nodes[index].id === this.graphData.nodes[index].group) {
-        return '';
-      } else {
-        return 'url(#arrow)';
-      }
-    }
-    return 'url(#arrow)';
-  }
-
-  /**
    * Filters the backend incoming status to display it in removing the initial "service_"
    * @param rawStatus string containing the status that the backend is sending
    */
@@ -606,8 +591,12 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     return this.getAppsInCluster(clusterId).length;
   }
 
+  /**
+   * It modifies the graph, changing the border of the nodes that its labels contain the search term
+   */
   searchInGraph() {
-    console.log('clicked on search in graph');
+    this.graphDataLoaded = false;
+    this.toGraphData(this.searchTermClusters);
   }
 
   /**
