@@ -4,14 +4,26 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { NotificationsService } from '../services/notifications.service';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
 import { EditClusterComponent } from '../edit-cluster/edit-cluster.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Cluster } from '../definitions/interfaces/cluster';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import * as shape from 'd3-shape';
+import { Subscription, timer } from 'rxjs';
 
+/**
+ * Refresh ratio
+ */
+const REFRESH_INTERVAL = 20000;
+/**
+ * It sets a height for clusters nodes in the graph
+ */
+const CUSTOM_HEIGHT_CLUSTERS = 58;
+/**
+ * It sets a height for instances nodes in the graph
+ */
+const CUSTOM_HEIGHT_INSTANCES = 32;
 
 @Component({
   selector: 'app-resources',
@@ -72,12 +84,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Holds the reference of the interval that refreshes the lists
    */
-  refreshIntervalRef: any;
-
-  /**
-   * Refresh ratio
-   */
-  REFRESH_INTERVAL = 200000000;
+  refreshIntervalRef: Subscription;
 
   /**
    * Hold request error message or undefined
@@ -168,9 +175,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
-    private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService,
-  ) {
+    private mockupBackendService: MockupBackendService) {
     const mock = localStorage.getItem(LocalStorageKeys.resourcesMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -231,40 +236,13 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         .subscribe(summary => {
             this.clustersCount = summary['total_clusters'] || 0 ;
         });
-        this.updateClusterList();
-        this.updateAppInstances(this.organizationId);
-        this.refreshIntervalRef = setInterval(() => {
-          //  Request cluster list
-          this.updateClusterList();
-          this.updateAppInstances(this.organizationId);
-        }, this.REFRESH_INTERVAL);
+        this.setGraph();
       }
     }
   }
 
   ngOnDestroy() {
-    clearInterval(this.refreshIntervalRef);
-  }
-
-  /**
-   * Updates instances array
-   * @param organizationId Organization identifier
-   */
-  updateAppInstances(organizationId: string) {
-    if (organizationId !== null) {
-      // Request to get apps instances
-      this.backend.getInstances(this.organizationId)
-      .subscribe(response => {
-          this.instances = response.instances || [];
-          if (!this.loadedData) {
-            this.loadedData = true;
-          }
-          this.toGraphData();
-      }, errorResponse => {
-        this.loadedData = true;
-        this.requestError = errorResponse.error.message;
-      });
-    }
+    this.refreshIntervalRef.unsubscribe();
   }
 
   /**
@@ -536,12 +514,11 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         color: this.getNodeColor(cluster.status_name),
         text: this.getNodeTextColor(cluster.status_name),
         group: cluster.cluster_id,
-        customHeight: 58
+        customHeight: CUSTOM_HEIGHT_CLUSTERS
       };
       this.graphData.nodes.push(nodeGroup);
 
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
-
       instancesInCluster.forEach(instance => {
         const nodeInstance = {
           id: cluster.cluster_id + '-s-' + instance.app_instance_id,
@@ -550,7 +527,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           color: this.getNodeColor(instance.status_name),
           text: this.getNodeTextColor(cluster.status_name),
           group: cluster.cluster_id,
-          customHeight: 32
+          customHeight: CUSTOM_HEIGHT_INSTANCES
         };
         this.graphData.nodes.push(nodeInstance);
         this.graphData.links.push({
@@ -611,20 +588,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Adds https in case of being required
-   * @param endpoint String containing the endpoint
-   */
-  getEndpointHref(endpoint: string) {
-    let URL = '';
-    if (!endpoint.startsWith('http') && !endpoint.startsWith('https')) {
-      URL = 'http://' + endpoint;
-    } else {
-      URL = endpoint;
-    }
-    return URL;
-  }
-
-  /**
    * Filters the backend incoming status to display it in removing the initial "service_"
    * @param rawStatus string containing the status that the backend is sending
    */
@@ -633,26 +596,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       return rawStatus.substring('service_'.length, rawStatus.length);
     }
     return rawStatus;
-  }
-
-  /**
-   * It returns filtered app instances by cluster ID
-   * @param clusterId Identifier for the cluster
-   */
-  getAppsInCluster(clusterId: string) {
-    const appsInCluster = [];
-    for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
-      const groups = this.instances[indexInstance].groups || [];
-        for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
-          const serviceInstances = groups[indexGroup].service_instances || [];
-          for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
-            if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
-              appsInCluster.push(this.instances[indexInstance]);
-            }
-          }
-      }
-    }
-    return appsInCluster;
   }
 
   /**
@@ -665,5 +608,61 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 
   searchInGraph() {
     console.log('clicked on search in graph');
+  }
+
+  /**
+   * It returns filtered app instances avoiding duplicated instances by cluster ID
+   * @param clusterId Identifier for the cluster
+   */
+  private getAppsInCluster(clusterId: string) {
+    const appsInCluster = [];
+    for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
+      const groups = this.instances[indexInstance].groups || [];
+      for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
+        const serviceInstances = groups[indexGroup].service_instances || [];
+        for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
+          if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
+            appsInCluster.push(this.instances[indexInstance]);
+          }
+        }
+      }
+    }
+    const uniqueAppsInCluster = appsInCluster.reduce((arr, item) => {
+      const exists = !!arr.find(app => app.app_instance_id === item.app_instance_id);
+      if (!exists) {
+        arr.push(item);
+      }
+      return arr;
+    }, []);
+    return uniqueAppsInCluster;
+  }
+
+  /**
+   * It generates the graph and it updates considering the REFRESH_INTERVAL
+   */
+  private setGraph() {
+    this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
+      Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
+        this.backend.getInstances(this.organizationId).toPromise()])
+          .then(([clusters, instances]) => {
+            clusters.clusters.forEach(cluster => {
+              cluster.total_nodes = parseInt(cluster.total_nodes, 10);
+            });
+            this.clusters = clusters.clusters;
+            this.instances = instances.instances;
+            this.clusters.forEach(cluster => {
+              this.preventEmptyFields(cluster);
+            });
+            this.updatePieChartStats(this.clusters);
+            if (!this.loadedData) {
+              this.loadedData = true;
+            }
+            this.toGraphData();
+          })
+          .catch(errorResponse => {
+            this.loadedData = false;
+            this.requestError = errorResponse.error.message;
+          });
+    });
   }
 }

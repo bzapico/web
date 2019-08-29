@@ -281,7 +281,7 @@
           <!-- Cluster-apps graph -->
           <div class="col-12">
             <div    
-              *ngIf="graphData.nodes.length > 0 && graphData.links.length > 0" 
+              *ngIf="graphDataLoaded"
               class="graph">
               <ngx-graph
                 [view]="view"
