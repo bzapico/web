@@ -156,6 +156,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Model that hold the search term in search box
    */
   searchTerm: string;
+  searchTermGraph: string;
 
   /**
    * Model that hold the quick filter
@@ -166,6 +167,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
+  filterFieldApplications: boolean;
 
   /**
    *  Active List reference
@@ -206,10 +208,13 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
      this.sortedBy = '';
      this.reverse = false;
      this.searchTerm = '';
+     this.searchTermGraph = '';
      this.showInstances = true;
+     this.quickFilter = '';
 
      // Filter field
      this.filterField = false;
+     this.filterFieldApplications = false;
 
     /**
      * Charts reference init
@@ -479,13 +484,17 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   /**
    * Sortby pipe in the component
    */
-  setOrder(categoryName: string) {
-    if (this.sortedBy === categoryName) {
-      this.reverse = !this.reverse;
-      this.filterField = false;
+  setOrder(list: string, categoryName: string) {
+    if (list === 'apps') {
+      if (this.sortedBy === categoryName) {
+        this.reverse = !this.reverse;
+        this.filterField = false;
+      }
+      this.sortedBy = categoryName;
+      this.filterField = true;
+    } else if (list === 'graph') {
+      this.filterFieldApplications = true;
     }
-    this.sortedBy = categoryName;
-    this.filterField = true;
   }
 
   /**
@@ -502,27 +511,32 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   /**
    * Reset all the filters fields
    */
-  resetFilters() {
-    this.filterField = false;
-    this.searchTerm = '';
-    this.sortedBy = '';
+  resetFilters(list: string) {
+    if (list === 'apps') {
+      this.filterField = false;
+      this.searchTerm = '';
+      this.sortedBy = '';
+    } else if (list === 'graph') {
+      this.searchTermGraph = '';
+      this.quickFilter = '';
+    }
   }
 
   /**
    * Gets the category headers to add a class
    * @param categoryName class for the header category
    */
-    getCategoryCSSClass(categoryName: string) {
-      if (this.sortedBy === '') {
-        return 'default';
-      } else {
-        if (this.sortedBy === categoryName) {
-          return 'enabled';
-        } else if (this.sortedBy !== categoryName) {
-          return 'disabled';
-        }
+  getCategoryCSSClass(categoryName: string) {
+    if (this.sortedBy === '') {
+      return 'default';
+    } else {
+      if (this.sortedBy === categoryName) {
+        return 'enabled';
+      } else if (this.sortedBy !== categoryName) {
+        return 'disabled';
       }
     }
+  }
 
   /**
    * Changes to active list
@@ -551,7 +565,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.modalService.onHide.subscribe((reason: string) => {
       this.updateRegisteredInstances(this.organizationId);
     } );
-
   }
 
   /**
@@ -644,11 +657,35 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param app selected app
    */
   getServicesCount(app) {
+
     let temporalCount = 0;
     app.groups.forEach(group => {
       temporalCount = group.services.length + temporalCount;
     });
     return temporalCount;
+  }
+
+  /**
+   * Returns the length of the instances in registered list. Represents the number of available app instances
+   * @param appId selected app
+   */
+  getInstancesCount(appId) {
+    let counter = 0;
+
+    for (let index = 0; index < this.instances.length; index++) {
+      const element = this.instances[index];
+      if (element.app_descriptor_id === appId) {
+
+      }
+    }
+
+    this.instances.forEach(instance => {
+      if (instance.app_descriptor_id === appId) {
+
+        return counter++;
+      }
+    });
+    return 0;
   }
 
   /**
@@ -786,9 +823,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.activeContextMenuId = instance.app_instance_id;
     }
   }
-  onInstanceContextualMenuClose(instance) {
-    this.activeContextMenuId = '';
-  }
 
   /**
    * Get the application instances options to show in the context menu
@@ -799,14 +833,14 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     const instanceOption1 = {
       name: 'Undeploy',
       action: (applicationInstance: any) => {
-        this.undeploy(applicationInstance);
+        this.undeploy(instance);
       },
       instance: instance
     };
     const instanceOption2 = {
       name: 'More info',
       action: (applicationInstance: any) => {
-        this.goToInstanceView(applicationInstance);
+        this.goToInstanceView(instance);
       },
       instance: instance
     };
@@ -828,7 +862,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     }
   }
 
-  onRegisteredContextualMenuClose(registered) {
+  /**
+   * Empties the active menu Id to close the contextual menu component
+   */
+  onContextualMenuClose() {
     this.activeContextMenuId = '';
   }
 
@@ -841,21 +878,21 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     const registeredOption1 = {
       name: 'Deploy registered',
       action: (registeredApp: any) => {
-        this.deployRegistered(registeredApp);
+        this.deployRegistered(registered);
       },
       registered: registered
     };
     const registeredOption2 = {
       name: 'Delete app',
       action: (registeredApp: any) => {
-        this.deleteApp(registeredApp);
+        this.deleteApp(registered);
       },
       registered: registered
     };
     const registeredOption3 = {
       name: 'More info',
       action: (registeredApp: any) => {
-        this.goToRegisteredView(registeredApp);
+        this.goToRegisteredView(registered);
       },
       registered: registered
     };
@@ -866,7 +903,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
 
+  /**
+   * Search a specific term in graph
+   */
   searchInGraph() {
-    
+   // this.searchTermGraph = '';
+
   }
 }

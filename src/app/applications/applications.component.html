@@ -226,7 +226,7 @@
                     <app-contextual-menu 
                       [visible]="app.app_instance_id === activeContextMenuId" 
                       [options]="getInstanceOptions(app)"
-                      (closed)="onInstanceContextualMenuClose(app)">
+                      (closed)="onContextualMenuClose()">
                     </app-contextual-menu>
                   </button>
                 </td>
@@ -363,7 +363,7 @@
                     <app-contextual-menu 
                       [visible]="app.app_descriptor_id === activeContextMenuId" 
                       [options]="getRegisteredOptions(app)"
-                      (closed)="onRegisteredContextualMenuClose(app)">
+                      (closed)="onContextualMenuClose()">
                     </app-contextual-menu>
                   </button>
                 </td>
@@ -478,9 +478,9 @@
           <div class="col-5">
             <form class="graph-search-box">
               <input 
-                [(ngModel)]="searchTermApplications"
+                [(ngModel)]="searchTermGraph"
                 type="text" 
-                name="searchTermApplications"
+                name="searchTermGraph"
                 placeholder="Search..."
                 class="form-control"> 
               <span class="search-button"> 
@@ -497,19 +497,19 @@
         <!-- Sorting mesages -->
         <div class="row row-sorting-lg"> 
           <div class="col-12">  
-            <p *ngIf="searchTermApplications && !filterField && !quickFilter" class="sorting-message text-right">
-              Filtered by term "{{ searchTermApplications }}".
+            <p *ngIf="searchTermGraph && !quickFilter" class="sorting-message text-right">
+              Filtered by term "{{ searchTermGraph }}".
               <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
             </p>
-            <p *ngIf="quickFilter && !filterField && !searchTermApplications" class="sorting-message text-right">
+            <p *ngIf="quickFilter && !searchTermGraph" class="sorting-message text-right">
               Filtered by {{ quickFilter }}.
               <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
             </p> 
-            <p *ngIf="quickFilter && searchTermApplications && !filterField" class="sorting-message text-right">
-              Filtered by term "{{ searchTermApplications }}" and by {{ quickFilter }}.
+            <p *ngIf="quickFilter && searchTermGraph" class="sorting-message text-right">
+              Filtered by term "{{ searchTermGraph }}" and by {{ quickFilter }}.
               <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
             </p> 
-            <p *ngIf="!searchTermApplications && !filterField && !quickFilter" class="sorting-message"></p>
+            <p *ngIf="!searchTermGraph && !quickFilter" class="sorting-message"></p>
           </div>
         </div>
         <div class="row h-100">
