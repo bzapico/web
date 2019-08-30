@@ -924,7 +924,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         const serviceInstances = groups[indexGroup].service_instances || [];
         for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
           if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
-            appsInCluster[this.instances[indexInstance].app_instance_id] = this.instances[indexInstance];
+            appsInCluster[serviceInstances[indexService].service_instance_id] = serviceInstances[indexService];
           }
         }
       }
@@ -956,7 +956,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
         const nodeInstance = {
-          id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
+          id: cluster.cluster_id + '-s-' + instance['service_instance_id'],
           label: instance['name'],
           tooltip: 'APP ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
           color: this.getNodeColor(cluster.status_name),
@@ -969,8 +969,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         this.graphData.nodes.push(nodeInstance);
 
         this.graphData.links.push({
-          source: cluster.cluster_id,
-          target: cluster.cluster_id + '-s-' + instance['app_instance_id']
+          source: cluster.cluster_id + '-s-' + instance['service_instance_id'],
+          target: cluster.cluster_id
         });
       });
     });
