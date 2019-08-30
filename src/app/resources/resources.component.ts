@@ -511,10 +511,12 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         id: cluster.cluster_id,
         label: cluster.name,
         tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
-        color: (searchTerm && cluster.name.includes(searchTerm)) ? '#FABADA' : this.getNodeColor(cluster.status_name),
+        color: this.getNodeColor(cluster.status_name),
         text: this.getNodeTextColor(cluster.status_name),
         group: cluster.cluster_id,
-        customHeight: CUSTOM_HEIGHT_CLUSTERS
+        customHeight: CUSTOM_HEIGHT_CLUSTERS,
+        customBorderColor: (searchTerm && cluster.name.includes(searchTerm)) ? '#FF00D3' : '',
+        customBorderWidth: (searchTerm && cluster.name.includes(searchTerm)) ? '2' : ''
       };
       this.graphData.nodes.push(nodeGroup);
 
@@ -524,10 +526,12 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
           label: instance['name'],
           tooltip: 'APP ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
-          color: (searchTerm && instance['name'].includes(searchTerm)) ? '#FABADA' : this.getNodeColor(cluster.status_name),
+          color: this.getNodeColor(cluster.status_name),
           text: this.getNodeTextColor(cluster.status_name),
           group: cluster.cluster_id,
-          customHeight: CUSTOM_HEIGHT_INSTANCES
+          customHeight: CUSTOM_HEIGHT_INSTANCES,
+          customBorderColor: (searchTerm && instance['name'].includes(searchTerm)) ? '#FF00D3' : '',
+          customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? '2' : ''
         };
         this.graphData.nodes.push(nodeInstance);
 
