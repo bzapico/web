@@ -11,6 +11,21 @@ import { AddLabelComponent } from '../add-label/add-label.component';
 import { RegisterApplicationComponent } from '../register-application/register-application.component';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 import { Router } from '@angular/router';
+import * as shape from 'd3-shape';
+import { Subscription, timer } from 'rxjs';
+
+/**
+ * Refresh ratio
+ */
+const REFRESH_INTERVAL = 20000;
+/**
+ * It sets a height for clusters nodes in the graph
+ */
+const CUSTOM_HEIGHT_CLUSTERS = 58;
+/**
+ * It sets a height for instances nodes in the graph
+ */
+const CUSTOM_HEIGHT_INSTANCES = 32;
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -71,14 +86,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   countRegistered: number;
 
   /**
-   * Interval reference
+   * Holds the reference of the interval that refreshes the lists
    */
-  refreshIntervalRef: any;
-
-  /**
-   * Refresh ratio reference
-   */
-  REFRESH_RATIO = 20000; // 20 seconds
+  refreshIntervalRef: Subscription;
 
   /**
    * Charts references
@@ -117,33 +127,36 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   ];
 
   /**
-   * Line Chart options
-   */
-  showXAxis = true;
-  showYAxis = true;
-  showXAxisLabel = false;
-  showYAxisLabel = false;
-  showGridLines = true;
-  showRefLines = true;
-  showRefLabels = false;
-  schemeType = 'ordinal';
-  rangeFillOpacity = 0.0;
-  referenceLines = [
-    {
-      name: 'xline',
-      value: 0
-    }
-  ];
-
-  /**
    * Graph options
    */
+  graphReset: boolean;
   graphDataLoaded: boolean;
+  showlegend: boolean;
+  graphData: any;
+  orientation: string;
+  curve: any;
+  autoZoom: boolean;
+  autoCenter: boolean;
+  enableZoom: boolean;
+  colorSchemeGraph: any;
+  view: any[];
+  width: number;
+  height: string;
+  draggingEnabled: boolean;
+  STATUS_COLORS = {
+    RUNNING: '#00E6A0',
+    ERROR: '#F7478A',
+    OTHER: '#FFEB6C'
+  };
+  STATUS_TEXT_COLORS = {
+    RUNNING: '#FFFFFF',
+    ERROR: '#FFFFFF',
+    OTHER: '#444444'
+  };
 
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
-  instancesTimelineChart: any;
   instancesPieChart: any;
 
   /**
@@ -216,6 +229,24 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
      this.filterField = false;
      this.filterFieldApplications = false;
 
+    // Graph initialization
+    this.graphReset = false;
+    this.showlegend = false;
+    this.orientation = 'TB';
+    this.curve = shape.curveBasis;
+    this.autoZoom = true;
+    this.autoCenter = true;
+    this.enableZoom = true;
+    this.draggingEnabled = false;
+    this.colorSchemeGraph = {
+      domain: ['#6C86F7']
+    };
+    this.graphDataLoaded = false;
+    this.graphData = {
+      nodes: [],
+      links: []
+    };
+
     /**
      * Charts reference init
      */
@@ -227,19 +258,17 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
+      if (this.organizationId !== null) {
         this.updateAppInstances(this.organizationId);
         this.updateRegisteredInstances(this.organizationId);
         this.updateClusterList();
-        this.refreshIntervalRef = setInterval(() => {
-          this.updateAppInstances(this.organizationId);
-          this.updateRegisteredInstances(this.organizationId);
-          this.updateClusterList();
-        }, this.REFRESH_RATIO); // Refresh each 60 seconds
+      }
+      this.setGraph();
     }
   }
 
   ngOnDestroy() {
-    clearInterval(this.refreshIntervalRef);
+    this.refreshIntervalRef.unsubscribe();
   }
 
   /**
@@ -269,7 +298,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           // End of temporal workaround
           this.instances = response.instances || [];
           this.updatePieChartStats(this.instances);
-          this.updateRunningAppsLineChart(this.instances);
           if (!this.loadedData) {
             this.loadedData = true;
           }
@@ -336,40 +364,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.countRunning = running;
       this.instancesPieChart = this.generateSummaryChartData(this.countRunning, instances.length);
     }
-  }
-
-  /**
-   * Updates timeline chart
-   * @param instances Instances array
-   */
-  updateRunningAppsLineChart(instances) {
-    let runningAppsCount = 0;
-    instances.forEach(instance => {
-      if (instance && instance.status_name.toLowerCase() === 'running') {
-        runningAppsCount += 1;
-      }
-    });
-
-    const now = new Date(Date.now());
-    let minutes: any = now.getMinutes();
-    let seconds: any = now.getSeconds();
-    if (minutes < 10) {
-      minutes = '0' + now.getMinutes();
-    }
-    if (seconds < 10) {
-      seconds = '0' + now.getSeconds();
-    }
-    const entry = {
-      'value': runningAppsCount / instances.length * 100,
-      'name':  now.getHours() + ':' + minutes + ':' + seconds
-    };
-
-    if (this.appsChart[0].series.length > 5) {
-      // Removes first element
-      this.appsChart[0].series.shift();
-    }
-    this.appsChart[0].series.push(entry);
-    this.appsChart = [...this.appsChart];
   }
 
   /**
@@ -904,10 +898,143 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
 
   /**
-   * Search a specific term in graph
+   * It modifies the graph, changing the border of the nodes that its labels contain the search term
    */
   searchInGraph() {
-   // this.searchTermGraph = '';
+    this.graphDataLoaded = false;
+    this.toGraphData(this.searchTermGraph);
+  }
 
+  /**
+   * It returns filtered app instances avoiding duplicated instances by cluster ID
+   * @param clusterId Identifier for the cluster
+   */
+  private getAppsInCluster(clusterId: string) {
+    const appsInCluster = {};
+    for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
+      const groups = this.instances[indexInstance].groups || [];
+      for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
+        const serviceInstances = groups[indexGroup].service_instances || [];
+        for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
+          if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
+            appsInCluster[this.instances[indexInstance].app_instance_id] = this.instances[indexInstance];
+          }
+        }
+      }
+    }
+    return Object.values(appsInCluster);
+  }
+  /**
+   * Transforms the data needed to create the grapho
+   */
+  toGraphData(searchTerm?: string) {
+    this.graphData = {
+      nodes: [],
+      links: []
+    };
+    this.clusters.forEach(cluster => {
+      const nodeGroup = {
+        id: cluster.cluster_id,
+        label: cluster.name,
+        tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
+        color: (searchTerm && cluster.name.includes(searchTerm)) ? '#FABADA' : this.getNodeColor(cluster.status_name),
+        text: this.getNodeTextColor(cluster.status_name),
+        group: cluster.cluster_id,
+        customHeight: CUSTOM_HEIGHT_CLUSTERS
+      };
+      this.graphData.nodes.push(nodeGroup);
+
+      const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
+      instancesInCluster.forEach(instance => {
+        const nodeInstance = {
+          id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
+          label: instance['name'],
+          tooltip: 'APP ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
+          color: (searchTerm && instance['name'].includes(searchTerm)) ? '#FABADA' : this.getNodeColor(cluster.status_name),
+          text: this.getNodeTextColor(cluster.status_name),
+          group: cluster.cluster_id,
+          customHeight: CUSTOM_HEIGHT_INSTANCES
+        };
+        this.graphData.nodes.push(nodeInstance);
+
+        this.graphData.links.push({
+          source: cluster.cluster_id,
+          target: cluster.cluster_id + '-s-' + instance['app_instance_id']
+        });
+      });
+    });
+    this.graphDataLoaded = true;
+  }
+
+  /**
+   * Return an specific color depending on the node status
+   * @param status Status name
+   */
+  getNodeColor(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'running':
+        return this.STATUS_COLORS.RUNNING;
+      case 'error':
+        return this.STATUS_COLORS.ERROR;
+      case 'deployment_error':
+        return this.STATUS_COLORS.ERROR;
+      default:
+        return this.STATUS_COLORS.OTHER;
+    }
+  }
+
+  /**
+   * Return an specific text color depending on the node status
+   * @param status Status name
+   */
+  getNodeTextColor(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'running':
+        return this.STATUS_TEXT_COLORS.RUNNING;
+      case 'error':
+        return this.STATUS_TEXT_COLORS.ERROR;
+      default:
+        return this.STATUS_TEXT_COLORS.OTHER;
+    }
+  }
+
+  /**
+   * Filters the backend incoming status to display it in removing the initial "service_"
+   * @param rawStatus string containing the status that the backend is sending
+   */
+  getBeautyStatusName (rawStatus: string): string {
+    if (rawStatus.toLowerCase().startsWith('service_')) {
+      return rawStatus.substring('service_'.length, rawStatus.length);
+    }
+    return rawStatus;
+  }
+
+  /**
+   * It generates the graph and it updates considering the REFRESH_INTERVAL
+   */
+  private setGraph() {
+    this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
+      Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
+        this.backend.getInstances(this.organizationId).toPromise()])
+          .then(([clusters, instances]) => {
+            clusters.clusters.forEach(cluster => {
+              cluster.total_nodes = parseInt(cluster.total_nodes, 10);
+            });
+            this.clusters = clusters.clusters;
+            this.instances = instances.instances;
+            this.clusters.forEach(cluster => {
+              this.preventEmptyFields(cluster);
+            });
+            this.updatePieChartStats(this.clusters);
+            if (!this.loadedData) {
+              this.loadedData = true;
+            }
+            this.toGraphData();
+          })
+          .catch(errorResponse => {
+            this.loadedData = false;
+            this.requestError = errorResponse.error.message;
+          });
+    });
   }
 }

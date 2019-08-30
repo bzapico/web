@@ -512,14 +512,52 @@
             <p *ngIf="!searchTermGraph && !quickFilter" class="sorting-message"></p>
           </div>
         </div>
+        <!-- Cluster-apps graph -->
         <div class="row h-100">
           <div class="col-12">
-            <div class="graph">
+            <div    
+              *ngIf="graphDataLoaded"
+              class="graph">
+              <ngx-graph
+                [view]="view"
+                [links]="graphData.links"
+                [nodes]="graphData.nodes"
+                [scheme]="colorSchemeGraph"
+                [orientation]="orientation"
+                [autoZoom]="autoZoom"
+                [autoCenter]="autoCenter"
+                [curve]="curve"
+                [enableZoom]="enableZoom"
+                class="chart-container">
+                <ng-template #nodeTemplate let-node>
+                  <svg:g
+                    class="node"
+                    ngx-tooltip
+                    [tooltipPlacement]="'top'"
+                    [tooltipType]="'tooltip'"
+                    [tooltipTitle]="node.tooltip">
+                    <svg:rect
+                      [attr.width]="node.width"
+                      [attr.height]="node.customHeight"
+                      [attr.fill]="node.color"
+                      rx="14"
+                      ry="14"
+                    />
+                    <svg:text
+                      [attr.fill]="node.text"
+                      alignment-baseline="central"
+                      [attr.x]="10"
+                      [attr.y]="node.height/2">
+                      {{node.label}}
+                    </svg:text>
+                  </svg:g>
+                </ng-template>
+              </ngx-graph>
             </div>
             <div *ngIf="!graphDataLoaded" class="loader"></div>
             <!-- No info to show -->
             <div *ngIf="graphDataLoaded && instances.length === 0" class="no-elements">
-              No available instances
+              No available clusters
             </div>
           </div>
         </div>
