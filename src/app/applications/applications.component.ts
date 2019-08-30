@@ -202,8 +202,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
-    private router: Router
-    ) {
+    private router: Router) {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -322,7 +321,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       // Request to get registered apps
       this.backend.getRegisteredApps(this.organizationId)
       .subscribe(response => {
-          this.registered = response.descriptors || [];
+        this.registered = response.descriptors || [];
       });
     }
   }
@@ -670,23 +669,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Returns the length of the instances in registered list. Represents the number of available app instances
    * @param appId selected app
    */
-  getInstancesCount(appId) {
+  getInstancesCount(app) {
     let counter = 0;
-
-    for (let index = 0; index < this.instances.length; index++) {
-      const element = this.instances[index];
-      if (element.app_descriptor_id === appId) {
-
-      }
+    for (let i = 0, groupsLength = app.groups.length; i < groupsLength; i++) {
+      counter += app.groups[i].services.length;
     }
-
-    this.instances.forEach(instance => {
-      if (instance.app_descriptor_id === appId) {
-
-        return counter++;
-      }
-    });
-    return 0;
+    return counter;
   }
 
   /**
