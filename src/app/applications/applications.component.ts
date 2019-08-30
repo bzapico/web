@@ -940,7 +940,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         color: (searchTerm && cluster.name.includes(searchTerm)) ? '#FABADA' : this.getNodeColor(cluster.status_name),
         text: this.getNodeTextColor(cluster.status_name),
         group: cluster.cluster_id,
-        customHeight: CUSTOM_HEIGHT_CLUSTERS
+        customHeight: CUSTOM_HEIGHT_CLUSTERS,
+        customBorderColor: (searchTerm && cluster.name.includes(searchTerm)) ? '#FF00D3' : '',
+        customBorderWidth: (searchTerm && cluster.name.includes(searchTerm)) ? '2' : ''
       };
       this.graphData.nodes.push(nodeGroup);
 
@@ -953,7 +955,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           color: (searchTerm && instance['name'].includes(searchTerm)) ? '#FABADA' : this.getNodeColor(cluster.status_name),
           text: this.getNodeTextColor(cluster.status_name),
           group: cluster.cluster_id,
-          customHeight: CUSTOM_HEIGHT_INSTANCES
+          customHeight: CUSTOM_HEIGHT_INSTANCES,
+          customBorderColor: (searchTerm && instance['name'].includes(searchTerm)) ? '#FF00D3' : '',
+          customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? '2' : ''
         };
         this.graphData.nodes.push(nodeInstance);
 
