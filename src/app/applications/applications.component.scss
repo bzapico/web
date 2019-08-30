@@ -135,9 +135,13 @@ $base-light-grey: #BFBFBF;
 }
 th.col-2.text-center.app-actions-initial-text {
     padding-right: 0px;
+    @include for-desktop-only {
+        padding-right: 15px;
+    }
 }
 th.instances-pcol-fix.default {
     padding: 0px;
+    
 }
 
 /* - - - Search box - - - */
@@ -292,13 +296,6 @@ th.instances-pcol-fix.default {
         margin-right: 3em;
     }
 }
-.status-dot-nalej,
-.status-dot:before,
-.status-dot-error:before,
-.status-dot-process:before {
-    margin: 0 9px 0 0;
-}
-
 /* - - - Quick filters  - - - */
 .quick-filters-box {
     background-color: $super-light-grey;

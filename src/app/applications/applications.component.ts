@@ -192,6 +192,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   activeContextMenuId: string;
 
+  /**
+   * Boolean variable for indicate when it is searching in the graph
+   */
+  isSearchingInGraph = false;
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -513,6 +518,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     } else if (list === 'graph') {
       this.searchTermGraph = '';
       this.quickFilter = '';
+      this.isSearchingInGraph = false;
+      this.toGraphData();
     }
   }
 
@@ -901,7 +908,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * It modifies the graph, changing the border of the nodes that its labels contain the search term
    */
   searchInGraph() {
-    this.graphDataLoaded = false;
+    this.isSearchingInGraph = true;
     this.toGraphData(this.searchTermGraph);
   }
 
@@ -937,7 +944,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         id: cluster.cluster_id,
         label: cluster.name,
         tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
-        color: (searchTerm && cluster.name.includes(searchTerm)) ? '#FABADA' : this.getNodeColor(cluster.status_name),
+        color: this.getNodeColor(cluster.status_name),
         text: this.getNodeTextColor(cluster.status_name),
         group: cluster.cluster_id,
         customHeight: CUSTOM_HEIGHT_CLUSTERS,
@@ -952,7 +959,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
           label: instance['name'],
           tooltip: 'APP ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
-          color: (searchTerm && instance['name'].includes(searchTerm)) ? '#FABADA' : this.getNodeColor(cluster.status_name),
+          color: this.getNodeColor(cluster.status_name),
           text: this.getNodeTextColor(cluster.status_name),
           group: cluster.cluster_id,
           customHeight: CUSTOM_HEIGHT_INSTANCES,
@@ -1018,27 +1025,29 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   private setGraph() {
     this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
-      Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
-        this.backend.getInstances(this.organizationId).toPromise()])
-          .then(([clusters, instances]) => {
-            clusters.clusters.forEach(cluster => {
-              cluster.total_nodes = parseInt(cluster.total_nodes, 10);
+      if (!this.isSearchingInGraph) {
+        Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
+          this.backend.getInstances(this.organizationId).toPromise()])
+            .then(([clusters, instances]) => {
+              clusters.clusters.forEach(cluster => {
+                cluster.total_nodes = parseInt(cluster.total_nodes, 10);
+              });
+              this.clusters = clusters.clusters;
+              this.instances = instances.instances;
+              this.clusters.forEach(cluster => {
+                this.preventEmptyFields(cluster);
+              });
+              this.updatePieChartStats(this.clusters);
+              if (!this.loadedData) {
+                this.loadedData = true;
+              }
+              this.toGraphData();
+            })
+            .catch(errorResponse => {
+              this.loadedData = false;
+              this.requestError = errorResponse.error.message;
             });
-            this.clusters = clusters.clusters;
-            this.instances = instances.instances;
-            this.clusters.forEach(cluster => {
-              this.preventEmptyFields(cluster);
-            });
-            this.updatePieChartStats(this.clusters);
-            if (!this.loadedData) {
-              this.loadedData = true;
-            }
-            this.toGraphData();
-          })
-          .catch(errorResponse => {
-            this.loadedData = false;
-            this.requestError = errorResponse.error.message;
-          });
+          }
     });
   }
 }
