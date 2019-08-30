@@ -521,10 +521,10 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
         const nodeInstance = {
-          id: cluster.cluster_id + '-s-' + instance.app_instance_id,
-          label: instance.name,
-          tooltip: 'APP ' + instance.name + ': ' + this.getBeautyStatusName(instance.status_name),
-          color: (searchTerm && instance.name.includes(searchTerm)) ? '#FABADA' : this.getNodeColor(cluster.status_name),
+          id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
+          label: instance['name'],
+          tooltip: 'APP ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
+          color: (searchTerm && instance['name'].includes(searchTerm)) ? '#FABADA' : this.getNodeColor(cluster.status_name),
           text: this.getNodeTextColor(cluster.status_name),
           group: cluster.cluster_id,
           customHeight: CUSTOM_HEIGHT_INSTANCES
@@ -533,7 +533,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 
         this.graphData.links.push({
           source: cluster.cluster_id,
-          target: cluster.cluster_id + '-s-' + instance.app_instance_id
+          target: cluster.cluster_id + '-s-' + instance['app_instance_id']
         });
       });
     });
@@ -584,11 +584,11 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Returns the lenght of app instances that are part of each cluster
+   * Returns the length of app instances that are part of each cluster
    * @param clusterId Identifier for the cluster
    */
   getAppsNumberInCluster(clusterId: string) {
-    return this.getAppsInCluster(clusterId).length;
+    return Object.keys(this.getAppsInCluster(clusterId)).length;
   }
 
   /**
@@ -604,26 +604,19 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * @param clusterId Identifier for the cluster
    */
   private getAppsInCluster(clusterId: string) {
-    const appsInCluster = [];
+    const appsInCluster = {};
     for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
       const groups = this.instances[indexInstance].groups || [];
       for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
         const serviceInstances = groups[indexGroup].service_instances || [];
         for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
           if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
-            appsInCluster.push(this.instances[indexInstance]);
+            appsInCluster[this.instances[indexInstance].app_instance_id] = this.instances[indexInstance];
           }
         }
       }
     }
-    const uniqueAppsInCluster = appsInCluster.reduce((arr, item) => {
-      const exists = !!arr.find(app => app.app_instance_id === item.app_instance_id);
-      if (!exists) {
-        arr.push(item);
-      }
-      return arr;
-    }, []);
-    return uniqueAppsInCluster;
+    return Object.values(appsInCluster);
   }
 
   /**
