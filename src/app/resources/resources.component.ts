@@ -172,6 +172,11 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   selectedLabels = [];
   entityId: boolean;
 
+  /**
+   * Boolean variable for indicate when it is searching in the graph
+   */
+  isSearchingInGraph = false;
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -367,6 +372,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       this.sortedBy = '';
     } else if (list === 'graph') {
       this.searchTermClusters = '';
+      this.isSearchingInGraph = false;
+      this.toGraphData();
     }
   }
 
@@ -599,7 +606,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * It modifies the graph, changing the border of the nodes that its labels contain the search term
    */
   searchInGraph() {
-    this.graphDataLoaded = false;
+    this.isSearchingInGraph = true;
     this.toGraphData(this.searchTermClusters);
   }
 
@@ -628,27 +635,29 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   private setGraph() {
     this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
-      Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
-        this.backend.getInstances(this.organizationId).toPromise()])
-          .then(([clusters, instances]) => {
-            clusters.clusters.forEach(cluster => {
-              cluster.total_nodes = parseInt(cluster.total_nodes, 10);
+      if (!this.isSearchingInGraph) {
+        Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
+          this.backend.getInstances(this.organizationId).toPromise()])
+            .then(([clusters, instances]) => {
+              clusters.clusters.forEach(cluster => {
+                cluster.total_nodes = parseInt(cluster.total_nodes, 10);
+              });
+              this.clusters = clusters.clusters;
+              this.instances = instances.instances;
+              this.clusters.forEach(cluster => {
+                this.preventEmptyFields(cluster);
+              });
+              this.updatePieChartStats(this.clusters);
+              if (!this.loadedData) {
+                this.loadedData = true;
+              }
+              this.toGraphData();
+            })
+            .catch(errorResponse => {
+              this.loadedData = false;
+              this.requestError = errorResponse.error.message;
             });
-            this.clusters = clusters.clusters;
-            this.instances = instances.instances;
-            this.clusters.forEach(cluster => {
-              this.preventEmptyFields(cluster);
-            });
-            this.updatePieChartStats(this.clusters);
-            if (!this.loadedData) {
-              this.loadedData = true;
-            }
-            this.toGraphData();
-          })
-          .catch(errorResponse => {
-            this.loadedData = false;
-            this.requestError = errorResponse.error.message;
-          });
+      }
     });
   }
 }
