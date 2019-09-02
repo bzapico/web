@@ -529,7 +529,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
-
         const nodeInstance = {
           id: instance['app_instance_id'],
           label: instance['name'],
@@ -542,11 +541,9 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? '2' : ''
         };
         const index = this.graphData.nodes.map(x => x.id).indexOf(nodeInstance.id);
-        console.log(index);
         if (index === -1) {
           this.graphData.nodes.push(nodeInstance);
         }
-
         this.graphData.links.push({
           source: cluster.cluster_id,
           target: instance['app_instance_id']
