@@ -236,18 +236,41 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
       if (this.organizationId !== null) {
-        // Requests top card summary data
-        this.backend.getResourcesSummary(this.organizationId)
-        .subscribe(summary => {
-            this.clustersCount = summary['total_clusters'] || 0 ;
-        });
-        this.setGraph();
+        this.refreshData();
       }
     }
   }
 
   ngOnDestroy() {
     this.refreshIntervalRef.unsubscribe();
+  }
+
+  /**
+   * It generates the graph and it updates considering the REFRESH_INTERVAL
+   */
+  private refreshData() {
+    this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
+    if (!this.isSearchingInGraph) {
+      Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
+        this.backend.getInstances(this.organizationId).toPromise(),
+        this.backend.getResourcesSummary(this.organizationId).toPromise(),
+      ])
+          .then(([clusters, instances, summary]) => {
+            this.clusters = clusters.clusters;
+            this.instances = instances.instances;
+            this.clustersCount = summary['total_clusters'] || 0 ;
+            if (!this.loadedData) {
+              this.loadedData = true;
+            }
+            this.updatePieChartStats(this.clusters);
+            this.toGraphData();
+          })
+          .catch(errorResponse => {
+            this.loadedData = false;
+            this.requestError = errorResponse.error.message;
+          });
+      }
+    });
   }
 
   /**
@@ -308,29 +331,29 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Requests an updated list of available clusters to update the current one
    */
   updateClusterList() {
-    // Requests an updated clusters list
-    this.backend.getClusters(this.organizationId)
-    .subscribe(response => {
-        if (response.clusters && response.clusters.length) {
-          response.clusters.forEach(cluster => {
-            cluster.total_nodes = parseInt(cluster.total_nodes, 10);
+      // Requests an updated clusters list
+      this.backend.getClusters(this.organizationId)
+      .subscribe(response => {
+          if (response.clusters && response.clusters.length) {
+            response.clusters.forEach(cluster => {
+              cluster.total_nodes = parseInt(cluster.total_nodes, 10);
+            });
+            this.clusters = response.clusters;
+          } else {
+            this.clusters = [];
+          }
+          if (!this.loadedData) {
+            this.loadedData = true;
+          }
+          this.clusters.forEach(cluster => {
+            this.preventEmptyFields(cluster);
           });
-          this.clusters = response.clusters;
-        } else {
-          this.clusters = [];
-        }
-        if (!this.loadedData) {
-          this.loadedData = true;
-        }
-        this.clusters.forEach(cluster => {
-          this.preventEmptyFields(cluster);
-        });
-        this.toGraphData();
-        this.updatePieChartStats(this.clusters);
-    }, errorResponse => {
-      this.loadedData = true;
-      this.requestError = errorResponse.error.message;
-    });
+          // this.toGraphData();
+          this.updatePieChartStats(this.clusters);
+      }, errorResponse => {
+        this.loadedData = true;
+        this.requestError = errorResponse.error.message;
+      });
   }
 
   /**
@@ -632,31 +655,5 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     return Object.values(appsInCluster);
   }
 
-  /**
-   * It generates the graph and it updates considering the REFRESH_INTERVAL
-   */
-  private setGraph() {
-    this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
-      if (!this.isSearchingInGraph) {
-        Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
-          this.backend.getInstances(this.organizationId).toPromise()])
-            .then(([clusters, instances]) => {
-              this.clusters = clusters.clusters;
-              this.instances = instances.instances;
-              this.clusters.forEach(cluster => {
-                this.preventEmptyFields(cluster);
-              });
-              this.updatePieChartStats(this.clusters);
-              if (!this.loadedData) {
-                this.loadedData = true;
-              }
-              this.toGraphData();
-            })
-            .catch(errorResponse => {
-              this.loadedData = false;
-              this.requestError = errorResponse.error.message;
-            });
-      }
-    });
-  }
+
 }
