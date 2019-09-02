@@ -26,6 +26,10 @@ const CUSTOM_HEIGHT_CLUSTERS = 58;
  * It sets a height for instances nodes in the graph
  */
 const CUSTOM_HEIGHT_INSTANCES = 32;
+/**
+ * It sets a height for registered nodes in the graph
+ */
+const CUSTOM_HEIGHT_REGISTERED = 40;
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -919,8 +923,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Transforms the data needed to create the grapho
    */
   toGraphData(searchTerm?: string) {
-    console.log('TO GRAPH DATA CLUSTERS ', this.clusters);
-    console.log('TO GRAPH DATA INSTANCES ', this.instances);
     this.graphData = {
       nodes: [],
       links: []
@@ -940,7 +942,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.graphData.nodes.push(nodeGroup);
 
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
-      console.log('INSTANCESSSSS IN CLUSTER ', instancesInCluster);
       instancesInCluster.forEach(instance => {
         const nodeInstance = {
           id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
@@ -951,9 +952,31 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           group: cluster.cluster_id,
           customHeight: CUSTOM_HEIGHT_INSTANCES,
           customBorderColor: (searchTerm && instance['name'].includes(searchTerm)) ? '#FF00D3' : '',
-          customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? '2' : ''
+          customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? '2' : '',
+          app_descriptor_id: instance['app_descriptor_id']
         };
         this.graphData.nodes.push(nodeInstance);
+
+        const registeredApp = this.getRegisteredApp(nodeInstance);
+        if (registeredApp.length > 0) {
+          const nodeRegistered = {
+            id: cluster.cluster_id + '-s-' + registeredApp[0]['app_descriptor_id'],
+            label: registeredApp[0]['name'],
+            tooltip: 'APP ' + registeredApp[0]['name'],
+            color: '#444444',
+            text: this.getNodeTextColor(cluster.status_name),
+            group: cluster.cluster_id,
+            customHeight: CUSTOM_HEIGHT_REGISTERED,
+            customBorderColor: (searchTerm && registeredApp[0]['name'].includes(searchTerm)) ? '#FF00D3' : '',
+            customBorderWidth: (searchTerm && registeredApp[0]['name'].includes(searchTerm)) ? '2' : ''
+          };
+          this.graphData.nodes.push(nodeRegistered);
+
+          this.graphData.links.push({
+            source: cluster.cluster_id + '-s-' + registeredApp[0]['app_descriptor_id'],
+            target: cluster.cluster_id + '-s-' + instance['app_instance_id']
+          });
+        }
 
         this.graphData.links.push({
           source: cluster.cluster_id + '-s-' + instance['app_instance_id'],
@@ -1036,5 +1059,13 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
             });
           }
     });
+  }
+
+  /**
+   * Returns the registered app from any concrete instance
+   * @param instance - selected app instance
+   */
+  private getRegisteredApp(instance) {
+    return this.registered.filter(registered => registered.app_descriptor_id === instance.app_descriptor_id);
   }
 }
