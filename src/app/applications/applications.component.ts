@@ -29,7 +29,19 @@ const CUSTOM_HEIGHT_INSTANCES = 32;
 /**
  * It sets a height for registered nodes in the graph
  */
-const CUSTOM_HEIGHT_REGISTERED = 40;
+const CUSTOM_HEIGHT_REGISTERED = 32;
+/**
+ * It sets a border color for found nodes by a term in the graph
+ */
+const FOUND_NODES_BORDER_COLOR = '#5800FF';
+/**
+ * It sets a border size for found nodes by a term in the graph
+ */
+const FOUND_NODES_BORDER_SIZE = 4;
+/**
+ * It sets a color for registered nodes
+ */
+const REGISTERED_NODES_COLOR = '#444444';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -936,8 +948,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         text: this.getNodeTextColor(cluster.status_name),
         group: cluster.cluster_id,
         customHeight: CUSTOM_HEIGHT_CLUSTERS,
-        customBorderColor: (searchTerm && cluster.name.includes(searchTerm)) ? '#FF00D3' : '',
-        customBorderWidth: (searchTerm && cluster.name.includes(searchTerm)) ? '2' : ''
+        customBorderColor: (searchTerm && cluster.name.includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
+        customBorderWidth: (searchTerm && cluster.name.includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
       };
       this.graphData.nodes.push(nodeGroup);
 
@@ -947,12 +959,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
           label: instance['name'],
           tooltip: 'APP ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
-          color: this.getNodeColor(cluster.status_name),
+          color: this.getNodeColor(instance['status_name']),
           text: this.getNodeTextColor(cluster.status_name),
           group: cluster.cluster_id,
           customHeight: CUSTOM_HEIGHT_INSTANCES,
-          customBorderColor: (searchTerm && instance['name'].includes(searchTerm)) ? '#FF00D3' : '',
-          customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? '2' : '',
+          customBorderColor: (searchTerm && instance['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
+          customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : '',
           app_descriptor_id: instance['app_descriptor_id']
         };
         this.graphData.nodes.push(nodeInstance);
@@ -963,25 +975,22 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
             id: cluster.cluster_id + '-s-' + registeredApp[0]['app_descriptor_id'],
             label: registeredApp[0]['name'],
             tooltip: 'APP ' + registeredApp[0]['name'],
-            color: '#444444',
+            color: REGISTERED_NODES_COLOR,
             text: this.getNodeTextColor(cluster.status_name),
             group: cluster.cluster_id,
             customHeight: CUSTOM_HEIGHT_REGISTERED,
-            customBorderColor: (searchTerm && registeredApp[0]['name'].includes(searchTerm)) ? '#FF00D3' : '',
-            customBorderWidth: (searchTerm && registeredApp[0]['name'].includes(searchTerm)) ? '2' : ''
+            customBorderColor: (searchTerm && registeredApp[0]['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
+            customBorderWidth: (searchTerm && registeredApp[0]['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
           };
           this.graphData.nodes.push(nodeRegistered);
-
-          this.graphData.links.push({
-            source: cluster.cluster_id + '-s-' + registeredApp[0]['app_descriptor_id'],
-            target: cluster.cluster_id + '-s-' + instance['app_instance_id']
-          });
+          this.setLinksInGraph(
+              cluster.cluster_id + '-s-' + registeredApp[0]['app_descriptor_id'],
+              cluster.cluster_id + '-s-' + instance['app_instance_id']);
         }
 
-        this.graphData.links.push({
-          source: cluster.cluster_id + '-s-' + instance['app_instance_id'],
-          target: cluster.cluster_id
-        });
+        this.setLinksInGraph(
+          cluster.cluster_id + '-s-' + instance['app_instance_id'],
+          cluster.cluster_id);
       });
     });
     this.graphDataLoaded = true;
@@ -1067,5 +1076,18 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   private getRegisteredApp(instance) {
     return this.registered.filter(registered => registered.app_descriptor_id === instance.app_descriptor_id);
+  }
+
+
+  /**
+   * Return an specific color depending on the node status
+   * @param source Origin node
+   * @param target Final node
+   */
+  private setLinksInGraph(source, target) {
+    this.graphData.links.push({
+      source: source,
+      target: target
+    });
   }
 }
