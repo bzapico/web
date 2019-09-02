@@ -411,7 +411,7 @@
           <h5>APPLICATIONS</h5>
         </div>
         <!-- Apps options buttons -->
-        <div class="row mb-5">
+        <div class="row">
           <div class="col">
             <div class="apps-options">
               <button
@@ -518,7 +518,7 @@
             <div    
               *ngIf="graphDataLoaded"
               class="graph">
-              <ngx-graph
+              <!-- <ngx-graph
                 [view]="view"
                 [links]="graphData.links"
                 [nodes]="graphData.nodes"
@@ -554,7 +554,7 @@
                     </svg:text>
                   </svg:g>
                 </ng-template>
-              </ngx-graph>
+              </ngx-graph> -->
             </div>
             <div *ngIf="!graphDataLoaded" class="loader"></div>
             <!-- No info to show -->

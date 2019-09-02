@@ -212,6 +212,10 @@ th.instances-pcol-fix.default {
 /* - - - Apps buttons - - - */
 .apps-options {
     float: right;
+    margin-bottom: 43px;
+    @include for-desktop-only {
+        margin-bottom: 21px;
+    }
        .apps-actions-btn {
            width: 182px;
            background-color: $base-violet;
