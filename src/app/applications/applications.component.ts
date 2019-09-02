@@ -816,16 +816,16 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   getInstanceOptions(instance: any) {
     const instanceOptions = [];
     const instanceOption1 = {
-      name: 'Undeploy',
+      name: 'More info',
       action: (applicationInstance: any) => {
-        this.undeploy(instance);
+        this.goToInstanceView(instance);
       },
       instance: instance
     };
     const instanceOption2 = {
-      name: 'More info',
+      name: 'Undeploy',
       action: (applicationInstance: any) => {
-        this.goToInstanceView(instance);
+        this.undeploy(instance);
       },
       instance: instance
     };
@@ -861,23 +861,23 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   getRegisteredOptions(registered: any) {
     const registeredOptions = [];
     const registeredOption1 = {
-      name: 'Deploy registered',
+      name: 'More info',
+      action: (registeredApp: any) => {
+        this.goToRegisteredView(registered);
+      },
+      registered: registered
+    };
+    const registeredOption2 = {
+      name: 'Deploy',
       action: (registeredApp: any) => {
         this.deployRegistered(registered);
       },
       registered: registered
     };
-    const registeredOption2 = {
-      name: 'Delete app',
+    const registeredOption3 = {
+      name: 'Delete',
       action: (registeredApp: any) => {
         this.deleteApp(registered);
-      },
-      registered: registered
-    };
-    const registeredOption3 = {
-      name: 'More info',
-      action: (registeredApp: any) => {
-        this.goToRegisteredView(registered);
       },
       registered: registered
     };
