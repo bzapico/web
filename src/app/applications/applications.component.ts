@@ -958,7 +958,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         const nodeInstance = {
           id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
           label: instance['name'],
-          tooltip: 'APP ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
+          tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
           color: this.getNodeColor(instance['status_name']),
           text: this.getNodeTextColor(cluster.status_name),
           group: cluster.cluster_id,
@@ -974,7 +974,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           const nodeRegistered = {
             id: cluster.cluster_id + '-s-' + registeredApp[0]['app_descriptor_id'],
             label: registeredApp[0]['name'],
-            tooltip: 'APP ' + registeredApp[0]['name'],
+            tooltip: 'REGISTERED ' + registeredApp[0]['name'],
             color: REGISTERED_NODES_COLOR,
             text: this.getNodeTextColor(cluster.status_name),
             group: cluster.cluster_id,
@@ -984,12 +984,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           };
           this.graphData.nodes.push(nodeRegistered);
           this.setLinksInGraph(
-              cluster.cluster_id + '-s-' + registeredApp[0]['app_descriptor_id'],
-              cluster.cluster_id + '-s-' + instance['app_instance_id']);
+      cluster.cluster_id + '-s-' + registeredApp[0]['app_descriptor_id'],
+      cluster.cluster_id + '-s-' + instance['app_instance_id']);
         }
 
         this.setLinksInGraph(
-          cluster.cluster_id + '-s-' + instance['app_instance_id'],
+    cluster.cluster_id + '-s-' + instance['app_instance_id'],
           cluster.cluster_id);
       });
     });
