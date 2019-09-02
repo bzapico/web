@@ -246,7 +246,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * It generates the graph and it updates considering the REFRESH_INTERVAL
+   * Refresh all resources data as clusters list, instances, and cluster count and it updates it considering the REFRESH_INTERVAL
    */
   private refreshData() {
     this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
@@ -414,17 +414,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           return 'disabled';
         }
       }
-    }
-
-  /**
-   * Parse to string labels map
-   * @param labels Key-value map that contains the labels
-   */
-    labelsToString(labels: any) {
-      if (!labels || labels === '-') {
-        return ;
-      }
-      return Object.entries(labels);
     }
 
   /**
@@ -654,6 +643,4 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     }
     return Object.values(appsInCluster);
   }
-
-
 }
