@@ -644,9 +644,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
           this.backend.getInstances(this.organizationId).toPromise()])
             .then(([clusters, instances]) => {
-              clusters.clusters.forEach(cluster => {
-                cluster.total_nodes = parseInt(cluster.total_nodes, 10);
-              });
               this.clusters = clusters.clusters;
               this.instances = instances.instances;
               this.clusters.forEach(cluster => {
