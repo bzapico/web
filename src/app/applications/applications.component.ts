@@ -405,17 +405,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Parse to string labels map
-   * @param labels Key-value map that contains the labels
-   */
-  labelsToString(labels: any) {
-    if (!labels || labels === '-') {
-      return ;
-    }
-    return Object.entries(labels);
-  }
-
-  /**
    * Fulfill nulls to avoid data binding failure
    * @param instance Application instance
    */
@@ -939,6 +928,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       nodes: [],
       links: []
     };
+    if (searchTerm) {
+      searchTerm = searchTerm.toLowerCase();
+    }
     this.clusters.forEach(cluster => {
       const nodeGroup = {
         id: cluster.cluster_id,
@@ -952,7 +944,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         customBorderWidth: (searchTerm && cluster.name.includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
       };
       this.graphData.nodes.push(nodeGroup);
-
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
         const nodeInstance = {
@@ -968,11 +959,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           app_descriptor_id: instance['app_descriptor_id']
         };
         this.graphData.nodes.push(nodeInstance);
-
         const registeredApp = this.getRegisteredApp(nodeInstance);
         if (registeredApp.length > 0) {
           const nodeRegistered = {
-            id: cluster.cluster_id + '-s-' + registeredApp[0]['app_descriptor_id'],
+            id: registeredApp[0]['app_descriptor_id'],
             label: registeredApp[0]['name'],
             tooltip: 'REGISTERED ' + registeredApp[0]['name'],
             color: REGISTERED_NODES_COLOR,
@@ -982,14 +972,16 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
             customBorderColor: (searchTerm && registeredApp[0]['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
             customBorderWidth: (searchTerm && registeredApp[0]['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
           };
-          this.graphData.nodes.push(nodeRegistered);
+          if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
+            this.graphData.nodes.push(nodeRegistered);
+          }
           this.setLinksInGraph(
-      cluster.cluster_id + '-s-' + registeredApp[0]['app_descriptor_id'],
+            registeredApp[0]['app_descriptor_id'],
       cluster.cluster_id + '-s-' + instance['app_instance_id']);
         }
 
         this.setLinksInGraph(
-    cluster.cluster_id + '-s-' + instance['app_instance_id'],
+     cluster.cluster_id + '-s-' + instance['app_instance_id'],
           cluster.cluster_id);
       });
     });
@@ -1072,7 +1064,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
   /**
    * Returns the registered app from any concrete instance
-   * @param instance - selected app instance
+   * @param instance Selected app instance
    */
   private getRegisteredApp(instance) {
     return this.registered.filter(registered => registered.app_descriptor_id === instance.app_descriptor_id);

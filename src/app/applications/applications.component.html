@@ -193,10 +193,10 @@
                 </td>
                 <td class="col-5">
                   <button 
-                  *ngFor="let label of labelsToString(app.labels)" 
+                  *ngFor="let label of app.labels | keyvalue"
                   disabled
                   class="btn-sm btn-outline-primary">
-                    {{label[0]}}: {{label[1]}}
+                    {{label.key}}: {{label.value}}
                   </button>
                 </td>
                 <td [ngClass]=
@@ -317,15 +317,15 @@
                 </td>
                 <td class="col-5">
                   <button 
-                    *ngFor="let label of labelsToString(app.labels)" 
-                    (click)="onLabelClick(app.app_descriptor_id, label[0], label[1])"
+                    *ngFor="let label of app.labels | keyvalue"
+                    (click)="onLabelClick(app.app_descriptor_id, label.key, label.value)"
                     [ngClass]=
                     "{
-                      'label-btn-selected': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) >= 0 ,
-                      'btn-outline-primary': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) === -1
-                    }" 
+                      'label-btn-selected': indexOfLabelSelected(app.app_descriptor_id, label.key, label.value) >= 0 ,
+                      'btn-outline-primary': indexOfLabelSelected(app.app_descriptor_id, label.key, label.value) === -1
+                    }" l
                     class="btn-sm btn-outline-primary">
-                    {{label[0]}}: {{label[1]}} 
+                    {{label.key}}: {{label.value}}
                   </button>
                   <div class="label-btns">
                     <div 
