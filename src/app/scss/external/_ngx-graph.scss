@@ -31,6 +31,9 @@
           stroke: $base-light-grey;
         }
     }
+    path.edge {
+        stroke: $base-light-grey;
+    }
     .graph-click-fix {
         position: absolute;
         top: 50%;
