@@ -908,7 +908,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         const serviceInstances = groups[indexGroup].service_instances || [];
         for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
           if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
-            appsInCluster[serviceInstances[indexService].service_instance_id] = serviceInstances[indexService];
+            appsInCluster[serviceInstances[indexService].app_instance_id] = this.instances[indexInstance];
           }
         }
       }
@@ -919,6 +919,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Transforms the data needed to create the grapho
    */
   toGraphData(searchTerm?: string) {
+    console.log('TO GRAPH DATA CLUSTERS ', this.clusters);
+    console.log('TO GRAPH DATA INSTANCES ', this.instances);
     this.graphData = {
       nodes: [],
       links: []
@@ -938,9 +940,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.graphData.nodes.push(nodeGroup);
 
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
+      console.log('INSTANCESSSSS IN CLUSTER ', instancesInCluster);
       instancesInCluster.forEach(instance => {
         const nodeInstance = {
-          id: cluster.cluster_id + '-s-' + instance['service_instance_id'],
+          id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
           label: instance['name'],
           tooltip: 'APP ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
           color: this.getNodeColor(cluster.status_name),
@@ -953,7 +956,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         this.graphData.nodes.push(nodeInstance);
 
         this.graphData.links.push({
-          source: cluster.cluster_id + '-s-' + instance['service_instance_id'],
+          source: cluster.cluster_id + '-s-' + instance['app_instance_id'],
           target: cluster.cluster_id
         });
       });
