@@ -669,12 +669,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Returns the length of the instances in registered list. Represents the number of available app instances
    * @param appId selected app
    */
-  getInstancesCount(app) {
-    let counter = 0;
-    for (let i = 0, groupsLength = app.groups.length; i < groupsLength; i++) {
-      counter += app.groups[i].services.length;
-    }
-    return counter;
+  getInstancesCount(appId) {
+    return this.instances.filter(instance => instance.app_descriptor_id === appId).length;
   }
 
   /**
