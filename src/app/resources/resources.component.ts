@@ -529,8 +529,9 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
+
         const nodeInstance = {
-          id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
+          id: instance['app_instance_id'],
           label: instance['name'],
           tooltip: 'APP ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
           color: this.getNodeColor(cluster.status_name),
@@ -540,11 +541,15 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           customBorderColor: (searchTerm && instance['name'].includes(searchTerm)) ? '#FF00D3' : '',
           customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? '2' : ''
         };
-        this.graphData.nodes.push(nodeInstance);
+        const index = this.graphData.nodes.map(x => x.id).indexOf(nodeInstance.id);
+        console.log(index);
+        if (index === -1) {
+          this.graphData.nodes.push(nodeInstance);
+        }
 
         this.graphData.links.push({
           source: cluster.cluster_id,
-          target: cluster.cluster_id + '-s-' + instance['app_instance_id']
+          target: instance['app_instance_id']
         });
       });
     });
