@@ -24,6 +24,15 @@ const CUSTOM_HEIGHT_CLUSTERS = 58;
  * It sets a height for instances nodes in the graph
  */
 const CUSTOM_HEIGHT_INSTANCES = 32;
+/**
+ * It sets a border color for found nodes by a term in the graph
+ */
+const FOUND_NODES_BORDER_COLOR = '#5800FF';
+/**
+ * It sets a border size for found nodes by a term in the graph
+ */
+const FOUND_NODES_BORDER_SIZE = 4;
+
 
 @Component({
   selector: 'app-resources',
@@ -534,8 +543,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         text: this.getNodeTextColor(cluster.status_name),
         group: cluster.cluster_id,
         customHeight: CUSTOM_HEIGHT_CLUSTERS,
-        customBorderColor: (searchTerm && cluster.name.includes(searchTerm)) ? '#FF00D3' : '',
-        customBorderWidth: (searchTerm && cluster.name.includes(searchTerm)) ? '2' : ''
+        customBorderColor: (searchTerm && cluster.name.includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
+        customBorderWidth: (searchTerm && cluster.name.includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
       };
       this.graphData.nodes.push(nodeGroup);
 
@@ -549,8 +558,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           text: this.getNodeTextColor(cluster.status_name),
           group: cluster.cluster_id,
           customHeight: CUSTOM_HEIGHT_INSTANCES,
-          customBorderColor: (searchTerm && instance['name'].includes(searchTerm)) ? '#FF00D3' : '',
-          customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? '2' : ''
+          customBorderColor: (searchTerm && instance['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
+          customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
         };
         const index = this.graphData.nodes.map(x => x.id).indexOf(nodeInstance.id);
         if (index === -1) {
