@@ -18,10 +18,7 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search">
-</div>
-            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -33,15 +30,21 @@
                <div class="content getting-started">
                    <div class="content-data">
 
-<h2 id="v0-3-0">v0.3.0</h2>
+<h2 id="v030">v0.3.0</h2>
 <p>Overall:</p>
 <ul>
-<li>HTLM and CSS code optimization</li>
-<li>Unified media queries breackpoints</li>
-<li>Cards refactor for elasticity</li>
-<li>Creation of flexible tables</li>
-<li>Optimize <a href="https://swimlane.github.io/ngx-graph/">graph</a>, pie and line charts</li>
-<li>Sidebar and main info optimization</li>
+<li><p>HTLM and CSS code optimization</p>
+</li>
+<li><p>Unified media queries breackpoints</p>
+</li>
+<li><p>Cards refactor for elasticity</p>
+</li>
+<li><p>Creation of flexible tables</p>
+</li>
+<li><p>Optimize <a href="https://swimlane.github.io/ngx-graph/">graph</a>, pie and line charts</p>
+</li>
+<li><p>Sidebar and main info optimization</p>
+</li>
 <li><p>Modified icons to ease understanding</p>
 </li>
 <li><p>Infrastructure view</p>
@@ -63,11 +66,13 @@
 </ul>
 </li>
 </ul>
-<h2 id="v0-2-0">v0.2.0</h2>
+<h2 id="v020">v0.2.0</h2>
 <p>Overall:</p>
 <ul>
-<li>Added sorting and filtering capabilities</li>
-<li>Label management in tables</li>
+<li><p>Added sorting and filtering capabilities</p>
+</li>
+<li><p>Label management in tables</p>
+</li>
 <li><p>Forms refactor</p>
 </li>
 <li><p>IoT Devices view</p>
@@ -86,7 +91,8 @@
 <li>Device group created modal view</li>
 </ul>
 </li>
-<li>Applications view<ul>
+<li><p>Applications view</p>
+<ul>
 <li>App instances tab divider<ul>
 <li>Deploy instance modal view</li>
 <li>App instance extended view</li>
@@ -104,7 +110,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="v0-1-0">v0.1.0</h2>
+<h2 id="v010">v0.1.0</h2>
 <p>Created the brand new UI Frontend for Nalej</p>
 <ul>
 <li><p>Sidebar with navigation</p>
@@ -175,6 +181,7 @@
 
 
 
+                   
 
 
 
@@ -201,7 +208,9 @@
 
        <script src="./js/libs/custom-elements.min.js"></script>
        <script src="./js/libs/lit-html.js"></script>
-       <script src="./js/menu-wc.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="./js/menu-wc.js" defer></script>
 
        <script src="./js/libs/bootstrap-native.js"></script>
 

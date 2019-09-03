@@ -26,12 +26,7 @@
             font-size: 12px;
         }
     }
-    .edge {
-        path {
-          stroke: $base-light-grey;
-        }
-    }
-    path.edge{
+    path.edge {
         stroke: $base-light-grey;
     }
     .graph-click-fix {

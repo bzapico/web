@@ -18,10 +18,7 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search">
-</div>
-            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -52,6 +49,9 @@
             <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
         </li>
         <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
             <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
@@ -70,7 +70,7 @@
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
     </p>
 
 
@@ -96,7 +96,7 @@
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>install-agent.component.scss</code></td>
+                <td class="col-md-9"><code>./install-agent.component.scss</code></td>
             </tr>
 
 
@@ -105,6 +105,12 @@
                 <td class="col-md-3">templateUrl</td>
                 <td class="col-md-9"><code>./install-agent.component.html</code></td>
             </tr>
+
+
+
+
+
+
 
 
         </tbody>
@@ -287,7 +293,7 @@
                                                         <td>formBuilder</td>
                                                   
                                                         <td>
-                                                                    <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -311,7 +317,7 @@
                                                         <td>backendService</td>
                                                   
                                                         <td>
-                                                                    <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -323,7 +329,7 @@
                                                         <td>mockupBackendService</td>
                                                   
                                                         <td>
-                                                                    <code><a href="../injectables/MockupBackendService.html" target="_self" >MockupBackendService</a></code>
+                                                                        <code><a href="../injectables/MockupBackendService.html" target="_self" >MockupBackendService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -335,7 +341,7 @@
                                                         <td>notificationsService</td>
                                                   
                                                         <td>
-                                                                    <code><a href="../injectables/NotificationsService.html" target="_self" >NotificationsService</a></code>
+                                                                        <code><a href="../injectables/NotificationsService.html" target="_self" >NotificationsService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -358,233 +364,236 @@
 
     <section>
     
-        <h3 id="methods">
-            Methods
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="discardChanges"></a>
-                        <span class="name">
-                            <b>
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="discardChanges"></a>
+                    <span class="name">
+                        <b>
                             discardChanges
-                            </b>
-                            <a href="#discardChanges"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>discardChanges(form: )</code>
-                    </td>
-                </tr>
+                        </b>
+                        <a href="#discardChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>discardChanges(form)</code>
+                </td>
+            </tr>
 
 
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/app/install-agent/install-agent.component.ts:211</a></div>
-                            </td>
-                        </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="211"
+                            class="link-to-prism">src/app/install-agent/install-agent.component.ts:211</a></div>
+                </td>
+            </tr>
 
 
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Checks if the form has been modified before discarding changes</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Checks if the form has been modified before discarding changes</p>
 </div>
 
-                            <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>form</td>
-                                                    
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>form</td>
 
-                                                        <td>
-                                                                <code><p>Form object reference</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                    <td>
+                                        No
+                                    </td>
 
-                            </div>
-                                <div class="io-description">
-                                    
-                                </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="getControllersList"></a>
-                        <span class="name">
-                            <b>
+
+                                    <td>
+                                        <p>Form object reference</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getControllersList"></a>
+                    <span class="name">
+                        <b>
                             getControllersList
-                            </b>
-                            <a href="#getControllersList"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                        </b>
+                        <a href="#getControllersList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
 <code>getControllersList()</code>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
 
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/install-agent/install-agent.component.ts:144</a></div>
-                            </td>
-                        </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/app/install-agent/install-agent.component.ts:144</a></div>
+                </td>
+            </tr>
 
 
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Gets the controllers list</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the controllers list</p>
 </div>
 
-                            <div class="io-description">
-                                <b>Returns : </b>    <code>{}</code>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
 
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="installAgent"></a>
-                        <span class="name">
-                            <b>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="installAgent"></a>
+                    <span class="name">
+                        <b>
                             installAgent
-                            </b>
-                            <a href="#installAgent"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>installAgent(f: )</code>
-                    </td>
-                </tr>
+                        </b>
+                        <a href="#installAgent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>installAgent(f)</code>
+                </td>
+            </tr>
 
 
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/app/install-agent/install-agent.component.ts:164</a></div>
-                            </td>
-                        </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="164"
+                            class="link-to-prism">src/app/install-agent/install-agent.component.ts:164</a></div>
+                </td>
+            </tr>
 
 
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Requests to install agent</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Requests to install agent</p>
 </div>
 
-                            <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>f</td>
-                                                    
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>f</td>
 
-                                                        <td>
-                                                                <code><p>Form with the agent input data</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                    <td>
+                                        No
+                                    </td>
 
-                            </div>
-                                <div class="io-description">
-                                    
-                                </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="ngOnInit"></a>
-                        <span class="name">
-                            <b>
+
+                                    <td>
+                                        <p>Form with the agent input data</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
                             ngOnInit
-                            </b>
-                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
 <code>ngOnInit()</code>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
 
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/install-agent/install-agent.component.ts:118</a></div>
-                            </td>
-                        </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/app/install-agent/install-agent.component.ts:118</a></div>
+                </td>
+            </tr>
 
 
-                <tr>
-                    <td class="col-md-4">
+            <tr>
+                <td class="col-md-4">
 
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
-
     <section>
     
         <h3 id="inputs">
@@ -597,21 +606,14 @@
                         <a name="agentType"></a>
                         <span class="name">
                             <b>
-                            agentType
-                            </b>
+                            agentType</b>
                             <a href="#agentType"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>agentType:     <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
 
                         </td>
                     </tr>
@@ -631,16 +633,9 @@
                         <a name="agentTypeOptions"></a>
                         <span class="name">
                             <b>
-                            agentTypeOptions
-                            </b>
+                            agentTypeOptions</b>
                             <a href="#agentTypeOptions"><span class="icon ion-ios-link"></span></a>
                         </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>agentTypeOptions:     <code>any[]</code>
-</code>
                     </td>
                 </tr>
                     <tr>
@@ -665,21 +660,14 @@
                         <a name="agentTypeSelectConfig"></a>
                         <span class="name">
                             <b>
-                            agentTypeSelectConfig
-                            </b>
+                            agentTypeSelectConfig</b>
                             <a href="#agentTypeSelectConfig"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>agentTypeSelectConfig:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
                         </td>
                     </tr>
@@ -704,21 +692,14 @@
                         <a name="architecture"></a>
                         <span class="name">
                             <b>
-                            architecture
-                            </b>
+                            architecture</b>
                             <a href="#architecture"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>architecture:     <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
 
                         </td>
                     </tr>
@@ -738,16 +719,9 @@
                         <a name="architectureOptions"></a>
                         <span class="name">
                             <b>
-                            architectureOptions
-                            </b>
+                            architectureOptions</b>
                             <a href="#architectureOptions"><span class="icon ion-ios-link"></span></a>
                         </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>architectureOptions:     <code>any[]</code>
-</code>
                     </td>
                 </tr>
                     <tr>
@@ -772,21 +746,14 @@
                         <a name="architectureSelectConfig"></a>
                         <span class="name">
                             <b>
-                            architectureSelectConfig
-                            </b>
+                            architectureSelectConfig</b>
                             <a href="#architectureSelectConfig"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>architectureSelectConfig:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
                         </td>
                     </tr>
@@ -811,21 +778,14 @@
                         <a name="backend"></a>
                         <span class="name">
                             <b>
-                            backend
-                            </b>
+                            backend</b>
                             <a href="#backend"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>backend:     <code><a href="../interfaces/Backend.html" target="_self" >Backend</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="../interfaces/Backend.html" target="_self" >Backend</a></code>
+                            <i>Type : </i>        <code><a href="../interfaces/Backend.html" target="_self" >Backend</a></code>
 
                         </td>
                     </tr>
@@ -852,16 +812,9 @@
                         <span class="name">
                             <b>
                                 <span class="modifier">Public</span>
-                            bsModalRef
-                            </b>
+                            bsModalRef</b>
                             <a href="#bsModalRef"><span class="icon ion-ios-link"></span></a>
                         </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span><code>bsModalRef:     <code>BsModalRef</code>
-</code>
                     </td>
                 </tr>
                     <tr>
@@ -886,21 +839,14 @@
                         <a name="config"></a>
                         <span class="name">
                             <b>
-                            config
-                            </b>
+                            config</b>
                             <a href="#config"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>config:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
                         </td>
                     </tr>
@@ -934,16 +880,9 @@
                         <a name="controllersList"></a>
                         <span class="name">
                             <b>
-                            controllersList
-                            </b>
+                            controllersList</b>
                             <a href="#controllersList"><span class="icon ion-ios-link"></span></a>
                         </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>controllersList:     <code>any[]</code>
-</code>
                     </td>
                 </tr>
                     <tr>
@@ -968,21 +907,14 @@
                         <a name="ecCount"></a>
                         <span class="name">
                             <b>
-                            ecCount
-                            </b>
+                            ecCount</b>
                             <a href="#ecCount"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>ecCount:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                         </td>
                     </tr>
@@ -1002,21 +934,14 @@
                         <a name="edgeControllerFromEC"></a>
                         <span class="name">
                             <b>
-                            edgeControllerFromEC
-                            </b>
+                            edgeControllerFromEC</b>
                             <a href="#edgeControllerFromEC"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>edgeControllerFromEC:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                         </td>
                     </tr>
@@ -1036,21 +961,14 @@
                         <a name="edgeControllerId"></a>
                         <span class="name">
                             <b>
-                            edgeControllerId
-                            </b>
+                            edgeControllerId</b>
                             <a href="#edgeControllerId"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>edgeControllerId:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                         </td>
                     </tr>
@@ -1070,16 +988,9 @@
                         <a name="edgeControllerOptions"></a>
                         <span class="name">
                             <b>
-                            edgeControllerOptions
-                            </b>
+                            edgeControllerOptions</b>
                             <a href="#edgeControllerOptions"><span class="icon ion-ios-link"></span></a>
                         </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>edgeControllerOptions:     <code>any[]</code>
-</code>
                     </td>
                 </tr>
                     <tr>
@@ -1104,21 +1015,14 @@
                         <a name="edgeControllerSelectConfig"></a>
                         <span class="name">
                             <b>
-                            edgeControllerSelectConfig
-                            </b>
+                            edgeControllerSelectConfig</b>
                             <a href="#edgeControllerSelectConfig"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>edgeControllerSelectConfig:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
                         </td>
                     </tr>
@@ -1143,21 +1047,14 @@
                         <a name="installAgentForm"></a>
                         <span class="name">
                             <b>
-                            installAgentForm
-                            </b>
+                            installAgentForm</b>
                             <a href="#installAgentForm"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>installAgentForm:     <code><a href="../interfaces/Group.html" target="_self" >FormGroup</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="../interfaces/Group.html" target="_self" >FormGroup</a></code>
+                            <i>Type : </i>        <code><a href="../interfaces/Group.html" target="_self" >FormGroup</a></code>
 
                         </td>
                     </tr>
@@ -1183,16 +1080,9 @@
                         <a name="inventory"></a>
                         <span class="name">
                             <b>
-                            inventory
-                            </b>
+                            inventory</b>
                             <a href="#inventory"><span class="icon ion-ios-link"></span></a>
                         </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>inventory:     <code>any[]</code>
-</code>
                     </td>
                 </tr>
                     <tr>
@@ -1223,21 +1113,14 @@
                         <a name="loading"></a>
                         <span class="name">
                             <b>
-                            loading
-                            </b>
+                            loading</b>
                             <a href="#loading"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>loading:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                         </td>
                     </tr>
@@ -1257,21 +1140,14 @@
                         <a name="openFromEc"></a>
                         <span class="name">
                             <b>
-                            openFromEc
-                            </b>
+                            openFromEc</b>
                             <a href="#openFromEc"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>openFromEc:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                         </td>
                     </tr>
@@ -1291,16 +1167,9 @@
                         <a name="options"></a>
                         <span class="name">
                             <b>
-                            options
-                            </b>
+                            options</b>
                             <a href="#options"><span class="icon ion-ios-link"></span></a>
                         </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>options:     <code>[]</code>
-</code>
                     </td>
                 </tr>
                     <tr>
@@ -1330,21 +1199,14 @@
                         <a name="organizationId"></a>
                         <span class="name">
                             <b>
-                            organizationId
-                            </b>
+                            organizationId</b>
                             <a href="#organizationId"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>organizationId:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                         </td>
                     </tr>
@@ -1370,21 +1232,14 @@
                         <a name="selectConfig"></a>
                         <span class="name">
                             <b>
-                            selectConfig
-                            </b>
+                            selectConfig</b>
                             <a href="#selectConfig"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>selectConfig:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
                         </td>
                     </tr>
@@ -1409,21 +1264,14 @@
                         <a name="sshCredentials"></a>
                         <span class="name">
                             <b>
-                            sshCredentials
-                            </b>
+                            sshCredentials</b>
                             <a href="#sshCredentials"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>sshCredentials:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                         </td>
                     </tr>
@@ -1443,16 +1291,9 @@
                         <a name="submitted"></a>
                         <span class="name">
                             <b>
-                            submitted
-                            </b>
+                            submitted</b>
                             <a href="#submitted"><span class="icon ion-ios-link"></span></a>
                         </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>submitted:     <code></code>
-</code>
                     </td>
                 </tr>
                     <tr>
@@ -1476,21 +1317,14 @@
                         <a name="tab"></a>
                         <span class="name">
                             <b>
-                            tab
-                            </b>
+                            tab</b>
                             <a href="#tab"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>tab:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                         </td>
                     </tr>
@@ -1521,21 +1355,14 @@
                         <a name="targetHost"></a>
                         <span class="name">
                             <b>
-                            targetHost
-                            </b>
+                            targetHost</b>
                             <a href="#targetHost"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>targetHost:     <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
 
                         </td>
                     </tr>
@@ -1555,21 +1382,14 @@
                         <a name="type"></a>
                         <span class="name">
                             <b>
-                            type
-                            </b>
+                            type</b>
                             <a href="#type"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>type:     <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
-</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
 
                         </td>
                     </tr>
@@ -1874,7 +1694,11 @@ export class InstallAgentComponent implements OnInit {
           &lt;ngx-select-dropdown 
             formControlName&#x3D;&quot;type&quot; 
             [multiple]&#x3D;&quot;false&quot; 
-            [ngClass]&#x3D;&quot;{ &#x27;ngx-error&#x27;: submitted &amp;&amp; f.type.errors &amp;&amp; !agentType }&quot;
+            [ngClass]&#x3D;
+              &quot;{ 
+                &#x27;ngx-error&#x27;: submitted &amp;&amp; f.type.errors &amp;&amp; !agentType,
+                &#x27;base-light-grey&#x27;: !f.type.value
+              }&quot;
             [config]&#x3D;&quot;agentTypeSelectConfig&quot; 
             [options]&#x3D;&quot;agentTypeOptions&quot;&gt;
           &lt;/ngx-select-dropdown&gt;
@@ -1896,7 +1720,11 @@ export class InstallAgentComponent implements OnInit {
           &lt;ngx-select-dropdown 
             formControlName&#x3D;&quot;edgeController&quot; 
             [multiple]&#x3D;&quot;false&quot; 
-            [ngClass]&#x3D;&quot;{ &#x27;ngx-error&#x27;: submitted &amp;&amp; f.edgeController.errors &amp;&amp; !edgeControllerId }&quot;
+            [ngClass]&#x3D;
+            &quot;{ 
+              &#x27;ngx-error&#x27;: submitted &amp;&amp; f.edgeController.errors &amp;&amp; !edgeControllerId,
+              &#x27;base-light-grey&#x27;: !f.edgeController.value
+            }&quot;
             [config]&#x3D;&quot;edgeControllerSelectConfig&quot; 
             [options]&#x3D;&quot;getControllersList()&quot;&gt;
             {{edgeControllerId}}
@@ -1998,6 +1826,21 @@ export class InstallAgentComponent implements OnInit {
 &lt;/div&gt;</code></pre>
     </div>
 
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./install-agent.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@mixin for-desktop-only {
+    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
+}
+
+.form-group-btn {
+    @include for-desktop-only { 
+        margin-top: 1em;
+    }
+}</code></pre>
+    </div>
+
     <div class="tab-pane fade " id="c-tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
@@ -2023,7 +1866,7 @@ export class InstallAgentComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Install agent</h3>      <button         (click)="discardChanges(f)"        type="button"         aria-label="Close"        class="close" >        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <form         *ngIf="!loading"        [formGroup]="installAgentForm"         (ngSubmit)="installAgent(f)">      <div class="scroll-modal-form">        <div class="form-group form-group-drop">          <label>Agent type*</label>          <ngx-select-dropdown             formControlName="type"             [multiple]="false"             [ngClass]="{ \'ngx-error\': submitted && f.type.errors && !agentType }"            [config]="agentTypeSelectConfig"             [options]="agentTypeOptions">          </ngx-select-dropdown>          <div class="form-group-drop-arrow">             <i class="material-icons">arrow_drop_down</i>          </div>          <div class="error-h">            <div *ngIf=              "submitted &&              f.type.errors &&              !agentType"               class="error-message">              <div *ngIf="f.type.errors.required">An agent type is required</div>            </div>          </div>        </div>        <div *ngIf="!openFromEc" class="form-group form-group-drop">          <label>Edge inventory Controller*</label>          <ngx-select-dropdown             formControlName="edgeController"             [multiple]="false"             [ngClass]="{ \'ngx-error\': submitted && f.edgeController.errors && !edgeControllerId }"            [config]="edgeControllerSelectConfig"             [options]="getControllersList()">            {{edgeControllerId}}          </ngx-select-dropdown>          <div class="form-group-drop-arrow">             <i class="material-icons">arrow_drop_down</i>          </div>          <div class="error-h">            <div *ngIf=              "submitted &&              f.edgeController.errors &&              !edgeControllerId"               class="error-message">              <div *ngIf="f.edgeController.errors.required">An Edge Controller is required</div>            </div>          </div>        </div>        <div *ngIf="openFromEc" class="form-group">          <label>Edge inventory Controller</label>          <input             formControlName="edgeControllerFromEC"             type="text"             placeholder="{{name}}"            class="form-control">          <div class="error-h"></div>        </div>        <div class="form-group">          <label>SSH username*</label>          <input             formControlName="sshUsername"             type="text"             placeholder="SSH username"            [ngClass]="{ \'is-invalid\': submitted && f.sshUsername.errors }"             required            class="form-control">          <div class="error-h">            <div *ngIf="submitted && f.sshUsername.errors" class="error-message">              <div *ngIf="f.sshUsername.errors.required">SSH username is required</div>            </div>          </div>        </div>        <div class="form-group">          <label>SSH password*</label>          <input             formControlName="sshPassword"             type="password"             placeholder="Type the SSH password here"            [ngClass]="{ \'is-invalid\': submitted && f.sshPassword.errors }"            required            class="form-control">          <div class="error-h">            <div *ngIf="submitted && f.sshPassword.errors" class="error-message">              <div *ngIf="f.sshPassword.errors.required">SSH password is required</div>            </div>          </div>        </div>        <div class="form-group">          <label>Target host*</label>          <input             formControlName="target"             type="text"             placeholder="Target host"            [ngClass]="{ \'is-invalid\': submitted && f.target.errors }"            required            class="form-control">          <div class="error-h">            <div *ngIf="submitted && f.target.errors" class="error-message">              <div *ngIf="f.target.errors.required">Target is required</div>            </div>          </div>        </div>      </div>        <!-- Install agent -->        <div class="form-group-btn">          <button             class="nalej-form-btn-blue"             [disabled]="loading">            <span class="align-bottom">Install</span>          </button>        </div>      </form>      <!-- Loader -->      <div *ngIf="loading" class="nalej-loader-box">        <div class="loader">          <svg class="circular" viewBox="25 25 50 50">            <circle             class="path"             cx="50"             cy="50"             r="20"             fill="none"             stroke-width="2"             stroke-miterlimit="10"/>          </svg>        </div>      </div>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Install agent</h3>      <button         (click)="discardChanges(f)"        type="button"         aria-label="Close"        class="close" >        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <form         *ngIf="!loading"        [formGroup]="installAgentForm"         (ngSubmit)="installAgent(f)">      <div class="scroll-modal-form">        <div class="form-group form-group-drop">          <label>Agent type*</label>          <ngx-select-dropdown             formControlName="type"             [multiple]="false"             [ngClass]=              "{                 \'ngx-error\': submitted && f.type.errors && !agentType,                \'base-light-grey\': !f.type.value              }"            [config]="agentTypeSelectConfig"             [options]="agentTypeOptions">          </ngx-select-dropdown>          <div class="form-group-drop-arrow">             <i class="material-icons">arrow_drop_down</i>          </div>          <div class="error-h">            <div *ngIf=              "submitted &&              f.type.errors &&              !agentType"               class="error-message">              <div *ngIf="f.type.errors.required">An agent type is required</div>            </div>          </div>        </div>        <div *ngIf="!openFromEc" class="form-group form-group-drop">          <label>Edge inventory Controller*</label>          <ngx-select-dropdown             formControlName="edgeController"             [multiple]="false"             [ngClass]=            "{               \'ngx-error\': submitted && f.edgeController.errors && !edgeControllerId,              \'base-light-grey\': !f.edgeController.value            }"            [config]="edgeControllerSelectConfig"             [options]="getControllersList()">            {{edgeControllerId}}          </ngx-select-dropdown>          <div class="form-group-drop-arrow">             <i class="material-icons">arrow_drop_down</i>          </div>          <div class="error-h">            <div *ngIf=              "submitted &&              f.edgeController.errors &&              !edgeControllerId"               class="error-message">              <div *ngIf="f.edgeController.errors.required">An Edge Controller is required</div>            </div>          </div>        </div>        <div *ngIf="openFromEc" class="form-group">          <label>Edge inventory Controller</label>          <input             formControlName="edgeControllerFromEC"             type="text"             placeholder="{{name}}"            class="form-control">          <div class="error-h"></div>        </div>        <div class="form-group">          <label>SSH username*</label>          <input             formControlName="sshUsername"             type="text"             placeholder="SSH username"            [ngClass]="{ \'is-invalid\': submitted && f.sshUsername.errors }"             required            class="form-control">          <div class="error-h">            <div *ngIf="submitted && f.sshUsername.errors" class="error-message">              <div *ngIf="f.sshUsername.errors.required">SSH username is required</div>            </div>          </div>        </div>        <div class="form-group">          <label>SSH password*</label>          <input             formControlName="sshPassword"             type="password"             placeholder="Type the SSH password here"            [ngClass]="{ \'is-invalid\': submitted && f.sshPassword.errors }"            required            class="form-control">          <div class="error-h">            <div *ngIf="submitted && f.sshPassword.errors" class="error-message">              <div *ngIf="f.sshPassword.errors.required">SSH password is required</div>            </div>          </div>        </div>        <div class="form-group">          <label>Target host*</label>          <input             formControlName="target"             type="text"             placeholder="Target host"            [ngClass]="{ \'is-invalid\': submitted && f.target.errors }"            required            class="form-control">          <div class="error-h">            <div *ngIf="submitted && f.target.errors" class="error-message">              <div *ngIf="f.target.errors.required">Target is required</div>            </div>          </div>        </div>      </div>        <!-- Install agent -->        <div class="form-group-btn">          <button             class="nalej-form-btn-blue"             [disabled]="loading">            <span class="align-bottom">Install</span>          </button>        </div>      </form>      <!-- Loader -->      <div *ngIf="loading" class="nalej-loader-box">        <div class="loader">          <svg class="circular" viewBox="25 25 50 50">            <circle             class="path"             cx="50"             cy="50"             r="20"             fill="none"             stroke-width="2"             stroke-miterlimit="10"/>          </svg>        </div>      </div>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'InstallAgentComponent'};
@@ -2039,6 +1882,7 @@ export class InstallAgentComponent implements OnInit {
 
 
 
+                   
 
 
 
@@ -2065,7 +1909,9 @@ export class InstallAgentComponent implements OnInit {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <script src="../js/menu-wc.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 
