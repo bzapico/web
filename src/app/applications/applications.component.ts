@@ -389,17 +389,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Parse to string labels map
-   * @param labels Key-value map that contains the labels
-   */
-  labelsToString(labels: any) {
-    if (!labels || labels === '-') {
-      return ;
-    }
-    return Object.entries(labels);
-  }
-
-  /**
    * Fulfill nulls to avoid data binding failure
    * @param instance Application instance
    */
@@ -657,7 +646,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param app selected app
    */
   getServicesCount(app) {
-
     let temporalCount = 0;
     app.groups.forEach(group => {
       temporalCount = group.services.length + temporalCount;
@@ -919,8 +907,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Transforms the data needed to create the grapho
    */
   toGraphData(searchTerm?: string) {
-    console.log('TO GRAPH DATA CLUSTERS ', this.clusters);
-    console.log('TO GRAPH DATA INSTANCES ', this.instances);
     this.graphData = {
       nodes: [],
       links: []
@@ -940,7 +926,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.graphData.nodes.push(nodeGroup);
 
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
-      console.log('INSTANCESSSSS IN CLUSTER ', instancesInCluster);
       instancesInCluster.forEach(instance => {
         const nodeInstance = {
           id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
