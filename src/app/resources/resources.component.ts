@@ -550,6 +550,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       searchTerm = searchTerm.toLowerCase();
     }
     this.clusters.forEach(cluster => {
+      const clusterName = cluster.name.toLowerCase();
       const nodeGroup = {
         id: cluster.cluster_id,
         label: cluster.name,
@@ -558,13 +559,14 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         text: this.getNodeTextColor(cluster.status_name),
         group: cluster.cluster_id,
         customHeight: CUSTOM_HEIGHT_CLUSTERS,
-        customBorderColor: (searchTerm && cluster.name.includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
-        customBorderWidth: (searchTerm && cluster.name.includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
+        customBorderColor: (searchTerm && clusterName.includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
+        customBorderWidth: (searchTerm && clusterName.includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
       };
       this.graphData.nodes.push(nodeGroup);
 
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
+        const instanceName = instance['name'].toLowerCase();
         const nodeInstance = {
           id: instance['app_instance_id'],
           label: instance['name'],
@@ -573,8 +575,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           text: this.getNodeTextColor(cluster.status_name),
           group: cluster.cluster_id,
           customHeight: CUSTOM_HEIGHT_INSTANCES,
-          customBorderColor: (searchTerm && instance['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
-          customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
+          customBorderColor: (searchTerm && instanceName.includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
+          customBorderWidth: (searchTerm && instanceName.includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
         };
         const index = this.graphData.nodes.map(x => x.id).indexOf(nodeInstance.id);
         if (index === -1) {
