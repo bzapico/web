@@ -357,10 +357,9 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           this.clusters.forEach(cluster => {
             this.preventEmptyFields(cluster);
           });
-          // this.toGraphData();
           this.updatePieChartStats(this.clusters);
       }, errorResponse => {
-        this.loadedData = true;
+        this.loadedData = false;
         this.requestError = errorResponse.error.message;
       });
   }
