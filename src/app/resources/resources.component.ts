@@ -71,6 +71,11 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   clusters: any[];
 
   /**
+   * List of processed clusters list with its associated instances
+   */
+  clusterWhitInstancesList: any[];
+
+  /**
    * List of available apps instances
    */
   instances: any[];
@@ -267,6 +272,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           .then(([clusters, instances, summary]) => {
             this.clusters = clusters.clusters;
             this.instances = instances.instances;
+            this.processedClusterList();
             this.clustersCount = summary['total_clusters'] || 0 ;
             if (!this.loadedData) {
               this.loadedData = true;
@@ -343,11 +349,11 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       // Requests an updated clusters list
       this.backend.getClusters(this.organizationId)
       .subscribe(response => {
-          if (response.clusters && response.clusters.length) {
-            response.clusters.forEach(cluster => {
-              cluster.total_nodes = parseInt(cluster.total_nodes, 10);
-            });
-            this.clusters = response.clusters;
+        if (response.clusters && response.clusters.length) {
+          response.clusters.forEach(cluster => {
+            cluster.total_nodes = parseInt(cluster.total_nodes, 10);
+          });
+          this.clusters = response.clusters;
           } else {
             this.clusters = [];
           }
@@ -357,11 +363,24 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           this.clusters.forEach(cluster => {
             this.preventEmptyFields(cluster);
           });
-          this.updatePieChartStats(this.clusters);
       }, errorResponse => {
         this.loadedData = false;
         this.requestError = errorResponse.error.message;
       });
+  }
+
+  /**
+   * Process cluster list and adds each instances associated with each cluster
+   */
+  processedClusterList() {
+    this.clusterWhitInstancesList = [];
+
+    if (this.clusters) {
+      this.clusters.forEach(cluster => {
+        cluster.instances = this.getAppsInCluster(cluster.cluster_id);
+       this.clusterWhitInstancesList.push(cluster);
+      });
+    }
   }
 
   /**
