@@ -26,6 +26,22 @@ const CUSTOM_HEIGHT_CLUSTERS = 58;
  * It sets a height for instances nodes in the graph
  */
 const CUSTOM_HEIGHT_INSTANCES = 32;
+/**
+ * It sets a height for registered nodes in the graph
+ */
+const CUSTOM_HEIGHT_REGISTERED = 32;
+/**
+ * It sets a border color for found nodes by a term in the graph
+ */
+const FOUND_NODES_BORDER_COLOR = '#5800FF';
+/**
+ * It sets a border size for found nodes by a term in the graph
+ */
+const FOUND_NODES_BORDER_SIZE = 4;
+/**
+ * It sets a color for registered nodes
+ */
+const REGISTERED_NODES_COLOR = '#444444';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -271,11 +287,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
       if (this.organizationId !== null) {
-        this.updateAppInstances(this.organizationId);
-        this.updateRegisteredInstances(this.organizationId);
-        this.updateClusterList();
+        this.refreshData();
       }
-      this.setGraph();
     }
   }
 
@@ -332,33 +345,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         this.registered = response.descriptors || [];
       });
     }
-  }
-
-  /**
-   * Requests an updated list of available clusters to update the current one
-   */
-  updateClusterList() {
-    // Requests an updated clusters list
-    this.backend.getClusters(this.organizationId)
-    .subscribe(response => {
-        if (response.clusters && response.clusters.length) {
-          response.clusters.forEach(cluster => {
-            cluster.total_nodes = parseInt(cluster.total_nodes, 10);
-          });
-          this.clusters = response.clusters;
-        } else {
-          this.clusters = [];
-        }
-        if (!this.loadedData) {
-          this.loadedData = true;
-        }
-        this.clusters.forEach(cluster => {
-          this.preventEmptyFields(cluster);
-        });
-    }, errorResponse => {
-      this.loadedData = true;
-      this.requestError = errorResponse.error.message;
-    });
   }
 
   /**
@@ -930,6 +916,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       nodes: [],
       links: []
     };
+    if (searchTerm) {
+      searchTerm = searchTerm.toLowerCase();
+    }
     this.clusters.forEach(cluster => {
       const nodeGroup = {
         id: cluster.cluster_id,
@@ -939,30 +928,49 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         text: this.getNodeTextColor(cluster.status_name),
         group: cluster.cluster_id,
         customHeight: CUSTOM_HEIGHT_CLUSTERS,
-        customBorderColor: (searchTerm && cluster.name.includes(searchTerm)) ? '#FF00D3' : '',
-        customBorderWidth: (searchTerm && cluster.name.includes(searchTerm)) ? '2' : ''
+        customBorderColor: (searchTerm && cluster.name.includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
+        customBorderWidth: (searchTerm && cluster.name.includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
       };
       this.graphData.nodes.push(nodeGroup);
-
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
         const nodeInstance = {
           id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
           label: instance['name'],
-          tooltip: 'APP ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
-          color: this.getNodeColor(cluster.status_name),
+          tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
+          color: this.getNodeColor(instance['status_name']),
           text: this.getNodeTextColor(cluster.status_name),
           group: cluster.cluster_id,
           customHeight: CUSTOM_HEIGHT_INSTANCES,
-          customBorderColor: (searchTerm && instance['name'].includes(searchTerm)) ? '#FF00D3' : '',
-          customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? '2' : ''
+          customBorderColor: (searchTerm && instance['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
+          customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : '',
+          app_descriptor_id: instance['app_descriptor_id']
         };
         this.graphData.nodes.push(nodeInstance);
+        const registeredApp = this.getRegisteredApp(nodeInstance);
+        if (registeredApp.length > 0) {
+          const nodeRegistered = {
+            id: registeredApp[0]['app_descriptor_id'],
+            label: registeredApp[0]['name'],
+            tooltip: 'REGISTERED ' + registeredApp[0]['name'],
+            color: REGISTERED_NODES_COLOR,
+            text: this.getNodeTextColor(cluster.status_name),
+            group: cluster.cluster_id,
+            customHeight: CUSTOM_HEIGHT_REGISTERED,
+            customBorderColor: (searchTerm && registeredApp[0]['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
+            customBorderWidth: (searchTerm && registeredApp[0]['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
+          };
+          if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
+            this.graphData.nodes.push(nodeRegistered);
+          }
+          this.setLinksInGraph(
+            registeredApp[0]['app_descriptor_id'],
+      cluster.cluster_id + '-s-' + instance['app_instance_id']);
+        }
 
-        this.graphData.links.push({
-          source: cluster.cluster_id + '-s-' + instance['app_instance_id'],
-          target: cluster.cluster_id
-        });
+        this.setLinksInGraph(
+     cluster.cluster_id + '-s-' + instance['app_instance_id'],
+          cluster.cluster_id);
       });
     });
     this.graphDataLoaded = true;
@@ -1014,17 +1022,20 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   /**
    * It generates the graph and it updates considering the REFRESH_INTERVAL
    */
-  private setGraph() {
+  private refreshData() {
     this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
       if (!this.isSearchingInGraph) {
-        Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
-          this.backend.getInstances(this.organizationId).toPromise()])
-            .then(([clusters, instances]) => {
+        Promise.all([
+          this.backend.getClusters(this.organizationId).toPromise(),
+          this.backend.getInstances(this.organizationId).toPromise(),
+          this.backend.getRegisteredApps(this.organizationId).toPromise()])
+            .then(([clusters, instances, registered]) => {
               clusters.clusters.forEach(cluster => {
                 cluster.total_nodes = parseInt(cluster.total_nodes, 10);
               });
               this.clusters = clusters.clusters;
               this.instances = instances.instances;
+              this.registered = registered.descriptors || [];
               this.clusters.forEach(cluster => {
                 this.preventEmptyFields(cluster);
               });
@@ -1039,6 +1050,27 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
               this.requestError = errorResponse.error.message;
             });
           }
+    });
+  }
+
+  /**
+   * Returns the registered app from any concrete instance
+   * @param instance Selected app instance
+   */
+  private getRegisteredApp(instance) {
+    return this.registered.filter(registered => registered.app_descriptor_id === instance.app_descriptor_id);
+  }
+
+
+  /**
+   * Return an specific color depending on the node status
+   * @param source Origin node
+   * @param target Final node
+   */
+  private setLinksInGraph(source, target) {
+    this.graphData.links.push({
+      source: source,
+      target: target
     });
   }
 }
