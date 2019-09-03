@@ -163,13 +163,16 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Models that hold the sort info needed to sortBy pipe
    */
   sortedBy: string;
+  sortedByRegistered: string;
   reverse: boolean;
+  reverseRegistered: boolean;
 
   /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
   searchTermGraph: string;
+  searchTermRegistered: string;
 
   /**
    * Model that hold the quick filter
@@ -180,7 +183,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
-  filterFieldApplications: boolean;
+  filterFieldGraph: boolean;
+  filterFieldRegistered: boolean;
 
   /**
    *  Active List reference
@@ -223,15 +227,19 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
      // SortBy
      this.sortedBy = '';
+     this.sortedByRegistered = '';
      this.reverse = false;
+     this.reverseRegistered = false;
      this.searchTerm = '';
      this.searchTermGraph = '';
+     this.searchTermRegistered = '';
      this.showInstances = true;
      this.quickFilter = '';
 
      // Filter field
      this.filterField = false;
-     this.filterFieldApplications = false;
+     this.filterFieldGraph = false;
+     this.filterFieldRegistered = false;
 
     // Graph initialization
     this.graphReset = false;
@@ -479,8 +487,15 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       }
       this.sortedBy = categoryName;
       this.filterField = true;
+    } else if (list === 'registered') {
+      if (this.sortedByRegistered === categoryName) {
+        this.reverseRegistered = !this.reverseRegistered;
+        this.filterFieldRegistered = false;
+      }
+      this.sortedByRegistered = categoryName;
+      this.filterFieldRegistered = true;
     } else if (list === 'graph') {
-      this.filterFieldApplications = true;
+      this.filterFieldGraph = true;
     }
   }
 
@@ -503,6 +518,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.filterField = false;
       this.searchTerm = '';
       this.sortedBy = '';
+    } else if (list === 'registered') {
+      this.filterFieldRegistered = false;
+      this.searchTermRegistered = '';
+      this.sortedByRegistered = '';
     } else if (list === 'graph') {
       this.searchTermGraph = '';
       this.quickFilter = '';

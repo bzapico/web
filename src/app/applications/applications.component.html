@@ -89,9 +89,15 @@
             </form>
           </div>      
         </div>
-        <!-- Sorting mesages -->
+        <!-- App Instances Sorting mesages -->
         <div class="row">
-          <div class="col-12">  
+          <div *ngIf=
+            "loadedData &&
+            instances &&
+            instances.length > 0 &&
+            !requestError && 
+            showInstances" 
+            class="col-12">  
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
               Filtered by term "{{ searchTerm }}".
               <span (click)="resetFilters('apps')" class="reset-search">Reset</span>
@@ -111,6 +117,33 @@
             </p> 
             <p *ngIf="!filterField && !searchTerm" class="sorting-message"></p>
           </div>
+           <!-- Registered Apps sorting -->
+          <div *ngIf=
+            "loadedData &&
+            registered &&
+            registered.length > 0 &&
+            !requestError && 
+            !showInstances" 
+            class="col-12">  
+            <p *ngIf="searchTerm && !filterFieldRegistered" class="sorting-message">
+              Filtered by term "{{ searchTermRegistered }}".
+              <span (click)="resetFilters('registered')" class="reset-search">Reset</span>
+            </p>
+            <p *ngIf="filterFieldRegistered && !searchTermRegistered" class="sorting-message">
+              Sorted by {{ sortedByRegistered }},
+              <span *ngIf="reverse">ascendant. </span>
+              <span *ngIf="!reverse">descendant. </span>
+              <span (click)="resetFilters('registered')" class="reset-search">Reset</span>
+            </p>
+            <p *ngIf="filterFieldRegistered && searchTermRegistered" class="sorting-message">
+              Sorted by {{ sortedByRegistered }}
+              <span *ngIf="reverse">ascendant </span>
+              <span *ngIf="!reverse">descendant </span>
+              and filtered by term "{{ searchTermRegistered }}".
+              <span (click)="resetFilters('registered')" class="reset-search">Reset</span>
+            </p> 
+            <p *ngIf="!filterFieldRegistered && !searchTermRegistered" class="sorting-message"></p>
+          </div>
         </div>
         <!-- App Instances -->
         <div *ngIf=
@@ -124,7 +157,7 @@
             <thead class="nalej-thead">
               <tr>
                 <th 
-                  (click)="setOrder('name')"            
+                  (click)="setOrder('apps','name')"            
                   [ngClass]="getCategoryCSSClass('name')"
                   scope="col" 
                   class="col-3 padding-fix">
@@ -137,7 +170,7 @@
                   </span>
                 </th>
                 <th 
-                  (click)="setOrder('labels')" 
+                  (click)="setOrder('apps','labels')" 
                   [ngClass]="getCategoryCSSClass('labels')"
                   scope="col" 
                   class="col-5">
@@ -150,7 +183,7 @@
                   </span>
                 </th>
                 <th 
-                  (click)="setOrder('status')" 
+                  (click)="setOrder('apps','status')" 
                   [ngClass]="getCategoryCSSClass('status')"
                   tooltip="Status" 
                   placement="bottom"
@@ -256,43 +289,43 @@
             <thead class="nalej-thead">
               <tr>
                 <th 
-                  (click)="setOrder('name')"            
+                  (click)="setOrder('registered','name')"            
                   [ngClass]="getCategoryCSSClass('name')"
                   scope="col" 
                   class="col-3">
                   <span tooltip="Name" placement="bottom">Name</span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
+                  <span class="expand-chevron" *ngIf="sortedByRegistered === 'name' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
+                  <span class="expand-chevron" *ngIf="sortedByRegistered === 'name' && reverse" class="expand-chevron">
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th>
                 <th 
-                  (click)="setOrder('labels')" 
+                  (click)="setOrder('registered','labels')" 
                   [ngClass]="getCategoryCSSClass('labels')"
                   scope="col" 
                   class="col-5">
                   <span tooltip="Labels" placement="bottom">Labels</span>
-                  <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
+                  <span *ngIf="sortedByRegistered === 'labels' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
-                  <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
+                  <span *ngIf="sortedByRegistered === 'labels' && reverse" class="expand-chevron">
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th>
                 <th 
-                  (click)="setOrder('instances')" 
+                  (click)="setOrder('registered','instances')" 
                   [ngClass]="getCategoryCSSClass('instances')"
                   tooltip="Instances" 
                   placement="bottom"
                   scope="col" 
                   class="col-2 text-center instances-pcol-fix instances-initial-text">
                   <span class="instances-full-text">Instances</span>
-                  <span *ngIf="sortedBy === 'instances' && !reverse" class="expand-chevron">
+                  <span *ngIf="sortedByRegistered === 'instances' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
-                  <span *ngIf="sortedBy === 'instances' && reverse" class="expand-chevron">
+                  <span *ngIf="sortedByRegistered === 'instances' && reverse" class="expand-chevron">
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th>
@@ -518,7 +551,7 @@
             <div    
               *ngIf="graphDataLoaded"
               class="graph">
-              <ngx-graph
+              <!-- <ngx-graph
                 [view]="view"
                 [links]="graphData.links"
                 [nodes]="graphData.nodes"
@@ -554,7 +587,7 @@
                     </svg:text>
                   </svg:g>
                 </ng-template>
-              </ngx-graph>
+              </ngx-graph> -->
             </div>
             <div *ngIf="!graphDataLoaded" class="loader"></div>
             <!-- No info to show -->
