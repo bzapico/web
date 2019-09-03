@@ -4,7 +4,6 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { CarouselConfig } from 'ngx-bootstrap/carousel';
 import { EditClusterComponent } from '../edit-cluster/edit-cluster.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Cluster } from '../definitions/interfaces/cluster';
@@ -37,17 +36,7 @@ const FOUND_NODES_BORDER_SIZE = 4;
 @Component({
   selector: 'app-resources',
   templateUrl: './resources.component.html',
-  styleUrls: ['./resources.component.scss'],
-   providers: [
-    { provide:
-      CarouselConfig,
-      useValue: {
-        interval: 0,
-        noPause: false,
-        showIndicators: true
-      }
-    }
-  ]
+  styleUrls: ['./resources.component.scss']
 })
 export class ResourcesComponent implements OnInit, OnDestroy {
   /**
@@ -94,6 +83,11 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Count of total clusters
    */
   clustersCount: number;
+
+ /**
+   * Count of total ocurrences in search graph
+   */
+  occurrencesCounter: number;
 
   /**
    * Holds the reference of the interval that refreshes the lists
@@ -172,7 +166,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Model that hold the search term in search box
    */
   searchTerm: string;
-  searchTermClusters: string;
+  searchTermGraph: string;
 
   /**
    * Variable to store the value of the filter search text and sortBy pipe
@@ -215,7 +209,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.sortedBy = '';
     this.reverse = false;
     this.searchTerm = '';
-    this.searchTermClusters = '';
+    this.searchTermGraph = '';
 
     // Filter field
     this.filterField = false;
@@ -421,7 +415,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       this.searchTerm = '';
       this.sortedBy = '';
     } else if (list === 'graph') {
-      this.searchTermClusters = '';
+      this.searchTermGraph = '';
       this.isSearchingInGraph = false;
       this.toGraphData();
     }
@@ -648,7 +642,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   searchInGraph() {
     this.isSearchingInGraph = true;
-    this.toGraphData(this.searchTermClusters);
+    this.toGraphData(this.searchTermGraph);
   }
 
   /**

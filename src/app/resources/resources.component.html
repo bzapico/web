@@ -251,18 +251,18 @@
         <div class="row mb-3">
           <!-- Sorting mesages -->
           <div class="col-7">  
-            <p *ngIf="searchTermClusters" class="sorting-message">
-              Filtered by term "{{ searchTermClusters }}".
+            <p *ngIf="searchTermGraph" class="sorting-message">
+              Filtered by term "{{ searchTermGraph }}".
               <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
             </p>
-            <p *ngIf="!searchTermClusters" class="sorting-message"></p>
+            <p *ngIf="!searchTermGraph" class="sorting-message"></p>
           </div>
           <!-- Search box -->
           <div class="col-5">
             <form class="graph-search-box">
               <input 
-                name="searchTermClusters" 
-                [(ngModel)]="searchTermClusters"
+                name="searchTermGraph" 
+                [(ngModel)]="searchTermGraph"
                 type="text" 
                 placeholder="Search..."
                 class="form-control"> 
