@@ -24,6 +24,15 @@ const CUSTOM_HEIGHT_CLUSTERS = 58;
  * It sets a height for instances nodes in the graph
  */
 const CUSTOM_HEIGHT_INSTANCES = 32;
+/**
+ * It sets a border color for found nodes by a term in the graph
+ */
+const FOUND_NODES_BORDER_COLOR = '#5800FF';
+/**
+ * It sets a border size for found nodes by a term in the graph
+ */
+const FOUND_NODES_BORDER_SIZE = 4;
+
 
 @Component({
   selector: 'app-resources',
@@ -236,18 +245,41 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
       if (this.organizationId !== null) {
-        // Requests top card summary data
-        this.backend.getResourcesSummary(this.organizationId)
-        .subscribe(summary => {
-            this.clustersCount = summary['total_clusters'] || 0 ;
-        });
-        this.setGraph();
+        this.refreshData();
       }
     }
   }
 
   ngOnDestroy() {
     this.refreshIntervalRef.unsubscribe();
+  }
+
+  /**
+   * Refresh all resources data as clusters list, instances, and cluster count and it updates it considering the REFRESH_INTERVAL
+   */
+  private refreshData() {
+    this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
+    if (!this.isSearchingInGraph) {
+      Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
+        this.backend.getInstances(this.organizationId).toPromise(),
+        this.backend.getResourcesSummary(this.organizationId).toPromise(),
+      ])
+          .then(([clusters, instances, summary]) => {
+            this.clusters = clusters.clusters;
+            this.instances = instances.instances;
+            this.clustersCount = summary['total_clusters'] || 0 ;
+            if (!this.loadedData) {
+              this.loadedData = true;
+            }
+            this.updatePieChartStats(this.clusters);
+            this.toGraphData();
+          })
+          .catch(errorResponse => {
+            this.loadedData = false;
+            this.requestError = errorResponse.error.message;
+          });
+      }
+    });
   }
 
   /**
@@ -308,29 +340,28 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Requests an updated list of available clusters to update the current one
    */
   updateClusterList() {
-    // Requests an updated clusters list
-    this.backend.getClusters(this.organizationId)
-    .subscribe(response => {
-        if (response.clusters && response.clusters.length) {
-          response.clusters.forEach(cluster => {
-            cluster.total_nodes = parseInt(cluster.total_nodes, 10);
+      // Requests an updated clusters list
+      this.backend.getClusters(this.organizationId)
+      .subscribe(response => {
+          if (response.clusters && response.clusters.length) {
+            response.clusters.forEach(cluster => {
+              cluster.total_nodes = parseInt(cluster.total_nodes, 10);
+            });
+            this.clusters = response.clusters;
+          } else {
+            this.clusters = [];
+          }
+          if (!this.loadedData) {
+            this.loadedData = true;
+          }
+          this.clusters.forEach(cluster => {
+            this.preventEmptyFields(cluster);
           });
-          this.clusters = response.clusters;
-        } else {
-          this.clusters = [];
-        }
-        if (!this.loadedData) {
-          this.loadedData = true;
-        }
-        this.clusters.forEach(cluster => {
-          this.preventEmptyFields(cluster);
-        });
-        this.toGraphData();
-        this.updatePieChartStats(this.clusters);
-    }, errorResponse => {
-      this.loadedData = true;
-      this.requestError = errorResponse.error.message;
-    });
+          this.updatePieChartStats(this.clusters);
+      }, errorResponse => {
+        this.loadedData = false;
+        this.requestError = errorResponse.error.message;
+      });
   }
 
   /**
@@ -391,17 +422,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           return 'disabled';
         }
       }
-    }
-
-  /**
-   * Parse to string labels map
-   * @param labels Key-value map that contains the labels
-   */
-    labelsToString(labels: any) {
-      if (!labels || labels === '-') {
-        return ;
-      }
-      return Object.entries(labels);
     }
 
   /**
@@ -522,8 +542,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         text: this.getNodeTextColor(cluster.status_name),
         group: cluster.cluster_id,
         customHeight: CUSTOM_HEIGHT_CLUSTERS,
-        customBorderColor: (searchTerm && cluster.name.includes(searchTerm)) ? '#FF00D3' : '',
-        customBorderWidth: (searchTerm && cluster.name.includes(searchTerm)) ? '2' : ''
+        customBorderColor: (searchTerm && cluster.name.includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
+        customBorderWidth: (searchTerm && cluster.name.includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
       };
       this.graphData.nodes.push(nodeGroup);
 
@@ -537,8 +557,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           text: this.getNodeTextColor(cluster.status_name),
           group: cluster.cluster_id,
           customHeight: CUSTOM_HEIGHT_INSTANCES,
-          customBorderColor: (searchTerm && instance['name'].includes(searchTerm)) ? '#FF00D3' : '',
-          customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? '2' : ''
+          customBorderColor: (searchTerm && instance['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
+          customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
         };
         const index = this.graphData.nodes.map(x => x.id).indexOf(nodeInstance.id);
         if (index === -1) {
@@ -630,33 +650,5 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       }
     }
     return Object.values(appsInCluster);
-  }
-
-  /**
-   * It generates the graph and it updates considering the REFRESH_INTERVAL
-   */
-  private setGraph() {
-    this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
-      if (!this.isSearchingInGraph) {
-        Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
-          this.backend.getInstances(this.organizationId).toPromise()])
-            .then(([clusters, instances]) => {
-              this.clusters = clusters.clusters;
-              this.instances = instances.instances;
-              this.clusters.forEach(cluster => {
-                this.preventEmptyFields(cluster);
-              });
-              this.updatePieChartStats(this.clusters);
-              if (!this.loadedData) {
-                this.loadedData = true;
-              }
-              this.toGraphData();
-            })
-            .catch(errorResponse => {
-              this.loadedData = false;
-              this.requestError = errorResponse.error.message;
-            });
-      }
-    });
   }
 }
