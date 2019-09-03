@@ -105,7 +105,7 @@ $base-light-grey: #BFBFBF;
     .app-tabs-btn {
         font-size: .65em;
         font-weight: 700;
-        color: $base-grey;
+        color: $base-light-grey;
     }
     .app-tabs-btn-selected {
         font-size: .65em;
@@ -212,6 +212,10 @@ th.instances-pcol-fix.default {
 /* - - - Apps buttons - - - */
 .apps-options {
     float: right;
+    margin-bottom: 43px;
+    @include for-desktop-only {
+        margin-bottom: 21px;
+    }
        .apps-actions-btn {
            width: 182px;
            background-color: $base-violet;
@@ -322,7 +326,7 @@ th.instances-pcol-fix.default {
         cursor: pointer;
     }
     .i-filter {
-        color: $base-grey;
+        color: $base-light-grey;
         font-size: 1em;
         padding: 0 1em;
         margin-top: 5px;
@@ -330,7 +334,7 @@ th.instances-pcol-fix.default {
     .quick-filters-btn {
         font-size: .65em;
         font-weight: 700;
-        color: $base-grey;
+        color: $base-light-grey;
     }
     .quick-filters-btn-selected {
         font-size: .65em;

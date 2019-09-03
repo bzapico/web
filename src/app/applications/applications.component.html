@@ -192,11 +192,11 @@
                   <span tooltip="App info" placement="top">{{app.name}}</span>
                 </td>
                 <td class="col-5">
-                  <button 
+                  <button
                   *ngFor="let label of app.labels | keyvalue"
                   disabled
                   class="btn-sm btn-outline-primary">
-                    {{label.key}}: {{label.value}}
+                    {{label.key}}:{{label.value}} 
                   </button>
                 </td>
                 <td [ngClass]=
@@ -316,16 +316,15 @@
                   <span tooltip="App info" placement="top">{{app.name}}</span>
                 </td>
                 <td class="col-5">
-                  <button 
-                    *ngFor="let label of app.labels | keyvalue"
+                  <button
+                    *ngFor="let label of app.labels | keyvalue" 
                     (click)="onLabelClick(app.app_descriptor_id, label.key, label.value)"
                     [ngClass]=
                     "{
                       'label-btn-selected': indexOfLabelSelected(app.app_descriptor_id, label.key, label.value) >= 0 ,
                       'btn-outline-primary': indexOfLabelSelected(app.app_descriptor_id, label.key, label.value) === -1
-                    }" l
-                    class="btn-sm btn-outline-primary">
-                    {{label.key}}: {{label.value}}
+                    }">
+                    {{ label.key }}:{{ label.value }} 
                   </button>
                   <div class="label-btns">
                     <div 
@@ -411,7 +410,7 @@
           <h5>APPLICATIONS</h5>
         </div>
         <!-- Apps options buttons -->
-        <div class="row mb-5">
+        <div class="row">
           <div class="col">
             <div class="apps-options">
               <button

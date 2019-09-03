@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { SortByPipe } from '../pipes/sort-by.pipe';
 import { FormsModule } from '@angular/forms';
+import { ContextualMenuComponent } from '../contextual-menu/contextual-menu.component';
+import { NgxGraphModule } from '@swimlane/ngx-graph';
 
 describe('ApplicationsComponent', () => {
   let component: ApplicationsComponent;
@@ -20,18 +22,20 @@ describe('ApplicationsComponent', () => {
       declarations: [
         ApplicationsComponent,
         FilterPipe,
-        SortByPipe
+        SortByPipe,
+        ContextualMenuComponent
        ],
       imports: [
         HttpClientTestingModule,
         NgxChartsModule,
+        NgxGraphModule,
         CarouselModule,
         BrowserAnimationsModule,
         RouterTestingModule,
         TooltipModule.forRoot(),
         CommonModule,
         ModalModule.forRoot(),
-        FormsModule,
+        FormsModule
       ],
       providers: [
         BsModalRef,
