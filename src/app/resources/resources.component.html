@@ -171,15 +171,15 @@
                 </td>
                 <td *ngIf="cluster.labels" class="col-5">
                   <button 
-                    *ngFor="let label of labelsToString(cluster.labels)"
-                    (click)="onLabelClick(cluster.cluster_id, label[0], label[1])"
+                    *ngFor="let label of cluster.labels | keyvalue"
+                    (click)="onLabelClick(cluster.cluster_id, label.key, label.value)"
                     [ngClass]=
                     "{
-                      'label-btn-selected': indexOfLabelSelected(cluster.cluster_id, label[0], label[1]) >= 0 ,
-                      'btn-outline-primary': indexOfLabelSelected(cluster.cluster_id, label[0], label[1]) === -1
+                      'label-btn-selected': indexOfLabelSelected(cluster.cluster_id, label.key, label.value) >= 0 ,
+                      'btn-outline-primary': indexOfLabelSelected(cluster.cluster_id, label.key, label.value) === -1
                     }" 
                     class="btn-sm btn-outline-primary">
-                    {{label[0]}}: {{label[1]}} 
+                    {{label.key}}:{{ label.value}} 
                   </button>
                   <div class="label-btns">
                     <div 
