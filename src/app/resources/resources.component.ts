@@ -546,6 +546,9 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       nodes: [],
       links: []
     };
+    if (searchTerm) {
+      searchTerm = searchTerm.toLowerCase();
+    }
     this.clusters.forEach(cluster => {
       const nodeGroup = {
         id: cluster.cluster_id,
@@ -565,7 +568,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         const nodeInstance = {
           id: instance['app_instance_id'],
           label: instance['name'],
-          tooltip: 'APP ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
+          tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
           color: this.getNodeColor(cluster.status_name),
           text: this.getNodeTextColor(cluster.status_name),
           group: cluster.cluster_id,
