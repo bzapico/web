@@ -279,11 +279,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
       if (this.organizationId !== null) {
-        this.updateAppInstances(this.organizationId);
-        this.updateRegisteredInstances(this.organizationId);
-        this.updateClusterList();
+        this.refreshData();
       }
-      this.setGraph();
     }
   }
 
@@ -340,33 +337,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         this.registered = response.descriptors || [];
       });
     }
-  }
-
-  /**
-   * Requests an updated list of available clusters to update the current one
-   */
-  updateClusterList() {
-    // Requests an updated clusters list
-    this.backend.getClusters(this.organizationId)
-    .subscribe(response => {
-        if (response.clusters && response.clusters.length) {
-          response.clusters.forEach(cluster => {
-            cluster.total_nodes = parseInt(cluster.total_nodes, 10);
-          });
-          this.clusters = response.clusters;
-        } else {
-          this.clusters = [];
-        }
-        if (!this.loadedData) {
-          this.loadedData = true;
-        }
-        this.clusters.forEach(cluster => {
-          this.preventEmptyFields(cluster);
-        });
-    }, errorResponse => {
-      this.loadedData = true;
-      this.requestError = errorResponse.error.message;
-    });
   }
 
   /**
@@ -1034,17 +1004,20 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   /**
    * It generates the graph and it updates considering the REFRESH_INTERVAL
    */
-  private setGraph() {
+  private refreshData() {
     this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
       if (!this.isSearchingInGraph) {
-        Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
-          this.backend.getInstances(this.organizationId).toPromise()])
-            .then(([clusters, instances]) => {
+        Promise.all([
+          this.backend.getClusters(this.organizationId).toPromise(),
+          this.backend.getInstances(this.organizationId).toPromise(),
+          this.backend.getRegisteredApps(this.organizationId).toPromise()])
+            .then(([clusters, instances, registered]) => {
               clusters.clusters.forEach(cluster => {
                 cluster.total_nodes = parseInt(cluster.total_nodes, 10);
               });
               this.clusters = clusters.clusters;
               this.instances = instances.instances;
+              this.registered = registered.descriptors || [];
               this.clusters.forEach(cluster => {
                 this.preventEmptyFields(cluster);
               });
