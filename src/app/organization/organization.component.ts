@@ -12,7 +12,6 @@ import { UpdateEventsService } from '../services/update-events.service';
 import { Router } from '@angular/router';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'organization',
   templateUrl: './organization.component.html',
   styleUrls: ['./organization.component.scss']
@@ -231,5 +230,3 @@ export class OrganizationComponent implements OnInit {
       }
     }
   }
-
-

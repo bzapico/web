@@ -6,14 +6,13 @@ import { Backend } from '../definitions/interfaces/backend';
 import { NotificationsService } from '../services/notifications.service';
 
 @Component({
-  selector: 'app-notifications',
+  selector: 'notifications',
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent implements OnInit {
 
-  // tslint:disable-next-line:no-input-rename
-  @Input('notifications') alerts: any[];
+  @Input() notifications: any[];
 
   /**
    * Backend handler (mocked up or real backend)
@@ -30,7 +29,7 @@ export class NotificationsComponent implements OnInit {
     private backendService: BackendService,
     private notificationsService: NotificationsService
     ) {
-    this.alerts = [];
+    this.notifications = [];
     const notificationsMock = localStorage.getItem(LocalStorageKeys.notificationsMock);
     if (notificationsMock === 'true') {
       this.backend = mockupBackendService;

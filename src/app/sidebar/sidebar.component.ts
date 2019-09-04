@@ -11,7 +11,6 @@ import { UpdateEventsService } from '../services/update-events.service';
 import { Router } from '@angular/router';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'nalej-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']

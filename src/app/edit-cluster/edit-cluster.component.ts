@@ -8,7 +8,6 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'edit-cluster',
   templateUrl: './edit-cluster.component.html',
   styleUrls: ['./edit-cluster.component.scss']

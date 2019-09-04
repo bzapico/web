@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 import { AttachSession } from 'protractor/built/driverProviders';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'applications',
   templateUrl: './applications.component.html',
   styleUrls: ['./applications.component.scss']

@@ -10,7 +10,6 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'user-info',
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.scss']

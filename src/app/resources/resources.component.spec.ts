@@ -21,8 +21,6 @@ describe('ResourcesComponent', () => {
   let de: DebugElement;
   let el: HTMLElement;
   let inputElement: HTMLInputElement;
-  // tslint:disable-next-line:prefer-const
-  let context: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

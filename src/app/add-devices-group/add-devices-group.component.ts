@@ -10,7 +10,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-add-devices-group',
+  selector: ' add-device-group',
   templateUrl: './add-devices-group.component.html',
   styleUrls: ['./add-devices-group.component.scss']
 })
