@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ResourcesComponent } from './resources.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
