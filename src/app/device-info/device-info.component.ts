@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
@@ -59,16 +59,15 @@ export class DeviceInfoComponent implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
-    private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.deviceInfoMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
 
     // Default initialization

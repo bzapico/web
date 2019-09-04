@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
 @Component({
   selector: 'nalej-main',

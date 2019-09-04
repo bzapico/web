@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { BackendService } from '../services/backend.service';
@@ -32,9 +32,9 @@ export class NotificationsComponent implements OnInit {
     this.notifications = [];
     const notificationsMock = localStorage.getItem(LocalStorageKeys.notificationsMock);
     if (notificationsMock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
   }
 

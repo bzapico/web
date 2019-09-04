@@ -5,8 +5,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { BackendService } from '../services/backend.service';
 import { BsModalRef } from 'ngx-bootstrap';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { UploadFile, UploadEvent, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
-import { HttpClient } from '@angular/common/http';
+import { UploadFile, UploadEvent, FileSystemFileEntry } from 'ngx-file-drop';
 
 @Component({
   selector: 'app-register-application',
@@ -48,15 +47,14 @@ export class RegisterApplicationComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService,
-    private http: HttpClient
+    private notificationsService: NotificationsService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.registerAppMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend =  this.backendService;
     }
     this.readyToUpload = false;
     this.fileName = 'loading...';

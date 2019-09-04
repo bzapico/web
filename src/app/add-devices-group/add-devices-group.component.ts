@@ -66,9 +66,9 @@ export class AddDevicesGroupComponent implements OnInit {
     const mock = localStorage.getItem(LocalStorageKeys.addGroupMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
     this.device_group_id = 'Loading ...';
     this.name = 'Loading ...';

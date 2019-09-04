@@ -11,7 +11,6 @@ import { AddLabelComponent } from '../add-label/add-label.component';
 import { RegisterApplicationComponent } from '../register-application/register-application.component';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 import { Router } from '@angular/router';
-import { AttachSession } from 'protractor/built/driverProviders';
 
 @Component({
   selector: 'applications',
@@ -177,9 +176,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
     if (mock && mock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
 
     // Default initialization

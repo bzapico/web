@@ -9,7 +9,6 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import * as shape from 'd3-shape';
 import { ServiceInstancesInfoComponent } from '../service-instances-info/service-instances-info.component';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
-import { Services } from '@angular/core/src/view';
 
 @Component({
   selector: 'app-instance-info',
@@ -173,9 +172,9 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
     if (mock && mock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
     // Default initialization
     this.labels = [];

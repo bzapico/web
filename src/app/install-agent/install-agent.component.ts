@@ -6,7 +6,6 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { constructDependencies } from '@angular/core/src/di/reflective_provider';
 
 @Component({
   selector: 'app-install-agent',
@@ -109,9 +108,9 @@ export class InstallAgentComponent implements OnInit {
     const mock = localStorage.getItem(LocalStorageKeys.installAgentMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
   }
 
