@@ -614,7 +614,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           this.backend.getGroups(this.organizationId)
           .subscribe(getGroupsResponse => {
               this.groups = getGroupsResponse.groups;
-              if (!this.groups){
+              if (!this.groups) {
                 this.groups = [];
               }
               if (this.groups.length === 0) {

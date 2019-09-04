@@ -73,7 +73,7 @@ export class SimpleLogComponent implements OnInit {
       let hour: any = date.getHours();
       let min: any = date.getMinutes();
       let sec: any = date.getSeconds();
- 
+
       if (hour < 10) {
         hour = '0' + hour;
       }
