@@ -251,6 +251,51 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.refreshIntervalRef.unsubscribe();
   }
+    /**
+   * Generates the NGX-Chart required JSON object for pie chart rendering
+   * @param running Number of running nodes in a cluster
+   * @param total Number of total nodes in a cluster
+   * @returns anonym array with the required object structure for pie chart rendering
+   */
+  generateClusterChartData(running: number, total: number): any[] {
+    return [
+      {
+        name: 'Running',
+        value: running
+      },
+      {
+        name: 'Stopped',
+        value: total - running
+      }
+    ];
+  }
+
+  /**
+   * Requests an updated list of available clusters to update the current one
+   */
+   updateClusterList() {
+      // Requests an updated clusters list
+      this.backend.getClusters(this.organizationId)
+      .subscribe(response => {
+        if (response.clusters && response.clusters.length) {
+          response.clusters.forEach(cluster => {
+            cluster.total_nodes = parseInt(cluster.total_nodes, 10);
+          });
+          this.clusters = response.clusters;
+          } else {
+            this.clusters = [];
+          }
+          if (!this.loadedData) {
+            this.loadedData = true;
+          }
+          this.clusters.forEach(cluster => {
+            this.preventEmptyFields(cluster);
+          });
+      }, errorResponse => {
+        this.loadedData = false;
+        this.requestError = errorResponse.error.message;
+      });
+  }
 
   /**
    * Opens the modal view that holds the edit cluster component
@@ -471,52 +516,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       this.countRunning = running;
       this.pieChartData = this.generateClusterChartData(this.countRunning, clusters.length);
     }
-  }
-
-  /**
-   * Generates the NGX-Chart required JSON object for pie chart rendering
-   * @param running Number of running nodes in a cluster
-   * @param total Number of total nodes in a cluster
-   * @returns anonym array with the required object structure for pie chart rendering
-   */
-  private generateClusterChartData(running: number, total: number): any[] {
-    return [
-      {
-        name: 'Running',
-        value: running
-      },
-      {
-        name: 'Stopped',
-        value: total - running
-      }
-    ];
-  }
-
-  /**
-   * Requests an updated list of available clusters to update the current one
-   */
-  private updateClusterList() {
-      // Requests an updated clusters list
-      this.backend.getClusters(this.organizationId)
-      .subscribe(response => {
-        if (response.clusters && response.clusters.length) {
-          response.clusters.forEach(cluster => {
-            cluster.total_nodes = parseInt(cluster.total_nodes, 10);
-          });
-          this.clusters = response.clusters;
-          } else {
-            this.clusters = [];
-          }
-          if (!this.loadedData) {
-            this.loadedData = true;
-          }
-          this.clusters.forEach(cluster => {
-            this.preventEmptyFields(cluster);
-          });
-      }, errorResponse => {
-        this.loadedData = false;
-        this.requestError = errorResponse.error.message;
-      });
   }
 
   /**
