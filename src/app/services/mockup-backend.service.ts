@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList,
-         mockResourcesSummary, mockAppsInstancesList, mockNodeList,
-         mockRegisteredAppsList, mockDevicesList, mockGroupList,
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary,
+         mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList,
          mockInventoryList, mockInventorySummary, mockEICJoinToken, mockAgentJoinToken } from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 import { Asset } from '../definitions/interfaces/asset';
-import {HttpResponse} from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
