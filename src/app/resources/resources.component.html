@@ -63,7 +63,7 @@
           </div>      
         </div>
         <div class="row">
-        <!-- Sorting mesages -->
+        <!-- Sorting message -->
           <div class="col-12">  
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
                 {{ ( clusterWhitInstancesList | filter : searchTerm : ['name', 'labels', 'instances'])?.length }}  results found. Filtered by term "{{ searchTerm }}".
@@ -249,13 +249,13 @@
           <h5>CLUSTERS-INSTANCES</h5>
         </div>
         <div class="row mb-3">
-          <!-- Sorting mesages -->
+          <!-- Sorting message -->
           <div class="col-7">  
-            <p *ngIf="searchTermGraph" class="sorting-message">
-              Filtered by term "{{ searchTermGraph }}".
+            <p *ngIf="isSearchingInGraph" class="sorting-message">
+             {{ occurrencesCounter }} results found. Filtered by term "{{ searchTermGraph }}".
               <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
             </p>
-            <p *ngIf="!searchTermGraph" class="sorting-message"></p>
+            <p *ngIf="!isSearchingInGraph" class="sorting-message"></p>
           </div>
           <!-- Search box -->
           <div class="col-5">
