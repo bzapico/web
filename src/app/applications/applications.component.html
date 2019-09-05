@@ -70,6 +70,7 @@
         </div>
         <!-- Search input -->
         <div class="row">
+          <!-- Search input instances -->
           <div *ngIf=
             "loadedData &&
             instances &&
@@ -93,7 +94,8 @@
                   </div>
               </div>
             </form>
-          </div>   
+          </div>  
+          <!-- Search input registered --> 
           <div *ngIf=
             "loadedData &&
             registered &&
@@ -119,6 +121,7 @@
             </form>
           </div>    
         </div>
+        <!-- Sorting messages -->
         <div class="row">
           <!-- App Instances Sorting messages -->
           <div *ngIf=
@@ -175,7 +178,7 @@
             <p *ngIf="!filterFieldRegistered && !searchTermRegistered" class="sorting-message"></p>
           </div>
         </div>
-        <!-- App Instances -->
+        <!-- App Instances table -->
         <div *ngIf=
           "loadedData &&
           instances &&
@@ -307,7 +310,7 @@
           class="no-elements">
           No application instances deployed
         </div>
-        <!-- Registered Apps -->
+        <!-- Registered Apps table -->
         <div *ngIf=
           "loadedData &&
           registered &&
@@ -324,10 +327,10 @@
                   scope="col" 
                   class="col-3">
                   <span tooltip="Name" placement="bottom">Name</span>
-                  <span class="expand-chevron" *ngIf="sortedByRegistered === 'name' && !reverse" class="expand-chevron">
+                  <span class="expand-chevron" *ngIf="sortedByRegistered === 'name' && !reverseRegistered" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
-                  <span class="expand-chevron" *ngIf="sortedByRegistered === 'name' && reverse" class="expand-chevron">
+                  <span class="expand-chevron" *ngIf="sortedByRegistered === 'name' && reverseRegistered" class="expand-chevron">
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th>
@@ -337,10 +340,10 @@
                   scope="col" 
                   class="col-5">
                   <span tooltip="Labels" placement="bottom">Labels</span>
-                  <span *ngIf="sortedByRegistered === 'labels' && !reverse" class="expand-chevron">
+                  <span *ngIf="sortedByRegistered === 'labels' && !reverseRegistered" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
-                  <span *ngIf="sortedByRegistered === 'labels' && reverse" class="expand-chevron">
+                  <span *ngIf="sortedByRegistered === 'labels' && reverseRegistered" class="expand-chevron">
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th>
@@ -352,10 +355,10 @@
                   scope="col" 
                   class="col-2 text-center instances-pcol-fix instances-initial-text">
                   <span class="instances-full-text">Instances</span>
-                  <span *ngIf="sortedByRegistered === 'instances' && !reverse" class="expand-chevron">
+                  <span *ngIf="sortedByRegistered === 'instances' && !reverseRegistered" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
-                  <span *ngIf="sortedByRegistered === 'instances' && reverse" class="expand-chevron">
+                  <span *ngIf="sortedByRegistered === 'instances' && reverseRegistered" class="expand-chevron">
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th>
@@ -434,7 +437,7 @@
             </tbody>
           </table>
         </div>
-          <!-- No registered app to show -->
+        <!-- No registered app to show -->
         <div *ngIf=
           "loadedData && 
           registered &&
@@ -560,19 +563,19 @@
         <!-- Sorting messages -->
         <div class="row row-sorting-lg"> 
           <div class="col-12">  
-            <p *ngIf="searchTermGraph && !quickFilter" class="sorting-message text-right">
-              Filtered by term "{{ searchTermGraph }}".
+            <p *ngIf="isSearchingInGraph && searchTermGraph && !quickFilter" class="sorting-message text-right">
+                {{ occurrencesCounter }} results found. Filtered by term "{{ searchTermGraph }}".
               <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
             </p>
-            <p *ngIf="quickFilter && !searchTermGraph" class="sorting-message text-right">
-              Filtered by {{ quickFilter }}.
+            <p *ngIf="isSearchingInGraph && quickFilter && !searchTermGraph" class="sorting-message text-right">
+                {{ occurrencesCounter }} results found. Filtered by {{ quickFilter }}.
               <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
             </p> 
-            <p *ngIf="quickFilter && searchTermGraph" class="sorting-message text-right">
-              Filtered by term "{{ searchTermGraph }}" and by {{ quickFilter }}.
+            <p *ngIf="isSearchingInGraph && quickFilter && searchTermGraph" class="sorting-message text-right">
+               {{ occurrencesCounter }} results found. Filtered by term "{{ searchTermGraph }}" and by {{ quickFilter }}.
               <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
             </p> 
-            <p *ngIf="!searchTermGraph && !quickFilter" class="sorting-message"></p>
+            <p *ngIf="!isSearchingInGraph" class="sorting-message"></p>
           </div>
         </div>
         <!-- Cluster-apps graph -->

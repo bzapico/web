@@ -92,6 +92,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   entityId: boolean;
 
   /**
+   * Count of total occurrences in search graph
+   */
+  occurrencesCounter: number;
+
+  /**
    * Number of running instances
    */
   countRunning: number;
@@ -198,7 +203,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
-  filterFieldGraph: boolean;
   filterFieldRegistered: boolean;
 
   /**
@@ -253,7 +257,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
      // Filter field
      this.filterField = false;
-     this.filterFieldGraph = false;
      this.filterFieldRegistered = false;
 
     // Graph initialization
@@ -478,9 +481,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       }
       this.sortedByRegistered = categoryName;
       this.filterFieldRegistered = true;
-    } else if (list === 'graph') {
-      this.filterFieldGraph = true;
-    }
+    } 
   }
 
   /**
@@ -877,6 +878,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   searchInGraph() {
     this.isSearchingInGraph = true;
     this.toGraphData(this.searchTermGraph);
+    this.occurrencesGraphCounter();
   }
 
   /**
@@ -1075,5 +1077,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         this.registered[indexRegistered]['instances'] = this.instances.filter(instance => registeredId === instance.app_descriptor_id);
       }
     }
+  }
+
+  /**
+   * Return a counter for the amount of search terms in graph
+   */
+  private occurrencesGraphCounter() {
+    this.occurrencesCounter = this.graphData.nodes.filter(node => node.label.toLowerCase().includes(this.searchTermGraph)).length;
   }
 }
