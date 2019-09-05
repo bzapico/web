@@ -147,7 +147,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   graphReset: boolean;
   graphDataLoaded: boolean;
-  showlegend: boolean;
   graphData: any;
   orientation: string;
   curve: any;
@@ -259,7 +258,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
     // Graph initialization
     this.graphReset = false;
-    this.showlegend = false;
     this.orientation = 'TB';
     this.curve = shape.curveBasis;
     this.autoZoom = true;
@@ -300,7 +298,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Updates instances array
    * @param organizationId Organization identifier
    */
-  updateAppInstances(organizationId: string) {
+  private updateAppInstances(organizationId: string) {
     if (organizationId !== null) {
       // Request to get apps instances
       this.backend.getInstances(this.organizationId)
@@ -337,7 +335,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Updates registered apps array
    * @param organizationId Organization identifier
    */
-  updateRegisteredInstances(organizationId: string) {
+  private updateRegisteredInstances(organizationId: string) {
     if (organizationId !== null) {
       // Request to get registered apps
       this.backend.getRegisteredApps(this.organizationId)
@@ -370,7 +368,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param total Number of total nodes in a cluster
    * @returns anonym array with the required object structure for pie chart rendering
    */
-  generateSummaryChartData(running: number, total: number): any[] {
+  private generateSummaryChartData(running: number, total: number): any[] {
     return [
       {
         name: 'Running',
@@ -386,7 +384,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Fulfill nulls to avoid data binding failure
    * @param instance Application instance
    */
-  preventEmptyFields(instance: ApplicationInstance) {
+  private preventEmptyFields(instance: ApplicationInstance) {
     if (!instance.description) {
       instance.description = '-';
     }
@@ -466,7 +464,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Sortby pipe in the component
    */
   setOrder(list: string, categoryName: string) {
-    if (list === 'apps') {
+    if (list === 'instances') {
       if (this.sortedBy === categoryName) {
         this.reverse = !this.reverse;
         this.filterField = false;
@@ -500,7 +498,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Reset all the filters fields
    */
   resetFilters(list: string) {
-    if (list === 'apps') {
+    if (list === 'instances') {
       this.filterField = false;
       this.searchTerm = '';
       this.sortedBy = '';
@@ -616,7 +614,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
  /**
-  * Check if the label is selected. Returs index number in selected labels or -1 if the label is not found.
+  * Check if the label is selected. Returns index number in selected labels or -1 if the label is not found.
   * @param entityId entity from selected label
   * @param labelKey label key from selected label
   * @param labelValue label value from selected label
@@ -656,14 +654,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       temporalCount = group.services.length + temporalCount;
     });
     return temporalCount;
-  }
-
-  /**
-   * Returns the length of the instances in registered list. Represents the number of available app instances
-   * @param appId selected app
-   */
-  getInstancesCount(appId) {
-    return this.instances.filter(instance => instance.app_descriptor_id === appId).length;
   }
 
   /**
@@ -909,7 +899,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     return Object.values(appsInCluster);
   }
   /**
-   * Transforms the data needed to create the grapho
+   * Transforms the data needed to create the graph
    */
   toGraphData(searchTerm?: string) {
     this.graphData = {
@@ -980,7 +970,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Return an specific color depending on the node status
    * @param status Status name
    */
-  getNodeColor(status: string): string {
+  private getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
       case 'running':
         return this.STATUS_COLORS.RUNNING;
@@ -997,7 +987,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Return an specific text color depending on the node status
    * @param status Status name
    */
-  getNodeTextColor(status: string): string {
+  private getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
       case 'running':
         return this.STATUS_TEXT_COLORS.RUNNING;
@@ -1012,7 +1002,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Filters the backend incoming status to display it in removing the initial "service_"
    * @param rawStatus string containing the status that the backend is sending
    */
-  getBeautyStatusName (rawStatus: string): string {
+  private getBeautyStatusName(rawStatus: string): string {
     if (rawStatus.toLowerCase().startsWith('service_')) {
       return rawStatus.substring('service_'.length, rawStatus.length);
     }
@@ -1036,6 +1026,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
               this.clusters = clusters.clusters;
               this.instances = instances.instances;
               this.registered = registered.descriptors || [];
+              this.processedRegisteredList();
               this.clusters.forEach(cluster => {
                 this.preventEmptyFields(cluster);
               });
@@ -1072,5 +1063,17 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       source: source,
       target: target
     });
+  }
+
+  /**
+   * Process registered list that adds each instances associated with each registered
+   */
+  private processedRegisteredList() {
+    if (this.registered) {
+      for (let indexRegistered = 0; indexRegistered < this.registered.length; indexRegistered++) {
+        const registeredId = this.registered[indexRegistered].app_descriptor_id;
+        this.registered[indexRegistered]['instances'] = this.instances.filter(instance => registeredId === instance.app_descriptor_id);
+      }
+    }
   }
 }

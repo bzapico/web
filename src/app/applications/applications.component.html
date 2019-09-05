@@ -70,7 +70,13 @@
         </div>
         <!-- Search input -->
         <div class="row">
-          <div class="col-12">
+          <div *ngIf=
+            "loadedData &&
+            instances &&
+            instances.length > 0 &&
+            !requestError && 
+            showInstances" 
+            class="col-12">
             <form>
               <div class="search-box">
                 <input 
@@ -83,14 +89,38 @@
                     <i class="material-icons">search</i>
                   </div>     
                   <div *ngIf="searchTerm !== ''" class="close-icon">
-                    <i (click)="resetFilters('apps')" class="material-icons">close</i>
+                    <i (click)="resetFilters('instances')" class="material-icons">close</i>
                   </div>
               </div>
             </form>
-          </div>      
+          </div>   
+          <div *ngIf=
+            "loadedData &&
+            registered &&
+            registered.length > 0 &&
+            !requestError && 
+            !showInstances"  
+            class="col-12">
+            <form>
+              <div class="search-box">
+                <input 
+                  name="searchTermRegistered" 
+                  [(ngModel)]="searchTermRegistered"
+                  type="text" 
+                  placeholder="Search..."
+                  class="form-control"> 
+                  <div *ngIf="searchTermRegistered === ''" class="search-icon">
+                    <i class="material-icons">search</i>
+                  </div>     
+                  <div *ngIf="searchTermRegistered !== ''" class="close-icon">
+                    <i (click)="resetFilters('registered')" class="material-icons">close</i>
+                  </div>
+              </div>
+            </form>
+          </div>    
         </div>
-        <!-- App Instances Sorting mesages -->
         <div class="row">
+          <!-- App Instances Sorting messages -->
           <div *ngIf=
             "loadedData &&
             instances &&
@@ -99,21 +129,21 @@
             showInstances" 
             class="col-12">  
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
-              Filtered by term "{{ searchTerm }}".
-              <span (click)="resetFilters('apps')" class="reset-search">Reset</span>
+              {{ ( instances | filter : searchTerm : ['name', 'labels', 'status'])?.length }} results found. Filtered by term "{{ searchTerm }}".
+              <span (click)="resetFilters('instances')" class="reset-search">Reset</span>
             </p>
             <p *ngIf="filterField && !searchTerm" class="sorting-message">
               Sorted by {{ sortedBy }},
               <span *ngIf="reverse">ascendant. </span>
               <span *ngIf="!reverse">descendant. </span>
-              <span (click)="resetFilters('apps')" class="reset-search">Reset</span>
+              <span (click)="resetFilters('instances')" class="reset-search">Reset</span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
-              Sorted by {{ sortedBy }}
+              {{ ( instances | filter : searchTerm : ['name', 'labels', 'status'])?.length }} results found. Sorted by {{ sortedBy }}
               <span *ngIf="reverse">ascendant </span>
               <span *ngIf="!reverse">descendant </span>
               and filtered by term "{{ searchTerm }}".
-              <span (click)="resetFilters('apps')" class="reset-search">Reset</span>
+              <span (click)="resetFilters('instances')" class="reset-search">Reset</span>
             </p> 
             <p *ngIf="!filterField && !searchTerm" class="sorting-message"></p>
           </div>
@@ -125,20 +155,20 @@
             !requestError && 
             !showInstances" 
             class="col-12">  
-            <p *ngIf="searchTerm && !filterFieldRegistered" class="sorting-message">
-              Filtered by term "{{ searchTermRegistered }}".
+            <p *ngIf="searchTermRegistered && !filterFieldRegistered" class="sorting-message">
+              {{ ( registered | filter : searchTermRegistered : ['name', 'labels', 'instances'])?.length }} results found. Filtered by term "{{ searchTermRegistered }}".
               <span (click)="resetFilters('registered')" class="reset-search">Reset</span>
             </p>
             <p *ngIf="filterFieldRegistered && !searchTermRegistered" class="sorting-message">
-              Sorted by {{ sortedByRegistered }},
-              <span *ngIf="reverse">ascendant. </span>
-              <span *ngIf="!reverse">descendant. </span>
+             Sorted by {{ sortedByRegistered }},
+              <span *ngIf="reverseRegistered">ascendant. </span>
+              <span *ngIf="!reverseRegistered">descendant. </span>
               <span (click)="resetFilters('registered')" class="reset-search">Reset</span>
             </p>
             <p *ngIf="filterFieldRegistered && searchTermRegistered" class="sorting-message">
-              Sorted by {{ sortedByRegistered }}
-              <span *ngIf="reverse">ascendant </span>
-              <span *ngIf="!reverse">descendant </span>
+              {{ ( registered | filter : searchTermRegistered : ['name', 'labels', 'instances'])?.length }} results found. Sorted by {{ sortedByRegistered }}
+              <span *ngIf="reverseRegistered">ascendant </span>
+              <span *ngIf="!reverseRegistered">descendant </span>
               and filtered by term "{{ searchTermRegistered }}".
               <span (click)="resetFilters('registered')" class="reset-search">Reset</span>
             </p> 
@@ -157,7 +187,7 @@
             <thead class="nalej-thead">
               <tr>
                 <th 
-                  (click)="setOrder('apps','name')"            
+                  (click)="setOrder('instances','name')"            
                   [ngClass]="getCategoryCSSClass('name')"
                   scope="col" 
                   class="col-3 padding-fix">
@@ -170,7 +200,7 @@
                   </span>
                 </th>
                 <th 
-                  (click)="setOrder('apps','labels')" 
+                  (click)="setOrder('instances','labels')" 
                   [ngClass]="getCategoryCSSClass('labels')"
                   scope="col" 
                   class="col-5">
@@ -183,7 +213,7 @@
                   </span>
                 </th>
                 <th 
-                  (click)="setOrder('apps','status')" 
+                  (click)="setOrder('instances','status')" 
                   [ngClass]="getCategoryCSSClass('status')"
                   tooltip="Status" 
                   placement="bottom"
@@ -340,8 +370,8 @@
             <tbody>
               <tr *ngFor=
                 "let app of registered |
-                sortBy : sortedBy : reverse : 'case-insensitive' |
-                filter : searchTerm">
+                sortBy : sortedByRegistered : reverseRegistered : 'case-insensitive' |
+                filter : searchTermRegistered">
                 <td 
                   [routerLink]="['registered', app.app_descriptor_id]" 
                   routerLinkActive="active" 
@@ -380,7 +410,7 @@
                   </div>
                 </td>
                 <td class="col-2 text-center">
-                  {{getInstancesCount(app.app_descriptor_id)}}
+                  {{app.instances.length}}
                 </td>
                 <td class="col-2 actions-col">
                   <button 
@@ -527,7 +557,7 @@
             </form>
           </div>      
         </div>
-        <!-- Sorting mesages -->
+        <!-- Sorting messages -->
         <div class="row row-sorting-lg"> 
           <div class="col-12">  
             <p *ngIf="searchTermGraph && !quickFilter" class="sorting-message text-right">
@@ -551,7 +581,7 @@
             <div    
               *ngIf="graphDataLoaded"
               class="graph">
-              <!-- <ngx-graph
+              <ngx-graph
                 [view]="view"
                 [links]="graphData.links"
                 [nodes]="graphData.nodes"
@@ -587,7 +617,7 @@
                     </svg:text>
                   </svg:g>
                 </ng-template>
-              </ngx-graph> -->
+              </ngx-graph>
             </div>
             <div *ngIf="!graphDataLoaded" class="loader"></div>
             <!-- No info to show -->
