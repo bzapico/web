@@ -20,7 +20,6 @@ describe('ResourcesComponent', () => {
   let fixture: ComponentFixture<ResourcesComponent>;
   let de: DebugElement;
   let el: HTMLElement;
-  let inputElement: HTMLInputElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -54,8 +53,6 @@ describe('ResourcesComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ResourcesComponent);
     component = fixture.componentInstance;
-    inputElement = fixture.debugElement.query(By.css('input'))
-    .nativeElement as HTMLInputElement;
 
     fixture.detectChanges();
 

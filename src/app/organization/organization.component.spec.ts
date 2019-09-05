@@ -4,7 +4,6 @@ import { OrganizationComponent } from './organization.component';
 import { ButtonsModule, BsModalRef, BsModalService, ModalModule, TooltipModule } from 'ngx-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { DebugElement } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { SortByPipe } from '../pipes/sort-by.pipe';
@@ -13,8 +12,6 @@ import { SortByPipe } from '../pipes/sort-by.pipe';
 describe('OrganizationComponent', () => {
   let component: OrganizationComponent;
   let fixture: ComponentFixture<OrganizationComponent>;
-  let de: DebugElement;
-  let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -44,9 +41,6 @@ describe('OrganizationComponent', () => {
     component = fixture.componentInstance;
 
     fixture.detectChanges();
-
-    de = fixture.debugElement;
-    el = de.nativeElement;
   });
 
   it('openUserInfo() - Should open User Info Modal view that holds the user info component', () => {
