@@ -564,18 +564,22 @@
         <div class="row row-sorting-lg"> 
           <div class="col-12">  
             <p *ngIf="isSearchingInGraph && searchTermGraph && !quickFilter" class="sorting-message text-right">
-                {{ occurrencesCounter }} results found. Filtered by term "{{ searchTermGraph }}".
+               A {{ occurrencesCounter }} results found. Filtered by term "{{ searchTermGraph }}".
               <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
             </p>
             <p *ngIf="isSearchingInGraph && quickFilter && !searchTermGraph" class="sorting-message text-right">
-                {{ occurrencesCounter }} results found. Filtered by {{ quickFilter }}.
+               B {{ occurrencesCounter }} results found. Filtered by {{ quickFilter }}.
               <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
             </p> 
             <p *ngIf="isSearchingInGraph && quickFilter && searchTermGraph" class="sorting-message text-right">
-               {{ occurrencesCounter }} results found. Filtered by term "{{ searchTermGraph }}" and by {{ quickFilter }}.
+              C  {{ occurrencesCounter }} results found. Filtered by term "{{ searchTermGraph }}" and by {{ quickFilter }}.
               <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
             </p> 
-            <p *ngIf="!isSearchingInGraph" class="sorting-message"></p>
+            <p *ngIf="!isSearchingInGraph && quickFilter && !searchTermGraph" class="sorting-message text-right">
+                D {{ occurrencesCounter }} results found. Filtered by {{ quickFilter }}.
+               <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
+             </p> 
+            <p *ngIf="!isSearchingInGraph || !quickFilter" class="sorting-message"></p>
           </div>
         </div>
         <!-- Cluster-apps graph -->

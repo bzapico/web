@@ -13,6 +13,7 @@ import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.comp
 import { Router } from '@angular/router';
 import * as shape from 'd3-shape';
 import { Subscription, timer } from 'rxjs';
+import { NodeType } from '../definitions/enums/node-type.enum';
 
 /**
  * Refresh ratio
@@ -903,65 +904,70 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   /**
    * Transforms the data needed to create the graph
    */
-  toGraphData(searchTerm?: string) {
+  toGraphData(searchTermGraph?: string) {
     this.graphData = {
       nodes: [],
       links: []
     };
-    if (searchTerm) {
-      searchTerm = searchTerm.toLowerCase();
+    if (searchTermGraph) {
+      searchTermGraph = searchTermGraph.toLowerCase();
     }
     this.clusters.forEach(cluster => {
+      const clusterName = cluster.name.toLowerCase();
       const nodeGroup = {
         id: cluster.cluster_id,
         label: cluster.name,
+        type: NodeType.Clusters,
         tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
         color: this.getNodeColor(cluster.status_name),
         text: this.getNodeTextColor(cluster.status_name),
         group: cluster.cluster_id,
         customHeight: CUSTOM_HEIGHT_CLUSTERS,
-        customBorderColor: (searchTerm && cluster.name.includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
-        customBorderWidth: (searchTerm && cluster.name.includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
+        customBorderColor: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+        customBorderWidth: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
       };
       this.graphData.nodes.push(nodeGroup);
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
+        const instanceName = instance['name'].toLowerCase();
         const nodeInstance = {
           id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
           label: instance['name'],
+          type: NodeType.Instances,
           tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
           color: this.getNodeColor(instance['status_name']),
           text: this.getNodeTextColor(cluster.status_name),
           group: cluster.cluster_id,
           customHeight: CUSTOM_HEIGHT_INSTANCES,
-          customBorderColor: (searchTerm && instance['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
-          customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : '',
+          customBorderColor: (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+          customBorderWidth: (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : '',
           app_descriptor_id: instance['app_descriptor_id']
         };
         this.graphData.nodes.push(nodeInstance);
         const registeredApp = this.getRegisteredApp(nodeInstance);
         if (registeredApp.length > 0) {
+          const registeredName = registeredApp[0]['name'].toLowerCase();
           const nodeRegistered = {
             id: registeredApp[0]['app_descriptor_id'],
             label: registeredApp[0]['name'],
+            type: NodeType.Registered,
             tooltip: 'REGISTERED ' + registeredApp[0]['name'],
             color: REGISTERED_NODES_COLOR,
             text: this.getNodeTextColor(cluster.status_name),
             group: cluster.cluster_id,
             customHeight: CUSTOM_HEIGHT_REGISTERED,
-            customBorderColor: (searchTerm && registeredApp[0]['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
-            customBorderWidth: (searchTerm && registeredApp[0]['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
+            customBorderColor: (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+            customBorderWidth: (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
           };
           if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
             this.graphData.nodes.push(nodeRegistered);
           }
           this.setLinksInGraph(
             registeredApp[0]['app_descriptor_id'],
-      cluster.cluster_id + '-s-' + instance['app_instance_id']);
-        }
-
+            cluster.cluster_id + '-s-' + instance['app_instance_id']);
+          }
         this.setLinksInGraph(
-     cluster.cluster_id + '-s-' + instance['app_instance_id'],
+          cluster.cluster_id + '-s-' + instance['app_instance_id'],
           cluster.cluster_id);
       });
     });
@@ -1032,7 +1038,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
               this.clusters.forEach(cluster => {
                 this.preventEmptyFields(cluster);
               });
-              this.updatePieChartStats(this.clusters);
+              this.updatePieChartStats(this.instances);
               if (!this.loadedData) {
                 this.loadedData = true;
               }
@@ -1047,15 +1053,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Returns the registered app from any concrete instance
-   * @param instance Selected app instance
-   */
-  private getRegisteredApp(instance) {
-    return this.registered.filter(registered => registered.app_descriptor_id === instance.app_descriptor_id);
-  }
-
-
-  /**
    * Return an specific color depending on the node status
    * @param source Origin node
    * @param target Final node
@@ -1065,6 +1062,14 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       source: source,
       target: target
     });
+  }
+
+  /**
+   * Returns the registered app from any concrete instance
+   * @param instance Selected app instance
+   */
+  private getRegisteredApp(instance) {
+    return this.registered.filter(registered => registered.app_descriptor_id === instance.app_descriptor_id);
   }
 
   /**
