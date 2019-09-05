@@ -8,7 +8,7 @@ export const environment = {
   production: false,
   // hardcoded local environment API ip address
   // apiUrl: 'http://192.168.99.100'
-  apiUrl: 'https://web.nalej55.nalej.tech'
+  apiUrl: getBaseUrl()
 };
 
 function getBaseUrl() {
