@@ -454,18 +454,18 @@ export class MockupBackendService implements Backend {
     return of (new HttpResponse({
       body: JSON.stringify(mockResourcesSummary),
       status: 200
-    }));
+    })).pipe(map(summary => JSON.parse(summary.body)));
   }
 
   /**
-   * Simulates to requrest clusters list
+   * Simulates to request clusters list
    * @param organizationId Organization identifier
    */
   getClusters(organizationId: string) {
     return of (new HttpResponse({
       body: JSON.stringify({clusters: mockClusterList}),
       status: 200
-    }));
+    })).pipe(map(clusters => JSON.parse(clusters.body)));
   }
 
   /********************
@@ -480,7 +480,7 @@ export class MockupBackendService implements Backend {
     return of (new HttpResponse({
       body: JSON.stringify({instances: mockAppsInstancesList}),
       status: 200
-    }));
+    })).pipe(map(instances => JSON.parse(instances.body)));
   }
 
   /**
