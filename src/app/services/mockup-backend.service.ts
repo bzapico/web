@@ -155,7 +155,7 @@ export class MockupBackendService implements Backend {
     return of (new HttpResponse({
       body: JSON.stringify(mockInventoryList),
       status: 200
-    }));
+    })).pipe(map(inventory => JSON.parse(inventory.body)));
   }
 
   /**
@@ -654,7 +654,7 @@ export class MockupBackendService implements Backend {
     return of (new HttpResponse({
       body: JSON.stringify({devices: devicesArray}),
       status: 200
-    }));
+    })).pipe(map(device => JSON.parse(device.body)));
   }
 
   /**
@@ -712,7 +712,7 @@ export class MockupBackendService implements Backend {
       body: JSON.stringify({
       groups: mockGroupList}),
       status: 200,
-    }));
+    })).pipe(map(response => JSON.parse(response.body)));
   }
 
   /**
