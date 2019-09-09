@@ -535,7 +535,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           cluster_type_name: cluster.cluster_type_name,
           labels: cluster.labels,
           multitenant_support: cluster.multitenant_support,
-          instances: this.getAppsInCluster(cluster.cluster_id)
+          instances: this.getAppsInCluster(cluster.cluster_id).length
         });
       });
     }
