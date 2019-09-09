@@ -485,7 +485,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           .then(([clusters, instances, summary]) => {
             this.clusters = clusters.clusters;
             this.instances = instances.instances;
-            this.processedClusterList();
+            this.getProcessedClusterList();
             this.clustersCount = summary['total_clusters'] || 0 ;
             if (!this.loadedData) {
               this.loadedData = true;
@@ -521,21 +521,13 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Process cluster list and adds each instances associated with each cluster
    */
-  private processedClusterList() {
+  private getProcessedClusterList() {
     this.clusterWithInstancesList = [];
     if (this.clusters) {
       this.clusters.forEach(cluster => {
         this.clusterWithInstancesList.push({
-          name: cluster.name,
-          cluster_id: cluster.cluster_id,
-          total_nodes: cluster.total_nodes,
-          running_nodes: cluster.running_nodes,
-          description: cluster.description,
-          status_name: cluster.status_name,
-          cluster_type_name: cluster.cluster_type_name,
-          labels: cluster.labels,
-          multitenant_support: cluster.multitenant_support,
-          instances: this.getAppsInCluster(cluster.cluster_id).length
+          ...cluster,
+          ...{instances: this.getAppsInCluster(cluster.cluster_id).length}
         });
       });
     }
