@@ -517,7 +517,7 @@ export class MockupBackendService implements Backend {
     return of (new HttpResponse({
       body: JSON.stringify(mockRegisteredAppsList[index]),
       status: 200
-    }));
+    })).pipe(map(response => JSON.parse(response.body)));
   }
 
   /**
