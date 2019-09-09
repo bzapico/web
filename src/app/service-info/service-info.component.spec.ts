@@ -8,7 +8,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TooltipModule } from '@swimlane/ngx-charts';
 
 describe('ServiceInfoComponent', () => {
-  let component: ServiceInfoComponent;
   let fixture: ComponentFixture<ServiceInfoComponent>;
 
   beforeEach(async(() => {
@@ -31,11 +30,6 @@ describe('ServiceInfoComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ServiceInfoComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
 });

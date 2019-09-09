@@ -1,8 +1,8 @@
 <div 
-  *ngIf="alerts.length > 0" 
+  *ngIf="notifications.length > 0"
   id="alert-container" 
   class="container alert-top-right">
-  <div *ngFor="let alert of alerts" class="row">
+  <div *ngFor="let alert of notifications" class="row">
     <div class="col-12">
       <alert 
         (onClosed)="onClosed(alert)" 

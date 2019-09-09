@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ResourcesComponent } from './resources.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -20,9 +20,6 @@ describe('ResourcesComponent', () => {
   let fixture: ComponentFixture<ResourcesComponent>;
   let de: DebugElement;
   let el: HTMLElement;
-  let inputElement: HTMLInputElement;
-  // tslint:disable-next-line:prefer-const
-  let context: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -56,8 +53,6 @@ describe('ResourcesComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ResourcesComponent);
     component = fixture.componentInstance;
-    inputElement = fixture.debugElement.query(By.css('input'))
-    .nativeElement as HTMLInputElement;
 
     fixture.detectChanges();
 

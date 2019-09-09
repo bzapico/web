@@ -6,7 +6,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 import { DeployInstanceComponent } from './deploy-instance.component';
-import { from } from 'rxjs';
 import { AutofocusDirective } from '../directives/autofocus.directive';
 
 describe('DeployInstanceComponent', () => {

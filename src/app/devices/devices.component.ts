@@ -168,9 +168,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     const mock = localStorage.getItem(LocalStorageKeys.devicesMock) || null;
     // Check which backend is required (fake or real)
     if (mock && mock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
     // Default initialization
     this.devices = [];
@@ -614,7 +614,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           this.backend.getGroups(this.organizationId)
           .subscribe(getGroupsResponse => {
               this.groups = getGroupsResponse.groups;
-              if (!this.groups){
+              if (!this.groups) {
                 this.groups = [];
               }
               if (this.groups.length === 0) {

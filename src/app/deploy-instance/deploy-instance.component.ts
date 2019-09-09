@@ -5,7 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-deploy-instance',
@@ -83,9 +83,9 @@ export class DeployInstanceComponent implements OnInit {
     const mock = localStorage.getItem(LocalStorageKeys.deployInstanceMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
 
     // Default initialization
@@ -222,7 +222,6 @@ export class DeployInstanceComponent implements OnInit {
     this.availableParamsCategory.basic = false;
     this.availableParamsCategory.advanced = false;
     this.params = this.deployInstanceForm.get('params') as FormArray;
-    const group: any = {};
 
     if (this.selectedApp.parameters) {
       this.defaultParamsOpened = true;

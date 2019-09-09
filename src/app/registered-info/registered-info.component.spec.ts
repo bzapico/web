@@ -14,7 +14,6 @@ import { TruncatePipe } from '../pipes/truncate.pipe';
 
 
 describe('RegisteredInfoComponent', () => {
-  let component: RegisteredInfoComponent;
   let fixture: ComponentFixture<RegisteredInfoComponent>;
 
   beforeEach(async(() => {
@@ -45,11 +44,6 @@ describe('RegisteredInfoComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RegisteredInfoComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
 });

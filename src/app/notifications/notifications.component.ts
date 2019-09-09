@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { BackendService } from '../services/backend.service';
@@ -6,14 +6,13 @@ import { Backend } from '../definitions/interfaces/backend';
 import { NotificationsService } from '../services/notifications.service';
 
 @Component({
-  selector: 'app-notifications',
+  selector: 'notifications',
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent implements OnInit {
 
-  // tslint:disable-next-line:no-input-rename
-  @Input('notifications') alerts: any[];
+  @Input() notifications: any[];
 
   /**
    * Backend handler (mocked up or real backend)
@@ -30,12 +29,12 @@ export class NotificationsComponent implements OnInit {
     private backendService: BackendService,
     private notificationsService: NotificationsService
     ) {
-    this.alerts = [];
+    this.notifications = [];
     const notificationsMock = localStorage.getItem(LocalStorageKeys.notificationsMock);
     if (notificationsMock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
   }
 
