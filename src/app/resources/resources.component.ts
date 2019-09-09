@@ -523,11 +523,20 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   private processedClusterList() {
     this.clusterWhitInstancesList = [];
-
     if (this.clusters) {
       this.clusters.forEach(cluster => {
-        cluster.instances = this.getAppsInCluster(cluster.cluster_id);
-       this.clusterWhitInstancesList.push(cluster);
+        this.clusterWhitInstancesList.push({
+          name: cluster.name,
+          cluster_id: cluster.cluster_id,
+          total_nodes: cluster.total_nodes,
+          running_nodes: cluster.running_nodes,
+          description: cluster.description,
+          status_name: cluster.status_name,
+          cluster_type_name: cluster.cluster_type_name,
+          labels: cluster.labels,
+          multitenant_support: cluster.multitenant_support,
+          instances: this.getAppsInCluster(cluster.cluster_id)
+        });
       });
     }
   }
