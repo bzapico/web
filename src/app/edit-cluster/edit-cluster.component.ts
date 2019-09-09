@@ -8,7 +8,6 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'edit-cluster',
   templateUrl: './edit-cluster.component.html',
   styleUrls: ['./edit-cluster.component.scss']
@@ -44,9 +43,9 @@ export class EditClusterComponent implements OnInit {
     const mock = localStorage.getItem(LocalStorageKeys.clusterEditMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
     this.clusterName = 'Loading...'; // Default initialization
   }

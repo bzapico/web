@@ -10,7 +10,6 @@ import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.comp
 import { ActivatedRoute, Router } from '@angular/router';
 import * as shape from 'd3-shape';
 import { AppDescriptor } from '../definitions/interfaces/app-descriptor';
-import { mockRegisteredAppsList } from '../utils/mocks';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { ServiceInfoComponent } from '../service-info/service-info.component';
 
@@ -165,9 +164,9 @@ export class RegisteredInfoComponent implements OnInit {
     const mock = localStorage.getItem(LocalStorageKeys.registeredInfoMock) || null;
     // Check which backend is required (fake or real)
     if (mock && mock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
     // Default initialization
     this.services = [];

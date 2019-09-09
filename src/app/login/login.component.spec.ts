@@ -6,15 +6,10 @@ import { AuthService } from '../services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BsModalService, ModalModule, TooltipModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let de: DebugElement;
-  let el: HTMLElement;
-  let service: AuthService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -40,13 +35,6 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
 
     fixture.detectChanges();
-
-    de = fixture.debugElement.query(By.css('form'));
-    el = de.nativeElement;
-  });
-
-  afterEach(() => {
-    service = null;
   });
 
   it('Form invalid when empty', () => {

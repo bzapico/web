@@ -47,7 +47,6 @@ export const AvailableComponents = {
 };
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'debug-panel',
   templateUrl: './debug-panel.component.html',
   styleUrls: ['./debug-panel.component.scss']
