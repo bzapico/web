@@ -32,9 +32,9 @@ export class AuthService {
     const mock = localStorage.getItem(LocalStorageKeys.loginMock) || null;
     // check which backend is required (fake or real)
     if (mock === 'true') {
-      this.backend = mockupBackend;
+      this.backend = this.mockupBackend;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
     this.jwtHelper = new JwtHelperService();
   }

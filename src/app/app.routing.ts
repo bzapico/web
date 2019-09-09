@@ -1,7 +1,5 @@
-// tslint:disable-next-line:eofline
 import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule, provideRoutes } from '@angular/router';
-
+import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
@@ -77,4 +75,3 @@ const appRoutes: Routes = [
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(appRoutes, { useHash: true });
-

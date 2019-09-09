@@ -13,8 +13,8 @@ describe('ErrorHandlerService', () => {
     expect(service).toBeTruthy();
   });
 
-  // tslint:disable-next-line:max-line-length
-  it('handleError() - It will test if handleError method is called with error parameter', inject([ErrorHandlerService], (service: ErrorHandlerService) => {
+  it('handleError() - It will test if handleError method is called with error parameter',
+      inject([ErrorHandlerService], (service: ErrorHandlerService) => {
     const error: Error = new Error('ERROR');
     const handleError = spyOn(service, 'handleError').and.returnValue(true);
     handleError(error);

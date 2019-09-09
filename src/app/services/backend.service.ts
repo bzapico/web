@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Backend } from '../definitions/interfaces/backend';
-import { Response, ResponseOptions } from '@angular/http';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
 /**
@@ -57,9 +56,7 @@ export class BackendService implements Backend {
    * Emulates a request to log out
    */
   logout() {
-    return of (new Response(new ResponseOptions({
-      status: 200
-    })));
+    return of (new HttpResponse({status: 200}));
   }
 
   /********************

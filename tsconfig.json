@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "importHelpers": true,
+    "noUnusedLocals": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,

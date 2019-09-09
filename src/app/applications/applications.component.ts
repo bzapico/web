@@ -45,7 +45,6 @@ const FOUND_NODES_BORDER_SIZE = 4;
 const REGISTERED_NODES_COLOR = '#444444';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'applications',
   templateUrl: './applications.component.html',
   styleUrls: ['./applications.component.scss']
@@ -230,9 +229,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
     if (mock && mock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
 
     // Default initialization
@@ -482,7 +481,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       }
       this.sortedByRegistered = categoryName;
       this.filterFieldRegistered = true;
-    } 
+    }
   }
 
   /**
@@ -762,7 +761,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Triggers the navigation to app instance detailed view if the app is not being undeployed
+   * Triggers the navigation to app instance detailed view if the app is not being undeploy
+   * yed
    * @param app App instance data
    */
   goToInstanceView(app): void {
@@ -1089,5 +1089,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   private occurrencesGraphCounter() {
     this.occurrencesCounter = this.graphData.nodes.filter(node => node.label.toLowerCase().includes(this.searchTermGraph)).length;
+
   }
 }
