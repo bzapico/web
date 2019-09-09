@@ -731,7 +731,4 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
   }
 
-  goToRegisteredView(app): void {
-    this.router.navigate(['/applications/registered/' + app.app_descriptor_id]);
-  }
 }
