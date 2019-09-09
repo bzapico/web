@@ -1,5 +1,8 @@
 {
   "organization": {
-    "title": "ORGANIZATION"
+    "title": "ORGANIZATION",
+    "reset": "Reset",
+    "filteredBy": "Filtered by term \"{{value}}\".",
+    "sortedBy": "Sorted by {{value}}"
   }
 }
