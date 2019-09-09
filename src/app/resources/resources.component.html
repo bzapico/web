@@ -66,7 +66,7 @@
         <!-- Sorting message -->
           <div class="col-12">  
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
-                {{ ( clusterWhitInstancesList | filter : searchTerm : ['name', 'labels', 'instances'])?.length }}  results found. Filtered by term "{{ searchTerm }}".
+                {{ ( clusterWithInstancesList | filter : searchTerm : ['name', 'labels', 'instances'])?.length }}  results found. Filtered by term "{{ searchTerm }}".
               <span (click)="resetFilters('clusters')" class="reset-search">Reset</span>
             </p>
             <p *ngIf="filterField && !searchTerm" class="sorting-message">
@@ -76,7 +76,7 @@
               <span (click)="resetFilters('clusters')" class="reset-search">Reset</span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
-                {{ ( clusterWhitInstancesList | filter : searchTerm : ['name', 'labels', 'instances'])?.length }}  results found. Sorted by {{ sortedBy }}
+                {{ ( clusterWithInstancesList | filter : searchTerm : ['name', 'labels', 'instances'])?.length }}  results found. Sorted by {{ sortedBy }}
               <span *ngIf="reverse">ascendant </span>
               <span *ngIf="!reverse">descendant </span>
               and filtered by term "{{ searchTerm }}".
@@ -149,7 +149,7 @@
             </thead>
             <tbody>
               <tr *ngFor=
-                "let cluster of clusterWhitInstancesList |
+                "let cluster of clusterWithInstancesList |
                 sortBy : sortedBy : reverse : 'case-insensitive' |
                 filter : searchTerm">
                 <td class="col-3">

@@ -62,7 +62,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * List of processed clusters list with its associated instances
    */
-  clusterWhitInstancesList: any[];
+  clusterWithInstancesList: any[];
 
   /**
    * List of available apps instances
@@ -522,10 +522,10 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Process cluster list and adds each instances associated with each cluster
    */
   private processedClusterList() {
-    this.clusterWhitInstancesList = [];
+    this.clusterWithInstancesList = [];
     if (this.clusters) {
       this.clusters.forEach(cluster => {
-        this.clusterWhitInstancesList.push({
+        this.clusterWithInstancesList.push({
           name: cluster.name,
           cluster_id: cluster.cluster_id,
           total_nodes: cluster.total_nodes,
