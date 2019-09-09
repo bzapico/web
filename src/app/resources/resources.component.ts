@@ -75,11 +75,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   pieChartData: any[];
 
   /**
-   * Number of running clusters
-   */
-  countRunning: number;
-
-  /**
    * Count of total clusters
    */
   clustersCount: number;
@@ -503,7 +498,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 
   /**
    * Updates the pieChartsData status
-   * @param clusterList Array containing the cluster list that sources the chart values
+   * @param clusters Array containing the cluster list that sources the chart values
    */
   private updatePieChartStats(clusters: any[]) {
     let running = 0;
@@ -513,8 +508,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           running += 1;
         }
       });
-      this.countRunning = running;
-      this.pieChartData = this.generateClusterChartData(this.countRunning, clusters.length);
+      this.pieChartData = this.generateClusterChartData(running, clusters.length);
     }
   }
 
