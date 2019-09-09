@@ -491,7 +491,7 @@ export class MockupBackendService implements Backend {
     return of (new HttpResponse({
       body: JSON.stringify({descriptors: mockRegisteredAppsList}),
       status: 200
-    }));
+    })).pipe(map(response => JSON.parse(response.body)));
   }
 
   /**
@@ -504,7 +504,7 @@ export class MockupBackendService implements Backend {
     return of (new HttpResponse({
       body: JSON.stringify(mockAppsInstancesList[index]),
       status: 200
-    }));
+    })).pipe(map(response => JSON.parse(response.body)));
   }
 
   /**
