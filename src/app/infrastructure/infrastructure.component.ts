@@ -10,7 +10,6 @@ import { DeviceInfoComponent } from '../device-info/device-info.component';
 import { AssetInfoComponent } from '../asset-info/asset-info.component';
 import { EdgeControllerInfoComponent } from '../edge-controller-info/edge-controller-info.component';
 import { InstallAgentComponent } from '../install-agent/install-agent.component';
-import { Router, ActivatedRoute } from '@angular/router';
 import { SimpleLogComponent } from '../simple-log/simple-log.component';
 import { AgentJoinTokenInfoComponent } from '../agent-join-token-info/agent-join-token-info.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
@@ -132,16 +131,14 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService,
-    private router: Router,
-    private route: ActivatedRoute,
+    private notificationsService: NotificationsService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.infrastructureMock) || null;
     // Check which backend is required (fake or real)
     if (mock && mock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
 
     // Default initialization

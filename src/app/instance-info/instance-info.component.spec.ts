@@ -13,7 +13,6 @@ import { SortByPipe } from '../pipes/sort-by.pipe';
 import { TruncatePipe } from '../pipes/truncate.pipe';
 
 describe('InstancesInfoComponent', () => {
-  let component: InstanceInfoComponent;
   let fixture: ComponentFixture<InstanceInfoComponent>;
 
   beforeEach(async(() => {
@@ -43,11 +42,6 @@ describe('InstancesInfoComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(InstanceInfoComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
 });

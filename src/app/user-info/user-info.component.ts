@@ -4,13 +4,11 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { mockOrganizationInfo, mockUserList } from '../utils/mocks';
 import { NotificationsService } from '../services/notifications.service';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'user-info',
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.scss']
@@ -75,9 +73,9 @@ export class UserInfoComponent implements OnInit {
     const mock = localStorage.getItem(LocalStorageKeys.userInfoMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
     this.title = 'User info';
     this.userName = 'Loading ...'; // Default initialization

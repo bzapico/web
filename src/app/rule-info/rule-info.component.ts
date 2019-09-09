@@ -43,9 +43,9 @@ export class RuleInfoComponent implements OnInit {
     const mock = localStorage.getItem(LocalStorageKeys.ruleInfoMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
-      this.backend = mockupBackendService;
+      this.backend = this.mockupBackendService;
     } else {
-      this.backend = backendService;
+      this.backend = this.backendService;
     }
 
     // Default initialization

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
-import { Response, ResponseOptions } from '@angular/http';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-// tslint:disable-next-line:max-line-length
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary, mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList, mockInventoryList, mockInventorySummary, mockEICJoinToken, mockAgentJoinToken } from '../utils/mocks';
+import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary,
+         mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList,
+         mockInventoryList, mockInventorySummary, mockEICJoinToken, mockAgentJoinToken } from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 import { Asset } from '../definitions/interfaces/asset';
+import { HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -27,25 +28,22 @@ export class MockupBackendService implements Backend {
    * @param password String that holds the user password
    */
   login(email: string, password: string): Observable<any> {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify({
         token: mockJwtToken,
         refresh_token: '018e42cf-9acb-4b4c-8804-6c54334d6947'
       }),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    }));
   }
 
   /**
    * Simulates the logout request
    */
   logout() {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       status: 200
-    })));
+    }));
   }
 
   /********************
@@ -58,13 +56,10 @@ export class MockupBackendService implements Backend {
    */
   getUserProfileInfo(organizationId: string, userId: string) {
     const index = mockUserList.map(x => x.email).indexOf(userId);
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify(mockUserList[index]),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    }));
   }
 
   /**
@@ -72,13 +67,10 @@ export class MockupBackendService implements Backend {
    * @param organizationId Organization identifier
    */
   getOrganizationInfo(organizationId: string) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify(mockOrganizationInfo),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    }));
   }
 
   /**
@@ -86,13 +78,10 @@ export class MockupBackendService implements Backend {
    * @param organizationId Organization identifier
    */
   getOrganizationUsers(organizationId: string) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify({ users: mockUserList }),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    }));
   }
 
   /**
@@ -102,18 +91,16 @@ export class MockupBackendService implements Backend {
     const index = mockUserList.map(x => x.email).indexOf(user.email);
     if (index === -1) {
       mockUserList.push(user);
-      return of (new Response(new ResponseOptions({
+      return of (new HttpResponse({
         status: 200
-      }))).pipe(
-        map(response => response.json())
+      })).pipe(
+        map(response => response)
       );
     } else {
-      return of (new Response(new ResponseOptions({
+      return of (new HttpResponse({
         status: 403,
         body: user.email + ' is already in use'
-      }))).pipe(
-        map(response => response.json())
-      );
+      }));
     }
   }
 
@@ -125,19 +112,19 @@ export class MockupBackendService implements Backend {
     if (index !== -1) {
       mockUserList.splice(index, 1);
     }
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       status: 200
-    })));
+    }));
   }
 
   /**
   * Simulates reset password
   */
   resetPassword(organizationId: string, passwordChange: any) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: passwordChange,
       status: 200
-    })));
+    }));
   }
 
   /**
@@ -151,11 +138,9 @@ export class MockupBackendService implements Backend {
       mockUserList[index].email = user.email;
       mockUserList[index].role_name = user.role_name;
     }
-    return of(new Response(new ResponseOptions({
+    return of(new HttpResponse({
       status: 200
-    }))).pipe(
-      map(response => response.json())
-    );
+    }));
   }
 
   /********************
@@ -167,13 +152,10 @@ export class MockupBackendService implements Backend {
    * @param organizationId Organization identifier
    */
   getInventory(organizationId: string) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify(mockInventoryList),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    })).pipe(map(inventory => JSON.parse(inventory.body)));
   }
 
   /**
@@ -181,13 +163,10 @@ export class MockupBackendService implements Backend {
    * @param organizationId Organization identifier
    */
   getInventorySummary(organizationId: string) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify(mockInventorySummary),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    }));
   }
 
   /**
@@ -252,13 +231,10 @@ export class MockupBackendService implements Backend {
 
     mockInventoryList.assets.push(asset);
 
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify(asset),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    }));
   }
 
   /**
@@ -282,9 +258,9 @@ export class MockupBackendService implements Backend {
         });
       }
     }
-    return of(new Response(new ResponseOptions({
+    return of(new HttpResponse({
       status: 200
-    })));
+    }));
   }
 
   /**
@@ -308,9 +284,9 @@ export class MockupBackendService implements Backend {
         });
       }
     }
-    return of(new Response(new ResponseOptions({
+    return of(new HttpResponse({
       status: 200
-    })));
+    }));
   }
 
   /**
@@ -331,9 +307,9 @@ export class MockupBackendService implements Backend {
       if (indexAsset !== -1) {
         mockInventoryList.assets.splice(indexAsset, 1);
       }
-      return of (new Response(new ResponseOptions({
+      return of (new HttpResponse({
         status: 200
-      })));
+      }));
   }
 
   /**
@@ -341,28 +317,22 @@ export class MockupBackendService implements Backend {
    * @param organizationId Organization identifier
    */
   createEICToken(organizationId: string) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify(mockEICJoinToken),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    }));
   }
 
   /**
-   * Creates a new agent related operation to EIC 
+   * Creates a new agent related operation to EIC
    * @param organizationId Organization identifier
    * @param edgeControllerId Edge controller id
    */
   createAgentJoinToken(organizationId: string,  edgeControllerId: string) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify(mockAgentJoinToken),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    }));
   }
 
   /**
@@ -375,10 +345,10 @@ export class MockupBackendService implements Backend {
         delete mockInventoryList.controllers[index];
       }
     }
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify({ result: '' }),
       status: 200
-    })));
+    }));
   }
 
   /********************
@@ -406,9 +376,9 @@ export class MockupBackendService implements Backend {
         mockClusterList[index].name = changes.name;
       }
     }
-    return of(new Response(new ResponseOptions({
+    return of(new HttpResponse({
       status: 200
-    })));
+    }));
   }
 
   /**
@@ -432,16 +402,16 @@ export class MockupBackendService implements Backend {
         });
       }
     }
-    return of(new Response(new ResponseOptions({
+    return of(new HttpResponse({
       status: 200
-    })));
+    }));
   }
   /**
    * Simulates to request a list of user roles
    * @param organizationId Organization id
    */
   listRoles(organizationId: string) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify({roles: [
         {
           'organization_id': '2a95fe95-eade-4622-836f-e85d789024bf',
@@ -462,7 +432,7 @@ export class MockupBackendService implements Backend {
         }]
       }),
       status: 200
-    })));
+    }));
   }
   /**
    * Simulates user role change
@@ -471,9 +441,9 @@ export class MockupBackendService implements Backend {
    * @param roleId Role id
    */
   changeRole(organizationId: string, userId: string, roleId: string) {
-    return of(new Response(new ResponseOptions({
+    return of(new HttpResponse({
       status: 200
-    })));
+    }));
   }
 
   /**
@@ -481,27 +451,21 @@ export class MockupBackendService implements Backend {
    * @param organizationId Organization identifier
    */
   getResourcesSummary(organizationId: string) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify(mockResourcesSummary),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    })).pipe(map(summary => JSON.parse(summary.body)));
   }
 
   /**
-   * Simulates to requrest clusters list
+   * Simulates to request clusters list
    * @param organizationId Organization identifier
    */
   getClusters(organizationId: string) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify({clusters: mockClusterList}),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    })).pipe(map(clusters => JSON.parse(clusters.body)));
   }
 
   /********************
@@ -513,13 +477,10 @@ export class MockupBackendService implements Backend {
    * @param organizationId Organization identifier
    */
   getInstances(organizationId: string) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify({instances: mockAppsInstancesList}),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    })).pipe(map(instances => JSON.parse(instances.body)));
   }
 
   /**
@@ -527,13 +488,10 @@ export class MockupBackendService implements Backend {
    * @param organizationId Organization identifier
    */
   getRegisteredApps(organizationId: string) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify({descriptors: mockRegisteredAppsList}),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    })).pipe(map(response => JSON.parse(response.body)));
   }
 
   /**
@@ -543,13 +501,10 @@ export class MockupBackendService implements Backend {
    */
   getAppInstance (organizationId: string, instanceId: string) {
     const index = mockAppsInstancesList.map(x => x.app_instance_id).indexOf(instanceId);
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify(mockAppsInstancesList[index]),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    })).pipe(map(response => JSON.parse(response.body)));
   }
 
   /**
@@ -559,13 +514,10 @@ export class MockupBackendService implements Backend {
    */
   getAppDescriptor (organizationId: string, descriptorId: string) {
     const index = mockRegisteredAppsList.map(x => x.app_descriptor_id).indexOf(descriptorId);
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify(mockRegisteredAppsList[index]),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    })).pipe(map(response => JSON.parse(response.body)));
   }
 
   /**
@@ -577,10 +529,10 @@ export class MockupBackendService implements Backend {
     // Not validating the descriptor
     descriptor.app_descriptor_id = this.uuidv4();
     mockRegisteredAppsList.push(descriptor);
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify(descriptor),
       status: 200
-    })));
+    }));
   }
 
   /**
@@ -604,9 +556,9 @@ export class MockupBackendService implements Backend {
         });
       }
     }
-    return of(new Response(new ResponseOptions({
+    return of(new HttpResponse({
       status: 200
-    })));
+    }));
   }
 
   /**
@@ -623,9 +575,9 @@ export class MockupBackendService implements Backend {
     newInstance.name = name;
     newInstance.app_instance_id = this.uuidv4();
     mockAppsInstancesList.push(newInstance);
-    return of(new Response(new ResponseOptions({
+    return of(new HttpResponse({
       status: 200
-    })));
+    }));
   }
 
   /**
@@ -636,9 +588,9 @@ export class MockupBackendService implements Backend {
   undeploy(organizationId: string, instanceId: string) {
     const indexInstance = mockAppsInstancesList.map(x => x.app_instance_id).indexOf(instanceId);
     mockAppsInstancesList.splice(indexInstance, 1);
-    return of(new Response(new ResponseOptions({
+    return of(new HttpResponse({
       status: 200
-    })));
+    }));
   }
 
     /**
@@ -649,9 +601,9 @@ export class MockupBackendService implements Backend {
   deleteRegistered(organizationId: string, descriptorId: string) {
     const indexInstance = mockRegisteredAppsList.map(x => x.app_descriptor_id).indexOf(descriptorId);
     mockRegisteredAppsList.splice(indexInstance, 1);
-    return of(new Response(new ResponseOptions({
+    return of(new HttpResponse({
       status: 200
-    })));
+    }));
   }
 
   /********************
@@ -662,13 +614,10 @@ export class MockupBackendService implements Backend {
    * Simulates get nodes list
    */
   getNodes(organizationId: string, clusterId: string) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify({nodes: mockNodeList}),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    }));
   }
 
   /**
@@ -676,13 +625,10 @@ export class MockupBackendService implements Backend {
    */
   getClusterDetail(organizationId: string, clusterId: string) {
     const index = mockClusterList.map(x => x.cluster_id).indexOf(clusterId);
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify(mockClusterList[index]),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    }));
   }
 
   /********************
@@ -705,13 +651,10 @@ export class MockupBackendService implements Backend {
             devicesArray = mockDevicesList[index];
       }
     }
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify({devices: devicesArray}),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    })).pipe(map(device => JSON.parse(device.body)));
   }
 
   /**
@@ -720,10 +663,10 @@ export class MockupBackendService implements Backend {
    *  @param deviceData Device data
    */
   updateDevice(organizationId: string, deviceData: any) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify({ result: '' }),
       status: 200
-    })));
+    }));
   }
 
   /**
@@ -739,9 +682,9 @@ export class MockupBackendService implements Backend {
         }
       }
     }
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       status: 200
-    })));
+    }));
   }
 
 
@@ -755,9 +698,9 @@ export class MockupBackendService implements Backend {
       if (index !== -1) {
         mockInventoryList.devices.splice(index, 1);
       }
-      return of (new Response(new ResponseOptions({
+      return of (new HttpResponse({
         status: 200
-      })));
+      }));
   }
 
   /**
@@ -765,14 +708,11 @@ export class MockupBackendService implements Backend {
    * @param organizationId Organization identifier
    */
   getGroups(organizationId: string) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify({
       groups: mockGroupList}),
       status: 200,
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    })).pipe(map(response => JSON.parse(response.body)));
   }
 
   /**
@@ -793,13 +733,10 @@ export class MockupBackendService implements Backend {
         device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
     };
     mockGroupList.push(group);
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify(group),
       status: 200
-    })))
-    .pipe(
-      map(response => response.json())
-    );
+    }));
   }
 
   /**
@@ -812,9 +749,9 @@ export class MockupBackendService implements Backend {
     if (index !== -1) {
       mockGroupList.splice(index, 1);
     }
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       status: 200
-    })));
+    }));
   }
 
   /**
@@ -823,10 +760,10 @@ export class MockupBackendService implements Backend {
    * @param groupData Group data
    */
   updateGroup(organizationId: string, groupData: string) {
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       body: JSON.stringify({ result: '' }),
       status: 200
-    })));
+    }));
   }
 
   /**
@@ -842,9 +779,9 @@ export class MockupBackendService implements Backend {
             mockDevicesList[index][indexDevice].labels = {};
           }
           mockDevicesList[index][indexDevice].labels[Object.keys(changes.labels)[0]] = changes.labels[Object.keys(changes.labels)[0]] ;
-          return of (new Response(new ResponseOptions({
+          return of (new HttpResponse({
             status: 200
-          })));
+          }));
         }
       }
     }
@@ -858,9 +795,9 @@ export class MockupBackendService implements Backend {
           mockInventoryList.devices[index].labels[key] = changes.labels[key];
         });
 
-        return of (new Response(new ResponseOptions({
+        return of (new HttpResponse({
           status: 200
-        })));
+        }));
       }
     }
   }
@@ -886,9 +823,9 @@ export class MockupBackendService implements Backend {
         });
       }
     }
-    return of (new Response(new ResponseOptions({
+    return of (new HttpResponse({
       status: 200
-    })));
+    }));
   }
 
   /**
