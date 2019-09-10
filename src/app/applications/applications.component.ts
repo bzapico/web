@@ -730,4 +730,5 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   searchInGraph() {
 
   }
+
 }
