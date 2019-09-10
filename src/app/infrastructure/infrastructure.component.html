@@ -194,13 +194,13 @@
           inventory.length > 0 && 
           !requestError" 
           class="nalej-table-box no-p-col no-m-row">
-          <div class="new-nalej-table">
-            <div class="new-thead row">
+          <div class="label-nalej-table">
+            <div class="label-thead row">
               <div 
                 (click)="setOrder('type')"            
                 [ngClass]="getCategoryCSSClass('type')"
                 scope="col" 
-                class="new-th col-2">
+                class="label-th col-2">
                 <span  tooltip="Type" placement="bottom">Type</span>
                 <span *ngIf="sortedBy === 'type' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
@@ -215,7 +215,7 @@
                     (click)="setOrder('id')"            
                     [ngClass]="getCategoryCSSClass('id')"
                     scope="col" 
-                    class="new-th col-4">
+                    class="label-th col-4">
                     <span tooltip="ID" placement="bottom">ID</span>
                     <span *ngIf="sortedBy === 'id' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
@@ -228,7 +228,7 @@
                     (click)="setOrder('status')" 
                     [ngClass]="getCategoryCSSClass('status')"
                     scope="col" 
-                    class="new-th col-4 text-center">
+                    class="label-th col-4 text-center">
                     <span tooltip="Status" placement="bottom">Status</span>
                     <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
@@ -241,7 +241,7 @@
                     (click)="setOrder('location')"
                     [ngClass]="getCategoryCSSClass('location')"
                     scope="col" 
-                    class="new-th col-4">
+                    class="label-th col-4">
                     <span tooltip="ID" placement="bottom">Location</span>
                     <span *ngIf="sortedBy === 'location' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
@@ -254,7 +254,7 @@
                     (click)="setOrder('labels')" 
                     [ngClass]="getCategoryCSSClass('labels')"
                     scope="col" 
-                    class="new-th col-12">
+                    class="label-th col-12">
                     <span tooltip="Labels" placement="bottom">Labels</span>
                     <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
@@ -269,7 +269,7 @@
                 tooltip="Actions" 
                 placement="bottom"
                 scope="col" 
-                class="new-th col-1 infrastructure-actions-initial-text">
+                class="label-th col-1 text-center infrastructure-actions-initial-text">
                 <span class="infrastructure-actions-full-text">Actions</span>
               </div>
             </div>
@@ -277,16 +277,16 @@
               "let item of inventory |
               sortBy : sortedBy : reverse : 'case-insensitive' |
               filter : searchTerm : ['type', 'id', 'location', 'labels', 'status']|
-              filter : quickFilter : ['type']"  class="new-tbody row ">
-              <div class="col-2 new-td">
+              filter : quickFilter : ['type']"  class="label-tbody row">
+              <div class="col-2 label-td-flex-text">
                 <span tooltip="Type" placement="top">{{item.type}}</span>
               </div>
               <div class="col-9">
                 <div class="row">
-                  <div class="col-4 new-td">
+                  <div class="col-4 label-td">
                     <span tooltip="ID" placement="top">{{item.id}}</span>
                   </div>
-                  <div class="col-4 new-td col-center-lowercase"> 
+                  <div class="col-4 label-td col-center-lowercase"> 
                     <span *ngIf="item.status"
                       [ngClass]=
                         "{
@@ -302,7 +302,7 @@
                       {{item.status}}
                     </span>
                   </div>
-                  <div class="col-4 new-td">
+                  <div class="col-4 label-td">
                     <span tooltip="Location" placement="top">
                       {{item.location}}
                     </span>
@@ -342,7 +342,7 @@
                   </div> 
                 </div>
               </div>
-              <div class="col-1 new-td text-center">
+              <div class="col-1 text-center label-td-flex">
                 <button 
                   (click)="openContextualMenu($event, item)"
                   [ngClass]=

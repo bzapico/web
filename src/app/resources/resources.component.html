@@ -91,125 +91,130 @@
           clusters && 
           clusters.length > 0 && 
           !requestError" 
-          class="nalej-table-box">
-          <table class="nalej-table">
-            <thead class="nalej-thead">
-              <tr>
-                <th 
-                  (click)="setOrder('clusters','name')"            
-                  [ngClass]="getCategoryCSSClass('name')"
-                  tooltip="Name" 
-                  placement="bottom"
-                  scope="col" 
-                  class="col-3 cluster-name-initial-text">
-                  <span class="cluster-name-full-text">Name</span>
-                  <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  (click)="setOrder('clusters','labels')" 
-                  [ngClass]="getCategoryCSSClass('labels')"
-                  scope="col" 
-                  class="col-4">
-                  <span tooltip="Labels" placement="bottom">Labels</span>
-                  <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  (click)="setOrder('clusters','instances')"            
-                  [ngClass]="getCategoryCSSClass('instances')"
-                  tooltip="Instances" 
-                  placement="bottom"
-                  scope="col" 
-                  class="col-3 text-center cluster-apps-initial-text">
-                  <span class="cluster-apps-full-text">Instances</span>
-                  <span *ngIf="sortedBy === 'instances' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'instances' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
+          class="nalej-table-box no-p-col no-m-row">
+          <div class="label-nalej-table">
+              <div class="label-thead row">
+                <div class="col-10">
+                  <div class="row">
+                    <div 
+                      (click)="setOrder('clusters','name')"            
+                      [ngClass]="getCategoryCSSClass('name')"
+                      tooltip="Name" 
+                      placement="bottom"
+                      scope="col" 
+                      class="col-6 cluster-name-initial-text label-th">
+                      <span class="cluster-name-full-text">Name</span>
+                      <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
+                        <i class="material-icons">expand_more</i>
+                      </span>
+                      <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
+                        <i class="material-icons">expand_less</i>
+                      </span>
+                    </div>
+                    <div 
+                      (click)="setOrder('clusters','instances')"            
+                      [ngClass]="getCategoryCSSClass('instances')"
+                      scope="col" 
+                      class="col-6 text-center label-th">
+                      <span tooltip="Instances" placement="bottom">Instances</span>
+                      <span *ngIf="sortedBy === 'instances' && !reverse" class="expand-chevron">
+                        <i class="material-icons">expand_more</i>
+                      </span>
+                      <span *ngIf="sortedBy === 'instances' && reverse" class="expand-chevron">
+                        <i class="material-icons">expand_less</i>
+                      </span>
+                    </div>
+                    <div 
+                      (click)="setOrder('clusters','labels')" 
+                      [ngClass]="getCategoryCSSClass('labels')"
+                      scope="col" 
+                      class="col-12 label-th">
+                      <span tooltip="Labels" placement="bottom">Labels</span>
+                      <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
+                        <i class="material-icons">expand_more</i>
+                      </span>
+                      <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
+                        <i class="material-icons">expand_less</i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div 
                   tooltip="Edit" 
                   placement="bottom"
                   scope="col"        
-                  class="col-2 text-center edit-initial-text">
+                  class="col-2 text-center edit-initial-text label-th">
                   <span class="edit-full-text">Edit</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=
+                </div>
+              </div>
+              <div *ngFor=
                 "let cluster of clusterWithInstancesList |
                 sortBy : sortedBy : reverse : 'case-insensitive' |
-                filter : searchTerm">
-                <td class="col-3">
-                  <a 
-                    [routerLink]="['cluster', cluster.cluster_id]" 
-                    routerLinkActive="active" 
-                    class="blue">
-                    {{cluster.name}}
-                  </a>
-                </td>
-                <td *ngIf="!cluster.labels" class="col-4"> 
-                  <div 
-                  (click)="addLabel(cluster)"
-                  tooltip="Add" 
-                  placement="right"
-                  class="label-btn-blue">
-                    <i class="material-icons i-add">add</i>  
-                  </div>
-                </td>
-                <td *ngIf="cluster.labels" class="col-4">
-                  <button 
-                    *ngFor="let label of cluster.labels | keyvalue"
-                    (click)="onLabelClick(cluster.cluster_id, label.key, label.value)"
-                    [ngClass]=
-                    "{
-                      'label-btn-selected': indexOfLabelSelected(cluster.cluster_id, label.key, label.value) >= 0 ,
-                      'btn-outline-primary': indexOfLabelSelected(cluster.cluster_id, label.key, label.value) === -1
-                    }" 
-                    class="btn-sm btn-outline-primary">
-                    {{label.key}}:{{ label.value}} 
-                  </button>
-                  <div class="label-btns">
-                    <div 
-                      *ngIf="isAnyLabelSelected(cluster.cluster_id) === false"
-                      (click)="addLabel(cluster)"
-                      tooltip="Add" 
-                      placement="right"
-                      class="label-btn-blue">
-                      <i class="material-icons i-add">add</i>
+                filter : searchTerm" class="label-tbody row">
+                <div class="col-10 ">
+                  <div class="row">
+                    <div class="col-6 label-td">
+                      <a 
+                        [routerLink]="['cluster', cluster.cluster_id]" 
+                        routerLinkActive="active" 
+                        class="blue">
+                        {{cluster.name}}
+                      </a>
                     </div>
-                    <div 
-                      *ngIf="isAnyLabelSelected(cluster.cluster_id) === true"
-                      (click)="deleteLabel(cluster)"
-                      tooltip="Delete" 
-                      placement="right"
-                      class="label-btn-red">
-                      <i class="material-icons i-delete">delete</i>
+                    <div class="col-6 text-center label-td">{{cluster.instances}}
                     </div>
                   </div>
-                </td>
-                <td class="col-3 text-center">{{cluster.instances}}
-                </td>
-                <td class="col-2 text-center">
+                  <div class="row label-row">
+                    <div *ngIf="!cluster.labels" class="col-12"> 
+                      <div 
+                        (click)="addLabel(cluster)"
+                        tooltip="Add" 
+                        placement="right"
+                        class="label-btn-blue">
+                          <i class="material-icons i-add">add</i>  
+                        </div>
+                      </div>
+                    <div *ngIf="cluster.labels" class="col-12">
+                        <div 
+                          *ngFor="let label of cluster.labels | keyvalue"
+                          (click)="onLabelClick(cluster.cluster_id, label.key, label.value)"
+                          [ngClass]=
+                          "{
+                            'label-content-selected': indexOfLabelSelected(cluster.cluster_id, label.key, label.value) >= 0 ,
+                            'label-content': indexOfLabelSelected(cluster.cluster_id, label.key, label.value) === -1
+                          }" 
+                          class="label-content">
+                          {{label.key}}: {{label.value}} 
+                        </div>
+                        <div class="label-btns">
+                          <div 
+                            *ngIf="isAnyLabelSelected(cluster.cluster_id) === false"
+                            (click)="addLabel(cluster)"
+                            tooltip="Add" 
+                            placement="right"
+                            class="label-btn-blue">
+                            <i class="material-icons i-add">add</i>
+                          </div>
+                          <div 
+                            *ngIf="isAnyLabelSelected(cluster.cluster_id) === true"
+                            (click)="deleteLabel(cluster)"
+                            tooltip="Delete" 
+                            placement="right"
+                            class="label-btn-red">
+                            <i class="material-icons i-delete">delete</i>
+                          </div>
+                        </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-2 text-center label-td-flex">
                   <button (click)="openEditCluster(cluster)" class="action-btn-blue">
                     <i class="material-icons i-white">edit</i>
                   </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                </div>
+              </div>
+          </div>
         </div>
         <!-- No info to show -->
         <div *ngIf=

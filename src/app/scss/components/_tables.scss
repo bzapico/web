@@ -15,6 +15,14 @@
     width: 100%;
     overflow: hidden;
 }
+.no-p-col [class*="col-"] {
+    padding: 0;
+}
+.no-m-row [class*="row"]{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
 
 /* - - -  Nalej big table - - - */
 .nalej-table {
@@ -93,29 +101,21 @@
         }
     }
 }
-/* - - -  New Nalej big table - - - */
-.no-p-col [class*="col-"] {
-    padding: 0;
-}
-.no-m-row [class*="row"]{
-    margin-right: 0px;
-    margin-left: 0px;
-}
-
-.new-nalej-table {
+/* - - -  Label Nalej big table - - - */
+.label-nalej-table {
     height: 100%;
     display: block;
     width: 100%;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    .new-thead {
+    .label-thead {
         position: sticky;
         top: 0;
         background-color: #ffffff;
         z-index: 1;
         min-height: 26px;
         margin-bottom: 40px;
-        .new-th {
+        .label-th {
             float: left;
             padding:  0 .75rem;
             font-size: .9em;
@@ -154,21 +154,32 @@
     }   
     .label-row {
         margin-bottom: .75rem;
+        padding: 0 0.75rem;
     }
-    .new-nalej-thead {
-        position: sticky;
-        top: 0;
-        background-color: #ffffff;
-        z-index: 1;
-        min-height: 26px;
-    }
-    .new-tbody {
+
+    .label-tbody {
         border-top: .8px solid #f6f6f6;
-        .new-td {
+        .label-td {
             float: left;
             padding: 0.75rem;
             font-size: .9em;
             color: $base-grey;
+        }
+        .label-td-flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .label-td-flex-text {
+            font-size: .9em;
+            padding: 0 .75rem;
+            color: $base-grey;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
         }
     }
 }
