@@ -4,7 +4,7 @@
     <h2 class="section-title">RESOURCES</h2>
   </div>
 </div>
-<div class="row row-app-main">
+<div class="row row-app-main resources-view">
   <div class="col-lg-4 h-100">
     <div class="flex-col-app">
       <!-- Summary info card -->
@@ -32,7 +32,7 @@
             <div class="circle mt-1">
               <span>{{instances.length}}</span>
             </div>
-            <p class="circle-name">APPS</p>
+            <p class="circle-name">INSTANCES</p>
           </div>
         </div>
       </div>
@@ -63,10 +63,10 @@
           </div>      
         </div>
         <div class="row">
-        <!-- Sorting mesages -->
+        <!-- Sorting message -->
           <div class="col-12">  
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
-              Filtered by term "{{ searchTerm }}".
+                {{ ( clusterWithInstancesList | filter : searchTerm : ['name', 'labels', 'instances'])?.length }}  results found. Filtered by term "{{ searchTerm }}".
               <span (click)="resetFilters('clusters')" class="reset-search">Reset</span>
             </p>
             <p *ngIf="filterField && !searchTerm" class="sorting-message">
@@ -76,7 +76,7 @@
               <span (click)="resetFilters('clusters')" class="reset-search">Reset</span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
-              Sorted by {{ sortedBy }}
+                {{ ( clusterWithInstancesList | filter : searchTerm : ['name', 'labels', 'instances'])?.length }}  results found. Sorted by {{ sortedBy }}
               <span *ngIf="reverse">ascendant </span>
               <span *ngIf="!reverse">descendant </span>
               and filtered by term "{{ searchTerm }}".
@@ -114,7 +114,7 @@
                   (click)="setOrder('clusters','labels')" 
                   [ngClass]="getCategoryCSSClass('labels')"
                   scope="col" 
-                  class="col-5">
+                  class="col-4">
                   <span tooltip="Labels" placement="bottom">Labels</span>
                   <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
@@ -124,17 +124,17 @@
                   </span>
                 </th>
                 <th 
-                  (click)="setOrder('clusters','apps')"            
-                  [ngClass]="getCategoryCSSClass('apps')"
-                  tooltip="Apps" 
+                  (click)="setOrder('clusters','instances')"            
+                  [ngClass]="getCategoryCSSClass('instances')"
+                  tooltip="Instances" 
                   placement="bottom"
                   scope="col" 
-                  class="col-2 text-center cluster-apps-initial-text">
-                  <span class="cluster-apps-full-text">Apps</span>
-                  <span *ngIf="sortedBy === 'apps' && !reverse" class="expand-chevron">
+                  class="col-3 text-center cluster-apps-initial-text">
+                  <span class="cluster-apps-full-text">Instances</span>
+                  <span *ngIf="sortedBy === 'instances' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
-                  <span *ngIf="sortedBy === 'apps' && reverse" class="expand-chevron">
+                  <span *ngIf="sortedBy === 'instances' && reverse" class="expand-chevron">
                     <i class="material-icons">expand_less</i>
                   </span>
                 </th>
@@ -149,7 +149,7 @@
             </thead>
             <tbody>
               <tr *ngFor=
-                "let cluster of clusters |
+                "let cluster of clusterWithInstancesList |
                 sortBy : sortedBy : reverse : 'case-insensitive' |
                 filter : searchTerm">
                 <td class="col-3">
@@ -160,7 +160,7 @@
                     {{cluster.name}}
                   </a>
                 </td>
-                <td *ngIf="!cluster.labels" class="col-5"> 
+                <td *ngIf="!cluster.labels" class="col-4"> 
                   <div 
                   (click)="addLabel(cluster)"
                   tooltip="Add" 
@@ -169,7 +169,7 @@
                     <i class="material-icons i-add">add</i>  
                   </div>
                 </td>
-                <td *ngIf="cluster.labels" class="col-5">
+                <td *ngIf="cluster.labels" class="col-4">
                   <button 
                     *ngFor="let label of cluster.labels | keyvalue"
                     (click)="onLabelClick(cluster.cluster_id, label.key, label.value)"
@@ -200,7 +200,7 @@
                     </div>
                   </div>
                 </td>
-                <td class="col-2 text-center">{{getAppsNumberInCluster(cluster.cluster_id)}}
+                <td class="col-3 text-center">{{cluster.instances}}
                 </td>
                 <td class="col-2 text-center">
                   <button (click)="openEditCluster(cluster)" class="action-btn-blue">
@@ -246,23 +246,23 @@
       <!-- Clusters card -->
       <div class="card">
         <div class="card-title-name">
-          <h5>CLUSTERS</h5>
+          <h5>CLUSTERS-INSTANCES</h5>
         </div>
         <div class="row mb-3">
-          <!-- Sorting mesages -->
+          <!-- Sorting message -->
           <div class="col-7">  
-            <p *ngIf="searchTermClusters" class="sorting-message">
-              Filtered by term "{{ searchTermClusters }}".
+            <p *ngIf="isSearchingInGraph" class="sorting-message">
+             {{ occurrencesCounter }} results found. Filtered by term "{{ searchTermGraph }}".
               <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
             </p>
-            <p *ngIf="!searchTermClusters" class="sorting-message"></p>
+            <p *ngIf="!isSearchingInGraph" class="sorting-message"></p>
           </div>
           <!-- Search box -->
           <div class="col-5">
             <form class="graph-search-box">
               <input 
-                name="searchTermClusters" 
-                [(ngModel)]="searchTermClusters"
+                name="searchTermGraph" 
+                [(ngModel)]="searchTermGraph"
                 type="text" 
                 placeholder="Search..."
                 class="form-control"> 

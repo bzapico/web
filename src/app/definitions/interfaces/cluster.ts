@@ -11,4 +11,5 @@ export interface Cluster {
   cluster_type_name?: string;
   labels?: string;
   multitenant_support?: string;
+  instances?: any;
 }
