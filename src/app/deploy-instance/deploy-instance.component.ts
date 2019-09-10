@@ -123,6 +123,7 @@ export class DeployInstanceComponent implements OnInit {
         this.registeredApps = response.descriptors || [];
         this.loadedData = true;
     });
+
     if (this.openFromRegistered && this.appFromRegistered) {
       this.selectedApp = this.appFromRegistered;
       this.registeredName = this.selectedApp.name;
