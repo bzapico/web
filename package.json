@@ -9,6 +9,7 @@
     "build-local": "ng build -c local",
     "serve-local": "ng serve -c local",
     "build-and-serve-prod-local": "run-s lint build-local serve-local",
+    "extract-i18n": "ngx-translate-extract --input ./src --output ./src/assets/i18n/en.json --clean --sort --format namespaced-json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

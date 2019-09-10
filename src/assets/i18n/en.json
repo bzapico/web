@@ -1,4 +1,23 @@
 {
+	"devices": {
+		"status": {
+			"title": "DEVICES STATUS TIMELINE"
+		},
+		"summary": {
+			"disabled": "DISABLED",
+			"enabled": "ENABLED",
+			"groups": {
+				"apiKey": "",
+				"availability": {
+					"title": "Availability"
+				},
+				"title": "GROUPS"
+			},
+			"noAvailable": "No available groups detected",
+			"title": "SUMMARY"
+		},
+		"title": "DEVICES"
+	},
 	"organization": {
 		"filteredBy": "Filtered by term \"{{value}}\".",
 		"loading": "Loading...",
