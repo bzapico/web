@@ -207,7 +207,57 @@ button[type="submit"]:disabled {
 
 /* - - -  Label buttons - - - */
 
+.label-content-model {
+    margin: 1px;
+    text-align: left;
+    max-width: -webkit-fill-available;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 12px;
+    border: 1px solid;
+    border-radius: 0.2rem;
+    padding: 1px 10px;
+}
 // Normal label style
+.label-content {
+    @extend .label-content-model;
+    border-color: $base-light-grey;
+    color: $super-dark-grey;
+    &:hover{
+        background-color: $super-dark-grey;
+        border-color: $super-dark-grey;
+        color: #ffffff;
+    }
+    &:focus {
+        outline: none;
+    }
+}
+// Disabled label style
+.label-content-disabled {
+    @extend .label-content;
+    cursor: default;
+    &:hover{
+        border-color: $base-light-grey;
+        color: $super-dark-grey;
+        background-color: #ffffff;
+    }
+}
+// Selected label style
+.label-content-selected {
+    @extend .label-content-model;
+    color: #ffffff;
+    border-color: transparent;
+    background-color: $base-violet;
+    -webkit-box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
+    -moz-box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
+    box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+// Normal label style 
 .btn-outline-primary {
     margin:1px;
     text-align: left;
@@ -238,23 +288,13 @@ button[type="submit"]:disabled {
     margin: 1px;
     color: #ffffff;
     background-color: $base-violet;
-    border-radius: 5px;
+    display: inline-block;
+    padding: 1px 10px;
+    font-size: 12px;
+    border-radius: 0.2rem;
     -webkit-box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
     -moz-box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
     box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
-    &:focus {
-        outline: none;
-        box-shadow: none;
-    }
-}
-
-// To be selected label style
-.btn-label-grey {
-    margin: 1px;
-    text-align: left;
-    max-width: -webkit-fill-available;
-    border-color: $base-grey;
-    color: $base-grey;
     &:focus {
         outline: none;
         box-shadow: none;
@@ -269,8 +309,8 @@ button[type="submit"]:disabled {
     cursor: pointer;
 }
 .label-btn {
-    height: 22px;
-    width: 22px;
+    height: 20px;
+    width: 20px;
     border-radius: 50%;
     margin: .3em;
     position: relative;
@@ -289,10 +329,10 @@ button[type="submit"]:disabled {
     }
 }
 .i-delete{
-    font-size: 1em;
+    font-size: .9em;
     position: absolute;
-    top: 4px;
-    left: 4px;
+    top: 3px;
+    left: 3px;
     color: #ffffff;
 }
 .label-btn-blue {
@@ -304,10 +344,10 @@ button[type="submit"]:disabled {
     }
 }
 .i-add{
-    font-size: 1.4em;
+    font-size: 1em;
     position: absolute;
-    top: 1px;
-    left: 1px;
+    top: 2px;
+    left: 2px;
     color: #ffffff;
 }
   

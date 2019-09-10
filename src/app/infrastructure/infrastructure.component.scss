@@ -233,14 +233,3 @@ $super-dark-grey: #151515;
         }
     }
 }
-
-@include for-desktop-up {
-    .infrastructure-type-full-text {
-        display: none;
-    }
-    .infrastructure-type-initial-text {
-        &::before {
-            content: 'T';
-        }
-    }
-}
