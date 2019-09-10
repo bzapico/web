@@ -67,19 +67,22 @@ $base-light-grey: #BFBFBF;
         padding: 0.75rem 0;
     }
 }
-
-.nalej-table { 
-    tbody td {
-        &:first-child{
-            padding-left: 0px;
+.resources-view {
+    .nalej-table { 
+        tbody td {
+            &:first-child{
+                padding-left: 0px;
+            }
+            @include for-desktop-only {
+                &:last-child{
+                    padding-right: 0px;
+                }
+            }
         }
-        &:last-child{
-            padding-right: 0px;
-        }
-    }
-    tr th {
-        &:first-child{
-            padding-left: 0px;
+        tr th {
+            &:first-child{
+                padding-left: 0px;
+            }
         }
     }
 }
@@ -144,9 +147,24 @@ $base-light-grey: #BFBFBF;
         margin-right: 3em;
     }
 }
-.status-dot-nalej,
-.status-dot:before,
-.status-dot-error:before,
-.status-dot-process:before {
-    margin: 0 9px 0 0;
+
+@media screen and (max-width:1568px){
+    .edit-full-text {
+        display: none;
+    }
+    .edit-initial-text {
+        &::before {
+            content: 'E';
+        }
+    }
+}
+@media screen and (max-width:1649px){
+    .cluster-apps-full-text {
+        display: none;
+    }
+    .cluster-apps-initial-text {
+        &::before {
+            content: 'I';
+        }
+    }
 }
