@@ -11,6 +11,9 @@ import { FilterPipe } from '../pipes/filter.pipe';
 import { SortByPipe } from '../pipes/sort-by.pipe';
 import { AbbreviatePipe } from '../pipes/abbreviate.pipe';
 import { Group } from '../definitions/interfaces/group';
+import {TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '../app.module';
 
 describe('DevicesComponent', () => {
   let component: DevicesComponent;
@@ -22,7 +25,7 @@ describe('DevicesComponent', () => {
         DevicesComponent,
         FilterPipe,
         SortByPipe,
-        AbbreviatePipe,
+        AbbreviatePipe
        ],
       imports: [
         HttpClientTestingModule,
@@ -33,6 +36,13 @@ describe('DevicesComponent', () => {
         CommonModule,
         ModalModule.forRoot(),
         FormsModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
       providers: [
         BsModalRef,
