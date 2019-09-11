@@ -922,59 +922,17 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     }
     this.clusters.forEach(cluster => {
       this.setClusters(cluster, searchTermGraph);
-      const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
-      instancesInCluster.forEach(instance => {
-        const instanceName = instance['name'].toLowerCase();
-        const nodeInstance = {
-          id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
-          label: instance['name'],
-          type: NodeType.Instances,
-          tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
-          color: this.getNodeColor(instance['status_name']),
-          text: this.getNodeTextColor(cluster.status_name),
-          group: cluster.cluster_id,
-          customHeight: CUSTOM_HEIGHT_INSTANCES,
-          customBorderColor: (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-          customBorderWidth: (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : '',
-          app_descriptor_id: instance['app_descriptor_id']
-        };
-        this.searchGraphData.nodes[nodeInstance.id] = nodeInstance;
-        this.graphData.nodes.push(nodeInstance);
-        const registeredApp = this.getRegisteredApp(nodeInstance);
-        if (registeredApp.length > 0) {
-          const registeredName = registeredApp[0]['name'].toLowerCase();
-          const nodeRegistered = {
-            id: registeredApp[0]['app_descriptor_id'],
-            label: registeredApp[0]['name'],
-            type: NodeType.Registered,
-            tooltip: 'REGISTERED ' + registeredApp[0]['name'],
-            color: REGISTERED_NODES_COLOR,
-            text: this.getNodeTextColor(cluster.status_name),
-            group: cluster.cluster_id,
-            customHeight: CUSTOM_HEIGHT_REGISTERED,
-            customBorderColor: (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-            customBorderWidth: (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
-          };
-          if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
-            this.searchGraphData.nodes[nodeRegistered.id] = nodeRegistered;
-            this.graphData.nodes.push(nodeRegistered);
-          }
-          this.setLinksInGraph(
-            registeredApp[0]['app_descriptor_id'],
-            cluster.cluster_id + '-s-' + instance['app_instance_id']);
-          }
-        this.setLinksInGraph(
-          cluster.cluster_id + '-s-' + instance['app_instance_id'],
-          cluster.cluster_id);
-      });
+      this.setRegisteredAndInstances(cluster);
     });
     this.graphDataLoaded = true;
   }
 
   /**
    * It sets clusters nodes to add them in the graph
+   * @param cluster current cluster to generate related data to this.
+   * @param searchTermGraph term to search if it's necessary
    */
-  private setClusters(cluster, searchTermGraph?: string) {
+  private setClusters(cluster: any, searchTermGraph?: string) {
     const clusterName = cluster.name.toLowerCase();
     const nodeGroup = {
       id: cluster.cluster_id,
@@ -990,6 +948,59 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     };
     this.searchGraphData.nodes[nodeGroup.id] = nodeGroup;
     this.graphData.nodes.push(nodeGroup);
+  }
+
+  /**
+   * It sets registered apps, instances and its relations
+   * @param cluster current cluster to generate related data to this.
+   * @param searchTermGraph term to search if it's necessary
+   */
+  private setRegisteredAndInstances(cluster: any, searchTermGraph?: string) {
+    const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
+    instancesInCluster.forEach(instance => {
+      const instanceName = instance['name'].toLowerCase();
+      const nodeInstance = {
+        id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
+        label: instance['name'],
+        type: NodeType.Instances,
+        tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
+        color: this.getNodeColor(instance['status_name']),
+        text: this.getNodeTextColor(cluster.status_name),
+        group: cluster.cluster_id,
+        customHeight: CUSTOM_HEIGHT_INSTANCES,
+        customBorderColor: (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+        customBorderWidth: (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : '',
+        app_descriptor_id: instance['app_descriptor_id']
+      };
+      this.searchGraphData.nodes[nodeInstance.id] = nodeInstance;
+      this.graphData.nodes.push(nodeInstance);
+      const registeredApp = this.getRegisteredApp(nodeInstance);
+      if (registeredApp.length > 0) {
+        const registeredName = registeredApp[0]['name'].toLowerCase();
+        const nodeRegistered = {
+          id: registeredApp[0]['app_descriptor_id'],
+          label: registeredApp[0]['name'],
+          type: NodeType.Registered,
+          tooltip: 'REGISTERED ' + registeredApp[0]['name'],
+          color: REGISTERED_NODES_COLOR,
+          text: this.getNodeTextColor(cluster.status_name),
+          group: cluster.cluster_id,
+          customHeight: CUSTOM_HEIGHT_REGISTERED,
+          customBorderColor: (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+          customBorderWidth: (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
+        };
+        if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
+          this.searchGraphData.nodes[nodeRegistered.id] = nodeRegistered;
+          this.graphData.nodes.push(nodeRegistered);
+        }
+        this.setLinksInGraph(
+            registeredApp[0]['app_descriptor_id'],
+            cluster.cluster_id + '-s-' + instance['app_instance_id']);
+      }
+      this.setLinksInGraph(
+          cluster.cluster_id + '-s-' + instance['app_instance_id'],
+          cluster.cluster_id);
+    });
   }
 
   /**
