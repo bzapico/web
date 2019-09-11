@@ -922,7 +922,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     }
     this.clusters.forEach(cluster => {
       this.setClusters(cluster, searchTermGraph);
-      this.setRegisteredAndInstances(cluster);
+      this.setRegisteredAndInstances(cluster, searchTermGraph);
     });
     this.graphDataLoaded = true;
   }
