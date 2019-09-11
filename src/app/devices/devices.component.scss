@@ -110,6 +110,9 @@ $super-dark-grey: #151515;
             font-size: 1em;
         }
     }
+    .summary-devices-title {
+        text-transform: capitalize;
+    }
     .summary-devices-running {
         font-size: 2em;
         color: $super-dark-grey;
