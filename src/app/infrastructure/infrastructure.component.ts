@@ -13,6 +13,7 @@ import { InstallAgentComponent } from '../install-agent/install-agent.component'
 import { SimpleLogComponent } from '../simple-log/simple-log.component';
 import { AgentJoinTokenInfoComponent } from '../agent-join-token-info/agent-join-token-info.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-infrastructure',
@@ -131,7 +132,8 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.infrastructureMock) || null;
     // Check which backend is required (fake or real)
@@ -195,190 +197,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     clearInterval(this.refreshIntervalRef);
   }
 
-  /**
-   * Requests an updated list of inventory
-   */
-  updateInventoryList() {
-    this.requestError = ''; // Empty error before requesting new list
-    // Request to get inventory
-    this.backend.getInventory(this.organizationId)
-    .subscribe(response => {
-      this.normalizeInventoryItems(response);
-      if (!this.loadedData) {
-        this.loadedData = true;
-      }
-      this.updateOnlineEcsPieChart(response);
-    }, (errorResponse: { error: { message: string; }; }) => {
-      this.loadedData = true;
-      this.requestError = errorResponse.error.message;
-    });
-  }
-
-  /**
-   * Normalize the inventory list and added type
-   * @param response Backend response where to modify the data
-   */
-  normalizeInventoryItems(response: any) {
-    this.inventory = [];
-    this.ecsOnline = 0;
-    if (response.controllers) {
-      this.ecsTotal = response.controllers.length;
-    } else {
-      this.ecsTotal = 0;
-    }
-    if (!response || response === null) {
-    } else {
-      if (response.devices) {
-        response.devices.forEach((device: {
-            type: string;
-            id: any;
-            device_id: any;
-            status: any;
-            device_status_name: any;
-            location: any;
-            labels: any;
-          }) => {
-          device.type = 'Device';
-          device.id = device.device_id;
-          device.status = device.device_status_name;
-          if (!device.location
-            || device.location === undefined
-            || device.location === null
-            || !device.location.geolocation
-            ) {
-            device.location = 'undefined';
-          } else {
-            device.location = device.location.geolocation;
-          }
-          if (!device.labels || device.labels === undefined || device.labels === null) {
-            device.labels = {};
-          }
-          device.status = device.device_status_name;
-          this.inventory.push(device);
-        });
-      }
-      if (response.assets) {
-        response.assets.forEach((asset: {
-            type: string;
-            id: any;
-            asset_id: any;
-            location: any;
-            labels: any;
-            status?: string;
-            status_name: string;
-          }) => {
-          asset.type = 'Asset';
-          asset.id = asset.asset_id;
-          if (!asset.location
-            || asset.location === undefined
-            || asset.location === null
-            || !asset.location.geolocation) {
-            asset.location = 'undefined';
-          } else {
-            asset.location = asset.location.geolocation;
-          }
-          if (!asset.labels || asset.labels === undefined || asset.labels === null) {
-            asset.labels = {};
-          }
-          asset.status = asset.status_name;
-          this.inventory.push(asset);
-        });
-      }
-      if (response.controllers) {
-        response.controllers.forEach((controller: {
-            type: string;
-            id: any;
-            edge_controller_id: any;
-            location: any;
-            status: string;
-            status_name: string;
-            labels: any;
-            assets?: any;
-          }) => {
-          controller.type = 'EC';
-          controller.id = controller.edge_controller_id;
-          if (!controller.location
-            || controller.location === undefined
-            || controller.location === null
-            || !controller.location.geolocation) {
-            controller.location = 'undefined';
-          } else {
-            controller.location = controller.location.geolocation;
-          }
-          if (!controller.labels || controller.labels === undefined || controller.labels === null) {
-            controller.labels = {};
-          }
-          if (controller.status_name.toLowerCase() === 'online') {
-            this.ecsOnline += 1;
-          }
-          controller.status = controller.status_name;
-          controller.assets = [];
-          if (response.assets) {
-            response.assets.forEach(asset => {
-              if (asset.edge_controller_id === controller.edge_controller_id) {
-                const assetIp = asset.eic_net_ip ? asset.eic_net_ip : 'undefined';
-                controller.assets.push({
-                  asset_id: asset.asset_id,
-                  eic_net_ip: assetIp,
-                  status: asset.status_name,
-                  edge_controller_id:
-                  asset.edge_controller_id});
-              }
-            });
-          }
-          this.inventory.push(controller);
-        });
-      }
-    }
-  }
-
-  /**
-   * Gets the Edge Controllers count in inventory list
-   */
-  getECsCount() {
-    let ecCount = 0;
-
-    this.inventory.forEach(item => {
-      if (item.type === 'EC') {
-        ecCount += 1;
-      }
-    });
-    return ecCount;
-  }
-
-  /**
-   * Updates the pie chart with latest changes
-   * @param response Backend response where to modify the data
-   */
-  updateOnlineEcsPieChart(response) {
-    if (response.controllers) {
-      this.ecsTotal = response.controllers.length;
-    } else {
-      this.ecsTotal = 0;
-    }
-    this.infrastructurePieChart = this.generateSummaryChartData(this.ecsOnline, this.ecsTotal);
-  }
-
-  /**
-   * Generates the NGX-Chart required JSON object for pie chart rendering
-   * @param online Number of online ECs
-   * @param total Number of total ECs online
-   * @returns anonym array with the required object structure for pie chart rendering
-   */
-  generateSummaryChartData(online: number, total: number): any[] {
-    return [
-      {
-        name: 'Online',
-        value: online
-      },
-      {
-        name: 'Offline',
-        value: total - online
-      }
-    ];
-  }
-
-  /**
+    /**
    * Sortby pipe in the component
    */
   setOrder(categoryName: string) {
@@ -462,208 +281,15 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   }
 
   /**
-  * Open Asset info modal window
-  *  @param asset asset object
-  */
-  openAssetInfo(asset: any) {
-    if (!asset.os || Object.keys(asset.os).length === 0) {
-      asset.os = {
-        version: '-',
-        class_name: '-',
-      };
-    }
-    if (!asset.hardware || Object.keys(asset.hardware).length === 0) {
-      asset.hardware = {
-        cpus: [
-          {
-            manufacturer: '-',
-            model: '-',
-            architecture: '-',
-            num_cores: '-',
-          }
-        ],
-        installed_ram: '-',
-        net_interfaces: [
-          {
-            type: '-',
-            link_capacity: '-'
-          }
-        ]
-      };
-    }
-    if (!asset.storage || Object.keys(asset.storage).length === 0) {
-      asset.storage = [{
-        total_capacity: '-'
-      }];
-    }
-    const initialStateAsset = {
-      organizationId: this.organizationId,
-      edgeControllerId: asset.edge_controller_id,
-      assetId: asset.asset_id,
-      agentId: asset.agent_id,
-      assetIp: asset.eic_net_ip,
-      show: asset.show,
-      created: asset.created,
-      labels: asset.labels,
-      class: asset.os.class_name,
-      version: asset.os.version,
-      architecture: asset.os.architecture,
-      cpus: asset.hardware.cpus,
-      netInterfaces: asset.hardware.net_interfaces,
-      storages: asset.storage,
-      capacity: asset.hardware.installed_ram,
-      eic: asset.eic_net_ip,
-      status: asset.status_name,
-      summary: asset.last_op_summary,
-      lastAlive: asset.last_alive_timestamp,
-      inventory: this.inventory,
-    };
-
-    this.assetModalRef = this.modalService.show(
-    AssetInfoComponent, {
-      initialState: initialStateAsset,
-      backdrop: 'static',
-      ignoreBackdropClick: false
-    });
-
-    // onClose is used if the Asset modal comes while closing it, which means that we need to trigger a new edge controller modal
-    this.assetModalRef.content.onClose = (ecFromAsset: any) => {
-    if (ecFromAsset) {
-      this.openEdgeControllerInfo(ecFromAsset);
-      }
-    };
-    this.assetModalRef.hide();
-    this.assetModalRef.content.closeBtnName = 'Close';
-  }
-
-  /**
-  * Open last operation log
-  *  @param asset asset object
-  */
-  lastOperationLog(asset: any) {
-    let lastOpSummary;
-    if (asset.last_op_summary) {
-      lastOpSummary = asset.last_op_summary;
-    } else {
-      lastOpSummary = {
-        timestamp: 0,
-        status: 'undefined',
-        info: 'No info available'
-      };
-    }
-    const initialState = {
-      organizationId: this.organizationId,
-      lastOpSummary: lastOpSummary
-    };
-
-    this.lastOpModalRef = this.modalService.show(
-    SimpleLogComponent, {
-      initialState: initialState,
-      backdrop: 'static',
-      ignoreBackdropClick: false
-    });
-    this.lastOpModalRef.hide();
-    this.lastOpModalRef.content.closeBtnName = 'Close';
-  }
-
-  /**
-  * Uninstall agent
-  *  @param asset asset object
-  */
-  uninstallAgent(asset: any) {
-    const uninstallConfirm = confirm('Uninstall Agent?');
-    if (uninstallConfirm) {
-      if (this.organizationId !== null) {
-        this.backend.uninstallAgent(this.organizationId, asset.edge_controller_id, asset.asset_id)
-          .subscribe(response => {
-            this.notificationsService.add({
-              message: 'Agent on ' + asset.asset_id + ' started uninstalling',
-              timeout: 3000
-            });
-          }, error => {
-            this.notificationsService.add({
-              message: error.error.message,
-              timeout: 5000,
-              type: 'warning'
-            });
-          });
-      }
-    } else {
-      // Do nothing
-    }
-  }
-
-  /**
-  * Open Edge Controllers info modal window
-  *  @param controller Edge controller object
-  */
-  openEdgeControllerInfo(controller: any) {
-    const initialStateEC = {
-      organizationId: this.organizationId,
-      id: controller.edge_controller_id,
-      assets: controller.assets,
-      show: controller.show,
-      created: controller.created,
-      name: controller.name,
-      labels: controller.labels,
-      status: controller.status,
-      type: controller.type,
-      inventory: this.inventory
-    };
-
-    this.ecModalRef = this.modalService.show(
-      EdgeControllerInfoComponent, {
-        initialState: initialStateEC,
-        backdrop: 'static',
-        ignoreBackdropClick: false
-       });
-
-    // onClose is used if the EC modal comes while closing it, which means that we need to trigger a new edge controller modal
-    this.ecModalRef.content.onClose = (assetFromEC: any) => {
-      if (assetFromEC) {
-        this.openAssetInfo(assetFromEC);
-      }
-    };
-    this.ecModalRef.hide();
-    this.ecModalRef.content.closeBtnName = 'Close';
-  }
-
-  /**
   * Open install Agent info modal window
   */
-  installAgent() {
-    const initialState = {
-      organizationId: this.organizationId,
-      inventory: this.inventory,
-      defaultAutofocus: false,
-      ecCount: this.getECsCount()
-    };
-
-    this.agentModalRef = this.modalService.show(
-      InstallAgentComponent, {
-        initialState,
-        backdrop: 'static',
-        ignoreBackdropClick: false
-      });
-    this.agentModalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
-      this.updateInventoryList();
-     });
-  }
-
-  /**
-   * Opens the modal view that holds the install Agent modal component
-   * @param controller edge controller to install
-   */
-  installAgentFromEC(controller: any) {
-    const initialState = {
-      organizationId: this.organizationId,
-      edgeControllerId: controller.edge_controller_id,
-      openFromEc: true,
-      defaultAutofocus: true,
-      ecCount: this.getECsCount(),
-      name: controller.name
-    };
+ installAgent() {
+  const initialState = {
+    organizationId: this.organizationId,
+    inventory: this.inventory,
+    defaultAutofocus: false,
+    ecCount: this.getECsCount()
+  };
 
     this.agentModalRef = this.modalService.show(
       InstallAgentComponent, {
@@ -676,164 +302,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       this.updateInventoryList();
     });
   }
-
-  /**
-   * Creates a new token for an Agent to join the platform
-   * @param controller edge controller identifier
-   */
-  createAgentToken(controller: any) {
-    const initialState = {
-      organizationId: this.organizationId,
-      edgeControllerId: controller.edge_controller_id
-    };
-
-    this.agentModalRef = this.modalService.show(
-      AgentJoinTokenInfoComponent, {
-        initialState,
-        backdrop: 'static',
-        ignoreBackdropClick: false
-      });
-    this.agentModalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
-      this.updateInventoryList();
-    });
-  }
-
-  /**
-   * Operation to remove/uninstall an EIC
-   * @param controller identifier
-   */
-  unlinkEIC(controller: any) {
-    if (controller.assets.length > 0) {
-      alert('Cannot unlink EC. Agents on associated assets should be uninstalled before.');
-    } else {
-      const unlinkConfirm = confirm('Unlink Edge Controller?');
-      if (unlinkConfirm) {
-        if (this.organizationId !== null) {
-          this.backend.unlinkEIC(this.organizationId, controller.edge_controller_id)
-            .subscribe(response => {
-              this.notificationsService.add({
-                message: 'Edge Controller ' + '' + ' has been unlinked',
-                timeout: 3000
-              });
-            }, error => {
-              this.notificationsService.add({
-                message: error.error.message,
-                timeout: 5000,
-                type: 'warning'
-              });
-            });
-        }
-      } else {
-        // Do nothing
-      }
-    }
-  }
-
-  /**
-   * Opens the modal view that holds the device info component
-   * @param device device to be opened
-   */
-  openDeviceInfo(device: any) {
-    const initialState = {
-      organizationId: this.organizationId,
-      deviceGroupId: device.device_group_id,
-      deviceId: device.device_id,
-      created: device.register_since,
-      labels: device.labels,
-      status: device.device_status_name,
-      enabled: device.enabled,
-    };
-
-    this.deviceModalRef = this.modalService.show(
-      DeviceInfoComponent, {
-        initialState,
-        backdrop: 'static',
-        ignoreBackdropClick: false
-      });
-
-    // onClose is used if the device info modal comes while closing it with the clicked groupid
-    this.deviceModalRef.content.onClose = (groupId: string) => {
-      if (groupId) {
-        this.navigateToDevices(groupId);
-      }
-    };
-    this.deviceModalRef.hide();
-    this.deviceModalRef.content.closeBtnName = 'Close';
-  }
-
-  /**
-   * Navigates to devices group view
-   */
-  navigateToDevices(groupId: string) {
-    window.location.href = '/#/devices?groupId=' + groupId;
-  }
-
-  /**
-   * Executes devices enablement switcher statement to select one of enabled device to be executed.
-   * @param device device in inventory item
-   */
-  deviceEnablement(device: any) {
-    let deviceCurrentEnablementStr = 'DISABLED';
-    let deviceFutureEnablementStr = 'enable';
-    if (device.enabled) {
-      deviceCurrentEnablementStr = 'ENABLED';
-      deviceFutureEnablementStr = 'disable';
-    }
-    const confirmResult = confirm('Device '
-      + device.device_id
-      + ' is currently '
-      + deviceCurrentEnablementStr
-      + '. Do you want to '
-      + deviceFutureEnablementStr
-      + ' it?');
-
-    if (confirmResult ) {
-      device.enabled = !device.enabled;
-      this.backend.updateDevice(this.organizationId, {
-         organizationId: this.organizationId,
-         deviceGroupId: device.device_group_id,
-         deviceId: device.device_id,
-         enabled: device.enabled
-      }).subscribe((response: any) => {
-        let notificationText = 'enabled';
-        if (!device.enabled) {
-         notificationText = 'disabled';
-        }
-       this.notificationsService.add({
-         message: 'The device is now ' + notificationText,
-         timeout: 3000
-       });
-      });
-    }
-  }
-
-  /**
-   * Operation to unlink a device
-   * @param device device in inventory item
-   */
-  unlinkDevice(device: any) {
-    const unlinkConfirm = confirm('Unlink device?');
-    if (unlinkConfirm) {
-      this.backend.removeDevice(this.organizationId, device.device_group_id , device.device_id)
-        .subscribe(response => {
-          this.notificationsService.add({
-            message: 'Device ' + '' + ' has been unlinked',
-            timeout: 3000
-          });
-        }, error => {
-          this.notificationsService.add({
-            message: error.error.message,
-            timeout: 5000,
-            type: 'warning'
-          });
-        });
-    } else {
-      // Do nothing
-    }
-  }
-
-  /**
+    /**
    * Opens context menu
    * @param item inventory item
    */
@@ -890,7 +359,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param item selected label item
    */
   deleteLabel(item: any) {
-    const deleteConfirm = confirm('Delete labels?');
+    const deleteConfirm = confirm(this.translateService.instant('infrastructure.label.deleteLabel'));
     if (deleteConfirm) {
       switch (item.type) {
         case 'EC':
@@ -1014,27 +483,27 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       case 'EC':
         const ecOptions = [];
         const ecOption1 = {
-          name: 'More info',
+          name: this.translateService.instant('infrastructure.contextMenu.moreInfo'),
           action: (inventoryItem: any) => {
             this.openEdgeControllerInfo(inventoryItem);
           },
           item: item
         };
         const ecOption2 = {
-          name: 'Install agent',
+          name: this.translateService.instant('infrastructure.contextMenu.installAgent'),
           action: (inventoryItem: any) => {
             this.installAgentFromEC(inventoryItem);
           },
           item: item
         };
         const ecOption3 = {
-          name: 'Create agent token',
+          name: this.translateService.instant('infrastructure.contextMenu.createAgentToken'),
           action: (inventoryItem: any) => {
             if (inventoryItem.status === 'ONLINE') {
               this.createAgentToken(inventoryItem);
             } else {
               this.notificationsService.add({
-                message: 'Cannot create an agent when the EC is offline',
+                message: this.translateService.instant('infrastructure.contextMenu.createAgentTokenMessage'),
                 timeout: 3000
               });
             }
@@ -1042,7 +511,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
           item: item
         };
         const ecOption4 = {
-          name: 'Unlink EC',
+          name: this.translateService.instant('infrastructure.contextMenu.unlinkEC'),
           action: (inventoryItem: any) => {
             this.unlinkEIC(inventoryItem);
           },
@@ -1056,21 +525,21 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       case 'Asset':
         const assetOptions = [];
         const assetOption1 = {
-          name: 'More info',
+          name: this.translateService.instant('infrastructure.contextMenu.moreInfo'),
           action: (inventoryItem: any) => {
             this.openAssetInfo(inventoryItem);
           },
           item: item
         };
         const assetOption2 = {
-          name: 'Last operation log',
+          name: this.translateService.instant('infrastructure.contextMenu.lastOperationLog'),
           action: (inventoryItem: any) => {
             this.lastOperationLog(inventoryItem);
           },
           item: item
         };
         const assetOption3 = {
-          name: 'Uninstall agent',
+          name: this.translateService.instant('infrastructure.contextMenu.uninstallAgent'),
           action: (inventoryItem: any) => {
             this.uninstallAgent(inventoryItem);
           },
@@ -1083,21 +552,21 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       case 'Device':
         const deviceOptions = [];
         const deviceOption1 = {
-          name: 'More info',
+          name: this.translateService.instant('infrastructure.contextMenu.moreInfo'),
           action: (inventoryItem: any) => {
             this.openDeviceInfo(inventoryItem);
           },
           item: item
         };
         const deviceOption2 = {
-          name: 'Toggle enablement',
+          name: this.translateService.instant('infrastructure.contextMenu.toggleEnablement'),
           action: (inventoryItem: any) => {
             this.deviceEnablement(inventoryItem);
           },
           item: item
         };
         const deviceOption3 = {
-          name: 'Unlink device',
+          name: this.translateService.instant('infrastructure.contextMenu.unlinkDevice'),
           action: (inventoryItem: any) => {
             this.unlinkDevice(inventoryItem);
           },
@@ -1109,6 +578,539 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       return deviceOptions;
       default:
         break;
+    }
+  }
+
+  /**
+   * Requests an updated list of inventory
+   */
+  private updateInventoryList() {
+    this.requestError = ''; // Empty error before requesting new list
+    // Request to get inventory
+    this.backend.getInventory(this.organizationId)
+    .subscribe(response => {
+      this.normalizeInventoryItems(response);
+      if (!this.loadedData) {
+        this.loadedData = true;
+      }
+      this.updateOnlineEcsPieChart(response);
+    }, (errorResponse: { error: { message: string; }; }) => {
+      this.loadedData = true;
+      this.requestError = errorResponse.error.message;
+    });
+  }
+
+  /**
+   * Normalize the inventory list and added type
+   * @param response Backend response where to modify the data
+   */
+  private normalizeInventoryItems(response: any) {
+    this.inventory = [];
+    this.ecsOnline = 0;
+    if (response.controllers) {
+      this.ecsTotal = response.controllers.length;
+    } else {
+      this.ecsTotal = 0;
+    }
+    if (!response || response === null) {
+    } else {
+      if (response.devices) {
+        response.devices.forEach((device: {
+            type: string;
+            id: any;
+            device_id: any;
+            status: any;
+            device_status_name: any;
+            location: any;
+            labels: any;
+          }) => {
+          device.type = 'Device';
+          device.id = device.device_id;
+          device.status = device.device_status_name;
+          if (!device.location
+            || device.location === undefined
+            || device.location === null
+            || !device.location.geolocation
+            ) {
+            device.location = 'undefined';
+          } else {
+            device.location = device.location.geolocation;
+          }
+          if (!device.labels || device.labels === undefined || device.labels === null) {
+            device.labels = {};
+          }
+          device.status = device.device_status_name;
+          this.inventory.push(device);
+        });
+      }
+      if (response.assets) {
+        response.assets.forEach((asset: {
+            type: string;
+            id: any;
+            asset_id: any;
+            location: any;
+            labels: any;
+            status?: string;
+            status_name: string;
+          }) => {
+          asset.type = 'Asset';
+          asset.id = asset.asset_id;
+          if (!asset.location
+            || asset.location === undefined
+            || asset.location === null
+            || !asset.location.geolocation) {
+            asset.location = 'undefined';
+          } else {
+            asset.location = asset.location.geolocation;
+          }
+          if (!asset.labels || asset.labels === undefined || asset.labels === null) {
+            asset.labels = {};
+          }
+          asset.status = asset.status_name;
+          this.inventory.push(asset);
+        });
+      }
+      if (response.controllers) {
+        response.controllers.forEach((controller: {
+            type: string;
+            id: any;
+            edge_controller_id: any;
+            location: any;
+            status: string;
+            status_name: string;
+            labels: any;
+            assets?: any;
+          }) => {
+          controller.type = 'EC';
+          controller.id = controller.edge_controller_id;
+          if (!controller.location
+            || controller.location === undefined
+            || controller.location === null
+            || !controller.location.geolocation) {
+            controller.location = 'undefined';
+          } else {
+            controller.location = controller.location.geolocation;
+          }
+          if (!controller.labels || controller.labels === undefined || controller.labels === null) {
+            controller.labels = {};
+          }
+          if (controller.status_name.toLowerCase() === 'online') {
+            this.ecsOnline += 1;
+          }
+          controller.status = controller.status_name;
+          controller.assets = [];
+          if (response.assets) {
+            response.assets.forEach(asset => {
+              if (asset.edge_controller_id === controller.edge_controller_id) {
+                const assetIp = asset.eic_net_ip ? asset.eic_net_ip : 'undefined';
+                controller.assets.push({
+                  asset_id: asset.asset_id,
+                  eic_net_ip: assetIp,
+                  status: asset.status_name,
+                  edge_controller_id:
+                  asset.edge_controller_id});
+              }
+            });
+          }
+          this.inventory.push(controller);
+        });
+      }
+    }
+  }
+
+  /**
+   * Gets the Edge Controllers count in inventory list
+   */
+  private getECsCount() {
+    let ecCount = 0;
+
+    this.inventory.forEach(item => {
+      if (item.type === 'EC') {
+        ecCount += 1;
+      }
+    });
+    return ecCount;
+  }
+
+  /**
+   * Updates the pie chart with latest changes
+   * @param response Backend response where to modify the data
+   */
+  private updateOnlineEcsPieChart(response) {
+    if (response.controllers) {
+      this.ecsTotal = response.controllers.length;
+    } else {
+      this.ecsTotal = 0;
+    }
+    this.infrastructurePieChart = this.generateSummaryChartData(this.ecsOnline, this.ecsTotal);
+  }
+
+  /**
+   * Generates the NGX-Chart required JSON object for pie chart rendering
+   * @param online Number of online ECs
+   * @param total Number of total ECs online
+   * @returns anonym array with the required object structure for pie chart rendering
+   */
+  private generateSummaryChartData(online: number, total: number): any[] {
+    return [
+      {
+        name: this.translateService.instant('infrastructure.chart.online'),
+        value: online
+      },
+      {
+        name: this.translateService.instant('infrastructure.chart.offline'),
+        value: total - online
+      }
+    ];
+  }
+
+  /**
+  * Open Asset info modal window
+  *  @param asset asset object
+  */
+  private openAssetInfo(asset: any) {
+    if (!asset.os || Object.keys(asset.os).length === 0) {
+      asset.os = {
+        version: '-',
+        class_name: '-',
+      };
+    }
+    if (!asset.hardware || Object.keys(asset.hardware).length === 0) {
+      asset.hardware = {
+        cpus: [
+          {
+            manufacturer: '-',
+            model: '-',
+            architecture: '-',
+            num_cores: '-',
+          }
+        ],
+        installed_ram: '-',
+        net_interfaces: [
+          {
+            type: '-',
+            link_capacity: '-'
+          }
+        ]
+      };
+    }
+    if (!asset.storage || Object.keys(asset.storage).length === 0) {
+      asset.storage = [{
+        total_capacity: '-'
+      }];
+    }
+    const initialStateAsset = {
+      organizationId: this.organizationId,
+      edgeControllerId: asset.edge_controller_id,
+      assetId: asset.asset_id,
+      agentId: asset.agent_id,
+      assetIp: asset.eic_net_ip,
+      show: asset.show,
+      created: asset.created,
+      labels: asset.labels,
+      class: asset.os.class_name,
+      version: asset.os.version,
+      architecture: asset.os.architecture,
+      cpus: asset.hardware.cpus,
+      netInterfaces: asset.hardware.net_interfaces,
+      storages: asset.storage,
+      capacity: asset.hardware.installed_ram,
+      eic: asset.eic_net_ip,
+      status: asset.status_name,
+      summary: asset.last_op_summary,
+      lastAlive: asset.last_alive_timestamp,
+      inventory: this.inventory,
+    };
+
+    this.assetModalRef = this.modalService.show(
+    AssetInfoComponent, {
+      initialState: initialStateAsset,
+      backdrop: 'static',
+      ignoreBackdropClick: false
+    });
+
+    // onClose is used if the Asset modal comes while closing it, which means that we need to trigger a new edge controller modal
+    this.assetModalRef.content.onClose = (ecFromAsset: any) => {
+    if (ecFromAsset) {
+      this.openEdgeControllerInfo(ecFromAsset);
+      }
+    };
+    this.assetModalRef.hide();
+    this.assetModalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+  * Open last operation log
+  *  @param asset asset object
+  */
+  private lastOperationLog(asset: any) {
+    let lastOpSummary;
+    if (asset.last_op_summary) {
+      lastOpSummary = asset.last_op_summary;
+    } else {
+      lastOpSummary = {
+        timestamp: 0,
+        status: 'undefined',
+        info: this.translateService.instant('infrastructure.asset.noInfo'),
+      };
+    }
+    const initialState = {
+      organizationId: this.organizationId,
+      lastOpSummary: lastOpSummary
+    };
+
+    this.lastOpModalRef = this.modalService.show(
+    SimpleLogComponent, {
+      initialState: initialState,
+      backdrop: 'static',
+      ignoreBackdropClick: false
+    });
+    this.lastOpModalRef.hide();
+    this.lastOpModalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+  * Uninstall agent
+  *  @param asset asset object
+  */
+  private uninstallAgent(asset: any) {
+    const uninstallConfirm = confirm(this.translateService.instant('infrastructure.asset.uninstallAgent'));
+    if (uninstallConfirm) {
+      if (this.organizationId !== null) {
+        this.backend.uninstallAgent(this.organizationId, asset.edge_controller_id, asset.asset_id)
+          .subscribe(response => {
+            this.notificationsService.add({
+              message: this.translateService.instant('infrastructure.asset.uninstallMessage', {asset_id : asset.asset_id }),
+              timeout: 3000
+            });
+          }, error => {
+            this.notificationsService.add({
+              message: error.error.message,
+              timeout: 5000,
+              type: 'warning'
+            });
+          });
+      }
+    } else {
+      // Do nothing
+    }
+  }
+
+  /**
+  * Open Edge Controllers info modal window
+  *  @param controller Edge controller object
+  */
+  private openEdgeControllerInfo(controller: any) {
+    const initialStateEC = {
+      organizationId: this.organizationId,
+      id: controller.edge_controller_id,
+      assets: controller.assets,
+      show: controller.show,
+      created: controller.created,
+      name: controller.name,
+      labels: controller.labels,
+      status: controller.status,
+      type: controller.type,
+      inventory: this.inventory
+    };
+
+    this.ecModalRef = this.modalService.show(
+      EdgeControllerInfoComponent, {
+        initialState: initialStateEC,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+       });
+
+    // onClose is used if the EC modal comes while closing it, which means that we need to trigger a new edge controller modal
+    this.ecModalRef.content.onClose = (assetFromEC: any) => {
+      if (assetFromEC) {
+        this.openAssetInfo(assetFromEC);
+      }
+    };
+    this.ecModalRef.hide();
+    this.ecModalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+   * Opens the modal view that holds the install Agent modal component
+   * @param controller edge controller to install
+   */
+  private installAgentFromEC(controller: any) {
+    const initialState = {
+      organizationId: this.organizationId,
+      edgeControllerId: controller.edge_controller_id,
+      openFromEc: true,
+      defaultAutofocus: true,
+      ecCount: this.getECsCount(),
+      name: controller.name
+    };
+
+    this.agentModalRef = this.modalService.show(
+      InstallAgentComponent, {
+        initialState,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+      });
+    this.agentModalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateInventoryList();
+    });
+  }
+
+  /**
+   * Creates a new token for an Agent to join the platform
+   * @param controller edge controller identifier
+   */
+  private createAgentToken(controller: any) {
+    const initialState = {
+      organizationId: this.organizationId,
+      edgeControllerId: controller.edge_controller_id
+    };
+
+    this.agentModalRef = this.modalService.show(
+      AgentJoinTokenInfoComponent, {
+        initialState,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+      });
+    this.agentModalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateInventoryList();
+    });
+  }
+
+  /**
+   * Operation to remove/uninstall an EIC
+   * @param controller identifier
+   */
+  private unlinkEIC(controller: any) {
+    if (controller.assets.length > 0) {
+      alert(this.translateService.instant('infrastructure.EIC.unlinkEICError'));
+    } else {
+      const unlinkConfirm = confirm(this.translateService.instant('infrastructure.EIC.unlinkEIC'));
+      if (unlinkConfirm) {
+        if (this.organizationId !== null) {
+          this.backend.unlinkEIC(this.organizationId, controller.edge_controller_id)
+            .subscribe(response => {
+              this.notificationsService.add({
+                message: this.translateService.instant('infrastructure.EIC.unlinkMessage'),
+                timeout: 3000
+              });
+            }, error => {
+              this.notificationsService.add({
+                message: error.error.message,
+                timeout: 5000,
+                type: 'warning'
+              });
+            });
+        }
+      } else {
+        // Do nothing
+      }
+    }
+  }
+
+  /**
+   * Opens the modal view that holds the device info component
+   * @param device device to be opened
+   */
+  openDeviceInfo(device: any) {
+    const initialState = {
+      organizationId: this.organizationId,
+      deviceGroupId: device.device_group_id,
+      deviceId: device.device_id,
+      created: device.register_since,
+      labels: device.labels,
+      status: device.device_status_name,
+      enabled: device.enabled,
+    };
+
+    this.deviceModalRef = this.modalService.show(
+      DeviceInfoComponent, {
+        initialState,
+        backdrop: 'static',
+        ignoreBackdropClick: false
+      });
+
+    // onClose is used if the device info modal comes while closing it with the clicked groupid
+    this.deviceModalRef.content.onClose = (groupId: string) => {
+      if (groupId) {
+        this.navigateToDevices(groupId);
+      }
+    };
+    this.deviceModalRef.hide();
+    this.deviceModalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+   * Navigates to devices group view
+   */
+  private navigateToDevices(groupId: string) {
+    window.location.href = '/#/devices?groupId=' + groupId;
+  }
+
+  /**
+   * Executes devices enablement switcher statement to select one of enabled device to be executed.
+   * @param device device in inventory item
+   */
+  private deviceEnablement(device: any) {
+    let deviceCurrentEnablementStr = this.translateService.instant('infrastructure.device.DISABLED');
+    let deviceFutureEnablementStr = this.translateService.instant('infrastructure.device.enable');
+    if (device.enabled) {
+      deviceCurrentEnablementStr = this.translateService.instant('infrastructure.device.ENABLED');
+      deviceFutureEnablementStr = this.translateService.instant('infrastructure.device.disable');
+    }
+    const confirmResult = confirm(
+      this.translateService
+          .instant('infrastructure.device.enablementConfirm',
+            {
+              device_id: device.device_id,
+              deviceCurrentEnablementStr: deviceCurrentEnablementStr,
+              deviceFutureEnablementStr: deviceFutureEnablementStr
+            }
+          ));
+    if (confirmResult ) {
+      device.enabled = !device.enabled;
+      this.backend.updateDevice(this.organizationId, {
+         organizationId: this.organizationId,
+         deviceGroupId: device.device_group_id,
+         deviceId: device.device_id,
+         enabled: device.enabled
+      }).subscribe((response: any) => {
+        let notificationText = this.translateService.instant('infrastructure.device.notificationTextEnabled');
+        if (!device.enabled) {
+         notificationText = this.translateService.instant('infrastructure.device.notificationTextDisabled');
+        }
+       this.notificationsService.add({
+         message: this.translateService.instant('infrastructure.device.enablementMessage') + notificationText,
+         timeout: 3000
+       });
+      });
+    }
+  }
+
+  /**
+   * Operation to unlink a device
+   * @param device device in inventory item
+   */
+  private unlinkDevice(device: any) {
+    const unlinkConfirm = confirm(this.translateService.instant('infrastructure.device.unlinkConfirm'));
+    if (unlinkConfirm) {
+      this.backend.removeDevice(this.organizationId, device.device_group_id , device.device_id)
+        .subscribe(response => {
+          this.notificationsService.add({
+            message: this.translateService.instant('infrastructure.device.unlinkMessage'),
+            timeout: 3000
+          });
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 5000,
+            type: 'warning'
+          });
+        });
+    } else {
+      // Do nothing
     }
   }
 }
