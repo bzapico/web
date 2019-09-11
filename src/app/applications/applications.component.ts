@@ -15,7 +15,7 @@ import * as shape from 'd3-shape';
 import { Subscription, timer } from 'rxjs';
 import { NodeType } from '../definitions/enums/node-type.enum';
 import { GraphData } from '../definitions/models/graph-data';
-import {KeyValue} from '../definitions/interfaces/key-value';
+import { KeyValue } from '../definitions/interfaces/key-value';
 
 /**
  * Refresh ratio
@@ -154,8 +154,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   graphReset: boolean;
   graphDataLoaded: boolean;
-  graphData: GraphData;
-  searchGraphData: KeyValue;
+  graphData: GraphData<any[]>;
+  searchGraphData: GraphData<KeyValue>;
   orientation: string;
   curve: any;
   autoZoom: boolean;
@@ -275,6 +275,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     };
     this.graphDataLoaded = false;
     this.graphData = new GraphData([], []);
+    this.searchGraphData = new GraphData({}, {});
     /**
      * Charts reference init
      */
@@ -904,8 +905,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Transforms the data needed to create the graph
    */
   toGraphData(searchTermGraph?: string) {
-    this.graphData.reset();
-    this.searchGraphData = {};
+    this.graphData.reset([], []);
+    this.searchGraphData.reset({}, {});
     if (searchTermGraph) {
       searchTermGraph = searchTermGraph.toLowerCase();
     }
@@ -923,6 +924,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         customBorderColor: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
         customBorderWidth: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
       };
+      this.searchGraphData.nodes[nodeGroup.id] = nodeGroup;
       this.graphData.nodes.push(nodeGroup);
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
@@ -940,6 +942,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           customBorderWidth: (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : '',
           app_descriptor_id: instance['app_descriptor_id']
         };
+        this.searchGraphData.nodes[nodeInstance.id] = nodeInstance;
         this.graphData.nodes.push(nodeInstance);
         const registeredApp = this.getRegisteredApp(nodeInstance);
         if (registeredApp.length > 0) {
@@ -957,6 +960,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
             customBorderWidth: (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
           };
           if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
+            this.searchGraphData.nodes[nodeRegistered.id] = nodeRegistered;
             this.graphData.nodes.push(nodeRegistered);
           }
           this.setLinksInGraph(
@@ -1059,6 +1063,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       source: source,
       target: target
     });
+    if (this.searchGraphData.links[source]) {
+      this.searchGraphData.links[source].push(target);
+    } else {
+      this.searchGraphData.links[source] = [];
+      this.searchGraphData.links[source].push(target);
+    }
   }
 
   /**

@@ -1,3 +1,3 @@
 export interface KeyValue {
-    [key: string]: string;
+    [key: string]: any;
 }

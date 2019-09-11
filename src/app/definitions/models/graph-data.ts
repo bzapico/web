@@ -1,35 +1,35 @@
 /**
 * Model that defines the Graph info needed for creating the GraphData object instance
 */
-export class GraphData {
+export class GraphData<T> {
     // Nodes of our graph
-    private _nodes: any[];
+    private _nodes: T;
     // Links of our graph
-    private _links: any[];
+    private _links: T;
 
-    constructor(nodes: any[], links: any[]) {
+    constructor(nodes: T, links: T) {
         this._nodes = nodes;
         this._links = links;
     }
 
-    get nodes(): any[] {
+    get nodes(): T {
         return this._nodes;
     }
 
-    set nodes(value: any[]) {
+    set nodes(value: T) {
         this._nodes = value;
     }
 
-    get links(): any[] {
+    get links(): T {
         return this._links;
     }
 
-    set links(value: any[]) {
+    set links(value: T) {
         this._links = value;
     }
 
-    reset() {
-        this._nodes = [];
-        this._links = [];
+    reset(nodes: T, links: T) {
+        this._nodes = nodes;
+        this._links = links;
     }
 }
