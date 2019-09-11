@@ -235,7 +235,7 @@ export class RegisteredInfoComponent implements OnInit {
     }
   }
 
-  updateAppDescriptor() {
+  private updateAppDescriptor() {
     this.loadedData = false;
     this.backend.getAppDescriptor(this.organizationId, this.descriptorId)
       .subscribe(registeredResponse => {
@@ -532,14 +532,15 @@ export class RegisteredInfoComponent implements OnInit {
       registeredId: app.app_descriptor_id,
       registeredName: app.name,
       openFromRegistered: true,
-      defaultAutofocus: true
+      defaultAutofocus: true,
+      appFromRegistered: app
     };
 
     this.modalRef = this.modalService.show(DeployInstanceComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
+    this.modalRef.content.onClose = (cancelled: boolean) => {
       this.router.navigate(['/applications']);
-    });
+    };
   }
 
   /**
@@ -567,10 +568,10 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Transforms the data needed to create the grapho
+   * Transforms the data needed to create the graph
    * @param registered registered object
    */
-  toGraphData(registered) {
+  private toGraphData(registered) {
     registered.groups.forEach(group => {
       const nodeGroup = {
         id: group.service_group_id,
@@ -620,17 +621,6 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Method that counts the number of services
-   */
-  countServices(): number {
-    let temporalCount = 0;
-    this.services.forEach(group => {
-      temporalCount = group.length + temporalCount;
-    });
-    return temporalCount;
-  }
-
-  /**
    * Returns the length of the services in registered list. Represents the number of available services
    * @param registered selected registered
    */
@@ -659,7 +649,7 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Returns the lenght of service instances that are part of the specified active group
+   * Returns the length of service instances that are part of the specified active group
    * @param activeGroupId Identifier for the active group
    */
   countGroupServices(groupId: string) {
@@ -736,7 +726,7 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-  * Open serivces info modal window
+  * Open services info modal window
   *  @param service service object
   */
  openServicesInfo(service) {

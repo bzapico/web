@@ -1091,4 +1091,5 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.occurrencesCounter = this.graphData.nodes.filter(node => node.label.toLowerCase().includes(this.searchTermGraph)).length;
 
   }
+
 }

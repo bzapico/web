@@ -1,0 +1,45 @@
+{
+	"devices": {
+		"status": {
+			"title": "DEVICES STATUS TIMELINE"
+		},
+		"summary": {
+			"disabled": "DISABLED",
+			"enabled": "ENABLED",
+			"groups": {
+				"apiKey": "API Key",
+				"availability": {
+					"title": "Availability"
+				},
+				"title": "GROUPS"
+			},
+			"noAvailable": "No available groups detected",
+			"title": "SUMMARY"
+		},
+		"title": "DEVICES"
+	},
+	"organization": {
+		"filteredBy": "Filtered by term \"{{value}}\".",
+		"loading": "Loading...",
+		"notRegisteredUsers": "<p>There are not registered users in this organization<br>Click on \"add user\" button to start adding new users</p>",
+		"sortedBy": "Sorted by {{value}}",
+		"subscriptionType": "Free subscription",
+		"title": "ORGANIZATION",
+		"users": {
+			"actions": "Actions",
+			"add": "Add user",
+			"andFiltered": "and filtered by term \"{{ value }}\".",
+			"ascendant": "ascendant{{value}}",
+			"descendant": "descendant{{value}}",
+			"edit": "Edit user",
+			"reset": "Reset",
+			"subscription": {
+				"check": "Check all our subscription modes and payments",
+				"plan": "Free",
+				"title": "SUBSCRIPTION"
+			},
+			"title": "USERS"
+		},
+		"usersNumber": "{{value}} users"
+	}
+}
