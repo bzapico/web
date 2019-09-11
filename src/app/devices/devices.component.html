@@ -112,10 +112,10 @@
                 </tr>
                 <tr>
                   <th class="summary-devices-lh">Device connectivity</th>
-                  <td *ngIf="group.default_device_connectivity" class="summary-devices-conectivity blue">
+                  <td *ngIf="group.default_device_connectivity" class="summary-devices-connectivity blue">
                     <span tooltip="Device connectivity" placement="top">{{'devices.summary.enabled'|translate}}</span>
                   </td>
-                  <td *ngIf="!group.default_device_connectivity" class="summary-devices-conectivity red">
+                  <td *ngIf="!group.default_device_connectivity" class="summary-devices-connectivity red">
                     <span tooltip="Device connectivity" placement="top">{{'devices.summary.disabled'|translate}}</span>
                   </td>
                 </tr>
@@ -243,7 +243,7 @@
             countGroupDevices(activeGroupId) != 0 &&
             loadedData"
             class="row mb-3">
-            <!-- Sorting mesages -->
+            <!-- Sorting messages -->
             <div class="col-8">  
               <p *ngIf="searchTerm && !filterField" class="sorting-message">
                 Filtered by term "{{ searchTerm }}".
@@ -291,344 +291,354 @@
             class="no-elements-in-group">
             No available devices registered in this group
           </div>
+          <!-- Devices table -->
            <div *ngIf=
             "devices &&
             devices.length > 0 &&
             groups && 
             groups.length > 0 &&
             !requestError" 
-            class="nalej-table-box">
-            <table class="nalej-table">
-              <thead class="nalej-thead">
-                <tr>
-                  <th 
-                    *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0 "
-                    (click)="setOrder('device_id')"
-                    [ngClass]="getCategoryCSSClass('device_id')"
-                    scope="col" 
-                    class="col-3">
-                    <span tooltip="ID" placement="bottom">ID</span>
-                    <span *ngIf="sortedBy === 'device_id' && !reverse" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedBy === 'device_id' && reverse" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
-                    (click)="setOrder('device_id')"
-                    [ngClass]="getCategoryCSSClass('device_id')"
-                    scope="col" 
-                    class="col-2">
-                    <span tooltip="ID" placement="bottom">ID</span>
-                    <span *ngIf="sortedBy === 'device_id' && !reverse" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedBy === 'device_id' && reverse" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
-                    (click)="setOrder('group')"
-                    [ngClass]="getCategoryCSSClass('group')"
-                    scope="col" 
-                    class="col-2">
-                    <span tooltip="Group" placement="bottom">Group</span>
-                    <span *ngIf="sortedBy === 'group' && !reverse" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedBy === 'group' && reverse" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0"
-                    (click)="setOrder('register_since')" 
-                    [ngClass]="getCategoryCSSClass('register_since')"
-                    scope="col" 
-                    class="col-2">
-                    <span tooltip="Date" placement="bottom">Date</span>
-                    <span *ngIf="sortedBy === 'register_since' && !reverse" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedBy === 'register_since' && reverse" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
-                    (click)="setOrder('register_since')" 
-                    [ngClass]="getCategoryCSSClass('register_since')"
-                    scope="col" 
-                    class="col-2">
-                    <span tooltip="Date" placement="bottom">Date</span>
-                    <span *ngIf="sortedBy === 'register_since' && !reverse" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedBy === 'register_since' && reverse" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
-                    (click)="setOrder('device_status_name')" 
-                    [ngClass]="getCategoryCSSClass('device_status_name')"
-                    scope="col" 
-                    class="col-2 text-center">
-                    <span tooltip="Status" placement="bottom">Status</span>
-                    <span *ngIf="sortedBy === 'device_status_name' && !reverse" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedBy === 'device_status_name' && reverse" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th> 
-                  <th 
-                    *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0"
-                    (click)="setOrder('device_status_name')" 
-                    [ngClass]="getCategoryCSSClass('device_status_name')"
-                    scope="col" 
-                    class="col-2 text-center">
-                    <span tooltip="Status" placement="bottom">Status</span>
-                    <span *ngIf="sortedBy === 'device_status_name' && !reverse" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedBy === 'device_status_name' && reverse" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th> 
-                  <th 
-                    *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
-                    (click)="setOrder('labels')" 
-                    [ngClass]="getCategoryCSSClass('labels')"
-                    scope="col" 
-                    class="col-3">
-                    <span tooltip="Labels" placement="bottom">Labels</span>
-                    <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0"
-                    (click)="setOrder('labels')" 
-                    [ngClass]="getCategoryCSSClass('labels')"
-                    scope="col" 
-                    class="col-4">
-                    <span tooltip="Labels" placement="bottom">Labels</span>
-                    <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
-                      <i class="material-icons">expand_more</i>
-                    </span>
-                    <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
-                      <i class="material-icons">expand_less</i>
-                    </span>
-                  </th>
-                  <th 
-                    *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
-                    tooltip="Actions" 
-                    placement="bottom"
-                    scope="col" 
-                    class="col-1 text-center enabled-initial-text">
-                    <span class="enabled-full-text">Actions</span> 
-                  </th>
-                  <th
-                    *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0"
-                    tooltip="Actions" 
-                    placement="bottom"
-                    scope="col" 
-                    class="col-1 text-center enabled-initial-text">
-                    <span class="enabled-full-text">Actions</span> 
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor=
-                  "let device of getDevices() |
-                  sortBy : sortedBy : reverse : 'case-insensitive' |
-                  filter : searchTerm">
-                  <span *ngIf="activeGroupId === 'ALL'">
-                    <td class="col-2">{{device.device_id}}</td>
-                    <td class="col-2">{{getGroupName(device.device_group_id)}}</td>
-                    <td class="col-2">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</td>  
-                    <td 
-                      class="col-2 col-center-lowercase"
-                      [ngClass]=
-                      "{
-                        'status-dot':classStatusCheck(device.device_status_name, 'online'),
-                        'status-dot-error':classStatusCheck(device.device_status_name, 'offline'),
-                        'status-dot-process':classStatusCheck(device.device_status_name, 'process')
-                      }"> 
-                      <span 
-                        tooltip="{{device.device_status_name}}" 
-                        placement="bottom"
-                        class="tooltip-fix">
+            class="nalej-table-box no-p-col no-m-row">
+            <div class="label-nalej-table">
+              <div class="label-thead row">
+                <div class="col-11">
+                  <div class="row">
+                    <div 
+                      *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0 "
+                      (click)="setOrder('name')"
+                      [ngClass]="getCategoryCSSClass('name')"
+                      class="label-th col-3">
+                      <span tooltip="ID" placement="bottom">Name</span>
+                      <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
+                        <i class="material-icons">expand_more</i>
                       </span>
-                      <span class="hide-lg">
-                        {{device.device_status_name}}
+                      <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
+                        <i class="material-icons">expand_less</i>
                       </span>
-                    </td>
-                    <td *ngIf="!device.labels" class="col-3">
-                      <div 
-                        (click)="addLabel(device)"
-                        tooltip="Add" 
-                        placement="right"
-                        class="label-btn-blue">
-                          <i class="material-icons i-add">add</i>  
-                      </div>
-                    </td>
-                    <td *ngIf="device.labels" class="col-3">
-                      <button 
-                        *ngFor="let label of labelsToString(device.labels)" 
-                        (click)="onLabelClick(device.device_id, label[0], label[1])"
-                        [ngClass]=
-                        "{
-                          'label-btn-selected': indexOfLabelSelected(device.device_id, label[0], label[1]) >= 0 ,
-                          'btn-outline-primary': indexOfLabelSelected(device.device_id, label[0], label[1]) === -1
-                        }" 
-                        class="btn-sm btn-outline-primary">
-                        {{label[0]}}: {{label[1]}} 
-                      </button>
-                      <div class="label-btns">
+                    </div>
+                    <div 
+                      *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
+                      (click)="setOrder('name')"
+                      [ngClass]="getCategoryCSSClass('name')"
+                      class="label-th col-3">
+                      <span tooltip="ID" placement="bottom">Name</span>
+                      <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
+                        <i class="material-icons">expand_more</i>
+                      </span>
+                      <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
+                        <i class="material-icons">expand_less</i>
+                      </span>
+                    </div>
+                    <div 
+                      *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
+                      (click)="setOrder('group')"
+                      [ngClass]="getCategoryCSSClass('group')"
+                      class="label-th col-3">
+                      <span tooltip="Group" placement="bottom">Group</span>
+                      <span *ngIf="sortedBy === 'group' && !reverse" class="expand-chevron">
+                        <i class="material-icons">expand_more</i>
+                      </span>
+                      <span *ngIf="sortedBy === 'group' && reverse" class="expand-chevron">
+                        <i class="material-icons">expand_less</i>
+                      </span>
+                    </div>
+                    <div 
+                      *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0"
+                      (click)="setOrder('date')" 
+                      [ngClass]="getCategoryCSSClass('date')"
+                      class="label-th col-3">
+                      <span tooltip="Date" placement="bottom">Attached date</span>
+                      <span *ngIf="sortedBy === 'date' && !reverse" class="expand-chevron">
+                        <i class="material-icons">expand_more</i>
+                      </span>
+                      <span *ngIf="sortedBy === 'date' && reverse" class="expand-chevron">
+                        <i class="material-icons">expand_less</i>
+                      </span>
+                    </div>
+                    <div 
+                      *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
+                      (click)="setOrder('date')" 
+                      [ngClass]="getCategoryCSSClass('date')"
+                      class="label-th col-3">
+                      <span tooltip="Date" placement="bottom">Attached date</span>
+                      <span *ngIf="sortedBy === 'date' && !reverse" class="expand-chevron">
+                        <i class="material-icons">expand_more</i>
+                      </span>
+                      <span *ngIf="sortedBy === 'date' && reverse" class="expand-chevron">
+                        <i class="material-icons">expand_less</i>
+                      </span>
+                    </div>
+                    <div 
+                      *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
+                      (click)="setOrder('status')" 
+                      [ngClass]="getCategoryCSSClass('status')"
+                      class="label-th col-3 text-center">
+                      <span tooltip="Status" placement="bottom">Status</span>
+                      <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
+                        <i class="material-icons">expand_more</i>
+                      </span>
+                      <span *ngIf="sortedBy === 'status' && reverse" class="expand-chevron">
+                        <i class="material-icons">expand_less</i>
+                      </span>
+                    </div> 
+                    <div 
+                      *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0"
+                      (click)="setOrder('status')" 
+                      [ngClass]="getCategoryCSSClass('status')"
+                      class="label-th col-6 text-center">
+                      <span tooltip="Status" placement="bottom">Status</span>
+                      <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
+                        <i class="material-icons">expand_more</i>
+                      </span>
+                      <span *ngIf="sortedBy === 'status' && reverse" class="expand-chevron">
+                        <i class="material-icons">expand_less</i>
+                      </span>
+                    </div> 
+                    <div 
+                      *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
+                      (click)="setOrder('labels')" 
+                      [ngClass]="getCategoryCSSClass('labels')"
+                      class="label-th col-12">
+                      <span tooltip="Labels" placement="bottom">Labels</span>
+                      <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
+                        <i class="material-icons">expand_more</i>
+                      </span>
+                      <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
+                        <i class="material-icons">expand_less</i>
+                      </span>
+                    </div>
+                    <div 
+                      *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0"
+                      (click)="setOrder('labels')" 
+                      [ngClass]="getCategoryCSSClass('labels')"
+                      class="label-th col-12">
+                      <span tooltip="Labels" placement="bottom">Labels</span>
+                      <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
+                        <i class="material-icons">expand_more</i>
+                      </span>
+                      <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
+                        <i class="material-icons">expand_less</i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div 
+                  *ngIf="activeGroupId === 'ALL' && countGroupDevices(activeGroupId) > 0"
+                  class="label-th col-1 text-center">
+                  <span tooltip="Actions" placement="bottom">Actions</span> 
+                </div>
+                <div
+                  *ngIf="activeGroupId !== 'ALL' && countGroupDevices(activeGroupId) > 0"
+                  class="label-th col-1 text-center">
+                  <span tooltip="Actions" placement="bottom">Actions</span> 
+                </div>
+              </div>
+              <div *ngFor=
+                "let device of getDevices() |
+                sortBy : sortedBy : reverse : 'case-insensitive' |
+                filter : searchTerm" 
+                class="">
+                <!-- ALL -->
+                <span *ngIf="activeGroupId === 'ALL'">
+                  <div class="label-tbody row">
+                    <div class="col-11">
+                      <div class="row">
+                        <div class="col-3 label-td">{{device.device_id}}</div>
+                        <div class="col-3 label-td">{{getGroupName(device.device_group_id)}}</div>
+                        <div class="col-3 label-td">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</div>  
                         <div 
-                          *ngIf="isAnyLabelSelected(device.device_id) === false"
-                          (click)="addLabel(device)"
-                          tooltip="Add" 
-                          placement="right"
-                          class="label-btn-blue">
-                          <i class="material-icons i-add">add</i>
-                        </div>
-                        <div 
-                          *ngIf="isAnyLabelSelected(device.device_id) === true"
-                          (click)="deleteLabel(device)"
-                          tooltip="Delete" 
-                          placement="right"
-                          class="label-btn-red">
-                          <i class="material-icons i-delete">delete</i>
+                          class="col-3 label-td col-center-lowercase"
+                          [ngClass]=
+                          "{
+                            'status-dot':classStatusCheck(device.device_status_name, 'online'),
+                            'status-dot-error':classStatusCheck(device.device_status_name, 'offline'),
+                            'status-dot-process':classStatusCheck(device.device_status_name, 'process')
+                          }"> 
+                          <span 
+                            tooltip="{{device.device_status_name}}" 
+                            placement="bottom"
+                            class="tooltip-fix">
+                          </span>
+                          <span class="hide-lg">
+                            {{device.device_status_name}}
+                          </span>
                         </div>
                       </div>
-                    </td>
-                    <td class="col-1 actions-col actions-col-fix">
-                      <button 
-                        *ngIf="device.enabled"
-                        (click)="enableSwitcher(device)"
-                        tooltip="Disabled" 
-                        placement="left"
-                        class="action-btn-blue-2">
-                        <i class="material-icons i-white-2">play_arrow</i>
-                      </button>
-                      <button
-                        *ngIf="!device.enabled" 
-                        (click)="enableSwitcher(device)"
-                        tooltip="Disabled" 
-                        placement="left"
-                        class="action-btn-grey-2 position-relative">
-                        <i class="material-icons i-black-2">pause</i>
-                      </button>
-                      <button 
-                        (click)="unlinkDevice(device)"
-                        tooltip="Unlink device" 
-                        placement="bottom" 
-                        class="action-btn-red-2">
-                        <i class="material-icons i-red-2">delete</i>
-                      </button>
-                    </td>
-                  </span>
-                  <span *ngIf="activeGroupId === device.device_group_id">
-                    <td *ngIf="groups && groups.length > 0 && countGroupDevices(device.device_group_id) === 0" class="col-12">
-                        No available devices registered in this group
-                    </td>
-                    <td class="col-3">{{device.device_id}}</td>
-                    <td class="col-2">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</td>
-                    <td  
-                      class="col-2 col-center-lowercase"
-                      [ngClass]=
-                      "{
-                        'status-dot':classStatusCheck(device.device_status_name, 'online'),
-                        'status-dot-error':classStatusCheck(device.device_status_name, 'offline'),
-                        'status-dot-process':classStatusCheck(device.device_status_name, 'process')
-                      }"> 
-                      <span 
-                        tooltip="{{device.device_status_name}}" 
-                        placement="bottom"
-                        class="tooltip-fix">
-                      </span>
-                      <span class="hide-lg">
-                        {{device.device_status_name}}
-                      </span>
-                    </td>
-                    <td *ngIf="!device.labels" class="col-4">
-                      <div 
-                        (click)="addLabel(device)"
-                        tooltip="Add" 
-                        placement="right"
-                        class="label-btn-blue">
-                          <i class="material-icons i-add">add</i>  
-                      </div>
-                    </td>
-                    <td *ngIf="device.labels" class="col-4">
-                      <button 
-                        (click)="onLabelClick(device.device_id, label[0], label[1])"
-                        [ngClass]=
-                        "{
-                          'label-btn-selected': indexOfLabelSelected(device.device_id, label[0], label[1]) >= 0 ,
-                          'btn-outline-primary': indexOfLabelSelected(device.device_id, label[0], label[1]) === -1
-                        }" 
-                        *ngFor="let label of labelsToString(device.labels)" 
-                        class="btn-sm btn-outline-primary">
-                        {{label[0]}}: {{label[1]}}
-                      </button>
-                      <div class="label-btns">
-                        <div 
-                          *ngIf="isAnyLabelSelected(device.device_id) === false"
-                          (click)="addLabel(device)"
-                          tooltip="Add" 
-                          placement="right"
-                          class="label-btn-blue">
-                          <i class="material-icons i-add">add</i>
+                      <div class="row label-row">
+                        <div *ngIf="!device.labels" class="col-12">
+                          <div 
+                            (click)="addLabel(device)"
+                            tooltip="Add" 
+                            placement="right"
+                            class="label-btn-blue">
+                              <i class="material-icons i-add">add</i>  
+                          </div>
                         </div>
-                        <div 
-                          *ngIf="isAnyLabelSelected(device.device_id) === true"
-                          (click)="deleteLabel(device)"
-                          tooltip="Delete" 
-                          placement="right"
-                          class="label-btn-red">
-                          <i class="material-icons i-delete">delete</i>
+                        <div *ngIf="device.labels" class="col-12">
+                          <button 
+                            *ngFor="let label of labelsToString(device.labels)" 
+                            (click)="onLabelClick(device.device_id, label[0], label[1])"
+                            [ngClass]=
+                            "{
+                              'label-content-selected': indexOfLabelSelected(device.device_id, label[0], label[1]) >= 0 ,
+                              'label-content': indexOfLabelSelected(device.device_id, label[0], label[1]) === -1
+                            }" 
+                            class="label-content">
+                            {{label[0]}}: {{label[1]}} 
+                          </button>
+                          <div class="label-btns">
+                            <div 
+                              *ngIf="isAnyLabelSelected(device.device_id) === false"
+                              (click)="addLabel(device)"
+                              tooltip="Add" 
+                              placement="right"
+                              class="label-btn-blue">
+                              <i class="material-icons i-add">add</i>
+                            </div>
+                            <div 
+                              *ngIf="isAnyLabelSelected(device.device_id) === true"
+                              (click)="deleteLabel(device)"
+                              tooltip="Delete" 
+                              placement="right"
+                              class="label-btn-red">
+                              <i class="material-icons i-delete">delete</i>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </td>
-                    <td class="col-1 actions-col actions-col-fix">
-                      <button 
-                        *ngIf="device.enabled"
-                        (click)="enableSwitcher(device)"
-                        tooltip="Disabled" 
-                        placement="left"
-                        class="action-btn-blue-2">
-                        <i class="material-icons i-white-2">play_arrow</i>
-                      </button>
-                      <button
-                        *ngIf="!device.enabled" 
-                        (click)="enableSwitcher(device)"
-                        tooltip="Disabled" 
-                        placement="left"
-                        class="action-btn-grey-2 position-relative">
-                        <i class="material-icons i-black-2">pause</i>
-                      </button>
-                      <button 
-                        (click)="unlinkDevice(device)"
-                        tooltip="Unlink device" 
-                        placement="bottom" 
-                        class="action-btn-red-2">
-                        <i class="material-icons i-red-2">delete</i>
-                      </button>
-                    </td>
-                  </span>
-                </tr>
-              </tbody>
-            </table>
+                    </div>
+                    <div class="col-1 label-td-flex">
+                      <div class="actions-col actions-col-fix">
+                        <button 
+                          *ngIf="device.enabled"
+                          (click)="enableSwitcher(device)"
+                          tooltip="Disabled" 
+                          placement="left"
+                          class="action-btn-blue-2">
+                          <i class="material-icons i-white-2">play_arrow</i>
+                        </button>
+                        <button
+                          *ngIf="!device.enabled" 
+                          (click)="enableSwitcher(device)"
+                          tooltip="Disabled" 
+                          placement="left"
+                          class="action-btn-grey-2 position-relative">
+                          <i class="material-icons i-black-2">pause</i>
+                        </button>
+                        <button 
+                          (click)="unlinkDevice(device)"
+                          tooltip="Unlink device" 
+                          placement="bottom" 
+                          class="action-btn-red-2">
+                          <i class="material-icons i-red-2">delete</i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </span>
+                <!-- GROUPS -->
+                <span *ngIf="activeGroupId === device.device_group_id">
+                  <div *ngIf="groups && groups.length > 0 && countGroupDevices(device.device_group_id) === 0" class="col-12">
+                    No available devices registered in this group
+                  </div>
+                  <div class="label-tbody row">
+                    <div class="col-11">
+                      <div class="row">
+                        <div class="col-3 label-td">{{device.device_id}}</div>
+                        <div class="col-3 label-td">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</div>
+                        <div  
+                          class="col-6 label-td col-center-lowercase"
+                          [ngClass]=
+                          "{
+                            'status-dot':classStatusCheck(device.device_status_name, 'online'),
+                            'status-dot-error':classStatusCheck(device.device_status_name, 'offline'),
+                            'status-dot-process':classStatusCheck(device.device_status_name, 'process')
+                          }"> 
+                          <span 
+                            tooltip="{{device.device_status_name}}" 
+                            placement="bottom"
+                            class="tooltip-fix">
+                          </span>
+                          <span class="hide-lg">
+                            {{device.device_status_name}}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="row label-row">
+                        <div *ngIf="!device.labels" class="col-12">
+                          <div 
+                            (click)="addLabel(device)"
+                            tooltip="Add" 
+                            placement="right"
+                            class="label-btn-blue">
+                              <i class="material-icons i-add">add</i>  
+                          </div>
+                        </div>
+                        <div *ngIf="device.labels" class="col-12">
+                          <button 
+                            (click)="onLabelClick(device.device_id, label[0], label[1])"
+                            [ngClass]=
+                            "{
+                              'label-content-selected': indexOfLabelSelected(device.device_id, label[0], label[1]) >= 0 ,
+                              'label-content': indexOfLabelSelected(device.device_id, label[0], label[1]) === -1
+                            }" 
+                            *ngFor="let label of labelsToString(device.labels)" 
+                            class="label-content">
+                            {{label[0]}}: {{label[1]}}
+                          </button>
+                          <div class="label-btns">
+                            <div 
+                              *ngIf="isAnyLabelSelected(device.device_id) === false"
+                              (click)="addLabel(device)"
+                              tooltip="Add" 
+                              placement="right"
+                              class="label-btn-blue">
+                              <i class="material-icons i-add">add</i>
+                            </div>
+                            <div 
+                              *ngIf="isAnyLabelSelected(device.device_id) === true"
+                              (click)="deleteLabel(device)"
+                              tooltip="Delete" 
+                              placement="right"
+                              class="label-btn-red">
+                              <i class="material-icons i-delete">delete</i>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="col-1 label-td-flex">
+                      <div class="actions-col actions-col-fix">
+                        <button 
+                          *ngIf="device.enabled"
+                          (click)="enableSwitcher(device)"
+                          tooltip="Disabled" 
+                          placement="left"
+                          class="action-btn-blue-2">
+                          <i class="material-icons i-white-2">play_arrow</i>
+                        </button>
+                        <button
+                          *ngIf="!device.enabled" 
+                          (click)="enableSwitcher(device)"
+                          tooltip="Disabled" 
+                          placement="left"
+                          class="action-btn-grey-2 position-relative">
+                          <i class="material-icons i-black-2">pause</i>
+                        </button>
+                        <button 
+                          (click)="unlinkDevice(device)"
+                          tooltip="Unlink device" 
+                          placement="bottom" 
+                          class="action-btn-red-2">
+                          <i class="material-icons i-red-2">delete</i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </span>
+              </div>
+            </div>
           </div> 
           <!-- No info to show -->
           <div *ngIf="groups && groups.length === 0 && !requestError" class="no-elements">

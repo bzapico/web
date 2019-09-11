@@ -120,7 +120,7 @@ $super-dark-grey: #151515;
             font-size: 1em;
         }
     }
-    .summary-devices-conectivity {
+    .summary-devices-connectivity {
         font-size: 1.0em;
         font-weight: 700;
         text-transform: uppercase;
@@ -132,22 +132,25 @@ $super-dark-grey: #151515;
 .actions-col-fix {
     padding: 0.75rem 0;
 }
+.nalej-table-box.no-p-col.no-m-row > div > div:nth-child(2) > span > div {
+    border: none;
+}
 .loaded-devices {
     height: 100%;
     width: 100%;
     margin-top: -1em;
     overflow: hidden;
 }
-@media screen and (max-width:1464px){
-    .enabled-full-text {
-        display: none;
-    }
-    .enabled-initial-text {
-        &::before {
-            content: 'A';
-        }
-    }
-}
+// @media screen and (max-width:1464px){
+//     .enabled-full-text {
+//         display: none;
+//     }
+//     .enabled-initial-text {
+//         &::before {
+//             content: 'A';
+//         }
+//     }
+// }
 /* - - - Close group button - - - */
 .close-group-button {
     display: flex;
