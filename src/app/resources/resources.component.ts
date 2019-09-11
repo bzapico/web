@@ -4,7 +4,6 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { CarouselConfig } from 'ngx-bootstrap/carousel';
 import { EditClusterComponent } from '../edit-cluster/edit-cluster.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Cluster } from '../definitions/interfaces/cluster';
@@ -37,17 +36,7 @@ const FOUND_NODES_BORDER_SIZE = 4;
 @Component({
   selector: 'app-resources',
   templateUrl: './resources.component.html',
-  styleUrls: ['./resources.component.scss'],
-   providers: [
-    { provide:
-      CarouselConfig,
-      useValue: {
-        interval: 0,
-        noPause: false,
-        showIndicators: true
-      }
-    }
-  ]
+  styleUrls: ['./resources.component.scss']
 })
 export class ResourcesComponent implements OnInit, OnDestroy {
   /**
@@ -68,7 +57,12 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * List of available clusters
    */
-  clusters: any[];
+  clusters: Cluster[];
+
+  /**
+   * List of processed clusters list with its associated instances
+   */
+  clusterWithInstancesList: any[];
 
   /**
    * List of available apps instances
@@ -79,11 +73,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Array containing charts data in the required format for NGX-Charts library rendering
    */
   pieChartData: any[];
-
-  /**
-   * Number of running clusters
-   */
-  countRunning: number;
 
   /**
    * Count of total clusters
@@ -129,7 +118,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   graphReset: boolean;
   graphDataLoaded: boolean;
-  showlegend: boolean;
   graphData: any;
   orientation: string;
   curve: any;
@@ -164,10 +152,15 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   reverse: boolean;
 
   /**
+   * Count of total occurrences in search graph
+   */
+  occurrencesCounter: number;
+
+  /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
-  searchTermClusters: string;
+  searchTermGraph: string;
 
   /**
    * Variable to store the value of the filter search text and sortBy pipe
@@ -184,7 +177,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Boolean variable for indicate when it is searching in the graph
    */
-  isSearchingInGraph = false;
+  isSearchingInGraph: boolean;
 
   constructor(
     private modalService: BsModalService,
@@ -210,7 +203,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.sortedBy = '';
     this.reverse = false;
     this.searchTerm = '';
-    this.searchTermClusters = '';
+    this.searchTermGraph = '';
+    this.isSearchingInGraph = false;
 
     // Filter field
     this.filterField = false;
@@ -218,7 +212,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 
     // Graph initialization
     this.graphReset = false;
-    this.showlegend = false;
     this.orientation = 'TB';
     this.curve = shape.curveBasis;
     this.autoZoom = true;
@@ -253,71 +246,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.refreshIntervalRef.unsubscribe();
   }
-
-  /**
-   * Refresh all resources data as clusters list, instances, and cluster count and it updates it considering the REFRESH_INTERVAL
-   */
-  private refreshData() {
-    this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
-    if (!this.isSearchingInGraph) {
-      Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
-        this.backend.getInstances(this.organizationId).toPromise(),
-        this.backend.getResourcesSummary(this.organizationId).toPromise(),
-      ])
-          .then(([clusters, instances, summary]) => {
-            this.clusters = clusters.clusters;
-            this.instances = instances.instances;
-            this.clustersCount = summary['total_clusters'] || 0 ;
-            if (!this.loadedData) {
-              this.loadedData = true;
-            }
-            this.updatePieChartStats(this.clusters);
-            this.toGraphData();
-          })
-          .catch(errorResponse => {
-            this.loadedData = false;
-            this.requestError = errorResponse.error.message;
-          });
-      }
-    });
-  }
-
-  /**
-   * Opens the modal view that holds the edit cluster component
-   */
-  openEditCluster(cluster) {
-    const initialState = {
-      organizationId: this.organizationId,
-      clusterId: cluster.cluster_id,
-      clusterName: cluster.name,
-      clusterDescription: cluster.description
-    };
-
-    this.modalRef = this.modalService.show(EditClusterComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
-      this.updateClusterList();
-    });
-  }
-
-  /**
-   * Updates the pieChartsData status
-   * @param clusterList Array containing the cluster list that sources the chart values
-   */
-  updatePieChartStats(clusters: any[]) {
-    let running = 0;
-    if (clusters) {
-      clusters.forEach(cluster => {
-        if (cluster.status_name === 'RUNNING') {
-          running += 1;
-        }
-      });
-      this.countRunning = running;
-      this.pieChartData = this.generateClusterChartData(this.countRunning, clusters.length);
-    }
-  }
-
-  /**
+    /**
    * Generates the NGX-Chart required JSON object for pie chart rendering
    * @param running Number of running nodes in a cluster
    * @param total Number of total nodes in a cluster
@@ -339,15 +268,15 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Requests an updated list of available clusters to update the current one
    */
-  updateClusterList() {
+   updateClusterList() {
       // Requests an updated clusters list
       this.backend.getClusters(this.organizationId)
       .subscribe(response => {
-          if (response.clusters && response.clusters.length) {
-            response.clusters.forEach(cluster => {
-              cluster.total_nodes = parseInt(cluster.total_nodes, 10);
-            });
-            this.clusters = response.clusters;
+        if (response.clusters && response.clusters.length) {
+          response.clusters.forEach(cluster => {
+            cluster.total_nodes = parseInt(cluster.total_nodes, 10);
+          });
+          this.clusters = response.clusters;
           } else {
             this.clusters = [];
           }
@@ -357,7 +286,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           this.clusters.forEach(cluster => {
             this.preventEmptyFields(cluster);
           });
-          this.updatePieChartStats(this.clusters);
       }, errorResponse => {
         this.loadedData = false;
         this.requestError = errorResponse.error.message;
@@ -365,16 +293,21 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Fulfill gaps in cluster object to avoid data binding failure
-   * @param cluster Cluster object
+   * Opens the modal view that holds the edit cluster component
    */
-  preventEmptyFields(cluster: Cluster) {
-    if (!cluster.name) {
-      cluster.name = '-';
-    }
-    if (!cluster.description) {
-      cluster.description = '-';
-    }
+  openEditCluster(cluster) {
+    const initialState = {
+      organizationId: this.organizationId,
+      clusterId: cluster.cluster_id,
+      clusterName: cluster.name,
+      clusterDescription: cluster.description
+    };
+
+    this.modalRef = this.modalService.show(EditClusterComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateClusterList();
+    });
   }
 
   /**
@@ -402,7 +335,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       this.searchTerm = '';
       this.sortedBy = '';
     } else if (list === 'graph') {
-      this.searchTermClusters = '';
+      this.searchTermGraph = '';
       this.isSearchingInGraph = false;
       this.toGraphData();
     }
@@ -495,7 +428,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   }
 
  /**
-  * Check if the label is selected. Returs index number in selected labels or -1 if the label is not found.
+  * Check if the label is selected. Return index number in selected labels or -1 if the label is not found.
   * @param entityId entity from selected label
   * @param labelKey label key from selected label
   * @param labelValue label value from selected label
@@ -526,14 +459,100 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Transforms the data needed to create the grapho
+   * It modifies the graph, changing the border of the nodes that its labels contain the search term
    */
-  toGraphData(searchTerm?: string) {
+  searchInGraph() {
+    this.isSearchingInGraph = true;
+    this.toGraphData();
+    this.occurrencesGraphCounter();
+  }
+
+  /**
+   * Refresh all resources data as clusters list, instances, and cluster count and it updates it considering the REFRESH_INTERVAL
+   */
+  private refreshData() {
+    this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
+    if (!this.isSearchingInGraph) {
+      Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
+        this.backend.getInstances(this.organizationId).toPromise(),
+        this.backend.getResourcesSummary(this.organizationId).toPromise(),
+      ])
+          .then(([clusters, instances, summary]) => {
+            this.clusters = clusters.clusters;
+            this.instances = instances.instances;
+            this.getProcessedClusterList();
+            this.clustersCount = summary['total_clusters'] || 0 ;
+            if (!this.loadedData) {
+              this.loadedData = true;
+            }
+            this.updatePieChartStats(this.clusters);
+            this.toGraphData();
+          })
+          .catch(errorResponse => {
+            this.loadedData = false;
+            this.requestError = errorResponse.error.message;
+          });
+      }
+    });
+  }
+
+  /**
+   * Updates the pieChartsData status
+   * @param clusters Array containing the cluster list that sources the chart values
+   */
+  private updatePieChartStats(clusters: any[]) {
+    let running = 0;
+    if (clusters) {
+      clusters.forEach(cluster => {
+        if (cluster.status_name === 'RUNNING') {
+          running += 1;
+        }
+      });
+      this.pieChartData = this.generateClusterChartData(running, clusters.length);
+    }
+  }
+
+  /**
+   * Process cluster list and adds each instances associated with each cluster
+   */
+  private getProcessedClusterList() {
+    this.clusterWithInstancesList = [];
+    if (this.clusters) {
+      this.clusters.forEach(cluster => {
+        this.clusterWithInstancesList.push({
+          ...cluster,
+          ...{instances: this.getAppsInCluster(cluster.cluster_id).length}
+        });
+      });
+    }
+  }
+
+  /**
+   * Fulfill gaps in cluster object to avoid data binding failure
+   * @param cluster Cluster object
+   */
+  private preventEmptyFields(cluster: Cluster) {
+    if (!cluster.name) {
+      cluster.name = '-';
+    }
+    if (!cluster.description) {
+      cluster.description = '-';
+    }
+  }
+
+  /**
+   * Transforms the data needed to create the graph
+   */
+  private toGraphData() {
     this.graphData = {
       nodes: [],
       links: []
     };
+    if (this.searchTermGraph) {
+      this.searchTermGraph = this.searchTermGraph.toLowerCase();
+    }
     this.clusters.forEach(cluster => {
+      const clusterName = cluster.name.toLowerCase();
       const nodeGroup = {
         id: cluster.cluster_id,
         label: cluster.name,
@@ -542,23 +561,24 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         text: this.getNodeTextColor(cluster.status_name),
         group: cluster.cluster_id,
         customHeight: CUSTOM_HEIGHT_CLUSTERS,
-        customBorderColor: (searchTerm && cluster.name.includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
-        customBorderWidth: (searchTerm && cluster.name.includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
+        customBorderColor: (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+        customBorderWidth: (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
       };
       this.graphData.nodes.push(nodeGroup);
 
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
+        const instanceName = instance['name'].toLowerCase();
         const nodeInstance = {
           id: instance['app_instance_id'],
           label: instance['name'],
-          tooltip: 'APP ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
+          tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
           color: this.getNodeColor(cluster.status_name),
           text: this.getNodeTextColor(cluster.status_name),
           group: cluster.cluster_id,
           customHeight: CUSTOM_HEIGHT_INSTANCES,
-          customBorderColor: (searchTerm && instance['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_COLOR : '',
-          customBorderWidth: (searchTerm && instance['name'].includes(searchTerm)) ? FOUND_NODES_BORDER_SIZE : ''
+          customBorderColor: (this.searchTermGraph && instanceName.includes(this.searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+          customBorderWidth: (this.searchTermGraph && instanceName.includes(this.searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
         };
         const index = this.graphData.nodes.map(x => x.id).indexOf(nodeInstance.id);
         if (index === -1) {
@@ -577,7 +597,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Return an specific color depending on the node status
    * @param status Status name
    */
-  getNodeColor(status: string): string {
+  private getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
       case 'running':
         return this.STATUS_COLORS.RUNNING;
@@ -594,7 +614,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Return an specific text color depending on the node status
    * @param status Status name
    */
-  getNodeTextColor(status: string): string {
+  private getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
       case 'running':
         return this.STATUS_TEXT_COLORS.RUNNING;
@@ -609,27 +629,11 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Filters the backend incoming status to display it in removing the initial "service_"
    * @param rawStatus string containing the status that the backend is sending
    */
-  getBeautyStatusName (rawStatus: string): string {
+  private getBeautyStatusName(rawStatus: string): string {
     if (rawStatus.toLowerCase().startsWith('service_')) {
       return rawStatus.substring('service_'.length, rawStatus.length);
     }
     return rawStatus;
-  }
-
-  /**
-   * Returns the length of app instances that are part of each cluster
-   * @param clusterId Identifier for the cluster
-   */
-  getAppsNumberInCluster(clusterId: string) {
-    return Object.keys(this.getAppsInCluster(clusterId)).length;
-  }
-
-  /**
-   * It modifies the graph, changing the border of the nodes that its labels contain the search term
-   */
-  searchInGraph() {
-    this.isSearchingInGraph = true;
-    this.toGraphData(this.searchTermClusters);
   }
 
   /**
@@ -650,5 +654,12 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       }
     }
     return Object.values(appsInCluster);
+  }
+
+  /**
+   * Return a counter for the amount of search terms in graph
+   */
+  private occurrencesGraphCounter() {
+    this.occurrencesCounter = this.graphData.nodes.filter(node => node.label.toLowerCase().includes(this.searchTermGraph)).length;
   }
 }
