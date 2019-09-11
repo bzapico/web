@@ -83,7 +83,7 @@
         </div>
         <div *ngIf="instance.labels">
           <div *ngFor="let label of instanceLabelsToString()">
-            <button disabled class="btn-sm btn-outline-primary">
+            <button disabled class="label-content">
               {{label[0]}}: {{label[1]}}
             </button>
           </div>

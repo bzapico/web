@@ -82,10 +82,10 @@
           (click)="onLabelClick(registeredData.app_descriptor_id, label.key, label.value)"
           [ngClass]=
           "{
-            'label-btn-selected': indexOfLabelSelected(registeredData.app_descriptor_id, label.key, label.value) >= 0 ,
-            'btn-outline-primary': indexOfLabelSelected(registeredData.app_descriptor_id, label.key, label.value) === -1
+            'label-content-selected': indexOfLabelSelected(registeredData.app_descriptor_id, label.key, label.value) >= 0 ,
+            'label-content': indexOfLabelSelected(registeredData.app_descriptor_id, label.key, label.value) === -1
           }" 
-          class="btn-sm btn-outline-primary">
+          class="label-content">
           {{label.key}}: {{label.value}} 
         </button>
           <div class="label-btns">
@@ -409,7 +409,7 @@
               <div role="cell" class="nalej-flex-row-4 services-cell-3 nalej-flex-td">
                 <button 
                   *ngFor="let label of objectToString(service.labels)"
-                  class="btn-sm btn-outline-primary"
+                  class="label-content"
                   disabled> 
                   {{label[0]}}: {{label[1]}} 
                 </button>
