@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
 import * as shape from 'd3-shape';
 import { Subscription, timer } from 'rxjs';
 import { NodeType } from '../definitions/enums/node-type.enum';
+import { GraphData } from '../definitions/models/graph-data';
+import {KeyValue} from '../definitions/interfaces/key-value';
 
 /**
  * Refresh ratio
@@ -152,7 +154,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   graphReset: boolean;
   graphDataLoaded: boolean;
-  graphData: any;
+  graphData: GraphData;
+  searchGraphData: KeyValue;
   orientation: string;
   curve: any;
   autoZoom: boolean;
@@ -228,7 +231,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     private router: Router) {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
-    if (mock && mock === 'true') {
+    if (!!mock) {
       this.backend = this.mockupBackendService;
     } else {
       this.backend = this.backendService;
@@ -271,11 +274,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       domain: ['#6C86F7']
     };
     this.graphDataLoaded = false;
-    this.graphData = {
-      nodes: [],
-      links: []
-    };
-
+    this.graphData = new GraphData([], []);
     /**
      * Charts reference init
      */
@@ -905,10 +904,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Transforms the data needed to create the graph
    */
   toGraphData(searchTermGraph?: string) {
-    this.graphData = {
-      nodes: [],
-      links: []
-    };
+    this.graphData.reset();
+    this.searchGraphData = {};
     if (searchTermGraph) {
       searchTermGraph = searchTermGraph.toLowerCase();
     }
