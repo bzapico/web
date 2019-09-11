@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
 import * as shape from 'd3-shape';
 import { Subscription, timer } from 'rxjs';
 import { NodeType } from '../definitions/enums/node-type.enum';
+import { GraphData } from '../definitions/models/graph-data';
+import { KeyValue } from '../definitions/interfaces/key-value';
 
 /**
  * Refresh ratio
@@ -43,6 +45,30 @@ const FOUND_NODES_BORDER_SIZE = 4;
  * It sets a color for registered nodes
  */
 const REGISTERED_NODES_COLOR = '#444444';
+/**
+ * It sets the status colors for nodes
+ */
+const STATUS_COLORS = {
+  RUNNING: '#00E6A0',
+  ERROR: '#F7478A',
+  OTHER: '#FFEB6C'
+};
+/**
+ * It sets the status colors for nodes
+ */
+const STATUS_TEXT_COLORS = {
+  RUNNING: '#FFFFFF',
+  ERROR: '#FFFFFF',
+  OTHER: '#444444'
+};
+/**
+ * It sets the timeout in actions like undeploying or deleting
+ */
+const TIMEOUT_ACTION = 3000;
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
 
 @Component({
   selector: 'applications',
@@ -152,7 +178,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   graphReset: boolean;
   graphDataLoaded: boolean;
-  graphData: any;
+  graphData: GraphData<any[]>;
+  searchGraphData: GraphData<KeyValue>;
   orientation: string;
   curve: any;
   autoZoom: boolean;
@@ -163,16 +190,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   width: number;
   height: string;
   draggingEnabled: boolean;
-  STATUS_COLORS = {
-    RUNNING: '#00E6A0',
-    ERROR: '#F7478A',
-    OTHER: '#FFEB6C'
-  };
-  STATUS_TEXT_COLORS = {
-    RUNNING: '#FFFFFF',
-    ERROR: '#FFFFFF',
-    OTHER: '#444444'
-  };
 
   /**
    * NGX-Charts object-assign required object references (for rendering)
@@ -228,7 +245,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     private router: Router) {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
-    if (mock && mock === 'true') {
+    if (!!mock) {
       this.backend = this.mockupBackendService;
     } else {
       this.backend = this.backendService;
@@ -271,11 +288,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       domain: ['#6C86F7']
     };
     this.graphDataLoaded = false;
-    this.graphData = {
-      nodes: [],
-      links: []
-    };
-
+    this.graphData = new GraphData([], []);
+    this.searchGraphData = new GraphData({}, {});
     /**
      * Charts reference init
      */
@@ -580,8 +594,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           this.selectedLabels.splice(index, 1);
           this.updateRegisteredInstances(this.organizationId);
         });
-    } else {
-      // Do nothing
     }
   }
 
@@ -636,11 +648,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param entityId entity from selected label
    */
   isAnyLabelSelected(entityId) {
-    if (this.selectedLabels.length > 0) {
+    if (this.selectedLabels.length) {
       const indexSelected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
-      if (indexSelected >= 0) {
-          return true;
-      }
+      return indexSelected >= 0;
     }
     return false;
   }
@@ -709,13 +719,13 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           app.undeploying = true;
           this.notificationsService.add({
             message: 'Undeploying ' + app.name,
-            timeout: 3000
+            timeout: TIMEOUT_ACTION
           });
           this.updateAppInstances(this.organizationId);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000,
+            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });
@@ -747,13 +757,13 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         .subscribe(deleteResponse => {
           this.notificationsService.add({
             message: 'Deleting ' + app.name,
-            timeout: 3000
+            timeout: TIMEOUT_ACTION
           });
           this.updateRegisteredInstances(this.organizationId);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000,
+            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });
@@ -802,14 +812,14 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     const instanceOptions = [];
     const instanceOption1 = {
       name: 'More info',
-      action: (applicationInstance: any) => {
+      action: () => {
         this.goToInstanceView(instance);
       },
       instance: instance
     };
     const instanceOption2 = {
       name: 'Undeploy',
-      action: (applicationInstance: any) => {
+      action: () => {
         this.undeploy(instance);
       },
       instance: instance
@@ -847,21 +857,21 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     const registeredOptions = [];
     const registeredOption1 = {
       name: 'More info',
-      action: (registeredApp: any) => {
+      action: () => {
         this.goToRegisteredView(registered);
       },
       registered: registered
     };
     const registeredOption2 = {
       name: 'Deploy',
-      action: (registeredApp: any) => {
+      action: () => {
         this.deployRegistered(registered);
       },
       registered: registered
     };
     const registeredOption3 = {
       name: 'Delete',
-      action: (registeredApp: any) => {
+      action: () => {
         this.deleteApp(registered);
       },
       registered: registered
@@ -905,73 +915,92 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Transforms the data needed to create the graph
    */
   toGraphData(searchTermGraph?: string) {
-    this.graphData = {
-      nodes: [],
-      links: []
-    };
+    this.graphData.reset([], []);
+    this.searchGraphData.reset({}, {});
     if (searchTermGraph) {
       searchTermGraph = searchTermGraph.toLowerCase();
     }
     this.clusters.forEach(cluster => {
-      const clusterName = cluster.name.toLowerCase();
-      const nodeGroup = {
-        id: cluster.cluster_id,
-        label: cluster.name,
-        type: NodeType.Clusters,
-        tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
-        color: this.getNodeColor(cluster.status_name),
-        text: this.getNodeTextColor(cluster.status_name),
-        group: cluster.cluster_id,
-        customHeight: CUSTOM_HEIGHT_CLUSTERS,
-        customBorderColor: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-        customBorderWidth: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
-      };
-      this.graphData.nodes.push(nodeGroup);
-      const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
-      instancesInCluster.forEach(instance => {
-        const instanceName = instance['name'].toLowerCase();
-        const nodeInstance = {
-          id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
-          label: instance['name'],
-          type: NodeType.Instances,
-          tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
-          color: this.getNodeColor(instance['status_name']),
-          text: this.getNodeTextColor(cluster.status_name),
-          group: cluster.cluster_id,
-          customHeight: CUSTOM_HEIGHT_INSTANCES,
-          customBorderColor: (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-          customBorderWidth: (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : '',
-          app_descriptor_id: instance['app_descriptor_id']
-        };
-        this.graphData.nodes.push(nodeInstance);
-        const registeredApp = this.getRegisteredApp(nodeInstance);
-        if (registeredApp.length > 0) {
-          const registeredName = registeredApp[0]['name'].toLowerCase();
-          const nodeRegistered = {
-            id: registeredApp[0]['app_descriptor_id'],
-            label: registeredApp[0]['name'],
-            type: NodeType.Registered,
-            tooltip: 'REGISTERED ' + registeredApp[0]['name'],
-            color: REGISTERED_NODES_COLOR,
-            text: this.getNodeTextColor(cluster.status_name),
-            group: cluster.cluster_id,
-            customHeight: CUSTOM_HEIGHT_REGISTERED,
-            customBorderColor: (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-            customBorderWidth: (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
-          };
-          if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
-            this.graphData.nodes.push(nodeRegistered);
-          }
-          this.setLinksInGraph(
-            registeredApp[0]['app_descriptor_id'],
-            cluster.cluster_id + '-s-' + instance['app_instance_id']);
-          }
-        this.setLinksInGraph(
-          cluster.cluster_id + '-s-' + instance['app_instance_id'],
-          cluster.cluster_id);
-      });
+      this.setClusters(cluster, searchTermGraph);
+      this.setRegisteredAndInstances(cluster, searchTermGraph);
     });
     this.graphDataLoaded = true;
+  }
+
+  /**
+   * It sets clusters nodes to add them in the graph
+   * @param cluster current cluster to generate related data to this.
+   * @param searchTermGraph term to search if it's necessary
+   */
+  private setClusters(cluster: any, searchTermGraph?: string) {
+    const clusterName = cluster.name.toLowerCase();
+    const nodeGroup = {
+      id: cluster.cluster_id,
+      label: cluster.name,
+      type: NodeType.Clusters,
+      tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
+      color: this.getNodeColor(cluster.status_name),
+      text: this.getNodeTextColor(cluster.status_name),
+      group: cluster.cluster_id,
+      customHeight: CUSTOM_HEIGHT_CLUSTERS,
+      customBorderColor: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+      customBorderWidth: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
+    };
+    this.searchGraphData.nodes[nodeGroup.id] = nodeGroup;
+    this.graphData.nodes.push(nodeGroup);
+  }
+
+  /**
+   * It sets registered apps, instances and its relations
+   * @param cluster current cluster to generate related data to this.
+   * @param searchTermGraph term to search if it's necessary
+   */
+  private setRegisteredAndInstances(cluster: any, searchTermGraph?: string) {
+    const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
+    instancesInCluster.forEach(instance => {
+      const instanceName = instance['name'].toLowerCase();
+      const nodeInstance = {
+        id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
+        label: instance['name'],
+        type: NodeType.Instances,
+        tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
+        color: this.getNodeColor(instance['status_name']),
+        text: this.getNodeTextColor(cluster.status_name),
+        group: cluster.cluster_id,
+        customHeight: CUSTOM_HEIGHT_INSTANCES,
+        customBorderColor: (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+        customBorderWidth: (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : '',
+        app_descriptor_id: instance['app_descriptor_id']
+      };
+      this.searchGraphData.nodes[nodeInstance.id] = nodeInstance;
+      this.graphData.nodes.push(nodeInstance);
+      const registeredApp = this.getRegisteredApp(nodeInstance);
+      if (registeredApp.length > 0) {
+        const registeredName = registeredApp[0]['name'].toLowerCase();
+        const nodeRegistered = {
+          id: registeredApp[0]['app_descriptor_id'],
+          label: registeredApp[0]['name'],
+          type: NodeType.Registered,
+          tooltip: 'REGISTERED ' + registeredApp[0]['name'],
+          color: REGISTERED_NODES_COLOR,
+          text: this.getNodeTextColor(cluster.status_name),
+          group: cluster.cluster_id,
+          customHeight: CUSTOM_HEIGHT_REGISTERED,
+          customBorderColor: (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+          customBorderWidth: (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
+        };
+        if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
+          this.searchGraphData.nodes[nodeRegistered.id] = nodeRegistered;
+          this.graphData.nodes.push(nodeRegistered);
+        }
+        this.setLinksInGraph(
+            registeredApp[0]['app_descriptor_id'],
+            cluster.cluster_id + '-s-' + instance['app_instance_id']);
+      }
+      this.setLinksInGraph(
+          cluster.cluster_id + '-s-' + instance['app_instance_id'],
+          cluster.cluster_id);
+    });
   }
 
   /**
@@ -981,13 +1010,13 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   private getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
       case 'running':
-        return this.STATUS_COLORS.RUNNING;
+        return STATUS_COLORS.RUNNING;
       case 'error':
-        return this.STATUS_COLORS.ERROR;
+        return STATUS_COLORS.ERROR;
       case 'deployment_error':
-        return this.STATUS_COLORS.ERROR;
+        return STATUS_COLORS.ERROR;
       default:
-        return this.STATUS_COLORS.OTHER;
+        return STATUS_COLORS.OTHER;
     }
   }
 
@@ -998,11 +1027,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   private getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
       case 'running':
-        return this.STATUS_TEXT_COLORS.RUNNING;
+        return STATUS_TEXT_COLORS.RUNNING;
       case 'error':
-        return this.STATUS_TEXT_COLORS.ERROR;
+        return STATUS_TEXT_COLORS.ERROR;
       default:
-        return this.STATUS_TEXT_COLORS.OTHER;
+        return STATUS_TEXT_COLORS.OTHER;
     }
   }
 
@@ -1062,6 +1091,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       source: source,
       target: target
     });
+    if (!this.searchGraphData.links[source]) {
+      this.searchGraphData.links[source] = [];
+    }
+    this.searchGraphData.links[source].push(target);
   }
 
   /**
