@@ -165,9 +165,6 @@ th.instances-pcol-fix.default {
 @media screen and (max-width:1723px){
     .app-actions-full-text {
         display: none;
-        &:hover {
-            border: 1px solid red;
-        }
     }
     .app-actions-initial-text {
         &::before {
@@ -186,15 +183,9 @@ th.instances-pcol-fix.default {
         }
     }
 }
-@media screen and (max-width:1884px){
-    .app-status-full-text {
-        display: none;
-    }
-    .app-status-initial-text {
-        &::before {
-            content: 'S';
-        }
-    }
+
+.nalej-table-box.no-p-col.no-m-row.ng-star-inserted > div > div:nth-child(2) > div:nth-child(1) {
+    border: none;
 }
 
 /* - - - Apps buttons - - - */
