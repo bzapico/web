@@ -45,6 +45,30 @@ const FOUND_NODES_BORDER_SIZE = 4;
  * It sets a color for registered nodes
  */
 const REGISTERED_NODES_COLOR = '#444444';
+/**
+ * It sets the status colors for nodes
+ */
+const STATUS_COLORS = {
+  RUNNING: '#00E6A0',
+  ERROR: '#F7478A',
+  OTHER: '#FFEB6C'
+};
+/**
+ * It sets the status colors for nodes
+ */
+const STATUS_TEXT_COLORS = {
+  RUNNING: '#FFFFFF',
+  ERROR: '#FFFFFF',
+  OTHER: '#444444'
+};
+/**
+ * It sets the timeout in actions like undeploying or deleting
+ */
+const TIMEOUT_ACTION = 3000;
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
 
 @Component({
   selector: 'applications',
@@ -166,16 +190,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   width: number;
   height: string;
   draggingEnabled: boolean;
-  STATUS_COLORS = {
-    RUNNING: '#00E6A0',
-    ERROR: '#F7478A',
-    OTHER: '#FFEB6C'
-  };
-  STATUS_TEXT_COLORS = {
-    RUNNING: '#FFFFFF',
-    ERROR: '#FFFFFF',
-    OTHER: '#444444'
-  };
 
   /**
    * NGX-Charts object-assign required object references (for rendering)
@@ -580,8 +594,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           this.selectedLabels.splice(index, 1);
           this.updateRegisteredInstances(this.organizationId);
         });
-    } else {
-      // Do nothing
     }
   }
 
@@ -636,11 +648,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param entityId entity from selected label
    */
   isAnyLabelSelected(entityId) {
-    if (this.selectedLabels.length > 0) {
+    if (this.selectedLabels.length) {
       const indexSelected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
-      if (indexSelected >= 0) {
-          return true;
-      }
+      return indexSelected >= 0;
     }
     return false;
   }
@@ -709,13 +719,13 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           app.undeploying = true;
           this.notificationsService.add({
             message: 'Undeploying ' + app.name,
-            timeout: 3000
+            timeout: TIMEOUT_ACTION
           });
           this.updateAppInstances(this.organizationId);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000,
+            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });
@@ -747,13 +757,13 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         .subscribe(deleteResponse => {
           this.notificationsService.add({
             message: 'Deleting ' + app.name,
-            timeout: 3000
+            timeout: TIMEOUT_ACTION
           });
           this.updateRegisteredInstances(this.organizationId);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000,
+            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });
@@ -802,14 +812,14 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     const instanceOptions = [];
     const instanceOption1 = {
       name: 'More info',
-      action: (applicationInstance: any) => {
+      action: () => {
         this.goToInstanceView(instance);
       },
       instance: instance
     };
     const instanceOption2 = {
       name: 'Undeploy',
-      action: (applicationInstance: any) => {
+      action: () => {
         this.undeploy(instance);
       },
       instance: instance
@@ -847,21 +857,21 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     const registeredOptions = [];
     const registeredOption1 = {
       name: 'More info',
-      action: (registeredApp: any) => {
+      action: () => {
         this.goToRegisteredView(registered);
       },
       registered: registered
     };
     const registeredOption2 = {
       name: 'Deploy',
-      action: (registeredApp: any) => {
+      action: () => {
         this.deployRegistered(registered);
       },
       registered: registered
     };
     const registeredOption3 = {
       name: 'Delete',
-      action: (registeredApp: any) => {
+      action: () => {
         this.deleteApp(registered);
       },
       registered: registered
@@ -911,21 +921,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       searchTermGraph = searchTermGraph.toLowerCase();
     }
     this.clusters.forEach(cluster => {
-      const clusterName = cluster.name.toLowerCase();
-      const nodeGroup = {
-        id: cluster.cluster_id,
-        label: cluster.name,
-        type: NodeType.Clusters,
-        tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
-        color: this.getNodeColor(cluster.status_name),
-        text: this.getNodeTextColor(cluster.status_name),
-        group: cluster.cluster_id,
-        customHeight: CUSTOM_HEIGHT_CLUSTERS,
-        customBorderColor: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-        customBorderWidth: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
-      };
-      this.searchGraphData.nodes[nodeGroup.id] = nodeGroup;
-      this.graphData.nodes.push(nodeGroup);
+      this.setClusters(cluster, searchTermGraph);
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
         const instanceName = instance['name'].toLowerCase();
@@ -976,19 +972,40 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * It sets clusters nodes to add them in the graph
+   */
+  private setClusters(cluster, searchTermGraph?: string) {
+    const clusterName = cluster.name.toLowerCase();
+    const nodeGroup = {
+      id: cluster.cluster_id,
+      label: cluster.name,
+      type: NodeType.Clusters,
+      tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
+      color: this.getNodeColor(cluster.status_name),
+      text: this.getNodeTextColor(cluster.status_name),
+      group: cluster.cluster_id,
+      customHeight: CUSTOM_HEIGHT_CLUSTERS,
+      customBorderColor: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+      customBorderWidth: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
+    };
+    this.searchGraphData.nodes[nodeGroup.id] = nodeGroup;
+    this.graphData.nodes.push(nodeGroup);
+  }
+
+  /**
    * Return an specific color depending on the node status
    * @param status Status name
    */
   private getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
       case 'running':
-        return this.STATUS_COLORS.RUNNING;
+        return STATUS_COLORS.RUNNING;
       case 'error':
-        return this.STATUS_COLORS.ERROR;
+        return STATUS_COLORS.ERROR;
       case 'deployment_error':
-        return this.STATUS_COLORS.ERROR;
+        return STATUS_COLORS.ERROR;
       default:
-        return this.STATUS_COLORS.OTHER;
+        return STATUS_COLORS.OTHER;
     }
   }
 
@@ -999,11 +1016,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   private getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
       case 'running':
-        return this.STATUS_TEXT_COLORS.RUNNING;
+        return STATUS_TEXT_COLORS.RUNNING;
       case 'error':
-        return this.STATUS_TEXT_COLORS.ERROR;
+        return STATUS_TEXT_COLORS.ERROR;
       default:
-        return this.STATUS_TEXT_COLORS.OTHER;
+        return STATUS_TEXT_COLORS.OTHER;
     }
   }
 
@@ -1063,12 +1080,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       source: source,
       target: target
     });
-    if (this.searchGraphData.links[source]) {
-      this.searchGraphData.links[source].push(target);
-    } else {
+    if (!this.searchGraphData.links[source]) {
       this.searchGraphData.links[source] = [];
-      this.searchGraphData.links[source].push(target);
     }
+    this.searchGraphData.links[source].push(target);
   }
 
   /**
