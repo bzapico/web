@@ -13,6 +13,9 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
+import { createTranslateLoader } from './app.module';
+import { HttpClient } from '@angular/common/http';
 
 
 describe('AppComponent', () => {
@@ -37,8 +40,15 @@ describe('AppComponent', () => {
         TooltipModule,
         ModalModule.forRoot(),
         FormsModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
-      providers: [BsModalService]
+      providers: [BsModalService, TranslateService]
     }).compileComponents();
   }));
   it('should create the app', async(() => {

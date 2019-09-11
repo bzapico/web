@@ -9,6 +9,7 @@ import { AddUserComponent } from '../add-user/add-user.component';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { UpdateEventsService } from '../services/update-events.service';
 import { Router } from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'organization',
@@ -67,7 +68,8 @@ export class OrganizationComponent implements OnInit {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private router: Router,
-    private updateService: UpdateEventsService
+    private updateService: UpdateEventsService,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.organizationMock) || null;
     // check which backend is required (fake or real)
@@ -78,8 +80,8 @@ export class OrganizationComponent implements OnInit {
     }
     // Default initialization
     this.loadedData = false;
-    this.organizationName = 'Loading...';
-    this.subscriptionType = 'Free subscription';
+    this.organizationName = this.translateService.instant('organization.loading');
+    this.subscriptionType = this.translateService.instant('organization.subscriptionType');
     this.users = [];
     this.requestError = '';
 
@@ -144,7 +146,7 @@ export class OrganizationComponent implements OnInit {
       email: user.email,
       userRole: user.role_name,
       profileRole: this.profileRole,
-      title: 'Edit user',
+      title: this.translateService.instant('organization.users.edit'),
       selfEditProfile: false,
       defaultAutofocus: true,
     };

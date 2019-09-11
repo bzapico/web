@@ -18,7 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { BackendService } from './services/backend.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { RouterModule } from '@angular/router';
 import { UserInfoComponent } from './user-info/user-info.component';
@@ -58,6 +58,12 @@ import { InstallAgentComponent } from './install-agent/install-agent.component';
 import { DeviceInfoComponent } from './device-info/device-info.component';
 import { SimpleLogComponent } from './simple-log/simple-log.component';
 import { AgentJoinTokenInfoComponent } from './agent-join-token-info/agent-join-token-info.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -137,6 +143,14 @@ import { AgentJoinTokenInfoComponent } from './agent-join-token-info/agent-join-
     SelectDropDownModule,
     RouterModule,
     FileDropModule,
+    // NGX-TRANSLATE
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
     // NGX-BOOTSTRAP
     ModalModule.forRoot(),
     ButtonsModule.forRoot(),
