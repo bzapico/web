@@ -91,7 +91,7 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-notifications</code></td>
+                <td class="col-md-9"><code>notifications</code></td>
             </tr>
 
             <tr>
@@ -191,7 +191,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/notifications/notifications.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/notifications/notifications.component.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -271,7 +271,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/notifications/notifications.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/notifications/notifications.component.ts:15</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -307,8 +307,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/app/notifications/notifications.component.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/app/notifications/notifications.component.ts:41</a></div>
                 </td>
             </tr>
 
@@ -346,8 +346,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/app/notifications/notifications.component.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/app/notifications/notifications.component.ts:48</a></div>
                 </td>
             </tr>
 
@@ -423,7 +423,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/notifications/notifications.component.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/notifications/notifications.component.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -455,7 +455,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/notifications/notifications.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/notifications/notifications.component.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -474,7 +474,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input, Output, EventEmitter } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input } from &#x27;@angular/core&#x27;;
 import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
 import { MockupBackendService } from &#x27;../services/mockup-backend.service&#x27;;
 import { BackendService } from &#x27;../services/backend.service&#x27;;
@@ -482,14 +482,13 @@ import { Backend } from &#x27;../definitions/interfaces/backend&#x27;;
 import { NotificationsService } from &#x27;../services/notifications.service&#x27;;
 
 @Component({
-  selector: &#x27;app-notifications&#x27;,
+  selector: &#x27;notifications&#x27;,
   templateUrl: &#x27;./notifications.component.html&#x27;,
   styleUrls: [&#x27;./notifications.component.scss&#x27;]
 })
 export class NotificationsComponent implements OnInit {
 
-  // tslint:disable-next-line:no-input-rename
-  @Input(&#x27;notifications&#x27;) alerts: any[];
+  @Input() notifications: any[];
 
   /**
    * Backend handler (mocked up or real backend)
@@ -506,12 +505,12 @@ export class NotificationsComponent implements OnInit {
     private backendService: BackendService,
     private notificationsService: NotificationsService
     ) {
-    this.alerts &#x3D; [];
+    this.notifications &#x3D; [];
     const notificationsMock &#x3D; localStorage.getItem(LocalStorageKeys.notificationsMock);
     if (notificationsMock &#x3D;&#x3D;&#x3D; &#x27;true&#x27;) {
-      this.backend &#x3D; mockupBackendService;
+      this.backend &#x3D; this.mockupBackendService;
     } else {
-      this.backend &#x3D; backendService;
+      this.backend &#x3D; this.backendService;
     }
   }
 
@@ -532,10 +531,10 @@ export class NotificationsComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div 
-  *ngIf&#x3D;&quot;alerts.length &gt; 0&quot; 
+  *ngIf&#x3D;&quot;notifications.length &gt; 0&quot;
   id&#x3D;&quot;alert-container&quot; 
   class&#x3D;&quot;container alert-top-right&quot;&gt;
-  &lt;div *ngFor&#x3D;&quot;let alert of alerts&quot; class&#x3D;&quot;row&quot;&gt;
+  &lt;div *ngFor&#x3D;&quot;let alert of notifications&quot; class&#x3D;&quot;row&quot;&gt;
     &lt;div class&#x3D;&quot;col-12&quot;&gt;
       &lt;alert 
         (onClosed)&#x3D;&quot;onClosed(alert)&quot; 
@@ -551,7 +550,8 @@ export class NotificationsComponent implements OnInit {
       &lt;/alert&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
@@ -587,8 +587,8 @@ export class NotificationsComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div   *ngIf="alerts.length > 0"   id="alert-container"   class="container alert-top-right">  <div *ngFor="let alert of alerts" class="row">    <div class="col-12">      <alert         (onClosed)="onClosed(alert)"         [dismissible]="dismissible"         [type]="alert.type"         [dismissOnTimeout]="alert.timeout">        <span class="alert-icon">          <i class="material-icons">info</i>        </span>        <span [innerHtml]="alert.message" class="alert-message">          {{alert.message}}        </span>      </alert>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><div   *ngIf="notifications.length > 0"  id="alert-container"   class="container alert-top-right">  <div *ngFor="let alert of notifications" class="row">    <div class="col-12">      <alert         (onClosed)="onClosed(alert)"         [dismissible]="dismissible"         [type]="alert.type"         [dismissOnTimeout]="alert.timeout">        <span class="alert-icon">          <i class="material-icons">info</i>        </span>        <span [innerHtml]="alert.message" class="alert-message">          {{alert.message}}        </span>      </alert>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'NotificationsComponent'};
 </script>

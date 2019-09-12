@@ -9,7 +9,7 @@ import { AddUserComponent } from '../add-user/add-user.component';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { UpdateEventsService } from '../services/update-events.service';
 import { Router } from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'organization',

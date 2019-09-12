@@ -43,7 +43,8 @@ export const AvailableComponents = {
   installAgent: 'Install Agent',
   simpleLogInfo: 'Simple Log Info',
   eicJoinTokenInfo: 'EIC Join Token Info',
-  agentJoinTokenInfo: 'Agent Join Token Info'
+  agentJoinTokenInfo: 'Agent Join Token Info',
+  advancedFilterOptions: 'Advanced filter options'
 };
 
 @Component({
@@ -188,6 +189,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.agentJoinTokenInfo,
       mock: localStorage.getItem(LocalStorageKeys.agentJoinTokenInfoMock) === 'false' ? 'false' : 'true'
     });
+    this.components.push({
+      name: AvailableComponents.advancedFilterOptions,
+      mock: localStorage.getItem(LocalStorageKeys.advancedFilterOptions) === 'false' ? 'false' : 'true'
+    });
   }
 
   /**
@@ -230,6 +235,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.installAgentMock, newValue);
     localStorage.setItem(LocalStorageKeys.simpleLogMock, newValue);
     localStorage.setItem(LocalStorageKeys.agentJoinTokenInfoMock, newValue);
+    localStorage.setItem(LocalStorageKeys.advancedFilterOptions, newValue);
   }
 
   /**
@@ -331,6 +337,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.agentJoinTokenInfo:
         localStorage.setItem(LocalStorageKeys.agentJoinTokenInfoMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.advancedFilterOptions:
+        localStorage.setItem(LocalStorageKeys.advancedFilterOptions, componentMockOption.mock);
       break;
       default:
         console.log('Selected option not registered as available component');

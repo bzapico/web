@@ -61,33 +61,6 @@ $base-light-grey: #BFBFBF;
     }
 }
 
-/* - - - List card - - - */
-.nalej-table tbody td {
-    @include for-desktop-only {
-        padding: 0.75rem 0;
-    }
-}
-.resources-view {
-    .nalej-table { 
-        tbody td {
-            &:first-child{
-                padding-left: 0px;
-            }
-            @include for-desktop-only {
-                &:last-child{
-                    padding-right: 0px;
-                }
-            }
-        }
-        tr th {
-            &:first-child{
-                padding-left: 0px;
-            }
-        }
-    }
-}
-
-
 /* - - - Cluster graph card - - - */
 .graph {
     height: 97%;
@@ -148,6 +121,13 @@ $base-light-grey: #BFBFBF;
     }
 }
 
+/* - - - List card - - - */
+.label-nalej-table {
+    .label-thead {
+        margin-bottom: 10px;
+    }
+}
+
 @media screen and (max-width:1568px){
     .edit-full-text {
         display: none;
@@ -155,16 +135,6 @@ $base-light-grey: #BFBFBF;
     .edit-initial-text {
         &::before {
             content: 'E';
-        }
-    }
-}
-@media screen and (max-width:1649px){
-    .cluster-apps-full-text {
-        display: none;
-    }
-    .cluster-apps-initial-text {
-        &::before {
-            content: 'I';
         }
     }
 }

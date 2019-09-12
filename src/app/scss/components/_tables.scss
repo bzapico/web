@@ -15,6 +15,13 @@
     width: 100%;
     overflow: hidden;
 }
+.no-p-col [class*="col-"] {
+    padding: 0;
+}
+.no-m-row [class*="row"]{
+    margin-right: 0px;
+    margin-left: 0px;
+}
 
 /* - - -  Nalej big table - - - */
 .nalej-table {
@@ -93,7 +100,102 @@
         }
     }
 }
-
+/* - - -  Label Nalej big table - - - */
+.nalej-table-p {
+    padding: 0 1em;
+}
+.label-nalej-table {
+    height: 100%;
+    display: block;
+    width: 100%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    .label-thead {
+        position: sticky;
+        top: 0;
+        background-color: #ffffff;
+        z-index: 1;
+        min-height: 26px;
+        margin-bottom: 40px;
+        .label-th {
+            float: left;
+            font-size: .9em;
+            font-weight: 500;
+            cursor: pointer;
+            &.default{
+                color: #212529;
+                i {
+                color: #212529;
+                }
+            }
+            &.enabled {
+                i {
+                color: $base-violet;;
+                }
+                span i{
+                visibility: visible;
+                }
+            }
+            &.disabled {
+                color: $base-grey;
+                i {
+                color: $base-grey;
+                }
+            }
+        }
+        .expand-chevron {
+            position: relative;
+            cursor: pointer;
+            top: 3px;
+            right: 3px;
+            i {
+                font-size: 1.1em;
+            }
+        }
+    }   
+    .label-tbody {
+        border-top: .8px solid #f6f6f6;
+        padding: .9rem 0;
+        .label-td {
+            float: left;
+            font-size: .9em;
+            color: $base-grey;
+            outline: none;
+        }
+        .label-td-flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .label-td-flex-text {
+            font-size: .9em;
+            color: $base-grey;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+    }
+}
+.nalej-table-box.no-p-col.no-m-row 
+> div 
+> div:nth-child(2) {
+    border-top: none;
+}
+.nalej-table-box.nalej-table-p 
+> div 
+> div:nth-child(2) {
+    border-top: none;
+}
+.nalej-table-box.nalej-table-p
+> div 
+> div:nth-child(2) 
+> span 
+> div {
+    border: none;
+}
 /* - - -  Nalej flex table fot 4 adn 5 cols - - - */
 .nalej-flex-table-box {
     display: block;
@@ -342,7 +444,7 @@
         }
         &:focus {
             z-index: 2;
-            border-color: $base-violet;;
+            border-color: $base-violet;
             outline: none;
             box-shadow: none;
             padding-right: 0!important;

@@ -16,6 +16,7 @@ import { Subscription, timer } from 'rxjs';
 import { NodeType } from '../definitions/enums/node-type.enum';
 import { GraphData } from '../definitions/models/graph-data';
 import { KeyValue } from '../definitions/interfaces/key-value';
+import { AdvancedFilterOptionsComponent } from '../advanced-filter-options/advanced-filter-options.component';
 
 /**
  * Refresh ratio
@@ -1122,7 +1123,18 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   private occurrencesGraphCounter() {
     this.occurrencesCounter = this.graphData.nodes.filter(node => node.label.toLowerCase().includes(this.searchTermGraph)).length;
-
   }
 
+  /**
+   * Opens the modal view that holds advanced filter options component
+   */
+  openAdvancedFilterOptions() {
+    const initialState = {
+      organizationId: this.organizationId,
+    };
+    this.modalRef = this.modalService.show(AdvancedFilterOptionsComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+    });
+  }
 }

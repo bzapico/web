@@ -1,4 +1,12 @@
 {
+	"advancedFilterOptions": {
+		"showNodes": "Show only nodes{",
+		"showRelatedNodes": "Show related nodes",
+		"title": "Advanced filter options"
+	},
+	"buttons": {
+		"saveChanges": "Save changes"
+	},
 	"devices": {
 		"status": {
 			"title": "DEVICES STATUS TIMELINE"
@@ -17,6 +25,83 @@
 			"title": "SUMMARY"
 		},
 		"title": "DEVICES"
+	},
+	"infrastructure": {
+		"EIC": {
+			"unlinkEIC": "Unlink Edge Controller?",
+			"unlinkEICError": "Cannot unlink EC. Agents on associated assets should be uninstalled before.",
+			"unlinkMessage": "Edge Controller has been unlinked'"
+		},
+		"asset": {
+			"noInfo": "No info available",
+			"uninstallAgent": "Uninstall Agent?",
+			"uninstallMessage": "Agent on {{asset_id}} started uninstalling"
+		},
+		"chart": {
+			"offline": "Offline",
+			"online": "Online"
+		},
+		"contextMenu": {
+			"createAgentToken": "Create Agent Token",
+			"createAgentTokenMessage": "Cannot create an agent when the EC is offline",
+			"installAgent": "Install Agent",
+			"lastOperationLog": "Last operation log",
+			"moreInfo": "More Info",
+			"toggleEnablement": "Toggle enablement",
+			"uninstallAgent": "Uninstall agent",
+			"unlinkDevice": "Unlink device",
+			"unlinkEC": "Unlink EC"
+		},
+		"device": {
+			"DISABLED": "DISABLED",
+			"ENABLED": "ENABLED",
+			"disable": "disable",
+			"enable": "enable",
+			"enablementConfirm": "Device {{device_id}} is currently {{deviceCurrentEnablementStr}}. Do you want to {{deviceFutureEnablementStr}} it?",
+			"enablementMessage": "The device is now ",
+			"notificationTextDisabled": "disabled",
+			"notificationTextEnabled": "enabled",
+			"unlinkConfirm": "Unlink device?",
+			"unlinkMessage": "The device has been unlinked"
+		},
+		"inventory": {
+			"installAgent": "Install Agent",
+			"installNalej": "Install Nalej",
+			"noInfo": "No available inventory detected",
+			"tableActions": "Actions",
+			"tableId": "ID",
+			"tableLabels": "Labels",
+			"tableLocation": "Location",
+			"tableStatus": "Status",
+			"tableType": "Type",
+			"title": "INVENTORY"
+		},
+		"label": {
+			"add": "add",
+			"delete": "delete",
+			"deleteLabel": "Delete labels?"
+		},
+		"quickFilters": {
+			"assets": "ASSETS",
+			"devices": "DEVICES",
+			"ecs": "ECS",
+			"title": "QUICK FILTERS",
+			"tooltipAssets": "Assets",
+			"tooltipDevices": "Devices",
+			"tooltipECs": "ECs"
+		},
+		"summary": {
+			"cores": "CORES",
+			"cpu": "CPU",
+			"ecs": "ECs",
+			"ecsOnline": " ECS online",
+			"gb": "GB",
+			"noEcs": "No ECs",
+			"overall": "OVERALL",
+			"ram": "RAM",
+			"storage": "STORAGE"
+		},
+		"title": "INFRASTRUCTURE"
 	},
 	"organization": {
 		"filteredBy": "Filtered by term \"{{value}}\".",
@@ -41,5 +126,17 @@
 			"title": "USERS"
 		},
 		"usersNumber": "{{value}} users"
+	},
+	"sortingMessage": {
+		"andFilteredBy": "and filtered by \"{{value}}\"",
+		"ascendant": "ascendant{{value}}",
+		"descendant": "descendant{{value}}",
+		"reset": "Reset",
+		"resultsFilteredBy": " results found. Filtered by \"{{value}}\"",
+		"resultsFound": "results found.",
+		"sortedBy": "Sorted by {{value}}"
+	},
+	"searcher": {
+		"placeholder": "Search..."
 	}
 }
