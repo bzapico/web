@@ -369,7 +369,7 @@ export class ClusterComponent implements OnInit {
   /**
    * Requests an updated list of available nodes to update the current one
    */
-  private updateNodesList() {
+ updateNodesList() {
     this.requestError = ''; // Empty error before requesting new list
     // Requests an updated nodes list
     this.backend.getNodes(this.organizationId, this.clusterId)

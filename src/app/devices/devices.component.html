@@ -476,15 +476,15 @@
                         </div>
                         <div *ngIf="device.labels" class="col-12">
                           <button 
-                            *ngFor="let label of labelsToString(device.labels)" 
-                            (click)="onLabelClick(device.device_id, label[0], label[1])"
+                            *ngFor="let label of device.labels| keyvalue" 
+                            (click)="onLabelClick(device.device_id, label.key, label.value)"
                             [ngClass]=
                             "{
-                              'label-content-selected': indexOfLabelSelected(device.device_id, label[0], label[1]) >= 0 ,
-                              'label-content': indexOfLabelSelected(device.device_id, label[0], label[1]) === -1
+                              'label-content-selected': indexOfLabelSelected(device.device_id, label.key, label.value) >= 0 ,
+                              'label-content': indexOfLabelSelected(device.device_id, label.key, label.value) === -1
                             }" 
                             class="label-content">
-                            {{label[0]}}: {{label[1]}} 
+                            {{label.key}}: {{label.value}}
                           </button>
                           <div class="label-btns">
                             <div 
@@ -576,15 +576,15 @@
                         </div>
                         <div *ngIf="device.labels" class="col-12">
                           <button 
-                            (click)="onLabelClick(device.device_id, label[0], label[1])"
+                            (click)="onLabelClick(device.device_id, label.key, label.value)"
                             [ngClass]=
                             "{
-                              'label-content-selected': indexOfLabelSelected(device.device_id, label[0], label[1]) >= 0 ,
-                              'label-content': indexOfLabelSelected(device.device_id, label[0], label[1]) === -1
+                              'label-content-selected': indexOfLabelSelected(device.device_id, label.key, label.value) >= 0 ,
+                              'label-content': indexOfLabelSelected(device.device_id, label.key, label.value) === -1
                             }" 
-                            *ngFor="let label of labelsToString(device.labels)" 
+                            *ngFor="let label of device.labels | keyvalue" 
                             class="label-content">
-                            {{label[0]}}: {{label[1]}}
+                            {{label.key}}: {{label.value}}
                           </button>
                           <div class="label-btns">
                             <div 

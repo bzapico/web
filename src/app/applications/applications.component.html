@@ -208,12 +208,12 @@
                     </span>
                   </div>
                 </div>
-                <div class="row label-row">
+                <div class="row">
                   <div class="col-12">
                     <button 
-                    *ngFor="let label of labelsToString(app.labels)" 
+                    *ngFor="let label of app.labels | keyvalue" 
                     class="label-content-disabled">
-                      {{label[0]}}: {{label[1]}}
+                      {{label.key}}: {{label.value}}
                     </button>
                   </div>
                 </div>
@@ -317,18 +317,18 @@
                       {{getServicesCount(app)}}
                     </div>
                   </div>
-                  <div class="row label-row">
+                  <div class="row">
                     <div class="col-12">
                       <button 
-                        *ngFor="let label of labelsToString(app.labels)" 
-                        (click)="onLabelClick(app.app_descriptor_id, label[0], label[1])"
+                        *ngFor="let label of app.labels| keyvalue" 
+                        (click)="onLabelClick(app.app_descriptor_id, label.key, label.value)"
                         [ngClass]=
                         "{
-                          'label-content-selected': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) >= 0 ,
-                          'label-content': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) === -1
+                          'label-content-selected': indexOfLabelSelected(app.app_descriptor_id, label.key, label.value) >= 0 ,
+                          'label-content': indexOfLabelSelected(app.app_descriptor_id,label.key, label.value) === -1
                         }" 
                         class="label-content">
-                        {{label[0]}}: {{label[1]}} 
+                        {{label.key}}: {{label.value}}
                       </button>
                       <div class="label-btns">
                         <div 

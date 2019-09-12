@@ -72,17 +72,6 @@ export class EdgeControllerInfoComponent implements OnInit {
   }
 
   /**
-   * Transforms objects to arrays to be parsed to string and performed in the view
-   * @param object Key-value map that contains the object
-   */
-  objectToString(object: any) {
-    if (!object) {
-      return ['--'];
-    }
-    return Object.entries(object);
-  }
-
-  /**
    * Create a new JavaScript Date object based on the timestamp
    * and multiplied by 1000 so that the argument is in milliseconds, not seconds.
    * @param timestamp is an integer that represents the number of seconds elapsed

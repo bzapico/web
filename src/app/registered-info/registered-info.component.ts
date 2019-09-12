@@ -277,17 +277,6 @@ export class RegisteredInfoComponent implements OnInit {
     }
 
   /**
-   * Parse to string labels map
-   * @param labels Key-value map that contains the labels
-   */
-  labelsToString(labels: any) {
-    if (!labels || labels === '-') {
-      return [];
-    }
-    return Object.entries(labels);
-  }
-
-  /**
    * Opens the modal view that holds add label component
    */
   addLabel(entity) {
@@ -705,17 +694,6 @@ export class RegisteredInfoComponent implements OnInit {
         return [];
       }
     }
-  }
-
-  /**
-   * Transforms objects to arrays to be parsed to string and performed in the view
-   * @param object Key-value map that contains the object
-   */
-  objectToString(object: any) {
-    if (!object) {
-      return ['--'];
-    }
-    return Object.entries(object);
   }
 
   /**

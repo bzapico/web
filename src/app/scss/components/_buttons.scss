@@ -257,50 +257,6 @@ button[type="submit"]:disabled {
     }
 }
 
-// Normal label style 
-.btn-outline-primary {
-    margin:1px;
-    text-align: left;
-    max-width: -webkit-fill-available;
-    border-color: $super-dark-grey;
-    color: $super-dark-grey;
-    &:hover:enabled{
-        background-color: $super-dark-grey;
-        border-color: $super-dark-grey;
-        color: #ffffff;
-    }
-    &:hover:disabled{
-        border-color: $base-grey;
-    }
-    &:focus {
-        outline: none;
-    }
-    &:disabled {
-        color: $dark-grey;
-        background-color: transparent;   
-    }
-}
-
-// Selected label style
-.label-btn-selected {
-    text-align: left;
-    max-width: -webkit-fill-available;
-    margin: 1px;
-    color: #ffffff;
-    background-color: $base-violet;
-    display: inline-block;
-    padding: 1px 10px;
-    font-size: 12px;
-    border-radius: 0.2rem;
-    -webkit-box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
-    -moz-box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
-    box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
-    &:focus {
-        outline: none;
-        box-shadow: none;
-    }
-}
-
 // Add and delete label container
 .label-btns {
     width: 30px;

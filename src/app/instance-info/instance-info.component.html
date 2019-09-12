@@ -82,9 +82,9 @@
           <h5>LABELS</h5>
         </div>
         <div *ngIf="instance.labels">
-          <div *ngFor="let label of instanceLabelsToString()">
+          <div *ngFor="let label of instance.labels | keyvalue">
             <button disabled class="label-content">
-              {{label[0]}}: {{label[1]}}
+                {{label.key}}: {{label.value}}
             </button>
           </div>
         </div>
@@ -676,12 +676,12 @@
             <div class="config-card">
               <div *ngIf="instance.environment_variables">
                 <p class="text-left">Environment variables</p>
-                <div *ngFor="let variable of objectToString(instance.environment_variables)" class="row mb-2" >
+                <div *ngFor="let variable of instance.environment_variables | keyvalue" class="row mb-2" >
                   <div class="col-12 grey text-right">
-                    {{variable[0]}} 
+                    {{variable.key}} 
                   </div>
                   <div class="col-12 text-right">
-                    {{variable[1]}}
+                    {{variable.value}}
                   </div>
                 </div>
               </div>
@@ -691,12 +691,12 @@
               </div>
               <div *ngIf="instance.configuration_options">
                 <p class="text-left">Other settings</p>
-                <div *ngFor="let configuration of objectToString(instance.configuration_options)" class="row mb-1" >
+                <div *ngFor="let configuration of instance.configuration_options| keyvalue" class="row mb-1" >
                   <div class="col-12 grey text-right">
-                    {{configuration[0]}} 
+                    {{configuration.key}} 
                   </div>
                   <div class="col-12 text-right">
-                    {{configuration[1]}}
+                    {{configuration.value}}
                   </div>
                 </div>
               </div>
