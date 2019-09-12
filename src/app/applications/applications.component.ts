@@ -237,6 +237,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   isSearchingInGraph = false;
 
+  foundOcurenceInInstance: boolean;
+
+  foundOcurenceInRegistered: boolean;
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -290,6 +294,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.graphDataLoaded = false;
     this.graphData = new GraphData([], []);
     this.searchGraphData = new GraphData({}, {});
+    this.foundOcurenceInInstance = false;
+    this.foundOcurenceInRegistered = false;
     /**
      * Charts reference init
      */
@@ -935,16 +941,19 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   private setClusters(cluster: any, searchTermGraph?: string) {
     const clusterName = cluster.name.toLowerCase();
     const nodeGroup = {
-      id: cluster.cluster_id,
-      label: cluster.name,
-      type: NodeType.Clusters,
-      tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
-      color: this.getNodeColor(cluster.status_name),
-      text: this.getNodeTextColor(cluster.status_name),
-      group: cluster.cluster_id,
-      customHeight: CUSTOM_HEIGHT_CLUSTERS,
-      customBorderColor: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-      customBorderWidth: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
+      ...{
+        id: cluster.cluster_id,
+        label: cluster.name,
+        type: NodeType.Clusters,
+        tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
+        group: cluster.cluster_id
+      },
+      ...this.getStyledNode(
+          this.getNodeColor(cluster.status_name),
+          this.getNodeTextColor(cluster.status_name),
+          (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+          (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
+          CUSTOM_HEIGHT_CLUSTERS)
     };
     this.searchGraphData.nodes[nodeGroup.id] = nodeGroup;
     this.addNode(searchTermGraph, clusterName, nodeGroup);
@@ -957,61 +966,75 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   private setRegisteredAndInstances(cluster: any, searchTermGraph?: string) {
     const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
-    let foundOcurenceInInstance = false;
-    let foundOcurenceInRegistered = false;
+    this.foundOcurenceInInstance = false;
+    this.foundOcurenceInRegistered = false;
     instancesInCluster.forEach(instance => {
-      const instanceName = instance['name'].toLowerCase();
-      const nodeInstance = {
-        id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
-        label: instance['name'],
-        type: NodeType.Instances,
-        tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
-        color: this.getNodeColor(instance['status_name']),
-        text: this.getNodeTextColor(cluster.status_name),
-        group: cluster.cluster_id,
-        customHeight: CUSTOM_HEIGHT_INSTANCES,
-        customBorderColor: (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-        customBorderWidth: (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : '',
-        app_descriptor_id: instance['app_descriptor_id']
-      };
-      this.searchGraphData.nodes[nodeInstance.id] = nodeInstance;
-      if (!foundOcurenceInInstance) {
-        foundOcurenceInInstance = searchTermGraph && instanceName.includes(searchTermGraph);
-      }
-      this.addNode(searchTermGraph, instanceName, nodeInstance);
-      const registeredApp = this.getRegisteredApp(nodeInstance);
+      const registeredApp = this.getRegisteredApp(this.addNodeInstance(instance, cluster, searchTermGraph));
       if (registeredApp.length > 0) {
-        const registeredName = registeredApp[0]['name'].toLowerCase();
-        const nodeRegistered = {
-          id: registeredApp[0]['app_descriptor_id'],
-          label: registeredApp[0]['name'],
-          type: NodeType.Registered,
-          tooltip: 'REGISTERED ' + registeredApp[0]['name'],
-          color: REGISTERED_NODES_COLOR,
-          text: this.getNodeTextColor(cluster.status_name),
-          group: cluster.cluster_id,
-          customHeight: CUSTOM_HEIGHT_REGISTERED,
-          customBorderColor: (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-          customBorderWidth: (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
-        };
-        if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
-          this.searchGraphData.nodes[nodeRegistered.id] = nodeRegistered;
-          if (!foundOcurenceInRegistered) {
-            foundOcurenceInRegistered = searchTermGraph && searchTermGraph && registeredName.includes(searchTermGraph);
-          }
-          this.addNode(searchTermGraph, registeredName, nodeRegistered);
-        }
-          this.setLinksInGraph(
-              searchTermGraph,
-              registeredApp[0]['app_descriptor_id'],
-              cluster.cluster_id + '-s-' + instance['app_instance_id']);
+        this.addNodeRegistered(cluster, registeredApp, searchTermGraph);
+        this.setLinksInGraph(
+            searchTermGraph,
+            registeredApp[0]['app_descriptor_id'],
+            cluster.cluster_id + '-s-' + instance['app_instance_id']);
       }
       this.setLinksInGraph(
           searchTermGraph,
           cluster.cluster_id + '-s-' + instance['app_instance_id'],
           cluster.cluster_id);
     });
-    this.hideLinks(foundOcurenceInRegistered, foundOcurenceInInstance);
+    this.hideLinks();
+  }
+
+  private addNodeRegistered(cluster, registeredApp, searchTermGraph?: string) {
+    const registeredName = registeredApp[0]['name'].toLowerCase();
+    const nodeRegistered = {
+      ...{
+        id: registeredApp[0]['app_descriptor_id'],
+        label: registeredApp[0]['name'],
+        type: NodeType.Registered,
+        tooltip: 'REGISTERED ' + registeredApp[0]['name'],
+        group: cluster.cluster_id
+      },
+      ...this.getStyledNode(
+          REGISTERED_NODES_COLOR,
+          this.getNodeTextColor(cluster.status_name),
+          (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+          (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
+          CUSTOM_HEIGHT_REGISTERED)
+    };
+    if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
+      this.searchGraphData.nodes[nodeRegistered.id] = nodeRegistered;
+      if (!this.foundOcurenceInRegistered) {
+        this.foundOcurenceInRegistered = searchTermGraph && searchTermGraph && registeredName.includes(searchTermGraph);
+      }
+      this.addNode(searchTermGraph, registeredName, nodeRegistered);
+    }
+  }
+
+  private addNodeInstance(instance, cluster, searchTermGraph?: string): any {
+    const instanceName = instance['name'].toLowerCase();
+    const nodeInstance = {
+    ...{
+      id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
+      label: instance['name'],
+      type: NodeType.Instances,
+      tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
+      group: cluster.cluster_id,
+      app_descriptor_id: instance['app_descriptor_id']
+    },
+    ...this.getStyledNode(
+        this.getNodeColor(instance['status_name']),
+        this.getNodeTextColor(cluster.status_name),
+        (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+        (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
+        CUSTOM_HEIGHT_INSTANCES)
+    };
+    this.searchGraphData.nodes[nodeInstance.id] = nodeInstance;
+    if (!this.foundOcurenceInInstance) {
+      this.foundOcurenceInInstance = searchTermGraph && instanceName.includes(searchTermGraph);
+    }
+    this.addNode(searchTermGraph, instanceName, nodeInstance);
+    return nodeInstance;
   }
 
   private addNode(searchTermGraph: string, nodeName: string, node) {
@@ -1020,10 +1043,20 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     }
   }
 
-  private hideLinks(foundOcurenceInRegistered: boolean, foundOcurenceInInstance: boolean ) {
-    if (foundOcurenceInRegistered || foundOcurenceInInstance) {
+  private hideLinks() {
+    if (this.foundOcurenceInRegistered || this.foundOcurenceInInstance) {
       this.graphData.links = [];
     }
+  }
+
+  private getStyledNode(color: string, textColor: string, customBorderColor: string, customBorderWidth: number, customHeight: number): {} {
+    return {
+      color: color,
+      text: textColor,
+      customBorderColor: customBorderColor,
+      customBorderWidth: customBorderWidth,
+      customHeight: customHeight
+    };
   }
 
   /**
