@@ -2,6 +2,8 @@
   @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
 }
 
+$base-violet: #5800FF;
+$dark-grey: #444444;
 hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -41,6 +43,19 @@ hr {
     .small-font {
       font-size: 0.8em;
     }
+  }
+  label.btn.btn-outline-primary.small-font {
+    &.active {
+      background-color: $base-violet;
+      border-color: $base-violet;
+      color: white;
+    }
+    color: $base-violet;
+    border-color: $base-violet;
+  }
+  .btn.btn-outline-primary.mb-3.small-font {
+    color: $base-violet;
+    border-color: $base-violet;
   }
 }
 .dp-height {
