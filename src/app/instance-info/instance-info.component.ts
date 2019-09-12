@@ -387,24 +387,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Transforms objects to arrays to be parsed to string and performed in the view
-   */
-  instanceLabelsToString() {
-    if (this.instance && this.instance.labels) {
-      return Object.entries(this.instance.labels);
-    }
-  }
-  /**
-   * Transforms objects to arrays to be parsed to string and performed in the view
-   * @param object Key-value map that contains the object
-   */
-  objectToString(object) {
-    if (Object.entries(object)) {
-      return Object.entries(object);
-    }
-  }
-
-  /**
    * Calculates the number of characters needed to hide the title of tabs, breakpoints calculated through manual testing
    * @param event to pass in onResize method
    */
@@ -422,17 +404,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         this.maxLabelsLength = 100;
       }
     }
-
-  /**
-   * Parse to string labels map
-   * @param labels Key-value map that contains the labels
-   */
-  labelsToString(labels: any) {
-    if (!labels || labels === '-') {
-      return ;
-    }
-    return Object.entries(labels);
-  }
 
   /**
    * Changes to active group

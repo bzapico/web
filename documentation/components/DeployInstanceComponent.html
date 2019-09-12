@@ -392,8 +392,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="156"
-                            class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:156</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="157"
+                            class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:157</a></div>
                 </td>
             </tr>
 
@@ -570,8 +570,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="219"
-                            class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:219</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="220"
+                            class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:220</a></div>
                 </td>
             </tr>
 
@@ -1508,7 +1508,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:154</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:155</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1533,7 +1533,7 @@ import { BackendService } from &#x27;../services/backend.service&#x27;;
 import { MockupBackendService } from &#x27;../services/mockup-backend.service&#x27;;
 import { NotificationsService } from &#x27;../services/notifications.service&#x27;;
 import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from &#x27;@angular/forms&#x27;;
+import { FormGroup, FormBuilder, Validators, FormArray } from &#x27;@angular/forms&#x27;;
 
 @Component({
   selector: &#x27;app-deploy-instance&#x27;,
@@ -1611,9 +1611,9 @@ export class DeployInstanceComponent implements OnInit {
     const mock &#x3D; localStorage.getItem(LocalStorageKeys.deployInstanceMock) || null;
     // check which backend is required (fake or real)
     if (mock &amp;&amp; mock &#x3D;&#x3D;&#x3D; &#x27;true&#x27;) {
-      this.backend &#x3D; mockupBackendService;
+      this.backend &#x3D; this.mockupBackendService;
     } else {
-      this.backend &#x3D; backendService;
+      this.backend &#x3D; this.backendService;
     }
 
     // Default initialization
@@ -1651,6 +1651,7 @@ export class DeployInstanceComponent implements OnInit {
         this.registeredApps &#x3D; response.descriptors || [];
         this.loadedData &#x3D; true;
     });
+
     if (this.openFromRegistered &amp;&amp; this.appFromRegistered) {
       this.selectedApp &#x3D; this.appFromRegistered;
       this.registeredName &#x3D; this.selectedApp.name;
@@ -1750,7 +1751,6 @@ export class DeployInstanceComponent implements OnInit {
     this.availableParamsCategory.basic &#x3D; false;
     this.availableParamsCategory.advanced &#x3D; false;
     this.params &#x3D; this.deployInstanceForm.get(&#x27;params&#x27;) as FormArray;
-    const group: any &#x3D; {};
 
     if (this.selectedApp.parameters) {
       this.defaultParamsOpened &#x3D; true;
@@ -2021,7 +2021,7 @@ $light-grey: #EEEEEE;
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="modal-card">    <div class="modal-content">      <!-- Header -->      <div class="modal-header">        <h3 class="nalej-form-title">Deploy instance</h3>        <button           (click)="discardChanges(f)"          type="button"           aria-label="Close"          class="close" >          <span aria-hidden="true">&times;</span>        </button>      </div>    </div>    <!-- Body -->    <div class="modal-body">      <div *ngIf="loadedData">        <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">          <div class="scroll-modal-form">            <div *ngIf="!openFromRegistered" class="form-group form-group-drop">              <label>Registered name</label>              <ngx-select-dropdown                 formControlName="selectDrop"                 [multiple]="false"                 [config]="selectConfig"                 [options]="registeredApps"                (change)="onRegisteredChange(f)"                [ngClass]="{ \'base-light-grey\': !f.selectDrop.value }">              </ngx-select-dropdown>              <div class="form-group-drop-arrow">                 <i class="material-icons">arrow_drop_down</i>              </div>              <div class="error-h"></div>            </div>            <div *ngIf="openFromRegistered" class="form-group">              <label>Registered name</label>              <input                 formControlName="registeredName"                 type="text"                 placeholder="{{registeredName}}"                class="form-control">              <div class="error-h"></div>            </div>            <div class="form-group">              <label>Instance name*</label>              <input                 formControlName="instanceName"                 type="text"                 value="instanceName"                placeholder="Instance name"                appAutofocus="{{defaultAutofocus}}"                [ngClass]="{ \'is-invalid\': submitted && f.instanceName.errors }"                class="form-control">              <div class="error-h">                <div *ngIf="submitted && f.instanceName.errors" class="error-message">                  <div *ngIf="f.instanceName.errors.required">Name is required</div>                  <div *ngIf="f.instanceName.errors.minlength">Name is too short</div>                  <div *ngIf="f.instanceName.errors.pattern">Cannot contain special characters</div>                </div>              </div>            </div>            <div *ngIf="selectedApp && availableParamsCategory.basic" class="form-group">              <label>Parameters</label>              <!-- DEFAULT PARAMETERS -->              <div class="accordion">                <div class="accordion-header" (click)="toggleDefaultParameters()">Default</div>                <div                   *ngIf="defaultParamsOpened"                  class="accordion-body">                  <div                     *ngFor="let param of selectedApp.parameters"                    class="form-group">                    <div *ngIf="!param.category || param.category===\'BASIC\'">                      <label>{{param.name}}</label>                      <input                         type="text"                         placeholder="{{param.name}}"                        class="form-control"                        value="{{param.value}}"                        (input)="param.value = $event.target.value"                        >                      <label class="accordion-foot">Type restrictions: {{param.type}}</label>                    </div>                  </div>                </div>              </div>              <div class="accordion" *ngIf="selectedApp && availableParamsCategory.advanced" >                  <div class="accordion-header" (click)="toggleAdvancedParameters()">Advanced</div>                  <div                     *ngIf="advParamsOpened"                    class="accordion-body">                    <div                       *ngFor="let param of selectedApp.parameters"                      class="form-group">                      <div *ngIf="param.category===\'ADVANCED\'">                        <label>{{param.name}}</label>                        <input                           type="text"                           placeholder="{{param.name}}"                          class="form-control"                          value="{{param.value}}"                          (input)="param.value = $event.target.value"                          >                        <label class="accordion-foot">Type restrictions: {{param.type}}</label>                      </div>                    </div>                  </div>                </div>              <!-- ADVANCED PARAMETERS-->            </div>          </div>        </form>        <div class="form-group-btn">          <button class="nalej-form-btn-blue" (click)="deployInstance(f)" [disabled]="loading">            <span class="align-bottom">Deploy</span>          </button>        </div>      </div>      <!-- Loader -->      <div *ngIf="!loadedData" class="nalej-loader-box">        <div class="loader">          <svg class="circular" viewBox="25 25 50 50">            <circle             class="path"             cx="50"             cy="50"             r="20"             fill="none"             stroke-width="2"             stroke-miterlimit="10"/>          </svg>        </div>      </div>    </div>  </div></div>'
-    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'DeployInstanceComponent'};
 </script>

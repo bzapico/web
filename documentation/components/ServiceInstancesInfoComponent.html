@@ -211,9 +211,6 @@
                             <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
-                            <li>
-                                <a href="#objectToString">objectToString</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -330,8 +327,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">src/app/service-instances-info/service-instances-info.component.ts:93</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/app/service-instances-info/service-instances-info.component.ts:82</a></div>
                 </td>
             </tr>
 
@@ -423,8 +420,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="126"
-                            class="link-to-prism">src/app/service-instances-info/service-instances-info.component.ts:126</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/app/service-instances-info/service-instances-info.component.ts:115</a></div>
                 </td>
             </tr>
 
@@ -500,8 +497,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="78"
-                            class="link-to-prism">src/app/service-instances-info/service-instances-info.component.ts:78</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/app/service-instances-info/service-instances-info.component.ts:67</a></div>
                 </td>
             </tr>
 
@@ -589,83 +586,6 @@
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="objectToString"></a>
-                    <span class="name">
-                        <b>
-                            objectToString
-                        </b>
-                        <a href="#objectToString"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>objectToString(object: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/app/service-instances-info/service-instances-info.component.ts:67</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Transforms objects to arrays to be parsed to string and performed in the view</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>object</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>Key-value map that contains the object</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -1265,9 +1185,9 @@ export class ServiceInstancesInfoComponent implements OnInit {
     const mock &#x3D; localStorage.getItem(LocalStorageKeys.serviceInstancesInfoMock) || null;
     // check which backend is required (fake or real)
     if (mock &amp;&amp; mock &#x3D;&#x3D;&#x3D; &#x27;true&#x27;) {
-      this.backend &#x3D; mockupBackendService;
+      this.backend &#x3D; this.mockupBackendService;
     } else {
-      this.backend &#x3D; backendService;
+      this.backend &#x3D; this.backendService;
     }
 
     // Default initialization
@@ -1275,17 +1195,6 @@ export class ServiceInstancesInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  /**
-   * Transforms objects to arrays to be parsed to string and performed in the view
-   * @param object Key-value map that contains the object
-   */
-  objectToString(object: any) {
-    if (!object) {
-      return [&#x27;--&#x27;];
-    }
-    return Object.entries(object);
   }
 
   /**
@@ -1443,10 +1352,10 @@ export class ServiceInstancesInfoComponent implements OnInit {
         &lt;div class&#x3D;&quot;row&quot;&gt;
           &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3&quot;&gt;Credentials&lt;/div&gt;
         &lt;/div&gt;
-        &lt;div *ngFor&#x3D;&quot;let credential of objectToString(credentials)&quot; class&#x3D;&quot;row&quot;&gt;
+        &lt;div *ngFor&#x3D;&quot;let credential of credentials | keyvalue&quot; class&#x3D;&quot;row&quot;&gt;
           &lt;div *ngIf&#x3D;&quot;credentials&quot; class&#x3D;&quot;col-sm text-right&quot;&gt;
-            &lt;div class&#x3D;&quot;text-right grey&quot;&gt;{{credential[0]}}&lt;/div&gt;
-            &lt;div class&#x3D;&quot;text-right&quot;&gt;{{credential[1]}}&lt;/div&gt;
+            &lt;div class&#x3D;&quot;text-right grey&quot;&gt;{{credential.key}}&lt;/div&gt;
+            &lt;div class&#x3D;&quot;text-right&quot;&gt;{{credential.value}}&lt;/div&gt;
           &lt;/div&gt;
           &lt;div *ngIf&#x3D;&quot;!credentials&quot; class&#x3D;&quot;col-sm text-right&quot;&gt;No&lt;/div&gt;
         &lt;/div&gt;
@@ -1454,10 +1363,10 @@ export class ServiceInstancesInfoComponent implements OnInit {
         &lt;div class&#x3D;&quot;row&quot;&gt;
           &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3&quot;&gt;Environment variables&lt;/div&gt;
         &lt;/div&gt;
-        &lt;div *ngFor&#x3D;&quot;let environmentVariable of objectToString(environmentVariables)&quot; class&#x3D;&quot;row&quot;&gt;
+        &lt;div *ngFor&#x3D;&quot;let environmentVariable of environmentVariables | keyvalue&quot; class&#x3D;&quot;row&quot;&gt;
           &lt;div *ngIf&#x3D;&quot;environmentVariables&quot; class&#x3D;&quot;col-sm text-right&quot;&gt;
-            &lt;div class&#x3D;&quot;text-right grey&quot;&gt;{{environmentVariable[0]}}&lt;/div&gt;
-            &lt;div class&#x3D;&quot;text-right&quot;&gt;{{environmentVariable[1]}}&lt;/div&gt;
+            &lt;div class&#x3D;&quot;text-right grey&quot;&gt;{{environmentVariable.key}}&lt;/div&gt;
+            &lt;div class&#x3D;&quot;text-right&quot;&gt;{{environmentVariable.value}}&lt;/div&gt;
           &lt;/div&gt;
           &lt;div *ngIf&#x3D;&quot;!environmentVariables&quot; class&#x3D;&quot;col-sm text-right&quot;&gt;No&lt;/div&gt;
         &lt;/div&gt;
@@ -1465,10 +1374,10 @@ export class ServiceInstancesInfoComponent implements OnInit {
         &lt;div class&#x3D;&quot;row&quot;&gt;
           &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3&quot;&gt;Labels&lt;/div&gt;
         &lt;/div&gt;
-        &lt;div *ngFor&#x3D;&quot;let label of objectToString(labels)&quot; class&#x3D;&quot;row&quot;&gt;
+        &lt;div *ngFor&#x3D;&quot;let label of labels | keyvalue&quot; class&#x3D;&quot;row&quot;&gt;
           &lt;div *ngIf&#x3D;&quot;labels&quot; class&#x3D;&quot;col-sm text-right&quot;&gt;
-            &lt;button class&#x3D;&quot;btn-sm btn-outline-primary&quot; disabled&gt;
-              {{label[0]}} : {{label[1]}}
+            &lt;button class&#x3D;&quot;label-content&quot; disabled&gt;
+              {{label.key}}: {{label.value}}
             &lt;/button&gt;
           &lt;/div&gt;
           &lt;div *ngIf&#x3D;&quot;!labels&quot; class&#x3D;&quot;col-sm text-right&quot;&gt;No&lt;/div&gt;
@@ -1554,8 +1463,8 @@ export class ServiceInstancesInfoComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card modal-card-info">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="modal-info-title mb-4">Service instances info</h3>    </div>    <!-- Body -->    <div class="modal-body">      <h3 class="modal-info-h3-title">{{name}}</h3>      <p class="modal-info-image">{{image}}</p>      <p class="modal-info-title-sm">{{serviceId}}</p>      <div class="scroll-app-info">        <div class="row">          <div class="col-sm modal-info-table-title mb-3">Status</div>          <h3 class="modal-info-h3-title col-sm text-right">            <span               [ngClass]=              "{                \'big-status-dot\': classStatusCheck(statusName, \'service_running\'),                \'big-status-dot-error\': classStatusCheck(statusName, \'service_error\'),                \'big-status-dot-process\': classStatusCheck(statusName, \'service_waiting\') || classStatusCheck (statusName, \'service_scheduled\')              }"              tooltip="{{statusName}}"               placement="bottom"              class="big-status-dot">              <span class="fw-black">                {{getBeautyStatusName(statusName)}}              </span>            </span>          </h3>        </div>        <div class="row">          <div class="col-sm modal-info-table-title">Replicas</div>          <h3 class="modal-info-h3-title col-sm text-right">{{specs.replicas}}</h3>        </div>        <br>        <div *ngIf="endpoints">          <div class="row">            <div class="col-sm modal-info-table-title mb-3">Endpoints</div>          </div>          <div class="row">            <div class="col-sm"></div>            <div class="col-sm-9 text-right blue mb-2">              <span *ngFor="let endpoint of endpoints">                <a                   *ngIf="endpoint"                   href="{{getEndpointHref(endpoint)}}"                   target="_blank">                  {{endpoint}}                </a>              </span>            </div>          </div>        </div>        <span *ngIf="exposedPorts">          <div class="row">            <div class="col-sm modal-info-table-title mb-3">Exposed ports</div>          </div>            <div class="row">              <div class="col-sm"></div>              <div class="col-sm">Name</div>              <div class="col-sm text-right">Internal</div>              <div class="col-sm text-right">External</div>            </div>          </span>          <div *ngFor="let exposedPort of exposedPorts">            <span *ngIf="exposedPorts">            <div class="row">              <div class="col-sm"></div>              <div class="col-sm grey">{{exposedPort.name}}</div>              <div class="col-sm text-right grey">{{exposedPort.internal_port}}</div>              <div class="col-sm text-right grey">{{exposedPort.exposed_port}}</div>            </div>          </span>          <span *ngIf="!exposedPorts">            <div class="row">              <div class="col-sm text-right">No</div>            </div>          </span>          <br>        </div>        <br>        <div class="row">          <div class="col-sm modal-info-table-title mb-3">Type</div>          <div class="col-sm text-right">{{typeName}}</div>        </div>        <br>        <div class="row">          <div class="col-sm modal-info-table-title mb-3">Credentials</div>        </div>        <div *ngFor="let credential of objectToString(credentials)" class="row">          <div *ngIf="credentials" class="col-sm text-right">            <div class="text-right grey">{{credential[0]}}</div>            <div class="text-right">{{credential[1]}}</div>          </div>          <div *ngIf="!credentials" class="col-sm text-right">No</div>        </div>        <br>        <div class="row">          <div class="col-sm modal-info-table-title mb-3">Environment variables</div>        </div>        <div *ngFor="let environmentVariable of objectToString(environmentVariables)" class="row">          <div *ngIf="environmentVariables" class="col-sm text-right">            <div class="text-right grey">{{environmentVariable[0]}}</div>            <div class="text-right">{{environmentVariable[1]}}</div>          </div>          <div *ngIf="!environmentVariables" class="col-sm text-right">No</div>        </div>        <br>        <div class="row">          <div class="col-sm modal-info-table-title mb-3">Labels</div>        </div>        <div *ngFor="let label of objectToString(labels)" class="row">          <div *ngIf="labels" class="col-sm text-right">            <button class="btn-sm btn-outline-primary" disabled>              {{label[0]}} : {{label[1]}}            </button>          </div>          <div *ngIf="!labels" class="col-sm text-right">No</div>        </div>        <br>        <div class="row">          <div class="col-sm modal-info-table-title mb-3">Service group ID</div>          <div class="col-sm text-right">{{groupId}}</div>        </div>        <br>        <div class="row">          <div class="col-sm modal-info-table-title mb-3">App descriptor ID</div>          <div class="col-sm text-right">{{appDescriptorId}}</div>        </div>        <br>        <span *ngIf="instanceId">          <div class="row">            <div class="col-sm modal-info-table-title mb-3">Instance ID</div>            <div class="col-sm text-right">{{instanceId}}</div>          </div>          <br>        </span>        <span *ngIf="deployAfter">          <div class="row">            <div class="col-sm modal-info-table-title mb-3">Deploy after</div>            <div class="col-sm text-right">{{deployAfter}}</div>          </div>          <br>        </span>        <span *ngIf="deployedOnCluster">          <div class="row">            <div class="col-sm modal-info-table-title mb-3">Deployed on cluster ID</div>            <div class="col-sm text-right">{{deployedOnCluster}}</div>          </div>          <br>        </span>      </div>            <!-- Option button -->      <div class="form-group-btn">        <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">          <span class="align-bottom">Close</span>        </button>      </div>    </div>  </div></div>    </div>'
-    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': 'app-add-devices-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card modal-card-info">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="modal-info-title mb-4">Service instances info</h3>    </div>    <!-- Body -->    <div class="modal-body">      <h3 class="modal-info-h3-title">{{name}}</h3>      <p class="modal-info-image">{{image}}</p>      <p class="modal-info-title-sm">{{serviceId}}</p>      <div class="scroll-app-info">        <div class="row">          <div class="col-sm modal-info-table-title mb-3">Status</div>          <h3 class="modal-info-h3-title col-sm text-right">            <span               [ngClass]=              "{                \'big-status-dot\': classStatusCheck(statusName, \'service_running\'),                \'big-status-dot-error\': classStatusCheck(statusName, \'service_error\'),                \'big-status-dot-process\': classStatusCheck(statusName, \'service_waiting\') || classStatusCheck (statusName, \'service_scheduled\')              }"              tooltip="{{statusName}}"               placement="bottom"              class="big-status-dot">              <span class="fw-black">                {{getBeautyStatusName(statusName)}}              </span>            </span>          </h3>        </div>        <div class="row">          <div class="col-sm modal-info-table-title">Replicas</div>          <h3 class="modal-info-h3-title col-sm text-right">{{specs.replicas}}</h3>        </div>        <br>        <div *ngIf="endpoints">          <div class="row">            <div class="col-sm modal-info-table-title mb-3">Endpoints</div>          </div>          <div class="row">            <div class="col-sm"></div>            <div class="col-sm-9 text-right blue mb-2">              <span *ngFor="let endpoint of endpoints">                <a                   *ngIf="endpoint"                   href="{{getEndpointHref(endpoint)}}"                   target="_blank">                  {{endpoint}}                </a>              </span>            </div>          </div>        </div>        <span *ngIf="exposedPorts">          <div class="row">            <div class="col-sm modal-info-table-title mb-3">Exposed ports</div>          </div>            <div class="row">              <div class="col-sm"></div>              <div class="col-sm">Name</div>              <div class="col-sm text-right">Internal</div>              <div class="col-sm text-right">External</div>            </div>          </span>          <div *ngFor="let exposedPort of exposedPorts">            <span *ngIf="exposedPorts">            <div class="row">              <div class="col-sm"></div>              <div class="col-sm grey">{{exposedPort.name}}</div>              <div class="col-sm text-right grey">{{exposedPort.internal_port}}</div>              <div class="col-sm text-right grey">{{exposedPort.exposed_port}}</div>            </div>          </span>          <span *ngIf="!exposedPorts">            <div class="row">              <div class="col-sm text-right">No</div>            </div>          </span>          <br>        </div>        <br>        <div class="row">          <div class="col-sm modal-info-table-title mb-3">Type</div>          <div class="col-sm text-right">{{typeName}}</div>        </div>        <br>        <div class="row">          <div class="col-sm modal-info-table-title mb-3">Credentials</div>        </div>        <div *ngFor="let credential of credentials | keyvalue" class="row">          <div *ngIf="credentials" class="col-sm text-right">            <div class="text-right grey">{{credential.key}}</div>            <div class="text-right">{{credential.value}}</div>          </div>          <div *ngIf="!credentials" class="col-sm text-right">No</div>        </div>        <br>        <div class="row">          <div class="col-sm modal-info-table-title mb-3">Environment variables</div>        </div>        <div *ngFor="let environmentVariable of environmentVariables | keyvalue" class="row">          <div *ngIf="environmentVariables" class="col-sm text-right">            <div class="text-right grey">{{environmentVariable.key}}</div>            <div class="text-right">{{environmentVariable.value}}</div>          </div>          <div *ngIf="!environmentVariables" class="col-sm text-right">No</div>        </div>        <br>        <div class="row">          <div class="col-sm modal-info-table-title mb-3">Labels</div>        </div>        <div *ngFor="let label of labels | keyvalue" class="row">          <div *ngIf="labels" class="col-sm text-right">            <button class="label-content" disabled>              {{label.key}}: {{label.value}}            </button>          </div>          <div *ngIf="!labels" class="col-sm text-right">No</div>        </div>        <br>        <div class="row">          <div class="col-sm modal-info-table-title mb-3">Service group ID</div>          <div class="col-sm text-right">{{groupId}}</div>        </div>        <br>        <div class="row">          <div class="col-sm modal-info-table-title mb-3">App descriptor ID</div>          <div class="col-sm text-right">{{appDescriptorId}}</div>        </div>        <br>        <span *ngIf="instanceId">          <div class="row">            <div class="col-sm modal-info-table-title mb-3">Instance ID</div>            <div class="col-sm text-right">{{instanceId}}</div>          </div>          <br>        </span>        <span *ngIf="deployAfter">          <div class="row">            <div class="col-sm modal-info-table-title mb-3">Deploy after</div>            <div class="col-sm text-right">{{deployAfter}}</div>          </div>          <br>        </span>        <span *ngIf="deployedOnCluster">          <div class="row">            <div class="col-sm modal-info-table-title mb-3">Deployed on cluster ID</div>            <div class="col-sm text-right">{{deployedOnCluster}}</div>          </div>          <br>        </span>      </div>            <!-- Option button -->      <div class="form-group-btn">        <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">          <span class="align-bottom">Close</span>        </button>      </div>    </div>  </div></div>    </div>'
+    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'ServiceInstancesInfoComponent'};
 </script>
