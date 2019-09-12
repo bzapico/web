@@ -60,6 +60,7 @@ import { SimpleLogComponent } from './simple-log/simple-log.component';
 import { AgentJoinTokenInfoComponent } from './agent-join-token-info/agent-join-token-info.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AdvancedFilterOptionsComponent } from './advanced-filter-options/advanced-filter-options.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -107,7 +108,8 @@ export function createTranslateLoader(http: HttpClient) {
     ContextualMenuComponent,
     InstallAgentComponent,
     SimpleLogComponent,
-    AgentJoinTokenInfoComponent
+    AgentJoinTokenInfoComponent,
+    AdvancedFilterOptionsComponent
   ],
   entryComponents: [
     DebugPanelComponent,
