@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
-import { BackendService } from '../services/backend.service';
-import { MockupBackendService } from '../services/mockup-backend.service';
-import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
 @Component({
   selector: 'advanced-filter-options',
@@ -22,7 +19,6 @@ export class AdvancedFilterOptionsComponent implements OnInit {
   organizationId: string;
   defaultFilter: boolean;
   enabled: boolean;
-  name: string;
 
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -34,29 +30,14 @@ export class AdvancedFilterOptionsComponent implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
-    private backendService: BackendService,
-    private mockupBackendService: MockupBackendService,
   ) {
-    const mock = localStorage.getItem(LocalStorageKeys.advancedFilterOptions) || null;
-    // check which backend is required (fake or real)
-    if (mock && mock === 'true') {
-      this.backend = this.mockupBackendService;
-    } else {
-      this.backend = this.backendService;
-    }
+
     // Default initialization
     this.defaultFilter = false;
     this.enabled = false;
   }
 
   ngOnInit() {
-  }
-
-  /**
-   *  Request to save the advanced filter modifications
-   */
-  saveFilterChanges() {
-    this.bsModalRef.hide();
   }
 
   /**

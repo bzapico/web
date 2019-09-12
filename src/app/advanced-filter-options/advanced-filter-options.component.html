@@ -2,7 +2,7 @@
     <div class="modal-content">
       <!-- Header -->
       <div class="modal-header">
-        <h3 class="nalej-form-title">Advanced filter options</h3>
+        <h3 class="nalej-form-title">{{'advancedFilterOptions.title'|translate}}</h3>
         <button 
           (click)="closeModal()"
           type="button" 
@@ -15,7 +15,7 @@
       <div class="modal-body">
         <!-- Option checkboxes -->
         <div class="check-options">
-          <p class="grey">Show only nodes</p>
+          <p class="grey">{{'advancedFilterOptions.showNodes'|translate}}</p>
           <div class="add-dev-checkbox">
             <span 
               *ngIf="!enabled" 
@@ -31,7 +31,7 @@
             </span>
           </div>
           <br>
-          <p class="grey">Show related nodes</p>
+          <p class="grey">{{'advancedFilterOptions.showRelatedNodes'|translate}}</p>
           <div class="add-dev-checkbox">
             <span 
               *ngIf="!defaultFilter" 
@@ -48,8 +48,8 @@
           </div>   
         </div>
         <div class="form-group-btn">
-          <button (click)="saveFilterChanges()" class="nalej-form-btn-blue">
-            <span class="align-bottom">Save changes</span>
+          <button class="nalej-form-btn-blue">
+            <span class="align-bottom">{{'buttons.saveChanges'|translate}}</span>
           </button>
         </div>
       </div>

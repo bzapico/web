@@ -1,4 +1,12 @@
 {
+	"advancedFilterOptions": {
+		"showNodes": "Show only nodes{",
+		"showRelatedNodes": "Show related nodes",
+		"title": "Advanced filter options"
+	},
+	"buttons": {
+		"saveChanges": "Save changes"
+	},
 	"devices": {
 		"status": {
 			"title": "DEVICES STATUS TIMELINE"

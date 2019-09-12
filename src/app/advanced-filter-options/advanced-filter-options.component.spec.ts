@@ -6,6 +6,9 @@ import { ButtonsModule, BsModalRef, TooltipModule, ModalModule, BsModalService }
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '../app.module';
 
 describe('AdvancedFilterOptionsComponent', () => {
   let component: AdvancedFilterOptionsComponent;
@@ -21,10 +24,18 @@ describe('AdvancedFilterOptionsComponent', () => {
         TooltipModule,
         RouterTestingModule,
         ModalModule.forRoot(),
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
       providers: [
         BsModalRef,
-        BsModalService
+        BsModalService,
+        TranslateService
       ]
     })
     .compileComponents();
@@ -34,14 +45,6 @@ describe('AdvancedFilterOptionsComponent', () => {
     fixture = TestBed.createComponent(AdvancedFilterOptionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('saveFilterChanges() - Should request to save the group data modifications', () => {
-    const saveFilterChanges = spyOn(component, 'saveFilterChanges').and.returnValue(true);
-
-    saveFilterChanges();
-
-    expect(saveFilterChanges).toHaveBeenCalledWith();
   });
 
   it('Discard button - Should discard the group data modifications', () => {
