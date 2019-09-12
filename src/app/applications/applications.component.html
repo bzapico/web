@@ -119,111 +119,116 @@
           instances.length > 0 &&
           !requestError && 
           showInstances" 
-          class="nalej-table-box ">
-          <table class="nalej-table">
-            <thead class="nalej-thead">
-              <tr>
-                <th 
-                  (click)="setOrder('name')"            
-                  [ngClass]="getCategoryCSSClass('name')"
-                  scope="col" 
-                  class="col-3 padding-fix">
-                  <span tooltip="Name" placement="bottom">Name</span>
-                  <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  (click)="setOrder('labels')" 
-                  [ngClass]="getCategoryCSSClass('labels')"
-                  scope="col" 
-                  class="col-5">
-                  <span tooltip="Labels" placement="bottom">Labels</span>
-                  <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  (click)="setOrder('status')" 
-                  [ngClass]="getCategoryCSSClass('status')"
-                  tooltip="Status" 
-                  placement="bottom"
-                  scope="col" 
-                  class="col-2 text-center app-status-initial-text">
-                  <span class="app-status-full-text">Status</span>
-                  <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'status' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  tooltip="Actions" 
-                  placement="bottom"
-                  scope="col" 
-                  class="col-2 text-center app-actions-initial-text">
-                  <span class="app-actions-full-text">Actions</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=
-                "let app of instances |
-                sortBy : sortedBy : reverse : 'case-insensitive' |
-                filter : searchTerm"
-                >
-                <!-- This solution applies when the backend updates the app status after triggering undeploy action 
-                  (https://daisho.atlassian.net/browse/NP-1679)
-                  <td 
-                  (click)="goToInstanceView(app)"
-                  [ngClass]="(app.status_name === 'UNDEPLOYING')? 'instance-disabled': 'app-info'" 
-                  class="col-2"> -->
+          class="nalej-table-box no-p-col no-m-row">
+          <div class="label-nalej-table">
+            <div class="label-thead row">
+              <div class="col-10">
+                <div class="row">
+                  <div 
+                    (click)="setOrder('name')"            
+                    [ngClass]="getCategoryCSSClass('name')"
+                    scope="col" 
+                    class="col-6 label-th padding-fix">
+                    <span tooltip="Name" placement="bottom">Name</span>
+                    <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
+                      <i class="material-icons">expand_more</i>
+                    </span>
+                    <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
+                      <i class="material-icons">expand_less</i>
+                    </span>
+                  </div>
+                  <div 
+                    (click)="setOrder('status')" 
+                    [ngClass]="getCategoryCSSClass('status')"
+                    class="col-6 label-th text-center">
+                    <span tooltip="Status" placement="bottom">Status</span>
+                    <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
+                      <i class="material-icons">expand_more</i>
+                    </span>
+                    <span *ngIf="sortedBy === 'status' && reverse" class="expand-chevron">
+                      <i class="material-icons">expand_less</i>
+                    </span>
+                  </div>
+                  <div 
+                    (click)="setOrder('labels')" 
+                    [ngClass]="getCategoryCSSClass('labels')"
+                    scope="col" 
+                    class="col-12 label-th">
+                    <span tooltip="Labels" placement="bottom">Labels</span>
+                    <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
+                      <i class="material-icons">expand_more</i>
+                    </span>
+                    <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
+                      <i class="material-icons">expand_less</i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div 
+                tooltip="Actions" 
+                placement="bottom"
+                scope="col" 
+                class="col-2 label-th text-center app-actions-initial-text">
+                <span class="app-actions-full-text">Actions</span>
+              </div>
+            </div>
+            <div *ngFor=
+              "let app of instances |
+              sortBy : sortedBy : reverse : 'case-insensitive' |
+              filter : searchTerm" 
+              class="label-tbody row">
+              <!-- This solution applies when the backend updates the app status after triggering undeploy action 
+                (https://daisho.atlassian.net/browse/NP-1679)
                 <td 
-                  (click)="goToInstanceView(app)"
-                  [ngClass]="(app.undeploying)? 'instance-disabled': 'app-info'" 
-                  class="col-3">
-                  <span tooltip="App info" placement="top">{{app.name}}</span>
-                </td>
-                <td class="col-5">
-                  <button 
-                  *ngFor="let label of labelsToString(app.labels)" 
-                  disabled
-                  class="btn-sm btn-outline-primary">
-                    {{label[0]}}: {{label[1]}}
-                  </button>
-                </td>
-                <td [ngClass]=
-                  "{'
-                    status-dot':classStatusCheck(app.status_name, 'running'),
-                    'status-dot-error':classStatusCheck(app.status_name, 'error'),
-                    'status-dot-process':classStatusCheck(app.status_name, 'process')
-                  }"
-                  class="col-2 col-center-lowercase"> 
-                  <span 
-                    tooltip="{{app.status_name | lowercase}}" 
-                    placement="bottom"
-                    class="tooltip-fix">
-                  </span>
-                </td>
-                <td class="col-2 text-center">
-                  <button 
-                    (click)="undeploy(app)"
-                    tooltip="Undeploy" 
-                    placement="left" 
-                    class="action-btn-grey position-relative">
-                    <i class="material-icons i-black">more_vert</i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                (click)="goToInstanceView(app)"
+                [ngClass]="(app.status_name === 'UNDEPLOYING')? 'instance-disabled': 'app-info'" 
+                class="col-2"> -->
+              <div class="col-10">
+                <div class="row">
+                  <div class="col-6 label-td">
+                    <span
+                      (click)="goToInstanceView(app)"
+                      [ngClass]="(app.undeploying)? 'instance-disabled': 'app-info'"
+                      tooltip="App info" 
+                      placement="top">
+                      {{app.name}}
+                    </span>
+                  </div>
+                  <div [ngClass]=
+                    "{'
+                      status-dot':classStatusCheck(app.status_name, 'running'),
+                      'status-dot-error':classStatusCheck(app.status_name, 'error'),
+                      'status-dot-process':classStatusCheck(app.status_name, 'process')
+                    }"
+                    class="col-6 label-td col-center-lowercase"> 
+                    <span 
+                      tooltip="{{app.status_name | lowercase}}" 
+                      placement="bottom"
+                      class="tooltip-fix">
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <button 
+                    *ngFor="let label of app.labels | keyvalue" 
+                    class="label-content-disabled">
+                      {{label.key}}: {{label.value}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-2 text-center label-td-flex">
+                <button 
+                  (click)="undeploy(app)"
+                  tooltip="Undeploy" 
+                  placement="left" 
+                  class="action-btn-grey position-relative">
+                  <i class="material-icons i-black">more_vert</i>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- No app instances to show -->
         <div *ngIf=
@@ -242,112 +247,118 @@
           registered.length > 0 &&
           !requestError && 
           !showInstances" 
-          class="nalej-table-box">
-          <table class="nalej-table">
-            <thead class="nalej-thead">
-              <tr>
-                <th 
-                  (click)="setOrder('name')"            
-                  [ngClass]="getCategoryCSSClass('name')"
-                  scope="col" 
-                  class="col-3">
-                  <span tooltip="Name" placement="bottom">Name</span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  (click)="setOrder('labels')" 
-                  [ngClass]="getCategoryCSSClass('labels')"
-                  scope="col" 
-                  class="col-5">
-                  <span tooltip="Labels" placement="bottom">Labels</span>
-                  <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  (click)="setOrder('instances')" 
-                  [ngClass]="getCategoryCSSClass('instances')"
-                  tooltip="Instances" 
-                  placement="bottom"
-                  scope="col" 
-                  class="col-2 text-center instances-pcol-fix instances-initial-text">
-                  <span class="instances-full-text">Instances</span>
-                  <span *ngIf="sortedBy === 'instances' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'instances' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  tooltip="Actions" 
-                  placement="bottom"
-                  scope="col"        
-                  class="col-2 text-center app-actions-initial-text">
-                  <span class="app-actions-full-text">Actions</span>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=
-                "let app of registered |
-                sortBy : sortedBy : reverse : 'case-insensitive' |
-                filter : searchTerm">
-                <td 
-                  [routerLink]="['registered', app.app_descriptor_id]" 
-                  routerLinkActive="active" 
-                  class="col-3 app-info">
-                  <span tooltip="App info" placement="top">{{app.name}}</span>
-                </td>
-                <td class="col-5">
-                  <button 
-                    *ngFor="let label of labelsToString(app.labels)" 
-                    (click)="onLabelClick(app.app_descriptor_id, label[0], label[1])"
-                    [ngClass]=
-                    "{
-                      'label-btn-selected': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) >= 0 ,
-                      'btn-outline-primary': indexOfLabelSelected(app.app_descriptor_id, label[0], label[1]) === -1
-                    }" 
-                    class="btn-sm btn-outline-primary">
-                    {{label[0]}}: {{label[1]}} 
-                  </button>
-                  <div class="label-btns">
+          class="nalej-table-box no-p-col no-m-row">
+            <div class="label-nalej-table">
+              <div class="label-thead row">
+                <div class="col-10">
+                  <div class="row">
                     <div 
-                      *ngIf="isAnyLabelSelected(app.app_descriptor_id) === false"
-                      (click)="addLabel(app)"
-                      tooltip="Add" 
-                      placement="right"
-                      class="label-btn-blue">
-                      <i class="material-icons i-add">add</i>
+                      (click)="setOrder('name')"            
+                      [ngClass]="getCategoryCSSClass('name')"
+                      scope="col" 
+                      class="col-6 label-th padding-fix">
+                      <span tooltip="Name" placement="bottom">Name</span>
+                      <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
+                        <i class="material-icons">expand_more</i>
+                      </span>
+                      <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
+                        <i class="material-icons">expand_less</i>
+                      </span>
                     </div>
                     <div 
-                      *ngIf="isAnyLabelSelected(app.app_descriptor_id) === true"
-                      (click)="deleteLabel(app)"
-                      tooltip="Delete" 
-                      placement="right"
-                      class="label-btn-red">
-                      <i class="material-icons i-delete">delete</i>
+                      (click)="setOrder('instances')" 
+                      [ngClass]="getCategoryCSSClass('instances')"
+                      class="col-6 label-th text-center">
+                      <span tooltip="Instances" placement="bottom">Instances</span>
+                      <span *ngIf="sortedBy === 'instances' && !reverse" class="expand-chevron">
+                        <i class="material-icons">expand_more</i>
+                      </span>
+                      <span *ngIf="sortedBy === 'instances' && reverse" class="expand-chevron">
+                        <i class="material-icons">expand_less</i>
+                      </span>
+                    </div>
+                    <div 
+                      (click)="setOrder('labels')" 
+                      [ngClass]="getCategoryCSSClass('labels')"
+                      scope="col" 
+                      class="col-12 label-th">
+                      <span tooltip="Labels" placement="bottom">Labels</span>
+                      <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
+                        <i class="material-icons">expand_more</i>
+                      </span>
+                      <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
+                        <i class="material-icons">expand_less</i>
+                      </span>
                     </div>
                   </div>
-                </td>
-                <td class="col-2 text-center"> 
-                  {{getServicesCount(app)}}
-                </td>
-                <td class="col-2 actions-col">
+                </div>
+                <div 
+                  tooltip="Actions" 
+                  placement="bottom"
+                  scope="col" 
+                  class="col-2 label-th text-center app-actions-initial-text">
+                  <span class="app-actions-full-text">Actions</span>
+                </div>
+              </div>
+            <div>
+              <div *ngFor=
+                "let app of registered |
+                sortBy : sortedBy : reverse : 'case-insensitive' |
+                filter : searchTerm"
+                class="label-tbody row">
+                <div class="col-10">
+                  <div class="row">
+                    <div 
+                      [routerLink]="['registered', app.app_descriptor_id]" 
+                      class="col-6 label-td">
+                      <span tooltip="App info" placement="top" class="app-info">{{app.name}}</span>
+                    </div>
+                    <div class="col-6 text-center label-td"> 
+                      {{getServicesCount(app)}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <button 
+                        *ngFor="let label of app.labels| keyvalue" 
+                        (click)="onLabelClick(app.app_descriptor_id, label.key, label.value)"
+                        [ngClass]=
+                        "{
+                          'label-content-selected': indexOfLabelSelected(app.app_descriptor_id, label.key, label.value) >= 0 ,
+                          'label-content': indexOfLabelSelected(app.app_descriptor_id,label.key, label.value) === -1
+                        }" 
+                        class="label-content">
+                        {{label.key}}: {{label.value}}
+                      </button>
+                      <div class="label-btns">
+                        <div 
+                          *ngIf="isAnyLabelSelected(app.app_descriptor_id) === false"
+                          (click)="addLabel(app)"
+                          tooltip="Add" 
+                          placement="right"
+                          class="label-btn-blue">
+                          <i class="material-icons i-add">add</i>
+                        </div>
+                        <div 
+                          *ngIf="isAnyLabelSelected(app.app_descriptor_id) === true"
+                          (click)="deleteLabel(app)"
+                          tooltip="Delete" 
+                          placement="right"
+                          class="label-btn-red">
+                          <i class="material-icons i-delete">delete</i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-2 actions-col label-td-flex">
                   <button class="action-btn-grey position-relative">
                     <i class="material-icons i-black">more_vert</i>
                   </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
           <!-- No registered app to show -->
         <div *ngIf=

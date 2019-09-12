@@ -418,17 +418,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Parse to string labels map
-   * @param labels Key-value map that contains the labels
-   */
-  labelsToString(labels: any) {
-    if (!labels || labels === '-') {
-      return ;
-    }
-    return Object.entries(labels);
-  }
-
-  /**
    * Checks if the devices status requires an special css class
    * @param status devices status name
    * @param className CSS class name

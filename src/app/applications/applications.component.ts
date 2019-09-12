@@ -346,17 +346,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Parse to string labels map
-   * @param labels Key-value map that contains the labels
-   */
-  labelsToString(labels: any) {
-    if (!labels || labels === '-') {
-      return ;
-    }
-    return Object.entries(labels);
-  }
-
-  /**
    * Fulfill nulls to avoid data binding failure
    * @param instance Application instance
    */

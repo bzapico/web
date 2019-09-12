@@ -930,7 +930,7 @@ import { FormsModule, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
 import { LoginComponent } from &#x27;./login/login.component&#x27;;
 import { AuthService } from &#x27;./services/auth.service&#x27;;
 import { BackendService } from &#x27;./services/backend.service&#x27;;
-import { HttpClientModule } from &#x27;@angular/common/http&#x27;;
+import { HttpClient, HttpClientModule } from &#x27;@angular/common/http&#x27;;
 import { TooltipModule } from &#x27;ngx-bootstrap/tooltip&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
 import { UserInfoComponent } from &#x27;./user-info/user-info.component&#x27;;
@@ -970,6 +970,12 @@ import { InstallAgentComponent } from &#x27;./install-agent/install-agent.compon
 import { DeviceInfoComponent } from &#x27;./device-info/device-info.component&#x27;;
 import { SimpleLogComponent } from &#x27;./simple-log/simple-log.component&#x27;;
 import { AgentJoinTokenInfoComponent } from &#x27;./agent-join-token-info/agent-join-token-info.component&#x27;;
+import { TranslateLoader, TranslateModule } from &#x27;@ngx-translate/core&#x27;;
+import { TranslateHttpLoader } from &#x27;@ngx-translate/http-loader&#x27;;
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, &#x27;./assets/i18n/&#x27;, &#x27;.json&#x27;);
+}
 
 @NgModule({
   declarations: [
@@ -1049,6 +1055,14 @@ import { AgentJoinTokenInfoComponent } from &#x27;./agent-join-token-info/agent-
     SelectDropDownModule,
     RouterModule,
     FileDropModule,
+    // NGX-TRANSLATE
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
     // NGX-BOOTSTRAP
     ModalModule.forRoot(),
     ButtonsModule.forRoot(),

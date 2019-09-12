@@ -82,10 +82,10 @@
           (click)="onLabelClick(registeredData.app_descriptor_id, label.key, label.value)"
           [ngClass]=
           "{
-            'label-btn-selected': indexOfLabelSelected(registeredData.app_descriptor_id, label.key, label.value) >= 0 ,
-            'btn-outline-primary': indexOfLabelSelected(registeredData.app_descriptor_id, label.key, label.value) === -1
+            'label-content-selected': indexOfLabelSelected(registeredData.app_descriptor_id, label.key, label.value) >= 0 ,
+            'label-content': indexOfLabelSelected(registeredData.app_descriptor_id, label.key, label.value) === -1
           }" 
-          class="btn-sm btn-outline-primary">
+          class="label-content">
           {{label.key}}: {{label.value}} 
         </button>
           <div class="label-btns">
@@ -408,10 +408,9 @@
               <div role="cell" class="nalej-flex-row-4 services-cell-2 nalej-flex-td">{{service.image}}</div>
               <div role="cell" class="nalej-flex-row-4 services-cell-3 nalej-flex-td">
                 <button 
-                  *ngFor="let label of objectToString(service.labels)"
-                  class="btn-sm btn-outline-primary"
-                  disabled> 
-                  {{label[0]}}: {{label[1]}} 
+                  *ngFor="let label of service.labels | keyvalue"
+                  class="label-content-disabled"> 
+                  {{label.key}}: {{label.value}}
                 </button>
               </div>
               <div role="cell" class="nalej-flex-row-4 services-cell-4 nalej-flex-td">
@@ -662,12 +661,12 @@
           <div class="config-card">
             <div *ngIf="registeredData.environment_variables">
               <p class="text-left">Environment variables</p>
-              <div *ngFor="let variable of objectToString(registeredData.environment_variables)" class="row mb-2">
+              <div *ngFor="let variable of registeredData.environment_variables | keyvalue" class="row mb-2">
                 <div class="col-12 grey text-right">
-                  {{variable[0]}} 
+                  {{variable.key}} 
                 </div>
                 <div class="col-12 text-right">
-                  {{variable[1]}}
+                  {{variable.value}}
                 </div>
               </div>
             </div>
@@ -677,12 +676,12 @@
             </div>
             <div *ngIf="registeredData.configuration_options">
               <p class="text-left">Other settings</p>
-              <div *ngFor="let configuration of objectToString(registeredData.configuration_options)" class="row mb-1">
+              <div *ngFor="let configuration of registeredData.configuration_options | keyvalue" class="row mb-1">
                 <div class="col-12 grey text-right">
-                  {{configuration[0]}} 
+                  {{configuration.key}} 
                 </div>
                 <div class="col-12 text-right">
-                  {{configuration[1]}}
+                  {{configuration.value}}
                 </div>
               </div>
             </div>
