@@ -23,7 +23,6 @@
     margin-left: 0px;
 }
 
-
 /* - - -  Nalej big table - - - */
 .nalej-table {
     height: 100%;
@@ -102,6 +101,9 @@
     }
 }
 /* - - -  Label Nalej big table - - - */
+.nalej-table-p {
+    padding: 0 1em;
+}
 .label-nalej-table {
     height: 100%;
     display: block;
@@ -177,8 +179,22 @@
         }
     }
 }
-.nalej-table-box.no-p-col.no-m-row > div > div:nth-child(2) {
+.nalej-table-box.no-p-col.no-m-row 
+> div 
+> div:nth-child(2) {
     border-top: none;
+}
+.nalej-table-box.nalej-table-p 
+> div 
+> div:nth-child(2) {
+    border-top: none;
+}
+.nalej-table-box.nalej-table-p
+> div 
+> div:nth-child(2) 
+> span 
+> div {
+    border: none;
 }
 /* - - -  Nalej flex table fot 4 adn 5 cols - - - */
 .nalej-flex-table-box {

@@ -4,6 +4,7 @@
 
 $base-violet: #5800FF;
 $dark-grey: #444444;
+$super-dark-grey: #151515;
 hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -50,8 +51,8 @@ hr {
       border-color: $base-violet;
       color: white;
     }
-    color: $base-violet;
-    border-color: $base-violet;
+    color: $super-dark-grey;
+    border-color: $super-dark-grey;
   }
   .btn.btn-outline-primary.mb-3.small-font {
     color: $base-violet;
