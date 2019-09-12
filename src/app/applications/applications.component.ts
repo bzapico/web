@@ -947,7 +947,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       customBorderWidth: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
     };
     this.searchGraphData.nodes[nodeGroup.id] = nodeGroup;
-    this.graphData.nodes.push(nodeGroup);
+    this.addNode(searchTermGraph, clusterName, nodeGroup);
   }
 
   /**
@@ -957,6 +957,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   private setRegisteredAndInstances(cluster: any, searchTermGraph?: string) {
     const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
+    let foundOcurenceInInstance = false;
+    let foundOcurenceInRegistered = false;
     instancesInCluster.forEach(instance => {
       const instanceName = instance['name'].toLowerCase();
       const nodeInstance = {
@@ -973,7 +975,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         app_descriptor_id: instance['app_descriptor_id']
       };
       this.searchGraphData.nodes[nodeInstance.id] = nodeInstance;
-      this.graphData.nodes.push(nodeInstance);
+      if (!foundOcurenceInInstance) {
+        foundOcurenceInInstance = searchTermGraph && instanceName.includes(searchTermGraph);
+      }
+      this.addNode(searchTermGraph, instanceName, nodeInstance);
       const registeredApp = this.getRegisteredApp(nodeInstance);
       if (registeredApp.length > 0) {
         const registeredName = registeredApp[0]['name'].toLowerCase();
@@ -991,16 +996,34 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         };
         if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
           this.searchGraphData.nodes[nodeRegistered.id] = nodeRegistered;
-          this.graphData.nodes.push(nodeRegistered);
+          if (!foundOcurenceInRegistered) {
+            foundOcurenceInRegistered = searchTermGraph && searchTermGraph && registeredName.includes(searchTermGraph);
+          }
+          this.addNode(searchTermGraph, registeredName, nodeRegistered);
         }
-        this.setLinksInGraph(
-            registeredApp[0]['app_descriptor_id'],
-            cluster.cluster_id + '-s-' + instance['app_instance_id']);
+          this.setLinksInGraph(
+              searchTermGraph,
+              registeredApp[0]['app_descriptor_id'],
+              cluster.cluster_id + '-s-' + instance['app_instance_id']);
       }
       this.setLinksInGraph(
+          searchTermGraph,
           cluster.cluster_id + '-s-' + instance['app_instance_id'],
           cluster.cluster_id);
     });
+    this.hideLinks(foundOcurenceInRegistered, foundOcurenceInInstance);
+  }
+
+  private addNode(searchTermGraph: string, nodeName: string, node) {
+    if (!searchTermGraph || (searchTermGraph && nodeName.includes(searchTermGraph))) {
+      this.graphData.nodes.push(node);
+    }
+  }
+
+  private hideLinks(foundOcurenceInRegistered: boolean, foundOcurenceInInstance: boolean ) {
+    if (foundOcurenceInRegistered || foundOcurenceInInstance) {
+      this.graphData.links = [];
+    }
   }
 
   /**
@@ -1086,11 +1109,13 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param source Origin node
    * @param target Final node
    */
-  private setLinksInGraph(source, target) {
-    this.graphData.links.push({
-      source: source,
-      target: target
-    });
+  private setLinksInGraph(searchTermGraph: string, source, target) {
+    if (!searchTermGraph) {
+      this.graphData.links.push({
+        source: source,
+        target: target
+      });
+    }
     if (!this.searchGraphData.links[source]) {
       this.searchGraphData.links[source] = [];
     }
