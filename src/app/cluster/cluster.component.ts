@@ -179,9 +179,9 @@ export class ClusterComponent implements OnInit {
         this.clusterData = cluster;
         this.clusterPieChart = this.generateSummaryChartData(this.clusterData.running_nodes, this.clusterData.total_nodes);
       });
-
   }
-   /**
+
+  /**
    * Generates the NGX-Chart required JSON object for pie chart rendering
    * @param running Number of running nodes in a cluster
    * @param total Number of total nodes in a cluster
@@ -199,67 +199,7 @@ export class ClusterComponent implements OnInit {
       }];
     }
 
-   /**
-   * Requests an updated list of available nodes to update the current one
-   */
-  updateNodesList() {
-    this.requestError = ''; // Empty error before requesting new list
-    // Requests an updated nodes list
-    this.backend.getNodes(this.organizationId, this.clusterId)
-    .subscribe(response => {
-      this.nodes = response.nodes;
-      if (!this.loadedData) {
-        this.loadedData = true;
-      }
-    }, errorResponse => {
-      this.loadedData = true;
-      this.requestError = errorResponse.error.message;
-    });
-  }
-
   /**
-   * Parse to string labels map
-   * @param labels Key-value map that contains the labels
-   */
-  labelsToString(labels: any) {
-    if (!labels || labels === '-') {
-      return ;
-    }
-    return Object.entries(labels);
-  }
-
-  preventEmptyFields(cluster: Cluster) {
-    if (!cluster.name) {
-      cluster.name = '-';
-    }
-    if (!cluster.description) {
-      cluster.description = '-';
-    }
-    if (!cluster.total_nodes) {
-      cluster.total_nodes = 0;
-    }
-    if (!cluster.running_nodes) {
-      cluster.running_nodes = 0;
-    }
-  }
-  /**
-   * Generates the NGX-Chart required JSON object for pie chart rendering
-   * @param running Number of running nodes in a cluster
-   * @param total Number of total nodes in a cluster
-   * @returns anonym array with the required object structure for pie chart rendering
-   */
-  generateSummaryChartData(running: number, total: number): any[] {
-    return [
-      {
-        name: 'Running',
-        value: running
-      },
-      {
-        name: 'Stopped',
-        value: total - running
-      }];
-  }
-    /**
    * Checks if the cluster status requires an special css class
    * @param status Cluster status name
    * @param className CSS class name
@@ -339,7 +279,6 @@ export class ClusterComponent implements OnInit {
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { });
-
   }
 
   /**
@@ -397,7 +336,7 @@ export class ClusterComponent implements OnInit {
   }
 
  /**
-  * Check if the label is selected. Returs index number in selected labels or -1 if the label is not found.
+  * Check if the label is selected. Return index number in selected labels or -1 if the label is not found.
   * @param entityId entity from selected label
   * @param labelKey label key from selected label
   * @param labelValue label value from selected label
@@ -425,5 +364,55 @@ export class ClusterComponent implements OnInit {
       }
     }
     return false;
+  }
+
+  /**
+   * Requests an updated list of available nodes to update the current one
+   */
+  private updateNodesList() {
+    this.requestError = ''; // Empty error before requesting new list
+    // Requests an updated nodes list
+    this.backend.getNodes(this.organizationId, this.clusterId)
+    .subscribe(response => {
+      this.nodes = response.nodes;
+      if (!this.loadedData) {
+        this.loadedData = true;
+      }
+    }, errorResponse => {
+      this.loadedData = true;
+      this.requestError = errorResponse.error.message;
+    });
+  }
+
+  private preventEmptyFields(cluster: Cluster) {
+    if (!cluster.name) {
+      cluster.name = '-';
+    }
+    if (!cluster.description) {
+      cluster.description = '-';
+    }
+    if (!cluster.total_nodes) {
+      cluster.total_nodes = 0;
+    }
+    if (!cluster.running_nodes) {
+      cluster.running_nodes = 0;
+    }
+  }
+  /**
+   * Generates the NGX-Chart required JSON object for pie chart rendering
+   * @param running Number of running nodes in a cluster
+   * @param total Number of total nodes in a cluster
+   * @returns anonym array with the required object structure for pie chart rendering
+   */
+  private generateSummaryChartData(running: number, total: number): any[] {
+    return [
+      {
+        name: 'Running',
+        value: running
+      },
+      {
+        name: 'Stopped',
+        value: total - running
+      }];
   }
 }

@@ -121,6 +121,13 @@ $base-light-grey: #BFBFBF;
     }
 }
 
+/* - - - List card - - - */
+.label-nalej-table {
+    .label-thead {
+        margin-bottom: 10px;
+    }
+}
+
 @media screen and (max-width:1568px){
     .edit-full-text {
         display: none;
