@@ -799,6 +799,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
   /**
    * Opens application instances context menu
+   * @param event Received click event
    * @param instance application instances
    */
   openInstanceContextualMenu(event, instance: any) {
@@ -837,6 +838,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
   /**
    * Opens registered apps context menu
+   * @param Received click event
    * @param registered registered app
    */
   openRegisteredContextualMenu(event, registered: any) {
@@ -985,6 +987,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.hideLinks();
   }
 
+  /**
+   * It adds node registered
+   * @param cluster Cluster for relate with our node registered
+   * @param registeredApp Registered app for generate node registered
+   * @param searchTermGraph Term to search in the graph
+   */
   private addNodeRegistered(cluster, registeredApp, searchTermGraph?: string) {
     const registeredName = registeredApp[0]['name'].toLowerCase();
     const nodeRegistered = {
@@ -1011,6 +1019,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * It adds node instance to the graph and get node instance
+   * @param instance Instance to generate the node instance
+   * @param cluster Cluster for relate with our node instance
+   * @param searchTermGraph Term to search in the graph
+   */
   private addNodeInstance(instance, cluster, searchTermGraph?: string): any {
     const instanceName = instance['name'].toLowerCase();
     const nodeInstance = {
@@ -1037,18 +1051,35 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     return nodeInstance;
   }
 
+  /**
+   * It adds nodes to the graph if it's necessary
+   * @param searchTermGraph Term to search in the graph
+   * @param nodeName Node name to compare with the search term
+   * @param node Node to add to our graph
+   */
   private addNode(searchTermGraph: string, nodeName: string, node) {
     if (!searchTermGraph || (searchTermGraph && nodeName.includes(searchTermGraph))) {
       this.graphData.nodes.push(node);
     }
   }
 
+  /**
+   * It hides the links if it's there any ocurrence
+   */
   private hideLinks() {
     if (this.foundOcurenceInRegistered || this.foundOcurenceInInstance) {
       this.graphData.links = [];
     }
   }
 
+  /**
+   * It returns a node with style
+   * @param color Background color for the node
+   * @param textColor Text color for the node
+   * @param customBorderColor Border color for the node
+   * @param customBorderWidth Border width for the node
+   * @param customHeight Height for the node
+   */
   private getStyledNode(color: string, textColor: string, customBorderColor: string, customBorderWidth: number, customHeight: number): {} {
     return {
       color: color,
@@ -1139,6 +1170,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
   /**
    * Return an specific color depending on the node status
+   * @param searchTermGraph Term to search in the graph
    * @param source Origin node
    * @param target Final node
    */
