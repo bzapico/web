@@ -1125,4 +1125,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
   }
 
+  openAdvancedFilterOptions() {
+
+  }
+
 }

@@ -542,22 +542,28 @@
           </div>
           <!-- Search box -->
           <div class="col-5">
-            <form class="graph-search-box">
-              <input 
-                [(ngModel)]="searchTermGraph"
-                type="text" 
-                name="searchTermGraph"
-                placeholder="Search..."
-                class="form-control"> 
-              <span class="search-button"> 
-                <button 
-                  (click)="searchInGraph()"
-                  type="submit"
-                  class="action-btn-blue">
-                  <i class="material-icons i-search">search</i>
-                </button>
-              </span>
-            </form>
+            <div class="advanced-filter-box">
+
+              <form class="graph-search-box">
+                <input 
+                  [(ngModel)]="searchTermGraph"
+                  type="text" 
+                  name="searchTermGraph"
+                  placeholder="Search..."
+                  class="form-control"> 
+                <div class="advanced-filter-icon">
+                  <i (click)="openAdvancedFilterOptions()" class="material-icons">filter_list</i>
+                </div>
+                <span class="search-button"> 
+                  <button 
+                    (click)="searchInGraph()"
+                    type="submit"
+                    class="action-btn-blue">
+                    <i class="material-icons i-search">search</i>
+                  </button>
+                </span>
+              </form>
+            </div>
           </div>      
         </div>
         <!-- Sorting messages -->
