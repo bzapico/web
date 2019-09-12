@@ -132,7 +132,8 @@ export function createTranslateLoader(http: HttpClient) {
     EdgeControllerInfoComponent,
     InstallAgentComponent,
     SimpleLogComponent,
-    AgentJoinTokenInfoComponent
+    AgentJoinTokenInfoComponent,
+    AdvancedFilterOptionsComponent
   ],
   imports: [
     BrowserModule,
