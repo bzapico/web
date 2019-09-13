@@ -10,6 +10,7 @@ import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-devices',
@@ -86,7 +87,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Refresh ratio reference
    */
-  REFRESH_RATIO = 20000; // 20 seconds
+  REFRESH_RATIO = 20000000; // 20 seconds
 
   /**
    * Count of num max for displayed groups
@@ -108,6 +109,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Hold request error message or undefined
    */
   requestError: string;
+
+  /**
+   * Active context menu groupID
+   */
+  activeContextMenuGroupId: string;
 
   /**
    * Line Chart options
@@ -132,7 +138,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
   ];
 
-  customClass = 'customClass';
+  nalejAccordion = 'nalejAccordion';
   isFirstOpen = true;
 
   /**
@@ -167,6 +173,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
     private route: ActivatedRoute,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.devicesMock) || null;
     // Check which backend is required (fake or real)
@@ -182,6 +189,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.activeGroupId = 'ALL';
     this.labels = [];
     this.loadedData = false;
+    this.activeContextMenuGroupId = '';
     this.devicesCount = 0;
     this.devicesChart = [{
       name: 'Running devices %',
@@ -926,5 +934,55 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           });
         });
     }
+  }
+
+  /**
+   * Opens context menu
+   * @param group device group
+   */
+  openContextualMenu(event, group: any) {
+    event.stopPropagation();
+    if (group.device_group_id === this.activeContextMenuGroupId) {
+      this.activeContextMenuGroupId = '';
+    } else {
+      this.activeContextMenuGroupId = group.device_group_id;
+    }
+  }
+  onContextualMenuClose(group) {
+    this.activeContextMenuGroupId = '';
+  }
+
+  /**
+   * Get the item options to show in the context menu
+   * @param Group device group
+   */
+  getDevicesGroupOptions(group: any) {
+    const groupOptions = [];
+    const groupOption1 = {
+      name: this.translateService.instant('devices.contextMenu.moreInfo'),
+      action: () => {
+        // this.openDeviceGroupInfo(group);
+      },
+      group: group
+    };
+    const groupOption2 = {
+      name: this.translateService.instant('devices.contextMenu.configuration'),
+      action: () => {
+        this.openGroupConfiguration();
+      },
+      group: group
+    };
+    const groupOption3 = {
+      name: this.translateService.instant('devices.contextMenu.deleteGroup'),
+      action: () => {
+        this.deleteGroup();
+      },
+      group: group
+    };
+    groupOptions.push(groupOption1);
+    groupOptions.push(groupOption2);
+    groupOptions.push(groupOption3);
+    return groupOptions;
+
   }
 }
