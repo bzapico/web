@@ -238,9 +238,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   isSearchingInGraph = false;
 
-  foundOcurenceInInstance: boolean;
+  foundOcurrenceInInstance: boolean;
 
-  foundOcurenceInRegistered: boolean;
+  foundOcurrenceInRegistered: boolean;
 
   initialState = {
     showOnlyNodes: false,
@@ -300,8 +300,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.graphDataLoaded = false;
     this.graphData = new GraphData([], []);
     this.searchGraphData = new GraphData({}, {});
-    this.foundOcurenceInInstance = false;
-    this.foundOcurenceInRegistered = false;
+    this.foundOcurrenceInInstance = false;
+    this.foundOcurrenceInRegistered = false;
     /**
      * Charts reference init
      */
@@ -921,8 +921,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   private setRegisteredAndInstances(cluster: any, searchTermGraph?: string) {
     const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
-    this.foundOcurenceInInstance = false;
-    this.foundOcurenceInRegistered = false;
+    this.foundOcurrenceInInstance = false;
+    this.foundOcurrenceInRegistered = false;
     instancesInCluster.forEach(instance => {
       const registeredApp = this.getRegisteredApp(this.addNodeInstance(instance, cluster, searchTermGraph));
       if (registeredApp.length > 0) {
@@ -963,8 +963,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     };
     if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
       this.searchGraphData.nodes[nodeRegistered.id] = nodeRegistered;
-      if (!this.foundOcurenceInRegistered) {
-        this.foundOcurenceInRegistered = searchTermGraph && searchTermGraph && registeredName.includes(searchTermGraph);
+      if (!this.foundOcurrenceInRegistered) {
+        this.foundOcurrenceInRegistered = searchTermGraph && searchTermGraph && registeredName.includes(searchTermGraph);
       }
       this.addNode(registeredName, nodeRegistered, searchTermGraph);
     }
@@ -995,8 +995,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         CUSTOM_HEIGHT_INSTANCES)
     };
     this.searchGraphData.nodes[nodeInstance.id] = nodeInstance;
-    if (!this.foundOcurenceInInstance) {
-      this.foundOcurenceInInstance = searchTermGraph && instanceName.includes(searchTermGraph);
+    if (!this.foundOcurrenceInInstance) {
+      this.foundOcurrenceInInstance = searchTermGraph && instanceName.includes(searchTermGraph);
     }
     this.addNode(instanceName, nodeInstance, searchTermGraph);
     return nodeInstance;
@@ -1020,7 +1020,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * It hides the links if it's there any ocurrence
    */
   private hideLinks() {
-    if ((this.foundOcurenceInRegistered || this.foundOcurenceInInstance) && this.initialState.showOnlyNodes) {
+    if ((this.foundOcurrenceInRegistered || this.foundOcurrenceInInstance) && this.initialState.showOnlyNodes) {
       this.graphData.links = [];
     }
   }
@@ -1127,8 +1127,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param target Final node
    */
   private setLinksInGraph(source, target) {
-    if ((!this.foundOcurenceInRegistered && !this.foundOcurenceInInstance)
-        || ((this.foundOcurenceInRegistered || this.foundOcurenceInInstance) && !this.initialState.showOnlyNodes)) {
+    if ((!this.foundOcurrenceInRegistered && !this.foundOcurrenceInInstance)
+        || ((this.foundOcurrenceInRegistered || this.foundOcurrenceInInstance) && !this.initialState.showOnlyNodes)) {
       this.graphData.links.push({
         source: source,
         target: target
