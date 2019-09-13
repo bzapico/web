@@ -255,14 +255,34 @@
               <accordion 
                 *ngFor="let group of displayedGroups"
                 class="accordion-tabs">
-                <!-- <i class="material-icons">arrow_drop_down</i> -->
                 <accordion-group 
                   *ngIf="displayedGroups.length > 0"
                   heading="{{group.name}}"
-                  [panelClass]="customClass"
+                  [panelClass]="nalejAccordion"
                   [isOpen]="isFirstOpen">
-                 
-                  
+                    <span     
+                      accordion-heading 
+                      class="accordion-icons-box">
+                      <i class="material-icons accordion-arrow">arrow_drop_down</i>
+                      <div class="accordion-btn">
+                        <button 
+                          (click)="openContextualMenu($event, group)"
+                          [ngClass]=
+                            "{
+                              'action-btn-grey': group.device_group_id !== activeContextMenuGroupId,
+                              'action-btn-grey-selected': group.device_group_id === activeContextMenuGroupId
+                            }" 
+                          class="action-btn-grey position-relative"
+                          >
+                          <i class="material-icons i-black">more_vert</i>
+                          <app-contextual-menu 
+                            [visible]="group.device_group_id === activeContextMenuGroupId" 
+                            [options]="getDevicesGroupOptions(group)"
+                            (closed)="onContextualMenuClose(group)">
+                          </app-contextual-menu>
+                        </button> 
+                      </div>
+                    </span>
                     <!-- No devices to show -->
                     <div *ngIf=
                       "groups && groups.length > 0 &&

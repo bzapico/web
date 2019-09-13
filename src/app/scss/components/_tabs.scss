@@ -62,45 +62,61 @@
     }
 }
 .accordion-box {
-    overflow: scroll;
-    height: 100%;
+    overflow-y: scroll;
+    height: 400px; // TODO
     width: 80%;
-    display: block;
     border: 3px dotted greenyellow;
-}
-
-.accordion-tabs {
-    // border: 1px solid orange;
-    .customClass {
-        padding: 0;
-
-        // &:first-child {
-        //     border-radius:5px;
-        // }
-        .card-header {
+    .accordion-tabs {
+        .card-body {
+            flex: 1 1 auto;
+            padding: 1.25rem .6em;
+        }
+        .card {
+            box-shadow: none;
+            border-radius: 10px;
+            border: 0;
+            overflow: hidden;
+            padding: 1.5rem;
+            height: 100%;
+        }
+        // border: 1px solid orange;
+        .nalejAccordion {
             padding: 0;
-            margin-bottom: 0;
-            background-color: #EEEEEE;
-            border-radius: 15px;
-            min-height: 42px;
-            border-bottom: none;
+            .card-header {
+                padding: 0;
+                margin-bottom: 3px;
+                background-color: #EEEEEE;
+                border-radius: 15px;
+                min-height: 42px;
+                border-bottom: none;
+                position: relative;
+            }
+             .btn-link {
+                color: $base-violet;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: 500;
+                margin-left: 46px;
+            }
+            .accordion-icons-box {
+                .action-btn-grey, .action-btn-grey-2 {
+                    background-color: #BFBFBF;
+                }
+                .accordion-arrow {
+                    color: #707070;
+                    font-size: 27px;
+                    position: absolute;
+                    top: 8px;
+                    left: 27px;
+                }
+                .accordion-btn {
+                    color: #707070;
+                    font-size: 27px;
+                    position: absolute;
+                    top: 2px;
+                    right: 27px;
+                }
+            }
         }
-        .btn-link {
-            font-weight: 400;
-            color: $base-violet;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            padding-left: 3em;
-        }
-        // &:before {
-        //     font-family: "Font Awesome 5 Free";
-        //     content: "\f095";
-        //     display: inline-block;
-        //     padding-right: 3px;
-        //     vertical-align: middle;
-        //     font-weight: 900;
-        // }
-
     }
 }

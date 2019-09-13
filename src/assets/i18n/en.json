@@ -1,5 +1,10 @@
 {
 	"devices": {
+		"contextMenu": {
+			"configuration": "Configuration",
+			"deleteGroup": "Delete group",
+			"moreInfo": "More Info"
+		},
 		"status": {
 			"title": "DEVICES STATUS TIMELINE"
 		},
@@ -119,6 +124,9 @@
 		},
 		"usersNumber": "{{value}} users"
 	},
+	"searcher": {
+		"placeholder": "Search..."
+	},
 	"sortingMessage": {
 		"andFilteredBy": "and filtered by \"{{value}}\"",
 		"ascendant": "ascendant{{value}}",
@@ -127,8 +135,5 @@
 		"resultsFilteredBy": " results found. Filtered by \"{{value}}\"",
 		"resultsFound": "results found.",
 		"sortedBy": "Sorted by {{value}}"
-	},
-	"searcher": {
-		"placeholder": "Search..."
 	}
 }
