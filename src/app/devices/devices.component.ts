@@ -132,6 +132,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
   ];
 
+  customClass = 'customClass';
+  isFirstOpen = true;
+
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */

@@ -60,6 +60,7 @@ import { SimpleLogComponent } from './simple-log/simple-log.component';
 import { AgentJoinTokenInfoComponent } from './agent-join-token-info/agent-join-token-info.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -158,6 +159,7 @@ export function createTranslateLoader(http: HttpClient) {
     AlertModule.forRoot(),
     CarouselModule.forRoot(),
     TooltipModule.forRoot(),
+    AccordionModule.forRoot(),
     // ROUTES
     routes
   ],
