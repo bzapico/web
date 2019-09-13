@@ -1,6 +1,6 @@
 {
 	"advancedFilterOptions": {
-		"showNodes": "Show only nodes{",
+		"showNodes": "Show only nodes",
 		"showRelatedNodes": "Show related nodes",
 		"title": "Advanced filter options"
 	},

@@ -234,13 +234,18 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   activeContextMenuId: string;
 
   /**
-   * Boolean variable for indicate when it is searching in the graph
+   * Boolean variables for indicate different flags to search in the graph
    */
   isSearchingInGraph = false;
 
   foundOcurenceInInstance: boolean;
 
   foundOcurenceInRegistered: boolean;
+
+  initialState = {
+    showOnlyNodes: false,
+    showRelatedNodes: false
+  };
 
   constructor(
     private modalService: BsModalService,
@@ -959,7 +964,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           CUSTOM_HEIGHT_CLUSTERS)
     };
     this.searchGraphData.nodes[nodeGroup.id] = nodeGroup;
-    this.addNode(searchTermGraph, clusterName, nodeGroup);
+    this.addNode(clusterName, nodeGroup, searchTermGraph);
   }
 
   /**
@@ -976,12 +981,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       if (registeredApp.length > 0) {
         this.addNodeRegistered(cluster, registeredApp, searchTermGraph);
         this.setLinksInGraph(
-            searchTermGraph,
             registeredApp[0]['app_descriptor_id'],
             cluster.cluster_id + '-s-' + instance['app_instance_id']);
       }
       this.setLinksInGraph(
-          searchTermGraph,
           cluster.cluster_id + '-s-' + instance['app_instance_id'],
           cluster.cluster_id);
     });
@@ -1016,7 +1019,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       if (!this.foundOcurenceInRegistered) {
         this.foundOcurenceInRegistered = searchTermGraph && searchTermGraph && registeredName.includes(searchTermGraph);
       }
-      this.addNode(searchTermGraph, registeredName, nodeRegistered);
+      this.addNode(registeredName, nodeRegistered, searchTermGraph);
     }
   }
 
@@ -1048,7 +1051,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     if (!this.foundOcurenceInInstance) {
       this.foundOcurenceInInstance = searchTermGraph && instanceName.includes(searchTermGraph);
     }
-    this.addNode(searchTermGraph, instanceName, nodeInstance);
+    this.addNode(instanceName, nodeInstance, searchTermGraph);
     return nodeInstance;
   }
 
@@ -1058,8 +1061,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param nodeName Node name to compare with the search term
    * @param node Node to add to our graph
    */
-  private addNode(searchTermGraph: string, nodeName: string, node) {
-    if (!searchTermGraph || (searchTermGraph && nodeName.includes(searchTermGraph))) {
+  private addNode(nodeName: string, node, searchTermGraph?: string) {
+    if (!searchTermGraph
+        || (searchTermGraph && nodeName.includes(searchTermGraph))
+        || (searchTermGraph && !nodeName.includes(searchTermGraph) && !this.initialState.showOnlyNodes)) {
       this.graphData.nodes.push(node);
     }
   }
@@ -1068,7 +1073,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * It hides the links if it's there any ocurrence
    */
   private hideLinks() {
-    if (this.foundOcurenceInRegistered || this.foundOcurenceInInstance) {
+    if ((this.foundOcurenceInRegistered || this.foundOcurenceInInstance) && this.initialState.showOnlyNodes) {
       this.graphData.links = [];
     }
   }
@@ -1171,12 +1176,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
   /**
    * Return an specific color depending on the node status
-   * @param searchTermGraph Term to search in the graph
    * @param source Origin node
    * @param target Final node
    */
-  private setLinksInGraph(searchTermGraph: string, source, target) {
-    if (!searchTermGraph) {
+  private setLinksInGraph(source, target) {
+    if ((!this.foundOcurenceInRegistered && !this.foundOcurenceInInstance)
+        || ((this.foundOcurenceInRegistered || this.foundOcurenceInInstance) && !this.initialState.showOnlyNodes)) {
       this.graphData.links.push({
         source: source,
         target: target
@@ -1219,12 +1224,26 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Opens the modal view that holds advanced filter options component
    */
   openAdvancedFilterOptions() {
-    const initialState = {
-      organizationId: this.organizationId,
-    };
-    this.modalRef = this.modalService.show(AdvancedFilterOptionsComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+
+    if (this.modalService.config.initialState
+        && typeof this.modalService.config.initialState['showOnlyNodes'] !== undefined
+        && typeof this.modalService.config.initialState['showRelatedNodes'] !== undefined) {
+      this.initialState = {
+        showOnlyNodes: this.modalService.config.initialState['showOnlyNodes'],
+        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes']
+      };
+    }
+    this.modalRef =
+        this.modalService
+            .show(AdvancedFilterOptionsComponent,
+                {initialState: this.initialState, backdrop: 'static', ignoreBackdropClick: false});
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
+    this.modalService.onHide.subscribe(() => {
+      this.initialState = {
+        showOnlyNodes: this.modalService.config.initialState['showOnlyNodes'],
+        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes']
+      };
+      this.toGraphData(this.searchTermGraph);
     });
   }
 }

@@ -61,9 +61,21 @@ export class AddLabelComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.addLabelForm = this.formBuilder.group({
-      labelName: ['', [Validators.required, Validators.minLength(1), Validators.pattern('^[a-zA-Z0-9_.-]*$')]],
-      labelValue: ['', [Validators.required, Validators.minLength(1), Validators.pattern('^[a-zA-Z0-9_.-]*$')]],
+    this.addLabelForm =
+        this.formBuilder
+            .group(
+  {labelName:
+                ['',
+                  [Validators.required,
+                  Validators.minLength(1),
+                  Validators.pattern('^[a-zA-Z0-9_.-]*$')]
+                ],
+               labelValue:
+                ['',
+                  [Validators.required,
+                  Validators.minLength(1),
+                  Validators.pattern('^[a-zA-Z0-9_.-]*$')]
+                ],
     });
   }
 

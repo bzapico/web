@@ -788,5 +788,4 @@ export class RegisteredInfoComponent implements OnInit {
       this.graphReset = false;
     }, 1);
   }
-
 }
