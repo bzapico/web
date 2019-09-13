@@ -4,6 +4,9 @@
 		"showRelatedNodes": "Show related nodes",
 		"title": "Advanced filter options"
 	},
+	"applications": {
+		"title": "APPLICATIONS"
+	},
 	"buttons": {
 		"saveChanges": "Save changes"
 	},
@@ -127,6 +130,9 @@
 		},
 		"usersNumber": "{{value}} users"
 	},
+	"searcher": {
+		"placeholder": "Search..."
+	},
 	"sortingMessage": {
 		"andFilteredBy": "and filtered by \"{{value}}\"",
 		"ascendant": "ascendant{{value}}",
@@ -135,8 +141,5 @@
 		"resultsFilteredBy": " results found. Filtered by \"{{value}}\"",
 		"resultsFound": "results found.",
 		"sortedBy": "Sorted by {{value}}"
-	},
-	"searcher": {
-		"placeholder": "Search..."
 	}
 }

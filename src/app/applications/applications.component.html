@@ -1,7 +1,7 @@
 <!-- Component title -->
 <div class="row row-title">
   <div class="col-lg-12">
-    <h2 class="section-title">APPLICATIONS</h2>
+    <h2 class="section-title">{{'applications.title'|translate}}</h2>
   </div>
 </div>
 <div class="row row-app-main">
@@ -10,7 +10,7 @@
       <!-- Summary info card -->
       <div class="card row-info-app flex-grow-0">
         <div class="card-title-name">
-          <h5>SUMMARY</h5>
+          <h5>{{'devices.summary.title'|translate}}</h5>
         </div>
         <div class="summary-card">
           <div class="summary-box">
@@ -191,7 +191,7 @@
               <div class="col-10">
                 <div class="row">
                   <div 
-                    (click)="setOrder('name')"            
+                    (click)="setOrder('name')"
                     [ngClass]="getCategoryCSSClass('name')"
                     scope="col" 
                     class="col-6 label-th padding-fix">
@@ -204,7 +204,7 @@
                     </span>
                   </div>
                   <div 
-                    (click)="setOrder('status')" 
+                    (click)="setOrder('status')"
                     [ngClass]="getCategoryCSSClass('status')"
                     class="col-6 label-th text-center">
                     <span tooltip="Status" placement="bottom">Status</span>
@@ -565,19 +565,19 @@
           <div class="col-12">  
             <p *ngIf="isSearchingInGraph && searchTermGraph && !quickFilter" class="sorting-message text-right">
                A {{ occurrencesCounter }} results found. Filtered by term "{{ searchTermGraph }}".
-              <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
+              <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
             </p>
             <p *ngIf="isSearchingInGraph && quickFilter && !searchTermGraph" class="sorting-message text-right">
                B {{ occurrencesCounter }} results found. Filtered by {{ quickFilter }}.
-              <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
+              <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
             </p> 
             <p *ngIf="isSearchingInGraph && quickFilter && searchTermGraph" class="sorting-message text-right">
               C  {{ occurrencesCounter }} results found. Filtered by term "{{ searchTermGraph }}" and by {{ quickFilter }}.
-              <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
+              <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
             </p> 
             <p *ngIf="!isSearchingInGraph && quickFilter && !searchTermGraph" class="sorting-message text-right">
                 D {{ occurrencesCounter }} results found. Filtered by {{ quickFilter }}.
-               <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
+               <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
              </p> 
             <p *ngIf="!isSearchingInGraph || !quickFilter" class="sorting-message"></p>
           </div>
