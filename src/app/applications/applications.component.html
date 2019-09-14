@@ -563,19 +563,19 @@
         <div class="row row-sorting-lg"> 
           <div class="col-12">  
             <p *ngIf="isSearchingInGraph && searchTermGraph && !quickFilter" class="sorting-message text-right">
-               A {{ occurrencesCounter }} results found. Filtered by term "{{ searchTermGraph }}".
+               {{ occurrencesCounter }} {{ 'sortingMessage.resultsFilteredBy'|translate:{value:searchTermGraph} }}
               <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
             </p>
             <p *ngIf="isSearchingInGraph && quickFilter && !searchTermGraph" class="sorting-message text-right">
-               B {{ occurrencesCounter }} results found. Filtered by {{ quickFilter }}.
+              {{ occurrencesCounter }} {{ 'sortingMessage.resultsFilteredBy'|translate:{value:quickFilter} }}
               <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
             </p> 
             <p *ngIf="isSearchingInGraph && quickFilter && searchTermGraph" class="sorting-message text-right">
-              C  {{ occurrencesCounter }} results found. Filtered by term "{{ searchTermGraph }}" and by {{ quickFilter }}.
+              {{ occurrencesCounter }} {{ 'sortingMessage.resultsFilteredBy'|translate:{value:searchTermGraph, quickFilter: quickFilter} }}
               <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
             </p> 
             <p *ngIf="!isSearchingInGraph && quickFilter && !searchTermGraph" class="sorting-message text-right">
-                D {{ occurrencesCounter }} results found. Filtered by {{ quickFilter }}.
+              {{ occurrencesCounter }} {{ 'sortingMessage.resultsFilteredBy'|translate:{value:quickFilter} }}
                <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
              </p> 
             <p *ngIf="!isSearchingInGraph || !quickFilter" class="sorting-message"></p>

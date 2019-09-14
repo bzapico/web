@@ -138,7 +138,7 @@
 		"ascendant": "ascendant{{value}}",
 		"descendant": "descendant{{value}}",
 		"reset": "Reset",
-		"resultsFilteredBy": " results found. Filtered by \"{{value}}\"",
+		"resultsFilteredBy": " results found. Filtered by \"{{value}}\".",
 		"resultsFound": "results found.",
 		"sortedBy": "Sorted by {{value}}"
 	}

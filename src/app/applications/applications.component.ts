@@ -876,6 +876,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Transforms the data needed to create the graph
    */
   toGraphData(searchTermGraph?: string) {
+    console.log('toGraphData :: searchTermGraph :: ', searchTermGraph);
     this.graphData.reset([], []);
     this.searchGraphData.reset({}, {});
     if (searchTermGraph) {
@@ -894,6 +895,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param searchTermGraph term to search if it's necessary
    */
   private setClusters(cluster: any, searchTermGraph?: string) {
+    console.log('set clusters');
     const clusterName = cluster.name.toLowerCase();
     const nodeGroup = {
       ...{
