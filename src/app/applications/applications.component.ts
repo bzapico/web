@@ -1021,7 +1021,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * It hides the links if it's there any ocurrence
+   * It hides the links if it's there any occurrence
    */
   private hideLinks() {
     if ((this.foundOccurrenceInCluster || this.foundOccurrenceInRegistered || this.foundOccurrenceInInstance)
