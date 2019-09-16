@@ -195,13 +195,13 @@ button[type="submit"]:disabled {
 }
 .i-black-2 {
     @extend .i-black;
-    font-size: 1.4em;
-    top: 6px;
-    left: 6px;
+    font-size: 21px;
+    top: 5px;
+    left: 5px;
     @include for-desktop-up {
-        font-size: 1em;
+        font-size: 15px;
         top: 5px;
-        left: 6px;
+        left: 5px;
     }
 }
 

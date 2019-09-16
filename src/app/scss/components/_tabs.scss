@@ -63,9 +63,8 @@
 }
 .accordion-box {
     overflow-y: scroll;
-    height: 400px; // TODO
+    height: 100%;
     width: 80%;
-    border: 3px dotted greenyellow;
     .accordion-tabs {
         .card-body {
             flex: 1 1 auto;
@@ -96,7 +95,7 @@
                 text-decoration: none;
                 font-size: 16px;
                 font-weight: 500;
-                margin-left: 46px;
+                margin-left: 54px;
             }
             .accordion-icons-box {
                 .action-btn-grey, .action-btn-grey-2 {
@@ -115,7 +114,7 @@
                     position: absolute;
                     top: 5px;
                     right: 27px;
-                    @include for-desktop-only {
+                    @include for-desktop-up {
                         top: 1px;
                         right: 27px;
                     }

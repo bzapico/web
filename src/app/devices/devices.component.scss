@@ -47,68 +47,6 @@ $super-dark-grey: #151515;
 }
 
 /* - - -Summary card devices table - - - */
-.summary-devices-table {
-    margin-bottom: -1em;
-    color: $base-grey;
-    height: 75%;
-    tr {
-        border: none;
-    } 
-    th {
-        padding: .6em;
-        border: none;
-        font-size:  .9em;
-        font-weight: 400;
-        vertical-align: inherit;
-        @include for-desktop-only {
-            display: none;
-        }
-    }
-    td {
-        padding: .6rem;
-        vertical-align: middle;
-        font-size:  .9em;
-        border: none;
-        text-align: right;
-        max-width: 180px;
-        font-weight: 500;
-        color: #212529;
-        cursor: pointer;
-        @include for-desktop-only {
-            font-size:  .7em;
-            padding: .2em;
-        }
-    }
-    .summary-devices-lh {
-        line-height: 1;
-    }
-    .summary-devices-availability {
-        font-size: 1.4em;
-        text-transform: uppercase;
-        font-weight: 700;
-        @include for-quarter-only {
-            font-size: 1em;
-        }
-    }
-    .summary-devices-title {
-        text-transform: capitalize;
-    }
-    .summary-devices-running {
-        font-size: 2em;
-        color: $super-dark-grey;
-        @include for-quarter-only {
-            font-size: 1em;
-        }
-    }
-    .summary-devices-connectivity {
-        font-size: 1.0em;
-        font-weight: 700;
-        text-transform: uppercase;
-        @include for-quarter-only {
-            font-size: .8em;
-        }
-    }
-}
 .actions-col-fix {
     padding: 0.75rem 0;
 }
@@ -158,3 +96,5 @@ $super-dark-grey: #151515;
 .search-box {
     margin-right: 0;
 }
+
+
