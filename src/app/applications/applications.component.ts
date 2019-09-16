@@ -237,11 +237,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Boolean variables for indicate different flags to search in the graph
    */
   isSearchingInGraph = false;
-
+  foundOcurrenceInCluster: boolean;
   foundOcurrenceInInstance: boolean;
-
   foundOcurrenceInRegistered: boolean;
-
   initialState = {
     showOnlyNodes: false,
     showRelatedNodes: false
@@ -300,6 +298,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.graphDataLoaded = false;
     this.graphData = new GraphData([], []);
     this.searchGraphData = new GraphData({}, {});
+    this.foundOcurrenceInCluster = false;
     this.foundOcurrenceInInstance = false;
     this.foundOcurrenceInRegistered = false;
     /**
@@ -876,9 +875,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Transforms the data needed to create the graph
    */
   toGraphData(searchTermGraph?: string) {
-    console.log('toGraphData :: searchTermGraph :: ', searchTermGraph);
     this.graphData.reset([], []);
     this.searchGraphData.reset({}, {});
+    this.foundOcurrenceInCluster = false;
+    this.foundOcurrenceInInstance = false;
+    this.foundOcurrenceInRegistered = false;
     if (searchTermGraph) {
       searchTermGraph = searchTermGraph.toLowerCase();
     }
@@ -895,7 +896,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param searchTermGraph term to search if it's necessary
    */
   private setClusters(cluster: any, searchTermGraph?: string) {
-    console.log('set clusters');
     const clusterName = cluster.name.toLowerCase();
     const nodeGroup = {
       ...{
@@ -912,6 +912,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
           CUSTOM_HEIGHT_CLUSTERS)
     };
+
+    if (!this.foundOcurrenceInCluster) {
+      this.foundOcurrenceInCluster = searchTermGraph && clusterName.includes(searchTermGraph);
+    }
     this.searchGraphData.nodes[nodeGroup.id] = nodeGroup;
     this.addNode(clusterName, nodeGroup, searchTermGraph);
   }
@@ -923,8 +927,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   private setRegisteredAndInstances(cluster: any, searchTermGraph?: string) {
     const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
-    this.foundOcurrenceInInstance = false;
-    this.foundOcurrenceInRegistered = false;
     instancesInCluster.forEach(instance => {
       const registeredApp = this.getRegisteredApp(this.addNodeInstance(instance, cluster, searchTermGraph));
       if (registeredApp.length > 0) {
@@ -966,7 +968,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
       this.searchGraphData.nodes[nodeRegistered.id] = nodeRegistered;
       if (!this.foundOcurrenceInRegistered) {
-        this.foundOcurrenceInRegistered = searchTermGraph && searchTermGraph && registeredName.includes(searchTermGraph);
+        this.foundOcurrenceInRegistered = searchTermGraph && registeredName.includes(searchTermGraph);
       }
       this.addNode(registeredName, nodeRegistered, searchTermGraph);
     }
@@ -1022,7 +1024,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * It hides the links if it's there any ocurrence
    */
   private hideLinks() {
-    if ((this.foundOcurrenceInRegistered || this.foundOcurrenceInInstance) && this.initialState.showOnlyNodes) {
+    if ((this.foundOcurrenceInCluster || this.foundOcurrenceInRegistered || this.foundOcurrenceInInstance)
+        && this.initialState.showOnlyNodes) {
       this.graphData.links = [];
     }
   }
@@ -1128,9 +1131,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param source Origin node
    * @param target Final node
    */
-  private setLinksInGraph(source, target) {
-    if ((!this.foundOcurrenceInRegistered && !this.foundOcurrenceInInstance)
-        || ((this.foundOcurrenceInRegistered || this.foundOcurrenceInInstance) && !this.initialState.showOnlyNodes)) {
+  private setLinksInGraph(source: string, target: string) {
+    if ((!this.foundOcurrenceInRegistered && !this.foundOcurrenceInInstance && !this.foundOcurrenceInCluster)
+        || ((this.foundOcurrenceInRegistered || this.foundOcurrenceInInstance || this.foundOcurrenceInCluster)
+            && !this.initialState.showOnlyNodes)) {
       this.graphData.links.push({
         source: source,
         target: target
