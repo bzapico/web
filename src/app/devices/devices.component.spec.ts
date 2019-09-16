@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { BsModalRef, BsModalService, ModalModule, TooltipModule } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService, ModalModule, TooltipModule, AccordionModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -14,6 +14,7 @@ import { Group } from '../definitions/interfaces/group';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { createTranslateLoader } from '../app.module';
+import { ContextualMenuComponent } from '../contextual-menu/contextual-menu.component';
 
 describe('DevicesComponent', () => {
   let component: DevicesComponent;
@@ -23,6 +24,7 @@ describe('DevicesComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DevicesComponent,
+        ContextualMenuComponent,
         FilterPipe,
         SortByPipe,
         AbbreviatePipe
@@ -42,7 +44,8 @@ describe('DevicesComponent', () => {
             useFactory: (createTranslateLoader),
             deps: [HttpClient]
           }
-        })
+        }),
+        AccordionModule.forRoot(),
       ],
       providers: [
         BsModalRef,
@@ -59,14 +62,6 @@ describe('DevicesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('openGroupConfiguration() - Should open the modal view that holds the group configuration component', () => {
-    const openGroupConfiguration = spyOn(component, 'openGroupConfiguration').and.returnValue(true);
-
-    openGroupConfiguration();
-
-    expect(openGroupConfiguration).toHaveBeenCalledWith();
-  });
-
   it('Tooltip should not be displayed until user does not any actions', () => {
     const element: HTMLElement = fixture.debugElement.nativeElement;
     expect(element.querySelector('.tooltip-inner')).toBeNull();
@@ -81,7 +76,7 @@ describe('DevicesComponent', () => {
     expect(onLabelClick.length > 0);
   });
 
-  it('openGroupConfiguration() - Test if the method is called with parameter as Group object.', () => {
+  it('openGroupConfiguration(group) - Test if the method is called with parameter as Group object.', () => {
     const mockGroupList: Group = {
       organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
       device_group_id: 'a1',
