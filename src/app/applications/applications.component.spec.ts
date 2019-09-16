@@ -12,6 +12,9 @@ import { SortByPipe } from '../pipes/sort-by.pipe';
 import { FormsModule } from '@angular/forms';
 import { ContextualMenuComponent } from '../contextual-menu/contextual-menu.component';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { createTranslateLoader } from '../app.module';
+import { HttpClient } from '@angular/common/http';
 
 describe('ApplicationsComponent', () => {
   let component: ApplicationsComponent;
@@ -35,7 +38,14 @@ describe('ApplicationsComponent', () => {
         TooltipModule.forRoot(),
         CommonModule,
         ModalModule.forRoot(),
-        FormsModule
+        FormsModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
       providers: [
         BsModalRef,
