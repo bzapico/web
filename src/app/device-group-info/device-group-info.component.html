@@ -1,3 +1,45 @@
-<p>
-  device-group-info works!
-</p>
+<div class="modal-card modal-card-info">
+  <div class="modal-content">
+    <!-- Header -->
+    <div class="modal-header">
+      <h3 class="modal-info-title mb-4">
+        {{'devices.deviceGroupInfo.title'|translate}}
+      </h3>
+    </div>
+    <!-- Body -->
+    <div class="modal-body">
+    <h3 class="modal-info-h3-title">{{name}}</h3>
+    <p class="modal-info-title">{{deviceGroupId}}</p>
+    <div class="scroll-app-info">
+      <br>
+      <div class="row">
+        <div class="col-sm modal-info-table-title mb-3">
+          {{'devices.deviceGroupInfo.apiKey'|translate}}</div>
+        <div class="col-sm text-right">{{deviceGroupApiKey}}</div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm modal-info-table-title mb-3">
+          {{'devices.deviceGroupInfo.defaultConnectivity'|translate}}
+        </div>
+        <div class="col-sm text-right">{{defaultDeviceConnectivity}}</div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm modal-info-table-title mb-3">
+          {{'devices.deviceGroupInfo.enablement'|translate}}
+        </div>
+        <div class="col-sm text-right">{{enabled}}</div>
+      </div>
+    </div>      
+    <!-- Option button -->
+    <div class="form-group-btn">
+      <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">
+        <span class="align-bottom">Close</span>
+      </button>
+    </div>
+    </div>
+  </div>
+</div>
+  
+    

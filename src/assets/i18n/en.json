@@ -5,6 +5,12 @@
 			"deleteGroup": "Delete group",
 			"moreInfo": "More Info"
 		},
+		"deviceGroupInfo": {
+			"apiKey": "Device group API Key",
+			"defaultConnectivity": "Default connectivity",
+			"enablement": "Enablement",
+			"title": "Device group info"
+		},
 		"status": {
 			"title": "DEVICES STATUS TIMELINE"
 		},
