@@ -113,8 +113,12 @@
                     color: #707070;
                     font-size: 27px;
                     position: absolute;
-                    top: 2px;
+                    top: 5px;
                     right: 27px;
+                    @include for-desktop-only {
+                        top: 1px;
+                        right: 27px;
+                    }
                 }
             }
         }

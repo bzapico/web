@@ -11,6 +11,8 @@ import { GroupConfigurationComponent } from '../group-configuration/group-config
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { DeviceGroupInfoComponent } from '../device-group-info/device-group-info.component';
+import { group } from '@angular/animations';
 
 @Component({
   selector: 'app-devices',
@@ -937,6 +939,25 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
+  * Open device group info modal window
+  *  @param group group object
+  */
+ openDeviceGroupInfo(group: any) {
+  const initialState = {
+    organizationId: this.organizationId,
+    name: group.name,
+    deviceGroupApiKey: group.device_group_api_key,
+    deviceGroupId: group.device_group_id,
+    defaultDeviceConnectivity: group.default_device_connectivity,
+    enabled: group.enabled
+  };
+
+  this.modalRef = this.modalService.show(DeviceGroupInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+  this.modalRef.content.closeBtnName = 'Close';
+
+}
+
+  /**
    * Opens context menu
    * @param group device group
    */
@@ -961,7 +982,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     const groupOption1 = {
       name: this.translateService.instant('devices.contextMenu.moreInfo'),
       action: () => {
-        // this.openDeviceGroupInfo(group);
+        this.openDeviceGroupInfo(group);
       },
       group: group
     };

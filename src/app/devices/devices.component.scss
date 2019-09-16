@@ -12,60 +12,40 @@ $base-violet: #5800FF;
 $base-grey: #828282;
 $super-dark-grey: #151515;
 
-/* - - - Devices tabs buttons - - - */
-.devices-tab-btns-box {
-    font-size: .6em;
-    margin-bottom: 1em;
-    font-weight: 500;
-        .devices-tab-btn {
-        list-style: none;
-        float: right;
-        color: $base-grey;
-        li {
-            font-size: 1em;
-            float: left;
-            padding: 0rem 1.5rem;
-            cursor: pointer;
-            position: relative;
-            @include for-quarter-only {
-                padding: 0 1.2rem;
-            }
-            @include for-desktop-up {
-                padding: 0 .9rem;
-            }
+/* - - - Add group button - - - */
+.add-group-box {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    .add-group-btn {
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        position: relative;
+        font-size: 14px;
+        font-weight: 500;
+        outline: none; 
+        background-color: $base-violet;
+        padding-left: 30px;
+        color: #ffffff;
+        width: 128px;
+        height: 35px;
+        .i-add{
+            font-size: 20px;
+            font-weight: 700;
+            position: absolute;
+            top: 7px;
+            left: 13px;
         }
-        span {
-            display: block;
-            text-decoration: none;
-            display: block;
-            transition: .3s background-color;
-            &.active {
-                color: $base-violet;
-                &::before {
-                    content: "";
-                    height: 5px;
-                    width: 100%;
-                    display: block;
-                    position: absolute;
-                    bottom: -1px;
-                    left: 0;
-                    background-color: $base-violet;
-                }
-            }
-            i {
-                font-size: 1.4em;
-                margin-right: .2em;
-                vertical-align: middle;
-            }
-        }
-        .devices-button-item-pr {
-            padding-right: 3em;
-            @include for-desktop-up {
-                padding-right: 0;
-            }
+        &:hover {
+            color: #ffffff;
+            transition: 0.3s;
+            background-color: $base-violet;
+            opacity: 0.6;
         }
     }
 }
+
 /* - - -Summary card devices table - - - */
 .summary-devices-table {
     margin-bottom: -1em;
@@ -136,7 +116,6 @@ $super-dark-grey: #151515;
 .loaded-devices {
     height: 100%;
     width: 100%;
-    margin-top: -1em;
     overflow: hidden;
 }
 /* - - - Close group button - - - */
@@ -175,4 +154,7 @@ $super-dark-grey: #151515;
 .opacity {
     opacity: 0;
     pointer-events: none;
+}
+.search-box {
+    margin-right: 0;
 }
