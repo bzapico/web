@@ -234,9 +234,16 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   activeContextMenuId: string;
 
   /**
-   * Boolean variable for indicate when it is searching in the graph
+   * Boolean variables for indicate different flags to search in the graph
    */
   isSearchingInGraph = false;
+  foundOccurrenceInCluster: boolean;
+  foundOccurrenceInInstance: boolean;
+  foundOccurrenceInRegistered: boolean;
+  initialState = {
+    showOnlyNodes: false,
+    showRelatedNodes: false
+  };
 
   constructor(
     private modalService: BsModalService,
@@ -291,6 +298,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.graphDataLoaded = false;
     this.graphData = new GraphData([], []);
     this.searchGraphData = new GraphData({}, {});
+    this.foundOccurrenceInCluster = false;
+    this.foundOccurrenceInInstance = false;
+    this.foundOccurrenceInRegistered = false;
     /**
      * Charts reference init
      */
@@ -793,57 +803,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Opens application instances context menu
-   * @param instance application instances
-   */
-  openInstanceContextualMenu(event, instance: any) {
-    event.stopPropagation();
-    if (instance.app_instance_id === this.activeContextMenuId) {
-      this.activeContextMenuId = '';
-    } else {
-      this.activeContextMenuId = instance.app_instance_id;
-    }
-  }
-
-  /**
-   * Get the application instances options to show in the context menu
-   * @param instance application instances
-   */
-  getInstanceOptions(instance: any) {
-    const instanceOptions = [];
-    const instanceOption1 = {
-      name: 'More info',
-      action: () => {
-        this.goToInstanceView(instance);
-      },
-      instance: instance
-    };
-    const instanceOption2 = {
-      name: 'Undeploy',
-      action: () => {
-        this.undeploy(instance);
-      },
-      instance: instance
-    };
-    instanceOptions.push(instanceOption1);
-    instanceOptions.push(instanceOption2);
-    return instanceOptions;
-  }
-
-  /**
-   * Opens registered apps context menu
-   * @param registered registered app
-   */
-  openRegisteredContextualMenu(event, registered: any) {
-    event.stopPropagation();
-    if (registered.app_descriptor_id === this.activeContextMenuId) {
-      this.activeContextMenuId = '';
-    } else {
-      this.activeContextMenuId = registered.app_descriptor_id;
-    }
-  }
-
-  /**
    * Empties the active menu Id to close the contextual menu component
    */
   onContextualMenuClose() {
@@ -918,6 +877,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   toGraphData(searchTermGraph?: string) {
     this.graphData.reset([], []);
     this.searchGraphData.reset({}, {});
+    this.foundOccurrenceInCluster = false;
+    this.foundOccurrenceInInstance = false;
+    this.foundOccurrenceInRegistered = false;
     if (searchTermGraph) {
       searchTermGraph = searchTermGraph.toLowerCase();
     }
@@ -936,19 +898,26 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   private setClusters(cluster: any, searchTermGraph?: string) {
     const clusterName = cluster.name.toLowerCase();
     const nodeGroup = {
-      id: cluster.cluster_id,
-      label: cluster.name,
-      type: NodeType.Clusters,
-      tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
-      color: this.getNodeColor(cluster.status_name),
-      text: this.getNodeTextColor(cluster.status_name),
-      group: cluster.cluster_id,
-      customHeight: CUSTOM_HEIGHT_CLUSTERS,
-      customBorderColor: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-      customBorderWidth: (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
+      ...{
+        id: cluster.cluster_id,
+        label: cluster.name,
+        type: NodeType.Clusters,
+        tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
+        group: cluster.cluster_id
+      },
+      ...this.getStyledNode(
+          this.getNodeColor(cluster.status_name),
+          this.getNodeTextColor(cluster.status_name),
+          (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+          (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
+          CUSTOM_HEIGHT_CLUSTERS)
     };
+
+    if (!this.foundOccurrenceInCluster) {
+      this.foundOccurrenceInCluster = searchTermGraph && clusterName.includes(searchTermGraph);
+    }
     this.searchGraphData.nodes[nodeGroup.id] = nodeGroup;
-    this.graphData.nodes.push(nodeGroup);
+    this.addNode(clusterName, nodeGroup, searchTermGraph);
   }
 
   /**
@@ -959,41 +928,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   private setRegisteredAndInstances(cluster: any, searchTermGraph?: string) {
     const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
     instancesInCluster.forEach(instance => {
-      const instanceName = instance['name'].toLowerCase();
-      const nodeInstance = {
-        id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
-        label: instance['name'],
-        type: NodeType.Instances,
-        tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
-        color: this.getNodeColor(instance['status_name']),
-        text: this.getNodeTextColor(cluster.status_name),
-        group: cluster.cluster_id,
-        customHeight: CUSTOM_HEIGHT_INSTANCES,
-        customBorderColor: (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-        customBorderWidth: (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : '',
-        app_descriptor_id: instance['app_descriptor_id']
-      };
-      this.searchGraphData.nodes[nodeInstance.id] = nodeInstance;
-      this.graphData.nodes.push(nodeInstance);
-      const registeredApp = this.getRegisteredApp(nodeInstance);
+      const registeredApp = this.getRegisteredApp(this.addNodeInstance(instance, cluster, searchTermGraph));
       if (registeredApp.length > 0) {
-        const registeredName = registeredApp[0]['name'].toLowerCase();
-        const nodeRegistered = {
-          id: registeredApp[0]['app_descriptor_id'],
-          label: registeredApp[0]['name'],
-          type: NodeType.Registered,
-          tooltip: 'REGISTERED ' + registeredApp[0]['name'],
-          color: REGISTERED_NODES_COLOR,
-          text: this.getNodeTextColor(cluster.status_name),
-          group: cluster.cluster_id,
-          customHeight: CUSTOM_HEIGHT_REGISTERED,
-          customBorderColor: (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-          customBorderWidth: (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
-        };
-        if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
-          this.searchGraphData.nodes[nodeRegistered.id] = nodeRegistered;
-          this.graphData.nodes.push(nodeRegistered);
-        }
+        this.addNodeRegistered(cluster, registeredApp, searchTermGraph);
         this.setLinksInGraph(
             registeredApp[0]['app_descriptor_id'],
             cluster.cluster_id + '-s-' + instance['app_instance_id']);
@@ -1002,6 +939,113 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           cluster.cluster_id + '-s-' + instance['app_instance_id'],
           cluster.cluster_id);
     });
+    this.hideLinks();
+  }
+
+  /**
+   * It adds node registered
+   * @param cluster Cluster for relate with our node registered
+   * @param registeredApp Registered app for generate node registered
+   * @param searchTermGraph Term to search in the graph
+   */
+  private addNodeRegistered(cluster, registeredApp, searchTermGraph?: string) {
+    const registeredName = registeredApp[0]['name'].toLowerCase();
+    const nodeRegistered = {
+      ...{
+        id: registeredApp[0]['app_descriptor_id'],
+        label: registeredApp[0]['name'],
+        type: NodeType.Registered,
+        tooltip: 'REGISTERED ' + registeredApp[0]['name'],
+        group: cluster.cluster_id
+      },
+      ...this.getStyledNode(
+          REGISTERED_NODES_COLOR,
+          this.getNodeTextColor(cluster.status_name),
+          (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+          (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
+          CUSTOM_HEIGHT_REGISTERED)
+    };
+    if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
+      this.searchGraphData.nodes[nodeRegistered.id] = nodeRegistered;
+      if (!this.foundOccurrenceInRegistered) {
+        this.foundOccurrenceInRegistered = searchTermGraph && registeredName.includes(searchTermGraph);
+      }
+      this.addNode(registeredName, nodeRegistered, searchTermGraph);
+    }
+  }
+
+  /**
+   * It adds node instance to the graph and get node instance
+   * @param instance Instance to generate the node instance
+   * @param cluster Cluster for relate with our node instance
+   * @param searchTermGraph Term to search in the graph
+   */
+  private addNodeInstance(instance, cluster, searchTermGraph?: string): any {
+    const instanceName = instance['name'].toLowerCase();
+    const nodeInstance = {
+    ...{
+      id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
+      label: instance['name'],
+      type: NodeType.Instances,
+      tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
+      group: cluster.cluster_id,
+      app_descriptor_id: instance['app_descriptor_id']
+    },
+    ...this.getStyledNode(
+        this.getNodeColor(instance['status_name']),
+        this.getNodeTextColor(cluster.status_name),
+        (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
+        (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
+        CUSTOM_HEIGHT_INSTANCES)
+    };
+    this.searchGraphData.nodes[nodeInstance.id] = nodeInstance;
+    if (!this.foundOccurrenceInInstance) {
+      this.foundOccurrenceInInstance = searchTermGraph && instanceName.includes(searchTermGraph);
+    }
+    this.addNode(instanceName, nodeInstance, searchTermGraph);
+    return nodeInstance;
+  }
+
+  /**
+   * It adds nodes to the graph if it's necessary
+   * @param searchTermGraph Term to search in the graph
+   * @param nodeName Node name to compare with the search term
+   * @param node Node to add to our graph
+   */
+  private addNode(nodeName: string, node, searchTermGraph?: string) {
+    if (!searchTermGraph
+        || (searchTermGraph && nodeName.includes(searchTermGraph))
+        || (searchTermGraph && !nodeName.includes(searchTermGraph) && !this.initialState.showOnlyNodes)) {
+      this.graphData.nodes.push(node);
+    }
+  }
+
+  /**
+   * It hides the links if it's there any occurrence
+   */
+  private hideLinks() {
+    if ((this.foundOccurrenceInCluster || this.foundOccurrenceInRegistered || this.foundOccurrenceInInstance)
+        && this.initialState.showOnlyNodes) {
+      this.graphData.links = [];
+    }
+  }
+
+  /**
+   * It returns a node with style
+   * @param color Background color for the node
+   * @param textColor Text color for the node
+   * @param customBorderColor Border color for the node
+   * @param customBorderWidth Border width for the node
+   * @param customHeight Height for the node
+   */
+  private getStyledNode(color: string, textColor: string, customBorderColor: string, customBorderWidth: number, customHeight: number): {} {
+    return {
+      color: color,
+      text: textColor,
+      customBorderColor: customBorderColor,
+      customBorderWidth: customBorderWidth,
+      customHeight: customHeight
+    };
   }
 
   /**
@@ -1087,11 +1131,15 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param source Origin node
    * @param target Final node
    */
-  private setLinksInGraph(source, target) {
-    this.graphData.links.push({
-      source: source,
-      target: target
-    });
+  private setLinksInGraph(source: string, target: string) {
+    if ((!this.foundOccurrenceInRegistered && !this.foundOccurrenceInInstance && !this.foundOccurrenceInCluster)
+        || ((this.foundOccurrenceInRegistered || this.foundOccurrenceInInstance || this.foundOccurrenceInCluster)
+            && !this.initialState.showOnlyNodes)) {
+      this.graphData.links.push({
+        source: source,
+        target: target
+      });
+    }
     if (!this.searchGraphData.links[source]) {
       this.searchGraphData.links[source] = [];
     }
@@ -1129,12 +1177,25 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Opens the modal view that holds advanced filter options component
    */
   openAdvancedFilterOptions() {
-    const initialState = {
-      organizationId: this.organizationId,
-    };
-    this.modalRef = this.modalService.show(AdvancedFilterOptionsComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    if (this.modalService.config.initialState
+        && typeof this.modalService.config.initialState['showOnlyNodes'] !== undefined
+        && typeof this.modalService.config.initialState['showRelatedNodes'] !== undefined) {
+      this.initialState = {
+        showOnlyNodes: this.modalService.config.initialState['showOnlyNodes'],
+        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes']
+      };
+    }
+    this.modalRef =
+        this.modalService
+            .show(AdvancedFilterOptionsComponent,
+                {initialState: this.initialState, backdrop: 'static', ignoreBackdropClick: false});
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
+    this.modalService.onHide.subscribe(() => {
+      this.initialState = {
+        showOnlyNodes: this.modalService.config.initialState['showOnlyNodes'],
+        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes']
+      };
+      this.toGraphData(this.searchTermGraph);
     });
   }
 }

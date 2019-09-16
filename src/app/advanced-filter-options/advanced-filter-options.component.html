@@ -16,39 +16,45 @@
         <!-- Option checkboxes -->
         <div class="check-options">
           <p class="grey">{{'advancedFilterOptions.showNodes'|translate}}</p>
+
           <div class="add-dev-checkbox">
             <span 
-              *ngIf="!enabled" 
-              (click)="enabled = true"
+              *ngIf="!showOnlyNodes"
+              (click)="showOnlyNodes = true"
               class="devices-checkbox">
               <i class="material-icons grey">check_box_outline_blank</i>
             </span>
             <span 
-              *ngIf="enabled" 
-              (click)="enabled = false"
+              *ngIf="showOnlyNodes"
+              (click)="showOnlyNodes = false"
               class="devices-checkbox">
               <i class="material-icons blue">check_box</i>
             </span>
           </div>
+
           <br>
           <p class="grey">{{'advancedFilterOptions.showRelatedNodes'|translate}}</p>
+
           <div class="add-dev-checkbox">
             <span 
-              *ngIf="!defaultFilter" 
-              (click)="defaultFilter = true"
+              *ngIf="!showRelatedNodes"
+              (click)="showRelatedNodes = true"
               class="devices-checkbox">
               <i class="material-icons grey">check_box_outline_blank</i>
             </span>
             <span 
-              *ngIf="defaultFilter" 
-              (click)="defaultFilter = false"
+              *ngIf="showRelatedNodes"
+              (click)="showRelatedNodes = false"
               class="devices-checkbox">
               <i class="material-icons blue">check_box</i>
             </span>
-          </div>   
+          </div>
+
         </div>
         <div class="form-group-btn">
-          <button class="nalej-form-btn-blue">
+          <button
+            (click)="saveChanges()"
+            class="nalej-form-btn-blue">
             <span class="align-bottom">{{'buttons.saveChanges'|translate}}</span>
           </button>
         </div>
