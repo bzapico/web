@@ -45,20 +45,31 @@ hr {
       font-size: 0.8em;
     }
   }
-  label.btn.btn-outline-primary.small-font {
+  label.btn.btn-outline-primary.small-font, 
+  .btn.btn-outline-primary.mb-3.small-font {
     &.active {
       background-color: $base-violet;
       border-color: $base-violet;
-      color: white;
+      color: #fff;
     }
     color: $super-dark-grey;
-    border-color: $super-dark-grey;
+    border-color: $super-dark-grey
   }
-  .btn.btn-outline-primary.mb-3.small-font {
-    color: $base-violet;
+
+  .btn-outline-primary:hover, 
+  .btn.btn-outline-primary.mb-3.small-font:hover {
+    color: #fff;
+    background-color: $base-violet;
+    border-color: $base-violet;
+  }
+
+  label.btn.btn-outline-primary.small-font:hover {
+    color: #fff;
+    background-color: $base-violet;
     border-color: $base-violet;
   }
 }
+
 .dp-height {
   height: 500px;
   overflow: scroll;

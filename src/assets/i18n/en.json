@@ -1,33 +1,46 @@
 {
 	"devices": {
+		"addGroup": "Add group",
 		"contextMenu": {
 			"configuration": "Configuration",
 			"deleteGroup": "Delete group",
 			"moreInfo": "More Info"
 		},
+		"default": "default",
+		"deleteGroup": "Delete group?",
+		"deleteGroupMessage": "Group {{groupName}} has been deleted",
+		"deleteGroupMessageNegative": "It is not possible to delete a group with devices in it",
 		"deviceGroupInfo": {
 			"apiKey": "Device group API Key",
 			"defaultConnectivity": "Default connectivity",
 			"enablement": "Enablement",
 			"title": "Device group info"
 		},
+		"disabled": "disabled",
+		"enabled": "enabled",
+		"noDevices": "No devices",
+		"noDevicesRegistered": "No available devices registered in this group",
+		"noGroupsCreated": "No available groups have been created. Add a new group to be able to register devices in it.",
 		"status": {
 			"title": "DEVICES STATUS TIMELINE"
 		},
 		"summary": {
-			"disabled": "DISABLED",
-			"enabled": "ENABLED",
 			"groups": {
-				"apiKey": "API Key",
-				"availability": {
-					"title": "Availability"
-				},
 				"title": "GROUPS"
 			},
 			"noAvailable": "No available groups detected",
 			"title": "SUMMARY"
 		},
-		"title": "DEVICES"
+		"switcherMessage": "The device is now ",
+		"tableActions": "Actions",
+		"tableDate": "Attached date",
+		"tableLabels": "Labels",
+		"tableName": "Name",
+		"tableStatus": "Status",
+		"title": "DEVICES",
+		"unlinkDevice": "Unlink device",
+		"unlinkDeviceConfirm": "Unlink {{device_id}}?",
+		"unlinkDeviceMessage": "Unlinking {{device_id}}"
 	},
 	"infrastructure": {
 		"EIC": {
@@ -106,6 +119,12 @@
 		},
 		"title": "INFRASTRUCTURE"
 	},
+	"label": {
+		"add": "add",
+		"delete": "delete",
+		"deleteLabels": "Delete label?",
+		"entityTypeDevice": "device"
+	},
 	"organization": {
 		"filteredBy": "Filtered by term \"{{value}}\".",
 		"loading": "Loading...",
@@ -137,9 +156,15 @@
 		"andFilteredBy": "and filtered by \"{{value}}\"",
 		"ascendant": "ascendant{{value}}",
 		"descendant": "descendant{{value}}",
+		"filteredBy": "Filtered by term \"{{value}}\".",
 		"reset": "Reset",
 		"resultsFilteredBy": " results found. Filtered by \"{{value}}\"",
 		"resultsFound": "results found.",
 		"sortedBy": "Sorted by {{value}}"
+	},
+	"status": {
+		"offline": "offline",
+		"online": "online",
+		"process": "process"
 	}
 }

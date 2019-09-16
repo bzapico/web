@@ -61,9 +61,16 @@
         }
     }
 }
+
+
 .accordion-box {
+    accordion-group > div 
+    > div.panel-collapse.collapse.in.show > div > div > div 
+    > div:nth-child(2) > div {
+       border: 0;
+   }
     overflow-y: scroll;
-    height: 100%;
+    height: 92%;
     width: 80%;
     .accordion-tabs {
         .card-body {
@@ -78,7 +85,6 @@
             padding: 1.5rem;
             height: 100%;
         }
-        // border: 1px solid orange;
         .nalejAccordion {
             padding: 0;
             .card-header {
@@ -97,6 +103,9 @@
                 font-weight: 500;
                 margin-left: 54px;
             }
+            .label-nalej-table .label-thead {
+                margin-bottom: 0;
+            }
             .accordion-icons-box {
                 .action-btn-grey, .action-btn-grey-2 {
                     background-color: #BFBFBF;
@@ -112,11 +121,21 @@
                     color: #707070;
                     font-size: 27px;
                     position: absolute;
-                    top: 5px;
+                    top: 2px;
                     right: 27px;
                     @include for-desktop-up {
                         top: 1px;
                         right: 27px;
+                    }
+                    .action-btn-grey, .action-btn-grey-selected {
+                        height: 24px;
+                        width: 24px;
+                        .i-black{
+                            font-size: 20px;
+                            position: absolute;
+                            top: 2px;
+                            left: 2px;
+                        }
                     }
                 }
             }
