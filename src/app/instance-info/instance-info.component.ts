@@ -780,6 +780,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
 
   /**
    * Return the list of group services
+   * @param groupId Group identifier
    */
   getGroupServices(groupId: string) {
     const index = this.groups

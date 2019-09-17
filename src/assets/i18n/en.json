@@ -1,16 +1,11 @@
 {
-	"app": {
-		"instance": {
-			"rulesList": "rules",
-			"servicesList": "services"
-		}
-	},
 	"apps": {
 		"instance": {
 			"configTitle": "CONFIGURATION",
 			"environmentVariables": "Environment variables",
 			"idApps": "APPS",
 			"idInstance": "INSTANCE",
+			"idRegistered": "REGISTERED",
 			"noEnvironmentVariables": "No environment variables have been set",
 			"noOtherSettings": "No extra settings have been set",
 			"noRules": "No available rules detected ",
@@ -36,8 +31,10 @@
 			"tableEndpoints": "Endpoints",
 			"tableGroups": "Groups",
 			"tableId": "ID",
+			"tableImage": "Image",
 			"tableInfo": "Info",
 			"tableInstanceOf": "Instance of",
+			"tableLabels": "Labels",
 			"tableName": "Name",
 			"tableRegisteredAppId": "Registered App ID",
 			"tableReplicas": "Replicas",
@@ -98,6 +95,7 @@
 	"graph": {
 		"autoRefresh": "Auto refresh every 5 seconds. Scroll on graph to zoom.",
 		"group": "GROUP ",
+		"scroll": "",
 		"service": "SERVICE ",
 		"title": "Graph",
 		"typeGraph": "graph",

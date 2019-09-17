@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
@@ -55,11 +55,6 @@ export class RegisteredInfoComponent implements OnInit {
   registeredData: AppDescriptor;
 
   /**
-   * Models that hold the active group
-   */
-  activeGroupId: string;
-
-  /**
    * List of available services groups
    */
   groups: any[];
@@ -74,22 +69,6 @@ export class RegisteredInfoComponent implements OnInit {
    */
   selectedLabels = [];
   entityId: boolean;
-
-  /**
-   * Models that keeps the displayed groups names length
-   */
-  displayedGroupsNamesLength: number;
-  maxLabelsLength: number;
-
-  /**
-   * List of active displayed group
-   */
-  displayedGroups: any[];
-
-  /**
-   * Count of num max for displayed groups
-   */
-  DISPLAYED_GROUP_MAX = 4;
 
   /**
    * Hold request error message or undefined
@@ -132,11 +111,16 @@ export class RegisteredInfoComponent implements OnInit {
   mockServicesGraph: any;
 
   /**
+   * Accordion options
+   */
+  nalejAccordion = 'nalejAccordion';
+  isFirstOpen = true;
+
+  /**
    * Graph options
    */
   graphDataLoaded: boolean;
   graphReset: boolean;
-  showlegend: boolean;
   graphData: any;
   orientation: string;
   curve: any;
@@ -172,8 +156,6 @@ export class RegisteredInfoComponent implements OnInit {
     this.services = [];
     this.servicesCount = 0;
     this.labels = [];
-    this.displayedGroups = [];
-    this.activeGroupId = 'ALL';
     this.requestError = '';
     this.showGraph = false; //TODO
     this.registeredData = {
@@ -192,7 +174,6 @@ export class RegisteredInfoComponent implements OnInit {
     this.filterField = false;
     this.filterFieldRules = false;
      // Graph initialization
-     this.showlegend = false;
      this.orientation = 'TB';
      this.curve = shape.curveBasis;
      this.autoZoom = true;
@@ -215,9 +196,7 @@ export class RegisteredInfoComponent implements OnInit {
       '#2e0480',
      ];
      this.nextColorIndex = 0;
-
      this.whiteColor = '#FFFFFF';
-
   }
 
   ngOnInit() {
@@ -231,7 +210,6 @@ export class RegisteredInfoComponent implements OnInit {
         if (this.organizationId !== null) {
           this.updateAppDescriptor();
         }
-        this.updateDisplayedGroupsNamesLength();
     }
   }
 
@@ -241,13 +219,7 @@ export class RegisteredInfoComponent implements OnInit {
       .subscribe(registeredResponse => {
         this.registeredData = registeredResponse;
         this.groups = registeredResponse.groups || [];
-        if (this.displayedGroups.length === 0 && this.groups.length > 0) {
-          for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
-            this.displayedGroups.push(this.groups[index]);
-          }
-        }
         this.toGraphData(registeredResponse);
-        this.updateDisplayedGroupsNamesLength();
         if (!this.loadedData) {
           this.loadedData = true;
         }
@@ -256,25 +228,6 @@ export class RegisteredInfoComponent implements OnInit {
         this.requestError = errorResponse.error.message;
       });
   }
-
-  /**
-   * Calculates the number of characters needed to hide the title of tabs, breakpoints calculated through manual testing
-   * @param event to pass in onResize method
-   */
-  @HostListener('window:resize', ['$event'])
-    onResize(event) {
-      if (event.target.innerWidth < 1280) {
-        this.maxLabelsLength = 55;
-      } else if (event.target.innerWidth < 1440) {
-        this.maxLabelsLength = 65;
-      } else if (event.target.innerWidth < 1613) {
-        this.maxLabelsLength = 75;
-      } else if (event.target.innerWidth < 1920) {
-        this.maxLabelsLength = 85;
-      } else {
-        this.maxLabelsLength = 100;
-      }
-    }
 
   /**
    * Opens the modal view that holds add label component
@@ -349,7 +302,7 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-  * Check if the label is selected. Returs index number in selected labels or -1 if the label is not found.
+  * Check if the label is selected. Returns index number in selected labels or -1 if the label is not found.
   * @param entityId entity from selected label
   * @param labelKey label key from selected label
   * @param labelValue label value from selected label
@@ -379,39 +332,7 @@ export class RegisteredInfoComponent implements OnInit {
     return false;
   }
 
-  /**
-   * Changes to active group
-   * @param groupId service group identifier
-   */
-  changeActiveGroup(groupId: string) {
-    this.activeGroupId = groupId;
-  }
-
-  /**
-   * Checks if the service group is active to show in the tabs
-   * @param groupId service group identifier
-   */
-  amIactive(groupId) {
-    if (groupId === this.activeGroupId) {
-      return 'active';
-    }
-    // Empty class when is not active
-    return '';
-  }
-
-  /**
-   * Checks if there are less than a maximum number groups in groups list
-   * @param groups groups list identifier
-   */
-  haveIGroups(groups) {
-    if (groups.length > this.DISPLAYED_GROUP_MAX) {
-      return '';
-    }
-    return 'opacity';
-  }
-
-  /**
-   * Sortby pipe in the component
+  /* Sortby pipe in the component
    * @param categoryName the name of the chosen category
    */
   setOrder(list: string, categoryName: string) {
@@ -473,42 +394,6 @@ export class RegisteredInfoComponent implements OnInit {
         }
       }
     }
-  }
-
-  /**
-   * Updates the displayed groups chars length to calculate the number of letters displayed according to the size of the viewport
-   */
-  updateDisplayedGroupsNamesLength() {
-    this.displayedGroupsNamesLength = 0;
-    this.displayedGroups.forEach(group => {
-      this.displayedGroupsNamesLength += group.name.length;
-    });
-  }
-
-  /**
-   * Displayed groups list swipes left by pressing the arrow button functionality
-   */
-  swipeLeft() {
-    const index = this.groups.map(x => x.service_group_id).indexOf(this.displayedGroups[0].service_group_id);
-    if (index !== -1 && index > 0) {
-      this.displayedGroups.unshift(this.groups[index - 1]);
-      this.displayedGroups.pop();
-      this.updateDisplayedGroupsNamesLength();
-    }
-  }
-
-  /**
-   * Displayed groups list swipes right by pressing the arrow button functionality
-   */
-  swipeRight() {
-    const index = this.groups
-    .map(x => x.service_group_id)
-    .indexOf(this.displayedGroups[this.displayedGroups.length - 1].service_group_id);
-    if (index !== -1 && this.groups[index + 1]) {
-      this.displayedGroups.push(this.groups[index + 1]);
-      this.displayedGroups.shift();
-    }
-    this.updateDisplayedGroupsNamesLength();
   }
 
   /**
@@ -583,14 +468,12 @@ export class RegisteredInfoComponent implements OnInit {
           source: group.service_group_id,
           target: group.service_group_id + '-s-' + service.service_id
         });
-
       });
       this.nextColorIndex += 1;
       if ( this.nextColorIndex >= this.nalejColorScheme.length ) {
         this.nextColorIndex = 0;
       }
     });
-
     if (registered.rules) {
       registered.rules.forEach(rule => {
         if (rule.auth_services) {
@@ -638,61 +521,33 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Returns the length of service instances that are part of the specified active group
-   * @param activeGroupId Identifier for the active group
+   * Returns the length of service registered group
    */
-  countGroupServices(groupId: string) {
-    if (groupId === 'ALL') {
-      let counter = 0;
-      if (this.registeredData && this.registeredData.groups) {
-        this.registeredData.groups.forEach(group => {
-          counter += group.services.length;
-        });
-        return counter;
-      } else {
-        return 0;
-      }
+  countGroupServices() {
+    let counter = 0;
+    if (this.registeredData && this.registeredData.groups) {
+      this.registeredData.groups.forEach(group => {
+        counter += group.services.length;
+      });
+      return counter;
     } else {
-      const index = this.displayedGroups
-        .map(x => x.service_group_id)
-        .indexOf(groupId);
-      if (index !== -1) {
-        return this.displayedGroups[index].services.length;
-      }
       return 0;
     }
   }
 
   /**
-   * Search for an specific array of services that are part of the same group
+   *  Return the list of group services
    * @param groupId Group identifier
    */
   getGroupServices(groupId: string): any[] {
-    if (!groupId) {
-      return [];
-    }
-    if (groupId === 'ALL') {
-      const services = [];
-      if (this.registeredData && this.registeredData.groups) {
-        this.registeredData.groups.forEach(group => {
-          group.services.forEach(service => {
-            services.push(service);
-          });
-        });
-        return services;
-      } else {
-        return [];
-      }
-    } else {
-      const index = this.displayedGroups
-      .map(x => x.service_group_id)
-      .indexOf(this.activeGroupId);
+    const index = this.groups
+    .map(x => x.service_group_id)
+    .indexOf(groupId);
 
-      if (index !== -1) {
-        return this.displayedGroups[index].services;
-      } else {
-        return [];
-      }
+    if (index !== -1) {
+      return this.groups[index].services;
+    } else {
+      return [];
     }
   }
 

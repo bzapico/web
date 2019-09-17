@@ -205,22 +205,22 @@
       <div *ngIf="!showGraph" class="card row-app-services">
         <div class="row">
           <div class="col-10 card-title-name">
-            <h5>SERVICES{{'apps.instance.servicesTitle'|translate}}</h5>
+            <h5>{{'apps.instance.servicesTitle'|translate}}</h5>
           </div>
             <div class="col-2">
               <div class="show-graph-icons">
                 <i 
                   (click)="selectDisplayMode('list')"
                   [ngClass]="!showGraph ? 'blue' : 'grey'"
-                  tooltip="Services" 
+                  tooltip="{{'apps.instance.servicesTitle'|translate}}" 
                   placement="left"
-                  class="material-icons float-right">
+                  class="material-icons float-right text-lowercase">
                   view_list
                 </i>
                 <i 
                   (click)="selectDisplayMode('graph')"
                   [ngClass]="showGraph ? 'blue' : 'grey'"
-                  tooltip="Graph" 
+                  tooltip="{{'graph.title'|translate}}" 
                   placement="left"
                   class="material-icons float-right mr-bars" >
                   bar_chart

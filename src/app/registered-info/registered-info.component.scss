@@ -198,3 +198,44 @@ $super-light-grey: #F8F8F8;
         justify-content: end;
     }
 }
+
+/* - - -  Accordion table - - - */
+.search-box {
+    width: 237px;
+    margin-right: 1em;
+}
+.show-graph-icons {
+    cursor: pointer;
+    color: $base-grey;
+}
+.mr-bars {
+    margin-right: 11px;
+}
+.info-icon {
+    font-size: 26px;
+}
+.accordion-box 
+.accordion-tabs 
+.nalejAccordion 
+.accordion-icons-box 
+.accordion-btn {
+    top: 4px;
+    right: 36px;
+}
+.label-tbody {
+    border-top: .8px solid #f6f6f6;
+    padding: .9rem 0;
+    .label-td {
+        float: left;
+        font-size: .9em;
+        color: $base-grey;
+        outline: none;
+    }
+    .label-td-flex {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}
