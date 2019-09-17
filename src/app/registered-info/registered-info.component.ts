@@ -12,6 +12,7 @@ import * as shape from 'd3-shape';
 import { AppDescriptor } from '../definitions/interfaces/app-descriptor';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { ServiceInfoComponent } from '../service-info/service-info.component';
+import { RegisteredServiceGroupInfoComponent } from '../registered-service-group-info/registered-service-group-info.component';
 
 @Component({
   selector: 'app-registered-info',
@@ -642,6 +643,30 @@ export class RegisteredInfoComponent implements OnInit {
     setTimeout(() => {
       this.graphReset = false;
     }, 1);
+  }
+
+  /**
+   * Open group services info modal window
+   *  @param group group object
+   */
+  openRegisteredServicesGroupInfo(group) {
+    const initialState = {
+      organizationId: this.organizationId,
+      appDescriptorId: group.app_descriptor_id,
+      appInstanceId: group.app_instance_id,
+      policyName: group.policy_name,
+      name: group.name,
+      serviceGroupId: group.service_group_id,
+      serviceGroupInstanceId: group.service_group_instance_id,
+      serviceInstances: group.service_instances,
+      status: group.status_name,
+      globalFqdn: group.global_fqdn,
+      metadata: group.metadata
+    };
+
+    this.modalRef = this.modalService.show(RegisteredServiceGroupInfoComponent,
+      { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
   }
 
 }
