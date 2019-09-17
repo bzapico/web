@@ -173,7 +173,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       };
     this.registered = [];
     this.requestError = '';
-    this.showGraph = false; //TODO
+    this.showGraph = true;
     this.enabled = false;
 
     // SortBy

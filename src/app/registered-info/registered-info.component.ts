@@ -175,7 +175,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.displayedGroups = [];
     this.activeGroupId = 'ALL';
     this.requestError = '';
-    this.showGraph = true;
+    this.showGraph = false; //TODO
     this.registeredData = {
       groups: [],
       environment_variables: {},
