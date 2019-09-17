@@ -1,6 +1,3 @@
-@mixin for-desktop-up {
-    @media all and (max-width: 1440px) { @content; }
-}
 @mixin for-desktop-only {
     @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
 }
@@ -12,7 +9,6 @@ $base-red: #F7478A;
 $base-grey: #828282;
 $super-light-grey: #F8F8F8;
 
-
 /* - - - Card heights - - */
 .row-info-app {
     min-height: 587px;
@@ -20,12 +16,6 @@ $super-light-grey: #F8F8F8;
         min-height: 410px;
     }
 }
-.nalej-table tbody td {
-    @include for-desktop-only {
-        padding: 0.75rem 0;
-    }
-}
-
 /* - - -Summary card instances table - - - */
 
 .ins-info-box {
@@ -57,7 +47,10 @@ $super-light-grey: #F8F8F8;
     }
 }
 .summary-instances-table {
-    .status-dot-nalej, .status-dot:before, .status-dot-error:before, .status-dot-process:before {
+    .status-dot-nalej, 
+    .status-dot:before, 
+    .status-dot-error:before, 
+    .status-dot-process:before {
         margin: 3px;
     }
     height: 75%;
@@ -91,7 +84,6 @@ $super-light-grey: #F8F8F8;
     }
 }
 
-
 /* - - - Apps info card  buttons - - - */
 .btn-undeploy {
     border: none;
@@ -121,80 +113,7 @@ $super-light-grey: #F8F8F8;
     display: block;
     font-size: 1.7em;
 }
-.ins-info {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
 
-/* - - -  Labels card - - - */
-.i-add {
-    font-size: 1em;
-    top: 3px;
-    left: 3px;
-}
-.i-delete{
-    font-size: 1em;
-    top: 3px;
-    left: 3px;
-}
-
-/* - - -  Tables card - - - */
-.search-box {
-    width: 237px;
-    margin-right: 1em;
-}
-.show-graph-icons {
-    cursor: pointer;
-    color: $base-grey;
-}
-.mr-bars {
-    margin-right: 11px;
-}
-.nalej-table-box-fix {
-    padding-top: 0em;
-}
-
-@media screen and (max-width: 1550px) {
-    .table-fixed tbody td:last-child {
-        padding: 0.75rem 0;
-    }
-}
-
-@media all and (max-width: 1440px) {
-    // Order of services cells when his viewport appears
-    .services-cell-1 {
-        order: 1;
-    }
-    .services-cell-2 {
-        order: 2;
-    }
-    .services-cell-3 {
-        order: 3;
-    }
-    .services-cell-4 {
-        order: 4;
-    }
-    .services-cell-5 {
-        order: 5;
-    }
-    // Order of rules cells when his viewport appears
-    .rules-cell-1 {
-        order: 1;
-    }
-    .rules-cell-2 {
-        order: 2;
-    }
-    .rules-cell-3 {
-        order: 3;
-    }
-    .rules-cell-4 {
-        order: 4;
-    }
-    .rules-cell-5 {
-        order: 5;
-    }
-}
 /* - - -  Config card - - - */
 .config-card {
     font-size: .8em;
@@ -211,10 +130,43 @@ $super-light-grey: #F8F8F8;
     }
 }
 
+/* - - -  Accordion table - - - */
+.search-box {
+    width: 237px;
+    margin-right: 1em;
+}
+.show-graph-icons {
+    cursor: pointer;
+    color: $base-grey;
+}
+.mr-bars {
+    margin-right: 11px;
+}
 .info-icon {
     font-size: 26px;
 }
-
-.accordion-box .accordion-tabs .nalejAccordion .accordion-icons-box .accordion-btn {
+.accordion-box 
+.accordion-tabs 
+.nalejAccordion 
+.accordion-icons-box 
+.accordion-btn {
     top: 4px;
+    right: 36px;
+}
+.label-tbody {
+    border-top: .8px solid #f6f6f6;
+    padding: .9rem 0;
+    .label-td {
+        float: left;
+        font-size: .9em;
+        color: $base-grey;
+        outline: none;
+    }
+    .label-td-flex {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 }

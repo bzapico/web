@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
@@ -56,11 +56,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   services: any[];
 
   /**
-   * Models that hold the active group
-   */
-  activeGroupId: string;
-
-  /**
    * List of available services groups
    */
   groups: any[];
@@ -78,22 +73,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Refresh ratio reference
    */
   REFRESH_RATIO = 5000;
-
-  /**
-   * Models that keeps the displayed groups names length
-   */
-  displayedGroupsNamesLength: number;
-  maxLabelsLength: number;
-
-  /**
-   * List of active displayed group
-   */
-  displayedGroups: any[];
-
-  /**
-   * Count of num max for displayed groups
-   */
-  DISPLAYED_GROUP_MAX = 4;
 
   /**
    * Hold request error message or undefined
@@ -193,8 +172,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         configuration_options: {}
       };
     this.registered = [];
-    this.displayedGroups = [];
-    this.activeGroupId = 'ALL';
     this.requestError = '';
     this.showGraph = false; //TODO
     this.enabled = false;
@@ -268,11 +245,10 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         this.registered = registeredAppsResponse.descriptors;
       });
     this.updateInstanceInfo(this.organizationId);
-    this.updateDisplayedGroupsNamesLength();
   }
 
   /**
-   * Transforms the data needed to create the grapho
+   * Transforms the data needed to create the graph
    * @param instance instance object
    */
   toGraphData(instance) {
@@ -394,56 +370,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Calculates the number of characters needed to hide the title of tabs, breakpoints calculated through manual testing
-   * @param event to pass in onResize method
-   */
-  @HostListener('window:resize', ['$event'])
-    onResize(event) {
-      if (event.target.innerWidth < 1280) {
-        this.maxLabelsLength = 55;
-      } else if (event.target.innerWidth < 1440) {
-        this.maxLabelsLength = 65;
-      } else if (event.target.innerWidth < 1613) {
-        this.maxLabelsLength = 75;
-      } else if (event.target.innerWidth < 1920) {
-        this.maxLabelsLength = 85;
-      } else {
-        this.maxLabelsLength = 100;
-      }
-    }
-
-  /**
-   * Changes to active group
-   * @param groupId service group identifier
-   */
-  changeActiveGroup(groupId: string) {
-    this.activeGroupId = groupId;
-  }
-
-  /**
-   * Checks if the service group is active to show in the tabs
-   * @param groupId service group identifier
-   */
-  amIactive(groupId) {
-    if (groupId === this.activeGroupId) {
-      return 'active';
-    }
-    // Empty class when is not active
-    return '';
-  }
-
-  /**
-   * Checks if there are less than a maximum number groups in groups list
-   * @param groups groups list identifier
-   */
-  haveIGroups(groups) {
-    if (groups.length > this.DISPLAYED_GROUP_MAX) {
-      return '';
-    }
-    return 'opacity';
-  }
-
-  /**
    * Sortby pipe in the component
    * @param categoryName the name of the chosen category
    */
@@ -509,42 +435,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Updates the displayed groups chars length to calculate the number of letters displayed according to the size of the viewport
-   */
-  updateDisplayedGroupsNamesLength() {
-    this.displayedGroupsNamesLength = 0;
-    this.displayedGroups.forEach(group => {
-      this.displayedGroupsNamesLength += group.name.length;
-    });
-  }
-
-  /**
-   * Displayed groups list swipes left by pressing the arrow button functionality
-   */
-  swipeLeft() {
-    const index = this.groups.map(x => x.service_group_instance_id).indexOf(this.displayedGroups[0].service_group_instance_id);
-    if (index !== -1 && index > 0) {
-      this.displayedGroups.unshift(this.groups[index - 1]);
-      this.displayedGroups.pop();
-      this.updateDisplayedGroupsNamesLength();
-    }
-  }
-
-  /**
-   * Displayed groups list swipes right by pressing the arrow button functionality
-   */
-  swipeRight() {
-    const index = this.groups
-      .map(x => x.service_group_instance_id)
-      .indexOf(this.displayedGroups[this.displayedGroups.length - 1].service_group_instance_id);
-    if (index !== -1 && this.groups[index + 1]) {
-      this.displayedGroups.push(this.groups[index + 1]);
-      this.displayedGroups.shift();
-    }
-    this.updateDisplayedGroupsNamesLength();
-  }
-
-   /**
    * Requests an updated list of available services group to update the current one
    * @param organizationId Organization identifier
    */
@@ -556,15 +446,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           if (this.anyChanges(this.instance, instance)) {
             this.instance = instance;
             this.groups = instance.groups || [];
-            if (this.displayedGroups.length === 0 && this.groups.length > 0) {
-              for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
-                this.displayedGroups.push(this.groups[index]);
-              }
-            } else {
-              this.updateDisplayedGroupsInfo();
-            }
             this.toGraphData(instance);
-            this.updateDisplayedGroupsNamesLength();
             if (!this.loadedData) {
               this.loadedData = true;
             }
@@ -574,17 +456,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           this.requestError = errorResponse.error.message;
         });
     }
-  }
-  /**
-   * Updates displayed groups information
-   */
-  updateDisplayedGroupsInfo() {
-    this.displayedGroups.forEach(displayedGroup => {
-      const index = this.groups.map(x => x.service_group_instance_id).indexOf(displayedGroup.service_group_instance_id);
-      if (index !== -1) {
-        displayedGroup = this.groups[index];
-      }
-    });
   }
 
   /**
@@ -682,13 +553,10 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     switch (status.toLowerCase()) {
       case 'service_running':
         return 'teal';
-      break;
       case 'service_error':
         return 'red';
-      break;
       case 'service_waiting':
         return 'yellow';
-      break;
       default:
         return 'yellow';
     }
@@ -895,11 +763,9 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Returns the lenght of service instances that are part of the specified active group
-   * @param activeGroupId Identifier for the active group
+   * Returns the length of service instances group
    */
-  countGroupServices(groupId: string) {
-    if (groupId === 'ALL') {
+  countGroupServices() {
       let counter = 0;
       if (this.instance && this.instance.groups) {
         this.instance.groups.forEach(group => {
@@ -909,46 +775,20 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       } else {
         return 0;
       }
-    } else {
-      const index = this.displayedGroups
-        .map(x => x.service_group_instance_id)
-        .indexOf(groupId);
-      if (index !== -1) {
-        return this.displayedGroups[index].service_instances.length;
-      }
-      return 0;
-    }
   }
 
   /**
    * Return the list of group services
    */
   getGroupServices(groupId: string) {
-    if (!groupId) {
-      return [];
-    }
-    if (groupId === 'ALL') {
-      const services = [];
-      if (this.instance && this.instance.groups) {
-        this.instance.groups.forEach(group => {
-          group.service_instances.forEach(service => {
-            services.push(service);
-          });
-        });
-        return services;
-      } else {
-        return [];
-      }
-    } else {
-      const index = this.groups
-      .map(x => x.service_group_instance_id)
-      .indexOf(this.activeGroupId);
+    const index = this.groups
+    .map(x => x.service_group_instance_id)
+    .indexOf(groupId);
 
-      if (index !== -1) {
-        return this.groups[index].service_instances;
-      } else {
-        return [];
-      }
+    if (index !== -1) {
+      return this.groups[index].service_instances;
+    } else {
+      return [];
     }
   }
 
