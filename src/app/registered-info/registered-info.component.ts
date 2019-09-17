@@ -220,6 +220,11 @@ export class RegisteredInfoComponent implements OnInit {
       .subscribe(registeredResponse => {
         this.registeredData = registeredResponse;
         this.groups = registeredResponse.groups || [];
+        if (this.groups.length) {
+          this.groups.forEach(group => {
+            group.isFirstOpen = this.isFirstOpen;
+          });
+        }
         this.toGraphData(registeredResponse);
         if (!this.loadedData) {
           this.loadedData = true;
@@ -635,6 +640,7 @@ export class RegisteredInfoComponent implements OnInit {
     }
     return 'url(#arrow)';
   }
+
   /**
    * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
   */
@@ -649,24 +655,27 @@ export class RegisteredInfoComponent implements OnInit {
    * Open group services info modal window
    *  @param group group object
    */
-  openRegisteredServicesGroupInfo(group) {
+  openRegisteredServicesGroupInfo(group, event) {
+    event.stopPropagation();
     const initialState = {
       organizationId: this.organizationId,
       appDescriptorId: group.app_descriptor_id,
-      appInstanceId: group.app_instance_id,
-      policyName: group.policy_name,
       name: group.name,
       serviceGroupId: group.service_group_id,
-      serviceGroupInstanceId: group.service_group_instance_id,
-      serviceInstances: group.service_instances,
-      status: group.status_name,
-      globalFqdn: group.global_fqdn,
-      metadata: group.metadata
     };
 
     this.modalRef = this.modalService.show(RegisteredServiceGroupInfoComponent,
       { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
+  }
+
+  updateFilteredGroup(group, searchTerm) {
+   console.log('group', group);
+   console.log('search', searchTerm);
+   this.groups.map(groupElement => {
+    groupElement.isFirstOpen = (groupElement.id === group.id);
+   });
+
   }
 
 }

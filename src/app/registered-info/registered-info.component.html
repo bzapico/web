@@ -309,14 +309,14 @@
                 *ngIf="groups.length > 0"
                 heading="{{group.name}}"
                 [panelClass]="nalejAccordion"
-                [isOpen]="isFirstOpen">
+                [isOpen]="group.isFirstOpen">
                 <span     
                   accordion-heading 
                   class="accordion-icons-box">
                   <i class="material-icons accordion-arrow">arrow_drop_down</i>
                   <div class="accordion-btn">
                     <div    
-                      (click)="openRegisteredServicesGroupInfo(group)" 
+                      (click)="openRegisteredServicesGroupInfo(group, $event)" 
                       tooltip="Info" 
                       placement="left">
                       <i class="material-icons info-icon">info</i>
@@ -388,36 +388,36 @@
                         </span>
                       </div>
                     </div>
-                  </div>
-                  <div *ngFor=
-                    "let service of getGroupServices(group.service_group_id) |
-                    sortBy : sortedBy : reverse : 'case-insensitive' |
-                    filter : searchTerm">
-                    <div class="label-tbody row">
-                      <div class="col-12">
-                        <div class="row">
-                          <div class="col-5 label-td"> 
-                              {{service.name}}
-                            </div>
-                            <div class="col-6 label-td">
-                              {{service.image}}
-                            </div>
-                            <div class="col-1 label-td-flex text-center">
-                              <div    
-                                (click)="openServicesInfo(service)" 
-                                tooltip="Info" 
-                                placement="left">
-                                <i class="material-icons info-icon">info</i>
+                    <div *ngFor=
+                      "let service of getGroupServices(group.service_group_id) |
+                      sortBy : sortedBy : reverse : 'case-insensitive' |
+                      filter : searchTerm: updateFilteredGroup(group, searchTerm)">
+                      <div class="label-tbody row">
+                        <div class="col-12">
+                          <div class="row">
+                            <div class="col-5 label-td"> 
+                                {{service.name}}
                               </div>
-                            </div>
+                              <div class="col-6 label-td">
+                                {{service.image}}
+                              </div>
+                              <div class="col-1 label-td-flex text-center">
+                                <div    
+                                  (click)="openServicesInfo(service)" 
+                                  tooltip="Info" 
+                                  placement="left">
+                                  <i class="material-icons info-icon">info</i>
+                                </div>
+                              </div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-12 label-td">
-                        <button 
-                          *ngFor="let label of service.labels | keyvalue"
-                          class="label-content-disabled"> 
-                          {{label.key}}: {{label.value}}
-                        </button>
+                        <div class="col-12 label-td">
+                          <button 
+                            *ngFor="let label of service.labels | keyvalue"
+                            class="label-content-disabled"> 
+                            {{label.key}}: {{label.value}}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>

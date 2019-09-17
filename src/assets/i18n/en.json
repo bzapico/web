@@ -47,6 +47,11 @@
 			"undeployConfirm": "Undeploy {{appName}}?",
 			"undeployInstance": "Undeploy instance",
 			"undeployMessage": " undeployed"
+		},
+		"registered": {
+			"serviceGroupInfo": {
+				"title": "Registered service group info"
+			}
 		}
 	},
 	"devices": {
@@ -185,6 +190,9 @@
 		"entityTypeDevice": "device",
 		"noLabels": "No labels",
 		"title": "LABELS"
+	},
+	"modals": {
+		"buttonClose": "Close"
 	},
 	"organization": {
 		"filteredBy": "Filtered by term \"{{value}}\".",
