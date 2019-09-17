@@ -9,6 +9,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import * as shape from 'd3-shape';
 import { ServiceInstancesInfoComponent } from '../service-instances-info/service-instances-info.component';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-instance-info',
@@ -133,11 +134,16 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   mockServicesGraph: any;
 
   /**
+   * Accordion options
+   */
+  nalejAccordion = 'nalejAccordion';
+  isFirstOpen = true;
+
+  /**
    * Graph options
    */
   graphReset: boolean;
   graphDataLoaded: boolean;
-  showlegend: boolean;
   graphData: any;
   orientation: string;
   curve: any;
@@ -167,7 +173,8 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
@@ -188,7 +195,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.displayedGroups = [];
     this.activeGroupId = 'ALL';
     this.requestError = '';
-    this.showGraph = true;
+    this.showGraph = false; //TODO
     this.enabled = false;
 
     // SortBy
@@ -203,7 +210,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.filterFieldRules = false;
      // Graph initialization
      this.graphReset = false;
-     this.showlegend = false;
      this.orientation = 'TB';
      this.curve = shape.curveBasis;
      this.autoZoom = true;
@@ -827,6 +833,13 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
 
     this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+   * Open group services info modal window
+   *  @param group group object
+   */
+  openGroupServicesInfo(group) {
 
   }
 
