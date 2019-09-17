@@ -261,7 +261,10 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         const nodeGroup = {
           id: group.service_group_instance_id,
           label: group.name,
-          tooltip: 'GROUP ' + group.name + ': ' + this.getBeautyStatusName(group.status_name),
+          tooltip: this.translateService.instant('graph.group')
+          + group.name
+          + ': '
+          + this.getBeautyStatusName(group.status_name),
           color: this.getNodeColor(group.status_name),
           text: this.getNodeTextColor(group.status_name),
           group: group.service_group_instance_id
@@ -271,7 +274,10 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           const nodeService = {
             id: group.service_group_instance_id + '-s-' + service.service_id,
             label: service.name,
-            tooltip: 'SERVICE ' + service.name + ': ' + this.getBeautyStatusName(service.status_name),
+            tooltip:
+            this.translateService.instant('graph.service')
+            + service.name
+            + ': ' + this.getBeautyStatusName(service.status_name),
             color: this.getNodeColor(service.status_name),
             text: this.getNodeTextColor(group.status_name),
             group: group.service_group_instance_id
@@ -335,15 +341,12 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    */
   getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
-      case 'service_running':
+      case this.translateService.instant('status.serviceRunning'):
         return this.STATUS_COLORS.RUNNING;
-      break;
-      case 'service_error':
+      case this.translateService.instant('status.serviceError'):
         return this.STATUS_COLORS.ERROR;
-      break;
-      case 'service_waiting':
+      case this.translateService.instant('status.serviceWaiting'):
         return this.STATUS_COLORS.OTHER;
-      break;
       default:
         return this.STATUS_COLORS.OTHER;
     }
@@ -355,15 +358,12 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    */
   getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
-      case 'service_running':
+      case this.translateService.instant('status.serviceRunning'):
         return this.STATUS_TEXT_COLORS.RUNNING;
-      break;
-      case 'service_error':
+      case this.translateService.instant('status.serviceError'):
         return this.STATUS_TEXT_COLORS.ERROR;
-      break;
-      case 'service_waiting':
+      case this.translateService.instant('status.serviceWaiting'):
         return this.STATUS_TEXT_COLORS.OTHER;
-      break;
       default:
         return this.STATUS_TEXT_COLORS.OTHER;
     }
@@ -374,14 +374,14 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * @param categoryName the name of the chosen category
    */
   setOrder(list: string, categoryName: string) {
-    if (list === 'services') {
+    if (list === this.translateService.instant('apps.instance.servicesList')) {
       if (this.sortedBy === categoryName) {
         this.reverse = !this.reverse;
         this.filterField = false;
       }
       this.sortedBy = categoryName;
       this.filterField = true;
-    } else if (list === 'rules') {
+    } else if (list === this.translateService.instant('apps.instance.rulesList')) {
       if (this.sortedByRules === categoryName) {
         this.reverseRules = !this.reverseRules;
         this.filterFieldRules = false;
@@ -395,11 +395,11 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Reset all the filters fields
    */
   resetFilters(list: string) {
-    if (list === 'services') {
+    if (list === this.translateService.instant('apps.instance.servicesList')) {
       this.filterField = false;
       this.searchTerm = '';
       this.sortedBy = '';
-    } else if (list === 'rules') {
+    } else if (list === this.translateService.instant('apps.instance.rulesList')) {
       this.filterFieldRules = false;
       this.searchTermRules = '';
       this.sortedByRules = '';
@@ -411,24 +411,24 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * @param categoryName the class for the header category
    */
   getCategoryCSSClass(list: string, categoryName: string) {
-    if (list === 'rules') {
+    if (list === this.translateService.instant('apps.instance.rulesList')) {
       if (this.sortedByRules === '') {
-        return 'default';
+        return this.translateService.instant('devices.default');
       } else {
         if (this.sortedByRules === categoryName) {
-          return 'enabled';
+          return this.translateService.instant('devices.enabled');
         } else if (this.sortedByRules !== categoryName) {
-          return 'disabled';
+          return this.translateService.instant('devices.disabled');
         }
       }
-    } else if (list === 'services') {
+    } else if (list === this.translateService.instant('apps.instance.servicesList')) {
       if (this.sortedBy === '') {
-        return 'default';
+        return this.translateService.instant('devices.default');
       } else {
         if (this.sortedBy === categoryName) {
-          return 'enabled';
+          return this.translateService.instant('devices.enabled');
         } else if (this.sortedBy !== categoryName) {
-          return 'disabled';
+          return this.translateService.instant('devices.disabled');
         }
       }
     }
@@ -526,12 +526,13 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * @param app Application instance object
    */
   undeploy(app) {
-    const undeployConfirm = confirm('Undeploy ' + app.name + '?');
+    const undeployConfirm =
+    confirm(this.translateService.instant('apps.instance.undeployConfirm', { appName: app.name }));
     if (undeployConfirm) {
       this.backend.undeploy(this.organizationId, app.app_instance_id)
         .subscribe(undeployResponse => {
           this.notificationsService.add({
-            message: 'Undeploying ' + app.name,
+            message: this.translateService.instant('apps.instance.undeployMessage', { appName: app.name }),
             timeout: 3000
           });
           this.router.navigate(['/applications']);
@@ -551,11 +552,11 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    */
   getServiceStatusClass(status: string ) {
     switch (status.toLowerCase()) {
-      case 'service_running':
+      case this.translateService.instant('status.serviceRunning'):
         return 'teal';
-      case 'service_error':
+      case this.translateService.instant('status.serviceError'):
         return 'red';
-      case 'service_waiting':
+      case this.translateService.instant('status.serviceWaiting'):
         return 'yellow';
       default:
         return 'yellow';
@@ -569,26 +570,26 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    */
   classStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case 'service_running': {
-        if (className.toLowerCase() === 'service_running') {
+      case this.translateService.instant('status.serviceRunning'): {
+        if (className.toLowerCase() === this.translateService.instant('status.serviceRunning')) {
           return true;
         }
         break;
       }
-      case 'service_error': {
-        if (className.toLowerCase() === 'service_error') {
+      case this.translateService.instant('status.serviceError'): {
+        if (className.toLowerCase() === this.translateService.instant('status.serviceError')) {
           return true;
         }
         break;
       }
-      case 'service_waiting': {
-        if (className.toLowerCase() === 'service_waiting') {
+      case this.translateService.instant('status.serviceWaiting'): {
+        if (className.toLowerCase() === this.translateService.instant('status.serviceWaiting')) {
           return true;
         }
         break;
       }
      default: {
-        if (className.toLowerCase() === 'service_waiting') {
+        if (className.toLowerCase() === this.translateService.instant('status.serviceWaiting')) {
           return true;
         }
         return false;
@@ -603,56 +604,56 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    */
   classInstanceStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case 'running': {
-        if (className.toLowerCase() === 'running') {
+      case this.translateService.instant('status.running'): {
+        if (className.toLowerCase() === this.translateService.instant('status.running')) {
           return true;
         }
         break;
       }
-      case 'deployment_error': {
-        if (className.toLowerCase() === 'error') {
+      case this.translateService.instant('status.deploymentError'): {
+        if (className.toLowerCase() === this.translateService.instant('status.error')) {
           return true;
         }
         break;
       }
-      case 'planning_error': {
-        if (className.toLowerCase() === 'error') {
+      case this.translateService.instant('status.planningError'): {
+        if (className.toLowerCase() === this.translateService.instant('status.error')) {
           return true;
         }
         break;
       }
-      case 'incomplete': {
-        if (className.toLowerCase() === 'error') {
+      case this.translateService.instant('status.incomplete'): {
+        if (className.toLowerCase() === this.translateService.instant('status.error')) {
           return true;
         }
         break;
       }
-      case 'error': {
-        if (className.toLowerCase() === 'error') {
+      case this.translateService.instant('status.error'): {
+        if (className.toLowerCase() === this.translateService.instant('status.error')) {
           return true;
         }
         break;
       }
       case 'queued': {
-        if (className.toLowerCase() === 'process') {
+        if (className.toLowerCase() === this.translateService.instant('status.process')) {
           return true;
         }
         break;
       }
-      case 'planning': {
-        if (className.toLowerCase() === 'process') {
+      case this.translateService.instant('status.planning'): {
+        if (className.toLowerCase() === this.translateService.instant('status.process')) {
           return true;
         }
         break;
       }
-      case 'scheduled': {
-        if (className.toLowerCase() === 'process') {
+      case this.translateService.instant('status.scheduled'): {
+        if (className.toLowerCase() === this.translateService.instant('status.process')) {
           return true;
         }
         break;
       }
      default: {
-        if (className.toLowerCase() === 'process') {
+        if (className.toLowerCase() === this.translateService.instant('status.process')) {
           return true;
         }
         return false;
@@ -664,9 +665,9 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Shows the graph in services card
    */
   selectDisplayMode(type: string) {
-    if (type === 'list') {
+    if (type === this.translateService.instant('graph.typeList')) {
       this.showGraph = false;
-    } else if (type === 'graph') {
+    } else if (type === this.translateService.instant('graph.typeGraph')) {
       this.showGraph = true;
     }
   }
@@ -766,15 +767,15 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Returns the length of service instances group
    */
   countGroupServices() {
-      let counter = 0;
-      if (this.instance && this.instance.groups) {
-        this.instance.groups.forEach(group => {
-          counter += group.service_instances.length;
-        });
-        return counter;
-      } else {
-        return 0;
-      }
+    let counter = 0;
+    if (this.instance && this.instance.groups) {
+      this.instance.groups.forEach(group => {
+        counter += group.service_instances.length;
+      });
+      return counter;
+    } else {
+      return 0;
+    }
   }
 
   /**
