@@ -536,6 +536,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.searchTermGraph = '';
       this.quickFilter = '';
       this.isSearchingInGraph = false;
+      this.modalService.config.initialState['showOnlyNodes'] = false;
+      this.modalService.config.initialState['showRelatedNodes'] = false;
       this.toGraphData();
     }
   }
@@ -887,6 +889,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.setClusters(cluster, searchTermGraph);
       this.setRegisteredAndInstances(cluster, searchTermGraph);
     });
+    this.setRelatedNodes();
     this.graphDataLoaded = true;
   }
 
@@ -1014,9 +1017,30 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   private addNode(nodeName: string, node, searchTermGraph?: string) {
     if (!searchTermGraph
-        || (searchTermGraph && nodeName.includes(searchTermGraph))
-        || (searchTermGraph && !nodeName.includes(searchTermGraph) && !this.initialState.showOnlyNodes)) {
+        || (searchTermGraph && !nodeName.includes(searchTermGraph) && !this.initialState.showOnlyNodes)
+        || (searchTermGraph && nodeName.includes(searchTermGraph))) {
       this.graphData.nodes.push(node);
+    }
+  }
+
+  /**
+   * It set the related nodes when we apply the show related nodes filter
+   */
+  private setRelatedNodes() {
+    const relatedNodes = {};
+    if ((this.foundOccurrenceInCluster || this.foundOccurrenceInInstance || this.foundOccurrenceInCluster)
+        && this.initialState.showRelatedNodes) {
+      this.graphData.nodes
+        .map(node => {
+          this.searchGraphData.links[node.id].forEach(searchNode => {
+            relatedNodes[node.id] = this.searchGraphData.nodes[searchNode];
+          });
+        });
+      const uniqueNodes = {};
+      this.graphData.nodes.concat(Object.values(relatedNodes)).map(item => {
+        uniqueNodes[item.id] = item;
+      });
+      this.graphData.nodes = Object.values(uniqueNodes);
     }
   }
 
@@ -1195,6 +1219,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         showOnlyNodes: this.modalService.config.initialState['showOnlyNodes'],
         showRelatedNodes: this.modalService.config.initialState['showRelatedNodes']
       };
+      this.isSearchingInGraph = true;
       this.toGraphData(this.searchTermGraph);
     });
   }
