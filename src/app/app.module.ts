@@ -136,7 +136,8 @@ export function createTranslateLoader(http: HttpClient) {
     InstallAgentComponent,
     SimpleLogComponent,
     AgentJoinTokenInfoComponent,
-    DeviceGroupInfoComponent
+    DeviceGroupInfoComponent,
+    InstanceServiceGroupInfoComponent
   ],
   imports: [
     BrowserModule,

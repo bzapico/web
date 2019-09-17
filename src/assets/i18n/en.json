@@ -1,4 +1,16 @@
 {
+	"apps": {
+		"instance": {
+			"serviceGroupInfo": {
+				"appDescriptorId": "App descriptor ID",
+				"appInstanceId": "App instance ID",
+				"globalFqdn": "Global FQDN",
+				"policyName": "Policy name",
+				"status": "Status",
+				"title": "Instance service group info"
+			}
+		}
+	},
 	"devices": {
 		"addGroup": "Add group",
 		"contextMenu": {

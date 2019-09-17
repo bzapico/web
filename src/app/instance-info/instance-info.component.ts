@@ -10,6 +10,7 @@ import * as shape from 'd3-shape';
 import { ServiceInstancesInfoComponent } from '../service-instances-info/service-instances-info.component';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { TranslateService } from '@ngx-translate/core';
+import { InstanceServiceGroupInfoComponent } from '../instance-service-group-info/instance-service-group-info.component';
 
 @Component({
   selector: 'app-instance-info',
@@ -840,7 +841,23 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    *  @param group group object
    */
   openGroupServicesInfo(group) {
+    const initialState = {
+      organizationId: this.organizationId,
+      appDescriptorId: group.app_descriptor_id,
+      appInstanceId: group.app_instance_id,
+      policyName: group.policy_name,
+      name: group.name,
+      serviceGroupId: group.service_group_id,
+      serviceGroupInstanceId: group.service_group_instance_id,
+      serviceInstances: group.service_instances,
+      status: group.status_name,
+      globalFqdn: group.global_fqdn,
+      metadata: group.metadata
+    };
 
+    this.modalRef = this.modalService.show(InstanceServiceGroupInfoComponent,
+      { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
   }
 
   /**
