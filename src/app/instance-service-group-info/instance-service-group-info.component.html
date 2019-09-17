@@ -55,7 +55,17 @@
         <div class="col-sm modal-info-table-title mb-3">
           {{'apps.instance.serviceGroupInfo.globalFqdn'|translate}}
         </div>
-        <div class="col-sm text-right">{{globalFqdn}}</div>
+        <div class="col-sm text-right">
+          <span *ngFor="let endpoint of globalFqdn">
+              <a 
+                *ngIf="endpoint" 
+                href="{{getEndpointHref(endpoint)}}" 
+                target="_blank">
+                {{endpoint}}
+              </a>
+            </span>
+          <span *ngIf="!globalFqdn">No</span>
+        </div>
       </div>
       <br>
       <div class="row">

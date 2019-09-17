@@ -97,4 +97,18 @@ export class InstanceServiceGroupInfoComponent implements OnInit {
       }
     }
   }
+
+  /**
+   * Adds https in case of being required
+   * @param endpoint String containing the endpoint
+   */
+  getEndpointHref(endpoint: string) {
+    let URL = '';
+    if (!endpoint.startsWith('http') && !endpoint.startsWith('https')) {
+      URL = 'http://' + endpoint;
+    } else {
+      URL = endpoint;
+    }
+    return URL;
+  }
 }
