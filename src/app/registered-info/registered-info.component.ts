@@ -13,6 +13,7 @@ import { AppDescriptor } from '../definitions/interfaces/app-descriptor';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { ServiceInfoComponent } from '../service-info/service-info.component';
 import { RegisteredServiceGroupInfoComponent } from '../registered-service-group-info/registered-service-group-info.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registered-info',
@@ -144,7 +145,8 @@ export class RegisteredInfoComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.registeredInfoMock) || null;
     // Check which backend is required (fake or real)
@@ -241,7 +243,7 @@ export class RegisteredInfoComponent implements OnInit {
   addLabel(entity) {
     const initialState = {
       organizationId: this.organizationId,
-      entityType: 'app',
+      entityType: this.translateService.instant('apps.registered.app'),
       entity: entity,
       modalTitle: entity.name
     };
@@ -258,7 +260,7 @@ export class RegisteredInfoComponent implements OnInit {
    * @param entity selected label entity
    */
   deleteLabel(entity) {
-    const deleteConfirm = confirm('Delete labels?');
+    const deleteConfirm = confirm(this.translateService.instant('label.deleteLabels'));
     if (deleteConfirm) {
       const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.app_descriptor_id);
       this.backend.updateAppDescriptor(
@@ -342,14 +344,14 @@ export class RegisteredInfoComponent implements OnInit {
    * @param categoryName the name of the chosen category
    */
   setOrder(list: string, categoryName: string) {
-    if (list === 'services') {
+    if (list === this.translateService.instant('apps.instance.servicesList')) {
       if (this.sortedBy === categoryName) {
         this.reverse = !this.reverse;
         this.filterField = false;
       }
       this.sortedBy = categoryName;
       this.filterField = true;
-    } else if (list === 'rules') {
+    } else if (list === this.translateService.instant('apps.instance.rulesList')) {
       if (this.sortedByRules === categoryName) {
         this.reverseRules = !this.reverseRules;
         this.filterFieldRules = false;
@@ -363,11 +365,11 @@ export class RegisteredInfoComponent implements OnInit {
    * Reset all the filters fields
    */
   resetFilters(list: string) {
-    if (list === 'services') {
+    if (list === this.translateService.instant('apps.instance.servicesList')) {
       this.filterField = false;
       this.searchTerm = '';
       this.sortedBy = '';
-    } else if (list === 'rules') {
+    } else if (list === this.translateService.instant('apps.instance.rulesList')) {
       this.filterFieldRules = false;
       this.searchTermRules = '';
       this.sortedByRules = '';
@@ -379,24 +381,24 @@ export class RegisteredInfoComponent implements OnInit {
    * @param categoryName the class for the header category
    */
   getCategoryCSSClass(list: string, categoryName: string) {
-    if (list === 'rules') {
+    if (list === this.translateService.instant('apps.instance.rulesList')) {
       if (this.sortedByRules === '') {
-        return 'default';
+        return this.translateService.instant('devices.default');
       } else {
         if (this.sortedByRules === categoryName) {
-          return 'enabled';
+          return this.translateService.instant('devices.enabled');
         } else if (this.sortedByRules !== categoryName) {
-          return 'disabled';
+          return this.translateService.instant('devices.disabled');
         }
       }
-    } else if (list === 'services') {
+    } else if (list === this.translateService.instant('apps.instance.servicesList')) {
       if (this.sortedBy === '') {
-        return 'default';
+        return this.translateService.instant('devices.default');
       } else {
         if (this.sortedBy === categoryName) {
-          return 'enabled';
+          return this.translateService.instant('devices.enabled');
         } else if (this.sortedBy !== categoryName) {
-          return 'disabled';
+          return this.translateService.instant('devices.disabled');
         }
       }
     }
@@ -428,12 +430,13 @@ export class RegisteredInfoComponent implements OnInit {
    * @param app Application object
    */
   deleteApp(app) {
-    const deleteConfirm = confirm('Delete ' + app.name + '?');
+    const deleteConfirm = 
+    confirm(this.translateService.instant('apps.registered.deleteApp', { appName: app.name }));
     if (deleteConfirm) {
       this.backend.deleteRegistered(this.organizationId, app.app_descriptor_id)
         .subscribe(deleteResponse => {
           this.notificationsService.add({
-            message: 'Deleting ' + app.name,
+            message: this.translateService.instant('apps.registered.deleting', { appName: app.name }),
             timeout: 3000
           });
           this.router.navigate(['/applications']);
@@ -456,7 +459,8 @@ export class RegisteredInfoComponent implements OnInit {
       const nodeGroup = {
         id: group.service_group_id,
         label: group.name,
-        tooltip: 'GROUP: ' + group.name,
+        tooltip: this.translateService.instant('graph.group') 
+        + group.name,
         color: '#444',
         group: group.service_group_id
       };
@@ -465,7 +469,9 @@ export class RegisteredInfoComponent implements OnInit {
         const nodeService = {
           id: group.service_group_id + '-s-' + service.service_id,
           label: service.name,
-          tooltip: 'SERVICE: ' + service.name,
+          tooltip:  
+          this.translateService.instant('graph.service') 
+          + service.name,
           color: '#343434',
           group: group.service_group_id
         };
@@ -618,9 +624,9 @@ export class RegisteredInfoComponent implements OnInit {
    * Shows the graph in services card
    */
   selectDisplayMode(type: string) {
-    if (type === 'list') {
+    if (type === this.translateService.instant('graph.typeList')) {
       this.showGraph = false;
-    } else if (type === 'graph') {
+    } else if (type === this.translateService.instant('graph.typeGraph')) {
       this.showGraph = true;
     }
   }
@@ -675,7 +681,5 @@ export class RegisteredInfoComponent implements OnInit {
    this.groups.map(groupElement => {
     groupElement.isFirstOpen = (groupElement.id === group.id);
    });
-
   }
-
 }

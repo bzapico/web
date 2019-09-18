@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'instance-service-group-info',
@@ -28,7 +29,10 @@ export class InstanceServiceGroupInfoComponent implements OnInit {
    */
   loadedData: boolean;
 
-  constructor( public bsModalRef: BsModalRef ) {
+  constructor(
+    public bsModalRef: BsModalRef,
+    private translateService: TranslateService
+    ) {
     // Default initialization
     this.loadedData = false;
    }
@@ -53,11 +57,11 @@ export class InstanceServiceGroupInfoComponent implements OnInit {
    */
   getServiceStatusClass(status: string ) {
     switch (status.toLowerCase()) {
-      case 'service_running':
+      case this.translateService.instant('status.serviceRunning'):
         return 'teal';
-      case 'service_error':
+      case this.translateService.instant('status.serviceError'):
         return 'red';
-      case 'service_waiting':
+      case this.translateService.instant('status.serviceWaiting'):
         return 'yellow';
       default:
         return 'yellow';
@@ -71,26 +75,26 @@ export class InstanceServiceGroupInfoComponent implements OnInit {
    */
   classStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case 'service_running': {
-        if (className.toLowerCase() === 'service_running') {
+      case this.translateService.instant('status.serviceRunning'): {
+        if (className.toLowerCase() === this.translateService.instant('status.serviceRunning')) {
           return true;
         }
         break;
       }
-      case 'service_error': {
-        if (className.toLowerCase() === 'service_error') {
+      case this.translateService.instant('status.serviceError'): {
+        if (className.toLowerCase() === this.translateService.instant('status.serviceError')) {
           return true;
         }
         break;
       }
-      case 'service_waiting': {
-        if (className.toLowerCase() === 'service_waiting') {
+      case this.translateService.instant('status.serviceWaiting'): {
+        if (className.toLowerCase() === this.translateService.instant('status.serviceWaiting')) {
           return true;
         }
         break;
       }
      default: {
-        if (className.toLowerCase() === 'service_waiting') {
+        if (className.toLowerCase() === this.translateService.instant('status.serviceWaiting')) {
           return true;
         }
         return false;

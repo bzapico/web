@@ -3,9 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { InstanceServiceGroupInfoComponent } from './instance-service-group-info.component';
 import { BsModalRef, ButtonsModule, BsModalService } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { NgxGraphModule } from '@swimlane/ngx-graph';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
 import { TooltipModule } from '@swimlane/ngx-charts';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
@@ -22,10 +19,7 @@ describe('InstanceServiceGroupInfoComponent', () => {
       imports: [
         ButtonsModule,
         HttpClientTestingModule,
-        BrowserAnimationsModule,
         TooltipModule,
-        NgxGraphModule,
-        RouterTestingModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,

@@ -28,18 +28,18 @@
         <div class="reg-info-box">
           <div class="reg-info-id-box">
             <div class="reg-info mx-2">
-              <p class="reg-info-id text-left">ID</p>
+              <p class="reg-info-id text-left">{{'apps.instance.tableId'|translate}}</p>
               <p class="reg-info-id w-75">{{registeredData.app_descriptor_id}}</p>
             </div>
           </div>
           <div class="reg-info">
             <button (click)="deployRegistered(registeredData)" class="reg-deploy">
               <i class="material-icons i-options">play_arrow</i>
-              Deploy <span class="hide-reg-btn-text">instance</span> 
+              {{'apps.registered.deploy'|translate}} <span class="hide-reg-btn-text">{{'apps.registered.instance'|translate}}</span> 
             </button>
             <button (click)="deleteApp(registeredData)" class="reg-undeploy">
               <i class="material-icons i-options">delete</i>
-              Delete <span class="hide-reg-btn-text">app</span>
+              {{'apps.registered.delete'|translate}} <span class="hide-reg-btn-text">{{'apps.registered.app'|translate}}</span>
             </button>
           </div>
         </div>
@@ -47,24 +47,24 @@
       <!-- Services summary card -->
       <div class="card row-summary-app flex-grow-0">
         <div class="card-title-name">
-          <h5>SERVICES SUMMARY</h5>
+          <h5>{{'apps.registered.servicesSummary'|translate}}</h5>
         </div>
         <div *ngIf="registeredData.groups && registeredData.groups.length > 0" class="summary-card">
           <div class="summary-box">
             <div class="circle">
               <span>{{registeredData.groups.length}}</span>
             </div>
-            <p class="circle-name">GROUPS</p>
+            <p class="circle-name">{{'devices.summary.groups.title'|translate}}</p>
           </div>
           <div class="summary-box">
             <div class="circle">
               <span>{{getServicesCount(registeredData)}}</span>
             </div>
-            <p class="circle-name">SERVICES</p>
+            <p class="circle-name">{{'apps.instance.servicesTitle'|translate}}</p>
           </div>
         </div>
         <div *ngIf="!registeredData.groups || registeredData.groups.length === 0" class="no-elements">
-          No available registered apps detected
+          {{'apps.registered.noRegisteredApps'|translate}}
         </div>
       </div>
       <!-- Labels card-->
@@ -92,7 +92,7 @@
             <div 
               *ngIf="isAnyLabelSelected(registeredData.app_descriptor_id) === false" 
               (click)="addLabel(registeredData)"
-              tooltip="Add label" 
+              tooltip="{{'label.addLabel'|translate}}" 
               placement="right"
               class="label-btn-blue" >
               <i class="material-icons i-add">add</i>
@@ -100,7 +100,7 @@
             <div 
               *ngIf="isAnyLabelSelected(registeredData.app_descriptor_id) === true" 
               (click)="deleteLabel(registeredData)" 
-              tooltip="Delete label" 
+              tooltip="{{'label.deleteLabel'|translate}}"
               placement="right"
               class="label-btn-red">
               <i class="material-icons i-delete">delete</i>
@@ -112,7 +112,7 @@
               <div 
                 *ngIf="isAnyLabelSelected(registeredData.app_descriptor_id) === false" 
                 (click)="addLabel(registeredData)"
-                tooltip="Add label" 
+                tooltip="{{'label.addLabel'|translate}}" 
                 placement="right"
                 class="label-btn-blue">
                 <i class="material-icons i-add">add</i>
@@ -212,10 +212,11 @@
           </ngx-graph>
         </div>
         <div *ngIf="!graphReset" class="row mt-2 text-right mr-1">
-          <div class="col graph-subtext">
-            Scroll on graph to zoom. 
+          <div class="col graph-subtext"> 
             {{'graph.scroll'|translate}}
-            <a (click)="resetGraphZoom()" class="blue cursor-pointer">{{'sortingMessage.reset'|translate}}</a>
+            <a (click)="resetGraphZoom()" class="blue cursor-pointer">
+              {{'sortingMessage.reset'|translate}}
+            </a>
           </div>
         </div>
         <div *ngIf="!graphDataLoaded" class="loader"></div>
@@ -254,7 +255,7 @@
           registeredData.groups.length > 0" 
           class="row mb-3 hide-md-h">
           <!-- Sorting messages -->
-          <div class="col-9">
+          <div class="col-7">
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
               {{'sortingMessage.filteredBy'|translate:{value: searchTerm} }}
               <span (click)="resetFilters('services')" class="reset-search">
@@ -263,24 +264,24 @@
             </p>
             <p *ngIf="filterField && !searchTerm" class="sorting-message">
               {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-              <span *ngIf="reverse">ascendant. </span>
-              <span *ngIf="!reverse">descendant. </span>
+              <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: '. '} }} </span>
+              <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: '. '} }} </span>
               <span (click)="resetFilters('services')" class="reset-search">
                 {{'sortingMessage.reset'|translate}}
               </span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
               {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-              <span *ngIf="reverse">ascendant </span>
-              <span *ngIf="!reverse">descendant </span>
+              <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate }} </span>
+              <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate }} </span>
               {{'sortingMessage.andFilteredBy'|translate:{value: searchTerm} }}.
               <span (click)="resetFilters('services')" class="reset-search">
-                {{'sortingMessage.reset'|translate}}
+              {{'sortingMessage.reset'|translate}}
               </span>
             </p>
           </div>
           <!-- Search input -->
-          <div class="col-3">
+          <div class="col-5">
             <form>
               <div class="search-box">
                 <input 
@@ -317,7 +318,7 @@
                   <div class="accordion-btn">
                     <div    
                       (click)="openRegisteredServicesGroupInfo(group, $event)" 
-                      tooltip="Info" 
+                      tooltip="{{'apps.instance.tableInfo'|translate}}" 
                       placement="left">
                       <i class="material-icons info-icon">info</i>
                     </div>
@@ -325,7 +326,7 @@
                 </span>
                 <!-- No services to show -->
                 <div *ngIf="countGroupServices() === 0" class="no-elements-in-group">
-                  No available services in this group
+                  {{'apps.instance.noServicesInGroup'|translate}}
                 </div>
                 <!-- Services table -->
                 <div *ngIf=
@@ -342,9 +343,7 @@
                             (click)="setOrder('services','name')"
                             [ngClass]="getCategoryCSSClass('services','name')"
                             class="label-th col-5">
-                            <span tooltip="{{'apps.instance.tableName'|translate}}" placement="bottom">
                               {{'apps.instance.tableName'|translate}}
-                            </span>
                             <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                               <i class="material-icons">expand_more</i>
                             </span>
@@ -356,9 +355,7 @@
                             (click)="setOrder('services','image')"   
                             [ngClass]="getCategoryCSSClass('services','image')"
                             class="label-th col-6">
-                            <span tooltip="{{'apps.instance.tableImage'|translate}}" placement="bottom">
                               {{'apps.instance.tableImage'|translate}}
-                            </span>
                             <span *ngIf="sortedBy === 'image' && !reverse" class="expand-chevron">
                               <i class="material-icons">expand_more</i>
                             </span>
@@ -367,9 +364,7 @@
                             </span>
                           </div>
                           <div class="label-th col-1 text-center">
-                            <span tooltip="{{'apps.instance.tableInfo'|translate}}" placement="bottom">
-                              {{'apps.instance.tableInfo'|translate}}
-                            </span>
+                            {{'apps.instance.tableInfo'|translate}}
                           </div>
                       </div>
                       </div>
@@ -377,9 +372,7 @@
                         (click)="setOrder('services','labels')" 
                         [ngClass]="getCategoryCSSClass('services','labels')" 
                         class="label-th col-12">
-                        <span tooltip="{{'apps.instance.tableLabels'|translate}}" placement="bottom">
                           {{'apps.instance.tableLabels'|translate}}
-                        </span>
                         <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                           <i class="material-icons">expand_more</i>
                         </span>
@@ -404,7 +397,7 @@
                               <div class="col-1 label-td-flex text-center">
                                 <div    
                                   (click)="openServicesInfo(service)" 
-                                  tooltip="Info" 
+                                  tooltip="{{'apps.instance.tableInfo'|translate}}" 
                                   placement="left">
                                   <i class="material-icons info-icon">info</i>
                                 </div>
@@ -428,7 +421,7 @@
                 !requestError &&
                 registeredData.groups.length === 0" 
                 class="no-elements">
-                No available services
+                {{'apps.instance.noServices'|translate}}
               </div>
               <!-- Requested error -->
               <div *ngIf="loadedData && requestError" class="no-elements">
@@ -472,21 +465,21 @@
               <p *ngIf="searchTermRules && !filterFieldRules" class="sorting-message">
                 {{'sortingMessage.filteredBy'|translate:{value: searchTermRules} }}
                 <span (click)="resetFilters('rules')" class="reset-search">
-                    {{'sortingMessage.reset'|translate}}
+                  {{'sortingMessage.reset'|translate}}
                 </span>
               </p>
               <p *ngIf="filterFieldRules && !searchTermRules" class="sorting-message">
                 {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-                <span *ngIf="reverse">ascendant. </span>
-                <span *ngIf="!reverse">descendant. </span>
+                <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: '. '} }} </span>
+                <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: '. '} }} </span>
                 <span (click)="resetFilters('rules')" class="reset-search">
                   {{'sortingMessage.reset'|translate}}
                 </span>
               </p>
               <p *ngIf="filterFieldRules && searchTermRules" class="sorting-message">
                 {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-                <span *ngIf="reverse">ascendant </span>
-                <span *ngIf="!reverse">descendant </span>
+                <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: ', '} }} </span>
+                <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: ', '} }} </span>
                 {{'sortingMessage.andFilteredBy'|translate:{value: searchTerm} }}.
                 <span (click)="resetFilters('rules')" class="reset-search">
                   {{'sortingMessage.reset'|translate}}
@@ -541,7 +534,7 @@
                   [ngClass]="getCategoryCSSClass('rules','access')" 
                   class="label-th col-2">
                   <span tooltip="{{'apps.instance.tableAccess'|translate}}" placement="bottom">
-                      {{'apps.instance.tableAccess'|translate}}
+                    {{'apps.instance.tableAccess'|translate}}
                   </span> 
                   <span *ngIf="sortedByRules === 'access' && !reverseRules" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
@@ -591,7 +584,9 @@
                   </span>
                 </div>
                 <div class="label-th col-1">
-                  <span tooltip="Info" placement="bottom">Info</span>
+                  <span tooltip="{{'apps.instance.tableInfo'|translate}}" placement="bottom">
+                    {{'apps.instance.tableInfo'|translate}}
+                  </span>
                 </div>
               </div>
               <div *ngFor=
@@ -599,28 +594,28 @@
                 sortBy : sortedByRules : reverseRules : 'case-insensitive' |
                 filter : searchTermRules">
                 <div class="label-tbody row">
-                <div class="col-3 label-td"> 
-                  {{rule.name | truncate}}
-                </div>
-                <div class="col-2 label-td">{{rule.access_name}}</div>
-                <div class="col-3 label-td">
-                  {{rule.target_service_group_name}} - {{rule.target_service_name}} - {{rule.target_port}}
-                </div>
-                <div class="col-3 label-td">
-                  {{rule.auth_service_group_name}}
-                  <span *ngIf="rule.auth_services"> - </span>
-                  {{rule.auth_services}}
-                  <span *ngIf="rule.device_group_names"></span>
-                  {{rule.device_group_names}}
-                </div>
-                <div class="col-1 label-td-flex">
-                  <div    
-                    (click)="openRulesInfo(rule)"
-                    tooltip="Info" 
-                    placement="left">
-                    <i class="material-icons info-icon">info</i>
+                  <div class="col-3 label-td"> 
+                    {{rule.name | truncate}}
                   </div>
-                </div>
+                  <div class="col-2 label-td">{{rule.access_name}}</div>
+                  <div class="col-3 label-td">
+                    {{rule.target_service_group_name}} - {{rule.target_service_name}} - {{rule.target_port}}
+                  </div>
+                  <div class="col-3 label-td">
+                    {{rule.auth_service_group_name}}
+                    <span *ngIf="rule.auth_services"> - </span>
+                    {{rule.auth_services}}
+                    <span *ngIf="rule.device_group_names"></span>
+                    {{rule.device_group_names}}
+                  </div>
+                  <div class="col-1 label-td-flex">
+                    <div    
+                      (click)="openRulesInfo(rule)"
+                      tooltip="{{'apps.instance.tableInfo'|translate}}" 
+                      placement="left">
+                      <i class="material-icons info-icon">info</i>
+                    </div>
+                  </div>
                 </div>
               </div>
               <!-- No info to show -->

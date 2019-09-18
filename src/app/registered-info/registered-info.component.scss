@@ -201,8 +201,7 @@ $super-light-grey: #F8F8F8;
 
 /* - - -  Accordion table - - - */
 .search-box {
-    width: 237px;
-    margin-right: 1em;
+    margin-right: 0;
 }
 .show-graph-icons {
     cursor: pointer;
@@ -212,14 +211,14 @@ $super-light-grey: #F8F8F8;
     margin-right: 11px;
 }
 .info-icon {
-    font-size: 26px;
+    font-size: 30px;
 }
 .accordion-box 
 .accordion-tabs 
 .nalejAccordion 
 .accordion-icons-box 
 .accordion-btn {
-    top: 4px;
+    top: 7px;
     right: 36px;
 }
 .label-tbody {

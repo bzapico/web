@@ -266,9 +266,9 @@
                                   class="col-4 label-td col-center-lowercase"
                                   [ngClass]=
                                   "{
-                                    'status-dot':classStatusCheck(device.device_status_name, 'ONLINE'),
-                                    'status-dot-error':classStatusCheck(device.device_status_name, 'OFFLINE'),
-                                    'status-dot-process':classStatusCheck(device.device_status_name, 'PROCESS')
+                                    'status-dot':classStatusCheck(device.device_status_name, 'status.online'|translate),
+                                    'status-dot-error':classStatusCheck(device.device_status_name, 'status.offline'|translate),
+                                    'status-dot-process':classStatusCheck(device.device_status_name, 'status.process'|translate)
                                   }"> 
                                   <span 
                                     tooltip="{{device.device_status_name}}" 

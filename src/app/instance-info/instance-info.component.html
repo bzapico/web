@@ -35,9 +35,9 @@
                       *ngIf="instance && instance.status_name"
                       [ngClass]=
                         "{
-                          'big-status-dot':classInstanceStatusCheck(instance.status_name, 'running'),
-                          'big-status-dot-error':classInstanceStatusCheck(instance.status_name, 'error'),
-                          'big-status-dot-process':classInstanceStatusCheck(instance.status_name, 'process')
+                          'big-status-dot':classInstanceStatusCheck(instance.status_name, 'status.running'|translate),
+                          'big-status-dot-error':classInstanceStatusCheck(instance.status_name, 'status.error'|translate),
+                          'big-status-dot-process':classInstanceStatusCheck(instance.status_name, 'status.process'|translate)
                         }"
                       tooltip="{{instance.status_name}}" 
                       placement="bottom"
@@ -235,7 +235,7 @@
           instance.groups.length > 0"
           class="row mb-3 hide-md-h">
           <!-- Sorting messages -->
-          <div class="col-9">
+          <div class="col-7">
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
               {{'sortingMessage.filteredBy'|translate:{value: searchTerm} }}
               <span (click)="resetFilters('services')" class="reset-search">
@@ -244,24 +244,24 @@
             </p>
             <p *ngIf="filterField && !searchTerm" class="sorting-message">
               {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-              <span *ngIf="reverse">ascendant. </span>
-              <span *ngIf="!reverse">descendant. </span>
+              <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: '. '} }} </span>
+              <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: '. '} }} </span>
               <span (click)="resetFilters('services')" class="reset-search">
                 {{'sortingMessage.reset'|translate}}
               </span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
               {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-              <span *ngIf="reverse">ascendant </span>
-              <span *ngIf="!reverse">descendant </span>
+              <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate}} </span>
+              <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate }} </span>
               {{'sortingMessage.andFilteredBy'|translate:{value: searchTerm} }}.
               <span (click)="resetFilters('services')" class="reset-search">
-                {{'sortingMessage.reset'|translate}}
+              {{'sortingMessage.reset'|translate}}
               </span>
             </p>
           </div>
           <!-- Search input -->
-          <div class="col-3">
+          <div class="col-5">
             <form>
               <div class="search-box">
                 <input 
@@ -321,9 +321,7 @@
                         (click)="setOrder('services','name')"
                         [ngClass]="getCategoryCSSClass('services','name')"
                         class="label-th col-1">
-                        <span tooltip="{{'apps.instance.tableName'|translate}}" placement="bottom">
                           {{'apps.instance.tableName'|translate}}
-                        </span>
                         <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                           <i class="material-icons">expand_more</i>
                         </span>
@@ -335,9 +333,7 @@
                         (click)="setOrder('services','replicas')"   
                         [ngClass]="getCategoryCSSClass('services','replicas')"
                         class="label-th text-center col-2">
-                        <span tooltip="{{'apps.instance.tableReplicas'|translate}}" placement="bottom">
                           {{'apps.instance.tableReplicas'|translate}}
-                        </span>
                         <span *ngIf="sortedBy === 'replicas' && !reverse" class="expand-chevron">
                           <i class="material-icons">expand_more</i>
                         </span>
@@ -349,9 +345,7 @@
                         (click)="setOrder('services','status')" 
                         [ngClass]="getCategoryCSSClass('services','status')"
                         class="label-th text-center col-2">
-                        <span tooltip="{{'apps.instance.tableStatus'|translate}}" placement="bottom">
                           {{'apps.instance.tableStatus'|translate}}
-                        </span>
                         <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
                           <i class="material-icons">expand_more</i>
                         </span>
@@ -363,9 +357,7 @@
                         (click)="setOrder('services','endpoints')" 
                         [ngClass]="getCategoryCSSClass('services','endpoints')" 
                         class="label-th col-6">
-                        <span tooltip="{{'apps.instance.tableEndpoints'|translate}}" placement="bottom">
                           {{'apps.instance.tableEndpoints'|translate}}
-                        </span>
                         <span *ngIf="sortedBy === 'endpoints' && !reverse" class="expand-chevron">
                           <i class="material-icons">expand_more</i>
                         </span>
@@ -374,9 +366,7 @@
                         </span>
                       </div>
                       <div class="label-th col-1 text-center">
-                        <span tooltip="{{'apps.instance.tableInfo'|translate}}" placement="bottom">
-                          {{'apps.instance.tableInfo'|translate}}
-                        </span>
+                        {{'apps.instance.tableInfo'|translate}}
                       </div>
                     </div>
                   </div>
@@ -395,9 +385,9 @@
                         <span 
                           [ngClass]=
                             "{
-                              'status-dot': classStatusCheck(service.status_name, 'service_running'),
-                              'status-dot-error': classStatusCheck(service.status_name, 'service_error'),
-                              'status-dot-process': classStatusCheck(service.status_name, 'service_waiting')
+                              'status-dot': classStatusCheck(service.status_name, 'status.serviceRunning'|translate),
+                              'status-dot-error': classStatusCheck(service.status_name, 'status.serviceError'|translate),
+                              'status-dot-process': classStatusCheck(service.status_name, 'status.serviceWaiting'|translate)
                             }"
                           tooltip="{{service.status_name}}" 
                           placement="bottom"
@@ -484,16 +474,16 @@
                 </p>
                 <p *ngIf="filterFieldRules && !searchTermRules" class="sorting-message">
                   {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-                  <span *ngIf="reverse">ascendant. </span>
-                  <span *ngIf="!reverse">descendant. </span>
+                  <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: '. '} }} </span>
+                  <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: '. '} }} </span>
                   <span (click)="resetFilters('rules')" class="reset-search">
                     {{'sortingMessage.reset'|translate}}
                   </span>
                 </p>
                 <p *ngIf="filterFieldRules && searchTermRules" class="sorting-message">
                   {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-                  <span *ngIf="reverse">ascendant </span>
-                  <span *ngIf="!reverse">descendant </span>
+                  <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: ', '} }} </span>
+                  <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: ', '} }} </span>
                   {{'sortingMessage.andFilteredBy'|translate:{value: searchTerm} }}.
                   <span (click)="resetFilters('rules')" class="reset-search">
                     {{'sortingMessage.reset'|translate}}

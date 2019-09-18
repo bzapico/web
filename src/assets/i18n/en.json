@@ -49,9 +49,17 @@
 			"undeployMessage": " undeployed"
 		},
 		"registered": {
+			"app": "app",
+			"delete": "Delete",
+			"deleteApp": "Delete {{appName}}?",
+			"deleting": "Deleting {{appName}}",
+			"deploy": "Deploy",
+			"instance": "instance",
+			"noRegisteredApps": "No available registered apps detected",
 			"serviceGroupInfo": {
 				"title": "Registered service group info"
-			}
+			},
+			"servicesSummary": "SERVICES SUMMARY"
 		}
 	},
 	"devices": {
@@ -100,7 +108,7 @@
 	"graph": {
 		"autoRefresh": "Auto refresh every 5 seconds. Scroll on graph to zoom.",
 		"group": "GROUP ",
-		"scroll": "",
+		"scroll": "Scroll on graph to zoom.",
 		"service": "SERVICE ",
 		"title": "Graph",
 		"typeGraph": "graph",
@@ -185,8 +193,10 @@
 	},
 	"label": {
 		"add": "add",
+		"addLabel": "Add label",
 		"delete": "delete",
-		"deleteLabels": "Delete label?",
+		"deleteLabel": "Delete label",
+		"deleteLabels": "Delete labels?",
 		"entityTypeDevice": "device",
 		"noLabels": "No labels",
 		"title": "LABELS"

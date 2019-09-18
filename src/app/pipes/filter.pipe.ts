@@ -15,7 +15,7 @@ export class FilterPipe implements PipeTransform {
     items: Array<{ [key: string]: any }>,
     term: string,
     propertiesToFilterBy?: string[],
-    callback?: () => {}
+    callback?: any
     ): Array<{ [key: string]: any}> {
 
     const toCompare = term.toLowerCase();
@@ -25,17 +25,17 @@ export class FilterPipe implements PipeTransform {
           if (item[property] instanceof Object) {
             if (JSON.stringify(item[property]).toLowerCase().includes(toCompare)) {
               console.log('filter 2');
-              if (callback) {
+              if (typeof callback === 'function') {
                 console.log('filter 2');
-                callback();
+                return callback();
               }
               return true;
             }
            } else if (item[property].toString().toLowerCase().includes(toCompare)) {
             console.log('filter 1');
-            if (callback) {
+            if (typeof callback === 'function') {
                console.log('filter 1');
-               callback();
+               return callback();
              }
             return true;
           }
@@ -48,18 +48,18 @@ export class FilterPipe implements PipeTransform {
           if (item[property] instanceof Object) {
             if (JSON.stringify(item[property]).toLowerCase().includes(toCompare)) {
               console.log('filter 3');
-              if (callback) {
+              if (typeof callback === 'function') {
                 console.log('filter 3');
-                callback();
+                return callback();
               }
               return true;
             }
            } else if (item[property].toString().toLowerCase().includes(toCompare)) {
             console.log('filter 4 ', typeof callback);
             callback();
-            if (callback) {
+            if (typeof callback === 'function') {
               console.log('filter 4');
-              callback();
+              return callback();
             }
             return true;
           }
@@ -74,9 +74,18 @@ export class FilterPipe implements PipeTransform {
    * @param term term's search
    * @param propertiesToFilterBy key to be filtered by
    */
-  transform(items: any, term: string, propertiesToFilterBy?: string[]): any {
+  transform(
+    items: any,
+    term: string,
+    propertiesToFilterBy?: string[],
+    callback?: any
+    ): any {
     if (!term || !items) { return items; }
     if (propertiesToFilterBy) {
+      if (typeof callback === 'function') {
+        console.log('filter 5');
+        return callback();
+      }
       return FilterPipe.filter(items, term, propertiesToFilterBy);
     } else {
       return FilterPipe.filter(items, term);
