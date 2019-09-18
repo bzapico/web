@@ -709,7 +709,8 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Open group services info modal window
    *  @param group group object
    */
-  openGroupServicesInfo(group) {
+  openGroupServicesInfo(group, event) {
+    event.stopPropagation();
     const initialState = {
       organizationId: this.organizationId,
       appDescriptorId: group.app_descriptor_id,

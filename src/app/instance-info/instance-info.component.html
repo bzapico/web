@@ -252,8 +252,8 @@
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
               {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-              <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate}} </span>
-              <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate }} </span>
+              <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: ' '} }} </span>
+              <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: ' '} }} </span>
               {{'sortingMessage.andFilteredBy'|translate:{value: searchTerm} }}.
               <span (click)="resetFilters('services')" class="reset-search">
               {{'sortingMessage.reset'|translate}}
@@ -298,7 +298,7 @@
                   <i class="material-icons accordion-arrow">arrow_drop_down</i>
                   <div class="accordion-btn">
                     <div    
-                      (click)="openGroupServicesInfo(group)" 
+                      (click)="openGroupServicesInfo(group, $event)" 
                       tooltip="Info" 
                       placement="left">
                       <i class="material-icons info-icon">info</i>

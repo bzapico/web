@@ -272,8 +272,8 @@
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
               {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-              <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate }} </span>
-              <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate }} </span>
+              <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: ' '} }} </span>
+              <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: ' '} }} </span>
               {{'sortingMessage.andFilteredBy'|translate:{value: searchTerm} }}.
               <span (click)="resetFilters('services')" class="reset-search">
               {{'sortingMessage.reset'|translate}}
@@ -384,7 +384,7 @@
                     <div *ngFor=
                       "let service of getGroupServices(group.service_group_id) |
                       sortBy : sortedBy : reverse : 'case-insensitive' |
-                      filter : searchTerm: updateFilteredGroup(group, searchTerm)">
+                      filter : searchTerm">
                       <div class="label-tbody row">
                         <div class="col-12">
                           <div class="row">

@@ -674,12 +674,4 @@ export class RegisteredInfoComponent implements OnInit {
       { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
-
-  updateFilteredGroup(group, searchTerm) {
-   console.log('group', group);
-   console.log('search', searchTerm);
-   this.groups.map(groupElement => {
-    groupElement.isFirstOpen = (groupElement.id === group.id);
-   });
-  }
 }
