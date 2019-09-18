@@ -852,7 +852,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   searchInGraph() {
     this.isSearchingInGraph = true;
-    this.toGraphData(this.searchTermGraph);
+    if (Object.values(this.searchGraphData.nodes)
+          .filter(node => node.label.toLowerCase().includes(this.searchTermGraph.toLowerCase())).length > 0) {
+      this.toGraphData(this.searchTermGraph);
+    }
     this.occurrencesGraphCounter();
   }
 
@@ -1030,7 +1033,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   private setRelatedNodes() {
     const relatedNodes = {};
-    if ((this.foundOccurrenceInCluster || this.foundOccurrenceInInstance || this.foundOccurrenceInCluster)
+    if ((this.foundOccurrenceInCluster || this.foundOccurrenceInInstance || this.foundOccurrenceInRegistered)
         && this.initialState.showRelatedNodes) {
       this.graphData.nodes
         .map(node => {
