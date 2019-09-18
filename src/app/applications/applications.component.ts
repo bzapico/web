@@ -537,6 +537,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.searchTermGraph = '';
       this.quickFilter = '';
       this.isSearchingInGraph = false;
+      this.modalService.config.initialState['defaultFilter'] = true;
       this.modalService.config.initialState['showOnlyNodes'] = false;
       this.modalService.config.initialState['showRelatedNodes'] = false;
       this.toGraphData();
@@ -1203,19 +1204,14 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   openAdvancedFilterOptions() {
     if (this.modalService.config.initialState
-        && typeof this.modalService.config.initialState['showOnlyNodes'] !== undefined
-        && typeof this.modalService.config.initialState['showRelatedNodes'] !== undefined
-        && typeof this.modalService.config.initialState['defaultFilter'] !== undefined) {
-      this.initialState = {
-        showOnlyNodes: this.modalService.config.initialState['showOnlyNodes'],
-        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes'],
-        defaultFilter: this.modalService.config.initialState['defaultFilter']
-      };
+        && typeof this.modalService.config.initialState['showOnlyNodes'] === 'undefined'
+        && typeof this.modalService.config.initialState['showRelatedNodes'] === 'undefined'
+        && typeof this.modalService.config.initialState['defaultFilter'] === 'undefined') {
+      this.modalService.config.initialState['showOnlyNodes'] = this.initialState.showOnlyNodes;
+      this.modalService.config.initialState['showRelatedNodes'] = this.initialState.showRelatedNodes;
+      this.modalService.config.initialState['defaultFilter'] = this.initialState.defaultFilter;
     }
-    this.modalRef =
-        this.modalService
-            .show(AdvancedFilterOptionsComponent,
-                {initialState: this.initialState, backdrop: 'static', ignoreBackdropClick: false});
+    this.modalRef = this.modalService.show(AdvancedFilterOptionsComponent,{backdrop: 'static', ignoreBackdropClick: false});
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe(() => {
       this.initialState = {
@@ -1223,6 +1219,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         showRelatedNodes: this.modalService.config.initialState['showRelatedNodes'],
         defaultFilter: this.modalService.config.initialState['defaultFilter']
       };
+      if (this.initialState.showRelatedNodes) {
+        this.initialState.showOnlyNodes = true;
+      }
       this.isSearchingInGraph = true;
       this.toGraphData(this.searchTermGraph);
     });

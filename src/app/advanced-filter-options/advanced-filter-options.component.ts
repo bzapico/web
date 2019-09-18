@@ -21,17 +21,12 @@ export class AdvancedFilterOptionsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.showOnlyNodes = this.bsModalService.config.initialState['showOnlyNodes'] || false;
-    this.showRelatedNodes = this.bsModalService.config.initialState['showRelatedNodes'] || false;
-    this.defaultFilter = this.bsModalService.config.initialState['defaultFilter'] || true;
+    this.showOnlyNodes = this.bsModalService.config.initialState['showOnlyNodes'];
+    this.showRelatedNodes = this.bsModalService.config.initialState['showRelatedNodes'];
+    this.defaultFilter = this.bsModalService.config.initialState['defaultFilter'];
   }
 
   saveChanges() {
-    console.log('this.showOnlyNodes', this.showOnlyNodes);
-    console.log('this.showRelatedNodes', this.showRelatedNodes);
-    console.log('this.defaultFilter', this.defaultFilter);
-
-
     this.bsModalService.config.initialState['showOnlyNodes'] = this.showOnlyNodes;
     this.bsModalService.config.initialState['showRelatedNodes'] = this.showRelatedNodes;
     this.bsModalService.config.initialState['defaultFilter'] = this.defaultFilter;
