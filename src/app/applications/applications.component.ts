@@ -1211,7 +1211,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.modalService.config.initialState['showRelatedNodes'] = this.initialState.showRelatedNodes;
       this.modalService.config.initialState['defaultFilter'] = this.initialState.defaultFilter;
     }
-    this.modalRef = this.modalService.show(AdvancedFilterOptionsComponent,{backdrop: 'static', ignoreBackdropClick: false});
+    this.modalRef = this.modalService.show(AdvancedFilterOptionsComponent, { backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe(() => {
       this.initialState = {
