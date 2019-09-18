@@ -242,7 +242,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   foundOccurrenceInRegistered: boolean;
   initialState = {
     showOnlyNodes: false,
-    showRelatedNodes: false
+    showRelatedNodes: false,
+    defaultFilter: true
   };
 
   constructor(
@@ -1203,10 +1204,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   openAdvancedFilterOptions() {
     if (this.modalService.config.initialState
         && typeof this.modalService.config.initialState['showOnlyNodes'] !== undefined
-        && typeof this.modalService.config.initialState['showRelatedNodes'] !== undefined) {
+        && typeof this.modalService.config.initialState['showRelatedNodes'] !== undefined
+        && typeof this.modalService.config.initialState['defaultFilter'] !== undefined) {
       this.initialState = {
         showOnlyNodes: this.modalService.config.initialState['showOnlyNodes'],
-        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes']
+        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes'],
+        defaultFilter: this.modalService.config.initialState['defaultFilter']
       };
     }
     this.modalRef =
@@ -1217,7 +1220,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.modalService.onHide.subscribe(() => {
       this.initialState = {
         showOnlyNodes: this.modalService.config.initialState['showOnlyNodes'],
-        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes']
+        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes'],
+        defaultFilter: this.modalService.config.initialState['defaultFilter']
       };
       this.isSearchingInGraph = true;
       this.toGraphData(this.searchTermGraph);

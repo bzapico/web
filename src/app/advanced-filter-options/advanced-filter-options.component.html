@@ -15,41 +15,58 @@
       <div class="modal-body">
         <!-- Option checkboxes -->
         <div class="check-options">
+          <p class="grey">{{'advancedFilterOptions.noFilters'|translate}} {{defaultFilter}}</p>
+          
+          <div class="radio-btn-box">
+            <span 
+              *ngIf="!defaultFilter"
+              (click)="changeFilterOption('defaultFilter')"
+              class="devices-checkbox">
+              <i class="material-icons grey">radio_button_unchecked</i>
+            </span>
+            <span 
+              *ngIf="defaultFilter"
+              (click)="changeFilterOption('defaultFilter')"
+              class="devices-checkbox">
+              <i class="material-icons blue">radio_button_checked</i>
+            </span>
+          </div>
+
+          <br>
           <p class="grey">{{'advancedFilterOptions.showNodes'|translate}}</p>
 
-          <div class="add-dev-checkbox">
+          <div class="radio-btn-box">
             <span 
               *ngIf="!showOnlyNodes"
-              (click)="showOnlyNodes = true"
+              (click)="changeFilterOption('showOnlyNodes')"
               class="devices-checkbox">
-              <i class="material-icons grey">check_box_outline_blank</i>
+              <i class="material-icons grey">radio_button_unchecked</i>
             </span>
             <span 
               *ngIf="showOnlyNodes"
-              (click)="showOnlyNodes = false"
+              (click)="changeFilterOption('showOnlyNodes')"
               class="devices-checkbox">
-              <i class="material-icons blue">check_box</i>
+              <i class="material-icons blue">radio_button_checked</i>
             </span>
           </div>
 
           <br>
           <p class="grey">{{'advancedFilterOptions.showRelatedNodes'|translate}}</p>
 
-          <div class="add-dev-checkbox">
+          <div class="radio-btn-box">
             <span 
               *ngIf="!showRelatedNodes"
-              (click)="showRelatedNodes = true"
+              (click)="changeFilterOption('showRelatedNodes')"
               class="devices-checkbox">
-              <i class="material-icons grey">check_box_outline_blank</i>
+              <i class="material-icons grey">radio_button_unchecked</i>
             </span>
             <span 
               *ngIf="showRelatedNodes"
-              (click)="showRelatedNodes = false"
+              (click)="changeFilterOption('showRelatedNodes')"
               class="devices-checkbox">
-              <i class="material-icons blue">check_box</i>
+              <i class="material-icons blue">radio_button_checked</i>
             </span>
           </div>
-
         </div>
         <div class="form-group-btn">
           <button
