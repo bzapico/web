@@ -280,7 +280,6 @@
             </form>
           </div>
         </div>
-
         <!-- Services tabs -->
         <div class="row h-100">
           <div class="col accordion-box">
@@ -469,7 +468,7 @@
                 <p *ngIf="searchTermRules && !filterFieldRules" class="sorting-message">
                   {{'sortingMessage.filteredBy'|translate:{value: searchTermRules} }}
                   <span (click)="resetFilters('rules')" class="reset-search">
-                      {{'sortingMessage.reset'|translate}}
+                    {{'sortingMessage.reset'|translate}}
                   </span>
                 </p>
                 <p *ngIf="filterFieldRules && !searchTermRules" class="sorting-message">
@@ -587,7 +586,7 @@
                       <i class="material-icons">expand_less</i>
                     </span>
                   </div>
-                  <div class="label-th col-1">
+                  <div class="label-th col-1 text-center">
                     <span tooltip="Info" placement="bottom">Info</span>
                   </div>
                 </div>

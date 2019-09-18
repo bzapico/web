@@ -236,99 +236,13 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.refreshIntervalRef = null;
   }
 
-  /**
-   * Request the list of registered apps and updates the instance info
-   */
-  updateInfo() {
-    this.backend.getRegisteredApps(this.organizationId)
-      .subscribe(registeredAppsResponse => {
-        this.registered = registeredAppsResponse.descriptors;
-      });
-    this.updateInstanceInfo(this.organizationId);
-  }
 
-  /**
-   * Transforms the data needed to create the graph
-   * @param instance instance object
-   */
-  toGraphData(instance) {
-    this.graphData = {
-      nodes: [],
-      links: []
-    };
-    if (instance && instance.groups) {
-      instance.groups.forEach(group => {
-        const nodeGroup = {
-          id: group.service_group_instance_id,
-          label: group.name,
-          tooltip: this.translateService.instant('graph.group')
-          + group.name
-          + ': '
-          + this.getBeautyStatusName(group.status_name),
-          color: this.getNodeColor(group.status_name),
-          text: this.getNodeTextColor(group.status_name),
-          group: group.service_group_instance_id
-        };
-        this.graphData.nodes.push(nodeGroup);
-        group.service_instances.forEach(service => {
-          const nodeService = {
-            id: group.service_group_instance_id + '-s-' + service.service_id,
-            label: service.name,
-            tooltip:
-            this.translateService.instant('graph.service')
-            + service.name
-            + ': ' + this.getBeautyStatusName(service.status_name),
-            color: this.getNodeColor(service.status_name),
-            text: this.getNodeTextColor(group.status_name),
-            group: group.service_group_instance_id
-          };
-          this.graphData.nodes.push(nodeService);
-          this.graphData.links.push({
-            source: group.service_group_instance_id,
-            target: group.service_group_instance_id + '-s-' + service.service_id
-          });
-        });
-
-      });
-    }
-
-    if (instance.rules) {
-      instance.rules.forEach(rule => {
-        if (rule.auth_services) {
-          rule.auth_services.forEach(authService => {
-            const targetsIndex: number[] = [];
-            for (let index = 0; index < this.graphData.nodes.length; index++) {
-              if (this.graphData.nodes[index].label === rule.target_service_name) {
-                targetsIndex.push(index);
-              }
-            }
-            const sourcesIndex: number[] = [];
-            for (let index = 0; index < this.graphData.nodes.length; index++) {
-              if (this.graphData.nodes[index].label === authService) {
-                sourcesIndex.push(index);
-              }
-            }
-            sourcesIndex.forEach(indexSource => {
-              targetsIndex.forEach(indexTarget => {
-                const link = {
-                  source: this.graphData.nodes[indexSource].id,
-                  target: this.graphData.nodes[indexTarget].id,
-                };
-                this.graphData.links.push(link);
-              });
-            });
-          });
-        }
-      });
-    }
-    this.graphDataLoaded = true;
-  }
 
   /**
    * Get arrow color depending on node source color
    * @param sourceId Link source identifier
    */
-  getArrowColor (sourceId: string): string {
+  getArrowColor(sourceId: string): string {
     const index = this.graphData.nodes.map(x => x.id).indexOf(sourceId);
     if (index !== -1) {
       return this.graphData.nodes[index].color;
@@ -435,79 +349,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Requests an updated list of available services group to update the current one
-   * @param organizationId Organization identifier
-   */
-  updateInstanceInfo(organizationId: string) {
-    if (organizationId !== null) {
-      // Requests an updated services group list
-      this.backend.getAppInstance(this.organizationId,  this.instanceId)
-      .subscribe(instance => {
-          if (this.anyChanges(this.instance, instance)) {
-            this.instance = instance;
-            this.groups = instance.groups || [];
-            this.toGraphData(instance);
-            if (!this.loadedData) {
-              this.loadedData = true;
-            }
-          }
-      }, errorResponse => {
-          this.loadedData = true;
-          this.requestError = errorResponse.error.message;
-        });
-    }
-  }
-
-  /**
-   * Compares the status of each instance service to determine if there are changes in the instances
-   * @param instanceOutdated Outdated instance object
-   * @param instanceUpdated Updated instance object
-   */
-  anyChanges(instanceOutdated, instanceUpdated) {
-    let anyChanges = false;
-    const instanceOutdatedServices = [];
-    const instanceUpdatedServices = [];
-    if (!instanceOutdated ||
-        !instanceOutdated.groups ||
-        !instanceUpdated ||
-        !instanceUpdated.groups ||
-        (instanceOutdated.groups.length !== instanceUpdated.groups.length)) {
-      return true;
-    }
-    // Creating arrays of services to compare
-    instanceOutdated.groups.forEach(group => {
-      group.service_instances.forEach(service => {
-        instanceOutdatedServices.push({
-            id: group.service_group_instance_id + service.service_instance_id,
-            status: service.status_name
-          });
-      });
-    });
-    instanceUpdated.groups.forEach(group => {
-      group.service_instances.forEach(service => {
-        instanceUpdatedServices.push({
-            id: group.service_group_instance_id + service.service_instance_id,
-            status: service.status_name
-          });
-      });
-    });
-
-    // Check if there is any difference in the status
-    instanceOutdatedServices.forEach(service => {
-      const index = instanceUpdatedServices.map(x => x.id).indexOf(service.id);
-      if (index !== -1) {
-        if (instanceUpdatedServices[index].status !== service.status) {
-          anyChanges = true;
-        }
-      } else {
-        anyChanges = true;
-      }
-    });
-
-    return anyChanges;
-  }
-
-  /**
    * Returns the descriptor beauty name
    * @param descriptorId Descriptor identifier
    */
@@ -563,7 +404,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     }
   }
 
-    /**
+  /**
    * Checks if the status requires an special css class
    * @param status  status name
    * @param className CSS class name
@@ -752,16 +593,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
 
     this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-
-  }
-
-  /**
-   * Return the last specified number of chars of an string
-   * @param numberOfChars number of chars to be returned
-   * @param text text to substring
-   */
-  getLastChars(numberOfChars: number, text: string) {
-    return text.substr(text.length - numberOfChars, numberOfChars);
   }
 
   /**
@@ -813,7 +644,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Filters the backend incoming status to display it in removing the initial "service_"
    * @param rawStatus string containing the status that the backend is sending
    */
-  getBeautyStatusName (rawStatus: string): string {
+  getBeautyStatusName(rawStatus: string): string {
     if (rawStatus.toLowerCase().startsWith('service_')) {
       return rawStatus.substring('service_'.length, rawStatus.length);
     }
@@ -844,5 +675,166 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.graphReset = false;
     }, 1);
+  }
+    /**
+   * Request the list of registered apps and updates the instance info
+   */
+  private updateInfo() {
+    this.backend.getRegisteredApps(this.organizationId)
+      .subscribe(registeredAppsResponse => {
+        this.registered = registeredAppsResponse.descriptors;
+      });
+    this.updateInstanceInfo(this.organizationId);
+  }
+
+  /**
+   * Transforms the data needed to create the graph
+   * @param instance instance object
+   */
+  private toGraphData(instance) {
+    this.graphData = {
+      nodes: [],
+      links: []
+    };
+    if (instance && instance.groups) {
+      instance.groups.forEach(group => {
+        const nodeGroup = {
+          id: group.service_group_instance_id,
+          label: group.name,
+          tooltip: this.translateService.instant('graph.group')
+          + group.name
+          + ': '
+          + this.getBeautyStatusName(group.status_name),
+          color: this.getNodeColor(group.status_name),
+          text: this.getNodeTextColor(group.status_name),
+          group: group.service_group_instance_id
+        };
+        this.graphData.nodes.push(nodeGroup);
+        group.service_instances.forEach(service => {
+          const nodeService = {
+            id: group.service_group_instance_id + '-s-' + service.service_id,
+            label: service.name,
+            tooltip:
+            this.translateService.instant('graph.service')
+            + service.name
+            + ': ' + this.getBeautyStatusName(service.status_name),
+            color: this.getNodeColor(service.status_name),
+            text: this.getNodeTextColor(group.status_name),
+            group: group.service_group_instance_id
+          };
+          this.graphData.nodes.push(nodeService);
+          this.graphData.links.push({
+            source: group.service_group_instance_id,
+            target: group.service_group_instance_id + '-s-' + service.service_id
+          });
+        });
+
+      });
+    }
+
+    if (instance.rules) {
+      instance.rules.forEach(rule => {
+        if (rule.auth_services) {
+          rule.auth_services.forEach(authService => {
+            const targetsIndex: number[] = [];
+            for (let index = 0; index < this.graphData.nodes.length; index++) {
+              if (this.graphData.nodes[index].label === rule.target_service_name) {
+                targetsIndex.push(index);
+              }
+            }
+            const sourcesIndex: number[] = [];
+            for (let index = 0; index < this.graphData.nodes.length; index++) {
+              if (this.graphData.nodes[index].label === authService) {
+                sourcesIndex.push(index);
+              }
+            }
+            sourcesIndex.forEach(indexSource => {
+              targetsIndex.forEach(indexTarget => {
+                const link = {
+                  source: this.graphData.nodes[indexSource].id,
+                  target: this.graphData.nodes[indexTarget].id,
+                };
+                this.graphData.links.push(link);
+              });
+            });
+          });
+        }
+      });
+    }
+    this.graphDataLoaded = true;
+  }
+
+
+  /**
+   * Requests an updated list of available services group to update the current one
+   * @param organizationId Organization identifier
+   */
+  private updateInstanceInfo(organizationId: string) {
+    if (organizationId !== null) {
+      // Requests an updated services group list
+      this.backend.getAppInstance(this.organizationId,  this.instanceId)
+      .subscribe(instance => {
+          if (this.anyChanges(this.instance, instance)) {
+            this.instance = instance;
+            this.groups = instance.groups || [];
+            this.toGraphData(instance);
+            if (!this.loadedData) {
+              this.loadedData = true;
+            }
+          }
+      }, errorResponse => {
+          this.loadedData = true;
+          this.requestError = errorResponse.error.message;
+        });
+    }
+  }
+
+  /**
+   * Compares the status of each instance service to determine if there are changes in the instances
+   * @param instanceOutdated Outdated instance object
+   * @param instanceUpdated Updated instance object
+   */
+  private anyChanges(instanceOutdated, instanceUpdated) {
+    let anyChanges = false;
+    const instanceOutdatedServices = [];
+    const instanceUpdatedServices = [];
+    if (!instanceOutdated ||
+        !instanceOutdated.groups ||
+        !instanceUpdated ||
+        !instanceUpdated.groups ||
+        (instanceOutdated.groups.length !== instanceUpdated.groups.length)) {
+      return true;
+    }
+    // Creating arrays of services to compare
+    instanceOutdated.groups.forEach(group => {
+      group.service_instances.forEach(service => {
+        instanceOutdatedServices.push({
+            id: group.service_group_instance_id + service.service_instance_id,
+            status: service.status_name
+          });
+      });
+    });
+    instanceUpdated.groups.forEach(group => {
+      group.service_instances.forEach(service => {
+        instanceUpdatedServices.push({
+            id: group.service_group_instance_id + service.service_instance_id,
+            status: service.status_name
+          });
+      });
+    });
+
+    // Check if there is any difference in the status
+    instanceOutdatedServices.forEach(service => {
+      const index = instanceUpdatedServices.map(x => x.id).indexOf(service.id);
+      if (index !== -1) {
+        if (instanceUpdatedServices[index].status !== service.status) {
+          anyChanges = true;
+        }
+      } else {
+        anyChanges = true;
+      }
+    });
+
+    return anyChanges;
   }
 }

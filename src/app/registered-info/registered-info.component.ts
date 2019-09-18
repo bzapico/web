@@ -160,7 +160,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.servicesCount = 0;
     this.labels = [];
     this.requestError = '';
-    this.showGraph = false; //TODO
+    this.showGraph = false; // TODO
     this.registeredData = {
       groups: [],
       environment_variables: {},
@@ -214,27 +214,6 @@ export class RegisteredInfoComponent implements OnInit {
           this.updateAppDescriptor();
         }
     }
-  }
-
-  private updateAppDescriptor() {
-    this.loadedData = false;
-    this.backend.getAppDescriptor(this.organizationId, this.descriptorId)
-      .subscribe(registeredResponse => {
-        this.registeredData = registeredResponse;
-        this.groups = registeredResponse.groups || [];
-        if (this.groups.length) {
-          this.groups.forEach(group => {
-            group.isFirstOpen = this.isFirstOpen;
-          });
-        }
-        this.toGraphData(registeredResponse);
-        if (!this.loadedData) {
-          this.loadedData = true;
-        }
-      }, errorResponse => {
-        this.loadedData = true;
-        this.requestError = errorResponse.error.message;
-      });
   }
 
   /**
@@ -376,7 +355,7 @@ export class RegisteredInfoComponent implements OnInit {
     }
   }
 
- /**
+  /**
    * Gets the category headers to add a class
    * @param categoryName the class for the header category
    */
@@ -430,7 +409,7 @@ export class RegisteredInfoComponent implements OnInit {
    * @param app Application object
    */
   deleteApp(app) {
-    const deleteConfirm = 
+    const deleteConfirm =
     confirm(this.translateService.instant('apps.registered.deleteApp', { appName: app.name }));
     if (deleteConfirm) {
       this.backend.deleteRegistered(this.organizationId, app.app_descriptor_id)
@@ -451,60 +430,6 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Transforms the data needed to create the graph
-   * @param registered registered object
-   */
-  private toGraphData(registered) {
-    registered.groups.forEach(group => {
-      const nodeGroup = {
-        id: group.service_group_id,
-        label: group.name,
-        tooltip: this.translateService.instant('graph.group') 
-        + group.name,
-        color: '#444',
-        group: group.service_group_id
-      };
-      this.graphData.nodes.push(nodeGroup);
-      group.services.forEach(service => {
-        const nodeService = {
-          id: group.service_group_id + '-s-' + service.service_id,
-          label: service.name,
-          tooltip:  
-          this.translateService.instant('graph.service') 
-          + service.name,
-          color: '#343434',
-          group: group.service_group_id
-        };
-        this.graphData.nodes.push(nodeService);
-        this.graphData.links.push({
-          source: group.service_group_id,
-          target: group.service_group_id + '-s-' + service.service_id
-        });
-      });
-      this.nextColorIndex += 1;
-      if ( this.nextColorIndex >= this.nalejColorScheme.length ) {
-        this.nextColorIndex = 0;
-      }
-    });
-    if (registered.rules) {
-      registered.rules.forEach(rule => {
-        if (rule.auth_services) {
-          rule.auth_services.forEach(linkedService => {
-            const sourceIndex = this.graphData.nodes.map(x => x.label).indexOf(rule.target_service_name);
-            const targetIndex = this.graphData.nodes.map(x => x.label).indexOf(linkedService);
-            const link = {
-              target: this.graphData.nodes[sourceIndex].id,
-              source: this.graphData.nodes[targetIndex].id
-            };
-            this.graphData.links.push(link);
-          });
-        }
-      });
-    }
-    this.graphDataLoaded = true;
-  }
-
-  /**
    * Returns the length of the services in registered list. Represents the number of available services
    * @param registered selected registered
    */
@@ -516,20 +441,6 @@ export class RegisteredInfoComponent implements OnInit {
       });
     }
     return temporalCount;
-  }
-
-  /**
-   * Gets the services array list and traverse the group array list to show in table
-   */
-  getServices() {
-    const groupServices = [];
-    this.services.forEach(group => {
-      group.forEach(service => {
-
-        groupServices.push(service);
-      });
-    });
-    return groupServices;
   }
 
   /**
@@ -574,54 +485,53 @@ export class RegisteredInfoComponent implements OnInit {
   * Open services info modal window
   *  @param service service object
   */
- openServicesInfo(service) {
-   const initialState = {
-     organizationId: this.organizationId,
-     serviceId: service.service_group_id,
-     appDescriptorId: service.app_descriptor_id,
-     exposedPorts: service.exposed_ports,
-     environmentVariables: service.environment_variables,
-     image: service.image,
-     labels: service.labels,
-     name: service.name,
-     groupId: service.service_group_id,
-     replicas: service.replicas,
-     specs: service.specs,
-     endpoints: service.endpoints
-   };
+  openServicesInfo(service) {
+    const initialState = {
+      organizationId: this.organizationId,
+      serviceId: service.service_group_id,
+      appDescriptorId: service.app_descriptor_id,
+      exposedPorts: service.exposed_ports,
+      environmentVariables: service.environment_variables,
+      image: service.image,
+      labels: service.labels,
+      name: service.name,
+      groupId: service.service_group_id,
+      replicas: service.replicas,
+      specs: service.specs,
+      endpoints: service.endpoints
+    };
 
-   this.modalRef = this.modalService.show(ServiceInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-   this.modalRef.content.closeBtnName = 'Close';
-
- }
+    this.modalRef = this.modalService.show(ServiceInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+  }
 
  /**
   * Open rules info modal window
   *  @param rule rule object
   */
- openRulesInfo(rule) {
-   const initialState = {
-     organizationId: this.organizationId,
-     ruleId: rule.rule_id,
-     access: rule.access,
-     appDescriptorId: rule.app_descriptor_id,
-     authServices: rule.auth_services,
-     authServiceGroupName: rule.auth_service_group_name,
-     name: rule.name,
-     targetPort: rule.target_port,
-     targetServiceGroupName: rule.target_service_group_name,
-     targetServiceName: rule.target_service_name,
-     deviceGroupIds: rule.device_group_ids,
-     deviceGroupNames: rule.device_group_names
-   };
+  openRulesInfo(rule) {
+    const initialState = {
+      organizationId: this.organizationId,
+      ruleId: rule.rule_id,
+      access: rule.access,
+      appDescriptorId: rule.app_descriptor_id,
+      authServices: rule.auth_services,
+      authServiceGroupName: rule.auth_service_group_name,
+      name: rule.name,
+      targetPort: rule.target_port,
+      targetServiceGroupName: rule.target_service_group_name,
+      targetServiceName: rule.target_service_name,
+      deviceGroupIds: rule.device_group_ids,
+      deviceGroupNames: rule.device_group_names
+    };
 
-   this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-   this.modalRef.content.closeBtnName = 'Close';
-
- }
+    this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+  }
 
   /**
    * Shows the graph in services card
+   * @param type display mode type
    */
   selectDisplayMode(type: string) {
     if (type === this.translateService.instant('graph.typeList')) {
@@ -674,4 +584,83 @@ export class RegisteredInfoComponent implements OnInit {
       { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
+
+  /**
+   * Request the list of app descriptors
+   */
+  private updateAppDescriptor() {
+    this.loadedData = false;
+    this.backend.getAppDescriptor(this.organizationId, this.descriptorId)
+      .subscribe(registeredResponse => {
+        this.registeredData = registeredResponse;
+        this.groups = registeredResponse.groups || [];
+        if (this.groups.length) {
+          this.groups.forEach(group => {
+            group.isFirstOpen = this.isFirstOpen;
+          });
+        }
+        this.toGraphData(registeredResponse);
+        if (!this.loadedData) {
+          this.loadedData = true;
+        }
+      }, errorResponse => {
+        this.loadedData = true;
+        this.requestError = errorResponse.error.message;
+      });
+  }
+
+  /**
+   * Transforms the data needed to create the graph
+   * @param registered registered object
+   */
+  private toGraphData(registered) {
+    registered.groups.forEach(group => {
+      const nodeGroup = {
+        id: group.service_group_id,
+        label: group.name,
+        tooltip: this.translateService.instant('graph.group')
+        + group.name,
+        color: '#444',
+        group: group.service_group_id
+      };
+      this.graphData.nodes.push(nodeGroup);
+      group.services.forEach(service => {
+        const nodeService = {
+          id: group.service_group_id + '-s-' + service.service_id,
+          label: service.name,
+          tooltip:
+          this.translateService.instant('graph.service')
+          + service.name,
+          color: '#343434',
+          group: group.service_group_id
+        };
+        this.graphData.nodes.push(nodeService);
+        this.graphData.links.push({
+          source: group.service_group_id,
+          target: group.service_group_id + '-s-' + service.service_id
+        });
+      });
+      this.nextColorIndex += 1;
+      if ( this.nextColorIndex >= this.nalejColorScheme.length ) {
+        this.nextColorIndex = 0;
+      }
+    });
+    if (registered.rules) {
+      registered.rules.forEach(rule => {
+        if (rule.auth_services) {
+          rule.auth_services.forEach(linkedService => {
+            const sourceIndex = this.graphData.nodes.map(x => x.label).indexOf(rule.target_service_name);
+            const targetIndex = this.graphData.nodes.map(x => x.label).indexOf(linkedService);
+            const link = {
+              target: this.graphData.nodes[sourceIndex].id,
+              source: this.graphData.nodes[targetIndex].id
+            };
+            this.graphData.links.push(link);
+          });
+        }
+      });
+    }
+    this.graphDataLoaded = true;
+  }
+
 }
