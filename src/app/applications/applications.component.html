@@ -499,8 +499,8 @@
                 (click)="addQuickFilter('REGISTERED')"     
                 [ngClass]=
                 "{
-                  'quick-filters-btn-selected': quickFilter === 'REGISTERED',
-                  'quick-filters-btn': '!quickFilter'
+                  'quick-filters-btn-selected': '!quickFilter',
+                  'quick-filters-btn': quickFilter === 'REGISTERED'
                 }" 
                 tooltip="Registered" 
                 placement="bottom"
@@ -511,8 +511,8 @@
                 (click)="addQuickFilter('INSTANCES')" 
                 [ngClass]=
                 "{
-                  'quick-filters-btn-selected': quickFilter === 'INSTANCES',
-                  'quick-filters-btn': '!quickFilter'
+                  'quick-filters-btn-selected': '!quickFilter',
+                  'quick-filters-btn': quickFilter === 'INSTANCES'
                 }"    
                 tooltip="Instances" 
                 placement="bottom"
@@ -523,8 +523,8 @@
                 (click)="addQuickFilter('CLUSTERS')" 
                 [ngClass]=
                 "{
-                  'quick-filters-btn-selected': quickFilter === 'CLUSTERS',
-                  'quick-filters-btn': '!quickFilter'
+                  'quick-filters-btn-selected': '!quickFilter',
+                  'quick-filters-btn': quickFilter === 'CLUSTERS'
                 }"    
                 tooltip="Clusters" 
                 placement="bottom"
