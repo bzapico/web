@@ -1,9 +1,6 @@
 @mixin for-big-desktop-up {
     @media all and (min-width: 2560px) { @content; }
 }
-@mixin for-quarter-up {
-    @media all and (max-width: 1720px) { @content; }
-}
 @mixin for-desktop-only {
     @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
 }
@@ -73,7 +70,6 @@ $base-light-grey: #BFBFBF;
 .actions-col-fix {
     padding: 0.75rem 0;
 }
-
 .instance-disabled {
     color: #939393;
     cursor: default;
@@ -140,6 +136,7 @@ $base-light-grey: #BFBFBF;
         }
     }
 }
+
 .tooltip-fix {
     height: 20px;
     width: 45px;
@@ -165,7 +162,6 @@ $base-light-grey: #BFBFBF;
 > div:nth-child(1) {
     border: none;
 }
-
 /* - - - Apps buttons - - - */
 .apps-options {
     float: right;

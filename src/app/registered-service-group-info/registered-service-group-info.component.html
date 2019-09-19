@@ -1,0 +1,28 @@
+<div class="modal-card modal-card-info">
+  <div class="modal-content">
+    <!-- Header -->
+    <div class="modal-header">
+      <h3 class="modal-info-title mb-4">
+        {{'apps.registered.serviceGroupInfo.title'|translate}}
+      </h3>
+    </div>
+    <!-- Body -->
+    <div class="modal-body">
+    <h3 class="modal-info-h3-title">{{name}}</h3>
+    <p class="modal-info-title">{{serviceGroupId}}</p>
+    <div class="scroll-app-info">
+      <div class="row">
+        <div class="col-sm modal-info-table-title mb-3">
+          {{'apps.instance.serviceGroupInfo.appDescriptorId'|translate}}</div>
+        <div class="col-sm text-right">{{appDescriptorId}}</div>
+      </div>   
+    </div>  
+    <!-- Option button -->
+    <div class="form-group-btn">
+      <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">
+        <span class="align-bottom">{{'modals.buttonClose'|translate}}</span>
+      </button>
+    </div>
+  </div>
+</div>
+

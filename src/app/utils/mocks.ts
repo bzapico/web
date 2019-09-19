@@ -5044,6 +5044,40 @@ export const mockDevicesList = [
            'enabled': true,
            'device_status_name': 'OFFLINE',
             'labels': {
+                'app': 'kuard4',
+                'the': 'label'
+            }
+        },
+        {
+            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            'device_group_id': 'a56b9900-0fef-41b0-bb7c-adf0055274cd',
+            'device_id': 'dh007',
+            'register_since': '1550746656',
+            'enabled': true,
+            'device_status_name': 'ONLINE',
+            'labels': {
+                'lab12': 'label12',
+                'lab23': 'label22',
+                'lab24': 'label22',
+                'lab22': 'label22',
+                'lab25': 'label22',
+                'lab16': 'label12654',
+                'lab27': 'label22',
+                'lab28': 'label22',
+                'lab29': 'label22',
+                'lab30': 'label22654',
+                'lab31': 'label12',
+                'lab32': 'label22',
+                'lab33': 'label2298754',
+                'lab34': 'label22',
+                'lab35': 'label22',
+                'lab56': 'label22',
+                'lab37': 'label22654',
+                'lab38': 'label12',
+                'lab39': 'label22',
+                'lab40': 'label2298754',
+                'lab41': 'label22',
+                'lab42': 'label22',
             }
         }
     ],
@@ -5065,7 +5099,7 @@ export const mockDevicesList = [
             'device_group_id': '90651fde-4090-47e9-a838-735969d94302',
             'device_id': 'dh002',
             'register_since': '1550746647',
-            'enabled': true,
+            'enabled': false,
             'device_status_name': 'OFFLINE',
             'labels': {
             }
@@ -5078,6 +5112,8 @@ export const mockDevicesList = [
             'enabled': true,
             'device_status_name': 'OFFLINE',
             'labels': {
+                'app2': 'quee2',
+                'drone': '321'
             }
         }
     ],

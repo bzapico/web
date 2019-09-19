@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
 	"advancedFilterOptions": {
 		"noFilters": "No filters",
 		"showNodes": "Show only nodes",
@@ -14,25 +15,122 @@
 	},
 	"buttons": {
 		"saveChanges": "Save changes"
+=======
+	"apps": {
+		"instance": {
+			"configTitle": "CONFIGURATION",
+			"environmentVariables": "Environment variables",
+			"idApps": "APPS",
+			"idInstance": "INSTANCE",
+			"idRegistered": "REGISTERED",
+			"noEnvironmentVariables": "No environment variables have been set",
+			"noOtherSettings": "No extra settings have been set",
+			"noRules": "No available rules detected ",
+			"noServices": "No available services",
+			"noServicesInGroup": "No available services in this group",
+			"otherSettings": "Other settings",
+			"rulesList": "rules",
+			"rulesTitle": "RULES",
+			"serviceGroupInfo": {
+				"appDescriptorId": "App descriptor ID",
+				"appInstanceId": "App instance ID",
+				"globalFqdn": "Global FQDN",
+				"policyName": "Policy name",
+				"status": "Status",
+				"title": "Instance service group info"
+			},
+			"servicesList": "services",
+			"servicesTitle": "SERVICES",
+			"tableAccess": "Access",
+			"tableAuth": "Auth",
+			"tableAuthIn": "(g - s/d)",
+			"tableAuthInBig": "(group, service / device group)",
+			"tableEndpoints": "Endpoints",
+			"tableGroups": "Groups",
+			"tableId": "ID",
+			"tableImage": "Image",
+			"tableInfo": "Info",
+			"tableInstanceOf": "Instance of",
+			"tableLabels": "Labels",
+			"tableName": "Name",
+			"tableRegisteredAppId": "Registered App ID",
+			"tableReplicas": "Replicas",
+			"tableServiceInstance": "Service instance",
+			"tableStatus": "Status",
+			"tableTarget": "Target",
+			"tableTargetIn": "(g - s - p)",
+			"tableTargetInBig": "(group, service, port)",
+			"title": "APPLICATIONS",
+			"undeployConfirm": "Undeploy {{appName}}?",
+			"undeployInstance": "Undeploy instance",
+			"undeployMessage": " undeployed"
+		},
+		"registered": {
+			"app": "app",
+			"delete": "Delete",
+			"deleteApp": "Delete {{appName}}?",
+			"deleting": "Deleting {{appName}}",
+			"deploy": "Deploy",
+			"instance": "instance",
+			"noRegisteredApps": "No available registered apps detected",
+			"serviceGroupInfo": {
+				"title": "Registered service group info"
+			},
+			"servicesSummary": "SERVICES SUMMARY"
+		}
+>>>>>>> origin
 	},
 	"devices": {
+		"addGroup": "Add group",
+		"contextMenu": {
+			"configuration": "Configuration",
+			"deleteGroup": "Delete group",
+			"moreInfo": "More Info"
+		},
+		"default": "default",
+		"deleteGroup": "Delete group?",
+		"deleteGroupMessage": "Group {{groupName}} has been deleted",
+		"deleteGroupMessageNegative": "It is not possible to delete a group with devices in it",
+		"deviceGroupInfo": {
+			"apiKey": "Device group API Key",
+			"defaultConnectivity": "Default connectivity",
+			"enablement": "Enablement",
+			"title": "Device group info"
+		},
+		"disabled": "disabled",
+		"enabled": "enabled",
+		"noDevices": "No devices",
+		"noDevicesRegistered": "No available devices registered in this group",
+		"noGroupsCreated": "No available groups have been created. Add a new group to be able to register devices in it.",
 		"status": {
 			"title": "DEVICES STATUS TIMELINE"
 		},
 		"summary": {
-			"disabled": "DISABLED",
-			"enabled": "ENABLED",
 			"groups": {
-				"apiKey": "API Key",
-				"availability": {
-					"title": "Availability"
-				},
 				"title": "GROUPS"
 			},
 			"noAvailable": "No available groups detected",
 			"title": "SUMMARY"
 		},
-		"title": "DEVICES"
+		"switcherMessage": "The device is now ",
+		"tableActions": "Actions",
+		"tableDate": "Attached date",
+		"tableLabels": "Labels",
+		"tableName": "Name",
+		"tableStatus": "Status",
+		"title": "DEVICES",
+		"unlinkDevice": "Unlink device",
+		"unlinkDeviceConfirm": "Unlink {{device_id}}?",
+		"unlinkDeviceMessage": "Unlinking {{device_id}}"
+	},
+	"graph": {
+		"autoRefresh": "Auto refresh every 5 seconds. Scroll on graph to zoom.",
+		"group": "GROUP ",
+		"scroll": "Scroll on graph to zoom.",
+		"service": "SERVICE ",
+		"title": "Graph",
+		"typeGraph": "graph",
+		"typeList": "list"
 	},
 	"infrastructure": {
 		"EIC": {
@@ -111,6 +209,19 @@
 		},
 		"title": "INFRASTRUCTURE"
 	},
+	"label": {
+		"add": "add",
+		"addLabel": "Add label",
+		"delete": "delete",
+		"deleteLabel": "Delete label",
+		"deleteLabels": "Delete labels?",
+		"entityTypeDevice": "device",
+		"noLabels": "No labels",
+		"title": "LABELS"
+	},
+	"modals": {
+		"buttonClose": "Close"
+	},
 	"organization": {
 		"filteredBy": "Filtered by term \"{{value}}\".",
 		"loading": "Loading...",
@@ -142,10 +253,29 @@
 		"andFilteredBy": "and filtered by \"{{value}}\"",
 		"ascendant": "ascendant{{value}}",
 		"descendant": "descendant{{value}}",
+		"filteredBy": "Filtered by term \"{{value}}\".",
 		"reset": "Reset",
 		"resultsFilteredBy": " results found. Filtered by \"{{value}}\".",
 		"resultsFound": "results found.",
 		"sortedBy": "Sorted by {{value}}"
+<<<<<<< HEAD
+=======
+	},
+	"status": {
+		"deploymentError": "deployment_error",
+		"error": "error",
+		"incomplete": "incomplete",
+		"offline": "offline",
+		"online": "online",
+		"planning": "planning",
+		"planningError": "planning_error",
+		"process": "process",
+		"running": "running",
+		"scheduled": "scheduled",
+		"serviceError": "service_error",
+		"serviceRunning": "service_running",
+		"serviceWaiting": "service_waiting"
+>>>>>>> origin
 	}
 }
 

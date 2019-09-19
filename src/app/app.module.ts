@@ -61,6 +61,10 @@ import { AgentJoinTokenInfoComponent } from './agent-join-token-info/agent-join-
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AdvancedFilterOptionsComponent } from './advanced-filter-options/advanced-filter-options.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { DeviceGroupInfoComponent } from './device-group-info/device-group-info.component';
+import { InstanceServiceGroupInfoComponent } from './instance-service-group-info/instance-service-group-info.component';
+import { RegisteredServiceGroupInfoComponent } from './registered-service-group-info/registered-service-group-info.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -109,7 +113,10 @@ export function createTranslateLoader(http: HttpClient) {
     InstallAgentComponent,
     SimpleLogComponent,
     AgentJoinTokenInfoComponent,
-    AdvancedFilterOptionsComponent
+    AdvancedFilterOptionsComponent,
+    DeviceGroupInfoComponent,
+    InstanceServiceGroupInfoComponent,
+    RegisteredServiceGroupInfoComponent
   ],
   entryComponents: [
     DebugPanelComponent,
@@ -133,7 +140,10 @@ export function createTranslateLoader(http: HttpClient) {
     InstallAgentComponent,
     SimpleLogComponent,
     AgentJoinTokenInfoComponent,
-    AdvancedFilterOptionsComponent
+    AdvancedFilterOptionsComponent,
+    DeviceGroupInfoComponent,
+    InstanceServiceGroupInfoComponent,
+    RegisteredServiceGroupInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -161,6 +171,7 @@ export function createTranslateLoader(http: HttpClient) {
     AlertModule.forRoot(),
     CarouselModule.forRoot(),
     TooltipModule.forRoot(),
+    AccordionModule.forRoot(),
     // ROUTES
     routes
   ],

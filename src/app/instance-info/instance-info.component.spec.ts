@@ -11,6 +11,9 @@ import { FormsModule } from '@angular/forms';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { SortByPipe } from '../pipes/sort-by.pipe';
 import { TruncatePipe } from '../pipes/truncate.pipe';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '../app.module';
 
 describe('InstancesInfoComponent', () => {
   let fixture: ComponentFixture<InstanceInfoComponent>;
@@ -31,10 +34,18 @@ describe('InstancesInfoComponent', () => {
         BrowserAnimationsModule,
         FormsModule,
         ModalModule.forRoot(),
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
       providers: [
         BsModalRef,
-        BsModalService
+        BsModalService,
+        TranslateService
        ]
     })
     .compileComponents();

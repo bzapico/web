@@ -1,41 +1,31 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisteredInfoComponent } from './registered-info.component';
+import { DeviceGroupInfoComponent } from './device-group-info.component';
+import { BsModalRef, ButtonsModule, BsModalService } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
-import { TooltipModule } from '@swimlane/ngx-charts';
-import { ButtonsModule, ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-import { FilterPipe } from '../pipes/filter.pipe';
-import { SortByPipe } from '../pipes/sort-by.pipe';
-import { TruncatePipe } from '../pipes/truncate.pipe';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TooltipModule } from '@swimlane/ngx-charts';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { createTranslateLoader } from '../app.module';
 
-
-describe('RegisteredInfoComponent', () => {
-  let fixture: ComponentFixture<RegisteredInfoComponent>;
+describe('DeviceGroupInfoComponent', () => {
+  let component: DeviceGroupInfoComponent;
+  let fixture: ComponentFixture<DeviceGroupInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        RegisteredInfoComponent,
-        FilterPipe,
-        SortByPipe,
-        TruncatePipe,
-      ],
+      declarations: [ DeviceGroupInfoComponent ]
+      ,
       imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
-        NgxGraphModule,
-        TooltipModule,
         ButtonsModule,
+        HttpClientTestingModule,
         BrowserAnimationsModule,
-        FormsModule,
-        ModalModule.forRoot(),
+        TooltipModule,
+        NgxGraphModule,
+        RouterTestingModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -54,7 +44,12 @@ describe('RegisteredInfoComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegisteredInfoComponent);
+    fixture = TestBed.createComponent(DeviceGroupInfoComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });
