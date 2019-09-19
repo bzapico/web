@@ -22,14 +22,24 @@
         <div class="col-sm modal-info-table-title mb-3">
           {{'devices.deviceGroupInfo.defaultConnectivity'|translate}}
         </div>
-        <div class="col-sm text-right">{{defaultDeviceConnectivity}}</div>
+        <div *ngIf="defaultDeviceConnectivity" class="col-sm text-right">
+          <i class="material-icons blue">check_box</i>
+        </div>
+        <div *ngIf="!defaultDeviceConnectivity" class="col-sm text-right">
+          <i class="material-icons grey">check_box_outline_blank</i>
+        </div>
       </div>
       <br>
       <div class="row">
         <div class="col-sm modal-info-table-title mb-3">
           {{'devices.deviceGroupInfo.enablement'|translate}}
         </div>
-        <div class="col-sm text-right">{{enabled}}</div>
+        <div *ngIf="enabled" class="col-sm text-right">
+          <i class="material-icons blue">check_box</i>
+        </div>
+        <div *ngIf="!enabled" class="col-sm text-right">
+          <i class="material-icons grey">check_box_outline_blank</i>
+        </div>
       </div>
     </div>      
     <!-- Option button -->
