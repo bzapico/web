@@ -6,6 +6,10 @@
 		"title": "Advanced filter options"
 	},
 	"applications": {
+		"filters": {
+			"atLeastOne": "It is necessary to have one selected filter",
+			"notAppliedSearching": "When the filters are applied the searching term is not applied"
+		},
 		"title": "APPLICATIONS"
 	},
 	"buttons": {

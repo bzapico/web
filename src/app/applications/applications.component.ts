@@ -17,6 +17,7 @@ import { NodeType } from '../definitions/enums/node-type.enum';
 import { GraphData } from '../definitions/models/graph-data';
 import { KeyValue } from '../definitions/interfaces/key-value';
 import { AdvancedFilterOptionsComponent } from '../advanced-filter-options/advanced-filter-options.component';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Refresh ratio
@@ -256,6 +257,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
+    private translateService: TranslateService,
     private router: Router) {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
@@ -519,8 +521,28 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Adds a quick filter
    */
   addQuickFilter(quickFilter: string) {
-    this.filters[quickFilter] = !this.filters[quickFilter];
-    this.toGraphData();
+    if (this.isSearchingInGraph) {
+      alert(this.translateService.instant('applications.filters.notAppliedSearching'));
+    } else {
+      let canApply = false;
+      const auxFilters = { ...this.filters };
+      auxFilters[quickFilter] = !auxFilters[quickFilter];
+      for (const filter in auxFilters) {
+        if (!!!auxFilters[filter]) {
+          continue;
+        }
+        if (auxFilters[filter]) {
+          canApply = true;
+          continue;
+        }
+      }
+      if (canApply) {
+        this.filters[quickFilter] = !this.filters[quickFilter];
+        this.toGraphData();
+      } else {
+        alert(this.translateService.instant('applications.filters.atLeastOne'));
+      }
+    }
   }
 
   /**
