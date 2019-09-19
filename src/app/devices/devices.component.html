@@ -186,7 +186,7 @@
                     !requestError" 
                     class="nalej-table-box no-p-col no-m-row">
                     <div class="label-nalej-table">
-                      <div class="label-thead row">
+                      <div *ngIf="!searchTerm" class="label-thead row">
                         <div class="col-11">
                           <div class="row">
                             <div 
@@ -259,16 +259,16 @@
                           filter : searchTerm">
                           <div class="label-tbody row">
                             <div class="col-11">
-                              <div class="row">
+                              <div class="row mb-2">
                                 <div class="col-4 label-td">{{device.device_id}}</div> 
                                 <div class="col-4 label-td">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</div>  
                                 <div 
                                   class="col-4 label-td col-center-lowercase"
                                   [ngClass]=
                                   "{
-                                    'status-dot':classStatusCheck(device.device_status_name, 'ONLINE'),
-                                    'status-dot-error':classStatusCheck(device.device_status_name, 'OFFLINE'),
-                                    'status-dot-process':classStatusCheck(device.device_status_name, 'PROCESS')
+                                    'status-dot':classStatusCheck(device.device_status_name, 'status.online'|translate),
+                                    'status-dot-error':classStatusCheck(device.device_status_name, 'status.offline'|translate),
+                                    'status-dot-process':classStatusCheck(device.device_status_name, 'status.process'|translate)
                                   }"> 
                                   <span 
                                     tooltip="{{device.device_status_name}}" 
@@ -350,9 +350,9 @@
                                 </button>
                               </div>
                             </div>
+                            <hr class="accordion-table-separator">
                           </div>
                         </div>
-
                       </span>
                     </div>
                   </div> 

@@ -1,14 +1,8 @@
-@mixin for-desktop-up {
-    @media all and (max-width: 1440px) { @content; }
-}
-@mixin for-desktop-only {
-    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
-}
 @mixin for-md-desktop-fix {
     @media all and (max-width: 1614px) { @content; }
 }
 @mixin for-desktop-h {
-    @media all and  (max-height: 900px) { @content; }
+    @media all and (max-height: 900px) { @content; }
 }
 
 $base-violet: #5800FF;
@@ -115,11 +109,6 @@ $super-light-grey: #F8F8F8;
     justify-content: space-around;
 }
 
-.nalej-table tbody td:last-child {
-    @include for-desktop-up {
-        padding: 0.75rem 0;
-    }
-}
 .hide-reg-btn-text {
     @include for-md-desktop-fix {
         display: none; 
@@ -137,49 +126,9 @@ $super-light-grey: #F8F8F8;
 .mr-bars {
     margin-right: 11px;
 }
-.nalej-table-box-fix {
-    padding-top: 0em;
-}
 @media screen and (max-height: 780px) {
     .hide-title-sm {
         display: none;
-    }
-}
-@media screen and (max-width: 1550px) {
-    .table-fixed tbody td:last-child {
-        padding: 0.75rem 0;
-    }
-}
-
-@media all and (max-width: 1440px) {
-    // Order of services cells when his viewport appears
-    .services-cell-1 {
-        order: 1;
-    }
-    .services-cell-2 {
-        order: 2;
-    }
-    .services-cell-3 {
-        order: 3;
-    }
-    .services-cell-4 {
-        order: 4;
-    }
-    // Order of rules cells when his viewport appears
-    .rules-cell-1 {
-        order: 1;
-    }
-    .rules-cell-2 {
-        order: 2;
-    }
-    .rules-cell-3 {
-        order: 3;
-    }
-    .rules-cell-4 {
-        order: 4;
-    }
-    .rules-cell-5 {
-        order: 5;
     }
 }
 
@@ -197,4 +146,46 @@ $super-light-grey: #F8F8F8;
         text-align: left;
         justify-content: end;
     }
+}
+
+/* - - -  Accordion table - - - */
+.search-box {
+    margin-right: 0;
+}
+.show-graph-icons {
+    cursor: pointer;
+    color: $base-grey;
+}
+.mr-bars {
+    margin-right: 11px;
+}
+.info-icon {
+    font-size: 30px;
+}
+.accordion-box 
+.accordion-tabs 
+.nalejAccordion 
+.accordion-icons-box 
+.accordion-btn {
+    top: 7px;
+    right: 36px;
+}
+.label-tbody {
+    padding: .9rem 0;
+    .label-td {
+        float: left;
+        font-size: .9em;
+        color: $base-grey;
+        outline: none;
+    }
+    .label-td-flex {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}
+.card-title-name-mb {
+    margin-bottom: .5em;
 }

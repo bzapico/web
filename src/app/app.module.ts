@@ -62,6 +62,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { DeviceGroupInfoComponent } from './device-group-info/device-group-info.component';
+import { InstanceServiceGroupInfoComponent } from './instance-service-group-info/instance-service-group-info.component';
+import { RegisteredServiceGroupInfoComponent } from './registered-service-group-info/registered-service-group-info.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -110,7 +112,9 @@ export function createTranslateLoader(http: HttpClient) {
     InstallAgentComponent,
     SimpleLogComponent,
     AgentJoinTokenInfoComponent,
-    DeviceGroupInfoComponent
+    DeviceGroupInfoComponent,
+    InstanceServiceGroupInfoComponent,
+    RegisteredServiceGroupInfoComponent
   ],
   entryComponents: [
     DebugPanelComponent,
@@ -134,7 +138,9 @@ export function createTranslateLoader(http: HttpClient) {
     InstallAgentComponent,
     SimpleLogComponent,
     AgentJoinTokenInfoComponent,
-    DeviceGroupInfoComponent
+    DeviceGroupInfoComponent,
+    InstanceServiceGroupInfoComponent,
+    RegisteredServiceGroupInfoComponent
   ],
   imports: [
     BrowserModule,

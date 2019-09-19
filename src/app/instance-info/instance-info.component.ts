@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
@@ -9,6 +9,8 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import * as shape from 'd3-shape';
 import { ServiceInstancesInfoComponent } from '../service-instances-info/service-instances-info.component';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
+import { TranslateService } from '@ngx-translate/core';
+import { InstanceServiceGroupInfoComponent } from '../instance-service-group-info/instance-service-group-info.component';
 
 @Component({
   selector: 'app-instance-info',
@@ -54,11 +56,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   services: any[];
 
   /**
-   * Models that hold the active group
-   */
-  activeGroupId: string;
-
-  /**
    * List of available services groups
    */
   groups: any[];
@@ -76,22 +73,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Refresh ratio reference
    */
   REFRESH_RATIO = 5000;
-
-  /**
-   * Models that keeps the displayed groups names length
-   */
-  displayedGroupsNamesLength: number;
-  maxLabelsLength: number;
-
-  /**
-   * List of active displayed group
-   */
-  displayedGroups: any[];
-
-  /**
-   * Count of num max for displayed groups
-   */
-  DISPLAYED_GROUP_MAX = 4;
 
   /**
    * Hold request error message or undefined
@@ -133,11 +114,16 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   mockServicesGraph: any;
 
   /**
+   * Accordion options
+   */
+  nalejAccordion = 'nalejAccordion';
+  isFirstOpen = true;
+
+  /**
    * Graph options
    */
   graphReset: boolean;
   graphDataLoaded: boolean;
-  showlegend: boolean;
   graphData: any;
   orientation: string;
   curve: any;
@@ -167,7 +153,8 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
@@ -185,8 +172,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         configuration_options: {}
       };
     this.registered = [];
-    this.displayedGroups = [];
-    this.activeGroupId = 'ALL';
     this.requestError = '';
     this.showGraph = true;
     this.enabled = false;
@@ -203,7 +188,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.filterFieldRules = false;
      // Graph initialization
      this.graphReset = false;
-     this.showlegend = false;
      this.orientation = 'TB';
      this.curve = shape.curveBasis;
      this.autoZoom = true;
@@ -252,23 +236,462 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.refreshIntervalRef = null;
   }
 
+
+
   /**
+   * Get arrow color depending on node source color
+   * @param sourceId Link source identifier
+   */
+  getArrowColor(sourceId: string): string {
+    const index = this.graphData.nodes.map(x => x.id).indexOf(sourceId);
+    if (index !== -1) {
+      return this.graphData.nodes[index].color;
+    }
+  }
+
+  /**
+   * Return an specific color depending on the node status
+   * @param status Status name
+   */
+  getNodeColor(status: string): string {
+    switch (status.toLowerCase()) {
+      case this.translateService.instant('status.serviceRunning'):
+        return this.STATUS_COLORS.RUNNING;
+      case this.translateService.instant('status.serviceError'):
+        return this.STATUS_COLORS.ERROR;
+      case this.translateService.instant('status.serviceWaiting'):
+        return this.STATUS_COLORS.OTHER;
+      default:
+        return this.STATUS_COLORS.OTHER;
+    }
+  }
+
+    /**
+   * Return an specific color depending on the node status
+   * @param status Status name
+   */
+  getNodeTextColor(status: string): string {
+    switch (status.toLowerCase()) {
+      case this.translateService.instant('status.serviceRunning'):
+        return this.STATUS_TEXT_COLORS.RUNNING;
+      case this.translateService.instant('status.serviceError'):
+        return this.STATUS_TEXT_COLORS.ERROR;
+      case this.translateService.instant('status.serviceWaiting'):
+        return this.STATUS_TEXT_COLORS.OTHER;
+      default:
+        return this.STATUS_TEXT_COLORS.OTHER;
+    }
+  }
+
+  /**
+   * Sortby pipe in the component
+   * @param categoryName the name of the chosen category
+   */
+  setOrder(list: string, categoryName: string) {
+    if (list === this.translateService.instant('apps.instance.servicesList')) {
+      if (this.sortedBy === categoryName) {
+        this.reverse = !this.reverse;
+        this.filterField = false;
+      }
+      this.sortedBy = categoryName;
+      this.filterField = true;
+    } else if (list === this.translateService.instant('apps.instance.rulesList')) {
+      if (this.sortedByRules === categoryName) {
+        this.reverseRules = !this.reverseRules;
+        this.filterFieldRules = false;
+      }
+      this.sortedByRules = categoryName;
+      this.filterFieldRules = true;
+    }
+  }
+
+  /**
+   * Reset all the filters fields
+   */
+  resetFilters(list: string) {
+    if (list === this.translateService.instant('apps.instance.servicesList')) {
+      this.filterField = false;
+      this.searchTerm = '';
+      this.sortedBy = '';
+    } else if (list === this.translateService.instant('apps.instance.rulesList')) {
+      this.filterFieldRules = false;
+      this.searchTermRules = '';
+      this.sortedByRules = '';
+    }
+  }
+
+  /**
+   * Gets the category headers to add a class
+   * @param categoryName the class for the header category
+   */
+  getCategoryCSSClass(list: string, categoryName: string) {
+    if (list === this.translateService.instant('apps.instance.rulesList')) {
+      if (this.sortedByRules === '') {
+        return this.translateService.instant('devices.default');
+      } else {
+        if (this.sortedByRules === categoryName) {
+          return this.translateService.instant('devices.enabled');
+        } else if (this.sortedByRules !== categoryName) {
+          return this.translateService.instant('devices.disabled');
+        }
+      }
+    } else if (list === this.translateService.instant('apps.instance.servicesList')) {
+      if (this.sortedBy === '') {
+        return this.translateService.instant('devices.default');
+      } else {
+        if (this.sortedBy === categoryName) {
+          return this.translateService.instant('devices.enabled');
+        } else if (this.sortedBy !== categoryName) {
+          return this.translateService.instant('devices.disabled');
+        }
+      }
+    }
+  }
+
+  /**
+   * Returns the descriptor beauty name
+   * @param descriptorId Descriptor identifier
+   */
+  getDescriptorName(descriptorId: string) {
+    const index =
+    this.registered
+        .map(x => x.app_descriptor_id).
+        indexOf(descriptorId);
+    if (index !== -1) {
+      return this.registered[index].name;
+    }
+  }
+
+   /**
+   * Requests to undeploy the selected instance
+   * @param app Application instance object
+   */
+  undeploy(app) {
+    const undeployConfirm =
+    confirm(this.translateService.instant('apps.instance.undeployConfirm', { appName: app.name }));
+    if (undeployConfirm) {
+      this.backend.undeploy(this.organizationId, app.app_instance_id)
+        .subscribe(undeployResponse => {
+          this.notificationsService.add({
+            message: this.translateService.instant('apps.instance.undeployMessage', { appName: app.name }),
+            timeout: 3000
+          });
+          this.router.navigate(['/applications']);
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: 5000,
+            type: 'warning'
+          });
+        });
+    }
+  }
+
+  /**
+   * Depending on the service status, returns the css class name that is required
+   * @param status Service status string
+   */
+  getServiceStatusClass(status: string ) {
+    switch (status.toLowerCase()) {
+      case this.translateService.instant('status.serviceRunning'):
+        return 'teal';
+      case this.translateService.instant('status.serviceError'):
+        return 'red';
+      case this.translateService.instant('status.serviceWaiting'):
+        return 'yellow';
+      default:
+        return 'yellow';
+    }
+  }
+
+  /**
+   * Checks if the status requires an special css class
+   * @param status  status name
+   * @param className CSS class name
+   */
+  classStatusCheck(status: string, className: string): boolean {
+    switch (status.toLowerCase()) {
+      case this.translateService.instant('status.serviceRunning'): {
+        if (className.toLowerCase() === this.translateService.instant('status.serviceRunning')) {
+          return true;
+        }
+        break;
+      }
+      case this.translateService.instant('status.serviceError'): {
+        if (className.toLowerCase() === this.translateService.instant('status.serviceError')) {
+          return true;
+        }
+        break;
+      }
+      case this.translateService.instant('status.serviceWaiting'): {
+        if (className.toLowerCase() === this.translateService.instant('status.serviceWaiting')) {
+          return true;
+        }
+        break;
+      }
+     default: {
+        if (className.toLowerCase() === this.translateService.instant('status.serviceWaiting')) {
+          return true;
+        }
+        return false;
+      }
+    }
+  }
+
+  /**
+   * Checks if the instances status requires an special css class
+   * @param status instances status name
+   * @param className CSS class name
+   */
+  classInstanceStatusCheck(status: string, className: string): boolean {
+    switch (status.toLowerCase()) {
+      case this.translateService.instant('status.running'): {
+        if (className.toLowerCase() === this.translateService.instant('status.running')) {
+          return true;
+        }
+        break;
+      }
+      case this.translateService.instant('status.deploymentError'): {
+        if (className.toLowerCase() === this.translateService.instant('status.error')) {
+          return true;
+        }
+        break;
+      }
+      case this.translateService.instant('status.planningError'): {
+        if (className.toLowerCase() === this.translateService.instant('status.error')) {
+          return true;
+        }
+        break;
+      }
+      case this.translateService.instant('status.incomplete'): {
+        if (className.toLowerCase() === this.translateService.instant('status.error')) {
+          return true;
+        }
+        break;
+      }
+      case this.translateService.instant('status.error'): {
+        if (className.toLowerCase() === this.translateService.instant('status.error')) {
+          return true;
+        }
+        break;
+      }
+      case 'queued': {
+        if (className.toLowerCase() === this.translateService.instant('status.process')) {
+          return true;
+        }
+        break;
+      }
+      case this.translateService.instant('status.planning'): {
+        if (className.toLowerCase() === this.translateService.instant('status.process')) {
+          return true;
+        }
+        break;
+      }
+      case this.translateService.instant('status.scheduled'): {
+        if (className.toLowerCase() === this.translateService.instant('status.process')) {
+          return true;
+        }
+        break;
+      }
+     default: {
+        if (className.toLowerCase() === this.translateService.instant('status.process')) {
+          return true;
+        }
+        return false;
+      }
+    }
+  }
+
+  /**
+   * Shows the graph in services card
+   */
+  selectDisplayMode(type: string) {
+    if (type === this.translateService.instant('graph.typeList')) {
+      this.showGraph = false;
+    } else if (type === this.translateService.instant('graph.typeGraph')) {
+      this.showGraph = true;
+    }
+  }
+
+  /**
+   * Open services info modal window
+   *  @param service service object
+   */
+  openServicesInfo(service) {
+    const initialState = {
+      organizationId: this.organizationId,
+      serviceId: service.service_group_id,
+      instanceId: service.service_instance_id,
+      appDescriptorId: service.app_descriptor_id,
+      appInstanceId: service.app_instance_id,
+      environmentVariables: service.environment_variables,
+      exposedPorts: service.exposed_ports,
+      image: service.image,
+      name: service.name,
+      groupId: service.service_group_id,
+      groupInstanceId: service.service_group_instance_id,
+      replicas: service.replicas,
+      specs: service.specs,
+      statusName: service.status_name,
+      typeName: service.type_name,
+      endpoints: service.endpoints,
+      credentials : service.credentials,
+      dockerRepository: service.docker_repository,
+      deployAfter: service.deploy_after,
+      deployedOnCluster: service.deployed_on_cluster_id,
+      labels: service.labels,
+    };
+
+    this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+   * Open group services info modal window
+   *  @param group group object
+   */
+  openGroupServicesInfo(group, event) {
+    event.stopPropagation();
+    const initialState = {
+      organizationId: this.organizationId,
+      appDescriptorId: group.app_descriptor_id,
+      appInstanceId: group.app_instance_id,
+      policyName: group.policy_name,
+      name: group.name,
+      serviceGroupId: group.service_group_id,
+      serviceGroupInstanceId: group.service_group_instance_id,
+      serviceInstances: group.service_instances,
+      status: group.status_name,
+      globalFqdn: group.global_fqdn,
+      metadata: group.metadata
+    };
+
+    this.modalRef = this.modalService.show(InstanceServiceGroupInfoComponent,
+      { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+   * Open rules info modal window
+   * @param rule rule object
+   */
+  openRulesInfo(rule) {
+    const initialState = {
+      organizationId: this.organizationId,
+      ruleId: rule.rule_id,
+      access: rule.access_name,
+      appDescriptorId: rule.app_descriptor_id,
+      authServices: rule.auth_services,
+      authServiceGroupName: rule.auth_service_group_name,
+      name: rule.name,
+      targetPort: rule.target_port,
+      targetServiceGroupName: rule.target_service_group_name,
+      targetServiceName: rule.target_service_name,
+      deviceGroupIds: rule.device_group_ids,
+      deviceGroupNames: rule.device_group_names,
+    };
+
+    this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+   * Returns the length of service instances group
+   */
+  countGroupServices() {
+    let counter = 0;
+    if (this.instance && this.instance.groups) {
+      this.instance.groups.forEach(group => {
+        counter += group.service_instances.length;
+      });
+      return counter;
+    } else {
+      return 0;
+    }
+  }
+
+  /**
+   * Return the list of group services
+   * @param groupId Group identifier
+   */
+  getGroupServices(groupId: string) {
+    const index = this.groups
+    .map(x => x.service_group_instance_id)
+    .indexOf(groupId);
+
+    if (index !== -1) {
+      return this.groups[index].service_instances;
+    } else {
+      return [];
+    }
+  }
+
+  /**
+   * Adds https in case of being required
+   * @param endpoint String containing the endpoint
+   */
+  getEndpointHref(endpoint: string) {
+    let URL = '';
+    if (!endpoint.startsWith('http') && !endpoint.startsWith('https')) {
+      URL = 'http://' + endpoint;
+    } else {
+      URL = endpoint;
+    }
+    return URL;
+  }
+
+  /**
+   * Filters the backend incoming status to display it in removing the initial "service_"
+   * @param rawStatus string containing the status that the backend is sending
+   */
+  getBeautyStatusName(rawStatus: string): string {
+    if (rawStatus.toLowerCase().startsWith('service_')) {
+      return rawStatus.substring('service_'.length, rawStatus.length);
+    }
+    return rawStatus;
+  }
+
+  /**
+   * Return if the marker is required
+   * @param link Link object
+   */
+  getMarker(link) {
+    const index = this.graphData.nodes.map(x => x.id).indexOf(link.source);
+    if (index !== -1) {
+      if (this.graphData.nodes[index].id === this.graphData.nodes[index].group) {
+        return '';
+      } else {
+        return 'url(#arrow)';
+      }
+    }
+    return 'url(#arrow)';
+  }
+
+  /**
+   * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
+   */
+  resetGraphZoom() {
+    this.graphReset = true;
+    setTimeout(() => {
+      this.graphReset = false;
+    }, 1);
+  }
+    /**
    * Request the list of registered apps and updates the instance info
    */
-  updateInfo() {
+  private updateInfo() {
     this.backend.getRegisteredApps(this.organizationId)
       .subscribe(registeredAppsResponse => {
         this.registered = registeredAppsResponse.descriptors;
       });
     this.updateInstanceInfo(this.organizationId);
-    this.updateDisplayedGroupsNamesLength();
   }
 
   /**
-   * Transforms the data needed to create the grapho
+   * Transforms the data needed to create the graph
    * @param instance instance object
    */
-  toGraphData(instance) {
+  private toGraphData(instance) {
     this.graphData = {
       nodes: [],
       links: []
@@ -278,7 +701,10 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         const nodeGroup = {
           id: group.service_group_instance_id,
           label: group.name,
-          tooltip: 'GROUP ' + group.name + ': ' + this.getBeautyStatusName(group.status_name),
+          tooltip: this.translateService.instant('graph.group')
+          + group.name
+          + ': '
+          + this.getBeautyStatusName(group.status_name),
           color: this.getNodeColor(group.status_name),
           text: this.getNodeTextColor(group.status_name),
           group: group.service_group_instance_id
@@ -288,7 +714,10 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           const nodeService = {
             id: group.service_group_instance_id + '-s-' + service.service_id,
             label: service.name,
-            tooltip: 'SERVICE ' + service.name + ': ' + this.getBeautyStatusName(service.status_name),
+            tooltip:
+            this.translateService.instant('graph.service')
+            + service.name
+            + ': ' + this.getBeautyStatusName(service.status_name),
             color: this.getNodeColor(service.status_name),
             text: this.getNodeTextColor(group.status_name),
             group: group.service_group_instance_id
@@ -335,213 +764,12 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.graphDataLoaded = true;
   }
 
-  /**
-   * Get arrow color depending on node source color
-   * @param sourceId Link source identifier
-   */
-  getArrowColor (sourceId: string): string {
-    const index = this.graphData.nodes.map(x => x.id).indexOf(sourceId);
-    if (index !== -1) {
-      return this.graphData.nodes[index].color;
-    }
-  }
 
   /**
-   * Return an specific color depending on the node status
-   * @param status Status name
-   */
-  getNodeColor(status: string): string {
-    switch (status.toLowerCase()) {
-      case 'service_running':
-        return this.STATUS_COLORS.RUNNING;
-      break;
-      case 'service_error':
-        return this.STATUS_COLORS.ERROR;
-      break;
-      case 'service_waiting':
-        return this.STATUS_COLORS.OTHER;
-      break;
-      default:
-        return this.STATUS_COLORS.OTHER;
-    }
-  }
-
-    /**
-   * Return an specific color depending on the node status
-   * @param status Status name
-   */
-  getNodeTextColor(status: string): string {
-    switch (status.toLowerCase()) {
-      case 'service_running':
-        return this.STATUS_TEXT_COLORS.RUNNING;
-      break;
-      case 'service_error':
-        return this.STATUS_TEXT_COLORS.ERROR;
-      break;
-      case 'service_waiting':
-        return this.STATUS_TEXT_COLORS.OTHER;
-      break;
-      default:
-        return this.STATUS_TEXT_COLORS.OTHER;
-    }
-  }
-
-  /**
-   * Calculates the number of characters needed to hide the title of tabs, breakpoints calculated through manual testing
-   * @param event to pass in onResize method
-   */
-  @HostListener('window:resize', ['$event'])
-    onResize(event) {
-      if (event.target.innerWidth < 1280) {
-        this.maxLabelsLength = 55;
-      } else if (event.target.innerWidth < 1440) {
-        this.maxLabelsLength = 65;
-      } else if (event.target.innerWidth < 1613) {
-        this.maxLabelsLength = 75;
-      } else if (event.target.innerWidth < 1920) {
-        this.maxLabelsLength = 85;
-      } else {
-        this.maxLabelsLength = 100;
-      }
-    }
-
-  /**
-   * Changes to active group
-   * @param groupId service group identifier
-   */
-  changeActiveGroup(groupId: string) {
-    this.activeGroupId = groupId;
-  }
-
-  /**
-   * Checks if the service group is active to show in the tabs
-   * @param groupId service group identifier
-   */
-  amIactive(groupId) {
-    if (groupId === this.activeGroupId) {
-      return 'active';
-    }
-    // Empty class when is not active
-    return '';
-  }
-
-  /**
-   * Checks if there are less than a maximum number groups in groups list
-   * @param groups groups list identifier
-   */
-  haveIGroups(groups) {
-    if (groups.length > this.DISPLAYED_GROUP_MAX) {
-      return '';
-    }
-    return 'opacity';
-  }
-
-  /**
-   * Sortby pipe in the component
-   * @param categoryName the name of the chosen category
-   */
-  setOrder(list: string, categoryName: string) {
-    if (list === 'services') {
-      if (this.sortedBy === categoryName) {
-        this.reverse = !this.reverse;
-        this.filterField = false;
-      }
-      this.sortedBy = categoryName;
-      this.filterField = true;
-    } else if (list === 'rules') {
-      if (this.sortedByRules === categoryName) {
-        this.reverseRules = !this.reverseRules;
-        this.filterFieldRules = false;
-      }
-      this.sortedByRules = categoryName;
-      this.filterFieldRules = true;
-    }
-  }
-
-  /**
-   * Reset all the filters fields
-   */
-  resetFilters(list: string) {
-    if (list === 'services') {
-      this.filterField = false;
-      this.searchTerm = '';
-      this.sortedBy = '';
-    } else if (list === 'rules') {
-      this.filterFieldRules = false;
-      this.searchTermRules = '';
-      this.sortedByRules = '';
-    }
-  }
-
-  /**
-   * Gets the category headers to add a class
-   * @param categoryName the class for the header category
-   */
-  getCategoryCSSClass(list: string, categoryName: string) {
-    if (list === 'rules') {
-      if (this.sortedByRules === '') {
-        return 'default';
-      } else {
-        if (this.sortedByRules === categoryName) {
-          return 'enabled';
-        } else if (this.sortedByRules !== categoryName) {
-          return 'disabled';
-        }
-      }
-    } else if (list === 'services') {
-      if (this.sortedBy === '') {
-        return 'default';
-      } else {
-        if (this.sortedBy === categoryName) {
-          return 'enabled';
-        } else if (this.sortedBy !== categoryName) {
-          return 'disabled';
-        }
-      }
-    }
-  }
-
-  /**
-   * Updates the displayed groups chars length to calculate the number of letters displayed according to the size of the viewport
-   */
-  updateDisplayedGroupsNamesLength() {
-    this.displayedGroupsNamesLength = 0;
-    this.displayedGroups.forEach(group => {
-      this.displayedGroupsNamesLength += group.name.length;
-    });
-  }
-
-  /**
-   * Displayed groups list swipes left by pressing the arrow button functionality
-   */
-  swipeLeft() {
-    const index = this.groups.map(x => x.service_group_instance_id).indexOf(this.displayedGroups[0].service_group_instance_id);
-    if (index !== -1 && index > 0) {
-      this.displayedGroups.unshift(this.groups[index - 1]);
-      this.displayedGroups.pop();
-      this.updateDisplayedGroupsNamesLength();
-    }
-  }
-
-  /**
-   * Displayed groups list swipes right by pressing the arrow button functionality
-   */
-  swipeRight() {
-    const index = this.groups
-      .map(x => x.service_group_instance_id)
-      .indexOf(this.displayedGroups[this.displayedGroups.length - 1].service_group_instance_id);
-    if (index !== -1 && this.groups[index + 1]) {
-      this.displayedGroups.push(this.groups[index + 1]);
-      this.displayedGroups.shift();
-    }
-    this.updateDisplayedGroupsNamesLength();
-  }
-
-   /**
    * Requests an updated list of available services group to update the current one
    * @param organizationId Organization identifier
    */
-  updateInstanceInfo(organizationId: string) {
+  private updateInstanceInfo(organizationId: string) {
     if (organizationId !== null) {
       // Requests an updated services group list
       this.backend.getAppInstance(this.organizationId,  this.instanceId)
@@ -549,15 +777,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           if (this.anyChanges(this.instance, instance)) {
             this.instance = instance;
             this.groups = instance.groups || [];
-            if (this.displayedGroups.length === 0 && this.groups.length > 0) {
-              for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
-                this.displayedGroups.push(this.groups[index]);
-              }
-            } else {
-              this.updateDisplayedGroupsInfo();
-            }
             this.toGraphData(instance);
-            this.updateDisplayedGroupsNamesLength();
             if (!this.loadedData) {
               this.loadedData = true;
             }
@@ -568,24 +788,13 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         });
     }
   }
-  /**
-   * Updates displayed groups information
-   */
-  updateDisplayedGroupsInfo() {
-    this.displayedGroups.forEach(displayedGroup => {
-      const index = this.groups.map(x => x.service_group_instance_id).indexOf(displayedGroup.service_group_instance_id);
-      if (index !== -1) {
-        displayedGroup = this.groups[index];
-      }
-    });
-  }
 
   /**
    * Compares the status of each instance service to determine if there are changes in the instances
    * @param instanceOutdated Outdated instance object
    * @param instanceUpdated Updated instance object
    */
-  anyChanges(instanceOutdated, instanceUpdated) {
+  private anyChanges(instanceOutdated, instanceUpdated) {
     let anyChanges = false;
     const instanceOutdatedServices = [];
     const instanceUpdatedServices = [];
@@ -627,349 +836,5 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     });
 
     return anyChanges;
-  }
-
-  /**
-   * Returns the descriptor beauty name
-   * @param descriptorId Descriptor identifier
-   */
-  getDescriptorName(descriptorId: string) {
-    const index =
-    this.registered
-        .map(x => x.app_descriptor_id).
-        indexOf(descriptorId);
-    if (index !== -1) {
-      return this.registered[index].name;
-    }
-  }
-
-   /**
-   * Requests to undeploy the selected instance
-   * @param app Application instance object
-   */
-  undeploy(app) {
-    const undeployConfirm = confirm('Undeploy ' + app.name + '?');
-    if (undeployConfirm) {
-      this.backend.undeploy(this.organizationId, app.app_instance_id)
-        .subscribe(undeployResponse => {
-          this.notificationsService.add({
-            message: 'Undeploying ' + app.name,
-            timeout: 3000
-          });
-          this.router.navigate(['/applications']);
-        }, error => {
-          this.notificationsService.add({
-            message: error.error.message,
-            timeout: 5000,
-            type: 'warning'
-          });
-        });
-    }
-  }
-
-  /**
-   * Depending on the service status, returns the css class name that is required
-   * @param status Service status string
-   */
-  getServiceStatusClass(status: string ) {
-    switch (status.toLowerCase()) {
-      case 'service_running':
-        return 'teal';
-      break;
-      case 'service_error':
-        return 'red';
-      break;
-      case 'service_waiting':
-        return 'yellow';
-      break;
-      default:
-        return 'yellow';
-    }
-  }
-
-    /**
-   * Checks if the status requires an special css class
-   * @param status  status name
-   * @param className CSS class name
-   */
-  classStatusCheck(status: string, className: string): boolean {
-    switch (status.toLowerCase()) {
-      case 'service_running': {
-        if (className.toLowerCase() === 'service_running') {
-          return true;
-        }
-        break;
-      }
-      case 'service_error': {
-        if (className.toLowerCase() === 'service_error') {
-          return true;
-        }
-        break;
-      }
-      case 'service_waiting': {
-        if (className.toLowerCase() === 'service_waiting') {
-          return true;
-        }
-        break;
-      }
-     default: {
-        if (className.toLowerCase() === 'service_waiting') {
-          return true;
-        }
-        return false;
-      }
-    }
-  }
-
-  /**
-   * Checks if the instances status requires an special css class
-   * @param status instances status name
-   * @param className CSS class name
-   */
-  classInstanceStatusCheck(status: string, className: string): boolean {
-    switch (status.toLowerCase()) {
-      case 'running': {
-        if (className.toLowerCase() === 'running') {
-          return true;
-        }
-        break;
-      }
-      case 'deployment_error': {
-        if (className.toLowerCase() === 'error') {
-          return true;
-        }
-        break;
-      }
-      case 'planning_error': {
-        if (className.toLowerCase() === 'error') {
-          return true;
-        }
-        break;
-      }
-      case 'incomplete': {
-        if (className.toLowerCase() === 'error') {
-          return true;
-        }
-        break;
-      }
-      case 'error': {
-        if (className.toLowerCase() === 'error') {
-          return true;
-        }
-        break;
-      }
-      case 'queued': {
-        if (className.toLowerCase() === 'process') {
-          return true;
-        }
-        break;
-      }
-      case 'planning': {
-        if (className.toLowerCase() === 'process') {
-          return true;
-        }
-        break;
-      }
-      case 'scheduled': {
-        if (className.toLowerCase() === 'process') {
-          return true;
-        }
-        break;
-      }
-     default: {
-        if (className.toLowerCase() === 'process') {
-          return true;
-        }
-        return false;
-      }
-    }
-  }
-
-  /**
-   * Shows the graph in services card
-   */
-  selectDisplayMode(type: string) {
-    if (type === 'list') {
-      this.showGraph = false;
-    } else if (type === 'graph') {
-      this.showGraph = true;
-    }
-  }
-
-  /**
-   * Open services info modal window
-   *  @param service service object
-   */
-  openServicesInfo(service) {
-    const initialState = {
-      organizationId: this.organizationId,
-      serviceId: service.service_group_id,
-      instanceId: service.service_instance_id,
-      appDescriptorId: service.app_descriptor_id,
-      appInstanceId: service.app_instance_id,
-      environmentVariables: service.environment_variables,
-      exposedPorts: service.exposed_ports,
-      image: service.image,
-      name: service.name,
-      groupId: service.service_group_id,
-      groupInstanceId: service.service_group_instance_id,
-      replicas: service.replicas,
-      specs: service.specs,
-      statusName: service.status_name,
-      typeName: service.type_name,
-      endpoints: service.endpoints,
-      credentials : service.credentials,
-      dockerRepository: service.docker_repository,
-      deployAfter: service.deploy_after,
-      deployedOnCluster: service.deployed_on_cluster_id,
-      labels: service.labels,
-    };
-
-    this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.modalRef.content.closeBtnName = 'Close';
-
-  }
-
-  /**
-   * Open rules info modal window
-   * @param rule rule object
-   */
-  openRulesInfo(rule) {
-    const initialState = {
-      organizationId: this.organizationId,
-      ruleId: rule.rule_id,
-      access: rule.access_name,
-      appDescriptorId: rule.app_descriptor_id,
-      authServices: rule.auth_services,
-      authServiceGroupName: rule.auth_service_group_name,
-      name: rule.name,
-      targetPort: rule.target_port,
-      targetServiceGroupName: rule.target_service_group_name,
-      targetServiceName: rule.target_service_name,
-      deviceGroupIds: rule.device_group_ids,
-      deviceGroupNames: rule.device_group_names,
-    };
-
-    this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.modalRef.content.closeBtnName = 'Close';
-
-  }
-
-  /**
-   * Return the last specified number of chars of an string
-   * @param numberOfChars number of chars to be returned
-   * @param text text to substring
-   */
-  getLastChars(numberOfChars: number, text: string) {
-    return text.substr(text.length - numberOfChars, numberOfChars);
-  }
-
-  /**
-   * Returns the lenght of service instances that are part of the specified active group
-   * @param activeGroupId Identifier for the active group
-   */
-  countGroupServices(groupId: string) {
-    if (groupId === 'ALL') {
-      let counter = 0;
-      if (this.instance && this.instance.groups) {
-        this.instance.groups.forEach(group => {
-          counter += group.service_instances.length;
-        });
-        return counter;
-      } else {
-        return 0;
-      }
-    } else {
-      const index = this.displayedGroups
-        .map(x => x.service_group_instance_id)
-        .indexOf(groupId);
-      if (index !== -1) {
-        return this.displayedGroups[index].service_instances.length;
-      }
-      return 0;
-    }
-  }
-
-  /**
-   * Return the list of group services
-   */
-  getGroupServices(groupId: string) {
-    if (!groupId) {
-      return [];
-    }
-    if (groupId === 'ALL') {
-      const services = [];
-      if (this.instance && this.instance.groups) {
-        this.instance.groups.forEach(group => {
-          group.service_instances.forEach(service => {
-            services.push(service);
-          });
-        });
-        return services;
-      } else {
-        return [];
-      }
-    } else {
-      const index = this.groups
-      .map(x => x.service_group_instance_id)
-      .indexOf(this.activeGroupId);
-
-      if (index !== -1) {
-        return this.groups[index].service_instances;
-      } else {
-        return [];
-      }
-    }
-  }
-
-  /**
-   * Adds https in case of being required
-   * @param endpoint String containing the endpoint
-   */
-  getEndpointHref(endpoint: string) {
-    let URL = '';
-    if (!endpoint.startsWith('http') && !endpoint.startsWith('https')) {
-      URL = 'http://' + endpoint;
-    } else {
-      URL = endpoint;
-    }
-    return URL;
-  }
-
-  /**
-   * Filters the backend incoming status to display it in removing the initial "service_"
-   * @param rawStatus string containing the status that the backend is sending
-   */
-  getBeautyStatusName (rawStatus: string): string {
-    if (rawStatus.toLowerCase().startsWith('service_')) {
-      return rawStatus.substring('service_'.length, rawStatus.length);
-    }
-    return rawStatus;
-  }
-
-  /**
-   * Return if the marker is required
-   * @param link Link object
-   */
-  getMarker(link) {
-    const index = this.graphData.nodes.map(x => x.id).indexOf(link.source);
-    if (index !== -1) {
-      if (this.graphData.nodes[index].id === this.graphData.nodes[index].group) {
-        return '';
-      } else {
-        return 'url(#arrow)';
-      }
-    }
-    return 'url(#arrow)';
-  }
-
-  /**
-   * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
-   */
-  resetGraphZoom() {
-    this.graphReset = true;
-    setTimeout(() => {
-      this.graphReset = false;
-    }, 1);
   }
 }
