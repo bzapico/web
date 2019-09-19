@@ -1,7 +1,8 @@
 {
 	"advancedFilterOptions": {
+		"noFilters": "No filters",
 		"showNodes": "Show only nodes",
-		"showRelatedNodes": "Show related nodes",
+		"showRelatedNodes": "Show only related nodes",
 		"title": "Advanced filter options"
 	},
 	"applications": {

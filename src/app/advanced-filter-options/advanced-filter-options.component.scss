@@ -8,8 +8,11 @@
         font-size: .9em;
         display: inline-block;
     }
-    .add-dev-checkbox {
+    .radio-btn-box {
         float: right;
+        i {
+            font-size: 19px;
+        }
     }
     @include for-desktop-up() {
         padding-top: 2em;

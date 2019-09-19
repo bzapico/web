@@ -242,7 +242,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   foundOccurrenceInRegistered: boolean;
   initialState = {
     showOnlyNodes: false,
-    showRelatedNodes: false
+    showRelatedNodes: false,
+    defaultFilter: true
   };
 
   constructor(
@@ -536,6 +537,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.searchTermGraph = '';
       this.quickFilter = '';
       this.isSearchingInGraph = false;
+      this.modalService.config.initialState['defaultFilter'] = true;
+      this.modalService.config.initialState['showOnlyNodes'] = false;
+      this.modalService.config.initialState['showRelatedNodes'] = false;
       this.toGraphData();
     }
   }
@@ -848,7 +852,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   searchInGraph() {
     this.isSearchingInGraph = true;
-    this.toGraphData(this.searchTermGraph);
+    if (Object.values(this.searchGraphData.nodes)
+          .filter(node => node.label.toLowerCase().includes(this.searchTermGraph.toLowerCase())).length > 0) {
+      this.toGraphData(this.searchTermGraph);
+    }
     this.occurrencesGraphCounter();
   }
 
@@ -887,6 +894,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.setClusters(cluster, searchTermGraph);
       this.setRegisteredAndInstances(cluster, searchTermGraph);
     });
+    this.setRelatedNodes();
     this.graphDataLoaded = true;
   }
 
@@ -1014,9 +1022,30 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   private addNode(nodeName: string, node, searchTermGraph?: string) {
     if (!searchTermGraph
-        || (searchTermGraph && nodeName.includes(searchTermGraph))
-        || (searchTermGraph && !nodeName.includes(searchTermGraph) && !this.initialState.showOnlyNodes)) {
+        || (searchTermGraph && !nodeName.includes(searchTermGraph) && !this.initialState.showOnlyNodes)
+        || (searchTermGraph && nodeName.includes(searchTermGraph))) {
       this.graphData.nodes.push(node);
+    }
+  }
+
+  /**
+   * It set the related nodes when we apply the show related nodes filter
+   */
+  private setRelatedNodes() {
+    const relatedNodes = {};
+    if ((this.foundOccurrenceInCluster || this.foundOccurrenceInInstance || this.foundOccurrenceInRegistered)
+        && this.initialState.showRelatedNodes) {
+      this.graphData.nodes
+        .map(node => {
+          this.searchGraphData.links[node.id].forEach(searchNode => {
+            relatedNodes[node.id] = this.searchGraphData.nodes[searchNode];
+          });
+        });
+      const uniqueNodes = {};
+      this.graphData.nodes.concat(Object.values(relatedNodes)).map(item => {
+        uniqueNodes[item.id] = item;
+      });
+      this.graphData.nodes = Object.values(uniqueNodes);
     }
   }
 
@@ -1178,23 +1207,25 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   openAdvancedFilterOptions() {
     if (this.modalService.config.initialState
-        && typeof this.modalService.config.initialState['showOnlyNodes'] !== undefined
-        && typeof this.modalService.config.initialState['showRelatedNodes'] !== undefined) {
-      this.initialState = {
-        showOnlyNodes: this.modalService.config.initialState['showOnlyNodes'],
-        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes']
-      };
+        && typeof this.modalService.config.initialState['showOnlyNodes'] === 'undefined'
+        && typeof this.modalService.config.initialState['showRelatedNodes'] === 'undefined'
+        && typeof this.modalService.config.initialState['defaultFilter'] === 'undefined') {
+      this.modalService.config.initialState['showOnlyNodes'] = this.initialState.showOnlyNodes;
+      this.modalService.config.initialState['showRelatedNodes'] = this.initialState.showRelatedNodes;
+      this.modalService.config.initialState['defaultFilter'] = this.initialState.defaultFilter;
     }
-    this.modalRef =
-        this.modalService
-            .show(AdvancedFilterOptionsComponent,
-                {initialState: this.initialState, backdrop: 'static', ignoreBackdropClick: false});
+    this.modalRef = this.modalService.show(AdvancedFilterOptionsComponent, { backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe(() => {
       this.initialState = {
         showOnlyNodes: this.modalService.config.initialState['showOnlyNodes'],
-        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes']
+        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes'],
+        defaultFilter: this.modalService.config.initialState['defaultFilter']
       };
+      if (this.initialState.showRelatedNodes) {
+        this.initialState.showOnlyNodes = true;
+      }
+      this.isSearchingInGraph = true;
       this.toGraphData(this.searchTermGraph);
     });
   }
