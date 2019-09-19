@@ -253,7 +253,7 @@
           registeredData &&
           registeredData.groups &&
           registeredData.groups.length > 0" 
-          class="row mb-3 hide-md-h">
+          class="row mb-3">
           <!-- Sorting messages -->
           <div class="col-7">
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
@@ -336,7 +336,7 @@
                   !requestError"
                   class="nalej-table-box no-p-col no-m-row">
                   <div class="label-nalej-table">
-                    <div class="label-thead row">
+                    <div *ngIf="!searchTerm" class="label-thead row">
                       <div class="col-12">
                         <div class="row">
                           <div 
@@ -411,6 +411,7 @@
                             {{label.key}}: {{label.value}}
                           </button>
                         </div>
+                        <hr class="accordion-table-separator">
                       </div>
                     </div>
                   </div>

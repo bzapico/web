@@ -1,79 +1,8 @@
 // -----------------------------------------------------------------------------
-// Tabs
+// Accordion
 // -----------------------------------------------------------------------------
 
-/* - - - Nalej tabs - - - */
-.nalej-tab-box {
-    margin: 0em 3em 2em 1em;
-    font-size: .6em;
-    border-bottom: 1px solid $super-light-grey;
-    display: flex;
-    flex-direction: row;
-    text-transform: uppercase;
-    ul {
-        list-style: none;
-        text-align: center;
-        padding: 0;
-        margin: 0;
-    }
-    li {
-        font-size: 1em;
-        float: left;
-        padding: 0.5rem 2.5rem;
-        cursor: pointer;
-        position: relative;
-        @media screen and (max-width: 1570px) {
-            padding: 0.5rem .9rem;
-        }
-        @media screen and (max-width: 1779px) {
-            padding: 0.5rem 1.2rem;
-        }
-    }
-    .tabs-arrow {
-        color: $base-grey;
-        padding: 0rem 2rem;
-    }
-    .nalej-tab-title {
-        cursor: default;
-        padding-right: 8em;
-        > span {
-            font-weight: 700;
-        }
-    }
-    span {
-        font-weight: 500;
-        color: $base-grey;
-        display: block;
-        text-decoration: none;
-        transition: .3s background-color;
-        &.active {
-            color: $base-violet;
-            &::before {
-            content: "";
-            height: 5px;
-            width: 100%;
-            display: block;
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            background-color: $base-violet;
-            }
-        }
-    }
-}
-
-accordion-group > div 
-> div.panel-collapse.collapse.in.show > div > div 
-> div:nth-child(2) > div {
-    border: none;
-}
-
 .accordion-box {
-    accordion-group > div 
-    > div.panel-collapse.collapse.in.show > div > div > div 
-    > div:nth-child(2) > div {
-       border: 0;
-   }
     overflow-y: scroll;
     height: 92%;
     width: 80%;
@@ -95,7 +24,7 @@ accordion-group > div
             .card-header {
                 padding: 0;
                 margin-bottom: 3px;
-                background-color: #EEEEEE;
+                background-color: $light-grey;
                 border-radius: 15px;
                 padding: 2px;
                 border-bottom: none;
@@ -113,7 +42,7 @@ accordion-group > div
             }
             .accordion-icons-box {
                 .action-btn-grey, .action-btn-grey-2 {
-                    background-color: #BFBFBF;
+                    background-color: $base-light-grey;
                 }
                 .accordion-arrow {
                     color: #707070;
@@ -144,6 +73,27 @@ accordion-group > div
                     }
                 }
             }
+        }
+    }
+}
+.accordion-table-separator {
+    border-top: .8px solid $super-light-grey;
+    margin: 10px 0;
+    width: 100%;
+}
+
+div.panel-collapse.collapse.in.show > div > div > div {
+    > div:last-child > div > hr, 
+    &:last-child > div > hr, 
+    > span > div:last-child > div > hr {
+      border: none;
+    }
+  }
+
+.accordion-box {
+    .label-nalej-table {
+        .label-tbody {
+            border-top: 0;
         }
     }
 }

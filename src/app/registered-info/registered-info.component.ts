@@ -160,7 +160,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.servicesCount = 0;
     this.labels = [];
     this.requestError = '';
-    this.showGraph = false; // TODO
+    this.showGraph = true;
     this.registeredData = {
       groups: [],
       environment_variables: {},

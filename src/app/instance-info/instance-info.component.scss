@@ -153,7 +153,6 @@ $super-light-grey: #F8F8F8;
     right: 36px;
 }
 .label-tbody {
-    border-top: .8px solid #f6f6f6;
     padding: .9rem 0;
     .label-td {
         float: left;
@@ -168,5 +167,8 @@ $super-light-grey: #F8F8F8;
         align-items: center;
         text-align: center;
     }
+}
+.card-title-name-mb {
+    margin-bottom: .5em;
 }
 

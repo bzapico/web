@@ -186,7 +186,7 @@
                     !requestError" 
                     class="nalej-table-box no-p-col no-m-row">
                     <div class="label-nalej-table">
-                      <div class="label-thead row">
+                      <div *ngIf="!searchTerm" class="label-thead row">
                         <div class="col-11">
                           <div class="row">
                             <div 
@@ -350,9 +350,9 @@
                                 </button>
                               </div>
                             </div>
+                            <hr class="accordion-table-separator">
                           </div>
                         </div>
-
                       </span>
                     </div>
                   </div> 

@@ -20,7 +20,7 @@ export class InstanceServiceGroupInfoComponent implements OnInit {
   serviceGroupId: string;
   serviceGroupInstanceId: string;
   serviceInstances: any;
-  status: string;
+  status: any;
   globalFqdn: string;
   metadata: any;
 
@@ -38,34 +38,19 @@ export class InstanceServiceGroupInfoComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.status = this.status || '';
+
   }
 
   /**
    * Filters the backend incoming status to display it in removing the initial "service_"
    * @param rawStatus string containing the status that the backend is sending
    */
-  getBeautyStatusName (rawStatus: string): string {
+  getBeautyStatusName(rawStatus: string): string {
     if (rawStatus.toLowerCase().startsWith('service_')) {
       return rawStatus.substring('service_'.length, rawStatus.length);
     }
     return rawStatus;
-  }
-
-  /**
-   * Depending on the service status, returns the css class name that is required
-   * @param status Service status string
-   */
-  getServiceStatusClass(status: string ) {
-    switch (status.toLowerCase()) {
-      case this.translateService.instant('status.serviceRunning'):
-        return 'teal';
-      case this.translateService.instant('status.serviceError'):
-        return 'red';
-      case this.translateService.instant('status.serviceWaiting'):
-        return 'yellow';
-      default:
-        return 'yellow';
-    }
   }
 
   /**
