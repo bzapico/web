@@ -145,7 +145,7 @@
                 *ngIf="groups.length > 0"
                 heading="{{group.name}}"
                 [panelClass]="nalejAccordion"
-                [isOpen]="isFirstOpen">
+                [isOpen]="group.isFirstOpen">
                   <span     
                     accordion-heading 
                     class="accordion-icons-box">
@@ -169,20 +169,13 @@
                       </button> 
                     </div>
                   </span>
-                  <!-- No devices to show -->
-                  <div *ngIf=
-                    "groups && groups.length > 0 &&
-                    countDevices() === 0 &&
-                    loadedData"
-                    class="no-elements-in-group">
-                    {{'devices.noDevicesRegistered'|translate }}                 
-                  </div>
                   <!-- Devices table -->
                   <div *ngIf=
                     "devices &&
                     devices.length > 0 &&
                     groups && 
                     groups.length > 0 &&
+                    getGroupDevices(group.device_group_id).length !== 0 &&
                     !requestError" 
                     class="nalej-table-box no-p-col no-m-row">
                     <div class="label-nalej-table">
@@ -261,7 +254,7 @@
                             <div class="col-11">
                               <div class="row mb-2">
                                 <div class="col-4 label-td">{{device.device_id}}</div> 
-                                <div class="col-4 label-td">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</div>  
+                                <div *ngIf="device.register_since" class="col-4 label-td">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</div>  
                                 <div 
                                   class="col-4 label-td col-center-lowercase"
                                   [ngClass]=
@@ -356,6 +349,13 @@
                       </span>
                     </div>
                   </div> 
+                   <!-- No devices to show -->
+                  <div *ngIf=
+                    "getGroupDevices(group.device_group_id).length === 0 &&
+                    loadedData"
+                    class="no-elements-in-group">
+                    {{'devices.noDevicesRegistered'|translate}}
+                  </div>
                   <!-- No info to show -->
                   <div *ngIf="groups && groups.length === 0 && !requestError" class="no-elements">
                     {{'devices.noGroupsCreated'|translate}}

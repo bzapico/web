@@ -81,7 +81,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Refresh ratio reference
    */
-  REFRESH_RATIO = 20000; // 20 seconds
+  REFRESH_RATIO = 20000000; // 20 seconds
 
   /**
    * Charts references
@@ -131,7 +131,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Accordion options
    */
   nalejAccordion = 'nalejAccordion';
-  isFirstOpen = true;
 
   /**
    * NGX-Charts object-assign required object references (for rendering)
@@ -236,7 +235,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   countDevices(): number {
     let temporalCount = 0;
     if (!this.loadedData) {
-      return null;
+      return 0;
     }
     this.devices.forEach(group => {
       temporalCount = group.length + temporalCount;
@@ -254,6 +253,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       this.backend.getGroups(this.organizationId)
       .subscribe(response => {
         this.groups = response.groups || [];
+        this.groups.forEach(group => {
+          group.isFirstOpen = true;
+        });
         this.updateDisplayedGroupsNamesLength();
         this.updateDevicesList(this.organizationId);
       }, errorResponse => {
@@ -438,14 +440,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     let devicesGroup: any[] | { device_group_id: string; }[];
     for (let indexGroup = 0; indexGroup < this.devices.length; indexGroup++) {
       devicesGroup = this.devices[indexGroup];
-      if (devicesGroup && devicesGroup[0] && devicesGroup[0].device_group_id) {
-      }
-
       if (devicesGroup && devicesGroup.length > 0 && devicesGroup[0].device_group_id === groupId) {
         return devicesGroup;
       }
     }
-    return [-1];
+    return [];
   }
 
   /**
