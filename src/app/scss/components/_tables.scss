@@ -196,6 +196,11 @@
 > div {
     border: none;
 }
+div.nalej-table-box.no-p-col.no-m-row > div 
+> div:nth-child(2) > div {
+    border: none;
+}
+
 /* - - -  Nalej flex table fot 4 adn 5 cols - - - */
 .nalej-flex-table-box {
     display: block;
@@ -375,25 +380,6 @@
     }
     .nalej-flex-td {
         padding: .2em;
-    }
-}
-.rules-info-sm-table-box {
-    height: 100%;
-    overflow-y: scroll;
-    display: none;
-    @include for-xs-desktop-h  {
-        display: block;
-        .rules-info-sm-table {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: .5em;
-        }
-        .rules-info-sm-text {
-            font-size: .9em;
-            color: $base-grey;
-        }
     }
 }
 

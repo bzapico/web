@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
@@ -9,7 +9,8 @@ import { mockDevicesChart } from '../utils/mocks';
 import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group.component';
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
-import { ActivatedRoute } from '@angular/router';
+import { DeviceGroupInfoComponent } from '../device-group-info/device-group-info.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-devices',
@@ -52,15 +53,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   device_group_api_key: string;
 
   /**
-   * Models that hold the active group
-   */
-  activeGroupId: string;
-
-  /**
    * Models that keeps the displayed groups names length
    */
   displayedGroupsNamesLength: number;
-  maxLabelsLength: number;
 
   /**
    * List of active displayed group
@@ -86,12 +81,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Refresh ratio reference
    */
-  REFRESH_RATIO = 20000; // 20 seconds
-
-  /**
-   * Count of num max for displayed groups
-   */
-  DISPLAYED_GROUP_MAX = 5;
+  REFRESH_RATIO = 20000000; // 20 seconds
 
   /**
    * Charts references
@@ -108,6 +98,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Hold request error message or undefined
    */
   requestError: string;
+
+  /**
+   * Active context menu groupID
+   */
+  activeContextMenuGroupId: string;
 
   /**
    * Line Chart options
@@ -131,6 +126,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       value: 0
     }
   ];
+
+  /**
+   * Accordion options
+   */
+  nalejAccordion = 'nalejAccordion';
 
   /**
    * NGX-Charts object-assign required object references (for rendering)
@@ -163,7 +163,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
-    private route: ActivatedRoute,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.devicesMock) || null;
     // Check which backend is required (fake or real)
@@ -176,21 +176,20 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.devices = [];
     this.groups = [];
     this.displayedGroups = [];
-    this.activeGroupId = 'ALL';
     this.labels = [];
     this.loadedData = false;
+    this.activeContextMenuGroupId = '';
     this.devicesCount = 0;
     this.devicesChart = [{
       name: 'Running devices %',
       series: []
     }];
     this.requestError = '';
-    this.maxLabelsLength = 35;
-    this.device_group_id = 'Loading ...';
-    this.name = 'Loading ...';
+    this.device_group_id = this.translateService.instant('organization.loading');
+    this.name = this.translateService.instant('organization.loading');
     this.enabled = false;
     this.default_device_connectivity = false;
-    this.device_group_api_key = 'Loading ...';
+    this.device_group_api_key = this.translateService.instant('organization.loading');
     // SortBy
     this.sortedBy = '';
     this.reverse = false;
@@ -210,9 +209,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
       this.updateGroupsList(this.organizationId);
-        if (this.route.snapshot.queryParamMap.get('groupId')) {
-          this.activeGroupId = this.route.snapshot.queryParamMap.get('groupId');
-        }
         this.refreshIntervalRef = setInterval(() => {
           this.updateGroupsList(this.organizationId);
         },
@@ -239,32 +235,13 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   countDevices(): number {
     let temporalCount = 0;
     if (!this.loadedData) {
-      return null;
+      return 0;
     }
     this.devices.forEach(group => {
       temporalCount = group.length + temporalCount;
     });
     return temporalCount;
   }
-
-  /**
-   * Calculates the number of characters needed to hide the title of tabs, breakpoints calculated through manual testing
-   * @param event to pass in onResize method
-   */
-  @HostListener('window:resize', ['$event'])
-    onResize(event) {
-      if (event.target.innerWidth < 1280) {
-        this.maxLabelsLength = 55;
-      } else if (event.target.innerWidth < 1440) {
-        this.maxLabelsLength = 65;
-      } else if (event.target.innerWidth < 1613) {
-        this.maxLabelsLength = 75;
-      } else if (event.target.innerWidth < 1920) {
-        this.maxLabelsLength = 85;
-      } else {
-        this.maxLabelsLength = 100;
-      }
-    }
 
   /**
    * Requests an updated list of available devices group to update the current one
@@ -276,65 +253,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       this.backend.getGroups(this.organizationId)
       .subscribe(response => {
         this.groups = response.groups || [];
-        if (this.displayedGroups.length === 0 && this.groups.length > 0) {
-          for (let index = 0; index < this.groups.length && index < this.DISPLAYED_GROUP_MAX; index++) {
-            this.displayedGroups.push(this.groups[index]);
-          }
-        }
+        this.groups.forEach(group => {
+          group.isFirstOpen = true;
+        });
         this.updateDisplayedGroupsNamesLength();
         this.updateDevicesList(this.organizationId);
-      }, errorResponse => {
-          this.loadedData = true;
-          this.requestError = errorResponse.error.message;
-        });
-    }
-  }
-
-  /**
-   * Requests an updated list of available devices group when added a new group
-   */
-  groupListUpdateAfterAdd() {
-    if (this.organizationId !== null) {
-      // Requests an updated devices group list
-      this.backend.getGroups(this.organizationId)
-      .subscribe(response => {
-        const outdatedGroups = this.groups.slice(0);
-        this.groups = response.groups || [];
-        if (outdatedGroups.length === this.groups.length) {
-          // do nothing
-        } else {
-          this.displayedGroups = [];
-          let foundNewGroup = false;
-          for (let indexGroups = 0; indexGroups < this.groups.length && !foundNewGroup; indexGroups++) {
-            const index =
-              outdatedGroups
-                .map(x => x.device_group_id)
-                .indexOf(this.groups[indexGroups].device_group_id);
-              if (index === -1) {
-                foundNewGroup  = true;
-                this.displayedGroups.push(this.groups[indexGroups]);
-                  let refillIndexPush = 1;
-                  let refillIndexUnshift = 1;
-                  let stop = false;
-                  while ( stop === false && this.displayedGroups.length < this.DISPLAYED_GROUP_MAX) {
-                    if (this.groups[indexGroups + refillIndexPush]) {
-                      this.displayedGroups.push(this.groups[indexGroups + refillIndexPush]);
-                      refillIndexPush += 1;
-                    } else if (this.groups[indexGroups - refillIndexUnshift]) {
-                      this.displayedGroups.unshift(this.groups[indexGroups - refillIndexUnshift]);
-                      refillIndexUnshift += 1;
-                    } else {
-                      stop = true;
-                    }
-                }
-                this.activeGroupId = this.groups[indexGroups].device_group_id;
-              }
-          }
-        }
-        this.updateDisplayedGroupsNamesLength();
-        if (!this.loadedData) {
-          this.loadedData = true;
-        }
       }, errorResponse => {
           this.loadedData = true;
           this.requestError = errorResponse.error.message;
@@ -375,49 +298,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Updates timeline chart
-   * @param devices devices array
-   */
-  updateDevicesStatusLineChart() {
-    let connectedDevicesCount = 0;
-    let selectedGroupDevicesCountTotal = 0;
-
-    if (this.devicesOnTimeline && this.devicesOnTimeline.length > 0) {
-      this.devicesOnTimeline.forEach(device => {
-          selectedGroupDevicesCountTotal += 1;
-        if (device && device.device_status_name && device.device_status_name.toLowerCase() === 'online') {
-          connectedDevicesCount += 1;
-        }
-      });
-    }
-    const now = new Date(Date.now());
-    let minutes: any = now.getMinutes();
-    let seconds: any = now.getSeconds();
-    if (minutes < 10) {
-      minutes = '0' + now.getMinutes();
-    }
-    if (seconds < 10) {
-      seconds = '0' + now.getSeconds();
-    }
-
-    let value = 0;
-    if (connectedDevicesCount > 0 && selectedGroupDevicesCountTotal !== 0) {
-      value = connectedDevicesCount / selectedGroupDevicesCountTotal * 100;
-    }
-    const entry = {
-      'value': value.toFixed(2),
-      'name':  now.getHours() + ':' + minutes + ':' + seconds
-    };
-
-    if (this.devicesChart[0].series.length > 4) {
-      // Removes first element
-      this.devicesChart[0].series.shift();
-    }
-    this.devicesChart[0].series.push(entry);
-    this.devicesChart = [...this.devicesChart];
-  }
-
-  /**
    * Checks if the devices status requires an special css class
    * @param status devices status name
    * @param className CSS class name
@@ -425,20 +305,20 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   classStatusCheck(status: string, className: string): boolean {
     if (status) {
       switch (status.toLowerCase()) {
-        case 'online': {
-          if (className.toLowerCase() === 'online') {
+        case this.translateService.instant('status.online'): {
+          if (className.toLowerCase() === this.translateService.instant('status.online')) {
             return true;
           }
           break;
         }
-        case 'offline': {
-          if (className.toLowerCase() === 'offline') {
+        case this.translateService.instant('status.offline'): {
+          if (className.toLowerCase() === this.translateService.instant('status.offline')) {
             return true;
           }
           break;
         }
        default: {
-          if (className.toLowerCase() === 'process') {
+          if (className.toLowerCase() === this.translateService.instant('status.process')) {
             return true;
           }
           return false;
@@ -476,12 +356,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   getCategoryCSSClass(categoryName: string) {
     if (this.sortedBy === '') {
-      return 'default';
+      return this.translateService.instant('devices.default');
     } else {
       if (this.sortedBy === categoryName) {
-        return 'enabled';
+        return this.translateService.instant('devices.enabled');
       } else if (this.sortedBy !== categoryName) {
-        return 'disabled';
+        return this.translateService.instant('devices.disabled');
       }
     }
   }
@@ -499,73 +379,15 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       deviceId: device.device_id,
       enabled: device.enabled
    }).subscribe( updateDeviceResponse => {
-     let notificationText = 'enabled';
+     let notificationText = this.translateService.instant('devices.enabled');
      if (!device.enabled) {
-      notificationText = 'disabled';
+      notificationText = this.translateService.instant('devices.disabled');
      }
     this.notificationsService.add({
-      message: 'The device is now ' + notificationText,
+      message: this.translateService.instant('devices.switcherMessage')  + notificationText,
       timeout: 3000
     });
    });
-  }
-
-  /**
-   * Changes to active group
-   * @param groupId device group identifier
-   */
-  changeActiveGroup(groupId: string) {
-    this.activeGroupId = groupId;
-    this.cleanDevicesStatusTimeline();
-    this.updateDevicesOnTimeline();
-    this.updateDevicesStatusLineChart();
-  }
-
-  /**
-   * Checks if the device group is active to show in the tabs
-   * @param groupId device group identifier
-   */
-  amIactive(groupId: string) {
-    if (groupId === this.activeGroupId) {
-      return 'active';
-    }
-    // Empty class when is not active
-    return '';
-  }
-
-  /**
-   * Checks if there are less than a maximum number groups in groups list
-   * @param groups groups list identifier
-   */
-  haveIGroups(groups: { length: number; }) {
-    if (groups.length > this.DISPLAYED_GROUP_MAX) {
-      return '';
-    }
-    return 'opacity';
-  }
-
-  /**
-   * Displayed groups list swipes left by pressing the arrow button functionality
-   */
-  swipeLeft() {
-    const index = this.groups.map(x => x.device_group_id).indexOf(this.displayedGroups[0].device_group_id);
-    if (index !== -1 && index > 0) {
-      this.displayedGroups.unshift(this.groups[index - 1]);
-      this.displayedGroups.pop();
-      this.updateDisplayedGroupsNamesLength();
-    }
-  }
-
-  /**
-   * Displayed groups list swipes right by pressing the arrow button functionality
-   */
-  swipeRight() {
-    const index = this.groups.map(x => x.device_group_id).indexOf(this.displayedGroups[this.displayedGroups.length - 1].device_group_id);
-    if (index !== -1 && this.groups[index + 1]) {
-      this.displayedGroups.push(this.groups[index + 1]);
-      this.displayedGroups.shift();
-    }
-    this.updateDisplayedGroupsNamesLength();
   }
 
   /**
@@ -581,103 +403,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
       if (allowHide) {
-        this.groupListUpdateAfterAdd();
+        this.updateGroupsList(this.organizationId);
       }
       allowHide = false;
-    });
-  }
-
-  /**
-   *  Upon confirmation, deletes a device group
-   */
-  deleteGroup() {
-    const deleteConfirm = confirm('Delete group?');
-    if (deleteConfirm) {
-      let deleteGroupName;
-      const indexActive = this.groups.map(x => x.device_group_id).indexOf(this.activeGroupId);
-      if (indexActive !== -1) {
-        deleteGroupName = this.groups[indexActive].name;
-        if (this.countGroupDevices(this.activeGroupId) === 0) {
-        this.backend.deleteGroup(this.organizationId, this.activeGroupId)
-        .subscribe(response => {
-          this.backend.getGroups(this.organizationId)
-          .subscribe(getGroupsResponse => {
-              this.groups = getGroupsResponse.groups;
-              if (!this.groups) {
-                this.groups = [];
-              }
-              if (this.groups.length === 0) {
-                this.displayedGroups = [];
-              } else if (this.displayedGroups.length > 0) {
-                const indexDisplayed = this.displayedGroups.map(x => x.device_group_id).indexOf(this.activeGroupId);
-                if (indexDisplayed !== -1) {
-                  this.displayedGroups.splice(indexDisplayed, 1);
-                  if (this.displayedGroups[this.displayedGroups.length - 1]) {
-                    const lastElementId = this.displayedGroups[this.displayedGroups.length - 1].device_group_id;
-                    if (this.groups && this.groups.length > 0) {
-                      const indexGroups = this.groups.map(x => x.device_group_id).indexOf(lastElementId);
-                      if (indexGroups !== -1) {
-                        if (this.groups[indexGroups + 1]) {
-                          this.displayedGroups.push(this.groups[indexGroups + 1]);
-                        } else {
-                            const firstElementId = this.displayedGroups[0].device_group_id;
-                            const indexGroupsFirst = this.groups.map(x => x.device_group_id).indexOf(firstElementId);
-                            if (indexGroupsFirst !== -1) {
-                              if (this.groups[indexGroupsFirst - 1]) {
-                                this.displayedGroups.unshift(this.groups[indexGroupsFirst - 1]);
-                              }
-                            }
-                        }
-                      }
-                    }
-                  }
-                }
-            }
-            this.updateDisplayedGroupsNamesLength();
-            this.changeActiveGroup('ALL');
-            });
-            this.notificationsService.add({
-              message: 'Group "' + deleteGroupName + '" has been deleted',
-              timeout: 3000
-            });
-        },
-        error => {
-          this.notificationsService.add({
-            message: error.error.message,
-            timeout: 5000,
-            type: 'warning'
-          });
-        });
-        } else {
-          this.notificationsService.add({
-            message: 'It is not possible to delete a group with devices in it ',
-            timeout: 5000,
-            type: 'warning'
-          });
-        }
-        }
-      }
-    }
-
-  /**
-   * Opens the modal view that holds group configuration component
-   */
-  openGroupConfiguration() {
-    let configGroupName;
-    const configIndex = this.groups.map(x => x.device_group_id).indexOf(this.activeGroupId);
-    configGroupName = this.groups[configIndex].name;
-
-    const initialState = {
-      organizationId: this.organizationId,
-      enabled: this.groups[configIndex].enabled || false,
-      defaultConnectivity: this.groups[configIndex].default_device_connectivity || false,
-      name: configGroupName,
-      device_group_id: this.groups[configIndex].device_group_id
-    };
-    this.modalRef = this.modalService.show(GroupConfigurationComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
-      this.updateGroupsList(this.organizationId);
     });
   }
 
@@ -689,20 +417,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.displayedGroups.forEach(group => {
       this.displayedGroupsNamesLength += group.name.length;
     });
-  }
-
-  /**
-   * Locate the name of a group through an id
-   * @param groupId group id
-   */
-  getGroupName(groupId: any) {
-    if (this.groups && this.groups.length > 0) {
-      const index = this.groups.map(x => x.device_group_id).indexOf(groupId);
-      if (index !== -1) {
-        return this.groups[index].name;
-      }
-    }
-    return 'Not found';
   }
 
   /**
@@ -719,24 +433,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Counts the number of devices of an specified groupId from the devices list
-   * @param groupId Group identifier
-   */
-  countGroupDevices(groupId: string): number {
-    if (groupId === 'ALL') {
-      return this.countDevices();
-    }
-    let devices = 0;
-    const devicesList = this.getDevices();
-    devicesList.forEach(device => {
-      if (device && device.device_group_id === groupId) {
-        devices += 1;
-      }
-    });
-    return devices;
-  }
-
-  /**
    * Search for an specific array of devices that are part of the same group
    * @param groupId Group identifier
    */
@@ -744,42 +440,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     let devicesGroup: any[] | { device_group_id: string; }[];
     for (let indexGroup = 0; indexGroup < this.devices.length; indexGroup++) {
       devicesGroup = this.devices[indexGroup];
-      if (devicesGroup && devicesGroup[0] && devicesGroup[0].device_group_id) {
-      }
-
       if (devicesGroup && devicesGroup.length > 0 && devicesGroup[0].device_group_id === groupId) {
         return devicesGroup;
       }
     }
-    return [-1];
-  }
-
-  /**
-   * Removes the values in devices status timeline
-   */
-  cleanDevicesStatusTimeline() {
-    while (this.devicesChart[0].series.length > 0) {
-      this.devicesChart[0].series.pop();
-    }
-    this.devicesChart = [...this.devicesChart];
-  }
-
-  /**
-   * Updates devices values array for timeline
-   */
-  updateDevicesOnTimeline() {
-    this.devicesOnTimeline = [];
-    if (this.activeGroupId === 'ALL') {
-      this.devices.forEach(devicesGroup => {
-        if (devicesGroup && devicesGroup.length > 0) {
-          devicesGroup.forEach(device => {
-            this.devicesOnTimeline.push(device);
-          });
-        }
-      });
-    } else {
-      this.devicesOnTimeline = this.getGroupDevices(this.activeGroupId);
-    }
+    return [];
   }
 
   /**
@@ -789,7 +454,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   addLabel(device: { device_id: any; }) {
     const initialState = {
       organizationId: this.organizationId,
-      entityType: 'device',
+      entityType: this.translateService.instant('label.entityTypeDevice'),
       entity: device,
       modalTitle: device.device_id
     };
@@ -804,7 +469,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param entity selected label entity
    */
   deleteLabel(entity: { device_id: any; device_group_id: any; }) {
-    const deleteConfirm = confirm('Delete labels?');
+    const deleteConfirm = confirm(this.translateService.instant('label.deleteLabels'));
     if (deleteConfirm) {
       const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.device_id);
       this.backend.removeLabelFromDevice(
@@ -853,7 +518,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
  /**
-  * Check if the label is selected. Returs index number in selected labels or -1 if the label is not found.
+  * Check if the label is selected. Returns index number in selected labels or -1 if the label is not found.
   * @param entityId entity from selected label
   * @param labelKey label key from selected label
   * @param labelValue label value from selected label
@@ -887,31 +552,29 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Returns human-understandable category name
    * @param sortedByRawCategory Raw category name
    */
-  getBeautyCategoryName (sortedByRawCategory: string): string {
+  getBeautyCategoryName(sortedByRawCategory: string): string {
     switch (sortedByRawCategory) {
       case 'device_status_name':
-        return 'status';
-        break;
+        return this.translateService.instant('devices.tableStatus');
       case 'register_since':
-        return 'date';
-        break;
+        return this.translateService.instant('devices.tableDate');
       default:
         return sortedByRawCategory;
-        break;
     }
   }
 
   /**
    * Requests to unlink the selected device
-   * @param device device in inventory item
+   * @param device device item
    */
   unlinkDevice(device: any) {
-    const unlinkConfirm = confirm('Unlink ' + device.device_id + '?');
+    const unlinkConfirm =
+    confirm(this.translateService.instant('devices.unlinkDeviceConfirm', {device_id : device.device_id }));
     if (unlinkConfirm) {
-      this.backend.removeDevice(this.organizationId, device.device_group_id , device.device_id)
+      this.backend.removeDevice(this.organizationId, device.device_group_id, device.device_id)
         .subscribe(unlinkResponse => {
         this.notificationsService.add({
-          message: 'Unlinking ' + device.device_id,
+          message: this.translateService.instant('devices.unlinkDeviceMessage', {device_id : device.device_id }),
           timeout: 3000
         });
         this.updateGroupsList(this.organizationId);
@@ -923,5 +586,193 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           });
         });
     }
+  }
+
+  /**
+   * Opens context menu
+   * @param group device group
+   */
+  openContextualMenu(event, group: any) {
+    group.isFirstOpen = true;
+    event.stopPropagation();
+    if (group.device_group_id === this.activeContextMenuGroupId) {
+      this.activeContextMenuGroupId = '';
+    } else {
+      this.activeContextMenuGroupId = group.device_group_id;
+    }
+  }
+  onContextualMenuClose(group) {
+    this.activeContextMenuGroupId = '';
+  }
+
+  /**
+   * Get the item options to show in the context menu
+   * @param group device group
+   */
+  getDevicesGroupOptions(group: any) {
+    const groupOptions = [];
+    const groupOption1 = {
+      name: this.translateService.instant('devices.contextMenu.moreInfo'),
+      action: () => {
+        this.openDeviceGroupInfo(group);
+      },
+      group: group
+    };
+    const groupOption2 = {
+      name: this.translateService.instant('devices.contextMenu.configuration'),
+      action: () => {
+        this.openGroupConfiguration(group);
+      },
+      group: group
+    };
+    const groupOption3 = {
+      name: this.translateService.instant('devices.contextMenu.deleteGroup'),
+      action: () => {
+        this.deleteGroup(group);
+      },
+      group: group
+    };
+    groupOptions.push(groupOption1);
+    groupOptions.push(groupOption2);
+    groupOptions.push(groupOption3);
+    return groupOptions;
+  }
+
+  /**
+   * Updates timeline chart
+   */
+  private updateDevicesStatusLineChart() {
+    let connectedDevicesCount = 0;
+    let selectedGroupDevicesCountTotal = 0;
+
+    if (this.devicesOnTimeline && this.devicesOnTimeline.length > 0) {
+      this.devicesOnTimeline.forEach(device => {
+          selectedGroupDevicesCountTotal += 1;
+        if (
+          device
+          && device.device_status_name
+          && device.device_status_name.toLowerCase()
+          === this.translateService.instant('status.online')
+          ) {
+          connectedDevicesCount += 1;
+        }
+      });
+    }
+    const now = new Date(Date.now());
+    let minutes: any = now.getMinutes();
+    let seconds: any = now.getSeconds();
+    if (minutes < 10) {
+      minutes = '0' + now.getMinutes();
+    }
+    if (seconds < 10) {
+      seconds = '0' + now.getSeconds();
+    }
+
+    let value = 0;
+    if (connectedDevicesCount > 0 && selectedGroupDevicesCountTotal !== 0) {
+      value = connectedDevicesCount / selectedGroupDevicesCountTotal * 100;
+    }
+    const entry = {
+      'value': value.toFixed(2),
+      'name':  now.getHours() + ':' + minutes + ':' + seconds
+    };
+
+    if (this.devicesChart[0].series.length > 4) {
+      // Removes first element
+      this.devicesChart[0].series.shift();
+    }
+    this.devicesChart[0].series.push(entry);
+    this.devicesChart = [...this.devicesChart];
+  }
+
+  /**
+  * Open device group info modal window
+  *  @param group group object
+  */
+  private openDeviceGroupInfo(group: any) {
+    const initialState = {
+      organizationId: this.organizationId,
+      name: group.name,
+      deviceGroupApiKey: group.device_group_api_key,
+      deviceGroupId: group.device_group_id,
+      defaultDeviceConnectivity: group.default_device_connectivity,
+      enabled: group.enabled
+    };
+
+    this.modalRef = this.modalService.show(DeviceGroupInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+   * Opens the modal view that holds group configuration component
+   * @param group device group
+   */
+  private openGroupConfiguration(group) {
+    const initialState = {
+      organizationId: this.organizationId,
+      enabled: group.enabled || false,
+      defaultConnectivity: group.default_device_connectivity || false,
+      name: group.name,
+      device_group_id: group.device_group_id
+    };
+    this.modalRef = this.modalService.show(GroupConfigurationComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateGroupsList(this.organizationId);
+    });
+  }
+
+  /**
+   * Updates devices values array for timeline
+   */
+  private updateDevicesOnTimeline() {
+    this.devicesOnTimeline = [];
+      this.devices.forEach(devicesGroup => {
+        if (devicesGroup && devicesGroup.length > 0) {
+          devicesGroup.forEach(device => {
+            this.devicesOnTimeline.push(device);
+          });
+        }
+      });
+  }
+
+  /**
+   *  Upon confirmation, deletes a device group
+   *  @param group device group
+   */
+  private deleteGroup(group) {
+    const deleteConfirm = confirm(this.translateService.instant('devices.deleteGroup'));
+    if (deleteConfirm) {
+      if (this.countDevices() === 0) {
+      this.backend.deleteGroup(this.organizationId, group.device_group_id)
+      .subscribe(response => {
+        this.backend.getGroups(this.organizationId)
+        .subscribe(getGroupsResponse => {
+            this.groups = getGroupsResponse.groups;
+            if (!this.groups) {
+              this.groups = [];
+            }
+          this.updateDisplayedGroupsNamesLength();
+          });
+          this.notificationsService.add({
+            message: this.translateService.instant('devices.deleteGroupMessage', { groupName: group.name }),
+            timeout: 3000
+          });
+      },
+      error => {
+        this.notificationsService.add({
+          message: error.error.message,
+          timeout: 5000,
+          type: 'warning'
+        });
+      });
+      } else {
+        this.notificationsService.add({
+          message: this.translateService.instant('devices.deleteGroupMessageNegative'),
+          timeout: 5000,
+          type: 'warning'
+        });
+      }
+      }
   }
 }

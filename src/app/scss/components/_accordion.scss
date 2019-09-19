@@ -1,0 +1,100 @@
+// -----------------------------------------------------------------------------
+// Accordion
+// -----------------------------------------------------------------------------
+
+.accordion-box {
+    overflow-y: scroll;
+    height: 92%;
+    width: 80%;
+    .accordion-tabs {
+        .card-body {
+            flex: 1 1 auto;
+            padding: 1.25rem .6em;
+        }
+        .card {
+            box-shadow: none;
+            border-radius: 10px;
+            border: 0;
+            overflow: hidden;
+            padding: 1.5rem;
+            height: 100%;
+        }
+        .nalejAccordion {
+            padding: 0;
+            .card-header {
+                padding: 0;
+                margin-bottom: 3px;
+                background-color: $light-grey;
+                border-radius: 15px;
+                padding: 2px;
+                border-bottom: none;
+                position: relative;
+            }
+             .btn-link {
+                color: $base-violet;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: 500;
+                margin-left: 54px;
+            }
+            .label-nalej-table .label-thead {
+                margin-bottom: 0;
+            }
+            .accordion-icons-box {
+                .action-btn-grey, .action-btn-grey-2 {
+                    background-color: $base-light-grey;
+                }
+                .accordion-arrow {
+                    color: #707070;
+                    font-size: 27px;
+                    position: absolute;
+                    top: 8px;
+                    left: 27px;
+                }
+                .accordion-btn {
+                    color: #707070;
+                    font-size: 27px;
+                    position: absolute;
+                    top: 2px;
+                    right: 27px;
+                    @include for-desktop-up {
+                        top: 1px;
+                        right: 27px;
+                    }
+                    .action-btn-grey, .action-btn-grey-selected {
+                        height: 24px;
+                        width: 24px;
+                        .i-black{
+                            font-size: 20px;
+                            position: absolute;
+                            top: 2px;
+                            left: 2px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.accordion-table-separator {
+    border-top: .8px solid $super-light-grey;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    width: 100%;
+}
+
+div.panel-collapse.collapse.in.show > div > div > div {
+    > div:last-child > div > hr, 
+    &:last-child > div > hr, 
+    > span > div:last-child > div > hr {
+      border: none;
+    }
+  }
+
+.accordion-box {
+    .label-nalej-table {
+        .label-tbody {
+            border-top: 0;
+        }
+    }
+}

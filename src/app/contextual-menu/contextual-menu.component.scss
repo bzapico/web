@@ -10,16 +10,16 @@
     top: 0px;
     right: 35px;
     background-color: #404040;
-    padding: .5em 1em;
-    z-index: 1;
+    padding: 8px 16px;
+    z-index: 2;
     ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
         li {   
-            font-size: .8em;
+            font-size:  12px;
             text-align: right;
-            padding: .2em 0;
+            padding: 2.4px 0;
         }
     }
     @include for-desktop-up {           

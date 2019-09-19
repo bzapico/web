@@ -1,0 +1,103 @@
+<div class="modal-card modal-card-info">
+  <div class="modal-content">
+    <!-- Header -->
+    <div class="modal-header">
+      <h3 class="modal-info-title mb-4">
+        {{'apps.instance.serviceGroupInfo.title'|translate}}
+      </h3>
+    </div>
+    <!-- Body -->
+    <div class="modal-body">
+    <h3 class="modal-info-h3-title">{{name}}</h3>
+    <p class="modal-info-title">{{serviceGroupInstanceId}}</p>
+    <div class="scroll-app-info">
+      <div class="row">
+        <div class="col-sm modal-info-table-title mb-3">
+          {{'apps.instance.serviceGroupInfo.status'|translate}}
+        </div>
+        <h3 class="modal-info-h3-title col-sm text-right">
+            <span 
+            [ngClass]=
+              "{
+                'big-status-dot': classStatusCheck(status, 'service_running'),
+                'big-status-dot-error': classStatusCheck(status, 'service_error'),
+                'big-status-dot-process': classStatusCheck(status, 'service_waiting')
+              }"
+            class="big-status-dot">
+          </span>
+          <span class="fw-black">
+              {{getBeautyStatusName(status)}}
+          </span>
+        </h3>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm modal-info-table-title mb-3">
+          {{'apps.instance.serviceGroupInfo.appDescriptorId'|translate}}</div>
+        <div class="col-sm text-right">{{appDescriptorId}}</div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm modal-info-table-title mb-3">
+          {{'apps.instance.serviceGroupInfo.appInstanceId'|translate}}
+        </div>
+        <div class="col-sm text-right">{{appInstanceId}}</div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm modal-info-table-title mb-3">
+          {{'apps.instance.serviceGroupInfo.policyName'|translate}}
+        </div>
+        <div class="col-sm text-right">{{policyName}}</div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm modal-info-table-title mb-3">
+          {{'apps.instance.serviceGroupInfo.globalFqdn'|translate}}
+        </div>
+        <div class="col-sm text-right">
+          <span *ngFor="let endpoint of globalFqdn">
+              <a 
+                *ngIf="endpoint" 
+                href="{{getEndpointHref(endpoint)}}" 
+                target="_blank">
+                {{endpoint}}
+              </a>
+            </span>
+          <span *ngIf="!globalFqdn">No</span>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm modal-info-table-title mb-3">Metadata</div>
+      </div>
+      <div *ngFor="let meta of metadata | keyvalue" class="row mb-1">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4 modal-info-table-title">{{meta.key}}</div>
+        <div *ngIf="meta.key === 'status_name' || meta.key === 'info'" class="col-sm text-right">
+          <div *ngFor="let item of meta.value | keyvalue" class="row">
+            <div class="col-sm">
+              {{item.key}}
+            </div>
+            <div *ngIf="item.value" class="col-sm">
+              {{item.value}}
+            </div>
+          </div>
+        </div>
+        <div *ngIf="meta.key !== 'status_name' && meta.key !== 'info'" class="col-sm text-right">
+          {{meta.value}}
+        </div>
+      </div>
+      <br>
+    </div>      
+    <!-- Option button -->
+    <div class="form-group-btn">
+      <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">
+        <span class="align-bottom">{{'modals.buttonClose'|translate}}</span>
+      </button>
+    </div>
+    </div>
+  </div>
+</div>
+  
+    
