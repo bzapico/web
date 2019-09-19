@@ -141,11 +141,12 @@
             <accordion 
               *ngFor="let group of groups"
               class="accordion-tabs">
-              <accordion-group 
+              <accordion-group
                 *ngIf="groups.length > 0"
                 heading="{{group.name}}"
                 [panelClass]="nalejAccordion"
-                [isOpen]="group.isFirstOpen">
+                [isOpen]="group.isFirstOpen"
+                (click)="group.isFirstOpen = !group.isFirstOpen">
                   <span     
                     accordion-heading 
                     class="accordion-icons-box">

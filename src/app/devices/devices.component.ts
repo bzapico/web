@@ -593,6 +593,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param group device group
    */
   openContextualMenu(event, group: any) {
+    group.isFirstOpen = true;
     event.stopPropagation();
     if (group.device_group_id === this.activeContextMenuGroupId) {
       this.activeContextMenuGroupId = '';
