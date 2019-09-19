@@ -542,6 +542,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.modalService.config.initialState['defaultFilter'] = true;
       this.modalService.config.initialState['showOnlyNodes'] = false;
       this.modalService.config.initialState['showRelatedNodes'] = false;
+      this.filters.registered = true;
+      this.filters.instances = true;
+      this.filters.clusters = true;
       this.toGraphData();
     }
   }
