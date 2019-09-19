@@ -17,6 +17,7 @@ import { NodeType } from '../definitions/enums/node-type.enum';
 import { GraphData } from '../definitions/models/graph-data';
 import { KeyValue } from '../definitions/interfaces/key-value';
 import { AdvancedFilterOptionsComponent } from '../advanced-filter-options/advanced-filter-options.component';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Refresh ratio
@@ -234,7 +235,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   activeContextMenuId: string;
 
   /**
-   * Boolean variables for indicate different flags to search in the graph
+   * Boolean variables for indicate different flags to search/filter in the graph
    */
   isSearchingInGraph = false;
   foundOccurrenceInCluster: boolean;
@@ -245,12 +246,18 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     showRelatedNodes: false,
     defaultFilter: true
   };
+  filters = {
+    registered: true,
+    instances: true,
+    clusters: true
+  };
 
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
+    private translateService: TranslateService,
     private router: Router) {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
@@ -514,10 +521,27 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Adds a quick filter
    */
   addQuickFilter(quickFilter: string) {
-    if (this.quickFilter === quickFilter) {
-      this.quickFilter = '';
+    if (this.isSearchingInGraph) {
+      alert(this.translateService.instant('applications.filters.notAppliedSearching'));
     } else {
-      this.quickFilter = quickFilter;
+      let canApply = false;
+      const auxFilters = { ...this.filters };
+      auxFilters[quickFilter] = !auxFilters[quickFilter];
+      for (const filter in auxFilters) {
+        if (!!!auxFilters[filter]) {
+          continue;
+        }
+        if (auxFilters[filter]) {
+          canApply = true;
+          continue;
+        }
+      }
+      if (canApply) {
+        this.filters[quickFilter] = !this.filters[quickFilter];
+        this.toGraphData();
+      } else {
+        alert(this.translateService.instant('applications.filters.atLeastOne'));
+      }
     }
   }
 
@@ -540,6 +564,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.modalService.config.initialState['defaultFilter'] = true;
       this.modalService.config.initialState['showOnlyNodes'] = false;
       this.modalService.config.initialState['showRelatedNodes'] = false;
+      this.filters.registered = true;
+      this.filters.instances = true;
+      this.filters.clusters = true;
       this.toGraphData();
     }
   }
@@ -677,7 +704,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   getServicesCount(app) {
     let temporalCount = 0;
     app.groups.forEach(group => {
-      temporalCount = group.services.length + temporalCount;
+      if (group.services) {
+        temporalCount = group.services.length + temporalCount;
+      }
     });
     return temporalCount;
   }
@@ -891,7 +920,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       searchTermGraph = searchTermGraph.toLowerCase();
     }
     this.clusters.forEach(cluster => {
-      this.setClusters(cluster, searchTermGraph);
+      if (this.filters.clusters) {
+        this.setClusters(cluster, searchTermGraph);
+      }
       this.setRegisteredAndInstances(cluster, searchTermGraph);
     });
     this.setRelatedNodes();
@@ -939,13 +970,17 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       const registeredApp = this.getRegisteredApp(this.addNodeInstance(instance, cluster, searchTermGraph));
       if (registeredApp.length > 0) {
         this.addNodeRegistered(cluster, registeredApp, searchTermGraph);
-        this.setLinksInGraph(
-            registeredApp[0]['app_descriptor_id'],
-            cluster.cluster_id + '-s-' + instance['app_instance_id']);
+        if (this.filters.instances && this.filters.registered) {
+          this.setLinksInGraph(
+              registeredApp[0]['app_descriptor_id'],
+              cluster.cluster_id + '-s-' + instance['app_instance_id']);
+        }
       }
-      this.setLinksInGraph(
-          cluster.cluster_id + '-s-' + instance['app_instance_id'],
-          cluster.cluster_id);
+      if (this.filters.clusters && this.filters.instances) {
+        this.setLinksInGraph(
+            cluster.cluster_id + '-s-' + instance['app_instance_id'],
+            cluster.cluster_id);
+      }
     });
     this.hideLinks();
   }
@@ -978,7 +1013,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       if (!this.foundOccurrenceInRegistered) {
         this.foundOccurrenceInRegistered = searchTermGraph && registeredName.includes(searchTermGraph);
       }
-      this.addNode(registeredName, nodeRegistered, searchTermGraph);
+      if (this.filters.registered) {
+        this.addNode(registeredName, nodeRegistered, searchTermGraph);
+      }
     }
   }
 
@@ -1010,7 +1047,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     if (!this.foundOccurrenceInInstance) {
       this.foundOccurrenceInInstance = searchTermGraph && instanceName.includes(searchTermGraph);
     }
-    this.addNode(instanceName, nodeInstance, searchTermGraph);
+    if (this.filters.instances) {
+      this.addNode(instanceName, nodeInstance, searchTermGraph);
+    }
     return nodeInstance;
   }
 
