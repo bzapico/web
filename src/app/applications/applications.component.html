@@ -496,11 +496,11 @@
                 <i class="material-icons i-filter">filter_list</i>
               </li>
               <li
-                (click)="addQuickFilter('REGISTERED')"     
+                (click)="addQuickFilter('registered')"
                 [ngClass]=
                 "{
-                  'quick-filters-btn-selected': '!quickFilter',
-                  'quick-filters-btn': quickFilter === 'REGISTERED'
+                  'quick-filters-btn-selected': filters.registered,
+                  'quick-filters-btn': !filters.registered
                 }" 
                 tooltip="Registered" 
                 placement="bottom"
@@ -508,11 +508,11 @@
                   REGISTERED
               </li>
               <li  
-                (click)="addQuickFilter('INSTANCES')" 
+                (click)="addQuickFilter('instances')"
                 [ngClass]=
                 "{
-                  'quick-filters-btn-selected': '!quickFilter',
-                  'quick-filters-btn': quickFilter === 'INSTANCES'
+                  'quick-filters-btn-selected': filters.instances,
+                  'quick-filters-btn': !filters.instances
                 }"    
                 tooltip="Instances" 
                 placement="bottom"
@@ -520,11 +520,11 @@
                   INSTANCES
               </li>
               <li
-                (click)="addQuickFilter('CLUSTERS')" 
+                (click)="addQuickFilter('clusters')"
                 [ngClass]=
                 "{
-                  'quick-filters-btn-selected': '!quickFilter',
-                  'quick-filters-btn': quickFilter === 'CLUSTERS'
+                  'quick-filters-btn-selected': filters.clusters,
+                  'quick-filters-btn': !filters.clusters
                 }"    
                 tooltip="Clusters" 
                 placement="bottom"

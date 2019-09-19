@@ -234,7 +234,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   activeContextMenuId: string;
 
   /**
-   * Boolean variables for indicate different flags to search in the graph
+   * Boolean variables for indicate different flags to search/filter in the graph
    */
   isSearchingInGraph = false;
   foundOccurrenceInCluster: boolean;
@@ -244,6 +244,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     showOnlyNodes: false,
     showRelatedNodes: false,
     defaultFilter: true
+  };
+  filters = {
+    registered: true,
+    instances: true,
+    clusters: true
   };
 
   constructor(
@@ -514,11 +519,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Adds a quick filter
    */
   addQuickFilter(quickFilter: string) {
-    if (this.quickFilter === quickFilter) {
-      this.quickFilter = '';
-    } else {
-      this.quickFilter = quickFilter;
-    }
+    this.filters[quickFilter] = !this.filters[quickFilter];
+    this.toGraphData();
   }
 
   /**
@@ -893,7 +895,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       searchTermGraph = searchTermGraph.toLowerCase();
     }
     this.clusters.forEach(cluster => {
-      this.setClusters(cluster, searchTermGraph);
+      if (this.filters.clusters) {
+        this.setClusters(cluster, searchTermGraph);
+      }
       this.setRegisteredAndInstances(cluster, searchTermGraph);
     });
     this.setRelatedNodes();
@@ -941,13 +945,17 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       const registeredApp = this.getRegisteredApp(this.addNodeInstance(instance, cluster, searchTermGraph));
       if (registeredApp.length > 0) {
         this.addNodeRegistered(cluster, registeredApp, searchTermGraph);
-        this.setLinksInGraph(
-            registeredApp[0]['app_descriptor_id'],
-            cluster.cluster_id + '-s-' + instance['app_instance_id']);
+        if (this.filters.instances && this.filters.registered) {
+          this.setLinksInGraph(
+              registeredApp[0]['app_descriptor_id'],
+              cluster.cluster_id + '-s-' + instance['app_instance_id']);
+        }
       }
-      this.setLinksInGraph(
-          cluster.cluster_id + '-s-' + instance['app_instance_id'],
-          cluster.cluster_id);
+      if (this.filters.clusters && this.filters.instances) {
+        this.setLinksInGraph(
+            cluster.cluster_id + '-s-' + instance['app_instance_id'],
+            cluster.cluster_id);
+      }
     });
     this.hideLinks();
   }
@@ -980,7 +988,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       if (!this.foundOccurrenceInRegistered) {
         this.foundOccurrenceInRegistered = searchTermGraph && registeredName.includes(searchTermGraph);
       }
-      this.addNode(registeredName, nodeRegistered, searchTermGraph);
+      if (this.filters.registered) {
+        this.addNode(registeredName, nodeRegistered, searchTermGraph);
+      }
     }
   }
 
@@ -1012,7 +1022,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     if (!this.foundOccurrenceInInstance) {
       this.foundOccurrenceInInstance = searchTermGraph && instanceName.includes(searchTermGraph);
     }
-    this.addNode(instanceName, nodeInstance, searchTermGraph);
+    if (this.filters.instances) {
+      this.addNode(instanceName, nodeInstance, searchTermGraph);
+    }
     return nodeInstance;
   }
 
