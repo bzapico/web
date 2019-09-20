@@ -836,6 +836,57 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Opens application instances context menu
+   * @param instance application instances
+   */
+  openInstanceContextualMenu(event, instance: any) {
+    event.stopPropagation();
+    if (instance.app_instance_id === this.activeContextMenuId) {
+      this.activeContextMenuId = '';
+    } else {
+      this.activeContextMenuId = instance.app_instance_id;
+    }
+  }
+
+  /**
+   * Get the application instances options to show in the context menu
+   * @param instance application instances
+   */
+  getInstanceOptions(instance: any) {
+    const instanceOptions = [];
+    const instanceOption1 = {
+      name: 'More info',
+      action: () => {
+        this.goToInstanceView(instance);
+      },
+      instance: instance
+    };
+    const instanceOption2 = {
+      name: 'Undeploy',
+      action: () => {
+        this.undeploy(instance);
+      },
+      instance: instance
+    };
+    instanceOptions.push(instanceOption1);
+    instanceOptions.push(instanceOption2);
+    return instanceOptions;
+  }
+
+  /**
+   * Opens registered apps context menu
+   * @param registered registered app
+   */
+  openRegisteredContextualMenu(event, registered: any) {
+    event.stopPropagation();
+    if (registered.app_descriptor_id === this.activeContextMenuId) {
+      this.activeContextMenuId = '';
+    } else {
+      this.activeContextMenuId = registered.app_descriptor_id;
+    }
+  }
+
+  /**
    * Empties the active menu Id to close the contextual menu component
    */
   onContextualMenuClose() {

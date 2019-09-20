@@ -284,13 +284,19 @@
                 </div>
               </div>
               <div class="col-2 text-center label-td-flex">
-                <button 
-                  (click)="undeploy(app)"
-                  tooltip="Undeploy" 
-                  placement="left" 
-                  class="action-btn-grey position-relative">
-                  <i class="material-icons i-black">more_vert</i>
-                </button>
+                  <button
+                      (click)="openInstanceContextualMenu($event, app)"
+                      [ngClass]="{
+                        'action-btn-grey': app.app_instance_id !== activeContextMenuId,
+                        'action-btn-grey-selected': app.app_instance_id === activeContextMenuId }"
+                      class="action-btn-grey position-relative">
+                      <i class="material-icons i-black">more_vert</i>
+                      <app-contextual-menu
+                          [visible]="app.app_instance_id === activeContextMenuId"
+                          [options]="getInstanceOptions(app)"
+                          (closed)="onContextualMenuClose()">
+                      </app-contextual-menu>
+                  </button>
               </div>
             </div>
           </div>
@@ -417,12 +423,17 @@
                   </div>
                 </div>
                 <div class="col-2 actions-col label-td-flex">
-                  <button class="action-btn-grey position-relative">
+                  <button
+                    (click)="openRegisteredContextualMenu($event, app)"
+                    [ngClass]= "{
+                        'action-btn-grey': app.app_descriptor_id !== activeContextMenuId,
+                        'action-btn-grey-selected': app.app_descriptor_id === activeContextMenuId}"
+                    class="action-btn-grey position-relative">
                     <i class="material-icons i-black">more_vert</i>
-                    <app-contextual-menu 
-                      [visible]="app.app_descriptor_id === activeContextMenuId" 
-                      [options]="getRegisteredOptions(app)"
-                      (closed)="onContextualMenuClose()">
+                    <app-contextual-menu
+                        [visible]="app.app_descriptor_id === activeContextMenuId"
+                        [options]="getRegisteredOptions(app)"
+                        (closed)="onContextualMenuClose()">
                     </app-contextual-menu>
                   </button>
                 </div>

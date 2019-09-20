@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
 	"advancedFilterOptions": {
 		"noFilters": "No filters",
 		"showNodes": "Show only nodes",
@@ -15,7 +14,7 @@
 	},
 	"buttons": {
 		"saveChanges": "Save changes"
-=======
+	},
 	"apps": {
 		"instance": {
 			"configTitle": "CONFIGURATION",
@@ -258,8 +257,6 @@
 		"resultsFilteredBy": " results found. Filtered by \"{{value}}\".",
 		"resultsFound": "results found.",
 		"sortedBy": "Sorted by {{value}}"
-<<<<<<< HEAD
-=======
 	},
 	"status": {
 		"deploymentError": "deployment_error",
@@ -275,7 +272,6 @@
 		"serviceError": "service_error",
 		"serviceRunning": "service_running",
 		"serviceWaiting": "service_waiting"
->>>>>>> origin
 	}
 }
 
