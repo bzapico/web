@@ -27,8 +27,9 @@
             font-weight: 500;
         }
     }
-    path.edge {
+    .graph .edge {
         stroke: $base-light-grey;
+        fill: none;
     }
     .graph-click-fix {
         position: absolute;

@@ -589,7 +589,7 @@
               {{ occurrencesCounter }} {{ 'sortingMessage.resultsFilteredBy'|translate:{value:quickFilter} }}
                <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
              </p> 
-            <p *ngIf="!isSearchingInGraph || !quickFilter" class="sorting-message"></p>
+            <p *ngIf="!isSearchingInGraph || !quickFilter && !searchTermGraph" class="sorting-message"></p>
           </div>
         </div>
         <!-- Cluster-apps graph -->
