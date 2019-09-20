@@ -720,4 +720,20 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * Opens the modal view that holds the manage connections component
+   */
+  manageConnections() {
+    const initialState = {
+      organizationId: this.organizationId,
+      defaultAutofocus: false
+    };
+
+    this.modalRef = this.modalService.show(DeployInstanceComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalRef.content.onClose = (cancelled: boolean) => {
+      this.updateAppInstances(this.organizationId);
+     };
+  }
+
 }

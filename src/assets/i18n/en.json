@@ -1,4 +1,7 @@
 {
+	"applications": {
+		"manageConnectionsButton": "Manage connections"
+	},
 	"apps": {
 		"instance": {
 			"configTitle": "CONFIGURATION",
