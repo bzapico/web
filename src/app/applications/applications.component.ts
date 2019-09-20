@@ -261,7 +261,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     private router: Router) {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
-    if (!!mock) {
+    if (mock && mock === 'true') {
       this.backend = this.mockupBackendService;
     } else {
       this.backend = this.backendService;
