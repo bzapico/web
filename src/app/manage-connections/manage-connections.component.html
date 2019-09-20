@@ -1,3 +1,170 @@
-<p>
-  manage-connections works!
-</p>
+<div class="modal-card">
+  <!-- Header -->
+  <div class="modal-header">
+    <h3 class="nalej-form-title">{{title}}</h3>
+    <button 
+      (click)="closeModal()"
+      type="button" 
+      aria-label="Close"
+      class="close" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <!-- Body -->
+  <div class="modal-body">
+    <div class="modal-center-box">
+      <button 
+        (click)="addNewConnection()"
+        class="apps-actions-btn">
+        <i class="material-icons i-options">link</i>
+        Add new connection
+      </button>
+    </div>
+    <h3 class="nalej-form-title ">CONNECTIONS LIST</h3>
+    <div class="modal-center-box">
+      <!-- Filters -->
+      <form
+        *ngIf="!loading"
+        [formGroup]="manageConnectionsFilterForm" 
+        (ngSubmit)="addManageConnectionsFilter(f)"
+        class="w-100">
+          <div class="form-group form-group-drop filter-drop-box">
+            <label class="app-filter-label">APP FILTER</label>
+            <ngx-select-dropdown 
+              formControlName="filter" 
+              [multiple]="false" 
+              [ngClass]=
+                "{ 
+                  'ngx-error': submitted && !manageConnections,
+                  'base-light-grey': !f.filter.value
+                }"
+              [config]="manageConnectionsSelectConfig" 
+              [options]="manageConnectionsOptions">
+            </ngx-select-dropdown>
+            <div class="form-group-drop-arrow"> 
+              <i class="material-icons">arrow_drop_down</i>
+            </div>
+          </div>
+        </form>
+        <!-- Search box -->
+        <div class="search-box">
+          <input 
+            name="searchTerm" 
+            [(ngModel)]="searchTerm"
+            type="text" 
+            placeholder="{{'searcher.placeholder'|translate }}"
+            class="form-control"> 
+          <div *ngIf="searchTerm === ''" class="search-icon">
+            <i class="material-icons">search</i>
+          </div>     
+          <div *ngIf="searchTerm !== ''" class="close-icon">
+            <i (click)="resetFilters(filterField)" class="material-icons">close</i>
+          </div>
+        </div>
+      <!-- Table -->
+      <div class="scroll-app-info no-p-col no-m-row">
+        <div class="label-nalej-table">
+          <div class="label-thead row">
+            <div class="col-5 label-th">
+              <span tooltip="Name" placement="bottom">Source Instance</span>
+              <br>
+              <span tooltip="Name" placement="bottom">Source Interface</span>
+            </div>
+            <div  class="col-5 label-th">
+              <span tooltip="Name" placement="bottom">Target Instance</span>
+              <br>
+              <span tooltip="Name" placement="bottom">Target Interface</span>
+            </div>
+            <div class="col-2 label-th text-center">
+              <span tooltip="Name" placement="bottom">Disconnect</span>
+            </div>
+          </div>
+          <div class="label-tbody row">
+            <div class="col-5">
+              <span class="blue">WordPress</span>
+              <br>
+              <span class="grey">DBOutbound</span>
+            </div>
+            <div class="col-5">
+              <span class="blue">MySQL</span>
+              <br>
+              <span class="grey">DBInbound</span>
+            </div>
+            <div class="col-2 text-center label-td-flex">
+              <button 
+                (click)="disconnectInstance(app)"
+                tooltip="Disconnect" 
+                placement="left" 
+                class="action-btn-red">
+                <i class="material-icons i-red">link_off</i>
+              </button>
+            </div>
+          </div>
+          <div class="label-tbody row">
+              <div class="col-5">
+                <span class="blue">WordPress</span>
+                <br>
+                <span class="grey">DBOutbound</span>
+              </div>
+              <div class="col-5">
+                <span class="blue">MySQL</span>
+                <br>
+                <span class="grey">DBInbound</span>
+              </div>
+              <div class="col-2 text-center label-td-flex">
+                <button 
+                  (click)="disconnectInstance(app)"
+                  tooltip="Disconnect" 
+                  placement="left" 
+                  class="action-btn-red">
+                  <i class="material-icons i-red">link_off</i>
+                </button>
+              </div>
+            </div>
+            <div class="label-tbody row">
+                <div class="col-5">
+                  <span class="blue">WordPress</span>
+                  <br>
+                  <span class="grey">DBOutbound</span>
+                </div>
+                <div class="col-5">
+                  <span class="blue">MySQL</span>
+                  <br>
+                  <span class="grey">DBInbound</span>
+                </div>
+                <div class="col-2 text-center label-td-flex">
+                  <button 
+                    (click)="disconnectInstance(app)"
+                    tooltip="Disconnect" 
+                    placement="left" 
+                    class="action-btn-red">
+                    <i class="material-icons i-red">link_off</i>
+                  </button>
+                </div>
+              </div>
+              <div class="label-tbody row">
+                  <div class="col-5">
+                    <span class="blue">WordPress</span>
+                    <br>
+                    <span class="grey">DBOutbound</span>
+                  </div>
+                  <div class="col-5">
+                    <span class="blue">MySQL</span>
+                    <br>
+                    <span class="grey">DBInbound</span>
+                  </div>
+                  <div class="col-2 text-center label-td-flex">
+                    <button 
+                      (click)="disconnectInstance(app)"
+                      tooltip="Disconnect" 
+                      placement="left" 
+                      class="action-btn-red">
+                      <i class="material-icons i-red">link_off</i>
+                    </button>
+                  </div>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

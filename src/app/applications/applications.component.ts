@@ -11,6 +11,7 @@ import { AddLabelComponent } from '../add-label/add-label.component';
 import { RegisterApplicationComponent } from '../register-application/register-application.component';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 import { Router } from '@angular/router';
+import { ManageConnectionsComponent } from '../manage-connections/manage-connections.component';
 
 @Component({
   selector: 'applications',
@@ -729,7 +730,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       defaultAutofocus: false
     };
 
-    this.modalRef = this.modalService.show(DeployInstanceComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef = this.modalService.show(ManageConnectionsComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalRef.content.onClose = (cancelled: boolean) => {
       this.updateAppInstances(this.organizationId);
