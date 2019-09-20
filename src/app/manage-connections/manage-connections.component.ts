@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
+import { AddConnectionsComponent } from '../add-connections/add-connections.component';
 
 @Component({
   selector: 'manage-connections',
@@ -48,8 +49,14 @@ export class ManageConnectionsComponent implements OnInit {
   manageConnectionsOptions: any[];
   manageConnectionsSelectConfig = {};
 
+  /**
+   * Reference for the service that allows the modal component
+   */
+  modalRef: BsModalRef;
+
   constructor(
     public bsModalRef: BsModalRef,
+    private modalService: BsModalService,
     private formBuilder: FormBuilder,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
@@ -198,7 +205,14 @@ export class ManageConnectionsComponent implements OnInit {
    * Opens the modal view that holds the add new connections component
    */
   addNewConnection() {
-    console.log('add connection');
+    const initialState = {
+      organizationId: this.organizationId,
+      defaultAutofocus: false,
+    };
+
+    this.modalRef = this.modalService.show(AddConnectionsComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.hide();
   }
 
   getInstancesName() {
