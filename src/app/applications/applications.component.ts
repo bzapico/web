@@ -931,12 +931,14 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * It modifies the graph, changing the border of the nodes that its labels contain the search term
    */
   searchInGraph() {
-    this.isSearchingInGraph = true;
-    if (Object.values(this.searchGraphData.nodes)
+    if (this.searchTermGraph) {
+      this.isSearchingInGraph = true;
+      if (Object.values(this.searchGraphData.nodes)
           .filter(node => node.label.toLowerCase().includes(this.searchTermGraph.toLowerCase())).length > 0) {
-      this.toGraphData(this.searchTermGraph);
+        this.toGraphData(this.searchTermGraph);
+      }
+      this.occurrencesGraphCounter();
     }
-    this.occurrencesGraphCounter();
   }
 
   /**
