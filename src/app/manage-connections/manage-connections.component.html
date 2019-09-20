@@ -24,7 +24,6 @@
     <div class="modal-center-box">
       <!-- Filters -->
       <form
-        *ngIf="!loading"
         [formGroup]="manageConnectionsFilterForm" 
         (ngSubmit)="addManageConnectionsFilter(f)"
         class="w-100">
@@ -39,7 +38,7 @@
                   'base-light-grey': !f.filter.value
                 }"
               [config]="manageConnectionsSelectConfig" 
-              [options]="manageConnectionsOptions">
+              [options]="instances">
             </ngx-select-dropdown>
             <div class="form-group-drop-arrow"> 
               <i class="material-icons">arrow_drop_down</i>
@@ -79,16 +78,19 @@
               <span tooltip="Name" placement="bottom">Disconnect</span>
             </div>
           </div>
-          <div class="label-tbody row">
+          <div *ngFor=
+          "let connection of connections |
+          filter : searchTerm"  
+          class="label-tbody row">
             <div class="col-5">
-              <span class="blue">WordPress</span>
+              <span class="blue">{{connection.outbound.instance}}</span>
               <br>
-              <span class="grey">DBOutbound</span>
+              <span class="grey">{{connection.outbound.interfaceName}}</span>
             </div>
             <div class="col-5">
-              <span class="blue">MySQL</span>
+              <span class="blue">{{connection.inbound.instance}}</span>
               <br>
-              <span class="grey">DBInbound</span>
+              <span class="grey">{{connection.inbound.interfaceName}}</span>
             </div>
             <div class="col-2 text-center label-td-flex">
               <button 
@@ -100,69 +102,6 @@
               </button>
             </div>
           </div>
-          <div class="label-tbody row">
-              <div class="col-5">
-                <span class="blue">WordPress</span>
-                <br>
-                <span class="grey">DBOutbound</span>
-              </div>
-              <div class="col-5">
-                <span class="blue">MySQL</span>
-                <br>
-                <span class="grey">DBInbound</span>
-              </div>
-              <div class="col-2 text-center label-td-flex">
-                <button 
-                  (click)="disconnectInstance(app)"
-                  tooltip="Disconnect" 
-                  placement="left" 
-                  class="action-btn-red">
-                  <i class="material-icons i-red">link_off</i>
-                </button>
-              </div>
-            </div>
-            <div class="label-tbody row">
-                <div class="col-5">
-                  <span class="blue">WordPress</span>
-                  <br>
-                  <span class="grey">DBOutbound</span>
-                </div>
-                <div class="col-5">
-                  <span class="blue">MySQL</span>
-                  <br>
-                  <span class="grey">DBInbound</span>
-                </div>
-                <div class="col-2 text-center label-td-flex">
-                  <button 
-                    (click)="disconnectInstance(app)"
-                    tooltip="Disconnect" 
-                    placement="left" 
-                    class="action-btn-red">
-                    <i class="material-icons i-red">link_off</i>
-                  </button>
-                </div>
-              </div>
-              <div class="label-tbody row">
-                  <div class="col-5">
-                    <span class="blue">WordPress</span>
-                    <br>
-                    <span class="grey">DBOutbound</span>
-                  </div>
-                  <div class="col-5">
-                    <span class="blue">MySQL</span>
-                    <br>
-                    <span class="grey">DBInbound</span>
-                  </div>
-                  <div class="col-2 text-center label-td-flex">
-                    <button 
-                      (click)="disconnectInstance(app)"
-                      tooltip="Disconnect" 
-                      placement="left" 
-                      class="action-btn-red">
-                      <i class="material-icons i-red">link_off</i>
-                    </button>
-                  </div>
-                </div>
         </div>
       </div>
     </div>

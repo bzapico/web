@@ -25,7 +25,7 @@ describe('ManageConnectionsComponent', () => {
         FormsModule,
         ButtonsModule,
         HttpClientTestingModule,
-        TooltipModule,
+        TooltipModule.forRoot(),
         SelectDropDownModule,
         RouterTestingModule,
         ReactiveFormsModule,

@@ -727,7 +727,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   manageConnections() {
     const initialState = {
       organizationId: this.organizationId,
-      defaultAutofocus: false
+      defaultAutofocus: false,
     };
 
     this.modalRef = this.modalService.show(ManageConnectionsComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
@@ -736,5 +736,5 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.updateAppInstances(this.organizationId);
      };
   }
-
 }
+

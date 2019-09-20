@@ -69,5 +69,9 @@ div > form > div.form-group.form-group-drop.filter-drop-box > ngx-select-dropdow
     background-color: $dark-grey !important;
     border: 2px solid $dark-grey!important;
     color: $light-grey;
+    span {
+        color: $light-grey !important;
+    }
 }
+
 
