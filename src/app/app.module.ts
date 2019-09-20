@@ -65,6 +65,7 @@ import { DeviceGroupInfoComponent } from './device-group-info/device-group-info.
 import { InstanceServiceGroupInfoComponent } from './instance-service-group-info/instance-service-group-info.component';
 import { RegisteredServiceGroupInfoComponent } from './registered-service-group-info/registered-service-group-info.component';
 import { ManageConnectionsComponent } from './manage-connections/manage-connections.component';
+import { AddConnectionsComponent } from './add-connections/add-connections.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -116,7 +117,8 @@ export function createTranslateLoader(http: HttpClient) {
     DeviceGroupInfoComponent,
     InstanceServiceGroupInfoComponent,
     RegisteredServiceGroupInfoComponent,
-    ManageConnectionsComponent
+    ManageConnectionsComponent,
+    AddConnectionsComponent
   ],
   entryComponents: [
     DebugPanelComponent,
