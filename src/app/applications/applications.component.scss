@@ -310,4 +310,21 @@ $base-light-grey: #BFBFBF;
         color: $base-violet;
     }
 }
-
+// Temporal workaround, in the future we should use the contextual menu component
+// https://nalej.atlassian.net/browse/NP-2005
+.contextual-menu-wrapper {
+    color: #ffffff;
+    background-color: #404040;
+    min-width: 148px;
+    position: absolute;
+    top: 0px;
+    right: 35px;
+    border-radius: 5px;
+    padding: 8px 16px;
+    z-index: 2;
+    div {
+        font-size:  12px;
+        text-align: right;
+        padding: 2.4px 0;
+    }
+}

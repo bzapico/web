@@ -291,11 +291,17 @@
                         'action-btn-grey-selected': app.app_instance_id === activeContextMenuId }"
                       class="action-btn-grey position-relative">
                       <i class="material-icons i-black">more_vert</i>
-                      <app-contextual-menu
-                          [visible]="app.app_instance_id === activeContextMenuId"
-                          [options]="getInstanceOptions(app)"
-                          (closed)="onContextualMenuClose()">
-                      </app-contextual-menu>
+                      <!-- Temporal workaround, in the future we should use the contextual menu component -->
+                      <!-- https://nalej.atlassian.net/browse/NP-2005 -->
+                    <div *ngIf="app.app_instance_id === activeContextMenuId"
+                      class="contextual-menu-wrapper">
+                      <div (click)="goToInstanceView(app)">
+                        More Info
+                      </div>
+                      <div (click)="undeploy(app)">
+                        Undeploy
+                      </div>
+                    </div>
                   </button>
               </div>
             </div>
@@ -430,11 +436,20 @@
                         'action-btn-grey-selected': app.app_descriptor_id === activeContextMenuId}"
                     class="action-btn-grey position-relative">
                     <i class="material-icons i-black">more_vert</i>
-                    <app-contextual-menu
-                        [visible]="app.app_descriptor_id === activeContextMenuId"
-                        [options]="getRegisteredOptions(app)"
-                        (closed)="onContextualMenuClose()">
-                    </app-contextual-menu>
+                    <!-- Temporal workaround, in the future we should use the contextual menu component -->
+                    <!-- https://nalej.atlassian.net/browse/NP-2005 -->
+                    <div *ngIf="app.app_descriptor_id === activeContextMenuId"
+                      class="contextual-menu-wrapper">
+                      <div (click)="goToRegisteredView(app)">
+                        More Info
+                      </div>
+                      <div (click)="deployRegistered(app)">
+                        Deploy
+                      </div>
+                      <div (click)="deleteApp(app)">
+                        Delete
+                      </div>
+                    </div>
                   </button>
                 </div>
               </div>
