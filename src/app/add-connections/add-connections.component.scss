@@ -1,0 +1,40 @@
+$base-violet: #5800FF;
+
+/* - - - Apps buttons - - - */
+.apps-options {
+    float: right;
+    margin-bottom: 2em;
+    .apps-actions-btn {
+        background-color: $base-violet;
+        border-radius: 5px;
+        font-weight: 500;
+        padding: .6em 1.2em;
+        cursor: pointer;
+        color: #ffffff;
+        border: none;
+        text-indent: 2em;
+        position: relative;
+        font-size: .9em;
+        outline: none;
+        &:hover {
+            color: #ffffff;
+            transition: 0.3s;
+            background-color: $base-violet;
+            opacity: 0.6;
+        }
+        .i-options {
+            font-size: 1.5em;
+            font-weight: 700;
+            position: absolute;
+            top: 8px;
+            left: -13px;
+        }
+    }
+}
+
+.big-link-icon {
+    i {
+        font-size: 80px;
+        color: #828282;
+    }
+}

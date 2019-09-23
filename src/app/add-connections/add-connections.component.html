@@ -12,6 +12,89 @@
   </div>
   <!-- Body -->
   <div class="modal-body">
-   
+    <!-- Source instance dropdown -->
+    <form 
+      *ngIf="!loading"
+      [formGroup]="addNewConnectionsForm" 
+      (ngSubmit)="addNewConnections(f)">
+      
+      <div class="source-left">
+        <!-- Source instance dropdown -->
+        <div  class="form-group form-group-drop">
+          <label>Source Instance</label>
+          <ngx-select-dropdown 
+            formControlName="sourceInstance" 
+            [multiple]="false" 
+            [config]="sourceInstanceConfig" 
+            [options]="sourceInstanceOptions"
+            [ngClass]="{ 'base-light-grey': !f.sourceInstance.value }">
+          </ngx-select-dropdown>
+          <div class="form-group-drop-arrow"> 
+            <i class="material-icons">arrow_drop_down</i>
+          </div>
+          <div class="error-h"></div>
+        </div>
+        <!-- Source interface dropdown -->
+        <div  class="form-group form-group-drop">
+          <label>Source Interface</label>
+          <ngx-select-dropdown 
+            formControlName="sourceInterface" 
+            [multiple]="false" 
+            [config]="sourceInterfaceConfig" 
+            [options]="sourceInterfaceOptions"
+            [ngClass]="{ 'base-light-grey': !f.sourceInterface.value }">
+          </ngx-select-dropdown>
+          <div class="form-group-drop-arrow"> 
+            <i class="material-icons">arrow_drop_down</i>
+          </div>
+          <div class="error-h"></div>
+        </div>
+      </div>
+      <!-- Big link icon -->
+      <div class="big-link-icon">
+          <i class="material-icons">link</i>
+      </div>
+      <div class="target-right">
+        <!-- Target Instance dropdown -->
+        <div  class="form-group form-group-drop">
+          <label>Target Instance</label>
+          <ngx-select-dropdown 
+            formControlName="targetInstance" 
+            [multiple]="false" 
+            [config]="targetInstanceConfig" 
+            [options]="targetInstanceOptions"
+            [ngClass]="{ 'base-light-grey': !f.targetInstance.value }">
+          </ngx-select-dropdown>
+          <div class="form-group-drop-arrow"> 
+            <i class="material-icons">arrow_drop_down</i>
+          </div>
+          <div class="error-h"></div>
+        </div>
+        <!-- Target Interface dropdown -->
+        <div  class="form-group form-group-drop">
+          <label>Target Interface</label>
+          <ngx-select-dropdown 
+            formControlName="targetInterface" 
+            [multiple]="false" 
+            [config]="targetInterfaceConfig" 
+            [options]="targetInterfaceOptions"
+            [ngClass]="{ 'base-light-grey': !f.targetInterface.value }">
+          </ngx-select-dropdown>
+          <div class="form-group-drop-arrow"> 
+            <i class="material-icons">arrow_drop_down</i>
+          </div>
+          <div class="error-h"></div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- Add new connection button -->
+  <div class="apps-options">
+    <button 
+      (click)="addNewConnections()"
+      class="apps-actions-btn">
+      <i class="material-icons i-options">link</i>
+      Add new connection
+    </button>
   </div>
 </div>
