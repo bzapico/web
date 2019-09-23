@@ -1039,7 +1039,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           node[connection_type].forEach(connection => {
             const source = connection.source_instance_id;
             const target = connection.target_instance_id;
-            linksBetweenApps[ source + '_' + target] = {
+            linksBetweenApps[source + '_' + target] = {
               source: source,
               target: target,
               is_between_apps: true
