@@ -1019,12 +1019,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     const index = this.graphData.nodes.map(x => x.id).indexOf(link[origin]);
     if (index !== -1) {
       if (this.graphData.nodes[index].type === NodeType.Instances) {
-        return '';
-      } else {
         return 'url(#arrow)';
+      } else {
+        return '';
       }
     }
-    return 'url(#arrow)';
+    return '';
   }
 
   /**
