@@ -662,5 +662,4 @@ export class RegisteredInfoComponent implements OnInit {
     }
     this.graphDataLoaded = true;
   }
-
 }

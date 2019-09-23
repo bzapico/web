@@ -1,7 +1,7 @@
 <!-- Component title -->
 <div class="row row-title">
   <div class="col-lg-12">
-    <h2 class="section-title">APPLICATIONS</h2>
+    <h2 class="section-title">{{'applications.title'|translate}}</h2>
   </div>
 </div>
 <div class="row row-app-main">
@@ -10,7 +10,7 @@
       <!-- Summary info card -->
       <div class="card row-info-app flex-grow-0">
         <div class="card-title-name">
-          <h5>SUMMARY</h5>
+          <h5>{{'devices.summary.title'|translate}}</h5>
         </div>
         <div class="summary-card">
           <div class="summary-box">
@@ -70,7 +70,14 @@
         </div>
         <!-- Search input -->
         <div class="row">
-          <div class="col-12">
+          <!-- Search input instances -->
+          <div *ngIf=
+            "loadedData &&
+            instances &&
+            instances.length > 0 &&
+            !requestError && 
+            showInstances" 
+            class="col-12">
             <form>
               <div class="search-box">
                 <input 
@@ -83,36 +90,95 @@
                     <i class="material-icons">search</i>
                   </div>     
                   <div *ngIf="searchTerm !== ''" class="close-icon">
-                    <i (click)="resetFilters(filterField)" class="material-icons">close</i>
+                    <i (click)="resetFilters('instances')" class="material-icons">close</i>
                   </div>
               </div>
             </form>
-          </div>      
+          </div>  
+          <!-- Search input registered --> 
+          <div *ngIf=
+            "loadedData &&
+            registered &&
+            registered.length > 0 &&
+            !requestError && 
+            !showInstances"  
+            class="col-12">
+            <form>
+              <div class="search-box">
+                <input 
+                  name="searchTermRegistered" 
+                  [(ngModel)]="searchTermRegistered"
+                  type="text" 
+                  placeholder="Search..."
+                  class="form-control"> 
+                  <div *ngIf="searchTermRegistered === ''" class="search-icon">
+                    <i class="material-icons">search</i>
+                  </div>     
+                  <div *ngIf="searchTermRegistered !== ''" class="close-icon">
+                    <i (click)="resetFilters('registered')" class="material-icons">close</i>
+                  </div>
+              </div>
+            </form>
+          </div>    
         </div>
         <!-- Sorting messages -->
         <div class="row">
-          <div class="col-12">  
+          <!-- App Instances Sorting messages -->
+          <div *ngIf=
+            "loadedData &&
+            instances &&
+            instances.length > 0 &&
+            !requestError && 
+            showInstances" 
+            class="col-12">  
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
-              Filtered by term "{{ searchTerm }}".
-              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
+              {{ ( instances | filter : searchTerm : ['name', 'labels', 'status'])?.length }} results found. Filtered by term "{{ searchTerm }}".
+              <span (click)="resetFilters('instances')" class="reset-search">Reset</span>
             </p>
             <p *ngIf="filterField && !searchTerm" class="sorting-message">
               Sorted by {{ sortedBy }},
               <span *ngIf="reverse">ascendant. </span>
               <span *ngIf="!reverse">descendant. </span>
-              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
+              <span (click)="resetFilters('instances')" class="reset-search">Reset</span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
-              Sorted by {{ sortedBy }}
+              {{ ( instances | filter : searchTerm : ['name', 'labels', 'status'])?.length }} results found. Sorted by {{ sortedBy }}
               <span *ngIf="reverse">ascendant </span>
               <span *ngIf="!reverse">descendant </span>
               and filtered by term "{{ searchTerm }}".
-              <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
+              <span (click)="resetFilters('instances')" class="reset-search">Reset</span>
             </p> 
             <p *ngIf="!filterField && !searchTerm" class="sorting-message"></p>
           </div>
+           <!-- Registered Apps sorting -->
+          <div *ngIf=
+            "loadedData &&
+            registered &&
+            registered.length > 0 &&
+            !requestError && 
+            !showInstances" 
+            class="col-12">  
+            <p *ngIf="searchTermRegistered && !filterFieldRegistered" class="sorting-message">
+              {{ ( registered | filter : searchTermRegistered : ['name', 'labels', 'instances'])?.length }} results found. Filtered by term "{{ searchTermRegistered }}".
+              <span (click)="resetFilters('registered')" class="reset-search">Reset</span>
+            </p>
+            <p *ngIf="filterFieldRegistered && !searchTermRegistered" class="sorting-message">
+             Sorted by {{ sortedByRegistered }},
+              <span *ngIf="reverseRegistered">ascendant. </span>
+              <span *ngIf="!reverseRegistered">descendant. </span>
+              <span (click)="resetFilters('registered')" class="reset-search">Reset</span>
+            </p>
+            <p *ngIf="filterFieldRegistered && searchTermRegistered" class="sorting-message">
+              {{ ( registered | filter : searchTermRegistered : ['name', 'labels', 'instances'])?.length }} results found. Sorted by {{ sortedByRegistered }}
+              <span *ngIf="reverseRegistered">ascendant </span>
+              <span *ngIf="!reverseRegistered">descendant </span>
+              and filtered by term "{{ searchTermRegistered }}".
+              <span (click)="resetFilters('registered')" class="reset-search">Reset</span>
+            </p> 
+            <p *ngIf="!filterFieldRegistered && !searchTermRegistered" class="sorting-message"></p>
+          </div>
         </div>
-        <!-- App Instances -->
+        <!-- App Instances table -->
         <div *ngIf=
           "loadedData &&
           instances &&
@@ -125,7 +191,7 @@
               <div class="col-10">
                 <div class="row">
                   <div 
-                    (click)="setOrder('name')"            
+                    (click)="setOrder('name')"
                     [ngClass]="getCategoryCSSClass('name')"
                     scope="col" 
                     class="col-6 label-th padding-fix">
@@ -138,7 +204,7 @@
                     </span>
                   </div>
                   <div 
-                    (click)="setOrder('status')" 
+                    (click)="setOrder('status')"
                     [ngClass]="getCategoryCSSClass('status')"
                     class="col-6 label-th text-center">
                     <span tooltip="Status" placement="bottom">Status</span>
@@ -195,8 +261,7 @@
                     </span>
                   </div>
                   <div [ngClass]=
-                    "{'
-                      status-dot':classStatusCheck(app.status_name, 'running'),
+                    "{'status-dot':classStatusCheck(app.status_name, 'running'),
                       'status-dot-error':classStatusCheck(app.status_name, 'error'),
                       'status-dot-process':classStatusCheck(app.status_name, 'process')
                     }"
@@ -219,13 +284,25 @@
                 </div>
               </div>
               <div class="col-2 text-center label-td-flex">
-                <button 
-                  (click)="undeploy(app)"
-                  tooltip="Undeploy" 
-                  placement="left" 
-                  class="action-btn-grey position-relative">
-                  <i class="material-icons i-black">more_vert</i>
-                </button>
+                  <button
+                      (click)="openInstanceContextualMenu($event, app)"
+                      [ngClass]="{
+                        'action-btn-grey': app.app_instance_id !== activeContextMenuId,
+                        'action-btn-grey-selected': app.app_instance_id === activeContextMenuId }"
+                      class="action-btn-grey position-relative">
+                      <i class="material-icons i-black">more_vert</i>
+                      <!-- Temporal workaround, in the future we should use the contextual menu component -->
+                      <!-- https://nalej.atlassian.net/browse/NP-2005 -->
+                    <div *ngIf="app.app_instance_id === activeContextMenuId"
+                      class="contextual-menu-wrapper">
+                      <div (click)="goToInstanceView(app)">
+                        More Info
+                      </div>
+                      <div (click)="undeploy(app)">
+                        Undeploy
+                      </div>
+                    </div>
+                  </button>
               </div>
             </div>
           </div>
@@ -240,7 +317,7 @@
           class="no-elements">
           No application instances deployed
         </div>
-        <!-- Registered Apps -->
+        <!-- Registered Apps table -->
         <div *ngIf=
           "loadedData &&
           registered &&
@@ -352,15 +429,34 @@
                   </div>
                 </div>
                 <div class="col-2 actions-col label-td-flex">
-                  <button class="action-btn-grey position-relative">
+                  <button
+                    (click)="openRegisteredContextualMenu($event, app)"
+                    [ngClass]= "{
+                        'action-btn-grey': app.app_descriptor_id !== activeContextMenuId,
+                        'action-btn-grey-selected': app.app_descriptor_id === activeContextMenuId}"
+                    class="action-btn-grey position-relative">
                     <i class="material-icons i-black">more_vert</i>
+                    <!-- Temporal workaround, in the future we should use the contextual menu component -->
+                    <!-- https://nalej.atlassian.net/browse/NP-2005 -->
+                    <div *ngIf="app.app_descriptor_id === activeContextMenuId"
+                      class="contextual-menu-wrapper">
+                      <div (click)="goToRegisteredView(app)">
+                        More Info
+                      </div>
+                      <div (click)="deployRegistered(app)">
+                        Deploy
+                      </div>
+                      <div (click)="deleteApp(app)">
+                        Delete
+                      </div>
+                    </div>
                   </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-          <!-- No registered app to show -->
+        <!-- No registered app to show -->
         <div *ngIf=
           "loadedData && 
           registered &&
@@ -432,11 +528,11 @@
                 <i class="material-icons i-filter">filter_list</i>
               </li>
               <li
-                (click)="addQuickFilter('REGISTERED')"     
+                (click)="addQuickFilter('registered')"
                 [ngClass]=
                 "{
-                  'quick-filters-btn-selected': quickFilter === 'REGISTERED',
-                  'quick-filters-btn': '!quickFilter'
+                  'quick-filters-btn-selected': filters.registered,
+                  'quick-filters-btn': !filters.registered
                 }" 
                 tooltip="Registered" 
                 placement="bottom"
@@ -444,11 +540,11 @@
                   REGISTERED
               </li>
               <li  
-                (click)="addQuickFilter('INSTANCES')" 
+                (click)="addQuickFilter('instances')"
                 [ngClass]=
                 "{
-                  'quick-filters-btn-selected': quickFilter === 'INSTANCES',
-                  'quick-filters-btn': '!quickFilter'
+                  'quick-filters-btn-selected': filters.instances,
+                  'quick-filters-btn': !filters.instances
                 }"    
                 tooltip="Instances" 
                 placement="bottom"
@@ -456,11 +552,11 @@
                   INSTANCES
               </li>
               <li
-                (click)="addQuickFilter('CLUSTERS')" 
+                (click)="addQuickFilter('clusters')"
                 [ngClass]=
                 "{
-                  'quick-filters-btn-selected': quickFilter === 'CLUSTERS',
-                  'quick-filters-btn': '!quickFilter'
+                  'quick-filters-btn-selected': filters.clusters,
+                  'quick-filters-btn': !filters.clusters
                 }"    
                 tooltip="Clusters" 
                 placement="bottom"
@@ -471,42 +567,100 @@
           </div>
           <!-- Search box -->
           <div class="col-5">
-            <form class="graph-search-box">
-              <input 
-                [(ngModel)]="searchTerm"
-                type="text" 
-                name="search"
-                placeholder="Search..."
-                class="form-control"> 
-              <span class="search-button"> 
-                <button 
-                  (click)="searchInGraph()"
-                  type="submit"
-                  class="action-btn-blue">
-                  <i class="material-icons i-search">search</i>
-                </button>
-              </span>
-            </form>
+            <div class="advanced-filter-box">
+
+              <form class="graph-search-box">
+                <input 
+                  [(ngModel)]="searchTermGraph"
+                  type="text" 
+                  name="searchTermGraph"
+                  placeholder="Search..."
+                  class="form-control"> 
+                <div class="advanced-filter-icon">
+                  <i (click)="openAdvancedFilterOptions()" class="material-icons">filter_list</i>
+                </div>
+                <span class="search-button"> 
+                  <button 
+                    (click)="searchInGraph()"
+                    type="submit"
+                    class="action-btn-blue">
+                    <i class="material-icons i-search">search</i>
+                  </button>
+                </span>
+              </form>
+            </div>
           </div>      
         </div>
-        <!-- Sorting mesages -->
+        <!-- Sorting messages -->
         <div class="row row-sorting-lg"> 
-          <div class="col-7">  
-              <p *ngIf="searchTerm && !filterField" class="sorting-message">
-                  Filtered by term "{{ searchTerm }}".
-                  <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
-                </p>
-            <p *ngIf="!searchTerm" class="sorting-message"></p>
+          <div class="col-12">  
+            <p *ngIf="isSearchingInGraph && searchTermGraph && !quickFilter" class="sorting-message text-right">
+               {{ occurrencesCounter }} {{ 'sortingMessage.resultsFilteredBy'|translate:{value:searchTermGraph} }}
+              <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+            </p>
+            <p *ngIf="isSearchingInGraph && quickFilter && !searchTermGraph" class="sorting-message text-right">
+              {{ occurrencesCounter }} {{ 'sortingMessage.resultsFilteredBy'|translate:{value:quickFilter} }}
+              <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+            </p> 
+            <p *ngIf="isSearchingInGraph && quickFilter && searchTermGraph" class="sorting-message text-right">
+              {{ occurrencesCounter }} {{ 'sortingMessage.resultsFilteredBy'|translate:{value:searchTermGraph, quickFilter: quickFilter} }}
+              <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+            </p> 
+            <p *ngIf="!isSearchingInGraph && quickFilter && !searchTermGraph" class="sorting-message text-right">
+              {{ occurrencesCounter }} {{ 'sortingMessage.resultsFilteredBy'|translate:{value:quickFilter} }}
+               <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+             </p> 
+            <p *ngIf="!isSearchingInGraph || !quickFilter && !searchTermGraph" class="sorting-message"></p>
           </div>
         </div>
+        <!-- Cluster-apps graph -->
         <div class="row h-100">
           <div class="col-12">
-            <div class="graph">
+            <div    
+              *ngIf="graphDataLoaded"
+              class="graph">
+              <ngx-graph
+                [view]="view"
+                [links]="graphData.links"
+                [nodes]="graphData.nodes"
+                [scheme]="colorSchemeGraph"
+                [orientation]="orientation"
+                [autoZoom]="autoZoom"
+                [autoCenter]="autoCenter"
+                [curve]="curve"
+                [enableZoom]="enableZoom"
+                class="chart-container">
+                <ng-template #nodeTemplate let-node>
+                  <svg:g
+                    class="node"
+                    ngx-tooltip
+                    [tooltipPlacement]="'top'"
+                    [tooltipType]="'tooltip'"
+                    [tooltipTitle]="node.tooltip">
+                    <svg:rect
+                      [attr.width]="node.width"
+                      [attr.height]="node.customHeight"
+                      [attr.fill]="node.color"
+                      [attr.stroke]="node.customBorderColor"
+                      [attr.stroke-width]="node.customBorderWidth"
+                      rx="14"
+                      ry="14"
+                    />
+                    <svg:text
+                      [attr.fill]="node.text"
+                      alignment-baseline="central"
+                      [attr.x]="10"
+                      [attr.y]="node.height/2">
+                      {{node.label}}
+                    </svg:text>
+                  </svg:g>
+                </ng-template>
+              </ngx-graph>
             </div>
             <div *ngIf="!graphDataLoaded" class="loader"></div>
             <!-- No info to show -->
             <div *ngIf="graphDataLoaded && instances.length === 0" class="no-elements">
-              No available instances
+              No available clusters
             </div>
           </div>
         </div>
