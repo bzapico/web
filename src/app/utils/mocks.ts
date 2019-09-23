@@ -178,7 +178,9 @@ export const mockAppsInstancesList = [
                 'name': 'allow access to kuard web',
                 'target_service_name': 'kuardfront',
                 'target_port': 8080,
-                'access_name': 'PUBLIC'
+                'access_name': 'PUBLIC',
+                'inbound_net_interface': 'OpenCast12',
+                'outbound_net_interface': 'OpenCast12'
             },
             {
                 'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
@@ -3080,7 +3082,29 @@ export const mockRegisteredAppsList = [
                 'type': 'STRING',
                 'default_value': '00000000-0000-0000-0000-000000000000'
             }
-        ]
+        ],
+        'inbound_net_interfaces': [
+            {
+               'name': 'inbound'
+            }
+         ],
+         'outbound_net_interfaces': [
+            {
+               'name': 'outbound'
+            }
+         ],
+         'inbound_connections': [
+            {
+               'organization_id': 'f60c9bad-d6cc-42dc-b05d-32837aa4b621',
+               'connection_id': 'c6ea0855-fc27-47f6-9354-2b74ccb41fab',
+               'source_instance_id': '47ab7751-651f-4e36-b213-0031909ee11e',
+               'source_instance_name': 'KUARD_OUT',
+               'target_instance_id': 'a1d954e3-8a0a-4254-8fca-333e3f80e227',
+               'target_instance_name': 'KUARD_IN',
+               'inbound_name': 'inbound',
+               'outbound_name': 'outbound'
+            }
+         ]
     },
     {
         'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
@@ -5460,3 +5484,87 @@ export const mockAgentJoinToken = {
     // tslint:disable-next-line: max-line-length
     ca_cert: '-----BEGIN CERTIFICATE----- MIIC9zCCAd+gAwIBAgIBATANBgkqhkiG9w0BAQsFADAQMQ4wDAYDVQQKEwVOYWxlajAeFw0xOTA1MjgxMzQ0NDBaFw0yMTA1MjcxMzQ0NDBaMBAxDjAMBgNVBAoTBU5hbGVqMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwGJffV/afFQ2SEe7G3rvUFJCjBUCeQX+LsQevY8DSc9LRuWl67TwfzrS2fyFMOUeVZyd5D/9nwreTun3FhvyMkQKHOpoa2cYcYOFcxHGrSeE0iL+VH5+/g7bBiaAZUUh0paHQE6xiKpGxBQhGJrPDyMxlbBrb5fb5VDJA09ph3eZ4DXfC30MiB0Doc/GNEBAlN8qMXschgQV+w/PVtNObUz8jvrxYHM36vT7iWtJQ7zdzv4SxYB21emPrBdzbVkB36fVyQ7RqheLKu6rqYMUV4Nj5kPP6eTza4N32IYvB6SKOnT1Ro1iTHvTPdZhM48d7txQ1ff+cVgG+5EiBi8MKwIDAQABo1wwWjAOBgNVHQ8BAf8EBAMCAqQwEwYDVR0lBAwwCgYIKwYBBQUHAwEwEgYDVR0TAQH/BAgwBgEB/wIBADAfBgNVHREEGDAWghQqLm5hbGVqNDgubmFsZWoudGVjaDANBgkqhkiG9w0BAQsFAAOCAQEAclw2YqEuvWtTaw+fJzX4ByfZh8nrfT1mKoAcJDDHXcEbvES0b8xqXqrGYW1QO92tUgFEw23C43wKJPdzmqIYmy0sR6sghsZJLEQzY3DOXNx2GirREm7jrv66REs1tohhukB1s9PU8oxp+lYzdFtWYW88BB2tg75MMTxS/KxW10966j4aSO53osHXC1/NgWJM/Mm4WG3jAgZFFZc6BBxmjmH8O98KEsQqQOOl3zmOQAtikuE0K2hHOa5dEM5ft5569Fh53WeQr+PFlfNhlaFmmRpKHU9k2eeB7VTTwxIqx3TvA5t41RRyb5X4dr2MVizh04hMhyf4MNGuVy94B6yVw== -----END CERTIFICATE-----',
 };
+
+/**
+ * Mocked apps Inbounds
+ */
+export const mockAppsInboundsList = {
+    'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+    'app_instance_id': '0a261182-728e-4633-9578-3e1322c05d20',
+    'instance_name': 'dbInbound',
+    'inbound_name': 'MySQL'
+};
+
+/**
+ * Mocked apps Outbound
+ */
+export const mockAppsOutboundsList = {
+    'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+    'app_instance_id': '0a261182-728e-4633-9578-3e1322c05d20',
+    'instance_name': 'dbInbound',
+    'outbound_name': 'OpenCast1'
+};
+
+/**
+ * Mocked connections list
+ */
+export const mockConnectionsList =   [
+    {
+        'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+        'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548a',
+        'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239123',
+        'source_instance_name': 'WordPress1',
+        'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239456',
+        'target_instance_name': 'WordPress',
+        'inbound_name': 'dbInbound',
+        'outbound_name': 'dbOutbound',
+        'outbound_required': true
+    },
+    {
+        'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+        'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548a',
+        'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239123',
+        'source_instance_name': 'WordPress1',
+        'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239456',
+        'target_instance_name': 'WordPress',
+        'inbound_name': 'dbInbound',
+        'outbound_name': 'dbOutbound',
+        'outbound_required': true
+    },
+    {
+        'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+        'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548a',
+        'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239123',
+        'source_instance_name': 'WordPress1',
+        'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239456',
+        'target_instance_name': 'WordPress',
+        'inbound_name': 'dbInbound',
+        'outbound_name': 'dbOutbound',
+        'outbound_required': true
+    },
+    {
+        'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+        'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548a',
+        'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239123',
+        'source_instance_name': 'WordPress1',
+        'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239456',
+        'target_instance_name': 'WordPress',
+        'inbound_name': 'dbInbound',
+        'outbound_name': 'dbOutbound',
+        'outbound_required': true
+    },
+    {
+        'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+        'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548a',
+        'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239123',
+        'source_instance_name': 'WordPress1',
+        'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239456',
+        'target_instance_name': 'WordPress',
+        'inbound_name': 'dbInbound',
+        'outbound_name': 'dbOutbound',
+        'outbound_required': true
+    }
+];
+
+
+

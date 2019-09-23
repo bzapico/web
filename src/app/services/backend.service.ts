@@ -494,6 +494,61 @@ export class BackendService implements Backend {
       );
     }
 
+  /********************
+   * Application network
+   ********************/
+
+  // GET '/appnet/inbound/{organization_id}/available'
+  /**
+   * Retrieves a list of available inbounds of an organization
+   * @param organizationId Organization identifier
+   */
+  getListAvailableInstanceInbounds(organizationId: string) {
+    return this.get(
+      API_URL + 'appnet/inbound/' + organizationId + '/available'
+    );
+  }
+    // GET '/appnet/outbound/{organization_id}/available'
+  /**
+   * Retrieves a list of available outbounds of an organization
+   * @param organizationId Organization identifier
+   */
+  getListAvailableInstanceOutbounds(organizationId: string) {
+    return this.get(
+      API_URL + 'appnet/outbound/' + organizationId + '/available'
+    );
+  }
+   // POST '/appnet/connection/{organization_id}/add'
+  /**
+   * Adds a new connection between one outbound and one inbound
+   * @param organizationId Organization identifier
+   */
+  addConnection(organizationId: string) {
+    return this.post(
+      API_URL + 'appnet/connection/' + organizationId + '/add'
+    );
+  }
+     // POST 'appnet/connection/{organization_id}/remove'
+  /**
+   * Operation that removes a connection
+   * @param organizationId Organization identifier
+   */
+  removeConnection(organizationId: string) {
+    return this.post(
+      API_URL + 'appnet/connection/' + organizationId + '/remove'
+    );
+  }
+  // GET '/appnet/connection/{organization_id}/list'
+  /**
+   * Retrieves a list all the established connections of an organization
+   * @param organizationId Organization identifier
+   */
+  getListConnections(organizationId: string) {
+    return this.get(
+      API_URL + 'appnet/connection/' + organizationId + '/list'
+    );
+  }
+
 
   /********************
    * Cluster

@@ -170,11 +170,10 @@ $base-light-grey: #BFBFBF;
         margin-bottom: 21px;
     }
        .apps-actions-btn {
-           width: 182px;
            background-color: $base-violet;
            border-radius: 5px;
            font-weight: 500;
-           padding: .6em 1.2em;
+           padding: .5em 1.2em;
            cursor: pointer;
            color: #ffffff;
            border: none;
@@ -193,7 +192,7 @@ $base-light-grey: #BFBFBF;
                font-weight: 700;
                position: absolute;
                top: 8px;
-               left: -13px;
+               left: -15px;
            }
        }
    }
