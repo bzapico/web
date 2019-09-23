@@ -200,6 +200,16 @@ div.nalej-table-box.no-p-col.no-m-row > div
 > div:nth-child(2) > div {
     border: none;
 }
+ div.nalej-table-box> div > div:nth-child(2){
+    border: none;
+}
+
+ div.label-nalej-table.no-p-col.no-m-row 
+ > div.scroll-app-info 
+ > div:nth-child(1) > span {
+    border: none;
+}
+
 
 /* - - -  Nalej flex table fot 4 adn 5 cols - - - */
 .nalej-flex-table-box {
