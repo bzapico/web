@@ -1,3 +1,7 @@
+@mixin for-quarter-h {
+    @media all and (max-height: 780px) { @content; }
+}
+
 $base-violet: #5800FF;
 $light-grey: #EEEEEE;
 
@@ -50,43 +54,51 @@ $light-grey: #EEEEEE;
             font-size: 10px;
             font-weight: 700;
         }
-        .scroll-app-info {
-            margin: 0;
-            margin-top: 1em;
-            width: 100%;
-            .label-nalej-table {
-                .label-thead {
-                   margin-bottom: 15px;
-                    .label-th {
-                        font-size: 13px;
-                    }
+        .label-nalej-table {
+            .scroll-app-info {
+                max-height: 416px;
+                margin: 0;
+                width: 100%;
+                @media screen and (max-height: 994px) {
+                    height: 230px;
+                    margin: 1.5em 0;
                 }
-                .label-tbody {
-                   padding: .7rem 0;
-                   .label-td {
+                @include for-quarter-h {
+                    height: 165px;
+                    margin: 1em 0;
+                }
+                .action-btn-red {
+                    height: 25px;
+                    width: 25px;
+                }
+                .i-red {
+                    font-weight: 200;
+                    font-size: 15px;
+                    top: 6px;
+                    left: 5px;
+                }
+                div:nth-child(1){
+                    border: none;
+                }
+            }
+            .label-thead {
+                margin-top: 1em;
+               margin-bottom: 15px;
+                .label-th {
                     font-size: 13px;
-                    }
                 }
             }
-            .action-btn-red {
-                height: 25px;
-                width: 25px;
-            }
-            .i-red {
-                font-weight: 200;
-                font-size: 15px;
-                top: 6px;
-                left: 5px;
-            }
-            > div > div:nth-child(2){
-                border: none;
+            .label-tbody {
+               padding: .7rem 0;
+               .label-td {
+                font-size: 13px;
+                }
             }
         }
-    }
-    .filter-drop-box{
-        i {
-            color: $light-grey;
+        .filter-drop-box{
+            i {
+                color: $light-grey;
+            }
         }
     }
 }
-

@@ -61,8 +61,7 @@
           </div>
         </div>
       <!-- Table -->
-      <div class="scroll-app-info no-p-col no-m-row">
-        <div class="label-nalej-table">
+        <div class="label-nalej-table no-p-col no-m-row">
           <div class="label-thead row">
             <div class="col-5 label-th">
               <span tooltip="Name" placement="bottom">Source Instance</span>
@@ -78,6 +77,8 @@
               <span tooltip="Name" placement="bottom">Disconnect</span>
             </div>
           </div>
+
+          <div class="scroll-app-info ">
           <div *ngFor=
           "let connection of connections |
           filter : searchTerm"  

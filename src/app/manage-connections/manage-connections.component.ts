@@ -55,7 +55,7 @@ export class ManageConnectionsComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
     ) {
-      const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
+      const mock = localStorage.getItem(LocalStorageKeys.manageConnectionsMock) || null;
       // Check which backend is required (fake or real)
       if (mock && mock === 'true') {
         this.backend = this.mockupBackendService;
