@@ -81,7 +81,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Refresh ratio reference
    */
-  REFRESH_RATIO = 20000000; // 20 seconds
+  REFRESH_RATIO = 20000; // 20 seconds
 
   /**
    * Charts references

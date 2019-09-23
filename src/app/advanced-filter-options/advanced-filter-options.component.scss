@@ -1,0 +1,24 @@
+@mixin for-desktop-up {
+    @media all and (max-width: 1440px) { @content; }
+}
+.check-options {
+    padding-top: 2em;
+    padding-bottom: 1em;
+    p {
+        font-size: .9em;
+        display: inline-block;
+    }
+    .radio-btn-box {
+        float: right;
+        i {
+            font-size: 19px;
+        }
+    }
+    @include for-desktop-up() {
+        padding-top: 2em;
+        padding-bottom: 2em;
+    }
+}
+.devices-checkbox {
+    cursor: pointer;
+}

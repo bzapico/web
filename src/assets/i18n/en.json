@@ -1,6 +1,20 @@
 {
+	"advancedFilterOptions": {
+		"noFilters": "No filters",
+		"showNodes": "Show only nodes",
+		"showRelatedNodes": "Show only related nodes",
+		"title": "Advanced filter options"
+	},
 	"applications": {
-		"manageConnectionsButton": "Manage connections"
+		"manageConnectionsButton": "Manage connections",
+		"filters": {
+			"atLeastOne": "It is necessary to have one selected filter",
+			"notAppliedSearching": "When the filters are applied the searching term is not applied"
+		},
+		"title": "APPLICATIONS"
+	},
+	"buttons": {
+		"saveChanges": "Save changes"
 	},
 	"apps": {
 		"instance": {
@@ -240,7 +254,7 @@
 		"descendant": "descendant{{value}}",
 		"filteredBy": "Filtered by term \"{{value}}\".",
 		"reset": "Reset",
-		"resultsFilteredBy": " results found. Filtered by \"{{value}}\"",
+		"resultsFilteredBy": " results found. Filtered by \"{{value}}\".",
 		"resultsFound": "results found.",
 		"sortedBy": "Sorted by {{value}}"
 	},
@@ -260,3 +274,4 @@
 		"serviceWaiting": "service_waiting"
 	}
 }
+

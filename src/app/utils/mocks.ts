@@ -4475,71 +4475,323 @@ export const mockRegisteredAppsList = [
                             'app': 'kuard2'
                         }
                     }
-                ]
+                ],
+                'policy_name': 'SAME_CLUSTER',
+                'status_name': 'SERVICE_SCHEDULED',
+                'specs': {
+                    'num_replicas': 1
+                }
+            }
+        ],
+        'status_name': 'RUNNING',
+
+    },
+    {
+        'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+        'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+        'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4b',
+        'name': 'Kuard22',
+        'labels': {
+            'app': 'simple-app'
+        },
+        'rules': [
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                'rule_id': 'fefec0af-ac57-42f1-9741-a25abfa77db6',
+                'name': 'allow access to wordpress',
+                'target_service_group_name': 'g1',
+                'target_service_name': '2',
+                'target_port': 80,
+                'access_name': 'PUBLIC'
+            }
+        ],
+        'groups': [
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4b',
+                'service_group_id': '338b4ca5-a189-4c6d-a7f2-5ed3e2f641f3',
+                'service_group_instance_id': 'd8863b33-b55a-4b0d-9b2d-5cefcfb6ac52',
+                'name': 'g1',
+                'service_instances': [
+                    {
+                        'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                        'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                        'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4b',
+                        'service_group_id': '338b4ca5-a189-4c6d-a7f2-5ed3e2f641f3',
+                        'service_group_instance_id': 'd8863b33-b55a-4b0d-9b2d-5cefcfb6ac52',
+                        'service_id': 'a433d8fd-8821-4323-9a9c-07a1bf724db4',
+                        'name': 'simple-mysql',
+                        'type_name': 'DOCKER',
+                        'image': 'mysql:5.6',
+                        'specs': {
+                            'replicas': 1
+                        },
+                        'storage': [
+                            {
+                                'size': '104857600',
+                                'mount_path': '/tmp',
+                                'type_name': 'EPHEMERAL'
+                            }
+                        ],
+                        'exposed_ports': [
+                            {
+                                'name': 'mysqlport',
+                                'internal_port': 3306,
+                                'exposed_port': 3306
+                            }
+                        ],
+                        'environment_variables': {
+                            'MYSQL_ROOT_PASSWORD': 'root'
+                        },
+                        'configs': [
+                            {
+                                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                                'config_file_id': '8f0737bb-0356-40ec-8171-45ca037d09b1',
+                                'content': 'SG9sYQo=',
+                                'mount_path': '/config/saludo.conf'
+                            },
+                            {
+                                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                                'config_file_id': '0c6adc92-9143-4493-8e8d-f9ab8cddb9cc',
+                                'content': 'QWRpb3MK',
+                                'mount_path': '/config/despedida.conf'
+                            }
+                        ],
+                        'labels': {
+                            'app': 'simple-mysql',
+                            'component': 'simple-app'
+                        },
+                        'status_name': 'SERVICE_WAITING',
+                        'deployed_on_cluster_id': '6769d264-4ba7-4cd7-b221-a7f4f14e481d2',
+                        'endpoints': [
+                            'nalej.com',
+                        ]
+                    },
+                ],
+                'policy_name': 'SAME_CLUSTER',
+                'status_name': 'SERVICE_SCHEDULED',
+                'specs': {
+                    'num_replicas': 1
+                }
             },
             {
-                'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-                'app_descriptor_id': 'dbdb6e77-245d-460d-b735-2f825421e41d',
-                'service_group_id': 'a3feb883-7ff9-46e6-a191-1b45ec5f906e',
-                'name': 'kuard-group-2',
-                'services': [
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4b',
+                'service_group_id': '338b4ca5-a189-4c6d-a7f2-5ed3e2f641f3',
+                'service_group_instance_id': 'd8863b33-b55a-4b0d-9b2d-5cefcfb6ac5266',
+                'name': 'g2',
+                'service_instances': [
                     {
-                        'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-                        'app_descriptor_id': 'dbdb6e77-245d-460d-b735-2f825421e41d',
-                        'service_group_id': 'a3feb883-7ff9-46e6-a191-1b45ec5f906e',
-                        'service_id': '9f88b50f-7bbb-4e6e-b34a-2635a1d8940c',
-                        'name': 'kuard3',
-                        'image': 'gcr.io/kuar-demo/kuard-amd64:blue',
+                        'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                        'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                        'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4b',
+                        'service_group_id': '338b4ca5-a189-4c6d-a7f2-5ed3e2f641f3',
+                        'service_group_instance_id': 'd8863b33-b55a-4b0d-9b2d-5cefcfb6ac5266',
+                        'service_id': 'a433d8fd-8821-4323-9a9c-07a1bf724db4',
+                        'name': 'simple-mysql',
+                        'type_name': 'DOCKER',
+                        'image': 'mysql:5.6',
                         'specs': {
                             'replicas': 1
                         },
+                        'storage': [
+                            {
+                                'size': '104857600',
+                                'mount_path': '/tmp',
+                                'type_name': 'EPHEMERAL'
+                            }
+                        ],
                         'exposed_ports': [
                             {
-                                'name': 'web',
-                                'internal_port': 8080,
-                                'exposed_port': 8080,
-                                'endpoints': [
-                                    {
-                                        'type': 'WEB',
-                                        'path': '/'
-                                    }
-                                ]
+                                'name': 'mysqlport',
+                                'internal_port': 3306,
+                                'exposed_port': 3306
+                            }
+                        ],
+                        'environment_variables': {
+                            'MYSQL_ROOT_PASSWORD': 'root'
+                        },
+                        'configs': [
+                            {
+                                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                                'config_file_id': '8f0737bb-0356-40ec-8171-45ca037d09b1',
+                                'content': 'SG9sYQo=',
+                                'mount_path': '/config/saludo.conf'
+                            },
+                            {
+                                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                                'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                                'config_file_id': '0c6adc92-9143-4493-8e8d-f9ab8cddb9cc',
+                                'content': 'QWRpb3MK',
+                                'mount_path': '/config/despedida.conf'
                             }
                         ],
                         'labels': {
-                            'app': 'kuard3'
-                        }
+                            'app': 'simple-mysql',
+                            'component': 'simple-app'
+                        },
+                        'status_name': 'SERVICE_WAITING',
+                        'deployed_on_cluster_id': '6769d264-4ba7-4cd7-b221-a7f4f14e481d2',
+                        'endpoints': [
+                            'nalej.com',
+                        ]
                     },
                     {
-                        'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-                        'app_descriptor_id': 'dbdb6e77-245d-460d-b735-2f825421e41d',
-                        'service_group_id': 'a3feb883-7ff9-46e6-a191-1b45ec5f906e',
-                        'service_id': '3d365b86-e73b-4ddd-8b85-de8f23203b50',
-                        'name': 'kuard4',
-                        'image': 'gcr.io/kuar-demo/kuard-amd64:blue',
+                        'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                        'app_descriptor_id': '89c9dd8e-ad04-437f-ae63-73d1960396a8',
+                        'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4b',
+                        'service_group_id': '338b4ca5-a189-4c6d-a7f2-5ed3e2f641f3',
+                        'service_group_instance_id': '78138841-7d52-402b-86e7-50f2ff192716',
+                        'service_id': '068458be-679e-4d91-9747-c51b95fd81bd',
+                        'name': 'simple-wordpress',
+                        'type_name': 'DOCKER',
+                        'image': 'wordpress:5.0.0',
                         'specs': {
                             'replicas': 1
                         },
+                        'storage': [
+                            {
+                                'size': '104857600',
+                                'mount_path': '/tmp',
+                                'type_name': 'EPHEMERAL'
+                            }
+                        ],
                         'exposed_ports': [
                             {
-                                'name': 'web',
-                                'internal_port': 8080,
-                                'exposed_port': 8080,
+                                'name': 'wordpressport',
+                                'internal_port': 80,
+                                'exposed_port': 80,
                                 'endpoints': [
                                     {
-                                        'type': 'WEB',
+                                        'type_name': 'WEB',
                                         'path': '/'
                                     }
                                 ]
                             }
                         ],
+                        'environment_variables': {
+                            'WORDPRESS_DB_HOST': 'NALEJ_SERV_SIMPLE-MYSQL:3306',
+                            'WORDPRESS_DB_PASSWORD': 'root'
+                        },
                         'labels': {
-                            'app': 'kuard4'
-                        }
+                            'app': 'simple-wordpress',
+                            'component': 'simple-app'
+                        },
+                        'deploy_after': [
+                            '1'
+                        ],
+                        'status_name': 'SERVICE_RUNNING',
+                        'deployed_on_cluster_id': '6769d264-4ba7-4cd7-b221-a7f4f14e481d4'
                     }
-                ]
+                ],
+                'policy_name': 'SAME_CLUSTER',
+                'status_name': 'SERVICE_SCHEDULED',
+                'specs': {
+                    'num_replicas': 1
+                }
             }
-        ]
+        ],
+        'status_name': 'RUNNING',
+    },
+    {
+        'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+        'app_descriptor_id': '1ae8e3ca-dc97-4e49-8ee8-302a15dbd58a',
+        'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4aa',
+        'name': 'swift76',
+        'labels': {
+            'app': 'simple-app'
+        },
+        'rules': [
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '1ae8e3ca-dc97-4e49-8ee8-302a15dbd58a',
+                'rule_id': 'fefec0af-ac57-42f1-9741-a25abfa77db6',
+                'name': 'allow access to wordpress',
+                'target_service_group_name': 'g55',
+                'target_service_name': '2',
+                'target_port': 80,
+                'access_name': 'PUBLIC'
+            },
+        ],
+        'groups': [
+            {
+                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                'app_descriptor_id': '1ae8e3ca-dc97-4e49-8ee8-302a15dbd58a',
+                'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4aa',
+                'service_group_id': '338b4ca5-a189-4c6d-a7f2-5ed3e2f641f3',
+                'service_group_instance_id': 'd8863b33-b55a-4b0d-9b2d-5cefcfb6ac52',
+                'name': 'g55',
+                'service_instances': [
+                    {
+                        'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                        'app_descriptor_id': '1ae8e3ca-dc97-4e49-8ee8-302a15dbd58a',
+                        'app_instance_id': '01da4a74-c02a-49f8-aa4f-8561ab597a4aa',
+                        'service_group_id': '338b4ca5-a189-4c6d-a7f2-5ed3e2f641f3',
+                        'service_group_instance_id': 'd8863b33-b55a-4b0d-9b2d-5cefcfb6ac52',
+                        'service_id': 'a433d8fd-8821-4323-9a9c-07a1bf724db4',
+                        'name': 'simple-mysql',
+                        'type_name': 'DOCKER',
+                        'image': 'mysql:5.6',
+                        'specs': {
+                            'replicas': 1
+                        },
+                        'storage': [
+                            {
+                                'size': '104857600',
+                                'mount_path': '/tmp',
+                                'type_name': 'EPHEMERAL'
+                            }
+                        ],
+                        'exposed_ports': [
+                            {
+                                'name': 'mysqlport',
+                                'internal_port': 3306,
+                                'exposed_port': 3306
+                            }
+                        ],
+                        'environment_variables': {
+                            'MYSQL_ROOT_PASSWORD': 'root'
+                        },
+                        'configs': [
+                            {
+                                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                                'app_descriptor_id': '1ae8e3ca-dc97-4e49-8ee8-302a15dbd58a',
+                                'config_file_id': '8f0737bb-0356-40ec-8171-45ca037d09b1',
+                                'content': 'SG9sYQo=',
+                                'mount_path': '/config/saludo.conf'
+                            },
+                            {
+                                'organization_id': '0baa866a-c894-4f2e-97ec-ca1d3cabed42',
+                                'app_descriptor_id': '1ae8e3ca-dc97-4e49-8ee8-302a15dbd58a',
+                                'config_file_id': '0c6adc92-9143-4493-8e8d-f9ab8cddb9cc',
+                                'content': 'QWRpb3MK',
+                                'mount_path': '/config/despedida.conf'
+                            }
+                        ],
+                        'labels': {
+                            'app': 'simple-mysql',
+                            'component': 'simple-app'
+                        },
+                        'status_name': 'SERVICE_RUNNING',
+                        'endpoints': [
+                            'nalej.com',
+                        ]
+                    }
+                ],
+                'policy_name': 'SAME_CLUSTER',
+                'status_name': 'SERVICE_RUNNING',
+                'specs': {
+                    'num_replicas': 1
+                }
+            }
+        ],
+        'status_name': 'RUNNING',
     }
 ];
 
