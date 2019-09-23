@@ -5460,3 +5460,96 @@ export const mockAgentJoinToken = {
     // tslint:disable-next-line: max-line-length
     ca_cert: '-----BEGIN CERTIFICATE----- MIIC9zCCAd+gAwIBAgIBATANBgkqhkiG9w0BAQsFADAQMQ4wDAYDVQQKEwVOYWxlajAeFw0xOTA1MjgxMzQ0NDBaFw0yMTA1MjcxMzQ0NDBaMBAxDjAMBgNVBAoTBU5hbGVqMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwGJffV/afFQ2SEe7G3rvUFJCjBUCeQX+LsQevY8DSc9LRuWl67TwfzrS2fyFMOUeVZyd5D/9nwreTun3FhvyMkQKHOpoa2cYcYOFcxHGrSeE0iL+VH5+/g7bBiaAZUUh0paHQE6xiKpGxBQhGJrPDyMxlbBrb5fb5VDJA09ph3eZ4DXfC30MiB0Doc/GNEBAlN8qMXschgQV+w/PVtNObUz8jvrxYHM36vT7iWtJQ7zdzv4SxYB21emPrBdzbVkB36fVyQ7RqheLKu6rqYMUV4Nj5kPP6eTza4N32IYvB6SKOnT1Ro1iTHvTPdZhM48d7txQ1ff+cVgG+5EiBi8MKwIDAQABo1wwWjAOBgNVHQ8BAf8EBAMCAqQwEwYDVR0lBAwwCgYIKwYBBQUHAwEwEgYDVR0TAQH/BAgwBgEB/wIBADAfBgNVHREEGDAWghQqLm5hbGVqNDgubmFsZWoudGVjaDANBgkqhkiG9w0BAQsFAAOCAQEAclw2YqEuvWtTaw+fJzX4ByfZh8nrfT1mKoAcJDDHXcEbvES0b8xqXqrGYW1QO92tUgFEw23C43wKJPdzmqIYmy0sR6sghsZJLEQzY3DOXNx2GirREm7jrv66REs1tohhukB1s9PU8oxp+lYzdFtWYW88BB2tg75MMTxS/KxW10966j4aSO53osHXC1/NgWJM/Mm4WG3jAgZFFZc6BBxmjmH8O98KEsQqQOOl3zmOQAtikuE0K2hHOa5dEM5ft5569Fh53WeQr+PFlfNhlaFmmRpKHU9k2eeB7VTTwxIqx3TvA5t41RRyb5X4dr2MVizh04hMhyf4MNGuVy94B6yVw== -----END CERTIFICATE-----',
 };
+
+/**
+ * Mocked apps Inbounds
+ */
+export const mockAppsInboundsList = {
+    interfaceName: 'dbInbound',
+    instance: 'MySQL'
+};
+
+/**
+ * Mocked apps Outbound
+ */
+export const mockAppsOutboundsList = {
+    interfaceName: 'dbOutbound',
+    instance: 'WordPress'
+};
+
+/**
+ * Mocked connections list
+ */
+export const mockConnectionsList = [
+    {
+    inbound: {
+      interfaceName: 'dbInbound',
+      instance: 'MySQL'
+    },
+    outbound: {
+      interfaceName: 'dbOutbound',
+      instance: 'WordPress'
+    }
+  },
+  {
+    inbound: {
+      interfaceName: 'dbInbound',
+      instance: 'activemq'
+    },
+    outbound: {
+      interfaceName: 'dbOutbound',
+      instance: 'Opencast'
+    }
+  },
+  {
+    inbound: {
+      interfaceName: 'dbInbound',
+      instance: 'kuaroprocessing'
+    },
+    outbound: {
+      interfaceName: 'dbOutbound',
+      instance: 'Kuard'
+    }
+  },
+  {
+    inbound: {
+      interfaceName: 'dbInbound',
+      instance: 'testPara'
+    },
+    outbound: {
+      interfaceName: 'dbOutbound',
+      instance: 'appTest'
+    }
+  },
+  {
+    inbound: {
+      interfaceName: 'dbInbound',
+      instance: 'deviceVirtual3'
+    },
+    outbound: {
+      interfaceName: 'dbOutbound',
+      instance: 'Virtual3'
+    }
+  },
+  {
+    inbound: {
+      interfaceName: 'dbInbound',
+      instance: 'deviceVirtual2'
+    },
+    outbound: {
+      interfaceName: 'dbOutbound',
+      instance: 'Virtual2'
+    }
+  },
+  {
+    inbound: {
+      interfaceName: 'dbInbound',
+      instance: 'deviceVirtual1'
+    },
+    outbound: {
+      interfaceName: 'dbOutbound',
+      instance: 'Virtual1'
+    }
+  }
+];
+

@@ -4,7 +4,7 @@ import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary,
          mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList,
-         mockInventoryList, mockInventorySummary, mockEICJoinToken, mockAgentJoinToken } from '../utils/mocks';
+         mockInventoryList, mockInventorySummary, mockEICJoinToken, mockAgentJoinToken, mockAppsInboundsList, mockAppsOutboundsList, mockConnectionsList } from '../utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 import { Asset } from '../definitions/interfaces/asset';
 import { HttpResponse } from '@angular/common/http';
@@ -522,7 +522,7 @@ export class MockupBackendService implements Backend {
 
   /**
    * Simulates to request registering an application descriptor
-   * @param organizationId Organization identifiekr
+   * @param organizationId Organization identifier
    * @param descriptor Descriptor object
    */
   addAppDescriptor(organizationId: string, descriptor: any) {
@@ -604,6 +604,66 @@ export class MockupBackendService implements Backend {
     return of(new HttpResponse({
       status: 200
     }));
+  }
+
+
+    /********************
+   * Application Network
+   ********************/
+
+  /**
+   * Simulates to request a list of available inbounds of an organization
+   * @param organizationId Organization identifier
+   */
+  getListAvailableInstanceInbounds(organizationId: string) {
+    return of (new HttpResponse({
+      body: JSON.stringify({inbounds: mockAppsInboundsList}),
+      status: 200
+    })).pipe(map(response => JSON.parse(response.body)));
+  }
+
+  /**
+   * Simulates to request a list of available outbounds of an organization
+   * @param organizationId Organization identifier
+   */
+  getListAvailableInstanceOutbounds(organizationId: string) {
+    return of (new HttpResponse({
+      body: JSON.stringify({inbounds: mockAppsOutboundsList}),
+      status: 200
+    })).pipe(map(response => JSON.parse(response.body)));
+  }
+
+  /**
+   * Simulates to add a new connection between one outbound and one inbound
+   * @param organizationId Organization identifier
+   */
+  addConnections(organizationId: string) {
+    return of (new HttpResponse({
+      body: JSON.stringify({outbounds: mockAppsOutboundsList}),
+      status: 200
+    })).pipe(map(response => JSON.parse(response.body)));
+  }
+
+  /**
+   * Operation that allows to remove a connection
+  * @param organizationId Organization identifier
+   */
+  removeConnection(organizationId: string) {
+    return of (new HttpResponse({
+      body: JSON.stringify({connections: mockConnectionsList}),
+      status: 200
+    }));
+  }
+
+  /**
+   * Simulates retrieves a list all the established connections of an organization
+   * @param organizationId Organization identifier
+   */
+  getListConnections(organizationId: string) {
+    return of (new HttpResponse({
+      body: JSON.stringify({connections: mockConnectionsList}),
+      status: 200
+    })).pipe(map(response => JSON.parse(response.body)));
   }
 
   /********************
