@@ -60,6 +60,7 @@ import { SimpleLogComponent } from './simple-log/simple-log.component';
 import { AgentJoinTokenInfoComponent } from './agent-join-token-info/agent-join-token-info.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AdvancedFilterOptionsComponent } from './advanced-filter-options/advanced-filter-options.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { DeviceGroupInfoComponent } from './device-group-info/device-group-info.component';
 import { InstanceServiceGroupInfoComponent } from './instance-service-group-info/instance-service-group-info.component';
@@ -112,6 +113,7 @@ export function createTranslateLoader(http: HttpClient) {
     InstallAgentComponent,
     SimpleLogComponent,
     AgentJoinTokenInfoComponent,
+    AdvancedFilterOptionsComponent,
     DeviceGroupInfoComponent,
     InstanceServiceGroupInfoComponent,
     RegisteredServiceGroupInfoComponent
@@ -138,6 +140,7 @@ export function createTranslateLoader(http: HttpClient) {
     InstallAgentComponent,
     SimpleLogComponent,
     AgentJoinTokenInfoComponent,
+    AdvancedFilterOptionsComponent,
     DeviceGroupInfoComponent,
     InstanceServiceGroupInfoComponent,
     RegisteredServiceGroupInfoComponent

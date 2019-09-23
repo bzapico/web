@@ -10,6 +10,11 @@ import { CommonModule } from '@angular/common';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { SortByPipe } from '../pipes/sort-by.pipe';
 import { FormsModule } from '@angular/forms';
+import { ContextualMenuComponent } from '../contextual-menu/contextual-menu.component';
+import { NgxGraphModule } from '@swimlane/ngx-graph';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { createTranslateLoader } from '../app.module';
+import { HttpClient } from '@angular/common/http';
 
 describe('ApplicationsComponent', () => {
   let component: ApplicationsComponent;
@@ -20,11 +25,13 @@ describe('ApplicationsComponent', () => {
       declarations: [
         ApplicationsComponent,
         FilterPipe,
-        SortByPipe
+        SortByPipe,
+        ContextualMenuComponent
        ],
       imports: [
         HttpClientTestingModule,
         NgxChartsModule,
+        NgxGraphModule,
         CarouselModule,
         BrowserAnimationsModule,
         RouterTestingModule,
@@ -32,6 +39,13 @@ describe('ApplicationsComponent', () => {
         CommonModule,
         ModalModule.forRoot(),
         FormsModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
       providers: [
         BsModalRef,
