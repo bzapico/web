@@ -241,7 +241,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.simpleLogMock, newValue);
     localStorage.setItem(LocalStorageKeys.agentJoinTokenInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.advancedFilterOptions, newValue);
-    localStorage.setItem(LocalStorageKeys.manageConnections, newValue);
+    localStorage.setItem(LocalStorageKeys.manageConnectionsMock, newValue);
   }
 
   /**

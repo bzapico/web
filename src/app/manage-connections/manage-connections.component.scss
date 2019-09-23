@@ -102,3 +102,14 @@ $light-grey: #EEEEEE;
         }
     }
 }
+
+.ngx-dropdown-container.ngx-dropdown-list-container ul {
+    max-height: 300px;
+}
+ul.available-items
+{
+    max-height: 300px;
+    border: 1px solid red;
+}
+
+
