@@ -982,6 +982,51 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.graphDataLoaded = true;
   }
 
+
+  /**
+   * Return if the marker is required
+   * @param link Link object
+   */
+  getMarker(link) {
+    const index = this.graphData.nodes.map(x => x.id).indexOf(link.source);
+    if (index !== -1) {
+      if (this.graphData.nodes[index].id === this.graphData.nodes[index].group) {
+        return '';
+      } else {
+        return 'url(#arrow)';
+      }
+    }
+    return 'url(#arrow)';
+  }
+
+  /**
+   * Opens the modal view that holds advanced filter options component
+   */
+  openAdvancedFilterOptions() {
+    if (this.modalService.config.initialState
+        && typeof this.modalService.config.initialState['showOnlyNodes'] === 'undefined'
+        && typeof this.modalService.config.initialState['showRelatedNodes'] === 'undefined'
+        && typeof this.modalService.config.initialState['defaultFilter'] === 'undefined') {
+      this.modalService.config.initialState['showOnlyNodes'] = this.initialState.showOnlyNodes;
+      this.modalService.config.initialState['showRelatedNodes'] = this.initialState.showRelatedNodes;
+      this.modalService.config.initialState['defaultFilter'] = this.initialState.defaultFilter;
+    }
+    this.modalRef = this.modalService.show(AdvancedFilterOptionsComponent, { backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe(() => {
+      this.initialState = {
+        showOnlyNodes: this.modalService.config.initialState['showOnlyNodes'],
+        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes'],
+        defaultFilter: this.modalService.config.initialState['defaultFilter']
+      };
+      if (this.initialState.showRelatedNodes) {
+        this.initialState.showOnlyNodes = true;
+      }
+      this.isSearchingInGraph = true;
+      this.toGraphData(this.searchTermGraph);
+    });
+  }
+
   /**
    * It sets clusters nodes to add them in the graph
    * @param cluster current cluster to generate related data to this.
@@ -1292,33 +1337,5 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   private occurrencesGraphCounter() {
     this.occurrencesCounter = this.graphData.nodes.filter(node => node.label.toLowerCase().includes(this.searchTermGraph)).length;
-  }
-
-  /**
-   * Opens the modal view that holds advanced filter options component
-   */
-  openAdvancedFilterOptions() {
-    if (this.modalService.config.initialState
-        && typeof this.modalService.config.initialState['showOnlyNodes'] === 'undefined'
-        && typeof this.modalService.config.initialState['showRelatedNodes'] === 'undefined'
-        && typeof this.modalService.config.initialState['defaultFilter'] === 'undefined') {
-      this.modalService.config.initialState['showOnlyNodes'] = this.initialState.showOnlyNodes;
-      this.modalService.config.initialState['showRelatedNodes'] = this.initialState.showRelatedNodes;
-      this.modalService.config.initialState['defaultFilter'] = this.initialState.defaultFilter;
-    }
-    this.modalRef = this.modalService.show(AdvancedFilterOptionsComponent, { backdrop: 'static', ignoreBackdropClick: false });
-    this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe(() => {
-      this.initialState = {
-        showOnlyNodes: this.modalService.config.initialState['showOnlyNodes'],
-        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes'],
-        defaultFilter: this.modalService.config.initialState['defaultFilter']
-      };
-      if (this.initialState.showRelatedNodes) {
-        this.initialState.showOnlyNodes = true;
-      }
-      this.isSearchingInGraph = true;
-      this.toGraphData(this.searchTermGraph);
-    });
   }
 }
