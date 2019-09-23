@@ -14,7 +14,6 @@
   <div class="modal-body">
     <div class="modal-center-box">
       <button 
-        (click)="addNewConnection()"
         class="apps-actions-btn">
         <i class="material-icons i-options">link</i>
         {{'apps.manageConnections.addNewConnection'|translate}}
@@ -88,27 +87,28 @@
         <div class="scroll-app-info ">
           <div *ngFor=
             "let connection of copyConnections |
-            filter : searchTerm; let i = index"  
-            class="label-tbody row">
-            <div class="col-5">
-              <span class="blue">{{connection.outbound.instance}}</span>
-              <br>
-              <span class="grey">{{connection.outbound.interfaceName}}</span>
-            </div>
-            <div class="col-5">
-              <span class="blue">{{connection.inbound.instance}}</span>
-              <br>
-              <span class="grey">{{connection.inbound.interfaceName}}</span>
-            </div>
-            <div class="col-2 text-center label-td-flex">
-              <button 
-                (click)="disconnectInstance(i)"
-                tooltip="{{'apps.manageConnections.disconnect'|translate}}" 
-                placement="left" 
-                class="action-btn-red">
-                <i class="material-icons i-red">link_off</i>
-              </button>
-            </div>
+            filter : searchTerm; let i = index">
+            <span *ngIf="connection.connected"  class="label-tbody row">
+              <div class="col-5">
+                <span class="blue">{{connection.outbound.instance}}</span>
+                <br>
+                <span class="grey">{{connection.outbound.interfaceName}}</span>
+              </div>
+              <div class="col-5">
+                <span class="blue">{{connection.inbound.instance}}</span>
+                <br>
+                <span class="grey">{{connection.inbound.interfaceName}}</span>
+              </div>
+              <div class="col-2 text-center label-td-flex">
+                <button 
+                  (click)="disconnectInstance(connection)"
+                  tooltip="{{'apps.manageConnections.disconnect'|translate}}" 
+                  placement="left" 
+                  class="action-btn-red">
+                  <i class="material-icons i-red">link_off</i>
+                </button>
+              </div>
+            </span>
           </div>
         </div>
       </div>

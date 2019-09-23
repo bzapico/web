@@ -189,18 +189,11 @@ export class ManageConnectionsComponent implements OnInit {
   /**
    * Disconnects app instance
    */
-  disconnectInstance(objectIndex) {
-    console.log('objectIndex', objectIndex);
-    const deleteConfirm = confirm(this.translateService.instant('apps.manageConnections.disconnectConfirm'));
+  disconnectInstance(connection) {
+    const deleteConfirm =
+    confirm(this.translateService.instant('apps.manageConnections.disconnectConfirm'));
     if (deleteConfirm) {
-      this.copyConnections = [...this.connections];
-
-      this.copyConnections = this.copyConnections.filter( (item, index) => {
-        if (index !== objectIndex) {
-          return true;
-        }
-      });
-
+      connection.connected = false;
       this.notificationsService.add({
         message: 'App disconnected',
         timeout: 3000
