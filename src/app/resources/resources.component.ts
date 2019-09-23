@@ -10,6 +10,7 @@ import { Cluster } from '../definitions/interfaces/cluster';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import * as shape from 'd3-shape';
 import { Subscription, timer } from 'rxjs';
+import { NodeType } from '../definitions/enums/node-type.enum';
 
 /**
  * Refresh ratio
@@ -467,6 +468,18 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.occurrencesGraphCounter();
   }
 
+  getMarker(link, origin: string) {
+    const index = this.graphData.nodes.map(x => x.id).indexOf(link[origin]);
+    if (index !== -1) {
+      if (link.is_between_apps) {
+        return 'url(#arrow)';
+      } else {
+        return '';
+      }
+    }
+    return '';
+  }
+
   /**
    * Refresh all resources data as clusters list, instances, and cluster count and it updates it considering the REFRESH_INTERVAL
    */
@@ -586,11 +599,33 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         }
         this.graphData.links.push({
           source: cluster.cluster_id,
-          target: instance['app_instance_id']
+          target: instance['app_instance_id'],
+          is_between_apps: false
         });
       });
     });
+    this.setLinksBetweenApps();
     this.graphDataLoaded = true;
+  }
+
+  private setLinksBetweenApps() {
+    const connections = ['inbound_connections', 'outbound_connections'];
+    this.graphData.nodes.forEach(node => {
+      if (node.type === NodeType.Instances) {
+        for (const connection_type in connections) {
+          if (node[connection_type] === null || node[connection_type] === undefined) {
+            continue;
+          }
+          node[connection_type].forEach(connection => {
+            this.graphData.links.push({
+              source: connection.source_instance_id,
+              target: connection.target_instance_id,
+              is_between_apps: true
+            });
+          });
+        }
+      }
+    });
   }
 
   /**

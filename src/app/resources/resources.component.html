@@ -1,4 +1,4 @@
-<!-- Component title -->
++<!-- Component title -->
 <div class="row row-title">
   <div class="col-xl-12">
     <h2 class="section-title">RESOURCES</h2>
@@ -322,6 +322,34 @@
                       [attr.y]="node.height/2">
                       {{node.label}}
                     </svg:text>
+                  </svg:g>
+                </ng-template>
+                <ng-template #linkTemplate let-link>
+                  <svg:g class="edge">
+                    <defs>
+                      <marker
+                        id="arrow"
+                        markerWidth="13"
+                        markerHeight="13"
+                        refX="2"
+                        refY="6"
+                        orient="auto"
+                        markerUnits="userSpaceOnUse">
+                        <path d="M2,2 L2,11 L10,6 L2,2" fill="#333" stroke-width="0" />
+                      </marker>
+                    </defs>
+                    <svg:path
+                      stroke-width="2"
+                      class="line"
+                      d="M 0,30 h100"
+                      [attr.marker-mid]="getMarker(link, 'source')">
+                    </svg:path>
+                    <svg:path
+                      stroke-width="2"
+                      class="line"
+                      d="M 0,30 h100"
+                      [attr.marker-mid]="getMarker(link, 'target')">
+                    </svg:path>
                   </svg:g>
                 </ng-template>
               </ngx-graph>
