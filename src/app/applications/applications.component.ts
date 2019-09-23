@@ -1031,23 +1031,24 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * It sets the links between apps
    */
   private setLinksBetweenApps() {
+    const linksBetweenApps = {};
     const connections = ['inbound_connections', 'outbound_connections'];
     this.graphData.nodes.forEach(node => {
       if (node.type === NodeType.Instances) {
-        for (const connection_type in connections) {
-          if (node[connection_type] === null || node[connection_type] === undefined) {
-            continue;
-          }
+        connections.forEach(connection_type => {
           node[connection_type].forEach(connection => {
-            this.graphData.links.push({
-              source: connection.source_instance_id,
-              target: connection.target_instance_id,
+            const source = connection.source_instance_id;
+            const target = connection.target_instance_id;
+            linksBetweenApps[ source + '_' + target] = {
+              source: source,
+              target: target,
               is_between_apps: true
-            });
+            };
           });
-        }
+        });
       }
     });
+    this.graphData.links.push(...Object.values(linksBetweenApps));
   }
 
   /**
@@ -1153,6 +1154,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
       label: instance['name'],
       type: NodeType.Instances,
+      inbound_connections: instance['inbound_connections'] || [],
+      outbound_connections: instance['outbound_connections'] || [],
       tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
       group: cluster.cluster_id,
       app_descriptor_id: instance['app_descriptor_id']
