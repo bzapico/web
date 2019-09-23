@@ -1018,7 +1018,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   getMarker(link, origin: string) {
     const index = this.graphData.nodes.map(x => x.id).indexOf(link[origin]);
     if (index !== -1) {
-      if (this.graphData.nodes[index].type === NodeType.Instances) {
+      if (link.is_between_apps) {
         return 'url(#arrow)';
       } else {
         return '';
@@ -1041,7 +1041,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           node[connection_type].forEach(connection => {
             this.graphData.links.push({
               source: connection.source_instance_id,
-              target: connection.target_instance_id
+              target: connection.target_instance_id,
+              is_between_apps: true
             });
           });
         }
@@ -1325,7 +1326,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
             && !this.initialState.showOnlyNodes)) {
       this.graphData.links.push({
         source: source,
-        target: target
+        target: target,
+        is_between_apps: false
       });
     }
     if (!this.searchGraphData.links[source]) {
