@@ -639,7 +639,7 @@ export class MockupBackendService implements Backend {
    */
   addConnections(organizationId: string) {
     return of (new HttpResponse({
-      body: JSON.stringify({outbounds: mockAppsOutboundsList}),
+      body: JSON.stringify({connections: mockConnectionsList}),
       status: 200
     })).pipe(map(response => JSON.parse(response.body)));
   }

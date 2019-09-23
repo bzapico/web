@@ -3085,23 +3085,26 @@ export const mockRegisteredAppsList = [
         ],
         'inbound_net_interfaces': [
             {
-                'name': 'OpenCast1'
-            },
-            {
-                'name': 'WordPress'
+               'name': 'inbound'
             }
-        ],
-        'outbound_net_interfaces': [
+         ],
+         'outbound_net_interfaces': [
             {
-                'name': 'Scattered',
-                'required': true
-            },
-            {
-                'name': 'Reping',
-                'required': false
+               'name': 'outbound'
             }
-        ]
-
+         ],
+         'inbound_connections': [
+            {
+               'organization_id': 'f60c9bad-d6cc-42dc-b05d-32837aa4b621',
+               'connection_id': 'c6ea0855-fc27-47f6-9354-2b74ccb41fab',
+               'source_instance_id': '47ab7751-651f-4e36-b213-0031909ee11e',
+               'source_instance_name': 'KUARD_OUT',
+               'target_instance_id': 'a1d954e3-8a0a-4254-8fca-333e3f80e227',
+               'target_instance_name': 'KUARD_IN',
+               'inbound_name': 'inbound',
+               'outbound_name': 'outbound'
+            }
+         ]
     },
     {
         'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
@@ -5505,54 +5508,63 @@ export const mockAppsOutboundsList = {
 /**
  * Mocked connections list
  */
-export const mockConnectionsList = {
-    'inbound_connections': [
-        {
-            'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-            'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548a',
-            'source_instance_id': '<3bc6a816-6548-4b5f-a2b7-239123',
-            'source_instance_name': 'WordPress1',
-            'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239456',
-            'target_instance_name': 'WordPress',
-            'inbound_name': 'dbInbound',
-            'outbound_name': 'dbOutbound',
-            'outbound_required': true
-        },
-        {
-            'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-            'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548b',
-            'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239678',
-            'source_instance_name': 'WordPress1',
-            'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239890',
-            'target_instance_name': 'WordPress',
-            'inbound_name': 'dbInbound',
-            'outbound_name': 'dbOutbound',
-            'outbound_required': false
-        }
-    ],
-    'outbound_connections': [
-        {
-            'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-            'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548c',
-            'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239234',
-            'source_instance_name': 'WordPress1',
-            'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239345',
-            'target_instance_name': 'WordPress',
-            'inbound_name': 'dbInbound',
-            'outbound_name': 'dbOutbound',
-            'outbound_required': false
-        },
-        {
-            'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-            'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548d',
-            'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239456',
-            'source_instance_name': 'WordPress1',
-            'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239567',
-            'target_instance_name': 'WordPress',
-            'inbound_name': 'dbInbound',
-            'outbound_name': 'dbOutbound',
-            'outbound_required': false
-        }
-    ],
-};
+export const mockConnectionsList =   [
+    {
+        'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+        'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548a',
+        'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239123',
+        'source_instance_name': 'WordPress1',
+        'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239456',
+        'target_instance_name': 'WordPress',
+        'inbound_name': 'dbInbound',
+        'outbound_name': 'dbOutbound',
+        'outbound_required': true
+    },
+    {
+        'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+        'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548a',
+        'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239123',
+        'source_instance_name': 'WordPress1',
+        'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239456',
+        'target_instance_name': 'WordPress',
+        'inbound_name': 'dbInbound',
+        'outbound_name': 'dbOutbound',
+        'outbound_required': true
+    },
+    {
+        'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+        'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548a',
+        'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239123',
+        'source_instance_name': 'WordPress1',
+        'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239456',
+        'target_instance_name': 'WordPress',
+        'inbound_name': 'dbInbound',
+        'outbound_name': 'dbOutbound',
+        'outbound_required': true
+    },
+    {
+        'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+        'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548a',
+        'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239123',
+        'source_instance_name': 'WordPress1',
+        'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239456',
+        'target_instance_name': 'WordPress',
+        'inbound_name': 'dbInbound',
+        'outbound_name': 'dbOutbound',
+        'outbound_required': true
+    },
+    {
+        'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+        'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548a',
+        'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239123',
+        'source_instance_name': 'WordPress1',
+        'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239456',
+        'target_instance_name': 'WordPress',
+        'inbound_name': 'dbInbound',
+        'outbound_name': 'dbOutbound',
+        'outbound_required': true
+    }
+];
+
+
 
