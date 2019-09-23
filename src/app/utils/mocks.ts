@@ -178,7 +178,9 @@ export const mockAppsInstancesList = [
                 'name': 'allow access to kuard web',
                 'target_service_name': 'kuardfront',
                 'target_port': 8080,
-                'access_name': 'PUBLIC'
+                'access_name': 'PUBLIC',
+                'inbound_net_interface': 'OpenCast12',
+                'outbound_net_interface': 'OpenCast12'
             },
             {
                 'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
@@ -3080,7 +3082,26 @@ export const mockRegisteredAppsList = [
                 'type': 'STRING',
                 'default_value': '00000000-0000-0000-0000-000000000000'
             }
+        ],
+        'inbound_net_interfaces': [
+            {
+                'name': 'OpenCast1'
+            },
+            {
+                'name': 'WordPress'
+            }
+        ],
+        'outbound_net_interfaces': [
+            {
+                'name': 'Scattered',
+                'required': true
+            },
+            {
+                'name': 'Reping',
+                'required': false
+            }
         ]
+
     },
     {
         'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
@@ -5465,91 +5486,73 @@ export const mockAgentJoinToken = {
  * Mocked apps Inbounds
  */
 export const mockAppsInboundsList = {
-    interfaceName: 'dbInbound',
-    instance: 'MySQL'
+    'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+    'app_instance_id': '0a261182-728e-4633-9578-3e1322c05d20',
+    'instance_name': 'dbInbound',
+    'inbound_name': 'MySQL'
 };
 
 /**
  * Mocked apps Outbound
  */
 export const mockAppsOutboundsList = {
-    interfaceName: 'dbOutbound',
-    instance: 'WordPress'
+    'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+    'app_instance_id': '0a261182-728e-4633-9578-3e1322c05d20',
+    'instance_name': 'dbInbound',
+    'outbound_name': 'OpenCast1'
 };
 
 /**
  * Mocked connections list
  */
-export const mockConnectionsList = [
-    {
-    inbound: {
-      interfaceName: 'dbInbound',
-      instance: 'MySQL'
-    },
-    outbound: {
-      interfaceName: 'dbOutbound',
-      instance: 'WordPress'
-    }
-  },
-  {
-    inbound: {
-      interfaceName: 'dbInbound',
-      instance: 'activemq'
-    },
-    outbound: {
-      interfaceName: 'dbOutbound',
-      instance: 'Opencast'
-    }
-  },
-  {
-    inbound: {
-      interfaceName: 'dbInbound',
-      instance: 'kuaroprocessing'
-    },
-    outbound: {
-      interfaceName: 'dbOutbound',
-      instance: 'Kuard'
-    }
-  },
-  {
-    inbound: {
-      interfaceName: 'dbInbound',
-      instance: 'testPara'
-    },
-    outbound: {
-      interfaceName: 'dbOutbound',
-      instance: 'appTest'
-    }
-  },
-  {
-    inbound: {
-      interfaceName: 'dbInbound',
-      instance: 'deviceVirtual3'
-    },
-    outbound: {
-      interfaceName: 'dbOutbound',
-      instance: 'Virtual3'
-    }
-  },
-  {
-    inbound: {
-      interfaceName: 'dbInbound',
-      instance: 'deviceVirtual2'
-    },
-    outbound: {
-      interfaceName: 'dbOutbound',
-      instance: 'Virtual2'
-    }
-  },
-  {
-    inbound: {
-      interfaceName: 'dbInbound',
-      instance: 'deviceVirtual1'
-    },
-    outbound: {
-      interfaceName: 'dbOutbound',
-      instance: 'Virtual1'
-    }
-  }
-];
+export const mockConnectionsList = {
+    'inbound_connections': [
+        {
+            'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+            'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548a',
+            'source_instance_id': '<3bc6a816-6548-4b5f-a2b7-239123',
+            'source_instance_name': 'WordPress1',
+            'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239456',
+            'target_instance_name': 'WordPress',
+            'inbound_name': 'dbInbound',
+            'outbound_name': 'dbOutbound',
+            'outbound_required': true
+        },
+        {
+            'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+            'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548b',
+            'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239678',
+            'source_instance_name': 'WordPress1',
+            'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239890',
+            'target_instance_name': 'WordPress',
+            'inbound_name': 'dbInbound',
+            'outbound_name': 'dbOutbound',
+            'outbound_required': false
+        }
+    ],
+    'outbound_connections': [
+        {
+            'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+            'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548c',
+            'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239234',
+            'source_instance_name': 'WordPress1',
+            'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239345',
+            'target_instance_name': 'WordPress',
+            'inbound_name': 'dbInbound',
+            'outbound_name': 'dbOutbound',
+            'outbound_required': false
+        },
+        {
+            'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+            'connection_id': '3bc6a816-6548-4b5f-a2b7-23921dd6548d',
+            'source_instance_id': '3bc6a816-6548-4b5f-a2b7-239456',
+            'source_instance_name': 'WordPress1',
+            'target_instance_id': '3bc6a816-6548-4b5f-a2b7-239567',
+            'target_instance_name': 'WordPress',
+            'inbound_name': 'dbInbound',
+            'outbound_name': 'dbOutbound',
+            'outbound_required': false
+        }
+    ],
+};
 
