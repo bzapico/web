@@ -60,13 +60,13 @@ export class AddUserComponent implements OnInit {
       displayKey: 'role',
       search: false,
       height: 'auto',
-      placeholder: 'e.g. Owner',
+      placeholder: 'e.g. NalejAdmin',
       limitTo: 3,
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
     this.roleOptions = [
-     'Owner',
+     'NalejAdmin',
      'Operator',
      'Developer'
     ];

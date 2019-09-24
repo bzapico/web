@@ -2,7 +2,7 @@
  * Predefined user roles
  */
 export const UserRoles = {
-    owner: 'Owner',
+    nalejadmin: 'NalejAdmin',
     operator: 'Operator',
     developer: 'Developer'
 };
