@@ -9,7 +9,7 @@ $light-grey: #EEEEEE;
     background-color: $base-violet;
     border-radius: 5px;
     font-weight: 500;
-    padding: .6em 1.2em;
+    padding: .7em 2em;
     cursor: pointer;
     color: #ffffff;
     border: none;
@@ -24,10 +24,10 @@ $light-grey: #EEEEEE;
         opacity: 0.6;
     }
     .i-options {
-        font-size: 1.5em;
+        font-size: 24px;
         position: absolute;
         top: 8px;
-        left: -13px;
+        right: 176px;
     }
 }
 

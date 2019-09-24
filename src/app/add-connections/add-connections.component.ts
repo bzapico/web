@@ -25,7 +25,7 @@ export class AddConnectionsComponent implements OnInit {
   loading: boolean;
 
   /**
-   * Model that holds onclose method defined in Infrastructure component
+   * Model that holds onclose method defined in manage connection component
    */
   onClose: any;
 
@@ -36,10 +36,6 @@ export class AddConnectionsComponent implements OnInit {
   connections: any[];
   copyConnections: any[];
 
-  sourceInstances: any[];
-  sourceInterfaces: any[];
-  targetInterfaces: any[];
-  targetInstances: any[];
   sourceInstance: FormControl;
   sourceInterface: FormControl;
   targetInstance: FormControl;
@@ -159,68 +155,6 @@ export class AddConnectionsComponent implements OnInit {
         connected: true
       }
     ];
-
-    //  Source Instance
-    this.sourceInstances = [];
-    this.sourceInstanceOptions = [{
-      name: 'App1',
-      code: 0
-    }, {
-      name: 'App2',
-      code: 1
-    }, {
-      name: 'App3',
-      code: 2
-    }, {
-      name: 'App4',
-      code: 3
-    }];
-    //  Source Interfaces
-    this.sourceInterfaces = [];
-    this.sourceInterfaceOptions = [{
-      name: 'App1',
-      code: 0
-    }, {
-      name: 'App2',
-      code: 1
-    }, {
-      name: 'App3',
-      code: 2
-    }, {
-      name: 'App4',
-      code: 3
-    }];
-    //  Target Interfaces
-    this.targetInterfaces = [];
-    this.targetInterfaceOptions = [{
-      name: 'App1',
-      code: 0
-    }, {
-      name: 'App2',
-      code: 1
-    }, {
-      name: 'App3',
-      code: 2
-    }, {
-      name: 'App4',
-      code: 3
-    }];
-    //  Target Instances
-    this.targetInstances = [];
-    this.targetInstanceOptions = [{
-      name: 'App1',
-      code: 0
-    }, {
-      name: 'App2',
-      code: 1
-    }, {
-      name: 'App3',
-      code: 2
-    }, {
-      name: 'App4',
-      code: 3
-    }];
-
     }
 
   ngOnInit() {
@@ -233,12 +167,18 @@ export class AddConnectionsComponent implements OnInit {
     // to preserve the initial state
     this.copyConnections = [...this.connections];
     this.filteredOptions = this.getFilterName();
+    this.sourceInstanceOptions =  this.getFilterSourceInstanceName();
+    this.sourceInterfaceOptions = this.getFilterSourceInterfaceName();
+    this.targetInstanceOptions = this.getFilterTargetInstanceName();
+    this.targetInterfaceOptions = this.getFilterTargetInterfaceName();
+
+
     this.sourceInstanceConfig = {
       displayKey: 'name',
       search: false,
       height: 'auto',
       placeholder: 'Source Instance',
-      limitTo: 4,
+      limitTo: this.sourceInstanceOptions.length,
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
@@ -247,7 +187,7 @@ export class AddConnectionsComponent implements OnInit {
       search: false,
       height: 'auto',
       placeholder: 'Source Interface',
-      limitTo: 4,
+      limitTo: this.sourceInterfaceOptions.length,
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
@@ -256,7 +196,7 @@ export class AddConnectionsComponent implements OnInit {
       search: false,
       height: 'auto',
       placeholder: 'Target Instance',
-      limitTo: 4,
+      limitTo: this.targetInstanceOptions.length,
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
@@ -265,7 +205,7 @@ export class AddConnectionsComponent implements OnInit {
       search: false,
       height: 'auto',
       placeholder: 'Target Interface',
-      limitTo: 4,
+      limitTo: this.targetInterfaceOptions.length,
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
@@ -283,6 +223,38 @@ export class AddConnectionsComponent implements OnInit {
       filteredNames.push(connectionName.inbound.instance);
     });
     return filteredNames;
+  }
+
+  getFilterSourceInstanceName() {
+    const filterSourceInstanceNames = [];
+    this.copyConnections.forEach(connectionName => {
+      filterSourceInstanceNames.push(connectionName.outbound.instance);
+    });
+    return filterSourceInstanceNames;
+  }
+
+  getFilterSourceInterfaceName() {
+    const filterSourceInterfaceNames = [];
+    this.copyConnections.forEach(connectionName => {
+      filterSourceInterfaceNames.push(connectionName.inbound.interfaceName);
+    });
+    return filterSourceInterfaceNames;
+  }
+
+  getFilterTargetInstanceName() {
+    const filterTargetInstanceNames = [];
+    this.copyConnections.forEach(connectionName => {
+      filterTargetInstanceNames.push(connectionName.inbound.instance);
+    });
+    return filterTargetInstanceNames;
+  }
+
+  getFilterTargetInterfaceName() {
+    const filterTargetInterfaceNames = [];
+    this.copyConnections.forEach(connectionName => {
+      filterTargetInterfaceNames.push(connectionName.outbound.interfaceName);
+    });
+    return filterTargetInterfaceNames;
   }
 
   /**
