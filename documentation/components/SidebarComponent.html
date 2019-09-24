@@ -915,7 +915,7 @@ export class SidebarComponent implements OnInit {
       &lt;p class&#x3D;&quot;type&quot;&gt;{{role}}&lt;/p&gt;
       &lt;p class&#x3D;&quot;email&quot;&gt;{{email}}&lt;/p&gt;
     &lt;/div&gt;
-    &lt;div *ngIf&#x3D;&quot;role &#x3D;&#x3D;&#x3D; &#x27;Owner&#x27;&quot; class&#x3D;&quot;nav-item&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;role &#x3D;&#x3D;&#x3D; &#x27;NalejAdmin&#x27;&quot; class&#x3D;&quot;nav-item&quot;&gt;
       &lt;a
         routerLinkActive&#x3D;&quot;active&quot; 
         routerLink&#x3D;&quot;/organization&quot; 
@@ -924,7 +924,7 @@ export class SidebarComponent implements OnInit {
         Organization
       &lt;/a&gt;
     &lt;/div&gt;
-    &lt;div *ngIf&#x3D;&quot;role &#x3D;&#x3D;&#x3D; &#x27;Owner&#x27;&quot; class&#x3D;&quot;nav-item&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;role &#x3D;&#x3D;&#x3D; &#x27;NalejAdmin&#x27;&quot; class&#x3D;&quot;nav-item&quot;&gt;
       &lt;a
         routerLinkActive&#x3D;&quot;active&quot; 
         routerLink&#x3D;&quot;/infrastructure&quot; 
@@ -933,7 +933,7 @@ export class SidebarComponent implements OnInit {
         Infrastructure
       &lt;/a&gt;
     &lt;/div&gt;
-    &lt;div *ngIf&#x3D;&quot;role &#x3D;&#x3D;&#x3D; &#x27;Owner&#x27; || role &#x3D;&#x3D;&#x3D; &#x27;Operator&#x27;&quot; class&#x3D;&quot;nav-item&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;role &#x3D;&#x3D;&#x3D; &#x27;NalejAdmin&#x27; || role &#x3D;&#x3D;&#x3D; &#x27;Operator&#x27;&quot; class&#x3D;&quot;nav-item&quot;&gt;
       &lt;a         
         routerLinkActive&#x3D;&quot;active&quot; 
         routerLink&#x3D;&quot;/resources&quot; 
@@ -942,7 +942,7 @@ export class SidebarComponent implements OnInit {
         Resources
       &lt;/a&gt;
     &lt;/div&gt;
-    &lt;div *ngIf&#x3D;&quot;role &#x3D;&#x3D;&#x3D; &#x27;Owner&#x27; || role &#x3D;&#x3D;&#x3D; &#x27;Developer&#x27;&quot; class&#x3D;&quot;nav-item&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;role &#x3D;&#x3D;&#x3D; &#x27;NalejAdmin&#x27; || role &#x3D;&#x3D;&#x3D; &#x27;Developer&#x27;&quot; class&#x3D;&quot;nav-item&quot;&gt;
       &lt;a         
         routerLinkActive&#x3D;&quot;active&quot; 
         routerLink&#x3D;&quot;/devices&quot; 
@@ -951,7 +951,7 @@ export class SidebarComponent implements OnInit {
         Devices
       &lt;/a&gt;
     &lt;/div&gt;
-    &lt;div *ngIf&#x3D;&quot;role &#x3D;&#x3D;&#x3D; &#x27;Owner&#x27; || role &#x3D;&#x3D;&#x3D; &#x27;Developer&#x27;&quot; class&#x3D;&quot;nav-item&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;role &#x3D;&#x3D;&#x3D; &#x27;NalejAdmin&#x27; || role &#x3D;&#x3D;&#x3D; &#x27;Developer&#x27;&quot; class&#x3D;&quot;nav-item&quot;&gt;
       &lt;a         
         routerLinkActive&#x3D;&quot;active&quot; 
         routerLink&#x3D;&quot;/applications&quot; 
@@ -966,7 +966,8 @@ export class SidebarComponent implements OnInit {
       Logout
     &lt;/button&gt;
   &lt;/div&gt;
-&lt;/nav&gt;</code></pre>
+&lt;/nav&gt;
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
@@ -1185,8 +1186,8 @@ a {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav class="sidebar">  <div class="nalej-nav">    <div       (click)="openDebugPanel()"      class="nav-company-name"       style="visibility:hidden">      NALEJ    </div>    <div (click)="openEditUser()" class="nav-profile-info">      <div class="avatar-frame">        <img src="../assets/images/new-white.svg" alt="user-img" class="user-img">      </div>      <p class="name">{{name}}</p>      <p class="type">{{role}}</p>      <p class="email">{{email}}</p>    </div>    <div *ngIf="role === \'Owner\'" class="nav-item">      <a        routerLinkActive="active"         routerLink="/organization"         class="nav-link">        <i class="material-icons">group_work</i>        Organization      </a>    </div>    <div *ngIf="role === \'Owner\'" class="nav-item">      <a        routerLinkActive="active"         routerLink="/infrastructure"         class="nav-link">        <i class="material-icons">dns</i>        Infrastructure      </a>    </div>    <div *ngIf="role === \'Owner\' || role === \'Operator\'" class="nav-item">      <a                 routerLinkActive="active"         routerLink="/resources"         class="nav-link">        <i class="material-icons">layers</i>        Resources      </a>    </div>    <div *ngIf="role === \'Owner\' || role === \'Developer\'" class="nav-item">      <a                 routerLinkActive="active"         routerLink="/devices"         class="nav-link">        <i class="material-icons">devices_other</i>        Devices      </a>    </div>    <div *ngIf="role === \'Owner\' || role === \'Developer\'" class="nav-item">      <a                 routerLinkActive="active"         routerLink="/applications"         class="nav-link">        <i class="material-icons">apps</i>        Applications      </a>    </div>  </div>  <div (click)="logout()" class="logout-btn-box">    <button class="logout-btn">      Logout    </button>  </div></nav></div>'
-    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><nav class="sidebar">  <div class="nalej-nav">    <div       (click)="openDebugPanel()"      class="nav-company-name"       style="visibility:hidden">      NALEJ    </div>    <div (click)="openEditUser()" class="nav-profile-info">      <div class="avatar-frame">        <img src="../assets/images/new-white.svg" alt="user-img" class="user-img">      </div>      <p class="name">{{name}}</p>      <p class="type">{{role}}</p>      <p class="email">{{email}}</p>    </div>    <div *ngIf="role === \'NalejAdmin\'" class="nav-item">      <a        routerLinkActive="active"         routerLink="/organization"         class="nav-link">        <i class="material-icons">group_work</i>        Organization      </a>    </div>    <div *ngIf="role === \'NalejAdmin\'" class="nav-item">      <a        routerLinkActive="active"         routerLink="/infrastructure"         class="nav-link">        <i class="material-icons">dns</i>        Infrastructure      </a>    </div>    <div *ngIf="role === \'NalejAdmin\' || role === \'Operator\'" class="nav-item">      <a                 routerLinkActive="active"         routerLink="/resources"         class="nav-link">        <i class="material-icons">layers</i>        Resources      </a>    </div>    <div *ngIf="role === \'NalejAdmin\' || role === \'Developer\'" class="nav-item">      <a                 routerLinkActive="active"         routerLink="/devices"         class="nav-link">        <i class="material-icons">devices_other</i>        Devices      </a>    </div>    <div *ngIf="role === \'NalejAdmin\' || role === \'Developer\'" class="nav-item">      <a                 routerLinkActive="active"         routerLink="/applications"         class="nav-link">        <i class="material-icons">apps</i>        Applications      </a>    </div>  </div>  <div (click)="logout()" class="logout-btn-box">    <button class="logout-btn">      Logout    </button>  </div></nav></div>'
+    var COMPONENTS = [{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'SidebarComponent'};
 </script>

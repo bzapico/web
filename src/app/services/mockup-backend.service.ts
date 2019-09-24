@@ -417,7 +417,7 @@ export class MockupBackendService implements Backend {
         {
           'organization_id': '2a95fe95-eade-4622-836f-e85d789024bf',
           'role_id': '268d7644-bb17-48f2-815b-19a8ab6c7e83',
-          'name': 'Owner',
+          'name': 'NalejAdmin',
           'primitives': ['ORG']
         },
         {

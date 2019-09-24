@@ -14,7 +14,7 @@
       <p class="type">{{role}}</p>
       <p class="email">{{email}}</p>
     </div>
-    <div *ngIf="role === 'Owner'" class="nav-item">
+    <div *ngIf="role === 'NalejAdmin'" class="nav-item">
       <a
         routerLinkActive="active" 
         routerLink="/organization" 
@@ -23,7 +23,7 @@
         Organization
       </a>
     </div>
-    <div *ngIf="role === 'Owner'" class="nav-item">
+    <div *ngIf="role === 'NalejAdmin'" class="nav-item">
       <a
         routerLinkActive="active" 
         routerLink="/infrastructure" 
@@ -32,7 +32,7 @@
         Infrastructure
       </a>
     </div>
-    <div *ngIf="role === 'Owner' || role === 'Operator'" class="nav-item">
+    <div *ngIf="role === 'NalejAdmin' || role === 'Operator'" class="nav-item">
       <a         
         routerLinkActive="active" 
         routerLink="/resources" 
@@ -41,7 +41,7 @@
         Resources
       </a>
     </div>
-    <div *ngIf="role === 'Owner' || role === 'Developer'" class="nav-item">
+    <div *ngIf="role === 'NalejAdmin' || role === 'Developer'" class="nav-item">
       <a         
         routerLinkActive="active" 
         routerLink="/devices" 
@@ -50,7 +50,7 @@
         Devices
       </a>
     </div>
-    <div *ngIf="role === 'Owner' || role === 'Developer'" class="nav-item">
+    <div *ngIf="role === 'NalejAdmin' || role === 'Developer'" class="nav-item">
       <a         
         routerLinkActive="active" 
         routerLink="/applications" 

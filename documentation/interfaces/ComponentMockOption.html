@@ -210,7 +210,10 @@ export const AvailableComponents &#x3D; {
   installAgent: &#x27;Install Agent&#x27;,
   simpleLogInfo: &#x27;Simple Log Info&#x27;,
   eicJoinTokenInfo: &#x27;EIC Join Token Info&#x27;,
-  agentJoinTokenInfo: &#x27;Agent Join Token Info&#x27;
+  agentJoinTokenInfo: &#x27;Agent Join Token Info&#x27;,
+  addConnections: &#x27;Add connections&#x27;,
+  advancedFilterOptions: &#x27;Advanced filter options&#x27;,
+  manageConnections: &#x27;Manage Connections&#x27;
 };
 
 @Component({
@@ -355,6 +358,18 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.agentJoinTokenInfo,
       mock: localStorage.getItem(LocalStorageKeys.agentJoinTokenInfoMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
+    this.components.push({
+      name: AvailableComponents.addConnections,
+      mock: localStorage.getItem(LocalStorageKeys.addConnectionsMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
+    this.components.push({
+      name: AvailableComponents.advancedFilterOptions,
+      mock: localStorage.getItem(LocalStorageKeys.advancedFilterOptions) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
+    this.components.push({
+      name: AvailableComponents.manageConnections,
+      mock: localStorage.getItem(LocalStorageKeys.manageConnectionsMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
   }
 
   /**
@@ -397,6 +412,9 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.installAgentMock, newValue);
     localStorage.setItem(LocalStorageKeys.simpleLogMock, newValue);
     localStorage.setItem(LocalStorageKeys.agentJoinTokenInfoMock, newValue);
+    localStorage.setItem(LocalStorageKeys.addConnectionsMock, newValue);
+    localStorage.setItem(LocalStorageKeys.advancedFilterOptions, newValue);
+    localStorage.setItem(LocalStorageKeys.manageConnectionsMock, newValue);
   }
 
   /**
@@ -498,6 +516,15 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.agentJoinTokenInfo:
         localStorage.setItem(LocalStorageKeys.agentJoinTokenInfoMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.addConnections:
+        localStorage.setItem(LocalStorageKeys.addConnectionsMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.advancedFilterOptions:
+        localStorage.setItem(LocalStorageKeys.advancedFilterOptions, componentMockOption.mock);
+      break;
+      case AvailableComponents.manageConnections:
+        localStorage.setItem(LocalStorageKeys.manageConnectionsMock, componentMockOption.mock);
       break;
       default:
         console.log(&#x27;Selected option not registered as available component&#x27;);

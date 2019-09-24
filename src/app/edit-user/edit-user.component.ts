@@ -64,7 +64,7 @@ export class EditUserComponent implements OnInit {
     private notificationsService: NotificationsService
   ) {
     this.roleOptions = [
-     'Owner',
+     'NalejAdmin',
      'Operator',
      'Developer'
     ];
@@ -147,7 +147,7 @@ export class EditUserComponent implements OnInit {
       .subscribe(response => {
         this.userName = f.userName.value;
         this.loading = false;
-        if (this.profileRole === 'Owner') {
+        if (this.profileRole === 'NalejAdmin') {
           this.backend.changeRole(this.organizationId, this.email, this.getRoleId(f.role.value)).
           subscribe(responseRole => {
             this.notificationsService.add({
@@ -155,8 +155,8 @@ export class EditUserComponent implements OnInit {
               timeout: 3000
             });
             this.bsModalRef.hide();
-            if (this.selfEditProfile === true && f.role.value === 'Owner') {
-              // no redirection for the owner
+            if (this.selfEditProfile === true && f.role.value === 'NalejAdmin') {
+              // no redirection for the nalejadmin
             } else if (this.selfEditProfile === true && f.role.value === 'Developer') {
               this.router.navigate([
                 '/applications'

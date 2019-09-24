@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
+import { AddConnectionsComponent } from '../add-connections/add-connections.component';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -37,7 +38,6 @@ export class ManageConnectionsComponent implements OnInit {
    * Models that holds forms info
    */
   manageConnectionsFilterForm: FormGroup;
-  submitted = false;
   manageConnections: FormControl;
   filter: FormControl;
 
@@ -48,8 +48,14 @@ export class ManageConnectionsComponent implements OnInit {
   filteredOptions: any[];
   selectConfig = {};
 
+  /**
+   * Reference for the service that allows the modal component
+   */
+  modalRef: BsModalRef;
+
   constructor(
     public bsModalRef: BsModalRef,
+    private modalService: BsModalService,
     private formBuilder: FormBuilder,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
@@ -71,84 +77,84 @@ export class ManageConnectionsComponent implements OnInit {
 
     // CONNECTIONS
     this.connections = [
-        {
-        inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'MySQL'
-        },
-        outbound: {
-          interfaceName: 'dbOutbound',
-          instance: 'WordPress'
-        },
-        connected: true
-      },
       {
-        inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'activemq'
-        },
-        outbound: {
-          interfaceName: 'dbOutbound',
-          instance: 'Opencast'
-        },
-        connected: true
+      inbound: {
+        interfaceName: 'dbInbound',
+        instance: 'MySQL'
       },
-      {
-        inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'kuaroprocessing'
-        },
-        outbound: {
-          interfaceName: 'dbOutbound',
-          instance: 'Kuard'
-        },
-        connected: true
+      outbound: {
+        interfaceName: 'dbOutbound',
+        instance: 'WordPress'
       },
-      {
-        inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'testPara'
-        },
-        outbound: {
-          interfaceName: 'dbOutbound',
-          instance: 'appTest'
-        },
-        connected: true
+      connected: true
+    },
+    {
+      inbound: {
+        interfaceName: 'activemqInbound',
+        instance: 'activemq'
       },
-      {
-        inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'deviceVirtual3'
-        },
-        outbound: {
-          interfaceName: 'dbOutbound',
-          instance: 'Virtual3'
-        },
-        connected: true
+      outbound: {
+        interfaceName: 'OpencastOutbound',
+        instance: 'Opencast'
       },
-      {
-        inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'deviceVirtual2'
-        },
-        outbound: {
-          interfaceName: 'dbOutbound',
-          instance: 'Virtual2'
-        },
-        connected: true
+      connected: true
+    },
+    {
+      inbound: {
+        interfaceName: 'KuardInbound',
+        instance: 'Kuardprocessing'
       },
-      {
-        inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'deviceVirtual1'
-        },
-        outbound: {
-          interfaceName: 'dbOutbound',
-          instance: 'Virtual1'
-        },
-        connected: true
-      }
-    ];
+      outbound: {
+        interfaceName: 'KuardOutbound',
+        instance: 'Kuard'
+      },
+      connected: true
+    },
+    {
+      inbound: {
+        interfaceName: 'testInbound',
+        instance: 'testPara'
+      },
+      outbound: {
+        interfaceName: 'testOutbound',
+        instance: 'appTest'
+      },
+      connected: true
+    },
+    {
+      inbound: {
+        interfaceName: 'deviceInbound',
+        instance: 'deviceVirtual3'
+      },
+      outbound: {
+        interfaceName: 'Virtual3Outbound',
+        instance: 'Virtual3'
+      },
+      connected: true
+    },
+    {
+      inbound: {
+        interfaceName: 'Virtual2Inbound',
+        instance: 'deviceVirtual2'
+      },
+      outbound: {
+        interfaceName: 'Virtual2Outbound',
+        instance: 'Virtual2'
+      },
+      connected: true
+    },
+    {
+      inbound: {
+        interfaceName: 'Virtual1Inbound',
+        instance: 'deviceVirtual1'
+      },
+      outbound: {
+        interfaceName: 'Virtual1Outbound',
+        instance: 'Virtual1'
+      },
+      connected: true
+    }
+  ];
   }
 
   ngOnInit() {
@@ -177,6 +183,27 @@ export class ManageConnectionsComponent implements OnInit {
   /**
    * Creates an array with the names to be filtered by
    */
+  openAddNewConnection() {
+    const initialState = {
+      organizationId: this.organizationId,
+      defaultAutofocus: false,
+    };
+
+    this.modalRef = this.modalService.show(AddConnectionsComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+  // TODO
+    this.modalRef.content.onClose = (newConnection: any) => {
+      if (newConnection) {
+        console.log('newConnection', newConnection);
+        // this.openAddNewConnection(newConnection);
+        }
+      };
+    this.modalRef.content.closeBtnName = 'Close';
+    this.bsModalRef.hide();
+  }
+
+    /**
+   * Filters copy connections list to return filtered names
+   */
   getFilterName() {
     const filteredNames = [];
     this.copyConnections.forEach(connectionName => {
@@ -188,6 +215,7 @@ export class ManageConnectionsComponent implements OnInit {
 
   /**
    * Disconnects app instance
+   * @param connection connections
    */
   disconnectInstance(connection) {
     const deleteConfirm =
@@ -220,5 +248,12 @@ export class ManageConnectionsComponent implements OnInit {
    */
   closeModal() {
     this.bsModalRef.hide();
+  }
+
+    /**
+   * Reset all the filters fields
+   */
+  resetFilters() {
+    this.searchTerm = '';
   }
 }

@@ -41,7 +41,7 @@
           class="form-control">
         <div class="error-h"></div>
       </div>
-      <div *ngIf="profileRole === 'Owner'" class="form-group form-group-drop">
+      <div *ngIf="profileRole === 'NalejAdmin'" class="form-group form-group-drop">
         <label>Role*</label>
         <ngx-select-dropdown 
           formControlName="role" 
@@ -64,7 +64,7 @@
           </div>
         </div>
       </div>
-      <div *ngIf="profileRole !== 'Owner'" class="form-group">
+      <div *ngIf="profileRole !== 'NalejAdmin'" class="form-group">
         <label>Role</label>
         <input 
           placeholder="{{userRole}}"

@@ -13,6 +13,11 @@
 		"title": "APPLICATIONS"
 	},
 	"apps": {
+		"addConnection": {
+			"discardChanges": "Discard changes?",
+			"noResults": "No results found!",
+			"title": "ADD NEW CONNECTION"
+		},
 		"instance": {
 			"configTitle": "CONFIGURATION",
 			"environmentVariables": "Environment variables",

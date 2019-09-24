@@ -44,6 +44,7 @@ export const AvailableComponents = {
   simpleLogInfo: 'Simple Log Info',
   eicJoinTokenInfo: 'EIC Join Token Info',
   agentJoinTokenInfo: 'Agent Join Token Info',
+  addConnections: 'Add connections',
   advancedFilterOptions: 'Advanced filter options',
   manageConnections: 'Manage Connections'
 };
@@ -191,6 +192,10 @@ export class DebugPanelComponent implements OnInit {
       mock: localStorage.getItem(LocalStorageKeys.agentJoinTokenInfoMock) === 'false' ? 'false' : 'true'
     });
     this.components.push({
+      name: AvailableComponents.addConnections,
+      mock: localStorage.getItem(LocalStorageKeys.addConnectionsMock) === 'false' ? 'false' : 'true'
+    });
+    this.components.push({
       name: AvailableComponents.advancedFilterOptions,
       mock: localStorage.getItem(LocalStorageKeys.advancedFilterOptions) === 'false' ? 'false' : 'true'
     });
@@ -240,6 +245,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.installAgentMock, newValue);
     localStorage.setItem(LocalStorageKeys.simpleLogMock, newValue);
     localStorage.setItem(LocalStorageKeys.agentJoinTokenInfoMock, newValue);
+    localStorage.setItem(LocalStorageKeys.addConnectionsMock, newValue);
     localStorage.setItem(LocalStorageKeys.advancedFilterOptions, newValue);
     localStorage.setItem(LocalStorageKeys.manageConnectionsMock, newValue);
   }
@@ -343,6 +349,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.agentJoinTokenInfo:
         localStorage.setItem(LocalStorageKeys.agentJoinTokenInfoMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.addConnections:
+        localStorage.setItem(LocalStorageKeys.addConnectionsMock, componentMockOption.mock);
       break;
       case AvailableComponents.advancedFilterOptions:
         localStorage.setItem(LocalStorageKeys.advancedFilterOptions, componentMockOption.mock);

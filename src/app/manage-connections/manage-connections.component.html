@@ -14,15 +14,16 @@
   <div class="modal-body">
     <div class="modal-center-box">
       <button 
+        (click)="openAddNewConnection()"
         class="apps-actions-btn">
-        <i class="material-icons i-options">link</i>
+        <i class="material-icons-round i-options">link</i>
         {{'apps.manageConnections.addNewConnection'|translate}}
       </button>
     </div>
     <h3 class="nalej-form-title ">{{'apps.manageConnections.connectionsList'|translate}}</h3>
     <div class="modal-center-box">
       <!-- Filters -->
-      <form [formGroup]="manageConnectionsFilterForm"  class="w-100">
+      <form [formGroup]="manageConnectionsFilterForm"  class="w-100 hide-sm-md-h">
         <div class="form-group form-group-drop filter-drop-box">
           <label class="app-filter-label">{{'apps.manageConnections.appFilter'|translate}}</label>
           <ngx-select-dropdown 
@@ -30,7 +31,7 @@
             [multiple]="false" 
             [ngClass]=
               "{ 
-                'ngx-error': submitted && !manageConnections,
+                'ngx-error': !manageConnections,
                 'base-light-grey': !f.filter.value
               }"
             [config]="selectConfig" 
@@ -43,7 +44,7 @@
         </div>
       </form>
       <!-- Search box -->
-      <div class="search-box">
+      <div class="search-box hide-sm-md-h">
         <input 
           name="searchTerm" 
           [(ngModel)]="searchTerm"
@@ -54,7 +55,7 @@
           <i class="material-icons">search</i>
         </div>     
         <div *ngIf="searchTerm !== ''" class="close-icon">
-          <i (click)="resetFilters(filterField)" class="material-icons">close</i>
+          <i (click)="resetFilters()" class="material-icons">close</i>
         </div>
       </div>
       <!-- Table -->

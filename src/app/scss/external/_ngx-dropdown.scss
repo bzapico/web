@@ -6,7 +6,7 @@
 
 .ngx-dropdown-container .ngx-dropdown-button {
     height: 40px;
-    font-size: .9em;
+    font-size: 13px;
     color: inherit;
     &:focus {
         border: 2px solid $base-violet !important;
@@ -32,7 +32,7 @@
 }
 .ngx-dropdown-container .ngx-dropdown-list-container ul li {
     text-align: center;
-    font-size: .8em !important;
+    font-size: 12px !important;
     padding: .5em !important;
     color: $base-grey !important;
     &:hover {
@@ -41,7 +41,7 @@
 }
 .ngx-dropdown-container button {
     border: 2px solid $light-grey !important;
-    font-size: 0.9em;
+    font-size: 13px;
     color: inherit !important;
 }
 .ngx-dropdown-container button span {

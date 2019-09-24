@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
           const jwtHelper: JwtHelperService = new JwtHelperService();
           const jwtTokenData = jwtHelper.decodeToken(response.token);
           switch (jwtTokenData.role) {
-            case 'Owner':
+            case 'NalejAdmin':
               this.router.navigate([
                 '/organization'
               ]);
