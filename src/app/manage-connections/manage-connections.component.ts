@@ -191,6 +191,13 @@ export class ManageConnectionsComponent implements OnInit {
     };
 
     this.modalRef = this.modalService.show(AddConnectionsComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+  // TODO
+    this.modalRef.content.onClose = (newConnection: any) => {
+      if (newConnection) {
+        console.log('newConnection', newConnection);
+        // this.openAddNewConnection(newConnection);
+        }
+      };
     this.modalRef.content.closeBtnName = 'Close';
     this.bsModalRef.hide();
   }

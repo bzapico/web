@@ -25,9 +25,17 @@ export class AddConnectionsComponent implements OnInit {
   loading: boolean;
 
   /**
+   * Model that holds onclose method defined in Infrastructure component
+   */
+  onClose: any;
+
+  /**
    * Model that hold add connections and its info
    */
   organizationId: string;
+  connections: any[];
+  copyConnections: any[];
+
   sourceInstances: any[];
   sourceInterfaces: any[];
   targetInterfaces: any[];
@@ -41,8 +49,9 @@ export class AddConnectionsComponent implements OnInit {
    * NGX-select-dropdown
    */
   tab = 1;
-  options = [];
-  selectConfig = {};
+  filteredOptions: any[];
+  // options = [];
+  // selectConfig = {};
   defaultAutofocus: string;
 
   sourceInstanceOptions: any[];
@@ -70,6 +79,87 @@ export class AddConnectionsComponent implements OnInit {
       } else {
         this.backend = this.backendService;
       }
+    // CONNECTIONS
+    this.connections = [
+        {
+        inbound: {
+          interfaceName: 'dbInbound',
+          instance: 'MySQL'
+        },
+        outbound: {
+          interfaceName: 'dbOutbound',
+          instance: 'WordPress'
+        },
+        connected: true
+      },
+      {
+        inbound: {
+          interfaceName: 'dbInbound',
+          instance: 'activemq'
+        },
+        outbound: {
+          interfaceName: 'dbOutbound',
+          instance: 'Opencast'
+        },
+        connected: true
+      },
+      {
+        inbound: {
+          interfaceName: 'dbInbound',
+          instance: 'kuaroprocessing'
+        },
+        outbound: {
+          interfaceName: 'dbOutbound',
+          instance: 'Kuard'
+        },
+        connected: true
+      },
+      {
+        inbound: {
+          interfaceName: 'dbInbound',
+          instance: 'testPara'
+        },
+        outbound: {
+          interfaceName: 'dbOutbound',
+          instance: 'appTest'
+        },
+        connected: true
+      },
+      {
+        inbound: {
+          interfaceName: 'dbInbound',
+          instance: 'deviceVirtual3'
+        },
+        outbound: {
+          interfaceName: 'dbOutbound',
+          instance: 'Virtual3'
+        },
+        connected: true
+      },
+      {
+        inbound: {
+          interfaceName: 'dbInbound',
+          instance: 'deviceVirtual2'
+        },
+        outbound: {
+          interfaceName: 'dbOutbound',
+          instance: 'Virtual2'
+        },
+        connected: true
+      },
+      {
+        inbound: {
+          interfaceName: 'dbInbound',
+          instance: 'deviceVirtual1'
+        },
+        outbound: {
+          interfaceName: 'dbOutbound',
+          instance: 'Virtual1'
+        },
+        connected: true
+      }
+    ];
+
     //  Source Instance
     this.sourceInstances = [];
     this.sourceInstanceOptions = [{
@@ -140,6 +230,9 @@ export class AddConnectionsComponent implements OnInit {
       targetInstance: [null, Validators.required],
       targetInterface: [null, Validators.required],
     });
+    // to preserve the initial state
+    this.copyConnections = [...this.connections];
+    this.filteredOptions = this.getFilterName();
     this.sourceInstanceConfig = {
       displayKey: 'name',
       search: false,
@@ -183,6 +276,15 @@ export class AddConnectionsComponent implements OnInit {
    */
   get f() { return this.addNewConnectionsForm.controls; }
 
+  getFilterName() {
+    const filteredNames = [];
+    this.copyConnections.forEach(connectionName => {
+      filteredNames.push(connectionName.outbound.instance);
+      filteredNames.push(connectionName.inbound.instance);
+    });
+    return filteredNames;
+  }
+
   /**
    * Requests to add new connections
    * @param f Form with the connections input data
@@ -190,6 +292,21 @@ export class AddConnectionsComponent implements OnInit {
   addNewConnections(f) {
     this.submitted = true;
     this.loading = true;
+
+    let newConnection: any;
+    let indexFound;
+
+    for (let i = 0; i < this.copyConnections.length; i++) {
+      if (this.copyConnections[i]) {
+        indexFound = i;
+      }
+    }
+
+    newConnection = this.copyConnections[indexFound];
+
+    this.onClose(newConnection);
+
+    this.bsModalRef.hide();
   }
 
   /**
