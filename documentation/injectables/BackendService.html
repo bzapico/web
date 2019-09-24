@@ -93,6 +93,9 @@
                                 <a href="#addAppDescriptor">addAppDescriptor</a>
                             </li>
                             <li>
+                                <a href="#addConnection">addConnection</a>
+                            </li>
+                            <li>
                                 <a href="#addGroup">addGroup</a>
                             </li>
                             <li>
@@ -153,6 +156,15 @@
                                 <a href="#getInventorySummary">getInventorySummary</a>
                             </li>
                             <li>
+                                <a href="#getListAvailableInstanceInbounds">getListAvailableInstanceInbounds</a>
+                            </li>
+                            <li>
+                                <a href="#getListAvailableInstanceOutbounds">getListAvailableInstanceOutbounds</a>
+                            </li>
+                            <li>
+                                <a href="#getListConnections">getListConnections</a>
+                            </li>
+                            <li>
                                 <a href="#getNodes">getNodes</a>
                             </li>
                             <li>
@@ -184,6 +196,9 @@
                             </li>
                             <li>
                                 <a href="#post">post</a>
+                            </li>
+                            <li>
+                                <a href="#removeConnection">removeConnection</a>
                             </li>
                             <li>
                                 <a href="#removeDevice">removeDevice</a>
@@ -393,6 +408,83 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="addConnection"></a>
+                    <span class="name">
+                        <b>
+                            addConnection
+                        </b>
+                        <a href="#addConnection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addConnection(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="526"
+                            class="link-to-prism">src/app/services/backend.service.ts:526</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Adds a new connection between one outbound and one inbound</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>organizationId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Organization identifier</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="addGroup"></a>
                     <span class="name">
                         <b>
@@ -411,8 +503,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="645"
-                            class="link-to-prism">src/app/services/backend.service.ts:645</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="700"
+                            class="link-to-prism">src/app/services/backend.service.ts:700</a></div>
                 </td>
             </tr>
 
@@ -504,8 +596,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="681"
-                            class="link-to-prism">src/app/services/backend.service.ts:681</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="736"
+                            class="link-to-prism">src/app/services/backend.service.ts:736</a></div>
                 </td>
             </tr>
 
@@ -940,8 +1032,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="658"
-                            class="link-to-prism">src/app/services/backend.service.ts:658</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="713"
+                            class="link-to-prism">src/app/services/backend.service.ts:713</a></div>
                 </td>
             </tr>
 
@@ -1344,8 +1436,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="529"
-                            class="link-to-prism">src/app/services/backend.service.ts:529</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="584"
+                            class="link-to-prism">src/app/services/backend.service.ts:584</a></div>
                 </td>
             </tr>
 
@@ -1607,8 +1699,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="519"
-                            class="link-to-prism">src/app/services/backend.service.ts:519</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="574"
+                            class="link-to-prism">src/app/services/backend.service.ts:574</a></div>
                 </td>
             </tr>
 
@@ -1777,8 +1869,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="576"
-                            class="link-to-prism">src/app/services/backend.service.ts:576</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="631"
+                            class="link-to-prism">src/app/services/backend.service.ts:631</a></div>
                 </td>
             </tr>
 
@@ -1863,8 +1955,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="633"
-                            class="link-to-prism">src/app/services/backend.service.ts:633</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="688"
+                            class="link-to-prism">src/app/services/backend.service.ts:688</a></div>
                 </td>
             </tr>
 
@@ -2147,6 +2239,234 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getListAvailableInstanceInbounds"></a>
+                    <span class="name">
+                        <b>
+                            getListAvailableInstanceInbounds
+                        </b>
+                        <a href="#getListAvailableInstanceInbounds"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getListAvailableInstanceInbounds(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="506"
+                            class="link-to-prism">src/app/services/backend.service.ts:506</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><hr>
+<p>Application network</p>
+<hr>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>organizationId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getListAvailableInstanceOutbounds"></a>
+                    <span class="name">
+                        <b>
+                            getListAvailableInstanceOutbounds
+                        </b>
+                        <a href="#getListAvailableInstanceOutbounds"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getListAvailableInstanceOutbounds(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="516"
+                            class="link-to-prism">src/app/services/backend.service.ts:516</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Retrieves a list of available outbounds of an organization</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>organizationId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Organization identifier</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getListConnections"></a>
+                    <span class="name">
+                        <b>
+                            getListConnections
+                        </b>
+                        <a href="#getListConnections"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getListConnections(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="546"
+                            class="link-to-prism">src/app/services/backend.service.ts:546</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Retrieves a list all the established connections of an organization</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>organizationId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Organization identifier</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getNodes"></a>
                     <span class="name">
                         <b>
@@ -2165,8 +2485,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="508"
-                            class="link-to-prism">src/app/services/backend.service.ts:508</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="563"
+                            class="link-to-prism">src/app/services/backend.service.ts:563</a></div>
                 </td>
             </tr>
 
@@ -2946,8 +3266,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="549"
-                            class="link-to-prism">src/app/services/backend.service.ts:549</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="604"
+                            class="link-to-prism">src/app/services/backend.service.ts:604</a></div>
                 </td>
             </tr>
 
@@ -3021,6 +3341,83 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="removeConnection"></a>
+                    <span class="name">
+                        <b>
+                            removeConnection
+                        </b>
+                        <a href="#removeConnection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeConnection(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="536"
+                            class="link-to-prism">src/app/services/backend.service.ts:536</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Operation that removes a connection</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>organizationId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Organization identifier</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="removeDevice"></a>
                     <span class="name">
                         <b>
@@ -3039,8 +3436,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="602"
-                            class="link-to-prism">src/app/services/backend.service.ts:602</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="657"
+                            class="link-to-prism">src/app/services/backend.service.ts:657</a></div>
                 </td>
             </tr>
 
@@ -3148,8 +3545,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="618"
-                            class="link-to-prism">src/app/services/backend.service.ts:618</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="673"
+                            class="link-to-prism">src/app/services/backend.service.ts:673</a></div>
                 </td>
             </tr>
 
@@ -3241,8 +3638,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="688"
-                            class="link-to-prism">src/app/services/backend.service.ts:688</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="743"
+                            class="link-to-prism">src/app/services/backend.service.ts:743</a></div>
                 </td>
             </tr>
 
@@ -4113,8 +4510,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="588"
-                            class="link-to-prism">src/app/services/backend.service.ts:588</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="643"
+                            class="link-to-prism">src/app/services/backend.service.ts:643</a></div>
                 </td>
             </tr>
 
@@ -4315,8 +4712,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="674"
-                            class="link-to-prism">src/app/services/backend.service.ts:674</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="729"
+                            class="link-to-prism">src/app/services/backend.service.ts:729</a></div>
                 </td>
             </tr>
 
@@ -5033,6 +5430,61 @@ export class BackendService implements Backend {
         }
       );
     }
+
+  /********************
+   * Application network
+   ********************/
+
+  // GET &#x27;/appnet/inbound/{organization_id}/available&#x27;
+  /**
+   * Retrieves a list of available inbounds of an organization
+   * @param organizationId Organization identifier
+   */
+  getListAvailableInstanceInbounds(organizationId: string) {
+    return this.get(
+      API_URL + &#x27;appnet/inbound/&#x27; + organizationId + &#x27;/available&#x27;
+    );
+  }
+    // GET &#x27;/appnet/outbound/{organization_id}/available&#x27;
+  /**
+   * Retrieves a list of available outbounds of an organization
+   * @param organizationId Organization identifier
+   */
+  getListAvailableInstanceOutbounds(organizationId: string) {
+    return this.get(
+      API_URL + &#x27;appnet/outbound/&#x27; + organizationId + &#x27;/available&#x27;
+    );
+  }
+   // POST &#x27;/appnet/connection/{organization_id}/add&#x27;
+  /**
+   * Adds a new connection between one outbound and one inbound
+   * @param organizationId Organization identifier
+   */
+  addConnection(organizationId: string) {
+    return this.post(
+      API_URL + &#x27;appnet/connection/&#x27; + organizationId + &#x27;/add&#x27;
+    );
+  }
+     // POST &#x27;appnet/connection/{organization_id}/remove&#x27;
+  /**
+   * Operation that removes a connection
+   * @param organizationId Organization identifier
+   */
+  removeConnection(organizationId: string) {
+    return this.post(
+      API_URL + &#x27;appnet/connection/&#x27; + organizationId + &#x27;/remove&#x27;
+    );
+  }
+  // GET &#x27;/appnet/connection/{organization_id}/list&#x27;
+  /**
+   * Retrieves a list all the established connections of an organization
+   * @param organizationId Organization identifier
+   */
+  getListConnections(organizationId: string) {
+    return this.get(
+      API_URL + &#x27;appnet/connection/&#x27; + organizationId + &#x27;/list&#x27;
+    );
+  }
 
 
   /********************

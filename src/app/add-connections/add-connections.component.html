@@ -12,11 +12,7 @@
   </div>
   <!-- Body -->
   <div class="modal-body">
-    <form 
-    *ngIf="!loading"
-    [formGroup]="addNewConnectionsForm" 
-    (ngSubmit)="addNewConnections(f)"
-    id="add-connections">
+    <form [formGroup]="addNewConnectionsForm" id="add-connections">
       <div class="source-left">
         <!-- Source instance dropdown -->
         <div  class="form-group form-group-drop">

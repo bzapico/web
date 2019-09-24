@@ -93,6 +93,9 @@
                                 <a href="#addAppDescriptor">addAppDescriptor</a>
                             </li>
                             <li>
+                                <a href="#addConnection">addConnection</a>
+                            </li>
+                            <li>
                                 <a href="#addGroup">addGroup</a>
                             </li>
                             <li>
@@ -150,6 +153,15 @@
                                 <a href="#getInventorySummary">getInventorySummary</a>
                             </li>
                             <li>
+                                <a href="#getListAvailableInstanceInbounds">getListAvailableInstanceInbounds</a>
+                            </li>
+                            <li>
+                                <a href="#getListAvailableInstanceOutbounds">getListAvailableInstanceOutbounds</a>
+                            </li>
+                            <li>
+                                <a href="#getListConnections">getListConnections</a>
+                            </li>
+                            <li>
                                 <a href="#getNodes">getNodes</a>
                             </li>
                             <li>
@@ -178,6 +190,9 @@
                             </li>
                             <li>
                                 <a href="#logout">logout</a>
+                            </li>
+                            <li>
+                                <a href="#removeConnection">removeConnection</a>
                             </li>
                             <li>
                                 <a href="#removeDevice">removeDevice</a>
@@ -250,7 +265,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/services/mockup-backend.service.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/services/mockup-backend.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -285,8 +300,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="528"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:528</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="529"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:529</a></div>
                 </td>
             </tr>
 
@@ -320,7 +335,7 @@
 
 
                                     <td>
-                                        <p>Organization identifiekr</p>
+                                        <p>Organization identifier</p>
 
                                     </td>
                                 </tr>
@@ -337,6 +352,83 @@
 
                                     <td>
                                         <p>Descriptor object</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addConnection"></a>
+                    <span class="name">
+                        <b>
+                            addConnection
+                        </b>
+                        <a href="#addConnection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addConnection(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="641"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:641</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Simulates to add a new connection between one outbound and one inbound</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>organizationId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Organization identifier</p>
 
                                     </td>
                                 </tr>
@@ -378,8 +470,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="723"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:723</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="784"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:784</a></div>
                 </td>
             </tr>
 
@@ -471,8 +563,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="774"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:774</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="835"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:835</a></div>
                 </td>
             </tr>
 
@@ -564,8 +656,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:90</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:91</a></div>
                 </td>
             </tr>
 
@@ -648,8 +740,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="443"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:443</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="444"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:444</a></div>
                 </td>
             </tr>
 
@@ -757,8 +849,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="331"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:331</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="332"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:332</a></div>
                 </td>
             </tr>
 
@@ -850,8 +942,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="319"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:319</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="320"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:320</a></div>
                 </td>
             </tr>
 
@@ -927,8 +1019,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="747"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:747</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="808"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:808</a></div>
                 </td>
             </tr>
 
@@ -1020,8 +1112,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="601"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:601</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="602"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:602</a></div>
                 </td>
             </tr>
 
@@ -1113,8 +1205,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="110"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:110</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:111</a></div>
                 </td>
             </tr>
 
@@ -1197,8 +1289,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="570"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:570</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="571"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:571</a></div>
                 </td>
             </tr>
 
@@ -1306,8 +1398,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="515"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:515</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="516"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:516</a></div>
                 </td>
             </tr>
 
@@ -1399,8 +1491,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="502"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:502</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="503"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:503</a></div>
                 </td>
             </tr>
 
@@ -1492,8 +1584,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="626"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:626</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="687"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:687</a></div>
                 </td>
             </tr>
 
@@ -1576,8 +1668,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="464"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:464</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="465"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:465</a></div>
                 </td>
             </tr>
 
@@ -1653,8 +1745,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="643"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:643</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="704"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:704</a></div>
                 </td>
             </tr>
 
@@ -1739,8 +1831,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="710"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:710</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="771"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:771</a></div>
                 </td>
             </tr>
 
@@ -1816,8 +1908,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="479"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:479</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="480"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:480</a></div>
                 </td>
             </tr>
 
@@ -1890,8 +1982,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="154"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:154</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:155</a></div>
                 </td>
             </tr>
 
@@ -1964,8 +2056,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="165"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:165</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="166"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:166</a></div>
                 </td>
             </tr>
 
@@ -1973,6 +2065,234 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Simulates to request inventory summary data</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>organizationId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Organization identifier</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getListAvailableInstanceInbounds"></a>
+                    <span class="name">
+                        <b>
+                            getListAvailableInstanceInbounds
+                        </b>
+                        <a href="#getListAvailableInstanceInbounds"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getListAvailableInstanceInbounds(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="619"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:619</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><hr>
+<p>Application Network</p>
+<hr>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>organizationId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getListAvailableInstanceOutbounds"></a>
+                    <span class="name">
+                        <b>
+                            getListAvailableInstanceOutbounds
+                        </b>
+                        <a href="#getListAvailableInstanceOutbounds"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getListAvailableInstanceOutbounds(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="630"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:630</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Simulates to request a list of available outbounds of an organization</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>organizationId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Organization identifier</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getListConnections"></a>
+                    <span class="name">
+                        <b>
+                            getListConnections
+                        </b>
+                        <a href="#getListConnections"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getListConnections(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="663"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:663</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Simulates retrieves a list all the established connections of an organization</p>
 </div>
 
                     <div class="io-description">
@@ -2041,8 +2361,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="616"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:616</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="677"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:677</a></div>
                 </td>
             </tr>
 
@@ -2127,8 +2447,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:70</a></div>
                 </td>
             </tr>
 
@@ -2204,8 +2524,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:81</a></div>
                 </td>
             </tr>
 
@@ -2281,8 +2601,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="490"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:490</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="491"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:491</a></div>
                 </td>
             </tr>
 
@@ -2358,8 +2678,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="453"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:453</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="454"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:454</a></div>
                 </td>
             </tr>
 
@@ -2435,8 +2755,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:58</a></div>
                 </td>
             </tr>
 
@@ -2521,8 +2841,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="178"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:178</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="179"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:179</a></div>
                 </td>
             </tr>
 
@@ -2630,8 +2950,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="413"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:413</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="414"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:414</a></div>
                 </td>
             </tr>
 
@@ -2707,8 +3027,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:31</a></div>
                 </td>
             </tr>
 
@@ -2793,8 +3113,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:44</a></div>
                 </td>
             </tr>
 
@@ -2807,6 +3127,83 @@
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeConnection"></a>
+                    <span class="name">
+                        <b>
+                            removeConnection
+                        </b>
+                        <a href="#removeConnection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeConnection(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="652"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:652</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Operation that allows to remove a connection</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>organizationId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Organization identifier</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -2834,8 +3231,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="677"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:677</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="738"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:738</a></div>
                 </td>
             </tr>
 
@@ -2941,8 +3338,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="696"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:696</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="757"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:757</a></div>
                 </td>
             </tr>
 
@@ -3034,8 +3431,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="810"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:810</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="871"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:871</a></div>
                 </td>
             </tr>
 
@@ -3127,8 +3524,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="123"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:123</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:124</a></div>
                 </td>
             </tr>
 
@@ -3211,8 +3608,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="362"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:362</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="363"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:363</a></div>
                 </td>
             </tr>
 
@@ -3309,8 +3706,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="134"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:134</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:135</a></div>
                 </td>
             </tr>
 
@@ -3393,8 +3790,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="588"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:588</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="589"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:589</a></div>
                 </td>
             </tr>
 
@@ -3486,8 +3883,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="298"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:298</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="299"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:299</a></div>
                 </td>
             </tr>
 
@@ -3595,8 +3992,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="342"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:342</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="343"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:343</a></div>
                 </td>
             </tr>
 
@@ -3686,8 +4083,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="544"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:544</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="545"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:545</a></div>
                 </td>
             </tr>
 
@@ -3795,8 +4192,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="246"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:246</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="247"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:247</a></div>
                 </td>
             </tr>
 
@@ -3904,8 +4301,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="665"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:665</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="726"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:726</a></div>
                 </td>
             </tr>
 
@@ -3997,8 +4394,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="272"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:272</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="273"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:273</a></div>
                 </td>
             </tr>
 
@@ -4104,8 +4501,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="762"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:762</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="823"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:823</a></div>
                 </td>
             </tr>
 
@@ -4197,8 +4594,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="390"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:390</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="391"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:391</a></div>
                 </td>
             </tr>
 
@@ -4306,8 +4703,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="835"
-                            class="link-to-prism">src/app/services/mockup-backend.service.ts:835</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="896"
+                            class="link-to-prism">src/app/services/mockup-backend.service.ts:896</a></div>
                 </td>
             </tr>
 
@@ -4352,7 +4749,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/services/mockup-backend.service.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/services/mockup-backend.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -4371,7 +4768,8 @@ import { of, Observable } from &#x27;rxjs&#x27;;
 import { map } from &#x27;rxjs/operators&#x27;;
 import { mockJwtToken, mockUserList, mockOrganizationInfo, mockClusterList, mockResourcesSummary,
          mockAppsInstancesList, mockNodeList, mockRegisteredAppsList, mockDevicesList, mockGroupList,
-         mockInventoryList, mockInventorySummary, mockEICJoinToken, mockAgentJoinToken } from &#x27;../utils/mocks&#x27;;
+         mockInventoryList, mockInventorySummary, mockEICJoinToken, mockAgentJoinToken,
+          mockAppsInboundsList, mockAppsOutboundsList, mockConnectionsList } from &#x27;../utils/mocks&#x27;;
 import { Group } from &#x27;../definitions/interfaces/group&#x27;;
 import { Asset } from &#x27;../definitions/interfaces/asset&#x27;;
 import { HttpResponse } from &#x27;@angular/common/http&#x27;;
@@ -4783,7 +5181,7 @@ export class MockupBackendService implements Backend {
         {
           &#x27;organization_id&#x27;: &#x27;2a95fe95-eade-4622-836f-e85d789024bf&#x27;,
           &#x27;role_id&#x27;: &#x27;268d7644-bb17-48f2-815b-19a8ab6c7e83&#x27;,
-          &#x27;name&#x27;: &#x27;Owner&#x27;,
+          &#x27;name&#x27;: &#x27;NalejAdmin&#x27;,
           &#x27;primitives&#x27;: [&#x27;ORG&#x27;]
         },
         {
@@ -4889,7 +5287,7 @@ export class MockupBackendService implements Backend {
 
   /**
    * Simulates to request registering an application descriptor
-   * @param organizationId Organization identifiekr
+   * @param organizationId Organization identifier
    * @param descriptor Descriptor object
    */
   addAppDescriptor(organizationId: string, descriptor: any) {
@@ -4971,6 +5369,66 @@ export class MockupBackendService implements Backend {
     return of(new HttpResponse({
       status: 200
     }));
+  }
+
+
+    /********************
+   * Application Network
+   ********************/
+
+  /**
+   * Simulates to request a list of available inbounds of an organization
+   * @param organizationId Organization identifier
+   */
+  getListAvailableInstanceInbounds(organizationId: string) {
+    return of (new HttpResponse({
+      body: JSON.stringify({inbounds: mockAppsInboundsList}),
+      status: 200
+    })).pipe(map(response &#x3D;&gt; JSON.parse(response.body)));
+  }
+
+  /**
+   * Simulates to request a list of available outbounds of an organization
+   * @param organizationId Organization identifier
+   */
+  getListAvailableInstanceOutbounds(organizationId: string) {
+    return of (new HttpResponse({
+      body: JSON.stringify({inbounds: mockAppsOutboundsList}),
+      status: 200
+    })).pipe(map(response &#x3D;&gt; JSON.parse(response.body)));
+  }
+
+  /**
+   * Simulates to add a new connection between one outbound and one inbound
+   * @param organizationId Organization identifier
+   */
+  addConnection(organizationId: string) {
+    return of (new HttpResponse({
+      body: JSON.stringify({connections: mockConnectionsList}),
+      status: 200
+    })).pipe(map(response &#x3D;&gt; JSON.parse(response.body)));
+  }
+
+  /**
+   * Operation that allows to remove a connection
+  * @param organizationId Organization identifier
+   */
+  removeConnection(organizationId: string) {
+    return of (new HttpResponse({
+      body: JSON.stringify({connections: mockConnectionsList}),
+      status: 200
+    }));
+  }
+
+  /**
+   * Simulates retrieves a list all the established connections of an organization
+   * @param organizationId Organization identifier
+   */
+  getListConnections(organizationId: string) {
+    return of (new HttpResponse({
+      body: JSON.stringify({connections: mockConnectionsList}),
+      status: 200
+    })).pipe(map(response &#x3D;&gt; JSON.parse(response.body)));
   }
 
   /********************

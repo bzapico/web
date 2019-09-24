@@ -192,7 +192,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -273,8 +273,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="197"
-                            class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:197</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="212"
+                            class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:212</a></div>
                 </td>
             </tr>
 
@@ -346,8 +346,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:73</a></div>
                 </td>
             </tr>
 
@@ -385,8 +385,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="239"
-                            class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:239</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="257"
+                            class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:257</a></div>
                 </td>
             </tr>
 
@@ -458,8 +458,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="343"
-                            class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:343</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="370"
+                            class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:370</a></div>
                 </td>
             </tr>
 
@@ -499,8 +499,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="351"
-                            class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:351</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="378"
+                            class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:378</a></div>
                 </td>
             </tr>
 
@@ -570,7 +570,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:66</a></div>
                             </td>
                         </tr>
 
@@ -602,7 +602,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:61</a></div>
                             </td>
                         </tr>
 
@@ -635,7 +635,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -662,7 +662,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/debug-panel/debug-panel.component.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -720,7 +720,10 @@ export const AvailableComponents &#x3D; {
   installAgent: &#x27;Install Agent&#x27;,
   simpleLogInfo: &#x27;Simple Log Info&#x27;,
   eicJoinTokenInfo: &#x27;EIC Join Token Info&#x27;,
-  agentJoinTokenInfo: &#x27;Agent Join Token Info&#x27;
+  agentJoinTokenInfo: &#x27;Agent Join Token Info&#x27;,
+  addConnections: &#x27;Add connections&#x27;,
+  advancedFilterOptions: &#x27;Advanced filter options&#x27;,
+  manageConnections: &#x27;Manage Connections&#x27;
 };
 
 @Component({
@@ -865,6 +868,18 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.agentJoinTokenInfo,
       mock: localStorage.getItem(LocalStorageKeys.agentJoinTokenInfoMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
+    this.components.push({
+      name: AvailableComponents.addConnections,
+      mock: localStorage.getItem(LocalStorageKeys.addConnectionsMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
+    this.components.push({
+      name: AvailableComponents.advancedFilterOptions,
+      mock: localStorage.getItem(LocalStorageKeys.advancedFilterOptions) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
+    this.components.push({
+      name: AvailableComponents.manageConnections,
+      mock: localStorage.getItem(LocalStorageKeys.manageConnectionsMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
+    });
   }
 
   /**
@@ -907,6 +922,9 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.installAgentMock, newValue);
     localStorage.setItem(LocalStorageKeys.simpleLogMock, newValue);
     localStorage.setItem(LocalStorageKeys.agentJoinTokenInfoMock, newValue);
+    localStorage.setItem(LocalStorageKeys.addConnectionsMock, newValue);
+    localStorage.setItem(LocalStorageKeys.advancedFilterOptions, newValue);
+    localStorage.setItem(LocalStorageKeys.manageConnectionsMock, newValue);
   }
 
   /**
@@ -1008,6 +1026,15 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.agentJoinTokenInfo:
         localStorage.setItem(LocalStorageKeys.agentJoinTokenInfoMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.addConnections:
+        localStorage.setItem(LocalStorageKeys.addConnectionsMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.advancedFilterOptions:
+        localStorage.setItem(LocalStorageKeys.advancedFilterOptions, componentMockOption.mock);
+      break;
+      case AvailableComponents.manageConnections:
+        localStorage.setItem(LocalStorageKeys.manageConnectionsMock, componentMockOption.mock);
       break;
       default:
         console.log(&#x27;Selected option not registered as available component&#x27;);
@@ -1126,6 +1153,7 @@ export class DebugPanelComponent implements OnInit {
 
 $base-violet: #5800FF;
 $dark-grey: #444444;
+$super-dark-grey: #151515;
 hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -1166,20 +1194,31 @@ hr {
       font-size: 0.8em;
     }
   }
-  label.btn.btn-outline-primary.small-font {
+  label.btn.btn-outline-primary.small-font, 
+  .btn.btn-outline-primary.mb-3.small-font {
     &amp;.active {
       background-color: $base-violet;
       border-color: $base-violet;
-      color: white;
+      color: #fff;
     }
-    color: $base-violet;
+    color: $super-dark-grey;
+    border-color: $super-dark-grey
+  }
+
+  .btn-outline-primary:hover, 
+  .btn.btn-outline-primary.mb-3.small-font:hover {
+    color: #fff;
+    background-color: $base-violet;
     border-color: $base-violet;
   }
-  .btn.btn-outline-primary.mb-3.small-font {
-    color: $base-violet;
+
+  label.btn.btn-outline-primary.small-font:hover {
+    color: #fff;
+    background-color: $base-violet;
     border-color: $base-violet;
   }
 }
+
 .dp-height {
   height: 500px;
   overflow: scroll;
@@ -1216,7 +1255,7 @@ hr {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="debug-panel">  <!-- Header -->  <div class="modal-header">    <h4 class="modal-title pull-left mb-3">      Debug panel    </h4>    <button      (click)="bsModalRef.hide()"      type="button"      aria-label="Close"      class="close pull-right">      <span aria-hidden="true">&times;</span>    </button>  </div>  <!-- Body -->  <div class="modal-body">    <h5 class="mb-3">Backend URL</h5>    <input       (ngModelChange)="urlChange($event)"      type="text"      [ngModel]="url"      class="w-100 form-control mb-3">    <hr/>    <h5 class="mb-3">Backend control</h5>    <div *ngIf="components.length" class="dp-height" >      <div class="d-flex justify-content-center align-items-center">        <div (click)="changeAll(\'false\')" class="btn btn-outline-primary mb-3 small-font">          All real        </div>        <div (click)="changeAll(\'true\')" class="btn btn-outline-primary mb-3 small-font">          All mock        </div>      </div>      <hr/>      <div *ngFor="let item of components; let index = index" class="row">        <!-- Option name -->        <span class="col-4 small-font">          {{item.name}}        </span>        <!-- Option buttons -->        <div           (click)="optionChange(components[index])"          [(ngModel)]="components[index].mock"          btnRadioGroup          class="btn-group offset-4">          <label            btnRadio="false"            tabindex="0"            role="button"            class="btn btn-outline-primary small-font">            Real          </label>          <label            btnRadio="true"            tabindex="0"            role="button"            class="btn btn-outline-primary small-font">            Mock          </label>        </div>      </div>    </div>    <hr/>    <h5 class="mb-3">Notifications</h5>    <div (click)="spamNotification()" class="btn btn-outline-primary offset-6 mb-3 small-font">      Spam test notification    </div>  </div>  <!-- Footer -->  <div class="modal-footer">    <button      (click)="bsModalRef.hide()"      type="button"      class="btn btn-default">      Close    </button>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+    var COMPONENTS = [{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'DebugPanelComponent'};
 </script>

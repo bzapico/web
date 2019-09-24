@@ -38,7 +38,6 @@ export class ManageConnectionsComponent implements OnInit {
    * Models that holds forms info
    */
   manageConnectionsFilterForm: FormGroup;
-  submitted = false;
   manageConnections: FormControl;
   filter: FormControl;
 
@@ -202,6 +201,9 @@ export class ManageConnectionsComponent implements OnInit {
     this.bsModalRef.hide();
   }
 
+    /**
+   * Filters copy connections list to return filtered names
+   */
   getFilterName() {
     const filteredNames = [];
     this.copyConnections.forEach(connectionName => {
@@ -213,6 +215,7 @@ export class ManageConnectionsComponent implements OnInit {
 
   /**
    * Disconnects app instance
+   * @param connection connections
    */
   disconnectInstance(connection) {
     const deleteConfirm =

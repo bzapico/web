@@ -31,7 +31,7 @@
             [multiple]="false" 
             [ngClass]=
               "{ 
-                'ngx-error': submitted && !manageConnections,
+                'ngx-error': !manageConnections,
                 'base-light-grey': !f.filter.value
               }"
             [config]="selectConfig" 

@@ -6,6 +6,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { ApplicationsService } from '../applications/applications.service';
 
 @Component({
   selector: 'add-connections',
@@ -22,13 +23,6 @@ export class AddConnectionsComponent implements OnInit {
    * Models that holds forms info
    */
   addNewConnectionsForm: FormGroup;
-  submitted = false;
-  loading: boolean;
-
-  /**
-   * Model that holds onclose method defined in manage connection component
-   */
-  onClose: any;
 
   /**
    * Model that hold add connections and its info
@@ -46,9 +40,6 @@ export class AddConnectionsComponent implements OnInit {
    * NGX-select-dropdown
    */
   tab = 1;
-  filteredOptions: any[];
-  // options = [];
-  // selectConfig = {};
   defaultAutofocus: string;
 
   sourceInstanceOptions: any[];
@@ -66,6 +57,7 @@ export class AddConnectionsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
+    private applicationsService: ApplicationsService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private translateService: TranslateService
@@ -168,12 +160,10 @@ export class AddConnectionsComponent implements OnInit {
     });
     // to preserve the initial state
     this.copyConnections = [...this.connections];
-    this.filteredOptions = this.getFilterName();
     this.sourceInstanceOptions =  this.getFilterSourceInstanceName();
     this.sourceInterfaceOptions = this.getFilterSourceInterfaceName();
     this.targetInstanceOptions = this.getFilterTargetInstanceName();
     this.targetInterfaceOptions = this.getFilterTargetInterfaceName();
-
 
     this.sourceInstanceConfig = {
       displayKey: 'name',
@@ -218,15 +208,9 @@ export class AddConnectionsComponent implements OnInit {
    */
   get f() { return this.addNewConnectionsForm.controls; }
 
-  getFilterName() {
-    const filteredNames = [];
-    this.copyConnections.forEach(connectionName => {
-      filteredNames.push(connectionName.outbound.instance);
-      filteredNames.push(connectionName.inbound.instance);
-    });
-    return filteredNames;
-  }
-
+  /**
+   * Filters copy connections list to return source instance name
+   */
   getFilterSourceInstanceName() {
     const filterSourceInstanceNames = [];
     this.copyConnections.forEach(connectionName => {
@@ -235,6 +219,9 @@ export class AddConnectionsComponent implements OnInit {
     return filterSourceInstanceNames;
   }
 
+  /**
+   * Filters copy connections list to return source interface name
+   */
   getFilterSourceInterfaceName() {
     const filterSourceInterfaceNames = [];
     this.copyConnections.forEach(connectionName => {
@@ -243,6 +230,9 @@ export class AddConnectionsComponent implements OnInit {
     return filterSourceInterfaceNames;
   }
 
+  /**
+   * Filters copy connections list to return target instance name
+   */
   getFilterTargetInstanceName() {
     const filterTargetInstanceNames = [];
     this.copyConnections.forEach(connectionName => {
@@ -251,6 +241,9 @@ export class AddConnectionsComponent implements OnInit {
     return filterTargetInstanceNames;
   }
 
+  /**
+   * Filters copy connections list to return target interface name
+   */
   getFilterTargetInterfaceName() {
     const filterTargetInterfaceNames = [];
     this.copyConnections.forEach(connectionName => {
@@ -261,43 +254,10 @@ export class AddConnectionsComponent implements OnInit {
 
   /**
    * Requests to add new connections
-   * @param f Form with the connections input data
    */
-  addNewConnections(f) {
-    this.submitted = true;
-    this.loading = true;
-
-    // let newConnection: any;
-    // let indexFound;
-
-    // for (let i = 0; i < this.copyConnections.length; i++) {
-    //   if (this.copyConnections[i]) {
-    //     indexFound = i;
-    //   }
-    // }
-
-    // newConnection = this.copyConnections[indexFound];
-
-    // this.onClose(newConnection);
-
+  addNewConnections() {
     this.bsModalRef.hide();
-  }
-
-  /**
-   * Checks if the form has been modified before discarding changes
-   * @param form Form object reference
-   */
-  discardChanges(form) {
-    if (form.dirty) {
-      const discard = confirm(this.translateService.instant('apps.addConnection.discardChanges'));
-      if (discard) {
-        this.bsModalRef.hide();
-      } else {
-        // Do nothing
-      }
-    } else {
-      this.bsModalRef.hide();
-    }
+    this.applicationsService.showManageConnections.next(true);
   }
 
     /**
