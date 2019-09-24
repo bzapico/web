@@ -83,7 +83,7 @@
         </div>
         <div *ngIf="instance.labels">
           <div *ngFor="let label of instance.labels | keyvalue">
-            <button disabled class="label-content">
+            <button class="label-content-disabled">
                 {{label.key}}: {{label.value}}
             </button>
           </div>
