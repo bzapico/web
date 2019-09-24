@@ -1311,7 +1311,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
      };
     }
 
-   /**
+  /**
    * Opens the modal view that holds advanced filter options component
    */
   openAdvancedFilterOptions() {

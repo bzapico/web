@@ -7,6 +7,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { AddConnectionsComponent } from '../add-connections/add-connections.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'manage-connections',
@@ -18,15 +19,15 @@ export class ManageConnectionsComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
+
   /**
    * Model that hold manage connections and its info
    */
   organizationId: string;
   title: string;
   connections: any[];
-  instances: any[];
-  registered: any[];
-  instanceName: string;
+  copyConnections: any[];
+  selectedApp: any;
 
   /**
    * Model that hold the search term in search box
@@ -45,9 +46,8 @@ export class ManageConnectionsComponent implements OnInit {
    * NGX-select-dropdown
    */
   tab = 1;
-  options = [];
-  manageConnectionsOptions: any[];
-  manageConnectionsSelectConfig = {};
+  filteredOptions: any[];
+  selectConfig = {};
 
   /**
    * Reference for the service that allows the modal component
@@ -61,8 +61,9 @@ export class ManageConnectionsComponent implements OnInit {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
+    private translateService: TranslateService
     ) {
-      const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
+      const mock = localStorage.getItem(LocalStorageKeys.manageConnectionsMock) || null;
       // Check which backend is required (fake or real)
       if (mock && mock === 'true') {
         this.backend = this.mockupBackendService;
@@ -71,108 +72,89 @@ export class ManageConnectionsComponent implements OnInit {
       }
     this.title = 'MANAGE CONNECTIONS';
     this.searchTerm = '';
-    this.instances = [];
-    this.instanceName = '';
 
     //  Manage connections dropdown
     this.manageConnections = null;
-    this.manageConnectionsSelectConfig = {
-      displayKey: 'name',
-      search: false,
-      height: 'auto',
-      placeholder: 'No filter',
-      limitTo: this.instances.length,
-      moreText: 'more',
-      noResultsFound: 'No results found!'
-    };
-    this.manageConnectionsOptions =
-    [{
-      name: 'WordPress',
-      code: 0
-    }, {
-      name: 'MySQL',
-      code: 1
-    }, {
-      name: 'MySQL2',
-      code: 2
-    }, {
-      name: 'WordPress2',
-      code: 3
-    }];
-
 
     // CONNECTIONS
     this.connections = [
+        {
+        inbound: {
+          interfaceName: 'dbInbound',
+          instance: 'MySQL'
+        },
+        outbound: {
+          interfaceName: 'dbOutbound',
+          instance: 'WordPress'
+        },
+        connected: true
+      },
       {
-      inbound: {
-        interfaceName: 'dbInbound',
-        instance: 'MySQL'
+        inbound: {
+          interfaceName: 'dbInbound',
+          instance: 'activemq'
+        },
+        outbound: {
+          interfaceName: 'dbOutbound',
+          instance: 'Opencast'
+        },
+        connected: true
       },
-      outbound: {
-        interfaceName: 'dbOutbound',
-        instance: 'WordPress'
-      }
-    },
-    {
-      inbound: {
-        interfaceName: 'dbInbound',
-        instance: 'activemq'
+      {
+        inbound: {
+          interfaceName: 'dbInbound',
+          instance: 'kuaroprocessing'
+        },
+        outbound: {
+          interfaceName: 'dbOutbound',
+          instance: 'Kuard'
+        },
+        connected: true
       },
-      outbound: {
-        interfaceName: 'dbOutbound',
-        instance: 'Opencast'
-      }
-    },
-    {
-      inbound: {
-        interfaceName: 'dbInbound',
-        instance: 'kuaroprocessing'
+      {
+        inbound: {
+          interfaceName: 'dbInbound',
+          instance: 'testPara'
+        },
+        outbound: {
+          interfaceName: 'dbOutbound',
+          instance: 'appTest'
+        },
+        connected: true
       },
-      outbound: {
-        interfaceName: 'dbOutbound',
-        instance: 'Kuard'
-      }
-    },
-    {
-      inbound: {
-        interfaceName: 'dbInbound',
-        instance: 'testPara'
+      {
+        inbound: {
+          interfaceName: 'dbInbound',
+          instance: 'deviceVirtual3'
+        },
+        outbound: {
+          interfaceName: 'dbOutbound',
+          instance: 'Virtual3'
+        },
+        connected: true
       },
-      outbound: {
-        interfaceName: 'dbOutbound',
-        instance: 'appTest'
-      }
-    },
-    {
-      inbound: {
-        interfaceName: 'dbInbound',
-        instance: 'deviceVirtual3'
+      {
+        inbound: {
+          interfaceName: 'dbInbound',
+          instance: 'deviceVirtual2'
+        },
+        outbound: {
+          interfaceName: 'dbOutbound',
+          instance: 'Virtual2'
+        },
+        connected: true
       },
-      outbound: {
-        interfaceName: 'dbOutbound',
-        instance: 'Virtual3'
+      {
+        inbound: {
+          interfaceName: 'dbInbound',
+          instance: 'deviceVirtual1'
+        },
+        outbound: {
+          interfaceName: 'dbOutbound',
+          instance: 'Virtual1'
+        },
+        connected: true
       }
-    },
-    {
-      inbound: {
-        interfaceName: 'dbInbound',
-        instance: 'deviceVirtual2'
-      },
-      outbound: {
-        interfaceName: 'dbOutbound',
-        instance: 'Virtual2'
-      }
-    },
-    {
-      inbound: {
-        interfaceName: 'dbInbound',
-        instance: 'deviceVirtual1'
-      },
-      outbound: {
-        interfaceName: 'dbOutbound',
-        instance: 'Virtual1'
-      }
-    }
     ];
   }
 
@@ -180,29 +162,27 @@ export class ManageConnectionsComponent implements OnInit {
     this.manageConnectionsFilterForm = this.formBuilder.group({
       filter: [null],
     });
-    this.updateAppInstances(this.organizationId);
+    // to preserve the initial state
+    this.copyConnections = [...this.connections];
+    this.filteredOptions = this.getFilterName();
+    this.selectConfig = {
+      displayKey: 'name',
+      search: false,
+      height: 'auto',
+      placeholder: 'No filter',
+      limitTo: this.filteredOptions.length,
+      moreText: 'more',
+      noResultsFound: 'No results found!'
+    };
   }
 
-  /**
+    /**
    * Convenience getter for easy access to form fields
    */
   get f() { return this.manageConnectionsFilterForm.controls; }
+
   /**
-   * Updates instances array
-   * @param organizationId Organization identifier
-   */
-  updateAppInstances(organizationId: string) {
-    if (organizationId !== null) {
-      // Request to get apps instances
-      this.backend.getInstances(this.organizationId)
-      .subscribe(response => {
-          this.instances = response.instances || [];
-          this.getInstancesName();
-      });
-    }
-  }
-  /**
-   * Opens the modal view that holds the add new connections component
+   * Creates an array with the names to be filtered by
    */
   addNewConnection() {
     const initialState = {
@@ -215,18 +195,23 @@ export class ManageConnectionsComponent implements OnInit {
     this.bsModalRef.hide();
   }
 
-  getInstancesName() {
-    for (let index = 0; index < this.instances.length; index++) {
-      this.instanceName = this.instances[index].name;
-    }
+  getFilterName() {
+    const filteredNames = [];
+    this.copyConnections.forEach(connectionName => {
+      filteredNames.push(connectionName.outbound.instance);
+      filteredNames.push(connectionName.inbound.instance);
+    });
+    return filteredNames;
   }
 
   /**
    * Disconnects app instance
    */
-  disconnectInstance(app) {
-    const deleteConfirm = confirm('Disconnect?');
+  disconnectInstance(connection) {
+    const deleteConfirm =
+    confirm(this.translateService.instant('apps.manageConnections.disconnectConfirm'));
     if (deleteConfirm) {
+      connection.connected = false;
       this.notificationsService.add({
         message: 'App disconnected',
         timeout: 3000
@@ -235,18 +220,23 @@ export class ManageConnectionsComponent implements OnInit {
   }
 
   /**
-   * Close the modal window
+   * Handler for change event on ngx-select-dropdown
+   * @param f Form
    */
-  closeModal() {
-    this.bsModalRef.hide();
+  useFilter(f) {
+    this.copyConnections = [...this.connections];
+    this.copyConnections = this.copyConnections.filter(element => {
+      if (element.outbound.instance === f.filter.value
+        || element.inbound.instance === f.filter.value) {
+        return element;
+      }
+    });
   }
 
   /**
-   * Requests to add manage connections filter
-   * @param f Form with the filter input data
+   * Close the modal window
    */
-  addManageConnectionsFilter(f) {
-    this.submitted = true;
+  closeModal() {
     this.bsModalRef.hide();
   }
 }

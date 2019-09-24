@@ -73,5 +73,11 @@ div > form > div.form-group.form-group-drop.filter-drop-box > ngx-select-dropdow
         color: $light-grey !important;
     }
 }
+ngx-select-dropdown > div > div > ul.available-items {
+    max-height: 434px;
+    @media screen and (max-height: 994px) {
+        max-height: 381px;
+    }
+}
 
 

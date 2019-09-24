@@ -45,7 +45,8 @@ export const AvailableComponents = {
   eicJoinTokenInfo: 'EIC Join Token Info',
   agentJoinTokenInfo: 'Agent Join Token Info',
   addConnections: 'Add connections',
-  advancedFilterOptions: 'Advanced filter options'
+  advancedFilterOptions: 'Advanced filter options',
+  manageConnections: 'Manage Connections'
 };
 
 @Component({
@@ -198,6 +199,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.advancedFilterOptions,
       mock: localStorage.getItem(LocalStorageKeys.advancedFilterOptions) === 'false' ? 'false' : 'true'
     });
+    this.components.push({
+      name: AvailableComponents.manageConnections,
+      mock: localStorage.getItem(LocalStorageKeys.manageConnectionsMock) === 'false' ? 'false' : 'true'
+    });
   }
 
   /**
@@ -242,6 +247,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.agentJoinTokenInfoMock, newValue);
     localStorage.setItem(LocalStorageKeys.addConnectionsMock, newValue);
     localStorage.setItem(LocalStorageKeys.advancedFilterOptions, newValue);
+    localStorage.setItem(LocalStorageKeys.manageConnectionsMock, newValue);
   }
 
   /**
@@ -349,6 +355,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.advancedFilterOptions:
         localStorage.setItem(LocalStorageKeys.advancedFilterOptions, componentMockOption.mock);
+      break;
+      case AvailableComponents.manageConnections:
+        localStorage.setItem(LocalStorageKeys.manageConnectionsMock, componentMockOption.mock);
       break;
       default:
         console.log('Selected option not registered as available component');
