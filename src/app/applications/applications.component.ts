@@ -1112,12 +1112,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         if (this.filters.instances && this.filters.registered) {
           this.setLinksInGraph(
               registeredApp[0]['app_descriptor_id'],
-              cluster.cluster_id + '-s-' + instance['app_instance_id']);
+              instance['app_instance_id']);
         }
       }
       if (this.filters.clusters && this.filters.instances) {
         this.setLinksInGraph(
-            cluster.cluster_id + '-s-' + instance['app_instance_id'],
+            instance['app_instance_id'],
             cluster.cluster_id);
       }
     });
@@ -1168,7 +1168,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     const instanceName = instance['name'].toLowerCase();
     const nodeInstance = {
     ...{
-      id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
+      id: instance['app_instance_id'],
       label: instance['name'],
       type: NodeType.Instances,
       inbound_connections: instance['inbound_connections'] || [],
