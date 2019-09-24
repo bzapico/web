@@ -2,7 +2,6 @@ $base-violet: #5800FF;
 
 /* - - - Apps buttons - - - */
 .apps-options {
-    float: right;
     margin-bottom: 2em;
     .apps-actions-btn {
         background-color: $base-violet;
@@ -28,13 +27,31 @@ $base-violet: #5800FF;
             position: absolute;
             top: 8px;
             left: -13px;
+            color: #ffffff;
         }
     }
 }
 
-.big-link-icon {
+.flex-center-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
     i {
         font-size: 80px;
         color: #828282;
     }
+}
+
+.modal-card {
+    width: 1112px;
+}
+#add-connections {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
 }

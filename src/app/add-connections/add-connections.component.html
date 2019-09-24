@@ -1,4 +1,4 @@
-<div class="modal-card">
+<div class="modal-card" id="add-connections">
   <!-- Header -->
   <div class="modal-header">
     <h3 class="nalej-form-title">ADD NEW CONNECTION</h3>
@@ -51,7 +51,7 @@
         </div>
       </div>
       <!-- Big link icon -->
-      <div class="big-link-icon">
+      <div class="flex-center-box">
           <i class="material-icons">link</i>
       </div>
       <div class="target-right">
@@ -89,12 +89,14 @@
     </form>
   </div>
   <!-- Add new connection button -->
-  <div class="apps-options">
-    <button 
-      (click)="addNewConnections()"
-      class="apps-actions-btn">
-      <i class="material-icons i-options">link</i>
-      Add new connection
-    </button>
+  <div class="flex-center-box">
+    <div class="apps-options">
+      <button 
+        (click)="addNewConnections()"
+        class="apps-actions-btn">
+        <i class="material-icons i-options">link</i>
+        Add new connection
+      </button>
+    </div>
   </div>
 </div>

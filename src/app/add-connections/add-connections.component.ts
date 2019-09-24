@@ -208,5 +208,12 @@ export class AddConnectionsComponent implements OnInit {
       this.bsModalRef.hide();
     }
   }
+
+    /**
+   * Close the modal window
+   */
+  closeModal() {
+    this.bsModalRef.hide();
+  }
 }
 
