@@ -1048,24 +1048,28 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * It sets the links between apps
    */
   private setLinksBetweenApps() {
-    const linksBetweenApps = {};
-    const connections = ['inbound_connections', 'outbound_connections'];
-    this.graphData.nodes.forEach(node => {
-      if (node.type === NodeType.Instances) {
-        connections.forEach(connection_type => {
-          node[connection_type].forEach(connection => {
-            const source = connection.source_instance_id;
-            const target = connection.target_instance_id;
-            linksBetweenApps[source + '_' + target] = {
-              source: source,
-              target: target,
-              is_between_apps: true
-            };
+    if ((!this.foundOccurrenceInRegistered && !this.foundOccurrenceInInstance && !this.foundOccurrenceInCluster)
+        || ((this.foundOccurrenceInRegistered || this.foundOccurrenceInInstance || this.foundOccurrenceInCluster)
+            && !this.initialState.showOnlyNodes)) {
+      const linksBetweenApps = {};
+      const connections = ['inbound_connections', 'outbound_connections'];
+      this.graphData.nodes.forEach(node => {
+        if (node.type === NodeType.Instances) {
+          connections.forEach(connection_type => {
+            node[connection_type].forEach(connection => {
+              const source = connection.source_instance_id;
+              const target = connection.target_instance_id;
+              linksBetweenApps[source + '_' + target] = {
+                source: source,
+                target: target,
+                is_between_apps: true
+              };
+            });
           });
-        });
-      }
-    });
-    this.graphData.links.push(...Object.values(linksBetweenApps));
+        }
+      });
+      this.graphData.links.push(...Object.values(linksBetweenApps));
+    }
   }
 
   /**
