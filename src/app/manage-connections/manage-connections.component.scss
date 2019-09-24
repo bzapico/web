@@ -55,6 +55,7 @@ $light-grey: #EEEEEE;
             font-weight: 700;
         }
         .label-nalej-table {
+            overflow-y: hidden;
             .scroll-app-info {
                 height: 416px;
                 margin: 0;
@@ -83,7 +84,7 @@ $light-grey: #EEEEEE;
             }
             .label-thead {
                 margin-top: 1em;
-               margin-bottom: 15px;
+                margin-bottom: 15px;
                 .label-th {
                     font-size: 13px;
                 }

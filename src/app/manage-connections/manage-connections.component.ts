@@ -249,4 +249,11 @@ export class ManageConnectionsComponent implements OnInit {
   closeModal() {
     this.bsModalRef.hide();
   }
+
+    /**
+   * Reset all the filters fields
+   */
+  resetFilters() {
+    this.searchTerm = '';
+  }
 }
