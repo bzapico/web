@@ -5,6 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'add-connections',
@@ -67,6 +68,7 @@ export class AddConnectionsComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
+    private translateService: TranslateService
     ) {
       const mock = localStorage.getItem(LocalStorageKeys.addConnectionsMock) || null;
       // check which backend is required (fake or real)
@@ -177,37 +179,37 @@ export class AddConnectionsComponent implements OnInit {
       displayKey: 'name',
       search: false,
       height: 'auto',
-      placeholder: 'Source Instance',
+      placeholder: this.translateService.instant('apps.manageConnections.sourceInstance'),
       limitTo: this.sourceInstanceOptions.length,
       moreText: 'more',
-      noResultsFound: 'No results found!'
+      noResultsFound: this.translateService.instant('apps.addConnection.noResults')
     };
     this.sourceInterfaceConfig = {
       displayKey: 'name',
       search: false,
       height: 'auto',
-      placeholder: 'Source Interface',
+      placeholder: this.translateService.instant('apps.manageConnections.sourceInterface'),
       limitTo: this.sourceInterfaceOptions.length,
       moreText: 'more',
-      noResultsFound: 'No results found!'
+      noResultsFound: this.translateService.instant('apps.addConnection.noResults')
     };
     this.targetInstanceConfig = {
       displayKey: 'name',
       search: false,
       height: 'auto',
-      placeholder: 'Target Instance',
+      placeholder: this.translateService.instant('apps.manageConnections.targetInstance'),
       limitTo: this.targetInstanceOptions.length,
       moreText: 'more',
-      noResultsFound: 'No results found!'
+      noResultsFound: this.translateService.instant('apps.addConnection.noResults')
     };
     this.targetInterfaceConfig = {
       displayKey: 'name',
       search: false,
       height: 'auto',
-      placeholder: 'Target Interface',
+      placeholder: this.translateService.instant('apps.manageConnections.targetInterface'),
       limitTo: this.targetInterfaceOptions.length,
       moreText: 'more',
-      noResultsFound: 'No results found!'
+      noResultsFound: this.translateService.instant('apps.addConnection.noResults')
     };
   }
 
@@ -287,7 +289,7 @@ export class AddConnectionsComponent implements OnInit {
    */
   discardChanges(form) {
     if (form.dirty) {
-      const discard = confirm('Discard changes?');
+      const discard = confirm(this.translateService.instant('apps.addConnection.discardChanges'));
       if (discard) {
         this.bsModalRef.hide();
       } else {

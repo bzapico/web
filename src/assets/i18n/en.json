@@ -6,7 +6,6 @@
 		"title": "Advanced filter options"
 	},
 	"applications": {
-		"manageConnectionsButton": "Manage connections",
 		"filters": {
 			"atLeastOne": "It is necessary to have one selected filter",
 			"notAppliedSearching": "When the filters are applied the searching term is not applied"
@@ -14,6 +13,11 @@
 		"title": "APPLICATIONS"
 	},
 	"apps": {
+		"addConnection": {
+			"discardChanges": "Discard changes?",
+			"noResults": "No results found!",
+			"title": "ADD NEW CONNECTION"
+		},
 		"instance": {
 			"configTitle": "CONFIGURATION",
 			"environmentVariables": "Environment variables",

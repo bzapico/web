@@ -78,84 +78,84 @@ export class ManageConnectionsComponent implements OnInit {
 
     // CONNECTIONS
     this.connections = [
-        {
-        inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'MySQL'
-        },
-        outbound: {
-          interfaceName: 'dbOutbound',
-          instance: 'WordPress'
-        },
-        connected: true
-      },
       {
-        inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'activemq'
-        },
-        outbound: {
-          interfaceName: 'dbOutbound',
-          instance: 'Opencast'
-        },
-        connected: true
+      inbound: {
+        interfaceName: 'dbInbound',
+        instance: 'MySQL'
       },
-      {
-        inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'kuaroprocessing'
-        },
-        outbound: {
-          interfaceName: 'dbOutbound',
-          instance: 'Kuard'
-        },
-        connected: true
+      outbound: {
+        interfaceName: 'dbOutbound',
+        instance: 'WordPress'
       },
-      {
-        inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'testPara'
-        },
-        outbound: {
-          interfaceName: 'dbOutbound',
-          instance: 'appTest'
-        },
-        connected: true
+      connected: true
+    },
+    {
+      inbound: {
+        interfaceName: 'activemqInbound',
+        instance: 'activemq'
       },
-      {
-        inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'deviceVirtual3'
-        },
-        outbound: {
-          interfaceName: 'dbOutbound',
-          instance: 'Virtual3'
-        },
-        connected: true
+      outbound: {
+        interfaceName: 'OpencastOutbound',
+        instance: 'Opencast'
       },
-      {
-        inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'deviceVirtual2'
-        },
-        outbound: {
-          interfaceName: 'dbOutbound',
-          instance: 'Virtual2'
-        },
-        connected: true
+      connected: true
+    },
+    {
+      inbound: {
+        interfaceName: 'KuardInbound',
+        instance: 'Kuardprocessing'
       },
-      {
-        inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'deviceVirtual1'
-        },
-        outbound: {
-          interfaceName: 'dbOutbound',
-          instance: 'Virtual1'
-        },
-        connected: true
-      }
-    ];
+      outbound: {
+        interfaceName: 'KuardOutbound',
+        instance: 'Kuard'
+      },
+      connected: true
+    },
+    {
+      inbound: {
+        interfaceName: 'testInbound',
+        instance: 'testPara'
+      },
+      outbound: {
+        interfaceName: 'testOutbound',
+        instance: 'appTest'
+      },
+      connected: true
+    },
+    {
+      inbound: {
+        interfaceName: 'deviceInbound',
+        instance: 'deviceVirtual3'
+      },
+      outbound: {
+        interfaceName: 'Virtual3Outbound',
+        instance: 'Virtual3'
+      },
+      connected: true
+    },
+    {
+      inbound: {
+        interfaceName: 'Virtual2Inbound',
+        instance: 'deviceVirtual2'
+      },
+      outbound: {
+        interfaceName: 'Virtual2Outbound',
+        instance: 'Virtual2'
+      },
+      connected: true
+    },
+    {
+      inbound: {
+        interfaceName: 'Virtual1Inbound',
+        instance: 'deviceVirtual1'
+      },
+      outbound: {
+        interfaceName: 'Virtual1Outbound',
+        instance: 'Virtual1'
+      },
+      connected: true
+    }
+  ];
   }
 
   ngOnInit() {

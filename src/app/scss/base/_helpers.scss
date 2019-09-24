@@ -22,8 +22,9 @@
     display: none !important;
   }
 }
-.hide-sm-h {
-  @include for-sm-desktop-h {
+.hide-sm-md-h {
+  display: block;
+  @include for-md-desktop-h {
     display: none !important;
   }
 }
