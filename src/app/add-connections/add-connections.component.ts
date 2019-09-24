@@ -5,6 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ApplicationsService } from '../applications/applications.service';
 
 @Component({
   selector: 'add-connections',
@@ -65,6 +66,7 @@ export class AddConnectionsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
+    private applicationsService: ApplicationsService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     ) {
@@ -264,20 +266,7 @@ export class AddConnectionsComponent implements OnInit {
   addNewConnections(f) {
     this.submitted = true;
     this.loading = true;
-
-    // let newConnection: any;
-    // let indexFound;
-
-    // for (let i = 0; i < this.copyConnections.length; i++) {
-    //   if (this.copyConnections[i]) {
-    //     indexFound = i;
-    //   }
-    // }
-
-    // newConnection = this.copyConnections[indexFound];
-
-    // this.onClose(newConnection);
-
+    this.applicationsService.showManageConnections.next(true);
     this.bsModalRef.hide();
   }
 

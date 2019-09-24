@@ -19,6 +19,7 @@ import { GraphData } from '../definitions/models/graph-data';
 import { KeyValue } from '../definitions/interfaces/key-value';
 import { AdvancedFilterOptionsComponent } from '../advanced-filter-options/advanced-filter-options.component';
 import { TranslateService } from '@ngx-translate/core';
+import { ApplicationsService } from './applications.service';
 
 /**
  * Refresh ratio
@@ -253,9 +254,15 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     clusters: true
   };
 
+  /**
+   * Subscription for showing/hiding process for the manage subscription dialog
+   */
+  showManageSubscription: Subscription;
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
+    private applicationsService: ApplicationsService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
     private translateService: TranslateService,
@@ -325,10 +332,16 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         this.refreshData();
       }
     }
+    this.showManageSubscription = this.applicationsService.showManageConnections.subscribe(show => {
+      if (show) {
+        this.manageConnections();
+      }
+    });
   }
 
   ngOnDestroy() {
     this.refreshIntervalRef.unsubscribe();
+    this.showManageSubscription.unsubscribe();
   }
 
   /**
