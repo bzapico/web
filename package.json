@@ -3,15 +3,16 @@
   "version": "0.4.0",
   "scripts": {
     "ng": "ng",
-    "start": "run-s lint serve",
+    "start": "run-s lint style-lint serve",
     "serve": "ng serve",
     "build": "ng build",
     "build-local": "ng build -c local",
     "serve-local": "ng serve -c local",
-    "build-and-serve-prod-local": "run-s lint build-local serve-local",
+    "build-and-serve-prod-local": "run-s lint style-lint build-local serve-local",
     "extract-i18n": "ngx-translate-extract --input ./src --output ./src/assets/i18n/en.json --clean --sort --format namespaced-json",
     "test": "ng test",
     "lint": "ng lint",
+    "style-lint": "stylelint ./src/app/**/*.scss --config .stylelintrc.json",
     "e2e": "ng e2e",
     "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json",
     "build-and-doc": "npm run compodoc && npm run build"
@@ -69,6 +70,8 @@
     "karma-junit-reporter": "^1.2.0",
     "npm-run-all": "^4.1.5",
     "protractor": "~5.4.0",
+    "stylelint": "^11.0.0",
+    "stylelint-scss": "^3.11.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.2.4"
