@@ -565,6 +565,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.modalService.config.initialState['defaultFilter'] = true;
       this.modalService.config.initialState['showOnlyNodes'] = false;
       this.modalService.config.initialState['showRelatedNodes'] = false;
+      this.initialState['defaultFilter'] = true;
+      this.initialState['showOnlyNodes'] = false;
+      this.initialState['showRelatedNodes'] = false;
       this.filters.registered = true;
       this.filters.instances = true;
       this.filters.clusters = true;
@@ -979,8 +982,100 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       }
       this.setRegisteredAndInstances(cluster, searchTermGraph);
     });
+    this.setLinksBetweenApps();
     this.setRelatedNodes();
     this.graphDataLoaded = true;
+  }
+
+  /**
+   * Opens the modal view that holds advanced filter options component
+   */
+  openAdvancedFilterOptions() {
+    if (this.modalService.config.initialState
+        && typeof this.modalService.config.initialState['showOnlyNodes'] === 'undefined'
+        && typeof this.modalService.config.initialState['showRelatedNodes'] === 'undefined'
+        && typeof this.modalService.config.initialState['defaultFilter'] === 'undefined') {
+      this.modalService.config.initialState['showOnlyNodes'] = this.initialState.showOnlyNodes;
+      this.modalService.config.initialState['showRelatedNodes'] = this.initialState.showRelatedNodes;
+      this.modalService.config.initialState['defaultFilter'] = this.initialState.defaultFilter;
+    }
+    this.modalRef = this.modalService.show(AdvancedFilterOptionsComponent, { backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe(() => {
+      this.initialState = {
+        showOnlyNodes: this.modalService.config.initialState['showOnlyNodes'],
+        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes'],
+        defaultFilter: this.modalService.config.initialState['defaultFilter']
+      };
+      if (this.initialState.showRelatedNodes) {
+        this.initialState.showOnlyNodes = true;
+      }
+      this.toGraphData(this.searchTermGraph);
+      this.occurrencesGraphCounter();
+      if (this.searchTermGraph) {
+        this.isSearchingInGraph = true;
+      }
+    });
+  }
+
+  /**
+   * Return if the marker is required
+   * @param link Link object
+   */
+  getMarker(link, origin: string) {
+    const index = this.graphData.nodes.map(x => x.id).indexOf(link[origin]);
+    if (index !== -1) {
+      if (link.is_between_apps) {
+        return 'url(#arrow)';
+      } else {
+        return '';
+      }
+    }
+    return '';
+  }
+
+  /**
+   * Opens the modal view that holds the manage connections component
+   */
+  manageConnections() {
+    const initialState = {
+      organizationId: this.organizationId,
+      defaultAutofocus: false,
+    };
+
+    this.modalRef = this.modalService.show(ManageConnectionsComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalRef.content.onClose = (cancelled: boolean) => {
+      this.updateAppInstances(this.organizationId);
+    };
+  }
+
+  /**
+   * It sets the links between apps
+   */
+  private setLinksBetweenApps() {
+    if ((!this.foundOccurrenceInRegistered && !this.foundOccurrenceInInstance && !this.foundOccurrenceInCluster)
+        || ((this.foundOccurrenceInRegistered || this.foundOccurrenceInInstance || this.foundOccurrenceInCluster)
+            && !this.initialState.showOnlyNodes)) {
+      const linksBetweenApps = {};
+      const connections = ['inbound_connections', 'outbound_connections'];
+      this.graphData.nodes.forEach(node => {
+        if (node.type === NodeType.Instances) {
+          connections.forEach(connection_type => {
+            node[connection_type].forEach(connection => {
+              const source = connection.source_instance_id;
+              const target = connection.target_instance_id;
+              linksBetweenApps[source + '_' + target] = {
+                source: source,
+                target: target,
+                is_between_apps: true
+              };
+            });
+          });
+        }
+      });
+      this.graphData.links.push(...Object.values(linksBetweenApps));
+    }
   }
 
   /**
@@ -1027,12 +1122,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         if (this.filters.instances && this.filters.registered) {
           this.setLinksInGraph(
               registeredApp[0]['app_descriptor_id'],
-              cluster.cluster_id + '-s-' + instance['app_instance_id']);
+              instance['app_instance_id']);
         }
       }
       if (this.filters.clusters && this.filters.instances) {
         this.setLinksInGraph(
-            cluster.cluster_id + '-s-' + instance['app_instance_id'],
+            instance['app_instance_id'],
             cluster.cluster_id);
       }
     });
@@ -1083,9 +1178,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     const instanceName = instance['name'].toLowerCase();
     const nodeInstance = {
     ...{
-      id: cluster.cluster_id + '-s-' + instance['app_instance_id'],
+      id: instance['app_instance_id'],
       label: instance['name'],
       type: NodeType.Instances,
+      inbound_connections: instance['inbound_connections'] || [],
+      outbound_connections: instance['outbound_connections'] || [],
       tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
       group: cluster.cluster_id,
       app_descriptor_id: instance['app_descriptor_id']
@@ -1259,7 +1356,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
             && !this.initialState.showOnlyNodes)) {
       this.graphData.links.push({
         source: source,
-        target: target
+        target: target,
+        is_between_apps: false
       });
     }
     if (!this.searchGraphData.links[source]) {
@@ -1292,51 +1390,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Return a counter for the amount of search terms in graph
    */
   private occurrencesGraphCounter() {
-    this.occurrencesCounter = this.graphData.nodes.filter(node => node.label.toLowerCase().includes(this.searchTermGraph)).length;
-  }
-
-  /**
-   * Opens the modal view that holds the manage connections component
-   */
-  manageConnections() {
-    const initialState = {
-      organizationId: this.organizationId,
-      defaultAutofocus: false,
-    };
-
-    this.modalRef = this.modalService.show(ManageConnectionsComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.modalRef.content.closeBtnName = 'Close';
-    this.modalRef.content.onClose = (cancelled: boolean) => {
-      this.updateAppInstances(this.organizationId);
-     };
+    if (this.initialState['showRelatedNodes']) {
+      this.occurrencesCounter = this.graphData.nodes.length;
+    } else {
+      this.occurrencesCounter = this.graphData.nodes.filter(node => node.label.toLowerCase().includes(this.searchTermGraph)).length;
     }
-
-  /**
-   * Opens the modal view that holds advanced filter options component
-   */
-  openAdvancedFilterOptions() {
-    if (this.modalService.config.initialState
-        && typeof this.modalService.config.initialState['showOnlyNodes'] === 'undefined'
-        && typeof this.modalService.config.initialState['showRelatedNodes'] === 'undefined'
-        && typeof this.modalService.config.initialState['defaultFilter'] === 'undefined') {
-      this.modalService.config.initialState['showOnlyNodes'] = this.initialState.showOnlyNodes;
-      this.modalService.config.initialState['showRelatedNodes'] = this.initialState.showRelatedNodes;
-      this.modalService.config.initialState['defaultFilter'] = this.initialState.defaultFilter;
-    }
-    this.modalRef = this.modalService.show(AdvancedFilterOptionsComponent, { backdrop: 'static', ignoreBackdropClick: false });
-    this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe(() => {
-      this.initialState = {
-        showOnlyNodes: this.modalService.config.initialState['showOnlyNodes'],
-        showRelatedNodes: this.modalService.config.initialState['showRelatedNodes'],
-        defaultFilter: this.modalService.config.initialState['defaultFilter']
-      };
-      if (this.initialState.showRelatedNodes) {
-        this.initialState.showOnlyNodes = true;
-      }
-      this.isSearchingInGraph = true;
-      this.toGraphData(this.searchTermGraph);
-    });
   }
 }
-
