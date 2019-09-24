@@ -235,6 +235,7 @@ button[type="submit"]:disabled {
 // Disabled label style
 .label-content-disabled {
     @extend .label-content;
+    background: #ffffff;
     cursor: default;
     &:hover{
         border-color: $base-light-grey;
