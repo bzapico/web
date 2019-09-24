@@ -565,6 +565,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.modalService.config.initialState['defaultFilter'] = true;
       this.modalService.config.initialState['showOnlyNodes'] = false;
       this.modalService.config.initialState['showRelatedNodes'] = false;
+      this.initialState['defaultFilter'] = true;
+      this.initialState['showOnlyNodes'] = false;
+      this.initialState['showRelatedNodes'] = false;
       this.filters.registered = true;
       this.filters.instances = true;
       this.filters.clusters = true;
@@ -1007,8 +1010,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       if (this.initialState.showRelatedNodes) {
         this.initialState.showOnlyNodes = true;
       }
-      this.isSearchingInGraph = true;
       this.toGraphData(this.searchTermGraph);
+      this.occurrencesGraphCounter();
+      if (this.searchTermGraph) {
+        this.isSearchingInGraph = true;
+      }
     });
   }
 
@@ -1384,6 +1390,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Return a counter for the amount of search terms in graph
    */
   private occurrencesGraphCounter() {
-    this.occurrencesCounter = this.graphData.nodes.filter(node => node.label.toLowerCase().includes(this.searchTermGraph)).length;
+    if (this.initialState['showRelatedNodes']) {
+      this.occurrencesCounter = this.graphData.nodes.length;
+    } else {
+      this.occurrencesCounter = this.graphData.nodes.filter(node => node.label.toLowerCase().includes(this.searchTermGraph)).length;
+    }
   }
 }
