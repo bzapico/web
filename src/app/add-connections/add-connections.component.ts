@@ -90,66 +90,66 @@ export class AddConnectionsComponent implements OnInit {
       },
       {
         inbound: {
-          interfaceName: 'dbInbound',
+          interfaceName: 'activemqInbound',
           instance: 'activemq'
         },
         outbound: {
-          interfaceName: 'dbOutbound',
+          interfaceName: 'OpencastOutbound',
           instance: 'Opencast'
         },
         connected: true
       },
       {
         inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'kuaroprocessing'
+          interfaceName: 'KuardInbound',
+          instance: 'Kuardprocessing'
         },
         outbound: {
-          interfaceName: 'dbOutbound',
+          interfaceName: 'KuardOutbound',
           instance: 'Kuard'
         },
         connected: true
       },
       {
         inbound: {
-          interfaceName: 'dbInbound',
+          interfaceName: 'testInbound',
           instance: 'testPara'
         },
         outbound: {
-          interfaceName: 'dbOutbound',
+          interfaceName: 'testOutbound',
           instance: 'appTest'
         },
         connected: true
       },
       {
         inbound: {
-          interfaceName: 'dbInbound',
+          interfaceName: 'deviceInbound',
           instance: 'deviceVirtual3'
         },
         outbound: {
-          interfaceName: 'dbOutbound',
+          interfaceName: 'Virtual3Outbound',
           instance: 'Virtual3'
         },
         connected: true
       },
       {
         inbound: {
-          interfaceName: 'dbInbound',
+          interfaceName: 'Virtual2Inbound',
           instance: 'deviceVirtual2'
         },
         outbound: {
-          interfaceName: 'dbOutbound',
+          interfaceName: 'Virtual2Outbound',
           instance: 'Virtual2'
         },
         connected: true
       },
       {
         inbound: {
-          interfaceName: 'dbInbound',
+          interfaceName: 'Virtual1Inbound',
           instance: 'deviceVirtual1'
         },
         outbound: {
-          interfaceName: 'dbOutbound',
+          interfaceName: 'Virtual1Outbound',
           instance: 'Virtual1'
         },
         connected: true
@@ -265,18 +265,18 @@ export class AddConnectionsComponent implements OnInit {
     this.submitted = true;
     this.loading = true;
 
-    let newConnection: any;
-    let indexFound;
+    // let newConnection: any;
+    // let indexFound;
 
-    for (let i = 0; i < this.copyConnections.length; i++) {
-      if (this.copyConnections[i]) {
-        indexFound = i;
-      }
-    }
+    // for (let i = 0; i < this.copyConnections.length; i++) {
+    //   if (this.copyConnections[i]) {
+    //     indexFound = i;
+    //   }
+    // }
 
-    newConnection = this.copyConnections[indexFound];
+    // newConnection = this.copyConnections[indexFound];
 
-    this.onClose(newConnection);
+    // this.onClose(newConnection);
 
     this.bsModalRef.hide();
   }

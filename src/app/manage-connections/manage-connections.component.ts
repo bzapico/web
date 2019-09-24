@@ -184,7 +184,7 @@ export class ManageConnectionsComponent implements OnInit {
   /**
    * Creates an array with the names to be filtered by
    */
-  addNewConnection() {
+  openAddNewConnection() {
     const initialState = {
       organizationId: this.organizationId,
       defaultAutofocus: false,
