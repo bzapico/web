@@ -65,6 +65,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { DeviceGroupInfoComponent } from './device-group-info/device-group-info.component';
 import { InstanceServiceGroupInfoComponent } from './instance-service-group-info/instance-service-group-info.component';
 import { RegisteredServiceGroupInfoComponent } from './registered-service-group-info/registered-service-group-info.component';
+import { ManageConnectionsComponent } from './manage-connections/manage-connections.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -116,7 +117,8 @@ export function createTranslateLoader(http: HttpClient) {
     AdvancedFilterOptionsComponent,
     DeviceGroupInfoComponent,
     InstanceServiceGroupInfoComponent,
-    RegisteredServiceGroupInfoComponent
+    RegisteredServiceGroupInfoComponent,
+    ManageConnectionsComponent
   ],
   entryComponents: [
     DebugPanelComponent,
@@ -143,7 +145,8 @@ export function createTranslateLoader(http: HttpClient) {
     AdvancedFilterOptionsComponent,
     DeviceGroupInfoComponent,
     InstanceServiceGroupInfoComponent,
-    RegisteredServiceGroupInfoComponent
+    RegisteredServiceGroupInfoComponent,
+    ManageConnectionsComponent
   ],
   imports: [
     BrowserModule,

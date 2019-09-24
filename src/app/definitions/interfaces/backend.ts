@@ -42,6 +42,12 @@ export interface Backend {
     deploy(organizationId: string, descriptorId: string, name: string, params?: any);
     undeploy(organizationId: string, instanceId: string);
     deleteRegistered(organizationId: string, descriptorId: string);
+    // Application network
+    getListAvailableInstanceInbounds(organizationId: string);
+    getListAvailableInstanceOutbounds(organizationId: string);
+    addConnection(organizationId: string);
+    removeConnection(organizationId: string);
+    getListConnections(organizationId: string);
     // Devices
     getDevices(organizationId: string, groupId: string);
     updateDevice(organizationId: string, deviceData: any);

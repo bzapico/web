@@ -11,6 +11,7 @@ import { AddLabelComponent } from '../add-label/add-label.component';
 import { RegisterApplicationComponent } from '../register-application/register-application.component';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 import { Router } from '@angular/router';
+import { ManageConnectionsComponent } from '../manage-connections/manage-connections.component';
 import * as shape from 'd3-shape';
 import { Subscription, timer } from 'rxjs';
 import { NodeType } from '../definitions/enums/node-type.enum';
@@ -1295,6 +1296,22 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Opens the modal view that holds the manage connections component
+   */
+  manageConnections() {
+    const initialState = {
+      organizationId: this.organizationId,
+      defaultAutofocus: false,
+    };
+
+    this.modalRef = this.modalService.show(ManageConnectionsComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalRef.content.onClose = (cancelled: boolean) => {
+      this.updateAppInstances(this.organizationId);
+     };
+    }
+
+  /**
    * Opens the modal view that holds advanced filter options component
    */
   openAdvancedFilterOptions() {
@@ -1322,3 +1339,4 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     });
   }
 }
+

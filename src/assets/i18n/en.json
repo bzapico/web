@@ -12,9 +12,6 @@
 		},
 		"title": "APPLICATIONS"
 	},
-	"buttons": {
-		"saveChanges": "Save changes"
-	},
 	"apps": {
 		"instance": {
 			"configTitle": "CONFIGURATION",
@@ -64,6 +61,17 @@
 			"undeployInstance": "Undeploy instance",
 			"undeployMessage": " undeployed"
 		},
+		"manageConnections": {
+			"addNewConnection": "Add new connection",
+			"appFilter": "APP FILTER",
+			"connectionsList": "CONNECTIONS LIST",
+			"disconnect": "Disconnect",
+			"disconnectConfirm": "Disconnect?",
+			"sourceInstance": "Source Instance",
+			"sourceInterface": "Source Interface",
+			"targetInstance": "Target Instance",
+			"targetInterface": "Target Interface"
+		},
 		"registered": {
 			"app": "app",
 			"delete": "Delete",
@@ -77,6 +85,9 @@
 			},
 			"servicesSummary": "SERVICES SUMMARY"
 		}
+	},
+	"buttons": {
+		"saveChanges": "Save changes"
 	},
 	"devices": {
 		"addGroup": "Add group",
@@ -273,4 +284,3 @@
 		"serviceWaiting": "service_waiting"
 	}
 }
-
