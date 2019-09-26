@@ -18,7 +18,6 @@ $super-dark-grey: #151515;
 $super-light-grey: #F8F8F8;
 $base-light-grey: #BFBFBF;
 
-
 /* - - - Summary app card - - - */
 .donut-chart {
     text-align: center;
@@ -156,9 +155,9 @@ $base-light-grey: #BFBFBF;
     }
 }
 
-.nalej-table-box.no-p-col.no-m-row.ng-star-inserted 
-> div 
-> div:nth-child(2) 
+.nalej-table-box.no-p-col.no-m-row.ng-star-inserted
+> div
+> div:nth-child(2)
 > div:nth-child(1) {
     border: none;
 }
