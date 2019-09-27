@@ -620,7 +620,8 @@ export class RegisteredInfoComponent implements OnInit {
         label: group.name,
         tooltip: this.translateService.instant('graph.group')
         + group.name,
-        color: '#444',
+        color: '#000000',
+        text: '#FFFFFF',
         group: group.service_group_id
       };
       this.graphData.nodes.push(nodeGroup);
@@ -631,7 +632,8 @@ export class RegisteredInfoComponent implements OnInit {
           tooltip:
           this.translateService.instant('graph.service')
           + service.name,
-          color: '#343434',
+          color: '#000000',
+          text: '#FFFFFF',
           group: group.service_group_id
         };
         this.graphData.nodes.push(nodeService);

@@ -1,0 +1,51 @@
+<ngx-graph
+  [autoCenter]="autoCenter"
+  [autoZoom]="autoZoom"
+  [curve]="curve"
+  [enableZoom]="enableZoom"
+  [links]="links"
+  [nodes]="nodes"
+  [orientation]="orientation">
+  <ng-template #nodeTemplate let-node>
+    <svg:g
+      [tooltipPlacement]="'top'"
+      [tooltipTitle]="node['tooltip']"
+      [tooltipType]="'tooltip'"
+      class="node"
+      ngx-tooltip>
+      <svg:rect
+        [attr.fill]="node['color']"
+        [attr.height]="node['height']"
+        [attr.width]="node['width']"/>
+      <svg:text
+        [attr.fill]="node['text']"
+        [attr.x]="10"
+        [attr.y]="node['height']/2"
+        alignment-baseline="central">
+        {{node['label']}}
+      </svg:text>
+    </svg:g>
+  </ng-template>
+  <ng-template #linkTemplate let-link>
+    <svg:g class="edge">
+      <defs>
+        <marker
+          id="arrow"
+          markerHeight="13"
+          markerUnits="userSpaceOnUse"
+          markerWidth="13"
+          orient="auto"
+          refX="2"
+          refY="6">
+          <path d="M2,2 L2,11 L10,6 L2,2" fill="#333" stroke-width="0" />
+        </marker>
+      </defs>
+      <svg:path
+        [attr.marker-mid]="getMarker(link)"
+        class="line"
+        d="M 0,30 h100"
+        stroke-width="2">
+      </svg:path>
+    </svg:g>
+  </ng-template>
+</ngx-graph>

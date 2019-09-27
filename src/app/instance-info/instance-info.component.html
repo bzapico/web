@@ -130,65 +130,16 @@
           !graphReset &&
           countGroupServices() > 0" 
           class="graph">
-            <ngx-graph
-              [view]="view"
-              [legend]="showLegend"
-              [links]="graphData.links"
-              [nodes]="graphData.nodes"
-              [scheme]="colorScheme"
-              [orientation]="orientation"
-              [autoZoom]="autoZoom"
-              [autoCenter]="autoCenter"
-              [curve]="curve"
-              [enableZoom]="enableZoom"
-              class="chart-container">
-              <ng-template #nodeTemplate let-node>
-                <svg:g 
-                  class="node"
-                  ngx-tooltip
-                  [tooltipPlacement]="'top'"
-                  [tooltipType]="'tooltip'"
-                  [tooltipTitle]="node.tooltip">
-                  <svg:rect 
-                  [attr.width]="node.width" 
-                  [attr.height]="node.height" 
-                  [attr.fill]="node.color" 
-                  rx="14" 
-                  ry="14"
-                  />
-                  <svg:text 
-                    [attr.fill]="node.text" 
-                    alignment-baseline="central" 
-                    [attr.x]="10" 
-                    [attr.y]="node.height/2">
-                    {{node.label}}
-                  </svg:text>
-                </svg:g>
-              </ng-template>
-              <ng-template #linkTemplate let-link>
-                <svg:g class="edge">
-                  <defs>
-                    <marker 
-                      id="arrow" 
-                      markerWidth="13" 
-                      markerHeight="13" 
-                      refX="2" 
-                      refY="6" 
-                      orient="auto" 
-                      markerUnits="userSpaceOnUse">
-                        <path d="M2,2 L2,11 L10,6 L2,2" fill="#333" stroke-width="0" />
-                    </marker>
-                  </defs>
-                  <svg:path
-                    stroke-width="2"
-                    class="line"
-                    d="M 0,30 h100"
-                    [attr.marker-mid]="getMarker(link)">
-                  </svg:path>
-                </svg:g>
-              </ng-template>
-            </ngx-graph>
-          </div>
+          <graph
+            [autoCenter]="autoCenter"
+            [autoZoom]="autoZoom"
+            [curve]="curve"
+            [enableZoom]="enableZoom"
+            [links]="graphData.links"
+            [nodes]="graphData.nodes"
+            [orientation]="orientation">
+          </graph>
+        </div>
           <div *ngIf="!graphReset && countGroupServices() !== 0" class="row mt-2 text-right mr-1">
             <div class="col graph-subtext">
               {{'graph.autoRefresh'|translate}}
