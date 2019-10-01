@@ -3,26 +3,36 @@
   [autoZoom]="autoZoom"
   [curve]="curve"
   [enableZoom]="enableZoom"
-  [links]="links"
   [nodes]="nodes"
+  [links]="links"
   [orientation]="orientation">
   <ng-template #nodeTemplate let-node>
     <svg:g
-      [tooltipPlacement]="'top'"
-      [tooltipTitle]="node['tooltip']"
-      [tooltipType]="'tooltip'"
       class="node"
-      ngx-tooltip>
+      ngx-tooltip
+      [tooltipPlacement]="'top'"
+      [tooltipType]="'tooltip'"
+      [tooltipTitle]="node.tooltip">
       <svg:rect
-        [attr.fill]="node['color']"
-        [attr.height]="node['height']"
-        [attr.width]="node['width']"/>
+        [attr.width]="node.icon? node.width + ((node.icon.x * 2) + node.icon.width): node.width"
+        [attr.height]="node.customHeight || node.height"
+        [attr.fill]="node.color"/>
+      <svg *ngIf="node.icon"
+        [attr.width]="node.icon.width"
+        [attr.height]="node.icon.height"
+        [attr.x]="node.icon.x"
+        [attr.y]="node.icon.y"
+        [attr.viewBox]="'0 0 24 24'">
+        <path *ngFor="let path of node.icon.paths"
+          [attr.fill]="path.fill"
+          [attr.d]="path.d"/>
+      </svg>
       <svg:text
-        [attr.fill]="node['text']"
-        [attr.x]="10"
-        [attr.y]="node['height']/2"
-        alignment-baseline="central">
-        {{node['label']}}
+        [attr.fill]="node.text"
+        alignment-baseline="central"
+        [attr.x]="node.icon? (node.icon.x * 2) + node.icon.width: 10"
+        [attr.y]="node.height/2">
+        {{node.label}}
       </svg:text>
     </svg:g>
   </ng-template>

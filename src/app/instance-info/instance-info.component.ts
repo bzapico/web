@@ -138,7 +138,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   nalejColorScheme: string[];
   nextColorIndex: number;
   STATUS_COLORS = {
-    RUNNING: '#5800FF',
+    RUNNING: '#00E6A0',
     ERROR: '#F7478A',
     OTHER: '#FFEB6C'
   };
@@ -707,7 +707,24 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           + this.getBeautyStatusName(group.status_name),
           color: this.getNodeColor(group.status_name),
           text: this.getNodeTextColor(group.status_name),
-          group: group.service_group_instance_id
+          customHeight: 34,
+          group: group.service_group_instance_id,
+          icon: {
+            width: 24,
+            height: 24,
+            x: 14,
+            y: 5,
+            paths: [
+              {
+                fill: '#fff',
+                d: 'M4,11H9V5H4Zm0,7H9V12H4Zm6,0h5V12H10Zm6,0h5V12H16Zm-6-7h5V5H10Zm6-6v6h5V5Z'
+              },
+              {
+                fill: 'none',
+                d: 'M0,0H24V24H0Z'
+              }
+            ]
+          }
         };
         this.graphData.nodes.push(nodeGroup);
         group.service_instances.forEach(service => {
@@ -720,6 +737,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
             + ': ' + this.getBeautyStatusName(service.status_name),
             color: this.getNodeColor(service.status_name),
             text: this.getNodeTextColor(group.status_name),
+            customHeight: 34,
             group: group.service_group_instance_id
           };
           this.graphData.nodes.push(nodeService);
