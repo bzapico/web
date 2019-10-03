@@ -1,3 +1,65 @@
-<p>
-  labels-card works!
-</p>
+<!-- Labels card-->
+<div class="card">
+  <div class="card-title-name hide-title-sm mb-3">
+    <h5>{{'label.title'|translate}}</h5>
+  </div>
+  <!-- Show selectable label -->
+  <div *ngIf="selectableLabel">
+    <div *ngIf="labelsData && labelsData.labels">
+      <button 
+        *ngFor="let label of labelsData.labels"
+        [ngClass]=
+          "{
+            'label-content-selected': label.selected,
+            'label-content': !label.selected
+          }" 
+        (click)="onLabelClick(label, selectedLabels)">
+        {{label.key}}: {{label.value}}
+      </button>
+      <div class="label-btns">
+        <div 
+          *ngIf="selectedLabels.length === 0" 
+          (click)="addLabel(labelsData)"
+          tooltip="{{'label.addLabel'|translate}}" 
+          placement="right"
+          class="label-btn-blue" >
+          <i class="material-icons i-add">add</i>
+        </div>
+        <div 
+          *ngIf="selectedLabels.length > 0" 
+          (click)="deleteLabel(labelsData, selectedLabels)" 
+          tooltip="{{'label.deleteLabel'|translate}}"
+          placement="right"
+          class="label-btn-red">
+          <i class="material-icons i-delete">delete</i>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="labelsData && !labelsData.labels">
+      <div class="label-btns">
+          <div
+            (click)="addLabel(labelsData)"
+            tooltip="{{'label.addLabel'|translate}}" 
+            placement="right"
+            class="label-btn-blue">
+            <i class="material-icons i-add">add</i>
+          </div>
+        </div>
+    </div>
+  </div>
+  <!-- Show only readable labels -->
+  <div *ngIf="!selectableLabel">
+    <div *ngIf="labelsData.labels">
+      <div *ngFor="let label of labelsData.labels | keyvalue">
+        <button class="label-content-disabled">
+            {{label.key}}: {{label.value}}
+        </button>
+      </div>
+    </div>
+    <div *ngIf="!labelsData.labels" class="no-elements">
+      <div class="no-elements">
+        {{'label.noLabels'|translate}}
+      </div>
+    </div>
+  </div>
+</div>
