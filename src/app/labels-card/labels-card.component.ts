@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { LabelsCardServiceService } from '../labels-card-service.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { LabelsCardServiceService } from '../labels-card-service.service';
   templateUrl: './labels-card.component.html',
   styleUrls: ['./labels-card.component.scss']
 })
-export class LabelsCardComponent implements OnInit {
+export class LabelsCardComponent {
   @Input() labelsData: any[];
   @Input() selectableLabel: boolean;
   @Output() updateLabels: EventEmitter<{action: string, selectedLabels: any[]}>;
@@ -19,8 +19,6 @@ export class LabelsCardComponent implements OnInit {
     this.selectedLabels = [];
     this.updateLabels = new EventEmitter<{action: string, selectedLabels: any[]}>();
   }
-
-  ngOnInit() {}
 
   /**
    * Opens the modal view that holds add label component

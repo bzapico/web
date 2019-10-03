@@ -105,11 +105,6 @@ export class RegisteredInfoComponent implements OnInit {
   showGraph: boolean;
 
   /**
-   * NGX-Graphs object-assign required object references (for rendering)
-   */
-  mockServicesGraph: any;
-
-  /**
    * Accordion options
    */
   nalejAccordion = 'nalejAccordion';
@@ -308,7 +303,7 @@ export class RegisteredInfoComponent implements OnInit {
     confirm(this.translateService.instant('apps.registered.deleteApp', { appName: app.name }));
     if (deleteConfirm) {
       this.backend.deleteRegistered(this.organizationId, app.app_descriptor_id)
-        .subscribe(deleteResponse => {
+        .subscribe(() => {
           this.notificationsService.add({
             message: this.translateService.instant('apps.registered.deleting', { appName: app.name }),
             timeout: 3000
@@ -361,19 +356,11 @@ export class RegisteredInfoComponent implements OnInit {
     const index = this.groups
     .map(x => x.service_group_id)
     .indexOf(groupId);
-
     if (index !== -1) {
       return this.groups[index].services;
     } else {
       return [];
     }
-  }
-
-  /**
-   * Shows the graph in services card
-   */
-  showWindowGraph() {
-    this.showGraph = !this.showGraph;
   }
 
   /**
@@ -492,6 +479,13 @@ export class RegisteredInfoComponent implements OnInit {
    * Opens the modal view that holds add label component
    */
   addLabel() {
+    if (this.registeredData.labels) {
+      const labelsLikeArray = {};
+      this.registeredData.labels.forEach(label => {
+        labelsLikeArray[label.key] = label.value;
+      });
+      this.registeredData.labels = labelsLikeArray;
+    }
     const initialState = {
       organizationId: this.organizationId,
       entityType: this.translateService.instant('apps.registered.app'),
