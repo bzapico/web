@@ -1,4 +1,4 @@
-import { Group } from '../definitions/interfaces/group';
+import { Group } from '../../definitions/interfaces/group';
 
 export const mockJwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
     // tslint:disable-next-line:max-line-length

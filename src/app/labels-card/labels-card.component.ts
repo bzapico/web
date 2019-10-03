@@ -18,6 +18,7 @@ export class LabelsCardComponent {
   ) {
     this.selectedLabels = [];
     this.updateLabels = new EventEmitter<{action: string, selectedLabels: any[]}>();
+    this.labelsData = [];
   }
 
   /**

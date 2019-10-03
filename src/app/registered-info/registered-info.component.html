@@ -70,7 +70,7 @@
       <!-- Labels card-->
       <labels-card *ngIf="loadedData"
         [labelsData]="registeredData"
-        [selectableLabel]="selectableLabel"
+        [isSelectableLabel]="isSelectableLabel"
         (updateLabels)="updateLabels($event)">
       </labels-card>
     </div>

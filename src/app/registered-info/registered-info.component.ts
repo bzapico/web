@@ -65,7 +65,7 @@ export class RegisteredInfoComponent implements OnInit {
    * List of labels
    */
   labels: any[];
-  selectableLabel: boolean;
+  isSelectableLabel: boolean;
   entityId: string;
 
 
@@ -151,7 +151,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.services = [];
     this.servicesCount = 0;
     this.labels = [];
-    this.selectableLabel = true;
+    this.isSelectableLabel = true;
     this.requestError = '';
     this.showGraph = true;
     this.registeredData = {
@@ -424,7 +424,7 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Return if the marker is
+   * Return if the marker is required
    * @param link Link object
    */
   getMarker(link) {
