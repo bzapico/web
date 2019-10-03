@@ -2,11 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LabelsCardComponent } from './labels-card.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { TooltipModule } from '@swimlane/ngx-charts';
-import { ButtonsModule, ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { TooltipModule, BsModalService, ModalModule } from 'ngx-bootstrap';
+import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { createTranslateLoader } from '../app.module';
+import { LabelsCardServiceService } from '../labels-card-service.service';
 
 describe('LabelsCardComponent', () => {
   let component: LabelsCardComponent;
@@ -17,8 +18,8 @@ describe('LabelsCardComponent', () => {
       declarations: [ LabelsCardComponent ],
     imports: [
       HttpClientTestingModule,
-      TooltipModule,
-      ButtonsModule,
+      TooltipModule.forRoot(),
+      RouterTestingModule,
       ModalModule.forRoot(),
       TranslateModule.forRoot({
         loader: {
@@ -29,9 +30,9 @@ describe('LabelsCardComponent', () => {
       })
     ],
     providers: [
-      BsModalRef,
+      TranslateService,
+      LabelsCardServiceService,
       BsModalService,
-      TranslateService
     ]
     })
     .compileComponents();

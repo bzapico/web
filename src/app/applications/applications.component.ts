@@ -3,7 +3,7 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
-import { mockAppChart, mockAppPieChart } from '../utils/mocks';
+import { mockAppChart, mockAppPieChart } from '../services/utils/mocks';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { ApplicationInstance } from '../definitions/interfaces/application-instance';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';

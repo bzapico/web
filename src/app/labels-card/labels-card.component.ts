@@ -8,7 +8,7 @@ import { LabelsCardServiceService } from '../labels-card-service.service';
 })
 export class LabelsCardComponent implements OnInit {
   @Input() labelsData: any[];
-  @Input() selectableLabel: boolean;
+  @Input() isSelectableLabel: boolean;
 
   selectedLabels: any[];
 
@@ -16,6 +16,7 @@ export class LabelsCardComponent implements OnInit {
     private labelsCardService: LabelsCardServiceService
   ) {
     this.selectedLabels = [];
+    this.labelsData = [];
   }
 
   ngOnInit() {}

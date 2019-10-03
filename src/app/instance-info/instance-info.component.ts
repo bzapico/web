@@ -64,7 +64,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * List of labels
    */
   labels: any[];
-  selectableLabel: boolean;
+  isSelectableLabel: boolean;
 
   /**
    * Interval reference
@@ -167,7 +167,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     }
     // Default initialization
     this.labels = [];
-    this.selectableLabel = false;
+    this.isSelectableLabel = false;
     this.groups = [];
     this.instance = {
         groups: [],

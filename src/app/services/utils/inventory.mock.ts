@@ -1,4 +1,4 @@
-import { Inventory } from '../definitions/interfaces/inventory';
+import { Inventory } from '../../definitions/interfaces/inventory';
 
 /**
  * Mock inventory summary containing total cpu, memory and storage
