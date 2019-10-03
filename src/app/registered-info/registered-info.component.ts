@@ -436,7 +436,7 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Return if the marker is
+   * Return if the marker is required
    * @param link Link object
    */
   getMarker(link) {
