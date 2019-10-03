@@ -4,7 +4,7 @@ import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
-import { mockInfrastructurePieChart } from '../utils/mocks';
+import { mockInfrastructurePieChart } from '../services/utils/mocks';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DeviceInfoComponent } from '../device-info/device-info.component';
 import { AssetInfoComponent } from '../asset-info/asset-info.component';

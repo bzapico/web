@@ -3,7 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { Observable } from 'rxjs';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { mockJwtToken } from '../utils/mocks';
+import { mockJwtToken } from '../services/utils/mocks';
 
 @Injectable({
   providedIn: 'root'

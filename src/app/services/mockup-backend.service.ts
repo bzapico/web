@@ -3,15 +3,15 @@ import { Backend } from '../definitions/interfaces/backend';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { mockJwtToken, mockUserList, mockOrganizationInfo, mockNodeList, mockDevicesList, mockGroupList,
-         mockEICJoinToken, mockAgentJoinToken, mockAppsInboundsList, mockAppsOutboundsList } from '../utils/mocks';
+         mockEICJoinToken, mockAgentJoinToken, mockAppsInboundsList, mockAppsOutboundsList } from './utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 import { Asset } from '../definitions/interfaces/asset';
 import { HttpResponse } from '@angular/common/http';
-import { mockInventoryList, mockInventorySummary } from '../utils/inventory.mock';
-import { mockClusterList, mockResourcesSummary } from '../utils/clusters.mock';
-import { mockConnectionsList } from '../utils/connections.mock';
-import { mockRegisteredAppsList } from '../utils/registered-apps.mock';
-import { mockAppsInstancesList } from '../utils/instances-apps.mock';
+import { mockInventoryList, mockInventorySummary } from './utils/inventory.mock';
+import { mockClusterList, mockResourcesSummary } from './utils/clusters.mock';
+import { mockConnectionsList } from './utils/connections.mock';
+import { mockRegisteredAppsList } from './utils/registered-apps.mock';
+import { mockAppsInstancesList } from './utils/instances-apps.mock';
 
 @Injectable({
   providedIn: 'root'

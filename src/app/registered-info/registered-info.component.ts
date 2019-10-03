@@ -5,7 +5,6 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
-import { AddLabelComponent } from '../add-label/add-label.component';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as shape from 'd3-shape';
@@ -65,12 +64,9 @@ export class RegisteredInfoComponent implements OnInit {
    * List of labels
    */
   labels: any[];
+  isSelectableLabel: boolean;
+  entityId: string;
 
-  /**
-   * List of selected labels from an entity
-   */
-  selectedLabels = [];
-  entityId: boolean;
 
   /**
    * Hold request error message or undefined
@@ -159,6 +155,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.services = [];
     this.servicesCount = 0;
     this.labels = [];
+    this.isSelectableLabel = true;
     this.requestError = '';
     this.showGraph = true;
     this.registeredData = {
@@ -177,35 +174,35 @@ export class RegisteredInfoComponent implements OnInit {
     this.filterField = false;
     this.filterFieldRules = false;
      // Graph initialization
-     this.orientation = 'TB';
-     this.curve = shape.curveBasis;
-     this.autoZoom = true;
-     this.autoCenter = true;
-     this.enableZoom = true;
-     this.draggingEnabled = false;
-     this.colorScheme = {
-       domain: ['#6C86F7']
-     };
-     this.graphDataLoaded = false;
-     this.graphData = {
-       nodes: [],
-       links: []
-     };
-     this.graphReset = false;
-     this.nalejColorScheme = [
-      '#4900d4',
-      '#4000ba',
-      '#3902a3',
-      '#2e0480',
-     ];
-     this.nextColorIndex = 0;
-     this.whiteColor = '#FFFFFF';
+    this.orientation = 'TB';
+    this.curve = shape.curveBasis;
+    this.autoZoom = true;
+    this.autoCenter = true;
+    this.enableZoom = true;
+    this.draggingEnabled = false;
+    this.colorScheme = {
+      domain: ['#6C86F7']
+    };
+    this.graphDataLoaded = false;
+    this.graphData = {
+      nodes: [],
+      links: []
+    };
+    this.graphReset = false;
+    this.nalejColorScheme = [
+    '#4900d4',
+    '#4000ba',
+    '#3902a3',
+    '#2e0480',
+    ];
+    this.nextColorIndex = 0;
+    this.whiteColor = '#FFFFFF';
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.descriptorId = params['registeredId']; // (+) converts string 'id' to a number
-   });
+    });
     // Get User data from localStorage
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
@@ -214,109 +211,6 @@ export class RegisteredInfoComponent implements OnInit {
           this.updateAppDescriptor();
         }
     }
-  }
-
-  /**
-   * Opens the modal view that holds add label component
-   */
-  addLabel(entity) {
-    const initialState = {
-      organizationId: this.organizationId,
-      entityType: this.translateService.instant('apps.registered.app'),
-      entity: entity,
-      modalTitle: entity.name
-    };
-
-    this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
-    this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
-      this.updateAppDescriptor();
-    } );
-  }
-
-  /**
-   * Deletes a selected label
-   * @param entity selected label entity
-   */
-  deleteLabel(entity) {
-    const deleteConfirm = confirm(this.translateService.instant('label.deleteLabels'));
-    if (deleteConfirm) {
-      const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.app_descriptor_id);
-      this.backend.updateAppDescriptor(
-        this.organizationId,
-        entity.app_descriptor_id,
-        {
-          organizationId: this.organizationId,
-          descriptorId: entity.app_descriptor_id,
-          remove_labels: true,
-          labels: this.selectedLabels[index].labels
-        }).subscribe(updateAppResponse => {
-          this.selectedLabels.splice(index, 1);
-          this.updateAppDescriptor();
-        });
-    } else {
-      // Do nothing
-    }
-  }
-
-  /**
-   * Selects a label
-   * @param entityId entity from selected label
-   * @param labelKey label key from selected label
-   * @param labelValue label value from selected label
-   */
-  onLabelClick(entityId, labelKey, labelValue) {
-    const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
-    const newLabel = {
-      entityId: entityId,
-      labels: {}
-    } ;
-    if (selectedIndex === -1 ) {
-      const selected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
-      if (selected === -1) {
-        newLabel.labels[labelKey] = labelValue;
-        this.selectedLabels.push(newLabel);
-      } else {
-        this.selectedLabels[selected].labels[labelKey] = labelValue;
-      }
-    } else {
-      if (Object.keys(this.selectedLabels[selectedIndex].labels).length > 1) {
-        delete this.selectedLabels[selectedIndex].labels[labelKey];
-      } else {
-        this.selectedLabels.splice(selectedIndex, 1);
-      }
-    }
-  }
-
-  /**
-  * Check if the label is selected. Returns index number in selected labels or -1 if the label is not found.
-  * @param entityId entity from selected label
-  * @param labelKey label key from selected label
-  * @param labelValue label value from selected label
-  */
-  indexOfLabelSelected(entityId, labelKey, labelValue) {
-    for (let index = 0; index < this.selectedLabels.length; index++) {
-      if (this.selectedLabels[index].entityId === entityId &&
-          this.selectedLabels[index].labels[labelKey] === labelValue
-        ) {
-          return index;
-      }
-    }
-  return -1;
-  }
-
-  /**
-   * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
-   * @param entityId entity from selected label
-   */
-  isAnyLabelSelected(entityId) {
-    if (this.selectedLabels.length > 0) {
-      const indexSelected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
-      if (indexSelected >= 0) {
-          return true;
-      }
-    }
-    return false;
   }
 
   /* Sortby pipe in the component
@@ -585,6 +479,10 @@ export class RegisteredInfoComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
   }
 
+  updateLabels(isUpdatedLabel: boolean) {
+    this.updateAppDescriptor();
+  }
+
   /**
    * Request the list of app descriptors
    */
@@ -592,6 +490,11 @@ export class RegisteredInfoComponent implements OnInit {
     this.loadedData = false;
     this.backend.getAppDescriptor(this.organizationId, this.descriptorId)
       .subscribe(registeredResponse => {
+        const labelsLikeArray = [];
+        Object.keys(registeredResponse.labels).forEach(label => {
+          labelsLikeArray.push({key: label, value: registeredResponse.labels[label], selected: false});
+        });
+        registeredResponse.labels = labelsLikeArray;
         this.registeredData = registeredResponse;
         this.groups = registeredResponse.groups || [];
         if (this.groups.length) {
