@@ -5,21 +5,21 @@
   </div>
   <!-- Show selectable label -->
   <div *ngIf="selectableLabel">
-    <div *ngIf="labelsData && labelsData.labels">
+    <div *ngIf="labelsData && labelsData['labels']">
       <button 
-        *ngFor="let label of labelsData.labels"
+        *ngFor="let label of labelsData['labels']"
         [ngClass]=
           "{
             'label-content-selected': label.selected,
             'label-content': !label.selected
           }" 
-        (click)="onLabelClick(label, selectedLabels)">
+        (click)="onLabelClick(label)">
         {{label.key}}: {{label.value}}
       </button>
       <div class="label-btns">
         <div 
           *ngIf="selectedLabels.length === 0" 
-          (click)="addLabel(labelsData)"
+          (click)="addLabel()"
           tooltip="{{'label.addLabel'|translate}}" 
           placement="right"
           class="label-btn-blue" >
@@ -27,7 +27,7 @@
         </div>
         <div 
           *ngIf="selectedLabels.length > 0" 
-          (click)="deleteLabel(labelsData, selectedLabels)" 
+          (click)="deleteLabel()"
           tooltip="{{'label.deleteLabel'|translate}}"
           placement="right"
           class="label-btn-red">
@@ -35,10 +35,10 @@
         </div>
       </div>
     </div>
-    <div *ngIf="labelsData && !labelsData.labels">
+    <div *ngIf="labelsData && !labelsData['labels']">
       <div class="label-btns">
           <div
-            (click)="addLabel(labelsData)"
+            (click)="addLabel()"
             tooltip="{{'label.addLabel'|translate}}" 
             placement="right"
             class="label-btn-blue">
@@ -49,14 +49,14 @@
   </div>
   <!-- Show only readable labels -->
   <div *ngIf="!selectableLabel">
-    <div *ngIf="labelsData.labels">
-      <div *ngFor="let label of labelsData.labels | keyvalue">
+    <div *ngIf="labelsData['labels']">
+      <div *ngFor="let label of labelsData['labels']">
         <button class="label-content-disabled">
             {{label.key}}: {{label.value}}
         </button>
       </div>
     </div>
-    <div *ngIf="!labelsData.labels" class="no-elements">
+    <div *ngIf="!labelsData['labels']" class="no-elements">
       <div class="no-elements">
         {{'label.noLabels'|translate}}
       </div>
