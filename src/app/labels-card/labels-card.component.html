@@ -21,7 +21,7 @@
           *ngIf="selectedLabels.length === 0" 
           (click)="addLabel()"
           tooltip="{{'label.addLabel'|translate}}" 
-          placement="right"
+          placement="auto"
           class="label-btn-blue" >
           <i class="material-icons i-add">add</i>
         </div>
@@ -29,7 +29,7 @@
           *ngIf="selectedLabels.length > 0" 
           (click)="deleteLabel()"
           tooltip="{{'label.deleteLabel'|translate}}"
-          placement="right"
+          placement="auto"
           class="label-btn-red">
           <i class="material-icons i-delete">delete</i>
         </div>
@@ -40,7 +40,7 @@
           <div
             (click)="addLabel()"
             tooltip="{{'label.addLabel'|translate}}" 
-            placement="right"
+            placement="auto"
             class="label-btn-blue">
             <i class="material-icons i-add">add</i>
           </div>
