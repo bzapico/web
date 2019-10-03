@@ -4,7 +4,7 @@
     <h5>{{'label.title'|translate}}</h5>
   </div>
   <!-- Show selectable label -->
-  <div *ngIf="selectableLabel">
+  <div *ngIf="isSelectableLabel">
     <div *ngIf="labelsData && labelsData['labels']">
       <button 
         *ngFor="let label of labelsData['labels']"
@@ -48,7 +48,7 @@
     </div>
   </div>
   <!-- Show only readable labels -->
-  <div *ngIf="!selectableLabel">
+  <div *ngIf="!isSelectableLabel">
     <div *ngIf="labelsData['labels']">
       <div *ngFor="let label of labelsData['labels']">
         <button class="label-content-disabled">
