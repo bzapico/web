@@ -64,6 +64,8 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * List of labels
    */
   labels: any[];
+  selectableLabel: boolean;
+
   /**
    * Interval reference
    */
@@ -165,6 +167,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     }
     // Default initialization
     this.labels = [];
+    this.selectableLabel = false;
     this.groups = [];
     this.instance = {
         groups: [],
@@ -187,36 +190,36 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.filterField = false;
     this.filterFieldRules = false;
      // Graph initialization
-     this.graphReset = false;
-     this.orientation = 'TB';
-     this.curve = shape.curveBasis;
-     this.autoZoom = true;
-     this.autoCenter = true;
-     this.enableZoom = true;
-     this.draggingEnabled = false;
-     this.colorScheme = {
-       domain: ['#6C86F7']
-     };
-     this.graphDataLoaded = false;
-     this.graphData = {
-       nodes: [],
-       links: []
-     };
+    this.graphReset = false;
+    this.orientation = 'TB';
+    this.curve = shape.curveBasis;
+    this.autoZoom = true;
+    this.autoCenter = true;
+    this.enableZoom = true;
+    this.draggingEnabled = false;
+    this.colorScheme = {
+      domain: ['#6C86F7']
+    };
+    this.graphDataLoaded = false;
+    this.graphData = {
+      nodes: [],
+      links: []
+    };
 
-     this.nalejColorScheme = [
-       '#4900d4',
-       '#4000ba',
-       '#3902a3',
-       '#2e0480',
-     ];
-     this.nextColorIndex = 0;
+    this.nalejColorScheme = [
+      '#4900d4',
+      '#4000ba',
+      '#3902a3',
+      '#2e0480',
+    ];
+    this.nextColorIndex = 0;
 
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.instanceId = params['instanceId']; // (+) converts string 'id' to a number
-   });
+    });
     // Get User data from localStorage
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {

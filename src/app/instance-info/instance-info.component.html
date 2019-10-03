@@ -77,7 +77,12 @@
           </div>
       </div>
       <!-- Labels card-->
-      <div class="card row-app-labels flex-grow-1">
+      <labels-card
+        [labelsData]="instance"
+        [selectableLabel]="selectableLabel">
+      </labels-card>
+
+      <!-- <div class="card row-app-labels flex-grow-1">
         <div class="card-title-name hide-title-sm mb-3">
           <h5>{{'label.title'|translate}}</h5>
         </div>
@@ -93,7 +98,7 @@
          {{'label.noLabels'|translate}}
         </div>
       </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="col-8 h-100">

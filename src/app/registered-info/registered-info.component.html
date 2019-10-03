@@ -68,58 +68,11 @@
         </div>
       </div>
       <!-- Labels card-->
-      <div class="card row-app-labels flex-grow-1">
-        <div class="card-title-name hide-title-sm mb-3">
-          <h5>{{'label.title'|translate}}</h5>
-        </div>
-        <div *ngIf=
-          "loadedData &&
-          registeredData &&
-          registeredData.labels &&
-          !requestError">
-          <button 
-          *ngFor="let label of registeredData.labels | keyvalue" 
-          (click)="onLabelClick(registeredData.app_descriptor_id, label.key, label.value)"
-          [ngClass]=
-          "{
-            'label-content-selected': indexOfLabelSelected(registeredData.app_descriptor_id, label.key, label.value) >= 0 ,
-            'label-content': indexOfLabelSelected(registeredData.app_descriptor_id, label.key, label.value) === -1
-          }" 
-          class="label-content">
-          {{label.key}}: {{label.value}} 
-        </button>
-          <div class="label-btns">
-            <div 
-              *ngIf="isAnyLabelSelected(registeredData.app_descriptor_id) === false" 
-              (click)="addLabel(registeredData)"
-              tooltip="{{'label.addLabel'|translate}}" 
-              placement="right"
-              class="label-btn-blue" >
-              <i class="material-icons i-add">add</i>
-            </div>
-            <div 
-              *ngIf="isAnyLabelSelected(registeredData.app_descriptor_id) === true" 
-              (click)="deleteLabel(registeredData)" 
-              tooltip="{{'label.deleteLabel'|translate}}"
-              placement="right"
-              class="label-btn-red">
-              <i class="material-icons i-delete">delete</i>
-            </div>
-          </div>
-        </div>
-        <div *ngIf="registeredData && !registeredData.labels">
-          <div class="label-btns">
-              <div 
-                *ngIf="isAnyLabelSelected(registeredData.app_descriptor_id) === false" 
-                (click)="addLabel(registeredData)"
-                tooltip="{{'label.addLabel'|translate}}" 
-                placement="right"
-                class="label-btn-blue">
-                <i class="material-icons i-add">add</i>
-              </div>
-            </div>
-        </div>
-      </div>
+      <labels-card *ngIf="loadedData"
+        [labelsData]="registeredData"
+        [selectableLabel]="selectableLabel"
+        (updateLabels)="updateLabels($event)">
+      </labels-card>
     </div>
   </div>
   <div class="col-8 h-100">
@@ -416,7 +369,7 @@
                     </div>
                   </div>
                 </div>
-                 <!-- No info to show -->
+                <!-- No info to show -->
                 <div *ngIf=
                 "loadedData &&
                 !requestError &&
