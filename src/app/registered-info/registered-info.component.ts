@@ -13,6 +13,7 @@ import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { ServiceInfoComponent } from '../service-info/service-info.component';
 import { RegisteredServiceGroupInfoComponent } from '../registered-service-group-info/registered-service-group-info.component';
 import { TranslateService } from '@ngx-translate/core';
+import { AddLabelComponent } from '../add-label/add-label.component';
 
 @Component({
   selector: 'app-registered-info',
@@ -102,11 +103,6 @@ export class RegisteredInfoComponent implements OnInit {
    *  Show the services graph tab
    */
   showGraph: boolean;
-
-  /**
-   * NGX-Graphs object-assign required object references (for rendering)
-   */
-  mockServicesGraph: any;
 
   /**
    * Accordion options
@@ -307,7 +303,7 @@ export class RegisteredInfoComponent implements OnInit {
     confirm(this.translateService.instant('apps.registered.deleteApp', { appName: app.name }));
     if (deleteConfirm) {
       this.backend.deleteRegistered(this.organizationId, app.app_descriptor_id)
-        .subscribe(deleteResponse => {
+        .subscribe(() => {
           this.notificationsService.add({
             message: this.translateService.instant('apps.registered.deleting', { appName: app.name }),
             timeout: 3000
@@ -360,19 +356,11 @@ export class RegisteredInfoComponent implements OnInit {
     const index = this.groups
     .map(x => x.service_group_id)
     .indexOf(groupId);
-
     if (index !== -1) {
       return this.groups[index].services;
     } else {
       return [];
     }
-  }
-
-  /**
-   * Shows the graph in services card
-   */
-  showWindowGraph() {
-    this.showGraph = !this.showGraph;
   }
 
   /**
@@ -479,8 +467,62 @@ export class RegisteredInfoComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
   }
 
-  updateLabels(isUpdatedLabel: boolean) {
-    this.updateAppDescriptor();
+  updateLabels(updateLabel: {action: string, selectedLabels: any[]}) {
+    if (updateLabel.action === 'add') {
+      this.addLabel();
+    } else if (updateLabel.action === 'delete') {
+      this.deleteLabel(updateLabel.selectedLabels);
+    }
+  }
+
+  /**
+   * Opens the modal view that holds add label component
+   */
+  addLabel() {
+    const registeredDataForBackend = Object.assign({}, this.registeredData);
+    if (registeredDataForBackend.labels) {
+      const labelsLikeArray = {};
+      this.registeredData.labels.forEach(label => {
+        labelsLikeArray[label.key] = label.value;
+      });
+      registeredDataForBackend.labels = labelsLikeArray;
+    }
+    const initialState = {
+      organizationId: this.organizationId,
+      entityType: this.translateService.instant('apps.registered.app'),
+      entity: registeredDataForBackend,
+      modalTitle: registeredDataForBackend.name
+    };
+    this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe(() => {
+      this.updateAppDescriptor();
+    } );
+  }
+
+  /**
+   * Deletes a selected label
+   * @param entity selected label entity
+   */
+  deleteLabel(selectedLabels) {
+    const deleteConfirm = confirm(this.translateService.instant('label.deleteLabels'));
+    if (deleteConfirm) {
+      const labelsForBackend = {};
+      selectedLabels.forEach(label => {
+        labelsForBackend[label.key] = label.value;
+      });
+      this.backend.updateAppDescriptor(
+          this.organizationId,
+          this.registeredData.app_descriptor_id,
+          {
+            organizationId: this.organizationId,
+            descriptorId: this.registeredData.app_descriptor_id,
+            remove_labels: true,
+            labels: labelsForBackend
+          }).subscribe( () => {
+        this.updateAppDescriptor();
+      });
+    }
   }
 
   /**
@@ -490,11 +532,13 @@ export class RegisteredInfoComponent implements OnInit {
     this.loadedData = false;
     this.backend.getAppDescriptor(this.organizationId, this.descriptorId)
       .subscribe(registeredResponse => {
-        const labelsLikeArray = [];
-        Object.keys(registeredResponse.labels).forEach(label => {
-          labelsLikeArray.push({key: label, value: registeredResponse.labels[label], selected: false});
-        });
-        registeredResponse.labels = labelsLikeArray;
+        if (registeredResponse.labels) {
+          const labelsLikeArray = [];
+          Object.keys(registeredResponse.labels).forEach(label => {
+            labelsLikeArray.push({key: label, value: registeredResponse.labels[label], selected: false});
+          });
+          registeredResponse.labels = labelsLikeArray;
+        }
         this.registeredData = registeredResponse;
         this.groups = registeredResponse.groups || [];
         if (this.groups.length) {

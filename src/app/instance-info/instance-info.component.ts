@@ -111,11 +111,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   showGraph: boolean;
 
   /**
-   * NGX-Graphs object-assign required object references (for rendering)
-   */
-  mockServicesGraph: any;
-
-  /**
    * Accordion options
    */
   nalejAccordion = 'nalejAccordion';
@@ -237,19 +232,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
     this.refreshIntervalRef = null;
-  }
-
-
-
-  /**
-   * Get arrow color depending on node source color
-   * @param sourceId Link source identifier
-   */
-  getArrowColor(sourceId: string): string {
-    const index = this.graphData.nodes.map(x => x.id).indexOf(sourceId);
-    if (index !== -1) {
-      return this.graphData.nodes[index].color;
-    }
   }
 
   /**
@@ -387,23 +369,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
             type: 'warning'
           });
         });
-    }
-  }
-
-  /**
-   * Depending on the service status, returns the css class name that is required
-   * @param status Service status string
-   */
-  getServiceStatusClass(status: string ) {
-    switch (status.toLowerCase()) {
-      case this.translateService.instant('status.serviceRunning'):
-        return 'teal';
-      case this.translateService.instant('status.serviceError'):
-        return 'red';
-      case this.translateService.instant('status.serviceWaiting'):
-        return 'yellow';
-      default:
-        return 'yellow';
     }
   }
 
@@ -731,10 +696,8 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
             target: group.service_group_instance_id + '-s-' + service.service_id
           });
         });
-
       });
     }
-
     if (instance.rules) {
       instance.rules.forEach(rule => {
         if (rule.auth_services) {
@@ -778,6 +741,13 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       this.backend.getAppInstance(this.organizationId,  this.instanceId)
       .subscribe(instance => {
           if (this.anyChanges(this.instance, instance)) {
+            if (instance.labels) {
+              const labelsLikeArray = [];
+              Object.keys(instance.labels).forEach(label => {
+                labelsLikeArray.push({key: label, value: instance.labels[label], selected: false});
+              });
+              instance.labels = labelsLikeArray;
+            }
             this.instance = instance;
             this.groups = instance.groups || [];
             this.toGraphData(instance);
@@ -825,7 +795,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           });
       });
     });
-
     // Check if there is any difference in the status
     instanceOutdatedServices.forEach(service => {
       const index = instanceUpdatedServices.map(x => x.id).indexOf(service.id);
@@ -837,7 +806,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         anyChanges = true;
       }
     });
-
     return anyChanges;
   }
 }

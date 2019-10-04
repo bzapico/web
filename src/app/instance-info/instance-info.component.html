@@ -77,7 +77,7 @@
           </div>
       </div>
       <!-- Labels card-->
-      <labels-card
+      <labels-card *ngIf="loadedData"
         [labelsData]="instance"
         [isSelectableLabel]="isSelectableLabel">
       </labels-card>

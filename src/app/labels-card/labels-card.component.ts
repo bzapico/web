@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { LabelsCardServiceService } from '../labels-card-service.service';
 
 @Component({
@@ -6,44 +6,41 @@ import { LabelsCardServiceService } from '../labels-card-service.service';
   templateUrl: './labels-card.component.html',
   styleUrls: ['./labels-card.component.scss']
 })
-export class LabelsCardComponent implements OnInit {
+export class LabelsCardComponent {
   @Input() labelsData: any[];
   @Input() isSelectableLabel: boolean;
+  @Output() updateLabels: EventEmitter<{action: string, selectedLabels: any[]}>;
 
-  selectedLabels: any[];
+  selectedLabels: {}[];
 
   constructor(
     private labelsCardService: LabelsCardServiceService
   ) {
     this.selectedLabels = [];
+    this.updateLabels = new EventEmitter<{action: string, selectedLabels: any[]}>();
     this.labelsData = [];
   }
-
-  ngOnInit() {}
 
   /**
    * Opens the modal view that holds add label component
    * @param entity selected label entity
    */
-  addLabel(labelsData) {
-    this.labelsCardService.addLabel(labelsData);
+  addLabel() {
+    this.updateLabels.emit({action: 'add', selectedLabels: this.selectedLabels});
   }
 
   /**
    * Deletes a selected label
-   * @param entity selected label entity
-   * @param selectedLabels selected labels array
    */
-  deleteLabel(labelsData, selectedLabels) {
-    this.labelsCardService.deleteLabel(labelsData, selectedLabels);
+  deleteLabel() {
+    this.updateLabels.emit({action: 'delete', selectedLabels: this.selectedLabels});
   }
 
   /**
    * Selects a label
    * @param label label entity
-   * @param selectedLabels selected labels array
    */
-  onLabelClick(label, selectedLabels) {
-    this.labelsCardService.onLabelClick(label, selectedLabels);
+  onLabelClick(label: {}) {
+    this.labelsCardService.onLabelClick(label, this.selectedLabels);
   }
 }
