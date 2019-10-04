@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { LabelsCardServiceService } from '../labels-card-service.service';
+import { LabelsCardService } from '../labels-card.service';
 
 @Component({
   selector: 'labels-card',
@@ -14,7 +14,7 @@ export class LabelsCardComponent {
   selectedLabels: {}[];
 
   constructor(
-    private labelsCardService: LabelsCardServiceService
+    private labelsCardService: LabelsCardService
   ) {
     this.selectedLabels = [];
     this.updateLabels = new EventEmitter<{action: string, selectedLabels: any[]}>();
@@ -23,7 +23,6 @@ export class LabelsCardComponent {
 
   /**
    * Opens the modal view that holds add label component
-   * @param entity selected label entity
    */
   addLabel() {
     this.updateLabels.emit({action: 'add', selectedLabels: this.selectedLabels});
@@ -34,6 +33,7 @@ export class LabelsCardComponent {
    */
   deleteLabel() {
     this.updateLabels.emit({action: 'delete', selectedLabels: this.selectedLabels});
+    this.selectedLabels = [];
   }
 
   /**

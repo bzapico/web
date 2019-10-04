@@ -106,11 +106,9 @@
         </div>
         <div *ngIf="graphDataLoaded && !graphReset" class="graph">
           <ngx-graph
-            [view]="view"
             [legend]="showLegend"
             [links]="graphData.links"
             [nodes]="graphData.nodes"
-            [scheme]="colorScheme"
             [orientation]="orientation"
             [autoZoom]="autoZoom"
             [autoCenter]="autoCenter"

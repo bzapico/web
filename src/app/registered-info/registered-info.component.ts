@@ -15,6 +15,15 @@ import { RegisteredServiceGroupInfoComponent } from '../registered-service-group
 import { TranslateService } from '@ngx-translate/core';
 import { AddLabelComponent } from '../add-label/add-label.component';
 
+/**
+ * It sets the timeout in actions like undeploying or deleting
+ */
+const TIMEOUT_ACTION = 3000;
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
+
 @Component({
   selector: 'app-registered-info',
   templateUrl: './registered-info.component.html',
@@ -64,7 +73,6 @@ export class RegisteredInfoComponent implements OnInit {
   /**
    * List of labels
    */
-  labels: any[];
   isSelectableLabel: boolean;
   entityId: string;
 
@@ -121,15 +129,9 @@ export class RegisteredInfoComponent implements OnInit {
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;
-  colorScheme: any;
-  view: any[];
   width: number;
   height: number;
-  draggingEnabled: boolean;
-  nalejColorScheme: string[];
-  nextColorIndex: number;
   whiteColor: string;
-
 
   constructor(
     private modalService: BsModalService,
@@ -150,7 +152,6 @@ export class RegisteredInfoComponent implements OnInit {
     // Default initialization
     this.services = [];
     this.servicesCount = 0;
-    this.labels = [];
     this.isSelectableLabel = true;
     this.requestError = '';
     this.showGraph = true;
@@ -175,23 +176,12 @@ export class RegisteredInfoComponent implements OnInit {
     this.autoZoom = true;
     this.autoCenter = true;
     this.enableZoom = true;
-    this.draggingEnabled = false;
-    this.colorScheme = {
-      domain: ['#6C86F7']
-    };
     this.graphDataLoaded = false;
     this.graphData = {
       nodes: [],
       links: []
     };
     this.graphReset = false;
-    this.nalejColorScheme = [
-    '#4900d4',
-    '#4000ba',
-    '#3902a3',
-    '#2e0480',
-    ];
-    this.nextColorIndex = 0;
     this.whiteColor = '#FFFFFF';
   }
 
@@ -286,12 +276,11 @@ export class RegisteredInfoComponent implements OnInit {
       defaultAutofocus: true,
       appFromRegistered: app
     };
-
     this.modalRef = this.modalService.show(DeployInstanceComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalRef.content.onClose = (cancelled: boolean) => {
+    this.modalRef.content.onClose = ( () => {
       this.router.navigate(['/applications']);
-    };
+    });
   }
 
   /**
@@ -306,13 +295,13 @@ export class RegisteredInfoComponent implements OnInit {
         .subscribe(() => {
           this.notificationsService.add({
             message: this.translateService.instant('apps.registered.deleting', { appName: app.name }),
-            timeout: 3000
+            timeout: TIMEOUT_ACTION
           });
           this.router.navigate(['/applications']);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000,
+            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });
@@ -327,7 +316,7 @@ export class RegisteredInfoComponent implements OnInit {
     let temporalCount = 0;
     if (registered && registered.groups) {
       registered.groups.forEach(group => {
-        temporalCount = group.services.length + temporalCount;
+        temporalCount += group.services.length;
       });
     }
     return temporalCount;
@@ -342,10 +331,8 @@ export class RegisteredInfoComponent implements OnInit {
       this.registeredData.groups.forEach(group => {
         counter += group.services.length;
       });
-      return counter;
-    } else {
-      return 0;
     }
+    return counter;
   }
 
   /**
@@ -382,7 +369,6 @@ export class RegisteredInfoComponent implements OnInit {
       specs: service.specs,
       endpoints: service.endpoints
     };
-
     this.modalRef = this.modalService.show(ServiceInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
@@ -502,7 +488,7 @@ export class RegisteredInfoComponent implements OnInit {
 
   /**
    * Deletes a selected label
-   * @param entity selected label entity
+   * @param selectedLabels selected labels by the user for delete them
    */
   deleteLabel(selectedLabels) {
     const deleteConfirm = confirm(this.translateService.instant('label.deleteLabels'));
@@ -529,7 +515,6 @@ export class RegisteredInfoComponent implements OnInit {
    * Request the list of app descriptors
    */
   private updateAppDescriptor() {
-    this.loadedData = false;
     this.backend.getAppDescriptor(this.organizationId, this.descriptorId)
       .subscribe(registeredResponse => {
         if (registeredResponse.labels) {
@@ -587,10 +572,6 @@ export class RegisteredInfoComponent implements OnInit {
           target: group.service_group_id + '-s-' + service.service_id
         });
       });
-      this.nextColorIndex += 1;
-      if ( this.nextColorIndex >= this.nalejColorScheme.length ) {
-        this.nextColorIndex = 0;
-      }
     });
     if (registered.rules) {
       registered.rules.forEach(rule => {
