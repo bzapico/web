@@ -44,15 +44,15 @@
         <!-- Applications tabs -->
         <div class="row">
           <div class="col">
-            <ul class="app-tabs-box">
+            <ul class="tabs-box">
               <li 
                 (click)="changeActiveList('registered')" 
                 [ngClass]=
                   "{
                     'active': !showInstances,
-                    'app-tabs-btn-selected': !showInstances
+                    'tabs-btn-selected': !showInstances
                   }" 
-                class="app-tabs-btn">
+                class="tabs-btn">
                 REGISTERED
               </li>
               <li 
@@ -60,9 +60,9 @@
                 [ngClass]=
                   "{
                     'active': showInstances,
-                    'app-tabs-btn-selected': showInstances
+                    'tabs-btn-selected': showInstances
                   }" 
-                class="app-tabs-btn">
+                class="tabs-btn">
                   INSTANCES
               </li>
             </ul>
@@ -150,7 +150,7 @@
             </p> 
             <p *ngIf="!filterField && !searchTerm" class="sorting-message"></p>
           </div>
-           <!-- Registered Apps sorting -->
+          <!-- Registered Apps sorting -->
           <div *ngIf=
             "loadedData &&
             registered &&
@@ -163,7 +163,7 @@
               <span (click)="resetFilters('registered')" class="reset-search">Reset</span>
             </p>
             <p *ngIf="filterFieldRegistered && !searchTermRegistered" class="sorting-message">
-             Sorted by {{ sortedByRegistered }},
+              Sorted by {{ sortedByRegistered }},
               <span *ngIf="reverseRegistered">ascendant. </span>
               <span *ngIf="!reverseRegistered">descendant. </span>
               <span (click)="resetFilters('registered')" class="reset-search">Reset</span>
@@ -515,7 +515,7 @@
                 (click)="manageConnections()"
                 class="apps-actions-btn">
                 <i class="material-icons-round i-options">link</i>
-               Manage connections
+                Manage connections
               </button>
             </div>
           </div>
@@ -595,7 +595,7 @@
         <div class="row row-sorting-lg"> 
           <div class="col-12">  
             <p *ngIf="isSearchingInGraph && searchTermGraph && !quickFilter" class="sorting-message text-right">
-               {{ occurrencesCounter }} {{ 'sortingMessage.resultsFilteredBy'|translate:{value:searchTermGraph} }}
+              {{ occurrencesCounter }} {{ 'sortingMessage.resultsFilteredBy'|translate:{value:searchTermGraph} }}
               <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
             </p>
             <p *ngIf="isSearchingInGraph && quickFilter && !searchTermGraph" class="sorting-message text-right">
@@ -608,8 +608,8 @@
             </p> 
             <p *ngIf="!isSearchingInGraph && quickFilter && !searchTermGraph" class="sorting-message text-right">
               {{ occurrencesCounter }} {{ 'sortingMessage.resultsFilteredBy'|translate:{value:quickFilter} }}
-               <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
-             </p> 
+              <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+            </p> 
             <p *ngIf="!isSearchingInGraph || !quickFilter && !searchTermGraph" class="sorting-message"></p>
           </div>
         </div>

@@ -286,19 +286,19 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.activeContextMenuId = '';
 
      // SortBy
-     this.sortedBy = '';
-     this.sortedByRegistered = '';
-     this.reverse = false;
-     this.reverseRegistered = false;
-     this.searchTerm = '';
-     this.searchTermGraph = '';
-     this.searchTermRegistered = '';
-     this.showInstances = true;
-     this.quickFilter = '';
+    this.sortedBy = '';
+    this.sortedByRegistered = '';
+    this.reverse = false;
+    this.reverseRegistered = false;
+    this.searchTerm = '';
+    this.searchTermGraph = '';
+    this.searchTermRegistered = '';
+    this.showInstances = true;
+    this.quickFilter = '';
 
-     // Filter field
-     this.filterField = false;
-     this.filterFieldRegistered = false;
+    // Filter field
+    this.filterField = false;
+    this.filterFieldRegistered = false;
 
     // Graph initialization
     this.graphReset = false;
@@ -501,7 +501,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         }
         break;
       }
-     default: {
+      default: {
         if (className.toLowerCase() === 'process') {
           return true;
         }
@@ -615,7 +615,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     }
   }
 
-   /**
+  /**
    * Opens the modal view that holds add label component
    */
   addLabel(entity) {
@@ -656,7 +656,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     }
   }
 
- /**
+  /**
    * Selects a label
    * @param entityId entity from selected label
    * @param labelKey label key from selected label
@@ -685,7 +685,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     }
   }
 
- /**
+  /**
   * Check if the label is selected. Returns index number in selected labels or -1 if the label is not found.
   * @param entityId entity from selected label
   * @param labelKey label key from selected label
@@ -741,7 +741,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.modalRef.content.closeBtnName = 'Close';
     this.modalRef.content.onClose = (cancelled: boolean) => {
       this.updateAppInstances(this.organizationId);
-     };
+    };
   }
 
   /**

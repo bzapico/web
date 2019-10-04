@@ -83,36 +83,6 @@ $base-light-grey: #BFBFBF;
     }
 }
 
-/* - - - Tabs - - - */
-.app-tabs-box {
-    background-color: $super-light-grey;
-    border-radius: 10px;
-    width: 100%;
-    height: 38px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding-inline-start: 0px;
-    margin-block-end: 0px;
-    margin-bottom: 5px;
-    li {
-        list-style-type: none;
-        display: inline-block;
-        margin-right: 20px;
-        cursor: pointer;
-    }
-    .app-tabs-btn {
-        font-size: .65em;
-        font-weight: 700;
-        color: $base-light-grey;
-    }
-    .app-tabs-btn-selected {
-        font-size: .65em;
-        font-weight: 700;
-        color: $base-violet;
-    }
-}
 /* - - - Search box - - - */
 .search-box {
     width: 100%;
