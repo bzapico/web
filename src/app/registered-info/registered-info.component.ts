@@ -479,18 +479,19 @@ export class RegisteredInfoComponent implements OnInit {
    * Opens the modal view that holds add label component
    */
   addLabel() {
-    if (this.registeredData.labels) {
+    const registeredDataForBackend = Object.assign({}, this.registeredData);
+    if (registeredDataForBackend.labels) {
       const labelsLikeArray = {};
       this.registeredData.labels.forEach(label => {
         labelsLikeArray[label.key] = label.value;
       });
-      this.registeredData.labels = labelsLikeArray;
+      registeredDataForBackend.labels = labelsLikeArray;
     }
     const initialState = {
       organizationId: this.organizationId,
       entityType: this.translateService.instant('apps.registered.app'),
-      entity: this.registeredData,
-      modalTitle: this.registeredData.name
+      entity: registeredDataForBackend,
+      modalTitle: registeredDataForBackend.name
     };
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
