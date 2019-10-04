@@ -5,7 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { mockDevicesChart } from '../utils/mocks';
+import { mockDevicesChart } from '../services/utils/mocks';
 import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group.component';
 import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
