@@ -66,6 +66,8 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * List of labels
    */
   labels: any[];
+  isSelectableLabel: boolean;
+
   /**
    * Interval reference
    */
@@ -109,11 +111,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    *  Show the services graph tab
    */
   showGraph: boolean;
-
-  /**
-   * NGX-Graphs object-assign required object references (for rendering)
-   */
-  mockServicesGraph: any;
 
   /**
    * Accordion options
@@ -167,6 +164,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     }
     // Default initialization
     this.labels = [];
+    this.isSelectableLabel = false;
     this.groups = [];
     this.instance = {
         groups: [],
@@ -189,36 +187,36 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.filterField = false;
     this.filterFieldRules = false;
      // Graph initialization
-     this.graphReset = false;
-     this.orientation = 'TB';
-     this.curve = shape.curveBasis;
-     this.autoZoom = true;
-     this.autoCenter = true;
-     this.enableZoom = true;
-     this.draggingEnabled = false;
-     this.colorScheme = {
-       domain: ['#6C86F7']
-     };
-     this.graphDataLoaded = false;
-     this.graphData = {
-       nodes: [],
-       links: []
-     };
+    this.graphReset = false;
+    this.orientation = 'TB';
+    this.curve = shape.curveBasis;
+    this.autoZoom = true;
+    this.autoCenter = true;
+    this.enableZoom = true;
+    this.draggingEnabled = false;
+    this.colorScheme = {
+      domain: ['#6C86F7']
+    };
+    this.graphDataLoaded = false;
+    this.graphData = {
+      nodes: [],
+      links: []
+    };
 
-     this.nalejColorScheme = [
-       '#4900d4',
-       '#4000ba',
-       '#3902a3',
-       '#2e0480',
-     ];
-     this.nextColorIndex = 0;
+    this.nalejColorScheme = [
+      '#4900d4',
+      '#4000ba',
+      '#3902a3',
+      '#2e0480',
+    ];
+    this.nextColorIndex = 0;
 
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.instanceId = params['instanceId']; // (+) converts string 'id' to a number
-   });
+    });
     // Get User data from localStorage
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
@@ -236,19 +234,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
     this.refreshIntervalRef = null;
-  }
-
-
-
-  /**
-   * Get arrow color depending on node source color
-   * @param sourceId Link source identifier
-   */
-  getArrowColor(sourceId: string): string {
-    const index = this.graphData.nodes.map(x => x.id).indexOf(sourceId);
-    if (index !== -1) {
-      return this.graphData.nodes[index].color;
-    }
   }
 
   /**
@@ -386,23 +371,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
             type: 'warning'
           });
         });
-    }
-  }
-
-  /**
-   * Depending on the service status, returns the css class name that is required
-   * @param status Service status string
-   */
-  getServiceStatusClass(status: string ) {
-    switch (status.toLowerCase()) {
-      case this.translateService.instant('status.serviceRunning'):
-        return 'teal';
-      case this.translateService.instant('status.serviceError'):
-        return 'red';
-      case this.translateService.instant('status.serviceWaiting'):
-        return 'yellow';
-      default:
-        return 'yellow';
     }
   }
 
@@ -751,10 +719,8 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
             target: group.service_group_instance_id + '-s-' + service.service_id
           });
         });
-
       });
     }
-    console.log('INSTANCE RULES ', instance.rules);
     if (instance.rules) {
       instance.rules.forEach(rule => {
         this.setConnections(rule);
@@ -855,6 +821,13 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       this.backend.getAppInstance(this.organizationId,  this.instanceId)
       .subscribe(instance => {
           if (this.anyChanges(this.instance, instance)) {
+            if (instance.labels) {
+              const labelsLikeArray = [];
+              Object.keys(instance.labels).forEach(label => {
+                labelsLikeArray.push({key: label, value: instance.labels[label], selected: false});
+              });
+              instance.labels = labelsLikeArray;
+            }
             this.instance = instance;
             this.groups = instance.groups || [];
             this.toGraphData(instance);
@@ -902,7 +875,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           });
       });
     });
-
     // Check if there is any difference in the status
     instanceOutdatedServices.forEach(service => {
       const index = instanceUpdatedServices.map(x => x.id).indexOf(service.id);
@@ -914,7 +886,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         anyChanges = true;
       }
     });
-
     return anyChanges;
   }
 }

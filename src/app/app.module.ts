@@ -68,6 +68,7 @@ import { RegisteredServiceGroupInfoComponent } from './registered-service-group-
 import { ManageConnectionsComponent } from './manage-connections/manage-connections.component';
 import { AddConnectionsComponent } from './add-connections/add-connections.component';
 import { GraphComponent } from './graph/graph.component';
+import { LabelsCardComponent } from './labels-card/labels-card.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -122,7 +123,8 @@ export function createTranslateLoader(http: HttpClient) {
     RegisteredServiceGroupInfoComponent,
     ManageConnectionsComponent,
     AddConnectionsComponent,
-    GraphComponent
+    GraphComponent,
+    LabelsCardComponent
   ],
   entryComponents: [
     DebugPanelComponent,
