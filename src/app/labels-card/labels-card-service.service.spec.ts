@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LabelsCardServiceService } from '../labels-card-service.service';
+import { LabelsCardService } from './labels-card.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TooltipModule } from '@swimlane/ngx-charts';
 import { ButtonsModule, ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap';
@@ -31,7 +31,7 @@ describe('LabelsCardServiceService', () => {
   }));
 
   it('should be created', () => {
-    const service: LabelsCardServiceService = TestBed.get(LabelsCardServiceService);
+    const service: LabelsCardService = TestBed.get(LabelsCardService);
     expect(service).toBeTruthy();
   });
 });

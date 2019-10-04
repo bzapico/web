@@ -7,7 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { createTranslateLoader } from '../app.module';
-import { LabelsCardServiceService } from '../labels-card-service.service';
+import { LabelsCardService } from './labels-card.service';
 
 describe('LabelsCardComponent', () => {
   let component: LabelsCardComponent;
@@ -31,7 +31,7 @@ describe('LabelsCardComponent', () => {
     ],
     providers: [
       TranslateService,
-      LabelsCardServiceService,
+      LabelsCardService,
       BsModalService,
     ]
     })

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { LabelsCardService } from '../labels-card.service';
+import { LabelsCardService } from './labels-card.service';
 
 @Component({
   selector: 'labels-card',
