@@ -140,6 +140,7 @@
 	"graph": {
 		"autoRefresh": "Auto refresh every 5 seconds. Scroll on graph to zoom.",
 		"group": "GROUP ",
+		"rule": "RULE ",
 		"scroll": "Scroll on graph to zoom.",
 		"service": "SERVICE ",
 		"title": "Graph",

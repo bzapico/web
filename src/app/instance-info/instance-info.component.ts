@@ -11,6 +11,8 @@ import { ServiceInstancesInfoComponent } from '../service-instances-info/service
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { TranslateService } from '@ngx-translate/core';
 import { InstanceServiceGroupInfoComponent } from '../instance-service-group-info/instance-service-group-info.component';
+import { Observable, zip } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-instance-info',
@@ -707,6 +709,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           + this.getBeautyStatusName(group.status_name),
           color: this.getNodeColor(group.status_name),
           text: this.getNodeTextColor(group.status_name),
+          shape: 'rectangle',
           customHeight: 34,
           group: group.service_group_instance_id,
           icon: {
@@ -714,6 +717,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
             height: 24,
             x: 14,
             y: 5,
+            viewBox: '0 0 24 24',
             paths: [
               {
                 fill: '#fff',
@@ -737,6 +741,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
             + ': ' + this.getBeautyStatusName(service.status_name),
             color: this.getNodeColor(service.status_name),
             text: this.getNodeTextColor(group.status_name),
+            shape: 'rectangle',
             customHeight: 34,
             group: group.service_group_instance_id
           };
@@ -749,9 +754,10 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
 
       });
     }
-
+    console.log('INSTANCE RULES ', instance.rules);
     if (instance.rules) {
       instance.rules.forEach(rule => {
+        this.setConnections(rule);
         if (rule.auth_services) {
           rule.auth_services.forEach(authService => {
             const targetsIndex: number[] = [];
@@ -779,9 +785,65 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         }
       });
     }
-    this.graphDataLoaded = true;
   }
 
+  private setRulesNodes(rule) {
+    const ruleNode = {
+      id: rule.rule_id,
+      label: rule.name,
+      tooltip: this.translateService.instant('graph.rule') + rule.name,
+      color: '#5800FF',
+      text: '#FFF',
+      shape: 'circle',
+      icon: {
+        width: 25,
+        height: 25,
+        x: 11,
+        y: 11,
+        viewBox: '0 0 25 25',
+        paths: [
+          {
+            fill: '#fff',
+            d: 'M21.444,6.216A35.833,35.833,0,0,1,12.485,7.27,35.833,35.833,0,0,1,3.527,6.216' +
+                'L3,8.324A37.36,37.36,0,0,0,9.324,9.377v13.7h2.108V16.755h2.108v6.324h2.108' +
+                'V9.377a37.36,37.36,0,0,0,6.324-1.054Zm-8.958,0a2.108,2.108,0,1,0-2.108-2.108' +
+                'A2.114,2.114,0,0,0,12.485,6.216Z'
+          },
+          {
+            fill: 'none',
+            d: 'M0,0H24V24H0Z'
+          }
+        ]
+      }
+    };
+    this.graphData.nodes.push(ruleNode);
+  }
+
+  private setRulesLinks() {
+
+  }
+
+
+  private setConnections(rule) {
+    if (rule.access_name === 'PUBLIC') {
+      this.setRulesNodes(rule);
+      this.setRulesLinks();
+    }
+    let connections: Observable<any>;
+    if (this.instance && this.instance.groups) {
+      connections = zip(this.backend.getListAvailableInstanceInbounds(this.organizationId),
+        this.backend.getListAvailableInstanceOutbounds(this.organizationId))
+        .pipe(map(([instance_inbounds, instance_outbounds]) => {
+          console.log('INSTANCES INBOUND ', instance_inbounds['instance_inbounds']);
+          console.log('INSTANCES OUTBOUND ', instance_outbounds['instance_outbounds']);
+          return [...instance_inbounds['instance_inbounds'], ...instance_outbounds['instance_outbounds']];
+        }));
+    }
+    connections.subscribe((instances_connections) => {
+      console.log('INSTANCES CONNECTIONS ', instances_connections);
+      this.graphDataLoaded = true;
+    });
+  }
 
   /**
    * Requests an updated list of available services group to update the current one

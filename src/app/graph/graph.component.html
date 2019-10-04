@@ -12,8 +12,15 @@
       ngx-tooltip
       [tooltipPlacement]="'top'"
       [tooltipType]="'tooltip'"
-      [tooltipTitle]="node.tooltip">
-      <svg:rect
+      [tooltipTitle]="node.tooltip"
+      [ngSwitch]="node.shape">
+      <svg:rect *ngSwitchCase="'rectangle'"
+        [attr.width]="node.icon? node.width + ((node.icon.x * 2) + node.icon.width): node.width"
+        [attr.height]="node.customHeight || node.height"
+        [attr.fill]="node.color"/>
+      <svg:circle *ngSwitchCase="'circle'"
+        [attr.r]="node.customRadius"/>
+      <svg:rect *ngSwitchDefault
         [attr.width]="node.icon? node.width + ((node.icon.x * 2) + node.icon.width): node.width"
         [attr.height]="node.customHeight || node.height"
         [attr.fill]="node.color"/>
@@ -22,7 +29,7 @@
         [attr.height]="node.icon.height"
         [attr.x]="node.icon.x"
         [attr.y]="node.icon.y"
-        [attr.viewBox]="'0 0 24 24'">
+        [attr.viewBox]="node.icon.viewBox">
         <path *ngFor="let path of node.icon.paths"
           [attr.fill]="path.fill"
           [attr.d]="path.d"/>
