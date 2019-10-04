@@ -1,6 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppInfoComponent } from './app-info.component';
+import { ButtonsModule, BsModalRef, BsModalService, ModalModule, TooltipModule, AccordionModule } from 'ngx-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '../app.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FilterPipe } from '../pipes/filter.pipe';
 
 describe('AppInfoComponent', () => {
   let component: AppInfoComponent;
@@ -8,7 +17,31 @@ describe('AppInfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppInfoComponent ]
+      declarations: [ AppInfoComponent, FilterPipe ],
+    imports: [
+      HttpClientTestingModule,
+      FormsModule,
+      ButtonsModule,
+      TooltipModule.forRoot(),
+      ButtonsModule,
+      BrowserAnimationsModule,
+      FormsModule,
+      RouterTestingModule,
+      ModalModule.forRoot(),
+      TranslateModule.forRoot({
+        loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+        }
+      }),
+      AccordionModule.forRoot(),
+    ],
+    providers: [
+      BsModalRef,
+      BsModalService,
+      TranslateService
+    ]
     })
     .compileComponents();
   }));

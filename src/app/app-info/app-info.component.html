@@ -1,3 +1,368 @@
-<p>
-  app-info works!
-</p>
+<!-- Application instances id card -->
+<div class="card">
+  <div class="card-title-name">
+    <h5 class="d-inline">INSTANCE INFO</h5>
+    <div
+      tooltip="Info" 
+      placement="left"
+      class="app-info-button">
+      <i class="material-icons info-icon">info</i>
+    </div>
+  </div>
+  <div class="summary-instance-card">
+    <!-- Summary instances table-->
+    <div class="summary-table">
+      <div class="summary-table-tr">
+        <div class="summary-table-th">Name</div>
+        <div class="text-uppercase summary-table-td">{{instance.name}}</div> 
+      </div>
+      <div class="summary-table-tr">
+        <div class="summary-table-th">Status</div> 
+        <div id="summary-status" class="summary-table-td">
+          <span 
+            *ngIf="instance && instance.status_name"
+            [ngClass]=
+              "{
+                'big-status-dot':classInstanceStatusCheck(instance.status_name, 'status.running'|translate),
+                'big-status-dot-error':classInstanceStatusCheck(instance.status_name, 'status.error'|translate),
+                'big-status-dot-process':classInstanceStatusCheck(instance.status_name, 'status.process'|translate)
+              }"
+            tooltip="{{instance.status_name}}" 
+            placement="bottom"
+            class="big-status-dot">
+            {{instance.status_name}}
+          </span>
+        </div>
+      </div>
+      <div class="summary-table-tr">
+        <div class="summary-table-th">{{'apps.instance.tableInstanceOf'|translate}}</div>
+        <!-- GET REGISTERED AND SET THE RIGHT NAME --> 
+        <div class="blue summary-table-td">{{getDescriptorName(instance.app_descriptor_id)}}</div> 
+      </div>
+    </div>
+    <!-- Summary tabs -->
+    <div class="summary-info-box">
+      <ul class="tabs-box">
+        <li 
+          (click)="changeActiveList('parameters')" 
+          [ngClass]=
+            "{
+              'active': showParameters && !showNetwork && !showSetup,
+              'tabs-btn-selected': showParameters && !showNetwork && !showSetup
+            }" 
+          class="tabs-btn">
+          PARAMETERS
+        </li>
+        <li 
+          (click)="changeActiveList('network')" 
+          [ngClass]=
+            "{
+              'active': showNetwork && !showParameters && !showSetup,
+              'tabs-btn-selected': showNetwork && !showParameters && !showSetup
+            }" 
+          class="tabs-btn">
+            NETWORK
+        </li>
+        <li 
+          (click)="changeActiveList('setup')" 
+          [ngClass]=
+            "{
+              'active': showSetup && !showParameters && !showNetwork ,
+              'tabs-btn-selected': showSetup && !showParameters && !showNetwork 
+            }" 
+          class="tabs-btn">
+            SETUP
+        </li>
+      </ul>
+    </div>
+    <!-- Search box -->
+    <div class="summary-info-box">
+      <div class="search-box">
+        <input 
+          name="searchTerm" 
+          [(ngModel)]="searchTerm"
+          type="text" 
+          placeholder="{{'searcher.placeholder'|translate }}"
+          class="form-control"> 
+        <div *ngIf="searchTerm === ''" class="search-icon">
+          <i class="material-icons">search</i>
+        </div>     
+        <div *ngIf="searchTerm !== ''" class="close-icon">
+          <i (click)="resetFilters()" class="material-icons">close</i>
+        </div>
+      </div>
+    </div>
+    <!-- List to show box -->
+    <div class="summary-info-box">
+      <!-- Parameters list -->
+      <div *ngIf="showParameters" class="summary-parameters">
+        <!-- Basic Parameters list -->
+        <div class="accordion-box">
+          <accordion 
+            class="accordion-tabs">
+            <accordion-group 
+              heading="Basic"
+              [panelClass]="nalejAccordion"
+              [isOpen]="isFirstOpen">
+              <span     
+                accordion-heading 
+                class="accordion-icons-box">
+                <i class="material-icons accordion-arrow">arrow_drop_down</i>
+              </span>
+              <div class="form-group">
+                <div>
+                  <label>param 1</label>
+                  <input 
+                    type="text" 
+                    placeholder="Default value"
+                    class="form-control"
+                    disabled>
+                  <label class="accordion-foot">Type restrictions: string</label>
+                </div>
+                <div>
+                  <label>param 1</label>
+                  <input 
+                    type="text" 
+                    placeholder="Default value"
+                    class="form-control"
+                    disabled>
+                  <label class="accordion-foot">Type restrictions: string</label>
+                </div>
+              </div>
+            </accordion-group>
+          </accordion>
+        </div>
+        <!-- Advanced Parameters list -->
+        <div class="accordion-box">
+          <accordion 
+            class="accordion-tabs">
+            <accordion-group 
+              heading="Advanced"
+              [panelClass]="nalejAccordion"
+              [isOpen]="isFirstOpen">
+              <span     
+                accordion-heading 
+                class="accordion-icons-box">
+                <i class="material-icons accordion-arrow">arrow_drop_down</i>
+              </span>
+              <div class="form-group">
+                <div>
+                  <label>param 1</label>
+                  <input 
+                    type="text" 
+                    placeholder="Default value"
+                    class="form-control"
+                    disabled>
+                  <label class="accordion-foot">Type restrictions: string</label>
+                </div>
+                <div>
+                  <label>param 1</label>
+                  <input 
+                    type="text" 
+                    placeholder="Default value"
+                    class="form-control"
+                    disabled>
+                  <label class="accordion-foot">Type restrictions: string</label>
+                </div>
+              </div>
+            </accordion-group>
+          </accordion>
+        </div>
+      </div>
+      <!-- Networks list -->
+      <div *ngIf="showNetwork" class="summary-network">
+        <div class="accordion-box">
+          <accordion 
+            class="accordion-tabs">
+            <accordion-group 
+              heading="Inbounds"
+              [panelClass]="nalejAccordion"
+              [isOpen]="isFirstOpen">
+              <span     
+                accordion-heading 
+                class="accordion-icons-box">
+                <i class="material-icons accordion-arrow">arrow_drop_down</i>
+              </span>
+              <div class="label-nalej-table no-m-row">
+                <div class="label-thead row">
+                  <div class="col-4 label-th">
+                    <span tooltip="Interface" placement="bottom">
+                      Interface
+                    </span>
+                  </div>
+                  <div class="col-4 label-th text-center">
+                    <span tooltip="Source" placement="bottom">
+                      Source
+                    </span>
+                  </div>
+                  <div class="col-4 label-th text-center">
+                    <span tooltip="Disconnect" placement="bottom">
+                      Disconnect
+                    </span>
+                  </div>
+                </div>
+                <div class="scroll-app-info ">
+                  <div *ngFor=
+                    "let connection of copyConnections |
+                    filter : searchTerm; let i = index">
+                    <span *ngIf="connection.connected"  class="label-tbody row">
+                      <div class="col-4">
+                        <span class="grey">{{connection.inbound.interfaceName}}</span>
+                      </div>
+                      <div class="col-4 text-center">
+                        <span>{{connection.inbound.instance}}</span>
+                        <br>
+                        <span>{{connection.outbound.interfaceName}}</span>
+                      </div>
+                      <div class="col-4 text-center label-td-flex">
+                        <button 
+                          (click)="disconnectInstance(connection)"
+                          tooltip="{{'apps.manageConnections.disconnect'|translate}}" 
+                          placement="left" 
+                          class="action-btn-red">
+                          <i class="material-icons i-red">link_off</i>
+                        </button>
+                      </div>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </accordion-group>
+          </accordion>
+        </div>
+        <div class=" accordion-box">
+          <accordion 
+          class="accordion-tabs">
+          <accordion-group 
+            heading="Outbound"
+            [panelClass]="nalejAccordion"
+            [isOpen]="isFirstOpen">
+            <span     
+              accordion-heading 
+              class="accordion-icons-box">
+              <i class="material-icons accordion-arrow">arrow_drop_down</i>
+            </span>
+            <div class="label-nalej-table  no-m-row">
+              <div class="label-thead row">
+                <div class="col-4 label-th">
+                  <span tooltip="Interface" placement="bottom">
+                    Interface
+                  </span>
+                </div>
+                <div class="col-4 label-th text-center">
+                  <span tooltip="Target" placement="bottom">
+                    Target
+                  </span>
+                </div>
+                <div class="col-4 label-th text-center">
+                  <span tooltip="Disconnect" placement="bottom">
+                    Disconnect
+                  </span>
+                </div>
+              </div>
+              <div class="scroll-app-info">
+                <div *ngFor=
+                  "let connection of copyConnections |
+                  filter : searchTerm; let i = index">
+                  <span *ngIf="connection.connected"  class="label-tbody row">
+                    <div class="col-4">
+                      <span class="grey">{{connection.outbound.interfaceName}}</span>
+                    </div>
+                    <div class="col-4 text-center">
+                      <span>{{connection.inbound.instance}}</span>
+                      <br>
+                      <span>{{connection.inbound.interfaceName}}</span>
+                    </div>
+                    <div class="col-4 text-center label-td-flex">
+                      <button 
+                        (click)="disconnectInstance(connection)"
+                        tooltip="{{'apps.manageConnections.disconnect'|translate}}" 
+                        placement="left" 
+                        class="action-btn-red">
+                        <i class="material-icons i-red">link_off</i>
+                      </button>
+                    </div>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </accordion-group>
+          </accordion>
+        </div>
+      </div>
+      <!-- Setup list -->
+      <div *ngIf="showSetup" class="summary-parameters">
+        <!-- Environment variables list -->
+        <div class="accordion-box">
+          <accordion 
+            class="accordion-tabs">
+            <accordion-group 
+              heading="Environment variables"
+              [panelClass]="nalejAccordion"
+              [isOpen]="isFirstOpen">
+              <span     
+                accordion-heading 
+                class="accordion-icons-box">
+                <i class="material-icons accordion-arrow">arrow_drop_down</i>
+              </span>
+              <div class="label-nalej-table no-p-col no-m-row">
+                <div class="scroll-app-info">
+                  <div>
+                    <span class="label-tbody row">
+                      <div class="col-6">
+                        <span class="grey">ENV_VAR_VAR1</span>
+                      </div>
+                      <div class="col-6 text-right">
+                        <span>value</span>
+                      </div>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </accordion-group>
+          </accordion>
+        </div>
+        <!-- Other setting  list -->
+        <div class="accordion-box">
+          <accordion 
+            class="accordion-tabs">
+            <accordion-group 
+              heading="Other setting"
+              [panelClass]="nalejAccordion"
+              [isOpen]="isFirstOpen">
+              <span     
+                accordion-heading 
+                class="accordion-icons-box">
+                <i class="material-icons accordion-arrow">arrow_drop_down</i>
+              </span>
+              <div class="label-nalej-table no-p-col no-m-row">
+                <div class="scroll-app-info">
+                  <div>
+                    <span class="label-tbody row">
+                      <div class="col-6">
+                        <span class="grey">Cgf1</span>
+                      </div>
+                      <div class="col-6 text-right">
+                        <span>value</span>
+                      </div>
+                      <br>
+                    </span>
+                    <span class="label-tbody row">
+                      <div class="col-6">
+                        <span class="grey">Cgf1</span>
+                      </div>
+                      <div class="col-6 text-right">
+                        <span>value</span>
+                      </div>
+                      <br>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </accordion-group>
+          </accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
