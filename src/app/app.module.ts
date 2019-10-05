@@ -69,6 +69,7 @@ import { ManageConnectionsComponent } from './manage-connections/manage-connecti
 import { AddConnectionsComponent } from './add-connections/add-connections.component';
 import { AppInfoComponent } from './app-info/app-info.component';
 import { LabelsCardComponent } from './labels-card/labels-card.component';
+import { AppInfoDetailedComponent } from './app-info-detailed/app-info-detailed.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -124,7 +125,8 @@ export function createTranslateLoader(http: HttpClient) {
     ManageConnectionsComponent,
     AddConnectionsComponent,
     AppInfoComponent,
-    LabelsCardComponent
+    LabelsCardComponent,
+    AppInfoDetailedComponent
   ],
   entryComponents: [
     DebugPanelComponent,
