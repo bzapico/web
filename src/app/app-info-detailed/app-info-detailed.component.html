@@ -1,3 +1,141 @@
-<p>
-  app-info-detailed works!
-</p>
+
+<div class="modal-card modal-card-info">
+    <div class="modal-content">
+      <!-- Header -->
+      <div class="modal-header">
+        <h3 class="modal-info-title mb-4">INSTANCE INFO</h3>
+        <h3 *ngIf="openFromRegistered" class="modal-info-title mb-4">DESCRIPTOR</h3>
+      </div>
+      <!-- Body -->
+      <div class="modal-body">
+        <h3 class="modal-info-h3-title">{{name}}</h3>
+        <p class="modal-info-title-sm">{{appInstanceId}}</p>
+        <div class="scroll-app-info">
+          <div class="row">
+            <div class="col-sm modal-info-table-title mb-3">Organization ID</div>
+            <div class="col-sm text-right">{{organizationId}}</div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm modal-info-table-title mb-3">Labels</div>
+          </div>
+          <div *ngFor="let label of labels | keyvalue" class="row">
+            <div *ngIf="labels" class="col-sm text-right">
+              <button class="label-content-disabled">
+                {{label.key}}: {{label.value}}
+              </button>
+            </div>
+            <div *ngIf="!labels" class="col-sm text-right">No</div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm modal-info-table-title">Groups</div>
+          </div>
+          <br>
+          <!-- Groups -->
+          <span *ngFor="let group of group">
+            <div class="row">
+              <div class="col-sm modal-info-table-title mb-3 dark-grey">{{group.name}}</div>
+              <div class="col-sm text-right">{{group.service_group_id}}</div>
+            </div>
+            <!-- Services -->
+            <div class="services-bg">
+              <div *ngFor="let service of group.service_instances" class="row">
+                <div *ngIf="!group.service_instances" class="col-sm text-right">No services</div>
+                <div *ngIf="group.service_instances" class="col-sm mb-3">
+                  <div class="row">
+                    <div class="col-sm modal-info-table-title mb-3 dark-grey">{{service.name}}</div>
+                    <div class="col-sm text-right">{{service.service_instance_id}}</div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-sm modal-info-table-title mb-3">Status</div>
+                    <h3 class="modal-info-h3-title col-sm text-right">
+                      <span 
+                        [ngClass]=
+                        "{
+                          'big-status-dot': classStatusCheck(service.status_name, 'service_running'),
+                          'big-status-dot-error': classStatusCheck(service.status_name, 'service_error'),
+                          'big-status-dot-process': classStatusCheck(service.status_name, 'service_waiting') || classStatusCheck (service.status_name, 'service_scheduled')
+                        }"
+                        tooltip="{{service.status_name}}" 
+                        placement="bottom"
+                        class="big-status-dot">
+                        <span class="fw-black">
+                          {{getBeautyStatusName(service.status_name)}}
+                        </span>
+                      </span>
+                    </h3>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-sm modal-info-table-title mb-3">Deployed on cluster ID</div>
+                    <div class="col-sm text-right">{{service.deployed_on_cluster_id}}</div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-sm modal-info-table-title">Replicas</div>
+                    <h3 class="modal-info-h3-title col-sm text-right">{{service.specs.replicas}}</h3>
+                  </div>
+                  <br>
+                  <div *ngIf="service.endpoints">
+                    <div class="row">
+                      <div class="col-sm modal-info-table-title mb-3">Endpoints</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm"></div>
+                      <div class="col-sm-9 text-right blue mb-2">
+                        <span *ngFor="let endpoint of service.endpoints">
+                          <a 
+                            *ngIf="endpoint" 
+                            href="{{getEndpointHref(endpoint)}}" 
+                            target="_blank">
+                            {{endpoint}}ESTO ES EL ENDPOINT
+                          </a>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="service.environment_variables">
+                    <div class="row">
+                      <div class="col-sm modal-info-table-title mb-3">{{'apps.instance.environmentVariables'|translate}}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm text-right">
+                        <div *ngFor="let variable of service.environment_variables | keyvalue" class="row mb-2" >
+                            <div class="col-12 grey text-right">
+                              {{variable.key}} 
+                            </div>
+                            <div class="col-12 text-right">
+                              {{variable.value}}
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="!service.environment_variables">
+                    <p class="text-left">{{'apps.instance.environmentVariables'|translate}}</p>
+                    <p class="grey">{{'apps.instance.noEnvironmentVariables'|translate}}</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm modal-info-table-title">Image</div>
+                    <div class="col-sm text-right">{{service.image}}</div>
+                  </div>
+                  <br>
+                </div>
+              </div>
+            </div>
+          </span>
+          <br>
+        </div>      
+        <!-- Option button -->
+        <div class="form-group-btn">
+          <button (click)="closeModal()" class="nalej-form-btn-blue">
+            <span class="align-bottom">Close</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+      
