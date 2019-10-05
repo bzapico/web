@@ -155,7 +155,8 @@ export function createTranslateLoader(http: HttpClient) {
     InstanceServiceGroupInfoComponent,
     RegisteredServiceGroupInfoComponent,
     ManageConnectionsComponent,
-    AddConnectionsComponent
+    AddConnectionsComponent,
+    AppInfoDetailedComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { Backend } from '../definitions/interfaces/backend';
 import { NotificationsService } from '../services/notifications.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { AppInfoDetailedComponent } from '../app-info-detailed/app-info-detailed.component';
 
 @Component({
   selector: 'app-info',
@@ -18,6 +20,11 @@ export class AppInfoComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
+
+  /**
+   * Reference for the service that allows the modal component
+   */
+  modalRef: BsModalRef;
 
   /**
    * Model that hold organization ID
@@ -48,6 +55,7 @@ export class AppInfoComponent implements OnInit {
     private router: Router,
     private translateService: TranslateService,
     private notificationsService: NotificationsService,
+    private modalService: BsModalService
   ) {
     this.showParameters = true;
     this.showNetwork = false;
@@ -309,6 +317,28 @@ export class AppInfoComponent implements OnInit {
         timeout: 3000
       });
     }
+  }
+
+
+    /**
+   * Open app info detailed modal window
+   *  @param app app object
+   */
+  openAppInfoDetailed(app) {
+    const initialState = {
+      organizationId: app.organization_id,
+      appDescriptorId: app.app_descriptor_id,
+      appInstanceId: app.app_instance_id,
+      name: app.name,
+      group: app.groups,
+      statusName: app.status_name,
+      labels: app.labels
+    };
+    console.log('app ', app);
+    console.log('initialState ', initialState);
+
+    this.modalRef = this.modalService.show(AppInfoDetailedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
   }
 
 }
