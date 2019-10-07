@@ -1,12 +1,6 @@
-@mixin for-desktop-only {
-    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
-}
-
-$base-grey: #828282;
-$super-light-grey: #F8F8F8;
-$light-grey: #EEEEEE;
-$super-dark-grey: #151515;
-$base-light-grey: #BFBFBF;
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
+@import '../scss/components/accordion';
 
 .summary-instance-card {
     width: 100%;
@@ -41,6 +35,11 @@ $base-light-grey: #BFBFBF;
 }
 .tabs-box {
     margin-top: 22px;
+    justify-content: space-between;
+    padding: 0 24px;
+        li {
+        margin-right: 0px;
+    }
 }
 .search-box {
     width: 100%;
@@ -62,19 +61,17 @@ $base-light-grey: #BFBFBF;
 .label-nalej-table .label-thead .label-th {
     font-size: 13px;
 }
-.tabs-box li {
-    margin: 0 auto;
-}
+
 .accordion-box {
     width: 100%;
     .form-group {
         margin: 0;
         overflow-y: scroll;
         height: 100px;
-        padding: 0 24px;
+        padding: 0 5px 0 18px;
         input {
             &::placeholder {
-                color:$super-dark-grey;
+                color: $super-dark-grey;
                 font-size: 12px;
             }
         }
@@ -82,6 +79,7 @@ $base-light-grey: #BFBFBF;
     .form-control:disabled {
         background-color: $light-grey;
         border-color: $light-grey;
+        text-align: left;
     }
     .form-group label, .form-group-btn label {
         font-size: 12px;
@@ -97,12 +95,13 @@ $base-light-grey: #BFBFBF;
             left: 5px;
         }
     }
-    .accordion-foot {
+    label.accordion-foot {
         color: $base-light-grey;
         text-transform: lowercase;
-        font-size: 10px;
+        font-size: 10px !important;
         &::first-letter {
             text-transform: capitalize;
         }
     }
+
 }

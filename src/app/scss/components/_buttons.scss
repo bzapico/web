@@ -44,7 +44,7 @@ button[type="submit"]:disabled {
     font-weight: 500;
     cursor: pointer;
     &:focus {
-      outline: 0;
+        outline: 0;
     }
 }
 .action-btn-blue {
@@ -54,7 +54,7 @@ button[type="submit"]:disabled {
     &:hover {
         color: #ffffff;
         transition: 0.3s;
-         background-color: $base-violet;
+        background-color: $base-violet;
         opacity: 0.6;
     }
     @include for-desktop-up {
@@ -150,8 +150,8 @@ button[type="submit"]:disabled {
         font-size: 31px;
     }
     &:hover {
-       color: $base-violet;
-       opacity: 0.6;
+        color: $base-violet;
+        opacity: 0.6;
     }
 }
 
@@ -308,4 +308,3 @@ button[type="submit"]:disabled {
     left: 2px;
     color: #ffffff;
 }
-  

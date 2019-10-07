@@ -1,74 +1,35 @@
 <!-- Component title -->
 <div class="row row-title">
   <div class="col-lg-12">
-    <h2 class="section-title">{{'apps.instance.title'|translate}}</h2>
+    <h2 class="section-title">
+      <a 
+        [routerLink]="['/applications']" 
+        routerLinkActive="active" 
+        class="blue fw-black">
+        {{'apps.instance.title'|translate}}
+      </a>
+      <span class="grey"> > </span>
+      <span class="grey">REGISTERED</span>
+      <span class="grey"> > </span>
+      <span class=" text-uppercase">
+          <b>{{registeredData.name}}</b>
+      </span>
+    </h2>
   </div>
 </div>
 <div class="row row-app-main">
   <div class="col-4 h-100">
     <div class="flex-col-app">
-      <!-- Registered application id card -->
-      <div class="card row-info-app flex-grow-0">
-        <div class="card-title-name">
-          <h5>
-            <a 
-              [routerLink]="['/applications']" 
-              routerLinkActive="active" 
-              class="blue">
-              {{'apps.instance.idApps'|translate}}
-            </a>
-            <span class="grey"> > </span>
-            <b>{{'apps.instance.idRegistered'|translate}}</b>
-            <span class="grey"> > </span>
-            <span class="grey text-uppercase">
-            {{registeredData.name}}
-            </span>
-          </h5>
-        </div>
-        <div class="reg-info-box">
-          <div class="reg-info-id-box">
-            <div class="reg-info mx-2">
-              <p class="reg-info-id text-left">{{'apps.instance.tableId'|translate}}</p>
-              <p class="reg-info-id w-75">{{registeredData.app_descriptor_id}}</p>
-            </div>
-          </div>
-          <div class="reg-info">
-            <button (click)="deployRegistered(registeredData)" class="reg-deploy">
-              <i class="material-icons i-options">play_arrow</i>
-              {{'apps.registered.deploy'|translate}} <span class="hide-reg-btn-text">{{'apps.registered.instance'|translate}}</span> 
-            </button>
-            <button (click)="deleteApp(registeredData)" class="reg-undeploy">
-              <i class="material-icons i-options">delete</i>
-              {{'apps.registered.delete'|translate}} <span class="hide-reg-btn-text">{{'apps.registered.app'|translate}}</span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <!-- Services summary card -->
-      <div class="card row-summary-app flex-grow-0">
-        <div class="card-title-name">
-          <h5>{{'apps.registered.servicesSummary'|translate}}</h5>
-        </div>
-        <div *ngIf="registeredData.groups && registeredData.groups.length > 0" class="summary-card">
-          <div class="summary-box">
-            <div class="circle">
-              <span>{{registeredData.groups.length}}</span>
-            </div>
-            <p class="circle-name">{{'devices.summary.groups.title'|translate}}</p>
-          </div>
-          <div class="summary-box">
-            <div class="circle">
-              <span>{{getServicesCount(registeredData)}}</span>
-            </div>
-            <p class="circle-name">{{'apps.instance.servicesTitle'|translate}}</p>
-          </div>
-        </div>
-        <div *ngIf="!registeredData.groups || registeredData.groups.length === 0" class="no-elements">
-          {{'apps.registered.noRegisteredApps'|translate}}
-        </div>
-      </div>
+      <!-- Registered id card -->
+      <app-info
+        *ngIf="loadedData"
+        [registeredData]="registeredData"
+        [openFromRegistered]="openFromRegistered"
+        class="row-info-app flex-grow-1">
+      </app-info>
       <!-- Labels card-->
-      <labels-card *ngIf="loadedData"
+      <labels-card 
+        *ngIf="loadedData"
         [labelsData]="registeredData"
         [isSelectableLabel]="isSelectableLabel"
         (updateLabels)="updateLabels($event)">
@@ -584,7 +545,7 @@
                 <p>{{requestError}}</p>
               </div>
             </div>
-         </div>
+          </div>
           <!-- Loader -->
           <div *ngIf="!loadedData" class="nalej-loader-box">
             <div class="loader">

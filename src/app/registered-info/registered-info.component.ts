@@ -64,6 +64,7 @@ export class RegisteredInfoComponent implements OnInit {
    * Model that hold registered application descriptor data
    */
   registeredData: AppDescriptor;
+  openFromRegistered: boolean;
 
   /**
    * List of available services groups
@@ -75,7 +76,6 @@ export class RegisteredInfoComponent implements OnInit {
    */
   isSelectableLabel: boolean;
   entityId: string;
-
 
   /**
    * Hold request error message or undefined
@@ -133,6 +133,7 @@ export class RegisteredInfoComponent implements OnInit {
   height: number;
   whiteColor: string;
 
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -150,6 +151,7 @@ export class RegisteredInfoComponent implements OnInit {
       this.backend = this.backendService;
     }
     // Default initialization
+    this.openFromRegistered = true;
     this.services = [];
     this.servicesCount = 0;
     this.isSelectableLabel = true;
@@ -198,6 +200,7 @@ export class RegisteredInfoComponent implements OnInit {
         }
     }
   }
+
 
   /* Sortby pipe in the component
    * @param categoryName the name of the chosen category

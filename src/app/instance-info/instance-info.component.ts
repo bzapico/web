@@ -44,6 +44,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    */
   instance: any;
   enabled: boolean;
+  openFromInstance: boolean;
 
   /**
    * Registered instances list
@@ -144,6 +145,8 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     ERROR: '#FFFFFF',
     OTHER: '#444444'
   };
+
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -161,6 +164,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       this.backend = this.backendService;
     }
     // Default initialization
+    this.openFromInstance = true;
     this.labels = [];
     this.isSelectableLabel = false;
     this.groups = [];
@@ -334,20 +338,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Returns the descriptor beauty name
-   * @param descriptorId Descriptor identifier
-   */
-  getDescriptorName(descriptorId: string) {
-    const index =
-    this.registered
-        .map(x => x.app_descriptor_id).
-        indexOf(descriptorId);
-    if (index !== -1) {
-      return this.registered[index].name;
-    }
-  }
-
-  /**
    * Requests to undeploy the selected instance
    * @param app Application instance object
    */
@@ -399,70 +389,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       }
       default: {
         if (className.toLowerCase() === this.translateService.instant('status.serviceWaiting')) {
-          return true;
-        }
-        return false;
-      }
-    }
-  }
-
-  /**
-   * Checks if the instances status requires an special css class
-   * @param status instances status name
-   * @param className CSS class name
-   */
-  classInstanceStatusCheck(status: string, className: string): boolean {
-    switch (status.toLowerCase()) {
-      case this.translateService.instant('status.running'): {
-        if (className.toLowerCase() === this.translateService.instant('status.running')) {
-          return true;
-        }
-        break;
-      }
-      case this.translateService.instant('status.deploymentError'): {
-        if (className.toLowerCase() === this.translateService.instant('status.error')) {
-          return true;
-        }
-        break;
-      }
-      case this.translateService.instant('status.planningError'): {
-        if (className.toLowerCase() === this.translateService.instant('status.error')) {
-          return true;
-        }
-        break;
-      }
-      case this.translateService.instant('status.incomplete'): {
-        if (className.toLowerCase() === this.translateService.instant('status.error')) {
-          return true;
-        }
-        break;
-      }
-      case this.translateService.instant('status.error'): {
-        if (className.toLowerCase() === this.translateService.instant('status.error')) {
-          return true;
-        }
-        break;
-      }
-      case 'queued': {
-        if (className.toLowerCase() === this.translateService.instant('status.process')) {
-          return true;
-        }
-        break;
-      }
-      case this.translateService.instant('status.planning'): {
-        if (className.toLowerCase() === this.translateService.instant('status.process')) {
-          return true;
-        }
-        break;
-      }
-      case this.translateService.instant('status.scheduled'): {
-        if (className.toLowerCase() === this.translateService.instant('status.process')) {
-          return true;
-        }
-        break;
-      }
-     default: {
-        if (className.toLowerCase() === this.translateService.instant('status.process')) {
           return true;
         }
         return false;

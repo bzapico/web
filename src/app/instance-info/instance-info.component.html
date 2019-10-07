@@ -25,7 +25,8 @@
         *ngIf="loadedData"
         [instance]="instance"
         [registered]="registered"
-        class="row-info-app flex-grow-0">
+        [openFromInstance]="openFromInstance"
+        class="row-info-app flex-grow-1">
       </app-info>
       <!-- Labels card-->
       <labels-card 
@@ -390,7 +391,7 @@
           </div>
         </div>
       </div>
-      <div class="row row-app-rules ">
+      <div class="row row-app-rules">
         <!-- Rules card -->
         <div class="col-lg-8">
           <div class="card">

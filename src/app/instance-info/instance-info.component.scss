@@ -1,15 +1,8 @@
-@mixin for-desktop-h {
-    @media all and (max-height: 900px) { @content; }
-}
-
-$base-grey: #828282;
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
 
 .row-info-app {
-    min-height: 659px;
-    // min-height: 587px;
-    // @include for-desktop-h {
-    //     min-height: 410px;
-    // }
+    height: 301px;
 }
 .config-card {
     font-size: .8em;
@@ -25,8 +18,19 @@ $base-grey: #828282;
         justify-content: end;
     }
 }
+.info-icon {
+    font-size: 30px;
+}
 .search-box {
     margin-right: 0;
+}
+.accordion-box 
+.accordion-tabs 
+.nalejAccordion 
+.accordion-icons-box 
+.accordion-btn {
+    top: 7px;
+    right: 36px;
 }
 .show-graph-icons {
     cursor: pointer;
