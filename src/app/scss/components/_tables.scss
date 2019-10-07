@@ -401,6 +401,7 @@ div.label-nalej-table.no-p-col.no-m-row
 /* - - - Table for summary card - - - */
 .summary-table {
     width: 100%;
+    margin: 10px 0;
     .status-dot-nalej, 
     .status-dot:before, 
     .status-dot-error:before, 
@@ -437,5 +438,18 @@ div.label-nalej-table.no-p-col.no-m-row
             font-size: .8em;
             text-align: right;
         }
+    }
+    .summary-table-td-big {
+        vertical-align: inherit;
+        border: none;
+        text-align: right;
+        color: #212529;
+        display: inline;
+        font-size: 20px;
+        @include for-desktop-only {
+            font-size: .8em;
+            text-align: right;
+        }
+
     }
 }

@@ -44,6 +44,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    */
   instance: any;
   enabled: boolean;
+  openFromInstance: boolean;
 
   /**
    * Registered instances list
@@ -144,6 +145,8 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     ERROR: '#FFFFFF',
     OTHER: '#444444'
   };
+
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -161,6 +164,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       this.backend = this.backendService;
     }
     // Default initialization
+    this.openFromInstance = true;
     this.labels = [];
     this.isSelectableLabel = false;
     this.groups = [];

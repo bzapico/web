@@ -1,14 +1,5 @@
-@mixin for-md-desktop-fix {
-    @media all and (max-width: 1614px) { @content; }
-}
-@mixin for-desktop-h {
-    @media all and (max-height: 900px) { @content; }
-}
-
-$base-violet: #5800FF;
-$base-red: #F7478A;
-$base-grey: #828282;
-$super-light-grey: #F8F8F8;
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
 
 /* - - - Card heights - - */
 .row-info-app {

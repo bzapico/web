@@ -13,6 +13,9 @@ export class AppInfoComponent implements OnInit {
 
   @Input() instance: any;
   @Input() registered: any;
+  @Input() registeredData: any;
+  @Input() openFromInstance: boolean;
+  @Input() openFromRegistered: boolean;
 
   /**
    * Backend reference
@@ -42,6 +45,7 @@ export class AppInfoComponent implements OnInit {
    * Accordion options
    */
   nalejAccordion = 'nalejAccordion';
+  nalejAccordionSmall = 'nalejAccordionSmall';
   isFirstOpen = true;
 
   constructor(
@@ -54,6 +58,7 @@ export class AppInfoComponent implements OnInit {
     this.showSetup = false;
     this.instance = {};
     this.registered = [];
+    this.registeredData = [];
     this.searchTerm = '';
     // CONNECTIONS
     this.connections = [
