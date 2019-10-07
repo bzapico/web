@@ -25,15 +25,17 @@ export class GraphComponent implements OnInit {
    * @param link Link object
    */
   getMarker(link) {
-    const index = this.nodes.map(x => x.id).indexOf(link.source);
-    if (index !== -1) {
-      if (this.nodes[index].id === this.nodes[index].group) {
-        return '';
-      } else {
-        return 'url(#arrow)';
+    if (!link.notMarker) {
+      const index = this.nodes.map(x => x.id).indexOf(link.source);
+      if (index !== -1) {
+        if (this.nodes[index].id === this.nodes[index].group) {
+          return '';
+        } else {
+          return 'url(#arrow)';
+        }
       }
+      return 'url(#arrow)';
     }
-    return 'url(#arrow)';
   }
 
 }

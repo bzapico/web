@@ -19,7 +19,10 @@
         [attr.height]="node.customHeight || node.height"
         [attr.fill]="node.color"/>
       <svg:circle *ngSwitchCase="'circle'"
-        [attr.r]="node.customRadius"/>
+        [attr.r]="node.customRadius"
+        [attr.cx]="node.width/2"
+        [attr.cy]="node.height/2"
+        [attr.fill]="node.color"/>
       <svg:rect *ngSwitchDefault
         [attr.width]="node.icon? node.width + ((node.icon.x * 2) + node.icon.width): node.width"
         [attr.height]="node.customHeight || node.height"
@@ -34,11 +37,18 @@
           [attr.fill]="path.fill"
           [attr.d]="path.d"/>
       </svg>
-      <svg:text
+      <svg:text *ngSwitchCase="'rectangle'"
         [attr.fill]="node.text"
-        alignment-baseline="central"
+        [attr.alignment-baseline]="node.alignment"
         [attr.x]="node.icon? (node.icon.x * 2) + node.icon.width: 10"
         [attr.y]="node.height/2">
+        {{node.label}}
+      </svg:text>
+      <svg:text *ngSwitchCase="'circle'"
+        [attr.fill]="node.text"
+        [attr.alignment-baseline]="node.alignment"
+        [attr.x]="10"
+        [attr.y]="node.height + 10">
         {{node.label}}
       </svg:text>
     </svg:g>

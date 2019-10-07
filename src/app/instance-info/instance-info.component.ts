@@ -13,6 +13,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { InstanceServiceGroupInfoComponent } from '../instance-service-group-info/instance-service-group-info.component';
 import { Observable, zip } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {AccessType} from '../definitions/enums/access-type.enum';
+import {ConnectionStatus} from '../definitions/enums/connection-status.enum';
 
 @Component({
   selector: 'app-instance-info',
@@ -146,6 +148,10 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     ERROR: '#FFFFFF',
     OTHER: '#444444'
   };
+
+  isGeneratedPublicRule: boolean;
+  publicRule: any;
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -211,6 +217,8 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     ];
     this.nextColorIndex = 0;
 
+    this.isGeneratedPublicRule = false;
+    this.publicRule = null;
   }
 
   ngOnInit() {
@@ -622,22 +630,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Return if the marker is required
-   * @param link Link object
-   */
-  getMarker(link) {
-    const index = this.graphData.nodes.map(x => x.id).indexOf(link.source);
-    if (index !== -1) {
-      if (this.graphData.nodes[index].id === this.graphData.nodes[index].group) {
-        return '';
-      } else {
-        return 'url(#arrow)';
-      }
-    }
-    return 'url(#arrow)';
-  }
-
-  /**
    * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
    */
   resetGraphZoom() {
@@ -677,6 +669,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           + this.getBeautyStatusName(group.status_name),
           color: this.getNodeColor(group.status_name),
           text: this.getNodeTextColor(group.status_name),
+          alignment: 'central',
           shape: 'rectangle',
           customHeight: 34,
           group: group.service_group_instance_id,
@@ -709,6 +702,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
             + ': ' + this.getBeautyStatusName(service.status_name),
             color: this.getNodeColor(service.status_name),
             text: this.getNodeTextColor(group.status_name),
+            alignment: 'central',
             shape: 'rectangle',
             customHeight: 34,
             group: group.service_group_instance_id
@@ -719,11 +713,15 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
             target: group.service_group_instance_id + '-s-' + service.service_id
           });
         });
+        if (instance.rules) {
+          instance.rules.forEach(rule => {
+            this.setConnections(rule, group);
+          });
+        }
       });
     }
     if (instance.rules) {
       instance.rules.forEach(rule => {
-        this.setConnections(rule);
         if (rule.auth_services) {
           rule.auth_services.forEach(authService => {
             const targetsIndex: number[] = [];
@@ -753,19 +751,22 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     }
   }
 
-  private setRulesNodes(rule) {
+  private setRulesNodes(rule, group) {
     const ruleNode = {
       id: rule.rule_id,
-      label: rule.name,
+      label: 'Public Access',
       tooltip: this.translateService.instant('graph.rule') + rule.name,
+      group: group.service_group_instance_id,
       color: '#5800FF',
-      text: '#FFF',
+      text: '#000',
+      aligment: 'before-edge',
       shape: 'circle',
+      customRadius: 24,
       icon: {
         width: 25,
         height: 25,
-        x: 11,
-        y: 11,
+        x: 35,
+        y: 15,
         viewBox: '0 0 25 25',
         paths: [
           {
@@ -785,27 +786,48 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.graphData.nodes.push(ruleNode);
   }
 
-  private setRulesLinks() {
-
+  private setRulesLinks(rule, group) {
+    group.service_instances.forEach(service => {
+      if (service.name === rule.target_service_name) {
+        this.graphData.links.push({
+          source: this.publicRule ? this.publicRule.rule_id : rule.rule_id,
+          target: group.service_group_instance_id + '-s-' + service.service_id,
+          notMarker: true
+        });
+        if (!this.publicRule) {
+          this.publicRule = rule;
+        }
+      }
+    });
   }
 
 
-  private setConnections(rule) {
-    if (rule.access_name === 'PUBLIC') {
-      this.setRulesNodes(rule);
-      this.setRulesLinks();
+  private setConnections(rule, group) {
+    if (rule.access_name === AccessType.Public) {
+      if (!this.isGeneratedPublicRule) {
+        this.setRulesNodes(rule, group);
+        this.setRulesLinks(rule, group);
+        this.isGeneratedPublicRule = true;
+      } else {
+        this.setRulesLinks(rule, group);
+      }
     }
-    let connections: Observable<any>;
+    let connections$: Observable<any>;
     if (this.instance && this.instance.groups) {
-      connections = zip(this.backend.getListAvailableInstanceInbounds(this.organizationId),
+      connections$ = zip(this.backend.getListConnections(this.organizationId),
+        this.backend.getListAvailableInstanceInbounds(this.organizationId),
         this.backend.getListAvailableInstanceOutbounds(this.organizationId))
-        .pipe(map(([instance_inbounds, instance_outbounds]) => {
+        .pipe(map(([connections, instance_inbounds, instance_outbounds]) => {
+          connections['connections'].forEach((item) => {
+              item['status'] = ConnectionStatus.Waiting;
+          });
+          console.log('INSTANCES CONNECTIONS ', connections['connections']);
           console.log('INSTANCES INBOUND ', instance_inbounds['instance_inbounds']);
           console.log('INSTANCES OUTBOUND ', instance_outbounds['instance_outbounds']);
-          return [...instance_inbounds['instance_inbounds'], ...instance_outbounds['instance_outbounds']];
+          return [...connections['connections'], ...instance_inbounds['instance_inbounds'], ...instance_outbounds['instance_outbounds']];
         }));
     }
-    connections.subscribe((instances_connections) => {
+    connections$.subscribe((instances_connections) => {
       console.log('INSTANCES CONNECTIONS ', instances_connections);
       this.graphDataLoaded = true;
     });
