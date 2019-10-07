@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
 import { Backend } from '../definitions/interfaces/backend';
 import { NotificationsService } from '../services/notifications.service';
 
@@ -49,7 +48,6 @@ export class AppInfoComponent implements OnInit {
   isFirstOpen = true;
 
   constructor(
-    private router: Router,
     private translateService: TranslateService,
     private notificationsService: NotificationsService,
   ) {
@@ -148,31 +146,6 @@ export class AppInfoComponent implements OnInit {
   }
 
   /**
-   * Requests to undeploy the selected instance
-   * @param app Application instance object
-   */
-  undeploy(app) {
-    const undeployConfirm =
-    confirm(this.translateService.instant('apps.instance.undeployConfirm', { appName: app.name }));
-    if (undeployConfirm) {
-      this.backend.undeploy(this.organizationId, app.app_instance_id)
-        .subscribe(undeployResponse => {
-          this.notificationsService.add({
-            message: this.translateService.instant('apps.instance.undeployMessage', { appName: app.name }),
-            timeout: 3000
-          });
-          this.router.navigate(['/applications']);
-        }, error => {
-          this.notificationsService.add({
-            message: error.error.message,
-            timeout: 5000,
-            type: 'warning'
-          });
-        });
-    }
-  }
-
-  /**
    * Checks if the instances status requires an special css class
    * @param status instances status name
    * @param className CSS class name
@@ -247,21 +220,6 @@ export class AppInfoComponent implements OnInit {
         indexOf(descriptorId);
     if (index !== -1) {
       return this.registered[index].name;
-    }
-  }
-
-  /**
-   * Returns the length of service instances group
-   */
-  countGroupServices() {
-    let counter = 0;
-    if (this.instance && this.instance.groups) {
-      this.instance.groups.forEach(group => {
-        counter += group.service_instances.length;
-      });
-      return counter;
-    } else {
-      return 0;
     }
   }
 

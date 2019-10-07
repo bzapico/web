@@ -180,7 +180,7 @@
       </div>
       <!-- Networks list -->
       <div *ngIf="showNetwork" class="summary-network">
-        <div class="accordion-box">
+        <div class="accordion-box accordion-box-small">
           <accordion 
             class="accordion-tabs">
             <accordion-group 
@@ -259,7 +259,7 @@
             </accordion-group>
           </accordion>
         </div>
-        <div class=" accordion-box">
+        <div class=" accordion-box accordion-box-small">
           <accordion 
           class="accordion-tabs">
           <accordion-group 
@@ -362,16 +362,6 @@
               <div class="label-nalej-table no-p-col no-m-row">
                 <!-- REGISTERED INFO Environment variables -->
                 <div *ngIf="openFromRegistered" class="scroll-app-info">
-                  <!-- <div>
-                    <span class="label-tbody row">
-                      <div class="col-6">
-                        <span class="grey">ENV_VAR_VAR1</span>
-                      </div>
-                      <div class="col-6 text-right">
-                        <span>value</span>
-                      </div>
-                    </span>
-                  </div> -->
                   <div *ngIf="registeredData.environment_variables">
                     <div *ngFor="let variable of registeredData.environment_variables | keyvalue" class="row label-tbody">
                       <div class="col-6 grey">
@@ -422,26 +412,6 @@
               <div class="label-nalej-table no-p-col no-m-row">
                 <!-- REGISTERED INFO Other setting -->
                 <div *ngIf="openFromRegistered" class="scroll-app-info">
-                  <!-- <div>
-                    <span class="label-tbody row">
-                      <div class="col-6">
-                        <span class="grey">Cgf1</span>
-                      </div>
-                      <div class="col-6 text-right">
-                        <span>value</span>
-                      </div>
-                      <br>
-                    </span>
-                    <span class="label-tbody row">
-                      <div class="col-6">
-                        <span class="grey">Cgf1</span>
-                      </div>
-                      <div class="col-6 text-right">
-                        <span>value</span>
-                      </div>
-                      <br>
-                    </span>
-                  </div> -->
                   <div *ngIf="registeredData.configuration_options">
                     <p class="text-left">{{'apps.instance.otherSettings'|translate}}</p>
                     <div *ngFor="let configuration of registeredData.configuration_options| keyvalue" class="row mb-1">

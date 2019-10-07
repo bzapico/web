@@ -201,6 +201,7 @@ export class RegisteredInfoComponent implements OnInit {
     }
   }
 
+
   /* Sortby pipe in the component
    * @param categoryName the name of the chosen category
    */
