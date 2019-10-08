@@ -4,5 +4,5 @@ export enum AccessType {
     AllAppServices = 'ALL_APP_SERVICES',
     DeviceGroup = 'DEVICE_GROUP',
     InboundAppnet = 'INBOUND_APPNET',
-    OutboundAppnet = 'OUTOUND_APPNET'
+    OutboundAppnet = 'OUTBOUND_APPNET'
 }

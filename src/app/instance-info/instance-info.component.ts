@@ -11,10 +11,7 @@ import { ServiceInstancesInfoComponent } from '../service-instances-info/service
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { TranslateService } from '@ngx-translate/core';
 import { InstanceServiceGroupInfoComponent } from '../instance-service-group-info/instance-service-group-info.component';
-import { Observable, zip } from 'rxjs';
-import { map } from 'rxjs/operators';
-import {AccessType} from '../definitions/enums/access-type.enum';
-import {ConnectionStatus} from '../definitions/enums/connection-status.enum';
+import { AccessType } from '../definitions/enums/access-type.enum';
 
 @Component({
   selector: 'app-instance-info',
@@ -668,7 +665,9 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           + ': '
           + this.getBeautyStatusName(group.status_name),
           color: this.getNodeColor(group.status_name),
-          text: this.getNodeTextColor(group.status_name),
+          text: {
+            color: this.getNodeTextColor(group.status_name)
+          },
           alignment: 'central',
           shape: 'rectangle',
           customHeight: 34,
@@ -681,7 +680,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
             viewBox: '0 0 24 24',
             paths: [
               {
-                fill: '#fff',
+                fill: '#FFF',
                 d: 'M4,11H9V5H4Zm0,7H9V12H4Zm6,0h5V12H10Zm6,0h5V12H16Zm-6-7h5V5H10Zm6-6v6h5V5Z'
               },
               {
@@ -715,7 +714,26 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         });
         if (instance.rules) {
           instance.rules.forEach(rule => {
-            this.setConnections(rule, group);
+            this.setPublicConnections(rule, group);
+          });
+        }
+        if (instance && instance.groups) {
+          console.log('INSTANCE ', instance);
+          this.backend.getListConnections(this.organizationId).subscribe((instances_connections) => {
+            console.log('INSTANCES CONNECTIONS ', instances_connections);
+            // THOSE DATA ARE NOT AVAILABLE FOR NOW
+            instance.rules.forEach(rule => {
+              if (rule.access_name === AccessType.InboundAppnet) {
+                rule['inbound_net_interface'] = 'inbound';
+              } else if (rule.access_name === AccessType.OutboundAppnet) {
+                rule['outbound_net_interface'] = 'outbound';
+              }
+            });
+            console.log('INSTANCE 2 ', instance);
+            // // THOSE DATA ARE NOT AVAILABLE FOR NOW
+            this.setInboundConnections(instances_connections, group, instance);
+            this.setOutboundConnections(instances_connections, group, instance);
+            this.graphDataLoaded = true;
           });
         }
       });
@@ -751,26 +769,28 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     }
   }
 
-  private setRulesNodes(rule, group) {
+  private setPublicRulesNodes(rule, group) {
     const ruleNode = {
       id: rule.rule_id,
       label: 'Public Access',
       tooltip: this.translateService.instant('graph.rule') + rule.name,
       group: group.service_group_instance_id,
       color: '#5800FF',
-      text: '#000',
-      aligment: 'before-edge',
+      text: {
+        color: '#000',
+        y: 71
+      },
       shape: 'circle',
       customRadius: 24,
       icon: {
         width: 25,
         height: 25,
-        x: 35,
-        y: 15,
+        x: 34,
+        y: 17,
         viewBox: '0 0 25 25',
         paths: [
           {
-            fill: '#fff',
+            fill: '#ffffff',
             d: 'M21.444,6.216A35.833,35.833,0,0,1,12.485,7.27,35.833,35.833,0,0,1,3.527,6.216' +
                 'L3,8.324A37.36,37.36,0,0,0,9.324,9.377v13.7h2.108V16.755h2.108v6.324h2.108' +
                 'V9.377a37.36,37.36,0,0,0,6.324-1.054Zm-8.958,0a2.108,2.108,0,1,0-2.108-2.108' +
@@ -801,36 +821,153 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     });
   }
 
-
-  private setConnections(rule, group) {
+  private setPublicConnections(rule, group) {
     if (rule.access_name === AccessType.Public) {
-      if (!this.isGeneratedPublicRule) {
-        this.setRulesNodes(rule, group);
+      if (this.isGeneratedPublicRule) {
+        this.setRulesLinks(rule, group);
+      } else {
+        this.setPublicRulesNodes(rule, group);
         this.setRulesLinks(rule, group);
         this.isGeneratedPublicRule = true;
-      } else {
-        this.setRulesLinks(rule, group);
       }
     }
-    let connections$: Observable<any>;
-    if (this.instance && this.instance.groups) {
-      connections$ = zip(this.backend.getListConnections(this.organizationId),
-        this.backend.getListAvailableInstanceInbounds(this.organizationId),
-        this.backend.getListAvailableInstanceOutbounds(this.organizationId))
-        .pipe(map(([connections, instance_inbounds, instance_outbounds]) => {
-          connections['connections'].forEach((item) => {
-              item['status'] = ConnectionStatus.Waiting;
-          });
-          console.log('INSTANCES CONNECTIONS ', connections['connections']);
-          console.log('INSTANCES INBOUND ', instance_inbounds['instance_inbounds']);
-          console.log('INSTANCES OUTBOUND ', instance_outbounds['instance_outbounds']);
-          return [...connections['connections'], ...instance_inbounds['instance_inbounds'], ...instance_outbounds['instance_outbounds']];
-        }));
+  }
+
+  private setInboundConnections(instances_connections, group, instance) {
+    if (instance.inbound_net_interfaces && instance.inbound_net_interfaces.length > 0 ) {
+      const inbounds = {};
+      instance.inbound_net_interfaces.forEach(inbound => {
+        inbounds[inbound.name + '_i_' + instance.app_instance_id] = {
+          id: inbound.name + '_i_' + instance.app_instance_id,
+          label: inbound.name,
+          tooltip: this.translateService.instant('graph.inbound') + inbound.name,
+          group: group,
+          color: this.isConnectedBound('inbound', instances_connections.connections, instance).isConnected ? '#00E6A0' : '#5800FF',
+          text: {
+            color: '#000',
+            y: 10
+          },
+          secoundaryText: {
+            text: this.isConnectedBound('inbound', instances_connections.connections, instance).secoundaryName,
+            color: '#000',
+            y: 85
+          },
+          shape: 'circle',
+          customRadius: 24,
+          icon: {
+            width: 24,
+            height: 24,
+            x: 55,
+            y: 35,
+            viewBox: '0 0 24 24',
+            paths: [
+              {
+                fill: 'none',
+                d: 'M0 0h24v24H0z'
+              },
+              {
+                fill: '#fff',
+                d: 'M20 5.41L18.59 4 7 15.59V9H5v10h10v-2H8.41z'
+              }
+            ]
+          }
+        };
+      });
+      console.log('INBOUNDS ', inbounds);
+      this.graphData.nodes.push(...Object.values(inbounds));
+      this.setInboundLinks(Object.values(inbounds), instance);
     }
-    connections$.subscribe((instances_connections) => {
-      console.log('INSTANCES CONNECTIONS ', instances_connections);
-      this.graphDataLoaded = true;
+  }
+
+  private setInboundLinks(inbounds, instance) {
+    inbounds.forEach(inbound => {
+      const filteredData = instance.rules.filter(rule => inbound.label === rule.inbound_net_interface);
+      if (filteredData.length > 0) {
+        this.graphData.links.push({
+          source: inbound.id,
+          target: this.graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name'])[0].id,
+          notMarker: true
+        });
+      }
     });
+  }
+
+  private setOutboundLinks(outbounds, instance) {
+    outbounds.forEach(outbound => {
+      const filteredData = instance.rules.filter(rule => outbound.label === rule.outbound_net_interface);
+      if (filteredData.length > 0) {
+        this.graphData.links.push({
+          source: outbound.id,
+          target: this.graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name'])[0].id,
+          notMarker: true
+        });
+      }
+    });
+  }
+
+  private setOutboundConnections(instances_connections, group, instance) {
+    if (instance.outbound_net_interfaces && instance.outbound_net_interfaces.length > 0 ) {
+      const outbounds = {};
+      instance.outbound_net_interfaces.forEach(outbound => {
+        outbounds[outbound.name + '_i_' + instance.app_instance_id] = {
+          id: outbound.name + '_i_' + instance.app_instance_id,
+          label: outbound.name,
+          tooltip: this.translateService.instant('graph.outbound') + outbound.name,
+          group: group,
+          color: this.isConnectedBound('outbound', instances_connections.connections, instance).isConnected ? '#00E6A0' : '#5800FF',
+          text: {
+            color: '#000',
+            y: 0,
+          },
+          secoundaryText: {
+            text: this.isConnectedBound('outbound', instances_connections.connections, instance).secoundaryName,
+            color: '#000',
+            y: 85
+          },
+          shape: 'circle',
+          customRadius: 24,
+          icon: {
+            width: 24,
+            height: 24,
+            x: 25,
+            y: 20,
+            viewBox: '0 0 24 24',
+            paths: [
+              {
+                fill: 'none',
+                d: 'M0,0H24V24H0Z'
+              },
+              {
+                fill: '#fff',
+                d: 'M9,5V7h6.59L4,18.59,5.41,20,17,8.41V15h2V5Z'
+              }
+            ]
+          }
+        };
+      });
+      this.graphData.nodes.push(...Object.values(outbounds));
+      this.setOutboundLinks(Object.values(outbounds), instance);
+    }
+  }
+
+  private isConnectedBound(type, instances_connections, instance): {isConnected: boolean, secoundaryName: string} {
+    const data = {
+      inbound: {
+        rule: 'target_instance_id',
+        name: 'source_instance_name'
+      },
+      outbound: {
+        rule: 'source_instance_id',
+        name: 'target_instance_name'
+      }
+    };
+    const filteredData =
+        instances_connections.filter(instance_connection => instance_connection[data[type].rule] === instance.app_instance_id);
+    const isConnected = filteredData.length > 0;
+    return {
+      isConnected: isConnected,
+      secoundaryName: isConnected ? filteredData[0][data[type].name] : ''
+    };
   }
 
   /**
@@ -911,3 +1048,4 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     return anyChanges;
   }
 }
+

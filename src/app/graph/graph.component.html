@@ -1,11 +1,12 @@
 <ngx-graph
-  [autoCenter]="autoCenter"
-  [autoZoom]="autoZoom"
-  [curve]="curve"
-  [enableZoom]="enableZoom"
-  [nodes]="nodes"
-  [links]="links"
-  [orientation]="orientation">
+    [links]="links"
+    [nodes]="nodes"
+    [orientation]="orientation"
+    [autoZoom]="autoZoom"
+    [autoCenter]="autoCenter"
+    [curve]="curve"
+    [enableZoom]="enableZoom"
+  class="chart-container">
   <ng-template #nodeTemplate let-node>
     <svg:g
       class="node"
@@ -23,10 +24,6 @@
         [attr.cx]="node.width/2"
         [attr.cy]="node.height/2"
         [attr.fill]="node.color"/>
-      <svg:rect *ngSwitchDefault
-        [attr.width]="node.icon? node.width + ((node.icon.x * 2) + node.icon.width): node.width"
-        [attr.height]="node.customHeight || node.height"
-        [attr.fill]="node.color"/>
       <svg *ngIf="node.icon"
         [attr.width]="node.icon.width"
         [attr.height]="node.icon.height"
@@ -38,19 +35,23 @@
           [attr.d]="path.d"/>
       </svg>
       <svg:text *ngSwitchCase="'rectangle'"
-        [attr.fill]="node.text"
-        [attr.alignment-baseline]="node.alignment"
+        [attr.fill]="node.text.color"
         [attr.x]="node.icon? (node.icon.x * 2) + node.icon.width: 10"
         [attr.y]="node.height/2">
         {{node.label}}
       </svg:text>
-      <svg:text *ngSwitchCase="'circle'"
-        [attr.fill]="node.text"
-        [attr.alignment-baseline]="node.alignment"
+      <text *ngSwitchCase="'circle'"
+        [attr.fill]="node.text.color"
         [attr.x]="10"
-        [attr.y]="node.height + 10">
+        [attr.y]="node.text.y">
         {{node.label}}
-      </svg:text>
+      </text>
+      <text *ngIf="node.secoundaryText && node.secoundaryText.text"
+        [attr.fill]="node.secoundaryText.color"
+        [attr.x]="10"
+        [attr.y]="node.secoundaryText.y">
+        {{node.secoundaryText.text}}
+      </text>
     </svg:g>
   </ng-template>
   <ng-template #linkTemplate let-link>

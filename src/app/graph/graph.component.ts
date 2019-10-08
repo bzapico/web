@@ -15,6 +15,7 @@ export class GraphComponent implements OnInit {
   @Input() curve: any;
   @Input() enableZoom: boolean;
 
+
   constructor() { }
 
   ngOnInit() {
