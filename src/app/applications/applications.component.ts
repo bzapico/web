@@ -502,10 +502,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         break;
       }
       default: {
-        if (className.toLowerCase() === 'process') {
-          return true;
-        }
-        return false;
+        return (className.toLowerCase() === 'process');
       }
     }
   }

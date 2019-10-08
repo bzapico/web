@@ -5,6 +5,25 @@
 		"showRelatedNodes": "Show only related nodes",
 		"title": "Advanced filter options"
 	},
+	"app-info": {
+		"instance": {
+			"NetworkDisconnect": "Disconnect",
+			"NetworkInterface": "Interface",
+			"NetworkSource": "Source",
+			"NetworkTarget": "target",
+			"title": "INSTANCE INFO"
+		},
+		"registered": {
+			"title": "DESCRIPTOR INFO"
+		},
+		"requiredElements": "Required elements marked with*",
+		"tabs": {
+			"networks": "NETWORKS",
+			"parameters": "PARAMETERS",
+			"setup": "SETUP"
+		},
+		"typeRestrictions": "Type restrictions: string"
+	},
 	"applications": {
 		"filters": {
 			"atLeastOne": "It is necessary to have one selected filter",
@@ -14,16 +33,13 @@
 	},
 	"apps": {
 		"addConnection": {
-			"discardChanges": "Discard changes?",
 			"noResults": "No results found!",
 			"title": "ADD NEW CONNECTION"
 		},
 		"instance": {
 			"configTitle": "CONFIGURATION",
 			"environmentVariables": "Environment variables",
-			"idApps": "APPS",
 			"idInstance": "INSTANCE",
-			"idRegistered": "REGISTERED",
 			"noEnvironmentVariables": "No environment variables have been set",
 			"noOtherSettings": "No extra settings have been set",
 			"noRules": "No available rules detected ",
@@ -47,23 +63,18 @@
 			"tableAuthIn": "(g - s/d)",
 			"tableAuthInBig": "(group, service / device group)",
 			"tableEndpoints": "Endpoints",
-			"tableGroups": "Groups",
-			"tableId": "ID",
 			"tableImage": "Image",
 			"tableInfo": "Info",
 			"tableInstanceOf": "Instance of",
 			"tableLabels": "Labels",
 			"tableName": "Name",
-			"tableRegisteredAppId": "Registered App ID",
 			"tableReplicas": "Replicas",
-			"tableServiceInstance": "Service instance",
 			"tableStatus": "Status",
 			"tableTarget": "Target",
 			"tableTargetIn": "(g - s - p)",
 			"tableTargetInBig": "(group, service, port)",
 			"title": "APPLICATIONS",
 			"undeployConfirm": "Undeploy {{appName}}?",
-			"undeployInstance": "Undeploy instance",
 			"undeployMessage": " undeployed"
 		},
 		"manageConnections": {
@@ -79,16 +90,11 @@
 		},
 		"registered": {
 			"app": "app",
-			"delete": "Delete",
 			"deleteApp": "Delete {{appName}}?",
 			"deleting": "Deleting {{appName}}",
-			"deploy": "Deploy",
-			"instance": "instance",
-			"noRegisteredApps": "No available registered apps detected",
 			"serviceGroupInfo": {
 				"title": "Registered service group info"
-			},
-			"servicesSummary": "SERVICES SUMMARY"
+			}
 		}
 	},
 	"buttons": {
@@ -274,16 +280,11 @@
 		"sortedBy": "Sorted by {{value}}"
 	},
 	"status": {
-		"deploymentError": "deployment_error",
 		"error": "error",
-		"incomplete": "incomplete",
 		"offline": "offline",
 		"online": "online",
-		"planning": "planning",
-		"planningError": "planning_error",
 		"process": "process",
 		"running": "running",
-		"scheduled": "scheduled",
 		"serviceError": "service_error",
 		"serviceRunning": "service_running",
 		"serviceWaiting": "service_waiting"

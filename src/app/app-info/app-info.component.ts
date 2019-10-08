@@ -2,14 +2,20 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { NotificationsService } from '../services/notifications.service';
+import { AppStatus } from '../definitions/enums/app-status.enum';
+
+/**
+ * Notification timeout reference
+ */
+const NOTIFICATION_TIMEOUT = 3000; // 3 seconds
 
 @Component({
   selector: 'app-info',
   templateUrl: './app-info.component.html',
   styleUrls: ['./app-info.component.scss']
 })
-export class AppInfoComponent implements OnInit {
 
+export class AppInfoComponent implements OnInit {
   @Input() instance: any;
   @Input() registered: any;
   @Input() registeredData: any;
@@ -43,7 +49,6 @@ export class AppInfoComponent implements OnInit {
   /**
    * Accordion options
    */
-  nalejAccordion = 'nalejAccordion';
   nalejAccordionSmall = 'nalejAccordionSmall';
   isFirstOpen = true;
 
@@ -152,59 +157,56 @@ export class AppInfoComponent implements OnInit {
    */
   classInstanceStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case this.translateService.instant('status.running'): {
-        if (className.toLowerCase() === this.translateService.instant('status.running')) {
+      case AppStatus.Running: {
+        if (className.toLowerCase() === AppStatus.Running) {
           return true;
         }
         break;
       }
-      case this.translateService.instant('status.deploymentError'): {
-        if (className.toLowerCase() === this.translateService.instant('status.error')) {
+      case AppStatus.DeploymentError: {
+        if (className.toLowerCase() === AppStatus.DeploymentError) {
           return true;
         }
         break;
       }
-      case this.translateService.instant('status.planningError'): {
-        if (className.toLowerCase() === this.translateService.instant('status.error')) {
+      case AppStatus.Error: {
+        if (className.toLowerCase() === AppStatus.Error) {
           return true;
         }
         break;
       }
-      case this.translateService.instant('status.incomplete'): {
-        if (className.toLowerCase() === this.translateService.instant('status.error')) {
+      case AppStatus.Incomplete: {
+        if (className.toLowerCase() === AppStatus.Incomplete) {
           return true;
         }
         break;
       }
-      case this.translateService.instant('status.error'): {
-        if (className.toLowerCase() === this.translateService.instant('status.error')) {
+      case AppStatus.PlanningError: {
+        if (className.toLowerCase() === AppStatus.PlanningError) {
           return true;
         }
         break;
       }
-      case 'queued': {
-        if (className.toLowerCase() === this.translateService.instant('status.process')) {
+      case AppStatus.Queued: {
+        if (className.toLowerCase() === AppStatus.Process) {
           return true;
         }
         break;
       }
-      case this.translateService.instant('status.planning'): {
-        if (className.toLowerCase() === this.translateService.instant('status.process')) {
+      case AppStatus.Planning: {
+        if (className.toLowerCase() === AppStatus.Process) {
           return true;
         }
         break;
       }
-      case this.translateService.instant('status.scheduled'): {
-        if (className.toLowerCase() === this.translateService.instant('status.process')) {
+      case AppStatus.Scheduled: {
+        if (className.toLowerCase() === AppStatus.Process) {
           return true;
         }
         break;
       }
       default: {
-        if (className.toLowerCase() === this.translateService.instant('status.process')) {
-          return true;
-        }
-        return false;
+        return (className.toLowerCase() === AppStatus.Process);
       }
     }
   }
@@ -218,7 +220,7 @@ export class AppInfoComponent implements OnInit {
     this.registered
         .map(x => x.app_descriptor_id).
         indexOf(descriptorId);
-    if (index !== -1) {
+    if (index > -1) {
       return this.registered[index].name;
     }
   }
@@ -269,7 +271,7 @@ export class AppInfoComponent implements OnInit {
       connection.connected = false;
       this.notificationsService.add({
         message: 'App disconnected',
-        timeout: 3000
+        timeout: NOTIFICATION_TIMEOUT
       });
     }
   }

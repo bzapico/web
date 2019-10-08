@@ -11,6 +11,7 @@ import { ServiceInstancesInfoComponent } from '../service-instances-info/service
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { TranslateService } from '@ngx-translate/core';
 import { InstanceServiceGroupInfoComponent } from '../instance-service-group-info/instance-service-group-info.component';
+import { ServicesStatus } from '../definitions/enums/services-status.enum';
 
 @Component({
   selector: 'app-instance-info',
@@ -369,29 +370,26 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    */
   classStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case this.translateService.instant('status.serviceRunning'): {
-        if (className.toLowerCase() === this.translateService.instant('status.serviceRunning')) {
+      case ServicesStatus.ServiceRunning: {
+        if (className.toLowerCase() === ServicesStatus.ServiceRunning) {
           return true;
         }
         break;
       }
-      case this.translateService.instant('status.serviceError'): {
-        if (className.toLowerCase() === this.translateService.instant('status.serviceError')) {
+      case ServicesStatus.ServiceError: {
+        if (className.toLowerCase() === ServicesStatus.ServiceError) {
           return true;
         }
         break;
       }
-      case this.translateService.instant('status.serviceWaiting'): {
-        if (className.toLowerCase() === this.translateService.instant('status.serviceWaiting')) {
+      case ServicesStatus.ServiceWaiting: {
+        if (className.toLowerCase() === ServicesStatus.ServiceWaiting) {
           return true;
         }
         break;
       }
       default: {
-        if (className.toLowerCase() === this.translateService.instant('status.serviceWaiting')) {
-          return true;
-        }
-        return false;
+        return (className.toLowerCase() === ServicesStatus.ServiceWaiting);
       }
     }
   }

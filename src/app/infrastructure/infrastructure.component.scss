@@ -1,26 +1,5 @@
-@mixin for-desktop-only {
-    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
-}
-@mixin for-desktop-up {
-    @media all and (max-width: 1440px) { @content; }
-}
-@mixin for-big-desktop-up {
-    @media all and (min-width: 2560px) { @content; }
-}
-@mixin for-quarter-up {
-    @media all and (max-width: 1720px) { @content; }
-}
-@mixin for-third-up {
-    @media all and (max-width: 1146px) { @content; }
-}
-@mixin for-sm-desktop-only {
-    @media all and (max-width: 1280px), all and  (max-height: 790px) { @content; }
-}
-
-$base-violet: #5800FF;
-$base-grey: #828282;
-$dark-grey: #444444;
-$super-dark-grey: #151515;
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
 
 /* - - - Summary infrastructure card - - - */
 .row-sorting-lg {
@@ -230,5 +209,10 @@ $super-dark-grey: #151515;
         &::before {
             content: 'A';
         }
+    }
+}
+.nalej-table-box {
+    div:nth-child(2) {
+        border: none;
     }
 }
