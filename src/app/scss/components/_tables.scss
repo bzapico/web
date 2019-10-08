@@ -179,35 +179,10 @@
         }
     }
 }
-.nalej-table-box.no-p-col.no-m-row 
-> div 
-> div:nth-child(2) {
-    border-top: none;
-}
-.nalej-table-box.nalej-table-p 
-> div 
-> div:nth-child(2) {
-    border-top: none;
-}
-.nalej-table-box.nalej-table-p
-> div 
-> div:nth-child(2) 
-> span 
-> div {
-    border: none;
-}
-div.nalej-table-box.no-p-col.no-m-row > div 
-> div:nth-child(2) > div {
-    border: none;
-}
-div.nalej-table-box> div > div:nth-child(2){
-    border: none;
-}
-
-div.label-nalej-table.no-p-col.no-m-row 
-> div.scroll-app-info 
-> div:nth-child(1) > span {
-    border: none;
+.nalej-table-box {
+    &.no-p-col.no-m-row > div > div:nth-child(2) {
+        border-top: none;
+    }
 }
 
 /* - - -  Search and sort in tables - - - */
@@ -431,7 +406,7 @@ div.label-nalej-table.no-p-col.no-m-row
         vertical-align: inherit;
         border: none;
         text-align: right;
-        color: #212529;
+        color: $dark-grey;
         display: inline;
         font-size: 16px;
         @include for-desktop-only {
@@ -443,7 +418,7 @@ div.label-nalej-table.no-p-col.no-m-row
         vertical-align: inherit;
         border: none;
         text-align: right;
-        color: #212529;
+        color: $dark-grey;
         display: inline;
         font-size: 20px;
         @include for-desktop-only {

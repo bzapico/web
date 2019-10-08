@@ -1,8 +1,8 @@
 <!-- Application instances id card -->
 <div class="card">
   <div class="card-title-name">
-    <h5 *ngIf="openFromInstance" class="d-inline">INSTANCE INFO</h5>
-    <h5 *ngIf="openFromRegistered" class="d-inline">DESCRIPTOR INFO</h5>
+    <h5 *ngIf="openFromInstance" class="d-inline">{{'app-info.instance.title'|translate}}</h5>
+    <h5 *ngIf="openFromRegistered" class="d-inline">{{'app-info.registered.title'|translate}}</h5>
     <div
       tooltip="Info" 
       placement="left"
@@ -15,12 +15,12 @@
     <!-- Summary instances table-->
     <div class="summary-table">
       <div class="summary-table-tr">
-        <div class="summary-table-th">Name</div>
+        <div class="summary-table-th">{{'devices.tableName'|translate}}</div>
         <div *ngIf="openFromInstance" class="text-uppercase summary-table-td">{{instance.name}}</div> 
         <div *ngIf="openFromRegistered" class="text-uppercase summary-table-td-big">{{registeredData.name}}</div> 
       </div>
       <div *ngIf="openFromInstance" class="summary-table-tr">
-        <div class="summary-table-th">Status</div> 
+        <div class="summary-table-th">{{'devices.tableStatus'|translate}}</div> 
         <div id="summary-status" class="summary-table-td">
           <span 
             *ngIf="instance && instance.status_name"
@@ -61,7 +61,7 @@
               'tabs-btn-selected': showParameters && !showNetwork && !showSetup
             }" 
           class="tabs-btn">
-          PARAMETERS
+          {{'app-info.tabs.parameters'|translate}}
         </li>
         <li 
           (click)="changeActiveList('network')" 
@@ -71,7 +71,7 @@
               'tabs-btn-selected': showNetwork && !showParameters && !showSetup
             }" 
           class="tabs-btn">
-            NETWORKS
+            {{'app-info.tabs.networks'|translate}}
         </li>
         <li 
           (click)="changeActiveList('setup')" 
@@ -81,7 +81,7 @@
               'tabs-btn-selected': showSetup && !showParameters && !showNetwork 
             }" 
           class="tabs-btn">
-            SETUP
+            {{'app-info.tabs.setup'|translate}}
         </li>
       </ul>
     </div>
@@ -127,7 +127,7 @@
                     placeholder="Default value"
                     class="form-control"
                     disabled>
-                  <label class="accordion-foot">Type restrictions: string</label>
+                  <label class="accordion-foot">{{'app-info.typeRestrictions'|translate}}</label>
                 </div>
                 <div>
                   <label>param 1</label>
@@ -136,7 +136,7 @@
                     placeholder="Default value"
                     class="form-control"
                     disabled>
-                  <label class="accordion-foot">Type restrictions: string</label>
+                  <label class="accordion-foot">{{'app-info.typeRestrictions'|translate}}</label>
                 </div>
               </div>
             </accordion-group>
@@ -163,7 +163,7 @@
                     placeholder="Default value"
                     class="form-control"
                     disabled>
-                  <label class="accordion-foot">Type restrictions: string</label>
+                  <label class="accordion-foot">{{'app-info.typeRestrictions'|translate}}</label>
                 </div>
                 <div>
                   <label>param 1</label>
@@ -172,7 +172,7 @@
                     placeholder="Default value"
                     class="form-control"
                     disabled>
-                  <label class="accordion-foot">Type restrictions: string</label>
+                  <label class="accordion-foot">{{'app-info.typeRestrictions'|translate}}</label>
                 </div>
               </div>
             </accordion-group>
@@ -198,17 +198,17 @@
                 <div class="label-thead row">
                   <div class="col-4 label-th">
                     <span tooltip="Interface" placement="bottom">
-                      Interface
+                      {{'app-info.instance.NetworkInterface'|translate}}
                     </span>
                   </div>
                   <div class="col-4 label-th text-center">
                     <span tooltip="Source" placement="bottom">
-                      Source
+                      {{'app-info.instance.NetworkSource'|translate}}
                     </span>
                   </div>
                   <div class="col-4 label-th text-right">
                     <span tooltip="Disconnect" placement="bottom">
-                      Disconnect
+                      {{'app-info.instance.NetworkDisconnect'|translate}}
                     </span>
                   </div>
                 </div>
@@ -216,7 +216,7 @@
                   <div *ngFor=
                     "let connection of copyConnections |
                     filter : searchTerm; let i = index">
-                    <span *ngIf="connection.connected"  class="label-tbody row">
+                    <span *ngIf="connection.connected" class="label-tbody row">
                       <div class="col-4">
                         <span class="grey">{{connection.inbound.interfaceName}}</span>
                       </div>
@@ -244,7 +244,7 @@
                   <div *ngFor=
                     "let connection of copyConnections |
                     filter : searchTerm; let i = index">
-                    <span *ngIf="connection.connected"  class="label-tbody row">
+                    <span *ngIf="connection.connected" class="label-tbody row">
                       <div class="col-6">
                         <span class="grey">{{connection.inbound.interfaceName}}</span>
                       </div>
@@ -275,24 +275,24 @@
             <span     
               accordion-heading 
               class="accordion-legend">
-              <p>Required elements marked with*</p>
+              <p>{{'app-info.requiredElements'|translate}}</p>
             </span>
             <!-- INSTANCE INFO network-outbounds -->
             <div *ngIf="openFromInstance" class="label-nalej-table no-m-row">
               <div class="label-thead row">
                 <div class="col-4 label-th">
                   <span tooltip="Interface" placement="bottom">
-                    Interface
+                    {{'app-info.instance.NetworkInterface'|translate}}
                   </span>
                 </div>
                 <div class="col-4 label-th text-center">
                   <span tooltip="Target" placement="bottom">
-                    Target
+                    {{'app-info.instance.NetworkTarget'|translate}}
                   </span>
                 </div>
                 <div class="col-4 label-th text-right">
                   <span tooltip="Disconnect" placement="bottom">
-                    Disconnect
+                    {{'app-info.instance.NetworkDisconnect'|translate}}
                   </span>
                 </div>
               </div>
@@ -300,7 +300,7 @@
                 <div *ngFor=
                   "let connection of copyConnections |
                   filter : searchTerm; let i = index">
-                  <span *ngIf="connection.connected"  class="label-tbody row">
+                  <span *ngIf="connection.connected" class="label-tbody row">
                     <div class="col-4">
                       <span class="grey">{{connection.outbound.interfaceName}}</span>
                     </div>
@@ -328,7 +328,7 @@
                 <div *ngFor=
                   "let connection of copyConnections |
                   filter : searchTerm; let i = index">
-                  <span *ngIf="connection.connected"  class="label-tbody row">
+                  <span *ngIf="connection.connected" class="label-tbody row">
                     <div class="col-6">
                       <span class="grey">{{connection.outbound.interfaceName}}</span>
                     </div>

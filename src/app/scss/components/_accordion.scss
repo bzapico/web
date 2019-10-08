@@ -78,7 +78,7 @@
                 right: 24px;
                 top: 12px;
                 p {
-                    color: #828282;
+                    color: $base-grey;
                     font-size: 10px;
                 }
             }
@@ -112,12 +112,13 @@
 }
 
 .panel-collapse.collapse.in.show > div > div > div {
-    > div:last-child > div > hr, 
-    &:last-child > div > hr, 
-    > span > div:last-child > div > hr {
-    border: none;
-    }
-    > div > div:first-child, &.scroll-app-info > div:first-child > span {
+    &.scroll-app-info > div:first-child  > span {
         border-top: 0;
     }
 } 
+.accordion-devices {
+    .panel-collapse.collapse.in.show  span > div:first-child > div {
+        border: 0;
+    }
+
+}
