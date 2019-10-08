@@ -288,5 +288,29 @@
 		"serviceError": "service_error",
 		"serviceRunning": "service_running",
 		"serviceWaiting": "service_waiting"
+	},
+	"tables": {
+		"organizationId": "Organization ID",
+		"tableAccess": "Access",
+		"tableAppDescriptorID": "App descriptor ID",
+		"tableAuth": "Auth",
+		"tableCredentials": "Credentials",
+		"tableDeployedOnCID": "Deployed on cluster ID",
+		"tableDevices": "Devices",
+		"tableDevicesGroup": "Devices group",
+		"tableExposedPorts": "Exposed ports",
+		"tableExternal": "External",
+		"tableGroup": "Group",
+		"tableGroups": "Groups",
+		"tableImage": "Image",
+		"tableInternal": "Internal",
+		"tableLabels": "Labels",
+		"tablePort": "Port",
+		"tableReplicas": "Replicas",
+		"tableRules": "Rules",
+		"tableServices": "Services",
+		"tableStatus": "Status",
+		"tableTarget": "Target",
+		"tableType": "Type"
 	}
 }
