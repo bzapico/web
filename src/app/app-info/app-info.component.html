@@ -4,9 +4,18 @@
     <h5 *ngIf="openFromInstance" class="d-inline">{{'app-info.instance.title'|translate}}</h5>
     <h5 *ngIf="openFromRegistered" class="d-inline">{{'app-info.registered.title'|translate}}</h5>
     <div
+      *ngIf="openFromInstance"
       tooltip="Info" 
       placement="left"
       (click)="openAppInfoDetailed(instance)"
+      class="app-info-button">
+      <i class="material-icons info-icon">info</i>
+    </div>
+    <div
+      *ngIf="openFromRegistered"
+      tooltip="Info" 
+      placement="left"
+      (click)="openDescriptorDetailed(registeredData)"
       class="app-info-button">
       <i class="material-icons info-icon">info</i>
     </div>

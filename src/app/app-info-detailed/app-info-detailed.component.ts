@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
+import { ServicesStatus } from '../definitions/enums/services-status.enum';
 
 @Component({
   selector: 'app-info-detailed',
@@ -7,11 +8,6 @@ import { BsModalRef } from 'ngx-bootstrap';
   styleUrls: ['./app-info-detailed.component.scss']
 })
 export class AppInfoDetailedComponent implements OnInit {
-  /**
-   * Data model to show where the modal is triggered
-   */
-  openFromRegistered: boolean;
-
   /**
    * Data models for app related information
    */
@@ -31,12 +27,9 @@ export class AppInfoDetailedComponent implements OnInit {
   constructor(
     public bsModalRef: BsModalRef,
   ) {
-    this.openFromRegistered = false;
   }
 
   ngOnInit() {
-
-    console.log('las labels ', this.labels);
   }
 
   /**
@@ -60,29 +53,26 @@ export class AppInfoDetailedComponent implements OnInit {
    */
   classStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case 'service_running': {
-        if (className.toLowerCase() === 'service_running') {
+      case ServicesStatus.ServiceRunning: {
+        if (className.toLowerCase() === ServicesStatus.ServiceRunning) {
           return true;
         }
         break;
       }
-      case 'service_error': {
-        if (className.toLowerCase() === 'service_error') {
+      case ServicesStatus.ServiceError: {
+        if (className.toLowerCase() === ServicesStatus.ServiceError) {
           return true;
         }
         break;
       }
-      case 'service_waiting': {
-        if (className.toLowerCase() === 'service_waiting') {
+      case ServicesStatus.ServiceWaiting: {
+        if (className.toLowerCase() === ServicesStatus.ServiceWaiting) {
           return true;
         }
         break;
       }
       default: {
-        if (className.toLowerCase() === 'service_scheduled') {
-          return true;
-        }
-        return false;
+        return (className.toLowerCase() === ServicesStatus.ServiceWaiting);
       }
     }
   }

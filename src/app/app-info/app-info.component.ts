@@ -292,14 +292,35 @@ export class AppInfoComponent implements OnInit {
   openAppInfoDetailed(app) {
     const initialState = {
       organizationId: app.organization_id,
-      appDescriptorId: app.app_descriptor_id,
       appInstanceId: app.app_instance_id,
       name: app.name,
       group: app.groups,
       statusName: app.status_name,
-      labels: app.labels
+      labels: app.labels,
+      openFromInstance: this.openFromInstance
     };
     console.log('app ', app);
+    console.log('initialState ', initialState);
+
+    this.modalRef = this.modalService.show(AppInfoDetailedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+  }
+
+  /**
+   * Open descriptor info detailed modal window
+   *  @param descriptor descriptor object
+   */
+  openDescriptorDetailed(descriptor) {
+    const initialState = {
+      organizationId: descriptor.organization_id,
+      appDescriptorId: descriptor.app_descriptor_id,
+      groups: descriptor.groups,
+      name: descriptor.name,
+      rules: descriptor.rules,
+      labels: descriptor.labels,
+      openFromRegistered: this.openFromRegistered
+    };
+    console.log('descriptor ', descriptor);
     console.log('initialState ', initialState);
 
     this.modalRef = this.modalService.show(AppInfoDetailedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
