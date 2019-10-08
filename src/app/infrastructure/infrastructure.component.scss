@@ -93,7 +93,7 @@
     background-color: $dark-grey;
     border-radius: 5px;
     cursor: pointer;
-    color: #ffffff;
+    color: $white;
     border: none;
     text-indent: 1em;
     font-size: .6em;
@@ -105,7 +105,7 @@
     height: 31px;
     padding-top: 4px;
     &:hover {
-        color: #ffffff;
+        color: $white;
         transition: 0.3s;
         background-color: $base-violet;
         opacity: 0.6;
@@ -146,14 +146,14 @@
         border-radius: 5px;
         padding: .5em 1.1em;
         cursor: pointer;
-        color: #ffffff;
+        color: $white;
         border: none;
         text-indent: 2em;
         font-size: .8em;
         font-weight: 500;
         outline: none;
         &:hover {
-            color: #ffffff;
+            color: $white;
             transition: 0.3s;
             background-color: $base-violet;
             opacity: 0.6;
@@ -173,7 +173,7 @@
         border-radius: 5px;
         padding: .5em 1.1em;
         cursor: default;
-        color: #ffffff;
+        color: $white;
         border: none;
         text-indent: 2em;
         font-size: .8em;

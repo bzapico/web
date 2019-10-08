@@ -53,7 +53,7 @@
     padding: 0.75rem 0;
 }
 .instance-disabled {
-    color: #939393;
+    color: $base-grey;
     cursor: default;
     outline: none;
     text-transform: capitalize;
@@ -124,14 +124,14 @@
         font-weight: 500;
         padding: .5em 1.2em;
         cursor: pointer;
-        color: #ffffff;
+        color: $white;
         border: none;
         text-indent: 2em;
         position: relative;
         font-size: .9em;
         outline: none;
         &:hover {
-            color: #ffffff;
+            color: $white;
             transition: 0.3s;
             background-color: $base-violet;
             opacity: 0.6;
@@ -260,7 +260,7 @@
 // Temporal workaround, in the future we should use the contextual menu component
 // https://nalej.atlassian.net/browse/NP-2005
 .contextual-menu-wrapper {
-    color: #ffffff;
+    color: $white;
     background-color: #404040;
     min-width: 148px;
     position: absolute;

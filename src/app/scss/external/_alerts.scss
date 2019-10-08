@@ -6,11 +6,11 @@
     -ms-word-wrap: break-word;
     word-wrap: break-word;
     a, label {
-      color: #ffffff;
+        color: $white;
     }
     a:hover {
-      color: $base-grey;
-      text-decoration: none;
+        color: $base-grey;
+        text-decoration: none;
     }
 }
 .alert-dismissible .close {
@@ -39,14 +39,14 @@
         border-radius: 10px;
         background-position: center;
         background-repeat: no-repeat;
-        color: #ffffff;
+        color: $white;
         &:hover {
             box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
             -moz-border-radius: 10px;
             -webkit-border-radius: 10px;
             border-radius: 10px;
             opacity: 1;
-            color: #ffffff;
+            color: $white;
             cursor: pointer;
         }
     }
@@ -62,7 +62,7 @@
     left: 1em;
     top: 1em;
     font-weight: normal;
-    color: #ffffffba;
+    color: $white;
 }
 .alert-progress {
     position: absolute;
@@ -73,5 +73,5 @@
     opacity: 0.4;
 }
 .alert > button.close:hover span {
-    color: #ffffff;
-  }
+    color: $white;
+}

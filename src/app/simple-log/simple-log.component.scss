@@ -1,8 +1,9 @@
-$dark-grey: #444444;
+@import '../scss/variables/colors';
+
 .simple-log {
     background-color: $dark-grey;
     width: 100%;
-    color: #ffffff;
+    color: $white;
     padding: 1em;
     border-radius: 5px;
     margin: 1em 0;

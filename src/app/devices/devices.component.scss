@@ -17,7 +17,7 @@
         outline: none; 
         background-color: $base-violet;
         padding-left: 30px;
-        color: #ffffff;
+        color: $white;
         width: 128px;
         height: 35px;
         .i-add{
@@ -28,7 +28,7 @@
             left: 13px;
         }
         &:hover {
-            color: #ffffff;
+            color: $white;
             transition: 0.3s;
             background-color: $base-violet;
             opacity: 0.6;
@@ -57,7 +57,7 @@
         background-color: $base-violet;
         border-radius: 50px;
         border: none;
-        color: #ffffff;
+        color: $white;
         font-size: .8em;
         font-weight: 500;
         padding-bottom: .5em;

@@ -1,6 +1,5 @@
-@mixin for-sm-desktop-up {
-    @media all and (max-width: 1280px) { @content; }
-}
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
 
 .btn-md {
     border: 0px;
@@ -8,7 +7,7 @@
     width: 120px;
     font-size: 0.8em;
     text-align: center;
-    color: #fff;
+    color: $white;
     padding: 11px;
     height: 47px;
     &:focus {

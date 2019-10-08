@@ -34,7 +34,7 @@
         display: block;
     }
     thead {
-        background-color: #ffffff;
+        background-color: $white;
         th {
             float: left;
             border: none;
@@ -76,7 +76,7 @@
     .nalej-thead {
         position: sticky;
         top: 0;
-        background-color: #ffffff;
+        background-color: $white;
         z-index: 1;
         min-height: 26px;
     }
@@ -113,7 +113,7 @@
     .label-thead {
         position: sticky;
         top: 0;
-        background-color: #ffffff;
+        background-color: $white;
         z-index: 1;
         min-height: 26px;
         margin-bottom: 40px;
@@ -235,7 +235,7 @@
             box-shadow: none;
             padding-right: 0!important;
             &::placeholder {
-                color: #ffffff;
+                color: $white;
             }
         }
     }

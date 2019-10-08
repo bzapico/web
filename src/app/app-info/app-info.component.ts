@@ -284,8 +284,7 @@ export class AppInfoComponent implements OnInit {
     }
   }
 
-
-    /**
+  /**
    * Open app info detailed modal window
    *  @param app app object
    */
@@ -293,14 +292,14 @@ export class AppInfoComponent implements OnInit {
     const initialState = {
       organizationId: app.organization_id,
       appInstanceId: app.app_instance_id,
+      appDescriptorId: app.app_descriptor_id,
       name: app.name,
       group: app.groups,
       statusName: app.status_name,
+      rules: app.rules,
       labels: app.labels,
       openFromInstance: this.openFromInstance
     };
-    console.log('app ', app);
-    console.log('initialState ', initialState);
 
     this.modalRef = this.modalService.show(AppInfoDetailedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
@@ -320,11 +319,8 @@ export class AppInfoComponent implements OnInit {
       labels: descriptor.labels,
       openFromRegistered: this.openFromRegistered
     };
-    console.log('descriptor ', descriptor);
-    console.log('initialState ', initialState);
 
     this.modalRef = this.modalService.show(AppInfoDetailedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
-
 }
