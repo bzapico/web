@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActionButtonsService } from './action-buttons.service';
 
 
@@ -7,18 +7,14 @@ import { ActionButtonsService } from './action-buttons.service';
   templateUrl: './action-buttons-card.component.html',
   styleUrls: ['./action-buttons-card.component.scss']
 })
-export class ActionButtonsCardComponent implements OnInit {
+export class ActionButtonsCardComponent {
 
   @Input() isOpenFromRegistered: boolean;
-  @Input() app: any;
+  @Input() app: {};
 
   constructor(
     private actionButtonsService: ActionButtonsService
   ) {
-  }
-
-  ngOnInit() {
-    console.log('app instance o registered  ', this.app);
   }
 
   /**
@@ -32,26 +28,23 @@ export class ActionButtonsCardComponent implements OnInit {
    * Requests to undeploy the selected instance
    * @param app Application instance object
    */
-  undeploy(app) {
+  undeploy(app: {}) {
     this.actionButtonsService.undeploy(app);
-    console.log('app undeploy ', app);
   }
 
   /**
    * Opens the modal view that holds the deploy registered app component
    * @param app registered app to deploy
    */
-  deployRegistered(app) {
+  deployRegistered(app: {}) {
     this.actionButtonsService.deployRegistered(app);
-    console.log('app deploy ', app);
   }
 
   /**
    * Requests to delete the selected app
    * @param app Application object
    */
-  deleteApp(app) {
+  deleteApp(app: {}) {
     this.actionButtonsService.deleteApp(app);
-    console.log('app delete ', app);
   }
 }
