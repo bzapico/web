@@ -718,9 +718,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           });
         }
         if (instance && instance.groups) {
-          console.log('INSTANCE ', instance);
-          this.backend.getListConnections(this.organizationId).subscribe((instances_connections) => {
-            console.log('INSTANCES CONNECTIONS ', instances_connections);
             // THOSE DATA ARE NOT AVAILABLE FOR NOW
             instance.rules.forEach(rule => {
               if (rule.access_name === AccessType.InboundAppnet) {
@@ -729,12 +726,10 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
                 rule['outbound_net_interface'] = 'outbound';
               }
             });
-            console.log('INSTANCE 2 ', instance);
             // // THOSE DATA ARE NOT AVAILABLE FOR NOW
-            this.setInboundConnections(instances_connections, group, instance);
-            this.setOutboundConnections(instances_connections, group, instance);
+            this.setInboundConnections(group, instance);
+            this.setOutboundConnections(group, instance);
             this.graphDataLoaded = true;
-          });
         }
       });
     }
@@ -833,7 +828,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     }
   }
 
-  private setInboundConnections(instances_connections, group, instance) {
+  private setInboundConnections(group, instance) {
     if (instance.inbound_net_interfaces && instance.inbound_net_interfaces.length > 0 ) {
       const inbounds = {};
       instance.inbound_net_interfaces.forEach(inbound => {
@@ -842,13 +837,13 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           label: inbound.name,
           tooltip: this.translateService.instant('graph.inbound') + inbound.name,
           group: group,
-          color: this.isConnectedBound('inbound', instances_connections.connections, instance).isConnected ? '#00E6A0' : '#5800FF',
+          color: this.isConnectedBound('inbound', instance.inbound_connections, inbound).isConnected ? '#00E6A0' : '#5800FF',
           text: {
             color: '#000',
             y: 10
           },
           secoundaryText: {
-            text: this.isConnectedBound('inbound', instances_connections.connections, instance).secoundaryName,
+            text: this.isConnectedBound('inbound', instance.inbound_connections, inbound).secoundaryName,
             color: '#000',
             y: 85
           },
@@ -873,7 +868,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           }
         };
       });
-      console.log('INBOUNDS ', inbounds);
       this.graphData.nodes.push(...Object.values(inbounds));
       this.setInboundLinks(Object.values(inbounds), instance);
     }
@@ -905,7 +899,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     });
   }
 
-  private setOutboundConnections(instances_connections, group, instance) {
+  private setOutboundConnections(group, instance) {
     if (instance.outbound_net_interfaces && instance.outbound_net_interfaces.length > 0 ) {
       const outbounds = {};
       instance.outbound_net_interfaces.forEach(outbound => {
@@ -914,13 +908,13 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           label: outbound.name,
           tooltip: this.translateService.instant('graph.outbound') + outbound.name,
           group: group,
-          color: this.isConnectedBound('outbound', instances_connections.connections, instance).isConnected ? '#00E6A0' : '#5800FF',
+          color: this.isConnectedBound('outbound', instance.outbound_connections, outbound).isConnected ? '#00E6A0' : '#5800FF',
           text: {
             color: '#000',
             y: 0,
           },
           secoundaryText: {
-            text: this.isConnectedBound('outbound', instances_connections.connections, instance).secoundaryName,
+            text: this.isConnectedBound('outbound', instance.outbound_connections, outbound).secoundaryName,
             color: '#000',
             y: 85
           },
@@ -950,19 +944,21 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     }
   }
 
-  private isConnectedBound(type, instances_connections, instance): {isConnected: boolean, secoundaryName: string} {
+  private isConnectedBound(type, instances_connections, bound): {isConnected: boolean, secoundaryName: string} {
     const data = {
       inbound: {
-        rule: 'target_instance_id',
+        rule: 'inbound_name',
         name: 'source_instance_name'
       },
       outbound: {
-        rule: 'source_instance_id',
+        rule: 'outbound_name',
         name: 'target_instance_name'
       }
     };
-    const filteredData =
-        instances_connections.filter(instance_connection => instance_connection[data[type].rule] === instance.app_instance_id);
+    let filteredData = [];
+    if (instances_connections) {
+      filteredData = instances_connections.filter(instance_connection => instance_connection[data[type].rule] === bound.name);
+    }
     const isConnected = filteredData.length > 0;
     return {
       isConnected: isConnected,
