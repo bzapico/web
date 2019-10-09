@@ -347,7 +347,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     }
   }
 
-   /**
+  /**
    * Requests to undeploy the selected instance
    * @param app Application instance object
    */
