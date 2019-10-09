@@ -8,7 +8,7 @@
   <div class="col-4 h-100">
     <div class="flex-col-app">
       <!-- Application instances id card -->
-      <div class="card row-info-app flex-grow-0">
+      <div class="card row-info-app">
         <div class="card-title-name">
           <h5>
             <a 
@@ -79,8 +79,13 @@
       <!-- Labels card-->
       <labels-card *ngIf="loadedData"
         [labelsData]="instance"
-        [isSelectableLabel]="isSelectableLabel">
+        [isSelectableLabel]="isSelectableLabel"
+        class="row-info-app">
       </labels-card>
+      <!-- Action buttons card -->
+      <action-buttons-card
+        [isOpenFromInstance]="isOpenFromInstance">
+      </action-buttons-card>
     </div>
   </div>
   <div class="col-8 h-100">

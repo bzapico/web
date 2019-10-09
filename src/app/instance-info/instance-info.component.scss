@@ -11,10 +11,10 @@ $super-light-grey: #F8F8F8;
 
 /* - - - Card heights - - */
 .row-info-app {
-    min-height: 587px;
-    @include for-desktop-h {
-        min-height: 410px;
-    }
+    // min-height: 587px;
+    // @include for-desktop-h {
+    //     min-height: 410px;
+    // }
 }
 /* - - -Summary card instances table - - - */
 
