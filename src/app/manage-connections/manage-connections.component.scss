@@ -1,9 +1,5 @@
-@mixin for-quarter-h {
-    @media all and (max-height: 780px) { @content; }
-}
-
-$base-violet: #5800FF;
-$light-grey: #EEEEEE;
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
 
 .apps-actions-btn {
     background-color: $base-violet;
@@ -11,14 +7,14 @@ $light-grey: #EEEEEE;
     font-weight: 500;
     padding: .7em 2em;
     cursor: pointer;
-    color: #ffffff;
+    color: $white;
     border: none;
     text-indent: 2em;
     position: relative;
     font-size: .9em;
     outline: none;
     &:hover {
-        color: #ffffff;
+        color: $white;
         transition: 0.3s;
         background-color: $base-violet;
         opacity: 0.6;

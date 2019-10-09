@@ -1,120 +1,9 @@
-@mixin for-desktop-only {
-    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
-}
-@mixin for-desktop-h {
-    @media all and (max-height: 900px) { @content; }
-}
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
 
-$base-red: #F7478A;
-$base-grey: #828282;
-$super-light-grey: #F8F8F8;
-
-/* - - - Card heights - - */
 .row-info-app {
-    min-height: 587px;
-    @include for-desktop-h {
-        min-height: 410px;
-    }
+    height: 301px;
 }
-/* - - -Summary card instances table - - - */
-
-.ins-info-box {
-    width: 97%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-.summary-instance-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-}
-#summary-instances-status {
-    font-size: 1.4em;
-    text-transform: uppercase;
-    font-weight: 700;
-    @include for-desktop-only {
-        font-size: 1em !important;
-    }
-}
-#summary-instances-data {
-    font-size: 2.5em;
-    @include for-desktop-only {
-        font-size: 1em !important;
-    }
-}
-.summary-instances-table {
-    .status-dot-nalej, 
-    .status-dot:before, 
-    .status-dot-error:before, 
-    .status-dot-process:before {
-        margin: 3px;
-    }
-    height: 75%;
-    font-size:  .9em;
-    tr {
-        border: none;
-    } 
-    th {
-        color: $base-grey;
-        border: none;
-        font-weight: 400;
-        padding: .2em;
-        vertical-align: inherit;
-
-        @include for-desktop-only {
-            font-size: .8em;
-        }
-    }
-    td {
-        padding: 0.2rem;
-        vertical-align: inherit;
-        border: none;
-        text-align: right;
-        color: #212529;
-        font-weight: 500;
-
-        @include for-desktop-only {
-            font-size: .8em;
-            text-align: right;
-        }
-    }
-}
-
-/* - - - Apps info card  buttons - - - */
-.btn-undeploy {
-    border: none;
-    border-radius: 5px;
-    padding-left: 2em;
-    cursor: pointer;
-    position: relative;
-    font-size: .8em;
-    outline: none; 
-    background-color: $super-light-grey;
-    color: $base-red;
-    width: 233px;
-    height: 42px;
-    font-weight: 500;
-    &:hover {
-        color: #ffffff;
-        transition: 0.3s;
-        background-color: $base-red;
-        opacity: 0.6;
-    }
-}
-.i-options {
-    position: absolute;
-    top: 50%;
-    left: 12%;
-    transform: translate(-50%, -50%);
-    display: block;
-    font-size: 1.7em;
-}
-
-/* - - -  Config card - - - */
 .config-card {
     font-size: .8em;
     text-align: center;
@@ -129,20 +18,11 @@ $super-light-grey: #F8F8F8;
         justify-content: end;
     }
 }
-
-/* - - -  Accordion table - - - */
-.search-box {
-    margin-right: 0;
-}
-.show-graph-icons {
-    cursor: pointer;
-    color: $base-grey;
-}
-.mr-bars {
-    margin-right: 11px;
-}
 .info-icon {
     font-size: 30px;
+}
+.search-box {
+    margin-right: 0;
 }
 .accordion-box 
 .accordion-tabs 
@@ -151,6 +31,10 @@ $super-light-grey: #F8F8F8;
 .accordion-btn {
     top: 7px;
     right: 36px;
+}
+.show-graph-icons {
+    cursor: pointer;
+    color: $base-grey;
 }
 .label-tbody {
     padding: .9rem 0;
@@ -167,7 +51,4 @@ $super-light-grey: #F8F8F8;
         align-items: center;
         text-align: center;
     }
-}
-.card-title-name-mb {
-    margin-bottom: .5em;
 }

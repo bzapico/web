@@ -1,18 +1,5 @@
-@mixin for-md-desktop-up {
-    @media all and (max-width: 1366px) { @content; }
-}
-@mixin for-desktop-up {
-    @media all and (max-width: 1440px) { @content; }
-}
-@mixin for-desktop-only {
-    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
-}
-@mixin for-desktop-h {
-    @media all and (max-height: 900px) { @content; }
-}
-
-$base-violet: #5800FF;
-$base-grey: #828282;
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
 
 /* - - - Company card - - - */
 .company-info {
@@ -22,7 +9,7 @@ $base-grey: #828282;
     align-items: center;
     text-align: center;
     height: 100%;
-   @include for-desktop-h {
+    @include for-desktop-h {
         flex-direction: row;
         text-align: left;
     }
@@ -112,7 +99,7 @@ $base-grey: #828282;
         font-size: 1em;
         margin: 0 auto;
         background-color: $base-violet;
-        color: #ffffff;
+        color: $white;
         @include for-desktop-up {
             height: 70px;
             width: 70px;

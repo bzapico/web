@@ -1,83 +1,36 @@
 <!-- Component title -->
 <div class="row row-title">
   <div class="col-lg-12">
-    <h2 class="section-title">{{'apps.instance.title'|translate}}</h2>
+      <h2 class="section-title">
+        <a 
+          [routerLink]="['/applications']" 
+          routerLinkActive="active" 
+          class="blue fw-black">
+          {{'apps.instance.title'|translate}}
+        </a>
+        <span class="grey"> > </span>
+        <span class="grey">{{'apps.instance.idInstance'|translate}}</span>
+        <span class="grey"> > </span>
+        <span class=" text-uppercase">
+            <b>{{instance.name}}</b>
+        </span>
+      </h2>
   </div>
 </div>
 <div class="row row-app-main">
   <div class="col-4 h-100">
     <div class="flex-col-app">
       <!-- Application instances id card -->
-      <div class="card row-info-app flex-grow-0">
-        <div class="card-title-name">
-          <h5>
-            <a 
-              [routerLink]="['/applications']" 
-              routerLinkActive="active" 
-              class="blue">
-              {{'apps.instance.idApps'|translate}}
-            </a>
-            <span class="grey"> > </span>
-            <b>{{'apps.instance.idInstance'|translate}}</b>
-            <span class="grey"> > </span>
-            <span class="grey text-uppercase">
-            {{instance.name}}
-            </span>
-          </h5>
-        </div>
-          <div class="summary-instance-card">
-            <div class="ins-info-box">
-              <table class="table summary-instances-table">
-                <tr>
-                  <th>Status</th> 
-                  <td id="summary-instances-status">
-                    <span 
-                      *ngIf="instance && instance.status_name"
-                      [ngClass]=
-                        "{
-                          'big-status-dot':classInstanceStatusCheck(instance.status_name, 'status.running'|translate),
-                          'big-status-dot-error':classInstanceStatusCheck(instance.status_name, 'status.error'|translate),
-                          'big-status-dot-process':classInstanceStatusCheck(instance.status_name, 'status.process'|translate)
-                        }"
-                      tooltip="{{instance.status_name}}" 
-                      placement="bottom"
-                      class="big-status-dot">
-                      {{instance.status_name}}
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <th>{{'apps.instance.tableInstanceOf'|translate}}Instance of</th>
-                  <!-- GET REGISTERED AND SET THE RIGHT NAME --> 
-                  <td class="text-uppercase">{{getDescriptorName(instance.app_descriptor_id)}}</td> 
-                </tr>
-                <tr>
-                  <th>{{'apps.instance.tableId'|translate}}</th>
-                  <td>{{instance.app_instance_id}}</td>
-                </tr>
-                <tr >
-                  <th>{{'apps.instance.tableRegisteredAppId'|translate}}</th>
-                  <td>{{instance.app_descriptor_id}}</td> 
-                </tr>
-                <tr>
-                  <th>{{'apps.instance.tableGroups'|translate}}</th>
-                  <td *ngIf="instance && instance.groups" id="summary-instances-data">{{instance.groups.length}}</td> 
-                  <td *ngIf="!instance || !instance.groups" id="summary-instances-data">0</td> 
-                </tr>
-                <tr>
-                  <th>{{'apps.instance.tableServiceInstance'|translate}}</th>
-                  <td id="summary-instances-data">{{countGroupServices()}}</td> 
-                </tr>
-              </table>
-            </div>
-            <button (click)="undeploy(instance)" class="btn-undeploy">
-              <i class="material-icons i-options">close</i>
-                {{'apps.instance.undeployInstance'|translate}}
-            </button>
-          </div>
-      </div>
+      <app-info
+        *ngIf="loadedData"
+        [instance]="instance"
+        [registered]="registered"
+        [openFromInstance]="openFromInstance"
+        class="row-info-app flex-grow-1">
+      </app-info>
       <!-- Labels card-->
-      <labels-card *ngIf="loadedData"
+      <labels-card 
+        *ngIf="loadedData"
         [labelsData]="instance"
         [isSelectableLabel]="isSelectableLabel">
       </labels-card>
@@ -438,7 +391,7 @@
           </div>
         </div>
       </div>
-      <div class="row row-app-rules ">
+      <div class="row row-app-rules">
         <!-- Rules card -->
         <div class="col-lg-8">
           <div class="card">

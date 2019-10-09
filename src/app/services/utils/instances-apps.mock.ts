@@ -253,6 +253,12 @@ export const mockAppsInstancesList = [
         'app_descriptor_id': '0e1e828a-14b5-4d80-8471-b7130216af2d',
         'app_instance_id': '22b3a193-4635-491f-8bd2-e3be64cadf5e',
         'name': 'fefe',
+        'environment_variables': {
+            'KAFKA_BROKER': 'NALEJ_SERV_KAFKASVC',
+            'KAFKA_OPEN': 'NALEJ_KAFKASVC',
+            'KAF_SHEL': 'NALEJ_SHEL_KAFKASVC',
+            'KAF_OPEN': 'NALEJ_KAFKASVC'
+        },
         'labels': {
             'app': 'sentiment-app'
         },

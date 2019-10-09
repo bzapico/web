@@ -1,6 +1,4 @@
-@mixin for-desktop-only {
-    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
-}
+@import '../scss/variables/mixins';
 
 .form-group-btn {
     @include for-desktop-only { 

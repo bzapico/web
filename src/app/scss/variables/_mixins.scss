@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file contains Media Queries mixins.
+//  Media Queries mixins.
 // -----------------------------------------------------------------------------
 
 @mixin for-third-only {
@@ -35,6 +35,9 @@
 @mixin for-desktop-h {
     @media all and  (max-height: 900px) { @content; }
 }
+@mixin for-md-desktop-fix {
+    @media all and (max-width: 1614px) { @content; }
+}
 @mixin for-desktop-up {
     @media all and (max-width: 1440px) { @content; }
 }
@@ -56,4 +59,14 @@
 @mixin for-big-desktop-up {
     @media all and (min-width: 2560px) { @content; }
 }
-  
+
+// -----------------------------------------------------------------------------
+// Font sizes mixins.
+// -----------------------------------------------------------------------------
+
+$font-12: 12px;
+$font-16: 16px;
+
+@mixin my-font-size-mixin($font-12) {
+    font-size: $font-12;
+}

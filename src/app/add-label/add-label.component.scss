@@ -1,6 +1,8 @@
+@import '../scss/variables/colors';
+
 .label-title {
   font-size: 1.2em;
-  color: black;
+  color: $black;
   font-weight: 500;
   margin-bottom: 1.5em;
 }

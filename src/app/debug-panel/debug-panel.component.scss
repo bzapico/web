@@ -1,10 +1,6 @@
-@mixin for-desktop-only {
-  @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
-}
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
 
-$base-violet: #5800FF;
-$dark-grey: #444444;
-$super-dark-grey: #151515;
 hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -50,7 +46,7 @@ hr {
     &.active {
       background-color: $base-violet;
       border-color: $base-violet;
-      color: #fff;
+      color: $white;
     }
     color: $super-dark-grey;
     border-color: $super-dark-grey
@@ -58,13 +54,13 @@ hr {
 
   .btn-outline-primary:hover, 
   .btn.btn-outline-primary.mb-3.small-font:hover {
-    color: #fff;
+    color: $white;
     background-color: $base-violet;
     border-color: $base-violet;
   }
 
   label.btn.btn-outline-primary.small-font:hover {
-    color: #fff;
+    color: $white;
     background-color: $base-violet;
     border-color: $base-violet;
   }

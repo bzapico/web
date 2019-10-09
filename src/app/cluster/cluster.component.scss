@@ -1,15 +1,5 @@
-@mixin for-desktop-up {
-    @media all and (max-width: 1440px) { @content; }
-}
-@mixin for-big-desktop-up {
-    @media all and (min-width: 2560px) { @content; }
-}
-@mixin for-desktop-h {
-    @media all and (max-height: 900px) { @content; }
-}
-
-$base-violet: #5800FF;
-$base-grey: #828282;
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
 
 .cluster-number {
     float: right;
@@ -27,14 +17,14 @@ $base-grey: #828282;
     overflow-x: hidden;
     margin-bottom: -1rem;
     &::-webkit-scrollbar {
-      -webkit-appearance: none;
-      width: 8px;
-      margin-left: 2px;
+        -webkit-appearance: none;
+        width: 8px;
+        margin-left: 2px;
     }
     &::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background-color: rgba(0, 0, 0, 0.5);
-      -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
     }
 }
 .cluster-summary-table {

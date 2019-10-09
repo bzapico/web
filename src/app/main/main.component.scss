@@ -1,15 +1,7 @@
-@mixin for-desktop-up {
-    @media all and (max-width: 1440px) { @content; }
-}
-@mixin for-desktop-h {
-    @media all and  (max-height: 900px) { @content; }
-}
-@mixin for-md-desktop-only {
-    @media all and (max-width: 1366px), all and  (max-height: 768px) { @content; }
-}
-$base-grey: #828282;
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
 .main {
-    background-color:#F5F5F5;
+    background-color:$main-bg;
     padding: 3em 1.3em;
     height: 100vh;
     box-sizing: border-box;
@@ -37,9 +29,9 @@ $base-grey: #828282;
 .help-btn {
     height: 25px;
     width: 25px;
-    color: #ffffff;
+    color: $white;
     background-color:$base-grey;
-    background-image: linear-gradient(-85deg, $base-grey, #6b6b6b);
+    background-image: linear-gradient(-85deg, $base-grey, $main-grey);
     border: 0px;
     border-radius: 50%;
     position: relative;
@@ -50,5 +42,5 @@ $base-grey: #828282;
     position: absolute;
     top: -1px;
     right: 8px;
-    color: #ffffff;
+    color: $white;
 }

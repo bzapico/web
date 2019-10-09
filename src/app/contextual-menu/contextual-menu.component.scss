@@ -1,15 +1,14 @@
-@mixin for-desktop-up {
-    @media all and (max-width: 1440px) { @content; }
-}
+@import '../scss/variables/mixins';
+@import '../scss/variables/colors';
 
 .contextual-menu {
     min-width: 148px;
-    color: #ffffff;
+    color: $white;
     border-radius: 5px;
     position: absolute;
     top: 0px;
     right: 35px;
-    background-color: #404040;
+    background-color: $dark-grey;
     padding: 8px 16px;
     z-index: 2;
     ul {
@@ -22,7 +21,7 @@
             padding: 2.4px 0;
         }
     }
-    @include for-desktop-up {           
+    @include for-desktop-up {
         right: 27px;
     }
 }
