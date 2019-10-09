@@ -513,6 +513,10 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.modalRef.content.closeBtnName = 'Close';
   }
 
+  getBeautyStatusName(status: string) {
+    this.instanceInfoService.getBeautyStatusName(status);
+  }
+
   /**
    * Returns the length of service instances group
    */
