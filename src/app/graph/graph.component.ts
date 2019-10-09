@@ -16,7 +16,10 @@ export class GraphComponent implements OnInit {
   @Input() enableZoom: boolean;
 
 
-  constructor() { }
+  constructor() {
+    this.links = [];
+    this.nodes = [];
+  }
 
   ngOnInit() {
   }

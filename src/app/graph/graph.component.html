@@ -19,37 +19,47 @@
         [attr.width]="node.icon? node.width + ((node.icon.x * 2) + node.icon.width): node.width"
         [attr.height]="node.customHeight || node.height"
         [attr.fill]="node.color"/>
-      <svg:circle *ngSwitchCase="'circle'"
-        [attr.r]="node.customRadius"
-        [attr.cx]="node.width/2"
-        [attr.cy]="node.height/2"
-        [attr.fill]="node.color"/>
-      <svg *ngIf="node.icon"
-        [attr.width]="node.icon.width"
-        [attr.height]="node.icon.height"
-        [attr.x]="node.icon.x"
-        [attr.y]="node.icon.y"
-        [attr.viewBox]="node.icon.viewBox">
-        <path *ngFor="let path of node.icon.paths"
-          [attr.fill]="path.fill"
-          [attr.d]="path.d"/>
-      </svg>
       <svg:text *ngSwitchCase="'rectangle'"
         [attr.fill]="node.text.color"
         [attr.x]="node.icon? (node.icon.x * 2) + node.icon.width: 10"
         [attr.y]="node.height/2">
         {{node.label}}
       </svg:text>
+      <svg *ngIf="node.icon && node.shape === 'rectangle'"
+           [attr.width]="node.icon.width"
+           [attr.height]="node.icon.height"
+           [attr.x]="node.icon.x"
+           [attr.y]="node.icon.y"
+           [attr.viewBox]="node.icon.viewBox">
+        <path *ngFor="let path of node.icon.paths"
+              [attr.fill]="path.fill"
+              [attr.d]="path.d"/>
+      </svg>
       <text *ngSwitchCase="'circle'"
         [attr.fill]="node.text.color"
         [attr.x]="10"
         [attr.y]="node.text.y">
         {{node.label}}
       </text>
-      <text *ngIf="node.secoundaryText && node.secoundaryText.text"
+      <svg:circle *ngSwitchCase="'circle'"
+        [attr.r]="node.customRadius"
+        [attr.cx]="node.width/2"
+        [attr.cy]="node.height/2"
+        [attr.fill]="node.color"/>
+      <svg *ngIf="node.icon && node.shape === 'circle'"
+           [attr.width]="node.icon.width"
+           [attr.height]="node.icon.height"
+           [attr.x]="(node.width - node.icon.width)/2"
+           [attr.y]="(node.height - node.icon.height)/2"
+           [attr.viewBox]="node.icon.viewBox">
+        <path *ngFor="let path of node.icon.paths"
+              [attr.fill]="path.fill"
+              [attr.d]="path.d"/>
+      </svg>
+      <text *ngIf="node.secoundaryText && node.secoundaryText.text && node.shape === 'circle'"
         [attr.fill]="node.secoundaryText.color"
         [attr.x]="10"
-        [attr.y]="node.secoundaryText.y">
+        [attr.y]="node.height + 5">
         {{node.secoundaryText.text}}
       </text>
     </svg:g>
