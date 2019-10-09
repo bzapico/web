@@ -74,95 +74,100 @@ export class ManageConnectionsComponent implements OnInit {
 
     //  Manage connections dropdown
     this.manageConnections = null;
-
-    // CONNECTIONS
-    this.connections = [
-      {
-      inbound: {
-        interfaceName: 'dbInbound',
-        instance: 'MySQL'
-      },
-      outbound: {
-        interfaceName: 'dbOutbound',
-        instance: 'WordPress'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'activemqInbound',
-        instance: 'activemq'
-      },
-      outbound: {
-        interfaceName: 'OpencastOutbound',
-        instance: 'Opencast'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'KuardInbound',
-        instance: 'Kuardprocessing'
-      },
-      outbound: {
-        interfaceName: 'KuardOutbound',
-        instance: 'Kuard'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'testInbound',
-        instance: 'testPara'
-      },
-      outbound: {
-        interfaceName: 'testOutbound',
-        instance: 'appTest'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'deviceInbound',
-        instance: 'deviceVirtual3'
-      },
-      outbound: {
-        interfaceName: 'Virtual3Outbound',
-        instance: 'Virtual3'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'Virtual2Inbound',
-        instance: 'deviceVirtual2'
-      },
-      outbound: {
-        interfaceName: 'Virtual2Outbound',
-        instance: 'Virtual2'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'Virtual1Inbound',
-        instance: 'deviceVirtual1'
-      },
-      outbound: {
-        interfaceName: 'Virtual1Outbound',
-        instance: 'Virtual1'
-      },
-      connected: true
-    }
-  ];
+    this.connections = [];
+  //   // CONNECTIONS
+  //   this.connections = [
+  //     {
+  //     inbound: {
+  //       interfaceName: 'dbInbound',
+  //       instance: 'MySQL'
+  //     },
+  //     outbound: {
+  //       interfaceName: 'dbOutbound',
+  //       instance: 'WordPress'
+  //     },
+  //     connected: true
+  //   },
+  //   {
+  //     inbound: {
+  //       interfaceName: 'activemqInbound',
+  //       instance: 'activemq'
+  //     },
+  //     outbound: {
+  //       interfaceName: 'OpencastOutbound',
+  //       instance: 'Opencast'
+  //     },
+  //     connected: true
+  //   },
+  //   {
+  //     inbound: {
+  //       interfaceName: 'KuardInbound',
+  //       instance: 'Kuardprocessing'
+  //     },
+  //     outbound: {
+  //       interfaceName: 'KuardOutbound',
+  //       instance: 'Kuard'
+  //     },
+  //     connected: true
+  //   },
+  //   {
+  //     inbound: {
+  //       interfaceName: 'testInbound',
+  //       instance: 'testPara'
+  //     },
+  //     outbound: {
+  //       interfaceName: 'testOutbound',
+  //       instance: 'appTest'
+  //     },
+  //     connected: true
+  //   },
+  //   {
+  //     inbound: {
+  //       interfaceName: 'deviceInbound',
+  //       instance: 'deviceVirtual3'
+  //     },
+  //     outbound: {
+  //       interfaceName: 'Virtual3Outbound',
+  //       instance: 'Virtual3'
+  //     },
+  //     connected: true
+  //   },
+  //   {
+  //     inbound: {
+  //       interfaceName: 'Virtual2Inbound',
+  //       instance: 'deviceVirtual2'
+  //     },
+  //     outbound: {
+  //       interfaceName: 'Virtual2Outbound',
+  //       instance: 'Virtual2'
+  //     },
+  //     connected: true
+  //   },
+  //   {
+  //     inbound: {
+  //       interfaceName: 'Virtual1Inbound',
+  //       instance: 'deviceVirtual1'
+  //     },
+  //     outbound: {
+  //       interfaceName: 'Virtual1Outbound',
+  //       instance: 'Virtual1'
+  //     },
+  //     connected: true
+  //   }
+  // ];
   }
 
   ngOnInit() {
+    // Get organizationID
+    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+    if (jwtData !== null) {
+      this.organizationId = JSON.parse(jwtData).organizationID;
+    }
     this.manageConnectionsFilterForm = this.formBuilder.group({
       filter: [null],
     });
     // to preserve the initial state
-    this.copyConnections = [...this.connections];
+    // this.copyConnections = [...this.connections];
     this.filteredOptions = this.getFilterName();
     this.selectConfig = {
       displayKey: 'name',
@@ -173,6 +178,13 @@ export class ManageConnectionsComponent implements OnInit {
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
+    this.backend.getListConnections(this.organizationId)
+      .subscribe(response => {
+        const anyResponse: any = response;
+        if (anyResponse.connections) {
+          this.connections = anyResponse.connections;
+        }
+      });
   }
 
     /**
@@ -206,10 +218,12 @@ export class ManageConnectionsComponent implements OnInit {
    */
   getFilterName() {
     const filteredNames = [];
-    this.copyConnections.forEach(connectionName => {
-      filteredNames.push(connectionName.outbound.instance);
-      filteredNames.push(connectionName.inbound.instance);
-    });
+    if (this.connections && this.connections !== []) {
+      this.connections.forEach(connectionName => {
+        filteredNames.push(connectionName.source_instance_name);
+        filteredNames.push(connectionName.target_instance_name);
+      });
+    }
     return filteredNames;
   }
 
@@ -236,8 +250,8 @@ export class ManageConnectionsComponent implements OnInit {
   useFilter(f) {
     this.copyConnections = [...this.connections];
     this.copyConnections = this.copyConnections.filter(element => {
-      if (element.outbound.instance === f.filter.value
-        || element.inbound.instance === f.filter.value) {
+      if (element.source_instance_name === f.filter.value
+        || element.target_instance_name  === f.filter.value) {
         return element;
       }
     });
