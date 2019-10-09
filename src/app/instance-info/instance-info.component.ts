@@ -67,9 +67,9 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   isSelectableLabel: boolean;
 
   /**
-   * Open form instance reference
+   * Open form registered reference
    */
-  isOpenFromInstance: boolean;
+  isOpenFromRegistered: boolean;
 
   /**
    * Interval reference
@@ -168,7 +168,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     // Default initialization
     this.labels = [];
     this.isSelectableLabel = false;
-    this.isOpenFromInstance = true;
+    this.isOpenFromRegistered = false;
     this.groups = [];
     this.instance = {
         groups: [],

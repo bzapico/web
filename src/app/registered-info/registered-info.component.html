@@ -75,7 +75,8 @@
         class="row-info-app">
       </labels-card>
       <!-- Action buttons card -->
-      <action-buttons-card
+      <action-buttons-card *ngIf="loadedData"
+        [app]="registeredData"
         [isOpenFromRegistered]="isOpenFromRegistered">
       </action-buttons-card>
     </div>
