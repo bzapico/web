@@ -25,7 +25,7 @@ describe('InstancesInfoComponent', () => {
         SortByPipe,
         TruncatePipe,
       ],
-      imports: [
+      imports: [  
         HttpClientTestingModule,
         RouterTestingModule,
         NgxGraphModule,
