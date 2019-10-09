@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 import { ServicesStatus } from '../definitions/enums/services-status.enum';
 
@@ -7,7 +7,7 @@ import { ServicesStatus } from '../definitions/enums/services-status.enum';
   templateUrl: './app-info-detailed.component.html',
   styleUrls: ['./app-info-detailed.component.scss']
 })
-export class AppInfoDetailedComponent implements OnInit {
+export class AppInfoDetailedComponent {
   /**
    * Data models for app related information
    */
@@ -27,9 +27,6 @@ export class AppInfoDetailedComponent implements OnInit {
   constructor(
     public bsModalRef: BsModalRef,
   ) {
-  }
-
-  ngOnInit() {
   }
 
   /**
