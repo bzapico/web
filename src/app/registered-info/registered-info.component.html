@@ -11,9 +11,9 @@
       <div class="card row-info-app flex-grow-0">
         <div class="card-title-name">
           <h5>
-            <a 
-              [routerLink]="['/applications']" 
-              routerLinkActive="active" 
+            <a
+              [routerLink]="['/applications']"
+              routerLinkActive="active"
               class="blue">
               {{'apps.instance.idApps'|translate}}
             </a>
@@ -35,7 +35,7 @@
           <div class="reg-info">
             <button (click)="deployRegistered(registeredData)" class="reg-deploy">
               <i class="material-icons i-options">play_arrow</i>
-              {{'apps.registered.deploy'|translate}} <span class="hide-reg-btn-text">{{'apps.registered.instance'|translate}}</span> 
+              {{'apps.registered.deploy'|translate}} <span class="hide-reg-btn-text">{{'apps.registered.instance'|translate}}</span>
             </button>
             <button (click)="deleteApp(registeredData)" class="reg-undeploy">
               <i class="material-icons i-options">delete</i>
@@ -83,13 +83,34 @@
   </div>
   <!-- Services card-->
   <div class="col-8 h-100">
-    <div class="flex-col-app">
-      <services-card>
-      </services-card>
-    </div>
+      <div class="flex-col-app">
+        <div class="card">
+          <services-card (displayGraph)='onShowGraph($event)'>
+          </services-card>
+          <div *ngIf="showGraph" style="height:100%; border: 2px solid blue">
+            <div *ngIf="graphDataLoaded && !graphReset" class="graph">
+              <graph
+                [autoCenter]="autoCenter"
+                [autoZoom]="autoZoom"
+                [curve]="curve"
+                [enableZoom]="enableZoom"
+                [links]="graphData.links"
+                [nodes]="graphData.nodes"
+                [orientation]="orientation">
+              </graph>
+            </div>
+            <div *ngIf="!graphReset" class="row mt-2 text-right mr-1">
+              <div class="col graph-subtext">
+                {{'graph.scroll'|translate}}
+                <a (click)="resetGraphZoom()" class="blue cursor-pointer">
+                  {{'sortingMessage.reset'|translate}}
+                </a>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!showGraph">
+          </div>
+        </div>
+      </div>
   </div>
 </div>
-
-
-
-

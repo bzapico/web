@@ -11,6 +11,7 @@ import { ServiceInstancesInfoComponent } from '../service-instances-info/service
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { TranslateService } from '@ngx-translate/core';
 import { InstanceServiceGroupInfoComponent } from '../instance-service-group-info/instance-service-group-info.component';
+import { InstanceInfoService } from './instance-info.service';
 
 @Component({
   selector: 'app-instance-info',
@@ -137,18 +138,8 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   width: number;
   height: number;
   draggingEnabled: boolean;
-  nalejColorScheme: string[];
   nextColorIndex: number;
-  STATUS_COLORS = {
-    RUNNING: '#5800FF',
-    ERROR: '#F7478A',
-    OTHER: '#FFEB6C'
-  };
-  STATUS_TEXT_COLORS = {
-    RUNNING: '#FFFFFF',
-    ERROR: '#FFFFFF',
-    OTHER: '#444444'
-  };
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -156,7 +147,8 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     private notificationsService: NotificationsService,
     private route: ActivatedRoute,
     private router: Router,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private instanceInfoService: InstanceInfoService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
@@ -206,15 +198,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       nodes: [],
       links: []
     };
-
-    this.nalejColorScheme = [
-      '#4900d4',
-      '#4000ba',
-      '#3902a3',
-      '#2e0480',
-    ];
     this.nextColorIndex = 0;
-
   }
 
   ngOnInit() {
@@ -238,40 +222,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
     this.refreshIntervalRef = null;
-  }
-
-  /**
-   * Return an specific color depending on the node status
-   * @param status Status name
-   */
-  getNodeColor(status: string): string {
-    switch (status.toLowerCase()) {
-      case this.translateService.instant('status.serviceRunning'):
-        return this.STATUS_COLORS.RUNNING;
-      case this.translateService.instant('status.serviceError'):
-        return this.STATUS_COLORS.ERROR;
-      case this.translateService.instant('status.serviceWaiting'):
-        return this.STATUS_COLORS.OTHER;
-      default:
-        return this.STATUS_COLORS.OTHER;
-    }
-  }
-
-    /**
-   * Return an specific color depending on the node status
-   * @param status Status name
-   */
-  getNodeTextColor(status: string): string {
-    switch (status.toLowerCase()) {
-      case this.translateService.instant('status.serviceRunning'):
-        return this.STATUS_TEXT_COLORS.RUNNING;
-      case this.translateService.instant('status.serviceError'):
-        return this.STATUS_TEXT_COLORS.ERROR;
-      case this.translateService.instant('status.serviceWaiting'):
-        return this.STATUS_TEXT_COLORS.OTHER;
-      default:
-        return this.STATUS_TEXT_COLORS.OTHER;
-    }
   }
 
   /**
@@ -569,6 +519,10 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.modalRef.content.closeBtnName = 'Close';
   }
 
+  getBeautyStatusName(status: string) {
+    this.instanceInfoService.getBeautyStatusName(status);
+  }
+
   /**
    * Returns the length of service instances group
    */
@@ -615,33 +569,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Filters the backend incoming status to display it in removing the initial "service_"
-   * @param rawStatus string containing the status that the backend is sending
-   */
-  getBeautyStatusName(rawStatus: string): string {
-    if (rawStatus.toLowerCase().startsWith('service_')) {
-      return rawStatus.substring('service_'.length, rawStatus.length);
-    }
-    return rawStatus;
-  }
-
-  /**
-   * Return if the marker is required
-   * @param link Link object
-   */
-  getMarker(link) {
-    const index = this.graphData.nodes.map(x => x.id).indexOf(link.source);
-    if (index !== -1) {
-      if (this.graphData.nodes[index].id === this.graphData.nodes[index].group) {
-        return '';
-      } else {
-        return 'url(#arrow)';
-      }
-    }
-    return 'url(#arrow)';
-  }
-
-  /**
    * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
    */
   resetGraphZoom() {
@@ -666,76 +593,10 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * @param instance instance object
    */
   private toGraphData(instance) {
-    this.graphData = {
-      nodes: [],
-      links: []
-    };
-    if (instance && instance.groups) {
-      instance.groups.forEach(group => {
-        const nodeGroup = {
-          id: group.service_group_instance_id,
-          label: group.name,
-          tooltip: this.translateService.instant('graph.group')
-          + group.name
-          + ': '
-          + this.getBeautyStatusName(group.status_name),
-          color: this.getNodeColor(group.status_name),
-          text: this.getNodeTextColor(group.status_name),
-          group: group.service_group_instance_id
-        };
-        this.graphData.nodes.push(nodeGroup);
-        group.service_instances.forEach(service => {
-          const nodeService = {
-            id: group.service_group_instance_id + '-s-' + service.service_id,
-            label: service.name,
-            tooltip:
-            this.translateService.instant('graph.service')
-            + service.name
-            + ': ' + this.getBeautyStatusName(service.status_name),
-            color: this.getNodeColor(service.status_name),
-            text: this.getNodeTextColor(group.status_name),
-            group: group.service_group_instance_id
-          };
-          this.graphData.nodes.push(nodeService);
-          this.graphData.links.push({
-            source: group.service_group_instance_id,
-            target: group.service_group_instance_id + '-s-' + service.service_id
-          });
-        });
-      });
-    }
-    if (instance.rules) {
-      instance.rules.forEach(rule => {
-        if (rule.auth_services) {
-          rule.auth_services.forEach(authService => {
-            const targetsIndex: number[] = [];
-            for (let index = 0; index < this.graphData.nodes.length; index++) {
-              if (this.graphData.nodes[index].label === rule.target_service_name) {
-                targetsIndex.push(index);
-              }
-            }
-            const sourcesIndex: number[] = [];
-            for (let index = 0; index < this.graphData.nodes.length; index++) {
-              if (this.graphData.nodes[index].label === authService) {
-                sourcesIndex.push(index);
-              }
-            }
-            sourcesIndex.forEach(indexSource => {
-              targetsIndex.forEach(indexTarget => {
-                const link = {
-                  source: this.graphData.nodes[indexSource].id,
-                  target: this.graphData.nodes[indexTarget].id,
-                };
-                this.graphData.links.push(link);
-              });
-            });
-          });
-        }
-      });
-    }
+    this.instanceInfoService.toGraphData(instance);
+    this.graphData = this.instanceInfoService.graphData;
     this.graphDataLoaded = true;
   }
-
 
   /**
    * Requests an updated list of available services group to update the current one
@@ -815,3 +676,4 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     return anyChanges;
   }
 }
+
