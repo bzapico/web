@@ -1,0 +1,85 @@
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
+
+.a-btns-box-sm {
+    width: 90%;
+    margin: 0 auto;
+}
+.a-btns-box {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    .a-btn-model {
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 28px 8px 54px;
+        margin: 0 5px;
+        cursor: pointer;
+        position: relative;
+        outline: none;
+        border-radius: 5px;
+        border: none;
+        max-height: 35.5px;
+        &:hover {
+            color: #ffffff;
+            transition: 0.3s;
+            opacity: 0.6;
+        }
+        .a-i-blue {
+            top: 6px;
+            left: 14px;
+            font-size: 24px;
+            position: absolute;
+        }
+    }
+    .a-btn-blue {
+        @extend .a-btn-model;
+        background-color: $base-violet;
+        color: #ffffff;
+        &:hover {
+            background-color: $base-violet;
+        }
+    }
+    .add-connections-btn {
+        width: 230px;
+        .a-i-blue {
+            top: 6px;
+            left: 25px;
+            font-size: 24px;
+            position: absolute;
+        }
+    }
+    .a-btn-grey {
+        @extend .a-btn-model;
+        background-color: $light-grey;
+        color: $base-red;
+        &:hover {
+            background-color: $base-red;
+        }
+        .a-i-red {
+            font-size: 19px;
+            position: absolute;
+            top: 8px;
+            left: 17px;
+        }
+    }
+    .a-btn-red {
+        @extend .a-btn-model;
+        background-color: $base-red;
+        color: #ffffff;
+        &:hover {
+            background-color: $base-red;
+        }
+    }
+}
+.a-btns-box-big {
+    @media all and (max-width: 1683px) { 
+        flex-direction: column;
+        .a-btn-blue, .a-btn-grey {
+            margin: 5px;
+        }
+        .add-connections-btn {
+            width: auto;
+        }
+    }
+}
