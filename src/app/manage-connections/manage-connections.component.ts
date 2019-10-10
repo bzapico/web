@@ -99,14 +99,7 @@ export class ManageConnectionsComponent implements OnInit {
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
-    this.backend.getListConnections(this.organizationId)
-    .subscribe(response => {
-      const anyResponse: any = response;
-      if (anyResponse.connections) {
-        this.connections = anyResponse.connections;
-        this.appDropdownOptions = this.getAppInstancesOptions();
-        }
-      });
+    this.updateConnections();
   }
 
     /**
@@ -133,6 +126,20 @@ export class ManageConnectionsComponent implements OnInit {
       };
     this.modalRef.content.closeBtnName = 'Close';
     this.bsModalRef.hide();
+  }
+
+  /**
+   * Updates connections and appDropdownOptions
+   */
+  updateConnections() {
+    this.backend.getListConnections(this.organizationId)
+    .subscribe(response => {
+      const anyResponse: any = response;
+      if (anyResponse.connections) {
+        this.connections = anyResponse.connections;
+        this.appDropdownOptions = this.getAppInstancesOptions();
+        }
+      });
   }
 
     /**
@@ -164,14 +171,30 @@ export class ManageConnectionsComponent implements OnInit {
    * @param connection connections
    */
   disconnectInstance(connection) {
-    const deleteConfirm =
-    confirm(this.translateService.instant('apps.manageConnections.disconnectConfirm'));
+    let deleteConfirm =
+      confirm(this.translateService.instant('apps.manageConnections.disconnectConfirm'));
+    if (connection.outbound_required) {
+      deleteConfirm =
+      confirm(this.translateService.instant('apps.manageConnections.disconnectConfirmOutboundRequired'));
+    }
     if (deleteConfirm) {
-      connection.connected = false;
-      this.notificationsService.add({
-        message: 'App disconnected',
-        timeout: 3000
-      });
+      this.backend.removeConnection(this.organizationId, {
+        organization_id: this.organizationId,
+        source_instance_id: connection.source_instance_id,
+        source_instance_name: connection.source_instance_name,
+        target_instance_id: connection.target_instance_id,
+        target_instance_name: connection.target_instance_name,
+        inbound_name: connection.inbound_name,
+        outbound_name: connection.outbound_name,
+        user_confirmation: true
+      })
+        .subscribe(response => {
+          this.notificationsService.add({
+            message: 'Connection removed',
+            timeout: 3000
+          });
+          this.updateConnections();
+        });
     }
   }
 
@@ -180,7 +203,7 @@ export class ManageConnectionsComponent implements OnInit {
    * @param f Form
    */
   filterByApp(f) {
-    console.log(f);
+    // Workaround to enable "reseting" the filter to no filter after selecting an app
     if (f.filter.value.name === '----- NO FILTER -----') {
       f.filter.value = null;
       this.selectedApp = '';

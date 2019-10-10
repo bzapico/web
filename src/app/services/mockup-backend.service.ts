@@ -652,7 +652,7 @@ export class MockupBackendService implements Backend {
    * Operation that allows to remove a connection
   * @param organizationId Organization identifier
    */
-  removeConnection(organizationId: string) {
+  removeConnection(organizationId: string, connection: any) {
     return of (new HttpResponse({
       body: JSON.stringify({connections: mockConnectionsList}),
       status: 200

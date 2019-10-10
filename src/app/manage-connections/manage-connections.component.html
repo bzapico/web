@@ -24,7 +24,7 @@
     <div class="modal-center-box">
       <!-- Filters -->
       <form [formGroup]="manageConnectionsFilterForm"  class="w-100 hide-sm-md-h">
-        <div class="form-group form-group-drop filter-drop-box">
+        <div *ngIf="connections && connections.length > 0" class="form-group form-group-drop filter-drop-box">
           <label class="app-filter-label">{{'apps.manageConnections.appFilter'|translate}}</label>
           <ngx-select-dropdown 
             formControlName="filter" 
@@ -44,7 +44,7 @@
         </div>
       </form>
       <!-- Search box -->
-      <div class="search-box hide-sm-md-h">
+      <div *ngIf="connections && connections.length > 0" class="search-box hide-sm-md-h">
         <input 
           name="searchTerm" 
           [(ngModel)]="searchTerm"
@@ -59,9 +59,12 @@
         </div>
       </div>
       <!-- Table -->
-      <div class="label-nalej-table no-p-col no-m-row">
+      <div *ngIf="!connections || connections.length === 0" class="mt-0">
+        {{'apps.manageConnections.noConnections'|translate}}
+      </div>
+      <div *ngIf="connections && connections.length > 0" class="label-nalej-table no-p-col no-m-row">
         <div class="label-thead row">
-          <div class="col-5 label-th">
+          <div class="col-5">
             <span tooltip="{{'apps.manageConnections.sourceInstance'|translate}}" placement="bottom">
               {{'apps.manageConnections.sourceInstance'|translate}}
             </span>
@@ -90,7 +93,7 @@
             "let connection of connections |
             filter : searchTerm | filter: selectedApp; let i = index">
             <span class="label-tbody row">
-              <div class="col-5">
+              <div class="col-5 label-td">
                 <span 
                   (click)="goToInstance(connection.source_instance_id)" 
                   class="blue cursor-pointer">
@@ -98,6 +101,7 @@
                 </span>
                 <br>
                 <span class="grey">{{connection.outbound_name}}</span>
+                <span *ngIf="connection.outbound_required" class="pink">*</span>
               </div>
               <div class="col-5">
                 <span
