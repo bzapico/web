@@ -71,8 +71,14 @@
       <labels-card *ngIf="loadedData"
         [labelsData]="registeredData"
         [isSelectableLabel]="isSelectableLabel"
-        (updateLabels)="updateLabels($event)">
+        (updateLabels)="updateLabels($event)"
+        class="row-info-app">
       </labels-card>
+      <!-- Action buttons card -->
+      <action-buttons-card *ngIf="loadedData"
+        [app]="registeredData"
+        [isOpenFromRegistered]="isOpenFromRegistered">
+      </action-buttons-card>
     </div>
   </div>
   <div class="col-8 h-100">
