@@ -91,12 +91,19 @@
             filter : searchTerm; let i = index">
             <span class="label-tbody row">
               <div class="col-5">
-                <span class="blue">{{connection.source_instance_name}}</span>
+                <span 
+                  (click)="goToInstance(connection.source_instance_id)" 
+                  class="blue cursor-pointer">
+                  {{connection.source_instance_name}}
+                </span>
                 <br>
                 <span class="grey">{{connection.outbound_name}}</span>
               </div>
               <div class="col-5">
-                <span class="blue">{{connection.target_instance_name}}</span>
+                <span
+                  (click)="goToInstance(connection.target_instance_id)"
+                  class="blue cursor-pointer">{{connection.target_instance_name}}
+                </span>
                 <br>
                 <span class="grey">{{connection.inbound_name}}</span>
               </div>

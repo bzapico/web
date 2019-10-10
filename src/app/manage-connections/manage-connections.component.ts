@@ -8,6 +8,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { AddConnectionsComponent } from '../add-connections/add-connections.component';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'manage-connections',
@@ -60,7 +61,8 @@ export class ManageConnectionsComponent implements OnInit {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private router: Router
     ) {
       const mock = localStorage.getItem(LocalStorageKeys.manageConnectionsMock) || null;
       // Check which backend is required (fake or real)
@@ -269,5 +271,13 @@ export class ManageConnectionsComponent implements OnInit {
    */
   resetFilters() {
     this.searchTerm = '';
+  }
+  /**
+   * Navigates to the desired instance and closes the modal
+   * @param instanceId instance identificator
+   */
+  goToInstance(instanceId: string) {
+    this.router.navigate(['/applications/instance/' + instanceId]);
+    this.closeModal();
   }
 }
