@@ -154,13 +154,18 @@ export class AppInfoComponent implements OnInit {
       connected: true
     }
     ];
+
+    this.basicParameters = [];
+    this.advancedParameters = [];
   }
 
   ngOnInit() {
     // to preserve the initial state
     this.copyConnections = [...this.connections];
-    this.basicParameters = this.registeredData.parameters.filter(parameter => parameter.required);
-    this.advancedParameters = this.registeredData.parameters.filter(parameter => !!!parameter.required);
+    if (this.registeredData.parameters) {
+      this.basicParameters = this.registeredData.parameters.filter(parameter => parameter.required);
+      this.advancedParameters = this.registeredData.parameters.filter(parameter => !!!parameter.required);
+    }
     console.log('APP INFO :: ON INIT :: ', this.registeredData);
   }
 
