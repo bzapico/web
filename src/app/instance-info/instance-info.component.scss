@@ -9,13 +9,6 @@ $base-red: #F7478A;
 $base-grey: #828282;
 $super-light-grey: #F8F8F8;
 
-/* - - - Card heights - - */
-.row-info-app {
-    min-height: 587px;
-    @include for-desktop-h {
-        min-height: 410px;
-    }
-}
 /* - - -Summary card instances table - - - */
 
 .ins-info-box {

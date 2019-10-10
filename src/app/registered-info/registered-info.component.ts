@@ -76,6 +76,10 @@ export class RegisteredInfoComponent implements OnInit {
   isSelectableLabel: boolean;
   entityId: string;
 
+  /**
+   * Open form instance reference
+   */
+  isOpenFromRegistered: boolean;
 
   /**
    * Hold request error message or undefined
@@ -153,6 +157,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.services = [];
     this.servicesCount = 0;
     this.isSelectableLabel = true;
+    this.isOpenFromRegistered = true;
     this.requestError = '';
     this.showGraph = true;
     this.registeredData = {
