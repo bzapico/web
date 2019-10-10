@@ -14,6 +14,7 @@ import { ServiceInfoComponent } from '../service-info/service-info.component';
 import { RegisteredServiceGroupInfoComponent } from '../registered-service-group-info/registered-service-group-info.component';
 import { TranslateService } from '@ngx-translate/core';
 import { AddLabelComponent } from '../add-label/add-label.component';
+import { RegisteredInfoService } from './registered-info.service';
 
 /**
  * It sets the timeout in actions like undeploying or deleting
@@ -140,7 +141,8 @@ export class RegisteredInfoComponent implements OnInit {
     private notificationsService: NotificationsService,
     private route: ActivatedRoute,
     private router: Router,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private registeredInfoService: RegisteredInfoService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.registeredInfoMock) || null;
     // Check which backend is required (fake or real)
@@ -410,22 +412,6 @@ export class RegisteredInfoComponent implements OnInit {
   }
 
   /**
-   * Return if the marker is required
-   * @param link Link object
-   */
-  getMarker(link) {
-    const index = this.graphData.nodes.map(x => x.id).indexOf(link.source);
-    if (index !== -1) {
-      if (this.graphData.nodes[index].id === this.graphData.nodes[index].group) {
-        return '';
-      } else {
-        return 'url(#arrow)';
-      }
-    }
-    return 'url(#arrow)';
-  }
-
-  /**
    * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
   */
   resetGraphZoom() {
@@ -546,50 +532,8 @@ export class RegisteredInfoComponent implements OnInit {
    * @param registered registered object
    */
   private toGraphData(registered) {
-    registered.groups.forEach(group => {
-      const nodeGroup = {
-        id: group.service_group_id,
-        label: group.name,
-        tooltip: this.translateService.instant('graph.group')
-        + group.name,
-        color: '#000000',
-        text: '#FFFFFF',
-        group: group.service_group_id
-      };
-      this.graphData.nodes.push(nodeGroup);
-      group.services.forEach(service => {
-        const nodeService = {
-          id: group.service_group_id + '-s-' + service.service_id,
-          label: service.name,
-          tooltip:
-          this.translateService.instant('graph.service')
-          + service.name,
-          color: '#000000',
-          text: '#FFFFFF',
-          group: group.service_group_id
-        };
-        this.graphData.nodes.push(nodeService);
-        this.graphData.links.push({
-          source: group.service_group_id,
-          target: group.service_group_id + '-s-' + service.service_id
-        });
-      });
-    });
-    if (registered.rules) {
-      registered.rules.forEach(rule => {
-        if (rule.auth_services) {
-          rule.auth_services.forEach(linkedService => {
-            const sourceIndex = this.graphData.nodes.map(x => x.label).indexOf(rule.target_service_name);
-            const targetIndex = this.graphData.nodes.map(x => x.label).indexOf(linkedService);
-            const link = {
-              target: this.graphData.nodes[sourceIndex].id,
-              source: this.graphData.nodes[targetIndex].id
-            };
-            this.graphData.links.push(link);
-          });
-        }
-      });
-    }
+    this.registeredInfoService.toGraphData(registered);
+    this.graphData = this.registeredInfoService.graphData;
     this.graphDataLoaded = true;
   }
 }
