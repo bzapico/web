@@ -1,7 +1,5 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-
-
 @Component({
   selector: 'services-card',
   templateUrl: './services-card.component.html',
@@ -12,16 +10,14 @@ export class ServicesCardComponent implements OnInit {
    *  Show the services graph tab
    */
   showGraph: boolean;
-  displayGraph: EventEmitter<boolean>;
+  @Output() displayGraph: EventEmitter<boolean>;
 
   constructor(   private translateService: TranslateService) {
     this.showGraph = true;
     this.displayGraph = new EventEmitter<boolean>();
   }
-
   ngOnInit() {
   }
-
   /**
    * Shows the graph in services card
    */
@@ -33,5 +29,4 @@ export class ServicesCardComponent implements OnInit {
     }
     this.displayGraph.emit(this.showGraph);
   }
-
 }
