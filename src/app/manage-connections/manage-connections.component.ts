@@ -46,7 +46,7 @@ export class ManageConnectionsComponent implements OnInit {
    * NGX-select-dropdown
    */
   tab = 1;
-  filteredOptions: any[];
+  appDropdownOptions: any[];
   selectConfig = {};
 
   /**
@@ -73,90 +73,11 @@ export class ManageConnectionsComponent implements OnInit {
       }
     this.title = 'MANAGE CONNECTIONS';
     this.searchTerm = '';
+    this.selectedApp = '';
 
     //  Manage connections dropdown
     this.manageConnections = null;
     this.connections = [];
-  //   // CONNECTIONS
-  //   this.connections = [
-  //     {
-  //     inbound: {
-  //       interfaceName: 'dbInbound',
-  //       instance: 'MySQL'
-  //     },
-  //     outbound: {
-  //       interfaceName: 'dbOutbound',
-  //       instance: 'WordPress'
-  //     },
-  //     connected: true
-  //   },
-  //   {
-  //     inbound: {
-  //       interfaceName: 'activemqInbound',
-  //       instance: 'activemq'
-  //     },
-  //     outbound: {
-  //       interfaceName: 'OpencastOutbound',
-  //       instance: 'Opencast'
-  //     },
-  //     connected: true
-  //   },
-  //   {
-  //     inbound: {
-  //       interfaceName: 'KuardInbound',
-  //       instance: 'Kuardprocessing'
-  //     },
-  //     outbound: {
-  //       interfaceName: 'KuardOutbound',
-  //       instance: 'Kuard'
-  //     },
-  //     connected: true
-  //   },
-  //   {
-  //     inbound: {
-  //       interfaceName: 'testInbound',
-  //       instance: 'testPara'
-  //     },
-  //     outbound: {
-  //       interfaceName: 'testOutbound',
-  //       instance: 'appTest'
-  //     },
-  //     connected: true
-  //   },
-  //   {
-  //     inbound: {
-  //       interfaceName: 'deviceInbound',
-  //       instance: 'deviceVirtual3'
-  //     },
-  //     outbound: {
-  //       interfaceName: 'Virtual3Outbound',
-  //       instance: 'Virtual3'
-  //     },
-  //     connected: true
-  //   },
-  //   {
-  //     inbound: {
-  //       interfaceName: 'Virtual2Inbound',
-  //       instance: 'deviceVirtual2'
-  //     },
-  //     outbound: {
-  //       interfaceName: 'Virtual2Outbound',
-  //       instance: 'Virtual2'
-  //     },
-  //     connected: true
-  //   },
-  //   {
-  //     inbound: {
-  //       interfaceName: 'Virtual1Inbound',
-  //       instance: 'deviceVirtual1'
-  //     },
-  //     outbound: {
-  //       interfaceName: 'Virtual1Outbound',
-  //       instance: 'Virtual1'
-  //     },
-  //     connected: true
-  //   }
-  // ];
   }
 
   ngOnInit() {
@@ -170,21 +91,20 @@ export class ManageConnectionsComponent implements OnInit {
     });
     // to preserve the initial state
     // this.copyConnections = [...this.connections];
-    this.filteredOptions = this.getFilterName();
     this.selectConfig = {
       displayKey: 'name',
       search: false,
       height: 'auto',
       placeholder: 'No filter',
-      limitTo: this.filteredOptions.length,
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
     this.backend.getListConnections(this.organizationId)
-      .subscribe(response => {
-        const anyResponse: any = response;
-        if (anyResponse.connections) {
-          this.connections = anyResponse.connections;
+    .subscribe(response => {
+      const anyResponse: any = response;
+      if (anyResponse.connections) {
+        this.connections = anyResponse.connections;
+        this.appDropdownOptions = this.getAppInstancesOptions();
         }
       });
   }
@@ -216,17 +136,27 @@ export class ManageConnectionsComponent implements OnInit {
   }
 
     /**
-   * Filters copy connections list to return filtered names
+   * Returns app instances names and ids in an object array
    */
-  getFilterName() {
-    const filteredNames = [];
+  getAppInstancesOptions() {
+    const instances = [];
     if (this.connections && this.connections !== []) {
       this.connections.forEach(connectionName => {
-        filteredNames.push(connectionName.source_instance_name);
-        filteredNames.push(connectionName.target_instance_name);
+        instances.push({
+          name: connectionName.source_instance_name,
+          id: connectionName.source_instance_id
+        });
+        instances.push({
+          name: connectionName.target_instance_name,
+          id: connectionName.target_instance_id
+        });
+      });
+      instances.push({
+        name: '----- NO FILTER -----',
+        id: '----- NO FILTER -----'
       });
     }
-    return filteredNames;
+    return instances;
   }
 
   /**
@@ -249,14 +179,14 @@ export class ManageConnectionsComponent implements OnInit {
    * Handler for change event on ngx-select-dropdown
    * @param f Form
    */
-  useFilter(f) {
-    this.copyConnections = [...this.connections];
-    this.copyConnections = this.copyConnections.filter(element => {
-      if (element.source_instance_name === f.filter.value
-        || element.target_instance_name  === f.filter.value) {
-        return element;
-      }
-    });
+  filterByApp(f) {
+    console.log(f);
+    if (f.filter.value.name === '----- NO FILTER -----') {
+      f.filter.value = null;
+      this.selectedApp = '';
+    } else {
+      this.selectedApp = f.filter.value.name;
+    }
   }
 
   /**

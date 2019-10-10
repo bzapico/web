@@ -35,8 +35,8 @@
                 'base-light-grey': !f.filter.value
               }"
             [config]="selectConfig" 
-            (change)="useFilter(f)"
-            [options]="filteredOptions">
+            (change)="filterByApp(f)"
+            [options]="appDropdownOptions">
           </ngx-select-dropdown>
           <div class="form-group-drop-arrow"> 
             <i class="material-icons">arrow_drop_down</i>
@@ -88,7 +88,7 @@
         <div *ngIf="connections && connections.length > 0" class="scroll-app-info ">
           <div *ngFor=
             "let connection of connections |
-            filter : searchTerm; let i = index">
+            filter : searchTerm | filter: selectedApp; let i = index">
             <span class="label-tbody row">
               <div class="col-5">
                 <span 
