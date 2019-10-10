@@ -534,6 +534,7 @@ export class RegisteredInfoComponent implements OnInit {
           registeredResponse.labels = labelsLikeArray;
         }
         this.registeredData = registeredResponse;
+        console.log('ON INIT UPDATE APP DESCRIPTOR :: REGISTERED DATA :: ', this.registeredData);
         this.groups = registeredResponse.groups || [];
         if (this.groups.length) {
           this.groups.forEach(group => {

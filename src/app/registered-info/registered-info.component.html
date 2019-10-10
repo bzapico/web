@@ -73,7 +73,6 @@
         </div>
         <div *ngIf="graphDataLoaded && !graphReset" class="graph">
           <ngx-graph
-            [legend]="showLegend"
             [links]="graphData.links"
             [nodes]="graphData.nodes"
             [orientation]="orientation"

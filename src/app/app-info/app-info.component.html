@@ -129,23 +129,15 @@
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
               <div class="form-group">
-                <div>
-                  <label>param 1</label>
-                  <input 
-                    type="text" 
-                    placeholder="Default value"
+
+                <div *ngFor="let basic of basicParameters|filter : searchTerm;">
+                  <label>{{basic.name}}</label>
+                  <input
+                    type="text"
+                    placeholder={{basic.default_value}}
                     class="form-control"
                     disabled>
-                  <label class="accordion-foot">{{'app-info.typeRestrictions'|translate}}</label>
-                </div>
-                <div>
-                  <label>param 1</label>
-                  <input 
-                    type="text" 
-                    placeholder="Default value"
-                    class="form-control"
-                    disabled>
-                  <label class="accordion-foot">{{'app-info.typeRestrictions'|translate}}</label>
+                  <label class="accordion-foot">{{'app-info.typeRestrictions'|translate:{restriction:basic.type} }}</label>
                 </div>
               </div>
             </accordion-group>
@@ -165,23 +157,14 @@
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
               <div class="form-group">
-                <div>
-                  <label>param 1</label>
-                  <input 
-                    type="text" 
-                    placeholder="Default value"
+                <div *ngFor="let advanced of advancedParameters|filter : searchTerm;">
+                  <label>{{advanced.name}}</label>
+                  <input
+                    type="text"
+                    placeholder={{advanced.default_value}}
                     class="form-control"
                     disabled>
-                  <label class="accordion-foot">{{'app-info.typeRestrictions'|translate}}</label>
-                </div>
-                <div>
-                  <label>param 1</label>
-                  <input 
-                    type="text" 
-                    placeholder="Default value"
-                    class="form-control"
-                    disabled>
-                  <label class="accordion-foot">{{'app-info.typeRestrictions'|translate}}</label>
+                  <label class="accordion-foot">{{'app-info.typeRestrictions'|translate:{restriction:advanced.type} }}</label>
                 </div>
               </div>
             </accordion-group>

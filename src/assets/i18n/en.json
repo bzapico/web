@@ -22,7 +22,7 @@
 			"parameters": "PARAMETERS",
 			"setup": "SETUP"
 		},
-		"typeRestrictions": "Type restrictions: string"
+		"typeRestrictions": "Type restrictions: {{restriction}}"
 	},
 	"applications": {
 		"filters": {
