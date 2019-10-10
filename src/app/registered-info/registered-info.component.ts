@@ -595,4 +595,8 @@ export class RegisteredInfoComponent implements OnInit {
     }
     this.graphDataLoaded = true;
   }
+
+  onShowGraph(displayGraph: boolean) {
+    this.showGraph = displayGraph;
+  }
 }
