@@ -69,6 +69,11 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   isSelectableLabel: boolean;
 
   /**
+   * Open form registered reference
+   */
+  isOpenFromRegistered: boolean;
+
+  /**
    * Interval reference
    */
   refreshIntervalRef: any;
@@ -168,6 +173,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.openFromInstance = true;
     this.labels = [];
     this.isSelectableLabel = false;
+    this.isOpenFromRegistered = false;
     this.groups = [];
     this.instance = {
         groups: [],
@@ -335,6 +341,20 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           return this.translateService.instant('devices.disabled');
         }
       }
+    }
+  }
+
+  /**
+   * Returns the descriptor beauty name
+   * @param descriptorId Descriptor identifier
+   */
+  getDescriptorName(descriptorId: string) {
+    const index =
+    this.registered
+        .map(x => x.app_descriptor_id).
+        indexOf(descriptorId);
+    if (index !== -1) {
+      return this.registered[index].name;
     }
   }
 

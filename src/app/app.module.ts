@@ -70,6 +70,7 @@ import { AddConnectionsComponent } from './add-connections/add-connections.compo
 import { AppInfoComponent } from './app-info/app-info.component';
 import { LabelsCardComponent } from './labels-card/labels-card.component';
 import { AppInfoDetailedComponent } from './app-info-detailed/app-info-detailed.component';
+import { ActionButtonsCardComponent } from './action-buttons-card/action-buttons-card.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -126,7 +127,8 @@ export function createTranslateLoader(http: HttpClient) {
     AddConnectionsComponent,
     AppInfoComponent,
     LabelsCardComponent,
-    AppInfoDetailedComponent
+    AppInfoDetailedComponent,
+    ActionButtonsCardComponent
   ],
   entryComponents: [
     DebugPanelComponent,
