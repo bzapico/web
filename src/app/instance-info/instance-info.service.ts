@@ -106,6 +106,8 @@ export class InstanceInfoService {
       nodes: [],
       links: []
     };
+    this._isGeneratedPublicRule = false;
+    this._publicRule = null;
     if (instance && instance.groups) {
       instance.groups.forEach(group => {
         const nodeGroup = {
@@ -142,23 +144,21 @@ export class InstanceInfoService {
         };
         this._graphData.nodes.push(nodeGroup);
         this.setServicesInstancesNodesAndLinks(group);
+        // THOSE DATA ARE NOT AVAILABLE FOR NOW
         if (instance.rules) {
           instance.rules.forEach(rule => {
-            this.setPublicConnections(rule, group);
-          });
-        }
-        if (instance && instance.groups) {
-          // THOSE DATA ARE NOT AVAILABLE FOR NOW
-          instance.rules.forEach(rule => {
-            if (rule.access_name === AccessType.InboundAppnet) {
-              rule['inbound_net_interface'] = 'inbound';
-            } else if (rule.access_name === AccessType.OutboundAppnet) {
-              rule['outbound_net_interface'] = 'outbound';
+            if (rule.access_name === AccessType.InboundAppnet && !rule['inbound_net_interface']) {
+              rule['inbound_net_interface'] = instance.inbound_net_interfaces.map(connection => connection.name)[0];
+            } else if (rule.access_name === AccessType.OutboundAppnet && !rule['outbound_net_interface']) {
+              rule['outbound_net_interface'] = instance.outbound_net_interfaces.map(connection => connection.name)[0];
             }
           });
           // THOSE DATA ARE NOT AVAILABLE FOR NOW
           this.setInboundConnections(group, instance);
-          this.setOutboundConnections(group, instance);
+          this.generateOutboundConnections(group, instance);
+          instance.rules.forEach(rule => {
+            this.setPublicConnections(rule, group);
+          });
         }
       });
     }
@@ -260,7 +260,7 @@ export class InstanceInfoService {
     }
   }
 
-  private setOutboundConnections(group, instance) {
+  private generateOutboundConnections(group, instance) {
     if (instance.outbound_net_interfaces && instance.outbound_net_interfaces.length > 0 ) {
       const outbounds = {};
       instance.outbound_net_interfaces.forEach(outbound => {
@@ -406,14 +406,11 @@ export class InstanceInfoService {
 
   private setPublicConnections(rule, group) {
     if (rule.access_name === AccessType.Public) {
-      if (this._isGeneratedPublicRule) {
-        this.setRulesLinks(rule, group);
-      } else {
+      if (!this._isGeneratedPublicRule) {
         this.setPublicRulesNodes(rule, group);
         this.setRulesLinks(rule, group);
         this._isGeneratedPublicRule = true;
       }
     }
   }
-
 }
