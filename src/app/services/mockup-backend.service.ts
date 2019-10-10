@@ -653,8 +653,18 @@ export class MockupBackendService implements Backend {
   * @param organizationId Organization identifier
    */
   removeConnection(organizationId: string, connection: any) {
+    let found = false;
+    for (let index = 0; index < mockConnectionsList.length && !found; index++) {
+      const element = mockConnectionsList[index];
+      if (element.source_instance_id === connection.source_instance_id &&
+          element.target_instance_id === connection.target_instance_id &&
+          element.outbound_name === connection.outbound_name &&
+          element.inbound_name === connection.inbound_name) {
+          found = true;
+          mockConnectionsList.splice(index, 1);
+        }
+    }
     return of (new HttpResponse({
-      body: JSON.stringify({connections: mockConnectionsList}),
       status: 200
     }));
   }
