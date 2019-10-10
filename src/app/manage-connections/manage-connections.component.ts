@@ -89,8 +89,6 @@ export class ManageConnectionsComponent implements OnInit {
     this.manageConnectionsFilterForm = this.formBuilder.group({
       filter: [null],
     });
-    // to preserve the initial state
-    // this.copyConnections = [...this.connections];
     this.selectConfig = {
       displayKey: 'name',
       search: false,
