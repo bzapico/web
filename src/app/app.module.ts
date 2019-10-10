@@ -69,6 +69,7 @@ import { ManageConnectionsComponent } from './manage-connections/manage-connecti
 import { AddConnectionsComponent } from './add-connections/add-connections.component';
 import { GraphComponent } from './graph/graph.component';
 import { LabelsCardComponent } from './labels-card/labels-card.component';
+import { ServicesCardComponent } from './services-card/services-card.component';
 import { ActionButtonsCardComponent } from './action-buttons-card/action-buttons-card.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -126,6 +127,7 @@ export function createTranslateLoader(http: HttpClient) {
     AddConnectionsComponent,
     GraphComponent,
     LabelsCardComponent,
+    ServicesCardComponent,
     ActionButtonsCardComponent
   ],
   entryComponents: [

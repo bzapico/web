@@ -532,6 +532,10 @@ export class RegisteredInfoComponent implements OnInit {
       });
   }
 
+  onShowGraph(displayGraph: boolean) {
+    this.showGraph = displayGraph;
+  }
+
   /**
    * Transforms the data needed to create the graph
    * @param registered registered object

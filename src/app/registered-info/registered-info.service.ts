@@ -86,16 +86,7 @@ export class RegisteredInfoService {
         };
         this._graphData.nodes.push(nodeGroup);
         this.setServicesInstancesNodesAndLinks(group);
-        // THOSE DATA ARE NOT AVAILABLE FOR NOW
         if (registered.rules) {
-          registered.rules.forEach(rule => {
-            if (rule.access_name === AccessType.InboundAppnet && !rule['inbound_net_interface']) {
-              rule['inbound_net_interface'] = registered.inbound_net_interfaces.map(connection => connection.name)[0];
-            } else if (rule.access_name === AccessType.OutboundAppnet && !rule['outbound_net_interface']) {
-              rule['outbound_net_interface'] = registered.outbound_net_interfaces.map(connection => connection.name)[0];
-            }
-          });
-          // THOSE DATA ARE NOT AVAILABLE FOR NOW
           this.setInboundConnections(group, registered);
           this.generateOutboundConnections(group, registered);
           registered.rules.forEach(rule => {

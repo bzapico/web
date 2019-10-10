@@ -123,9 +123,7 @@ $super-light-grey: #F8F8F8;
     cursor: pointer;
     color: $base-grey;
 }
-.mr-bars {
-    margin-right: 11px;
-}
+
 @media screen and (max-height: 780px) {
     .hide-title-sm {
         display: none;
@@ -155,9 +153,6 @@ $super-light-grey: #F8F8F8;
 .show-graph-icons {
     cursor: pointer;
     color: $base-grey;
-}
-.mr-bars {
-    margin-right: 11px;
 }
 .info-icon {
     font-size: 30px;
