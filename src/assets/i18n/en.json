@@ -37,7 +37,6 @@
 			"title": "ADD NEW CONNECTION"
 		},
 		"instance": {
-			"configTitle": "CONFIGURATION",
 			"environmentVariables": "Environment variables",
 			"idInstance": "INSTANCE",
 			"noEnvironmentVariables": "No environment variables have been set",
@@ -47,7 +46,6 @@
 			"noServicesInGroup": "No available services in this group",
 			"otherSettings": "Other settings",
 			"rulesList": "rules",
-			"rulesTitle": "RULES",
 			"serviceGroupInfo": {
 				"appDescriptorId": "App descriptor ID",
 				"appInstanceId": "App instance ID",
@@ -79,18 +77,18 @@
 		},
 		"manageConnections": {
 			"addNewConnection": "Add new connection",
-			"createdConnection": "Created new connection",
 			"appFilter": "APP FILTER",
 			"connectionsList": "CONNECTIONS LIST",
+			"createdConnection": "Created new connection",
 			"disconnect": "Disconnect",
 			"disconnectConfirm": "Disconnect?",
 			"disconnectConfirmOutboundRequired": "This outbound connection is required for the instance. Are you sure you want to remove the connection?",
+			"noConnections": "No connections found",
+			"requiredFields": "All fields should be fulfilled",
 			"sourceInstance": "Source Instance",
 			"sourceInterface": "Source Interface",
 			"targetInstance": "Target Instance",
-			"targetInterface": "Target Interface",
-			"noConnections": "No connections found",
-			"requiredFields":  "All fields should be fulfilled"
+			"targetInterface": "Target Interface"
 		},
 		"registered": {
 			"app": "app",
@@ -98,7 +96,6 @@
 			"deleting": "Deleting {{appName}}",
 			"noAdvancedParameters": "No advanced parameters have been set",
 			"noBasicParameters": "No basic parameters have been set",
-			"noEnvironmentVariables": "No environment variables have been set",
 			"noInboundInterfaces": "No inbound interfaces have been set",
 			"noOutboundInterfaces": "No outbound interfaces have been set",
 			"serviceGroupInfo": {
