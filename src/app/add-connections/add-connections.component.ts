@@ -7,6 +7,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ApplicationsService } from '../applications/applications.service';
+import { NotificationsService } from '../services/notifications.service';
 
 @Component({
   selector: 'add-connections',
@@ -60,6 +61,7 @@ export class AddConnectionsComponent implements OnInit {
     private applicationsService: ApplicationsService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
+    private notificationsService: NotificationsService,
     private translateService: TranslateService
     ) {
       const mock = localStorage.getItem(LocalStorageKeys.addConnectionsMock) || null;
@@ -69,22 +71,25 @@ export class AddConnectionsComponent implements OnInit {
       } else {
         this.backend = this.backendService;
       }
+      // Init inbounds and outbounds arrays
       this.inbounds = [];
       this.outbounds = [];
     }
 
   ngOnInit() {
+    // Build form
     this.addNewConnectionsForm = this.formBuilder.group({
       sourceInstance: [null, Validators.required],
       sourceInterface: [null, Validators.required],
       targetInstance: [null, Validators.required],
       targetInterface: [null, Validators.required],
     });
-
+    // Get Organization identifier
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
       if (this.organizationId !== null) {
+        // Get outbounds
         this.backend.getListAvailableInstanceOutbounds(this.organizationId)
           .subscribe(response => {
             if (response.instance_outbounds) {
@@ -105,6 +110,7 @@ export class AddConnectionsComponent implements OnInit {
             }
             this.sourceInstanceOptions =  this.outbounds;
           });
+        // Get inbounds
         this.backend.getListAvailableInstanceInbounds(this.organizationId)
           .subscribe(response => {
             if (response.instance_inbounds) {
@@ -127,9 +133,11 @@ export class AddConnectionsComponent implements OnInit {
           });
       }
     }
+    // Init source and target interface options
     this.sourceInterfaceOptions = [];
     this.targetInterfaceOptions = [];
 
+    // Init configs
     this.sourceInstanceConfig = {
       displayKey: 'instanceName',
       search: false,
@@ -176,8 +184,31 @@ export class AddConnectionsComponent implements OnInit {
    * Requests to add new connections
    */
   addNewConnections() {
-    this.bsModalRef.hide();
-    this.applicationsService.showManageConnections.next(true);
+    // Check if form fields are fulfilled
+    if (this.f.sourceInstance.value &&
+      this.f.sourceInterface.value &&
+      this.f.targetInstance.value &&
+      this.f.targetInterface.value) {
+        // Build the connection request Object
+        const connectionRequest = {
+          organization_id: this.organizationId,
+          source_instance_id: this.f.sourceInstance.value.instanceId,
+          target_instance_id: this.f.targetInstance.value.instanceId,
+          outbound_name: this.f.sourceInterface.value,
+          inbound_name: this.f.targetInterface.value
+        };
+        // Request to add a connection
+        this.backend.addConnection(this.organizationId, connectionRequest).subscribe(result => {
+          this.notificationsService.add({
+            message: 'Connection removed',
+            timeout: 3000
+          });
+          this.bsModalRef.hide();
+          this.applicationsService.showManageConnections.next(true);
+        });
+    } else {
+      alert(this.translateService.instant('apps.manageConnections.requiredFields'));
+    }
   }
 
     /**
@@ -192,8 +223,9 @@ export class AddConnectionsComponent implements OnInit {
    * @param f Form
    */
   sourceSelectionChange(f) {
-    this.sourceInterfaceOptions = f.sourceInstance.value.inbounds;
-    console.log(this.sourceInterfaceOptions);
+    if (f.sourceInstance.value.outbounds) {
+      this.sourceInterfaceOptions = f.sourceInstance.value.outbounds;
+    }
   }
 
   /**
@@ -201,8 +233,9 @@ export class AddConnectionsComponent implements OnInit {
    * @param f Form
    */
   targetSelectionChange(f) {
-    this.targetInterfaceOptions = f.targetInstance.value.inbounds;
-    console.log(this.targetInterfaceOptions);
+    if (f.targetInstance.value.inbounds) {
+      this.targetInterfaceOptions = f.targetInstance.value.inbounds;
+    }
   }
 
 }

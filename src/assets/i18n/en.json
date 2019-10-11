@@ -77,7 +77,8 @@
 			"sourceInterface": "Source Interface",
 			"targetInstance": "Target Instance",
 			"targetInterface": "Target Interface",
-			"noConnections": "No connections found"
+			"noConnections": "No connections found",
+			"requiredFields":  "All fields should be fulfilled"
 		},
 		"registered": {
 			"app": "app",

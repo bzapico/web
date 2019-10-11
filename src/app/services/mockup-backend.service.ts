@@ -641,7 +641,7 @@ export class MockupBackendService implements Backend {
    * Simulates to add a new connection between one outbound and one inbound
    * @param organizationId Organization identifier
    */
-  addConnection(organizationId: string) {
+  addConnection(organizationId: string, connection: any) {
     return of (new HttpResponse({
       body: JSON.stringify({connections: mockConnectionsList}),
       status: 200
