@@ -22,7 +22,8 @@
             [multiple]="false" 
             [config]="sourceInstanceConfig" 
             [options]="sourceInstanceOptions"
-            [ngClass]="{ 'base-light-grey': !f.sourceInstance.value }">
+            [ngClass]="{ 'base-light-grey': !f.sourceInstance.value }"
+            (change)="sourceSelectionChange(f)">
           </ngx-select-dropdown>
           <div class="form-group-drop-arrow"> 
             <i class="material-icons">arrow_drop_down</i>
@@ -58,7 +59,8 @@
             [multiple]="false" 
             [config]="targetInstanceConfig" 
             [options]="targetInstanceOptions"
-            [ngClass]="{ 'base-light-grey': !f.targetInstance.value }">
+            [ngClass]="{ 'base-light-grey': !f.targetInstance.value }"
+            (change)="targetSelectionChange(f)">
           </ngx-select-dropdown>
           <div class="form-group-drop-arrow"> 
             <i class="material-icons">arrow_drop_down</i>
@@ -73,7 +75,8 @@
             [multiple]="false" 
             [config]="targetInterfaceConfig" 
             [options]="targetInterfaceOptions"
-            [ngClass]="{ 'base-light-grey': !f.targetInterface.value }">
+            [ngClass]="{ 'base-light-grey': !f.targetInterface.value }"
+            >
           </ngx-select-dropdown>
           <div class="form-group-drop-arrow"> 
             <i class="material-icons">arrow_drop_down</i>
@@ -86,6 +89,8 @@
   <!-- Add new connection button -->
   <div class="add-connection-box">
     <button 
+      [disabled]="outbounds.length === 0 || inbounds.length === 0"
+      [ngClass]="{ disabled: outbounds.length === 0 || inbounds.length === 0 }"
       (click)="addNewConnections()"
       class="add-connection-btn">
       <i class="material-icons-round">link</i>

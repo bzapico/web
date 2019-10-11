@@ -45,7 +45,7 @@ export interface Backend {
     // Application network
     getListAvailableInstanceInbounds(organizationId: string);
     getListAvailableInstanceOutbounds(organizationId: string);
-    addConnection(organizationId: string);
+    addConnection(organizationId: string, connection: any);
     removeConnection(organizationId: string, connection: any);
     getListConnections(organizationId: string);
     // Devices
