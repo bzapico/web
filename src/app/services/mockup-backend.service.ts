@@ -621,7 +621,7 @@ export class MockupBackendService implements Backend {
    */
   getListAvailableInstanceInbounds(organizationId: string) {
     return of (new HttpResponse({
-      body: JSON.stringify({inbounds: mockAppsInboundsList}),
+      body: JSON.stringify(mockAppsInboundsList),
       status: 200
     })).pipe(map(response => JSON.parse(response.body)));
   }
@@ -632,7 +632,7 @@ export class MockupBackendService implements Backend {
    */
   getListAvailableInstanceOutbounds(organizationId: string) {
     return of (new HttpResponse({
-      body: JSON.stringify({inbounds: mockAppsOutboundsList}),
+      body: JSON.stringify(mockAppsOutboundsList),
       status: 200
     })).pipe(map(response => JSON.parse(response.body)));
   }
@@ -642,10 +642,21 @@ export class MockupBackendService implements Backend {
    * @param organizationId Organization identifier
    */
   addConnection(organizationId: string, connection: any) {
+    const newConnection = {
+        organization_id: '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+        connection_id: '3bc6a816-6548-4b5f-a2b7-23921dd6548b',
+        source_instance_id: '3bc6a816-6548-4b5f-a2b7-239121',
+        source_instance_name: 'Wordpress1',
+        target_instance_id: '3bc6a816-6548-4b5f-a2b7-239455',
+        target_instance_name: 'Wordpress5',
+        inbound_name: connection.inbound_name,
+        outbound_name: connection.outbound_name,
+        outbound_required: true
+    };
+    mockConnectionsList.push(newConnection);
     return of (new HttpResponse({
-      body: JSON.stringify({connections: mockConnectionsList}),
       status: 200
-    })).pipe(map(response => JSON.parse(response.body)));
+    }));
   }
 
   /**

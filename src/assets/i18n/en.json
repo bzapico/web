@@ -68,6 +68,7 @@
 		},
 		"manageConnections": {
 			"addNewConnection": "Add new connection",
+			"createdConnection": "Created new connection",
 			"appFilter": "APP FILTER",
 			"connectionsList": "CONNECTIONS LIST",
 			"disconnect": "Disconnect",
