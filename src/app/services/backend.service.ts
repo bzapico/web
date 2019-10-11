@@ -533,9 +533,10 @@ export class BackendService implements Backend {
    * Operation that removes a connection
    * @param organizationId Organization identifier
    */
-  removeConnection(organizationId: string) {
+  removeConnection(organizationId: string, connection: any) {
     return this.post(
-      API_URL + 'appnet/connection/' + organizationId + '/remove'
+      API_URL + 'appnet/connection/' + organizationId + '/remove',
+      connection
     );
   }
   // GET '/appnet/connection/{organization_id}/list'
