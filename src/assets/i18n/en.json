@@ -83,10 +83,12 @@
 			"connectionsList": "CONNECTIONS LIST",
 			"disconnect": "Disconnect",
 			"disconnectConfirm": "Disconnect?",
+			"disconnectConfirmOutboundRequired": "This outbound connection is required for the instance. Are you sure you want to remove the connection?",
 			"sourceInstance": "Source Instance",
 			"sourceInterface": "Source Interface",
 			"targetInstance": "Target Instance",
-			"targetInterface": "Target Interface"
+			"targetInterface": "Target Interface",
+			"noConnections": "No connections found"
 		},
 		"registered": {
 			"app": "app",
