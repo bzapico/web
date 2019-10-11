@@ -128,8 +128,7 @@
                 class="accordion-icons-box">
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
-              <div class="form-group">
-
+              <div *ngIf="basicParameters.length > 0" class="form-group scroll-app-info">
                 <div *ngFor="let basic of basicParameters|filter : searchTerm;">
                   <label>{{basic.name}}</label>
                   <input
@@ -139,6 +138,9 @@
                     disabled>
                   <label class="accordion-foot">{{'app-info.typeRestrictions'|translate:{restriction:basic.type} }}</label>
                 </div>
+              </div>
+              <div *ngIf="basicParameters.length === 0" class="scroll-app-info">
+                <p class="grey">{{'apps.registered.noBasicParameters'|translate}}</p>
               </div>
             </accordion-group>
           </accordion>
@@ -156,7 +158,7 @@
                 class="accordion-icons-box">
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
-              <div class="form-group">
+              <div *ngIf="advancedParameters.length > 0" class="form-group scroll-app-info">
                 <div *ngFor="let advanced of advancedParameters|filter : searchTerm;">
                   <label>{{advanced.name}}</label>
                   <input
@@ -166,6 +168,9 @@
                     disabled>
                   <label class="accordion-foot">{{'app-info.typeRestrictions'|translate:{restriction:advanced.type} }}</label>
                 </div>
+              </div>
+              <div *ngIf="advancedParameters.length === 0" class="scroll-app-info">
+                <p class="grey">{{'apps.registered.noAdvancedParameters'|translate}}</p>
               </div>
             </accordion-group>
           </accordion>
@@ -232,27 +237,30 @@
               </div>
               <!-- DESCRIPTOR INFO network-inbounds-->
               <div *ngIf="openFromRegistered" class="label-nalej-table no-m-row">
-                <div class="scroll-app-info">
+                <div *ngIf="registeredData.inbound_net_interfaces" class="scroll-app-info">
                   <div *ngFor=
-                    "let connection of copyConnections |
+                    "let connection of registeredData.inbound_net_interfaces |
                     filter : searchTerm; let i = index">
-                    <span *ngIf="connection.connected" class="label-tbody row">
+                    <span class="label-tbody row">
                       <div class="col-6">
-                        <span class="grey">{{connection.inbound.interfaceName}}</span>
+                        <span class="grey">{{connection.name}}</span>
                       </div>
                       <div class="col-6 text-right">
-                        <span>{{connection.inbound.instance}}</span>
+                        <span>{{connection.target_service_group_name}}</span>
                         <br>
-                        <span>{{connection.outbound.interfaceName}}</span>
+                        <span>{{connection.target_service_name}}</span>
                       </div>
                     </span>
                   </div>
+                </div>
+                <div *ngIf="!registeredData.inbound_net_interfaces" class="scroll-app-info">
+                  <p class="grey">{{'apps.registered.noInboundInterfaces'|translate}}</p>
                 </div>
               </div>
             </accordion-group>
           </accordion>
         </div>
-        <div class=" accordion-box accordion-box-small">
+        <div class="accordion-box accordion-box-small">
           <accordion 
           class="accordion-tabs">
           <accordion-group 
@@ -291,7 +299,7 @@
               <div class="scroll-app-info">
                 <div *ngFor=
                   "let connection of copyConnections |
-                  filter : searchTerm; let i = index">
+                  filter : searchTerm">
                   <span *ngIf="connection.connected" class="label-tbody row">
                     <div class="col-4">
                       <span class="grey">{{connection.outbound.interfaceName}}</span>
@@ -315,22 +323,25 @@
               </div>
             </div>
             <!-- REGISTERED INFO network-outbounds -->
-            <div *ngIf="openFromRegistered" class="label-nalej-table  no-m-row">
-              <div class="scroll-app-info">
+            <div *ngIf="openFromRegistered" class="label-nalej-table no-m-row">
+              <div *ngIf="registeredData.outbound_net_interfaces" class="scroll-app-info">
                 <div *ngFor=
-                  "let connection of copyConnections |
-                  filter : searchTerm; let i = index">
-                  <span *ngIf="connection.connected" class="label-tbody row">
+                  "let connection of registeredData.outbound_net_interfaces |
+                  filter : searchTerm">
+                  <span class="label-tbody row">
                     <div class="col-6">
-                      <span class="grey">{{connection.outbound.interfaceName}}</span>
+                      <span class="grey">{{connection.name}}</span>
                     </div>
                     <div class="col-6 text-right">
-                      <span>{{connection.inbound.instance}}</span>
+                      <span>{{connection.target_service_group_name}}</span>
                       <br>
-                      <span>{{connection.inbound.interfaceName}}</span>
+                      <span>{{connection.target_service_name}}</span>
                     </div>
                   </span>
                 </div>
+              </div>
+              <div *ngIf="!registeredData.outbound_net_interfaces" class="scroll-app-info p-2">
+                <p class="grey p-2">{{'apps.registered.noOutboundInterfaces'|translate}}</p>
               </div>
             </div>
           </accordion-group>

@@ -160,13 +160,11 @@ export class AppInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('APP INFO :: INSTANCE :: ', this.instance);
     // to preserve the initial state
     this.copyConnections = [...this.connections];
-    if (this.registeredData.parameters) {
-      this.basicParameters = this.registeredData.parameters.filter(parameter => parameter.required);
-      this.advancedParameters = this.registeredData.parameters.filter(parameter => !!!parameter.required);
-    }
-    console.log('APP INFO :: ON INIT :: ', this.registeredData);
+    this.addServiceAndGroupToInterfaces();
+    this.generateParameters();
   }
 
   /**
@@ -333,5 +331,35 @@ export class AppInfoComponent implements OnInit {
 
     this.modalRef = this.modalService.show(AppInfoDetailedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
+  }
+
+  private addServiceAndGroup(interface_type: string) {
+    this.registeredData[`${interface_type}s`].map(item => {
+      this.registeredData.rules.map(rule => {
+        if (rule[interface_type] === item.name) {
+          item['target_service_name'] = rule['target_service_name'];
+          item['target_service_group_name'] = rule['target_service_group_name'];
+        }
+      });
+    });
+  }
+
+  private addServiceAndGroupToInterfaces() {
+    if (this.registeredData.inbound_net_interfaces) {
+      this.addServiceAndGroup('inbound_net_interface');
+    }
+
+    if (this.registeredData.outbound_net_interfaces) {
+      this.addServiceAndGroup('outbound_net_interface');
+    }
+  }
+
+  private generateParameters() {
+    if (this.openFromInstance) {
+
+    } else if (this.openFromRegistered && this.registeredData.parameters) {
+      this.basicParameters = this.registeredData.parameters.filter(parameter => parameter.required);
+      this.advancedParameters = this.registeredData.parameters.filter(parameter => !!!parameter.required);
+    }
   }
 }

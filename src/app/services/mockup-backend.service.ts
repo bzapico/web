@@ -680,6 +680,15 @@ export class MockupBackendService implements Backend {
     })).pipe(map(response => JSON.parse(response.body)));
   }
 
+  /**
+   * Retrieves a list of available parameters of an instance
+   * @param organizationId Organization identifier
+   * @param instanceId Instance identifier
+   */
+  getListAvailableInstanceParameters(organizationId: string, instanceId: string) {
+
+  }
+
   /********************
    * Cluster
    ********************/

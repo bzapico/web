@@ -94,6 +94,11 @@
 			"app": "app",
 			"deleteApp": "Delete {{appName}}?",
 			"deleting": "Deleting {{appName}}",
+			"noAdvancedParameters": "No advanced parameters have been set",
+			"noBasicParameters": "No basic parameters have been set",
+			"noEnvironmentVariables": "No environment variables have been set",
+			"noInboundInterfaces": "No inbound interfaces have been set",
+			"noOutboundInterfaces": "No outbound interfaces have been set",
 			"serviceGroupInfo": {
 				"title": "Registered service group info"
 			}
