@@ -200,7 +200,7 @@ export class AddConnectionsComponent implements OnInit {
         // Request to add a connection
         this.backend.addConnection(this.organizationId, connectionRequest).subscribe(result => {
           this.notificationsService.add({
-            message: 'Connection removed',
+            message: this.translateService.instant('apps.manageConnections.connectionCreated'),
             timeout: 3000
           });
           this.bsModalRef.hide();
