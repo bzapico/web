@@ -24,7 +24,7 @@
     <div class="modal-center-box">
       <!-- Filters -->
       <form [formGroup]="manageConnectionsFilterForm"  class="w-100 hide-sm-md-h">
-        <div class="form-group form-group-drop filter-drop-box">
+        <div *ngIf="connections && connections.length > 0" class="form-group form-group-drop filter-drop-box">
           <label class="app-filter-label">{{'apps.manageConnections.appFilter'|translate}}</label>
           <ngx-select-dropdown 
             formControlName="filter" 
@@ -35,8 +35,8 @@
                 'base-light-grey': !f.filter.value
               }"
             [config]="selectConfig" 
-            (change)="useFilter(f)"
-            [options]="filteredOptions">
+            (change)="filterByApp(f)"
+            [options]="appDropdownOptions">
           </ngx-select-dropdown>
           <div class="form-group-drop-arrow"> 
             <i class="material-icons">arrow_drop_down</i>
@@ -44,7 +44,7 @@
         </div>
       </form>
       <!-- Search box -->
-      <div class="search-box hide-sm-md-h">
+      <div *ngIf="connections && connections.length > 0" class="search-box hide-sm-md-h">
         <input 
           name="searchTerm" 
           [(ngModel)]="searchTerm"
@@ -59,7 +59,10 @@
         </div>
       </div>
       <!-- Table -->
-      <div class="label-nalej-table no-p-col no-m-row">
+      <div *ngIf="!connections || connections.length === 0" class="mt-0">
+        {{'apps.manageConnections.noConnections'|translate}}
+      </div>
+      <div *ngIf="connections && connections.length > 0" class="label-nalej-table no-p-col no-m-row">
         <div class="label-thead row">
           <div class="col-5 label-th">
             <span tooltip="{{'apps.manageConnections.sourceInstance'|translate}}" placement="bottom">
@@ -85,20 +88,28 @@
             </span>
           </div>
         </div>
-        <div class="scroll-app-info ">
+        <div *ngIf="connections && connections.length > 0" class="scroll-app-info ">
           <div *ngFor=
-            "let connection of copyConnections |
-            filter : searchTerm; let i = index">
-            <span *ngIf="connection.connected"  class="label-tbody row">
-              <div class="col-5">
-                <span class="blue">{{connection.outbound.instance}}</span>
+            "let connection of connections |
+            filter : searchTerm | filter: selectedApp; let i = index">
+            <span class="label-tbody row">
+              <div class="col-5 label-td">
+                <span 
+                  (click)="goToInstance(connection.source_instance_id)" 
+                  class="blue cursor-pointer">
+                  {{connection.source_instance_name}}
+                </span>
                 <br>
-                <span class="grey">{{connection.outbound.interfaceName}}</span>
+                <span class="grey">{{connection.outbound_name}}</span>
+                <span *ngIf="connection.outbound_required" class="pink">*</span>
               </div>
               <div class="col-5">
-                <span class="blue">{{connection.inbound.instance}}</span>
+                <span
+                  (click)="goToInstance(connection.target_instance_id)"
+                  class="blue cursor-pointer">{{connection.target_instance_name}}
+                </span>
                 <br>
-                <span class="grey">{{connection.inbound.interfaceName}}</span>
+                <span class="grey">{{connection.inbound_name}}</span>
               </div>
               <div class="col-2 text-center label-td-flex">
                 <button 
