@@ -35,6 +35,15 @@ $base-violet: #5800FF;
             color: #ffffff;
         }
     }
+    .disabled {
+        background-color: #828282;
+        cursor: default;
+        &:hover {
+            color: #ffffff;
+            background-color: #444444;
+            opacity: 0.6;
+        }
+    }
 }
 #add-connections {
     display: flex;

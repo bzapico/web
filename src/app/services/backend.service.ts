@@ -523,9 +523,10 @@ export class BackendService implements Backend {
    * Adds a new connection between one outbound and one inbound
    * @param organizationId Organization identifier
    */
-  addConnection(organizationId: string) {
+  addConnection(organizationId: string, connection: any) {
     return this.post(
-      API_URL + 'appnet/connection/' + organizationId + '/add'
+      API_URL + 'appnet/connection/' + organizationId + '/add',
+      connection
     );
   }
      // POST 'appnet/connection/{organization_id}/remove'

@@ -517,18 +517,36 @@ export const mockAgentJoinToken = {
  * Mocked apps Inbounds
  */
 export const mockAppsInboundsList = {
-    'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-    'app_instance_id': '0a261182-728e-4633-9578-3e1322c05d20',
-    'instance_name': 'dbInbound',
-    'inbound_name': 'MySQL'
-};
+    'instance_inbounds':
+        [{
+            'organization_id': '01014ea3-022a-40d6-943f-8a6b150eb144',
+            'app_instance_id': '4979fdce-35c4-40fc-a9cf-36fce6e4ff90',
+            'instance_name': 'MySQL-Appnet2',
+            'inbound_name': 'mysqlinbound'
+        },
+        {
+            'organization_id': '01014ea3-022a-40d6-943f-8a6b150eb144',
+            'app_instance_id': 'b5e6c22b-e1c9-40a9-be68-2d05d6942b20',
+            'instance_name': 'MySQL-Appnet1',
+            'inbound_name': 'mysqlinbound'
+        },
+        {
+            'organization_id': '01014ea3-022a-40d6-943f-8a6b150eb144',
+            'app_instance_id': 'e96afc8e-03ff-4a1d-93f2-47c6fe328950',
+            'instance_name': 'InboundTest01',
+            'inbound_name': 'INBOUND'
+        }]
+    };
 
 /**
  * Mocked apps Outbound
  */
 export const mockAppsOutboundsList = {
-    'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-    'app_instance_id': '0a261182-728e-4633-9578-3e1322c05d20',
-    'instance_name': 'dbInbound',
-    'outbound_name': 'OpenCast1'
+    'instance_outbounds':
+    [{
+        'organization_id': '01014ea3-022a-40d6-943f-8a6b150eb144',
+        'app_instance_id': 'c0bbd957-5dfb-488c-b7aa-7d1f910cb094',
+        'instance_name': 'OutboundTest01',
+        'outbound_name': 'OUTBOUND'
+    }]
 };

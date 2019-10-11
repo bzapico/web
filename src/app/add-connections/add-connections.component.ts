@@ -7,6 +7,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ApplicationsService } from '../applications/applications.service';
+import { NotificationsService } from '../services/notifications.service';
 
 @Component({
   selector: 'add-connections',
@@ -28,8 +29,8 @@ export class AddConnectionsComponent implements OnInit {
    * Model that hold add connections and its info
    */
   organizationId: string;
-  connections: any[];
-  copyConnections: any[];
+  inbounds: any[];
+  outbounds: any[];
 
   sourceInstance: FormControl;
   sourceInterface: FormControl;
@@ -60,6 +61,7 @@ export class AddConnectionsComponent implements OnInit {
     private applicationsService: ApplicationsService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
+    private notificationsService: NotificationsService,
     private translateService: TranslateService
     ) {
       const mock = localStorage.getItem(LocalStorageKeys.addConnectionsMock) || null;
@@ -69,113 +71,83 @@ export class AddConnectionsComponent implements OnInit {
       } else {
         this.backend = this.backendService;
       }
-    // CONNECTIONS
-    this.connections = [
-        {
-        inbound: {
-          interfaceName: 'dbInbound',
-          instance: 'MySQL'
-        },
-        outbound: {
-          interfaceName: 'dbOutbound',
-          instance: 'WordPress'
-        },
-        connected: true
-      },
-      {
-        inbound: {
-          interfaceName: 'activemqInbound',
-          instance: 'activemq'
-        },
-        outbound: {
-          interfaceName: 'OpencastOutbound',
-          instance: 'Opencast'
-        },
-        connected: true
-      },
-      {
-        inbound: {
-          interfaceName: 'KuardInbound',
-          instance: 'Kuardprocessing'
-        },
-        outbound: {
-          interfaceName: 'KuardOutbound',
-          instance: 'Kuard'
-        },
-        connected: true
-      },
-      {
-        inbound: {
-          interfaceName: 'testInbound',
-          instance: 'testPara'
-        },
-        outbound: {
-          interfaceName: 'testOutbound',
-          instance: 'appTest'
-        },
-        connected: true
-      },
-      {
-        inbound: {
-          interfaceName: 'deviceInbound',
-          instance: 'deviceVirtual3'
-        },
-        outbound: {
-          interfaceName: 'Virtual3Outbound',
-          instance: 'Virtual3'
-        },
-        connected: true
-      },
-      {
-        inbound: {
-          interfaceName: 'Virtual2Inbound',
-          instance: 'deviceVirtual2'
-        },
-        outbound: {
-          interfaceName: 'Virtual2Outbound',
-          instance: 'Virtual2'
-        },
-        connected: true
-      },
-      {
-        inbound: {
-          interfaceName: 'Virtual1Inbound',
-          instance: 'deviceVirtual1'
-        },
-        outbound: {
-          interfaceName: 'Virtual1Outbound',
-          instance: 'Virtual1'
-        },
-        connected: true
-      }
-    ];
+      // Init inbounds and outbounds arrays
+      this.inbounds = [];
+      this.outbounds = [];
     }
 
   ngOnInit() {
+    // Build form
     this.addNewConnectionsForm = this.formBuilder.group({
       sourceInstance: [null, Validators.required],
       sourceInterface: [null, Validators.required],
       targetInstance: [null, Validators.required],
       targetInterface: [null, Validators.required],
     });
-    // to preserve the initial state
-    this.copyConnections = [...this.connections];
-    this.sourceInstanceOptions =  this.getFilterSourceInstanceName();
-    this.sourceInterfaceOptions = this.getFilterSourceInterfaceName();
-    this.targetInstanceOptions = this.getFilterTargetInstanceName();
-    this.targetInterfaceOptions = this.getFilterTargetInterfaceName();
+    // Get Organization identifier
+    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+    if (jwtData !== null) {
+      this.organizationId = JSON.parse(jwtData).organizationID;
+      if (this.organizationId !== null) {
+        // Get outbounds
+        this.backend.getListAvailableInstanceOutbounds(this.organizationId)
+          .subscribe(response => {
+            if (response.instance_outbounds) {
+              response.instance_outbounds.forEach(outbound => {
+                const index = this.outbounds.map(x => x.instanceId).indexOf(outbound.app_instance_id);
+                if (index === -1) {
+                  const instance = {
+                    instanceId: outbound.app_instance_id,
+                    instanceName: outbound.instance_name,
+                    outbounds: []
+                  };
+                  instance.outbounds.push(outbound.outbound_name);
+                  this.outbounds.push(instance);
+                } else {
+                  this.outbounds[index].outbounds.push(outbound.outbound_name);
+                }
+              });
+            }
+            this.sourceInstanceOptions =  this.outbounds;
+          });
+        // Get inbounds
+        this.backend.getListAvailableInstanceInbounds(this.organizationId)
+          .subscribe(response => {
+            if (response.instance_inbounds) {
+              response.instance_inbounds.forEach(inbound => {
+                const index = this.inbounds.map(x => x.instanceId).indexOf(inbound.app_instance_id);
+                if (index === -1) {
+                  const instance = {
+                    instanceId: inbound.app_instance_id,
+                    instanceName: inbound.instance_name,
+                    inbounds: []
+                  };
+                  instance.inbounds.push(inbound.inbound_name);
+                  this.inbounds.push(instance);
+                } else {
+                  this.inbounds[index].outbounds.push(inbound.inbound_name);
+                }
+              });
+            }
+            this.targetInstanceOptions = this.inbounds;
+          });
+      }
+    }
+    // Init source and target interface options
+    this.sourceInterfaceOptions = [];
+    this.targetInterfaceOptions = [];
 
+    // Init configs
     this.sourceInstanceConfig = {
-      displayKey: 'name',
+      displayKey: 'instanceName',
       search: false,
       height: 'auto',
       placeholder: this.translateService.instant('apps.manageConnections.sourceInstance'),
-      limitTo: this.sourceInstanceOptions.length,
+      limitTo: this.outbounds.length,
       moreText: 'more',
       noResultsFound: this.translateService.instant('apps.addConnection.noResults')
     };
     this.sourceInterfaceConfig = {
-      displayKey: 'name',
       search: false,
       height: 'auto',
       placeholder: this.translateService.instant('apps.manageConnections.sourceInterface'),
@@ -184,11 +156,11 @@ export class AddConnectionsComponent implements OnInit {
       noResultsFound: this.translateService.instant('apps.addConnection.noResults')
     };
     this.targetInstanceConfig = {
-      displayKey: 'name',
+      displayKey: 'instanceName',
       search: false,
       height: 'auto',
       placeholder: this.translateService.instant('apps.manageConnections.targetInstance'),
-      limitTo: this.targetInstanceOptions.length,
+      limitTo: this.inbounds.length,
       moreText: 'more',
       noResultsFound: this.translateService.instant('apps.addConnection.noResults')
     };
@@ -209,55 +181,34 @@ export class AddConnectionsComponent implements OnInit {
   get f() { return this.addNewConnectionsForm.controls; }
 
   /**
-   * Filters copy connections list to return source instance name
-   */
-  getFilterSourceInstanceName() {
-    const filterSourceInstanceNames = [];
-    this.copyConnections.forEach(connectionName => {
-      filterSourceInstanceNames.push(connectionName.outbound.instance);
-    });
-    return filterSourceInstanceNames;
-  }
-
-  /**
-   * Filters copy connections list to return source interface name
-   */
-  getFilterSourceInterfaceName() {
-    const filterSourceInterfaceNames = [];
-    this.copyConnections.forEach(connectionName => {
-      filterSourceInterfaceNames.push(connectionName.inbound.interfaceName);
-    });
-    return filterSourceInterfaceNames;
-  }
-
-  /**
-   * Filters copy connections list to return target instance name
-   */
-  getFilterTargetInstanceName() {
-    const filterTargetInstanceNames = [];
-    this.copyConnections.forEach(connectionName => {
-      filterTargetInstanceNames.push(connectionName.inbound.instance);
-    });
-    return filterTargetInstanceNames;
-  }
-
-  /**
-   * Filters copy connections list to return target interface name
-   */
-  getFilterTargetInterfaceName() {
-    const filterTargetInterfaceNames = [];
-    this.copyConnections.forEach(connectionName => {
-      filterTargetInterfaceNames.push(connectionName.outbound.interfaceName);
-    });
-    return filterTargetInterfaceNames;
-  }
-
-  /**
    * Requests to add new connections
    */
   addNewConnections() {
-    this.bsModalRef.hide();
-    this.applicationsService.showManageConnections.next(true);
+    // Check if form fields are fulfilled
+    if (this.f.sourceInstance.value &&
+      this.f.sourceInterface.value &&
+      this.f.targetInstance.value &&
+      this.f.targetInterface.value) {
+        // Build the connection request Object
+        const connectionRequest = {
+          organization_id: this.organizationId,
+          source_instance_id: this.f.sourceInstance.value.instanceId,
+          target_instance_id: this.f.targetInstance.value.instanceId,
+          outbound_name: this.f.sourceInterface.value,
+          inbound_name: this.f.targetInterface.value
+        };
+        // Request to add a connection
+        this.backend.addConnection(this.organizationId, connectionRequest).subscribe(result => {
+          this.notificationsService.add({
+            message: this.translateService.instant('apps.manageConnections.createdConnection'),
+            timeout: 3000
+          });
+          this.bsModalRef.hide();
+          this.applicationsService.showManageConnections.next(true);
+        });
+    } else {
+      alert(this.translateService.instant('apps.manageConnections.requiredFields'));
+    }
   }
 
     /**
@@ -266,5 +217,26 @@ export class AddConnectionsComponent implements OnInit {
   closeModal() {
     this.bsModalRef.hide();
   }
+
+  /**
+   * Modify the source interface options on source selection change
+   * @param f Form
+   */
+  sourceSelectionChange(f) {
+    if (f.sourceInstance.value.outbounds) {
+      this.sourceInterfaceOptions = f.sourceInstance.value.outbounds;
+    }
+  }
+
+  /**
+   * Modify the target interface options on target selection change
+   * @param f Form
+   */
+  targetSelectionChange(f) {
+    if (f.targetInstance.value.inbounds) {
+      this.targetInterfaceOptions = f.targetInstance.value.inbounds;
+    }
+  }
+
 }
 
