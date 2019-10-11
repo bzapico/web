@@ -1,13 +1,5 @@
-@mixin for-desktop-only {
-    @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
-}
-@mixin for-desktop-h {
-    @media all and (max-height: 900px) { @content; }
-}
-
-$base-red: #F7478A;
-$base-grey: #828282;
-$super-light-grey: #F8F8F8;
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
 
 /* - - -Summary card instances table - - - */
 
@@ -106,61 +98,76 @@ $super-light-grey: #F8F8F8;
     display: block;
     font-size: 1.7em;
 }
-
-/* - - -  Config card - - - */
-.config-card {
-    font-size: .8em;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    word-wrap: break-word;
-    height: 100%;
-    overflow-x: scroll;
-    @include for-desktop-h {
-        text-align: left;
-        justify-content: end;
-    }
-}
-
-/* - - -  Accordion table - - - */
-.search-box {
-    margin-right: 0;
+/* - - - Services graph / tables - - - */
+/* - - -  Graph - - - */
+.graph {
+    height: 96%;
 }
 .show-graph-icons {
     cursor: pointer;
     color: $base-grey;
 }
-.mr-bars {
-    margin-right: 11px;
+@media screen and (max-height: 780px) {
+    .hide-title-sm {
+        display: none;
+    }
+}
+
+/* - - - Tables - - - */
+.search-box {
+    width: 237px;
+    margin-right: 1em;
+    margin-right: 0;
+}
+.card-title-name {
+    color: $super-dark-grey;
+    margin-bottom: 0;
 }
 .info-icon {
     font-size: 30px;
 }
-.accordion-box 
-.accordion-tabs 
-.nalejAccordion 
-.accordion-icons-box 
-.accordion-btn {
-    top: 7px;
-    right: 36px;
-}
-.label-tbody {
-    padding: .9rem 0;
-    .label-td {
-        float: left;
-        font-size: .9em;
-        color: $base-grey;
-        outline: none;
+.label-nalej-table {
+    .label-thead {
+        margin-bottom: 0px;
     }
-    .label-td-flex {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+    .label-tbody {
+        .label-td-flex {
+            align-items: flex-end;
+        }
     }
 }
-.card-title-name-mb {
-    margin-bottom: .5em;
+.accordion-box {
+    .label-nalej-table {
+        .label-tbody {
+            .label-td {
+                align-self: center;
+            }
+        }
+    }
+}
+.services-card-box {
+    height:96%;
+    .services-table-box {
+        height: 50%;
+        overflow: hidden;
+    }
+    .label-thead {
+        background-color: $super-light-grey;
+    }
+}
+.label-tbody .label-td-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.label-nalej-table .label-tbody .label-td {
+    float: left;
+    font-size: .9em;
+    color: #828282;
+    outline: none;
+}
+.endpoint {
+    font-size: 14px;
 }

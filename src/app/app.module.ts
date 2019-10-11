@@ -67,7 +67,9 @@ import { InstanceServiceGroupInfoComponent } from './instance-service-group-info
 import { RegisteredServiceGroupInfoComponent } from './registered-service-group-info/registered-service-group-info.component';
 import { ManageConnectionsComponent } from './manage-connections/manage-connections.component';
 import { AddConnectionsComponent } from './add-connections/add-connections.component';
+import { GraphComponent } from './graph/graph.component';
 import { LabelsCardComponent } from './labels-card/labels-card.component';
+import { ServicesCardComponent } from './services-card/services-card.component';
 import { ActionButtonsCardComponent } from './action-buttons-card/action-buttons-card.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -123,7 +125,9 @@ export function createTranslateLoader(http: HttpClient) {
     RegisteredServiceGroupInfoComponent,
     ManageConnectionsComponent,
     AddConnectionsComponent,
+    GraphComponent,
     LabelsCardComponent,
+    ServicesCardComponent,
     ActionButtonsCardComponent
   ],
   entryComponents: [

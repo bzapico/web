@@ -104,6 +104,7 @@
 .nalej-table-p {
     padding: 0 1em;
 }
+
 .label-nalej-table {
     height: 100%;
     display: block;
@@ -551,4 +552,19 @@ div.nalej-table-box.no-p-col.no-m-row > div
         }
     }
 }
-  
+.nalej-table-grey-bg {
+    background-color: $super-light-grey;
+    border-radius: 10px;
+    padding: 1em 1.6em;
+    overflow: hidden;
+    .label-thead {
+        background-color: $super-light-grey;
+    }
+    .label-tbody {
+        border-top: .8px solid $light-grey;
+    }
+    div:nth-child(2) > div {
+        border:none;
+    }
+
+}
