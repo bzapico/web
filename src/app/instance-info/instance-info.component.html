@@ -204,7 +204,7 @@
                       <div class="accordion-btn">
                         <div    
                           (click)="openGroupServicesInfo(group, $event)" 
-                          tooltip="Info" 
+                          tooltip="{{'apps.instance.tableInfo'|translate}}" 
                           placement="left">
                           <i class="material-icons info-icon">info</i>
                         </div>
@@ -219,7 +219,7 @@
                       "instance &&
                       instance.groups &&
                       instance.groups.length > 0"
-                      class="nalej-table-box">
+                      class="nalej-table-box no-p-col no-m-row">
                       <div class="label-nalej-table">
                         <div *ngIf="!searchTerm" class="label-thead row">
                           <div 
@@ -280,10 +280,10 @@
                         sortBy : sortedBy : reverse : 'case-insensitive' |
                         filter : searchTerm">
                         <div class="label-tbody row">
-                          <div class="col-1 label-td"> 
+                          <div class="col-1 label-td grey"> 
                             {{service.name}}
                           </div>
-                          <div class="col-2 text-center label-td">
+                          <div class="col-2 text-center label-td grey">
                             {{service.specs.replicas}}
                           </div>
                           <div class="col-2 text-center label-td">
@@ -307,11 +307,12 @@
                               <a 
                                 *ngIf="endpoint" 
                                 href="{{getEndpointHref(endpoint)}}" 
-                                target="_blank">
+                                target="_blank"
+                                class="endpoint">
                                 {{endpoint}}
                               </a>
                             </span>
-                            <span *ngIf="!service.endpoints">No</span>
+                            <span *ngIf="!service.endpoints" class="grey">No</span>
                           </div>
                           <div class="col-1 label-td-flex text-center">
                             <div    
