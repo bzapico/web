@@ -1,14 +1,9 @@
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
+
 @mixin for-md-desktop-fix {
     @media all and (max-width: 1614px) { @content; }
 }
-@mixin for-desktop-h {
-    @media all and (max-height: 900px) { @content; }
-}
-
-$base-violet: #5800FF;
-$base-red: #F7478A;
-$base-grey: #828282;
-$super-light-grey: #F8F8F8;
 
 /* - - - Card heights - - */
 .row-info-app {
@@ -73,16 +68,16 @@ $super-light-grey: #F8F8F8;
     @include for-md-desktop-fix {
         width: 114px;
     }
-}
-.i-options {
-    position: absolute;
-    top: 50%;
-    left: 12%;
-    transform: translate(-50%, -50%);
-    display: block;
-    font-size: 1.7em;
-    @include for-md-desktop-fix {
-        left: 20%;
+    .i-options {
+        position: absolute;
+        top: 50%;
+        left: 12%;
+        transform: translate(-50%, -50%);
+        display: block;
+        font-size: 1.7em;
+        @include for-md-desktop-fix {
+            left: 20%;
+        }
     }
 }
 .reg-info-box {
@@ -108,7 +103,6 @@ $super-light-grey: #F8F8F8;
     flex-direction: row;
     justify-content: space-around;
 }
-
 .hide-reg-btn-text {
     @include for-md-desktop-fix {
         display: none; 
@@ -118,6 +112,7 @@ $super-light-grey: #F8F8F8;
 .search-box {
     width: 237px;
     margin-right: 1em;
+    margin-right: 0;
 }
 .show-graph-icons {
     cursor: pointer;
@@ -130,60 +125,49 @@ $super-light-grey: #F8F8F8;
     }
 }
 
-/* - - -  Config card - - - */
-.config-card {
-    font-size: .8em;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    word-wrap: break-word;
-    height: 100%;
-    overflow-x: scroll;
-    @include for-desktop-h {
-        text-align: left;
-        justify-content: end;
-    }
-}
-
-/* - - -  Accordion table - - - */
-.search-box {
-    margin-right: 0;
+/* - - -  Graph - - - */
+.graph {
+    height: 96%;
 }
 .show-graph-icons {
     cursor: pointer;
     color: $base-grey;
 }
+
+/* - - -  Accordion table - - - */
+.card-title-name {
+    color: $super-dark-grey;
+    margin-bottom: 0;
+}
 .info-icon {
     font-size: 30px;
 }
-.accordion-box 
-.accordion-tabs 
-.nalejAccordion 
-.accordion-icons-box 
-.accordion-btn {
-    top: 7px;
-    right: 36px;
-}
-.label-tbody {
-    padding: .9rem 0;
-    .label-td {
-        float: left;
-        font-size: .9em;
-        color: $base-grey;
-        outline: none;
+.services-card-box {
+    height:96%;
+    .services-table-box {
+        height: 50%;
+        overflow: hidden;
     }
-    .label-td-flex {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+    .label-thead {
+        background-color: $super-light-grey;
     }
-}
-.card-title-name-mb {
-    margin-bottom: .5em;
-}
-.tomate {
-    border: 1px solid red;
+    .accordion-box {
+
+        .label-tbody {
+            padding: .9rem 0;
+            .label-td {
+                float: left;
+                font-size: .9em;
+                color: $base-grey;
+                outline: none;
+            }
+            .label-td-flex {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-end;
+                text-align: center;
+            }
+        }
+    }
 }
