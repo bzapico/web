@@ -675,5 +675,9 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     });
     return anyChanges;
   }
+
+  onShowGraph(displayGraph: boolean) {
+    this.showGraph = displayGraph;
+  }
 }
 
