@@ -89,6 +89,8 @@
   <!-- Add new connection button -->
   <div class="add-connection-box">
     <button 
+      [disabled]="outbounds.length === 0 || inbounds.length === 0"
+      [ngClass]="{ disabled: outbounds.length === 0 || inbounds.length === 0 }"
       (click)="addNewConnections()"
       class="add-connection-btn">
       <i class="material-icons-round">link</i>
