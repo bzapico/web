@@ -532,10 +532,6 @@ export class RegisteredInfoComponent implements OnInit {
       });
   }
 
-  onShowGraph(displayGraph: boolean) {
-    this.showGraph = displayGraph;
-  }
-
   /**
    * Transforms the data needed to create the graph
    * @param registered registered object
@@ -544,5 +540,9 @@ export class RegisteredInfoComponent implements OnInit {
     this.registeredInfoService.toGraphData(registered);
     this.graphData = this.registeredInfoService.graphData;
     this.graphDataLoaded = true;
+  }
+
+  onShowGraph(displayGraph: boolean) {
+    this.showGraph = displayGraph;
   }
 }
