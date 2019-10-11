@@ -43,356 +43,272 @@
   </div>
   <div class="col-8 h-100">
     <div class="flex-col-app">
-      <!-- Graph card -->
-      <div *ngIf="showGraph" class="card row-app-services">
-        <div class="row">
-          <div class="col-10 card-title-name">
-            <h5>{{'apps.instance.servicesTitle'|translate}}</h5>
-          </div>
-          <div class="col-2">
-            <div class="show-graph-icons">
-              <i 
-                (click)="selectDisplayMode('list')"
-                [ngClass]="!showGraph ? 'blue' : 'grey'"
-                tooltip="{{'apps.instance.servicesTitle'|translate}}" 
-                placement="left"
-                class="material-icons float-right text-lowercase">
-                view_list
-              </i>
-              <i 
-                (click)="selectDisplayMode('graph')"
-                [ngClass]="showGraph ? 'blue' : 'grey'"
-                tooltip="{{'graph.title'|translate}}" 
-                placement="left"
-                class="material-icons float-right mr-bars">
-                bar_chart
-              </i>
-            </div> 
-          </div>
-        </div>
-        <div *ngIf=
-          "graphDataLoaded &&
-          !graphReset &&
-          countGroupServices() > 0" 
-          class="graph">
-            <ngx-graph
-              [view]="view"
-              [legend]="showLegend"
-              [links]="graphData.links"
-              [nodes]="graphData.nodes"
-              [scheme]="colorScheme"
-              [orientation]="orientation"
-              [autoZoom]="autoZoom"
+      <div class="card">
+        <services-card (displayGraph)='onShowGraph($event)'>
+        </services-card>
+        <!-- Graph  -->
+        <div *ngIf="showGraph" class="services-card-box">
+          <div *ngIf=
+            "graphDataLoaded &&
+            !graphReset &&
+            countGroupServices() > 0" 
+            class="graph">
+            <graph
               [autoCenter]="autoCenter"
+              [autoZoom]="autoZoom"
               [curve]="curve"
               [enableZoom]="enableZoom"
-              class="chart-container">
-              <ng-template #nodeTemplate let-node>
-                <svg:g 
-                  class="node"
-                  ngx-tooltip
-                  [tooltipPlacement]="'top'"
-                  [tooltipType]="'tooltip'"
-                  [tooltipTitle]="node.tooltip">
-                  <svg:rect 
-                  [attr.width]="node.width" 
-                  [attr.height]="node.height" 
-                  [attr.fill]="node.color" 
-                  rx="14" 
-                  ry="14"
-                  />
-                  <svg:text 
-                    [attr.fill]="node.text" 
-                    alignment-baseline="central" 
-                    [attr.x]="10" 
-                    [attr.y]="node.height/2">
-                    {{node.label}}
-                  </svg:text>
-                </svg:g>
-              </ng-template>
-              <ng-template #linkTemplate let-link>
-                <svg:g class="edge">
-                  <defs>
-                    <marker 
-                      id="arrow" 
-                      markerWidth="13" 
-                      markerHeight="13" 
-                      refX="2" 
-                      refY="6" 
-                      orient="auto" 
-                      markerUnits="userSpaceOnUse">
-                        <path d="M2,2 L2,11 L10,6 L2,2" fill="#333" stroke-width="0" />
-                    </marker>
-                  </defs>
-                  <svg:path
-                    stroke-width="2"
-                    class="line"
-                    d="M 0,30 h100"
-                    [attr.marker-mid]="getMarker(link)">
-                  </svg:path>
-                </svg:g>
-              </ng-template>
-            </ngx-graph>
+              [links]="graphData.links"
+              [nodes]="graphData.nodes"
+              [orientation]="orientation">
+            </graph>
           </div>
           <div *ngIf="!graphReset && countGroupServices() !== 0" class="row mt-2 text-right mr-1">
             <div class="col graph-subtext">
               {{'graph.autoRefresh'|translate}}
-              <a (click)="resetGraphZoom()" class="blue cursor-pointer">{{'sortingMessage.reset'|translate}}</a>
+              <a (click)="resetGraphZoom()" class="blue cursor-pointer">
+                {{'sortingMessage.reset'|translate}}
+              </a>
             </div>
           </div>
-        <div *ngIf="!graphDataLoaded" class="loader"></div>
-        <!-- No info to show -->
-        <div *ngIf="graphDataLoaded && countGroupServices() === 0" class="no-elements">
-          No available services{{'apps.instance.noServices'|translate}}
-        </div>
-      </div>
-      <!-- Services card -->
-      <div *ngIf="!showGraph" class="card row-app-services">
-        <div class="row">
-          <div class="col-10 card-title-name">
-            <h5>{{'apps.instance.servicesTitle'|translate}}</h5>
-          </div>
-            <div class="col-2">
-              <div class="show-graph-icons">
-                <i 
-                  (click)="selectDisplayMode('list')"
-                  [ngClass]="!showGraph ? 'blue' : 'grey'"
-                  tooltip="{{'apps.instance.servicesTitle'|translate}}" 
-                  placement="left"
-                  class="material-icons float-right text-lowercase">
-                  view_list
-                </i>
-                <i 
-                  (click)="selectDisplayMode('graph')"
-                  [ngClass]="showGraph ? 'blue' : 'grey'"
-                  tooltip="{{'graph.title'|translate}}" 
-                  placement="left"
-                  class="material-icons float-right mr-bars" >
-                  bar_chart
-                </i>
-              </div> 
+          <div *ngIf="!graphDataLoaded" class="loader"></div>
+          <!-- No info to show -->
+          <div *ngIf="graphDataLoaded && countGroupServices() === 0" class="no-elements">
+            No available services{{'apps.instance.noServices'|translate}}
           </div>
         </div>
-        <!-- Search box -->
-        <div *ngIf=
-          "instance &&
-          instance.groups &&
-          instance.groups.length > 0"
-          class="row mb-3">
-          <!-- Sorting messages -->
-          <div class="col-7">
-            <p *ngIf="searchTerm && !filterField" class="sorting-message">
-              {{'sortingMessage.filteredBy'|translate:{value: searchTerm} }}
-              <span (click)="resetFilters('services')" class="reset-search">
-                {{'sortingMessage.reset'|translate}}
-              </span>
-            </p>
-            <p *ngIf="filterField && !searchTerm" class="sorting-message">
-              {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-              <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: '. '} }} </span>
-              <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: '. '} }} </span>
-              <span (click)="resetFilters('services')" class="reset-search">
-                {{'sortingMessage.reset'|translate}}
-              </span>
-            </p>
-            <p *ngIf="filterField && searchTerm" class="sorting-message">
-              {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-              <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: ' '} }} </span>
-              <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: ' '} }} </span>
-              {{'sortingMessage.andFilteredBy'|translate:{value: searchTerm} }}.
-              <span (click)="resetFilters('services')" class="reset-search">
-              {{'sortingMessage.reset'|translate}}
-              </span>
-            </p>
-          </div>
-          <!-- Search input -->
-          <div class="col-5">
-            <form>
-              <div class="search-box">
-                <input 
-                  name="searchTerm" 
-                  [(ngModel)]="searchTerm"
-                  type="text" 
-                  placeholder="{{'searcher.placeholder'|translate }}"
-                  class="form-control">
-                <div *ngIf="searchTerm === ''" class="search-icon">
-                  <i class="material-icons">search</i>
-                </div>
-                <div *ngIf="searchTerm !== ''" class="close-icon">
-                  <i (click)="resetFilters('services')" class="material-icons">close</i>
-                </div>
+        <!-- Tables -->
+        <div *ngIf="!showGraph" class="services-card-box">
+          <!-- Groups table -->
+          <div class="services-table-box">
+            <div class="row">
+              <div class="col-lg-12">
+                <h6 class="card-title-name">GROUPS</h6>
               </div>
-            </form>
-          </div>
-        </div>
-        <!-- Services tabs -->
-        <div class="row h-100">
-          <div class="col accordion-box">
-            <accordion 
-              *ngFor="let group of groups"
-              class="accordion-tabs">
-              <accordion-group 
-                *ngIf="groups.length > 0"
-                heading="{{group.name}}"
-                [panelClass]="nalejAccordion"
-                [isOpen]="isFirstOpen">
-                <span     
-                  accordion-heading 
-                  class="accordion-icons-box">
-                  <i class="material-icons accordion-arrow">arrow_drop_down</i>
-                  <div class="accordion-btn">
-                    <div    
-                      (click)="openGroupServicesInfo(group, $event)" 
-                      tooltip="Info" 
-                      placement="left">
-                      <i class="material-icons info-icon">info</i>
+            </div>
+            <!-- Search box -->
+            <div *ngIf=
+              "instance &&
+              instance.groups &&
+              instance.groups.length > 0"
+              class="row mb-3">
+              <!-- Sorting messages -->
+              <div class="col-7">
+                <p *ngIf="searchTerm && !filterField" class="sorting-message">
+                  {{'sortingMessage.filteredBy'|translate:{value: searchTerm} }}
+                  <span (click)="resetFilters('services')" class="reset-search">
+                    {{'sortingMessage.reset'|translate}}
+                  </span>
+                </p>
+                <p *ngIf="filterField && !searchTerm" class="sorting-message">
+                  {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
+                  <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: '. '} }} </span>
+                  <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: '. '} }} </span>
+                  <span (click)="resetFilters('services')" class="reset-search">
+                    {{'sortingMessage.reset'|translate}}
+                  </span>
+                </p>
+                <p *ngIf="filterField && searchTerm" class="sorting-message">
+                  {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
+                  <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: ' '} }} </span>
+                  <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: ' '} }} </span>
+                  {{'sortingMessage.andFilteredBy'|translate:{value: searchTerm} }}.
+                  <span (click)="resetFilters('services')" class="reset-search">
+                  {{'sortingMessage.reset'|translate}}
+                  </span>
+                </p>
+              </div>
+              <!-- Search input -->
+              <div class="col-5">
+                <form>
+                  <div class="search-box">
+                    <input 
+                      name="searchTerm" 
+                      [(ngModel)]="searchTerm"
+                      type="text" 
+                      placeholder="{{'searcher.placeholder'|translate }}"
+                      class="form-control">
+                    <div *ngIf="searchTerm === ''" class="search-icon">
+                      <i class="material-icons">search</i>
+                    </div>
+                    <div *ngIf="searchTerm !== ''" class="close-icon">
+                      <i (click)="resetFilters('services')" class="material-icons">close</i>
                     </div>
                   </div>
-                </span>
-                <!-- No services to show -->
-                <div *ngIf="countGroupServices() === 0" class="no-elements-in-group">
-                  {{'apps.instance.noServicesInGroup'|translate}}
-                </div>
-                <!-- Services table -->
-                <div *ngIf=
-                  "instance &&
-                  instance.groups &&
-                  instance.groups.length > 0"
-                  class="nalej-table-box no-p-col no-m-row">
-                  <div class="label-nalej-table">
-                    <div *ngIf="!searchTerm" class="label-thead row">
-                      <div 
-                        (click)="setOrder('services','name')"
-                        [ngClass]="getCategoryCSSClass('services','name')"
-                        class="label-th col-1">
-                          {{'apps.instance.tableName'|translate}}
-                        <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
-                          <i class="material-icons">expand_more</i>
-                        </span>
-                        <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
-                          <i class="material-icons">expand_less</i>
-                        </span>
-                      </div>
-                      <div 
-                        (click)="setOrder('services','replicas')"   
-                        [ngClass]="getCategoryCSSClass('services','replicas')"
-                        class="label-th text-center col-2">
-                          {{'apps.instance.tableReplicas'|translate}}
-                        <span *ngIf="sortedBy === 'replicas' && !reverse" class="expand-chevron">
-                          <i class="material-icons">expand_more</i>
-                        </span>
-                        <span *ngIf="sortedBy === 'replicas' && reverse" class="expand-chevron">
-                          <i class="material-icons">expand_less</i>
-                        </span>
-                      </div>
-                      <div
-                        (click)="setOrder('services','status')" 
-                        [ngClass]="getCategoryCSSClass('services','status')"
-                        class="label-th text-center col-2">
-                          {{'apps.instance.tableStatus'|translate}}
-                        <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
-                          <i class="material-icons">expand_more</i>
-                        </span>
-                        <span *ngIf="sortedBy === 'status' && reverse" class="expand-chevron">
-                          <i class="material-icons">expand_less</i>
-                        </span>
-                      </div>
-                      <div  
-                        (click)="setOrder('services','endpoints')" 
-                        [ngClass]="getCategoryCSSClass('services','endpoints')" 
-                        class="label-th col-6">
-                          {{'apps.instance.tableEndpoints'|translate}}
-                        <span *ngIf="sortedBy === 'endpoints' && !reverse" class="expand-chevron">
-                          <i class="material-icons">expand_more</i>
-                        </span>
-                        <span *ngIf="sortedBy === 'endpoints' && reverse" class="expand-chevron">
-                          <i class="material-icons">expand_less</i>
-                        </span>
-                      </div>
-                      <div class="label-th col-1 text-center">
-                        {{'apps.instance.tableInfo'|translate}}
-                      </div>
-                    </div>
-                  </div>
-                  <div *ngFor=
-                    "let service of getGroupServices(group.service_group_instance_id) |
-                    sortBy : sortedBy : reverse : 'case-insensitive' |
-                    filter : searchTerm">
-                    <div class="label-tbody row">
-                      <div class="col-1 label-td"> 
-                        {{service.name}}
-                      </div>
-                      <div class="col-2 text-center label-td">
-                        {{service.specs.replicas}}
-                      </div>
-                      <div class="col-2 text-center label-td">
-                        <span 
-                          [ngClass]=
-                            "{
-                              'status-dot': classStatusCheck(service.status_name, 'status.serviceRunning'|translate),
-                              'status-dot-error': classStatusCheck(service.status_name, 'status.serviceError'|translate),
-                              'status-dot-process': classStatusCheck(service.status_name, 'status.serviceWaiting'|translate)
-                            }"
-                          tooltip="{{service.status_name}}" 
-                          placement="bottom"
-                          class="status-dot">
-                          <span class="text-lowercase">
-                            {{getBeautyStatusName(service.status_name)}}
-                          </span>
-                        </span>
-                      </div>
-                      <div class="col-6 label-td">
-                        <span *ngFor="let endpoint of service.endpoints">
-                          <a 
-                            *ngIf="endpoint" 
-                            href="{{getEndpointHref(endpoint)}}" 
-                            target="_blank">
-                            {{endpoint}}
-                          </a>
-                        </span>
-                        <span *ngIf="!service.endpoints">No</span>
-                      </div>
-                      <div class="col-1 label-td-flex text-center">
+                </form>
+              </div>
+            </div>
+            <!-- Services tabs -->
+            <div class="row h-100">
+              <div class="col accordion-box">
+                <accordion 
+                  *ngFor="let group of groups"
+                  class="accordion-tabs">
+                  <accordion-group 
+                    *ngIf="groups.length > 0"
+                    heading="{{group.name}}"
+                    [panelClass]="nalejAccordion"
+                    [isOpen]="isFirstOpen">
+                    <span     
+                      accordion-heading 
+                      class="accordion-icons-box">
+                      <i class="material-icons accordion-arrow">arrow_drop_down</i>
+                      <div class="accordion-btn">
                         <div    
-                          (click)="openServicesInfo(service)" 
-                          tooltip="Info" 
+                          (click)="openGroupServicesInfo(group, $event)" 
+                          tooltip="{{'apps.instance.tableInfo'|translate}}" 
                           placement="left">
                           <i class="material-icons info-icon">info</i>
                         </div>
                       </div>
-                      <hr class="accordion-table-separator">
+                    </span>
+                    <!-- No services to show -->
+                    <div *ngIf="countGroupServices() === 0" class="no-elements-in-group">
+                      {{'apps.instance.noServicesInGroup'|translate}}
                     </div>
-                  </div>
-                </div> 
-                <!-- No info to show -->
-                <div *ngIf=
-                  "loadedData &&
-                  !requestError &&
-                  groups.length === 0" 
-                  class="no-elements">
-                  {{'apps.instance.noServices'|translate}}
-                </div>
-                <!-- Requested error -->
-                <div *ngIf="loadedData && requestError" class="no-elements">
-                  <p>{{ requestError }}</p>
-                </div>
-              </accordion-group>
-            </accordion>
-          </div>
-        </div>
-        <!-- Loader -->
-        <div *ngIf="!loadedData" class="nalej-loader-box">
-          <div class="loader">
-            <svg class="circular" viewBox="25 25 50 50">
-              <circle 
-                class="path" 
-                cx="50" 
-                cy="50" 
-                r="20" 
-                fill="none" 
-                stroke-width="2" 
-                stroke-miterlimit="10" />
-            </svg>
+                    <!-- Services table -->
+                    <div *ngIf=
+                      "instance &&
+                      instance.groups &&
+                      instance.groups.length > 0"
+                      class="nalej-table-box no-p-col no-m-row">
+                      <div class="label-nalej-table">
+                        <div *ngIf="!searchTerm" class="label-thead row">
+                          <div 
+                            (click)="setOrder('services','name')"
+                            [ngClass]="getCategoryCSSClass('services','name')"
+                            class="label-th col-1">
+                              {{'apps.instance.tableName'|translate}}
+                            <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
+                              <i class="material-icons">expand_more</i>
+                            </span>
+                            <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
+                              <i class="material-icons">expand_less</i>
+                            </span>
+                          </div>
+                          <div 
+                            (click)="setOrder('services','replicas')"   
+                            [ngClass]="getCategoryCSSClass('services','replicas')"
+                            class="label-th text-center col-2">
+                              {{'apps.instance.tableReplicas'|translate}}
+                            <span *ngIf="sortedBy === 'replicas' && !reverse" class="expand-chevron">
+                              <i class="material-icons">expand_more</i>
+                            </span>
+                            <span *ngIf="sortedBy === 'replicas' && reverse" class="expand-chevron">
+                              <i class="material-icons">expand_less</i>
+                            </span>
+                          </div>
+                          <div
+                            (click)="setOrder('services','status')" 
+                            [ngClass]="getCategoryCSSClass('services','status')"
+                            class="label-th text-center col-2">
+                              {{'apps.instance.tableStatus'|translate}}
+                            <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
+                              <i class="material-icons">expand_more</i>
+                            </span>
+                            <span *ngIf="sortedBy === 'status' && reverse" class="expand-chevron">
+                              <i class="material-icons">expand_less</i>
+                            </span>
+                          </div>
+                          <div  
+                            (click)="setOrder('services','endpoints')" 
+                            [ngClass]="getCategoryCSSClass('services','endpoints')" 
+                            class="label-th col-6">
+                              {{'apps.instance.tableEndpoints'|translate}}
+                            <span *ngIf="sortedBy === 'endpoints' && !reverse" class="expand-chevron">
+                              <i class="material-icons">expand_more</i>
+                            </span>
+                            <span *ngIf="sortedBy === 'endpoints' && reverse" class="expand-chevron">
+                              <i class="material-icons">expand_less</i>
+                            </span>
+                          </div>
+                          <div class="label-th col-1 text-right">
+                            {{'apps.instance.tableInfo'|translate}}
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngFor=
+                        "let service of getGroupServices(group.service_group_instance_id) |
+                        sortBy : sortedBy : reverse : 'case-insensitive' |
+                        filter : searchTerm">
+                        <div class="label-tbody row">
+                          <div class="col-1 label-td grey"> 
+                            {{service.name}}
+                          </div>
+                          <div class="col-2 text-center label-td grey">
+                            {{service.specs.replicas}}
+                          </div>
+                          <div class="col-2 text-center label-td">
+                            <span 
+                              [ngClass]=
+                                "{
+                                  'status-dot': classStatusCheck(service.status_name, 'status.serviceRunning'|translate),
+                                  'status-dot-error': classStatusCheck(service.status_name, 'status.serviceError'|translate),
+                                  'status-dot-process': classStatusCheck(service.status_name, 'status.serviceWaiting'|translate)
+                                }"
+                              tooltip="{{service.status_name}}" 
+                              placement="bottom"
+                              class="status-dot">
+                              <span class="text-lowercase">
+                                {{getBeautyStatusName(service.status_name)}}
+                              </span>
+                            </span>
+                          </div>
+                          <div class="col-6 label-td">
+                            <span *ngFor="let endpoint of service.endpoints">
+                              <a 
+                                *ngIf="endpoint" 
+                                href="{{getEndpointHref(endpoint)}}" 
+                                target="_blank"
+                                class="endpoint">
+                                {{endpoint}}
+                              </a>
+                            </span>
+                            <span *ngIf="!service.endpoints" class="grey">No</span>
+                          </div>
+                          <div class="col-1 label-td-flex text-center">
+                            <div    
+                              (click)="openServicesInfo(service)" 
+                              tooltip="Info" 
+                              placement="left">
+                              <i class="material-icons info-icon">info</i>
+                            </div>
+                          </div>
+                          <hr class="accordion-table-separator">
+                        </div>
+                      </div>
+                    </div> 
+                    <!-- No info to show -->
+                    <div *ngIf=
+                      "loadedData &&
+                      !requestError &&
+                      groups.length === 0" 
+                      class="no-elements">
+                      {{'apps.instance.noServices'|translate}}
+                    </div>
+                    <!-- Requested error -->
+                    <div *ngIf="loadedData && requestError" class="no-elements">
+                      <p>{{ requestError }}</p>
+                    </div>
+                  </accordion-group>
+                </accordion>
+              </div>
+            </div>
+            <!-- Loader -->
+            <div *ngIf="!loadedData" class="nalej-loader-box">
+              <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                  <circle 
+                    class="path" 
+                    cx="50" 
+                    cy="50" 
+                    r="20" 
+                    fill="none" 
+                    stroke-width="2" 
+                    stroke-miterlimit="10" />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -79,6 +79,7 @@
 		},
 		"manageConnections": {
 			"addNewConnection": "Add new connection",
+			"createdConnection": "Created new connection",
 			"appFilter": "APP FILTER",
 			"connectionsList": "CONNECTIONS LIST",
 			"disconnect": "Disconnect",
@@ -88,7 +89,8 @@
 			"sourceInterface": "Source Interface",
 			"targetInstance": "Target Instance",
 			"targetInterface": "Target Interface",
-			"noConnections": "No connections found"
+			"noConnections": "No connections found",
+			"requiredFields":  "All fields should be fulfilled"
 		},
 		"registered": {
 			"app": "app",
@@ -153,6 +155,9 @@
 	"graph": {
 		"autoRefresh": "Auto refresh every 5 seconds. Scroll on graph to zoom.",
 		"group": "GROUP ",
+		"inbound": "INBOUND ",
+		"outbound": "OUTBOUND ",
+		"rule": "RULE ",
 		"scroll": "Scroll on graph to zoom.",
 		"service": "SERVICE ",
 		"title": "Graph",

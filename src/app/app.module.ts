@@ -70,6 +70,8 @@ import { AddConnectionsComponent } from './add-connections/add-connections.compo
 import { AppInfoComponent } from './app-info/app-info.component';
 import { LabelsCardComponent } from './labels-card/labels-card.component';
 import { AppInfoDetailedComponent } from './app-info-detailed/app-info-detailed.component';
+import { GraphComponent } from './graph/graph.component';
+import { ServicesCardComponent } from './services-card/services-card.component';
 import { ActionButtonsCardComponent } from './action-buttons-card/action-buttons-card.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -128,6 +130,8 @@ export function createTranslateLoader(http: HttpClient) {
     AppInfoComponent,
     LabelsCardComponent,
     AppInfoDetailedComponent,
+    GraphComponent,
+    ServicesCardComponent,
     ActionButtonsCardComponent
   ],
   entryComponents: [

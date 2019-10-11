@@ -108,11 +108,106 @@
         color: $base-grey;
         outline: none;
     }
-    .label-td-flex {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+}
+/* - - - Apps info card  buttons - - - */
+.btn-undeploy {
+    border: none;
+    border-radius: 5px;
+    padding-left: 2em;
+    cursor: pointer;
+    position: relative;
+    font-size: .8em;
+    outline: none; 
+    background-color: $super-light-grey;
+    color: $base-red;
+    width: 233px;
+    height: 42px;
+    font-weight: 500;
+    &:hover {
+        color: $white;
+        transition: 0.3s;
+        background-color: $base-red;
+        opacity: 0.6;
     }
+}
+.i-options {
+    position: absolute;
+    top: 50%;
+    left: 12%;
+    transform: translate(-50%, -50%);
+    display: block;
+    font-size: 1.7em;
+}
+/* - - - Services graph / tables - - - */
+/* - - -  Graph - - - */
+.graph {
+    height: 96%;
+}
+.show-graph-icons {
+    cursor: pointer;
+    color: $base-grey;
+}
+@media screen and (max-height: 780px) {
+    .hide-title-sm {
+        display: none;
+    }
+}
+
+/* - - - Tables - - - */
+.search-box {
+    width: 237px;
+    margin-right: 1em;
+    margin-right: 0;
+}
+.card-title-name {
+    color: $super-dark-grey;
+    margin-bottom: 0;
+}
+.info-icon {
+    font-size: 30px;
+}
+.label-nalej-table {
+    .label-thead {
+        margin-bottom: 0px;
+    }
+    .label-tbody {
+        .label-td-flex {
+            align-items: flex-end;
+        }
+    }
+}
+.accordion-box {
+    .label-nalej-table {
+        .label-tbody {
+            .label-td {
+                align-self: center;
+            }
+        }
+    }
+}
+.services-card-box {
+    height:96%;
+    .services-table-box {
+        height: 50%;
+        overflow: hidden;
+    }
+    .label-thead {
+        background-color: $super-light-grey;
+    }
+}
+.label-tbody .label-td-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.label-nalej-table .label-tbody .label-td {
+    float: left;
+    font-size: .9em;
+    color: $base-grey;
+    outline: none;
+}
+.endpoint {
+    font-size: 14px;
 }

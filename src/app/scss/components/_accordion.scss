@@ -1,9 +1,9 @@
 // -----------------------------------------------------------------------------
 // Accordion
 // -----------------------------------------------------------------------------
-
 .accordion-box {
     overflow-y: scroll;
+    overflow-x: hidden;
     height: 92%;
     width: 80%;
     .accordion-tabs {
@@ -25,7 +25,7 @@
                 padding: 0;
                 margin-bottom: 3px;
                 background-color: $light-grey;
-                border-radius: 5px;
+                border-radius: 10px;
                 padding: 2px;
                 border-bottom: none;
                 position: relative;
@@ -36,6 +36,7 @@
                 @include my-font-size-mixin($font-16);
                 font-weight: 500;
                 margin-left: 54px;
+                padding-left: 0;
             }
             .label-nalej-table .label-thead {
                 margin-bottom: 0;
@@ -49,18 +50,14 @@
                     font-size: 27px;
                     position: absolute;
                     top: 8px;
-                    left: 27px;
+                    left: 19px;
                 }
                 .accordion-btn {
                     color: #707070;
                     font-size: 27px;
                     position: absolute;
-                    top: 2px;
+                    top: 6px;
                     right: 27px;
-                    @include for-desktop-up {
-                        top: 1px;
-                        right: 27px;
-                    }
                     .action-btn-grey, .action-btn-grey-selected {
                         height: 24px;
                         width: 24px;
@@ -103,14 +100,12 @@
         }
     }
 }
-
 .accordion-table-separator {
     border-top: .8px solid $super-light-grey;
     margin-top: 10px;
     margin-bottom: 0px;
     width: 100%;
 }
-
 .panel-collapse.collapse.in.show > div > div > div {
     &.scroll-app-info > div:first-child  > span {
         border-top: 0;
@@ -119,6 +114,27 @@
 .accordion-devices {
     .panel-collapse.collapse.in.show  span > div:first-child > div {
         border: 0;
+        div.panel-collapse.collapse.in.show > div > div > div {
+            > div:last-child > div > hr,
+            &:last-child > div > hr,
+            > span > div:last-child > div > hr {
+                border: none;
+            }
+        }
     }
-
+}
+.accordion-box {
+    .label-nalej-table {
+        .label-tbody {
+            border-top: 0;
+        }
+    }
+}
+.services-card-box {
+    .accordion-box .accordion-tabs .card-body {
+        flex: 1 1 auto;
+        padding: 1rem 1.6em;
+        background-color: $super-light-grey;
+        margin-top: -14px;
+    }
 }

@@ -1,0 +1,19 @@
+@import '../scss/variables/colors';
+
+.show-graph-icons {
+    display: flex;
+    justify-content: row; 
+    flex-direction: row-reverse;
+    cursor: pointer;
+    color: $base-grey;
+    text-transform: lowercase;
+}
+.mr-bars {
+    margin-right: 16px;
+}
+
+.service-card-box {
+    border: 1px solid pink;
+    height: 100%;
+
+}

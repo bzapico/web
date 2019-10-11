@@ -62,12 +62,6 @@
         margin-bottom: 20px;
     }
 }
-.row-app-services {
-    margin-bottom: 30px;
-    @include for-desktop-h {
-        margin-bottom: 20px;
-    }
-}
 .row-app-rules {
     max-height: 40%;
     flex-wrap: nowrap;

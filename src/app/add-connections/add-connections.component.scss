@@ -35,6 +35,15 @@
             color: $white;
         }
     }
+    .disabled {
+        background-color: $base-grey;
+        cursor: default;
+        &:hover {
+            color: $white;
+            background-color: $dark-grey;
+            opacity: 0.6;
+        }
+    }
 }
 #add-connections {
     display: flex;

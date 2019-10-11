@@ -6,12 +6,119 @@
     width: 237px;
     margin-right: 1em;
 }
+
+@mixin for-md-desktop-fix {
+    @media all and (max-width: 1614px) { @content; }
+}
+
+/* - - - Card heights - - */
+.row-summary-app {
+    height: 261px;
+    margin-bottom: 30px;
+    @include for-desktop-h {
+        margin-bottom: 20px;
+    }
+}
+.row-app-labels {
+    height: 29%;
+}
+
+/* - - - Apps info card  buttons - - - */
+.reg-deploy {
+    border: none;
+    border-radius: 5px;
+    padding: .5em 1em .5em 3em;
+    cursor: pointer;
+    position: relative;
+    font-size: .8em;
+    font-weight: 500;
+    outline: none; 
+    background-color: $base-violet;
+    color: $white;
+    width: 159px;
+    height: 42px;
+    line-height: 1.1;
+    &:hover {
+        color: $white;
+        transition: 0.3s;
+        background-color: $base-violet;
+        opacity: 0.6;
+    }
+    @include for-md-desktop-fix {
+        width: 114px;
+    }
+}
+.reg-undeploy {
+    border: none;
+    border-radius: 5px;
+    padding-left: 2em;
+    cursor: pointer;
+    position: relative;
+    font-size: .8em;
+    font-weight: 500;
+    outline: none; 
+    background-color: $super-light-grey;
+    color: $base-red;
+    width: 159px;
+    height: 42px;
+    line-height: 1.1;
+    &:hover {
+        color: $white;
+        transition: 0.3s;
+        background-color: $base-red;
+        opacity: 0.6;
+    }
+    @include for-md-desktop-fix {
+        width: 114px;
+    }
+    .i-options {
+        position: absolute;
+        top: 50%;
+        left: 12%;
+        transform: translate(-50%, -50%);
+        display: block;
+        font-size: 1.7em;
+        @include for-md-desktop-fix {
+            left: 20%;
+        }
+    }
+}
+.reg-info-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 90%;
+}
+.reg-info-id-box {
+    height: 79%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.reg-info-id {
+    text-align: right;
+    font-size:  .9em;
+    color: $base-grey;
+    display: inline;
+}
+.reg-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.hide-reg-btn-text {
+    @include for-md-desktop-fix {
+        display: none; 
+    }
+}
+/* - - - Services graph / tables - - - */
+/* - - -  Graph - - - */
+.graph {
+    height: 96%;
+}
 .show-graph-icons {
     cursor: pointer;
     color: $base-grey;
-}
-.mr-bars {
-    margin-right: 11px;
 }
 @media screen and (max-height: 780px) {
     .hide-title-sm {
@@ -19,60 +126,45 @@
     }
 }
 
-/* - - -  Config card - - - */
-.config-card {
-    font-size: .8em;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    word-wrap: break-word;
-    height: 100%;
-    overflow-x: scroll;
-    @include for-desktop-h {
-        text-align: left;
-        justify-content: end;
-    }
-}
-
-/* - - -  Accordion table - - - */
+/* - - - Tables - - - */
 .search-box {
+    width: 237px;
+    margin-right: 1em;
     margin-right: 0;
 }
-.show-graph-icons {
-    cursor: pointer;
-    color: $base-grey;
-}
-.mr-bars {
-    margin-right: 11px;
+.card-title-name {
+    color: $super-dark-grey;
+    margin-bottom: 0;
 }
 .info-icon {
     font-size: 30px;
 }
-.accordion-box 
-.accordion-tabs 
-.nalejAccordion 
-.accordion-icons-box 
-.accordion-btn {
-    top: 7px;
-    right: 36px;
-}
-.label-tbody {
-    padding: .9rem 0;
-    .label-td {
-        float: left;
-        font-size: .9em;
-        color: $base-grey;
-        outline: none;
+.label-nalej-table {
+    .label-thead {
+        margin-bottom: 0px;
     }
-    .label-td-flex {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+    .label-tbody {
+        .label-td-flex {
+            align-items: flex-end;
+        }
     }
 }
-.card-title-name-mb {
-    margin-bottom: .5em;
+.accordion-box {
+    .label-nalej-table {
+        .label-tbody {
+            .label-td {
+                align-self: center;
+            }
+        }
+    }
+}
+.services-card-box {
+    height:96%;
+    .services-table-box {
+        height: 50%;
+        overflow: hidden;
+    }
+    .label-thead {
+        background-color: $super-light-grey;
+    }
 }
