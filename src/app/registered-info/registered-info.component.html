@@ -233,7 +233,7 @@
                                   <i class="material-icons">expand_less</i>
                                 </span>
                               </div>
-                              <div class="label-th col-1 text-right">
+                              <div class="label-th col-1 text-right pr-1">
                                 {{'apps.instance.tableInfo'|translate}}
                               </div>
                           </div>
@@ -331,7 +331,7 @@
             registeredData.rules &&
             registeredData.rules.length > 0 &&
             !requestError" 
-            class="row mb-3 hide-md-h">
+            class="row mb-3 ">
             <!-- Sorting messages -->
             <div class="col">
               <p *ngIf="searchTermRules && !filterFieldRules" class="sorting-message">
@@ -384,27 +384,13 @@
             registeredData.rules &&
             registeredData.rules.length > 0 &&
             !requestError"
-            class="nalej-table-box no-p-col no-m-row">
-            <div class="label-nalej-table nalej-table-grey-bg">
+            class="nalej-table-box h-100">
+            <div class="label-nalej-table nalej-table-grey-bg h-100">
               <div class="label-thead row">
-                <div 
-                  (click)="setOrder('rules','name')"
-                  [ngClass]="getCategoryCSSClass('rules','name')"
-                  class="label-th col-3">
-                  <span tooltip="{{'apps.instance.tableName'|translate}}" placement="bottom">
-                    {{'apps.instance.tableName'|translate}}
-                  </span>
-                  <span *ngIf="sortedByRules === 'name' && !reverseRules" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedByRules === 'name' && reverseRules" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </div>
                 <div 
                   (click)="setOrder('rules','access')" 
                   [ngClass]="getCategoryCSSClass('rules','access')" 
-                  class="label-th col-2">
+                  class="label-th col-3">
                   <span tooltip="{{'apps.instance.tableAccess'|translate}}" placement="bottom">
                     {{'apps.instance.tableAccess'|translate}}
                   </span> 
@@ -455,23 +441,42 @@
                     <i class="material-icons">expand_less</i>
                   </span>
                 </div>
-                <div class="label-th col-1 text-center">
+                <div class="label-th col-3 text-right">
                   <span tooltip="{{'apps.instance.tableInfo'|translate}}" placement="bottom">
                     {{'apps.instance.tableInfo'|translate}}
+                  </span>
+                </div>
+                <div 
+                  (click)="setOrder('rules','name')"
+                  [ngClass]="getCategoryCSSClass('rules','name')"
+                  class="label-th col-12">
+                  <span tooltip="{{'apps.instance.tableName'|translate}}" placement="bottom">
+                    {{'apps.instance.tableName'|translate}}
+                  </span>
+                  <span *ngIf="sortedByRules === 'name' && !reverseRules" class="expand-chevron">
+                    <i class="material-icons">expand_more</i>
+                  </span>
+                  <span *ngIf="sortedByRules === 'name' && reverseRules" class="expand-chevron">
+                    <i class="material-icons">expand_less</i>
                   </span>
                 </div>
               </div>
               <div *ngFor=
                 "let rule of registeredData.rules |
                 sortBy : sortedByRules : reverseRules : 'case-insensitive' |
-                filter : searchTermRules">
+                filter : searchTermRules" class="h-100">
                 <div class="label-tbody row">
                   <div class="col-3 label-td"> 
+                    {{rule.access}}
+                    <br>
                     {{rule.name | truncate}}
                   </div>
-                  <div class="col-2 label-td">{{rule.access_name}}</div>
                   <div class="col-3 label-td">
-                    {{rule.target_service_group_name}} - {{rule.target_service_name}} - {{rule.target_port}}
+                    {{rule.target_service_group_name}} 
+                    <br>
+                    {{rule.target_service_name}} 
+                    <br>
+                    {{rule.target_port}}
                   </div>
                   <div class="col-3 label-td">
                     {{rule.auth_service_group_name}}
@@ -480,7 +485,7 @@
                     <span *ngIf="rule.device_group_names"></span>
                     {{rule.device_group_names}}
                   </div>
-                  <div class="col-1 label-td-flex">
+                  <div class="col-3 label-td-flex">
                     <div    
                       (click)="openRulesInfo(rule)"
                       tooltip="{{'apps.instance.tableInfo'|translate}}" 

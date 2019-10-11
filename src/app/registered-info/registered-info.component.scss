@@ -108,23 +108,7 @@
         display: none; 
     }
 }
-/* - - -  Tables card - - - */
-.search-box {
-    width: 237px;
-    margin-right: 1em;
-    margin-right: 0;
-}
-.show-graph-icons {
-    cursor: pointer;
-    color: $base-grey;
-}
-
-@media screen and (max-height: 780px) {
-    .hide-title-sm {
-        display: none;
-    }
-}
-
+/* - - - Services graph / tables - - - */
 /* - - -  Graph - - - */
 .graph {
     height: 96%;
@@ -133,14 +117,43 @@
     cursor: pointer;
     color: $base-grey;
 }
+@media screen and (max-height: 780px) {
+    .hide-title-sm {
+        display: none;
+    }
+}
 
-/* - - -  Accordion table - - - */
+/* - - - Tables - - - */
+.search-box {
+    width: 237px;
+    margin-right: 1em;
+    margin-right: 0;
+}
 .card-title-name {
     color: $super-dark-grey;
     margin-bottom: 0;
 }
 .info-icon {
     font-size: 30px;
+}
+.label-nalej-table {
+    .label-thead {
+        margin-bottom: 0px;
+    }
+    .label-tbody {
+        .label-td-flex {
+            align-items: flex-end;
+        }
+    }
+}
+.accordion-box {
+    .label-nalej-table {
+        .label-tbody {
+            .label-td {
+                align-self: center;
+            }
+        }
+    }
 }
 .services-card-box {
     height:96%;
@@ -150,24 +163,5 @@
     }
     .label-thead {
         background-color: $super-light-grey;
-    }
-    .accordion-box {
-
-        .label-tbody {
-            padding: .9rem 0;
-            .label-td {
-                float: left;
-                font-size: .9em;
-                color: $base-grey;
-                outline: none;
-            }
-            .label-td-flex {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: flex-end;
-                text-align: center;
-            }
-        }
     }
 }

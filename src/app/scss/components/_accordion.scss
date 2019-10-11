@@ -1,9 +1,9 @@
 // -----------------------------------------------------------------------------
 // Accordion
 // -----------------------------------------------------------------------------
-
 .accordion-box {
     overflow-y: scroll;
+    overflow-x: hidden;
     height: 92%;
     width: 80%;
     .accordion-tabs {
@@ -30,7 +30,7 @@
                 border-bottom: none;
                 position: relative;
             }
-             .btn-link {
+            .btn-link {
                 color: $base-violet;
                 text-decoration: none;
                 font-size: 16px;
@@ -73,6 +73,8 @@
         }
     }
 }
+
+
 .accordion-table-separator {
     border-top: .8px solid $super-light-grey;
     margin-top: 10px;
@@ -84,9 +86,9 @@ div.panel-collapse.collapse.in.show > div > div > div {
     > div:last-child > div > hr, 
     &:last-child > div > hr, 
     > span > div:last-child > div > hr {
-      border: none;
+    border: none;
     }
-  }
+}
 
 .accordion-box {
     .label-nalej-table {

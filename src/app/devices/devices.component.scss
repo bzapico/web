@@ -96,3 +96,11 @@ $super-dark-grey: #151515;
 .search-box {
     margin-right: 0;
 }
+
+.loaded-devices {
+    .accordion-icons-box {
+        .accordion-btn {
+            top: 2px !important;
+        }
+    }    
+}
