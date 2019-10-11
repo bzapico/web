@@ -8,6 +8,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { AddConnectionsComponent } from '../add-connections/add-connections.component';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'manage-connections',
@@ -45,7 +46,7 @@ export class ManageConnectionsComponent implements OnInit {
    * NGX-select-dropdown
    */
   tab = 1;
-  filteredOptions: any[];
+  appDropdownOptions: any[];
   selectConfig = {};
 
   /**
@@ -60,7 +61,8 @@ export class ManageConnectionsComponent implements OnInit {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private router: Router
     ) {
       const mock = localStorage.getItem(LocalStorageKeys.manageConnectionsMock) || null;
       // Check which backend is required (fake or real)
@@ -71,108 +73,31 @@ export class ManageConnectionsComponent implements OnInit {
       }
     this.title = 'MANAGE CONNECTIONS';
     this.searchTerm = '';
+    this.selectedApp = '';
 
     //  Manage connections dropdown
     this.manageConnections = null;
-
-    // CONNECTIONS
-    this.connections = [
-      {
-      inbound: {
-        interfaceName: 'dbInbound',
-        instance: 'MySQL'
-      },
-      outbound: {
-        interfaceName: 'dbOutbound',
-        instance: 'WordPress'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'activemqInbound',
-        instance: 'activemq'
-      },
-      outbound: {
-        interfaceName: 'OpencastOutbound',
-        instance: 'Opencast'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'KuardInbound',
-        instance: 'Kuardprocessing'
-      },
-      outbound: {
-        interfaceName: 'KuardOutbound',
-        instance: 'Kuard'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'testInbound',
-        instance: 'testPara'
-      },
-      outbound: {
-        interfaceName: 'testOutbound',
-        instance: 'appTest'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'deviceInbound',
-        instance: 'deviceVirtual3'
-      },
-      outbound: {
-        interfaceName: 'Virtual3Outbound',
-        instance: 'Virtual3'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'Virtual2Inbound',
-        instance: 'deviceVirtual2'
-      },
-      outbound: {
-        interfaceName: 'Virtual2Outbound',
-        instance: 'Virtual2'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'Virtual1Inbound',
-        instance: 'deviceVirtual1'
-      },
-      outbound: {
-        interfaceName: 'Virtual1Outbound',
-        instance: 'Virtual1'
-      },
-      connected: true
-    }
-  ];
+    this.connections = [];
   }
 
   ngOnInit() {
+    // Get organizationID
+    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+    if (jwtData !== null) {
+      this.organizationId = JSON.parse(jwtData).organizationID;
+    }
     this.manageConnectionsFilterForm = this.formBuilder.group({
       filter: [null],
     });
-    // to preserve the initial state
-    this.copyConnections = [...this.connections];
-    this.filteredOptions = this.getFilterName();
     this.selectConfig = {
       displayKey: 'name',
       search: false,
       height: 'auto',
       placeholder: 'No filter',
-      limitTo: this.filteredOptions.length,
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
+    this.updateConnections();
   }
 
     /**
@@ -198,16 +123,42 @@ export class ManageConnectionsComponent implements OnInit {
     this.bsModalRef.hide();
   }
 
-    /**
-   * Filters copy connections list to return filtered names
+  /**
+   * Updates connections and appDropdownOptions
    */
-  getFilterName() {
-    const filteredNames = [];
-    this.copyConnections.forEach(connectionName => {
-      filteredNames.push(connectionName.outbound.instance);
-      filteredNames.push(connectionName.inbound.instance);
-    });
-    return filteredNames;
+  updateConnections() {
+    this.backend.getListConnections(this.organizationId)
+    .subscribe(response => {
+      const anyResponse: any = response;
+      if (anyResponse.connections) {
+        this.connections = anyResponse.connections;
+        this.appDropdownOptions = this.getAppInstancesOptions();
+        }
+      });
+  }
+
+    /**
+   * Returns app instances names and ids in an object array
+   */
+  getAppInstancesOptions() {
+    const instances = [];
+    if (this.connections && this.connections !== []) {
+      this.connections.forEach(connectionName => {
+        instances.push({
+          name: connectionName.source_instance_name,
+          id: connectionName.source_instance_id
+        });
+        instances.push({
+          name: connectionName.target_instance_name,
+          id: connectionName.target_instance_id
+        });
+      });
+      instances.push({
+        name: '----- NO FILTER -----',
+        id: '----- NO FILTER -----'
+      });
+    }
+    return instances;
   }
 
   /**
@@ -215,14 +166,30 @@ export class ManageConnectionsComponent implements OnInit {
    * @param connection connections
    */
   disconnectInstance(connection) {
-    const deleteConfirm =
-    confirm(this.translateService.instant('apps.manageConnections.disconnectConfirm'));
+    let deleteConfirm =
+      confirm(this.translateService.instant('apps.manageConnections.disconnectConfirm'));
+    if (connection.outbound_required) {
+      deleteConfirm =
+      confirm(this.translateService.instant('apps.manageConnections.disconnectConfirmOutboundRequired'));
+    }
     if (deleteConfirm) {
-      connection.connected = false;
-      this.notificationsService.add({
-        message: 'App disconnected',
-        timeout: 3000
-      });
+      this.backend.removeConnection(this.organizationId, {
+        organization_id: this.organizationId,
+        source_instance_id: connection.source_instance_id,
+        source_instance_name: connection.source_instance_name,
+        target_instance_id: connection.target_instance_id,
+        target_instance_name: connection.target_instance_name,
+        inbound_name: connection.inbound_name,
+        outbound_name: connection.outbound_name,
+        user_confirmation: true
+      })
+        .subscribe(response => {
+          this.notificationsService.add({
+            message: 'Connection removed',
+            timeout: 3000
+          });
+          this.updateConnections();
+        });
     }
   }
 
@@ -230,14 +197,14 @@ export class ManageConnectionsComponent implements OnInit {
    * Handler for change event on ngx-select-dropdown
    * @param f Form
    */
-  useFilter(f) {
-    this.copyConnections = [...this.connections];
-    this.copyConnections = this.copyConnections.filter(element => {
-      if (element.outbound.instance === f.filter.value
-        || element.inbound.instance === f.filter.value) {
-        return element;
-      }
-    });
+  filterByApp(f) {
+    // Workaround to enable "reseting" the filter to no filter after selecting an app
+    if (f.filter.value.name === '----- NO FILTER -----') {
+      f.filter.value = null;
+      this.selectedApp = '';
+    } else {
+      this.selectedApp = f.filter.value.name;
+    }
   }
 
   /**
@@ -252,5 +219,13 @@ export class ManageConnectionsComponent implements OnInit {
    */
   resetFilters() {
     this.searchTerm = '';
+  }
+  /**
+   * Navigates to the desired instance and closes the modal
+   * @param instanceId instance identificator
+   */
+  goToInstance(instanceId: string) {
+    this.router.navigate(['/applications/instance/' + instanceId]);
+    this.closeModal();
   }
 }
