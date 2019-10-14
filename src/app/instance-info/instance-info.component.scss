@@ -3,34 +3,6 @@
 
 /* - - -Summary card instances table - - - */
 
-.ins-info-box {
-    width: 97%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-.summary-instance-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-}
-#summary-instances-status {
-    font-size: 1.4em;
-    text-transform: uppercase;
-    font-weight: 700;
-    @include for-desktop-only {
-        font-size: 1em !important;
-    }
-}
-#summary-instances-data {
-    font-size: 2.5em;
-    @include for-desktop-only {
-        font-size: 1em !important;
-    }
-}
 .summary-instances-table {
     .status-dot-nalej, 
     .status-dot:before, 
@@ -68,89 +40,11 @@
         }
     }
 }
-.config-card {
-    font-size: .8em;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    word-wrap: break-word;
-    height: 100%;
-    overflow-x: scroll;
-    @include for-desktop-h {
-        text-align: left;
-        justify-content: end;
-    }
-}
-.info-icon {
-    font-size: 30px;
-}
-.search-box {
-    margin-right: 0;
-}
-.accordion-box 
-.accordion-tabs 
-.nalejAccordion 
-.accordion-icons-box 
-.accordion-btn {
-    top: 7px;
-    right: 36px;
-}
-.show-graph-icons {
-    cursor: pointer;
-    color: $base-grey;
-}
-.label-tbody {
-    padding: .9rem 0;
-    .label-td {
-        float: left;
-        font-size: .9em;
-        color: $base-grey;
-        outline: none;
-    }
-}
-/* - - - Apps info card  buttons - - - */
-.btn-undeploy {
-    border: none;
-    border-radius: 5px;
-    padding-left: 2em;
-    cursor: pointer;
-    position: relative;
-    font-size: .8em;
-    outline: none; 
-    background-color: $super-light-grey;
-    color: $base-red;
-    width: 233px;
-    height: 42px;
-    font-weight: 500;
-    &:hover {
-        color: $white;
-        transition: 0.3s;
-        background-color: $base-red;
-        opacity: 0.6;
-    }
-}
-.i-options {
-    position: absolute;
-    top: 50%;
-    left: 12%;
-    transform: translate(-50%, -50%);
-    display: block;
-    font-size: 1.7em;
-}
+
 /* - - - Services graph / tables - - - */
 /* - - -  Graph - - - */
 .graph {
     height: 96%;
-}
-.show-graph-icons {
-    cursor: pointer;
-    color: $base-grey;
-}
-@media screen and (max-height: 780px) {
-    .hide-title-sm {
-        display: none;
-    }
 }
 
 /* - - - Tables - - - */

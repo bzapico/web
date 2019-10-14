@@ -5,7 +5,7 @@
     <h5 *ngIf="openFromRegistered" class="d-inline">{{'app-info.registered.title'|translate}}</h5>
     <div
       *ngIf="openFromInstance"
-      tooltip="Info" 
+      tooltip="{{'tables.tableInfo'|translate}}" 
       placement="left"
       (click)="openAppInfoDetailed(instance)"
       class="app-info-button">
@@ -13,14 +13,14 @@
     </div>
     <div
       *ngIf="openFromRegistered"
-      tooltip="Info" 
+      tooltip="{{'tables.tableInfo'|translate}}" 
       placement="left"
       (click)="openDescriptorDetailed(registeredData)"
       class="app-info-button">
       <i class="material-icons info-icon">info</i>
     </div>
   </div>
-  <div class="summary-instance-card">
+  <div class="summary-app-card">
     <!-- Summary instances table-->
     <div class="summary-table">
       <div class="summary-table-tr">
@@ -158,7 +158,6 @@
                 class="accordion-icons-box">
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
-
               <div *ngIf="advancedParameters.length > 0" class="form-group scroll-app-info">
                 <div *ngFor="let advanced of advancedParameters|filter : searchTerm;">
                   <label>{{advanced.name}}</label>
@@ -175,7 +174,6 @@
               <div *ngIf="advancedParameters.length === 0" class="scroll-app-info">
                 <p class="grey">{{'apps.registered.noAdvancedParameters'|translate}}</p>
               </div>
-
             </accordion-group>
           </accordion>
         </div>
@@ -196,7 +194,7 @@
               </span>
               <!-- INSTANCE INFO network-inbounds -->
               <div *ngIf="openFromInstance" class="label-nalej-table no-m-row">
-                <div class="label-thead row">
+                <div *ngIf="instance.inbound_net_interfaces" class="label-thead row">
                   <div class="col-4 label-th">
                     <span tooltip="Interface" placement="bottom">
                       {{'app-info.instance.NetworkInterface'|translate}}
@@ -238,6 +236,9 @@
                     </span>
                   </div>
                 </div>
+                <div *ngIf="!instance.inbound_net_interfaces" class="scroll-app-info p-2">
+                  <p class="grey py-2">{{'apps.registered.noInboundInterfaces'|translate}}</p>
+                </div>
               </div>
               <!-- DESCRIPTOR INFO network-inbounds-->
               <div *ngIf="openFromRegistered" class="label-nalej-table no-m-row">
@@ -256,33 +257,33 @@
                     </span>
                   </div>
                 </div>
-                <div *ngIf="!registeredData.inbound_net_interfaces" class="scroll-app-info">
-                  <p class="grey">{{'apps.registered.noInboundInterfaces'|translate}}</p>
+                <div *ngIf="!registeredData.inbound_net_interfaces" class="scroll-app-info p-2">
+                  <p class="grey py-2">{{'apps.registered.noInboundInterfaces'|translate}}</p>
                 </div>
               </div>
             </accordion-group>
           </accordion>
         </div>
         <div class="accordion-box accordion-box-small">
-          <accordion 
+          <accordion
           class="accordion-tabs">
-          <accordion-group 
+          <accordion-group
             heading="Outbound"
             [panelClass]="nalejAccordionSmall"
             [isOpen]="isFirstOpen">
-            <span     
+            <span
               accordion-heading 
               class="accordion-icons-box">
               <i class="material-icons accordion-arrow">arrow_drop_down</i>
             </span>
-            <span     
+            <span
               accordion-heading 
               class="accordion-legend">
               <p>{{'app-info.requiredElements'|translate}}</p>
             </span>
             <!-- INSTANCE INFO network-outbounds -->
             <div *ngIf="openFromInstance" class="label-nalej-table no-m-row">
-              <div class="label-thead row">
+              <div *ngIf="instance.outbound_net_interfaces" class="label-thead row">
                 <div class="col-4 label-th">
                   <span tooltip="Interface" placement="bottom">
                     {{'app-info.instance.NetworkInterface'|translate}}
@@ -314,14 +315,17 @@
                       </div>
                       <div class="col-4 text-right px-4">
                         <button
-                                (click)="disconnectInstance(connection)"
-                                tooltip="{{'apps.manageConnections.disconnect'|translate}}"
-                                placement="left"
-                                class="action-btn-red">
+                          (click)="disconnectInstance(connection)"
+                          tooltip="{{'apps.manageConnections.disconnect'|translate}}"
+                          placement="left"
+                          class="action-btn-red">
                           <i class="material-icons i-red">link_off</i>
                         </button>
                       </div>
                     </span>
+                  </div>
+                  <div *ngIf="!instance.outbound_net_interfaces" class="scroll-app-info p-2">
+                    <p class="grey py-2">{{'apps.registered.noOutboundInterfaces'|translate}}</p>
                   </div>
                 </div>
               </div>
@@ -345,7 +349,7 @@
                 </div>
               </div>
               <div *ngIf="!registeredData.outbound_net_interfaces" class="scroll-app-info p-2">
-                <p class="grey p-2">{{'apps.registered.noOutboundInterfaces'|translate}}</p>
+                <p class="grey py-2">{{'apps.registered.noOutboundInterfaces'|translate}}</p>
               </div>
             </div>
           </accordion-group>
@@ -362,7 +366,7 @@
               heading="{{'apps.instance.environmentVariables'|translate}}"
               [panelClass]="nalejAccordionSmall"
               [isOpen]="isFirstOpen">
-              <span     
+              <span
                 accordion-heading 
                 class="accordion-icons-box">
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>

@@ -34,12 +34,6 @@
         margin-top: 0em;
     }
 }
-.row-info-app {
-    max-height: 286px;
-    @include for-desktop-h {
-        max-height: 197px;
-    }
-}
 
 /* - - - Cluster graph card - - - */
 .graph {

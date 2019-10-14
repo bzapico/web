@@ -95,7 +95,7 @@ export const mockNodesChart = [
 /**
  * Mocked new password
  */
-export const mockResetPasword = 'NEW_PASSWORD_1234';
+export const mockResetPassword = 'NEW_PASSWORD_1234';
 
 /**
  * Mocked nodes list
@@ -339,12 +339,12 @@ export const mockDevicesChart = [
 export const mockDevicesList = [
     [
         {
-           'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-           'device_group_id': '70e3b907-54b4-4aa1-9f9b-3b15f1af7d99',
-           'device_id': 'dh006',
-           'register_since': '1550746714',
-           'enabled': true,
-           'device_status_name': 'OFFLINE',
+            'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+            'device_group_id': '70e3b907-54b4-4aa1-9f9b-3b15f1af7d99',
+            'device_id': 'dh006',
+            'register_since': '1550746714',
+            'enabled': true,
+            'device_status_name': 'OFFLINE',
             'labels': {
                 'app': 'kuard4',
                 'the': 'label'

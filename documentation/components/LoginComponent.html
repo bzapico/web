@@ -865,22 +865,21 @@ export class LoginComponent implements OnInit {
                 <p class="comment">
                     <code>./login.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@mixin for-desktop-only {
-  @media all and (max-width: 1440px), all and  (max-height: 900px) { @content; }
-}
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;../scss/variables/colors&#x27;;
+@import &#x27;../scss/variables/mixins&#x27;;
 
 .login {
   height: 100vh;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #ffffff;
-  background-image: linear-gradient(-85deg, #151515, #505050);
+  background-color: $white;
+  background-image: linear-gradient(-85deg, $super-dark-grey, $dark-grey);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .login-card {
-  background-color:#ffffff;
+  background-color:$white;
   width: 400px;
   border: 0;
   border-radius: 10px;
@@ -889,7 +888,7 @@ export class LoginComponent implements OnInit {
   height: 421px;
 }
 .form-login-heading {
-  color: #ffffff;
+  color: $white;
   letter-spacing: 1.9em;
   text-indent: 35px;
   text-align: center;
@@ -912,8 +911,6 @@ export class LoginComponent implements OnInit {
 .btn-h {
   height: 1.6em;
 }
-
-
 </code></pre>
     </div>
 
@@ -943,7 +940,7 @@ export class LoginComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="login">    <!-- Login form -->    <div>    <h2         (click)="openDebugPanel()"         class="form-login-heading"        style="visibility:hidden">        NALEJ    </h2>    <div class="login-card">        <!-- Header -->        <div class="modal-header">            <h3 class="nalej-form-title">Log in</h3>        </div>        <!-- Body -->        <div class="modal-body">            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">                <div class="form-group">                    <label>Email*</label>                    <input                         formControlName="email"                         type="text"                         [ngClass]="{ \'is-invalid\': submitted && f.email.errors }"                         placeholder="e.g user@domain.com"                        appAutofocus="true"                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"                        required                        class="form-control">{{email}}                    <div class="error-h">                        <div *ngIf="submitted && f.email.errors" class="error-message">                            <div *ngIf="f.email.errors.required">Email is required</div>                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>                        </div>                    </div>                </div>                <div class="form-group">                    <label>Password*</label>                    <input                         formControlName="password"                         type="password"                         [ngClass]="{ \'is-invalid\': submitted && f.password.errors }"                        required                        placeholder="password"                        class="form-control" >                    <div class="error-h">                        <div *ngIf="submitted && f.password.errors" class="error-message">                            <div *ngIf="f.password.errors.required">Password is required</div>                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>                        </div>                    </div>                </div>                <div class="btn-h">                    <div *ngIf="!loginRequest" class="form-group-btn">                        <button class="nalej-form-btn-blue">                            <span class="align-bottom">Log in</span>                        </button>                    </div>                </div>                <div class="btn-h">                    <div *ngIf="loginRequest" class="nalej-loader-box">                        <div class="loader loader-position">                            <svg class="circular" viewBox="25 25 50 50">                                <circle                                 class="path"                                 cx="50"                                 cy="50"                                 r="20"                                 fill="none"                                 stroke-width="2"                                 stroke-miterlimit="10"/>                            </svg>                        </div>                    </div>                </div>            </form>        </div>    </div>    </div></div></div>'
-    var COMPONENTS = [{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'LoginComponent'};
 </script>
