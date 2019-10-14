@@ -137,7 +137,7 @@
         </div>
         <!-- Devices tabs -->
         <div class="row h-100">
-          <div class="col accordion-box">
+          <div class="col accordion-box accordion-devices">
             <accordion 
               *ngFor="let group of groups"
               class="accordion-tabs">
@@ -344,13 +344,12 @@
                                 </button>
                               </div>
                             </div>
-                            <hr class="accordion-table-separator">
                           </div>
                         </div>
                       </span>
                     </div>
                   </div> 
-                   <!-- No devices to show -->
+                  <!-- No devices to show -->
                   <div *ngIf=
                     "getGroupDevices(group.device_group_id).length === 0 &&
                     loadedData"

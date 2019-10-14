@@ -34,7 +34,7 @@
         display: block;
     }
     thead {
-        background-color: #ffffff;
+        background-color: $white;
         th {
             float: left;
             border: none;
@@ -76,7 +76,7 @@
     .nalej-thead {
         position: sticky;
         top: 0;
-        background-color: #ffffff;
+        background-color: $white;
         z-index: 1;
         min-height: 26px;
     }
@@ -114,7 +114,7 @@
     .label-thead {
         position: sticky;
         top: 0;
-        background-color: #ffffff;
+        background-color: $white;
         z-index: 1;
         min-height: 26px;
         margin-bottom: 40px;
@@ -180,223 +180,13 @@
         }
     }
 }
-.nalej-table-box.no-p-col.no-m-row 
-> div 
-> div:nth-child(2) {
-    border-top: none;
-}
-.nalej-table-box.nalej-table-p 
-> div 
-> div:nth-child(2) {
-    border-top: none;
-}
-.nalej-table-box.nalej-table-p
-> div 
-> div:nth-child(2) 
-> span 
-> div {
-    border: none;
-}
-div.nalej-table-box.no-p-col.no-m-row > div 
-> div:nth-child(2) > div {
-    border: none;
-}
- div.nalej-table-box> div > div:nth-child(2){
-    border: none;
-}
-
- div.label-nalej-table.no-p-col.no-m-row 
- > div.scroll-app-info 
- > div:nth-child(1) > span {
-    border: none;
-}
-
-
-/* - - -  Nalej flex table fot 4 adn 5 cols - - - */
-.nalej-flex-table-box {
-    display: block;
-    width: 100%;
-    overflow-y: scroll;
-    height: 100%;
-    div {
-        box-sizing: border-box;
-    }
-}
-.nalej-flex-table {
-  display: flex;
-  flex-flow: row wrap;
-  transition: 0.5s;
-  margin-right: 0;
-  margin-left: 0;
-}
-.nalej-flex-th {
-    color: #212529;
-    font-size: .9em;
-    font-weight: 200;
-    border-bottom: none;
-    font-weight: 500;
-}
-.nalej-flex-td {
-    font-size: .9em;
-    color: $base-grey;
-    border-bottom: .8px solid #f6f6f6;
-    padding: .75em;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    button {
-        margin: 2px auto;
-    }
-}
-.nalej-flex-row-4 {
-    width: calc(100% / 4);
-    text-align: center;
-    cursor: pointer;
-    &.default{
-        color: #212529;
-        i {
-        color: #212529;
-        }
-    }
-    &.enabled {
-        i {
-            color: $base-violet;;
-        }
-        span i{
-            visibility: visible;
-        }
-    }
-    &.disabled {
-            color: $base-grey;
-        i {
-            color: $base-grey;
-        }
-    }
-    .expand-chevron {
-        position: relative;
-        cursor: pointer;
-        top: 3px;
-        right: 0;
-        i {
-            font-size: 1.1em;
-        }
-    }
-}
-.nalej-flex-row-5 {
-    width: calc(100% / 5);
-    text-align: center;
-    cursor: pointer;
-    &.default{
-        color: #212529;
-        i {
-        color: #212529;
-        }
-    }
-    &.enabled {
-        i {
-            color: $base-violet;
-        }
-        span i {
-            visibility: visible;
-        }
-    }
-    &.disabled {
-        color: $base-grey;
-        i {
-            color: $base-grey;
-        }
-    }
-    .expand-chevron {
-        position: relative;
-        cursor: pointer;
-        top: 3px;
-        right: 0;
-        i {
-            font-size: 1.1em;
-        }
-    }
-}
-.rowspan {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: flex-start;
-  justify-content: center;
-}
-.nalej-flex-column {
-    display: flex;
-    flex-flow: column wrap;
-    width: 75%;
-    padding: 0;
-    .nalej-flex-row-4, .nalej-flex-row-5 {
-        display: flex;
-        flex-flow: row wrap;
-        width: 100%;
-        padding: 0;
-        border: 0;
-    }
-}
-
-@media all and (max-width: 1440px) {
-    .nalej-flex-row-4 {
-        border-bottom: none;
-        width: calc(100% / 3); //1px = border right
-        &.wider-cell{
-            justify-content: center;
-            display: flex;
-            border-radius: 7px;
-            flex-direction: row;
-            width: 100%;
-            background-color: #f6f6f6;
-        }
-    }
-    .nalej-flex-row-5 {
-        border-bottom: none;
-        width: calc(100% / 4); //1px = border right
-        &.wider-cell{
-            justify-content: center;
-            display: flex;
-            border-radius: 7px;
-            flex-direction: row;
-            width: 100%;
-            background-color: #f6f6f6;
-        }
-
-    }
-    .nalej-flex-column  {
-        width: 100%;
-    }
-}
-
-@media all and (max-width: 1000px) {
-    .nalej-flex-table {
-        .nalej-flex-row-4, .nalej-flex-row-5 {
-        border-bottom: 0;
-        }
-    }
-    .nalej-flex-row-4, .nalej-flex-row-5 {
-        width: 100%; //1px = border right
-        &.wider-cell{
-            position: relative;
-            width: 100%;
-        }
-    }
-    .nalej-flex-column {
-        width: 100%;
-        .nalej-flex-row-4, .nalej-flex-row-5 {
-            border-bottom: solid 1px purple;
-        }
-    }
-    .nalej-flex-cell {
-        width: 100%; //1px = border right
-    }
-    .nalej-flex-td {
-        padding: .2em;
+.nalej-table-box {
+    &.no-p-col.no-m-row > div > div:nth-child(2) {
+        border-top: none;
     }
 }
 
 /* - - -  Search and sort in tables - - - */
-
-// Sorting styles
 .sorting-message {
     color: $base-light-grey;
     font-size: .9em;
@@ -412,8 +202,8 @@ div.nalej-table-box.no-p-col.no-m-row > div
         padding: .4rem .75rem;
     }
 }
-  
-// Search box
+
+/* - - - Search box - - - */
 .search-box {    
     width: 325px;
     position: relative; 
@@ -446,7 +236,7 @@ div.nalej-table-box.no-p-col.no-m-row > div
             box-shadow: none;
             padding-right: 0!important;
             &::placeholder {
-                color: #ffffff;
+                color: $white;
             }
         }
     }
@@ -552,19 +342,108 @@ div.nalej-table-box.no-p-col.no-m-row > div
         }
     }
 }
-.nalej-table-grey-bg {
+
+/* - - - Tabs - - - */
+.tabs-box {
     background-color: $super-light-grey;
     border-radius: 10px;
-    padding: 1em 1.6em;
-    overflow: hidden;
-    .label-thead {
-        background-color: $super-light-grey;
+    width: 100%;
+    height: 38px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding-inline-start: 0px;
+    margin-block-end: 0px;
+    margin-bottom: 5px;
+    li {
+        list-style-type: none;
+        display: inline-block;
+        margin-right: 20px;
+        cursor: pointer;
     }
-    .label-tbody {
-        border-top: .8px solid $light-grey;
+    .tabs-btn {
+        font-size: .65em;
+        font-weight: 700;
+        color: $base-light-grey;
     }
-    div:nth-child(2) > div {
-        border:none;
+    .tabs-btn-selected {
+        font-size: .65em;
+        font-weight: 700;
+        color: $base-violet;
     }
+}
 
+/* - - - Table for summary card - - - */
+.summary-table {
+    width: 100%;
+    margin: 10px 0;
+    .status-dot-nalej, 
+    .status-dot:before, 
+    .status-dot-error:before, 
+    .status-dot-process:before {
+        margin: 3px;
+    }
+    .summary-table-tr {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 3px 0;
+        align-items: center;
+    } 
+    .summary-table-th {
+        color: $base-grey;
+        border: none;
+        font-weight: 400;
+        vertical-align: inherit;
+        display: inline;
+        font-size: 14px;
+        @include for-desktop-only {
+            font-size: .8em;
+        }
+    }
+    .summary-table-td {
+        vertical-align: inherit;
+        border: none;
+        text-align: right;
+        color: $dark-grey;
+        display: inline;
+        font-size: 16px;
+        @include for-desktop-only {
+            font-size: .8em;
+            text-align: right;
+        }
+    }
+    .summary-table-td-big {
+        vertical-align: inherit;
+        border: none;
+        text-align: right;
+        color: $dark-grey;
+        display: inline;
+        font-size: 20px;
+        @include for-desktop-only {
+            font-size: .8em;
+            text-align: right;
+        }
+
+    }
+    .nalej-table-grey-bg {
+        background-color: $super-light-grey;
+        border-radius: 10px;
+        padding: 1em 1.6em;
+        overflow: hidden;
+
+        .label-thead {
+            background-color: $super-light-grey;
+        }
+
+        .label-tbody {
+            border-top: .8px solid $light-grey;
+        }
+
+        div:nth-child(2) > div {
+            border: none;
+        }
+    }
 }

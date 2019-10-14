@@ -1,31 +1,17 @@
-@mixin for-desktop-only {
-    @media all and (max-width: 1440px), all and (max-height: 900px) { @content; }
-}
-@mixin for-md-desktop-only {
-    @media all and (max-width: 1366px), all and (max-height: 768px) { @content; }
-}
-@mixin for-xs-desktop-h {
-    @media all and (max-height: 687px) { @content; }
-}
-
-$base-violet: #5800FF;
-$base-pink: #FF00D3;
-$base-red: #F7478A;
-$hover-red: #FF0061;
-$dark-grey: #444444;
-$base-grey: #828282;
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
 
 .sidebar {
-    color: #ffffff;
+    color: $white;
     height: 100vh;
     background: $base-grey;
-    background: -moz-linear-gradient(top, $base-grey 0%, #000000 100%);
+    background: -moz-linear-gradient(top, $base-grey 0%, $black 100%);
     // /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, $base-grey 0%, #000000 100%);
+    background: -webkit-linear-gradient(top, $base-grey 0%, $black 100%);
     // /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom,  $base-grey 0%, #000000 100%);
+    background: linear-gradient(to bottom,  $base-grey 0%, $black 100%);
     // /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#828282', endColorstr='#000000',GradientType=0 );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#828282', endColorstr='$black',GradientType=0 );
     width: 290px;
     @include for-md-desktop-only  {
         width: 220px;
@@ -52,7 +38,7 @@ a {
     width: 100%;
     margin-left: 15px;
     font-size: 20px;
-    color: #e4e7ea;
+    color: $light-grey;
     letter-spacing: 34px;
     padding-top: 10px;
         @include for-desktop-only {
@@ -66,7 +52,7 @@ a {
     cursor: pointer;
     height: 71px;
     .nav-link {
-        color: #ffffff;
+        color: $white;
         font-size: 18px;
         padding: 20px 0;
         @include for-desktop-only {
@@ -76,7 +62,7 @@ a {
             margin-left: 37px;
             margin-right: 37px;
             font-size: 24px;
-            color: #ffffff;
+            color: $white;
             text-align: center;
             vertical-align: middle;
             @include for-md-desktop-only  {
@@ -105,7 +91,7 @@ a {
     }
     .name {
         padding-top: 1em;
-        color: #ffffff;
+        color: $white;
         font-size: 24px;
         @include for-desktop-only {
             font-size: 21px;
@@ -120,7 +106,7 @@ a {
         }
     }
     .email {
-        color: #B7B7B7;
+        color: $base-light-grey;
         font-size: 18px;
         @include for-desktop-only {
             font-size: 15px;
@@ -156,7 +142,7 @@ a {
 .logout-btn {
     width: 112px;
     font-size: .8em;
-    color: #ffffff;
+    color: $white;
     border: 0px;
     border-radius: 5px;
     position: fixed;
@@ -170,7 +156,7 @@ a {
         box-shadow: none;
     }
     &:hover {
-        color: #ffffff;
+        color: $white;
         transition: 0.3s;
         background-color: $hover-red;
     }

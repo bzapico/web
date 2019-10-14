@@ -5,7 +5,7 @@
 /* - - - Basic buttons styles- - - */
 .btn-primary {
     width: 257px;
-    color: #ffffff;
+    color: $white;
     background-color: $base-violet;
     border: 0px;
     border-radius: 5px;
@@ -15,7 +15,7 @@
         box-shadow: none;
     }
     &:hover {
-        color: #ffffff;
+        color: $white;
         transition: 0.3s;
         background-color: $base-violet;
         opacity: 0.6;
@@ -44,17 +44,17 @@ button[type="submit"]:disabled {
     font-weight: 500;
     cursor: pointer;
     &:focus {
-      outline: 0;
+        outline: 0;
     }
 }
 .action-btn-blue {
     @extend .action-btn;
-    color: #ffffff;
+    color: $white;
     background-color: $base-violet;
     &:hover {
-        color: #ffffff;
+        color: $white;
         transition: 0.3s;
-         background-color: $base-violet;
+        background-color: $base-violet;
         opacity: 0.6;
     }
     @include for-desktop-up {
@@ -69,7 +69,7 @@ button[type="submit"]:disabled {
     color: $base-red;
     background-color: #E8E8E8;
     &:hover {
-        color: #ffffff;
+        color: $white;
         transition: 0.3s;
         background-color: $base-red;
     }
@@ -85,7 +85,7 @@ button[type="submit"]:disabled {
     color: #404040;
     background-color: #E8E8E8;
     &:hover {
-        color: #ffffff;
+        color: $white;
         transition: 0.3s;
         background-color:#404040
     }
@@ -150,8 +150,8 @@ button[type="submit"]:disabled {
         font-size: 31px;
     }
     &:hover {
-       color: $base-violet;
-       opacity: 0.6;
+        color: $base-violet;
+        opacity: 0.6;
     }
 }
 
@@ -217,7 +217,7 @@ button[type="submit"]:disabled {
     border: 1px solid;
     border-radius: 0.2rem;
     padding: 1px 10px;
-    background-color: #ffffff;
+    background-color: $white;
 }
 // Normal label style
 .label-content {
@@ -227,7 +227,7 @@ button[type="submit"]:disabled {
     &:hover{
         background-color: $super-dark-grey;
         border-color: $super-dark-grey;
-        color: #ffffff;
+        color: $white;
     }
     &:focus {
         outline: none;
@@ -236,18 +236,18 @@ button[type="submit"]:disabled {
 // Disabled label style
 .label-content-disabled {
     @extend .label-content;
-    background: #ffffff;
+    background: $white;
     cursor: default !important;
     &:hover{
         border-color: $base-light-grey;
         color: $super-dark-grey;
-        background-color: #ffffff;
+        background-color: $white;
     }
 }
 // Selected label style
 .label-content-selected {
     @extend .label-content-model;
-    color: #ffffff;
+    color: $white;
     border-color: transparent;
     background-color: $base-violet;
     -webkit-box-shadow: -4px 6px 13px -2px rgba(148,148,148,0.52);
@@ -274,7 +274,7 @@ button[type="submit"]:disabled {
     position: relative;
     cursor: pointer;
     &:hover {
-        color: #ffffff;
+        color: $white;
         transition: 0.3s;
     }
 }
@@ -291,7 +291,7 @@ button[type="submit"]:disabled {
     position: absolute;
     top: 3px;
     left: 3px;
-    color: #ffffff;
+    color: $white;
 }
 .label-btn-blue {
     @extend .label-btn;
@@ -306,6 +306,5 @@ button[type="submit"]:disabled {
     position: absolute;
     top: 2px;
     left: 2px;
-    color: #ffffff;
+    color: $white;
 }
-  

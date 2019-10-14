@@ -65,6 +65,7 @@ export class RegisteredInfoComponent implements OnInit {
    * Model that hold registered application descriptor data
    */
   registeredData: AppDescriptor;
+  openFromRegistered: boolean;
 
   /**
    * List of available services groups
@@ -138,6 +139,7 @@ export class RegisteredInfoComponent implements OnInit {
   height: number;
   whiteColor: string;
 
+
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
@@ -156,6 +158,7 @@ export class RegisteredInfoComponent implements OnInit {
       this.backend = this.backendService;
     }
     // Default initialization
+    this.openFromRegistered = true;
     this.services = [];
     this.servicesCount = 0;
     this.isSelectableLabel = true;
@@ -205,6 +208,7 @@ export class RegisteredInfoComponent implements OnInit {
         }
     }
   }
+
 
   /* Sortby pipe in the component
    * @param categoryName the name of the chosen category
@@ -542,6 +546,10 @@ export class RegisteredInfoComponent implements OnInit {
     this.graphDataLoaded = true;
   }
 
+  /**
+   * Show the graph and hides the services table
+   * @param displayGraph show if the graph is displayed
+   */
   onShowGraph(displayGraph: boolean) {
     this.showGraph = displayGraph;
   }

@@ -1,7 +1,4 @@
-$base-grey: #828282;
-$light-grey: #EEEEEE;
-$status-teal: #00E6A0;
-$dark-grey: #444444;
+@import '../scss/variables/colors';
 
 .upload-descriptor {
     font-size: 1em;

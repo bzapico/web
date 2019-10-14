@@ -24,7 +24,7 @@ describe('OrganizationComponent', () => {
         FilterPipe,
         SortByPipe,
         AbbreviatePipe
-       ],
+      ],
       imports: [
         HttpClientTestingModule,
         FormsModule,

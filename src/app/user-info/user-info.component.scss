@@ -1,12 +1,8 @@
-@mixin for-sm-desktop-up {
-  @media all and (max-width: 1280px) { @content; }
-}
-
-$base-violet: #5800FF;
-$dark-grey: #444444;
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
 
 .avatar-frame {
-  border: 2px solid #ffffff;
+  border: 2px solid $white;
   background-color: $dark-grey;
   margin: 0 auto;
   width: 112px;
@@ -18,7 +14,7 @@ $dark-grey: #444444;
     font-size: 100px;
     margin: 0 auto;
     margin-left: 4px;
-    color: #ffffff;
+    color: $white;
   }
   @include for-sm-desktop-up { 
     display: none;

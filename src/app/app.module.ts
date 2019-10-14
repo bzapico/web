@@ -67,8 +67,10 @@ import { InstanceServiceGroupInfoComponent } from './instance-service-group-info
 import { RegisteredServiceGroupInfoComponent } from './registered-service-group-info/registered-service-group-info.component';
 import { ManageConnectionsComponent } from './manage-connections/manage-connections.component';
 import { AddConnectionsComponent } from './add-connections/add-connections.component';
-import { GraphComponent } from './graph/graph.component';
+import { AppInfoComponent } from './app-info/app-info.component';
 import { LabelsCardComponent } from './labels-card/labels-card.component';
+import { AppInfoDetailedComponent } from './app-info-detailed/app-info-detailed.component';
+import { GraphComponent } from './graph/graph.component';
 import { ServicesCardComponent } from './services-card/services-card.component';
 import { ActionButtonsCardComponent } from './action-buttons-card/action-buttons-card.component';
 
@@ -125,8 +127,10 @@ export function createTranslateLoader(http: HttpClient) {
     RegisteredServiceGroupInfoComponent,
     ManageConnectionsComponent,
     AddConnectionsComponent,
-    GraphComponent,
+    AppInfoComponent,
     LabelsCardComponent,
+    AppInfoDetailedComponent,
+    GraphComponent,
     ServicesCardComponent,
     ActionButtonsCardComponent
   ],
@@ -157,7 +161,8 @@ export function createTranslateLoader(http: HttpClient) {
     InstanceServiceGroupInfoComponent,
     RegisteredServiceGroupInfoComponent,
     ManageConnectionsComponent,
-    AddConnectionsComponent
+    AddConnectionsComponent,
+    AppInfoDetailedComponent
   ],
   imports: [
     BrowserModule,

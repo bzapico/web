@@ -1,4 +1,5 @@
-$base-violet: #5800FF;
+@import '../scss/variables/colors';
+
 .change-password {
     color: $base-violet;
     text-align: center;

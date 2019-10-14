@@ -550,6 +550,17 @@ export class BackendService implements Backend {
       API_URL + 'appnet/connection/' + organizationId + '/list'
     );
   }
+  // GET /v1/apps/desc/{organization_id}/{app_instance_id}/parameters
+  /**
+   * Retrieves a list of available parameters of an instance
+   * @param organizationId Organization identifier
+   * @param instanceId Instance identifier
+   */
+  getListAvailableInstanceParameters(organizationId: string, instanceId: string) {
+    return this.get(
+        API_URL + 'apps/inst/' + organizationId + '/' + instanceId + '/parameters'
+    );
+  }
 
 
   /********************

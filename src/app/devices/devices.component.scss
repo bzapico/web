@@ -1,16 +1,6 @@
-@mixin for-quarter-only {
-    @media all and (max-width:1720px), all and  (max-height: 780px) { @content; }
-}
-@mixin for-desktop-up {
-    @media all and (max-width: 1440px) { @content; }
-}
-@mixin for-desktop-only {
-    @media all and (max-width: 1440px), all and (max-height: 900px) { @content; }
-}
-
-$base-violet: #5800FF; 
-$base-grey: #828282;
-$super-dark-grey: #151515;
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
+@import '../scss/components/accordion';
 
 /* - - - Add group button - - - */
 .add-group-box {
@@ -27,7 +17,7 @@ $super-dark-grey: #151515;
         outline: none; 
         background-color: $base-violet;
         padding-left: 30px;
-        color: #ffffff;
+        color: $white;
         width: 128px;
         height: 35px;
         .i-add{
@@ -38,7 +28,7 @@ $super-dark-grey: #151515;
             left: 13px;
         }
         &:hover {
-            color: #ffffff;
+            color: $white;
             transition: 0.3s;
             background-color: $base-violet;
             opacity: 0.6;
@@ -67,7 +57,7 @@ $super-dark-grey: #151515;
         background-color: $base-violet;
         border-radius: 50px;
         border: none;
-        color: #ffffff;
+        color: $white;
         font-size: .8em;
         font-weight: 500;
         padding-bottom: .5em;

@@ -1,25 +1,5 @@
-@mixin for-desktop-up {
-    @media all and (max-width: 1440px) { @content; }
-}
-@mixin for-big-desktop-up {
-    @media all and (min-width: 2560px) { @content; }
-}
-@mixin for-desktop-only {
-    @media all and (max-width: 1440px), all and (max-height: 900px) { @content; }
-}
-@mixin for-quarter-up {
-    @media all and (max-width: 1720px) { @content; }
-}
-@mixin for-desktop-h {
-    @media all and (max-height: 900px) { @content; }
-}
-
-$base-violet: #5800FF;
-$base-grey: #828282;
-$dark-grey: #444444;
-$super-dark-grey: #151515;
-$super-light-grey: #F8F8F8;
-$base-light-grey: #BFBFBF;
+@import '../scss/variables/colors';
+@import '../scss/variables/mixins';
 
 /* - - - Summary app card - - - */
 .donut-chart {
@@ -52,12 +32,6 @@ $base-light-grey: #BFBFBF;
     @include for-big-desktop-up {
         font-size: 1em;
         margin-top: 0em;
-    }
-}
-.row-info-app {
-    max-height: 286px;
-    @include for-desktop-h {
-        max-height: 197px;
     }
 }
 
