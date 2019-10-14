@@ -153,20 +153,6 @@ export class AppInfoComponent implements OnInit {
   }
 
   /**
-   * Returns the descriptor beauty name
-   * @param descriptorId Descriptor identifier
-   */
-  getDescriptorName(descriptorId: string) {
-    const index =
-    this.registered
-        .map(x => x.app_descriptor_id).
-        indexOf(descriptorId);
-    if (index > -1) {
-      return this.registered[index].name;
-    }
-  }
-
-  /**
    * Changes to active list
    */
   changeActiveList(listToShow: string) {
