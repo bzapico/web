@@ -698,7 +698,7 @@ export class MockupBackendService implements Backend {
    */
   getListAvailableInstanceParameters(organizationId: string, instanceId: string) {
     return of (new HttpResponse({
-      body: JSON.stringify({parameter: mockConnectionsList}),
+      body: JSON.stringify({parameter: mockAppsInstancesList}),
       status: 200
     })).pipe(map(response => JSON.parse(response.body)));
   }

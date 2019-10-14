@@ -23,7 +23,9 @@
       <!-- Application instances id card -->
       <app-info
         *ngIf="loadedData"
+        [registered]="getDescriptorFromInstance(instance)[0]"
         [instance]="instance"
+        [registeredData]="registered"
         [openFromInstance]="openFromInstance"
         class="row-info-app flex-grow-1">
       </app-info>

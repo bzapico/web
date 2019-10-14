@@ -307,6 +307,14 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Returns the descriptor
+   * @param instance Instance app
+   */
+  getDescriptorFromInstance(instance): any {
+    return this.registered.filter(x => x.app_descriptor_id === instance.app_descriptor_id);
+  }
+
+  /**
    * Requests to undeploy the selected instance
    * @param app Application instance object
    */

@@ -38,11 +38,6 @@ export class AppInfoComponent implements OnInit {
   modalRef: BsModalRef;
 
   /**
-   * Model that hold organization ID
-   */
-  organizationId: string;
-
-  /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
@@ -89,10 +84,7 @@ export class AppInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
-    if (jwtData !== null) {
-      this.organizationId = JSON.parse(jwtData).organizationID;
-    }
+    console.log('000 ::: APP INFO :: INSTANCE :: ', this.instance);
     this.addServiceAndGroupToInterfaces();
     this.addServiceAndGroupToInterfacesInstance();
     this.generateParameters();
@@ -307,17 +299,45 @@ export class AppInfoComponent implements OnInit {
     }
   }
 
+  private getParametersFromFilters(): any {
+    console.log('REGISTERED ::: ', this.registered);
+    return {
+      basic: this.registered.parameters ? this.registered.parameters.filter(parameter => parameter.required) : [],
+      advanced: this.registered.parameters ? this.registered.parameters.filter(parameter => !parameter.required) : []
+    };
+  }
+
   private generateParameters() {
+    console.log('generateParameters :: DESCRIPTOR :: ', this.registered);
+    const params = this.getParametersFromFilters();
+    console.log('generateParameters :: PARAMS :: ', params);
     if (this.openFromInstance) {
       this.backend
-        .getListAvailableInstanceParameters(this.organizationId, this.instance.app_instance_id)
+        .getListAvailableInstanceParameters(this.instance.organization_id, this.instance.app_instance_id)
           .subscribe(parameters => {
-            this.basicParameters = parameters.parameters.filter(parameter => parameter.required);
-            this.advancedParameters = parameters.parameters.filter(parameter => !!!parameter.required);
+            console.log('THE PARAMETERS ARE ::: ', parameters.parameters);
+            if (parameters && parameters.parameters) {
+              params.basic.forEach(param => {
+                parameters.parameters.forEach(item => {
+                  if (item.parameter_name === param.name) {
+                    this.basicParameters.push(param);
+                  }
+                });
+              console.log('BASIC PARAMS ::: ', this.basicParameters);
+              });
+              params.advanced.forEach(param => {
+                parameters.parameters.forEach(item => {
+                  if (item.parameter_name === param.name) {
+                    this.advancedParameters.push(param);
+                  }
+                });
+              });
+              console.log('ADVANCED PARAMS ::: ', this.advancedParameters);
+            }
           });
     } else if (this.openFromRegistered && this.registeredData.parameters) {
-      this.basicParameters = this.registeredData.parameters.filter(parameter => parameter.required);
-      this.advancedParameters = this.registeredData.parameters.filter(parameter => !!!parameter.required);
+      this.basicParameters = params.basic;
+      this.advancedParameters = params.advanced;
     }
   }
 }
