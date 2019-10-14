@@ -128,7 +128,7 @@
                 class="accordion-icons-box">
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
-              <div *ngIf="basicParameters.length > 0" class="form-group scroll-app-info">
+              <div *ngIf="openFromRegistered && basicParameters.length > 0" class="form-group scroll-app-info">
                 <div *ngFor="let basic of basicParameters|filter : searchTerm;">
                   <label>{{basic.name}}</label>
                   <input
@@ -139,9 +139,25 @@
                   <label class="accordion-foot">{{'app-info.typeRestrictions'|translate:{restriction:basic.type} }}</label>
                 </div>
               </div>
-              <div *ngIf="basicParameters.length === 0" class="scroll-app-info">
+              <div *ngIf="openFromRegistered && basicParameters.length === 0" class="scroll-app-info">
                 <p class="grey">{{'apps.registered.noBasicParameters'|translate}}</p>
               </div>
+
+              <div *ngIf="openFromInstance && basicParameters.length > 0" class="form-group scroll-app-info">
+                <div *ngFor="let basic of basicParameters|filter : searchTerm;">
+                  <label>{{basic.parameter_name}}</label>
+                  <input
+                    type="text"
+                    placeholder={{basic.value}}
+                    class="form-control"
+                    disabled>
+                  <label class="accordion-foot">{{'app-info.typeRestrictions'|translate:{restriction:basic.type} }}</label>
+                </div>
+              </div>
+              <div *ngIf="openFromInstance && basicParameters.length === 0" class="scroll-app-info">
+                <p class="grey">{{'apps.registered.noBasicParameters'|translate}}</p>
+              </div>
+
             </accordion-group>
           </accordion>
         </div>
@@ -158,7 +174,8 @@
                 class="accordion-icons-box">
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
-              <div *ngIf="advancedParameters.length > 0" class="form-group scroll-app-info">
+
+              <div *ngIf="openFromRegistered && advancedParameters.length > 0" class="form-group scroll-app-info">
                 <div *ngFor="let advanced of advancedParameters|filter : searchTerm;">
                   <label>{{advanced.name}}</label>
                   <input
@@ -166,12 +183,32 @@
                     placeholder={{advanced.default_value}}
                     class="form-control"
                     disabled>
-                  <label class="accordion-foot">{{'app-info.typeRestrictions'|translate:{restriction:advanced.type} }}</label>
+                  <label class="accordion-foot">
+                    {{'app-info.typeRestrictions'|translate:{restriction:advanced.type} }}
+                  </label>
                 </div>
               </div>
-              <div *ngIf="advancedParameters.length === 0" class="scroll-app-info">
+              <div *ngIf="openFromRegistered && advancedParameters.length === 0" class="scroll-app-info">
                 <p class="grey">{{'apps.registered.noAdvancedParameters'|translate}}</p>
               </div>
+
+              <div *ngIf="openFromInstance && advancedParameters.length > 0" class="form-group scroll-app-info">
+                <div *ngFor="let advanced of advancedParameters|filter : searchTerm;">
+                  <label>{{advanced.parameter_name}}</label>
+                  <input
+                    type="text"
+                    placeholder={{advanced.value}}
+                    class="form-control"
+                    disabled>
+                  <label *ngIf="advanced.type" class="accordion-foot">
+                    {{'app-info.typeRestrictions'|translate:{restriction:advanced.type} }}
+                  </label>
+                </div>
+              </div>
+              <div *ngIf="openFromInstance && advancedParameters.length === 0" class="scroll-app-info">
+                <p class="grey">{{'apps.registered.noAdvancedParameters'|translate}}</p>
+              </div>
+
             </accordion-group>
           </accordion>
         </div>
@@ -211,22 +248,22 @@
                 </div>
                 <div class="scroll-app-info">
                   <div *ngFor=
-                    "let connection of copyConnections |
+                    "let connection of instance.inbound_net_interfaces |
                     filter : searchTerm; let i = index">
-                    <span *ngIf="connection.connected" class="label-tbody row">
+                    <span class="label-tbody row">
                       <div class="col-4">
-                        <span class="grey">{{connection.inbound.interfaceName}}</span>
+                        <span class="grey">{{connection.name}}</span>
                       </div>
                       <div class="col-4 text-center">
-                        <span>{{connection.inbound.instance}}</span>
+                        <span>{{connection.target_service_group_name}}</span>
                         <br>
-                        <span>{{connection.outbound.interfaceName}}</span>
+                        <span>{{connection.target_service_name}}</span>
                       </div>
                       <div class="col-4 text-right px-4">
-                        <button 
+                        <button
                           (click)="disconnectInstance(connection)"
-                          tooltip="{{'apps.manageConnections.disconnect'|translate}}" 
-                          placement="left" 
+                          tooltip="{{'apps.manageConnections.disconnect'|translate}}"
+                          placement="left"
                           class="action-btn-red">
                           <i class="material-icons i-red">link_off</i>
                         </button>
@@ -297,8 +334,9 @@
                 </div>
               </div>
               <div class="scroll-app-info">
+                <!--
                 <div *ngFor=
-                  "let connection of copyConnections |
+                  "let connection of instance.outbound_net_interfaces |
                   filter : searchTerm">
                   <span *ngIf="connection.connected" class="label-tbody row">
                     <div class="col-4">
@@ -320,6 +358,7 @@
                     </div>
                   </span>
                 </div>
+                -->
               </div>
             </div>
             <!-- REGISTERED INFO network-outbounds -->

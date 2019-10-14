@@ -5,6 +5,9 @@ import { NotificationsService } from '../services/notifications.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AppInfoDetailedComponent } from '../app-info-detailed/app-info-detailed.component';
 import { AppStatus } from '../definitions/enums/app-status.enum';
+import {BackendService} from '../services/backend.service';
+import {MockupBackendService} from '../services/mockup-backend.service';
+import {LocalStorageKeys} from '../definitions/const/local-storage-keys';
 
 /**
  * Notification timeout reference
@@ -38,8 +41,6 @@ export class AppInfoComponent implements OnInit {
    * Model that hold organization ID
    */
   organizationId: string;
-  connections: any[];
-  copyConnections: any[];
 
   /**
    * Model that hold the search term in search box
@@ -65,8 +66,17 @@ export class AppInfoComponent implements OnInit {
   constructor(
     private translateService: TranslateService,
     private notificationsService: NotificationsService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private backendService: BackendService,
+    private mockupBackendService: MockupBackendService
   ) {
+    const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
+    // Check which backend is required (fake or real)
+    if (mock && mock === 'true') {
+      this.backend = this.mockupBackendService;
+    } else {
+      this.backend = this.backendService;
+    }
     this.showParameters = true;
     this.showNetwork = false;
     this.showSetup = false;
@@ -74,97 +84,19 @@ export class AppInfoComponent implements OnInit {
     this.registered = [];
     this.registeredData = [];
     this.searchTerm = '';
-    // CONNECTIONS
-    this.connections = [
-      {
-      inbound: {
-        interfaceName: 'dbInbound',
-        instance: 'MySQL'
-      },
-      outbound: {
-        interfaceName: 'dbOutbound',
-        instance: 'WordPress'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'activemqInbound',
-        instance: 'activemq'
-      },
-      outbound: {
-        interfaceName: 'OpencastOutbound',
-        instance: 'Opencast'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'KuardInbound',
-        instance: 'Kuardprocessing'
-      },
-      outbound: {
-        interfaceName: 'KuardOutbound',
-        instance: 'Kuard'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'testInbound',
-        instance: 'testPara'
-      },
-      outbound: {
-        interfaceName: 'testOutbound',
-        instance: 'appTest'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'deviceInbound',
-        instance: 'deviceVirtual3'
-      },
-      outbound: {
-        interfaceName: 'Virtual3Outbound',
-        instance: 'Virtual3'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'Virtual2Inbound',
-        instance: 'deviceVirtual2'
-      },
-      outbound: {
-        interfaceName: 'Virtual2Outbound',
-        instance: 'Virtual2'
-      },
-      connected: true
-    },
-    {
-      inbound: {
-        interfaceName: 'Virtual1Inbound',
-        instance: 'deviceVirtual1'
-      },
-      outbound: {
-        interfaceName: 'Virtual1Outbound',
-        instance: 'Virtual1'
-      },
-      connected: true
-    }
-    ];
-
     this.basicParameters = [];
     this.advancedParameters = [];
   }
 
   ngOnInit() {
-    console.log('APP INFO :: INSTANCE :: ', this.instance);
-    // to preserve the initial state
-    this.copyConnections = [...this.connections];
+    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+    if (jwtData !== null) {
+      this.organizationId = JSON.parse(jwtData).organizationID;
+    }
     this.addServiceAndGroupToInterfaces();
+    this.addServiceAndGroupToInterfacesInstance();
     this.generateParameters();
+    console.log('APP INFO :: INSTANCE :: ', this.instance);
   }
 
   /**
@@ -354,9 +286,35 @@ export class AppInfoComponent implements OnInit {
     }
   }
 
+  private addServiceAndGroupInstance(interface_type: string) {
+    this.instance[`${interface_type}s`].map(item => {
+      this.instance.rules.map(rule => {
+        if (rule[interface_type] === item.name) {
+          item['target_service_name'] = rule['target_service_name'];
+          item['target_service_group_name'] = rule['target_service_group_name'];
+        }
+      });
+    });
+  }
+
+  private addServiceAndGroupToInterfacesInstance() {
+    if (this.instance.inbound_net_interfaces) {
+      this.addServiceAndGroupInstance('inbound_net_interface');
+    }
+
+    if (this.instance.outbound_net_interfaces) {
+      this.addServiceAndGroupInstance('outbound_net_interface');
+    }
+  }
+
   private generateParameters() {
     if (this.openFromInstance) {
-
+      this.backend
+        .getListAvailableInstanceParameters(this.organizationId, this.instance.app_instance_id)
+          .subscribe(parameters => {
+            this.basicParameters = parameters.parameters.filter(parameter => parameter.required);
+            this.advancedParameters = parameters.parameters.filter(parameter => !!!parameter.required);
+          });
     } else if (this.openFromRegistered && this.registeredData.parameters) {
       this.basicParameters = this.registeredData.parameters.filter(parameter => parameter.required);
       this.advancedParameters = this.registeredData.parameters.filter(parameter => !!!parameter.required);

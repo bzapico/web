@@ -558,7 +558,7 @@ export class BackendService implements Backend {
    */
   getListAvailableInstanceParameters(organizationId: string, instanceId: string) {
     return this.get(
-        API_URL + '/v1/apps/desc/' + organizationId + '/' + instanceId + '/available'
+        API_URL + 'apps/inst/' + organizationId + '/' + instanceId + '/parameters'
     );
   }
 
