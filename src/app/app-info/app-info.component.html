@@ -325,11 +325,11 @@
                       </div>
                     </span>
                   </div>
-                  <div *ngIf="!instance.outbound_connections" class="scroll-app-info p-2">
-                    <p class="grey py-2">{{'apps.registered.noOutboundInterfaces'|translate}}</p>
-                  </div>
                 </div>
               </div>
+            </div>
+            <div *ngIf="!instance.outbound_connections" class="scroll-app-info p-2">
+              <p class="grey py-2">{{'apps.registered.noOutboundInterfaces'|translate}}</p>
             </div>
             <!-- REGISTERED INFO network-outbounds -->
             <div *ngIf="openFromRegistered" class="label-nalej-table no-m-row">
