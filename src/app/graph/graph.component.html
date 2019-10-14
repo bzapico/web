@@ -22,7 +22,7 @@
       <svg:text *ngSwitchCase="'rectangle'"
         [attr.fill]="node.text.color"
         [attr.x]="node.icon? (node.icon.x * 2) + node.icon.width: 10"
-        [attr.y]="node.height/2">
+        [attr.y]="node.height/2 + 3">
         {{node.label}}
       </svg:text>
       <svg *ngIf="node.icon && node.shape === 'rectangle'"
