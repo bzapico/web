@@ -194,7 +194,7 @@
               </span>
               <!-- INSTANCE INFO network-inbounds -->
               <div *ngIf="openFromInstance" class="label-nalej-table no-m-row">
-                <div *ngIf="instance.inbound_net_interfaces" class="label-thead row">
+                <div *ngIf="instance.inbound_connections" class="label-thead row">
                   <div class="col-4 label-th">
                     <span tooltip="Interface" placement="bottom">
                       {{'app-info.instance.NetworkInterface'|translate}}
@@ -211,7 +211,8 @@
                     </span>
                   </div>
                 </div>
-                <div class="scroll-app-info">
+                <div *ngIf="instance.inbound_connections"
+                 class="scroll-app-info">
                   <div *ngFor=
                     "let connection of instance.inbound_net_interfaces |
                     filter : searchTerm; let i = index">
@@ -226,7 +227,7 @@
                       </div>
                       <div class="col-4 text-right px-4">
                         <button
-                          (click)="disconnectInstance(connection)"
+                          (click)="disconnectInstance(connection, 'inbound_connections', 'inbound_name', instance)"
                           tooltip="{{'apps.manageConnections.disconnect'|translate}}"
                           placement="left"
                           class="action-btn-red">
@@ -236,7 +237,7 @@
                     </span>
                   </div>
                 </div>
-                <div *ngIf="!instance.inbound_net_interfaces" class="scroll-app-info p-2">
+                <div *ngIf="!instance.inbound_connections" class="scroll-app-info p-2">
                   <p class="grey py-2">{{'apps.registered.noInboundInterfaces'|translate}}</p>
                 </div>
               </div>
@@ -283,7 +284,7 @@
             </span>
             <!-- INSTANCE INFO network-outbounds -->
             <div *ngIf="openFromInstance" class="label-nalej-table no-m-row">
-              <div *ngIf="instance.outbound_net_interfaces" class="label-thead row">
+              <div *ngIf="instance.outbound_connections" class="label-thead row">
                 <div class="col-4 label-th">
                   <span tooltip="Interface" placement="bottom">
                     {{'app-info.instance.NetworkInterface'|translate}}
@@ -300,7 +301,7 @@
                   </span>
                 </div>
               </div>
-              <div class="scroll-app-info">
+              <div *ngIf="instance.outbound_connections" class="scroll-app-info">
                 <div class="scroll-app-info">
                   <div *ngFor="let connection of instance.outbound_net_interfaces |
                     filter : searchTerm; let i = index">
@@ -315,7 +316,7 @@
                       </div>
                       <div class="col-4 text-right px-4">
                         <button
-                          (click)="disconnectInstance(connection)"
+                          (click)="disconnectInstance(connection, 'outbound_connections', 'outbound_name', instance)"
                           tooltip="{{'apps.manageConnections.disconnect'|translate}}"
                           placement="left"
                           class="action-btn-red">
@@ -324,7 +325,7 @@
                       </div>
                     </span>
                   </div>
-                  <div *ngIf="!instance.outbound_net_interfaces" class="scroll-app-info p-2">
+                  <div *ngIf="!instance.outbound_connections" class="scroll-app-info p-2">
                     <p class="grey py-2">{{'apps.registered.noOutboundInterfaces'|translate}}</p>
                   </div>
                 </div>
