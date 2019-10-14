@@ -1282,16 +1282,20 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param status Status name
    */
   private getNodeColor(status: string): string {
-    switch (status.toLowerCase()) {
-      case 'running':
+      switch (status.toLowerCase()) {
+        case 'running':
+        case 'online':
+        case 'online_cordon':
         return STATUS_COLORS.RUNNING;
-      case 'error':
-        return STATUS_COLORS.ERROR;
-      case 'deployment_error':
-        return STATUS_COLORS.ERROR;
-      default:
-        return STATUS_COLORS.OTHER;
-    }
+        case 'error':
+        case 'offline':
+        case 'offline_cordon':
+          return STATUS_COLORS.ERROR;
+        case 'deployment_error':
+          return STATUS_COLORS.ERROR;
+        default:
+          return STATUS_COLORS.OTHER;
+      }
   }
 
   /**
@@ -1301,8 +1305,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   private getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
       case 'running':
+      case 'online':
+      case 'online_cordon':
         return STATUS_TEXT_COLORS.RUNNING;
       case 'error':
+      case 'offline':
+      case 'offline_cordon':
         return STATUS_TEXT_COLORS.ERROR;
       default:
         return STATUS_TEXT_COLORS.OTHER;
