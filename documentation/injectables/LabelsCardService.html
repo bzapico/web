@@ -27,7 +27,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content guard">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -36,11 +36,9 @@
 
 
 
-
-
 <ol class="breadcrumb">
-    <li>Guards</li>
-    <li>AuthGuard</li>
+  <li>Injectables</li>
+  <li>LabelsCardService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -53,36 +51,21 @@
 </ul>
 
 <div class="tab-content">
-        <div class="tab-pane fade active in" id="c-info">
-            <p class="comment">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
             <h3>File</h3>
-            </p>
-            <p class="comment">
-                <code>src/app/guards/auth.guard.ts</code>
-            </p>
+        </p>
+        <p class="comment">
+            <code>src/app/labels-card/labels-card.service.ts</code>
+        </p>
 
 
 
 
-
-                <section>
+            <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#jwtHelper">jwtHelper</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -93,7 +76,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#canActivate">canActivate</a>
+                                <a href="#onLabelClick">onLabelClick</a>
                             </li>
                         </ul>
                     </td>
@@ -107,56 +90,26 @@
     </table>
 </section>
 
-                <section>
+            <section>
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/guards/auth.guard.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/labels-card/labels-card.service.ts:6</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>router</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
 
-                <section>
+            <section>
     
     <h3 id="methods">
         Methods
@@ -165,32 +118,34 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="canActivate"></a>
+                    <a name="onLabelClick"></a>
                     <span class="name">
                         <b>
-                            canActivate
+                            onLabelClick
                         </b>
-                        <a href="#canActivate"><span class="icon ion-ios-link"></span></a>
+                        <a href="#onLabelClick"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>canActivate(next: <a href="https://angular.io/api/router/ActivatedRouteSnapshot" target="_blank">ActivatedRouteSnapshot</a>, state: <a href="https://angular.io/api/router/RouterStateSnapshot" target="_blank">RouterStateSnapshot</a>)</code>
+<code>onLabelClick(label: literal type, selectedLabels: literal type[])</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/app/guards/auth.guard.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">src/app/labels-card/labels-card.service.ts:15</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Selects a label</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -200,13 +155,14 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>next</td>
+                                    <td>label</td>
                                     <td>
-                                                <code><a href="https://angular.io/api/router/ActivatedRouteSnapshot" target="_blank" >ActivatedRouteSnapshot</a></code>
+                                            <code>literal type</code>
                                     </td>
 
                                     <td>
@@ -214,11 +170,15 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>label entity</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>state</td>
+                                    <td>selectedLabels</td>
                                     <td>
-                                                <code><a href="https://angular.io/api/router/RouterStateSnapshot" target="_blank" >RouterStateSnapshot</a></code>
+                                            <code>literal type[]</code>
                                     </td>
 
                                     <td>
@@ -226,6 +186,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>selected labels array</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -233,7 +197,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Observable | Promise | boolean</code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
                     <div class="io-description">
@@ -244,70 +208,40 @@
         </tbody>
     </table>
 </section>
-        </div>
+
+    </div>
 
 
-        <div class="tab-pane fade  tab-source-code" id="c-source">
-            <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from &#x27;@angular/router&#x27;;
-import { Observable } from &#x27;rxjs&#x27;;
-import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
-import { JwtHelperService } from &#x27;@auth0/angular-jwt&#x27;;
-import { mockJwtToken } from &#x27;../services/utils/mocks&#x27;;
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
-export class AuthGuard implements CanActivate {
-  jwtHelper: JwtHelperService;
-  constructor( private router: Router) {
-    this.jwtHelper &#x3D; new JwtHelperService();
-  }
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable&lt;boolean&gt; | Promise&lt;boolean&gt; | boolean {
-    const jwtToken &#x3D; JSON.parse(localStorage.getItem(LocalStorageKeys.jwt)) || null;
-    const jwtData &#x3D; JSON.parse(localStorage.getItem(LocalStorageKeys.jwtData)) || null;
-    let role;
-    // Set role
-    if (jwtData) {
-      role &#x3D; jwtData.role;
-    }
-    // Check jwtToken expiracy
-    if (jwtToken &#x3D;&#x3D;&#x3D; null
-      || (jwtToken.token !&#x3D;&#x3D; mockJwtToken
-          &amp;&amp; this.jwtHelper.isTokenExpired(jwtToken.token)
-          )
-      ) {
-      this.router.navigate([&#x27;login&#x27;]);
-      return false;
-    }
-    // Check user role access
-    if (
-      role &amp;&amp;
-      role &#x3D;&#x3D;&#x3D; &#x27;Developer&#x27; &amp;&amp; !(
-      next.routeConfig.path &#x3D;&#x3D;&#x3D; &#x27;applications&#x27; ||
-      next.routeConfig.path &#x3D;&#x3D;&#x3D; &#x27;&#x27;)
-    ) {
-      alert(&#x27;Unauthorized&#x27;);
-      return false;
-    }
-    // Check user role access
-    if (
-      role &#x3D;&#x3D;&#x3D; &#x27;Operator&#x27; &amp;&amp; !(
-      next.routeConfig.path &#x3D;&#x3D;&#x3D; &#x27;resources&#x27; ||
-      next.routeConfig.path &#x3D;&#x3D;&#x3D; &#x27;&#x27;)
-    ) {
-      alert(&#x27;Unauthorized&#x27;);
-      return false;
-    }
+export class LabelsCardService {
 
-    return true;
+  constructor() { }
+
+  /**
+   * Selects a label
+   * @param label label entity
+   * @param selectedLabels selected labels array
+   */
+  onLabelClick(label: {}, selectedLabels: {}[]) {
+    label[&#x27;selected&#x27;] &#x3D; !label[&#x27;selected&#x27;];
+    if (label[&#x27;selected&#x27;]) {
+      selectedLabels.push(label);
+    } else {
+      selectedLabels.pop();
+    }
   }
 }
 </code></pre>
-        </div>
+    </div>
+
 </div>
+
+
 
 
 
@@ -334,8 +268,8 @@ export class AuthGuard implements CanActivate {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'guard';
-            var COMPODOC_CURRENT_PAGE_URL = 'AuthGuard.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'LabelsCardService.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

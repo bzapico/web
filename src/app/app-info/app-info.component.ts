@@ -84,11 +84,9 @@ export class AppInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('000 ::: APP INFO :: INSTANCE :: ', this.instance);
     this.addServiceAndGroupToInterfaces();
     this.addServiceAndGroupToInterfacesInstance();
     this.generateParameters();
-    console.log('APP INFO :: INSTANCE :: ', this.instance);
   }
 
   /**
@@ -286,7 +284,6 @@ export class AppInfoComponent implements OnInit {
   }
 
   private getParametersFromFilters(): any {
-    console.log('REGISTERED ::: ', this.registered);
     return {
       basic: this.registered.parameters ? this.registered.parameters.filter(parameter => parameter.required) : [],
       advanced: this.registered.parameters ? this.registered.parameters.filter(parameter => !parameter.required) : []
@@ -294,14 +291,11 @@ export class AppInfoComponent implements OnInit {
   }
 
   private generateParameters() {
-    console.log('generateParameters :: DESCRIPTOR :: ', this.registered);
     const params = this.getParametersFromFilters();
-    console.log('generateParameters :: PARAMS :: ', params);
     if (this.openFromInstance) {
       this.backend
         .getListAvailableInstanceParameters(this.instance.organization_id, this.instance.app_instance_id)
           .subscribe(parameters => {
-            console.log('THE PARAMETERS ARE ::: ', parameters.parameters);
             if (parameters && parameters.parameters) {
               params.basic.forEach(param => {
                 parameters.parameters.forEach(item => {
@@ -309,7 +303,6 @@ export class AppInfoComponent implements OnInit {
                     this.basicParameters.push(param);
                   }
                 });
-              console.log('BASIC PARAMS ::: ', this.basicParameters);
               });
               params.advanced.forEach(param => {
                 parameters.parameters.forEach(item => {
@@ -318,7 +311,6 @@ export class AppInfoComponent implements OnInit {
                   }
                 });
               });
-              console.log('ADVANCED PARAMS ::: ', this.advancedParameters);
             }
           });
     } else if (this.openFromRegistered && this.registeredData.parameters) {

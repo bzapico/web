@@ -520,7 +520,6 @@ export class RegisteredInfoComponent implements OnInit {
           registeredResponse.labels = labelsLikeArray;
         }
         this.registeredData = registeredResponse;
-        console.log('ON INIT UPDATE APP DESCRIPTOR :: REGISTERED DATA :: ', this.registeredData);
         this.groups = registeredResponse.groups || [];
         if (this.groups.length) {
           this.groups.forEach(group => {
@@ -547,6 +546,10 @@ export class RegisteredInfoComponent implements OnInit {
     this.graphDataLoaded = true;
   }
 
+  /**
+   * Show the graph and hides the services table
+   * @param displayGraph show if the graph is displayed
+   */
   onShowGraph(displayGraph: boolean) {
     this.showGraph = displayGraph;
   }

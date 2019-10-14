@@ -1,0 +1,1328 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>nalej-web-ui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">nalej-web-ui documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>AppInfoDetailedComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/app-info-detailed/app-info-detailed.component.ts</code>
+</p>
+
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-info-detailed</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./app-info-detailed.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./app-info-detailed.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#appDescriptorId">appDescriptorId</a>
+                            </li>
+                            <li>
+                                <a href="#appInstanceId">appInstanceId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#bsModalRef">bsModalRef</a>
+                            </li>
+                            <li>
+                                <a href="#group">group</a>
+                            </li>
+                            <li>
+                                <a href="#labels">labels</a>
+                            </li>
+                            <li>
+                                <a href="#loadedData">loadedData</a>
+                            </li>
+                            <li>
+                                <a href="#name">name</a>
+                            </li>
+                            <li>
+                                <a href="#organizationId">organizationId</a>
+                            </li>
+                            <li>
+                                <a href="#statusName">statusName</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#classStatusCheck">classStatusCheck</a>
+                            </li>
+                            <li>
+                                <a href="#closeModal">closeModal</a>
+                            </li>
+                            <li>
+                                <a href="#getBeautyStatusName">getBeautyStatusName</a>
+                            </li>
+                            <li>
+                                <a href="#getEndpointHref">getEndpointHref</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(bsModalRef: BsModalRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/app-info-detailed/app-info-detailed.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>bsModalRef</td>
+                                                  
+                                                        <td>
+                                                                    <code>BsModalRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="classStatusCheck"></a>
+                    <span class="name">
+                        <b>
+                            classStatusCheck
+                        </b>
+                        <a href="#classStatusCheck"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>classStatusCheck(status: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, className: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/app/app-info-detailed/app-info-detailed.component.ts:51</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Checks if the service status requires an special css class</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>status</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Service status name</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>className</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>CSS class name</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeModal"></a>
+                    <span class="name">
+                        <b>
+                            closeModal
+                        </b>
+                        <a href="#closeModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeModal()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/app/app-info-detailed/app-info-detailed.component.ts:91</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Close the modal window</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getBeautyStatusName"></a>
+                    <span class="name">
+                        <b>
+                            getBeautyStatusName
+                        </b>
+                        <a href="#getBeautyStatusName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getBeautyStatusName(rawStatus: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/app/app-info-detailed/app-info-detailed.component.ts:81</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Filters the backend incoming status to display it in removing the initial &quot;service_&quot;</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rawStatus</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>string containing the status that the backend is sending</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEndpointHref"></a>
+                    <span class="name">
+                        <b>
+                            getEndpointHref
+                        </b>
+                        <a href="#getEndpointHref"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEndpointHref(endpoint: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/app/app-info-detailed/app-info-detailed.component.ts:36</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Adds https in case of being required</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>endpoint</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>String containing the endpoint</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="appDescriptorId"></a>
+                        <span class="name">
+                            <b>
+                            appDescriptorId</b>
+                            <a href="#appDescriptorId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/app-info-detailed/app-info-detailed.component.ts:15</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="appInstanceId"></a>
+                        <span class="name">
+                            <b>
+                            appInstanceId</b>
+                            <a href="#appInstanceId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/app-info-detailed/app-info-detailed.component.ts:16</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bsModalRef"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            bsModalRef</b>
+                            <a href="#bsModalRef"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>BsModalRef</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/app-info-detailed/app-info-detailed.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="group"></a>
+                        <span class="name">
+                            <b>
+                            group</b>
+                            <a href="#group"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/app-info-detailed/app-info-detailed.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="labels"></a>
+                        <span class="name">
+                            <b>
+                            labels</b>
+                            <a href="#labels"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/app-info-detailed/app-info-detailed.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loadedData"></a>
+                        <span class="name">
+                            <b>
+                            loadedData</b>
+                            <a href="#loadedData"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/app-info-detailed/app-info-detailed.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Loaded Data status</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="name"></a>
+                        <span class="name">
+                            <b>
+                            name</b>
+                            <a href="#name"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/app-info-detailed/app-info-detailed.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="organizationId"></a>
+                        <span class="name">
+                            <b>
+                            organizationId</b>
+                            <a href="#organizationId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/app-info-detailed/app-info-detailed.component.ts:14</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Data models for app related information</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="statusName"></a>
+                        <span class="name">
+                            <b>
+                            statusName</b>
+                            <a href="#statusName"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/app-info-detailed/app-info-detailed.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { BsModalRef } from &#x27;ngx-bootstrap&#x27;;
+import { ServicesStatus } from &#x27;../definitions/enums/services-status.enum&#x27;;
+
+@Component({
+  selector: &#x27;app-info-detailed&#x27;,
+  templateUrl: &#x27;./app-info-detailed.component.html&#x27;,
+  styleUrls: [&#x27;./app-info-detailed.component.scss&#x27;]
+})
+export class AppInfoDetailedComponent {
+  /**
+   * Data models for app related information
+   */
+  organizationId: string;
+  appDescriptorId: string;
+  appInstanceId: string;
+  name: string;
+  group: any;
+  statusName: string;
+  labels: any;
+
+  /**
+   * Loaded Data status
+   */
+  loadedData: boolean;
+
+  constructor(
+    public bsModalRef: BsModalRef,
+  ) {
+  }
+
+  /**
+   * Adds https in case of being required
+   * @param endpoint String containing the endpoint
+   */
+  getEndpointHref(endpoint: string) {
+    let URL &#x3D; &#x27;&#x27;;
+    if (!endpoint.startsWith(&#x27;http&#x27;) &amp;&amp; !endpoint.startsWith(&#x27;https&#x27;)) {
+      URL &#x3D; &#x27;http://&#x27; + endpoint;
+    } else {
+      URL &#x3D; endpoint;
+    }
+    return URL;
+  }
+
+  /**
+   * Checks if the service status requires an special css class
+   * @param status Service status name
+   * @param className CSS class name
+   */
+  classStatusCheck(status: string, className: string): boolean {
+    switch (status.toLowerCase()) {
+      case ServicesStatus.ServiceRunning: {
+        if (className.toLowerCase() &#x3D;&#x3D;&#x3D; ServicesStatus.ServiceRunning) {
+          return true;
+        }
+        break;
+      }
+      case ServicesStatus.ServiceError: {
+        if (className.toLowerCase() &#x3D;&#x3D;&#x3D; ServicesStatus.ServiceError) {
+          return true;
+        }
+        break;
+      }
+      case ServicesStatus.ServiceWaiting: {
+        if (className.toLowerCase() &#x3D;&#x3D;&#x3D; ServicesStatus.ServiceWaiting) {
+          return true;
+        }
+        break;
+      }
+      default: {
+        return (className.toLowerCase() &#x3D;&#x3D;&#x3D; ServicesStatus.ServiceWaiting);
+      }
+    }
+  }
+
+  /**
+   * Filters the backend incoming status to display it in removing the initial &quot;service_&quot;
+   * @param rawStatus string containing the status that the backend is sending
+   */
+  getBeautyStatusName (rawStatus: string): string {
+    if (rawStatus.toLowerCase().startsWith(&#x27;service_&#x27;)) {
+      return rawStatus.substring(&#x27;service_&#x27;.length, rawStatus.length);
+    }
+    return rawStatus;
+  }
+
+    /**
+   * Close the modal window
+   */
+  closeModal() {
+    this.bsModalRef.hide();
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">
+&lt;div class&#x3D;&quot;modal-card modal-card-info&quot;&gt;
+  &lt;div class&#x3D;&quot;modal-content&quot; id&#x3D;&quot;app-info-detailed&quot;&gt;
+    &lt;!-- Header --&gt;
+    &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+      &lt;h3 *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;modal-info-title mb-4&quot;&gt;INSTANCE INFO&lt;/h3&gt;
+      &lt;h3 *ngIf&#x3D;&quot;openFromRegistered&quot; class&#x3D;&quot;modal-info-title mb-4&quot;&gt;DESCRIPTOR&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;!-- Body --&gt;
+    &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+      &lt;div class&#x3D;&quot;app-info-detailed-p&quot;&gt;
+        &lt;h3 class&#x3D;&quot;modal-info-h3-title&quot;&gt;{{name}}&lt;/h3&gt;
+        &lt;p *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;modal-info-title-sm &quot;&gt;{{appInstanceId}}&lt;/p&gt;
+        &lt;p *ngIf&#x3D;&quot;openFromRegistered&quot; class&#x3D;&quot;modal-info-title-sm &quot;&gt;{{appDescriptorId}}&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;scroll-app-info app-info-detailed-p&quot;&gt;
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+          &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3&quot;&gt;{{&#x27;tables.organizationId&#x27;|translate}}&lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{organizationId}}&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;br&gt;
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+          &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3&quot;&gt;{{&#x27;tables.tableLabels&#x27;|translate}}&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div *ngFor&#x3D;&quot;let label of labels&quot; class&#x3D;&quot;row&quot;&gt;
+          &lt;div *ngIf&#x3D;&quot;labels&quot; class&#x3D;&quot;col-sm text-right&quot;&gt;
+            &lt;button class&#x3D;&quot;label-content-disabled&quot;&gt;
+              {{label.key}}: {{label.value}}
+            &lt;/button&gt;
+          &lt;/div&gt;
+          &lt;div *ngIf&#x3D;&quot;!labels&quot; class&#x3D;&quot;col-sm text-right&quot;&gt;No&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;br&gt;
+        &lt;!-- Groups --&gt;
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+          &lt;div class&#x3D;&quot;col-sm modal-info-table-title&quot;&gt;{{&#x27;tables.tableGroups&#x27;|translate}}&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;br&gt;
+        &lt;!-- Instance groups --&gt;
+        &lt;span *ngIf&#x3D;&quot;openFromInstance&quot;&gt;
+          &lt;span *ngFor&#x3D;&quot;let group of group&quot;&gt;
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+              &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3 dark-grey&quot;&gt;{{group.name}}&lt;/div&gt;
+              &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{group.service_group_id}}&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- Services --&gt;
+            &lt;div class&#x3D;&quot;services-bg&quot;&gt;
+              &lt;div *ngFor&#x3D;&quot;let service of group.service_instances&quot; class&#x3D;&quot;row&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;!group.service_instances&quot; class&#x3D;&quot;col-sm text-right&quot;&gt;No services&lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;group.service_instances&quot; class&#x3D;&quot;col-sm mb-3&quot;&gt;
+                  &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3 dark-grey&quot;&gt;{{service.name}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{service.service_instance_id}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;br&gt;
+                  &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3&quot;&gt;{{&#x27;tables.tableStatus&#x27;|translate}}&lt;/div&gt;
+                    &lt;h3 class&#x3D;&quot;modal-info-h3-title col-sm text-right&quot;&gt;
+                      &lt;span 
+                        [ngClass]&#x3D;
+                        &quot;{
+                          &#x27;big-status-dot&#x27;: classStatusCheck(service.status_name, &#x27;service_running&#x27;),
+                          &#x27;big-status-dot-error&#x27;: classStatusCheck(service.status_name, &#x27;service_error&#x27;),
+                          &#x27;big-status-dot-process&#x27;: classStatusCheck(service.status_name, &#x27;service_waiting&#x27;) || classStatusCheck (service.status_name, &#x27;service_scheduled&#x27;)
+                        }&quot;
+                        tooltip&#x3D;&quot;{{service.status_name}}&quot; 
+                        placement&#x3D;&quot;bottom&quot;
+                        class&#x3D;&quot;big-status-dot&quot;&gt;
+                        &lt;span class&#x3D;&quot;fw-black&quot;&gt;
+                          {{getBeautyStatusName(service.status_name)}}
+                        &lt;/span&gt;
+                      &lt;/span&gt;
+                    &lt;/h3&gt;
+                  &lt;/div&gt;
+                  &lt;br&gt;
+                  &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3&quot;&gt;{{&#x27;tables.tableDeployedOnCID&#x27;|translate}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{service.deployed_on_cluster_id}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;br&gt;
+                  &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title&quot;&gt;{{&#x27;tables.tableReplicas&#x27;|translate}}&lt;/div&gt;
+                    &lt;h3 class&#x3D;&quot;modal-info-h3-title col-sm text-right&quot;&gt;{{service.specs.replicas}}&lt;/h3&gt;
+                  &lt;/div&gt;
+                  &lt;br&gt;
+                  &lt;div *ngIf&#x3D;&quot;service.environment_variables&quot;&gt;
+                    &lt;div class&#x3D;&quot;row&quot;&gt;
+                      &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3&quot;&gt;{{&#x27;apps.instance.environmentVariables&#x27;|translate}}&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;row&quot;&gt;
+                      &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;
+                        &lt;div *ngFor&#x3D;&quot;let variable of service.environment_variables | keyvalue&quot; class&#x3D;&quot;row mb-2&quot; &gt;
+                            &lt;div class&#x3D;&quot;col-12 grey text-right&quot;&gt;
+                              {{variable.key}} 
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;col-12 text-right&quot;&gt;
+                              {{variable.value}}
+                            &lt;/div&gt;
+                          &lt;/div&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title&quot;&gt;{{&#x27;tables.tableType&#x27;|translate}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{service.type_name}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;br&gt;
+                  &lt;div *ngIf&#x3D;&quot;!service.credentials&quot; class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title&quot;&gt;{{&#x27;apps.instance.environmentVariables&#x27;|translate}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{&#x27;apps.instance.noEnvironmentVariables&#x27;|translate}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;service.credentials&quot;&gt;
+                    &lt;div class&#x3D;&quot;row&quot;&gt;
+                      &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3&quot;&gt;{{&#x27;tables.tableCredentials&#x27;|translate}}&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;row&quot;&gt;
+                      &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;
+                        &lt;div *ngFor&#x3D;&quot;let credential of service.credentials | keyvalue&quot; class&#x3D;&quot;row mb-2&quot; &gt;
+                            &lt;div class&#x3D;&quot;col-12 grey text-right&quot;&gt;
+                              {{credential.key}} 
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;col-12 text-right&quot;&gt;
+                              {{credential.value}}
+                            &lt;/div&gt;
+                          &lt;/div&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;!service.credentials&quot;  class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title&quot;&gt;{{&#x27;tables.tableCredentials&#x27;|translate}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;No credentials have been set&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;br&gt;
+                  &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title&quot;&gt;{{&#x27;tables.tableImage&#x27;|translate}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{service.image}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;br&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/span&gt;
+        &lt;/span&gt;
+        &lt;!-- Registered Groups --&gt;
+        &lt;span *ngIf&#x3D;&quot;openFromRegistered&quot;&gt;
+          &lt;span *ngFor&#x3D;&quot;let group of groups&quot;&gt;
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+              &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3 dark-grey&quot;&gt;{{group.name}}&lt;/div&gt;
+              &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{group.service_group_id}}&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- Services --&gt;
+            &lt;div class&#x3D;&quot;services-bg&quot;&gt;
+              &lt;div *ngFor&#x3D;&quot;let service of group.services&quot; class&#x3D;&quot;row&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;!group.services&quot; class&#x3D;&quot;col-sm text-right&quot;&gt;No services&lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;group.services&quot; class&#x3D;&quot;col-sm mb-3&quot;&gt;
+                  &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3 dark-grey&quot;&gt;{{service.name}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{service.service_id}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;br&gt;
+                  &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title&quot;&gt;{{&#x27;tables.tableReplicas&#x27;|translate}}&lt;/div&gt;
+                    &lt;h3 class&#x3D;&quot;modal-info-h3-title col-sm text-right&quot;&gt;{{service.specs.replicas}}&lt;/h3&gt;
+                  &lt;/div&gt;
+                  &lt;br&gt;
+                  &lt;div *ngIf&#x3D;&quot;service.exposed_ports&quot;&gt;
+                    &lt;div class&#x3D;&quot;row&quot;&gt;
+                      &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3&quot;&gt;{{&#x27;tables.tableExposedPorts&#x27;|translate}}&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;row&quot;&gt;
+                      &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;
+                        &lt;div *ngFor&#x3D;&quot;let exposedPort of service.exposed_ports&quot; class&#x3D;&quot;row mb-2&quot;&gt;
+                            &lt;div class&#x3D;&quot;col-12 text-right&quot;&gt;
+                              &lt;div class&#x3D;&quot;row&quot;&gt;
+                                  &lt;div class&#x3D;&quot;col-sm&quot;&gt;&lt;/div&gt;
+                                  &lt;div class&#x3D;&quot;col-sm&quot;&gt;{{&#x27;tables.tablePort&#x27;|translate}}&lt;/div&gt;
+                                  &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{&#x27;tables.tableInternal&#x27;|translate}}&lt;/div&gt;
+                                  &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{&#x27;tables.tableExternal&#x27;|translate}}&lt;/div&gt;
+                              &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;col-12 text-right&quot;&gt;
+                                &lt;div class&#x3D;&quot;row&quot;&gt;
+                                  &lt;div class&#x3D;&quot;col-sm&quot;&gt;&lt;/div&gt;
+                                  &lt;div class&#x3D;&quot;col-sm grey&quot;&gt;{{exposedPort.name}}&lt;/div&gt;
+                                  &lt;div class&#x3D;&quot;col-sm text-right grey&quot;&gt;{{exposedPort.internal_port}}&lt;/div&gt;
+                                  &lt;div class&#x3D;&quot;col-sm text-right grey&quot;&gt;{{exposedPort.exposed_port}}&lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                          &lt;/div&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;!service.exposed_ports&quot; class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title&quot;&gt;{{&#x27;tables.tableExposedPorts&#x27;|translate}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;No exposed ports&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;br&gt;
+                  &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title&quot;&gt;{{&#x27;tables.tableImage&#x27;|translate}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{service.image}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;br&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/span&gt;
+        &lt;/span&gt;
+        &lt;!-- Rules --&gt;
+        &lt;div *ngIf&#x3D;&quot;rules&quot; class&#x3D;&quot;row&quot;&gt;
+          &lt;div class&#x3D;&quot;col-sm modal-info-table-title mt-3&quot;&gt;{{&#x27;tables.tableRules&#x27;|translate}}&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;br&gt;
+        &lt;span *ngIf&#x3D;&quot;rules&quot;&gt;
+          &lt;div class&#x3D;&quot;services-bg&quot;&gt;
+            &lt;span *ngFor&#x3D;&quot;let rule of rules&quot;&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+                  &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3 dark-grey&quot;&gt;{{rule.name}}&lt;/div&gt;
+                  &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{rule.rule_id}}&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;&quot;&gt;
+                  &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3&quot;&gt;{{&#x27;tables.tableAccess&#x27;|translate}}&lt;/div&gt;
+                    &lt;div *ngIf&#x3D;&quot;openFromRegistered&quot; class&#x3D;&quot;col-sm text-right rule-access&quot;&gt;{{rule.access}}&lt;/div&gt;
+                    &lt;div *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;col-sm text-right rule-access&quot;&gt;{{rule.access_name}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;br&gt;
+                  &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3&quot;&gt;{{&#x27;tables.tableTarget&#x27;|translate}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;rule.target_service_group_name&quot; class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm-2&quot;&gt;&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm-4 modal-info-table-title&quot;&gt;{{&#x27;tables.tableGroup&#x27;|translate}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{rule.target_service_name}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm-2&quot;&gt;&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm-4 modal-info-table-title&quot;&gt;{{&#x27;tables.tableServices&#x27;|translate}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{rule.target_service_group_name}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm-2&quot;&gt;&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm-4  modal-info-table-title&quot;&gt;{{&#x27;tables.tablePort&#x27;|translate}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm col-right-low&quot;&gt;{{rule.target_port}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;br&gt;
+                  &lt;div *ngIf&#x3D;&quot;rule.device_group_ids&quot; class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3&quot;&gt;{{&#x27;tables.tableAuth&#x27;|translate}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;rule.auth_service_group_name&quot; class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm-2&quot;&gt;&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm-4 modal-info-table-title&quot;&gt;{{&#x27;tables.tableGroup&#x27;|translate}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{rule.auth_service_group_name}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div *ngFor&#x3D;&quot;let auth of rule.auth_services; let i &#x3D; index&quot; class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm-2&quot;&gt;&lt;/div&gt;
+                    &lt;div *ngIf&#x3D;&quot;i &#x3D;&#x3D;&#x3D; 0&quot; class&#x3D;&quot;col-sm-4 modal-info-table-title&quot;&gt;{{&#x27;tables.tableServices&#x27;|translate}}&lt;/div&gt;
+                    &lt;div *ngIf&#x3D;&quot;i !&#x3D;&#x3D; 0&quot; class&#x3D;&quot;col-sm&quot;&gt;&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{rule.auth_services}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;rule.device_group_ids&quot; class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm-2&quot;&gt;&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm-4 modal-info-table-title&quot;&gt;{{&#x27;tables.tableDevices&#x27;|translate}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm col-right-low&quot;&gt;{{rule.device_group_ids}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;rule.device_group_names&quot; class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm-2&quot;&gt;&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm-4 modal-info-table-title&quot;&gt;Devices group{{&#x27;tables.tableDevicesGroup&#x27;|translate}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm col-right-low&quot;&gt;{{rule.device_group_names}}&lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;br&gt;
+                  &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm modal-info-table-title mb-3&quot;&gt;{{&#x27;tables.tableAppDescriptorID&#x27;|translate}}&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm text-right&quot;&gt;{{rule.app_descriptor_id}}&lt;/div&gt;
+                  &lt;/div&gt;
+                    &lt;br&gt;
+                &lt;/div&gt;   
+            &lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/span&gt;
+        &lt;br&gt;
+      &lt;/div&gt;      
+      &lt;!-- Option button --&gt;
+      &lt;div class&#x3D;&quot;form-group-btn app-info-detailed-p&quot;&gt;
+        &lt;button (click)&#x3D;&quot;closeModal()&quot; class&#x3D;&quot;nalej-form-btn-blue&quot;&gt;
+          &lt;span class&#x3D;&quot;align-bottom&quot;&gt;{{&#x27;modals.buttonClose&#x27;|translate}}&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./app-info-detailed.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;../scss/variables/colors&#x27;;
+
+.service-status {
+    font-size: 1.2em;
+}
+.modal-card {
+    width: 500px;
+}
+.services-bg {
+    background-color: $main-bg;
+    border-radius: 15px;
+    padding: 1em;
+    margin: 0 -1em;
+}
+
+#app-info-detailed {
+    .modal-body {
+        padding: 0;
+    }
+    .app-info-detailed-p {
+        padding: 1em;
+        width: 100%;
+        height: 100%;
+    }
+    .scroll-app-info {
+        margin: 1.5em 0 0 0;
+    }
+}
+.form-group-btn {
+    margin-top: 0;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="modal-card modal-card-info">  <div class="modal-content" id="app-info-detailed">    <!-- Header -->    <div class="modal-header">      <h3 *ngIf="openFromInstance" class="modal-info-title mb-4">INSTANCE INFO</h3>      <h3 *ngIf="openFromRegistered" class="modal-info-title mb-4">DESCRIPTOR</h3>    </div>    <!-- Body -->    <div class="modal-body">      <div class="app-info-detailed-p">        <h3 class="modal-info-h3-title">{{name}}</h3>        <p *ngIf="openFromInstance" class="modal-info-title-sm ">{{appInstanceId}}</p>        <p *ngIf="openFromRegistered" class="modal-info-title-sm ">{{appDescriptorId}}</p>      </div>      <div class="scroll-app-info app-info-detailed-p">        <div class="row">          <div class="col-sm modal-info-table-title mb-3">{{\'tables.organizationId\'|translate}}</div>          <div class="col-sm text-right">{{organizationId}}</div>        </div>        <br>        <div class="row">          <div class="col-sm modal-info-table-title mb-3">{{\'tables.tableLabels\'|translate}}</div>        </div>        <div *ngFor="let label of labels" class="row">          <div *ngIf="labels" class="col-sm text-right">            <button class="label-content-disabled">              {{label.key}}: {{label.value}}            </button>          </div>          <div *ngIf="!labels" class="col-sm text-right">No</div>        </div>        <br>        <!-- Groups -->        <div class="row">          <div class="col-sm modal-info-table-title">{{\'tables.tableGroups\'|translate}}</div>        </div>        <br>        <!-- Instance groups -->        <span *ngIf="openFromInstance">          <span *ngFor="let group of group">            <div class="row">              <div class="col-sm modal-info-table-title mb-3 dark-grey">{{group.name}}</div>              <div class="col-sm text-right">{{group.service_group_id}}</div>            </div>            <!-- Services -->            <div class="services-bg">              <div *ngFor="let service of group.service_instances" class="row">                <div *ngIf="!group.service_instances" class="col-sm text-right">No services</div>                <div *ngIf="group.service_instances" class="col-sm mb-3">                  <div class="row">                    <div class="col-sm modal-info-table-title mb-3 dark-grey">{{service.name}}</div>                    <div class="col-sm text-right">{{service.service_instance_id}}</div>                  </div>                  <br>                  <div class="row">                    <div class="col-sm modal-info-table-title mb-3">{{\'tables.tableStatus\'|translate}}</div>                    <h3 class="modal-info-h3-title col-sm text-right">                      <span                         [ngClass]=                        "{                          \'big-status-dot\': classStatusCheck(service.status_name, \'service_running\'),                          \'big-status-dot-error\': classStatusCheck(service.status_name, \'service_error\'),                          \'big-status-dot-process\': classStatusCheck(service.status_name, \'service_waiting\') || classStatusCheck (service.status_name, \'service_scheduled\')                        }"                        tooltip="{{service.status_name}}"                         placement="bottom"                        class="big-status-dot">                        <span class="fw-black">                          {{getBeautyStatusName(service.status_name)}}                        </span>                      </span>                    </h3>                  </div>                  <br>                  <div class="row">                    <div class="col-sm modal-info-table-title mb-3">{{\'tables.tableDeployedOnCID\'|translate}}</div>                    <div class="col-sm text-right">{{service.deployed_on_cluster_id}}</div>                  </div>                  <br>                  <div class="row">                    <div class="col-sm modal-info-table-title">{{\'tables.tableReplicas\'|translate}}</div>                    <h3 class="modal-info-h3-title col-sm text-right">{{service.specs.replicas}}</h3>                  </div>                  <br>                  <div *ngIf="service.environment_variables">                    <div class="row">                      <div class="col-sm modal-info-table-title mb-3">{{\'apps.instance.environmentVariables\'|translate}}</div>                    </div>                    <div class="row">                      <div class="col-sm text-right">                        <div *ngFor="let variable of service.environment_variables | keyvalue" class="row mb-2" >                            <div class="col-12 grey text-right">                              {{variable.key}}                             </div>                            <div class="col-12 text-right">                              {{variable.value}}                            </div>                          </div>                      </div>                    </div>                  </div>                  <div class="row">                    <div class="col-sm modal-info-table-title">{{\'tables.tableType\'|translate}}</div>                    <div class="col-sm text-right">{{service.type_name}}</div>                  </div>                  <br>                  <div *ngIf="!service.credentials" class="row">                    <div class="col-sm modal-info-table-title">{{\'apps.instance.environmentVariables\'|translate}}</div>                    <div class="col-sm text-right">{{\'apps.instance.noEnvironmentVariables\'|translate}}</div>                  </div>                  <div *ngIf="service.credentials">                    <div class="row">                      <div class="col-sm modal-info-table-title mb-3">{{\'tables.tableCredentials\'|translate}}</div>                    </div>                    <div class="row">                      <div class="col-sm text-right">                        <div *ngFor="let credential of service.credentials | keyvalue" class="row mb-2" >                            <div class="col-12 grey text-right">                              {{credential.key}}                             </div>                            <div class="col-12 text-right">                              {{credential.value}}                            </div>                          </div>                      </div>                    </div>                  </div>                  <div *ngIf="!service.credentials"  class="row">                    <div class="col-sm modal-info-table-title">{{\'tables.tableCredentials\'|translate}}</div>                    <div class="col-sm text-right">No credentials have been set</div>                  </div>                  <br>                  <div class="row">                    <div class="col-sm modal-info-table-title">{{\'tables.tableImage\'|translate}}</div>                    <div class="col-sm text-right">{{service.image}}</div>                  </div>                  <br>                </div>              </div>            </div>          </span>        </span>        <!-- Registered Groups -->        <span *ngIf="openFromRegistered">          <span *ngFor="let group of groups">            <div class="row">              <div class="col-sm modal-info-table-title mb-3 dark-grey">{{group.name}}</div>              <div class="col-sm text-right">{{group.service_group_id}}</div>            </div>            <!-- Services -->            <div class="services-bg">              <div *ngFor="let service of group.services" class="row">                <div *ngIf="!group.services" class="col-sm text-right">No services</div>                <div *ngIf="group.services" class="col-sm mb-3">                  <div class="row">                    <div class="col-sm modal-info-table-title mb-3 dark-grey">{{service.name}}</div>                    <div class="col-sm text-right">{{service.service_id}}</div>                  </div>                  <br>                  <div class="row">                    <div class="col-sm modal-info-table-title">{{\'tables.tableReplicas\'|translate}}</div>                    <h3 class="modal-info-h3-title col-sm text-right">{{service.specs.replicas}}</h3>                  </div>                  <br>                  <div *ngIf="service.exposed_ports">                    <div class="row">                      <div class="col-sm modal-info-table-title mb-3">{{\'tables.tableExposedPorts\'|translate}}</div>                    </div>                    <div class="row">                      <div class="col-sm text-right">                        <div *ngFor="let exposedPort of service.exposed_ports" class="row mb-2">                            <div class="col-12 text-right">                              <div class="row">                                  <div class="col-sm"></div>                                  <div class="col-sm">{{\'tables.tablePort\'|translate}}</div>                                  <div class="col-sm text-right">{{\'tables.tableInternal\'|translate}}</div>                                  <div class="col-sm text-right">{{\'tables.tableExternal\'|translate}}</div>                              </div>                            </div>                            <div class="col-12 text-right">                                <div class="row">                                  <div class="col-sm"></div>                                  <div class="col-sm grey">{{exposedPort.name}}</div>                                  <div class="col-sm text-right grey">{{exposedPort.internal_port}}</div>                                  <div class="col-sm text-right grey">{{exposedPort.exposed_port}}</div>                                </div>                            </div>                          </div>                      </div>                    </div>                  </div>                  <div *ngIf="!service.exposed_ports" class="row">                    <div class="col-sm modal-info-table-title">{{\'tables.tableExposedPorts\'|translate}}</div>                    <div class="col-sm text-right">No exposed ports</div>                  </div>                  <br>                  <div class="row">                    <div class="col-sm modal-info-table-title">{{\'tables.tableImage\'|translate}}</div>                    <div class="col-sm text-right">{{service.image}}</div>                  </div>                  <br>                </div>              </div>            </div>          </span>        </span>        <!-- Rules -->        <div *ngIf="rules" class="row">          <div class="col-sm modal-info-table-title mt-3">{{\'tables.tableRules\'|translate}}</div>        </div>        <br>        <span *ngIf="rules">          <div class="services-bg">            <span *ngFor="let rule of rules">                <div class="row">                  <div class="col-sm modal-info-table-title mb-3 dark-grey">{{rule.name}}</div>                  <div class="col-sm text-right">{{rule.rule_id}}</div>                </div>                <div class="">                  <div class="row">                    <div class="col-sm modal-info-table-title mb-3">{{\'tables.tableAccess\'|translate}}</div>                    <div *ngIf="openFromRegistered" class="col-sm text-right rule-access">{{rule.access}}</div>                    <div *ngIf="openFromInstance" class="col-sm text-right rule-access">{{rule.access_name}}</div>                  </div>                  <br>                  <div class="row">                    <div class="col-sm modal-info-table-title mb-3">{{\'tables.tableTarget\'|translate}}</div>                  </div>                  <div *ngIf="rule.target_service_group_name" class="row">                    <div class="col-sm-2"></div>                    <div class="col-sm-4 modal-info-table-title">{{\'tables.tableGroup\'|translate}}</div>                    <div class="col-sm text-right">{{rule.target_service_name}}</div>                  </div>                  <div class="row">                    <div class="col-sm-2"></div>                    <div class="col-sm-4 modal-info-table-title">{{\'tables.tableServices\'|translate}}</div>                    <div class="col-sm text-right">{{rule.target_service_group_name}}</div>                  </div>                  <div class="row">                    <div class="col-sm-2"></div>                    <div class="col-sm-4  modal-info-table-title">{{\'tables.tablePort\'|translate}}</div>                    <div class="col-sm col-right-low">{{rule.target_port}}</div>                  </div>                  <br>                  <div *ngIf="rule.device_group_ids" class="row">                    <div class="col-sm modal-info-table-title mb-3">{{\'tables.tableAuth\'|translate}}</div>                  </div>                  <div *ngIf="rule.auth_service_group_name" class="row">                    <div class="col-sm-2"></div>                    <div class="col-sm-4 modal-info-table-title">{{\'tables.tableGroup\'|translate}}</div>                    <div class="col-sm text-right">{{rule.auth_service_group_name}}</div>                  </div>                  <div *ngFor="let auth of rule.auth_services; let i = index" class="row">                    <div class="col-sm-2"></div>                    <div *ngIf="i === 0" class="col-sm-4 modal-info-table-title">{{\'tables.tableServices\'|translate}}</div>                    <div *ngIf="i !== 0" class="col-sm"></div>                    <div class="col-sm text-right">{{rule.auth_services}}</div>                  </div>                  <div *ngIf="rule.device_group_ids" class="row">                    <div class="col-sm-2"></div>                    <div class="col-sm-4 modal-info-table-title">{{\'tables.tableDevices\'|translate}}</div>                    <div class="col-sm col-right-low">{{rule.device_group_ids}}</div>                  </div>                  <div *ngIf="rule.device_group_names" class="row">                    <div class="col-sm-2"></div>                    <div class="col-sm-4 modal-info-table-title">Devices group{{\'tables.tableDevicesGroup\'|translate}}</div>                    <div class="col-sm col-right-low">{{rule.device_group_names}}</div>                  </div>                  <br>                  <div class="row">                    <div class="col-sm modal-info-table-title mb-3">{{\'tables.tableAppDescriptorID\'|translate}}</div>                    <div class="col-sm text-right">{{rule.app_descriptor_id}}</div>                  </div>                    <br>                </div>               </span>          </div>        </span>        <br>      </div>            <!-- Option button -->      <div class="form-group-btn app-info-detailed-p">        <button (click)="closeModal()" class="nalej-form-btn-blue">          <span class="align-bottom">{{\'modals.buttonClose\'|translate}}</span>        </button>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
+    var ACTUAL_COMPONENT = {'name': 'AppInfoDetailedComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AppInfoDetailedComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

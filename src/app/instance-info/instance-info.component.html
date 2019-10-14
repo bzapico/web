@@ -27,19 +27,20 @@
         [instance]="instance"
         [registeredData]="registered"
         [openFromInstance]="openFromInstance"
-        class="row-info-app flex-grow-1">
+        class="row-info-app flex-grow-1 h-75">
       </app-info>
       <!-- Labels card-->
       <labels-card 
         *ngIf="loadedData"
         [labelsData]="instance"
         [isSelectableLabel]="isSelectableLabel"
-        class="row-info-app">
+        class="row-info-app flex-grow-0">
       </labels-card>
       <!-- Action buttons card -->
       <action-buttons-card *ngIf="loadedData"
         [app]="instance"
-        [isOpenFromRegistered]="isOpenFromRegistered">
+        [isOpenFromRegistered]="isOpenFromRegistered"
+        class="flex-grow-0">
       </action-buttons-card>
     </div>
   </div>
@@ -158,7 +159,7 @@
                       <div class="accordion-btn">
                         <div    
                           (click)="openGroupServicesInfo(group, $event)" 
-                          tooltip="{{'apps.instance.tableInfo'|translate}}" 
+                          tooltip="{{'tables.tableInfo'|translate}}" 
                           placement="left">
                           <i class="material-icons info-icon">info</i>
                         </div>
@@ -225,7 +226,7 @@
                             </span>
                           </div>
                           <div class="label-th col-1 text-right">
-                            {{'apps.instance.tableInfo'|translate}}
+                            {{'tables.tableInfo'|translate}}
                           </div>
                         </div>
                       </div>
@@ -271,7 +272,7 @@
                           <div class="col-1 label-td-flex text-center">
                             <div    
                               (click)="openServicesInfo(service)" 
-                              tooltip="Info" 
+                              tooltip="{{'tables.tableInfo'|translate}}" 
                               placement="left">
                               <i class="material-icons info-icon">info</i>
                             </div>

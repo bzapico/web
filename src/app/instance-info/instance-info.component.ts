@@ -620,6 +620,10 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     return anyChanges;
   }
 
+  /**
+   * Show the graph and hides the services table
+   * @param displayGraph show if the graph is displayed
+   */
   onShowGraph(displayGraph: boolean) {
     this.showGraph = displayGraph;
   }

@@ -9,23 +9,26 @@
     <div class="flex-col-app">
       <!-- Registered id card -->
       <app-info
-              *ngIf="loadedData"
-              [registeredData]="registeredData"
-              [registered]="registeredData"
-              [openFromRegistered]="openFromRegistered"
-              class="row-info-app flex-grow-1">
+        *ngIf="loadedData"
+        [registeredData]="registeredData"
+        [registered]="registeredData"
+        [openFromRegistered]="openFromRegistered"
+        class="row-info-app flex-grow-1 h-75">
       </app-info>
       <!-- Labels card-->
-      <labels-card *ngIf="loadedData"
-                   [labelsData]="registeredData"
-                   [isSelectableLabel]="isSelectableLabel"
-                   (updateLabels)="updateLabels($event)"
-                   class="row-info-app">
+      <labels-card 
+        *ngIf="loadedData"
+        [labelsData]="registeredData"
+        [isSelectableLabel]="isSelectableLabel"
+        (updateLabels)="updateLabels($event)"
+        class="row-info-app flex-grow-0">
       </labels-card>
       <!-- Action buttons card -->
-      <action-buttons-card *ngIf="loadedData"
-                           [app]="registeredData"
-                           [isOpenFromRegistered]="isOpenFromRegistered">
+      <action-buttons-card 
+        *ngIf="loadedData"
+        [app]="registeredData"
+        [isOpenFromRegistered]="isOpenFromRegistered"
+        class="flex-grow-0">
       </action-buttons-card>
     </div>
   </div>
@@ -39,13 +42,13 @@
         <div *ngIf="showGraph" class="services-card-box">
           <div *ngIf="graphDataLoaded && !graphReset" class="graph">
             <graph
-                    [autoCenter]="autoCenter"
-                    [autoZoom]="autoZoom"
-                    [curve]="curve"
-                    [enableZoom]="enableZoom"
-                    [links]="graphData.links"
-                    [nodes]="graphData.nodes"
-                    [orientation]="orientation">
+              [autoCenter]="autoCenter"
+              [autoZoom]="autoZoom"
+              [curve]="curve"
+              [enableZoom]="enableZoom"
+              [links]="graphData.links"
+              [nodes]="graphData.nodes"
+              [orientation]="orientation">
             </graph>
           </div>
           <div *ngIf="!graphReset" class="row mt-2 text-right mr-1">
@@ -71,7 +74,7 @@
               registeredData &&
               registeredData.groups &&
               registeredData.groups.length > 0"
-                 class="row mb-3">
+                class="row mb-3">
               <!-- Sorting messages -->
               <div class="col-7">
                 <p *ngIf="searchTerm && !filterField" class="sorting-message">
@@ -103,11 +106,11 @@
                 <form>
                   <div class="search-box">
                     <input
-                            name="searchTerm"
-                            [(ngModel)]="searchTerm"
-                            type="text"
-                            placeholder="{{'searcher.placeholder'|translate }}"
-                            class="form-control">
+                      name="searchTerm"
+                      [(ngModel)]="searchTerm"
+                      type="text"
+                      placeholder="{{'searcher.placeholder'|translate }}"
+                      class="form-control">
                     <div *ngIf="searchTerm === ''" class="search-icon">
                       <i class="material-icons">search</i>
                     </div>
@@ -122,22 +125,22 @@
             <div class="row h-100">
               <div class="col accordion-box">
                 <accordion
-                        *ngFor="let group of groups"
-                        class="accordion-tabs">
+                  *ngFor="let group of groups"
+                  class="accordion-tabs">
                   <accordion-group
-                          *ngIf="groups.length > 0"
-                          heading="{{group.name}}"
-                          [panelClass]="nalejAccordion"
-                          [isOpen]="group.isFirstOpen">
+                    *ngIf="groups.length > 0"
+                    heading="{{group.name}}"
+                    [panelClass]="nalejAccordion"
+                    [isOpen]="group.isFirstOpen">
                     <span
-                            accordion-heading
-                            class="accordion-icons-box">
+                      accordion-heading
+                      class="accordion-icons-box">
                       <i class="material-icons accordion-arrow">arrow_drop_down</i>
                       <div class="accordion-btn">
                         <div
-                                (click)="openRegisteredServicesGroupInfo(group, $event)"
-                                tooltip="{{'apps.instance.tableInfo'|translate}}"
-                                placement="left">
+                          (click)="openRegisteredServicesGroupInfo(group, $event)"
+                          tooltip="{{'tables.tableInfo'|translate}}"
+                          placement="left">
                           <i class="material-icons info-icon">info</i>
                         </div>
                       </div>
@@ -148,19 +151,19 @@
                     </div>
                     <!-- Services table -->
                     <div *ngIf=
-                                 "loadedData &&
+                      "loadedData &&
                       registeredData.groups &&
                       registeredData.groups.length > 0 &&
                       !requestError"
-                         class="nalej-table-box no-p-col no-m-row">
+                        class="nalej-table-box no-p-col no-m-row">
                       <div class="label-nalej-table">
                         <div *ngIf="!searchTerm" class="label-thead row">
                           <div class="col-12">
                             <div class="row">
                               <div
-                                      (click)="setOrder('services','name')"
-                                      [ngClass]="getCategoryCSSClass('services','name')"
-                                      class="label-th col-3">
+                                (click)="setOrder('services','name')"
+                                [ngClass]="getCategoryCSSClass('services','name')"
+                                class="label-th col-3">
                                 {{'apps.instance.tableName'|translate}}
                                 <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                                   <i class="material-icons">expand_more</i>
@@ -170,9 +173,9 @@
                                 </span>
                               </div>
                               <div
-                                      (click)="setOrder('services','image')"
-                                      [ngClass]="getCategoryCSSClass('services','image')"
-                                      class="label-th col-8 text-center">
+                                (click)="setOrder('services','image')"
+                                [ngClass]="getCategoryCSSClass('services','image')"
+                                class="label-th col-8 text-center">
                                 {{'apps.instance.tableImage'|translate}}
                                 <span *ngIf="sortedBy === 'image' && !reverse" class="expand-chevron">
                                   <i class="material-icons">expand_more</i>
@@ -182,14 +185,14 @@
                                 </span>
                               </div>
                               <div class="label-th col-1 text-right pr-1">
-                                {{'apps.instance.tableInfo'|translate}}
+                                {{'tables.tableInfo'|translate}}
                               </div>
                             </div>
                           </div>
                           <div
-                                  (click)="setOrder('services','labels')"
-                                  [ngClass]="getCategoryCSSClass('services','labels')"
-                                  class="label-th col-12">
+                            (click)="setOrder('services','labels')"
+                            [ngClass]="getCategoryCSSClass('services','labels')"
+                            class="label-th col-12">
                             {{'apps.instance.tableLabels'|translate}}
                             <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                               <i class="material-icons">expand_more</i>
@@ -200,7 +203,7 @@
                           </div>
                         </div>
                         <div *ngFor=
-                                     "let service of getGroupServices(group.service_group_id) |
+                          "let service of getGroupServices(group.service_group_id) |
                           sortBy : sortedBy : reverse : 'case-insensitive' |
                           filter : searchTerm">
                           <div class="label-tbody row">
@@ -214,9 +217,9 @@
                                 </div>
                                 <div class="col-1 label-td-flex">
                                   <div
-                                          (click)="openServicesInfo(service)"
-                                          tooltip="{{'apps.instance.tableInfo'|translate}}"
-                                          placement="left">
+                                    (click)="openServicesInfo(service)"
+                                    tooltip="{{'tables.tableInfo'|translate}}"
+                                    placement="left">
                                     <i class="material-icons info-icon">info</i>
                                   </div>
                                 </div>
@@ -224,8 +227,8 @@
                             </div>
                             <div class="col-12 label-td">
                               <button
-                                      *ngFor="let label of service.labels | keyvalue"
-                                      class="label-content-disabled">
+                                *ngFor="let label of service.labels | keyvalue"
+                                class="label-content-disabled">
                                 {{label.key}}: {{label.value}}
                               </button>
                             </div>
@@ -236,10 +239,10 @@
                     </div>
                     <!-- No info to show -->
                     <div *ngIf=
-                                 "loadedData &&
-                    !requestError &&
-                    registeredData.groups.length === 0"
-                         class="no-elements">
+                      "loadedData &&
+                      !requestError &&
+                      registeredData.groups.length === 0"
+                      class="no-elements">
                       {{'apps.instance.noServices'|translate}}
                     </div>
                     <!-- Requested error -->
@@ -255,13 +258,13 @@
               <div class="loader">
                 <svg class="circular" viewBox="25 25 50 50">
                   <circle
-                          class="path"
-                          cx="50"
-                          cy="50"
-                          r="20"
-                          fill="none"
-                          stroke-width="2"
-                          stroke-miterlimit="10" />
+                    class="path"
+                    cx="50"
+                    cy="50"
+                    r="20"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-miterlimit="10" />
                 </svg>
               </div>
             </div>
@@ -275,11 +278,11 @@
             </div>
             <!-- Search box -->
             <div *ngIf=
-                         "loadedData &&
+              "loadedData &&
               registeredData.rules &&
               registeredData.rules.length > 0 &&
               !requestError"
-                 class="row mb-3 ">
+              class="row mb-3 ">
               <!-- Sorting messages -->
               <div class="col">
                 <p *ngIf="searchTermRules && !filterFieldRules" class="sorting-message">
@@ -311,11 +314,11 @@
                 <form>
                   <div class="search-box">
                     <input
-                            name="searchTermRules"
-                            [(ngModel)]="searchTermRules"
-                            type="text"
-                            placeholder="{{'searcher.placeholder'|translate }}"
-                            class="form-control">
+                      name="searchTermRules"
+                      [(ngModel)]="searchTermRules"
+                      type="text"
+                      placeholder="{{'searcher.placeholder'|translate }}"
+                      class="form-control">
                     <div *ngIf="searchTermRules === ''" class="search-icon" >
                       <i class="material-icons">search</i>
                     </div>
@@ -328,17 +331,17 @@
             </div>
             <!-- Rules table -->
             <div *ngIf=
-                         "loadedData &&
+              "loadedData &&
               registeredData.rules &&
               registeredData.rules.length > 0 &&
               !requestError"
-                 class="nalej-table-box h-100">
+              class="nalej-table-box h-100">
               <div class="label-nalej-table nalej-table-grey-bg h-100">
                 <div class="label-thead row">
                   <div
-                          (click)="setOrder('rules','access')"
-                          [ngClass]="getCategoryCSSClass('rules','access')"
-                          class="label-th col-3">
+                    (click)="setOrder('rules','access')"
+                    [ngClass]="getCategoryCSSClass('rules','access')"
+                    class="label-th col-3">
                     <span tooltip="{{'apps.instance.tableAccess'|translate}}" placement="bottom">
                       {{'apps.instance.tableAccess'|translate}}
                     </span>
@@ -350,13 +353,13 @@
                     </span>
                   </div>
                   <div
-                          (click)="setOrder('rules','target')"
-                          [ngClass]="getCategoryCSSClass('rules','target')"
-                          class="label-th col-3">
+                    (click)="setOrder('rules','target')"
+                    [ngClass]="getCategoryCSSClass('rules','target')"
+                    class="label-th col-3">
                     <span
-                            tooltip="{{'apps.instance.tableTarget'|translate}}
-                    {{'apps.instance.tableTargetInBig'|translate}}"
-                            placement="bottom">
+                      tooltip="{{'apps.instance.tableTarget'|translate}}
+                      {{'apps.instance.tableTargetInBig'|translate}}"
+                      placement="bottom">
                       {{'apps.instance.tableTarget'|translate}}
                       <span class="grey typo-small">
                         {{'apps.instance.tableTargetIn'|translate}}
@@ -370,13 +373,13 @@
                     </span>
                   </div>
                   <div
-                          (click)="setOrder('rules','auth')"
-                          [ngClass]="getCategoryCSSClass('rules','auth')"
-                          class="label-th col-3">
+                    (click)="setOrder('rules','auth')"
+                    [ngClass]="getCategoryCSSClass('rules','auth')"
+                    class="label-th col-3">
                     <span
-                            tooltip="{{'apps.instance.tableAuth'|translate}}
-                    {{'apps.instance.tableAuthInBig'|translate}}"
-                            placement="bottom">
+                      tooltip="{{'apps.instance.tableAuth'|translate}}
+                      {{'apps.instance.tableAuthInBig'|translate}}"
+                      placement="bottom">
                       {{'apps.instance.tableAuth'|translate}}
                       <span class="grey typo-small">
                         {{'apps.instance.tableAuthIn'|translate}}
@@ -390,14 +393,14 @@
                     </span>
                   </div>
                   <div class="label-th col-3 text-right">
-                    <span tooltip="{{'apps.instance.tableInfo'|translate}}" placement="bottom">
-                      {{'apps.instance.tableInfo'|translate}}
+                    <span tooltip="{{'tables.tableInfo'|translate}}" placement="bottom">
+                      {{'tables.tableInfo'|translate}}
                     </span>
                   </div>
                   <div
-                          (click)="setOrder('rules','name')"
-                          [ngClass]="getCategoryCSSClass('rules','name')"
-                          class="label-th col-12">
+                    (click)="setOrder('rules','name')"
+                    [ngClass]="getCategoryCSSClass('rules','name')"
+                    class="label-th col-12">
                     <span tooltip="{{'apps.instance.tableName'|translate}}" placement="bottom">
                       {{'apps.instance.tableName'|translate}}
                     </span>
@@ -410,7 +413,7 @@
                   </div>
                 </div>
                 <div *ngFor=
-                             "let rule of registeredData.rules |
+                  "let rule of registeredData.rules |
                   sortBy : sortedByRules : reverseRules : 'case-insensitive' |
                   filter : searchTermRules" class="h-100">
                   <div class="label-tbody row">
@@ -441,9 +444,9 @@
                     </div>
                     <div class="col-3 label-td-flex">
                       <div
-                              (click)="openRulesInfo(rule)"
-                              tooltip="{{'apps.instance.tableInfo'|translate}}"
-                              placement="left">
+                        (click)="openRulesInfo(rule)"
+                        tooltip="{{'tables.tableInfo'|translate}}"
+                        placement="left">
                         <i class="material-icons info-icon">info</i>
                       </div>
                     </div>
@@ -453,11 +456,11 @@
             </div>
             <!-- No info to show -->
             <div *ngIf=
-                         "loadedData &&
+              "loadedData &&
               registeredData &&
               !registeredData.rules
               !requestError"
-                 class="no-elements">
+              class="no-elements">
               {{'apps.instance.noRules'|translate}}
             </div>
             <!-- Requested error -->
@@ -469,13 +472,13 @@
               <div class="loader">
                 <svg class="circular" viewBox="25 25 50 50">
                   <circle
-                          class="path"
-                          cx="50"
-                          cy="50"
-                          r="20"
-                          fill="none"
-                          stroke-width="2"
-                          stroke-miterlimit="10" />
+                    class="path"
+                    cx="50"
+                    cy="50"
+                    r="20"
+                    fill="none"
+                    stroke-width="2"
+                    stroke-miterlimit="10" />
                 </svg>
               </div>
             </div>

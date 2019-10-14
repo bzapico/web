@@ -162,6 +162,9 @@
                                 <a href="#getListAvailableInstanceOutbounds">getListAvailableInstanceOutbounds</a>
                             </li>
                             <li>
+                                <a href="#getListAvailableInstanceParameters">getListAvailableInstanceParameters</a>
+                            </li>
+                            <li>
                                 <a href="#getListConnections">getListConnections</a>
                             </li>
                             <li>
@@ -419,7 +422,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addConnection(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>addConnection(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, connection: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
@@ -465,6 +468,20 @@
 
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>connection</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -503,8 +520,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="700"
-                            class="link-to-prism">src/app/services/backend.service.ts:700</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="713"
+                            class="link-to-prism">src/app/services/backend.service.ts:713</a></div>
                 </td>
             </tr>
 
@@ -596,8 +613,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="736"
-                            class="link-to-prism">src/app/services/backend.service.ts:736</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="749"
+                            class="link-to-prism">src/app/services/backend.service.ts:749</a></div>
                 </td>
             </tr>
 
@@ -1032,8 +1049,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="713"
-                            class="link-to-prism">src/app/services/backend.service.ts:713</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="726"
+                            class="link-to-prism">src/app/services/backend.service.ts:726</a></div>
                 </td>
             </tr>
 
@@ -1436,8 +1453,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="584"
-                            class="link-to-prism">src/app/services/backend.service.ts:584</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="597"
+                            class="link-to-prism">src/app/services/backend.service.ts:597</a></div>
                 </td>
             </tr>
 
@@ -1699,8 +1716,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="574"
-                            class="link-to-prism">src/app/services/backend.service.ts:574</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="587"
+                            class="link-to-prism">src/app/services/backend.service.ts:587</a></div>
                 </td>
             </tr>
 
@@ -1869,8 +1886,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="631"
-                            class="link-to-prism">src/app/services/backend.service.ts:631</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="644"
+                            class="link-to-prism">src/app/services/backend.service.ts:644</a></div>
                 </td>
             </tr>
 
@@ -1955,8 +1972,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="688"
-                            class="link-to-prism">src/app/services/backend.service.ts:688</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="701"
+                            class="link-to-prism">src/app/services/backend.service.ts:701</a></div>
                 </td>
             </tr>
 
@@ -2390,6 +2407,99 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getListAvailableInstanceParameters"></a>
+                    <span class="name">
+                        <b>
+                            getListAvailableInstanceParameters
+                        </b>
+                        <a href="#getListAvailableInstanceParameters"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getListAvailableInstanceParameters(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, instanceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="559"
+                            class="link-to-prism">src/app/services/backend.service.ts:559</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Retrieves a list of available parameters of an instance</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>organizationId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Organization identifier</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>instanceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Instance identifier</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getListConnections"></a>
                     <span class="name">
                         <b>
@@ -2408,8 +2518,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="546"
-                            class="link-to-prism">src/app/services/backend.service.ts:546</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="548"
+                            class="link-to-prism">src/app/services/backend.service.ts:548</a></div>
                 </td>
             </tr>
 
@@ -2485,8 +2595,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="563"
-                            class="link-to-prism">src/app/services/backend.service.ts:563</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="576"
+                            class="link-to-prism">src/app/services/backend.service.ts:576</a></div>
                 </td>
             </tr>
 
@@ -3266,8 +3376,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="604"
-                            class="link-to-prism">src/app/services/backend.service.ts:604</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="617"
+                            class="link-to-prism">src/app/services/backend.service.ts:617</a></div>
                 </td>
             </tr>
 
@@ -3352,15 +3462,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>removeConnection(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>removeConnection(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, connection: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="536"
-                            class="link-to-prism">src/app/services/backend.service.ts:536</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="537"
+                            class="link-to-prism">src/app/services/backend.service.ts:537</a></div>
                 </td>
             </tr>
 
@@ -3396,6 +3506,20 @@
                                     <td>
                                         <p>Organization identifier</p>
 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>connection</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
                                     </td>
                                 </tr>
                             </tbody>
@@ -3436,8 +3560,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="657"
-                            class="link-to-prism">src/app/services/backend.service.ts:657</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="670"
+                            class="link-to-prism">src/app/services/backend.service.ts:670</a></div>
                 </td>
             </tr>
 
@@ -3545,8 +3669,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="673"
-                            class="link-to-prism">src/app/services/backend.service.ts:673</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="686"
+                            class="link-to-prism">src/app/services/backend.service.ts:686</a></div>
                 </td>
             </tr>
 
@@ -3638,8 +3762,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="743"
-                            class="link-to-prism">src/app/services/backend.service.ts:743</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="756"
+                            class="link-to-prism">src/app/services/backend.service.ts:756</a></div>
                 </td>
             </tr>
 
@@ -4510,8 +4634,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="643"
-                            class="link-to-prism">src/app/services/backend.service.ts:643</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="656"
+                            class="link-to-prism">src/app/services/backend.service.ts:656</a></div>
                 </td>
             </tr>
 
@@ -4712,8 +4836,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="729"
-                            class="link-to-prism">src/app/services/backend.service.ts:729</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="742"
+                            class="link-to-prism">src/app/services/backend.service.ts:742</a></div>
                 </td>
             </tr>
 
@@ -4939,7 +5063,7 @@
 import { Observable, of } from &#x27;rxjs&#x27;;
 import { environment } from &#x27;src/environments/environment&#x27;;
 import { Backend } from &#x27;../definitions/interfaces/backend&#x27;;
-import {HttpClient, HttpHeaders, HttpResponse} from &#x27;@angular/common/http&#x27;;
+import { HttpClient, HttpHeaders, HttpResponse } from &#x27;@angular/common/http&#x27;;
 import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
 
 /**
@@ -5460,9 +5584,10 @@ export class BackendService implements Backend {
    * Adds a new connection between one outbound and one inbound
    * @param organizationId Organization identifier
    */
-  addConnection(organizationId: string) {
+  addConnection(organizationId: string, connection: any) {
     return this.post(
-      API_URL + &#x27;appnet/connection/&#x27; + organizationId + &#x27;/add&#x27;
+      API_URL + &#x27;appnet/connection/&#x27; + organizationId + &#x27;/add&#x27;,
+      connection
     );
   }
      // POST &#x27;appnet/connection/{organization_id}/remove&#x27;
@@ -5470,9 +5595,10 @@ export class BackendService implements Backend {
    * Operation that removes a connection
    * @param organizationId Organization identifier
    */
-  removeConnection(organizationId: string) {
+  removeConnection(organizationId: string, connection: any) {
     return this.post(
-      API_URL + &#x27;appnet/connection/&#x27; + organizationId + &#x27;/remove&#x27;
+      API_URL + &#x27;appnet/connection/&#x27; + organizationId + &#x27;/remove&#x27;,
+      connection
     );
   }
   // GET &#x27;/appnet/connection/{organization_id}/list&#x27;
@@ -5483,6 +5609,17 @@ export class BackendService implements Backend {
   getListConnections(organizationId: string) {
     return this.get(
       API_URL + &#x27;appnet/connection/&#x27; + organizationId + &#x27;/list&#x27;
+    );
+  }
+  // GET /v1/apps/desc/{organization_id}/{app_instance_id}/parameters
+  /**
+   * Retrieves a list of available parameters of an instance
+   * @param organizationId Organization identifier
+   * @param instanceId Instance identifier
+   */
+  getListAvailableInstanceParameters(organizationId: string, instanceId: string) {
+    return this.get(
+        API_URL + &#x27;apps/inst/&#x27; + organizationId + &#x27;/&#x27; + instanceId + &#x27;/parameters&#x27;
     );
   }
 
