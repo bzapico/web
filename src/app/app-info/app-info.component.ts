@@ -189,16 +189,45 @@ export class AppInfoComponent implements OnInit {
    * Disconnects app instance
    * @param connection connections
    */
-  disconnectInstance(connection) {
-    const deleteConfirm =
-    confirm(this.translateService.instant('apps.manageConnections.disconnectConfirm'));
+  disconnectInstance(connection, type, nameType, instance) {
+    const fullConnection = this.getConnection(instance, type, nameType, connection.name)[0];
+    const deleteConfirm = confirm(this.translateService.instant('apps.manageConnections.disconnectConfirm'));
     if (deleteConfirm) {
-      connection.connected = false;
-      this.notificationsService.add({
-        message: 'App disconnected',
-        timeout: NOTIFICATION_TIMEOUT
-      });
+      this.backend.removeConnection(instance.organization_id, {
+        organization_id: instance.organization_id,
+        source_instance_id: fullConnection.source_instance_id,
+        source_instance_name: fullConnection.source_instance_name,
+        target_instance_id: fullConnection.target_instance_id,
+        target_instance_name: fullConnection.target_instance_name,
+        inbound_name: fullConnection.inbound_name,
+        outbound_name: fullConnection.outbound_name,
+        user_confirmation: true
+      }).subscribe(response => {
+            this.notificationsService.add({
+              message: 'Removing connection',
+              timeout: NOTIFICATION_TIMEOUT
+            });
+            this.updateInstance(instance);
+          });
     }
+  }
+
+  getConnection(instance, type: string, nameType: string, name: string): any {
+    return instance[type].filter(inbound => inbound[nameType] === name);
+  }
+
+  /**
+   * Updates connections and appDropdownOptions
+   */
+  updateInstance(instance) {
+    this.backend.getAppInstance(instance.organization_id, instance.app_instance_id)
+        .subscribe(inst => {
+          this.instance.inbound_connections = inst.inbound_connections;
+          this.instance.outbound_connections = inst.outbound_connections;
+          this.instance.rules = inst.rules;
+          this.instance.outbound_net_interface = inst.outbound_net_interface;
+          this.instance.inbound_net_interface = inst.inbound_net_interface;
+        });
   }
 
   /**
