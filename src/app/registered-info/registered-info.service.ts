@@ -259,11 +259,13 @@ export class RegisteredInfoService {
       const filteredData = registered.rules.filter(rule => inbound.label === rule.inbound_net_interface);
       if (filteredData.length > 0) {
         const nodeTarget =  this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name']);
-        this._graphData.links.push({
-          source: inbound.id,
-          target: nodeTarget.length > 0 ? nodeTarget[0].id : null,
-          notMarker: true
-        });
+        if (nodeTarget.length > 0) {
+          this._graphData.links.push({
+            source: inbound.id,
+            target: nodeTarget[0].id,
+            notMarker: true
+          });
+        }
       }
     });
   }
@@ -273,11 +275,13 @@ export class RegisteredInfoService {
       const filteredData = registered.rules.filter(rule => outbound.label === rule.outbound_net_interface);
       if (filteredData.length > 0) {
         const nodeTarget = this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name']);
-        this._graphData.links.push({
-          source: outbound.id,
-          target: nodeTarget.length > 0 ? nodeTarget[0].id : null,
-          notMarker: true
-        });
+        if (nodeTarget.length > 0) {
+          this._graphData.links.push({
+            source: outbound.id,
+            target: nodeTarget[0].id,
+            notMarker: true
+          });
+        }
       }
     });
   }
