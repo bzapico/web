@@ -144,7 +144,6 @@ export class InstanceInfoService {
         };
         this._graphData.nodes.push(nodeGroup);
         this.setServicesInstancesNodesAndLinks(group);
-        // THOSE DATA ARE NOT AVAILABLE FOR NOW
         if (instance.rules) {
           instance.rules.forEach(rule => {
             if (rule.access_name === AccessType.InboundAppnet && !rule['inbound_net_interface']) {
@@ -153,14 +152,15 @@ export class InstanceInfoService {
               rule['outbound_net_interface'] = instance.outbound_net_interfaces.map(connection => connection.name)[0];
             }
           });
-          // THOSE DATA ARE NOT AVAILABLE FOR NOW
-          this.setInboundConnections(group, instance);
-          this.generateOutboundConnections(group, instance);
           instance.rules.forEach(rule => {
             this.setPublicConnections(rule, group);
           });
         }
       });
+    }
+    if (instance.rules) {
+      this.setInboundConnections(instance);
+      this.generateOutboundConnections(instance);
     }
     if (instance.rules) {
       instance.rules.forEach(rule => {
@@ -218,7 +218,7 @@ export class InstanceInfoService {
     });
   }
 
-  private setInboundConnections(group, instance) {
+  private setInboundConnections(instance) {
     if (instance.inbound_net_interfaces && instance.inbound_net_interfaces.length > 0 ) {
       const inbounds = {};
       instance.inbound_net_interfaces.forEach(inbound => {
@@ -226,14 +226,13 @@ export class InstanceInfoService {
           id: inbound.name + '_i_' + instance.app_instance_id,
           label: inbound.name,
           tooltip: this.translateService.instant('graph.inbound') + inbound.name,
-          group: group,
           color: this.isConnectedBound('inbound', instance.inbound_connections, inbound).isConnected ? '#00E6A0' : '#5800FF',
           text: {
             color: '#000',
             y: 0
           },
-          secoundaryText: {
-            text: this.isConnectedBound('inbound', instance.inbound_connections, inbound).secoundaryName,
+          secondaryText: {
+            text: this.isConnectedBound('inbound', instance.inbound_connections, inbound).secondaryName,
             color: '#000'
           },
           shape: 'circle',
@@ -260,7 +259,7 @@ export class InstanceInfoService {
     }
   }
 
-  private generateOutboundConnections(group, instance) {
+  private generateOutboundConnections(instance) {
     if (instance.outbound_net_interfaces && instance.outbound_net_interfaces.length > 0 ) {
       const outbounds = {};
       instance.outbound_net_interfaces.forEach(outbound => {
@@ -268,14 +267,13 @@ export class InstanceInfoService {
           id: outbound.name + '_i_' + instance.app_instance_id,
           label: outbound.name,
           tooltip: this.translateService.instant('graph.outbound') + outbound.name,
-          group: group,
           color: this.isConnectedBound('outbound', instance.outbound_connections, outbound).isConnected ? '#00E6A0' : '#5800FF',
           text: {
             color: '#000',
             y: 0,
           },
-          secoundaryText: {
-            text: this.isConnectedBound('outbound', instance.outbound_connections, outbound).secoundaryName,
+          secondaryText: {
+            text: this.isConnectedBound('outbound', instance.outbound_connections, outbound).secondaryName,
             color: '#000'
           },
           shape: 'circle',
@@ -302,7 +300,7 @@ export class InstanceInfoService {
     }
   }
 
-  private isConnectedBound(type, instances_connections, bound): {isConnected: boolean, secoundaryName: string} {
+  private isConnectedBound(type, instances_connections, bound): {isConnected: boolean, secondaryName: string} {
     const data = {
       inbound: {
         rule: 'inbound_name',
@@ -320,7 +318,7 @@ export class InstanceInfoService {
     const isConnected = filteredData.length > 0;
     return {
       isConnected: isConnected,
-      secoundaryName: isConnected ? filteredData[0][data[type].name] : ''
+      secondaryName: isConnected ? filteredData[0][data[type].name] : ''
     };
   }
 
@@ -328,11 +326,14 @@ export class InstanceInfoService {
     inbounds.forEach(inbound => {
       const filteredData = instance.rules.filter(rule => inbound.label === rule.inbound_net_interface);
       if (filteredData.length > 0) {
-        this._graphData.links.push({
-          source: inbound.id,
-          target: this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name'])[0].id,
-          notMarker: true
-        });
+        const nodeTarget = this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name']);
+        if (nodeTarget.length > 0) {
+          this._graphData.links.push({
+            source: inbound.id,
+            target: nodeTarget[0].id,
+            notMarker: true
+          });
+        }
       }
     });
   }
@@ -340,28 +341,30 @@ export class InstanceInfoService {
   private setOutboundLinks(outbounds, instance) {
     outbounds.forEach(outbound => {
       const filteredData = instance.rules.filter(rule => outbound.label === rule.outbound_net_interface);
-      if (filteredData.length > 0) {
-        this._graphData.links.push({
-          source: outbound.id,
-          target: this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name'])[0].id,
-          notMarker: true
-        });
+      if (filteredData.length > 0 ) {
+        const nodeTarget = this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name']);
+        if (nodeTarget.length > 0) {
+          this._graphData.links.push({
+            source: outbound.id,
+            target: nodeTarget[0].id,
+            notMarker: true
+          });
+        }
       }
     });
   }
 
-  private setPublicRulesNodes(rule, group) {
+  private setPublicRulesNodes(rule) {
     const ruleNode = {
       id: rule.rule_id,
       label: '',
       tooltip: this.translateService.instant('graph.rule') + rule.name,
-      group: group.service_group_instance_id,
       color: '#5800FF',
       text: {
         color: '#000',
         y: 0
       },
-      secoundaryText: {
+      secondaryText: {
         text: 'Public Access',
         color: '#000'
       },
@@ -407,7 +410,7 @@ export class InstanceInfoService {
   private setPublicConnections(rule, group) {
     if (rule.access_name === AccessType.Public) {
       if (!this._isGeneratedPublicRule) {
-        this.setPublicRulesNodes(rule, group);
+        this.setPublicRulesNodes(rule,);
         this.setRulesLinks(rule, group);
         this._isGeneratedPublicRule = true;
       }

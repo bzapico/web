@@ -57,6 +57,7 @@
             countGroupServices() > 0" 
             class="graph">
             <graph
+              [view]="view"
               [autoCenter]="autoCenter"
               [autoZoom]="autoZoom"
               [curve]="curve"
@@ -379,8 +380,8 @@
               instance.rules &&
               instance.rules.length > 0 &&
               !requestError"
-              class="nalej-table-box h-100">
-              <div class="label-nalej-table nalej-table-grey-bg h-100">
+              class="nalej-table-box h-75">
+              <div class="label-nalej-table nalej-table-grey-bg">
                 <div class="label-thead row">
                   <div
                     (click)="setOrder('rules','access')"
@@ -459,7 +460,7 @@
                 <div *ngFor=
                   "let rule of instance.rules |
                   sortBy : sortedByRules : reverseRules : 'case-insensitive' |
-                  filter : searchTermRules" class="h-100">
+                  filter : searchTermRules">
                   <div class="label-tbody row">
                     <div class="col-3 label-td">
                       {{rule.access_name}}

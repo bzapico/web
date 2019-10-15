@@ -1,4 +1,5 @@
 <ngx-graph
+    [view]="view"
     [links]="links"
     [nodes]="nodes"
     [orientation]="orientation"
@@ -56,11 +57,11 @@
               [attr.fill]="path.fill"
               [attr.d]="path.d"/>
       </svg>
-      <text *ngIf="node.secoundaryText && node.secoundaryText.text && node.shape === 'circle'"
-        [attr.fill]="node.secoundaryText.color"
+      <text *ngIf="node.secondaryText && node.secondaryText.text && node.shape === 'circle'"
+        [attr.fill]="node.secondaryText.color"
         [attr.x]="10"
         [attr.y]="node.height + 5">
-        {{node.secoundaryText.text}}
+        {{node.secondaryText.text}}
       </text>
     </svg:g>
   </ng-template>

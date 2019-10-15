@@ -87,13 +87,15 @@ export class RegisteredInfoService {
         this._graphData.nodes.push(nodeGroup);
         this.setServicesInstancesNodesAndLinks(group);
         if (registered.rules) {
-          this.setInboundConnections(group, registered);
-          this.generateOutboundConnections(group, registered);
           registered.rules.forEach(rule => {
             this.setPublicConnections(rule, group);
           });
         }
       });
+    }
+    if (registered.rules) {
+      this.setInboundConnections( registered);
+      this.generateOutboundConnections( registered);
     }
     if (registered.rules) {
       registered.rules.forEach(rule => {
@@ -148,7 +150,7 @@ export class RegisteredInfoService {
     });
   }
 
-  private setInboundConnections(group, registered) {
+  private setInboundConnections(registered) {
     if (registered.inbound_net_interfaces && registered.inbound_net_interfaces.length > 0 ) {
       const inbounds = {};
       registered.inbound_net_interfaces.forEach(inbound => {
@@ -156,14 +158,13 @@ export class RegisteredInfoService {
           id: inbound.name + '_i_' + registered.app_descriptor_id,
           label: inbound.name,
           tooltip: this.translateService.instant('graph.inbound') + inbound.name,
-          group: group,
           color: this.isConnectedBound('inbound', registered.inbound_connections, inbound).isConnected ? '#00E6A0' : '#5800FF',
           text: {
             color: '#000',
             y: 0
           },
-          secoundaryText: {
-            text: this.isConnectedBound('inbound', registered.inbound_connections, inbound).secoundaryName,
+          secondaryText: {
+            text: this.isConnectedBound('inbound', registered.inbound_connections, inbound).secondaryName,
             color: '#000'
           },
           shape: 'circle',
@@ -190,7 +191,7 @@ export class RegisteredInfoService {
     }
   }
 
-  private generateOutboundConnections(group, registered) {
+  private generateOutboundConnections( registered) {
     if (registered.outbound_net_interfaces && registered.outbound_net_interfaces.length > 0 ) {
       const outbounds = {};
       registered.outbound_net_interfaces.forEach(outbound => {
@@ -198,14 +199,13 @@ export class RegisteredInfoService {
           id: outbound.name + '_i_' + registered.app_descriptor_id,
           label: outbound.name,
           tooltip: this.translateService.instant('graph.outbound') + outbound.name,
-          group: group,
           color: this.isConnectedBound('outbound', registered.outbound_connections, outbound).isConnected ? '#00E6A0' : '#5800FF',
           text: {
             color: '#000',
             y: 0,
           },
-          secoundaryText: {
-            text: this.isConnectedBound('outbound', registered.outbound_connections, outbound).secoundaryName,
+          secondaryText: {
+            text: this.isConnectedBound('outbound', registered.outbound_connections, outbound).secondaryName,
             color: '#000'
           },
           shape: 'circle',
@@ -232,7 +232,7 @@ export class RegisteredInfoService {
     }
   }
 
-  private isConnectedBound(type, instances_connections, bound): {isConnected: boolean, secoundaryName: string} {
+  private isConnectedBound(type, instances_connections, bound): {isConnected: boolean, secondaryName: string} {
     const data = {
       inbound: {
         rule: 'inbound_name',
@@ -250,7 +250,7 @@ export class RegisteredInfoService {
     const isConnected = filteredData.length > 0;
     return {
       isConnected: isConnected,
-      secoundaryName: isConnected ? filteredData[0][data[type].name] : ''
+      secondaryName: isConnected ? filteredData[0][data[type].name] : ''
     };
   }
 
@@ -286,18 +286,17 @@ export class RegisteredInfoService {
     });
   }
 
-  private setPublicRulesNodes(rule, group) {
+  private setPublicRulesNodes(rule) {
     const ruleNode = {
       id: rule.rule_id,
       label: '',
       tooltip: this.translateService.instant('graph.rule') + rule.name,
-      group: group.service_group_id,
       color: '#5800FF',
       text: {
         color: '#000',
         y: 0
       },
-      secoundaryText: {
+      secondaryText: {
         text: 'Public Access',
         color: '#000'
       },
@@ -343,7 +342,7 @@ export class RegisteredInfoService {
   private setPublicConnections(rule, group) {
     if (rule.access_name === AccessType.Public) {
       if (!this._isGeneratedPublicRule) {
-        this.setPublicRulesNodes(rule, group);
+        this.setPublicRulesNodes(rule);
         this.setRulesLinks(rule, group);
         this._isGeneratedPublicRule = true;
       }
