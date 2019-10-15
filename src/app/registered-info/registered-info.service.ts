@@ -258,9 +258,10 @@ export class RegisteredInfoService {
     inbounds.forEach(inbound => {
       const filteredData = registered.rules.filter(rule => inbound.label === rule.inbound_net_interface);
       if (filteredData.length > 0) {
+        const nodeTarget =  this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name']);
         this._graphData.links.push({
           source: inbound.id,
-          target: this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name'])[0].id,
+          target: nodeTarget.length > 0 ? nodeTarget[0].id : null,
           notMarker: true
         });
       }
@@ -271,9 +272,10 @@ export class RegisteredInfoService {
     outbounds.forEach(outbound => {
       const filteredData = registered.rules.filter(rule => outbound.label === rule.outbound_net_interface);
       if (filteredData.length > 0) {
+        const nodeTarget = this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name']);
         this._graphData.links.push({
           source: outbound.id,
-          target: this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name'])[0].id,
+          target: nodeTarget.length > 0 ? nodeTarget[0].id : null,
           notMarker: true
         });
       }
