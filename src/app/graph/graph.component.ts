@@ -14,6 +14,7 @@ export class GraphComponent implements OnInit {
   @Input() autoCenter: boolean;
   @Input() curve: any;
   @Input() enableZoom: boolean;
+  @Input() view: any[];
 
 
   constructor() {

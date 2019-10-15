@@ -130,8 +130,8 @@ export class ManageConnectionsComponent implements OnInit {
     this.backend.getListConnections(this.organizationId)
     .subscribe(response => {
       const anyResponse: any = response;
-      if (anyResponse.connections) {
-        this.connections = anyResponse.connections;
+      if (anyResponse.list) {
+        this.connections = anyResponse.list;
         this.appDropdownOptions = this.getAppInstancesOptions();
         }
       });

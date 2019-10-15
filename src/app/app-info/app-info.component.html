@@ -1,208 +1,297 @@
 <!-- Application instances id card -->
 <div class="card">
-  <div class="card-title-name">
-    <h5 *ngIf="openFromInstance" class="d-inline">{{'app-info.instance.title'|translate}}</h5>
-    <h5 *ngIf="openFromRegistered" class="d-inline">{{'app-info.registered.title'|translate}}</h5>
-    <div
-      *ngIf="openFromInstance"
-      tooltip="{{'tables.tableInfo'|translate}}" 
-      placement="left"
-      (click)="openAppInfoDetailed(instance)"
-      class="app-info-button">
-      <i class="material-icons info-icon">info</i>
-    </div>
-    <div
-      *ngIf="openFromRegistered"
-      tooltip="{{'tables.tableInfo'|translate}}" 
-      placement="left"
-      (click)="openDescriptorDetailed(registeredData)"
-      class="app-info-button">
-      <i class="material-icons info-icon">info</i>
-    </div>
-  </div>
-  <div class="summary-app-card">
-    <!-- Summary instances table-->
-    <div class="summary-table">
-      <div class="summary-table-tr">
-        <div class="summary-table-th">{{'devices.tableName'|translate}}</div>
-        <div *ngIf="openFromInstance" class="text-uppercase summary-table-td">{{instance.name}}</div> 
-        <div *ngIf="openFromRegistered" class="text-uppercase summary-table-td-big">{{registeredData.name}}</div> 
+    <div class="card-title-name">
+      <h5 *ngIf="openFromInstance" class="d-inline">{{'app-info.instance.title'|translate}}</h5>
+      <h5 *ngIf="openFromRegistered" class="d-inline">{{'app-info.registered.title'|translate}}</h5>
+      <div
+        *ngIf="openFromInstance"
+        tooltip="{{'tables.tableInfo'|translate}}" 
+        placement="left"
+        (click)="openAppInfoDetailed(instance)"
+        class="app-info-button">
+        <i class="material-icons info-icon">info</i>
       </div>
-      <div *ngIf="openFromInstance" class="summary-table-tr">
-        <div class="summary-table-th">{{'devices.tableStatus'|translate}}</div> 
-        <div id="summary-status" class="summary-table-td">
-          <span 
-            *ngIf="instance && instance.status_name"
+      <div
+        *ngIf="openFromRegistered"
+        tooltip="{{'tables.tableInfo'|translate}}" 
+        placement="left"
+        (click)="openDescriptorDetailed(registeredData)"
+        class="app-info-button">
+        <i class="material-icons info-icon">info</i>
+      </div>
+    </div>
+    <div class="summary-app-card">
+      <!-- Summary instances table-->
+      <div class="summary-table">
+        <div class="summary-table-tr">
+          <div class="summary-table-th">{{'devices.tableName'|translate}}</div>
+          <div *ngIf="openFromInstance" class="text-uppercase summary-table-td">{{instance.name}}</div> 
+          <div *ngIf="openFromRegistered" class="text-uppercase summary-table-td-big">{{registeredData.name}}</div> 
+        </div>
+        <div *ngIf="openFromInstance" class="summary-table-tr">
+          <div class="summary-table-th">{{'devices.tableStatus'|translate}}</div> 
+          <div id="summary-status" class="summary-table-td">
+            <span 
+              *ngIf="instance && instance.status_name"
+              [ngClass]=
+                "{
+                  'big-status-dot':classInstanceStatusCheck(instance.status_name, 'status.running'|translate),
+                  'big-status-dot-error':classInstanceStatusCheck(instance.status_name, 'status.error'|translate),
+                  'big-status-dot-process':classInstanceStatusCheck(instance.status_name, 'status.process'|translate)
+                }"
+              tooltip="{{instance.status_name}}" 
+              placement="bottom"
+              class="big-status-dot">
+              {{instance.status_name}}
+            </span>
+          </div>
+        </div>
+        <div *ngIf="openFromInstance" class="summary-table-tr">
+          <div class="summary-table-th">{{'apps.instance.tableInstanceOf'|translate}}</div>
+          <!-- GET REGISTERED AND SET THE RIGHT NAME --> 
+          <div class="summary-table-td">
+            <a 
+              [routerLink]="['/applications/registered', instance.app_descriptor_id]" 
+              routerLinkActive="active" 
+              class="blue">
+              {{registered.name}}
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Summary tabs -->
+      <div class="flex-grow-0">
+        <ul class="tabs-box">
+          <li 
+            (click)="changeActiveList('parameters')" 
             [ngClass]=
               "{
-                'big-status-dot':classInstanceStatusCheck(instance.status_name, 'status.running'|translate),
-                'big-status-dot-error':classInstanceStatusCheck(instance.status_name, 'status.error'|translate),
-                'big-status-dot-process':classInstanceStatusCheck(instance.status_name, 'status.process'|translate)
-              }"
-            tooltip="{{instance.status_name}}" 
-            placement="bottom"
-            class="big-status-dot">
-            {{instance.status_name}}
-          </span>
+                'active': showParameters && !showNetwork && !showSetup,
+                'tabs-btn-selected': showParameters && !showNetwork && !showSetup
+              }" 
+            class="tabs-btn">
+            {{'app-info.tabs.parameters'|translate}}
+          </li>
+          <li 
+            (click)="changeActiveList('network')" 
+            [ngClass]=
+              "{
+                'active': showNetwork && !showParameters && !showSetup,
+                'tabs-btn-selected': showNetwork && !showParameters && !showSetup
+              }" 
+            class="tabs-btn">
+              {{'app-info.tabs.networks'|translate}}
+          </li>
+          <li 
+            (click)="changeActiveList('setup')" 
+            [ngClass]=
+              "{
+                'active': showSetup && !showParameters && !showNetwork ,
+                'tabs-btn-selected': showSetup && !showParameters && !showNetwork 
+              }" 
+            class="tabs-btn">
+              {{'app-info.tabs.setup'|translate}}
+          </li>
+        </ul>
+      </div>
+      <!-- Search box -->
+      <div class="flex-grow-0">
+        <div class="search-box">
+          <input 
+            name="searchTerm" 
+            [(ngModel)]="searchTerm"
+            type="text" 
+            placeholder="{{'searcher.placeholder'|translate }}"
+            class="form-control"> 
+          <div *ngIf="searchTerm === ''" class="search-icon">
+            <i class="material-icons">search</i>
+          </div>     
+          <div *ngIf="searchTerm !== ''" class="close-icon">
+            <i (click)="resetFilters()" class="material-icons">close</i>
+          </div>
         </div>
       </div>
-      <div *ngIf="openFromInstance" class="summary-table-tr">
-        <div class="summary-table-th">{{'apps.instance.tableInstanceOf'|translate}}</div>
-        <!-- GET REGISTERED AND SET THE RIGHT NAME --> 
-        <div class="summary-table-td">
-          <a 
-            [routerLink]="['/applications/registered', instance.app_descriptor_id]" 
-            routerLinkActive="active" 
-            class="blue">
-            {{registered.name}}
-          </a>
-        </div>
-      </div>
-    </div>
-    <!-- Summary tabs -->
-    <div class="summary-info-box">
-      <ul class="tabs-box">
-        <li 
-          (click)="changeActiveList('parameters')" 
-          [ngClass]=
-            "{
-              'active': showParameters && !showNetwork && !showSetup,
-              'tabs-btn-selected': showParameters && !showNetwork && !showSetup
-            }" 
-          class="tabs-btn">
-          {{'app-info.tabs.parameters'|translate}}
-        </li>
-        <li 
-          (click)="changeActiveList('network')" 
-          [ngClass]=
-            "{
-              'active': showNetwork && !showParameters && !showSetup,
-              'tabs-btn-selected': showNetwork && !showParameters && !showSetup
-            }" 
-          class="tabs-btn">
-            {{'app-info.tabs.networks'|translate}}
-        </li>
-        <li 
-          (click)="changeActiveList('setup')" 
-          [ngClass]=
-            "{
-              'active': showSetup && !showParameters && !showNetwork ,
-              'tabs-btn-selected': showSetup && !showParameters && !showNetwork 
-            }" 
-          class="tabs-btn">
-            {{'app-info.tabs.setup'|translate}}
-        </li>
-      </ul>
-    </div>
-    <!-- Search box -->
-    <div class="summary-info-box">
-      <div class="search-box">
-        <input 
-          name="searchTerm" 
-          [(ngModel)]="searchTerm"
-          type="text" 
-          placeholder="{{'searcher.placeholder'|translate }}"
-          class="form-control"> 
-        <div *ngIf="searchTerm === ''" class="search-icon">
-          <i class="material-icons">search</i>
-        </div>     
-        <div *ngIf="searchTerm !== ''" class="close-icon">
-          <i (click)="resetFilters()" class="material-icons">close</i>
-        </div>
-      </div>
-    </div>
-    <!-- List to show box -->
-    <div class="summary-info-box">
-      <!-- Parameters list -->
-      <div *ngIf="showParameters" class="summary-parameters">
-        <!-- Basic Parameters list -->
-        <div class="accordion-box">
-          <accordion 
-            class="accordion-tabs">
-            <accordion-group 
-              heading="Basic"
-              [panelClass]="nalejAccordionSmall"
-              [isOpen]="isFirstOpen">
-              <span     
-                accordion-heading 
-                class="accordion-icons-box">
-                <i class="material-icons accordion-arrow">arrow_drop_down</i>
-              </span>
-              <div *ngIf="basicParameters.length > 0" class="form-group scroll-app-info">
-                <div *ngFor="let basic of basicParameters|filter : searchTerm;">
-                  <label>{{basic.name}}</label>
-                  <input
-                    type="text"
-                    placeholder={{basic.default_value}}
-                    class="form-control"
-                    disabled>
-                  <label class="accordion-foot">{{'app-info.typeRestrictions'|translate:{restriction:basic.type} }}</label>
+      <!-- List to show box -->
+      <div class=" flex-grow-1">
+        <!-- Parameters list -->
+        <div *ngIf="showParameters">
+          <!-- Basic Parameters list -->
+          <div class="accordion-box">
+            <accordion 
+              class="accordion-tabs">
+              <accordion-group 
+                heading="Basic"
+                [panelClass]="nalejAccordionSmall"
+                [isOpen]="isFirstOpen">
+                <span     
+                  accordion-heading 
+                  class="accordion-icons-box">
+                  <i class="material-icons accordion-arrow">arrow_drop_down</i>
+                </span>
+                <div *ngIf="basicParameters.length > 0" class="form-group scroll-accordion-info">
+                  <div *ngFor="let basic of basicParameters|filter : searchTerm;">
+                    <label>{{basic.name}}</label>
+                    <input
+                      type="text"
+                      placeholder={{basic.default_value}}
+                      class="form-control"
+                      disabled>
+                    <label class="accordion-foot">{{'app-info.typeRestrictions'|translate:{restriction:basic.type} }}</label>
+                  </div>
                 </div>
-              </div>
-              <div *ngIf="basicParameters.length === 0" class="scroll-app-info">
-                <p class="grey">{{'apps.registered.noBasicParameters'|translate}}</p>
-              </div>
-            </accordion-group>
-          </accordion>
-        </div>
-        <!-- Advanced Parameters list -->
-        <div class="accordion-box">
-          <accordion 
-            class="accordion-tabs">
-            <accordion-group 
-              heading="Advanced"
-              [panelClass]="nalejAccordionSmall"
-              [isOpen]="isFirstOpen">
-              <span     
-                accordion-heading 
-                class="accordion-icons-box">
-                <i class="material-icons accordion-arrow">arrow_drop_down</i>
-              </span>
-              <div *ngIf="advancedParameters.length > 0" class="form-group scroll-app-info">
-                <div *ngFor="let advanced of advancedParameters|filter : searchTerm;">
-                  <label>{{advanced.name}}</label>
-                  <input
-                    type="text"
-                    placeholder={{advanced.default_value}}
-                    class="form-control"
-                    disabled>
-                  <label class="accordion-foot">
-                    {{'app-info.typeRestrictions'|translate:{restriction:advanced.type} }}
-                  </label>
+                <div *ngIf="basicParameters.length === 0" class="scroll-accordion-info">
+                  <p class="grey">{{'apps.registered.noBasicParameters'|translate}}</p>
                 </div>
-              </div>
-              <div *ngIf="advancedParameters.length === 0" class="scroll-app-info">
-                <p class="grey">{{'apps.registered.noAdvancedParameters'|translate}}</p>
-              </div>
-            </accordion-group>
-          </accordion>
+              </accordion-group>
+            </accordion>
+          </div>
+          <!-- Advanced Parameters list -->
+          <div class="accordion-box">
+            <accordion 
+              class="accordion-tabs">
+              <accordion-group 
+                heading="Advanced"
+                [panelClass]="nalejAccordionSmall"
+                [isOpen]="isFirstOpen">
+                <span     
+                  accordion-heading 
+                  class="accordion-icons-box">
+                  <i class="material-icons accordion-arrow">arrow_drop_down</i>
+                </span>
+                <div *ngIf="advancedParameters.length > 0" class="form-group scroll-accordion-info">
+                  <div *ngFor="let advanced of advancedParameters|filter : searchTerm;">
+                    <label>{{advanced.name}}</label>
+                    <input
+                      type="text"
+                      placeholder={{advanced.default_value}}
+                      class="form-control"
+                      disabled>
+                    <label class="accordion-foot">
+                      {{'app-info.typeRestrictions'|translate:{restriction:advanced.type} }}
+                    </label>
+                  </div>
+                </div>
+                <div *ngIf="advancedParameters.length === 0" class="scroll-accordion-info">
+                  <p class="grey">{{'apps.registered.noAdvancedParameters'|translate}}</p>
+                </div>
+              </accordion-group>
+            </accordion>
+          </div>
         </div>
-      </div>
-      <!-- Networks list -->
-      <div *ngIf="showNetwork" class="summary-network">
-        <div class="accordion-box accordion-box-small">
-          <accordion 
+        <!-- Networks list -->
+        <div *ngIf="showNetwork">
+          <div class="accordion-box">
+            <accordion 
+              class="accordion-tabs">
+              <accordion-group 
+                heading="Inbounds"
+                [panelClass]="nalejAccordionSmall"
+                [isOpen]="isFirstOpen">
+                <span     
+                  accordion-heading 
+                  class="accordion-icons-box">
+                  <i class="material-icons accordion-arrow">arrow_drop_down</i>
+                </span>
+                <!-- INSTANCE INFO network-inbounds -->
+                <div *ngIf="openFromInstance" class="label-nalej-table no-m-row no-p-col">
+                  <div *ngIf="instance.inbound_net_interfaces" class="label-thead row">
+                    <div class="col-4 label-th">
+                      <span tooltip="Interface" placement="bottom">
+                        {{'app-info.instance.NetworkInterface'|translate}}
+                      </span>
+                    </div>
+                    <div class="col-4 label-th text-center">
+                      <span tooltip="Source" placement="bottom">
+                        {{'app-info.instance.NetworkSource'|translate}}
+                      </span>
+                    </div>
+                    <div class="col-4 label-th text-right">
+                      <span tooltip="Disconnect" placement="bottom">
+                        {{'app-info.instance.NetworkDisconnect'|translate}}
+                      </span>
+                    </div>
+                  </div>
+                  <div *ngIf="instance.inbound_net_interfaces" class="scroll-accordion-info">
+                    <div *ngFor=
+                      "let connection of instance.inbound_net_interfaces |
+                      filter : searchTerm; let i = index">
+                      <span class="label-tbody row">
+                        <div class="col-4">
+                          <span class="grey">{{connection.name}}</span>
+                        </div>
+                        <div class="col-4 text-center">
+                          <span>{{connection.target_service_group_name}}</span>
+                          <br>
+                          <span>{{connection.target_service_name}}</span>
+                        </div>
+                        <div class="col-4 text-right px-4">
+                          <button
+                            (click)="disconnectInstance(connection, 'inbound_connections', 'inbound_name', instance)"
+                            tooltip="{{'apps.manageConnections.disconnect'|translate}}"
+                            placement="left"
+                            class="action-btn-red">
+                            <i class="material-icons i-red">link_off</i>
+                          </button>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                  <div *ngIf="!instance.inbound_net_interfaces" class="scroll-accordion-info">
+                    <p class="grey">{{'apps.registered.noInboundInterfaces'|translate}}</p>
+                  </div>
+                </div>
+                <!-- DESCRIPTOR INFO network-inbounds-->
+                <div *ngIf="openFromRegistered" class="label-nalej-table no-m-row no-p-col">
+                  <div *ngIf="registeredData.inbound_net_interfaces" class="scroll-accordion-info">
+                    <div *ngFor=
+                      "let connection of registeredData.inbound_net_interfaces | filter : searchTerm">
+                      <span class="label-tbody row">
+                        <div class="col-6">
+                          <span class="grey">{{connection.name}}</span>
+                        </div>
+                        <div class="col-6 text-right">
+                          <span>{{connection.target_service_group_name}}</span>
+                          <br>
+                          <span>{{connection.target_service_name}}</span>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                  <div *ngIf="!registeredData.inbound_net_interfaces" class="scroll-accordion-info">
+                    <p class="grey">{{'apps.registered.noInboundInterfaces'|translate}}</p>
+                  </div>
+                </div>
+              </accordion-group>
+            </accordion>
+          </div>
+          <div class="accordion-box">
+            <accordion
             class="accordion-tabs">
-            <accordion-group 
-              heading="Inbounds"
+            <accordion-group
+              heading="Outbound"
               [panelClass]="nalejAccordionSmall"
               [isOpen]="isFirstOpen">
-              <span     
+              <span
                 accordion-heading 
                 class="accordion-icons-box">
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
-              <!-- INSTANCE INFO network-inbounds -->
-              <div *ngIf="openFromInstance" class="label-nalej-table no-m-row">
-                <div *ngIf="instance.inbound_connections" class="label-thead row">
+              <span
+                accordion-heading 
+                class="accordion-legend">
+                <p>{{'app-info.requiredElements'|translate}}</p>
+              </span>
+              <!-- INSTANCE INFO network-outbounds -->
+              <div *ngIf="openFromInstance" class="label-nalej-table no-m-row no-p-col">
+                <div *ngIf="instance.outbound_net_interfaces" class="label-thead row">
                   <div class="col-4 label-th">
                     <span tooltip="Interface" placement="bottom">
                       {{'app-info.instance.NetworkInterface'|translate}}
                     </span>
                   </div>
                   <div class="col-4 label-th text-center">
-                    <span tooltip="Source" placement="bottom">
-                      {{'app-info.instance.NetworkSource'|translate}}
+                    <span tooltip="Target" placement="bottom">
+                      {{'app-info.instance.NetworkTarget'|translate}}
                     </span>
                   </div>
                   <div class="col-4 label-th text-right">
@@ -211,10 +300,8 @@
                     </span>
                   </div>
                 </div>
-                <div *ngIf="instance.inbound_connections"
-                 class="scroll-app-info">
-                  <div *ngFor=
-                    "let connection of instance.inbound_net_interfaces |
+                <div *ngIf="instance.outbound_net_interfaces" class="scroll-accordion-info">
+                  <div *ngFor="let connection of instance.outbound_net_interfaces |
                     filter : searchTerm; let i = index">
                     <span class="label-tbody row">
                       <div class="col-4">
@@ -237,15 +324,16 @@
                     </span>
                   </div>
                 </div>
-                <div *ngIf="!instance.inbound_connections" class="scroll-app-info p-2">
-                  <p class="grey py-2">{{'apps.registered.noInboundInterfaces'|translate}}</p>
+                <div *ngIf="!instance.outbound_net_interfaces" class="scroll-accordion-info">
+                  <p class="grey">{{'apps.registered.noOutboundInterfaces'|translate}}</p>
                 </div>
               </div>
-              <!-- DESCRIPTOR INFO network-inbounds-->
-              <div *ngIf="openFromRegistered" class="label-nalej-table no-m-row">
-                <div *ngIf="registeredData.inbound_net_interfaces" class="scroll-app-info">
+              <!-- REGISTERED INFO network-outbounds -->
+              <div *ngIf="openFromRegistered" class="label-nalej-table no-m-row no-p-col">
+                <div *ngIf="registeredData.outbound_net_interfaces" class="scroll-accordion-info">
                   <div *ngFor=
-                    "let connection of registeredData.inbound_net_interfaces | filter : searchTerm">
+                    "let connection of registeredData.outbound_net_interfaces |
+                    filter : searchTerm">
                     <span class="label-tbody row">
                       <div class="col-6">
                         <span class="grey">{{connection.name}}</span>
@@ -258,210 +346,120 @@
                     </span>
                   </div>
                 </div>
-                <div *ngIf="!registeredData.inbound_net_interfaces" class="scroll-app-info p-2">
-                  <p class="grey py-2">{{'apps.registered.noInboundInterfaces'|translate}}</p>
+                <div *ngIf="!registeredData.outbound_net_interfaces" class="scroll-accordion-info">
+                  <p class="grey">{{'apps.registered.noOutboundInterfaces'|translate}}</p>
                 </div>
               </div>
             </accordion-group>
-          </accordion>
+            </accordion>
+          </div>
         </div>
-        <div class="accordion-box accordion-box-small">
-          <accordion
-          class="accordion-tabs">
-          <accordion-group
-            heading="Outbound"
-            [panelClass]="nalejAccordionSmall"
-            [isOpen]="isFirstOpen">
-            <span
-              accordion-heading 
-              class="accordion-icons-box">
-              <i class="material-icons accordion-arrow">arrow_drop_down</i>
-            </span>
-            <span
-              accordion-heading 
-              class="accordion-legend">
-              <p>{{'app-info.requiredElements'|translate}}</p>
-            </span>
-            <!-- INSTANCE INFO network-outbounds -->
-            <div *ngIf="openFromInstance" class="label-nalej-table no-m-row">
-              <div *ngIf="instance.outbound_connections" class="label-thead row">
-                <div class="col-4 label-th">
-                  <span tooltip="Interface" placement="bottom">
-                    {{'app-info.instance.NetworkInterface'|translate}}
-                  </span>
-                </div>
-                <div class="col-4 label-th text-center">
-                  <span tooltip="Target" placement="bottom">
-                    {{'app-info.instance.NetworkTarget'|translate}}
-                  </span>
-                </div>
-                <div class="col-4 label-th text-right">
-                  <span tooltip="Disconnect" placement="bottom">
-                    {{'app-info.instance.NetworkDisconnect'|translate}}
-                  </span>
-                </div>
-              </div>
-              <div *ngIf="instance.outbound_connections" class="scroll-app-info">
-                <div class="scroll-app-info">
-                  <div *ngFor="let connection of instance.outbound_net_interfaces |
-                    filter : searchTerm; let i = index">
-                    <span class="label-tbody row">
-                      <div class="col-4">
-                        <span class="grey">{{connection.name}}</span>
-                      </div>
-                      <div class="col-4 text-center">
-                        <span>{{connection.target_service_group_name}}</span>
-                        <br>
-                        <span>{{connection.target_service_name}}</span>
-                      </div>
-                      <div class="col-4 text-right px-4">
-                        <button
-                          (click)="disconnectInstance(connection, 'outbound_connections', 'outbound_name', instance)"
-                          tooltip="{{'apps.manageConnections.disconnect'|translate}}"
-                          placement="left"
-                          class="action-btn-red">
-                          <i class="material-icons i-red">link_off</i>
-                        </button>
-                      </div>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div *ngIf="!instance.outbound_connections" class="scroll-app-info p-2">
-              <p class="grey py-2">{{'apps.registered.noOutboundInterfaces'|translate}}</p>
-            </div>
-            <!-- REGISTERED INFO network-outbounds -->
-            <div *ngIf="openFromRegistered" class="label-nalej-table no-m-row">
-              <div *ngIf="registeredData.outbound_net_interfaces" class="scroll-app-info">
-                <div *ngFor=
-                  "let connection of registeredData.outbound_net_interfaces |
-                  filter : searchTerm">
-                  <span class="label-tbody row">
-                    <div class="col-6">
-                      <span class="grey">{{connection.name}}</span>
-                    </div>
-                    <div class="col-6 text-right">
-                      <span>{{connection.target_service_group_name}}</span>
-                      <br>
-                      <span>{{connection.target_service_name}}</span>
-                    </div>
-                  </span>
-                </div>
-              </div>
-              <div *ngIf="!registeredData.outbound_net_interfaces" class="scroll-app-info p-2">
-                <p class="grey py-2">{{'apps.registered.noOutboundInterfaces'|translate}}</p>
-              </div>
-            </div>
-          </accordion-group>
-          </accordion>
-        </div>
-      </div>
-      <!-- Setup list -->
-      <div *ngIf="showSetup" class="summary-parameters">
-        <!-- Environment variables list -->
-        <div class="accordion-box">
-          <accordion 
-            class="accordion-tabs">
-            <accordion-group 
-              heading="{{'apps.instance.environmentVariables'|translate}}"
-              [panelClass]="nalejAccordionSmall"
-              [isOpen]="isFirstOpen">
-              <span
-                accordion-heading 
-                class="accordion-icons-box">
-                <i class="material-icons accordion-arrow">arrow_drop_down</i>
-              </span>
-              <div class="label-nalej-table no-p-col no-m-row">
-                <!-- REGISTERED INFO Environment variables -->
-                <div *ngIf="openFromRegistered" class="scroll-app-info">
-                  <div *ngIf="registeredData.environment_variables">
-                    <div *ngFor="let variable of registeredData.environment_variables | keyvalue" class="row label-tbody">
-                      <div class="col-6 grey">
-                        {{variable.key}} 
-                      </div>
-                      <div class="col-6 text-right">
-                        {{variable.value}}
+        <!-- Setup list -->
+        <div *ngIf="showSetup">
+          <!-- Environment variables list -->
+          <div class="accordion-box">
+            <accordion 
+              class="accordion-tabs">
+              <accordion-group 
+                heading="{{'apps.instance.environmentVariables'|translate}}"
+                [panelClass]="nalejAccordionSmall"
+                [isOpen]="isFirstOpen">
+                <span
+                  accordion-heading 
+                  class="accordion-icons-box">
+                  <i class="material-icons accordion-arrow">arrow_drop_down</i>
+                </span>
+                <div class="label-nalej-table no-p-col no-m-row">
+                  <!-- REGISTERED INFO Environment variables -->
+                  <div *ngIf="openFromRegistered" class="scroll-accordion-info">
+                    <div *ngIf="registeredData.environment_variables">
+                      <div *ngFor="let variable of registeredData.environment_variables | keyvalue" class="row label-tbody">
+                        <div class="col-6 grey">
+                          {{variable.key}} 
+                        </div>
+                        <div class="col-6 text-right">
+                          {{variable.value}}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div *ngIf="!registeredData.environment_variables">
-                    <p class="grey">{{'apps.instance.noEnvironmentVariables'|translate}}</p>
-                  </div>
-                </div>
-                <!-- INSTANCE INFO Environment variables -->
-                <div *ngIf="openFromInstance" class="scroll-app-info">
-                  <div *ngIf="instance.environment_variables">
-                    <div *ngFor="let variable of instance.environment_variables | keyvalue" class="row label-tbody">
-                      <div class="col-6 grey">
-                        {{variable.key}} 
-                      </div>
-                      <div class="col-6 text-right">
-                        {{variable.value}}
-                      </div>
+                    <div *ngIf="!registeredData.environment_variables">
+                      <p class="grey">{{'apps.instance.noEnvironmentVariables'|translate}}</p>
                     </div>
                   </div>
-                  <div *ngIf="!instance.environment_variables">
-                    <p class="grey">{{'apps.instance.noEnvironmentVariables'|translate}}</p>
-                  </div>
-                </div>
-              </div>
-            </accordion-group>
-          </accordion>
-        </div>
-        <!-- Other setting  list -->
-        <div class="accordion-box">
-          <accordion 
-            class="accordion-tabs">
-            <accordion-group 
-              heading="{{'apps.instance.otherSettings'|translate}}"
-              [panelClass]="nalejAccordionSmall"
-              [isOpen]="isFirstOpen">
-              <span     
-                accordion-heading 
-                class="accordion-icons-box">
-                <i class="material-icons accordion-arrow">arrow_drop_down</i>
-              </span>
-              <div class="label-nalej-table no-p-col no-m-row">
-                <!-- REGISTERED INFO Other setting -->
-                <div *ngIf="openFromRegistered" class="scroll-app-info">
-                  <div *ngIf="registeredData.configuration_options">
-                    <p class="text-left">{{'apps.instance.otherSettings'|translate}}</p>
-                    <div *ngFor="let configuration of registeredData.configuration_options| keyvalue" class="row mb-1">
-                      <div class="col-12 grey text-right">
-                        {{configuration.key}} 
-                      </div>
-                      <div class="col-12 text-right">
-                        {{configuration.value}}
+                  <!-- INSTANCE INFO Environment variables -->
+                  <div *ngIf="openFromInstance" class="scroll-accordion-info">
+                    <div *ngIf="instance.environment_variables">
+                      <div *ngFor="let variable of instance.environment_variables | keyvalue" class="row label-tbody">
+                        <div class="col-6 grey">
+                          {{variable.key}} 
+                        </div>
+                        <div class="col-6 text-right">
+                          {{variable.value}}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div *ngIf="!registeredData.configuration_options">
-                    <p class="grey">{{'apps.instance.noOtherSettings'|translate}}</p>
-                  </div>
-                </div>
-                <!-- INSTANCE INFO Other setting -->
-                <div *ngIf="openFromInstance" class="scroll-app-info">
-                  <div *ngIf="instance.configuration_options">
-                    <p class="text-left">{{'apps.instance.otherSettings'|translate}}</p>
-                    <div *ngFor="let configuration of instance.configuration_options| keyvalue" class="row mb-1" >
-                      <div class="col-12 grey text-right">
-                        {{configuration.key}} 
-                      </div>
-                      <div class="col-12 text-right">
-                        {{configuration.value}}
-                      </div>
+                    <div *ngIf="!instance.environment_variables">
+                      <p class="grey">{{'apps.instance.noEnvironmentVariables'|translate}}</p>
                     </div>
                   </div>
-                  <div *ngIf="!instance.configuration_options">
-                    <p class="grey">{{'apps.instance.noOtherSettings'|translate}}</p>
+                </div>
+              </accordion-group>
+            </accordion>
+          </div>
+          <!-- Other setting  list -->
+          <div class="accordion-box">
+            <accordion 
+              class="accordion-tabs">
+              <accordion-group 
+                heading="{{'apps.instance.otherSettings'|translate}}"
+                [panelClass]="nalejAccordionSmall"
+                [isOpen]="isFirstOpen">
+                <span     
+                  accordion-heading 
+                  class="accordion-icons-box">
+                  <i class="material-icons accordion-arrow">arrow_drop_down</i>
+                </span>
+                <div class="label-nalej-table no-p-col no-m-row">
+                  <!-- REGISTERED INFO Other setting -->
+                  <div *ngIf="openFromRegistered" class="scroll-accordion-info">
+                    <div *ngIf="registeredData.configuration_options">
+                      <p class="text-left">{{'apps.instance.otherSettings'|translate}}</p>
+                      <div *ngFor="let configuration of registeredData.configuration_options| keyvalue" class="row mb-1">
+                        <div class="col-12 grey text-right">
+                          {{configuration.key}} 
+                        </div>
+                        <div class="col-12 text-right">
+                          {{configuration.value}}
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="!registeredData.configuration_options">
+                      <p class="grey">{{'apps.instance.noOtherSettings'|translate}}</p>
+                    </div>
+                  </div>
+                  <!-- INSTANCE INFO Other setting -->
+                  <div *ngIf="openFromInstance" class="scroll-accordion-info">
+                    <div *ngIf="instance.configuration_options">
+                      <p class="text-left">{{'apps.instance.otherSettings'|translate}}</p>
+                      <div *ngFor="let configuration of instance.configuration_options| keyvalue" class="row mb-1" >
+                        <div class="col-12 grey text-right">
+                          {{configuration.key}} 
+                        </div>
+                        <div class="col-12 text-right">
+                          {{configuration.value}}
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="!instance.configuration_options">
+                      <p class="grey">{{'apps.instance.noOtherSettings'|translate}}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </accordion-group>
-          </accordion>
+              </accordion-group>
+            </accordion>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  

@@ -639,9 +639,12 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   private getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
       case 'running':
+      case 'online':
+      case 'online_cordon':
         return this.STATUS_COLORS.RUNNING;
       case 'error':
-        return this.STATUS_COLORS.ERROR;
+      case 'offline':
+      case 'offline_cordon':
       case 'deployment_error':
         return this.STATUS_COLORS.ERROR;
       default:
@@ -656,8 +659,12 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   private getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
       case 'running':
+      case 'online':
+      case 'online_cordon':
         return this.STATUS_TEXT_COLORS.RUNNING;
       case 'error':
+      case 'offline':
+      case 'offline_cordon':
         return this.STATUS_TEXT_COLORS.ERROR;
       default:
         return this.STATUS_TEXT_COLORS.OTHER;
