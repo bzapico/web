@@ -1,7 +1,7 @@
 <!-- Component title -->
 <div class="row row-title">
   <div class="col-xl-12">
-    <h2 class="section-title">RESOURCES</h2>
+    <h2 class="section-title">{{'resources.title'|translate}}</h2>
   </div>
 </div>
 <div class="row row-app-main resources-view">
@@ -10,7 +10,7 @@
       <!-- Summary info card -->
       <div class="card row-info-app flex-grow-0">
         <div class="card-title-name">
-          <h5>SUMMARY</h5>
+          <h5>{{'resources.summary'|translate}}</h5>
         </div>
         <div class="summary-card">
           <div class="summary-box">
@@ -24,22 +24,22 @@
               </ngx-charts-pie-chart>
               <div class="donut-number">{{clustersCount}}/{{clusters.length}}</div>
             </div>
-            <p class="clusters-run">{{clustersCount}} clusters running</p>
-            <p *ngIf="clustersCount === 0" class="circle-name no-deployed">NO CLUSTERS</p>
-            <p class="circle-name circle-name-mt">CLUSTERS</p>
+            <p class="clusters-run">{{clustersCount}} {{'resources.clustersRunning'|translate}}</p>
+            <p *ngIf="clustersCount === 0" class="circle-name no-deployed">{{'resources.noClusters'|translate}}</p>
+            <p class="circle-name circle-name-mt">{{'resources.clusters'|translate}}</p>
           </div>
           <div class="summary-box">
             <div class="circle mt-1">
               <span>{{instances.length}}</span>
             </div>
-            <p class="circle-name">INSTANCES</p>
+            <p class="circle-name">{{'resources.instances'|translate}}</p>
           </div>
         </div>
       </div>
       <!-- List card-->
       <div class="card flex-grow-1">
         <div class="card-title-name-mb">
-          <h5>LIST</h5>
+          <h5>{{'resources.list'|translate}}</h5>
         </div>
         <div class="row">
           <!-- Search input -->
@@ -50,7 +50,7 @@
                   name="searchTerm" 
                   [(ngModel)]="searchTerm"
                   type="text" 
-                  placeholder="Search..."
+                  placeholder="{{'searcher.placeholder'|translate }}."
                   class="form-control"> 
                   <div *ngIf="searchTerm === ''" class="search-icon">
                     <i class="material-icons">search</i>
@@ -64,26 +64,27 @@
         </div>
         <div class="row">
         <!-- Sorting message -->
-          <div class="col-12">  
-            <p *ngIf="searchTerm && !filterField" class="sorting-message">
-                {{ ( clusterWithInstancesList | filter : searchTerm : ['name', 'labels', 'instances'])?.length }}  results found. Filtered by term "{{ searchTerm }}".
-              <span (click)="resetFilters('clusters')" class="reset-search">Reset</span>
-            </p>
-            <p *ngIf="filterField && !searchTerm" class="sorting-message">
-              Sorted by {{ sortedBy }},
-              <span *ngIf="reverse">ascendant. </span>
-              <span *ngIf="!reverse">descendant. </span>
-              <span (click)="resetFilters('clusters')" class="reset-search">Reset</span>
-            </p>
-            <p *ngIf="filterField && searchTerm" class="sorting-message">
-                {{ ( clusterWithInstancesList | filter : searchTerm : ['name', 'labels', 'instances'])?.length }}  results found. Sorted by {{ sortedBy }}
-              <span *ngIf="reverse">ascendant </span>
-              <span *ngIf="!reverse">descendant </span>
-              and filtered by term "{{ searchTerm }}".
-              <span (click)="resetFilters('clusters')" class="reset-search">Reset</span>
-            </p> 
-            <p *ngIf="!filterField && !searchTerm" class="sorting-message">
-          </div>
+        <div class="col-12">  
+          <p *ngIf="searchTerm && !filterField" class="sorting-message">
+            {{ ( clusterWithInstancesList | filter : searchTerm : ['name', 'labels', 'instances'])?.length }} {{'sortingMessage.resultsFilteredBy'|translate:{value: searchTerm} }}
+            <span (click)="resetFilters('clusters')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+          </p>
+          <p *ngIf="filterField && !searchTerm" class="sorting-message">
+            {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
+            <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: '. '} }} </span>
+            <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: '. '} }} </span>
+            <span (click)="resetFilters('clusters')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+          </p>
+          <p *ngIf="filterField && searchTerm" class="sorting-message">
+            {{ ( clusterWithInstancesList | filter : searchTerm : ['name', 'labels', 'instances'])?.length }}  {{'sortingMessage.resultsFound'|translate }} 
+            {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
+            <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: ' '} }}</span>
+            <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: ' '} }} </span>
+            {{'sortingMessage.andFilteredBy'|translate:{value: searchTerm} }} 
+            <span (click)="resetFilters('clusters')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+          </p> 
+          <p *ngIf="!filterField && !searchTerm" class="sorting-message">
+        </div>
         </div>
         <!-- Clusters table -->
         <div *ngIf=
@@ -93,127 +94,127 @@
           !requestError" 
           class="nalej-table-box no-p-col no-m-row">
           <div class="label-nalej-table">
-              <div class="label-thead row">
-                <div class="col-10">
-                  <div class="row">
-                    <div 
-                      (click)="setOrder('clusters','name')"            
-                      [ngClass]="getCategoryCSSClass('name')"
-                      tooltip="Name" 
-                      placement="bottom"
-                      scope="col" 
-                      class="col-6 cluster-name-initial-text label-th">
-                      <span class="cluster-name-full-text">Name</span>
-                      <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
-                        <i class="material-icons">expand_more</i>
-                      </span>
-                      <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
-                        <i class="material-icons">expand_less</i>
-                      </span>
-                    </div>
-                    <div 
-                      (click)="setOrder('clusters','instances')"            
-                      [ngClass]="getCategoryCSSClass('instances')"
-                      scope="col" 
-                      class="col-6 text-center label-th">
-                      <span tooltip="Instances" placement="bottom">Instances</span>
-                      <span *ngIf="sortedBy === 'instances' && !reverse" class="expand-chevron">
-                        <i class="material-icons">expand_more</i>
-                      </span>
-                      <span *ngIf="sortedBy === 'instances' && reverse" class="expand-chevron">
-                        <i class="material-icons">expand_less</i>
-                      </span>
-                    </div>
-                    <div 
-                      (click)="setOrder('clusters','labels')" 
-                      [ngClass]="getCategoryCSSClass('labels')"
-                      scope="col" 
-                      class="col-12 label-th">
-                      <span tooltip="Labels" placement="bottom">Labels</span>
-                      <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
-                        <i class="material-icons">expand_more</i>
-                      </span>
-                      <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
-                        <i class="material-icons">expand_less</i>
-                      </span>
-                    </div>
+            <div class="label-thead row">
+              <div class="col-10">
+                <div class="row">
+                  <div 
+                    (click)="setOrder('clusters','name')"            
+                    [ngClass]="getCategoryCSSClass('name')"
+                    tooltip="Name" 
+                    placement="bottom"
+                    scope="col" 
+                    class="col-6 cluster-name-initial-text label-th">
+                    <span class="cluster-name-full-text">{{'tables.tableName'|translate}}</span>
+                    <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
+                      <i class="material-icons">expand_more</i>
+                    </span>
+                    <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
+                      <i class="material-icons">expand_less</i>
+                    </span>
                   </div>
-                </div>
-                <div 
-                  tooltip="Edit" 
-                  placement="bottom"
-                  scope="col"        
-                  class="col-2 text-center edit-initial-text label-th">
-                  <span class="edit-full-text">Edit</span>
+                  <div 
+                    (click)="setOrder('clusters','instances')"            
+                    [ngClass]="getCategoryCSSClass('instances')"
+                    scope="col" 
+                    class="col-6 text-center label-th">
+                    <span tooltip="Instances" placement="bottom">{{'tables.tableInstances'|translate}}</span>
+                    <span *ngIf="sortedBy === 'instances' && !reverse" class="expand-chevron">
+                      <i class="material-icons">expand_more</i>
+                    </span>
+                    <span *ngIf="sortedBy === 'instances' && reverse" class="expand-chevron">
+                      <i class="material-icons">expand_less</i>
+                    </span>
+                  </div>
+                  <div 
+                    (click)="setOrder('clusters','labels')" 
+                    [ngClass]="getCategoryCSSClass('labels')"
+                    scope="col" 
+                    class="col-12 label-th">
+                    <span tooltip="Labels" placement="bottom">{{'tables.tableLabels'|translate}}</span>
+                    <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
+                      <i class="material-icons">expand_more</i>
+                    </span>
+                    <span *ngIf="sortedBy === 'labels' && reverse" class="expand-chevron">
+                      <i class="material-icons">expand_less</i>
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div *ngFor=
-                "let cluster of clusterWithInstancesList |
-                sortBy : sortedBy : reverse : 'case-insensitive' |
-                filter : searchTerm" class="label-tbody row">
-                <div class="col-10">
-                  <div class="row">
-                    <div class="col-6 label-td">
-                      <a 
-                        [routerLink]="['cluster', cluster.cluster_id]" 
-                        routerLinkActive="active" 
-                        class="blue">
-                        {{cluster.name}}
-                      </a>
-                    </div>
-                    <div class="col-6 text-center label-td">{{cluster.instances}}
-                    </div>
+              <div 
+                tooltip="Edit" 
+                placement="bottom"
+                scope="col"
+                class="col-2 text-center edit-initial-text label-th">
+                <span class="edit-full-text">Edit</span>
+              </div>
+            </div>
+            <div *ngFor=
+              "let cluster of clusterWithInstancesList |
+              sortBy : sortedBy : reverse : 'case-insensitive' |
+              filter : searchTerm" class="label-tbody row">
+              <div class="col-10">
+                <div class="row">
+                  <div class="col-6 label-td">
+                    <a 
+                      [routerLink]="['cluster', cluster.cluster_id]" 
+                      routerLinkActive="active" 
+                      class="blue">
+                      {{cluster.name}}
+                    </a>
                   </div>
-                  <div class="row">
-                    <div *ngIf="!cluster.labels" class="col-12"> 
+                  <div class="col-6 text-center label-td">{{cluster.instances}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div *ngIf="!cluster.labels" class="col-12"> 
+                    <div 
+                      (click)="addLabel(cluster)"
+                      tooltip="Add" 
+                      placement="right"
+                      class="label-btn-blue">
+                        <i class="material-icons i-add">add</i>  
+                      </div>
+                    </div>
+                  <div *ngIf="cluster.labels" class="col-12">
                       <div 
-                        (click)="addLabel(cluster)"
-                        tooltip="Add" 
-                        placement="right"
-                        class="label-btn-blue">
-                          <i class="material-icons i-add">add</i>  
+                        *ngFor="let label of cluster.labels | keyvalue"
+                        (click)="onLabelClick(cluster.cluster_id, label.key, label.value)"
+                        [ngClass]=
+                        "{
+                          'label-content-selected': indexOfLabelSelected(cluster.cluster_id, label.key, label.value) >= 0 ,
+                          'label-content': indexOfLabelSelected(cluster.cluster_id, label.key, label.value) === -1
+                        }" 
+                        class="label-content">
+                        {{label.key}}: {{label.value}} 
+                      </div>
+                      <div class="label-btns">
+                        <div 
+                          *ngIf="isAnyLabelSelected(cluster.cluster_id) === false"
+                          (click)="addLabel(cluster)"
+                          tooltip="Add" 
+                          placement="right"
+                          class="label-btn-blue">
+                          <i class="material-icons i-add">add</i>
+                        </div>
+                        <div 
+                          *ngIf="isAnyLabelSelected(cluster.cluster_id) === true"
+                          (click)="deleteLabel(cluster)"
+                          tooltip="Delete" 
+                          placement="right"
+                          class="label-btn-red">
+                          <i class="material-icons i-delete">delete</i>
                         </div>
                       </div>
-                    <div *ngIf="cluster.labels" class="col-12">
-                        <div 
-                          *ngFor="let label of cluster.labels | keyvalue"
-                          (click)="onLabelClick(cluster.cluster_id, label.key, label.value)"
-                          [ngClass]=
-                          "{
-                            'label-content-selected': indexOfLabelSelected(cluster.cluster_id, label.key, label.value) >= 0 ,
-                            'label-content': indexOfLabelSelected(cluster.cluster_id, label.key, label.value) === -1
-                          }" 
-                          class="label-content">
-                          {{label.key}}: {{label.value}} 
-                        </div>
-                        <div class="label-btns">
-                          <div 
-                            *ngIf="isAnyLabelSelected(cluster.cluster_id) === false"
-                            (click)="addLabel(cluster)"
-                            tooltip="Add" 
-                            placement="right"
-                            class="label-btn-blue">
-                            <i class="material-icons i-add">add</i>
-                          </div>
-                          <div 
-                            *ngIf="isAnyLabelSelected(cluster.cluster_id) === true"
-                            (click)="deleteLabel(cluster)"
-                            tooltip="Delete" 
-                            placement="right"
-                            class="label-btn-red">
-                            <i class="material-icons i-delete">delete</i>
-                          </div>
-                        </div>
-                    </div>
-
                   </div>
-                </div>
-                <div class="col-2 text-center label-td-flex">
-                  <button (click)="openEditCluster(cluster)" class="action-btn-blue">
-                    <i class="material-icons i-white">edit</i>
-                  </button>
+
                 </div>
               </div>
+              <div class="col-2 text-center label-td-flex">
+                <button (click)="openEditCluster(cluster)" class="action-btn-blue">
+                  <i class="material-icons i-white">edit</i>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         <!-- No info to show -->
@@ -222,7 +223,7 @@
           clusters.length === 0 &&
           !requestError" 
           class="no-elements">
-          No available clusters detected
+          {{'resources.noClustersAvailable'|translate}}
         </div>
         <!-- Requested error -->
         <div *ngIf="loadedData && requestError" class="no-elements">
@@ -251,14 +252,14 @@
       <!-- Clusters card -->
       <div class="card">
         <div class="card-title-name">
-          <h5>CLUSTERS-INSTANCES</h5>
+          <h5>{{'resources.clusterInstances'|translate}}</h5>
         </div>
         <div class="row mb-3">
           <!-- Sorting message -->
           <div class="col-7">  
             <p *ngIf="isSearchingInGraph" class="sorting-message">
-             {{ occurrencesCounter }} results found. Filtered by term "{{ searchTermGraph }}".
-              <span (click)="resetFilters('graph')" class="reset-search">Reset</span>
+              {{ occurrencesCounter }} {{'sortingMessage.resultsFilteredBy'|translate:{value: searchTermGraph} }}
+              <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
             </p>
             <p *ngIf="!isSearchingInGraph" class="sorting-message"></p>
           </div>
@@ -269,7 +270,7 @@
                 name="searchTermGraph" 
                 [(ngModel)]="searchTermGraph"
                 type="text" 
-                placeholder="Search..."
+                placeholder="{{'searcher.placeholder'|translate }}"
                 class="form-control"> 
               <span class="search-button"> 
                 <button 
@@ -351,17 +352,17 @@
             <div *ngIf="!graphDataLoaded" class="loader"></div>
             <!-- No info to show -->
             <div *ngIf="graphDataLoaded && clusters.length === 0" class="no-elements">
-              No available clusters
+              {{'resources.NoAvailableClusters'|translate }}
             </div>
           </div>
         </div>
         <div class="row">
           <!-- Graph legend -->
           <div class="col graph-legend">
-            <span class="graph-legend-title">STATUS</span>
-            <span class="status-dot">running</span>
-            <span class="status-dot-process">process</span>
-            <span class="status-dot-error">error</span>
+            <span class="graph-legend-title">{{'status.status'|translate}}</span>
+            <span class="status-dot">{{'status.running'|translate}}</span>
+            <span class="status-dot-process">{{'status.process'|translate}}</span>
+            <span class="status-dot-error">{{'status.error'|translate}}</span>
           </div>
         </div>
       </div>

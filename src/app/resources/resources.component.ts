@@ -131,13 +131,13 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   height: string;
   draggingEnabled: boolean;
   STATUS_COLORS = {
-    RUNNING: '#00E6A0',
-    ERROR: '#F7478A',
+    ONLINE: '#00E6A0',
+    OFFLINE: '#F7478A',
     OTHER: '#FFEB6C'
   };
   STATUS_TEXT_COLORS = {
-    RUNNING: '#FFFFFF',
-    ERROR: '#FFFFFF',
+    ONLINE: '#FFFFFF',
+    OFFLINE: '#FFFFFF',
     OTHER: '#444444'
   };
 
@@ -231,7 +231,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
      * Mocked Charts
      */
       Object.assign(this, {mockClusterChart});
-   }
+  }
 
   ngOnInit() {
     // Get User data from localStorage
@@ -269,7 +269,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Requests an updated list of available clusters to update the current one
    */
-   updateClusterList() {
+  updateClusterList() {
       // Requests an updated clusters list
       this.backend.getClusters(this.organizationId)
       .subscribe(response => {
@@ -287,7 +287,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           this.clusters.forEach(cluster => {
             this.preventEmptyFields(cluster);
           });
-      }, errorResponse => {
+      }, (errorResponse: { error: { message: string; }; }) => {
         this.loadedData = false;
         this.requestError = errorResponse.error.message;
       });
@@ -296,7 +296,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   /**
    * Opens the modal view that holds the edit cluster component
    */
-  openEditCluster(cluster) {
+  openEditCluster(cluster: { cluster_id: any; name: any; description: any; }) {
     const initialState = {
       organizationId: this.organizationId,
       clusterId: cluster.cluster_id,
@@ -360,8 +360,9 @@ export class ResourcesComponent implements OnInit, OnDestroy {
 
   /**
    * Opens the modal view that holds add label component
+   * @param entity selected label entity
    */
-  addLabel(entity) {
+  addLabel(entity: { name: any; }) {
     const initialState = {
       organizationId: this.organizationId,
       entityType: 'cluster',
@@ -378,7 +379,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Deletes a selected label
    * @param entity selected label entity
    */
-  deleteLabel(entity) {
+  deleteLabel(entity: { cluster_id: string; }) {
     const deleteConfirm = confirm('Delete labels?');
     if (deleteConfirm) {
       const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.cluster_id);
@@ -405,7 +406,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * @param labelKey label key from selected label
    * @param labelValue label value from selected label
    */
-  onLabelClick(entityId, labelKey, labelValue) {
+  onLabelClick(entityId: any, labelKey: string | number, labelValue: any) {
     const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
     const newLabel = {
       entityId: entityId,
@@ -434,7 +435,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   * @param labelKey label key from selected label
   * @param labelValue label value from selected label
   */
-  indexOfLabelSelected(entityId, labelKey, labelValue) {
+  indexOfLabelSelected(entityId: any, labelKey: string | number, labelValue: any) {
     for (let index = 0; index < this.selectedLabels.length; index++) {
       if (this.selectedLabels[index].entityId === entityId &&
           this.selectedLabels[index].labels[labelKey] === labelValue
@@ -449,7 +450,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
    * @param entityId entity from selected label
    */
-  isAnyLabelSelected(entityId) {
+  isAnyLabelSelected(entityId: any) {
     if (this.selectedLabels.length > 0) {
       const indexSelected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
       if (indexSelected >= 0) {
@@ -468,8 +469,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.occurrencesGraphCounter();
   }
 
-  getMarker(link, origin: string) {
-    const index = this.graphData.nodes.map(x => x.id).indexOf(link[origin]);
+  getMarker(link: { [x: string]: any; is_between_apps: any; }, origin: string) {
+    const index = this.graphData.nodes.map((x: { id: any; }) => x.id).indexOf(link[origin]);
     if (index !== -1) {
       if (link.is_between_apps) {
         return 'url(#arrow)';
@@ -514,14 +515,14 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * @param clusters Array containing the cluster list that sources the chart values
    */
   private updatePieChartStats(clusters: any[]) {
-    let running = 0;
+    let online = 0;
     if (clusters) {
       clusters.forEach(cluster => {
-        if (cluster.status_name === 'RUNNING') {
-          running += 1;
+        if (cluster.status_name === 'ONLINE') {
+          online += 1;
         }
       });
-      this.pieChartData = this.generateClusterChartData(running, clusters.length);
+      this.pieChartData = this.generateClusterChartData(online, clusters.length);
     }
   }
 
@@ -617,7 +618,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.graphData.nodes.forEach(node => {
       if (node.type === NodeType.Instances) {
         connections.forEach(connection_type => {
-          node[connection_type].forEach(connection => {
+          node[connection_type].forEach((connection: { source_instance_id: any; target_instance_id: any; }) => {
             const source = connection.source_instance_id;
             const target = connection.target_instance_id;
             linksBetweenApps[ source + '_' + target] = {
@@ -638,15 +639,13 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   private getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
-      case 'running':
       case 'online':
       case 'online_cordon':
-        return this.STATUS_COLORS.RUNNING;
-      case 'error':
+        return this.STATUS_COLORS.ONLINE;
       case 'offline':
       case 'offline_cordon':
-      case 'deployment_error':
-        return this.STATUS_COLORS.ERROR;
+      case 'unknown':
+        return this.STATUS_COLORS.OFFLINE;
       default:
         return this.STATUS_COLORS.OTHER;
     }
@@ -658,14 +657,13 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   private getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
-      case 'running':
       case 'online':
       case 'online_cordon':
-        return this.STATUS_TEXT_COLORS.RUNNING;
-      case 'error':
+        return this.STATUS_TEXT_COLORS.ONLINE;
+      case 'unknown':
       case 'offline':
       case 'offline_cordon':
-        return this.STATUS_TEXT_COLORS.ERROR;
+        return this.STATUS_TEXT_COLORS.OFFLINE;
       default:
         return this.STATUS_TEXT_COLORS.OTHER;
     }
@@ -706,6 +704,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Return a counter for the amount of search terms in graph
    */
   private occurrencesGraphCounter() {
-    this.occurrencesCounter = this.graphData.nodes.filter(node => node.label.toLowerCase().includes(this.searchTermGraph)).length;
+    this.occurrencesCounter = this.graphData.nodes.filter(
+      (node: { label: { toLowerCase: () => { includes: (arg0: string) => void; }; }; }) =>
+      node.label.toLowerCase().includes(this.searchTermGraph)).length;
   }
 }

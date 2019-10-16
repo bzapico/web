@@ -62,7 +62,6 @@
 			"tableAuthInBig": "(group, service / device group)",
 			"tableEndpoints": "Endpoints",
 			"tableImage": "Image",
-			"tableInfo": "Info",
 			"tableInstanceOf": "Instance of",
 			"tableLabels": "Labels",
 			"tableName": "Name",
@@ -275,6 +274,18 @@
 		},
 		"usersNumber": "{{value}} users"
 	},
+	"resources": {
+		"NoAvailableClusters": "No available clusters",
+		"clusterInstances": "CLUSTERS-INSTANCES",
+		"clusters": "CLUSTERS",
+		"clustersRunning": "clusters running",
+		"instances": "INSTANCES",
+		"list": "LIST",
+		"noClusters": "NO CLUSTERS",
+		"noClustersAvailable": "No available clusters detected",
+		"summary": "SUMMARY",
+		"title": "RESOURCES"
+	},
 	"searcher": {
 		"placeholder": "Search..."
 	},
@@ -296,7 +307,8 @@
 		"running": "running",
 		"serviceError": "service_error",
 		"serviceRunning": "service_running",
-		"serviceWaiting": "service_waiting"
+		"serviceWaiting": "service_waiting",
+		"status": "STATUS"
 	},
 	"tables": {
 		"organizationId": "Organization ID",
@@ -313,8 +325,10 @@
 		"tableGroups": "Groups",
 		"tableImage": "Image",
 		"tableInfo": "Info",
+		"tableInstances": "",
 		"tableInternal": "Internal",
 		"tableLabels": "Labels",
+		"tableName": "Name",
 		"tablePort": "Port",
 		"tableReplicas": "Replicas",
 		"tableRules": "Rules",
