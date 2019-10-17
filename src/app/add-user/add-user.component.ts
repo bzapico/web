@@ -7,6 +7,15 @@ import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
+/**
+ * It sets the timeout in actions like undeploying or deleting
+ */
+const TIMEOUT_ACTION = 3000;
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
+
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -66,9 +75,9 @@ export class AddUserComponent implements OnInit {
       noResultsFound: 'No results found!'
     };
     this.roleOptions = [
-     'NalejAdmin',
-     'Operator',
-     'Developer'
+      'NalejAdmin',
+      'Operator',
+      'Developer'
     ];
 
     const mock = localStorage.getItem(LocalStorageKeys.addUserMock) || null;
@@ -132,7 +141,7 @@ export class AddUserComponent implements OnInit {
           this.loading = false;
           this.notificationsService.add({
             message: 'The user ' + user.email + ' has been created successfully',
-            timeout: 3000
+            timeout: TIMEOUT_ACTION
           });
           this.bsModalRef.hide();
         }, error => {
@@ -140,13 +149,13 @@ export class AddUserComponent implements OnInit {
           if (error.status === 409) {
             this.notificationsService.add({
               message: 'ERROR: ' + error.error.message + ' already exists',
-              timeout: 5000,
+              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
           } else {
               this.notificationsService.add({
                 message: 'ERROR: ' + error.error.message,
-                timeout: 5000,
+                timeout: TIMEOUT_ERROR,
                 type: 'warning'
               });
             }
