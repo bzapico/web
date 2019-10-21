@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=$(cat .nalej-component.json | jq -r '.version| join(" ")')
+VERSION=$(cat .nalej-component.json | jq -r '.version')
 
 echo Building nalej/web:build
 docker build -t nalej/web:build . -f components/web/Dockerfile.build
