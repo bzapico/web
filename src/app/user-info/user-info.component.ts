@@ -127,7 +127,7 @@ export class UserInfoComponent implements OnInit {
             }
             this.notificationsService.add({
               message: this.translateService.instant('organization.userDeleted', { userMail: this.email }),
-              timeout: 3000
+              timeout: TIMEOUT_ACTION
             });
             this.bsModalRef.hide();
           }, error => {
