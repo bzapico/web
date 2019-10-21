@@ -8,6 +8,15 @@ import { NotificationsService } from '../services/notifications.service';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
+/**
+ * It sets the timeout in actions like undeploying or deleting
+ */
+const TIMEOUT_ACTION = 3000;
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
+
 @Component({
   selector: 'user-info',
   templateUrl: './user-info.component.html',
@@ -109,13 +118,13 @@ export class UserInfoComponent implements OnInit {
           .subscribe(response => {
             this.notificationsService.add({
               message: 'User ' + this.email + ' has been deleted',
-              timeout: 3000
+              timeout: TIMEOUT_ACTION
             });
             this.bsModalRef.hide();
           }, error => {
             this.notificationsService.add({
               message: error.error.message,
-              timeout: 5000,
+              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
           });

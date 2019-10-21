@@ -10,6 +10,11 @@ import { AddConnectionsComponent } from '../add-connections/add-connections.comp
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 
+/**
+ * It sets the timeout in actions like undeploying or deleting
+ */
+const TIMEOUT_ACTION = 3000;
+
 @Component({
   selector: 'manage-connections',
   templateUrl: './manage-connections.component.html',
@@ -186,7 +191,7 @@ export class ManageConnectionsComponent implements OnInit {
         .subscribe(response => {
           this.notificationsService.add({
             message: 'Connection removed',
-            timeout: 3000
+            timeout: TIMEOUT_ACTION
           });
           this.updateConnections();
         });
