@@ -242,9 +242,11 @@
 	"label": {
 		"add": "add",
 		"addLabel": "Add label",
+		"addUp": "Add",
 		"delete": "delete",
 		"deleteLabel": "Delete label",
 		"deleteLabels": "Delete labels?",
+		"deleteUp": "Delete",
 		"entityTypeDevice": "device",
 		"noLabels": "No labels",
 		"title": "LABELS"
@@ -282,6 +284,19 @@
 		},
 		"usersNumber": "{{value}} users"
 	},
+	"resources": {
+		"NoAvailableClusters": "No available clusters",
+		"clusterInstances": "CLUSTERS-INSTANCES",
+		"clusters": "CLUSTERS",
+		"clustersRunning": "clusters running",
+		"edit": "Edit",
+		"instances": "INSTANCES",
+		"list": "LIST",
+		"noClusters": "NO CLUSTERS",
+		"noClustersAvailable": "No available clusters detected",
+		"summary": "SUMMARY",
+		"title": "RESOURCES"
+	},
 	"searcher": {
 		"placeholder": "Search..."
 	},
@@ -313,7 +328,8 @@
 		"running": "running",
 		"serviceError": "service_error",
 		"serviceRunning": "service_running",
-		"serviceWaiting": "service_waiting"
+		"serviceWaiting": "service_waiting",
+		"status": "STATUS"
 	},
 	"tables": {
 		"organizationId": "Organization ID",
@@ -330,8 +346,10 @@
 		"tableGroups": "Groups",
 		"tableImage": "Image",
 		"tableInfo": "Info",
+		"tableInstances": "Instances",
 		"tableInternal": "Internal",
 		"tableLabels": "Labels",
+		"tableName": "Name",
 		"tablePort": "Port",
 		"tableReplicas": "Replicas",
 		"tableRules": "Rules",
