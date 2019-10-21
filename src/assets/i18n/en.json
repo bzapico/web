@@ -240,9 +240,11 @@
 	"label": {
 		"add": "add",
 		"addLabel": "Add label",
+		"addUp": "Add",
 		"delete": "delete",
 		"deleteLabel": "Delete label",
 		"deleteLabels": "Delete labels?",
+		"deleteUp": "Delete",
 		"entityTypeDevice": "device",
 		"noLabels": "No labels",
 		"title": "LABELS"

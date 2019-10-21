@@ -176,37 +176,37 @@
                       </div>
                     </div>
                   <div *ngIf="cluster.labels" class="col-12">
+                    <div 
+                      *ngFor="let label of cluster.labels | keyvalue"
+                      (click)="onLabelClick(cluster.cluster_id, label.key, label.value)"
+                      [ngClass]=
+                      "{
+                        'label-content-selected': indexOfLabelSelected(cluster.cluster_id, label.key, label.value) >= 0 ,
+                        'label-content': indexOfLabelSelected(cluster.cluster_id, label.key, label.value) === -1
+                      }" 
+                      class="label-content">
+                      {{label.key}}: {{label.value}} 
+                    </div>
+                    <div class="label-btns"> 
                       <div 
-                        *ngFor="let label of cluster.labels | keyvalue"
-                        (click)="onLabelClick(cluster.cluster_id, label.key, label.value)"
-                        [ngClass]=
-                        "{
-                          'label-content-selected': indexOfLabelSelected(cluster.cluster_id, label.key, label.value) >= 0 ,
-                          'label-content': indexOfLabelSelected(cluster.cluster_id, label.key, label.value) === -1
-                        }" 
-                        class="label-content">
-                        {{label.key}}: {{label.value}} 
+                        *ngIf="isAnyLabelSelected(cluster.cluster_id); else isNotAnyLabelSelected" 
+                        (click)="deleteLabel(cluster)" 
+                        tooltip="Delete" 
+                        placement="right" 
+                        class="label-btn-red"> 
+                        <i class="material-icons i-delete">delete</i> 
                       </div>
-                      <div class="label-btns">
+                      <ng-template #isNotAnyLabelSelected> 
                         <div 
-                          *ngIf="isAnyLabelSelected(cluster.cluster_id) === false"
-                          (click)="addLabel(cluster)"
+                          (click)="addLabel(cluster)" 
                           tooltip="Add" 
-                          placement="right"
+                          placement="right" 
                           class="label-btn-blue">
                           <i class="material-icons i-add">add</i>
-                        </div>
-                        <div 
-                          *ngIf="isAnyLabelSelected(cluster.cluster_id) === true"
-                          (click)="deleteLabel(cluster)"
-                          tooltip="Delete" 
-                          placement="right"
-                          class="label-btn-red">
-                          <i class="material-icons i-delete">delete</i>
-                        </div>
-                      </div>
+                        </div> 
+                      </ng-template> 
+                    </div>
                   </div>
-
                 </div>
               </div>
               <div class="col-2 text-center label-td-flex">
