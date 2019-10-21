@@ -50,7 +50,7 @@
                   name="searchTerm" 
                   [(ngModel)]="searchTerm"
                   type="text" 
-                  placeholder="{{'searcher.placeholder'|translate }}."
+                  placeholder="{{'searcher.placeholder'|translate }}"
                   class="form-control"> 
                   <div *ngIf="searchTerm === ''" class="search-icon">
                     <i class="material-icons">search</i>
@@ -141,11 +141,11 @@
                 </div>
               </div>
               <div 
-                tooltip="Edit" 
+                tooltip="{{'resources.edit'|translate}}" 
                 placement="bottom"
                 scope="col"
                 class="col-2 text-center edit-initial-text label-th">
-                <span class="edit-full-text">Edit</span>
+                <span class="edit-full-text">{{'resources.edit'|translate}}</span>
               </div>
             </div>
             <div *ngFor=
