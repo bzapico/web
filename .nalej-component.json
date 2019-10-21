@@ -3,6 +3,9 @@
     "application_list": [
         "web"
     ],
+    "image_list": [
+        "web"
+    ],
     "tools": [
         "azure",
         "docker",
