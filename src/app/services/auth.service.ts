@@ -72,7 +72,7 @@ export class AuthService {
   }
 
   /**
-   * Helper function that checks if the user is authenticated assesting if JWT Token is valid
+   * Helper function that checks if the user is authenticated assenting if JWT Token is valid
    */
   isAuth(): boolean {
     const jwtToken = JSON.parse(localStorage.getItem(LocalStorageKeys.jwt)) || null;
