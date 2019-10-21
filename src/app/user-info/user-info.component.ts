@@ -107,6 +107,7 @@ export class UserInfoComponent implements OnInit {
       if (this.organizationId !== null && this.email !== null) {
         this.backend.deleteUser(this.organizationId, this.email)
           .subscribe(response => {
+            console.log('response');
             this.notificationsService.add({
               message: 'User ' + this.email + ' has been deleted',
               timeout: 3000
