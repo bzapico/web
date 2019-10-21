@@ -15,6 +15,19 @@ import { AgentJoinTokenInfoComponent } from '../agent-join-token-info/agent-join
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { TranslateService } from '@ngx-translate/core';
 
+/**
+ * It sets the timeout in actions like undeploying or deleting
+ */
+const TIMEOUT_ACTION = 3000;
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
+/**
+ * Refresh ratio reference
+ */
+const REFRESH_RATIO = 6000; // 6 seconds
+
 @Component({
   selector: 'app-infrastructure',
   templateUrl: './infrastructure.component.html',
@@ -52,11 +65,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Interval reference
    */
   refreshIntervalRef: any;
-
-  /**
-   * Refresh ratio reference
-   */
-  REFRESH_RATIO = 5000; // 5 seconds
 
   /**
    * NGX-Charts object-assign required object references (for rendering)
@@ -180,7 +188,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         this.updateInventoryList();
         this.refreshIntervalRef = setInterval(() => {
           this.updateInventoryList();
-        }, this.REFRESH_RATIO); // Refresh each 60 seconds
+        }, REFRESH_RATIO); // Refresh each 60 seconds
         this.backend.getInventorySummary(this.organizationId)
         .subscribe(summary => {
           if (summary) {
@@ -271,7 +279,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         }
         break;
       }
-     default: {
+      default: {
         if (className.toLowerCase() === 'process') {
           return true;
         }
@@ -283,7 +291,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   /**
   * Open install Agent info modal window
   */
- installAgent() {
+  installAgent() {
   const initialState = {
     organizationId: this.organizationId,
     inventory: this.inventory,
@@ -504,7 +512,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             } else {
               this.notificationsService.add({
                 message: this.translateService.instant('infrastructure.contextMenu.createAgentTokenMessage'),
-                timeout: 3000
+                timeout: TIMEOUT_ACTION
               });
             }
           },
@@ -881,12 +889,12 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
           .subscribe(response => {
             this.notificationsService.add({
               message: this.translateService.instant('infrastructure.asset.uninstallMessage', {asset_id : asset.asset_id }),
-              timeout: 3000
+              timeout: TIMEOUT_ACTION
             });
           }, error => {
             this.notificationsService.add({
               message: error.error.message,
-              timeout: 5000,
+              timeout:  TIMEOUT_ERROR,
               type: 'warning'
             });
           });
@@ -994,12 +1002,12 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             .subscribe(response => {
               this.notificationsService.add({
                 message: this.translateService.instant('infrastructure.EIC.unlinkMessage'),
-                timeout: 3000
+                timeout: TIMEOUT_ACTION
               });
             }, error => {
               this.notificationsService.add({
                 message: error.error.message,
-                timeout: 5000,
+                timeout:  TIMEOUT_ERROR,
                 type: 'warning'
               });
             });
@@ -1032,7 +1040,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         ignoreBackdropClick: false
       });
 
-    // onClose is used if the device info modal comes while closing it with the clicked groupid
+    // onClose is used if the device info modal comes while closing it with the clicked group ID
     this.deviceModalRef.content.onClose = (groupId: string) => {
       if (groupId) {
         this.navigateToDevices(groupId);
@@ -1072,19 +1080,19 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     if (confirmResult ) {
       device.enabled = !device.enabled;
       this.backend.updateDevice(this.organizationId, {
-         organizationId: this.organizationId,
-         deviceGroupId: device.device_group_id,
-         deviceId: device.device_id,
-         enabled: device.enabled
+        organizationId: this.organizationId,
+        deviceGroupId: device.device_group_id,
+        deviceId: device.device_id,
+        enabled: device.enabled
       }).subscribe((response: any) => {
         let notificationText = this.translateService.instant('infrastructure.device.notificationTextEnabled');
         if (!device.enabled) {
-         notificationText = this.translateService.instant('infrastructure.device.notificationTextDisabled');
+        notificationText = this.translateService.instant('infrastructure.device.notificationTextDisabled');
         }
-       this.notificationsService.add({
-         message: this.translateService.instant('infrastructure.device.enablementMessage') + notificationText,
-         timeout: 3000
-       });
+      this.notificationsService.add({
+        message: this.translateService.instant('infrastructure.device.enablementMessage') + notificationText,
+        timeout: TIMEOUT_ACTION
+      });
       });
     }
   }
@@ -1100,12 +1108,12 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         .subscribe(response => {
           this.notificationsService.add({
             message: this.translateService.instant('infrastructure.device.unlinkMessage'),
-            timeout: 3000
+            timeout: TIMEOUT_ACTION
           });
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000,
+            timeout:  TIMEOUT_ERROR,
             type: 'warning'
           });
         });
@@ -1114,4 +1122,3 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     }
   }
 }
-
