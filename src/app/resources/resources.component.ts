@@ -32,6 +32,22 @@ const FOUND_NODES_BORDER_COLOR = '#5800FF';
  * It sets a border size for found nodes by a term in the graph
  */
 const FOUND_NODES_BORDER_SIZE = 4;
+/**
+ * It sets the status colors for nodes
+ */
+const STATUS_COLORS = {
+  ONLINE: '#00E6A0',
+  OFFLINE: '#F7478A',
+  OTHER: '#FFEB6C'
+};
+/**
+ * It sets the status colors for nodes
+ */
+const STATUS_TEXT_COLORS = {
+  ONLINE: '#FFFFFF',
+  OFFLINE: '#FFFFFF',
+  OTHER: '#444444'
+};
 
 
 @Component({
@@ -130,16 +146,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   width: number;
   height: string;
   draggingEnabled: boolean;
-  STATUS_COLORS = {
-    ONLINE: '#00E6A0',
-    OFFLINE: '#F7478A',
-    OTHER: '#FFEB6C'
-  };
-  STATUS_TEXT_COLORS = {
-    ONLINE: '#FFFFFF',
-    OFFLINE: '#FFFFFF',
-    OTHER: '#444444'
-  };
 
   /**
    * Reference for the service that allows the user info component
@@ -641,13 +647,13 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     switch (status.toLowerCase()) {
       case 'online':
       case 'online_cordon':
-        return this.STATUS_COLORS.ONLINE;
+        return STATUS_COLORS.ONLINE;
       case 'offline':
       case 'offline_cordon':
       case 'unknown':
-        return this.STATUS_COLORS.OFFLINE;
+        return STATUS_COLORS.OFFLINE;
       default:
-        return this.STATUS_COLORS.OTHER;
+        return STATUS_COLORS.OTHER;
     }
   }
 
@@ -659,13 +665,13 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     switch (status.toLowerCase()) {
       case 'online':
       case 'online_cordon':
-        return this.STATUS_TEXT_COLORS.ONLINE;
+        return STATUS_TEXT_COLORS.ONLINE;
       case 'unknown':
       case 'offline':
       case 'offline_cordon':
-        return this.STATUS_TEXT_COLORS.OFFLINE;
+        return STATUS_TEXT_COLORS.OFFLINE;
       default:
-        return this.STATUS_TEXT_COLORS.OTHER;
+        return STATUS_TEXT_COLORS.OTHER;
     }
   }
 
