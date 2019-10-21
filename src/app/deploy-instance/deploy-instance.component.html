@@ -38,8 +38,8 @@
           </div>
           <div [ngSwitch]="conditionExpression" class="scroll-modal-form">
             <!--BASIC STEP-->
-            <ng-template *ngSwitchCase="'basic'">
-              <div *ngIf="openFromRegistered; else openFromOtherPlace" class="form-group">
+            <ng-template [ngSwitchCase]="'basic'">
+              <div *ngIf="openFromRegistered; else openFromAnotherPoint" class="form-group">
                 <label>Registered name</label>
                 <input
                         formControlName="registeredName"
@@ -48,7 +48,7 @@
                         class="form-control">
                 <div class="error-h"></div>
               </div>
-              <ng-template #openFromOtherPlace>
+              <ng-template #openFromAnotherPoint>
                 <div class="form-group form-group-drop">
                   <label>Registered name</label>
                   <ngx-select-dropdown
@@ -85,7 +85,7 @@
               </div>
             </ng-template>
             <!--PARAMETERS STEP-->
-            <ng-template *ngSwitchCase="'parameters'">
+            <ng-template [ngSwitchCase]="'parameters'">
               <div *ngIf="selectedApp && availableParamsCategory.basic" class="form-group">
                 <label>Parameters</label>
                 <!-- DEFAULT PARAMETERS -->
@@ -137,7 +137,7 @@
               </div>
             </ng-template>
             <!--CONNECTIONS STEP-->
-            <ng-template *ngSwitchCase="'connections'">
+            <ng-template [ngSwitchCase]="'connections'">
               <div *ngIf="selectedApp && selectedApp.outbound_net_interfaces">
                 <div *ngFor="let connection of selectedApp.outbound_net_interfaces">
                   <span class="outbound-title">{{connection.name}}</span>
