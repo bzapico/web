@@ -7,6 +7,8 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { NotificationsService } from '../services/notifications.service';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../services/auth.service';
 
 /**
  * It sets the timeout in actions like undeploying or deleting
@@ -57,6 +59,7 @@ export class UserInfoComponent implements OnInit {
   organizationName: string;
   email: string;
   role: string;
+  userId: string;
 
   /**
    * Change password modal window reference
@@ -77,7 +80,9 @@ export class UserInfoComponent implements OnInit {
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private translateService: TranslateService,
+    private auth: AuthService,
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.userInfoMock) || null;
     // check which backend is required (fake or real)
@@ -86,11 +91,12 @@ export class UserInfoComponent implements OnInit {
     } else {
       this.backend = this.backendService;
     }
-    this.title = 'User info';
-    this.userName = 'Loading ...'; // Default initialization
-    this.email = 'Loading ...'; // Default initialization
-    this.buttonDeleteUser = 'Delete User';
-    this.buttonChangePassword = 'Change Password';
+    // Default initialization
+    this.title = this.translateService.instant('organization.userInfo');
+    this.userName = this.translateService.instant('organization.loading');
+    this.email = this.translateService.instant('organization.loading');
+    this.buttonDeleteUser = this.translateService.instant('buttons.deleteUser');
+    this.buttonChangePassword = this.translateService.instant('buttons.changePassword');
   }
 
   ngOnInit() {
@@ -111,13 +117,16 @@ export class UserInfoComponent implements OnInit {
    * @param email A user to be deleted
    */
   deleteUser() {
-    const deleteConfirm = confirm('Delete user?');
+    const deleteConfirm = confirm(this.translateService.instant('organization.deleteUser'));
     if (deleteConfirm) {
       if (this.organizationId !== null && this.email !== null) {
         this.backend.deleteUser(this.organizationId, this.email)
           .subscribe(response => {
+            if (this.email === this.userId) {
+              this.auth.logout();
+            }
             this.notificationsService.add({
-              message: 'User ' + this.email + ' has been deleted',
+              message: this.translateService.instant('organization.userDeleted', { userMail: this.email }),
               timeout: TIMEOUT_ACTION
             });
             this.bsModalRef.hide();

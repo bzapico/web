@@ -4,7 +4,7 @@
       (click)="openDebugPanel()"
       class="nav-company-name" 
       style="visibility:hidden">
-      NALEJ
+      {{'sidebar.nalej'|translate}}
     </div>
     <div (click)="openEditUser()" class="nav-profile-info">
       <div class="avatar-frame">
@@ -20,7 +20,7 @@
         routerLink="/organization" 
         class="nav-link">
         <i class="material-icons">group_work</i>
-        Organization
+        {{'sidebar.organization'|translate}}
       </a>
     </div>
     <div *ngIf="role === 'NalejAdmin'" class="nav-item">
@@ -29,7 +29,7 @@
         routerLink="/infrastructure" 
         class="nav-link">
         <i class="material-icons">dns</i>
-        Infrastructure
+        {{'sidebar.infrastructure'|translate}}
       </a>
     </div>
     <div *ngIf="role === 'NalejAdmin' || role === 'Operator'" class="nav-item">
@@ -38,7 +38,7 @@
         routerLink="/resources" 
         class="nav-link">
         <i class="material-icons">layers</i>
-        Resources
+        {{'sidebar.resources'|translate}}
       </a>
     </div>
     <div *ngIf="role === 'NalejAdmin' || role === 'Developer'" class="nav-item">
@@ -47,7 +47,7 @@
         routerLink="/devices" 
         class="nav-link">
         <i class="material-icons">devices_other</i>
-        Devices
+        {{'sidebar.devices'|translate}}
       </a>
     </div>
     <div *ngIf="role === 'NalejAdmin' || role === 'Developer'" class="nav-item">
@@ -56,13 +56,13 @@
         routerLink="/applications" 
         class="nav-link">
         <i class="material-icons">apps</i>
-        Applications
+        {{'sidebar.applications'|translate}}
       </a>
     </div>
   </div>
   <div (click)="logout()" class="logout-btn-box">
     <button class="logout-btn">
-      Logout
+      {{'sidebar.logout'|translate}}
     </button>
   </div>
 </nav>
