@@ -12,12 +12,6 @@ variables:
     value: '$(system.defaultWorkingDirectory)/gopath'
   - name: modulePath
     value: '$(GOPATH)/src/github.com/$(Build.Repository.Name)'
-  - name: appList
-    value: 'unified-logging-coord unified-logging-slave'
-  - name: imageList
-    value: 'unified-logging-coord unified-logging-slave'
-  - name: authorName
-    value: ""
 
 resources:
   repositories:
