@@ -103,6 +103,8 @@
 		}
 	},
 	"buttons": {
+		"changePassword": "Change password",
+		"deleteUser": "Delete user",
 		"saveChanges": "Save changes"
 	},
 	"devices": {
@@ -240,11 +242,9 @@
 	"label": {
 		"add": "add",
 		"addLabel": "Add label",
-		"addUp": "Add",
 		"delete": "delete",
 		"deleteLabel": "Delete label",
 		"deleteLabels": "Delete labels?",
-		"deleteUp": "Delete",
 		"entityTypeDevice": "device",
 		"noLabels": "No labels",
 		"title": "LABELS"
@@ -253,12 +253,15 @@
 		"buttonClose": "Close"
 	},
 	"organization": {
+		"deleteUser": "Delete user?",
 		"filteredBy": "Filtered by term \"{{value}}\".",
 		"loading": "Loading...",
 		"notRegisteredUsers": "<p>There are not registered users in this organization<br>Click on \"add user\" button to start adding new users</p>",
 		"sortedBy": "Sorted by {{value}}",
 		"subscriptionType": "Free subscription",
 		"title": "ORGANIZATION",
+		"userDeleted": "User {{userMail}} has been deleted",
+		"userInfo": "User info",
 		"users": {
 			"actions": "Actions",
 			"add": "Add user",
@@ -266,7 +269,10 @@
 			"ascendant": "ascendant{{value}}",
 			"descendant": "descendant{{value}}",
 			"edit": "Edit user",
+			"email": "Email",
+			"name": "Name",
 			"reset": "Reset",
+			"role": "Role",
 			"subscription": {
 				"check": "Check all our subscription modes and payments",
 				"plan": "Free",
@@ -291,6 +297,16 @@
 	},
 	"searcher": {
 		"placeholder": "Search..."
+	},
+	"sidebar": {
+		"applications": "Applications",
+		"devices": "Devices",
+		"editProfile": "Edit profile",
+		"infrastructure": "Infrastructure",
+		"logout": "Logout",
+		"nalej": "NALEJ",
+		"organization": "Organization",
+		"resources": "Resources"
 	},
 	"sortingMessage": {
 		"andFilteredBy": "and filtered by \"{{value}}\"",
