@@ -16,31 +16,54 @@
     <div class="modal-body">
       <div *ngIf="loadedData">
         <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">
-          <div class="scroll-modal-form">
-            <div *ngIf="!openFromRegistered" class="form-group form-group-drop">
-              <label>Registered name</label>
-              <ngx-select-dropdown 
-                formControlName="selectDrop" 
-                [multiple]="false" 
-                [config]="selectConfig" 
-                [options]="registeredApps"
-                (change)="onRegisteredChange(f)"
-                [ngClass]="{ 'base-light-grey': !f.selectDrop.value }">
-              </ngx-select-dropdown>
-              <div class="form-group-drop-arrow"> 
-                <i class="material-icons">arrow_drop_down</i>
-              </div>
-              <div class="error-h"></div>
+          <div class="stepper-box">
+            <div [ngClass]="{ 'active': basicInformationDot }" class="step">
+              <div class="step-title">Basic information</div>
+              <div class="step-bar-left"></div>
+              <div class="step-bar-right"></div>
+              <div class="step-circle"></div>
             </div>
-            <div *ngIf="openFromRegistered" class="form-group">
+            <div [ngClass]="{ 'active': parametersDot }" class="step">
+              <div class="step-title">Parameters</div>
+              <div class="step-bar-left"></div>
+              <div class="step-bar-right"></div>
+              <div class="step-circle"></div>
+            </div>
+            <div [ngClass]="{ 'active': connectionsDot }" class="step">
+              <div class="step-title">App connections</div>
+              <div class="step-bar-left"></div>
+              <div class="step-bar-right"></div>
+              <div class="step-circle"></div>
+            </div>
+          </div>
+          <div class="scroll-modal-form">
+            <!--BASIC STEP-->
+            <div *ngIf="openFromRegistered; else openFromOtherPlace" class="form-group">
               <label>Registered name</label>
-              <input 
-                formControlName="registeredName" 
-                type="text" 
+              <input
+                formControlName="registeredName"
+                type="text"
                 placeholder="{{registeredName}}"
                 class="form-control">
               <div class="error-h"></div>
             </div>
+            <ng-template #openFromOtherPlace>
+              <div class="form-group form-group-drop">
+                <label>Registered name</label>
+                <ngx-select-dropdown
+                  formControlName="selectDrop"
+                  [multiple]="false"
+                  [config]="selectConfig"
+                  [options]="registeredApps"
+                  (change)="onRegisteredChange(f)"
+                  [ngClass]="{ 'base-light-grey': !f.selectDrop.value }">
+                </ngx-select-dropdown>
+                <div class="form-group-drop-arrow">
+                  <i class="material-icons">arrow_drop_down</i>
+                </div>
+                <div class="error-h"></div>
+              </div>
+            </ng-template>
             <div class="form-group">
               <label>Instance name*</label>
               <input 
@@ -59,6 +82,7 @@
                 </div>
               </div>
             </div>
+            <!--PARAMETERS STEP-->
             <div *ngIf="selectedApp && availableParamsCategory.basic" class="form-group">
               <label>Parameters</label>
               <!-- DEFAULT PARAMETERS -->
@@ -108,11 +132,69 @@
                 </div>
               <!-- ADVANCED PARAMETERS-->
             </div>
+            <!--CONNECTIONS STEP-->
+            <div *ngIf="selectedApp && selectedApp.outbound_net_interfaces">
+              <div *ngFor="let connection of selectedApp.outbound_net_interfaces">
+                <span class="outbound-title">{{connection.name}}</span>
+                <!-- Target Instance dropdown -->
+                <div class="form-group form-group-drop">
+                  <label>Target Instance</label>
+                  <ngx-select-dropdown
+                    formControlName="targetInstance"
+                    [multiple]="false"
+                    [config]="targetInstanceConfig"
+                    [options]="instancesNames"
+                    [ngClass]="{ 'base-light-grey': !f.targetInstance.value }"
+                    (change)="targetInstanceSelectionChange(f)">
+                  </ngx-select-dropdown>
+                  <div class="form-group-drop-arrow">
+                    <i class="material-icons">arrow_drop_down</i>
+                  </div>
+                  <div class="error-h"></div>
+                </div>
+                <!-- Target Inbound dropdown -->
+                <div  class="form-group form-group-drop">
+                  <label>Target Inbound</label>
+                  <ngx-select-dropdown
+                    formControlName="targetInterface"
+                    [multiple]="false"
+                    [config]="targetInterfaceConfig"
+                    [options]="targetInterfaceOptions"
+                    [ngClass]="{ 'base-light-grey': !f.targetInterface.value }"
+                    (change)="targetInterfaceSelectionChange(f)">
+                  </ngx-select-dropdown>
+                  <div class="form-group-drop-arrow">
+                    <i class="material-icons">arrow_drop_down</i>
+                  </div>
+                  <div class="error-h"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </form>
-        <div class="form-group-btn">
-          <button class="nalej-form-btn-blue" (click)="deployInstance(f)" [disabled]="loading">
-            <span class="align-bottom">Deploy</span>
+<!--        <div class="form-group-btn">-->
+<!--          <button class="nalej-form-btn-blue" (click)="deployInstance(f)" [disabled]="loading">-->
+<!--            <span class="align-bottom">Deploy</span>-->
+<!--          </button>-->
+<!--        </div>-->
+        <div class="stepper-actions-btn">
+          <button *ngIf="showBack"
+                  (click)="previousStep()"
+                  class="nalej-form-btn-red">
+            <i class="material-icons i-arrow-left">keyboard_arrow_left</i>
+            <span>Back</span>
+          </button>
+          <button *ngIf="showNext"
+                  (click)="nextStep()"
+                  class="nalej-form-btn-blue">
+            <i class="material-icons i-arrow-right">keyboard_arrow_right</i>
+            <span>Next</span>
+          </button>
+          <button *ngIf="showDeploy"
+                  (click)="deployInstance(f)" [disabled]="loading"
+                  class="nalej-form-btn-blue">
+            <i class="material-icons i-arrow-right">play_arrow</i>
+            <span>Deploy</span>
           </button>
         </div>
       </div>

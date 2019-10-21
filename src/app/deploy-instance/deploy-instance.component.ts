@@ -5,7 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, FormArray, AbstractControl} from '@angular/forms';
 
 @Component({
   selector: 'app-deploy-instance',
@@ -71,6 +71,22 @@ export class DeployInstanceComponent implements OnInit {
    * Model that holds onclose method
    */
   onClose: any;
+  /**
+   * Options to show/hide navigation buttons
+   */
+  showBack: boolean;
+  showNext: boolean;
+  showDeploy: boolean;
+  targetInstanceConfig: {};
+  instancesNames: string[];
+  targetInterfaceConfig: {};
+  targetInterfaceOptions: {}[];
+  /**
+   * Options to active dots
+   */
+  basicInformationDot: boolean;
+  parametersDot: boolean;
+  connectionsDot: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -108,9 +124,16 @@ export class DeployInstanceComponent implements OnInit {
       basic: false,
       advanced: false
     };
+    this.showBack = false;
+    this.showNext = true;
+    this.showDeploy = false;
+    this.basicInformationDot = true;
+    this.parametersDot = false;
+    this.connectionsDot = false;
   }
 
   ngOnInit() {
+    console.log('ON INIT ::: SELECTED APP ::: ', this.selectedApp);
     this.deployInstanceForm = this.formBuilder.group({
       registeredName: [{value: '', disabled: true}],
       selectDrop: [null, Validators.required],
@@ -276,4 +299,23 @@ export class DeployInstanceComponent implements OnInit {
     this.defaultParamsOpened = !this.defaultParamsOpened;
   }
 
+  previousStep() {
+
+  }
+
+  nextStep() {
+
+  }
+
+  deploy() {
+
+  }
+
+  targetInstanceSelectionChange(f: { [p: string]: AbstractControl }) {
+
+  }
+
+  targetInterfaceSelectionChange(f: { [p: string]: AbstractControl }) {
+
+  }
 }

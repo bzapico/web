@@ -34,7 +34,119 @@
 .form-group {
     margin: .5em 0;
 }
+.stepper-box {
+    display: table;
+    width: 80%;
+    margin: 0 auto;
+    background-color: $white;
 
+    .step {
+        display: table-cell;
+        position: relative;
+        padding: 24px 0;
+        &:first-child:active {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        &:last-child:active {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        &:hover .step-circle {
+            background-color: $base-light-grey;
+        }
+        &:first-child .step-bar-left,
+        &:last-child .step-bar-right {
+            display: none;
+        }
+        .step-circle {
+            width: 13px;
+            height: 13px;
+            margin: 0 auto;
+            background-color: $base-light-grey;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 13px;
+            font-size: 16px;
+            font-weight: 500;
+            color: $white;
+        }
+        &.active .step-circle {
+            background-color: $base-violet;
+        }
+        .step-title {
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 9px;
+            text-align: center;
+            color:$base-light-grey;
+        }
+        &.active .step-title {
+            color: $super-dark-grey;
+        }
+        .step-bar-right {
+            position: absolute;
+            top: 54px;
+            border-top: 2px solid $light-grey;
+            right: 0;
+            left: 50%;
+            margin-left: 7px;
+        }
+        .step-bar-left {
+            position: absolute;
+            top: 54px;
+            border-top: 2px solid $light-grey;
+            left: 0;
+            right: 50%;
+            margin-right: 7px;
+        }
+    }
+}
+.stepper-actions-btn {
+    display: inline-block;
+    width: 100%;
+    margin-top: 3em;
+    .nalej-form-btn-blue {
+        float: right;
+        width: 138px;
+        position: relative;
+        font-size: 14px;
+        font-weight: 500;
+        padding-right: 30px;
+        .i-arrow-right {
+            color: $light-grey;
+            position: absolute;
+            top: 14px;
+            right: 33px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+    }
+    .nalej-form-btn-red {
+        float: left;
+        width: 138px;
+        position: relative;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: $light-grey;
+        padding-right: 16px;
+        .i-arrow-left {
+            color: $base-red;
+            position: absolute;
+            top: 14px;
+            left: 8px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        &:hover {
+            background-color: $base-red;
+            .i-arrow-left {
+                color: $light-grey;
+                transition: .3s;
+            }
+        }
+    }
+}
 @media screen and (max-height: 820px){
     .scroll-modal-form {
         max-height: 380px;
