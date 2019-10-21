@@ -88,6 +88,8 @@ export class DeployInstanceComponent implements OnInit {
   parametersDot: boolean;
   connectionsDot: boolean;
 
+  conditionExpression: string;
+
   constructor(
     private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
@@ -130,6 +132,7 @@ export class DeployInstanceComponent implements OnInit {
     this.basicInformationDot = true;
     this.parametersDot = false;
     this.connectionsDot = false;
+    this.conditionExpression = 'basic';
   }
 
   ngOnInit() {
