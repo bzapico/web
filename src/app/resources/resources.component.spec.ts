@@ -14,6 +14,9 @@ import { AbbreviatePipe } from '../pipes/abbreviate.pipe';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { SortByPipe } from '../pipes/sort-by.pipe';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '../app.module';
 
 describe('ResourcesComponent', () => {
   let component: ResourcesComponent;
@@ -40,11 +43,19 @@ describe('ResourcesComponent', () => {
         ButtonsModule,
         ModalModule.forRoot(),
         RouterTestingModule,
-        TooltipModule
+        TooltipModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
       providers: [
         BsModalRef,
-        BsModalService
+        BsModalService,
+        TranslateService
       ]
     })
     .compileComponents();

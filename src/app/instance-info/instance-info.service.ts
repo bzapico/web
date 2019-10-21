@@ -410,7 +410,7 @@ export class InstanceInfoService {
   private setPublicConnections(rule, group) {
     if (rule.access_name === AccessType.Public) {
       if (!this._isGeneratedPublicRule) {
-        this.setPublicRulesNodes(rule,);
+        this.setPublicRulesNodes(rule);
         this.setRulesLinks(rule, group);
         this._isGeneratedPublicRule = true;
       }
