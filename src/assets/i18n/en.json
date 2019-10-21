@@ -24,17 +24,18 @@
 		},
 		"typeRestrictions": "Type restrictions: {{restriction}}"
 	},
-	"applications": {
-		"filters": {
-			"atLeastOne": "It is necessary to have one selected filter",
-			"notAppliedSearching": "When the filters are applied the searching term is not applied"
-		},
-		"title": "APPLICATIONS"
-	},
 	"apps": {
 		"addConnection": {
 			"noResults": "No results found!",
 			"title": "ADD NEW CONNECTION"
+		},
+		"appInfo": "App info",
+		"appsRunning": "Apps running",
+		"deploy": "Deploy",
+		"deployed": "DEPLOYED",
+		"filters": {
+			"atLeastOne": "It is necessary to have one selected filter",
+			"notAppliedSearching": "When the filters are applied the searching term is not applied"
 		},
 		"instance": {
 			"environmentVariables": "Environment variables",
@@ -74,21 +75,12 @@
 			"undeployConfirm": "Undeploy {{appName}}?",
 			"undeployMessage": " undeployed"
 		},
-		"manageConnections": {
-			"addNewConnection": "Add new connection",
-			"appFilter": "APP FILTER",
-			"connectionsList": "CONNECTIONS LIST",
-			"createdConnection": "Created new connection",
-			"disconnect": "Disconnect",
-			"disconnectConfirm": "Disconnect?",
-			"disconnectConfirmOutboundRequired": "This outbound connection is required for the instance. Are you sure you want to remove the connection?",
-			"noConnections": "No connections found",
-			"requiredFields": "All fields should be fulfilled",
-			"sourceInstance": "Source Instance",
-			"sourceInterface": "Source Interface",
-			"targetInstance": "Target Instance",
-			"targetInterface": "Target Interface"
-		},
+		"manageConnections": "Manage connections",
+		"noAppsDeployed": "NO APPS DEPLOYED",
+		"noAppsInstances": "No application instances deployed",
+		"noClusters": "No available clusters",
+		"noRegisteredApp": "No registered applications detected",
+		"register": "Register",
 		"registered": {
 			"app": "app",
 			"deleteApp": "Delete {{appName}}?",
@@ -100,7 +92,10 @@
 			"serviceGroupInfo": {
 				"title": "Registered service group info"
 			}
-		}
+		},
+		"registeredTitle": "REGISTERED",
+		"title": "APPLICATIONS",
+		"undeploy": "Undeploy"
 	},
 	"buttons": {
 		"saveChanges": "Save changes"
@@ -213,7 +208,7 @@
 		"label": {
 			"add": "add",
 			"delete": "delete",
-			"deleteLabel": "Delete labels?"
+			"deleteLabel": "Delete label"
 		},
 		"quickFilters": {
 			"assets": "ASSETS",
@@ -316,6 +311,7 @@
 	"tables": {
 		"organizationId": "Organization ID",
 		"tableAccess": "Access",
+		"tableActions": "Actions",
 		"tableAppDescriptorID": "App descriptor ID",
 		"tableAuth": "Auth",
 		"tableCredentials": "Credentials",

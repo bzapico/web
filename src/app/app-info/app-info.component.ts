@@ -5,9 +5,9 @@ import { NotificationsService } from '../services/notifications.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AppInfoDetailedComponent } from '../app-info-detailed/app-info-detailed.component';
 import { AppStatus } from '../definitions/enums/app-status.enum';
-import {BackendService} from '../services/backend.service';
-import {MockupBackendService} from '../services/mockup-backend.service';
-import {LocalStorageKeys} from '../definitions/const/local-storage-keys';
+import { BackendService } from '../services/backend.service';
+import { MockupBackendService } from '../services/mockup-backend.service';
+import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
 /**
  * Notification timeout reference

@@ -91,7 +91,7 @@
                   <span (click)="resetFilters('services')" class="reset-search">
                     {{'sortingMessage.reset'|translate}}
                   </span>
-                </p>
+                </p>{{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
                 <p *ngIf="filterField && searchTerm" class="sorting-message">
                   {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
                   <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: ' '} }} </span>
@@ -229,7 +229,7 @@
                             <div class="col-12 label-td">
                               <button
                                 *ngFor="let label of service.labels | keyvalue"
-                                class="label-content-disabled">
+                                class="label-content-disabled" disabled>
                                 {{label.key}}: {{label.value}}
                               </button>
                             </div>
