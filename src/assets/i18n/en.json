@@ -62,7 +62,6 @@
 			"tableAuthInBig": "(group, service / device group)",
 			"tableEndpoints": "Endpoints",
 			"tableImage": "Image",
-			"tableInfo": "Info",
 			"tableInstanceOf": "Instance of",
 			"tableLabels": "Labels",
 			"tableName": "Name",
@@ -277,6 +276,16 @@
 	},
 	"searcher": {
 		"placeholder": "Search..."
+	},
+	"sidebar": {
+		"applications": "Applications",
+		"devices": "Devices",
+		"editProfile": "Edit profile",
+		"infrastructure": "Infrastructure",
+		"logout": "Logout",
+		"nalej": "NALEJ",
+		"organization": "Organization",
+		"resources": "Resources"
 	},
 	"sortingMessage": {
 		"andFilteredBy": "and filtered by \"{{value}}\"",
