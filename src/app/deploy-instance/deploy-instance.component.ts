@@ -331,6 +331,10 @@ export class DeployInstanceComponent implements OnInit {
         this.conditionExpression = 'basic';
         this.parametersDot = false;
         this.basicInformationDot = true;
+        if (!this.selectedApp.outbound_net_interfaces) {
+          this.showNext = false;
+          this.showDeploy = true;
+        }
         break;
       case 'connections':
         console.log('CONÉCTAME OTRA VEZ');
@@ -355,7 +359,13 @@ export class DeployInstanceComponent implements OnInit {
         this.basicInformationDot = false;
         if (this.selectedApp.parameters) {
           this.conditionExpression = 'parameters';
-          this.parametersDot = true;
+          if (!this.selectedApp.outbound_net_interfaces) {
+            this.connectionsDot = true;
+            this.showDeploy = true;
+            this.showNext = false;
+          } else {
+            this.parametersDot = true;
+          }
         } else {
           this.conditionExpression = 'connections';
           this.connectionsDot = true;
