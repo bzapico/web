@@ -51,7 +51,7 @@
   <div *ngIf="!isSelectableLabel">
     <div *ngIf="labelsData['labels']">
       <div *ngFor="let label of labelsData['labels']">
-        <button class="label-content-disabled">
+        <button class="label-content-disabled" disabled>
             {{label.key}}: {{label.value}}
         </button>
       </div>

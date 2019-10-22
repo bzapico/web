@@ -169,7 +169,7 @@
                   <div *ngIf="!cluster.labels" class="col-12"> 
                     <div 
                       (click)="addLabel(cluster)"
-                      tooltip="Add" 
+                      tooltip="{{'label.addUp' | translate}}" 
                       placement="right"
                       class="label-btn-blue">
                         <i class="material-icons i-add">add</i>  
@@ -191,7 +191,7 @@
                       <div 
                         *ngIf="isAnyLabelSelected(cluster.cluster_id); else isNotAnyLabelSelected" 
                         (click)="deleteLabel(cluster)" 
-                        tooltip="Delete" 
+                        tooltip="{{'label.deleteUp' | translate}}" 
                         placement="right" 
                         class="label-btn-red"> 
                         <i class="material-icons i-delete">delete</i> 
@@ -199,7 +199,7 @@
                       <ng-template #isNotAnyLabelSelected> 
                         <div 
                           (click)="addLabel(cluster)" 
-                          tooltip="Add" 
+                          tooltip="{{'label.addUp' | translate}}" 
                           placement="right" 
                           class="label-btn-blue">
                           <i class="material-icons i-add">add</i>
