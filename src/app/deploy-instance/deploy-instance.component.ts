@@ -303,15 +303,51 @@ export class DeployInstanceComponent implements OnInit {
   }
 
   previousStep() {
-
+    switch (this.conditionExpression) {
+      case 'basic':
+        this.registeredApps = [...this.registeredApps];
+        break;
+      case 'parameters':
+        this.conditionExpression = 'basic';
+        this.parametersDot = false;
+        this.basicInformationDot = true;
+        break;
+      case 'connections':
+        console.log('CONÉCTAME OTRA VEZ');
+        if (this.selectedApp.parameters) {
+          this.conditionExpression = 'parameters';
+          this.parametersDot = true;
+          this.connectionsDot = false;
+        } else {
+          console.log('HOLAAA');
+          this.conditionExpression = 'basic';
+          this.basicInformationDot = true;
+          this.connectionsDot = false;
+        }
+        break;
+    }
   }
 
   nextStep() {
-
-  }
-
-  deploy() {
-
+    console.log('SELECTED APP ', this.selectedApp);
+    switch (this.conditionExpression) {
+      case 'basic':
+        this.basicInformationDot = false;
+        if (this.selectedApp.parameters) {
+          this.conditionExpression = 'parameters';
+          this.parametersDot = true;
+        } else {
+          this.conditionExpression = 'connections';
+          this.connectionsDot = true;
+        }
+        this.showBack = true;
+        break;
+      case 'parameters':
+        this.conditionExpression = 'connections';
+        this.parametersDot = false;
+        this.connectionsDot = true;
+        break;
+    }
   }
 
   targetInstanceSelectionChange(f: { [p: string]: AbstractControl }) {

@@ -961,13 +961,15 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   private getAppsInCluster(clusterId: string) {
     const appsInCluster = {};
-    for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
-      const groups = this.instances[indexInstance].groups || [];
-      for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
-        const serviceInstances = groups[indexGroup].service_instances || [];
-        for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
-          if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
-            appsInCluster[serviceInstances[indexService].app_instance_id] = this.instances[indexInstance];
+    if (this.instances) {
+      for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
+        const groups = this.instances[indexInstance].groups || [];
+        for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
+          const serviceInstances = groups[indexGroup].service_instances || [];
+          for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
+            if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
+              appsInCluster[serviceInstances[indexService].app_instance_id] = this.instances[indexInstance];
+            }
           }
         }
       }
@@ -1345,7 +1347,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
               this.clusters = clusters.clusters;
               this.instances = instances.instances;
               this.registered = registered.descriptors || [];
-              this.processedRegisteredList();
+              console.log('INSTANCES ', this.instances);
+              if (this.instances) {
+                this.processedRegisteredList();
+              }
               this.clusters.forEach(cluster => {
                 this.preventEmptyFields(cluster);
               });
@@ -1356,6 +1361,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
               this.toGraphData();
             })
             .catch(errorResponse => {
+              console.log('ERROR RESPONSE ', errorResponse);
               this.loadedData = false;
               this.requestError = errorResponse.error.message;
             });
