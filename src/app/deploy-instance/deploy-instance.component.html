@@ -52,6 +52,7 @@
                 <div class="form-group form-group-drop">
                   <label>Registered name</label>
                   <ngx-select-dropdown
+                    *ngIf="reload"
                     formControlName="selectDrop"
                     [multiple]="false"
                     [config]="selectConfig"

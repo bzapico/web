@@ -33,6 +33,13 @@
 .accordion-body {
     width: 322px;
     margin: 0 auto;
+    .outbound-title {
+        font-size: 13px;
+        margin: .5em 0;
+        color: $super-dark-grey;
+        font-weight: 500;
+        display: block;
+    }
 }
 .accordion-foot {
     color: $low-grey;

@@ -357,9 +357,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         // until the backend updates the app status after triggering undeploy action
         // (https://daisho.atlassian.net/browse/NP-1679
           const instancesUndeploying = [];
-          for (let index = 0; index < this.instances.length; index++) {
-            if (this.instances[index].undeploying) {
-              instancesUndeploying.push(this.instances[index].app_instance_id);
+          if (this.instances) {
+            for (let index = 0; index < this.instances.length; index++) {
+              if (this.instances[index].undeploying) {
+                instancesUndeploying.push(this.instances[index].app_instance_id);
+              }
             }
           }
           instancesUndeploying.forEach(instanceUndeployingId => {

@@ -5,7 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import {FormGroup, FormBuilder, Validators, FormArray, AbstractControl} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-deploy-instance',
@@ -18,6 +18,7 @@ export class DeployInstanceComponent implements OnInit {
    * Models that holds forms info
    */
   deployInstanceForm: FormGroup;
+  selectDrop: FormControl;
   submitted = false;
   loading: boolean;
   loadedData: boolean;
@@ -90,6 +91,8 @@ export class DeployInstanceComponent implements OnInit {
 
   conditionExpression: string;
 
+  reload: boolean;
+
   constructor(
     private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
@@ -114,7 +117,7 @@ export class DeployInstanceComponent implements OnInit {
       displayKey: 'name',
       search: false,
       height: 'auto',
-      placeholder: 'Registered name',
+      placeholder: 'Select any registered name',
       limitTo: this.registeredApps.length,
       moreText: 'more',
       noResultsFound: 'No results found!'
@@ -133,20 +136,22 @@ export class DeployInstanceComponent implements OnInit {
     this.parametersDot = false;
     this.connectionsDot = false;
     this.conditionExpression = 'basic';
+    this.reload = true;
+    this.selectDrop = new FormControl(null, Validators.required);
   }
 
   ngOnInit() {
     console.log('ON INIT ::: SELECTED APP ::: ', this.selectedApp);
     this.deployInstanceForm = this.formBuilder.group({
       registeredName: [{value: '', disabled: true}],
-      selectDrop: [null, Validators.required],
       instanceName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z0-9]+$')]],
       params: this.formBuilder.array([ ])
     });
-
+    this.deployInstanceForm.addControl('selectDrop', this.selectDrop);
     this.backend.getRegisteredApps(this.organizationId)
     .subscribe(response => {
         this.registeredApps = response.descriptors || [];
+        this.registeredApps.unshift({id: -1, name: 'Select any registered name'});
         this.loadedData = true;
     });
 
@@ -265,6 +270,12 @@ export class DeployInstanceComponent implements OnInit {
           this.availableParamsCategory.advanced = true;
         }
       });
+    } else if (!this.selectedApp.parameters && !this.selectedApp.outbound_net_interfaces) {
+      this.showBack = true;
+      this.showNext = false;
+      this.showDeploy = true;
+      this.basicInformationDot = false;
+      this.connectionsDot = true;
     }
   }
 
@@ -303,9 +314,18 @@ export class DeployInstanceComponent implements OnInit {
   }
 
   previousStep() {
+    console.log('PREVIOUS STEP ::: REG APPS ::: ', this.registeredApps);
     switch (this.conditionExpression) {
       case 'basic':
-        this.registeredApps = [...this.registeredApps];
+        this.reload = false;
+        this.ngOnInit();
+        this.connectionsDot = false;
+        this.basicInformationDot = true;
+        this.reload = true;
+        this.showBack = false;
+        this.showDeploy = false;
+        this.showNext = true;
+        this.deployInstanceForm.controls.selectDrop.setValue({id: -1, name: 'Select any registered name'});
         break;
       case 'parameters':
         this.conditionExpression = 'basic';
