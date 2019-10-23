@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="modal-header">
       <h3 class="modal-info-title mb-4">
-        {{'devices.deviceGroupInfo.title'|translate}}
+        {{'devices.deviceGroupInfo.title' | translate}}
       </h3>
     </div>
     <!-- Body -->
@@ -14,13 +14,13 @@
       <br>
       <div class="row">
         <div class="col-sm modal-info-table-title mb-3">
-          {{'devices.deviceGroupInfo.apiKey'|translate}}</div>
+          {{'devices.deviceGroupInfo.apiKey' | translate}}</div>
         <div class="col-sm text-right">{{deviceGroupApiKey}}</div>
       </div>
       <br>
       <div class="row">
         <div class="col-sm modal-info-table-title mb-3">
-          {{'devices.deviceGroupInfo.defaultConnectivity'|translate}}
+          {{'devices.deviceGroupInfo.defaultConnectivity' | translate}}
         </div>
         <div *ngIf="defaultDeviceConnectivity" class="col-sm text-right">
           <i class="material-icons blue">check_box</i>
@@ -32,7 +32,7 @@
       <br>
       <div class="row">
         <div class="col-sm modal-info-table-title mb-3">
-          {{'devices.deviceGroupInfo.enablement'|translate}}
+          {{'devices.deviceGroupInfo.enablement' | translate}}
         </div>
         <div *ngIf="enabled" class="col-sm text-right">
           <i class="material-icons blue">check_box</i>
@@ -45,11 +45,9 @@
     <!-- Option button -->
     <div class="form-group-btn">
       <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">
-        <span class="align-bottom">{{'modals.buttonClose'|translate}}</span>
+        <span class="align-bottom">{{'modals.buttonClose' | translate}}</span>
       </button>
     </div>
     </div>
   </div>
 </div>
-  
-    

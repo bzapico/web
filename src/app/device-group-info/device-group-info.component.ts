@@ -24,7 +24,7 @@ export class DeviceGroupInfoComponent implements OnInit {
   constructor( public bsModalRef: BsModalRef ) {
     // Default initialization
     this.loadedData = false;
-   }
+  }
 
   ngOnInit() {
   }

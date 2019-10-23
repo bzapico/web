@@ -99,16 +99,16 @@
             </p>
             <p *ngIf="filterField && !searchTerm" class="sorting-message">
               {{'sortingMessage.sortedBy' | translate:{value: getBeautyCategoryName(sortedBy)} }}
-              <span *ngIf="reverse">ascendant. </span>
-              <span *ngIf="!reverse">descendant. </span>
+              <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: '. '} }} </span>
+              <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: '. '} }}</span>
               <span (click)="resetFilters(filterField)" class="reset-search">
                 {{'sortingMessage.reset' | translate}}
               </span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
               {{'sortingMessage.sortedBy' | translate:{value: getBeautyCategoryName(sortedBy)} }}
-              <span *ngIf="reverse">ascendant </span>
-              <span *ngIf="!reverse">descendant </span>
+              <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ' '} }}</span>
+              <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: ' '} }}</span>
               {{'sortingMessage.andFilteredBy' | translate:{value: searchTerm} }}.
               <span (click)="resetFilters(filterField)" class="reset-search">
                 {{'sortingMessage.reset' | translate}}
