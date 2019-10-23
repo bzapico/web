@@ -1,7 +1,7 @@
 <!-- Component title -->
 <div class="row row-title">
   <div class="col-12">
-    <h2 class="section-title">{{'devices.title'|translate}}</h2>
+    <h2 class="section-title">{{'devices.title' | translate}}</h2>
   </div>
 </div>
 <!-- Summary and devices status timeline row -->
@@ -9,34 +9,34 @@
   <div class="col-lg-4 h-100">
     <div class="card">
       <div class="card-title-name">
-        <h5>{{'devices.summary.title'|translate}}</h5>
+        <h5>{{'devices.summary.title' | translate}}</h5>
       </div>
       <div *ngIf="groups && groups.length > 0" class="summary-card">
         <div class="summary-box">
           <div class="circle">
               <span >{{groups.length}}</span>
           </div>
-          <p class="circle-name">{{'devices.summary.groups.title'|translate}}</p>
+          <p class="circle-name">{{'devices.summary.groups.title' | translate}}</p>
         </div>        
         <div class="summary-box">
           <div class="circle">
             <span>{{countDevices()}}</span> 
           </div>
-            <p class="circle-name">{{'devices.title'|translate}}</p>
+            <p class="circle-name">{{'devices.title' | translate}}</p>
         </div>
       </div>
       <div *ngIf="groups && groups.length === 0" class="no-elements">
-        {{'devices.summary.noAvailable'|translate}}
+        {{'devices.summary.noAvailable' | translate}}
       </div>
     </div>
   </div>
   <div class="col-lg-8 h-100">
     <div class="card p-4">
       <div class="card-title-name">
-        <h5>{{'devices.status.title'|translate}}</h5>
+        <h5>{{'devices.status.title' | translate}}</h5>
       </div>
       <div *ngIf="countDevices() === 0" class="no-elements"> 
-        {{'devices.noDevices'|translate}}
+        {{'devices.noDevices' | translate}}
       </div>
       <div *ngIf="countDevices() > 0" class="line-chart-box">
         <ngx-charts-line-chart
@@ -71,13 +71,13 @@
     <div class="card p-4">
       <div class="row mb-15">
         <div class="col-10 card-title-name-mb">
-          <h5>{{'devices.title'|translate}}</h5>
+          <h5>{{'devices.title' | translate}}</h5>
         </div>
         <!-- Add group -->
         <div class="col-2 add-group-box">
           <button (click)="addGroup()" class="add-group-btn">
             <i class="material-icons i-add">add</i>
-            {{'devices.addGroup'|translate}}
+            {{'devices.addGroup' | translate}}
           </button>
         </div>
       </div>
@@ -92,26 +92,26 @@
           <!-- Sorting messages -->
           <div class="col-8">  
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
-              {{'sortingMessage.filteredBy'|translate:{value: searchTerm} }}
+              {{'sortingMessage.filteredBy' | translate:{value: searchTerm} }}
               <span (click)="resetFilters(filterField)" class="reset-search">
-                {{'sortingMessage.reset'|translate}}
+                {{'sortingMessage.reset' | translate}}
               </span>
             </p>
             <p *ngIf="filterField && !searchTerm" class="sorting-message">
-              {{'sortingMessage.sortedBy'|translate:{value: getBeautyCategoryName(sortedBy)} }}
+              {{'sortingMessage.sortedBy' | translate:{value: getBeautyCategoryName(sortedBy)} }}
               <span *ngIf="reverse">ascendant. </span>
               <span *ngIf="!reverse">descendant. </span>
               <span (click)="resetFilters(filterField)" class="reset-search">
-                {{'sortingMessage.reset'|translate}}
+                {{'sortingMessage.reset' | translate}}
               </span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
-              {{'sortingMessage.sortedBy'|translate:{value: getBeautyCategoryName(sortedBy)} }}
+              {{'sortingMessage.sortedBy' | translate:{value: getBeautyCategoryName(sortedBy)} }}
               <span *ngIf="reverse">ascendant </span>
               <span *ngIf="!reverse">descendant </span>
-              {{'sortingMessage.andFilteredBy'|translate:{value: searchTerm} }}.
+              {{'sortingMessage.andFilteredBy' | translate:{value: searchTerm} }}.
               <span (click)="resetFilters(filterField)" class="reset-search">
-                {{'sortingMessage.reset'|translate}}
+                {{'sortingMessage.reset' | translate}}
               </span>
             </p> 
           </div>
@@ -123,7 +123,7 @@
                   name="searchTerm" 
                   [(ngModel)]="searchTerm"
                   type="text" 
-                  placeholder="{{'searcher.placeholder'|translate }}"
+                  placeholder="{{'searcher.placeholder' | translate }}"
                   class="form-control"> 
                   <div *ngIf="searchTerm === ''" class="search-icon">
                     <i class="material-icons">search</i>
@@ -137,12 +137,11 @@
         </div>
         <!-- Devices tabs -->
         <div class="row h-100">
-          <div class="col accordion-box accordion-devices">
+          <div *ngIf="groups.length > 0" class="col accordion-box accordion-devices">
             <accordion 
               *ngFor="let group of groups"
               class="accordion-tabs">
               <accordion-group
-                *ngIf="groups.length > 0"
                 heading="{{group.name}}"
                 [panelClass]="nalejAccordion"
                 [isOpen]="group.isFirstOpen"
@@ -188,7 +187,7 @@
                               (click)="setOrder('name')"
                               [ngClass]="getCategoryCSSClass('name')"
                               class="label-th col-4">
-                              <span tooltip="{{'devices.tableName'|translate}}" placement="bottom">{{'devices.tableName'|translate}}</span>
+                              <span tooltip="{{'devices.tableName' | translate}}" placement="bottom">{{'devices.tableName' | translate}}</span>
                               <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                                 <i class="material-icons">expand_more</i>
                               </span>
@@ -201,7 +200,7 @@
                               (click)="setOrder('date')" 
                               [ngClass]="getCategoryCSSClass('date')"
                               class="label-th col-4">
-                              <span tooltip="{{'devices.tableDate'|translate}}" placement="bottom">{{'devices.tableDate'|translate}}</span>
+                              <span tooltip="{{'devices.tableDate' | translate}}" placement="bottom">{{'devices.tableDate' | translate}}</span>
                               <span *ngIf="sortedBy === 'date' && !reverse" class="expand-chevron">
                                 <i class="material-icons">expand_more</i>
                               </span>
@@ -214,7 +213,7 @@
                               (click)="setOrder('status')" 
                               [ngClass]="getCategoryCSSClass('status')"
                               class="label-th col-4 text-center">
-                              <span tooltip="{{'devices.tableStatus'|translate}}" placement="bottom">{{'devices.tableStatus'|translate}}</span>
+                              <span tooltip="{{'devices.tableStatus' | translate}}" placement="bottom">{{'devices.tableStatus' | translate}}</span>
                               <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
                                 <i class="material-icons">expand_more</i>
                               </span>
@@ -227,7 +226,7 @@
                               (click)="setOrder('labels')" 
                               [ngClass]="getCategoryCSSClass('labels')"
                               class="label-th col-12">
-                              <span tooltip="{{'devices.tableLabels'|translate}}" placement="bottom">{{'devices.tableLabels'|translate}}</span>
+                              <span tooltip="{{'devices.tableLabels' | translate}}" placement="bottom">{{'devices.tableLabels' | translate}}</span>
                               <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                                 <i class="material-icons">expand_more</i>
                               </span>
@@ -240,7 +239,7 @@
                         <div 
                           *ngIf="countDevices() > 0"
                           class="label-th col-1 text-center">
-                          <span tooltip="{{'devices.tableActions'|translate}}" placement="bottom">{{'devices.tableActions'|translate}}</span> 
+                          <span tooltip="{{'devices.tableActions' | translate}}" placement="bottom">{{'devices.tableActions' | translate}}</span> 
                         </div>
                       </div>
                       <span *ngIf="
@@ -260,9 +259,9 @@
                                   class="col-4 label-td col-center-lowercase"
                                   [ngClass]=
                                   "{
-                                    'status-dot':classStatusCheck(device.device_status_name, 'status.online'|translate),
-                                    'status-dot-error':classStatusCheck(device.device_status_name, 'status.offline'|translate),
-                                    'status-dot-process':classStatusCheck(device.device_status_name, 'status.process'|translate)
+                                    'status-dot':classStatusCheck(device.device_status_name, 'status.online' | translate),
+                                    'status-dot-error':classStatusCheck(device.device_status_name, 'status.offline' | translate),
+                                    'status-dot-process':classStatusCheck(device.device_status_name, 'status.process' | translate)
                                   }"> 
                                   <span 
                                     tooltip="{{device.device_status_name}}" 
@@ -278,7 +277,7 @@
                                 <div *ngIf="!device.labels" class="col-12">
                                   <div 
                                     (click)="addLabel(device)"
-                                    tooltip="{{'label.add'|translate}}" 
+                                    tooltip="{{'label.add' | translate}}" 
                                     placement="right"
                                     class="label-btn-blue">
                                       <i class="material-icons i-add">add</i>  
@@ -296,23 +295,24 @@
                                     class="label-content">
                                     {{label.key}}: {{label.value}}
                                   </button>
-                                  <div class="label-btns">
+                                  <div class="label-btns"> 
                                     <div 
-                                      *ngIf="isAnyLabelSelected(device.device_id) === false"
-                                      (click)="addLabel(device)"
-                                      tooltip="{{'label.add'|translate}}" 
-                                      placement="right"
-                                      class="label-btn-blue">
-                                      <i class="material-icons i-add">add</i>
+                                      *ngIf="isAnyLabelSelected(device.device_id); else isNotAnyLabelSelected" 
+                                      (click)="deleteLabel(device)" 
+                                      tooltip="{{'label.deleteUp' | translate}}" 
+                                      placement="right" 
+                                      class="label-btn-red"> 
+                                      <i class="material-icons i-delete">delete</i> 
                                     </div>
-                                    <div 
-                                      *ngIf="isAnyLabelSelected(device.device_id) === true"
-                                      (click)="deleteLabel(device)"
-                                      tooltip="{{'label.delete'|translate}}" 
-                                      placement="right"
-                                      class="label-btn-red">
-                                      <i class="material-icons i-delete">delete</i>
-                                    </div>
+                                    <ng-template #isNotAnyLabelSelected> 
+                                      <div 
+                                        (click)="addLabel(device)" 
+                                        tooltip="{{'label.addUp' | translate}}" 
+                                        placement="right" 
+                                        class="label-btn-blue">
+                                        <i class="material-icons i-add">add</i>
+                                      </div> 
+                                    </ng-template> 
                                   </div>
                                 </div>
                               </div>
@@ -322,7 +322,7 @@
                                 <button 
                                   *ngIf="device.enabled"
                                   (click)="enableSwitcher(device)"
-                                  tooltip="{{'devices.enabled'|translate}}" 
+                                  tooltip="{{'devices.enabled' | translate}}" 
                                   placement="left"
                                   class="action-btn-blue-2">
                                   <i class="material-icons i-white-2">play_arrow</i>
@@ -330,14 +330,14 @@
                                 <button
                                   *ngIf="!device.enabled" 
                                   (click)="enableSwitcher(device)"
-                                  tooltip="{{'devices.disabled'|translate}}" 
+                                  tooltip="{{'devices.disabled' | translate}}" 
                                   placement="left"
                                   class="action-btn-grey-2 position-relative">
                                   <i class="material-icons i-black-2">pause</i>
                                 </button>
                                 <button 
                                   (click)="unlinkDevice(device)"
-                                  tooltip="{{'devices.unlinkDevice'|translate}}" 
+                                  tooltip="{{'devices.unlinkDevice' | translate}}" 
                                   placement="bottom" 
                                   class="action-btn-red-2">
                                   <i class="material-icons i-red-2">delete</i>
@@ -354,11 +354,7 @@
                     "getGroupDevices(group.device_group_id).length === 0 &&
                     loadedData"
                     class="no-elements-in-group">
-                    {{'devices.noDevicesRegistered'|translate}}
-                  </div>
-                  <!-- No info to show -->
-                  <div *ngIf="groups && groups.length === 0 && !requestError" class="no-elements">
-                    {{'devices.noGroupsCreated'|translate}}
+                    {{'devices.noDevicesRegistered' | translate}}
                   </div>
                   <!-- Requested error -->
                   <div *ngIf="requestError" class="no-elements">
@@ -366,6 +362,10 @@
                   </div>
               </accordion-group>
             </accordion>
+          </div>
+          <!-- No info to show -->
+          <div *ngIf="loadedData && groups.length === 0" class="col no-elements-in-group">  
+            {{'devices.noGroupsCreated' | translate}}
           </div>
         </div>
       </span>

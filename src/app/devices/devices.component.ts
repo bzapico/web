@@ -11,6 +11,7 @@ import { GroupConfigurationComponent } from '../group-configuration/group-config
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { DeviceGroupInfoComponent } from '../device-group-info/device-group-info.component';
 import { TranslateService } from '@ngx-translate/core';
+import { DevicesStatus } from '../definitions/enums/devices-status.enum';
 
 /**
  * It sets the timeout in actions like undeploying or deleting
@@ -314,20 +315,20 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   classStatusCheck(status: string, className: string): boolean {
     if (status) {
       switch (status.toLowerCase()) {
-        case this.translateService.instant('status.online'): {
-          if (className.toLowerCase() === this.translateService.instant('status.online')) {
+        case DevicesStatus.Online: {
+          if (className.toLowerCase() === DevicesStatus.Online) {
             return true;
           }
           break;
         }
-        case this.translateService.instant('status.offline'): {
-          if (className.toLowerCase() === this.translateService.instant('status.offline')) {
+        case DevicesStatus.Offline: {
+          if (className.toLowerCase() === DevicesStatus.Offline) {
             return true;
           }
           break;
         }
-       default: {
-          if (className.toLowerCase() === this.translateService.instant('status.process')) {
+      default: {
+          if (className.toLowerCase() === DevicesStatus.Process) {
             return true;
           }
           return false;
