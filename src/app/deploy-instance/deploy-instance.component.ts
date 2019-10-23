@@ -5,7 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { FormGroup, FormBuilder, Validators, FormArray, AbstractControl, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-deploy-instance',
@@ -78,10 +78,9 @@ export class DeployInstanceComponent implements OnInit {
   showBack: boolean;
   showNext: boolean;
   showDeploy: boolean;
-  targetInstanceConfig: {};
-  instancesNames: string[];
-  targetInterfaceConfig: {};
   targetInterfaceOptions: {}[];
+  conditionExpression: string;
+  reload: boolean;
   /**
    * Options to active dots
    */
@@ -89,9 +88,17 @@ export class DeployInstanceComponent implements OnInit {
   parametersDot: boolean;
   connectionsDot: boolean;
 
-  conditionExpression: string;
-
-  reload: boolean;
+  /**
+   * Configuration for connections step
+   */
+  requiredConnections: {}[];
+  areRequiredConnections: boolean;
+  instances: any[];
+  instancesNames: string[];
+  targetInstance: FormControl;
+  targetInterface: FormControl;
+  connections: {}[];
+  required: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -100,7 +107,6 @@ export class DeployInstanceComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-
     const mock = localStorage.getItem(LocalStorageKeys.deployInstanceMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -138,6 +144,12 @@ export class DeployInstanceComponent implements OnInit {
     this.conditionExpression = 'basic';
     this.reload = true;
     this.selectDrop = new FormControl(null, Validators.required);
+    this.targetInstance = new FormControl(null, Validators.required);
+    this.targetInterface = new FormControl(null, Validators.required);
+    // this.connectionsListControl = new FormControl();
+    this.instancesNames = [];
+    this.instances = [];
+    this.connections = [];
   }
 
   ngOnInit() {
@@ -148,6 +160,9 @@ export class DeployInstanceComponent implements OnInit {
       params: this.formBuilder.array([ ])
     });
     this.deployInstanceForm.addControl('selectDrop', this.selectDrop);
+    this.deployInstanceForm.addControl('targetInstance', this.targetInstance);
+    this.deployInstanceForm.addControl('targetInterface', this.targetInterface);
+    // this.deployInstanceForm.addControl('connectionsListControl', this.connectionsListControl);
     this.backend.getRegisteredApps(this.organizationId)
     .subscribe(response => {
         this.registeredApps = response.descriptors || [];
@@ -186,6 +201,7 @@ export class DeployInstanceComponent implements OnInit {
   get f() { return this.deployInstanceForm.controls; }
 
   deployInstance(f) {
+    console.log('MIRACLE ::: ', this.selectedApp.outbound_net_interfaces);
     this.instanceName = f.instanceName.value;
     this.submitted = true;
     if (!f.instanceName.errors) {
@@ -194,7 +210,7 @@ export class DeployInstanceComponent implements OnInit {
       }
       this.loading = true;
       if (!this.selectedApp.parameters) {
-        this.backend.deploy(this.organizationId, this.registeredId, this.instanceName)
+        this.backend.deploy(this.organizationId, this.registeredId, this.instanceName, null, this.connections)
           .subscribe(deployResponse => {
             this.loading = false;
             this.onClose(false);
@@ -221,7 +237,7 @@ export class DeployInstanceComponent implements OnInit {
            value: param[0].value
           });
         });
-        this.backend.deploy(this.organizationId, this.registeredId, this.instanceName, instanceParams)
+        this.backend.deploy(this.organizationId, this.registeredId, this.instanceName, instanceParams, this.connections)
           .subscribe(deployResponse => {
             this.loading = false;
             this.onClose(false);
@@ -289,8 +305,6 @@ export class DeployInstanceComponent implements OnInit {
       if (discard) {
         this.onClose(true);
         this.bsModalRef.hide();
-      } else {
-        // Do nothing
       }
     } else {
       this.onClose(true);
@@ -331,6 +345,7 @@ export class DeployInstanceComponent implements OnInit {
         this.conditionExpression = 'basic';
         this.parametersDot = false;
         this.basicInformationDot = true;
+        this.showBack = false;
         if (!this.selectedApp.outbound_net_interfaces) {
           this.showNext = false;
           this.showDeploy = true;
@@ -367,24 +382,56 @@ export class DeployInstanceComponent implements OnInit {
             this.parametersDot = true;
           }
         } else {
+          this.setConnectionsAndInstances();
           this.conditionExpression = 'connections';
           this.connectionsDot = true;
         }
         this.showBack = true;
         break;
       case 'parameters':
-        this.conditionExpression = 'connections';
+        this.setConnectionsAndInstances();
+        console.log('CON INSTANCES ', this.instances);
         this.parametersDot = false;
         this.connectionsDot = true;
+        this.showDeploy = true;
+        this.showNext = false;
+        if (this.instances.length > 0) {
+          this.conditionExpression = 'connections';
+        }
         break;
     }
   }
 
-  targetInstanceSelectionChange(f: { [p: string]: AbstractControl }) {
-
+  targetInstanceSelectionChange(f, i: number) {
+    console.log('fff ', f.targetInstance.value, i);
+    // this.targetInstance = this.deployInstanceForm.get('targetInstance') as FormArray;
+    console.log('TARGET INSTANCE ', this.targetInstance);
+    if (f.targetInstance.value) {
+      this.targetInterfaceOptions =
+          this.instances.filter(inst => inst.name === f.targetInstance.value)[0].inbound_net_interfaces.map(item => item.name);
+    }
   }
 
-  targetInterfaceSelectionChange(f: { [p: string]: AbstractControl }) {
+  targetInterfaceSelectionChange(f, i: number) {
+    console.log('TARGET INTERFACE SELECTION CHANGE :: ', f.targetInterface.value, i);
+    // this.targetInterface = this.deployInstanceForm.get('targetInterface') as FormArray;
+    // console.log('TARGET INTERFACE ', this.targetInterface);
+    if (f.targetInterface.value) {
+      this.connections.push(
+        {target_instance_id: this.instances.filter(inst => inst.name === f.targetInstance.value)[0].app_instance_id,
+         target_inbound_name: f.targetInterface.value,
+         source_outbound_name: this.selectedApp.outbound_net_interfaces[0].name}
+      );
+    }
+  }
 
+  private setConnectionsAndInstances() {
+    if (this.selectedApp && this.selectedApp.outbound_net_interfaces) {
+      this.areRequiredConnections = this.selectedApp.outbound_net_interfaces.filter(item => item.required).length > 0;
+      this.requiredConnections = this.selectedApp.outbound_net_interfaces.filter(item => item.required);
+    }
+    if (this.instances && this.instances.length > 0) {
+      this.instancesNames = this.instances.filter(instance => instance.inbound_net_interfaces).map(inst => inst.name);
+    }
   }
 }

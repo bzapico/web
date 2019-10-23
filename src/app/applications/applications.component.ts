@@ -733,6 +733,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   deployInstance() {
     const initialState = {
       organizationId: this.organizationId,
+      instances: this.instances,
       defaultAutofocus: false
     };
 

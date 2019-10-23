@@ -141,41 +141,44 @@
                     <i class="material-icons accordion-arrow">arrow_drop_down</i>
                     <span>Outbounds</span>
                   </div>
+<!--                  formArrayName="connectionsList"-->
                   <div class="accordion-body">
-                    <div *ngFor="let connection of selectedApp.outbound_net_interfaces">
-                      <span class="outbound-title">{{connection.name}}</span>
-                      <!-- Target Instance dropdown -->
-                      <div class="form-group form-group-drop">
-                        <label>Target Instance</label>
-                        <ngx-select-dropdown
-                          formControlName="targetInstance"
-                          [multiple]="false"
-                          [config]="targetInstanceConfig"
-                          [options]="instancesNames"
-                          (change)="targetInstanceSelectionChange(f)">
-                          <!--                          [ngClass]="{ 'base-light-grey': !f.targetInstance.value }"-->
-                        </ngx-select-dropdown>
-                        <div class="form-group-drop-arrow">
-                          <i class="material-icons">arrow_drop_down</i>
+<!--                    formControlName="connectionsListControl"-->
+                    <div *ngFor="let connection of requiredConnections; let i = index;">
+<!--                      <div [formGroupName]="i">-->
+                        <!-- Target Instance dropdown -->
+                        <span class="outbound-title">{{connection['name']}}</span>
+<!--                      [formGroupName]="i"-->
+                        <div class="form-group form-group-drop">
+                          <label>Target Instance</label>
+                          <ngx-select-dropdown
+                            formControlName="targetInstance"
+                            [multiple]="false"
+                            [options]="instancesNames"
+                            (change)="targetInstanceSelectionChange(f, i)">
+                            <!--                          [ngClass]="{ 'base-light-grey': !f.targetInstance.value }"-->
+                          </ngx-select-dropdown>
+                          <div class="form-group-drop-arrow">
+                            <i class="material-icons">arrow_drop_down</i>
+                          </div>
+                          <div class="error-h"></div>
+<!--                        </div>-->
+                        <!-- Target Inbound dropdown -->
+<!--                        <div  class="form-group form-group-drop">-->
+                          <label>Target Inbound</label>
+                          <ngx-select-dropdown
+                            formControlName="targetInterface"
+                            [multiple]="false"
+                            [options]="targetInterfaceOptions"
+                            (change)="targetInterfaceSelectionChange(f, i)">
+<!--                            [ngClass]="{ 'base-light-grey': !f.targetInterface.value }"-->
+                          </ngx-select-dropdown>
+                          <div class="form-group-drop-arrow">
+                            <i class="material-icons">arrow_drop_down</i>
+                          </div>
+                          <div class="error-h"></div>
                         </div>
-                        <div class="error-h"></div>
-                      </div>
-                      <!-- Target Inbound dropdown -->
-                      <div  class="form-group form-group-drop">
-                        <label>Target Inbound</label>
-                        <ngx-select-dropdown
-                                formControlName="targetInterface"
-                                [multiple]="false"
-                                [config]="targetInterfaceConfig"
-                                [options]="targetInterfaceOptions"
-                                (change)="targetInterfaceSelectionChange(f)">
-                          <!--                                [ngClass]="{ 'base-light-grey': !f.targetInterface.value }"-->
-                        </ngx-select-dropdown>
-                        <div class="form-group-drop-arrow">
-                          <i class="material-icons">arrow_drop_down</i>
-                        </div>
-                        <div class="error-h"></div>
-                      </div>
+<!--                      </div>-->
                     </div>
                   </div>
                 </div>
