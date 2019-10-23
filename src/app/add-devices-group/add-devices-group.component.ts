@@ -64,8 +64,8 @@ export class AddDevicesGroupComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-    this.defaultConnectivity = false;
-    this.enabled = false;
+    this.defaultConnectivity = true;
+    this.enabled = true;
     this.groupApiKey = 'Loading...';
     const mock = localStorage.getItem(LocalStorageKeys.addGroupMock) || null;
     // check which backend is required (fake or real)
@@ -76,8 +76,6 @@ export class AddDevicesGroupComponent implements OnInit {
     }
     this.device_group_id = 'Loading ...';
     this.name = 'Loading ...';
-    this.enabled = false;
-    this.default_device_connectivity = false;
     this.device_group_api_key = 'Loading ...';
   }
 

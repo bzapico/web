@@ -144,9 +144,8 @@
               <accordion-group
                 heading="{{group.name}}"
                 [panelClass]="nalejAccordion"
-                [isOpen]="group.isFirstOpen"
-                (click)="group.isFirstOpen = !group.isFirstOpen">
-                  <span     
+                [isOpen]="group.isFirstOpen">
+                  <span
                     accordion-heading 
                     class="accordion-icons-box">
                     <i class="material-icons accordion-arrow">arrow_drop_down</i>
