@@ -88,14 +88,12 @@
         }
     }
 }
-
-.tooltip-fix {
-    height: 20px;
-    width: 45px;
-    position: absolute;
-    top: 33%;
-    left: 24%;
-    cursor: pointer;
+.label-tbody{
+    .status-dot-nalej, .status-dot:before, .status-dot-error:before, .status-dot-process:before, 
+    .modal-body .status-dot:before, .modal-body .status-dot-error:before, 
+    .modal-body .status-dot-process:before {
+        margin: 0;
+    }
 }
 @media screen and (max-width:1723px){
     .app-actions-full-text {

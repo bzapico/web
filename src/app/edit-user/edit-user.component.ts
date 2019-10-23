@@ -9,6 +9,15 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+/**
+ * It sets the timeout in actions like undeploying or deleting
+ */
+const TIMEOUT_ACTION = 3000;
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
+
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
@@ -64,9 +73,9 @@ export class EditUserComponent implements OnInit {
     private notificationsService: NotificationsService
   ) {
     this.roleOptions = [
-     'NalejAdmin',
-     'Operator',
-     'Developer'
+      'NalejAdmin',
+      'Operator',
+      'Developer'
     ];
     const mock = localStorage.getItem(LocalStorageKeys.userEditMock) || null;
     // check which backend is required (fake or real)
@@ -152,11 +161,11 @@ export class EditUserComponent implements OnInit {
           subscribe(responseRole => {
             this.notificationsService.add({
               message: 'The user ' + this.userName + ' has been edited',
-              timeout: 3000
+              timeout: TIMEOUT_ACTION
             });
             this.bsModalRef.hide();
             if (this.selfEditProfile === true && f.role.value === 'NalejAdmin') {
-              // no redirection for the nalejadmin
+              // no redirection for the nalejAdmin
             } else if (this.selfEditProfile === true && f.role.value === 'Developer') {
               this.router.navigate([
                 '/applications'
@@ -170,7 +179,7 @@ export class EditUserComponent implements OnInit {
             this.loading = false;
             this.notificationsService.add({
               message: 'ERROR: ' + error.error.message,
-              timeout: 5000,
+              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
             this.bsModalRef.hide();
@@ -179,7 +188,7 @@ export class EditUserComponent implements OnInit {
           this.loading = false;
           this.notificationsService.add({
             message: 'The user ' + this.userName + ' has been edited',
-            timeout: 3000
+            timeout: TIMEOUT_ACTION
           });
           this.bsModalRef.hide();
         }
@@ -187,7 +196,7 @@ export class EditUserComponent implements OnInit {
         this.loading = false;
         this.notificationsService.add({
           message: 'ERROR: ' + error.error.message,
-          timeout: 5000,
+          timeout: TIMEOUT_ERROR,
           type: 'warning'
         });
         this.bsModalRef.hide();
@@ -195,7 +204,7 @@ export class EditUserComponent implements OnInit {
     }
   }
 
-   /**
+  /**
    * Search between roles list to get the required id
    * @param role Role name
    */
@@ -224,4 +233,3 @@ export class EditUserComponent implements OnInit {
     this.bsModalRef.hide();
   }
 }
-

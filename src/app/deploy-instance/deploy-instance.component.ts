@@ -7,6 +7,15 @@ import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
+/**
+ * It sets the timeout in actions like undeploying or deleting
+ */
+const TIMEOUT_ACTION = 3000;
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
+
 @Component({
   selector: 'app-deploy-instance',
   templateUrl: './deploy-instance.component.html',
@@ -170,13 +179,13 @@ export class DeployInstanceComponent implements OnInit {
             this.bsModalRef.hide();
             this.notificationsService.add({
               message: 'Deploying instance of ' + this.registeredName,
-              timeout: 3000
+              timeout: TIMEOUT_ACTION
             });
           }, error => {
             this.loading = false;
             this.notificationsService.add({
               message: error.error.message,
-              timeout: 5000,
+              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
             this.onClose(true);
@@ -184,10 +193,10 @@ export class DeployInstanceComponent implements OnInit {
           });
       } else {
         const instanceParams = [];
-        f.params.value.forEach(param => {
-         instanceParams.push({
-           parameterName: param[0].name,
-           value: param[0].value
+          f.params.value.forEach(param => {
+          instanceParams.push({
+            parameterName: param[0].name,
+            value: param[0].value
           });
         });
         this.backend.deploy(this.organizationId, this.registeredId, this.instanceName, instanceParams)
@@ -197,13 +206,13 @@ export class DeployInstanceComponent implements OnInit {
             this.bsModalRef.hide();
             this.notificationsService.add({
               message: 'Deploying instance of ' + this.registeredName,
-              timeout: 3000
+              timeout: TIMEOUT_ACTION
             });
           }, error => {
             this.loading = false;
             this.notificationsService.add({
               message: error.error.message,
-              timeout: 5000,
+              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
             this.onClose(true);

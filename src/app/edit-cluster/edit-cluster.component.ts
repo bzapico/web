@@ -7,6 +7,15 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+/**
+ * It sets the timeout in actions like undeploying or deleting
+ */
+const TIMEOUT_ACTION = 3000;
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
+
 @Component({
   selector: 'edit-cluster',
   templateUrl: './edit-cluster.component.html',
@@ -77,14 +86,14 @@ export class EditClusterComponent implements OnInit {
           this.loading = false;
           this.notificationsService.add({
             message: 'The cluster ' + this.clusterName + ' has been edited',
-            timeout: 3000
+            timeout: TIMEOUT_ACTION
           });
           this.bsModalRef.hide();
         }, error => {
           this.loading = false;
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000,
+            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
           this.bsModalRef.hide();

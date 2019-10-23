@@ -4,6 +4,11 @@ import { UserInfoComponent } from './user-info.component';
 import { ButtonsModule, BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '../app.module';
+import { AuthService } from '../services/auth.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('UserInfoComponent', () => {
   let component: UserInfoComponent;
@@ -17,11 +22,21 @@ describe('UserInfoComponent', () => {
         FormsModule,
         ButtonsModule,
         ModalModule.forRoot(),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RouterTestingModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
       providers: [
         BsModalRef,
-        BsModalService
+        BsModalService,
+        AuthService,
+        TranslateService
       ]
     })
     .compileComponents();

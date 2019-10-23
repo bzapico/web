@@ -24,17 +24,18 @@
 		},
 		"typeRestrictions": "Type restrictions: {{restriction}}"
 	},
-	"applications": {
-		"filters": {
-			"atLeastOne": "It is necessary to have one selected filter",
-			"notAppliedSearching": "When the filters are applied the searching term is not applied"
-		},
-		"title": "APPLICATIONS"
-	},
 	"apps": {
 		"addConnection": {
 			"noResults": "No results found!",
 			"title": "ADD NEW CONNECTION"
+		},
+		"appInfo": "App info",
+		"appsRunning": "Apps running",
+		"deploy": "Deploy",
+		"deployed": "DEPLOYED",
+		"filters": {
+			"atLeastOne": "It is necessary to have one selected filter",
+			"notAppliedSearching": "When the filters are applied the searching term is not applied"
 		},
 		"instance": {
 			"environmentVariables": "Environment variables",
@@ -62,7 +63,6 @@
 			"tableAuthInBig": "(group, service / device group)",
 			"tableEndpoints": "Endpoints",
 			"tableImage": "Image",
-			"tableInfo": "Info",
 			"tableInstanceOf": "Instance of",
 			"tableLabels": "Labels",
 			"tableName": "Name",
@@ -75,21 +75,12 @@
 			"undeployConfirm": "Undeploy {{appName}}?",
 			"undeployMessage": " undeployed"
 		},
-		"manageConnections": {
-			"addNewConnection": "Add new connection",
-			"appFilter": "APP FILTER",
-			"connectionsList": "CONNECTIONS LIST",
-			"createdConnection": "Created new connection",
-			"disconnect": "Disconnect",
-			"disconnectConfirm": "Disconnect?",
-			"disconnectConfirmOutboundRequired": "This outbound connection is required for the instance. Are you sure you want to remove the connection?",
-			"noConnections": "No connections found",
-			"requiredFields": "All fields should be fulfilled",
-			"sourceInstance": "Source Instance",
-			"sourceInterface": "Source Interface",
-			"targetInstance": "Target Instance",
-			"targetInterface": "Target Interface"
-		},
+		"manageConnections": "Manage connections",
+		"noAppsDeployed": "NO APPS DEPLOYED",
+		"noAppsInstances": "No application instances deployed",
+		"noClusters": "No available clusters",
+		"noRegisteredApp": "No registered applications detected",
+		"register": "Register",
 		"registered": {
 			"app": "app",
 			"deleteApp": "Delete {{appName}}?",
@@ -101,9 +92,14 @@
 			"serviceGroupInfo": {
 				"title": "Registered service group info"
 			}
-		}
+		},
+		"registeredTitle": "REGISTERED",
+		"title": "APPLICATIONS",
+		"undeploy": "Undeploy"
 	},
 	"buttons": {
+		"changePassword": "Change password",
+		"deleteUser": "Delete user",
 		"saveChanges": "Save changes"
 	},
 	"devices": {
@@ -214,7 +210,7 @@
 		"label": {
 			"add": "add",
 			"delete": "delete",
-			"deleteLabel": "Delete labels?"
+			"deleteLabel": "Delete label"
 		},
 		"quickFilters": {
 			"assets": "ASSETS",
@@ -241,9 +237,11 @@
 	"label": {
 		"add": "add",
 		"addLabel": "Add label",
+		"addUp": "Add",
 		"delete": "delete",
 		"deleteLabel": "Delete label",
 		"deleteLabels": "Delete labels?",
+		"deleteUp": "Delete",
 		"entityTypeDevice": "device",
 		"noLabels": "No labels",
 		"title": "LABELS"
@@ -252,12 +250,15 @@
 		"buttonClose": "Close"
 	},
 	"organization": {
+		"deleteUser": "Delete user?",
 		"filteredBy": "Filtered by term \"{{value}}\".",
 		"loading": "Loading...",
 		"notRegisteredUsers": "<p>There are not registered users in this organization<br>Click on \"add user\" button to start adding new users</p>",
 		"sortedBy": "Sorted by {{value}}",
 		"subscriptionType": "Free subscription",
 		"title": "ORGANIZATION",
+		"userDeleted": "User {{userMail}} has been deleted",
+		"userInfo": "User info",
 		"users": {
 			"actions": "Actions",
 			"add": "Add user",
@@ -265,7 +266,10 @@
 			"ascendant": "ascendant{{value}}",
 			"descendant": "descendant{{value}}",
 			"edit": "Edit user",
+			"email": "Email",
+			"name": "Name",
 			"reset": "Reset",
+			"role": "Role",
 			"subscription": {
 				"check": "Check all our subscription modes and payments",
 				"plan": "Free",
@@ -275,8 +279,31 @@
 		},
 		"usersNumber": "{{value}} users"
 	},
+	"resources": {
+		"NoAvailableClusters": "No available clusters",
+		"clusterInstances": "CLUSTERS-INSTANCES",
+		"clusters": "CLUSTERS",
+		"clustersRunning": "clusters running",
+		"edit": "Edit",
+		"instances": "INSTANCES",
+		"list": "LIST",
+		"noClusters": "NO CLUSTERS",
+		"noClustersAvailable": "No available clusters detected",
+		"summary": "SUMMARY",
+		"title": "RESOURCES"
+	},
 	"searcher": {
 		"placeholder": "Search..."
+	},
+	"sidebar": {
+		"applications": "Applications",
+		"devices": "Devices",
+		"editProfile": "Edit profile",
+		"infrastructure": "Infrastructure",
+		"logout": "Logout",
+		"nalej": "NALEJ",
+		"organization": "Organization",
+		"resources": "Resources"
 	},
 	"sortingMessage": {
 		"andFilteredBy": "and filtered by \"{{value}}\"",
@@ -296,11 +323,13 @@
 		"running": "running",
 		"serviceError": "service_error",
 		"serviceRunning": "service_running",
-		"serviceWaiting": "service_waiting"
+		"serviceWaiting": "service_waiting",
+		"status": "STATUS"
 	},
 	"tables": {
 		"organizationId": "Organization ID",
 		"tableAccess": "Access",
+		"tableActions": "Actions",
 		"tableAppDescriptorID": "App descriptor ID",
 		"tableAuth": "Auth",
 		"tableCredentials": "Credentials",
@@ -313,8 +342,10 @@
 		"tableGroups": "Groups",
 		"tableImage": "Image",
 		"tableInfo": "Info",
+		"tableInstances": "Instances",
 		"tableInternal": "Internal",
 		"tableLabels": "Labels",
+		"tableName": "Name",
 		"tablePort": "Port",
 		"tableReplicas": "Replicas",
 		"tableRules": "Rules",
