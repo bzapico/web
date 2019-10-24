@@ -649,7 +649,7 @@
         <div class="row h-100">
           <div class="col-12">
             <div    
-              *ngIf="graphDataLoaded"
+              *ngIf="graphDataLoaded && !graphReset"
               class="graph">
               <ngx-graph
                 [view]="view"
@@ -719,11 +719,15 @@
           </div>
         </div>
         <div class="row">
-          <div class="graph-legend">
-            <span class="graph-legend-title">{{'status.status'|translate }}</span>
-            <span class="status-dot">{{'status.running' | translate }}</span>
-            <span class="status-dot-process">{{'status.process' | translate }}</span>
-            <span class="status-dot-error">{{'status.error' | translate }}</span>
+          <div class="col">
+            <div *ngIf="!graphReset" class="text-right">
+              <div class="graph-subtext">
+                {{'graph.autoRefresh'|translate}}
+                <a (click)="resetGraphZoom()" class="blue cursor-pointer">
+                  {{'sortingMessage.reset'|translate}}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
