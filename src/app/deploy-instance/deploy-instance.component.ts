@@ -20,7 +20,6 @@ export class DeployInstanceComponent implements OnInit {
   deployInstanceForm: FormGroup;
   selectDrop: FormControl;
   submitted = false;
-  loading: boolean;
   loadedData: boolean;
 
   /**
@@ -91,7 +90,7 @@ export class DeployInstanceComponent implements OnInit {
   /**
    * Configuration for connections step
    */
-  requiredConnections: {}[];
+  requiredConnections: any[];
   areRequiredConnections: boolean;
   instances: any[];
   instancesNames: string[];
@@ -99,6 +98,8 @@ export class DeployInstanceComponent implements OnInit {
   targetInterface: FormControl;
   connections: {}[];
   required: boolean;
+  targetInterfaceConfig: any;
+  targetInstanceConfig: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -128,6 +129,8 @@ export class DeployInstanceComponent implements OnInit {
       moreText: 'more',
       noResultsFound: 'No results found!'
     };
+    this.targetInterfaceConfig = {};
+    this.targetInstanceConfig = {};
     if (!this.registeredName) {
       this.registeredName = 'Descriptor not found';
     }
@@ -150,6 +153,8 @@ export class DeployInstanceComponent implements OnInit {
     this.instancesNames = [];
     this.instances = [];
     this.connections = [];
+    this.areRequiredConnections = false;
+    this.requiredConnections = [];
   }
 
   ngOnInit() {
@@ -201,18 +206,16 @@ export class DeployInstanceComponent implements OnInit {
   get f() { return this.deployInstanceForm.controls; }
 
   deployInstance(f) {
-    console.log('MIRACLE ::: ', this.selectedApp.outbound_net_interfaces);
+    console.log('DEPLOY INSTANCE ::: CONNECTIONS ::: ', this.connections);
     this.instanceName = f.instanceName.value;
     this.submitted = true;
     if (!f.instanceName.errors) {
       if (!this.registeredId) {
         this.registeredId = f.selectDrop.value.app_descriptor_id;
       }
-      this.loading = true;
       if (!this.selectedApp.parameters) {
         this.backend.deploy(this.organizationId, this.registeredId, this.instanceName, null, this.connections)
           .subscribe(deployResponse => {
-            this.loading = false;
             this.onClose(false);
             this.bsModalRef.hide();
             this.notificationsService.add({
@@ -220,7 +223,6 @@ export class DeployInstanceComponent implements OnInit {
               timeout: 3000
             });
           }, error => {
-            this.loading = false;
             this.notificationsService.add({
               message: error.error.message,
               timeout: 5000,
@@ -239,7 +241,6 @@ export class DeployInstanceComponent implements OnInit {
         });
         this.backend.deploy(this.organizationId, this.registeredId, this.instanceName, instanceParams, this.connections)
           .subscribe(deployResponse => {
-            this.loading = false;
             this.onClose(false);
             this.bsModalRef.hide();
             this.notificationsService.add({
@@ -247,7 +248,6 @@ export class DeployInstanceComponent implements OnInit {
               timeout: 3000
             });
           }, error => {
-            this.loading = false;
             this.notificationsService.add({
               message: error.error.message,
               timeout: 5000,
@@ -266,6 +266,9 @@ export class DeployInstanceComponent implements OnInit {
    */
   onRegisteredChange(f) {
     this.selectedApp = f.selectDrop.value;
+    this.setConnectionsAndInstances();
+    console.log('SELECTED APP ::: ', this.selectedApp);
+    console.log('SELECTED APP ::: ', this.areRequiredConnections);
     this.registeredName = this.selectedApp.name;
     this.availableParamsCategory.basic = false;
     this.availableParamsCategory.advanced = false;
@@ -290,8 +293,6 @@ export class DeployInstanceComponent implements OnInit {
       this.showBack = true;
       this.showNext = false;
       this.showDeploy = true;
-      this.basicInformationDot = false;
-      this.connectionsDot = true;
     }
   }
 
@@ -328,74 +329,64 @@ export class DeployInstanceComponent implements OnInit {
   }
 
   previousStep() {
-    console.log('PREVIOUS STEP ::: REG APPS ::: ', this.registeredApps);
     switch (this.conditionExpression) {
       case 'basic':
-        this.reload = false;
-        this.ngOnInit();
-        this.connectionsDot = false;
-        this.basicInformationDot = true;
-        this.reload = true;
-        this.showBack = false;
-        this.showDeploy = false;
-        this.showNext = true;
-        this.deployInstanceForm.controls.selectDrop.setValue({id: -1, name: 'Select any registered name'});
+        this.setBasicState();
         break;
       case 'parameters':
         this.conditionExpression = 'basic';
         this.parametersDot = false;
         this.basicInformationDot = true;
-        this.showBack = false;
-        if (!this.selectedApp.outbound_net_interfaces) {
-          this.showNext = false;
-          this.showDeploy = true;
-        }
+        this.setBasicState();
         break;
       case 'connections':
-        console.log('CONÉCTAME OTRA VEZ');
         if (this.selectedApp.parameters) {
           this.conditionExpression = 'parameters';
           this.parametersDot = true;
           this.connectionsDot = false;
+          this.showDeploy = false;
+          this.showNext = true;
         } else {
-          console.log('HOLAAA');
           this.conditionExpression = 'basic';
-          this.basicInformationDot = true;
-          this.connectionsDot = false;
+          this.showBack = false;
+          this.setBasicState();
         }
         break;
     }
   }
 
   nextStep() {
-    console.log('SELECTED APP ', this.selectedApp);
+    this.setConnectionsAndInstances();
     switch (this.conditionExpression) {
       case 'basic':
-        this.basicInformationDot = false;
         if (this.selectedApp.parameters) {
           this.conditionExpression = 'parameters';
-          if (!this.selectedApp.outbound_net_interfaces) {
-            this.connectionsDot = true;
+          this.parametersDot = true;
+          this.basicInformationDot = false;
+          if (!this.areRequiredConnections) {
             this.showDeploy = true;
             this.showNext = false;
-          } else {
-            this.parametersDot = true;
           }
         } else {
-          this.setConnectionsAndInstances();
-          this.conditionExpression = 'connections';
-          this.connectionsDot = true;
+            if (this.areRequiredConnections) {
+              this.conditionExpression = 'connections';
+              this.basicInformationDot = false;
+              this.connectionsDot = true;
+              this.showNext = false;
+              this.showDeploy = true;
+            } else {
+              this.showDeploy = true;
+              this.showNext = false;
+            }
         }
         this.showBack = true;
         break;
       case 'parameters':
-        this.setConnectionsAndInstances();
-        console.log('CON INSTANCES ', this.instances);
         this.parametersDot = false;
         this.connectionsDot = true;
         this.showDeploy = true;
         this.showNext = false;
-        if (this.instances.length > 0) {
+        if (this.instances.length > 0 && this.areRequiredConnections) {
           this.conditionExpression = 'connections';
         }
         break;
@@ -403,35 +394,83 @@ export class DeployInstanceComponent implements OnInit {
   }
 
   targetInstanceSelectionChange(f, i: number) {
-    console.log('fff ', f.targetInstance.value, i);
-    // this.targetInstance = this.deployInstanceForm.get('targetInstance') as FormArray;
-    console.log('TARGET INSTANCE ', this.targetInstance);
     if (f.targetInstance.value) {
       this.targetInterfaceOptions =
           this.instances.filter(inst => inst.name === f.targetInstance.value)[0].inbound_net_interfaces.map(item => item.name);
+      this.targetInterfaceConfig = {
+        displayKey: 'name',
+        search: false,
+        height: 'auto',
+        placeholder: 'Select any interface name',
+        limitTo: this.targetInterfaceOptions.length,
+        moreText: 'more',
+        noResultsFound: 'No results found!'
+      };
     }
   }
 
   targetInterfaceSelectionChange(f, i: number) {
     console.log('TARGET INTERFACE SELECTION CHANGE :: ', f.targetInterface.value, i);
-    // this.targetInterface = this.deployInstanceForm.get('targetInterface') as FormArray;
-    // console.log('TARGET INTERFACE ', this.targetInterface);
+    console.log('NET INTERFACES :: ', this.selectedApp.outbound_net_interfaces);
     if (f.targetInterface.value) {
       this.connections.push(
         {target_instance_id: this.instances.filter(inst => inst.name === f.targetInstance.value)[0].app_instance_id,
          target_inbound_name: f.targetInterface.value,
-         source_outbound_name: this.selectedApp.outbound_net_interfaces[0].name}
+         source_outbound_name: this.requiredConnections[i].name}
       );
     }
   }
 
+  isInactiveNext(f) {
+    let isInactiveNext = false;
+    if (this.conditionExpression === 'basic') {
+      isInactiveNext = !this.selectedApp || !f.instanceName.value;
+    }
+    return isInactiveNext;
+  }
+
+  isInactiveDeploy(f) {
+    let isInactiveDeploy = false;
+    if (this.conditionExpression === 'basic') {
+      isInactiveDeploy = !this.selectedApp || !f.instanceName.value;
+    } else if (this.conditionExpression === 'connections') {
+      isInactiveDeploy = this.connections.length === 0;
+    }
+    return isInactiveDeploy;
+  }
+
   private setConnectionsAndInstances() {
     if (this.selectedApp && this.selectedApp.outbound_net_interfaces) {
-      this.areRequiredConnections = this.selectedApp.outbound_net_interfaces.filter(item => item.required).length > 0;
       this.requiredConnections = this.selectedApp.outbound_net_interfaces.filter(item => item.required);
+      this.areRequiredConnections = this.requiredConnections.length > 0;
+    } else {
+      this.requiredConnections = [];
+      this.areRequiredConnections = false;
     }
     if (this.instances && this.instances.length > 0) {
       this.instancesNames = this.instances.filter(instance => instance.inbound_net_interfaces).map(inst => inst.name);
+      this.targetInstanceConfig = {
+        displayKey: 'name',
+        search: false,
+        height: 'auto',
+        placeholder: 'Select any instance name',
+        limitTo: this.instances.length,
+        moreText: 'more',
+        noResultsFound: 'No results found!'
+      };
     }
+  }
+
+  private setBasicState() {
+    this.reload = false;
+    this.ngOnInit();
+    this.connectionsDot = false;
+    this.basicInformationDot = true;
+    this.reload = true;
+    this.showBack = false;
+    this.showDeploy = false;
+    this.showNext = true;
+    this.deployInstanceForm.controls.selectDrop.setValue({id: -1, name: 'Select any registered name'});
+    this.selectedApp = null;
   }
 }
