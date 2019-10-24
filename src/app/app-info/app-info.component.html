@@ -1,5 +1,6 @@
 <!-- Application instances id card -->
 <div class="card">
+  <div *ngIf="loadedData">
     <div class="card-title-name">
       <h5 *ngIf="openFromInstance" class="d-inline">{{'app-info.instance.title'|translate}}</h5>
       <h5 *ngIf="openFromRegistered" class="d-inline">{{'app-info.registered.title'|translate}}</h5>
@@ -462,4 +463,4 @@
       </div>
     </div>
   </div>
-  
+</div>

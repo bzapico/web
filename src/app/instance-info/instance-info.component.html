@@ -22,7 +22,7 @@
     <div class="flex-col-app">
       <!-- Application instances id card -->
       <app-info
-        *ngIf="loadedData"
+        [loadedData]="loadedData"
         [registered]="getDescriptorFromInstance(instance)[0]"
         [instance]="instance"
         [registeredData]="registered"
@@ -31,13 +31,14 @@
       </app-info>
       <!-- Labels card-->
       <labels-card 
-        *ngIf="loadedData"
+        [loadedData]="loadedData"
         [labelsData]="instance"
         [isSelectableLabel]="isSelectableLabel"
         class="row-info-app flex-grow-0">
       </labels-card>
       <!-- Action buttons card -->
-      <action-buttons-card *ngIf="loadedData"
+      <action-buttons-card  
+        [loadedData]="loadedData"
         [app]="instance"
         [isOpenFromRegistered]="isOpenFromRegistered"
         class="flex-grow-0">

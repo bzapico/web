@@ -10,6 +10,7 @@ import { ActionButtonsService } from './action-buttons.service';
 export class ActionButtonsCardComponent {
 
   @Input() isOpenFromRegistered: boolean;
+  @Input() loadedData: boolean;
   @Input() app: {};
 
   constructor(

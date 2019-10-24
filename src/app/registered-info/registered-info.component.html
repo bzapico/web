@@ -23,7 +23,7 @@
     <div class="flex-col-app">
       <!-- Registered id card -->
       <app-info
-        *ngIf="loadedData"
+        [loadedData]="loadedData"
         [registeredData]="registeredData"
         [registered]="registeredData"
         [openFromRegistered]="openFromRegistered"
@@ -31,7 +31,7 @@
       </app-info>
       <!-- Labels card-->
       <labels-card 
-        *ngIf="loadedData"
+        [loadedData]="loadedData"
         [labelsData]="registeredData"
         [isSelectableLabel]="isSelectableLabel"
         (updateLabels)="updateLabels($event)"
@@ -39,7 +39,7 @@
       </labels-card>
       <!-- Action buttons card -->
       <action-buttons-card 
-        *ngIf="loadedData"
+        [loadedData]="loadedData"
         [app]="registeredData"
         [isOpenFromRegistered]="isOpenFromRegistered"
         class="flex-grow-0">

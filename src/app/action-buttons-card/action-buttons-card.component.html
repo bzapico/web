@@ -1,33 +1,35 @@
 <!-- A buttons card-->
 <div class="card">
-  <!-- Instance buttons -->
-  <div *ngIf="!isOpenFromRegistered" class="a-btns-box a-btns-box-big">
-    <button 
-      (click)="openAddNewConnection()"
-      class="a-btn-blue add-connections-btn">
-      <i class="material-icons-round a-i-blue">link</i>
-      <p>Add new connection</p>
-    </button>
-    <button 
-      (click)="undeploy(app)" 
-      class="a-btn-grey">
-      <i class="material-icons a-i-red">close</i>
-      Undeploy
-    </button>
-  </div>
-  <!-- Registered buttons -->
-  <div *ngIf="isOpenFromRegistered" class="a-btns-box a-btns-box-sm">
-    <button 
-      (click)="deployRegistered(app)"
-      class="a-btn-blue">
-      <i class="material-icons a-i-blue">play_arrow</i>
-      Deploy
-    </button>
-    <button 
-      (click)="deleteApp(app)" 
-      class="a-btn-grey">
-      <i class="material-icons a-i-red">delete</i>
-      Delete
-    </button>
+  <div *ngIf="loadedData">
+    <!-- Instance buttons -->
+    <div *ngIf="!isOpenFromRegistered" class="a-btns-box a-btns-box-big">
+      <button 
+        (click)="openAddNewConnection()"
+        class="a-btn-blue add-connections-btn">
+        <i class="material-icons-round a-i-blue">link</i>
+        <p>Add new connection</p>
+      </button>
+      <button 
+        (click)="undeploy(app)" 
+        class="a-btn-grey">
+        <i class="material-icons a-i-red">close</i>
+        Undeploy
+      </button>
+    </div>
+    <!-- Registered buttons -->
+    <div *ngIf="isOpenFromRegistered" class="a-btns-box a-btns-box-sm">
+      <button 
+        (click)="deployRegistered(app)"
+        class="a-btn-blue">
+        <i class="material-icons a-i-blue">play_arrow</i>
+        Deploy
+      </button>
+      <button 
+        (click)="deleteApp(app)" 
+        class="a-btn-grey">
+        <i class="material-icons a-i-red">delete</i>
+        Delete
+      </button>
+    </div>
   </div>
 </div>

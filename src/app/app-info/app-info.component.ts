@@ -26,6 +26,7 @@ export class AppInfoComponent implements OnInit {
   @Input() registeredData: any;
   @Input() openFromInstance: boolean;
   @Input() openFromRegistered: boolean;
+  @Input() loadedData: boolean;
 
   /**
    * Backend reference
