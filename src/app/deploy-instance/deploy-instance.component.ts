@@ -190,9 +190,7 @@ export class DeployInstanceComponent implements OnInit {
           param.value = param.default_value;
         });
         this.selectedApp.parameters.forEach(param => {
-          this.params.push(this.formBuilder.group(
-            [param]
-          ));
+          this.params.push(this.formBuilder.group([param]));
           if (!param.category) {
             this.availableParamsCategory.basic = true;
           } else {
@@ -202,12 +200,14 @@ export class DeployInstanceComponent implements OnInit {
       }
     }
   }
-
   /**
    * Convenience getter for easy access to form fields
    */
   get f() { return this.deployInstanceForm.controls; }
-
+  /**
+   * It deploys an instance using data from the form
+   * @param f Form
+   */
   deployInstance(f) {
     this.instanceName = f.instanceName.value;
     this.submitted = true;
@@ -215,53 +215,34 @@ export class DeployInstanceComponent implements OnInit {
       if (!this.registeredId) {
         this.registeredId = f.selectDrop.value.app_descriptor_id;
       }
+      const instanceParams = [];
       if (!this.selectedApp.parameters) {
-        this.backend.deploy(this.organizationId, this.registeredId, this.instanceName, null, this.connections)
-          .subscribe(deployResponse => {
-            this.onClose(false);
-            this.bsModalRef.hide();
-            this.notificationsService.add({
-              message: 'Deploying instance of ' + this.registeredName,
-              timeout: TIMEOUT_ACTION
-            });
-          }, error => {
-            this.notificationsService.add({
-              message: error.error.message,
-              timeout: TIMEOUT_ERROR,
-              type: 'warning'
-            });
-            this.onClose(true);
-            this.bsModalRef.hide();
-          });
-      } else {
-        const instanceParams = [];
         f.params.value.forEach(param => {
-         instanceParams.push({
-           parameterName: param[0].name,
-           value: param[0].value
+          instanceParams.push({
+            parameterName: param[0].name,
+            value: param[0].value
           });
         });
-        this.backend.deploy(this.organizationId, this.registeredId, this.instanceName, instanceParams, this.connections)
-          .subscribe(() => {
-            this.onClose(false);
-            this.bsModalRef.hide();
-            this.notificationsService.add({
-              message: 'Deploying instance of ' + this.registeredName,
-              timeout: TIMEOUT_ACTION
-            });
-          }, error => {
-            this.notificationsService.add({
-              message: error.error.message,
-              timeout: TIMEOUT_ERROR,
-              type: 'warning'
-            });
-            this.onClose(true);
-            this.bsModalRef.hide();
+      }
+      this.backend.deploy(this.organizationId, this.registeredId, this.instanceName, instanceParams, this.connections)
+        .subscribe(() => {
+          this.onClose(false);
+          this.bsModalRef.hide();
+          this.notificationsService.add({
+            message: `Deploying instance of ${this.registeredName}`,
+            timeout: TIMEOUT_ACTION
           });
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            timeout: TIMEOUT_ERROR,
+            type: 'warning'
+          });
+          this.onClose(true);
+          this.bsModalRef.hide();
+        });
       }
     }
-  }
-
   /**
    * Handler for change event on ngx-select-dropdown
    * @param f Form
@@ -293,7 +274,6 @@ export class DeployInstanceComponent implements OnInit {
       this.showDeploy = true;
     }
   }
-
   /**
    * Checks if the form has been modified before discarding changes
    * @param form Form object reference
@@ -317,7 +297,6 @@ export class DeployInstanceComponent implements OnInit {
     this.defaultParamsOpened = false;
     this.advParamsOpened = !this.advParamsOpened;
   }
-
   /**
    * Toggle default parameters
    */
@@ -325,7 +304,9 @@ export class DeployInstanceComponent implements OnInit {
     this.advParamsOpened = false;
     this.defaultParamsOpened = !this.defaultParamsOpened;
   }
-
+  /**
+   * Handler for go to the previous step
+   */
   previousStep() {
     switch (this.conditionExpression) {
       case 'basic':
@@ -352,7 +333,9 @@ export class DeployInstanceComponent implements OnInit {
         break;
     }
   }
-
+  /**
+   * Handler for go to the next step
+   */
   nextStep() {
     this.setConnectionsAndInstances();
     switch (this.conditionExpression) {
@@ -390,8 +373,11 @@ export class DeployInstanceComponent implements OnInit {
         break;
     }
   }
-
-  targetInstanceSelectionChange(f, i: number) {
+  /**
+   * Handler for get data to interface config select
+   * @param f Form
+   */
+  targetInstanceSelectionChange(f) {
     if (f.targetInstance.value) {
       this.targetInterfaceOptions =
           this.instances.filter(inst => inst.name === f.targetInstance.value)[0].inbound_net_interfaces.map(item => item.name);
@@ -406,7 +392,11 @@ export class DeployInstanceComponent implements OnInit {
       };
     }
   }
-
+  /**
+   * Handler for capture data from interface config select
+   * @param f Form
+   * @param i Index to capture the correct required connection
+   */
   targetInterfaceSelectionChange(f, i: number) {
     if (f.targetInterface.value) {
       this.connections.push(
@@ -416,7 +406,10 @@ export class DeployInstanceComponent implements OnInit {
       );
     }
   }
-
+  /**
+   * Handler for set the disabled state to the button next
+   * @param f Form
+   */
   isInactiveNext(f) {
     let isInactiveNext = false;
     if (this.conditionExpression === 'basic') {
@@ -424,17 +417,22 @@ export class DeployInstanceComponent implements OnInit {
     }
     return isInactiveNext;
   }
-
+  /**
+   * Handler for set the disabled state to the button deploy
+   * @param f Form
+   */
   isInactiveDeploy(f) {
     let isInactiveDeploy = false;
     if (this.conditionExpression === 'basic') {
       isInactiveDeploy = !this.selectedApp || !f.instanceName.value;
     } else if (this.conditionExpression === 'connections') {
-      isInactiveDeploy = this.connections.length === 0;
+      isInactiveDeploy = this.connections.length === 0 || this.connections.length < this.requiredConnections.length;
     }
     return isInactiveDeploy;
   }
-
+  /**
+   * Handler for generate required connections, instances names and init the config for target instance
+   */
   private setConnectionsAndInstances() {
     if (this.selectedApp && this.selectedApp.outbound_net_interfaces) {
       this.requiredConnections = this.selectedApp.outbound_net_interfaces.filter(item => item.required);
@@ -450,13 +448,15 @@ export class DeployInstanceComponent implements OnInit {
         search: false,
         height: 'auto',
         placeholder: 'Select any instance name',
-        limitTo: this.instances.length,
+        limitTo: this.instancesNames.length,
         moreText: 'more',
         noResultsFound: 'No results found!'
       };
     }
   }
-
+  /**
+   * Handler for reset the form to the basic state
+   */
   private setBasicState() {
     this.reload = false;
     this.ngOnInit();
@@ -467,6 +467,8 @@ export class DeployInstanceComponent implements OnInit {
     this.showDeploy = false;
     this.showNext = true;
     this.deployInstanceForm.controls.selectDrop.setValue({id: -1, name: 'Select any registered name'});
-    this.selectedApp = null;
+    if (!(this.openFromRegistered && this.appFromRegistered)) {
+      this.selectedApp = null;
+    }
   }
 }

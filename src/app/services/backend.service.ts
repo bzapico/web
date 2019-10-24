@@ -449,7 +449,7 @@ export class BackendService implements Backend {
       app_descriptor_id: descriptorId,
       name: name
     };
-    if (params) {
+    if (params && params.length > 0) {
       postObject['parameters'] = { parameters: params };
     }
     if (connections && connections.length > 0) {
