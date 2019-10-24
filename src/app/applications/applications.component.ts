@@ -20,6 +20,8 @@ import { KeyValue } from '../definitions/interfaces/key-value';
 import { AdvancedFilterOptionsComponent } from '../advanced-filter-options/advanced-filter-options.component';
 import { TranslateService } from '@ngx-translate/core';
 import { ApplicationsService } from './applications.service';
+import { AppStatus } from '../definitions/enums/app-status.enum';
+import { ClusterStatus } from '../definitions/enums/cluster-status.enum';
 
 /**
  * Refresh ratio
@@ -405,7 +407,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     let running = 0;
     if (instances) {
       instances.forEach(app => {
-        if (app.status_name === 'RUNNING') {
+        if (app.status_name === AppStatus.Running) {
           running += 1;
         }
       });
@@ -455,56 +457,56 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   classStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case 'running': {
-        if (className.toLowerCase() === 'running') {
+      case AppStatus.Running: {
+        if (className.toLowerCase() === AppStatus.Running) {
           return true;
         }
         break;
       }
-      case 'deployment_error': {
-        if (className.toLowerCase() === 'error') {
+      case AppStatus.DeploymentError: {
+        if (className.toLowerCase() === AppStatus.DeploymentError) {
           return true;
         }
         break;
       }
-      case 'planning_error': {
-        if (className.toLowerCase() === 'error') {
+      case AppStatus.Error: {
+        if (className.toLowerCase() === AppStatus.Error) {
           return true;
         }
         break;
       }
-      case 'incomplete': {
-        if (className.toLowerCase() === 'error') {
+      case AppStatus.Incomplete: {
+        if (className.toLowerCase() === AppStatus.Incomplete) {
           return true;
         }
         break;
       }
-      case 'error': {
-        if (className.toLowerCase() === 'error') {
+      case AppStatus.PlanningError: {
+        if (className.toLowerCase() === AppStatus.PlanningError) {
           return true;
         }
         break;
       }
-      case 'queued': {
-        if (className.toLowerCase() === 'process') {
+      case AppStatus.Queued: {
+        if (className.toLowerCase() === AppStatus.Process) {
           return true;
         }
         break;
       }
-      case 'planning': {
-        if (className.toLowerCase() === 'process') {
+      case AppStatus.Planning: {
+        if (className.toLowerCase() === AppStatus.Process) {
           return true;
         }
         break;
       }
-      case 'scheduled': {
-        if (className.toLowerCase() === 'process') {
+      case AppStatus.Scheduled: {
+        if (className.toLowerCase() === AppStatus.Process) {
           return true;
         }
         break;
       }
       default: {
-        return (className.toLowerCase() === 'process');
+        return (className.toLowerCase() === AppStatus.Process);
       }
     }
   }
@@ -535,7 +537,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   addQuickFilter(quickFilter: string) {
     if (this.isSearchingInGraph) {
-      alert(this.translateService.instant('applications.filters.notAppliedSearching'));
+      alert(this.translateService.instant('apps.filters.notAppliedSearching'));
     } else {
       let canApply = false;
       const auxFilters = { ...this.filters };
@@ -553,7 +555,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         this.filters[quickFilter] = !this.filters[quickFilter];
         this.toGraphData();
       } else {
-        alert(this.translateService.instant('applications.filters.atLeastOne'));
+        alert(this.translateService.instant('apps.filters.atLeastOne'));
       }
     }
   }
@@ -637,7 +639,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param entity selected label entity
    */
   deleteLabel(entity) {
-    const deleteConfirm = confirm('Delete labels?');
+    const deleteConfirm = confirm(this.translateService.instant('label.deleteLabels'));
     if (deleteConfirm) {
       const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.app_descriptor_id);
       this.backend.updateAppDescriptor(
@@ -773,13 +775,13 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param app Application instance object
    */
   undeploy(app) {
-    const undeployConfirm = confirm('Undeploy ' + app.name + '?');
+    const undeployConfirm = confirm(this.translateService.instant('apps.instance.undeployConfirm', { appName: app.name }));
     if (undeployConfirm) {
       this.backend.undeploy(this.organizationId, app.app_instance_id)
         .subscribe(undeployResponse => {
           app.undeploying = true;
           this.notificationsService.add({
-            message: 'Undeploying ' + app.name,
+            message:  this.translateService.instant('apps.instance.undeployMessage', { appName: app.name }),
             timeout: TIMEOUT_ACTION
           });
           this.updateAppInstances(this.organizationId);
@@ -812,12 +814,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param app Application object
    */
   deleteApp(app) {
-    const deleteConfirm = confirm('Delete ' + app.name + '?');
+    const deleteConfirm = confirm(this.translateService.instant('apps.registered.deleteApp', { appName: app.name }));
     if (deleteConfirm) {
       this.backend.deleteRegistered(this.organizationId, app.app_descriptor_id)
         .subscribe(deleteResponse => {
           this.notificationsService.add({
-            message: 'Deleting ' + app.name,
+            message: this.translateService.instant('apps.registered.deleting', { appName: app.name }),
             timeout: TIMEOUT_ACTION
           });
           this.updateRegisteredInstances(this.organizationId);
@@ -866,31 +868,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Get the application instances options to show in the context menu
-   * @param instance application instances
-   */
-  getInstanceOptions(instance: any) {
-    const instanceOptions = [];
-    const instanceOption1 = {
-      name: 'More info',
-      action: () => {
-        this.goToInstanceView(instance);
-      },
-      instance: instance
-    };
-    const instanceOption2 = {
-      name: 'Undeploy',
-      action: () => {
-        this.undeploy(instance);
-      },
-      instance: instance
-    };
-    instanceOptions.push(instanceOption1);
-    instanceOptions.push(instanceOption2);
-    return instanceOptions;
-  }
-
-  /**
    * Opens registered apps context menu
    * @param registered registered app
    */
@@ -902,47 +879,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.activeContextMenuId = registered.app_descriptor_id;
     }
   }
-
-  /**
-   * Empties the active menu Id to close the contextual menu component
-   */
-  onContextualMenuClose() {
-    this.activeContextMenuId = '';
-  }
-
-  /**
-   * Get the registered app options to show in the context menu
-   * @param registered registered app
-   */
-  getRegisteredOptions(registered: any) {
-    const registeredOptions = [];
-    const registeredOption1 = {
-      name: 'More info',
-      action: () => {
-        this.goToRegisteredView(registered);
-      },
-      registered: registered
-    };
-    const registeredOption2 = {
-      name: 'Deploy',
-      action: () => {
-        this.deployRegistered(registered);
-      },
-      registered: registered
-    };
-    const registeredOption3 = {
-      name: 'Delete',
-      action: () => {
-        this.deleteApp(registered);
-      },
-      registered: registered
-    };
-    registeredOptions.push(registeredOption1);
-    registeredOptions.push(registeredOption2);
-    registeredOptions.push(registeredOption3);
-    return registeredOptions;
-  }
-
 
   /**
    * It modifies the graph, changing the border of the nodes that its labels contain the search term
@@ -1162,7 +1098,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         id: registeredApp[0]['app_descriptor_id'],
         label: registeredApp[0]['name'],
         type: NodeType.Registered,
-        tooltip: 'REGISTERED ' + registeredApp[0]['name'],
+        tooltip: this.translateService.instant('apps.registeredTitle') + registeredApp[0]['name'],
         group: cluster.cluster_id
       },
       ...this.getStyledNode(
@@ -1198,7 +1134,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       type: NodeType.Instances,
       inbound_connections: instance['inbound_connections'] || [],
       outbound_connections: instance['outbound_connections'] || [],
-      tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
+      tooltip: this.translateService.instant('apps.instance.idInstance')
+      + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
       group: cluster.cluster_id,
       app_descriptor_id: instance['app_descriptor_id']
     },
@@ -1288,15 +1225,13 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   private getNodeColor(status: string): string {
       switch (status.toLowerCase()) {
-        case 'running':
-        case 'online':
-        case 'online_cordon':
+        case ClusterStatus.Running:
+        case ClusterStatus.Online:
+        case ClusterStatus.OnlineCordon:
         return STATUS_COLORS.RUNNING;
-        case 'error':
-        case 'offline':
-        case 'offline_cordon':
-          return STATUS_COLORS.ERROR;
-        case 'deployment_error':
+        case ClusterStatus.Error:
+        case ClusterStatus.Offline:
+        case ClusterStatus.OfflineCordon:
           return STATUS_COLORS.ERROR;
         default:
           return STATUS_COLORS.OTHER;
@@ -1309,13 +1244,13 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   private getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
-      case 'running':
-      case 'online':
-      case 'online_cordon':
+      case ClusterStatus.Running:
+      case ClusterStatus.Online:
+      case ClusterStatus.OnlineCordon:
         return STATUS_TEXT_COLORS.RUNNING;
-      case 'error':
-      case 'offline':
-      case 'offline_cordon':
+      case ClusterStatus.Error:
+      case ClusterStatus.Offline:
+      case ClusterStatus.OfflineCordon:
         return STATUS_TEXT_COLORS.ERROR;
       default:
         return STATUS_TEXT_COLORS.OTHER;

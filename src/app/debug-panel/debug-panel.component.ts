@@ -4,6 +4,11 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { NotificationsService } from '../services/notifications.service';
 
 /**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
+
+/**
  * Interface for the objects that will be listed in the debug panel
  */
 export interface ComponentMockOption {
@@ -372,7 +377,7 @@ export class DebugPanelComponent implements OnInit {
       id: this.notificationsService.uuidv4(),
       message: 'Test notification',
       type: 'info',
-      timeout: 5000
+      timeout: TIMEOUT_ERROR,
     });
   }
   urlChange($event) {

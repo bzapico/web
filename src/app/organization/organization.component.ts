@@ -27,9 +27,9 @@ export class OrganizationComponent implements OnInit {
    */
   organizationId: string;
   organizationName: string;
-  subscriptionType: string;
   users: any[];
   profileRole: string;
+  userId: string;
 
   /**
    * Loaded Data status
@@ -81,7 +81,6 @@ export class OrganizationComponent implements OnInit {
     // Default initialization
     this.loadedData = false;
     this.organizationName = this.translateService.instant('organization.loading');
-    this.subscriptionType = this.translateService.instant('organization.subscriptionType');
     this.users = [];
     this.requestError = '';
 
@@ -99,6 +98,7 @@ export class OrganizationComponent implements OnInit {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
       this.profileRole = JSON.parse(jwtData).role;
+      this.userId = JSON.parse(jwtData).userID;
       if (this.organizationId !== null) {
         this.backend.getOrganizationInfo(this.organizationId)
           .subscribe(response => {
@@ -127,6 +127,7 @@ export class OrganizationComponent implements OnInit {
       userName: user.name,
       email: user.email,
       role: user.role_name,
+      userId: this.userId,
       defaultAutofocus: true,
     };
 

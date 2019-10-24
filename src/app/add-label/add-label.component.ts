@@ -7,6 +7,15 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+/**
+ * It sets the timeout in actions like undeploying or deleting
+ */
+const TIMEOUT_ACTION = 3000;
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
+
 @Component({
   selector: 'app-add-label',
   templateUrl: './add-label.component.html',
@@ -64,18 +73,19 @@ export class AddLabelComponent implements OnInit {
     this.addLabelForm =
         this.formBuilder
             .group(
-  {labelName:
-                ['',
-                  [Validators.required,
-                  Validators.minLength(1),
-                  Validators.pattern('^[a-zA-Z0-9_.-]*$')]
-                ],
-               labelValue:
-                ['',
-                  [Validators.required,
-                  Validators.minLength(1),
-                  Validators.pattern('^[a-zA-Z0-9_.-]*$')]
-                ],
+  {
+    labelName:
+    ['',
+      [Validators.required,
+      Validators.minLength(1),
+      Validators.pattern('^[a-zA-Z0-9_.-]*$')]
+    ],
+    labelValue:
+    ['',
+      [Validators.required,
+      Validators.minLength(1),
+      Validators.pattern('^[a-zA-Z0-9_.-]*$')]
+    ],
     });
   }
 
@@ -113,14 +123,14 @@ export class AddLabelComponent implements OnInit {
             this.loading = false;
             this.notificationsService.add({
               message: 'Updated ' + this.entity.name,
-              timeout: 3000,
+              timeout: TIMEOUT_ACTION,
             });
             this.bsModalRef.hide();
           }, error => {
             this.loading = false;
             this.notificationsService.add({
               message: error.error.message,
-              timeout: 5000,
+              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
           });
@@ -144,14 +154,14 @@ export class AddLabelComponent implements OnInit {
             this.loading = false;
             this.notificationsService.add({
               message: 'Updated ' + this.entity.ip + ' node',
-              timeout: 3000,
+              timeout: TIMEOUT_ACTION,
             });
             this.bsModalRef.hide();
           }, error => {
             this.loading = false;
             this.notificationsService.add({
               message: error.error.message,
-              timeout: 5000,
+              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
           });
@@ -174,14 +184,14 @@ export class AddLabelComponent implements OnInit {
             this.loading = false;
             this.notificationsService.add({
               message: 'Updated ' + this.entity.device_id,
-              timeout: 3000,
+              timeout: TIMEOUT_ACTION,
             });
             this.bsModalRef.hide();
           }, error => {
             this.loading = false;
             this.notificationsService.add({
               message: error.error.message,
-              timeout: 5000,
+              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
           });
@@ -206,14 +216,14 @@ export class AddLabelComponent implements OnInit {
             this.loading = false;
             this.notificationsService.add({
               message: 'Updated ' + this.entity.app_descriptor_id,
-              timeout: 3000,
+              timeout: TIMEOUT_ACTION,
             });
             this.bsModalRef.hide();
           }, error => {
             this.loading = false;
             this.notificationsService.add({
               message: error.error.message,
-              timeout: 5000,
+              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
           });
@@ -236,14 +246,14 @@ export class AddLabelComponent implements OnInit {
               this.loading = false;
               this.notificationsService.add({
                 message: 'Updated ' + this.entity.edge_controller_id,
-                timeout: 3000,
+                timeout: TIMEOUT_ACTION,
               });
               this.bsModalRef.hide();
             }, error => {
               this.loading = false;
               this.notificationsService.add({
                 message: error.error.message,
-                timeout: 5000,
+                timeout: TIMEOUT_ERROR,
                 type: 'warning'
               });
             });
@@ -266,14 +276,14 @@ export class AddLabelComponent implements OnInit {
               this.loading = false;
               this.notificationsService.add({
                 message: 'Updated ' + this.entity.asset_id,
-                timeout: 3000,
+                timeout: TIMEOUT_ACTION,
               });
               this.bsModalRef.hide();
             }, error => {
               this.loading = false;
               this.notificationsService.add({
                 message: error.error.message,
-                timeout: 5000,
+                timeout: TIMEOUT_ERROR,
                 type: 'warning'
               });
             });

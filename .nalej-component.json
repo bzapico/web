@@ -1,6 +1,10 @@
 {
     "language": "angular",
+    "version": "v0.4.0",
     "application_list": [
+        "web"
+    ],
+    "image_list": [
         "web"
     ],
     "tools": [

@@ -6,7 +6,6 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
-
 /**
  * It sets the timeout in actions like undeploying or deleting
  */
@@ -22,7 +21,6 @@ const TIMEOUT_ERROR = 5000;
   styleUrls: ['./deploy-instance.component.scss']
 })
 export class DeployInstanceComponent implements OnInit {
-
   /**
    * Models that holds forms info
    */
@@ -30,17 +28,14 @@ export class DeployInstanceComponent implements OnInit {
   selectDrop: FormControl;
   submitted = false;
   loadedData: boolean;
-
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Model that hold organization ID
    */
   organizationId: string;
-
   /**
    * Model that hold app registered ID and its name
    */
@@ -51,7 +46,6 @@ export class DeployInstanceComponent implements OnInit {
   instanceName: string;
   selectedApp: any;
   appFromRegistered: any;
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -59,14 +53,14 @@ export class DeployInstanceComponent implements OnInit {
     backdrop: false,
     ignoreBackdropClick: true
   };
-
+  /**
+   * It models necessary options for params step
+   */
   defaultAutofocus: string;
-
   defaultParamsOpened: boolean;
   advParamsOpened: boolean;
   availableParamsCategory = { basic: false, advanced: false};
   params: FormArray;
-
   /**
    * NGX-select-dropdown
    */
@@ -74,7 +68,6 @@ export class DeployInstanceComponent implements OnInit {
   selectedOptions = [];
   options = [];
   selectConfig = {};
-
   /**
    * Model that holds onclose method
    */
@@ -94,7 +87,6 @@ export class DeployInstanceComponent implements OnInit {
   basicInformationDot: boolean;
   parametersDot: boolean;
   connectionsDot: boolean;
-
   /**
    * Configuration for connections step
    */

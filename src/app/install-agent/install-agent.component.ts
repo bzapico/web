@@ -7,6 +7,15 @@ import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
+/**
+ * It sets the timeout in actions like undeploying or deleting
+ */
+const TIMEOUT_ACTION = 3000;
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
+
 @Component({
   selector: 'app-install-agent',
   templateUrl: './install-agent.component.html',
@@ -189,14 +198,14 @@ export class InstallAgentComponent implements OnInit {
         this.loading = false;
         this.notificationsService.add({
           message: 'Installing agent on ' + agent.target_host + ' target host',
-          timeout: 3000
+          timeout: TIMEOUT_ACTION
         });
         this.bsModalRef.hide();
       }, error => {
         this.loading = false;
         this.notificationsService.add({
           message: 'ERROR: ' + error.error.message,
-          timeout: 5000,
+          timeout: TIMEOUT_ERROR,
           type: 'warning'
         });
         this.bsModalRef.hide();

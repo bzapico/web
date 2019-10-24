@@ -7,6 +7,11 @@ import { DebugPanelComponent } from '../debug-panel/debug-panel.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { NotificationsService } from '../services/notifications.service';
 
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -48,7 +53,7 @@ export class LoginComponent implements OnInit {
     if (this.route.snapshot.queryParamMap.get('unauthorized')) {
       this.notificationsService.add({
         message: 'Session has expired, please log in',
-        timeout: 5000,
+        timeout: TIMEOUT_ERROR,
         type: 'warning'
       });
     }
@@ -109,21 +114,21 @@ export class LoginComponent implements OnInit {
           this.loginRequest = false;
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000,
+            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         } else if (error.message) {
           this.loginRequest = false;
           this.notificationsService.add({
             message: error.message,
-            timeout: 500000,
+            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         } else {
           this.loginRequest = false;
           this.notificationsService.add({
             message: 'ERROR',
-            timeout: 5000,
+            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         }

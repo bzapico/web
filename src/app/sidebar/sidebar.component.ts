@@ -9,6 +9,7 @@ import { AuthService } from '../services/auth.service';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { UpdateEventsService } from '../services/update-events.service';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'nalej-sidebar',
@@ -46,7 +47,8 @@ export class SidebarComponent implements OnInit {
     private router: Router,
     private modalService: BsModalService,
     private auth: AuthService,
-    private updateService: UpdateEventsService
+    private updateService: UpdateEventsService,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.sidebarMock) || null;
     // check which backend is required (fake or real)
@@ -55,10 +57,10 @@ export class SidebarComponent implements OnInit {
     } else {
       this.backend = backendService;
     }
-    this.name = 'Loading ...'; // Default initialization
-    this.role = 'Loading ...'; // Default initialization
-    this.email = 'Loading ...'; // Default initialization
-   }
+    this.name = this.translateService.instant('organization.loading'); // Default initialization
+    this.role = this.translateService.instant('organization.loading'); // Default initialization
+    this.email = this.translateService.instant('organization.loading'); // Default initialization
+  }
 
   ngOnInit() {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
@@ -88,7 +90,7 @@ export class SidebarComponent implements OnInit {
       userName: this.name,
       email: this.email,
       profileRole: this.role,
-      title: 'Edit profile',
+      title: this.translateService.instant('sidebar.editProfile'),
       organizationId: this.organizationId,
       selfEditProfile: true,
     };
@@ -103,7 +105,7 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-   /**
+  /**
    * Requests an updated profile user to update the current one
    */
   updateProfileUser(organizationId, userId) {

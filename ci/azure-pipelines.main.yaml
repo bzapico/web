@@ -12,12 +12,6 @@ variables:
     value: '$(system.defaultWorkingDirectory)/gopath'
   - name: modulePath
     value: '$(GOPATH)/src/github.com/$(Build.Repository.Name)'
-  - name: appList
-    value: 'unified-logging-coord unified-logging-slave'
-  - name: imageList
-    value: 'unified-logging-coord unified-logging-slave'
-  - name: authorName
-    value: ""
 
 resources:
   repositories:
@@ -70,7 +64,7 @@ jobs:
       dockerRegistry: $(stagingDockerRegistry)
   
   - script: |
-      VERSION=$(cat .version)
+      VERSION=$(cat .nalej-component.json | jq -r '.version')
       build_output=$(docker build --no-cache -t $(stagingDockerRegistry)/nalej/web:$VERSION -f components/web/Dockerfile.ci .)
 
       if [ $? -ne 0 ]; then
@@ -81,7 +75,7 @@ jobs:
     displayName: Build the docker images
   
   - script: |
-      VERSION=$(cat .version)
+      VERSION=$(cat .nalej-component.json | jq -r '.version')
       push_output=$(docker push $(stagingDockerRegistry)/nalej/web:$VERSION)
 
       if [ $? -ne 0 ]; then

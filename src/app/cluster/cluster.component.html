@@ -64,7 +64,7 @@
               <th>Labels</th>
               <td *ngIf="!clusterData.labels || clusterData.labels === {} "> no </td>
               <td *ngIf="clusterData.labels">
-                <button *ngFor="let label of clusterData.labels| keyvalue" class="label-content-disabled">
+                <button *ngFor="let label of clusterData.labels| keyvalue" class="label-content-disabled" disabled>
                   <span *ngIf="label.key">{{label.key}}: {{label.value}}</span>  
                 </button>
               </td>

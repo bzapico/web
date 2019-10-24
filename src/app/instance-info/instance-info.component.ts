@@ -14,6 +14,15 @@ import { InstanceServiceGroupInfoComponent } from '../instance-service-group-inf
 import { ServicesStatus } from '../definitions/enums/services-status.enum';
 import { InstanceInfoService } from './instance-info.service';
 
+/**
+ * It sets the timeout in actions like undeploying or deleting
+ */
+const TIMEOUT_ACTION = 3000;
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
+
 @Component({
   selector: 'app-instance-info',
   templateUrl: './instance-info.component.html',
@@ -326,13 +335,13 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         .subscribe(undeployResponse => {
           this.notificationsService.add({
             message: this.translateService.instant('apps.instance.undeployMessage', { appName: app.name }),
-            timeout: 3000
+            timeout: TIMEOUT_ACTION
           });
           this.router.navigate(['/applications']);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000,
+            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });

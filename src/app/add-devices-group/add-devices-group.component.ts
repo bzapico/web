@@ -8,6 +8,10 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { DeviceGroupCreatedComponent } from '../device-group-created/device-group-created.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
 
 @Component({
   selector: ' add-device-group',
@@ -117,7 +121,7 @@ export class AddDevicesGroupComponent implements OnInit {
         this.loading = false;
         this.notificationsService.add({
           message: 'ERROR: ' + error.error.message,
-          timeout: 5000,
+          timeout: TIMEOUT_ERROR,
           type: 'warning'
         });
       });

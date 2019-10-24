@@ -12,6 +12,20 @@ import { AddLabelComponent } from '../add-label/add-label.component';
 import { DeviceGroupInfoComponent } from '../device-group-info/device-group-info.component';
 import { TranslateService } from '@ngx-translate/core';
 
+/**
+ * It sets the timeout in actions like undeploying or deleting
+ */
+const TIMEOUT_ACTION = 3000;
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
+
+/**
+ * Refresh ratio reference
+ */
+const REFRESH_RATIO = 20000; // 20 seconds
+
 @Component({
   selector: 'app-devices',
   templateUrl: './devices.component.html',
@@ -77,11 +91,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Interval reference
    */
   refreshIntervalRef: any;
-
-  /**
-   * Refresh ratio reference
-   */
-  REFRESH_RATIO = 20000; // 20 seconds
 
   /**
    * Charts references
@@ -212,7 +221,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         this.refreshIntervalRef = setInterval(() => {
           this.updateGroupsList(this.organizationId);
         },
-        this.REFRESH_RATIO); // Refresh each 60 seconds
+        REFRESH_RATIO); // Refresh each 60 seconds
     }
     this.updateDisplayedGroupsNamesLength();
   }
@@ -371,23 +380,23 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param device device data to update
    */
   enableSwitcher(device: { enabled: boolean; device_group_id: any; device_id: any; }) {
-   device.enabled = !device.enabled;
+    device.enabled = !device.enabled;
    // backend call
-   this.backend.updateDevice(this.organizationId, {
+    this.backend.updateDevice(this.organizationId, {
       organizationId: this.organizationId,
       deviceGroupId: device.device_group_id,
       deviceId: device.device_id,
       enabled: device.enabled
-   }).subscribe( updateDeviceResponse => {
-     let notificationText = this.translateService.instant('devices.enabled');
-     if (!device.enabled) {
+    }).subscribe( updateDeviceResponse => {
+      let notificationText = this.translateService.instant('devices.enabled');
+      if (!device.enabled) {
       notificationText = this.translateService.instant('devices.disabled');
-     }
-    this.notificationsService.add({
-      message: this.translateService.instant('devices.switcherMessage')  + notificationText,
-      timeout: 3000
+      }
+      this.notificationsService.add({
+        message: this.translateService.instant('devices.switcherMessage')  + notificationText,
+        timeout: TIMEOUT_ACTION
+      });
     });
-   });
   }
 
   /**
@@ -517,7 +526,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
   }
 
- /**
+  /**
   * Check if the label is selected. Returns index number in selected labels or -1 if the label is not found.
   * @param entityId entity from selected label
   * @param labelKey label key from selected label
@@ -575,13 +584,13 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         .subscribe(unlinkResponse => {
         this.notificationsService.add({
           message: this.translateService.instant('devices.unlinkDeviceMessage', {device_id : device.device_id }),
-          timeout: 3000
+          timeout: TIMEOUT_ACTION
         });
         this.updateGroupsList(this.organizationId);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000,
+            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });
@@ -756,20 +765,20 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           });
           this.notificationsService.add({
             message: this.translateService.instant('devices.deleteGroupMessage', { groupName: group.name }),
-            timeout: 3000
+            timeout: TIMEOUT_ACTION
           });
       },
       error => {
         this.notificationsService.add({
           message: error.error.message,
-          timeout: 5000,
+          timeout: TIMEOUT_ERROR,
           type: 'warning'
         });
       });
       } else {
         this.notificationsService.add({
           message: this.translateService.instant('devices.deleteGroupMessageNegative'),
-          timeout: 5000,
+          timeout: TIMEOUT_ERROR,
           type: 'warning'
         });
       }
