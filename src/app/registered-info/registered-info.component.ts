@@ -231,7 +231,6 @@ export class RegisteredInfoComponent implements OnInit {
       this.filterFieldRules = true;
     }
   }
-
   /**
    * Reset all the filters fields
    */
@@ -246,7 +245,6 @@ export class RegisteredInfoComponent implements OnInit {
       this.sortedByRules = '';
     }
   }
-
   /**
    * Gets the category headers to add a class
    * @param categoryName the class for the header category

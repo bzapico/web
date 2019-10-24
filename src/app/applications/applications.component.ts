@@ -930,6 +930,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     });
     this.setLinksBetweenApps();
     this.setRelatedNodes();
+    console.log('GRAPH DATA ::: NODES ::: ', this.graphData.nodes);
+    console.log('GRAPH DATA ::: LINKS ::: ', this.graphData.links);
     this.graphDataLoaded = true;
   }
 
@@ -1011,11 +1013,15 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
             node[connection_type].forEach(connection => {
               const source = connection.source_instance_id;
               const target = connection.target_instance_id;
-              linksBetweenApps[source + '_' + target] = {
-                source: source,
-                target: target,
-                is_between_apps: true
-              };
+              const isSourceAnExistingNode = this.graphData.nodes.filter(nod => nod.id === source).length > 0;
+              const isTargetAnExistingNode = this.graphData.nodes.filter(nod => nod.id === target).length > 0;
+              if (isSourceAnExistingNode && isTargetAnExistingNode) {
+                linksBetweenApps[source + '_' + target] = {
+                  source: source,
+                  target: target,
+                  is_between_apps: true
+                };
+              }
             });
           });
         }
@@ -1307,11 +1313,15 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     if ((!this.foundOccurrenceInRegistered && !this.foundOccurrenceInInstance && !this.foundOccurrenceInCluster)
         || ((this.foundOccurrenceInRegistered || this.foundOccurrenceInInstance || this.foundOccurrenceInCluster)
             && !this.initialState.showOnlyNodes)) {
-      this.graphData.links.push({
-        source: source,
-        target: target,
-        is_between_apps: false
-      });
+      // const isSourceAnExistingNode = this.graphData.nodes.filter(node => node.id === source).length > 0;
+      // const isTargetAnExistingNode = this.graphData.nodes.filter(node => node.id === target).length > 0;
+      // if (isSourceAnExistingNode && isTargetAnExistingNode) {
+        this.graphData.links.push({
+          source: source,
+          target: target,
+          is_between_apps: false
+        });
+      //}
     }
     if (!this.searchGraphData.links[source]) {
       this.searchGraphData.links[source] = [];
