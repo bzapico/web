@@ -7,6 +7,15 @@ import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 
+/**
+ * It sets the timeout in actions like undeploying or deleting
+ */
+const TIMEOUT_ACTION = 3000;
+/**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR = 5000;
+
 @Component({
   selector: 'app-deploy-instance',
   templateUrl: './deploy-instance.component.html',
@@ -38,7 +47,6 @@ export class DeployInstanceComponent implements OnInit {
   registeredId: string;
   registeredName: string;
   openFromRegistered: boolean;
-  registeredApp: any;
   registeredApps: any[];
   instanceName: string;
   selectedApp: any;
@@ -115,7 +123,6 @@ export class DeployInstanceComponent implements OnInit {
     } else {
       this.backend = this.backendService;
     }
-
     // Default initialization
     this.loadedData = false;
     this.openFromRegistered = false;
@@ -149,7 +156,6 @@ export class DeployInstanceComponent implements OnInit {
     this.selectDrop = new FormControl(null, Validators.required);
     this.targetInstance = new FormControl(null, Validators.required);
     this.targetInterface = new FormControl(null, Validators.required);
-    // this.connectionsListControl = new FormControl();
     this.instancesNames = [];
     this.instances = [];
     this.connections = [];
@@ -158,7 +164,6 @@ export class DeployInstanceComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('ON INIT ::: SELECTED APP ::: ', this.selectedApp);
     this.deployInstanceForm = this.formBuilder.group({
       registeredName: [{value: '', disabled: true}],
       instanceName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z0-9]+$')]],
@@ -167,14 +172,12 @@ export class DeployInstanceComponent implements OnInit {
     this.deployInstanceForm.addControl('selectDrop', this.selectDrop);
     this.deployInstanceForm.addControl('targetInstance', this.targetInstance);
     this.deployInstanceForm.addControl('targetInterface', this.targetInterface);
-    // this.deployInstanceForm.addControl('connectionsListControl', this.connectionsListControl);
     this.backend.getRegisteredApps(this.organizationId)
     .subscribe(response => {
         this.registeredApps = response.descriptors || [];
         this.registeredApps.unshift({id: -1, name: 'Select any registered name'});
         this.loadedData = true;
     });
-
     if (this.openFromRegistered && this.appFromRegistered) {
       this.selectedApp = this.appFromRegistered;
       this.registeredName = this.selectedApp.name;
@@ -206,7 +209,6 @@ export class DeployInstanceComponent implements OnInit {
   get f() { return this.deployInstanceForm.controls; }
 
   deployInstance(f) {
-    console.log('DEPLOY INSTANCE ::: CONNECTIONS ::: ', this.connections);
     this.instanceName = f.instanceName.value;
     this.submitted = true;
     if (!f.instanceName.errors) {
@@ -220,12 +222,12 @@ export class DeployInstanceComponent implements OnInit {
             this.bsModalRef.hide();
             this.notificationsService.add({
               message: 'Deploying instance of ' + this.registeredName,
-              timeout: 3000
+              timeout: TIMEOUT_ACTION
             });
           }, error => {
             this.notificationsService.add({
               message: error.error.message,
-              timeout: 5000,
+              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
             this.onClose(true);
@@ -240,17 +242,17 @@ export class DeployInstanceComponent implements OnInit {
           });
         });
         this.backend.deploy(this.organizationId, this.registeredId, this.instanceName, instanceParams, this.connections)
-          .subscribe(deployResponse => {
+          .subscribe(() => {
             this.onClose(false);
             this.bsModalRef.hide();
             this.notificationsService.add({
               message: 'Deploying instance of ' + this.registeredName,
-              timeout: 3000
+              timeout: TIMEOUT_ACTION
             });
           }, error => {
             this.notificationsService.add({
               message: error.error.message,
-              timeout: 5000,
+              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
             this.onClose(true);
@@ -267,8 +269,6 @@ export class DeployInstanceComponent implements OnInit {
   onRegisteredChange(f) {
     this.selectedApp = f.selectDrop.value;
     this.setConnectionsAndInstances();
-    console.log('SELECTED APP ::: ', this.selectedApp);
-    console.log('SELECTED APP ::: ', this.areRequiredConnections);
     this.registeredName = this.selectedApp.name;
     this.availableParamsCategory.basic = false;
     this.availableParamsCategory.advanced = false;
@@ -280,9 +280,7 @@ export class DeployInstanceComponent implements OnInit {
         param.value = param.default_value;
       });
       this.selectedApp.parameters.forEach(param => {
-        this.params.push(this.formBuilder.group(
-          [param]
-        ));
+        this.params.push(this.formBuilder.group([param]));
         if (!param.category) {
           this.availableParamsCategory.basic = true;
         } else {
@@ -410,8 +408,6 @@ export class DeployInstanceComponent implements OnInit {
   }
 
   targetInterfaceSelectionChange(f, i: number) {
-    console.log('TARGET INTERFACE SELECTION CHANGE :: ', f.targetInterface.value, i);
-    console.log('NET INTERFACES :: ', this.selectedApp.outbound_net_interfaces);
     if (f.targetInterface.value) {
       this.connections.push(
         {target_instance_id: this.instances.filter(inst => inst.name === f.targetInstance.value)[0].app_instance_id,

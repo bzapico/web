@@ -1350,7 +1350,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
               this.clusters = clusters.clusters;
               this.instances = instances.instances;
               this.registered = registered.descriptors || [];
-              console.log('INSTANCES ', this.instances);
               if (this.instances) {
                 this.processedRegisteredList();
               }
@@ -1364,7 +1363,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
               this.toGraphData();
             })
             .catch(errorResponse => {
-              console.log('ERROR RESPONSE ', errorResponse);
               this.loadedData = false;
               this.requestError = errorResponse.error.message;
             });
