@@ -5,8 +5,8 @@
 /* - - -  Graph - - - */
 .graph {
     height: 96%;
+    width: 100%;
 }
-
 @media screen and (max-height: 780px) {
     .hide-title-sm {
         display: none;
@@ -45,7 +45,8 @@
     }
 }
 .services-card-box {
-    height:96%;
+    height: 96%;
+    width: 100%;
     .services-table-box {
         height: 50%;
         overflow: hidden;

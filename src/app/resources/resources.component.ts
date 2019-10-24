@@ -141,8 +141,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;
-  colorSchemeGraph: any;
-  view: any[];
+  // view: any[];
   width: number;
   height: string;
   draggingEnabled: boolean;
@@ -225,9 +224,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.autoCenter = true;
     this.enableZoom = true;
     this.draggingEnabled = false;
-    this.colorSchemeGraph = {
-      domain: ['#6C86F7']
-    };
     this.graphDataLoaded = false;
     this.graphData = {
       nodes: [],

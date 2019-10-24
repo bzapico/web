@@ -1,12 +1,13 @@
+<div class="graph-canvas"></div>
 <ngx-graph
-    [view]="view"
-    [links]="links"
-    [nodes]="nodes"
-    [orientation]="orientation"
-    [autoZoom]="autoZoom"
-    [autoCenter]="autoCenter"
-    [curve]="curve"
-    [enableZoom]="enableZoom"
+  [view]="view"
+  [links]="links"
+  [nodes]="nodes"
+  [orientation]="orientation"
+  [autoZoom]="autoZoom"
+  [autoCenter]="autoCenter"
+  [curve]="curve"
+  [enableZoom]="enableZoom"
   class="chart-container">
   <ng-template #nodeTemplate let-node>
     <svg:g
@@ -27,14 +28,14 @@
         {{node.label}}
       </svg:text>
       <svg *ngIf="node.icon && node.shape === 'rectangle'"
-           [attr.width]="node.icon.width"
-           [attr.height]="node.icon.height"
-           [attr.x]="node.icon.x"
-           [attr.y]="node.icon.y"
-           [attr.viewBox]="node.icon.viewBox">
+        [attr.width]="node.icon.width"
+        [attr.height]="node.icon.height"
+        [attr.x]="node.icon.x"
+        [attr.y]="node.icon.y"
+        [attr.viewBox]="node.icon.viewBox">
         <path *ngFor="let path of node.icon.paths"
-              [attr.fill]="path.fill"
-              [attr.d]="path.d"/>
+          [attr.fill]="path.fill"
+          [attr.d]="path.d"/>
       </svg>
       <text *ngSwitchCase="'circle'"
         [attr.fill]="node.text.color"
@@ -48,14 +49,14 @@
         [attr.cy]="node.height/2"
         [attr.fill]="node.color"/>
       <svg *ngIf="node.icon && node.shape === 'circle'"
-           [attr.width]="node.icon.width"
-           [attr.height]="node.icon.height"
-           [attr.x]="(node.width - node.icon.width)/2"
-           [attr.y]="(node.height - node.icon.height)/2"
-           [attr.viewBox]="node.icon.viewBox">
+        [attr.width]="node.icon.width"
+        [attr.height]="node.icon.height"
+        [attr.x]="(node.width - node.icon.width)/2"
+        [attr.y]="(node.height - node.icon.height)/2"
+        [attr.viewBox]="node.icon.viewBox">
         <path *ngFor="let path of node.icon.paths"
-              [attr.fill]="path.fill"
-              [attr.d]="path.d"/>
+          [attr.fill]="path.fill"
+          [attr.d]="path.d"/>
       </svg>
       <text *ngIf="node.secondaryText && node.secondaryText.text && node.shape === 'circle'"
         [attr.fill]="node.secondaryText.color"

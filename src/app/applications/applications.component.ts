@@ -405,7 +405,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     let running = 0;
     if (instances) {
       instances.forEach(app => {
-        if (app.status_name === AppStatus.Running) {
+        if (app.status_name === AppStatus.Running.toUpperCase()) {
           running += 1;
         }
       });
@@ -485,19 +485,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         }
         break;
       }
-      case AppStatus.Queued: {
-        if (className.toLowerCase() === AppStatus.Process) {
-          return true;
-        }
-        break;
-      }
+      case AppStatus.Scheduled:
+      case AppStatus.Queued:
       case AppStatus.Planning: {
-        if (className.toLowerCase() === AppStatus.Process) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.Scheduled: {
         if (className.toLowerCase() === AppStatus.Process) {
           return true;
         }
@@ -1036,7 +1026,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         id: cluster.cluster_id,
         label: cluster.name,
         type: NodeType.Clusters,
-        tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
+        tooltip: this.translateService.instant('resources.cluster') + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
         group: cluster.cluster_id
       },
       ...this.getStyledNode(
@@ -1219,18 +1209,21 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * @param status Status name
    */
   private getNodeColor(status: string): string {
-      switch (status.toLowerCase()) {
-        case ClusterStatus.Running:
-        case ClusterStatus.Online:
-        case ClusterStatus.OnlineCordon:
-        return STATUS_COLORS.RUNNING;
-        case ClusterStatus.Error:
-        case ClusterStatus.Offline:
-        case ClusterStatus.OfflineCordon:
-          return STATUS_COLORS.ERROR;
-        default:
-          return STATUS_COLORS.OTHER;
-      }
+    switch (status.toLowerCase()) {
+      case ClusterStatus.Running:
+      case ClusterStatus.Online:
+      case ClusterStatus.OnlineCordon:
+      return STATUS_COLORS.RUNNING;
+      case ClusterStatus.Error:
+      case ClusterStatus.Offline:
+      case ClusterStatus.OfflineCordon:
+        return STATUS_COLORS.ERROR;
+      case AppStatus.Queued:
+      case AppStatus.Deploying:
+        return STATUS_COLORS.OTHER;
+      default:
+        return STATUS_COLORS.OTHER;
+    }
   }
 
   /**
@@ -1247,6 +1240,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       case ClusterStatus.Offline:
       case ClusterStatus.OfflineCordon:
         return STATUS_TEXT_COLORS.ERROR;
+      case AppStatus.Queued:
+      case AppStatus.Deploying:
+        return STATUS_TEXT_COLORS.OTHER;
       default:
         return STATUS_TEXT_COLORS.OTHER;
     }

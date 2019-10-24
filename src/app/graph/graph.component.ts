@@ -16,7 +16,6 @@ export class GraphComponent implements OnInit {
   @Input() enableZoom: boolean;
   @Input() view: any[];
 
-
   constructor() {
     this.links = [];
     this.nodes = [];

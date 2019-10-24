@@ -289,11 +289,10 @@
             <div    
               *ngIf="graphDataLoaded"
               class="graph">
+              <!-- [view]="view" -->
               <ngx-graph
-                [view]="view"
                 [links]="graphData.links"
                 [nodes]="graphData.nodes"
-                [scheme]="colorSchemeGraph"
                 [orientation]="orientation"
                 [autoZoom]="autoZoom"
                 [autoCenter]="autoCenter"
