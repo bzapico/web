@@ -5,6 +5,9 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { GroupConfigurationComponent } from './group-configuration.component';
 import { By } from '@angular/platform-browser';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '../app.module';
 
 describe('GroupConfigurationComponent', () => {
   let component: GroupConfigurationComponent;
@@ -20,10 +23,18 @@ describe('GroupConfigurationComponent', () => {
         TooltipModule,
         RouterTestingModule,
         ModalModule.forRoot(),
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
       providers: [
         BsModalRef,
-        BsModalService
+        BsModalService,
+        TranslateService
       ]
     })
     .compileComponents();

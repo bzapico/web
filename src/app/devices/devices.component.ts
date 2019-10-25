@@ -11,6 +11,7 @@ import { GroupConfigurationComponent } from '../group-configuration/group-config
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { DeviceGroupInfoComponent } from '../device-group-info/device-group-info.component';
 import { TranslateService } from '@ngx-translate/core';
+import { DevicesStatus } from '../definitions/enums/devices-status.enum';
 
 /**
  * It sets the timeout in actions like undeploying or deleting
@@ -20,7 +21,6 @@ const TIMEOUT_ACTION = 3000;
  * It sets the timeout for errors
  */
 const TIMEOUT_ERROR = 5000;
-
 /**
  * Refresh ratio reference
  */
@@ -65,11 +65,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   enabled: boolean;
   default_device_connectivity: boolean;
   device_group_api_key: string;
-
-  /**
-   * Models that keeps the displayed groups names length
-   */
-  displayedGroupsNamesLength: number;
 
   /**
    * List of active displayed group
@@ -223,7 +218,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         },
         REFRESH_RATIO); // Refresh each 60 seconds
     }
-    this.updateDisplayedGroupsNamesLength();
   }
 
   ngOnDestroy() {
@@ -253,60 +247,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Requests an updated list of available devices group to update the current one
-   * @param organizationId Organization identifier
-   */
-  updateGroupsList(organizationId: string) {
-    if (organizationId !== null) {
-      // Requests an updated devices group list
-      this.backend.getGroups(this.organizationId)
-      .subscribe(response => {
-        this.groups = response.groups || [];
-        this.groups.forEach(group => {
-          group.isFirstOpen = true;
-        });
-        this.updateDisplayedGroupsNamesLength();
-        this.updateDevicesList(this.organizationId);
-      }, errorResponse => {
-          this.loadedData = true;
-          this.requestError = errorResponse.error.message;
-        });
-    }
-  }
-
-  /**
-   * Requests an updated list of devices to update the current one
-   * @param organizationId organization identifier
-   */
-  updateDevicesList(organizationId: string) {
-    const tmpDevices = [];
-    if (organizationId !== null) {
-      // Request to get devices
-      if (this.groups.length > 0) {
-        this.groups.forEach((group, index) => {
-          this.backend.getDevices(this.organizationId, group.device_group_id)
-          .subscribe(response => {
-              tmpDevices.push(response.devices || []);
-              if (!this.loadedData && index === this.groups.length - 1) {
-                this.loadedData = true;
-              }
-              if (tmpDevices.length === this.groups.length) {
-                this.devices = tmpDevices;
-              }
-              this.updateDevicesOnTimeline();
-              this.updateDevicesStatusLineChart();
-            }, errorResponse => {
-              this.loadedData = true;
-              this.requestError = errorResponse.error.message;
-            });
-          });
-      } else {
-        this.loadedData = true;
-      }
-    }
-  }
-
-  /**
    * Checks if the devices status requires an special css class
    * @param status devices status name
    * @param className CSS class name
@@ -314,20 +254,20 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   classStatusCheck(status: string, className: string): boolean {
     if (status) {
       switch (status.toLowerCase()) {
-        case this.translateService.instant('status.online'): {
-          if (className.toLowerCase() === this.translateService.instant('status.online')) {
+        case DevicesStatus.Online: {
+          if (className.toLowerCase() === DevicesStatus.Online) {
             return true;
           }
           break;
         }
-        case this.translateService.instant('status.offline'): {
-          if (className.toLowerCase() === this.translateService.instant('status.offline')) {
+        case DevicesStatus.Offline: {
+          if (className.toLowerCase() === DevicesStatus.Offline) {
             return true;
           }
           break;
         }
-       default: {
-          if (className.toLowerCase() === this.translateService.instant('status.process')) {
+      default: {
+          if (className.toLowerCase() === DevicesStatus.Process) {
             return true;
           }
           return false;
@@ -419,29 +359,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   }
 
   /**
-   * Updates the displayed groups chars length to calculate the number of letters displayed according to the size of the viewport
-   */
-  updateDisplayedGroupsNamesLength() {
-    this.displayedGroupsNamesLength = 0;
-    this.displayedGroups.forEach(group => {
-      this.displayedGroupsNamesLength += group.name.length;
-    });
-  }
-
-  /**
-   * Gets the devices array list and traverse the group array list to show in table
-   */
-  getDevices() {
-    const groupDevices = [];
-    this.devices.forEach(group => {
-      group.forEach(device => {
-        groupDevices.push(device);
-      });
-    });
-    return groupDevices;
-  }
-
-  /**
    * Search for an specific array of devices that are part of the same group
    * @param groupId Group identifier
    */
@@ -492,8 +409,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           this.selectedLabels.splice(index, 1);
           this.updateDevicesList(this.organizationId);
         });
-    } else {
-      // Do nothing
     }
   }
 
@@ -578,12 +493,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   unlinkDevice(device: any) {
     const unlinkConfirm =
-    confirm(this.translateService.instant('devices.unlinkDeviceConfirm', {device_id : device.device_id }));
+    confirm(this.translateService.instant('devices.unlinkDeviceConfirm', {deviceId : device.device_id }));
     if (unlinkConfirm) {
       this.backend.removeDevice(this.organizationId, device.device_group_id, device.device_id)
-        .subscribe(unlinkResponse => {
+      .subscribe(unlinkResponse => {
         this.notificationsService.add({
-          message: this.translateService.instant('devices.unlinkDeviceMessage', {device_id : device.device_id }),
+          message: this.translateService.instant('devices.unlinkDeviceMessage',  {deviceId : device.device_id }),
           timeout: TIMEOUT_ACTION
         });
         this.updateGroupsList(this.organizationId);
@@ -594,7 +509,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
             type: 'warning'
           });
         });
-    }
+      }
   }
 
   /**
@@ -645,6 +560,61 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     groupOptions.push(groupOption2);
     groupOptions.push(groupOption3);
     return groupOptions;
+  }
+
+    /**
+   * Requests an updated list of available devices group to update the current one
+   * @param organizationId Organization identifier
+   */
+  private updateGroupsList(organizationId: string) {
+    if (organizationId !== null) {
+      // Requests an updated devices group list
+      this.backend.getGroups(this.organizationId)
+      .subscribe(response => {
+        if (response.groups) {
+          response.groups.forEach(group => {
+            group.isFirstOpen = true;
+          });
+        }
+        this.groups = response.groups || [];
+        this.updateDevicesList(this.organizationId);
+      }, errorResponse => {
+          this.loadedData = true;
+          this.requestError = errorResponse.error.message;
+        });
+    }
+  }
+
+  /**
+   * Requests an updated list of devices to update the current one
+   * @param organizationId organization identifier
+   */
+  private updateDevicesList(organizationId: string) {
+    const tmpDevices = [];
+    if (organizationId !== null) {
+      // Request to get devices
+      if (this.groups.length > 0) {
+        this.groups.forEach((group, index) => {
+          this.backend.getDevices(this.organizationId, group.device_group_id)
+          .subscribe(response => {
+              tmpDevices.push(response.devices || []);
+              if (!this.loadedData && index === this.groups.length - 1) {
+                this.loadedData = true;
+              }
+              if (tmpDevices.length === this.groups.length) {
+                this.devices = tmpDevices;
+              }
+              this.updateDevicesOnTimeline();
+              this.updateDevicesStatusLineChart();
+            }, errorResponse => {
+              this.loadedData = true;
+              this.requestError = errorResponse.error.message;
+            });
+          });
+      } else {
+        this.loadedData = true;
+      }
+    }
   }
 
   /**
@@ -745,6 +715,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       });
   }
 
+  // countDevicesInThisGroup(group){}
   /**
    *  Upon confirmation, deletes a device group
    *  @param group device group
@@ -752,17 +723,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   private deleteGroup(group) {
     const deleteConfirm = confirm(this.translateService.instant('devices.deleteGroup'));
     if (deleteConfirm) {
-      if (this.countDevices() === 0) {
+      if (this.getGroupDevices(group.device_group_id).length === 0) {
       this.backend.deleteGroup(this.organizationId, group.device_group_id)
       .subscribe(response => {
-        this.backend.getGroups(this.organizationId)
-        .subscribe(getGroupsResponse => {
-            this.groups = getGroupsResponse.groups;
-            if (!this.groups) {
-              this.groups = [];
-            }
-          this.updateDisplayedGroupsNamesLength();
-          });
+        this.updateGroupsList(this.organizationId);
           this.notificationsService.add({
             message: this.translateService.instant('devices.deleteGroupMessage', { groupName: group.name }),
             timeout: TIMEOUT_ACTION
@@ -782,6 +746,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           type: 'warning'
         });
       }
-      }
+    }
   }
 }

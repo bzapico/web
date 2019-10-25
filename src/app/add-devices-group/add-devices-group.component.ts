@@ -7,6 +7,7 @@ import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { DeviceGroupCreatedComponent } from '../device-group-created/device-group-created.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * It sets the timeout for errors
@@ -19,7 +20,6 @@ const TIMEOUT_ERROR = 5000;
   styleUrls: ['./add-devices-group.component.scss']
 })
 export class AddDevicesGroupComponent implements OnInit {
-
   /**
    * Models that holds forms info
    */
@@ -62,11 +62,12 @@ export class AddDevicesGroupComponent implements OnInit {
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private translateService: TranslateService
   ) {
-    this.defaultConnectivity = false;
-    this.enabled = false;
-    this.groupApiKey = 'Loading...';
+    this.defaultConnectivity = true;
+    this.enabled = true;
+    this.groupApiKey = this.translateService.instant('organization.loading');
     const mock = localStorage.getItem(LocalStorageKeys.addGroupMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -74,16 +75,18 @@ export class AddDevicesGroupComponent implements OnInit {
     } else {
       this.backend = this.backendService;
     }
-    this.device_group_id = 'Loading ...';
-    this.name = 'Loading ...';
-    this.enabled = false;
-    this.default_device_connectivity = false;
-    this.device_group_api_key = 'Loading ...';
+    this.device_group_id = this.translateService.instant('organization.loading');
+    this.name = this.translateService.instant('organization.loading');
+    this.device_group_api_key = this.translateService.instant('organization.loading');
   }
 
   ngOnInit() {
     this.addGroupForm = this.formBuilder.group({
-      groupName: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[A-Za-z0-9_]+$')]],
+      groupName: ['', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.pattern('^[A-Za-z0-9_]+$')
+      ]],
     });
   }
 
@@ -134,7 +137,7 @@ export class AddDevicesGroupComponent implements OnInit {
    */
   discardChanges(form) {
     if (form.dirty) {
-      const discard = confirm('Discard changes?');
+      const discard = confirm(this.translateService.instant('modals.discardChanges'));
       if (discard) {
         this.bsModalRef.hide();
       } else {

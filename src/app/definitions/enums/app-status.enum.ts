@@ -9,5 +9,6 @@ export enum AppStatus {
     Process = 'process',
     Running = 'running',
     Scheduled = 'scheduled',
-    Queued = 'queued'
+    Queued = 'queued',
+    Deploying = 'deploying'
 }

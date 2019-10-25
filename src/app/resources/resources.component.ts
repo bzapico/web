@@ -11,6 +11,9 @@ import { AddLabelComponent } from '../add-label/add-label.component';
 import * as shape from 'd3-shape';
 import { Subscription, timer } from 'rxjs';
 import { NodeType } from '../definitions/enums/node-type.enum';
+import { AppStatus } from '../definitions/enums/app-status.enum';
+import { ClusterStatus } from '../definitions/enums/cluster-status.enum';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Refresh ratio
@@ -141,8 +144,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;
-  colorSchemeGraph: any;
-  view: any[];
   width: number;
   height: string;
   draggingEnabled: boolean;
@@ -189,7 +190,8 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
-    private mockupBackendService: MockupBackendService) {
+    private mockupBackendService: MockupBackendService,
+    private translateService: TranslateService) {
     const mock = localStorage.getItem(LocalStorageKeys.resourcesMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -225,9 +227,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.autoCenter = true;
     this.enableZoom = true;
     this.draggingEnabled = false;
-    this.colorSchemeGraph = {
-      domain: ['#6C86F7']
-    };
     this.graphDataLoaded = false;
     this.graphData = {
       nodes: [],
@@ -386,7 +385,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * @param entity selected label entity
    */
   deleteLabel(entity: { cluster_id: string; }) {
-    const deleteConfirm = confirm('Delete labels?');
+    const deleteConfirm = confirm(this.translateService.instant('label.deleteLabels'));
     if (deleteConfirm) {
       const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.cluster_id);
       this.backend.saveClusterChanges(
@@ -576,7 +575,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       const nodeGroup = {
         id: cluster.cluster_id,
         label: cluster.name,
-        tooltip: 'CLUSTER ' + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
+        tooltip:  this.translateService.instant('resources.cluster') + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
         color: this.getNodeColor(cluster.status_name),
         text: this.getNodeTextColor(cluster.status_name),
         group: cluster.cluster_id,
@@ -592,9 +591,10 @@ export class ResourcesComponent implements OnInit, OnDestroy {
         const nodeInstance = {
           id: instance['app_instance_id'],
           label: instance['name'],
-          tooltip: 'INSTANCE ' + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
-          color: this.getNodeColor(cluster.status_name),
-          text: this.getNodeTextColor(cluster.status_name),
+          tooltip: this.translateService.instant('apps.instance.idInstance')
+          + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
+          color: this.getNodeColor(instance['status_name']),
+          text: this.getNodeTextColor(instance['status_name']),
           type: NodeType.Instances,
           group: cluster.cluster_id,
           customHeight: CUSTOM_HEIGHT_INSTANCES,
@@ -645,13 +645,23 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   private getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
-      case 'online':
-      case 'online_cordon':
-        return STATUS_COLORS.ONLINE;
-      case 'offline':
-      case 'offline_cordon':
-      case 'unknown':
+      case ClusterStatus.Running:
+      case ClusterStatus.Online:
+      case ClusterStatus.OnlineCordon:
+      return STATUS_COLORS.ONLINE;
+      case ClusterStatus.Error:
+      case ClusterStatus.Offline:
+      case ClusterStatus.OfflineCordon:
+      case AppStatus.DeploymentError:
+      case AppStatus.Incomplete:
+      case AppStatus.PlanningError:
+      case AppStatus.Error:
         return STATUS_COLORS.OFFLINE;
+      case AppStatus.Queued:
+      case AppStatus.Deploying:
+      case AppStatus.Scheduled:
+      case AppStatus.Planning:
+        return STATUS_COLORS.OTHER;
       default:
         return STATUS_COLORS.OTHER;
     }
@@ -663,13 +673,23 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   private getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
-      case 'online':
-      case 'online_cordon':
+      case ClusterStatus.Running:
+      case ClusterStatus.Online:
+      case ClusterStatus.OnlineCordon:
         return STATUS_TEXT_COLORS.ONLINE;
-      case 'unknown':
-      case 'offline':
-      case 'offline_cordon':
+      case ClusterStatus.Error:
+      case ClusterStatus.Offline:
+      case ClusterStatus.OfflineCordon:
+      case AppStatus.DeploymentError:
+      case AppStatus.Incomplete:
+      case AppStatus.PlanningError:
+      case AppStatus.Error:
         return STATUS_TEXT_COLORS.OFFLINE;
+      case AppStatus.Queued:
+      case AppStatus.Deploying:
+      case AppStatus.Scheduled:
+      case AppStatus.Planning:
+        return STATUS_TEXT_COLORS.OTHER;
       default:
         return STATUS_TEXT_COLORS.OTHER;
     }
@@ -713,5 +733,15 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.occurrencesCounter = this.graphData.nodes.filter(
       (node: { label: { toLowerCase: () => { includes: (arg0: string) => void; }; }; }) =>
       node.label.toLowerCase().includes(this.searchTermGraph)).length;
+  }
+
+  /**
+   * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
+   */
+  resetGraphZoom() {
+    this.graphReset = true;
+    setTimeout(() => {
+      this.graphReset = false;
+    }, 1);
   }
 }
