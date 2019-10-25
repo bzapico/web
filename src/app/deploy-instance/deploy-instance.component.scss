@@ -6,6 +6,7 @@
     max-height: 338px;
     overflow-y: scroll;
     overflow-x: hidden;
+    margin-bottom: 3px;
 }
 .accordion-header {
     display: flex;
@@ -177,4 +178,17 @@
     .scroll-modal-form {
         max-height: 380px;
     }
+}
+
+.required-connections-box {
+    min-height: 242px;
+}
+.required-connections-title {
+    font-size: 13px;
+    color: $base-grey;
+    margin-bottom: .2em;
+    font-weight: 500;
+}
+.deploy-btn {
+    margin-left: 25px;    
 }
