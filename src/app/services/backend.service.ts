@@ -653,7 +653,7 @@ export class BackendService implements Backend {
   * @param organizationId Organization identifier
   * @param deviceData device data
   */
-   updateDevice(organizationId: string, deviceData: any) {
+  updateDevice(organizationId: string, deviceData: any) {
     return this.post(
       API_URL + 'device/' + organizationId + '/update',
       deviceData
@@ -668,11 +668,6 @@ export class BackendService implements Backend {
    * @param deviceId device identifier
    */
   removeDevice(organizationId: string, groupId: string, deviceId: any) {
-    console.log(      {
-      organization_id: organizationId,
-      device_group_id: groupId,
-      device_id: deviceId
-    });
     return this.post(
       API_URL + 'device/' + organizationId + '/remove',
       {

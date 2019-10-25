@@ -409,8 +409,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           this.selectedLabels.splice(index, 1);
           this.updateDevicesList(this.organizationId);
         });
-    } else {
-      // Do nothing
     }
   }
 
@@ -505,15 +503,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         });
         this.updateGroupsList(this.organizationId);
         }, error => {
-          console.log('error ', error);
           this.notificationsService.add({
             message: error.error.message,
             timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });
-      } else {
-        // Do nothing
       }
   }
 
@@ -726,7 +721,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    *  @param group device group
    */
   private deleteGroup(group) {
-    console.log('group', group);
     const deleteConfirm = confirm(this.translateService.instant('devices.deleteGroup'));
     if (deleteConfirm) {
       if (this.getGroupDevices(group.device_group_id).length === 0) {

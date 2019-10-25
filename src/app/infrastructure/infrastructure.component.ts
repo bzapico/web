@@ -1106,13 +1106,11 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     if (unlinkConfirm) {
       this.backend.removeDevice(this.organizationId, device.device_group_id , device.device_id)
         .subscribe(response => {
-          console.log('response', response );
           this.notificationsService.add({
             message: this.translateService.instant('infrastructure.device.unlinkMessage'),
             timeout: TIMEOUT_ACTION
           });
         }, error => {
-          console.log('error ', error);
           this.notificationsService.add({
             message: error.error.message,
             timeout:  TIMEOUT_ERROR,
