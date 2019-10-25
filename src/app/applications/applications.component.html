@@ -14,7 +14,7 @@
         </div>
         <div class="summary-card">
           <div class="summary-box">
-            <div *ngIf="instances.length >0" class="donut-chart">
+            <div *ngIf="instances && instances.length >0" class="donut-chart">
               <ngx-charts-pie-chart
                 [scheme]="colorScheme" 
                 [results]="instancesPieChart" 
@@ -535,7 +535,7 @@
                 (click)="manageConnections()"
                 class="apps-actions-btn">
                 <i class="material-icons-round i-options">link</i>
-                  {{'apps.manageConnections' | translate}}
+                  {{'apps.manageConnections.title' | translate}}
               </button>
             </div>
           </div>
@@ -588,7 +588,6 @@
           <!-- Search box -->
           <div class="col-5">
             <div class="advanced-filter-box">
-
               <form class="graph-search-box">
                 <input 
                   [(ngModel)]="searchTermGraph"
@@ -652,10 +651,8 @@
               *ngIf="graphDataLoaded && !graphReset"
               class="graph">
               <ngx-graph
-                [view]="view"
                 [links]="graphData.links"
                 [nodes]="graphData.nodes"
-                [scheme]="colorSchemeGraph"
                 [orientation]="orientation"
                 [autoZoom]="autoZoom"
                 [autoCenter]="autoCenter"

@@ -443,19 +443,17 @@ export class BackendService implements Backend {
    * @param name Instance name
    * @param params? optional parameters that may be included for deploying an instance
    */
-  deploy(organizationId: string, descriptorId: string, name: string, params?: any) {
-    let postObject: any = {
+  deploy(organizationId: string, descriptorId: string, name: string, params?: any, connections?: any[]) {
+    const postObject = {
       organization_id: organizationId,
       app_descriptor_id: descriptorId,
       name: name
     };
-    if (params) {
-      postObject = {
-        organization_id: organizationId,
-        app_descriptor_id: descriptorId,
-        name: name,
-        parameters: { parameters: params }
-      };
+    if (params && params.length > 0) {
+      postObject['parameters'] = { parameters: params };
+    }
+    if (connections && connections.length > 0) {
+      postObject['outbound_connections'] = connections;
     }
     return this.post(
       API_URL + 'apps/inst/' + organizationId + '/' + descriptorId + '/deploy',

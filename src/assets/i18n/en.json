@@ -75,7 +75,22 @@
 			"undeployConfirm": "Undeploy {{appName}}?",
 			"undeployMessage": " undeployed"
 		},
-		"manageConnections": "Manage connections",
+		"manageConnections": {
+			"addNewConnection": "Add new connection",
+			"appFilter": "APP FILTER",
+			"connectionsList": "CONNECTIONS LIST",
+			"createdConnection": "",
+			"disconnect": "Disconnect",
+			"disconnectConfirm": "",
+			"disconnectConfirmOutboundRequired": "",
+			"noConnections": "",
+			"requiredFields": "",
+			"sourceInstance": "Source instance",
+			"sourceInterface": "Source interface",
+			"targetInstance": "Target instance",
+			"targetInterface": "Target interface",
+			"title": "Manage connections"
+		},
 		"noAppsDeployed": "NO APPS DEPLOYED",
 		"noAppsInstances": "No application instances deployed",
 		"noClusters": "No available clusters",
@@ -93,6 +108,7 @@
 				"title": "Registered service group info"
 			}
 		},
+		"registeredName": "Registered name",
 		"registeredTitle": "REGISTERED ",
 		"title": "APPLICATIONS",
 		"undeploy": "Undeploy"
@@ -294,12 +310,12 @@
 	},
 	"resources": {
 		"NoAvailableClusters": "No available clusters",
+		"cluster": "CLUSTER ",
 		"clusterInstances": "CLUSTERS-INSTANCES",
 		"clusters": "CLUSTERS",
 		"clustersRunning": "clusters running",
 		"edit": "Edit",
 		"instances": "INSTANCES",
-		"cluster": "CLUSTER ",
 		"list": "LIST",
 		"noClusters": "NO CLUSTERS",
 		"noClustersAvailable": "No available clusters detected",
@@ -337,8 +353,7 @@
 		"running": "running",
 		"serviceError": "service_error",
 		"serviceRunning": "service_running",
-		"serviceWaiting": "service_waiting",
-		"status": "STATUS"
+		"serviceWaiting": "service_waiting"
 	},
 	"tables": {
 		"organizationId": "Organization ID",
