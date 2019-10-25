@@ -653,7 +653,7 @@ export class BackendService implements Backend {
   * @param organizationId Organization identifier
   * @param deviceData device data
   */
-   updateDevice(organizationId: string, deviceData: any) {
+  updateDevice(organizationId: string, deviceData: any) {
     return this.post(
       API_URL + 'device/' + organizationId + '/update',
       deviceData

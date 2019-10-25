@@ -103,6 +103,19 @@
 		"saveChanges": "Save changes"
 	},
 	"devices": {
+		"add": {
+			"addNew": "Add new devices group",
+			"buttonAdd": "Add devices group",
+			"config": "configuration",
+			"enabled": "Devices enabled by default",
+			"groupAvailability": "Group device availability",
+			"groupName": "Group name*",
+			"groupNameRequired": "Group name is required",
+			"groupNameShort": "Group name is too short",
+			"options": "Options",
+			"saveGroupMessage": "Group {{groupName}} has been edited",
+			"specialChar": "Cannot contain special characters"
+		},
 		"addGroup": "Add group",
 		"contextMenu": {
 			"configuration": "Configuration",
@@ -142,8 +155,8 @@
 		"tableStatus": "Status",
 		"title": "DEVICES",
 		"unlinkDevice": "Unlink device",
-		"unlinkDeviceConfirm": "Unlink {{device_id}}?",
-		"unlinkDeviceMessage": "Unlinking {{device_id}}"
+		"unlinkDeviceConfirm": "Unlink {{deviceId}}?",
+		"unlinkDeviceMessage": "Unlinking {{deviceId}}"
 	},
 	"graph": {
 		"autoRefresh": "Auto refresh every 5 seconds. Scroll on graph to zoom.",
@@ -238,7 +251,6 @@
 		"add": "add",
 		"addLabel": "Add label",
 		"addUp": "Add",
-		"delete": "delete",
 		"deleteLabel": "Delete label",
 		"deleteLabels": "Delete labels?",
 		"deleteUp": "Delete",
@@ -247,7 +259,8 @@
 		"title": "LABELS"
 	},
 	"modals": {
-		"buttonClose": "Close"
+		"buttonClose": "Close",
+		"discardChanges": "Discard changes?"
 	},
 	"organization": {
 		"deleteUser": "Delete user?",
