@@ -627,11 +627,15 @@ export class ResourcesComponent implements OnInit, OnDestroy {
           node[connection_type].forEach((connection: { source_instance_id: any; target_instance_id: any; }) => {
             const source = connection.source_instance_id;
             const target = connection.target_instance_id;
-            linksBetweenApps[ source + '_' + target] = {
-              source: source,
-              target: target,
-              is_between_apps: true
-            };
+            const isSourceNode = this.graphData.nodes.filter(item => item.id === source).length > 0;
+            const isTargetNode = this.graphData.nodes.filter(item => item.id === target).length > 0;
+            if (isSourceNode && isTargetNode) {
+              linksBetweenApps[ source + '_' + target] = {
+                source: source,
+                target: target,
+                is_between_apps: true
+              };
+            }
           });
         });
       }
