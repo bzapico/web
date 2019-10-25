@@ -966,7 +966,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     },
     ...this.applicationsService.getStyledNode(
         this.applicationsService.getNodeColor(instance['status_name']),
-        this.applicationsService.getNodeTextColor(cluster.status_name),
+        this.applicationsService.getNodeTextColor(instance['status_name']),
         (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
         (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
         CUSTOM_HEIGHT_INSTANCES)
