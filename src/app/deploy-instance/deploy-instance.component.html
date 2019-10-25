@@ -46,7 +46,7 @@
             <!--BASIC STEP-->
             <ng-template [ngSwitchCase]="'basic'">
               <div *ngIf="openFromRegistered; else openFromAnotherPoint" class="form-group">
-                <label>Registered name</label>
+                <label>{{"apps.registeredName"| translate}}</label>
                 <input
                   formControlName="registeredName"
                   type="text"
