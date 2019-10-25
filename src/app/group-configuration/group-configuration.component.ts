@@ -5,6 +5,7 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * It sets the timeout in actions like undeploying or deleting
@@ -27,7 +28,7 @@ export class GroupConfigurationComponent implements OnInit {
   backend: Backend;
 
   /**
-   * Model that hold organization ID, default connectivity and enabled or disbled option
+   * Model that hold organization ID, default connectivity and enabled or disabled option
    */
   organizationId: string;
   defaultConnectivity: boolean;
@@ -52,7 +53,8 @@ export class GroupConfigurationComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.configGroupMock) || null;
     // check which backend is required (fake or real)
@@ -86,7 +88,7 @@ export class GroupConfigurationComponent implements OnInit {
     .subscribe(response => {
       this.group = response;
       this.notificationsService.add({
-        message: 'The group "' + this.name + '" has been edited',
+        message: this.translateService.instant('devices.add.saveGroupMessage', { groupName: this.name }),
         timeout: TIMEOUT_ACTION
       });
       this.bsModalRef.hide();

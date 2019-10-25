@@ -5,4 +5,5 @@ export enum ClusterStatus {
     Online = 'online',
     OnlineCordon = 'online_cordon',
     Running = 'running',
+    Unknown = 'unknown'
 }
