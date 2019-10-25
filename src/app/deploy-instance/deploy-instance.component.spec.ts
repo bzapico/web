@@ -7,6 +7,9 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 import { DeployInstanceComponent } from './deploy-instance.component';
 import { AutofocusDirective } from '../directives/autofocus.directive';
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
+import {createTranslateLoader} from '../app.module';
+import {HttpClient} from '@angular/common/http';
 
 describe('DeployInstanceComponent', () => {
   let component: DeployInstanceComponent;
@@ -24,11 +27,19 @@ describe('DeployInstanceComponent', () => {
         SelectDropDownModule,
         RouterTestingModule,
         ModalModule.forRoot(),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
       providers: [
         BsModalRef,
-        BsModalService
+        BsModalService,
+        TranslateService
       ]
     })
     .compileComponents();
