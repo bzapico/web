@@ -144,7 +144,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;
-  // view: any[];
   width: number;
   height: string;
   draggingEnabled: boolean;
