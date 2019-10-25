@@ -39,7 +39,7 @@
 		},
 		"instance": {
 			"environmentVariables": "Environment variables",
-			"idInstance": "INSTANCE",
+			"idInstance": "INSTANCE ",
 			"noEnvironmentVariables": "No environment variables have been set",
 			"noOtherSettings": "No extra settings have been set",
 			"noRules": "No available rules detected ",
@@ -93,7 +93,7 @@
 				"title": "Registered service group info"
 			}
 		},
-		"registeredTitle": "REGISTERED",
+		"registeredTitle": "REGISTERED ",
 		"title": "APPLICATIONS",
 		"undeploy": "Undeploy"
 	},
@@ -299,6 +299,7 @@
 		"clustersRunning": "clusters running",
 		"edit": "Edit",
 		"instances": "INSTANCES",
+		"cluster": "CLUSTER ",
 		"list": "LIST",
 		"noClusters": "NO CLUSTERS",
 		"noClustersAvailable": "No available clusters detected",
