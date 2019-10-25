@@ -81,24 +81,6 @@
     width: 100%;
     margin-right: 0em;
 }
-.graph-legend {
-    color: $base-grey;
-    font-size: .85em;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-    .graph-legend-title {
-        color: $super-dark-grey;
-        font-weight: 500;
-        font-size: .7em;
-        margin-right: 68px;
-        padding-top: 3px;
-    }
-    span {
-        margin-right: 3em;
-    }
-}
 
 /* - - - List card - - - */
 .label-nalej-table {

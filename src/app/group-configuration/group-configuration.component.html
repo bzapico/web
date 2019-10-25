@@ -2,7 +2,7 @@
   <div class="modal-content">
     <!-- Header -->
     <div class="modal-header">
-      <h3 class="nalej-form-title">{{name}} configuration</h3>
+      <h3 class="nalej-form-title">{{name}} {{'devices.add.config' | translate}}</h3>
       <button 
         (click)="closeModal()"
         type="button" 
@@ -15,7 +15,7 @@
     <div class="modal-body">
       <!-- Option checkboxes -->
       <div class="check-options">
-        <p class="grey">Group device availability</p>
+        <p class="grey">{{'devices.add.groupAvailability' | translate}}</p>
         <div class="add-dev-checkbox">
           <span 
             *ngIf="!enabled" 
@@ -31,7 +31,7 @@
           </span>
         </div>
         <br>
-        <p class="grey">Devices enabled by default</p>
+        <p class="grey">{{'devices.add.enabled' | translate}}</p>
         <div class="add-dev-checkbox">
           <span 
             *ngIf="!defaultConnectivity" 
@@ -49,7 +49,7 @@
       </div>
       <div class="form-group-btn">
         <button (click)="saveGroupChanges()" class="nalej-form-btn-blue">
-          <span class="align-bottom">Add devices group</span>
+          <span class="align-bottom">{{'devices.add.buttonAdd' | translate}}</span>
         </button>
       </div>
     </div>

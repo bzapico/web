@@ -4,6 +4,9 @@ import { ButtonsModule, BsModalRef, TooltipModule, BsModalService, ModalModule }
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AddDevicesGroupComponent } from './add-devices-group.component';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '../app.module';
 import { By } from '@angular/platform-browser';
 
 describe('AddDevicesGroupComponent', () => {
@@ -20,11 +23,19 @@ describe('AddDevicesGroupComponent', () => {
         RouterTestingModule,
         TooltipModule,
         ModalModule.forRoot(),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
       providers: [
         BsModalRef,
-        BsModalService
+        BsModalService,
+        TranslateService
       ]
     })
     .compileComponents();

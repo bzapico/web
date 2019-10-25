@@ -59,7 +59,16 @@ export class ApplicationsService {
       case ClusterStatus.Error:
       case ClusterStatus.Offline:
       case ClusterStatus.OfflineCordon:
+      case AppStatus.DeploymentError:
+      case AppStatus.Incomplete:
+      case AppStatus.PlanningError:
+      case AppStatus.Error:
         return STATUS_COLORS.ERROR;
+      case AppStatus.Queued:
+      case AppStatus.Deploying:
+      case AppStatus.Scheduled:
+      case AppStatus.Planning:
+        return STATUS_COLORS.OTHER;
       default:
         return STATUS_COLORS.OTHER;
     }
@@ -77,7 +86,16 @@ export class ApplicationsService {
       case ClusterStatus.Error:
       case ClusterStatus.Offline:
       case ClusterStatus.OfflineCordon:
+      case AppStatus.DeploymentError:
+      case AppStatus.Incomplete:
+      case AppStatus.PlanningError:
+      case AppStatus.Error:
         return STATUS_TEXT_COLORS.ERROR;
+      case AppStatus.Queued:
+      case AppStatus.Deploying:
+      case AppStatus.Scheduled:
+      case AppStatus.Planning:
+        return STATUS_TEXT_COLORS.OTHER;
       default:
         return STATUS_TEXT_COLORS.OTHER;
     }

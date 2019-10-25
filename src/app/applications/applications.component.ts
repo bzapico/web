@@ -346,7 +346,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     let running = 0;
     if (instances) {
       instances.forEach(app => {
-        if (app.status_name === AppStatus.Running) {
+        if (app.status_name === AppStatus.Running.toUpperCase()) {
           running += 1;
         }
       });
@@ -864,7 +864,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         id: cluster.cluster_id,
         label: cluster.name,
         type: NodeType.Clusters,
-        tooltip: 'CLUSTER ' + cluster.name + ': ' + this.applicationsService.getBeautyStatusName(cluster.status_name),
+        tooltip: this.translateService.instant('resources.cluster') + cluster.name + ': '
+          + this.applicationsService.getBeautyStatusName(cluster.status_name),
         group: cluster.cluster_id
       },
       ...this.applicationsService.getStyledNode(
@@ -1096,5 +1097,14 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     } else {
       this.occurrencesCounter = this.graphData.nodes.filter(node => node.label.toLowerCase().includes(this.searchTermGraph)).length;
     }
+  }
+  /**
+   * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
+   */
+  resetGraphZoom() {
+    this.graphReset = true;
+    setTimeout(() => {
+      this.graphReset = false;
+    }, 1);
   }
 }
