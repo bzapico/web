@@ -406,6 +406,12 @@ export class DeployInstanceComponent implements OnInit {
     let isInactiveNext = false;
     if (this.conditionExpression === 'basic') {
       isInactiveNext = !this.selectedApp || !f.instanceName.value;
+    } else if (this.conditionExpression === 'parameters') {
+      this.selectedApp.parameters.map(param => {
+        if (!param.category) {
+          isInactiveNext = (isInactiveNext || (param.value === param.default_value));
+        }
+      });
     }
     return isInactiveNext;
   }
@@ -415,10 +421,20 @@ export class DeployInstanceComponent implements OnInit {
    */
   isInactiveDeploy(f) {
     let isInactiveDeploy = false;
-    if (this.conditionExpression === 'basic') {
-      isInactiveDeploy = !this.selectedApp || !f.instanceName.value;
-    } else if (this.conditionExpression === 'connections') {
-      isInactiveDeploy = this.connections.length === 0 || this.connections.length < this.requiredConnections.length;
+    switch (this.conditionExpression) {
+      case 'basic':
+        isInactiveDeploy = !this.selectedApp || !f.instanceName.value;
+        break;
+      case 'parameters':
+        this.selectedApp.parameters.map(param => {
+          if (!param.category) {
+            isInactiveDeploy = (isInactiveDeploy || (param.value === param.default_value));
+          }
+        });
+        break;
+      case 'connections':
+        isInactiveDeploy = this.connections.length === 0 || this.connections.length < this.requiredConnections.length;
+        break;
     }
     return isInactiveDeploy;
   }
