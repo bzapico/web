@@ -75,7 +75,17 @@
 			"undeployConfirm": "Undeploy {{appName}}?",
 			"undeployMessage": " undeployed"
 		},
-		"manageConnections": "Manage connections",
+		"manageConnections": {
+			"appFilter": "APP FILTER",
+			"title": "Manage connections",
+			"addNewConnection": "Add new connection",
+			"sourceInstance": "Source instance",
+			"sourceInterface": "Source interface",
+			"targetInterface": "Target interface",
+			"targetInstance": "Target instance",
+			"disconnect": "Disconnect",
+			"connectionsList": "CONNECTIONS LIST"
+		},
 		"noAppsDeployed": "NO APPS DEPLOYED",
 		"noAppsInstances": "No application instances deployed",
 		"noClusters": "No available clusters",
