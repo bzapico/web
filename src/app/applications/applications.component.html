@@ -25,8 +25,8 @@
               <div class="donut-number">{{countRunning}}/{{instances.length}}</div>
             </div>
             <p *ngIf="instances.length > 0" class="apps-run">{{'apps.appsRunning' | translate}}</p>
-            <p *ngIf="instances.length === 0" class="circle-name no-deployed">{{'apps.noAppsDeployed'  |translate}}</p>
-            <p *ngIf="instances.length > 0" class="circle-name circle-name-mt">{{'apps.deployed'|translate}}</p>
+            <p *ngIf="instances.length === 0" class="circle-name no-deployed">{{'apps.noAppsDeployed' | translate}}</p>
+            <p *ngIf="instances.length > 0" class="circle-name circle-name-mt">{{'apps.deployed' | translate}}</p>
           </div>
           <div class="summary-box">
             <div class="circle mt-1">
@@ -84,7 +84,7 @@
                   name="searchTerm" 
                   [(ngModel)]="searchTerm"
                   type="text" 
-                  placeholder="{{'searcher.placeholder'|translate}}"
+                  placeholder="{{'searcher.placeholder' | translate}}"
                   class="form-control"> 
                   <div *ngIf="searchTerm === ''" class="search-icon">
                     <i class="material-icons">search</i>
@@ -109,7 +109,7 @@
                   name="searchTermRegistered" 
                   [(ngModel)]="searchTermRegistered"
                   type="text" 
-                  placeholder="{{'searcher.placeholder'|translate}}"
+                  placeholder="{{'searcher.placeholder' | translate}}"
                   class="form-control"> 
                   <div *ngIf="searchTermRegistered === ''" class="search-icon">
                     <i class="material-icons">search</i>

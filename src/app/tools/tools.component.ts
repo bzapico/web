@@ -5,6 +5,7 @@ import { GraphData } from '../definitions/models/graph-data';
 import { NodeType } from '../definitions/enums/node-type.enum';
 import * as shape from 'd3-shape';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import {Backend} from '../definitions/interfaces/backend';
 /**
  * It sets the status colors for nodes
  */
@@ -29,6 +30,10 @@ const STATUS_TEXT_COLORS = {
 })
 export class ToolsComponent implements OnInit {
   /**
+   * Backend reference
+   */
+  backend: Backend;
+  /**
    * Graph options
    */
   graphData: GraphData<any[]>;
@@ -50,11 +55,9 @@ export class ToolsComponent implements OnInit {
   /**
    * Pie Chart options
    */
-  gradient = true;
-  doughnut = true;
-  colorScheme = {
-    domain: ['#5800FF', '#828282']
-  };
+  gradient: boolean;
+  doughnut: boolean;
+  colorScheme: any;
 
   constructor() {
     this.graphData = new GraphData([], []);
@@ -67,6 +70,11 @@ export class ToolsComponent implements OnInit {
     this.enableZoom = true;
     this.draggingEnabled = false;
     this.organizationId = null;
+    this.gradient = true;
+    this.doughnut = true;
+    this.colorScheme = {
+      domain: ['#5800FF', '#828282']
+    };
   }
 
   ngOnInit() {

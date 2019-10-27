@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
@@ -63,10 +62,6 @@ const TIMEOUT_ERROR = 5000;
   styleUrls: ['./applications.component.scss']
 })
 export class ApplicationsComponent extends ToolsComponent implements OnInit, OnDestroy {
-  /**
-   * Backend reference
-   */
-  backend: Backend;
   /**
    * Loaded Data status
    */

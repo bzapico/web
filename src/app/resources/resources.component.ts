@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { mockClusterChart } from '../services/utils/clusters.mock';
-import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
@@ -39,10 +38,6 @@ const FOUND_NODES_BORDER_SIZE = 4;
   styleUrls: ['./resources.component.scss']
 })
 export class ResourcesComponent extends ToolsComponent implements OnInit, OnDestroy {
-  /**
-   * Backend reference
-   */
-  backend: Backend;
   /**
    * Loaded Data status
    */
@@ -438,6 +433,8 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
       cluster.description = '-';
     }
   }
+
+
   /**
    * Transforms the data needed to create the graph
    */
