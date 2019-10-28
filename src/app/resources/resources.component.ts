@@ -10,6 +10,7 @@ import { AddLabelComponent } from '../add-label/add-label.component';
 import { Subscription, timer } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { ToolsComponent } from '../tools/tools.component';
+import {AppStatus} from '../definitions/enums/app-status.enum';
 
 @Component({
   selector: 'app-resources',
@@ -427,7 +428,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
         cluster,
   this.translateService.instant('resources.cluster') + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name));
       this.graphData.nodes.push(nodeGroup);
-      const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
+      const instancesInCluster = this.getAppsInCluster(cluster.cluster_id, true);
       instancesInCluster.forEach(instance => {
         const nodeInstance = this.generateInstanceNode(
           instance,
@@ -439,11 +440,16 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
         if (index === -1) {
           this.graphData.nodes.push(nodeInstance);
         }
-        this.graphData.links.push({
-          source: cluster.cluster_id,
-          target: instance['app_instance_id'],
-          is_between_apps: false
-        });
+        if ((this.areIncludedInstancesWithError
+            && instance.status_name.toLowerCase() !== AppStatus.Error
+            && instance.status_name !== AppStatus.DeploymentError)
+            || !this.areIncludedInstancesWithError) {
+          this.graphData.links.push({
+            source: cluster.cluster_id,
+            target: instance['app_instance_id'],
+            is_between_apps: false
+          });
+        }
       });
     });
     this.setLinksBetweenApps();

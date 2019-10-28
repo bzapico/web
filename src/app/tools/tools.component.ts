@@ -64,6 +64,7 @@ export class ToolsComponent implements OnInit {
   autoCenter: boolean;
   enableZoom: boolean;
   draggingEnabled: boolean;
+  areIncludedInstancesWithError: boolean;
   /**
    * Instances list
    */
@@ -100,6 +101,7 @@ export class ToolsComponent implements OnInit {
       domain: ['#5800FF', '#828282']
     };
     this.searchTermGraph = '';
+    this.areIncludedInstancesWithError = true;
   }
 
   ngOnInit() {
@@ -186,16 +188,22 @@ export class ToolsComponent implements OnInit {
    * It returns filtered app instances avoiding duplicated instances by cluster ID
    * @param clusterId Identifier for the cluster
    */
-  getAppsInCluster(clusterId: string) {
+  getAppsInCluster(clusterId: string, areIncludedInstancesWithError?: boolean): any[] {
     const appsInCluster = {};
     if (this.instances) {
       for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
-        const groups = this.instances[indexInstance].groups || [];
-        for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
-          const serviceInstances = groups[indexGroup].service_instances || [];
-          for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
-            if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
-              appsInCluster[serviceInstances[indexService].app_instance_id] = this.instances[indexInstance];
+        if (areIncludedInstancesWithError
+            && (this.instances[indexInstance].status_name.toLowerCase() === AppStatus.Error
+                || this.instances[indexInstance].status_name === AppStatus.DeploymentError)) {
+          appsInCluster[this.instances[indexInstance].app_instance_id] = this.instances[indexInstance];
+        } else {
+          const groups = this.instances[indexInstance].groups || [];
+          for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
+            const serviceInstances = groups[indexGroup].service_instances || [];
+            for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
+              if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
+                appsInCluster[serviceInstances[indexService].app_instance_id] = this.instances[indexInstance];
+              }
             }
           }
         }
@@ -287,10 +295,11 @@ export class ToolsComponent implements OnInit {
     return {
     ...{
       id: instance['app_instance_id'],
-          label: instance['name'],
-          type: NodeType.Instances,
-          tooltip: tooltip,
-          group: cluster.cluster_id
+      app_descriptor_id: instance['app_descriptor_id'],
+      label: instance['name'],
+      type: NodeType.Instances,
+      tooltip: tooltip,
+      group: cluster.cluster_id
     },
     ...this.getStyledNode(
         this.getNodeColor(instance['status_name']),

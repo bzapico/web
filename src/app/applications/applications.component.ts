@@ -742,9 +742,14 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
         }
       }
       if (this.filters.clusters && this.filters.instances) {
-        this.setLinksInGraph(
-            instance['app_instance_id'],
-            cluster.cluster_id);
+        if ((this.areIncludedInstancesWithError
+            && instance.status_name.toLowerCase() !== AppStatus.Error
+            && instance.status_name !== AppStatus.DeploymentError)
+            || !this.areIncludedInstancesWithError) {
+          this.setLinksInGraph(
+              instance['app_instance_id'],
+              cluster.cluster_id);
+        }
       }
     });
     this.hideLinks();
