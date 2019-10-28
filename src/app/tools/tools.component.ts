@@ -31,7 +31,8 @@ export class ToolsComponent implements OnInit {
   static readonly STATUS_COLORS = {
     RUNNING: '#00E6A0',
     ERROR: '#F7478A',
-    OTHER: '#FFEB6C'
+    OTHER: '#FFEB6C',
+    OFFLINE: '#949494'
   };
   /**
    * It sets the status colors for nodes
@@ -39,7 +40,8 @@ export class ToolsComponent implements OnInit {
   static readonly STATUS_TEXT_COLORS = {
     RUNNING: '#FFFFFF',
     ERROR: '#FFFFFF',
-    OTHER: '#444444'
+    OTHER: '#444444',
+    OFFLINE: '#FFFFFF'
   };
   /**
    * It sets a height for clusters nodes in the graph
@@ -120,20 +122,28 @@ export class ToolsComponent implements OnInit {
       case ClusterStatus.Running:
       case ClusterStatus.Online:
       case ClusterStatus.OnlineCordon:
+      case ClusterStatus.Installed:
         return ToolsComponent.STATUS_COLORS.RUNNING;
       case ClusterStatus.Error:
-      case ClusterStatus.Offline:
-      case ClusterStatus.OfflineCordon:
       case AppStatus.DeploymentError:
       case AppStatus.Incomplete:
       case AppStatus.PlanningError:
       case AppStatus.Error:
         return ToolsComponent.STATUS_COLORS.ERROR;
+      case ClusterStatus.Provisioning:
+      case ClusterStatus.Provisioned:
+      case ClusterStatus.Installing:
+      case ClusterStatus.Uninstalling:
+      case ClusterStatus.Decommissioning:
       case AppStatus.Queued:
       case AppStatus.Deploying:
       case AppStatus.Scheduled:
       case AppStatus.Planning:
         return ToolsComponent.STATUS_COLORS.OTHER;
+      case ClusterStatus.Offline:
+      case ClusterStatus.OfflineCordon:
+      case ClusterStatus.Unknown:
+        return ToolsComponent.STATUS_COLORS.OFFLINE;
       default:
         return ToolsComponent.STATUS_COLORS.OTHER;
     }
@@ -147,20 +157,28 @@ export class ToolsComponent implements OnInit {
       case ClusterStatus.Running:
       case ClusterStatus.Online:
       case ClusterStatus.OnlineCordon:
+      case ClusterStatus.Installed:
         return ToolsComponent.STATUS_TEXT_COLORS.RUNNING;
       case ClusterStatus.Error:
-      case ClusterStatus.Offline:
-      case ClusterStatus.OfflineCordon:
       case AppStatus.DeploymentError:
       case AppStatus.Incomplete:
       case AppStatus.PlanningError:
       case AppStatus.Error:
         return ToolsComponent.STATUS_TEXT_COLORS.ERROR;
+      case ClusterStatus.Provisioning:
+      case ClusterStatus.Provisioned:
+      case ClusterStatus.Installing:
+      case ClusterStatus.Uninstalling:
+      case ClusterStatus.Decommissioning:
       case AppStatus.Queued:
       case AppStatus.Deploying:
       case AppStatus.Scheduled:
       case AppStatus.Planning:
         return ToolsComponent.STATUS_TEXT_COLORS.OTHER;
+      case ClusterStatus.Offline:
+      case ClusterStatus.OfflineCordon:
+      case ClusterStatus.Unknown:
+        return ToolsComponent.STATUS_TEXT_COLORS.OFFLINE;
       default:
         return ToolsComponent.STATUS_TEXT_COLORS.OTHER;
     }
@@ -188,11 +206,11 @@ export class ToolsComponent implements OnInit {
    * It returns filtered app instances avoiding duplicated instances by cluster ID
    * @param clusterId Identifier for the cluster
    */
-  getAppsInCluster(clusterId: string, areIncludedInstancesWithError?: boolean): any[] {
+  getAppsInCluster(clusterId: string): any[] {
     const appsInCluster = {};
     if (this.instances) {
       for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
-        if (areIncludedInstancesWithError
+        if (this.areIncludedInstancesWithError
             && (this.instances[indexInstance].status_name.toLowerCase() === AppStatus.Error
                 || this.instances[indexInstance].status_name === AppStatus.DeploymentError)) {
           appsInCluster[this.instances[indexInstance].app_instance_id] = this.instances[indexInstance];
@@ -272,6 +290,7 @@ export class ToolsComponent implements OnInit {
   }
   generateClusterNode(cluster: any, tooltip: string): any {
     const clusterName = cluster.name.toLowerCase();
+    const status = cluster.state ? (cluster.state === ClusterStatus.Installed ? cluster.status_name : cluster.state) : cluster.status_name;
     return {
       ...{
         id: cluster.cluster_id,
@@ -281,8 +300,8 @@ export class ToolsComponent implements OnInit {
         group: cluster.cluster_id
       },
       ...this.getStyledNode(
-          this.getNodeColor(cluster.status_name),
-          this.getNodeTextColor(cluster.status_name),
+          this.getNodeColor(status),
+          this.getNodeTextColor(status),
           (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ?
                             ToolsComponent.FOUND_NODES_BORDER_COLOR : '',
           (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ?

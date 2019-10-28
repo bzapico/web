@@ -428,7 +428,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
         cluster,
   this.translateService.instant('resources.cluster') + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name));
       this.graphData.nodes.push(nodeGroup);
-      const instancesInCluster = this.getAppsInCluster(cluster.cluster_id, true);
+      const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
         const nodeInstance = this.generateInstanceNode(
           instance,

@@ -35,6 +35,10 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    */
   private static readonly REGISTERED_NODES_COLOR = '#444444';
   /**
+   * It sets a color for registered nodes
+   */
+  private static readonly REGISTERED_NODES_TEXT_COLOR = '#FFFFFF';
+  /**
    * Loaded Data status
    */
   loadedData: boolean;
@@ -771,7 +775,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
       },
       ...this.getStyledNode(
           ApplicationsComponent.REGISTERED_NODES_COLOR,
-          this.getNodeTextColor(cluster.status_name),
+          ApplicationsComponent.REGISTERED_NODES_TEXT_COLOR,
           (this.searchTermGraph && registeredName.includes(this.searchTermGraph)) ?
                             ToolsComponent.FOUND_NODES_BORDER_COLOR : '',
           (this.searchTermGraph && registeredName.includes(this.searchTermGraph)) ?
