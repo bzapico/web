@@ -1,7 +1,7 @@
 <!-- A buttons card-->
 <div class="card">
   <!-- Instance buttons -->
-  <div *ngIf="!isOpenFromRegistered" class="a-btns-box a-btns-box-big">
+  <div *ngIf="!isOpenFromRegistered && loadedData" class="a-btns-box a-btns-box-big">
     <button 
       (click)="openAddNewConnection()"
       class="a-btn-blue add-connections-btn">
@@ -16,7 +16,7 @@
     </button>
   </div>
   <!-- Registered buttons -->
-  <div *ngIf="isOpenFromRegistered" class="a-btns-box a-btns-box-sm">
+  <div *ngIf="isOpenFromRegistered && loadedData" class="a-btns-box a-btns-box-sm">
     <button 
       (click)="deployRegistered(app)"
       class="a-btn-blue">

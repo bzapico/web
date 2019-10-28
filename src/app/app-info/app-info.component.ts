@@ -22,10 +22,10 @@ const NOTIFICATION_TIMEOUT = 3000; // 3 seconds
 
 export class AppInfoComponent implements OnInit {
   @Input() instance: any;
-  @Input() registered: any;
   @Input() registeredData: any;
   @Input() openFromInstance: boolean;
   @Input() openFromRegistered: boolean;
+  @Input() loadedData: boolean;
 
   /**
    * Backend reference
@@ -54,7 +54,6 @@ export class AppInfoComponent implements OnInit {
    */
   nalejAccordionSmall = 'nalejAccordionSmall';
   isFirstOpen = true;
-
   basicParameters: any[];
   advancedParameters: any[];
 
@@ -76,7 +75,6 @@ export class AppInfoComponent implements OnInit {
     this.showNetwork = false;
     this.showSetup = false;
     this.instance = {};
-    this.registered = [];
     this.registeredData = [];
     this.searchTerm = '';
     this.basicParameters = [];
@@ -84,9 +82,11 @@ export class AppInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.addServiceAndGroupToInterfaces();
-    this.addServiceAndGroupToInterfacesInstance();
-    this.generateParameters();
+    if (this.loadedData) {
+      this.addServiceAndGroupToInterfaces();
+      this.addServiceAndGroupToInterfacesInstance();
+      this.generateParameters();
+    }
   }
 
   /**
@@ -102,42 +102,17 @@ export class AppInfoComponent implements OnInit {
         }
         break;
       }
-      case AppStatus.DeploymentError: {
-        if (className.toLowerCase() === AppStatus.DeploymentError) {
-          return true;
-        }
-        break;
-      }
+      case AppStatus.DeploymentError:
+      case AppStatus.PlanningError:
+      case AppStatus.Incomplete:
       case AppStatus.Error: {
         if (className.toLowerCase() === AppStatus.Error) {
           return true;
         }
         break;
       }
-      case AppStatus.Incomplete: {
-        if (className.toLowerCase() === AppStatus.Incomplete) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.PlanningError: {
-        if (className.toLowerCase() === AppStatus.PlanningError) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.Queued: {
-        if (className.toLowerCase() === AppStatus.Process) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.Planning: {
-        if (className.toLowerCase() === AppStatus.Process) {
-          return true;
-        }
-        break;
-      }
+      case AppStatus.Queued:
+      case AppStatus.Planning:
       case AppStatus.Scheduled: {
         if (className.toLowerCase() === AppStatus.Process) {
           return true;
@@ -221,13 +196,13 @@ export class AppInfoComponent implements OnInit {
    */
   updateInstance(instance) {
     this.backend.getAppInstance(instance.organization_id, instance.app_instance_id)
-        .subscribe(inst => {
-          this.instance.inbound_connections = inst.inbound_connections;
-          this.instance.outbound_connections = inst.outbound_connections;
-          this.instance.rules = inst.rules;
-          this.instance.outbound_net_interface = inst.outbound_net_interface;
-          this.instance.inbound_net_interface = inst.inbound_net_interface;
-        });
+      .subscribe(inst => {
+        this.instance.inbound_connections = inst.inbound_connections;
+        this.instance.outbound_connections = inst.outbound_connections;
+        this.instance.rules = inst.rules;
+        this.instance.outbound_net_interface = inst.outbound_net_interface;
+        this.instance.inbound_net_interface = inst.inbound_net_interface;
+      });
   }
 
   /**
@@ -306,7 +281,6 @@ export class AppInfoComponent implements OnInit {
     if (this.instance.inbound_net_interfaces) {
       this.addServiceAndGroupInstance('inbound_net_interface');
     }
-
     if (this.instance.outbound_net_interfaces) {
       this.addServiceAndGroupInstance('outbound_net_interface');
     }
@@ -314,8 +288,8 @@ export class AppInfoComponent implements OnInit {
 
   private getParametersFromFilters(): any {
     return {
-      basic: this.registered.parameters ? this.registered.parameters.filter(parameter => parameter.required) : [],
-      advanced: this.registered.parameters ? this.registered.parameters.filter(parameter => !parameter.required) : []
+      basic:  this.registeredData.parameters ?  this.registeredData.parameters.filter(parameter => parameter.required) : [],
+      advanced: this.registeredData.parameters ?   this.registeredData.parameters.filter(parameter => !parameter.required) : []
     };
   }
 

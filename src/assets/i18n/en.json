@@ -13,6 +13,7 @@
 			"NetworkTarget": "target",
 			"title": "INSTANCE INFO"
 		},
+		"noExposedPorts": "No exposed ports",
 		"registered": {
 			"title": "DESCRIPTOR INFO"
 		},

@@ -228,7 +228,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.refreshIntervalRef = setInterval(() => {
       this.updateInfo();
     }, this.REFRESH_RATIO); // Refresh each 5 seconds
-
   }
 
   ngOnDestroy() {
@@ -537,8 +536,8 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.backend.getRegisteredApps(this.organizationId)
       .subscribe(registeredAppsResponse => {
         this.registered = registeredAppsResponse.descriptors;
+        this.updateInstanceInfo(this.organizationId);
       });
-    this.updateInstanceInfo(this.organizationId);
   }
 
   /**
