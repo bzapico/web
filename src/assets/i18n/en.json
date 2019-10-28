@@ -13,9 +13,11 @@
 			"NetworkTarget": "target",
 			"title": "INSTANCE INFO"
 		},
+		"noExposedPorts": "No exposed ports",
 		"registered": {
 			"title": "DESCRIPTOR INFO"
 		},
+		"registeredTitle": "DESCRIPTOR",
 		"requiredElements": "Required elements marked with*",
 		"tabs": {
 			"networks": "NETWORKS",
@@ -40,6 +42,7 @@
 		"instance": {
 			"environmentVariables": "Environment variables",
 			"idInstance": "INSTANCE ",
+			"noCredentials": "No credentials have been set",
 			"noEnvironmentVariables": "No environment variables have been set",
 			"noOtherSettings": "No extra settings have been set",
 			"noRules": "No available rules detected ",

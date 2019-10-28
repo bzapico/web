@@ -1,10 +1,10 @@
 <!-- Labels card-->
 <div class="card">
-  <div class="card-title-name hide-title-sm mb-3">
+  <div *ngIf="loadedData" class="card-title-name hide-title-sm mb-3">
     <h5>{{'label.title'|translate}}</h5>
   </div>
   <!-- Show selectable label -->
-  <div *ngIf="isSelectableLabel">
+  <div *ngIf="isSelectableLabel && loadedData">
     <div *ngIf="labelsData && labelsData['labels']">
       <button 
         *ngFor="let label of labelsData['labels']"
@@ -48,7 +48,7 @@
     </div>
   </div>
   <!-- Show only readable labels -->
-  <div *ngIf="!isSelectableLabel">
+  <div *ngIf="!isSelectableLabel && loadedData">
     <div *ngIf="labelsData['labels']">
       <div *ngFor="let label of labelsData['labels']">
         <button class="label-content-disabled" disabled>
