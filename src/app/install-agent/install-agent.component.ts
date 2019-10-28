@@ -6,6 +6,8 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { InventoryType } from '../definitions/enums/inventory-type.enum';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * It sets the timeout in actions like undeploying or deleting
@@ -81,7 +83,8 @@ export class InstallAgentComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private translateService: TranslateService
   ) {
 
     this.inventory = [];
@@ -92,22 +95,22 @@ export class InstallAgentComponent implements OnInit {
       displayKey: 'name',
       search: false,
       height: 'auto',
-      placeholder: 'Agent type',
+      placeholder: this.translateService.instant('infrastructure.install-agent.agentType'),
       limitTo: 4,
-      moreText: 'more',
-      noResultsFound: 'No results found!'
+      moreText: this.translateService.instant('infrastructure.install-agent.more'),
+      noResultsFound: this.translateService.instant('infrastructure.install-agent.noResults')
     };
     this.agentTypeOptions = [{
-      name: 'LINUX_AMD64',
+      name: this.translateService.instant('infrastructure.install-agent.linAmd64'),
       code: 0
     }, {
-      name: 'LINUX_ARM32',
+      name: this.translateService.instant('infrastructure.install-agent.linArm32'),
       code: 1
     }, {
-      name: 'LINUX_ARM64',
+      name: this.translateService.instant('infrastructure.install-agent.linArm64'),
       code: 2
     }, {
-      name: 'WINDOWS_AMD64',
+      name: this.translateService.instant('infrastructure.install-agent.winAmd64'),
       code: 3
     }];
 
@@ -136,13 +139,13 @@ export class InstallAgentComponent implements OnInit {
       displayKey: 'name',
       search: false,
       height: 'auto',
-      placeholder: 'Edge Inventory Controller',
+      placeholder: this.translateService.instant('infrastructure.install-agent.ec'),
       limitTo: this.ecCount,
       moreText: 'more',
-      noResultsFound: 'No results found!'
+      noResultsFound: this.translateService.instant('infrastructure.install-agent.noResults')
     };
     if (!this.edgeControllerFromEC) {
-      this.edgeControllerFromEC = 'Select any Edge Controller';
+      this.edgeControllerFromEC = this.translateService.instant('infrastructure.install-agent.select');
     }
   }
 
@@ -153,7 +156,7 @@ export class InstallAgentComponent implements OnInit {
     const controllersList = [];
 
     for (let i = 0; i < this.inventory.length; i++) {
-      if (this.inventory[i].type === 'EC') {
+      if (this.inventory[i].type === InventoryType.Ec) {
         controllersList.push(this.inventory[i]);
       }
     }
@@ -197,14 +200,14 @@ export class InstallAgentComponent implements OnInit {
       .subscribe(response => {
         this.loading = false;
         this.notificationsService.add({
-          message: 'Installing agent on ' + agent.target_host + ' target host',
+          message: this.translateService.instant('infrastructure.install-agent.message', {targetHost: agent.target_host }),
           timeout: TIMEOUT_ACTION
         });
         this.bsModalRef.hide();
       }, error => {
         this.loading = false;
         this.notificationsService.add({
-          message: 'ERROR: ' + error.error.message,
+          message: this.translateService.instant('infrastructure.error', {error: error.error.message}),
           timeout: TIMEOUT_ERROR,
           type: 'warning'
         });
@@ -218,7 +221,7 @@ export class InstallAgentComponent implements OnInit {
    */
   discardChanges(form) {
     if (form.dirty) {
-      const discard = confirm('Discard changes?');
+      const discard = confirm(this.translateService.instant('modals.discardChanges'));
       if (discard) {
         this.bsModalRef.hide();
       } else {

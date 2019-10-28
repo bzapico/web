@@ -2,7 +2,7 @@
   <div class="modal-content dev-group-content">
     <!-- Header -->
     <div class="modal-header">
-      <h3 class="nalej-form-title">Last operation info</h3>
+      <h3 class="nalej-form-title">{{'infrastructure.asset.lastLog' | translate}}</h3>
       <button 
         (click)="closeModal()"
         type="button" 
@@ -14,12 +14,12 @@
     <!-- Body -->
     <div class="modal-body">
       <div class="simple-log">
-        <p *ngIf="!lastOpSummary || !lastOpSummary.timestamp">Date: No info</p>
-        <p *ngIf="lastOpSummary.timestamp">Date: {{parseTimestampToDate()}}</p>
-        <p *ngIf="!lastOpSummary || !lastOpSummary.status">Status: unknown</p>
-        <p *ngIf="lastOpSummary.status">Status: {{lastOpSummary.status}}</p>
-        <p *ngIf="!lastOpSummary || !lastOpSummary.info">No info</p>
-        <p *ngIf="lastOpSummary.info">Info: {{lastOpSummary.info}}</p>
+        <p *ngIf="!lastOpSummary || !lastOpSummary.timestamp">{{'infrastructure.asset.noDate' | translate}}</p>
+        <p *ngIf="lastOpSummary.timestamp">{{'infrastructure.asset.date' | translate}}: {{parseTimestampToDate()}}</p>
+        <p *ngIf="!lastOpSummary || !lastOpSummary.status">{{'infrastructure.asset.status' | translate}}:</p>
+        <p *ngIf="lastOpSummary.status">{{'tables.tableStatus' | translate}}: {{lastOpSummary.status}}</p>
+        <p *ngIf="!lastOpSummary || !lastOpSummary.info">{{'infrastructure.asset.noInfo' | translate}</p>
+        <p *ngIf="lastOpSummary.info">{{'tables.tableInfo' | translate}}: {{lastOpSummary.info}}</p>
       </div>
     </div>
   </div>

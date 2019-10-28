@@ -4,6 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-device-info',
@@ -61,6 +62,7 @@ export class DeviceInfoComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.deviceInfoMock) || null;
     // check which backend is required (fake or real)
@@ -72,7 +74,7 @@ export class DeviceInfoComponent implements OnInit {
 
     // Default initialization
     this.loadedData = false;
-   }
+  }
 
   ngOnInit() {
     this.backend.getGroups(this.organizationId)
@@ -98,7 +100,7 @@ export class DeviceInfoComponent implements OnInit {
         return this.groups[index].name;
       }
     }
-    return 'Not found';
+    return this.translateService.instant('infrastructure.device.notFound');
   }
 
   /**
@@ -120,10 +122,9 @@ export class DeviceInfoComponent implements OnInit {
   /**
    * Go to devices group view
    */
- goToDevices() {
+  goToDevices() {
     const groupId = this.deviceGroupId;
     this.onClose(groupId);
     this.bsModalRef.hide();
   }
 }
-

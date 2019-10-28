@@ -2,7 +2,7 @@
   <div class="modal-content">
     <!-- Header -->
     <div class="modal-header">
-      <h3 class="nalej-form-title">Install agent</h3>
+      <h3 class="nalej-form-title">{{'infrastructure.install-agent.title' | translate}}</h3>
       <button 
         (click)="discardChanges(f)"
         type="button" 
@@ -19,7 +19,7 @@
         (ngSubmit)="installAgent(f)">
       <div class="scroll-modal-form">
         <div class="form-group form-group-drop">
-          <label>Agent type*</label>
+          <label>{{'infrastructure.install-agent.agentType' | translate}}*</label>
           <ngx-select-dropdown 
             formControlName="type" 
             [multiple]="false" 
@@ -40,12 +40,12 @@
               f.type.errors &&
               !agentType" 
               class="error-message">
-              <div *ngIf="f.type.errors.required">An agent type is required</div>
+              <div *ngIf="f.type.errors.required">{{'infrastructure.install-agent.required' | translate}}</div>
             </div>
           </div>
         </div>
         <div *ngIf="!openFromEc" class="form-group form-group-drop">
-          <label>Edge inventory Controller*</label>
+          <label>{{'infrastructure.install-agent.ec' | translate}}*</label>
           <ngx-select-dropdown 
             formControlName="edgeController" 
             [multiple]="false" 
@@ -67,12 +67,12 @@
               f.edgeController.errors &&
               !edgeControllerId" 
               class="error-message">
-              <div *ngIf="f.edgeController.errors.required">An Edge Controller is required</div>
+              <div *ngIf="f.edgeController.errors.required">{{'infrastructure.install-agent.ecRequired' | translate}}</div>
             </div>
           </div>
         </div>
         <div *ngIf="openFromEc" class="form-group">
-          <label>Edge inventory Controller</label>
+          <label>{{'infrastructure.install-agent.ec' | translate}}</label>
           <input 
             formControlName="edgeControllerFromEC" 
             type="text" 
@@ -81,47 +81,47 @@
           <div class="error-h"></div>
         </div>
         <div class="form-group">
-          <label>SSH username*</label>
+          <label>{{'infrastructure.install-agent.sshUser' | translate}}*</label>
           <input 
             formControlName="sshUsername" 
             type="text" 
-            placeholder="SSH username"
+            placeholder="{{'infrastructure.install-agent.sshUser' | translate}}"
             [ngClass]="{ 'is-invalid': submitted && f.sshUsername.errors }" 
             required
             class="form-control">
           <div class="error-h">
             <div *ngIf="submitted && f.sshUsername.errors" class="error-message">
-              <div *ngIf="f.sshUsername.errors.required">SSH username is required</div>
+              <div *ngIf="f.sshUsername.errors.required">{{'infrastructure.install-agent.sshUserRequired' | translate}}</div>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <label>SSH password*</label>
+          <label>{{'infrastructure.install-agent.sshPass' | translate}}*</label>
           <input 
             formControlName="sshPassword" 
             type="password" 
-            placeholder="Type the SSH password here"
+            placeholder="{{'infrastructure.install-agent.sshPassType' | translate}}"
             [ngClass]="{ 'is-invalid': submitted && f.sshPassword.errors }"
             required
             class="form-control">
           <div class="error-h">
             <div *ngIf="submitted && f.sshPassword.errors" class="error-message">
-              <div *ngIf="f.sshPassword.errors.required">SSH password is required</div>
+              <div *ngIf="f.sshPassword.errors.required">{{'infrastructure.install-agent.sshPassRequired' | translate}}</div>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <label>Target host*</label>
+          <label>{{'infrastructure.install-agent.targetHost' | translate}}*</label>
           <input 
             formControlName="target" 
             type="text" 
-            placeholder="Target host"
+            placeholder="{{'infrastructure.install-agent.targetHost' | translate}}"
             [ngClass]="{ 'is-invalid': submitted && f.target.errors }"
             required
             class="form-control">
           <div class="error-h">
             <div *ngIf="submitted && f.target.errors" class="error-message">
-              <div *ngIf="f.target.errors.required">Target is required</div>
+              <div *ngIf="f.target.errors.required">{{'infrastructure.install-agent.targetHostRequired' | translate}}</div>
             </div>
           </div>
         </div>
@@ -131,7 +131,7 @@
           <button 
             class="nalej-form-btn-blue" 
             [disabled]="loading">
-            <span class="align-bottom">Install</span>
+            <span class="align-bottom">{{'infrastructure.install-agent.install' | translate}}</span>
           </button>
         </div>
       </form>

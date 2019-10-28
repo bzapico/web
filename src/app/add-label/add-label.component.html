@@ -2,7 +2,7 @@
   <div class="modal-content">
     <!-- Header -->
     <div class="modal-header">
-      <h3 class="nalej-form-title">Add label to {{entityType}}</h3>
+      <h3 class="nalej-form-title">{{'label.add-label.title' | translate}}{{entityType}}</h3>
       <button 
         (click)="discardChanges(f)"
         type="button" 
@@ -16,11 +16,11 @@
       <h3 class="label-title">{{modalTitle}}</h3>
       <form [formGroup]="addLabelForm" (ngSubmit)="addLabel(f)">
         <div class="form-group">
-          <label>Label key*</label>
+          <label>{{'label.add-label.key' | translate}}*</label>
             <input 
             formControlName="labelName" 
             type="text" 
-            placeholder="e.g. Group" 
+            placeholder="{{'label.add-label.egGroup' | translate}}" 
             appAutofocus="true"
             [ngClass]="{ 'is-invalid': submitted && f.labelName.errors }"
             pattern="^[a-zA-Z0-9_.-]*$"
@@ -29,17 +29,17 @@
           <div *ngIf="!submitted && f.labelName.errors" class="error-message"></div>
           <div class="error-h">
             <div *ngIf="submitted && f.labelName.errors" class="error-message">
-              <div *ngIf="f.labelName.errors.required">Label key is required</div>
-              <div *ngIf="f.labelName.errors.pattern">Cannot contain special ial characters</div>
+              <div *ngIf="f.labelName.errors.required">{{'label.add-label.keyReq' | translate}}</div>
+              <div *ngIf="f.labelName.errors.pattern">{{'label.add-label.specialChar' | translate}}</div>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <label>Label value*</label>
+          <label>{{'label.add-label.value' | translate}}*</label>
             <input 
             formControlName="labelValue" 
             type="text" 
-            placeholder="e.g. MyGroup" 
+            placeholder="{{'label.add-label.egMyGroup' | translate}}" 
             [ngClass]="{ 'is-invalid': submitted && f.labelValue.errors }"
             pattern="^[a-zA-Z0-9_.-]*$"
             required
@@ -47,14 +47,14 @@
           <div *ngIf="!submitted && f.labelValue.errors" class="error-message"></div>
           <div class="error-h">
             <div *ngIf="submitted && f.labelValue.errors" class="error-message">
-              <div *ngIf="f.labelValue.errors.required">Label value is required</div>
-              <div *ngIf="f.labelValue.errors.pattern">Cannot contain special ial characters</div>
+              <div *ngIf="f.labelValue.errors.required">{{'label.add-label.valueReq' | translate}}</div>
+              <div *ngIf="f.labelValue.errors.pattern">{{'label.add-label.specialChar' | translate}}</div>
             </div>
           </div>
         </div>
         <div class="form-group-btn">
           <button class="nalej-form-btn-blue" [disabled]="loading">
-            <span class="align-bottom">Save changes</span>
+            <span class="align-bottom">{{'buttons.saveChanges' | translate}}</span>
           </button>
         </div>
       </form>

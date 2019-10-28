@@ -27,7 +27,7 @@ describe('DevicesComponent', () => {
         FilterPipe,
         SortByPipe,
         AbbreviatePipe
-       ],
+      ],
       imports: [
         HttpClientTestingModule,
         NgxChartsModule,
