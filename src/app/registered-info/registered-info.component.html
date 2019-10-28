@@ -1,16 +1,16 @@
 <!-- Component title -->
 <div class="row row-title">
   <div class="col-lg-12">
-    <!-- <h2 class="section-title">{{'apps.instance.title'|translate}}</h2> -->
+    <!-- <h2 class="section-title">{{'apps.instance.title' | translate}}</h2> -->
     <h2 class="section-title">
       <a 
         [routerLink]="['/applications']" 
         routerLinkActive="active" 
         class="blue fw-black">
-        {{'apps.instance.title'|translate}}
+        {{'apps.instance.title' | translate}}
       </a>
       <span class="grey"> > </span>
-      <span class="grey">{{'apps.registeredTitle'|translate}}</span>
+      <span class="grey">{{'apps.registeredTitle' | translate}}</span>
       <span class="grey"> > </span>
       <span class=" text-uppercase">
         <b>{{registeredData.name}}</b>
@@ -67,9 +67,9 @@
           </div>
           <div *ngIf="!graphReset" class="row mt-2 text-right mr-1">
             <div class="col graph-subtext">
-              {{'graph.scroll'|translate}}
+              {{'graph.scroll' | translate}}
               <a (click)="resetGraphZoom()" class="blue cursor-pointer">
-                {{'sortingMessage.reset'|translate}}
+                {{'sortingMessage.reset' | translate}}
               </a>
             </div>
           </div>
@@ -92,26 +92,26 @@
               <!-- Sorting messages -->
               <div class="col-7">
                 <p *ngIf="searchTerm && !filterField" class="sorting-message">
-                  {{'sortingMessage.filteredBy'|translate:{value: searchTerm} }}
+                  {{'sortingMessage.filteredBy' | translate:{value: searchTerm} }}
                   <span (click)="resetFilters('services')" class="reset-search">
-                    {{'sortingMessage.reset'|translate}}
+                    {{'sortingMessage.reset' | translate}}
                   </span>
                 </p>
                 <p *ngIf="filterField && !searchTerm" class="sorting-message">
-                  {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-                  <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: '. '} }} </span>
-                  <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: '. '} }} </span>
+                  {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
+                  <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: '. '} }} </span>
+                  <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: '. '} }} </span>
                   <span (click)="resetFilters('services')" class="reset-search">
-                    {{'sortingMessage.reset'|translate}}
+                    {{'sortingMessage.reset' | translate}}
                   </span>
-                </p>{{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
+                </p>{{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
                 <p *ngIf="filterField && searchTerm" class="sorting-message">
-                  {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-                  <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: ' '} }} </span>
-                  <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: ' '} }} </span>
-                  {{'sortingMessage.andFilteredBy'|translate:{value: searchTerm} }}.
+                  {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
+                  <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ' '} }} </span>
+                  <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: ' '} }} </span>
+                  {{'sortingMessage.andFilteredBy' | translate:{value: searchTerm} }}.
                   <span (click)="resetFilters('services')" class="reset-search">
-                  {{'sortingMessage.reset'|translate}}
+                  {{'sortingMessage.reset' | translate}}
                   </span>
                 </p>
               </div>
@@ -123,7 +123,7 @@
                       name="searchTerm"
                       [(ngModel)]="searchTerm"
                       type="text"
-                      placeholder="{{'searcher.placeholder'|translate }}"
+                      placeholder="{{'searcher.placeholder' | translate }}"
                       class="form-control">
                     <div *ngIf="searchTerm === ''" class="search-icon">
                       <i class="material-icons">search</i>
@@ -153,7 +153,7 @@
                       <div class="accordion-btn">
                         <div
                           (click)="openRegisteredServicesGroupInfo(group, $event)"
-                          tooltip="{{'tables.tableInfo'|translate}}"
+                          tooltip="{{'tables.tableInfo' | translate}}"
                           placement="left">
                           <i class="material-icons info-icon">info</i>
                         </div>
@@ -161,7 +161,7 @@
                     </span>
                     <!-- No services to show -->
                     <div *ngIf="countGroupServices() === 0" class="no-elements-in-group">
-                      {{'apps.instance.noServicesInGroup'|translate}}
+                      {{'apps.instance.noServicesInGroup' | translate}}
                     </div>
                     <!-- Services table -->
                     <div *ngIf=
@@ -178,7 +178,7 @@
                                 (click)="setOrder('services','name')"
                                 [ngClass]="getCategoryCSSClass('services','name')"
                                 class="label-th col-3">
-                                {{'apps.instance.tableName'|translate}}
+                                {{'apps.instance.tableName' | translate}}
                                 <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                                   <i class="material-icons">expand_more</i>
                                 </span>
@@ -190,7 +190,7 @@
                                 (click)="setOrder('services','image')"
                                 [ngClass]="getCategoryCSSClass('services','image')"
                                 class="label-th col-8 text-center">
-                                {{'apps.instance.tableImage'|translate}}
+                                {{'apps.instance.tableImage' | translate}}
                                 <span *ngIf="sortedBy === 'image' && !reverse" class="expand-chevron">
                                   <i class="material-icons">expand_more</i>
                                 </span>
@@ -199,7 +199,7 @@
                                 </span>
                               </div>
                               <div class="label-th col-1 text-right pr-1">
-                                {{'tables.tableInfo'|translate}}
+                                {{'tables.tableInfo' | translate}}
                               </div>
                             </div>
                           </div>
@@ -207,7 +207,7 @@
                             (click)="setOrder('services','labels')"
                             [ngClass]="getCategoryCSSClass('services','labels')"
                             class="label-th col-12">
-                            {{'apps.instance.tableLabels'|translate}}
+                            {{'apps.instance.tableLabels' | translate}}
                             <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                               <i class="material-icons">expand_more</i>
                             </span>
@@ -232,7 +232,7 @@
                                 <div class="col-1 label-td-flex">
                                   <div
                                     (click)="openServicesInfo(service)"
-                                    tooltip="{{'tables.tableInfo'|translate}}"
+                                    tooltip="{{'tables.tableInfo' | translate}}"
                                     placement="left">
                                     <i class="material-icons info-icon">info</i>
                                   </div>
@@ -257,7 +257,7 @@
                       !requestError &&
                       registeredData.groups.length === 0"
                       class="no-elements">
-                      {{'apps.instance.noServices'|translate}}
+                      {{'apps.instance.noServices' | translate}}
                     </div>
                     <!-- Requested error -->
                     <div *ngIf="loadedData && requestError" class="no-elements">
@@ -300,26 +300,26 @@
               <!-- Sorting messages -->
               <div class="col">
                 <p *ngIf="searchTermRules && !filterFieldRules" class="sorting-message">
-                  {{'sortingMessage.filteredBy'|translate:{value: searchTermRules} }}
+                  {{'sortingMessage.filteredBy' | translate:{value: searchTermRules} }}
                   <span (click)="resetFilters('rules')" class="reset-search">
-                    {{'sortingMessage.reset'|translate}}
+                    {{'sortingMessage.reset' | translate}}
                   </span>
                 </p>
                 <p *ngIf="filterFieldRules && !searchTermRules" class="sorting-message">
-                  {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-                  <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: '. '} }} </span>
-                  <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: '. '} }} </span>
+                  {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
+                  <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: '. '} }} </span>
+                  <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: '. '} }} </span>
                   <span (click)="resetFilters('rules')" class="reset-search">
-                    {{'sortingMessage.reset'|translate}}
+                    {{'sortingMessage.reset' | translate}}
                   </span>
                 </p>
                 <p *ngIf="filterFieldRules && searchTermRules" class="sorting-message">
-                  {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-                  <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: ', '} }} </span>
-                  <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: ', '} }} </span>
-                  {{'sortingMessage.andFilteredBy'|translate:{value: searchTerm} }}.
+                  {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
+                  <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ', '} }} </span>
+                  <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: ', '} }} </span>
+                  {{'sortingMessage.andFilteredBy' | translate:{value: searchTerm} }}.
                   <span (click)="resetFilters('rules')" class="reset-search">
-                    {{'sortingMessage.reset'|translate}}
+                    {{'sortingMessage.reset' | translate}}
                   </span>
                 </p>
               </div>
@@ -331,7 +331,7 @@
                       name="searchTermRules"
                       [(ngModel)]="searchTermRules"
                       type="text"
-                      placeholder="{{'searcher.placeholder'|translate }}"
+                      placeholder="{{'searcher.placeholder' | translate }}"
                       class="form-control">
                     <div *ngIf="searchTermRules === ''" class="search-icon" >
                       <i class="material-icons">search</i>
@@ -356,8 +356,8 @@
                     (click)="setOrder('rules','access')"
                     [ngClass]="getCategoryCSSClass('rules','access')"
                     class="label-th col-3">
-                    <span tooltip="{{'apps.instance.tableAccess'|translate}}" placement="bottom">
-                      {{'apps.instance.tableAccess'|translate}}
+                    <span tooltip="{{'apps.instance.tableAccess' | translate}}" placement="bottom">
+                      {{'apps.instance.tableAccess' | translate}}
                     </span>
                     <span *ngIf="sortedByRules === 'access' && !reverseRules" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
@@ -371,12 +371,12 @@
                     [ngClass]="getCategoryCSSClass('rules','target')"
                     class="label-th col-3">
                     <span
-                      tooltip="{{'apps.instance.tableTarget'|translate}}
-                      {{'apps.instance.tableTargetInBig'|translate}}"
+                      tooltip="{{'apps.instance.tableTarget' | translate}}
+                      {{'apps.instance.tableTargetInBig' | translate}}"
                       placement="bottom">
-                      {{'apps.instance.tableTarget'|translate}}
+                      {{'apps.instance.tableTarget' | translate}}
                       <span class="grey typo-small">
-                        {{'apps.instance.tableTargetIn'|translate}}
+                        {{'apps.instance.tableTargetIn' | translate}}
                       </span>
                     </span>
                     <span *ngIf="sortedByRules === 'target' && !reverseRules" class="expand-chevron">
@@ -391,12 +391,12 @@
                     [ngClass]="getCategoryCSSClass('rules','auth')"
                     class="label-th col-3">
                     <span
-                      tooltip="{{'apps.instance.tableAuth'|translate}}
-                      {{'apps.instance.tableAuthInBig'|translate}}"
+                      tooltip="{{'apps.instance.tableAuth' | translate}}
+                      {{'apps.instance.tableAuthInBig' | translate}}"
                       placement="bottom">
-                      {{'apps.instance.tableAuth'|translate}}
+                      {{'apps.instance.tableAuth' | translate}}
                       <span class="grey typo-small">
-                        {{'apps.instance.tableAuthIn'|translate}}
+                        {{'apps.instance.tableAuthIn' | translate}}
                       </span>
                     </span>
                     <span *ngIf="sortedByRules === 'auth' && !reverseRules" class="expand-chevron">
@@ -407,16 +407,16 @@
                     </span>
                   </div>
                   <div class="label-th col-3 text-right">
-                    <span tooltip="{{'tables.tableInfo'|translate}}" placement="bottom">
-                      {{'tables.tableInfo'|translate}}
+                    <span tooltip="{{'tables.tableInfo' | translate}}" placement="bottom">
+                      {{'tables.tableInfo' | translate}}
                     </span>
                   </div>
                   <div
                     (click)="setOrder('rules','name')"
                     [ngClass]="getCategoryCSSClass('rules','name')"
                     class="label-th col-12">
-                    <span tooltip="{{'apps.instance.tableName'|translate}}" placement="bottom">
-                      {{'apps.instance.tableName'|translate}}
+                    <span tooltip="{{'apps.instance.tableName' | translate}}" placement="bottom">
+                      {{'apps.instance.tableName' | translate}}
                     </span>
                     <span *ngIf="sortedByRules === 'name' && !reverseRules" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
@@ -459,7 +459,7 @@
                     <div class="col-3 label-td-flex">
                       <div
                         (click)="openRulesInfo(rule)"
-                        tooltip="{{'tables.tableInfo'|translate}}"
+                        tooltip="{{'tables.tableInfo' | translate}}"
                         placement="left">
                         <i class="material-icons info-icon">info</i>
                       </div>
@@ -475,7 +475,7 @@
               !registeredData.rules
               !requestError"
               class="no-elements">
-              {{'apps.instance.noRules'|translate}}
+              {{'apps.instance.noRules' | translate}}
             </div>
             <!-- Requested error -->
             <div *ngIf="loadedData && requestError" class="no-elements">
