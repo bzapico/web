@@ -15,12 +15,12 @@
       </div>
       <div class="scroll-app-info app-info-detailed-p">
         <div class="row">
-          <div class="col-sm modal-info-table-title mb-3">{{'tables.organizationId'|translate}}</div>
+          <div class="col-sm modal-info-table-title mb-3">{{'tables.organizationId' | translate}}</div>
           <div class="col-sm text-right">{{organizationId}}</div>
         </div>
         <br>
         <div class="row">
-          <div class="col-sm modal-info-table-title mb-3">{{'tables.tableLabels'|translate}}</div>
+          <div class="col-sm modal-info-table-title mb-3">{{'tables.tableLabels' | translate}}</div>
         </div>
         <div *ngFor="let label of labels" class="row">
           <div *ngIf="labels" class="col-sm text-right">
@@ -33,7 +33,7 @@
         <br>
         <!-- Groups -->
         <div class="row">
-          <div class="col-sm modal-info-table-title">{{'tables.tableGroups'|translate}}</div>
+          <div class="col-sm modal-info-table-title">{{'tables.tableGroups' | translate}}</div>
         </div>
         <br>
         <!-- Instance groups -->
@@ -54,14 +54,15 @@
                   </div>
                   <br>
                   <div class="row">
-                    <div class="col-sm modal-info-table-title mb-3">{{'tables.tableStatus'|translate}}</div>
+                    <div class="col-sm modal-info-table-title mb-3">{{'tables.tableStatus' | translate}}</div>
                     <h3 class="modal-info-h3-title col-sm text-right">
                       <span 
                         [ngClass]=
                         "{
                           'big-status-dot': classStatusCheck(service.status_name, 'service_running'),
                           'big-status-dot-error': classStatusCheck(service.status_name, 'service_error'),
-                          'big-status-dot-process': classStatusCheck(service.status_name, 'service_waiting') || classStatusCheck (service.status_name, 'service_scheduled')
+                          'big-status-dot-process': classStatusCheck(service.status_name, 'service_waiting') || 
+                            classStatusCheck (service.status_name, 'service_scheduled')
                         }"
                         tooltip="{{service.status_name}}" 
                         placement="bottom"
@@ -74,18 +75,18 @@
                   </div>
                   <br>
                   <div class="row">
-                    <div class="col-sm modal-info-table-title mb-3">{{'tables.tableDeployedOnCID'|translate}}</div>
+                    <div class="col-sm modal-info-table-title mb-3">{{'tables.tableDeployedOnCID' | translate}}</div>
                     <div class="col-sm text-right">{{service.deployed_on_cluster_id}}</div>
                   </div>
                   <br>
                   <div class="row">
-                    <div class="col-sm modal-info-table-title">{{'tables.tableReplicas'|translate}}</div>
+                    <div class="col-sm modal-info-table-title">{{'tables.tableReplicas' | translate}}</div>
                     <h3 class="modal-info-h3-title col-sm text-right">{{service.specs.replicas}}</h3>
                   </div>
                   <br>
                   <div *ngIf="service.environment_variables">
                     <div class="row">
-                      <div class="col-sm modal-info-table-title mb-3">{{'apps.instance.environmentVariables'|translate}}</div>
+                      <div class="col-sm modal-info-table-title mb-3">{{'apps.instance.environmentVariables' | translate}}</div>
                     </div>
                     <div class="row">
                       <div class="col-sm text-right">
@@ -101,17 +102,17 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-sm modal-info-table-title">{{'tables.tableType'|translate}}</div>
+                    <div class="col-sm modal-info-table-title">{{'tables.tableType' | translate}}</div>
                     <div class="col-sm text-right">{{service.type_name}}</div>
                   </div>
                   <br>
                   <div *ngIf="!service.credentials" class="row">
-                    <div class="col-sm modal-info-table-title">{{'apps.instance.environmentVariables'|translate}}</div>
-                    <div class="col-sm text-right">{{'apps.instance.noEnvironmentVariables'|translate}}</div>
+                    <div class="col-sm modal-info-table-title">{{'apps.instance.environmentVariables' | translate}}</div>
+                    <div class="col-sm text-right">{{'apps.instance.noEnvironmentVariables' | translate}}</div>
                   </div>
                   <div *ngIf="service.credentials">
                     <div class="row">
-                      <div class="col-sm modal-info-table-title mb-3">{{'tables.tableCredentials'|translate}}</div>
+                      <div class="col-sm modal-info-table-title mb-3">{{'tables.tableCredentials' | translate}}</div>
                     </div>
                     <div class="row">
                       <div class="col-sm text-right">
@@ -127,12 +128,12 @@
                     </div>
                   </div>
                   <div *ngIf="!service.credentials"  class="row">
-                    <div class="col-sm modal-info-table-title">{{'tables.tableCredentials'|translate}}</div>
+                    <div class="col-sm modal-info-table-title">{{'tables.tableCredentials' | translate}}</div>
                     <div class="col-sm text-right">No credentials have been set</div>
                   </div>
                   <br>
                   <div class="row">
-                    <div class="col-sm modal-info-table-title">{{'tables.tableImage'|translate}}</div>
+                    <div class="col-sm modal-info-table-title">{{'tables.tableImage' | translate}}</div>
                     <div class="col-sm text-right">{{service.image}}</div>
                   </div>
                   <br>
@@ -159,13 +160,13 @@
                   </div>
                   <br>
                   <div class="row">
-                    <div class="col-sm modal-info-table-title">{{'tables.tableReplicas'|translate}}</div>
+                    <div class="col-sm modal-info-table-title">{{'tables.tableReplicas' | translate}}</div>
                     <h3 class="modal-info-h3-title col-sm text-right">{{service.specs.replicas}}</h3>
                   </div>
                   <br>
                   <div *ngIf="service.exposed_ports">
                     <div class="row">
-                      <div class="col-sm modal-info-table-title mb-3">{{'tables.tableExposedPorts'|translate}}</div>
+                      <div class="col-sm modal-info-table-title mb-3">{{'tables.tableExposedPorts' | translate}}</div>
                     </div>
                     <div class="row">
                       <div class="col-sm text-right">
@@ -173,9 +174,9 @@
                             <div class="col-12 text-right">
                               <div class="row">
                                   <div class="col-sm"></div>
-                                  <div class="col-sm">{{'tables.tablePort'|translate}}</div>
-                                  <div class="col-sm text-right">{{'tables.tableInternal'|translate}}</div>
-                                  <div class="col-sm text-right">{{'tables.tableExternal'|translate}}</div>
+                                  <div class="col-sm">{{'tables.tablePort' | translate}}</div>
+                                  <div class="col-sm text-right">{{'tables.tableInternal' | translate}}</div>
+                                  <div class="col-sm text-right">{{'tables.tableExternal' | translate}}</div>
                               </div>
                             </div>
                             <div class="col-12 text-right">
@@ -191,12 +192,12 @@
                     </div>
                   </div>
                   <div *ngIf="!service.exposed_ports" class="row">
-                    <div class="col-sm modal-info-table-title">{{'tables.tableExposedPorts'|translate}}</div>
-                    <div class="col-sm text-right">No exposed ports</div>
+                    <div class="col-sm modal-info-table-title">{{'tables.tableExposedPorts' | translate}}</div>
+                    <div class="col-sm text-right">{{'app-info.noExposedPorts' | translate}</div>
                   </div>
                   <br>
                   <div class="row">
-                    <div class="col-sm modal-info-table-title">{{'tables.tableImage'|translate}}</div>
+                    <div class="col-sm modal-info-table-title">{{'tables.tableImage' | translate}}</div>
                     <div class="col-sm text-right">{{service.image}}</div>
                   </div>
                   <br>
@@ -207,7 +208,7 @@
         </span>
         <!-- Rules -->
         <div *ngIf="rules" class="row">
-          <div class="col-sm modal-info-table-title mt-3">{{'tables.tableRules'|translate}}</div>
+          <div class="col-sm modal-info-table-title mt-3">{{'tables.tableRules' | translate}}</div>
         </div>
         <br>
         <span *ngIf="rules">
@@ -219,57 +220,57 @@
                 </div>
                 <div class="">
                   <div class="row">
-                    <div class="col-sm modal-info-table-title mb-3">{{'tables.tableAccess'|translate}}</div>
+                    <div class="col-sm modal-info-table-title mb-3">{{'tables.tableAccess' | translate}}</div>
                     <div *ngIf="openFromRegistered" class="col-sm text-right rule-access">{{rule.access}}</div>
                     <div *ngIf="openFromInstance" class="col-sm text-right rule-access">{{rule.access_name}}</div>
                   </div>
                   <br>
                   <div class="row">
-                    <div class="col-sm modal-info-table-title mb-3">{{'tables.tableTarget'|translate}}</div>
+                    <div class="col-sm modal-info-table-title mb-3">{{'tables.tableTarget' | translate}}</div>
                   </div>
                   <div *ngIf="rule.target_service_group_name" class="row">
                     <div class="col-sm-2"></div>
-                    <div class="col-sm-4 modal-info-table-title">{{'tables.tableGroup'|translate}}</div>
+                    <div class="col-sm-4 modal-info-table-title">{{'tables.tableGroup' | translate}}</div>
                     <div class="col-sm text-right">{{rule.target_service_name}}</div>
                   </div>
                   <div class="row">
                     <div class="col-sm-2"></div>
-                    <div class="col-sm-4 modal-info-table-title">{{'tables.tableServices'|translate}}</div>
+                    <div class="col-sm-4 modal-info-table-title">{{'tables.tableServices' | translate}}</div>
                     <div class="col-sm text-right">{{rule.target_service_group_name}}</div>
                   </div>
                   <div class="row">
                     <div class="col-sm-2"></div>
-                    <div class="col-sm-4  modal-info-table-title">{{'tables.tablePort'|translate}}</div>
+                    <div class="col-sm-4  modal-info-table-title">{{'tables.tablePort' | translate}}</div>
                     <div class="col-sm col-right-low">{{rule.target_port}}</div>
                   </div>
                   <br>
                   <div *ngIf="rule.device_group_ids" class="row">
-                    <div class="col-sm modal-info-table-title mb-3">{{'tables.tableAuth'|translate}}</div>
+                    <div class="col-sm modal-info-table-title mb-3">{{'tables.tableAuth' | translate}}</div>
                   </div>
                   <div *ngIf="rule.auth_service_group_name" class="row">
                     <div class="col-sm-2"></div>
-                    <div class="col-sm-4 modal-info-table-title">{{'tables.tableGroup'|translate}}</div>
+                    <div class="col-sm-4 modal-info-table-title">{{'tables.tableGroup' | translate}}</div>
                     <div class="col-sm text-right">{{rule.auth_service_group_name}}</div>
                   </div>
                   <div *ngFor="let auth of rule.auth_services; let i = index" class="row">
                     <div class="col-sm-2"></div>
-                    <div *ngIf="i === 0" class="col-sm-4 modal-info-table-title">{{'tables.tableServices'|translate}}</div>
+                    <div *ngIf="i === 0" class="col-sm-4 modal-info-table-title">{{'tables.tableServices' | translate}}</div>
                     <div *ngIf="i !== 0" class="col-sm"></div>
                     <div class="col-sm text-right">{{rule.auth_services}}</div>
                   </div>
                   <div *ngIf="rule.device_group_ids" class="row">
                     <div class="col-sm-2"></div>
-                    <div class="col-sm-4 modal-info-table-title">{{'tables.tableDevices'|translate}}</div>
+                    <div class="col-sm-4 modal-info-table-title">{{'tables.tableDevices' | translate}}</div>
                     <div class="col-sm col-right-low">{{rule.device_group_ids}}</div>
                   </div>
                   <div *ngIf="rule.device_group_names" class="row">
                     <div class="col-sm-2"></div>
-                    <div class="col-sm-4 modal-info-table-title">Devices group{{'tables.tableDevicesGroup'|translate}}</div>
+                    <div class="col-sm-4 modal-info-table-title">Devices group{{'tables.tableDevicesGroup' | translate}}</div>
                     <div class="col-sm col-right-low">{{rule.device_group_names}}</div>
                   </div>
                   <br>
                   <div class="row">
-                    <div class="col-sm modal-info-table-title mb-3">{{'tables.tableAppDescriptorID'|translate}}</div>
+                    <div class="col-sm modal-info-table-title mb-3">{{'tables.tableAppDescriptorID' | translate}}</div>
                     <div class="col-sm text-right">{{rule.app_descriptor_id}}</div>
                   </div>
                     <br>
@@ -282,7 +283,7 @@
       <!-- Option button -->
       <div class="form-group-btn app-info-detailed-p">
         <button (click)="closeModal()" class="nalej-form-btn-blue">
-          <span class="align-bottom">{{'modals.buttonClose'|translate}}</span>
+          <span class="align-bottom">{{'modals.buttonClose' | translate}}</span>
         </button>
       </div>
     </div>
