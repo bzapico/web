@@ -385,7 +385,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
   }
 
- /**
+  /**
   * Open rules info modal window
   *  @param rule rule object
   */
@@ -423,7 +423,7 @@ export class RegisteredInfoComponent implements OnInit {
 
   /**
    * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
-  */
+   */
   resetGraphZoom() {
     this.graphReset = true;
     setTimeout(() => {
@@ -449,6 +449,10 @@ export class RegisteredInfoComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
   }
 
+  /**
+   * Updates labels
+   * @param updateLabel label object
+   */
   updateLabels(updateLabel: {action: string, selectedLabels: any[]}) {
     if (updateLabel.action === 'add') {
       this.addLabel();

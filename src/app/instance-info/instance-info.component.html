@@ -23,12 +23,12 @@
       <!-- Application instances id card -->
       <app-info
         [loadedData]="loadedData"
-        [registered]="getDescriptorFromInstance(instance)[0]"
+        [registeredData]="getDescriptorFromInstance(instance)[0]"
         [instance]="instance"
-        [registeredData]="registered"
         [openFromInstance]="openFromInstance"
         class="row-info-app flex-grow-1 h-75">
       </app-info>
+      <!-- [registeredData]="registered" -->
       <!-- Labels card-->
       <labels-card 
         [loadedData]="loadedData"
