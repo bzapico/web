@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { InventoryStatus } from '../definitions/enums/inventory-status.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -15,30 +16,12 @@ export class InfrastructureService {
    */
   classStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case 'online': {
-        if (className.toLowerCase() === 'online') {
-          return true;
-        }
-        break;
-      }
-      case 'offline': {
-        if (className.toLowerCase() === 'offline') {
-          return true;
-        }
-        break;
-      }
-      case 'process': {
-        if (className.toLowerCase() === 'process') {
-          return true;
-        }
-        break;
-      }
-      default: {
-        if (className.toLowerCase() === 'process') {
-          return true;
-        }
-        return false;
-      }
+      case InventoryStatus.Online:
+        return className.toLowerCase() === InventoryStatus.Online;
+      case InventoryStatus.Offline:
+        return className.toLowerCase() === InventoryStatus.Offline;
+      default:
+        return className.toLowerCase() === InventoryStatus.Process;
     }
   }
   /**

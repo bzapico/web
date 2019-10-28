@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
+import { ServicesStatus } from '../definitions/enums/services-status.enum';
 
 @Component({
   selector: 'instance-service-group-info',
@@ -31,11 +31,10 @@ export class InstanceServiceGroupInfoComponent implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
-    private translateService: TranslateService
     ) {
     // Default initialization
     this.loadedData = false;
-   }
+  }
 
   ngOnInit() {
     this.status = this.status || '';
@@ -60,30 +59,14 @@ export class InstanceServiceGroupInfoComponent implements OnInit {
    */
   classStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case this.translateService.instant('status.serviceRunning'): {
-        if (className.toLowerCase() === this.translateService.instant('status.serviceRunning')) {
-          return true;
-        }
-        break;
-      }
-      case this.translateService.instant('status.serviceError'): {
-        if (className.toLowerCase() === this.translateService.instant('status.serviceError')) {
-          return true;
-        }
-        break;
-      }
-      case this.translateService.instant('status.serviceWaiting'): {
-        if (className.toLowerCase() === this.translateService.instant('status.serviceWaiting')) {
-          return true;
-        }
-        break;
-      }
-     default: {
-        if (className.toLowerCase() === this.translateService.instant('status.serviceWaiting')) {
-          return true;
-        }
-        return false;
-      }
+      case ServicesStatus.ServiceRunning:
+        return className.toLowerCase() === ServicesStatus.ServiceRunning;
+      case ServicesStatus.ServiceError:
+        return className.toLowerCase() === ServicesStatus.ServiceError;
+      case ServicesStatus.ServiceWaiting:
+        return className.toLowerCase() === ServicesStatus.ServiceWaiting;
+      default:
+        return (className.toLowerCase() === ServicesStatus.ServiceWaiting);
     }
   }
 

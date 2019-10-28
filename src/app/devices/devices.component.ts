@@ -254,24 +254,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   classStatusCheck(status: string, className: string): boolean {
     if (status) {
       switch (status.toLowerCase()) {
-        case InventoryStatus.Online: {
-          if (className.toLowerCase() === InventoryStatus.Online) {
-            return true;
-          }
-          break;
-        }
-        case InventoryStatus.Offline: {
-          if (className.toLowerCase() === InventoryStatus.Offline) {
-            return true;
-          }
-          break;
-        }
-      default: {
-          if (className.toLowerCase() === InventoryStatus.Process) {
-            return true;
-          }
-          return false;
-        }
+        case InventoryStatus.Online:
+          return className.toLowerCase() === InventoryStatus.Online;
+        case InventoryStatus.Offline:
+          return className.toLowerCase() === InventoryStatus.Offline;
+        default:
+          return className.toLowerCase() === InventoryStatus.Process;
       }
     }
   }

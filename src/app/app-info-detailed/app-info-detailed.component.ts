@@ -50,18 +50,14 @@ export class AppInfoDetailedComponent {
    */
   classStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case ServicesStatus.ServiceRunning: {
+      case ServicesStatus.ServiceRunning:
         return className.toLowerCase() === ServicesStatus.ServiceRunning;
-      }
-      case ServicesStatus.ServiceError: {
+      case ServicesStatus.ServiceError:
         return className.toLowerCase() === ServicesStatus.ServiceError;
-      }
-      case ServicesStatus.ServiceWaiting: {
+      case ServicesStatus.ServiceWaiting:
         return className.toLowerCase() === ServicesStatus.ServiceWaiting;
-      }
-      default: {
+      default:
         return className.toLowerCase() === ServicesStatus.ServiceWaiting;
-      }
     }
   }
 
