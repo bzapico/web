@@ -64,7 +64,7 @@
                           'big-status-dot-process': classStatusCheck(service.status_name, 'service_waiting') || 
                             classStatusCheck (service.status_name, 'service_scheduled')
                         }"
-                        tooltip="{{service.status_name}}" 
+                        tooltip="{{getBeautyStatusName(service.status_name)}}" 
                         placement="bottom"
                         class="big-status-dot">
                         <span class="fw-black">
