@@ -24,9 +24,9 @@
               </ngx-charts-pie-chart>
               <div class="donut-number">{{countRunning}}/{{instances.length}}</div>
             </div>
-            <p *ngIf="instances.length > 0" class="apps-run">{{'apps.appsRunning' | translate}}</p>
-            <p *ngIf="instances.length === 0" class="circle-name no-deployed">{{'apps.noAppsDeployed' | translate}}</p>
-            <p *ngIf="instances.length > 0" class="circle-name circle-name-mt">{{'apps.deployed' | translate}}</p>
+            <p *ngIf="instances && instances.length > 0" class="apps-run">{{'apps.appsRunning' | translate}}</p>
+            <p *ngIf="!instances || (instances && instances.length === 0)" class="circle-name no-deployed">{{'apps.noAppsDeployed' | translate}}</p>
+            <p *ngIf="instances && instances.length > 0" class="circle-name circle-name-mt">{{'apps.deployed' | translate}}</p>
           </div>
           <div class="summary-box">
             <div class="circle mt-1">
@@ -326,21 +326,20 @@
         </div>
         <!-- No app instances to show -->
         <div *ngIf=
-          "loadedData &&
-          instances &&
-          instances.length === 0 &&
-          !requestError &&
-          showInstances" 
+          "loadedData
+           && (!instances || (instances && instances.length === 0))
+           && !requestError
+           && showInstances"
           class="no-elements">
           {{'apps.noAppsInstances' | translate}}
         </div>
         <!-- Registered Apps table -->
         <div *ngIf=
-          "loadedData &&
-          registered &&
-          registered.length > 0 &&
-          !requestError && 
-          !showInstances" 
+          "loadedData
+          && registered
+          && registered.length > 0
+          && !requestError
+          && !showInstances"
           class="nalej-table-box no-p-col no-m-row">
             <div class="label-nalej-table">
               <div class="label-thead row">
@@ -478,11 +477,10 @@
         </div>
         <!-- No registered app to show -->
         <div *ngIf=
-          "loadedData && 
-          registered &&
-          registered.length === 0 &&
-          !requestError &&
-          !showInstances" 
+          "loadedData
+          && (!registered || (registered && registered.length === 0))
+          && !requestError
+          && !showInstances"
           class="no-elements">
           {{'apps.noRegisteredApp' | translate}}
         </div>
@@ -710,7 +708,7 @@
             </div>
             <div *ngIf="!graphDataLoaded" class="loader"></div>
             <!-- No info to show -->
-            <div *ngIf="graphDataLoaded && instances.length === 0" class="no-elements">
+            <div *ngIf="graphDataLoaded && (!instances || (instances && instances.length === 0))" class="no-elements">
               {{'apps.noClusters' | translate }}
             </div>
           </div>
