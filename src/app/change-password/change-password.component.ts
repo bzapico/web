@@ -7,15 +7,6 @@ import { Backend } from '../definitions/interfaces/backend';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
-
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -104,15 +95,13 @@ export class ChangePasswordComponent implements OnInit {
         .subscribe(response => {
           this.loading = false;
           this.notificationsService.add({
-            message: 'Password changed successfully',
-            timeout: TIMEOUT_ACTION
+            message: 'Password changed successfully'
           });
           this.bsModalRef.hide();
         }, error => {
           this.loading = false;
           this.notificationsService.add({
             message: error.error.message,
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });

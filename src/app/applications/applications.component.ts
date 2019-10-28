@@ -19,42 +19,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { ApplicationsService } from './applications.service';
 import { AppStatus } from '../definitions/enums/app-status.enum';
 import { ToolsComponent } from '../tools/tools.component';
-/**
- * Refresh ratio
- */
-const REFRESH_INTERVAL = 20000;
-/**
- * It sets a height for clusters nodes in the graph
- */
-const CUSTOM_HEIGHT_CLUSTERS = 58;
-/**º1
- * It sets a height for instances nodes in the graph
- */
-const CUSTOM_HEIGHT_INSTANCES = 32;
-/**
- * It sets a height for registered nodes in the graph
- */
-const CUSTOM_HEIGHT_REGISTERED = 32;
-/**
- * It sets a border color for found nodes by a term in the graph
- */
-const FOUND_NODES_BORDER_COLOR = '#5800FF';
-/**
- * It sets a border size for found nodes by a term in the graph
- */
-const FOUND_NODES_BORDER_SIZE = 4;
-/**
- * It sets a color for registered nodes
- */
-const REGISTERED_NODES_COLOR = '#444444';
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
 
 @Component({
   selector: 'applications',
@@ -62,6 +26,14 @@ const TIMEOUT_ERROR = 5000;
   styleUrls: ['./applications.component.scss']
 })
 export class ApplicationsComponent extends ToolsComponent implements OnInit, OnDestroy {
+  /**
+   * It sets a height for registered nodes in the graph
+   */
+  private static readonly CUSTOM_HEIGHT_REGISTERED = 32;
+  /**
+   * It sets a color for registered nodes
+   */
+  private static readonly REGISTERED_NODES_COLOR = '#444444';
   /**
    * Loaded Data status
    */
@@ -133,7 +105,6 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * Model that hold the search term in search box
    */
   searchTerm: string;
-  searchTermGraph: string;
   searchTermRegistered: string;
   /**
    * Model that hold the quick filter
@@ -203,7 +174,6 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
     this.reverse = false;
     this.reverseRegistered = false;
     this.searchTerm = '';
-    this.searchTermGraph = '';
     this.searchTermRegistered = '';
     this.showInstances = true;
     this.quickFilter = '';
@@ -568,14 +538,12 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
         .subscribe(() => {
           app.undeploying = true;
           this.notificationsService.add({
-            message:  this.translateService.instant('apps.instance.undeployMessage', { appName: app.name }),
-            timeout: TIMEOUT_ACTION
+            message:  this.translateService.instant('apps.instance.undeployMessage', { appName: app.name })
           });
           this.updateAppInstances(this.organizationId);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });
@@ -604,14 +572,12 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
       this.backend.deleteRegistered(this.organizationId, app.app_descriptor_id)
         .subscribe(deleteResponse => {
           this.notificationsService.add({
-            message: this.translateService.instant('apps.registered.deleting', { appName: app.name }),
-            timeout: TIMEOUT_ACTION
+            message: this.translateService.instant('apps.registered.deleting', { appName: app.name })
           });
           this.updateRegisteredInstances(this.organizationId);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });
@@ -669,7 +635,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
       this.isSearchingInGraph = true;
       if (Object.values(this.searchGraphData.nodes)
           .filter(node => node.label.toLowerCase().includes(this.searchTermGraph.toLowerCase())).length > 0) {
-        this.toGraphData(this.searchTermGraph);
+        this.toGraphData();
       }
       this.occurrencesGraphCounter();
     }
@@ -677,20 +643,20 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
   /**
    * Transforms the data needed to create the graph
    */
-  toGraphData(searchTermGraph?: string) {
+  toGraphData() {
     this.graphData.reset([], []);
     this.searchGraphData.reset({}, {});
     this.foundOccurrenceInCluster = false;
     this.foundOccurrenceInInstance = false;
     this.foundOccurrenceInRegistered = false;
-    if (searchTermGraph) {
-      searchTermGraph = searchTermGraph.toLowerCase();
+    if (this.searchTermGraph) {
+      this.searchTermGraph = this.searchTermGraph.toLowerCase();
     }
     this.clusters.forEach(cluster => {
       if (this.filters.clusters) {
-        this.setClusters(cluster, searchTermGraph);
+        this.setClusters(cluster);
       }
-      this.setRegisteredAndInstances(cluster, searchTermGraph);
+      this.setRegisteredAndInstances(cluster);
     });
     if ((!this.foundOccurrenceInRegistered && !this.foundOccurrenceInInstance && !this.foundOccurrenceInCluster)
         || ((this.foundOccurrenceInRegistered || this.foundOccurrenceInInstance || this.foundOccurrenceInCluster)
@@ -723,7 +689,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
       if (this.initialState.showRelatedNodes) {
         this.initialState.showOnlyNodes = true;
       }
-      this.toGraphData(this.searchTermGraph);
+      this.toGraphData();
       this.occurrencesGraphCounter();
       if (this.searchTermGraph) {
         this.isSearchingInGraph = true;
@@ -747,43 +713,28 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
   /**
    * It sets clusters nodes to add them in the graph
    * @param cluster current cluster to generate related data to this.
-   * @param searchTermGraph term to search if it's necessary
    */
-  private setClusters(cluster: any, searchTermGraph?: string) {
+  private setClusters(cluster: any) {
     const clusterName = cluster.name.toLowerCase();
-    const nodeGroup = {
-      ...{
-        id: cluster.cluster_id,
-        label: cluster.name,
-        type: NodeType.Clusters,
-        tooltip: this.translateService.instant('resources.cluster') + cluster.name + ': '
-          + this.getBeautyStatusName(cluster.status_name),
-        group: cluster.cluster_id
-      },
-      ...this.getStyledNode(
-          this.getNodeColor(cluster.status_name),
-          this.getNodeTextColor(cluster.status_name),
-          (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-          (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
-          CUSTOM_HEIGHT_CLUSTERS)
-    };
+    const nodeGroup = this.generateClusterNode(
+      cluster,
+      this.translateService.instant('resources.cluster') + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name));
     if (!this.foundOccurrenceInCluster) {
-      this.foundOccurrenceInCluster = searchTermGraph && clusterName.includes(searchTermGraph);
+      this.foundOccurrenceInCluster = this.searchTermGraph && clusterName.includes(this.searchTermGraph);
     }
     this.searchGraphData.nodes[nodeGroup.id] = nodeGroup;
-    this.addNode(clusterName, nodeGroup, searchTermGraph);
+    this.addNode(clusterName, nodeGroup);
   }
   /**
    * It sets registered apps, instances and its relations
    * @param cluster current cluster to generate related data to this.
-   * @param searchTermGraph term to search if it's necessary
    */
-  private setRegisteredAndInstances(cluster: any, searchTermGraph?: string) {
+  private setRegisteredAndInstances(cluster: any) {
     const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
     instancesInCluster.forEach(instance => {
-      const registeredApp = this.getRegisteredApp(this.addNodeInstance(instance, cluster, searchTermGraph));
+      const registeredApp = this.getRegisteredApp(this.addNodeInstance(instance, cluster));
       if (registeredApp.length > 0) {
-        this.addNodeRegistered(cluster, registeredApp, searchTermGraph);
+        this.addNodeRegistered(cluster, registeredApp);
         if (this.filters.instances && this.filters.registered) {
           this.setLinksInGraph(
               registeredApp[0]['app_descriptor_id'],
@@ -802,9 +753,8 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * It adds node registered
    * @param cluster Cluster for relate with our node registered
    * @param registeredApp Registered app for generate node registered
-   * @param searchTermGraph Term to search in the graph
    */
-  private addNodeRegistered(cluster, registeredApp, searchTermGraph?: string) {
+  private addNodeRegistered(cluster, registeredApp) {
     const registeredName = registeredApp[0]['name'].toLowerCase();
     const nodeRegistered = {
       ...{
@@ -815,19 +765,21 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
         group: cluster.cluster_id
       },
       ...this.getStyledNode(
-          REGISTERED_NODES_COLOR,
+          ApplicationsComponent.REGISTERED_NODES_COLOR,
           this.getNodeTextColor(cluster.status_name),
-          (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-          (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
-          CUSTOM_HEIGHT_REGISTERED)
+          (this.searchTermGraph && registeredName.includes(this.searchTermGraph)) ?
+                            ToolsComponent.FOUND_NODES_BORDER_COLOR : '',
+          (this.searchTermGraph && registeredName.includes(this.searchTermGraph)) ?
+                            ToolsComponent.FOUND_NODES_BORDER_SIZE : 0,
+          ApplicationsComponent.CUSTOM_HEIGHT_REGISTERED)
     };
     if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
       this.searchGraphData.nodes[nodeRegistered.id] = nodeRegistered;
       if (!this.foundOccurrenceInRegistered) {
-        this.foundOccurrenceInRegistered = searchTermGraph && registeredName.includes(searchTermGraph);
+        this.foundOccurrenceInRegistered = this.searchTermGraph && registeredName.includes(this.searchTermGraph);
       }
       if (this.filters.registered) {
-        this.addNode(registeredName, nodeRegistered, searchTermGraph);
+        this.addNode(registeredName, nodeRegistered);
       }
     }
   }
@@ -835,48 +787,32 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * It adds node instance to the graph and get node instance
    * @param instance Instance to generate the node instance
    * @param cluster Cluster for relate with our node instance
-   * @param searchTermGraph Term to search in the graph
    */
-  private addNodeInstance(instance, cluster, searchTermGraph?: string): any {
+  private addNodeInstance(instance, cluster): any {
     const instanceName = instance['name'].toLowerCase();
-    const nodeInstance = {
-    ...{
-      id: instance['app_instance_id'],
-      label: instance['name'],
-      type: NodeType.Instances,
-      inbound_connections: instance['inbound_connections'] || [],
-      outbound_connections: instance['outbound_connections'] || [],
-      tooltip: this.translateService.instant('apps.instance.idInstance')
-      + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
-      group: cluster.cluster_id,
-      app_descriptor_id: instance['app_descriptor_id']
-    },
-    ...this.getStyledNode(
-        this.getNodeColor(instance['status_name']),
-        this.getNodeTextColor(instance['status_name']),
-        (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-        (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
-        CUSTOM_HEIGHT_INSTANCES)
-    };
+    const nodeInstance = this.generateInstanceNode(
+      instance,
+      cluster,
+      this.translateService.instant('apps.instance.idInstance')
+      + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']));
     this.searchGraphData.nodes[nodeInstance.id] = nodeInstance;
     if (!this.foundOccurrenceInInstance) {
-      this.foundOccurrenceInInstance = searchTermGraph && instanceName.includes(searchTermGraph);
+      this.foundOccurrenceInInstance = this.searchTermGraph && instanceName.includes(this.searchTermGraph);
     }
     if (this.filters.instances) {
-      this.addNode(instanceName, nodeInstance, searchTermGraph);
+      this.addNode(instanceName, nodeInstance);
     }
     return nodeInstance;
   }
   /**
    * It adds nodes to the graph if it's necessary
-   * @param searchTermGraph Term to search in the graph
    * @param nodeName Node name to compare with the search term
    * @param node Node to add to our graph
    */
-  private addNode(nodeName: string, node, searchTermGraph?: string) {
-    if (!searchTermGraph
-        || (searchTermGraph && !nodeName.includes(searchTermGraph) && !this.initialState.showOnlyNodes)
-        || (searchTermGraph && nodeName.includes(searchTermGraph))) {
+  private addNode(nodeName: string, node) {
+    if (!this.searchTermGraph
+        || (this.searchTermGraph && !nodeName.includes(this.searchTermGraph) && !this.initialState.showOnlyNodes)
+        || (this.searchTermGraph && nodeName.includes(this.searchTermGraph))) {
       this.graphData.nodes.push(node);
     }
   }
@@ -913,7 +849,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * It generates the graph and it updates considering the REFRESH_INTERVAL
    */
   private refreshData() {
-    this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
+    this.refreshIntervalRef = timer(0, ToolsComponent.REFRESH_INTERVAL).subscribe(() => {
       if (!this.isSearchingInGraph) {
         Promise.all([
           this.backend.getClusters(this.organizationId).toPromise(),

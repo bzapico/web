@@ -8,29 +8,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Cluster } from '../definitions/interfaces/cluster';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { Subscription, timer } from 'rxjs';
-import { NodeType } from '../definitions/enums/node-type.enum';
 import { TranslateService } from '@ngx-translate/core';
 import { ToolsComponent } from '../tools/tools.component';
-/**
- * Refresh ratio
- */
-const REFRESH_INTERVAL = 20000;
-/**
- * It sets a height for clusters nodes in the graph
- */
-const CUSTOM_HEIGHT_CLUSTERS = 58;
-/**
- * It sets a height for instances nodes in the graph
- */
-const CUSTOM_HEIGHT_INSTANCES = 32;
-/**
- * It sets a border color for found nodes by a term in the graph
- */
-const FOUND_NODES_BORDER_COLOR = '#5800FF';
-/**
- * It sets a border size for found nodes by a term in the graph
- */
-const FOUND_NODES_BORDER_SIZE = 4;
 
 @Component({
   selector: 'app-resources',
@@ -92,7 +71,6 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Model that hold the search term in search box
    */
   searchTerm: string;
-  searchTermGraph: string;
   /**
    * Variable to store the value of the filter search text and sortBy pipe
    */
@@ -131,7 +109,6 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     this.sortedBy = '';
     this.reverse = false;
     this.searchTerm = '';
-    this.searchTermGraph = '';
     this.isSearchingInGraph = false;
     // Filter field
     this.filterField = false;
@@ -368,7 +345,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Refresh all resources data as clusters list, instances, and cluster count and it updates it considering the REFRESH_INTERVAL
    */
   private refreshData() {
-    this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
+    this.refreshIntervalRef = timer(0, ToolsComponent.REFRESH_INTERVAL).subscribe(() => {
     if (!this.isSearchingInGraph) {
       Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
         this.backend.getInstances(this.organizationId).toPromise(),
@@ -434,7 +411,6 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     }
   }
 
-
   /**
    * Transforms the data needed to create the graph
    */
@@ -447,48 +423,18 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
       this.searchTermGraph = this.searchTermGraph.toLowerCase();
     }
     this.clusters.forEach(cluster => {
-      const clusterName = cluster.name.toLowerCase();
-      const nodeGroup = {
-        ...{
-          id: cluster.cluster_id,
-          label: cluster.name,
-          type: NodeType.Clusters,
-          tooltip:  this.translateService.instant('resources.cluster') + cluster.name + ': '
-            + this.getBeautyStatusName(cluster.status_name),
-          group: cluster.cluster_id
-        },
-        ...this.getStyledNode(
-            this.getNodeColor(cluster.status_name),
-            this.getNodeTextColor(cluster.status_name),
-            (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-            (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
-            CUSTOM_HEIGHT_CLUSTERS
-        )
-      };
+      const nodeGroup = this.generateClusterNode(
+        cluster,
+  this.translateService.instant('resources.cluster') + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name));
       this.graphData.nodes.push(nodeGroup);
-
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
-        const instanceName = instance['name'].toLowerCase();
-        const nodeInstance = {
-          ...{
-            id: instance['app_instance_id'],
-            label: instance['name'],
-            type: NodeType.Instances,
-            tooltip: this.translateService.instant('apps.instance.idInstance')
-                + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
-            group: cluster.cluster_id
-          },
-          ...this.getStyledNode(
-            this.getNodeColor(instance['status_name']),
-            this.getNodeTextColor(instance['status_name']),
-              (this.searchTermGraph && instanceName.includes(this.searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-              (this.searchTermGraph && instanceName.includes(this.searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
-              CUSTOM_HEIGHT_INSTANCES
-          ),
-          inbound_connections: instance['inbound_connections'] || [],
-          outbound_connections: instance['outbound_connections'] || [],
-        };
+        const nodeInstance = this.generateInstanceNode(
+          instance,
+          cluster,
+    this.translateService.instant('apps.instance.idInstance') + instance['name'] + ': '
+            + this.getBeautyStatusName(instance['status_name'])
+        );
         const index = this.graphData.nodes.map(x => x.id).indexOf(nodeInstance.id);
         if (index === -1) {
           this.graphData.nodes.push(nodeInstance);

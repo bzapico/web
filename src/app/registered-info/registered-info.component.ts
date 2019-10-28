@@ -16,15 +16,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { RegisteredInfoService } from './registered-info.service';
 
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
-
 @Component({
   selector: 'app-registered-info',
   templateUrl: './registered-info.component.html',
@@ -304,14 +295,12 @@ export class RegisteredInfoComponent implements OnInit {
       this.backend.deleteRegistered(this.organizationId, app.app_descriptor_id)
         .subscribe(() => {
           this.notificationsService.add({
-            message: this.translateService.instant('apps.registered.deleting', { appName: app.name }),
-            timeout: TIMEOUT_ACTION
+            message: this.translateService.instant('apps.registered.deleting', { appName: app.name })
           });
           this.router.navigate(['/applications']);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });

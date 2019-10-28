@@ -5,23 +5,7 @@ import { GraphData } from '../definitions/models/graph-data';
 import { NodeType } from '../definitions/enums/node-type.enum';
 import * as shape from 'd3-shape';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import {Backend} from '../definitions/interfaces/backend';
-/**
- * It sets the status colors for nodes
- */
-const STATUS_COLORS = {
-  RUNNING: '#00E6A0',
-  ERROR: '#F7478A',
-  OTHER: '#FFEB6C'
-};
-/**
- * It sets the status colors for nodes
- */
-const STATUS_TEXT_COLORS = {
-  RUNNING: '#FFFFFF',
-  ERROR: '#FFFFFF',
-  OTHER: '#444444'
-};
+import { Backend } from '../definitions/interfaces/backend';
 
 @Component({
   selector: 'tools',
@@ -29,6 +13,42 @@ const STATUS_TEXT_COLORS = {
   styleUrls: ['./tools.component.scss']
 })
 export class ToolsComponent implements OnInit {
+  /**
+   * It sets a border color for found nodes by a term in the graph
+   */
+  static readonly FOUND_NODES_BORDER_COLOR = '#5800FF';
+  /**
+   * It sets a border size for found nodes by a term in the graph
+   */
+  static readonly FOUND_NODES_BORDER_SIZE = 4;
+  /**
+   * Refresh ratio
+   */
+  static readonly REFRESH_INTERVAL = 20000;
+  /**
+   * It sets the status colors for nodes
+   */
+  static readonly STATUS_COLORS = {
+    RUNNING: '#00E6A0',
+    ERROR: '#F7478A',
+    OTHER: '#FFEB6C'
+  };
+  /**
+   * It sets the status colors for nodes
+   */
+  static readonly STATUS_TEXT_COLORS = {
+    RUNNING: '#FFFFFF',
+    ERROR: '#FFFFFF',
+    OTHER: '#444444'
+  };
+  /**
+   * It sets a height for clusters nodes in the graph
+   */
+  static readonly CUSTOM_HEIGHT_CLUSTERS = 58;
+  /**
+   * It sets a height for instances nodes in the graph
+   */
+  static readonly CUSTOM_HEIGHT_INSTANCES = 32;
   /**
    * Backend reference
    */
@@ -58,6 +78,10 @@ export class ToolsComponent implements OnInit {
   gradient: boolean;
   doughnut: boolean;
   colorScheme: any;
+  /**
+   * Search process
+   */
+  searchTermGraph: string;
 
   constructor() {
     this.graphData = new GraphData([], []);
@@ -75,6 +99,7 @@ export class ToolsComponent implements OnInit {
     this.colorScheme = {
       domain: ['#5800FF', '#828282']
     };
+    this.searchTermGraph = '';
   }
 
   ngOnInit() {
@@ -93,7 +118,7 @@ export class ToolsComponent implements OnInit {
       case ClusterStatus.Running:
       case ClusterStatus.Online:
       case ClusterStatus.OnlineCordon:
-        return STATUS_COLORS.RUNNING;
+        return ToolsComponent.STATUS_COLORS.RUNNING;
       case ClusterStatus.Error:
       case ClusterStatus.Offline:
       case ClusterStatus.OfflineCordon:
@@ -101,14 +126,14 @@ export class ToolsComponent implements OnInit {
       case AppStatus.Incomplete:
       case AppStatus.PlanningError:
       case AppStatus.Error:
-        return STATUS_COLORS.ERROR;
+        return ToolsComponent.STATUS_COLORS.ERROR;
       case AppStatus.Queued:
       case AppStatus.Deploying:
       case AppStatus.Scheduled:
       case AppStatus.Planning:
-        return STATUS_COLORS.OTHER;
+        return ToolsComponent.STATUS_COLORS.OTHER;
       default:
-        return STATUS_COLORS.OTHER;
+        return ToolsComponent.STATUS_COLORS.OTHER;
     }
   }
   /**
@@ -120,7 +145,7 @@ export class ToolsComponent implements OnInit {
       case ClusterStatus.Running:
       case ClusterStatus.Online:
       case ClusterStatus.OnlineCordon:
-        return STATUS_TEXT_COLORS.RUNNING;
+        return ToolsComponent.STATUS_TEXT_COLORS.RUNNING;
       case ClusterStatus.Error:
       case ClusterStatus.Offline:
       case ClusterStatus.OfflineCordon:
@@ -128,14 +153,14 @@ export class ToolsComponent implements OnInit {
       case AppStatus.Incomplete:
       case AppStatus.PlanningError:
       case AppStatus.Error:
-        return STATUS_TEXT_COLORS.ERROR;
+        return ToolsComponent.STATUS_TEXT_COLORS.ERROR;
       case AppStatus.Queued:
       case AppStatus.Deploying:
       case AppStatus.Scheduled:
       case AppStatus.Planning:
-        return STATUS_TEXT_COLORS.OTHER;
+        return ToolsComponent.STATUS_TEXT_COLORS.OTHER;
       default:
-        return STATUS_TEXT_COLORS.OTHER;
+        return ToolsComponent.STATUS_TEXT_COLORS.OTHER;
     }
   }
   /**
@@ -236,5 +261,48 @@ export class ToolsComponent implements OnInit {
       }
     });
     this.graphData.links.push(...Object.values(linksBetweenApps));
+  }
+  generateClusterNode(cluster: any, tooltip: string): any {
+    const clusterName = cluster.name.toLowerCase();
+    return {
+      ...{
+        id: cluster.cluster_id,
+        label: cluster.name,
+        type: NodeType.Clusters,
+        tooltip: tooltip,
+        group: cluster.cluster_id
+      },
+      ...this.getStyledNode(
+          this.getNodeColor(cluster.status_name),
+          this.getNodeTextColor(cluster.status_name),
+          (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ?
+                            ToolsComponent.FOUND_NODES_BORDER_COLOR : '',
+          (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ?
+                            ToolsComponent.FOUND_NODES_BORDER_SIZE : 0,
+          ToolsComponent.CUSTOM_HEIGHT_CLUSTERS)
+    };
+  }
+  generateInstanceNode(instance: any, cluster: any, tooltip: string): any {
+    const instanceName = instance['name'].toLowerCase();
+    return {
+    ...{
+      id: instance['app_instance_id'],
+          label: instance['name'],
+          type: NodeType.Instances,
+          tooltip: tooltip,
+          group: cluster.cluster_id
+    },
+    ...this.getStyledNode(
+        this.getNodeColor(instance['status_name']),
+        this.getNodeTextColor(instance['status_name']),
+        (this.searchTermGraph && instanceName.includes(this.searchTermGraph)) ?
+                          ToolsComponent.FOUND_NODES_BORDER_COLOR : '',
+        (this.searchTermGraph && instanceName.includes(this.searchTermGraph)) ?
+                          ToolsComponent.FOUND_NODES_BORDER_SIZE : 0,
+        ToolsComponent.CUSTOM_HEIGHT_INSTANCES
+    ),
+        inbound_connections: instance['inbound_connections'] || [],
+        outbound_connections: instance['outbound_connections'] || [],
+    };
   }
 }

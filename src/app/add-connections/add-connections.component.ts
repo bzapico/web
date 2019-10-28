@@ -9,11 +9,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { ApplicationsService } from '../applications/applications.service';
 import { NotificationsService } from '../services/notifications.service';
 
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-
 @Component({
   selector: 'add-connections',
   templateUrl: './add-connections.component.html',
@@ -205,8 +200,7 @@ export class AddConnectionsComponent implements OnInit {
         // Request to add a connection
         this.backend.addConnection(this.organizationId, connectionRequest).subscribe(result => {
           this.notificationsService.add({
-            message: this.translateService.instant('apps.manageConnections.createdConnection'),
-            timeout: TIMEOUT_ACTION
+            message: this.translateService.instant('apps.manageConnections.createdConnection')
           });
           this.bsModalRef.hide();
           this.applicationsService.showManageConnections.next(true);

@@ -9,14 +9,6 @@ import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { MockupBackendService } from '../services/mockup-backend.service';
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
 
 @Injectable({
   providedIn: 'root'
@@ -83,14 +75,12 @@ export class ActionButtonsService {
       this.backend.undeploy(app.organization_id, app.app_instance_id)
         .subscribe(undeployResponse => {
           this.notificationsService.add({
-            message: this.translateService.instant('apps.instance.undeployMessage', { appName: app.name }),
-            timeout: TIMEOUT_ACTION
+            message: this.translateService.instant('apps.instance.undeployMessage', { appName: app.name })
           });
           this.router.navigate(['/applications']);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });
@@ -128,14 +118,12 @@ export class ActionButtonsService {
       this.backend.deleteRegistered(app.organization_id, app.app_descriptor_id)
         .subscribe(() => {
           this.notificationsService.add({
-            message: this.translateService.instant('apps.registered.deleting', { appName: app.name }),
-            timeout: TIMEOUT_ACTION
+            message: this.translateService.instant('apps.registered.deleting', { appName: app.name })
           });
           this.router.navigate(['/applications']);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });

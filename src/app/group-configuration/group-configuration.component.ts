@@ -7,15 +7,6 @@ import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { TranslateService } from '@ngx-translate/core';
 
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
-
 @Component({
   selector: 'app-group-configuration',
   templateUrl: './group-configuration.component.html',
@@ -88,14 +79,12 @@ export class GroupConfigurationComponent implements OnInit {
     .subscribe(response => {
       this.group = response;
       this.notificationsService.add({
-        message: this.translateService.instant('devices.add.saveGroupMessage', { groupName: this.name }),
-        timeout: TIMEOUT_ACTION
+        message: this.translateService.instant('devices.add.saveGroupMessage', { groupName: this.name })
       });
       this.bsModalRef.hide();
     }, error => {
       this.notificationsService.add({
         message: error.error.message,
-        timeout: TIMEOUT_ERROR,
         type: 'warning'
       });
       this.bsModalRef.hide();
