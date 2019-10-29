@@ -6,6 +6,8 @@ import { BackendService } from '../services/backend.service';
 import { BsModalRef } from 'ngx-bootstrap';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { InventoryType } from '../definitions/enums/inventory-type.enum';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * It sets the timeout in actions like undeploying or deleting
@@ -22,7 +24,6 @@ const TIMEOUT_ERROR = 5000;
   styleUrls: ['./add-label.component.scss']
 })
 export class AddLabelComponent implements OnInit {
-
   /**
    * Models that holds forms info
    */
@@ -58,7 +59,8 @@ export class AddLabelComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.addLabelMock) || null;
     // check which backend is required (fake or real)
@@ -104,7 +106,7 @@ export class AddLabelComponent implements OnInit {
     if (!form.labelName.errors && !form.labelValue.errors) {
       this.loading = true;
       switch (this.entityType.toLowerCase()) {
-        case 'cluster':
+        case InventoryType.Cluster:
           if (!updatedEntity.labels || updatedEntity.labels === '-') {
             updatedEntity.labels = {};
           }
@@ -122,7 +124,7 @@ export class AddLabelComponent implements OnInit {
           ).subscribe(updateClusterResponse => {
             this.loading = false;
             this.notificationsService.add({
-              message: 'Updated ' + this.entity.name,
+              message: this.translateService.instant('label.add-label.update', {entity: this.entity.name}),
               timeout: TIMEOUT_ACTION,
             });
             this.bsModalRef.hide();
@@ -135,7 +137,7 @@ export class AddLabelComponent implements OnInit {
             });
           });
           break;
-        case 'node':
+        case InventoryType.Node:
           if (!updatedEntity.labels || updatedEntity.labels === '-') {
             updatedEntity.labels = {};
           }
@@ -153,7 +155,7 @@ export class AddLabelComponent implements OnInit {
           ).subscribe(updateNodeResponse => {
             this.loading = false;
             this.notificationsService.add({
-              message: 'Updated ' + this.entity.ip + ' node',
+              message: this.translateService.instant('label.add-label.updateNode', {entity: this.entity.ip}),
               timeout: TIMEOUT_ACTION,
             });
             this.bsModalRef.hide();
@@ -167,7 +169,7 @@ export class AddLabelComponent implements OnInit {
           });
           this.bsModalRef.hide();
           break;
-        case 'device':
+        case InventoryType.Device:
           if (!updatedEntity.labels || updatedEntity.labels === '-') {
             updatedEntity.labels = {};
           }
@@ -183,7 +185,7 @@ export class AddLabelComponent implements OnInit {
           ).subscribe(updateDeviceResponse => {
             this.loading = false;
             this.notificationsService.add({
-              message: 'Updated ' + this.entity.device_id,
+              message: this.translateService.instant('label.add-label.update', {entity: this.entity.device_id}),
               timeout: TIMEOUT_ACTION,
             });
             this.bsModalRef.hide();
@@ -197,7 +199,7 @@ export class AddLabelComponent implements OnInit {
           });
           this.bsModalRef.hide();
           break;
-        case 'app':
+        case InventoryType.App:
           if (!updatedEntity.labels || updatedEntity.labels === '-') {
             updatedEntity.labels = {};
           }
@@ -215,7 +217,7 @@ export class AddLabelComponent implements OnInit {
           ).subscribe(updateAppResponse => {
             this.loading = false;
             this.notificationsService.add({
-              message: 'Updated ' + this.entity.app_descriptor_id,
+              message: this.translateService.instant('label.add-label.update', {entity: this.entity.app_descriptor_id}),
               timeout: TIMEOUT_ACTION,
             });
             this.bsModalRef.hide();
@@ -228,7 +230,7 @@ export class AddLabelComponent implements OnInit {
             });
           });
           break;
-        case 'ec':
+        case InventoryType.Ec:
             if (!updatedEntity.labels || updatedEntity.labels === '-') {
               updatedEntity.labels = {};
             }
@@ -245,7 +247,7 @@ export class AddLabelComponent implements OnInit {
             ).subscribe(updateECResponse => {
               this.loading = false;
               this.notificationsService.add({
-                message: 'Updated ' + this.entity.edge_controller_id,
+                message: this.translateService.instant('label.add-label.update', {entity: this.entity.edge_controller_id}),
                 timeout: TIMEOUT_ACTION,
               });
               this.bsModalRef.hide();
@@ -259,7 +261,7 @@ export class AddLabelComponent implements OnInit {
             });
             this.bsModalRef.hide();
           break;
-        case 'asset':
+        case InventoryType.Asset:
             if (!updatedEntity.labels || updatedEntity.labels === '-') {
               updatedEntity.labels = {};
             }
@@ -275,7 +277,7 @@ export class AddLabelComponent implements OnInit {
             ).subscribe(updateAssetResponse => {
               this.loading = false;
               this.notificationsService.add({
-                message: 'Updated ' + this.entity.asset_id,
+                message: this.translateService.instant('label.add-label.update', {entity: this.entity.asset_id}),
                 timeout: TIMEOUT_ACTION,
               });
               this.bsModalRef.hide();
@@ -301,7 +303,7 @@ export class AddLabelComponent implements OnInit {
    */
   discardChanges(form) {
     if (form.dirty) {
-      const discard = confirm('Discard changes?');
+      const discard = confirm(this.translateService.instant('modals.discardChanges'));
       if (discard) {
         this.bsModalRef.hide();
       } else {

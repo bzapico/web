@@ -1,7 +1,7 @@
 <!-- Component title -->
 <div class="row row-title">
   <div class="col-xl-12">
-    <h2 class="section-title">{{'infrastructure.title'|translate}}</h2>
+    <h2 class="section-title">{{'infrastructure.title' | translate}}</h2>
   </div>
 </div>
 <div class="row row-app-main">
@@ -10,7 +10,7 @@
       <!-- Infrastructure summary card -->
       <div class="card">
         <div class="card-title-name">
-          <h5>{{'devices.summary.title'|translate}}</h5>
+          <h5>{{'devices.summary.title' | translate}}</h5>
         </div>
         <div class="summary-card">
           <div *ngIf="ecsTotal > 0" class="summary-box">
@@ -24,35 +24,35 @@
               </ngx-charts-pie-chart>
               <div class="donut-number">{{ecsOnline}}/{{ecsTotal}}</div>
             </div>
-            <p class="ecs-run">{{ecsOnline}}{{'infrastructure.summary.ecsOnline'|translate}}</p>
-            <p class="circle-name">{{'infrastructure.summary.ecs'|translate}}</p>
+            <p class="ecs-run">{{ecsOnline}}{{'infrastructure.summary.ecsOnline' | translate}}</p>
+            <p class="circle-name">{{'infrastructure.summary.ecs' | translate}}</p>
           </div>
           <div *ngIf="ecsTotal === 0"  class="no-elements">
-            <p>{{'infrastructure.summary.noEcs'|translate}}</p>
+            <p>{{'infrastructure.summary.noEcs' | translate}}</p>
           </div>
           <div class="summary-box">
             <div class="circle">
               <span>{{cpuCores}}</span>
-              <span class="circle-measure">{{'infrastructure.summary.cores'|translate}}</span>
+              <span class="circle-measure">{{'infrastructure.summary.cores' | translate}}</span>
             </div>
-            <span class="circle-name-sm">{{'infrastructure.summary.overall'|translate}}</span> 
-            <p class="circle-name">{{'infrastructure.summary.cpu'|translate}}</p>
+            <span class="circle-name-sm">{{'infrastructure.summary.overall' | translate}}</span> 
+            <p class="circle-name">{{'infrastructure.summary.cpu' | translate}}</p>
           </div>  
           <div class="summary-box">
             <div class="circle">
               <span>{{RAM}}</span>
-              <span class="circle-measure">{{'infrastructure.summary.gb'|translate}}</span>
+              <span class="circle-measure">{{'infrastructure.summary.gb' | translate}}</span>
             </div>
-            <span class="circle-name-sm">{{'infrastructure.summary.overall'|translate}}</span> 
-            <p class="circle-name">{{'infrastructure.summary.ram'|translate}}</p>
+            <span class="circle-name-sm">{{'infrastructure.summary.overall' | translate}}</span> 
+            <p class="circle-name">{{'infrastructure.summary.ram' | translate}}</p>
           </div> 
           <div class="summary-box">
             <div class="circle">
               <span>{{storage}}</span>
-              <span class="circle-measure">{{'infrastructure.summary.gb'|translate}}</span>
+              <span class="circle-measure">{{'infrastructure.summary.gb' | translate}}</span>
             </div>
-            <span class="circle-name-sm">{{'infrastructure.summary.overall'|translate}}</span> 
-            <p class="circle-name">{{'infrastructure.summary.storage'|translate}}</p>
+            <span class="circle-name-sm">{{'infrastructure.summary.overall' | translate}}</span> 
+            <p class="circle-name">{{'infrastructure.summary.storage' | translate}}</p>
           </div> 
         </div>
       </div>
@@ -63,7 +63,7 @@
       <!-- Infrastructure table card -->
       <div class="card">
         <div class="card-title-name">
-          <h5>{{'infrastructure.inventory.title'|translate}}</h5>
+          <h5>{{'infrastructure.inventory.title' | translate}}</h5>
         </div>
         <!-- Install buttons -->
         <div class="install-options">
@@ -76,18 +76,18 @@
             }"
             [disabled]="ecsTotal===0">
             <i class="material-icons i-options">publish</i>
-            {{'infrastructure.inventory.installAgent'|translate}}
+            {{'infrastructure.inventory.installAgent' | translate}}
           </button>
           <button
             class="install-options-btn d-none">
             <i class="material-icons i-options">publish</i>
-           {{'infrastructure.inventory.installNalej'|translate}}
+            {{'infrastructure.inventory.installNalej' | translate}}
           </button>
         </div>
         <div class="row">
           <!-- Quick filters -->
           <div class="col">
-            <div class="quick-filters-title">{{'infrastructure.quickFilters.title'|translate}}</div>
+            <div class="quick-filters-title">{{'infrastructure.quickFilters.title' | translate}}</div>
             <button 
               (click)="addQuickFilter('EC')"     
               [ngClass]=
@@ -95,11 +95,11 @@
                 'quick-filters-btn-selected': quickFilter === 'EC',
                 'quick-filters-btn': '!quickFilter'
               }" 
-              tooltip="{{'infrastructure.quickFilters.tooltipECs'|translate}}" 
+              tooltip="{{'infrastructure.quickFilters.tooltipECs' | translate}}" 
               placement="bottom"
               class="quick-filters-btn">
               <i class="material-icons i-filters">device_hub</i>
-              <span>{{'infrastructure.quickFilters.ecs'|translate}}</span>
+              <span>{{'infrastructure.quickFilters.ecs' | translate}}</span>
             </button>
             <button  
               (click)="addQuickFilter('ASSET')" 
@@ -108,11 +108,11 @@
                 'quick-filters-btn-selected': quickFilter === 'ASSET',
                 'quick-filters-btn': '!quickFilter'
               }"    
-              tooltip="{{'infrastructure.quickFilters.tooltipAssets'|translate}}"  
+              tooltip="{{'infrastructure.quickFilters.tooltipAssets' | translate}}"  
               placement="bottom"
               class="quick-filters-btn">
               <i class="material-icons i-filters">memory</i>
-               <span>{{'infrastructure.quickFilters.assets'|translate}}</span>
+              <span>{{'infrastructure.quickFilters.assets' | translate}}</span>
             </button>
             <button 
               (click)="addQuickFilter('DEVICE')" 
@@ -121,11 +121,11 @@
                 'quick-filters-btn-selected': quickFilter === 'DEVICE',
                 'quick-filters-btn': '!quickFilter'
               }"    
-              tooltip="{{'infrastructure.quickFilters.tooltipDevices'|translate}}"
+              tooltip="{{'infrastructure.quickFilters.tooltipDevices' | translate}}"
               placement="bottom"
               class="quick-filters-btn"> 
               <i class="material-icons i-filters">devices_other</i>
-               <span>{{'infrastructure.quickFilters.devices'|translate}}</span>
+              <span>{{'infrastructure.quickFilters.devices' | translate}}</span>
             </button>
           </div>
           <!-- Search input -->
@@ -136,7 +136,7 @@
                   name="searchTerm" 
                   [(ngModel)]="searchTerm"
                   type="text" 
-                  placeholder="{{'searcher.placeholder'|translate }}"
+                  placeholder="{{'searcher.placeholder' | translate }}"
                   class="form-control"> 
                   <div *ngIf="searchTerm === ''" class="search-icon">
                     <i class="material-icons">search</i>
@@ -153,43 +153,43 @@
           <div class="col">  
             <p *ngIf="searchTerm && !filterField && !quickFilter" class="sorting-message">
               {{ ( inventory | filter : quickFilter : ['type'] | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }} 
-              {{'sortingMessage.resultsFilteredBy'|translate:{value: searchTerm} }}
-              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+              {{'sortingMessage.resultsFilteredBy' | translate:{value: searchTerm} }}
+              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p>
             <p *ngIf="filterField && !searchTerm && !quickFilter" class="sorting-message">
-              {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-              <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: '. '} }} </span>
-              <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: '. '} }} </span>
-              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+              {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
+              <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: '. '} }} </span>
+              <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: '. '} }} </span>
+              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p>
             <p *ngIf="quickFilter && !filterField && !searchTerm" class="sorting-message">
               {{ ( inventory | filter : quickFilter : ['type'] | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }} 
-              {{'sortingMessage.resultsFilteredBy'|translate:{value: quickFilter} }}
-              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+              {{'sortingMessage.resultsFilteredBy' | translate:{value: quickFilter} }}
+              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p> 
             <p *ngIf="filterField && searchTerm" class="sorting-message">
               {{ ( inventory | filter : quickFilter : ['type'] | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }} 
-              {{'sortingMessage.resultsFound'|translate }} 
-              {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-              <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: ', '} }} </span>
-              <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: ', '} }} </span>
-              {{'sortingMessage.andFilteredBy'|translate:{value: searchTerm} }} 
-              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+              {{'sortingMessage.resultsFound' | translate }} 
+              {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
+              <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ', '} }} </span>
+              <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: ', '} }} </span>
+              {{'sortingMessage.andFilteredBy' | translate:{value: searchTerm} }} 
+              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p> 
             <p *ngIf="filterField && quickFilter && !searchTerm" class="sorting-message">
               {{ ( inventory | filter : quickFilter : ['type'] | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }}
-              {{'sortingMessage.resultsFound'|translate }} 
-              {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-              <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: ', '} }} </span>
-              <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: ', '} }} </span>
-              {{'sortingMessage.andFilteredBy'|translate:{value: quickFilter } }}
-              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+              {{'sortingMessage.resultsFound' | translate }} 
+              {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
+              <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ', '} }} </span>
+              <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: ', '} }} </span>
+              {{'sortingMessage.andFilteredBy' | translate:{value: quickFilter } }}
+              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p> 
             <p *ngIf="quickFilter && searchTerm && !filterField" class="sorting-message">
               {{ ( inventory | filter : quickFilter : ['type'] | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }} 
-              {{'sortingMessage.resultsFilteredBy'|translate:{value: searchTerm} }} 
-              {{'sortingMessage.resultsFilteredBy'|translate:{value: quickFilter} }}
-              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+              {{'sortingMessage.resultsFilteredBy' | translate:{value: searchTerm} }} 
+              {{'sortingMessage.resultsFilteredBy' | translate:{value: quickFilter} }}
+              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p> 
           </div>
         </div>
@@ -208,9 +208,9 @@
                 scope="col" 
                 class="label-th col-2">
                 <span 
-                  tooltip="{{'infrastructure.inventory.tableType'|translate}}" 
+                  tooltip="{{'tables.tableType' | translate}}" 
                   placement="bottom">
-                  {{'infrastructure.inventory.tableType'|translate}}
+                  {{'tables.tableType' | translate}}
                 </span>
                 <span *ngIf="sortedBy === 'type' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
@@ -222,14 +222,14 @@
               <div class="col-9">
                 <div class="row">
                   <div 
-                    (click)="setOrder('id')"            
+                    (click)="setOrder('id')"
                     [ngClass]="getCategoryCSSClass('id')"
                     scope="col" 
                     class="label-th col-4">
                     <span 
-                      tooltip="{{'infrastructure.inventory.tableId'|translate}}" 
+                      tooltip="{{'tables.tableID' | translate}}" 
                       placement="bottom">
-                      {{'infrastructure.inventory.tableId'|translate}}
+                      {{'tables.tableID' | translate}}
                     </span>
                     <span *ngIf="sortedBy === 'id' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
@@ -244,9 +244,9 @@
                     scope="col" 
                     class="label-th col-4 text-center">
                     <span 
-                      tooltip="{{'infrastructure.inventory.tableStatus'|translate}}" 
+                      tooltip="{{'tables.tableStatus' | translate}}" 
                       placement="bottom">
-                      {{'infrastructure.inventory.tableStatus'|translate}}
+                      {{'tables.tableStatus' | translate}}
                     </span>
                     <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
@@ -261,8 +261,8 @@
                     scope="col" 
                     class="label-th col-4">
                     <span 
-                      tooltip="{{'infrastructure.inventory.tableLocation'|translate}}" 
-                      placement="bottom">{{'infrastructure.inventory.tableLocation'|translate}}
+                      tooltip="{{'tables.tableLocation' | translate}}" 
+                      placement="bottom">{{'tables.tableLocation' | translate}}
                     </span>
                     <span *ngIf="sortedBy === 'location' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
@@ -277,9 +277,9 @@
                     scope="col" 
                     class="label-th col-12">
                     <span 
-                      tooltip="{{'infrastructure.inventory.tableLabels'|translate}}" 
+                      tooltip="{{'tables.tableLabels' | translate}}" 
                       placement="bottom">
-                      {{'infrastructure.inventory.tableLabels'|translate}}
+                      {{'tables.tableLabels' | translate}}
                     </span>
                     <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
@@ -291,11 +291,11 @@
                 </div>
               </div>
               <div 
-                tooltip="{{'infrastructure.inventory.tableActions'|translate}}" 
+                tooltip="{{'tables.tableActions' | translate}}" 
                 placement="bottom"
                 scope="col" 
                 class="label-th col-1 text-center infrastructure-actions-initial-text">
-                <span class="infrastructure-actions-full-text">{{'infrastructure.inventory.tableActions'|translate}}</span>
+                <span class="infrastructure-actions-full-text">{{'tables.tableActions' | translate}}</span>
               </div>
             </div>
             <div *ngFor=
@@ -304,12 +304,12 @@
               filter : searchTerm : ['type', 'id', 'location', 'labels', 'status']|
               filter : quickFilter : ['type']"  class="label-tbody row">
               <div class="col-2 label-td-flex-text">
-                <span tooltip="{{'infrastructure.inventory.tableType'|translate}}" placement="top">{{item.type}}</span>
+                <span tooltip="{{'tables.tableType' | translate}}" placement="top">{{item.type}}</span>
               </div>
               <div class="col-9">
                 <div class="row">
                   <div class="col-4 label-td">
-                    <span tooltip="{{'infrastructure.inventory.tableId'|translate}}" placement="top">{{item.id}}</span>
+                    <span tooltip="{{'tables.tableID' | translate}}" placement="top">{{item.id}}</span>
                   </div>
                   <div class="col-4 label-td col-center-lowercase"> 
                     <span *ngIf="item.status"
@@ -328,7 +328,7 @@
                     </span>
                   </div>
                   <div class="col-4 label-td">
-                    <span tooltip="{{'infrastructure.inventory.tableLocation'|translate}}" placement="top">
+                    <span tooltip="{{'tables.tableLocation' | translate}}" placement="top">
                       {{item.location}}
                     </span>
                   </div>
@@ -350,7 +350,7 @@
                       <div 
                         *ngIf="isAnyLabelSelected(item.id) === false"
                         (click)="addLabel(item)"
-                        tooltip="{{'infrastructure.label.add'|translate}}" 
+                        tooltip="{{'infrastructure.label.add' | translate}}" 
                         placement="right"
                         class="label-btn-blue">
                         <i class="material-icons i-add">add</i>
@@ -358,7 +358,7 @@
                       <div 
                         *ngIf="isAnyLabelSelected(item.id) === true"
                         (click)="deleteLabel(item)"
-                        tooltip="{{'infrastructure.label.delete'|translate}}"
+                        tooltip="{{'infrastructure.label.delete' | translate}}"
                         placement="right"
                         class="label-btn-red">
                         <i class="material-icons i-delete">delete</i>
@@ -394,7 +394,7 @@
           inventory.length === 0 &&
           !requestError" 
           class="no-elements">
-         {{'infrastructure.inventory.noInfo'|translate}}
+          {{'infrastructure.inventory.noInfo' | translate}}
         </div>
         <!-- Requested error -->
         <div *ngIf="loadedData && requestError" class="no-elements">

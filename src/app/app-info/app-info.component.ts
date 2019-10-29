@@ -96,32 +96,19 @@ export class AppInfoComponent implements OnInit {
    */
   classInstanceStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case AppStatus.Running: {
-        if (className.toLowerCase() === AppStatus.Running) {
-          return true;
-        }
-        break;
-      }
+      case AppStatus.Running:
+        return className.toLowerCase() === AppStatus.Running;
       case AppStatus.DeploymentError:
       case AppStatus.PlanningError:
       case AppStatus.Incomplete:
-      case AppStatus.Error: {
-        if (className.toLowerCase() === AppStatus.Error) {
-          return true;
-        }
-        break;
-      }
+      case AppStatus.Error:
+        return className.toLowerCase() === AppStatus.Error;
       case AppStatus.Queued:
       case AppStatus.Planning:
-      case AppStatus.Scheduled: {
-        if (className.toLowerCase() === AppStatus.Process) {
-          return true;
-        }
-        break;
-      }
-      default: {
-        return (className.toLowerCase() === AppStatus.Process);
-      }
+      case AppStatus.Scheduled:
+        return className.toLowerCase() === AppStatus.Process;
+      default:
+        return className.toLowerCase() === AppStatus.Process;
     }
   }
 

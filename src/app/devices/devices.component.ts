@@ -11,7 +11,7 @@ import { GroupConfigurationComponent } from '../group-configuration/group-config
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { DeviceGroupInfoComponent } from '../device-group-info/device-group-info.component';
 import { TranslateService } from '@ngx-translate/core';
-import { DevicesStatus } from '../definitions/enums/devices-status.enum';
+import { InventoryStatus } from '../definitions/enums/inventory-status.enum';
 
 /**
  * It sets the timeout in actions like undeploying or deleting
@@ -254,24 +254,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   classStatusCheck(status: string, className: string): boolean {
     if (status) {
       switch (status.toLowerCase()) {
-        case DevicesStatus.Online: {
-          if (className.toLowerCase() === DevicesStatus.Online) {
-            return true;
-          }
-          break;
-        }
-        case DevicesStatus.Offline: {
-          if (className.toLowerCase() === DevicesStatus.Offline) {
-            return true;
-          }
-          break;
-        }
-      default: {
-          if (className.toLowerCase() === DevicesStatus.Process) {
-            return true;
-          }
-          return false;
-        }
+        case InventoryStatus.Online:
+          return className.toLowerCase() === InventoryStatus.Online;
+        case InventoryStatus.Offline:
+          return className.toLowerCase() === InventoryStatus.Offline;
+        default:
+          return className.toLowerCase() === InventoryStatus.Process;
       }
     }
   }
@@ -605,7 +593,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                 this.devices = tmpDevices;
               }
               this.updateDevicesOnTimeline();
-              this.updateDevicesStatusLineChart();
+              this.updateInventoryStatusLineChart();
             }, errorResponse => {
               this.loadedData = true;
               this.requestError = errorResponse.error.message;
@@ -620,7 +608,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Updates timeline chart
    */
-  private updateDevicesStatusLineChart() {
+  private updateInventoryStatusLineChart() {
     let connectedDevicesCount = 0;
     let selectedGroupDevicesCountTotal = 0;
 

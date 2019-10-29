@@ -11,6 +11,9 @@ import { AbbreviatePipe } from '../pipes/abbreviate.pipe';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { SortByPipe } from '../pipes/sort-by.pipe';
 import { FormsModule } from '@angular/forms';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '../app.module';
 
 describe('ClusterComponent', () => {
   let component: ClusterComponent;
@@ -24,7 +27,7 @@ describe('ClusterComponent', () => {
         AbbreviatePipe,
         FilterPipe,
         SortByPipe
-       ],
+      ],
       imports: [
         HttpClientTestingModule,
         NgxChartsModule,
@@ -33,6 +36,16 @@ describe('ClusterComponent', () => {
         BrowserAnimationsModule,
         FormsModule,
         ModalModule.forRoot(),
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
+      ],
+      providers: [
+        TranslateService
       ]
     })
     .compileComponents();

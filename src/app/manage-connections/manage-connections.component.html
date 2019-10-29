@@ -17,15 +17,15 @@
         (click)="openAddNewConnection()"
         class="apps-actions-btn">
         <i class="material-icons-round i-options">link</i>
-        {{'apps.manageConnections.addNewConnection'|translate}}
+        {{'apps.manageConnections.addNewConnection' | translate}}
       </button>
     </div>
-    <h3 class="nalej-form-title ">{{'apps.manageConnections.connectionsList'|translate}}</h3>
+    <h3 class="nalej-form-title ">{{'apps.manageConnections.connectionsList' | translate}}</h3>
     <div class="modal-center-box">
       <!-- Filters -->
       <form [formGroup]="manageConnectionsFilterForm"  class="w-100 hide-sm-md-h">
         <div *ngIf="connections && connections.length > 0" class="form-group form-group-drop filter-drop-box">
-          <label class="app-filter-label">{{'apps.manageConnections.appFilter'|translate}}</label>
+          <label class="app-filter-label">{{'apps.manageConnections.appFilter' | translate}}</label>
           <ngx-select-dropdown 
             formControlName="filter" 
             [multiple]="false" 
@@ -49,7 +49,7 @@
           name="searchTerm" 
           [(ngModel)]="searchTerm"
           type="text" 
-          placeholder="{{'searcher.placeholder'|translate }}"
+          placeholder="{{'searcher.placeholder' | translate }}"
           class="form-control"> 
         <div *ngIf="searchTerm === ''" class="search-icon">
           <i class="material-icons">search</i>
@@ -60,31 +60,31 @@
       </div>
       <!-- Table -->
       <div *ngIf="!connections || connections.length === 0" class="mt-0">
-        {{'apps.manageConnections.noConnections'|translate}}
+        {{'apps.manageConnections.noConnections' | translate}}
       </div>
       <div *ngIf="connections && connections.length > 0" class="label-nalej-table no-p-col no-m-row">
         <div class="label-thead row">
           <div class="col-5 label-th">
-            <span tooltip="{{'apps.manageConnections.sourceInstance'|translate}}" placement="bottom">
-              {{'apps.manageConnections.sourceInstance'|translate}}
+            <span tooltip="{{'apps.manageConnections.sourceInstance' | translate}}" placement="bottom">
+              {{'apps.manageConnections.sourceInstance' | translate}}
             </span>
             <br>
-            <span tooltip="{{'apps.manageConnections.sourceInterface'|translate}}" placement="bottom">
-              {{'apps.manageConnections.sourceInterface'|translate}}
+            <span tooltip="{{'apps.manageConnections.sourceInterface' | translate}}" placement="bottom">
+              {{'apps.manageConnections.sourceInterface' | translate}}
             </span>
           </div>
           <div  class="col-5 label-th">
-            <span tooltip="{{'apps.manageConnections.targetInstance'|translate}}" placement="bottom">
-              {{'apps.manageConnections.targetInstance'|translate}}
+            <span tooltip="{{'apps.manageConnections.targetInstance' | translate}}" placement="bottom">
+              {{'apps.manageConnections.targetInstance' | translate}}
             </span>
             <br>
-            <span tooltip="{{'apps.manageConnections.targetInterface'|translate}}" placement="bottom">
-              {{'apps.manageConnections.targetInterface'|translate}}
+            <span tooltip="{{'apps.manageConnections.targetInterface' | translate}}" placement="bottom">
+              {{'apps.manageConnections.targetInterface' | translate}}
             </span>
           </div>
           <div class="col-2 label-th text-center">
-            <span tooltip="{{'apps.manageConnections.disconnect'|translate}}" placement="bottom">
-              {{'apps.manageConnections.disconnect'|translate}}
+            <span tooltip="{{'apps.manageConnections.disconnect' | translate}}" placement="bottom">
+              {{'apps.manageConnections.disconnect' | translate}}
             </span>
           </div>
         </div>
@@ -114,7 +114,7 @@
               <div class="col-2 text-center label-td-flex">
                 <button 
                   (click)="disconnectInstance(connection)"
-                  tooltip="{{'apps.manageConnections.disconnect'|translate}}" 
+                  tooltip="{{'apps.manageConnections.disconnect' | translate}}" 
                   placement="left" 
                   class="action-btn-red">
                   <i class="material-icons i-red">link_off</i>

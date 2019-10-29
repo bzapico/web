@@ -4,6 +4,9 @@ import { ButtonsModule, BsModalRef, TooltipModule, BsModalService, ModalModule }
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '../app.module';
 
 import { AddLabelComponent } from './add-label.component';
 
@@ -21,11 +24,19 @@ describe('AddLabelComponent', () => {
         RouterTestingModule,
         TooltipModule,
         ModalModule.forRoot(),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
       providers: [
         BsModalRef,
-        BsModalService
+        BsModalService,
+        TranslateService
       ]
     })
     .compileComponents();
