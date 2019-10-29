@@ -30,11 +30,8 @@ export class ApplicationsService {
    * @param instance Application instance
    */
   preventEmptyFields(instance: ApplicationInstance) {
-    if (!instance.description) {
-      instance.description = '-';
-    }
     if (!instance.labels) {
-      instance.labels = '-';
+      instance.labels.set('id', '-');
     }
     if (!instance.status_name) {
       instance.status_name = '-';

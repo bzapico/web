@@ -8,7 +8,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as shape from 'd3-shape';
-import { AppDescriptor } from '../definitions/interfaces/app-descriptor';
+import { AppDescriptor } from '../definitions/models/app-descriptor';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { ServiceInfoComponent } from '../service-info/service-info.component';
 import { RegisteredServiceGroupInfoComponent } from '../registered-service-group-info/registered-service-group-info.component';
@@ -26,59 +26,48 @@ export class RegisteredInfoComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Model that hold organization ID
    */
   organizationId: string;
-
   /**
    * Loaded Data status
    */
   loadedData: boolean;
-
   /**
    * List of available services
    */
   services: any[];
-
   /**
    * Count of total services for summary card
    */
   servicesCount: number;
-
   /**
    * Model that hold descriptor ID
    */
   descriptorId: string;
-
   /**
    * Model that hold registered application descriptor data
    */
   registeredData: AppDescriptor;
   openFromRegistered: boolean;
-
   /**
    * List of available services groups
    */
   groups: any[];
-
   /**
    * List of labels
    */
   isSelectableLabel: boolean;
   entityId: string;
-
   /**
    * Open form instance reference
    */
   isOpenFromRegistered: boolean;
-
   /**
    * Hold request error message or undefined
    */
   requestError: string;
-
   /**
    * Models that hold the sort info needed to sortBy pipe
    */
@@ -86,35 +75,29 @@ export class RegisteredInfoComponent implements OnInit {
   sortedByRules: string;
   reverse: boolean;
   reverseRules: boolean;
-
   /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
   searchTermRules: string;
-
   /**
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
   filterFieldRules: boolean;
-
   /**
    * Reference for the service that allows the modal component
    */
   modalRef: BsModalRef;
-
   /**
    *  Show the services graph tab
    */
   showGraph: boolean;
-
   /**
    * Accordion options
    */
   nalejAccordion = 'nalejAccordion';
   isFirstOpen = true;
-
   /**
    * Graph options
    */
@@ -130,7 +113,6 @@ export class RegisteredInfoComponent implements OnInit {
   width: number;
   height: number;
   whiteColor: string;
-
 
   constructor(
     private modalService: BsModalService,
@@ -157,11 +139,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.isOpenFromRegistered = true;
     this.requestError = '';
     this.showGraph = true;
-    this.registeredData = {
-      groups: [],
-      environment_variables: {},
-      configuration_options: {}
-    };
+    this.registeredData = new AppDescriptor();
     // SortBy
     this.sortedBy = '';
     this.sortedByRules = '';

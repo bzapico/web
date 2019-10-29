@@ -1,7 +1,7 @@
 /**
  * SecurityRule structure defining which element can access a given application service.
  */
-export interface SecurityRules {
+export interface SecurityRule {
     // OrganizationId with the organization identifier.
     organization_id?: string;
     // AppDescriptorId with the application descriptor identifier.

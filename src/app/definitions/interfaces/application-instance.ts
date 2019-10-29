@@ -1,11 +1,12 @@
 /**
  * AppInstance represents an instance of the application in the system
  */
-import { SecurityRules } from './security-rules';
+import { SecurityRule } from './security-rule';
 import { ServiceGroupInstance } from './service-group-instance';
 import { InstanceMetadata } from './instance-metadata';
 import { OutboundNetworkInterface } from './outbound-network-interface';
 import { ConnectionInstance } from './connection-instance';
+import { InboundNetworkInterface } from './inbound-network-interface';
 
 export interface ApplicationInstance {
   // OrganizationId with the organization identifier.
@@ -24,7 +25,7 @@ export interface ApplicationInstance {
   // Labels defined by the user.
   labels?: Map<string, string>;
   // Rules that define the connectivity between the elements of an application.
-  rules?: SecurityRules[];
+  rules?: SecurityRule[];
   // Groups with the Service collocation strategies.
   groups?: ServiceGroupInstance[];
   // Status of the deployed instance.

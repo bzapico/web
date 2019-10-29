@@ -183,12 +183,11 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
   /**
    * Opens the modal view that holds the edit cluster component
    */
-  openEditCluster(cluster: { cluster_id: any; name: any; description: any; }) {
+  openEditCluster(cluster: Cluster) {
     const initialState = {
       organizationId: this.organizationId,
       clusterId: cluster.cluster_id,
-      clusterName: cluster.name,
-      clusterDescription: cluster.description
+      clusterName: cluster.name
     };
     this.modalRef = this.modalService.show(EditClusterComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
@@ -406,9 +405,6 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
   private preventEmptyFields(cluster: Cluster) {
     if (!cluster.name) {
       cluster.name = '-';
-    }
-    if (!cluster.description) {
-      cluster.description = '-';
     }
   }
 
