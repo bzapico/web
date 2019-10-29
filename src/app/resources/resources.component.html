@@ -1,7 +1,7 @@
 <!-- Component title -->
 <div class="row row-title">
   <div class="col-xl-12">
-    <h2 class="section-title">{{'resources.title'|translate}}</h2>
+    <h2 class="section-title">{{'resources.title' | translate}}</h2>
   </div>
 </div>
 <div class="row row-app-main resources-view">
@@ -10,7 +10,7 @@
       <!-- Summary info card -->
       <div class="card row-info-app flex-grow-0">
         <div class="card-title-name">
-          <h5>{{'resources.summary'|translate}}</h5>
+          <h5>{{'resources.summary' | translate}}</h5>
         </div>
         <div class="summary-card">
           <div class="summary-box">
@@ -24,22 +24,22 @@
               </ngx-charts-pie-chart>
               <div class="donut-number">{{clustersCount}}/{{clusters.length}}</div>
             </div>
-            <p class="clusters-run">{{clustersCount}} {{'resources.clustersRunning'|translate}}</p>
-            <p *ngIf="clustersCount === 0" class="circle-name no-deployed">{{'resources.noClusters'|translate}}</p>
-            <p class="circle-name circle-name-mt">{{'resources.clusters'|translate}}</p>
+            <p class="clusters-run">{{clustersCount}} {{'resources.clustersRunning' | translate}}</p>
+            <p *ngIf="clustersCount === 0" class="circle-name no-deployed">{{'resources.noClusters' | translate}}</p>
+            <p class="circle-name circle-name-mt">{{'resources.clusters' | translate}}</p>
           </div>
           <div class="summary-box">
             <div class="circle mt-1">
               <span>{{instances? instances.length : 0}}</span>
             </div>
-            <p class="circle-name">{{'resources.instances'|translate}}</p>
+            <p class="circle-name">{{'resources.instances' | translate}}</p>
           </div>
         </div>
       </div>
       <!-- List card-->
       <div class="card flex-grow-1">
         <div class="card-title-name-mb">
-          <h5>{{'resources.list'|translate}}</h5>
+          <h5>{{'resources.list' | translate}}</h5>
         </div>
         <div class="row">
           <!-- Search input -->
@@ -50,7 +50,7 @@
                   name="searchTerm" 
                   [(ngModel)]="searchTerm"
                   type="text" 
-                  placeholder="{{'searcher.placeholder'|translate }}"
+                  placeholder="{{'searcher.placeholder' | translate }}"
                   class="form-control"> 
                   <div *ngIf="searchTerm === ''" class="search-icon">
                     <i class="material-icons">search</i>
@@ -66,22 +66,22 @@
         <!-- Sorting message -->
         <div class="col-12">  
           <p *ngIf="searchTerm && !filterField" class="sorting-message">
-            {{ ( clusterWithInstancesList | filter : searchTerm : ['name', 'labels', 'instances'])?.length }} {{'sortingMessage.resultsFilteredBy'|translate:{value: searchTerm} }}
-            <span (click)="resetFilters('clusters')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+            {{ ( clusterWithInstancesList | filter : searchTerm : ['name', 'labels', 'instances'])?.length }} {{'sortingMessage.resultsFilteredBy' | translate:{value: searchTerm} }}
+            <span (click)="resetFilters('clusters')" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
           </p>
           <p *ngIf="filterField && !searchTerm" class="sorting-message">
-            {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-            <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: '. '} }} </span>
-            <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: '. '} }} </span>
-            <span (click)="resetFilters('clusters')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+            {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
+            <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: '. '} }} </span>
+            <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: '. '} }} </span>
+            <span (click)="resetFilters('clusters')" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
           </p>
           <p *ngIf="filterField && searchTerm" class="sorting-message">
-            {{ ( clusterWithInstancesList | filter : searchTerm : ['name', 'labels', 'instances'])?.length }}  {{'sortingMessage.resultsFound'|translate }} 
-            {{'sortingMessage.sortedBy'|translate:{value: sortedBy} }},
-            <span *ngIf="reverse">{{'sortingMessage.ascendant'|translate:{value: ' '} }}</span>
-            <span *ngIf="!reverse">{{'sortingMessage.descendant'|translate:{value: ' '} }} </span>
-            {{'sortingMessage.andFilteredBy'|translate:{value: searchTerm} }} 
-            <span (click)="resetFilters('clusters')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+            {{ ( clusterWithInstancesList | filter : searchTerm : ['name', 'labels', 'instances'])?.length }}  {{'sortingMessage.resultsFound' | translate }} 
+            {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
+            <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ' '} }}</span>
+            <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: ' '} }} </span>
+            {{'sortingMessage.andFilteredBy' | translate:{value: searchTerm} }} 
+            <span (click)="resetFilters('clusters')" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
           </p> 
           <p *ngIf="!filterField && !searchTerm" class="sorting-message">
         </div>
@@ -104,7 +104,7 @@
                     placement="bottom"
                     scope="col" 
                     class="col-6 cluster-name-initial-text label-th">
-                    <span class="cluster-name-full-text">{{'tables.tableName'|translate}}</span>
+                    <span class="cluster-name-full-text">{{'tables.tableName' | translate}}</span>
                     <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
                     </span>
@@ -117,7 +117,7 @@
                     [ngClass]="getCategoryCSSClass('instances')"
                     scope="col" 
                     class="col-6 text-center label-th">
-                    <span tooltip="Instances" placement="bottom">{{'tables.tableInstances'|translate}}</span>
+                    <span tooltip="Instances" placement="bottom">{{'tables.tableInstances' | translate}}</span>
                     <span *ngIf="sortedBy === 'instances' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
                     </span>
@@ -130,7 +130,7 @@
                     [ngClass]="getCategoryCSSClass('labels')"
                     scope="col" 
                     class="col-12 label-th">
-                    <span tooltip="Labels" placement="bottom">{{'tables.tableLabels'|translate}}</span>
+                    <span tooltip="Labels" placement="bottom">{{'tables.tableLabels' | translate}}</span>
                     <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
                     </span>
@@ -141,11 +141,11 @@
                 </div>
               </div>
               <div 
-                tooltip="{{'resources.edit'|translate}}" 
+                tooltip="{{'resources.edit' | translate}}" 
                 placement="bottom"
                 scope="col"
                 class="col-2 text-center edit-initial-text label-th">
-                <span class="edit-full-text">{{'resources.edit'|translate}}</span>
+                <span class="edit-full-text">{{'resources.edit' | translate}}</span>
               </div>
             </div>
             <div *ngFor=
@@ -223,7 +223,7 @@
           clusters.length === 0 &&
           !requestError" 
           class="no-elements">
-          {{'resources.noClustersAvailable'|translate}}
+          {{'resources.noClustersAvailable' | translate}}
         </div>
         <!-- Requested error -->
         <div *ngIf="loadedData && requestError" class="no-elements">
@@ -252,14 +252,14 @@
       <!-- Clusters card -->
       <div class="card">
         <div class="card-title-name">
-          <h5>{{'resources.clusterInstances'|translate}}</h5>
+          <h5>{{'resources.clusterInstances' | translate}}</h5>
         </div>
         <div class="row mb-3">
           <!-- Sorting message -->
           <div class="col-7">  
             <p *ngIf="isSearchingInGraph" class="sorting-message">
-              {{ occurrencesCounter }} {{'sortingMessage.resultsFilteredBy'|translate:{value: searchTermGraph} }}
-              <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset'|translate}}</span>
+              {{ occurrencesCounter }} {{'sortingMessage.resultsFilteredBy' | translate:{value: searchTermGraph} }}
+              <span (click)="resetFilters('graph')" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p>
             <p *ngIf="!isSearchingInGraph" class="sorting-message"></p>
           </div>
@@ -270,7 +270,7 @@
                 name="searchTermGraph" 
                 [(ngModel)]="searchTermGraph"
                 type="text" 
-                placeholder="{{'searcher.placeholder'|translate }}"
+                placeholder="{{'searcher.placeholder' | translate }}"
                 class="form-control"> 
               <span class="search-button"> 
                 <button 
@@ -351,7 +351,7 @@
             <div *ngIf="!graphDataLoaded" class="loader"></div>
             <!-- No info to show -->
             <div *ngIf="graphDataLoaded && clusters.length === 0" class="no-elements">
-              {{'resources.NoAvailableClusters'|translate }}
+              {{'resources.NoAvailableClusters' | translate }}
             </div>
           </div>
         </div>
@@ -359,9 +359,9 @@
           <div class="col">
             <div *ngIf="!graphReset" class="text-right">
               <div class="graph-subtext">
-                {{'graph.autoRefresh'|translate}}
+                {{'graph.autoRefresh' | translate}}
                 <a (click)="resetGraphZoom()" class="blue cursor-pointer">
-                  {{'sortingMessage.reset'|translate}}
+                  {{'sortingMessage.reset' | translate}}
                 </a>
               </div>
             </div>

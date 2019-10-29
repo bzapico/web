@@ -9,6 +9,7 @@ import { LabelsCardService } from './labels-card.service';
 export class LabelsCardComponent {
   @Input() labelsData: any[];
   @Input() isSelectableLabel: boolean;
+  @Input() loadedData: boolean;
   @Output() updateLabels: EventEmitter<{action: string, selectedLabels: any[]}>;
 
   selectedLabels: {}[];

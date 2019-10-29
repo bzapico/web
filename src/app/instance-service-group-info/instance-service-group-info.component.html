@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="modal-header">
       <h3 class="modal-info-title mb-4">
-        {{'apps.instance.serviceGroupInfo.title'|translate}}
+        {{'apps.instance.serviceGroupInfo.title' | translate}}
       </h3>
     </div>
     <!-- Body -->
@@ -13,7 +13,7 @@
     <div class="scroll-app-info">
       <div class="row">
         <div class="col-sm modal-info-table-title mb-3">
-          {{'apps.instance.serviceGroupInfo.status'|translate}}
+          {{'apps.instance.serviceGroupInfo.status' | translate}}
         </div>
         <h3 class="modal-info-h3-title col-sm text-right">
             <span 
@@ -33,27 +33,27 @@
       <br>
       <div class="row">
         <div class="col-sm modal-info-table-title mb-3">
-          {{'apps.instance.serviceGroupInfo.appDescriptorId'|translate}}</div>
+          {{'apps.instance.serviceGroupInfo.appDescriptorId' | translate}}</div>
         <div class="col-sm text-right">{{appDescriptorId}}</div>
       </div>
       <br>
       <div class="row">
         <div class="col-sm modal-info-table-title mb-3">
-          {{'apps.instance.serviceGroupInfo.appInstanceId'|translate}}
+          {{'apps.instance.serviceGroupInfo.appInstanceId' | translate}}
         </div>
         <div class="col-sm text-right">{{appInstanceId}}</div>
       </div>
       <br>
       <div class="row">
         <div class="col-sm modal-info-table-title mb-3">
-          {{'apps.instance.serviceGroupInfo.policyName'|translate}}
+          {{'apps.instance.serviceGroupInfo.policyName' | translate}}
         </div>
         <div class="col-sm text-right">{{policyName}}</div>
       </div>
       <br>
       <div class="row">
         <div class="col-sm modal-info-table-title mb-3">
-          {{'apps.instance.serviceGroupInfo.globalFqdn'|translate}}
+          {{'apps.instance.serviceGroupInfo.globalFqdn' | translate}}
         </div>
         <div class="col-sm text-right">
           <span *ngFor="let endpoint of globalFqdn">
@@ -93,11 +93,9 @@
     <!-- Option button -->
     <div class="form-group-btn">
       <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">
-        <span class="align-bottom">{{'modals.buttonClose'|translate}}</span>
+        <span class="align-bottom">{{'buttons.close' | translate}}</span>
       </button>
     </div>
     </div>
   </div>
 </div>
-  
-    

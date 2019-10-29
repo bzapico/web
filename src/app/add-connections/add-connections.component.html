@@ -1,7 +1,7 @@
 <div class="modal-card">
   <!-- Header -->
   <div class="modal-header">
-    <h3 class="nalej-form-title">{{'apps.addConnection.title'|translate}}</h3>
+    <h3 class="nalej-form-title">{{'apps.addConnection.title' | translate}}</h3>
     <button 
       (click)="closeModal()"
       type="button" 
@@ -16,7 +16,7 @@
       <div class="source-left">
         <!-- Source instance dropdown -->
         <div  class="form-group form-group-drop">
-          <label>{{'apps.manageConnections.sourceInstance'|translate}}</label>
+          <label>{{'apps.manageConnections.sourceInstance' | translate}}</label>
           <ngx-select-dropdown 
             formControlName="sourceInstance" 
             [multiple]="false" 
@@ -32,7 +32,7 @@
         </div>
         <!-- Source interface dropdown -->
         <div  class="form-group form-group-drop">
-          <label>{{'apps.manageConnections.sourceInterface'|translate}}</label>
+          <label>{{'apps.manageConnections.sourceInterface' | translate}}</label>
           <ngx-select-dropdown 
             formControlName="sourceInterface" 
             [multiple]="false" 
@@ -53,7 +53,7 @@
       <div class="target-right">
         <!-- Target Instance dropdown -->
         <div  class="form-group form-group-drop">
-          <label>{{'apps.manageConnections.targetInstance'|translate}}</label>
+          <label>{{'apps.manageConnections.targetInstance' | translate}}</label>
           <ngx-select-dropdown 
             formControlName="targetInstance" 
             [multiple]="false" 
@@ -69,7 +69,7 @@
         </div>
         <!-- Target Interface dropdown -->
         <div  class="form-group form-group-drop">
-          <label>{{'apps.manageConnections.targetInterface'|translate}}</label>
+          <label>{{'apps.manageConnections.targetInterface' | translate}}</label>
           <ngx-select-dropdown 
             formControlName="targetInterface" 
             [multiple]="false" 
@@ -94,7 +94,7 @@
       (click)="addNewConnections()"
       class="add-connection-btn">
       <i class="material-icons-round">link</i>
-      {{'apps.manageConnections.addNewConnection'|translate}}
+      {{'apps.manageConnections.addNewConnection' | translate}}
     </button>
   </div>
 </div>

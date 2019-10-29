@@ -11,7 +11,7 @@ import { GroupConfigurationComponent } from '../group-configuration/group-config
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { DeviceGroupInfoComponent } from '../device-group-info/device-group-info.component';
 import { TranslateService } from '@ngx-translate/core';
-import { DevicesStatus } from '../definitions/enums/devices-status.enum';
+import { InventoryStatus } from '../definitions/enums/inventory-status.enum';
 /**
  * Refresh ratio reference
  */
@@ -27,27 +27,22 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Model that hold organization ID and group ID
    */
   organizationId: string;
-
   /**
    * Loaded Data status
    */
   loadedData: boolean;
-
   /**
    * List of available devices
    */
   devices: any[];
-
   /**
    * List of available devices groups
    */
   groups: any[];
-
   /**
    *  Models that hold group data
    */
@@ -56,49 +51,40 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   enabled: boolean;
   default_device_connectivity: boolean;
   device_group_api_key: string;
-
   /**
    * List of active displayed group
    */
   displayedGroups: any[];
   devicesOnTimeline: any[];
-
   /**
    * List of labels
    */
   labels: any[];
-
   /**
    * Count of total devices for summary card
    */
   devicesCount: number;
-
   /**
    * Interval reference
    */
   refreshIntervalRef: any;
-
   /**
    * Charts references
    */
   mockDevicesChart: any;
   devicesChart: any;
-
   /**
    * Reference for the service that allows the add group component
    */
   modalRef: BsModalRef;
-
   /**
    * Hold request error message or undefined
    */
   requestError: string;
-
   /**
    * Active context menu groupID
    */
   activeContextMenuGroupId: string;
-
   /**
    * Line Chart options
    */
@@ -121,33 +107,27 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       value: 0
     }
   ];
-
   /**
    * Accordion options
    */
   nalejAccordion = 'nalejAccordion';
-
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
   devicesTimelineChart: any;
-
   /**
    * Models that hold the sort info needed to sortBy pipe
    */
   sortedBy: string;
   reverse: boolean;
-
   /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
-
   /**
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
-
   /**
    * List of selected labels from an entity
    */
@@ -214,7 +194,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
   }
-
   /**
    * Translates timestamps to the wish date
    * @param timestamp is an integer that represents the number of seconds elapsed
@@ -222,7 +201,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   parseTimestampToDate(timestamp: any) {
     return new Date(Number.parseInt(timestamp, 10) * 1000);
   }
-
   /**
    * Method that counts the number of devices
    */
@@ -236,7 +214,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     });
     return temporalCount;
   }
-
   /**
    * Checks if the devices status requires an special css class
    * @param status devices status name
@@ -245,28 +222,15 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   classStatusCheck(status: string, className: string): boolean {
     if (status) {
       switch (status.toLowerCase()) {
-        case DevicesStatus.Online: {
-          if (className.toLowerCase() === DevicesStatus.Online) {
-            return true;
-          }
-          break;
-        }
-        case DevicesStatus.Offline: {
-          if (className.toLowerCase() === DevicesStatus.Offline) {
-            return true;
-          }
-          break;
-        }
-      default: {
-          if (className.toLowerCase() === DevicesStatus.Process) {
-            return true;
-          }
-          return false;
-        }
+        case InventoryStatus.Online:
+          return className.toLowerCase() === InventoryStatus.Online;
+        case InventoryStatus.Offline:
+          return className.toLowerCase() === InventoryStatus.Offline;
+        default:
+          return className.toLowerCase() === InventoryStatus.Process;
       }
     }
   }
-
   /**
    * Sortby pipe in the component
    * @param categoryName the name of the chosen category
@@ -280,7 +244,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       this.filterField = true;
     }
   }
-
   /**
    * Reset all the filters fields
    */
@@ -289,7 +252,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.searchTerm = '';
     this.sortedBy = '';
   }
-
   /**
    * Gets the category headers to add a class
    * @param categoryName the class for the header category
@@ -305,7 +267,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       }
     }
   }
-
   /**
    * Checkbox switcher statement to select one of enabled device to be executed.
    * @param device device data to update
@@ -328,7 +289,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       });
     });
   }
-
   /**
    * Opens the modal view that holds add group component
    */
@@ -347,7 +307,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       allowHide = false;
     });
   }
-
   /**
    * Search for an specific array of devices that are part of the same group
    * @param groupId Group identifier
@@ -362,7 +321,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
     return [];
   }
-
   /**
    * Opens the modal view that holds add label component
    * @param device Device object
@@ -379,7 +337,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { });
   }
-
   /**
    * Deletes a selected label
    * @param entity selected label entity
@@ -401,7 +358,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         });
     }
   }
-
   /**
    * Selects a label
    * @param entityId entity from selected label
@@ -430,7 +386,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       }
     }
   }
-
   /**
   * Check if the label is selected. Returns index number in selected labels or -1 if the label is not found.
   * @param entityId entity from selected label
@@ -447,7 +402,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
   return -1;
   }
-
   /**
    * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
    * @param entityId entity from selected label
@@ -461,7 +415,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
     return false;
   }
-
   /**
    * Returns human-understandable category name
    * @param sortedByRawCategory Raw category name
@@ -476,7 +429,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         return sortedByRawCategory;
     }
   }
-
   /**
    * Requests to unlink the selected device
    * @param device device item
@@ -499,7 +451,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         });
       }
   }
-
   /**
    * Opens context menu
    * @param group device group
@@ -516,7 +467,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   onContextualMenuClose(group) {
     this.activeContextMenuGroupId = '';
   }
-
   /**
    * Get the item options to show in the context menu
    * @param group device group
@@ -549,8 +499,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     groupOptions.push(groupOption3);
     return groupOptions;
   }
-
-    /**
+  /**
    * Requests an updated list of available devices group to update the current one
    * @param organizationId Organization identifier
    */
@@ -572,7 +521,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         });
     }
   }
-
   /**
    * Requests an updated list of devices to update the current one
    * @param organizationId organization identifier
@@ -593,7 +541,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                 this.devices = tmpDevices;
               }
               this.updateDevicesOnTimeline();
-              this.updateDevicesStatusLineChart();
+              this.updateInventoryStatusLineChart();
             }, errorResponse => {
               this.loadedData = true;
               this.requestError = errorResponse.error.message;
@@ -604,11 +552,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       }
     }
   }
-
   /**
    * Updates timeline chart
    */
-  private updateDevicesStatusLineChart() {
+  private updateInventoryStatusLineChart() {
     let connectedDevicesCount = 0;
     let selectedGroupDevicesCountTotal = 0;
 
@@ -634,7 +581,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (seconds < 10) {
       seconds = '0' + now.getSeconds();
     }
-
     let value = 0;
     if (connectedDevicesCount > 0 && selectedGroupDevicesCountTotal !== 0) {
       value = connectedDevicesCount / selectedGroupDevicesCountTotal * 100;
@@ -643,7 +589,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       'value': value.toFixed(2),
       'name':  now.getHours() + ':' + minutes + ':' + seconds
     };
-
     if (this.devicesChart[0].series.length > 4) {
       // Removes first element
       this.devicesChart[0].series.shift();
@@ -651,7 +596,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.devicesChart[0].series.push(entry);
     this.devicesChart = [...this.devicesChart];
   }
-
   /**
   * Open device group info modal window
   *  @param group group object
@@ -669,7 +613,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.modalRef = this.modalService.show(DeviceGroupInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
-
   /**
    * Opens the modal view that holds group configuration component
    * @param group device group
@@ -684,11 +627,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     };
     this.modalRef = this.modalService.show(GroupConfigurationComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
+    this.modalService.onHide.subscribe(() => {
       this.updateGroupsList(this.organizationId);
     });
   }
-
   /**
    * Updates devices values array for timeline
    */
@@ -702,8 +644,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         }
       });
   }
-
-  // countDevicesInThisGroup(group){}
   /**
    *  Upon confirmation, deletes a device group
    *  @param group device group
@@ -713,7 +653,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (deleteConfirm) {
       if (this.getGroupDevices(group.device_group_id).length === 0) {
       this.backend.deleteGroup(this.organizationId, group.device_group_id)
-      .subscribe(response => {
+      .subscribe(() => {
         this.updateGroupsList(this.organizationId);
           this.notificationsService.add({
             message: this.translateService.instant('devices.deleteGroupMessage', { groupName: group.name })

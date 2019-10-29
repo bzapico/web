@@ -1,10 +1,10 @@
 <!-- Labels card-->
 <div class="card">
-  <div class="card-title-name hide-title-sm mb-3">
-    <h5>{{'label.title'|translate}}</h5>
+  <div *ngIf="loadedData" class="card-title-name hide-title-sm mb-3">
+    <h5>{{'label.title' | translate}}</h5>
   </div>
   <!-- Show selectable label -->
-  <div *ngIf="isSelectableLabel">
+  <div *ngIf="isSelectableLabel && loadedData">
     <div *ngIf="labelsData && labelsData['labels']">
       <button 
         *ngFor="let label of labelsData['labels']"
@@ -20,7 +20,7 @@
         <div 
           *ngIf="selectedLabels.length === 0" 
           (click)="addLabel()"
-          tooltip="{{'label.addLabel'|translate}}" 
+          tooltip="{{'label.addLabel' | translate}}" 
           placement="auto"
           class="label-btn-blue" >
           <i class="material-icons i-add">add</i>
@@ -28,7 +28,7 @@
         <div 
           *ngIf="selectedLabels.length > 0" 
           (click)="deleteLabel()"
-          tooltip="{{'label.deleteLabel'|translate}}"
+          tooltip="{{'label.deleteLabel' | translate}}"
           placement="auto"
           class="label-btn-red">
           <i class="material-icons i-delete">delete</i>
@@ -39,7 +39,7 @@
       <div class="label-btns">
           <div
             (click)="addLabel()"
-            tooltip="{{'label.addLabel'|translate}}" 
+            tooltip="{{'label.addLabel' | translate}}" 
             placement="auto"
             class="label-btn-blue">
             <i class="material-icons i-add">add</i>
@@ -48,7 +48,7 @@
     </div>
   </div>
   <!-- Show only readable labels -->
-  <div *ngIf="!isSelectableLabel">
+  <div *ngIf="!isSelectableLabel && loadedData">
     <div *ngIf="labelsData['labels']">
       <div *ngFor="let label of labelsData['labels']">
         <button class="label-content-disabled" disabled>
@@ -58,7 +58,7 @@
     </div>
     <div *ngIf="!labelsData['labels']" class="no-elements">
       <div class="no-elements">
-        {{'label.noLabels'|translate}}
+        {{'label.noLabels' | translate}}
       </div>
     </div>
   </div>

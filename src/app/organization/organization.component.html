@@ -1,7 +1,7 @@
 <!-- Component title -->
 <div class="row row-title">
   <div class="col-lg-12">
-    <h2 class="section-title">{{'organization.title'|translate}}</h2>
+    <h2 class="section-title">{{'organization.title' | translate}}</h2>
   </div>
 </div>
 <!-- Organization info card -->
@@ -14,8 +14,8 @@
         </div>
         <div class="company-info-text">
           <h3 class="company-name">{{organizationName}}</h3>
-          <p class="company-subscription">{{'organization.subscriptionType'|translate}}</p>
-          <p class="company-users">{{'organization.usersNumber'|translate:{value: users.length} }}</p>
+          <p class="company-subscription">{{'organization.subscriptionType' | translate}}</p>
+          <p class="company-users">{{'organization.usersNumber' | translate:{value: users.length} }}</p>
         </div>
       </div>
     </div>
@@ -26,27 +26,27 @@
   <div class="col-lg-8 col-sm-12 h-100">
     <div class="card">
       <div class="card-title-name">
-        <h5>{{'organization.users.title'|translate}}</h5>
+        <h5>{{'organization.users.title' | translate}}</h5>
       </div>
       <div class="row mb-3">
         <!-- Sorting messages -->
         <div class="col-7">  
           <p *ngIf="searchTerm && !filterField" class="sorting-message">
-            {{'organization.filteredBy'|translate:{value: searchTerm} }}
-            <span (click)="resetFilters()" class="reset-search">{{'organization.users.reset'|translate}}</span>
+            {{'organization.filteredBy' | translate:{value: searchTerm} }}
+            <span (click)="resetFilters()" class="reset-search">{{'organization.users.reset' | translate}}</span>
           </p>
           <p *ngIf="filterField && !searchTerm" class="sorting-message">
-            {{'organization.sortedBy'|translate:{value: sortedBy} }}
-            <span *ngIf="reverse">{{'organization.users.ascendant'|translate:{value: '. '} }}</span>
-            <span *ngIf="!reverse">{{'organization.users.descendant'|translate:{value: '. '} }}</span>
-            <span (click)="resetFilters()" class="reset-search">{{'organization.users.reset'|translate}}</span>
+            {{'organization.sortedBy' | translate:{value: sortedBy} }}
+            <span *ngIf="reverse">{{'organization.users.ascendant' | translate:{value: '. '} }}</span>
+            <span *ngIf="!reverse">{{'organization.users.descendant' | translate:{value: '. '} }}</span>
+            <span (click)="resetFilters()" class="reset-search">{{'organization.users.reset' | translate}}</span>
           </p>
           <p *ngIf="filterField && searchTerm" class="sorting-message">
-            {{'organization.sortedBy'|translate:{value: sortedBy} }}
-            <span *ngIf="reverse">{{'organization.users.ascendant'|translate:{value: ' '} }}</span>
-            <span *ngIf="!reverse">{{'organization.users.descendant'|translate:{value: ' '} }}</span>
-            {{'organization.users.andFiltered'|translate:{value: searchTerm} }}
-            <span (click)="resetFilters()" class="reset-search">{{'organization.users.reset'|translate}}</span>
+            {{'organization.sortedBy' | translate:{value: sortedBy} }}
+            <span *ngIf="reverse">{{'organization.users.ascendant' | translate:{value: ' '} }}</span>
+            <span *ngIf="!reverse">{{'organization.users.descendant' | translate:{value: ' '} }}</span>
+            {{'organization.users.andFiltered' | translate:{value: searchTerm} }}
+            <span (click)="resetFilters()" class="reset-search">{{'organization.users.reset' | translate}}</span>
           </p> 
         </div>
         <!-- Search input -->
@@ -119,7 +119,7 @@
                   </span>
                 </th>
                 <th scope="col" class="col-2 text-center">
-                  <span tooltip="Actions" placement="bottom">{{'organization.users.actions'|translate}}</span>
+                  <span tooltip="Actions" placement="bottom">{{'organization.users.actions' | translate}}</span>
                 </th>
               </tr>
             </thead>
@@ -152,7 +152,7 @@
         </div>
         <!-- Add user button -->
         <div class="add-user-btn">
-          <button (click)="addUser()" class="btn nalej-btn-lg" >{{'organization.users.add'|translate}}</button>
+          <button (click)="addUser()" class="btn nalej-btn-lg" >{{'organization.users.add' | translate}}</button>
         </div>
       </div>
       <!-- No info to show -->
@@ -161,7 +161,7 @@
           users && users.length === 0 &&
           !requestError"
           class="no-elements">
-        {{'organization.notRegisteredUsers'|translate}}
+        {{'organization.notRegisteredUsers' | translate}}
       </div>
       <!-- Requested error -->
       <div *ngIf="loadedData && requestError" class="no-elements">
@@ -189,11 +189,11 @@
     <div class="card">
       <div class="subscription-card">
         <div class="card-title-name text-left">
-          <h5>{{'organization.users.subscription.title'|translate}}</h5>
+          <h5>{{'organization.users.subscription.title' | translate}}</h5>
         </div>
         <div class="subscription-icon"><i class="material-icons">check</i></div>
-        <h2 class="subscription-plan">{{'organization.users.subscription.plan'|translate}}</h2>
-        <p class="subscription-check">{{'organization.users.subscription.check'|translate}}</p>
+        <h2 class="subscription-plan">{{'organization.users.subscription.plan' | translate}}</h2>
+        <p class="subscription-check">{{'organization.users.subscription.check' | translate}}</p>
       </div>
     </div>
   </div>

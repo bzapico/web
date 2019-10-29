@@ -13,9 +13,11 @@
 			"NetworkTarget": "target",
 			"title": "INSTANCE INFO"
 		},
+		"noExposedPorts": "No exposed ports",
 		"registered": {
 			"title": "DESCRIPTOR INFO"
 		},
+		"registeredTitle": "DESCRIPTOR",
 		"requiredElements": "Required elements marked with*",
 		"tabs": {
 			"networks": "NETWORKS",
@@ -40,6 +42,7 @@
 		"instance": {
 			"environmentVariables": "Environment variables",
 			"idInstance": "INSTANCE ",
+			"noCredentials": "No credentials have been set",
 			"noEnvironmentVariables": "No environment variables have been set",
 			"noOtherSettings": "No extra settings have been set",
 			"noRules": "No available rules detected ",
@@ -79,12 +82,12 @@
 			"addNewConnection": "Add new connection",
 			"appFilter": "APP FILTER",
 			"connectionsList": "CONNECTIONS LIST",
-			"createdConnection": "",
+			"createdConnection": "Connections created",
 			"disconnect": "Disconnect",
-			"disconnectConfirm": "",
-			"disconnectConfirmOutboundRequired": "",
-			"noConnections": "",
-			"requiredFields": "",
+			"disconnectConfirm": "Disconnect?",
+			"disconnectConfirmOutboundRequired": "Disconnect?",
+			"noConnections": "No connections",
+			"requiredFields": "Required field",
 			"sourceInstance": "Source instance",
 			"sourceInterface": "Source interface",
 			"targetInstance": "Target instance",
@@ -115,6 +118,7 @@
 	},
 	"buttons": {
 		"changePassword": "Change password",
+		"close": "Close",
 		"deleteUser": "Delete user",
 		"saveChanges": "Save changes"
 	},
@@ -193,9 +197,33 @@
 			"unlinkMessage": "Edge Controller has been unlinked'"
 		},
 		"asset": {
+			"date": "Date",
+			"lastLog": "Last operation info",
+			"noDate": "Date: No info",
 			"noInfo": "No info available",
+			"status": "Status: unknown",
 			"uninstallAgent": "Uninstall Agent?",
 			"uninstallMessage": "Agent on {{asset_id}} started uninstalling"
+		},
+		"assetInfo": {
+			"architecture": "Architecture",
+			"capacity": "Capacity",
+			"cores": "Cores",
+			"cpu": "CPU",
+			"creationDate": "Creation date",
+			"gb": "GB",
+			"ipAdd": "IP address undefined",
+			"manufacturer": "Manufacturer",
+			"model": "Model",
+			"netSpecs": "Networking specs",
+			"no": "no",
+			"on": "on",
+			"os": "OS",
+			"ram": "RAM",
+			"storage": "Storage",
+			"title": "Asset info",
+			"totalCapacity": "Total capacity",
+			"type": "Type"
 		},
 		"chart": {
 			"offline": "Offline",
@@ -219,21 +247,41 @@
 			"enable": "enable",
 			"enablementConfirm": "Device {{device_id}} is currently {{deviceCurrentEnablementStr}}. Do you want to {{deviceFutureEnablementStr}} it?",
 			"enablementMessage": "The device is now ",
+			"info": "Device info",
+			"notFound": "Not found",
 			"notificationTextDisabled": "disabled",
 			"notificationTextEnabled": "enabled",
 			"unlinkConfirm": "Unlink device?",
 			"unlinkMessage": "The device has been unlinked"
 		},
+		"ecInfo": {
+			"attached": "Attached on ",
+			"title": "EDGE CONTROLLER INFO"
+		},
+		"error": "ERROR: {{error}}",
+		"install-agent": {
+			"agentType": "Agent type",
+			"ec": "Edge Inventory Controller",
+			"ecRequired": "An Edge Controller is required",
+			"install": "Install",
+			"message": "Installing agent on {{targetHost}} target host",
+			"more": "more",
+			"noResults": "No results found!",
+			"required": "An agent type is required",
+			"select": "Select any Edge Controller",
+			"sshPass": "SSH password",
+			"sshPassRequired": "SSH password is required",
+			"sshPassType": "Type the SSH password here",
+			"sshUser": "SSH username",
+			"sshUserRequired": "SSH username is required",
+			"targetHost": "Target host",
+			"targetHostRequired": "Target is required",
+			"title": "Install agent"
+		},
 		"inventory": {
 			"installAgent": "Install Agent",
 			"installNalej": "Install Nalej",
 			"noInfo": "No available inventory detected",
-			"tableActions": "Actions",
-			"tableId": "ID",
-			"tableLabels": "Labels",
-			"tableLocation": "Location",
-			"tableStatus": "Status",
-			"tableType": "Type",
 			"title": "INVENTORY"
 		},
 		"label": {
@@ -265,6 +313,18 @@
 	},
 	"label": {
 		"add": "add",
+		"add-label": {
+			"egGroup": "e.g. Group",
+			"egMyGroup": "e.g. MyGroup",
+			"key": "Label key",
+			"keyReq": "Label key is required",
+			"specialChar": "Cannot contain special characters",
+			"title": "Add label to ",
+			"update": "Updated {{entity}}",
+			"updateNode": "Updated {{entity}} node",
+			"value": "Label value",
+			"valueReq": "Label value is required"
+		},
 		"addLabel": "Add label",
 		"addUp": "Add",
 		"deleteLabel": "Delete label",
@@ -275,7 +335,6 @@
 		"title": "LABELS"
 	},
 	"modals": {
-		"buttonClose": "Close",
 		"discardChanges": "Discard changes?"
 	},
 	"organization": {
@@ -319,6 +378,8 @@
 		"list": "LIST",
 		"noClusters": "NO CLUSTERS",
 		"noClustersAvailable": "No available clusters detected",
+		"noNodes": "There are not registered nodes in this cluster",
+		"nodes": "NODES",
 		"summary": "SUMMARY",
 		"title": "RESOURCES"
 	},
@@ -351,11 +412,14 @@
 		"online": "online",
 		"process": "process",
 		"running": "running",
+		"runningUp": "Running",
 		"serviceError": "service_error",
 		"serviceRunning": "service_running",
-		"serviceWaiting": "service_waiting"
+		"serviceWaiting": "service_waiting",
+		"stopped": "Stopped"
 	},
 	"tables": {
+		"no": "no",
 		"organizationId": "Organization ID",
 		"tableAccess": "Access",
 		"tableActions": "Actions",
@@ -369,16 +433,21 @@
 		"tableExternal": "External",
 		"tableGroup": "Group",
 		"tableGroups": "Groups",
+		"tableID": "ID",
+		"tableIP": "IP",
 		"tableImage": "Image",
 		"tableInfo": "Info",
 		"tableInstances": "Instances",
 		"tableInternal": "Internal",
 		"tableLabels": "Labels",
+		"tableLocation": "Location",
+		"tableMultitenant": "Multitenant",
 		"tableName": "Name",
 		"tablePort": "Port",
 		"tableReplicas": "Replicas",
 		"tableRules": "Rules",
 		"tableServices": "Services",
+		"tableState": "State",
 		"tableStatus": "Status",
 		"tableTarget": "Target",
 		"tableType": "Type"

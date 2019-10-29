@@ -4,6 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { InventoryType } from '../definitions/enums/inventory-type.enum';
 
 @Component({
   selector: 'app-edge-controller-info',
@@ -11,7 +12,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
   styleUrls: ['./edge-controller-info.component.scss']
 })
 export class EdgeControllerInfoComponent implements OnInit {
-   /**
+  /**
    * Backend reference
    */
   backend: Backend;
@@ -66,7 +67,7 @@ export class EdgeControllerInfoComponent implements OnInit {
 
     // Default initialization
     this.loadedData = true;
-   }
+  }
 
   ngOnInit() {
   }
@@ -99,7 +100,7 @@ export class EdgeControllerInfoComponent implements OnInit {
 
     for (let i = 0; i < this.inventory.length && assetIndexFound === -1 ; i++) {
       if (
-        this.inventory[i].type === 'Asset' &&
+        this.inventory[i].type === InventoryType.Asset &&
         this.inventory[i].asset_id === assetReduced.asset_id &&
         this.inventory[i].edge_controller_id === assetReduced.edge_controller_id
         ) {
