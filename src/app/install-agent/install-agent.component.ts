@@ -8,6 +8,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { InventoryType } from '../definitions/enums/inventory-type.enum';
 import { TranslateService } from '@ngx-translate/core';
+import { ArchitectureType } from '../definitions/enums/architecture-type.enum';
 
 /**
  * It sets the timeout in actions like undeploying or deleting
@@ -101,16 +102,16 @@ export class InstallAgentComponent implements OnInit {
       noResultsFound: this.translateService.instant('infrastructure.install-agent.noResults')
     };
     this.agentTypeOptions = [{
-      name: this.translateService.instant('infrastructure.install-agent.linAmd64'),
+      name: ArchitectureType.LinAmd64,
       code: 0
     }, {
-      name: this.translateService.instant('infrastructure.install-agent.linArm32'),
+      name:ArchitectureType.LinArm32,
       code: 1
     }, {
-      name: this.translateService.instant('infrastructure.install-agent.linArm64'),
+      name: ArchitectureType.LinArm64,
       code: 2
     }, {
-      name: this.translateService.instant('infrastructure.install-agent.winAmd64'),
+      name: ArchitectureType.WinAmd64,
       code: 3
     }];
 

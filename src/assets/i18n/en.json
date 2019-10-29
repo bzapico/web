@@ -264,9 +264,6 @@
 			"ec": "Edge Inventory Controller",
 			"ecRequired": "An Edge Controller is required",
 			"install": "Install",
-			"linAmd64": "LINUX_AMD64",
-			"linArm32": "LINUX_ARM32",
-			"linArm64": "LINUX_ARM64",
 			"message": "Installing agent on {{targetHost}} target host",
 			"more": "more",
 			"noResults": "No results found!",
@@ -279,8 +276,7 @@
 			"sshUserRequired": "SSH username is required",
 			"targetHost": "Target host",
 			"targetHostRequired": "Target is required",
-			"title": "Install agent",
-			"winAmd64": "WINDOWS_AMD64"
+			"title": "Install agent"
 		},
 		"inventory": {
 			"installAgent": "Install Agent",
