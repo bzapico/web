@@ -4,6 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { InventoryType } from '../definitions/enums/inventory-type.enum';
 
 @Component({
   selector: 'app-asset-info',
@@ -11,7 +12,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
   styleUrls: ['./asset-info.component.scss']
 })
 export class AssetInfoComponent implements OnInit {
-   /**
+  /**
    * Backend reference
    */
   backend: Backend;
@@ -85,7 +86,7 @@ export class AssetInfoComponent implements OnInit {
     this.loadedData = true;
     this.inventory = [];
     this.ecName = '';
-   }
+  }
 
   ngOnInit() {
     this.ecName = this.getECname();
@@ -134,7 +135,7 @@ export class AssetInfoComponent implements OnInit {
 
     for (let i = 0; i < this.inventory.length; i++) {
       if (this.inventory[i].edge_controller_id === this.edgeControllerId &&
-        this.inventory[i].type === 'EC'
+        this.inventory[i].type === InventoryType.Ec
         ) {
         ecIndexFound = i;
       }

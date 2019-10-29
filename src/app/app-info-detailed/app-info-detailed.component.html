@@ -3,8 +3,8 @@
   <div class="modal-content" id="app-info-detailed">
     <!-- Header -->
     <div class="modal-header">
-      <h3 *ngIf="openFromInstance" class="modal-info-title mb-4">INSTANCE INFO</h3>
-      <h3 *ngIf="openFromRegistered" class="modal-info-title mb-4">DESCRIPTOR</h3>
+      <h3 *ngIf="openFromInstance" class="modal-info-title mb-4">{{'app-info.instance.title' | translate}}</h3>
+      <h3 *ngIf="openFromRegistered" class="modal-info-title mb-4">{{'app-info.registeredTitle' | translate}}</h3>
     </div>
     <!-- Body -->
     <div class="modal-body">
@@ -28,7 +28,7 @@
               {{label.key}}: {{label.value}}
             </button>
           </div>
-          <div *ngIf="!labels" class="col-sm text-right">No</div>
+          <div *ngIf="!labels" class="col-sm text-right">{{'tables.no' | translate}}</div>
         </div>
         <br>
         <!-- Groups -->
@@ -46,7 +46,7 @@
             <!-- Services -->
             <div class="services-bg">
               <div *ngFor="let service of group.service_instances" class="row">
-                <div *ngIf="!group.service_instances" class="col-sm text-right">No services</div>
+                <div *ngIf="!group.service_instances" class="col-sm text-right">{{'apps.instance.noServices' | translate}}</div>
                 <div *ngIf="group.service_instances" class="col-sm mb-3">
                   <div class="row">
                     <div class="col-sm modal-info-table-title mb-3 dark-grey">{{service.name}}</div>
@@ -64,7 +64,7 @@
                           'big-status-dot-process': classStatusCheck(service.status_name, 'service_waiting') || 
                             classStatusCheck (service.status_name, 'service_scheduled')
                         }"
-                        tooltip="{{service.status_name}}" 
+                        tooltip="{{getBeautyStatusName(service.status_name)}}" 
                         placement="bottom"
                         class="big-status-dot">
                         <span class="fw-black">
@@ -129,7 +129,7 @@
                   </div>
                   <div *ngIf="!service.credentials"  class="row">
                     <div class="col-sm modal-info-table-title">{{'tables.tableCredentials' | translate}}</div>
-                    <div class="col-sm text-right">No credentials have been set</div>
+                    <div class="col-sm text-right">{{'apps.instance.noCredentials' | translate}}</div>
                   </div>
                   <br>
                   <div class="row">
@@ -152,7 +152,7 @@
             <!-- Services -->
             <div class="services-bg">
               <div *ngFor="let service of group.services" class="row">
-                <div *ngIf="!group.services" class="col-sm text-right">No services</div>
+                <div *ngIf="!group.services" class="col-sm text-right">{{'apps.instance.noServices' | translate}}</div>
                 <div *ngIf="group.services" class="col-sm mb-3">
                   <div class="row">
                     <div class="col-sm modal-info-table-title mb-3 dark-grey">{{service.name}}</div>
@@ -265,7 +265,7 @@
                   </div>
                   <div *ngIf="rule.device_group_names" class="row">
                     <div class="col-sm-2"></div>
-                    <div class="col-sm-4 modal-info-table-title">Devices group{{'tables.tableDevicesGroup' | translate}}</div>
+                    <div class="col-sm-4 modal-info-table-title">{{'tables.tableDevicesGroup' | translate}}</div>
                     <div class="col-sm col-right-low">{{rule.device_group_names}}</div>
                   </div>
                   <br>
@@ -283,7 +283,7 @@
       <!-- Option button -->
       <div class="form-group-btn app-info-detailed-p">
         <button (click)="closeModal()" class="nalej-form-btn-blue">
-          <span class="align-bottom">{{'modals.buttonClose' | translate}}</span>
+          <span class="align-bottom">{{'buttons.close' | translate}}</span>
         </button>
       </div>
     </div>

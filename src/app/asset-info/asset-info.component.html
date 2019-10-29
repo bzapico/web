@@ -1,138 +1,138 @@
 
 <div class="modal-card modal-card-info">
-    <div class="modal-content">
-      <!-- Header -->
-      <div class="modal-header">
-        <h3 class="modal-info-title mb-4">Asset info</h3>
-      </div>
-      <!-- Body -->
-      <div class="modal-body">
-        <h3 class="modal-info-h3-title">{{assetId}}</h3>
-        <p class="modal-info-image">on 
-          <span (click)="openEdgeControllerInfo()" class="blue text-uppercase cursor-pointer">
-            {{ecName}}
-          </span>
-        </p>
-        <p *ngIf="!assetIp" class="modal-info-title-sm">IP address undefined</p>
-        <p *ngIf="assetIp" class="modal-info-title-sm">{{assetIp}}</p>
-        <div class="scroll-app-info">
-          <div class="row">
-            <div class="col-sm modal-info-table-title mb-3">Status</div>
-            <h3 class="modal-info-h3-title col-sm text-right">
-              <span 
-                [ngClass]=
-                "{
-                  'big-status-dot': status === 'ONLINE',
-                  'big-status-dot-error': status === 'OFFLINE'
-                }"
-                tooltip="{{status}}" 
-                placement="bottom"
-                class="big-status-dot">
-              </span>
-              <span class="fw-black">
-                {{status}}
-              </span>
-            </h3>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-sm modal-info-table-title mb-3">Creation date</div>
-            <div class="col-sm text-right">{{parseTimestampToDate(created)}}</div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-sm modal-info-table-title mb-3">Labels</div>
-          </div>
-          <div *ngFor="let label of labels | keyvalue" class="row">
-            <div *ngIf="labels" class="col-sm text-right">
-              <button class="label-content-disabled" disabled>
-                  {{label.key}}: {{label.value}}
-              </button>
-            </div>
-            <div *ngIf="!labels" class="col-sm text-right">No</div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-sm modal-info-table-title mb-3">OS</div>
-            <div class="col-sm text-right">{{class}} {{version}}</div>
-          </div>
-          <br>
-          <div *ngFor="let cpu of cpus; index as i" class="row"> 
-            <div class="col">
-            <div class="row">
-              <div class="col-sm modal-info-table-title mb-3">CPU</div>
-              <div class="col-sm text-right">{{i + 1}}</div>
-            </div>
-            <div class="row">
-              <div class="col-sm-2"></div>
-              <div class="col-sm-4 modal-info-table-title">Manufacturer</div>
-              <div class="col-sm text-right">{{cpu.manufacturer}}</div>
-            </div>
-            <div class="row">
-              <div class="col-sm-2"></div>
-              <div class="col-sm-4 modal-info-table-title">Model</div>
-              <div class="col-sm text-right">{{cpu.model}}</div>
-            </div>
-            <div class="row">
-              <div class="col-sm-2"></div>
-              <div class="col-sm-4 modal-info-table-title">Architecture</div>
-              <div class="col-sm col-right-low">{{cpu.architecture}}</div>
-            </div>
-            <div class="row">
-              <div class="col-sm-2"></div>
-              <div class="col-sm-4 modal-info-table-title">Cores</div>
-              <div class="col-sm col-right-low">{{cpu.num_cores}}</div>
-            </div>
-          </div>
+  <div class="modal-content">
+    <!-- Header -->
+    <div class="modal-header">
+      <h3 class="modal-info-title mb-4">{{'infrastructure.assetInfo.title' | translate}}</h3>
+    </div>
+    <!-- Body -->
+    <div class="modal-body">
+      <h3 class="modal-info-h3-title">{{assetId}}</h3>
+      <p class="modal-info-image"> {{'infrastructure.assetInfo.on' | translate}}
+        <span (click)="openEdgeControllerInfo()" class="blue text-uppercase cursor-pointer">
+          {{ecName}}
+        </span>
+      </p>
+      <p *ngIf="!assetIp" class="modal-info-title-sm">{{'infrastructure.assetInfo.ipAdd' | translate}}</p>
+      <p *ngIf="assetIp" class="modal-info-title-sm">{{assetIp}}</p>
+      <div class="scroll-app-info">
+        <div class="row">
+          <div class="col-sm modal-info-table-title mb-3">{{'tables.tableStatus' | translate}}</div>
+          <h3 class="modal-info-h3-title col-sm text-right">
+            <span 
+              [ngClass]=
+              "{
+                'big-status-dot': status === 'ONLINE',
+                'big-status-dot-error': status === 'OFFLINE'
+              }"
+              tooltip="{{status}}" 
+              placement="bottom"
+              class="big-status-dot">
+            </span>
+            <span class="fw-black">
+              {{status}}
+            </span>
+          </h3>
         </div>
         <br>
         <div class="row">
-          <div class="col-sm modal-info-table-title mb-3">RAM</div>
-          <div class="col-sm text-right">{{capacity}} Gb</div>
+          <div class="col-sm modal-info-table-title mb-3">{{'infrastructure.assetInfo.creationDate' | translate}}</div>
+          <div class="col-sm text-right">{{parseTimestampToDate(created)}}</div>
         </div>
         <br>
-        <div *ngFor="let storage of storages; index as i" class="row"> 
+        <div class="row">
+          <div class="col-sm modal-info-table-title mb-3">{{'tables.tableLabels' | translate}}</div>
+        </div>
+        <div *ngFor="let label of labels | keyvalue" class="row">
+          <div *ngIf="labels" class="col-sm text-right">
+            <button class="label-content-disabled" disabled>
+                {{label.key}}: {{label.value}}
+            </button>
+          </div>
+          <div *ngIf="!labels" class="col-sm text-right">{{'infrastructure.assetInfo.no' | translate}}</div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm modal-info-table-title mb-3">{{'infrastructure.assetInfo.os' | translate}}</div>
+          <div class="col-sm text-right">{{class}} {{version}}</div>
+        </div>
+        <br>
+        <div *ngFor="let cpu of cpus; index as i" class="row"> 
           <div class="col">
-            <div *ngIf="storage" class="row">
-              <div class="col-sm modal-info-table-title mb-3">Storage #{{i + 1}}</div>
-            </div>
-            <div *ngIf="storage.type" class="row">
-              <div class="col-sm-2"></div>
-              <div class="col-sm-4 modal-info-table-title">Type</div>
-              <div class="col-sm text-right">{{storage.type}}</div>
-            </div>
-            <div *ngIf="storage.total_capacity" class="row">
-              <div class="col-sm-2"></div>
-              <div class="col-sm-4 modal-info-table-title">Total capacity</div>
-              <div class="col-sm text-right">{{storage.total_capacity}}</div>
-            </div>
-            <br>
-         </div>  
+          <div class="row">
+            <div class="col-sm modal-info-table-title mb-3">{{'infrastructure.assetInfo.cpu' | translate}}</div>
+            <div class="col-sm text-right">{{i + 1}}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4 modal-info-table-title">{{'infrastructure.assetInfo.manufacturer' | translate}}</div>
+            <div class="col-sm text-right">{{cpu.manufacturer}}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4 modal-info-table-title">{{'infrastructure.assetInfo.model' | translate}}</div>
+            <div class="col-sm text-right">{{cpu.model}}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4 modal-info-table-title">{{'infrastructure.assetInfo.architecture' | translate}}</div>
+            <div class="col-sm col-right-low">{{cpu.architecture}}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4 modal-info-table-title">{{'infrastructure.assetInfo.cores' | translate}}</div>
+            <div class="col-sm col-right-low">{{cpu.num_cores}}</div>
+          </div>
         </div>
-        <br>
-        <div class="row">
-          <div class="col-sm modal-info-table-title mb-3">Networking specs</div>
-        </div>
-        <div *ngIf="netInterfaces" class="row">
-          <div class="col-sm"></div>
-          <div class="col-sm modal-info-table-title">Type</div>
-          <div class="col-sm text-right modal-info-table-title">Capacity</div>
-        </div>
-        <div *ngFor="let netInterface of netInterfaces" class="row">
-          <div class="col-sm"></div>
-          <div *ngIf="netInterface.type" class="col-sm">{{netInterface.type}}</div>
-          <div *ngIf="!netInterface.type" class="col-sm">-</div>
-          <div *ngIf="netInterface.link_capacity" class="col-sm text-right">{{netInterface.link_capacity}}</div>
-          <div *ngIf="!netInterface.link_capacity" class="col-sm text-right">-</div>
-        </div>
-        <br>
-      </div>      
-        <!-- Option button -->
-        <div class="form-group-btn">
-          <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">
-            <span class="align-bottom">Close</span>
-          </button>
-        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm modal-info-table-title mb-3">{{'infrastructure.assetInfo.ram' | translate}}</div>
+        <div class="col-sm text-right">{{capacity}} {{'infrastructure.assetInfo.gb' | translate}}</div>
+      </div>
+      <br>
+      <div *ngFor="let storage of storages; index as i" class="row"> 
+        <div class="col">
+          <div *ngIf="storage" class="row">
+            <div class="col-sm modal-info-table-title mb-3">{{'infrastructure.assetInfo.storage' | translate}} #{{i + 1}}</div>
+          </div>
+          <div *ngIf="storage.type" class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4 modal-info-table-title">{{'infrastructure.assetInfo.type' | translate}}</div>
+            <div class="col-sm text-right">{{storage.type}}</div>
+          </div>
+          <div *ngIf="storage.total_capacity" class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4 modal-info-table-title">{{'infrastructure.assetInfo.totalCapacity' | translate}}</div>
+            <div class="col-sm text-right">{{storage.total_capacity}}</div>
+          </div>
+          <br>
+        </div>  
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm modal-info-table-title mb-3">{{'infrastructure.assetInfo.netSpecs' | translate}}</div>
+      </div>
+      <div *ngIf="netInterfaces" class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm modal-info-table-title">{{'infrastructure.assetInfo.type' | translate}}</div>
+        <div class="col-sm text-right modal-info-table-title">{{'infrastructure.assetInfo.capacity' | translate}}</div>
+      </div>
+      <div *ngFor="let netInterface of netInterfaces" class="row">
+        <div class="col-sm"></div>
+        <div *ngIf="netInterface.type" class="col-sm">{{netInterface.type}}</div>
+        <div *ngIf="!netInterface.type" class="col-sm">-</div>
+        <div *ngIf="netInterface.link_capacity" class="col-sm text-right">{{netInterface.link_capacity}}</div>
+        <div *ngIf="!netInterface.link_capacity" class="col-sm text-right">-</div>
+      </div>
+      <br>
+    </div>      
+      <!-- Option button -->
+      <div class="form-group-btn">
+        <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">
+          <span class="align-bottom">{{'buttons.close' | translate}}</span>
+        </button>
       </div>
     </div>
   </div>
+</div>

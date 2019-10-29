@@ -145,57 +145,19 @@ export class ApplicationsService {
    */
   classStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case AppStatus.Running: {
-        if (className.toLowerCase() === AppStatus.Running) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.DeploymentError: {
-        if (className.toLowerCase() === AppStatus.DeploymentError) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.Error: {
-        if (className.toLowerCase() === AppStatus.Error) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.Incomplete: {
-        if (className.toLowerCase() === AppStatus.Incomplete) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.PlanningError: {
-        if (className.toLowerCase() === AppStatus.PlanningError) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.Queued: {
-        if (className.toLowerCase() === AppStatus.Process) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.Planning: {
-        if (className.toLowerCase() === AppStatus.Process) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.Scheduled: {
-        if (className.toLowerCase() === AppStatus.Process) {
-          return true;
-        }
-        break;
-      }
-      default: {
-        return (className.toLowerCase() === AppStatus.Process);
-      }
+      case AppStatus.Running:
+        return className.toLowerCase() === AppStatus.Running;
+      case AppStatus.DeploymentError:
+      case AppStatus.PlanningError:
+      case AppStatus.Incomplete:
+      case AppStatus.Error:
+        return className.toLowerCase() === AppStatus.Error;
+      case AppStatus.Queued:
+      case AppStatus.Planning:
+      case AppStatus.Scheduled:
+        return className.toLowerCase() === AppStatus.Process;
+      default:
+        return className.toLowerCase() === AppStatus.Process;
     }
   }
 }

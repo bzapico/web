@@ -9,6 +9,8 @@ import { mockClusterChart } from '../services/utils/clusters.mock';
 import { ActivatedRoute } from '@angular/router';
 import { Cluster } from '../definitions/interfaces/cluster';
 import { AddLabelComponent } from '../add-label/add-label.component';
+import { ClusterStatus } from '../definitions/enums/cluster-status.enum';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cluster',
@@ -123,7 +125,8 @@ export class ClusterComponent implements OnInit {
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.clusterMock) || null;
     // check which backend is required (fake or real)
@@ -154,51 +157,33 @@ export class ClusterComponent implements OnInit {
    * Mocked Charts
    */
     Object.assign(this, {mockClusterChart, mockNodesChart});
-   }
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.clusterId = params['clusterId']; // (+) converts string 'id' to a number
-   });
+    });
      // Get User data from localStorage
-     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
-     if (jwtData !== null) {
-       this.organizationId = JSON.parse(jwtData).organizationID;
-       if (this.organizationId !== null) {
+      const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+      if (jwtData !== null) {
+        this.organizationId = JSON.parse(jwtData).organizationID;
+        if (this.organizationId !== null) {
          // Requests top card summary data
-         this.backend.getResourcesSummary(this.organizationId)
+          this.backend.getResourcesSummary(this.organizationId)
           .subscribe(summary => {
             this.clustersCount = summary['total_clusters'];
             this.nodesCount = summary['total_nodes'];
           });
-         this.updateNodesList();
-       }
-     }
-     this.backend.getClusterDetail(this.organizationId, this.clusterId)
+          this.updateNodesList();
+        }
+      }
+      this.backend.getClusterDetail(this.organizationId, this.clusterId)
       .subscribe(cluster => {
         this.preventEmptyFields(cluster);
         this.clusterData = cluster;
         this.clusterPieChart = this.generateSummaryChartData(this.clusterData.running_nodes, this.clusterData.total_nodes);
       });
   }
-
-  /**
-   * Generates the NGX-Chart required JSON object for pie chart rendering
-   * @param running Number of running nodes in a cluster
-   * @param total Number of total nodes in a cluster
-   * @returns anonym array with the required object structure for pie chart rendering
-   */
-  generateClusterChartData(running: number, total: number): any[] {
-    return [
-      {
-        name: 'Running',
-        value: running
-      },
-      {
-        name: 'Stopped',
-        value: total - running
-      }];
-    }
 
   /**
    * Checks if the cluster status requires an special css class
@@ -208,24 +193,16 @@ export class ClusterComponent implements OnInit {
   classStatusCheck(status: string, className: string): boolean {
     status = status || '';
     switch (status.toLowerCase()) {
-      case 'running': {
-        if (className.toLowerCase() === 'running') {
-          return true;
-        }
-        break;
-      }
-      case 'error': {
-        if (className.toLowerCase() === 'error') {
-          return true;
-        }
-        break;
-      }
-     default: {
-        if (className.toLowerCase() === 'process') {
-          return true;
-        }
-        return false;
-      }
+      case ClusterStatus.Running:
+      case ClusterStatus.Online:
+      case ClusterStatus.OnlineCordon:
+        return className.toLowerCase() === ClusterStatus.Running;
+        case ClusterStatus.Error:
+        case ClusterStatus.Offline:
+        case ClusterStatus.OfflineCordon:
+        return className.toLowerCase() === ClusterStatus.Error;
+      default:
+        return className.toLowerCase() === ClusterStatus.Unknown;
     }
   }
 
@@ -287,7 +264,7 @@ export class ClusterComponent implements OnInit {
    * @param entity selected label entity
    */
   deleteLabel(entity) {
-    const deleteConfirm = confirm('Delete labels?');
+    const deleteConfirm = confirm(this.translateService.instant('label.deleteLabels'));
     if (deleteConfirm) {
       const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.node_id);
       this.backend.updateNode(
@@ -336,7 +313,7 @@ export class ClusterComponent implements OnInit {
     }
   }
 
- /**
+  /**
   * Check if the label is selected. Return index number in selected labels or -1 if the label is not found.
   * @param entityId entity from selected label
   * @param labelKey label key from selected label
@@ -370,7 +347,7 @@ export class ClusterComponent implements OnInit {
   /**
    * Requests an updated list of available nodes to update the current one
    */
- updateNodesList() {
+  updateNodesList() {
     this.requestError = ''; // Empty error before requesting new list
     // Requests an updated nodes list
     this.backend.getNodes(this.organizationId, this.clusterId)
@@ -408,11 +385,11 @@ export class ClusterComponent implements OnInit {
   private generateSummaryChartData(running: number, total: number): any[] {
     return [
       {
-        name: 'Running',
+        name: this.translateService.instant('status.runningUp'),
         value: running
       },
       {
-        name: 'Stopped',
+        name: this.translateService.instant('status.stopped'),
         value: total - running
       }];
   }

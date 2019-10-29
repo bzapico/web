@@ -3,16 +3,16 @@
   <div class="modal-content">
     <!-- Header -->
     <div class="modal-header">
-      <h3 class="modal-info-title mb-4">EDGE CONTROLLER INFO</h3>
+      <h3 class="modal-info-title mb-4">{{'infrastructure.ecInfo.title' | translate}}</h3>
     </div>
     <!-- Body -->
     <div class="modal-body">
       <h3 class="modal-info-h3-title">{{name}}</h3>
-      <p class="modal-info-image">Attached on {{parseTimestampToDate(created)}}</p>
+      <p class="modal-info-image">{{'infrastructure.ecInfo.attached' | translate}}{{parseTimestampToDate(created)}}</p>
       <p class="modal-info-title-sm">{{id}}</p>
       <div class="scroll-app-info">
         <div class="row">
-          <div class="col-sm modal-info-table-title mb-3">Status</div>
+          <div class="col-sm modal-info-table-title mb-3">{{'tables.tableStatus' | translate}}</div>
           <h3 class="modal-info-h3-title col-sm text-right">
             <span 
               [ngClass]=
@@ -31,7 +31,7 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-sm modal-info-table-title mb-3">Labels</div>
+          <div class="col-sm modal-info-table-title mb-3">{{'tables.tableLabels' | translate}}</div>
         </div>
         <div *ngFor="let label of labels| keyvalue" class="row">
           <div *ngIf="labels" class="col-sm text-right">
@@ -39,17 +39,17 @@
               {{label.key}}: {{label.value}}
             </button>
           </div>
-          <div *ngIf="!labels" class="col-sm text-right">No</div>
+          <div *ngIf="!labels" class="col-sm text-right">{{'tables.no' | translate}}</div>
         </div>
         <br>
         <span *ngIf="assets">
           <div class="row">
-            <div class="col-sm modal-info-table-title mb-3">Assets</div>
+            <div class="col-sm modal-info-table-title mb-3">{{'infrastructure.quickFilters.tooltipAssets' | translate}}</div>
           </div>
             <div class="row">
               <div class="col-sm-2"></div>
-              <div class="col-sm-6 modal-info-table-title"> ID</div>
-              <div class="col-sm-4 text-right modal-info-table-title">Status</div>
+              <div class="col-sm-6 modal-info-table-title"> {{'tables.tableID' | translate}}</div>
+              <div class="col-sm-4 text-right modal-info-table-title">{{'tables.tableStatus' | translate}}</div>
             </div>
             <br>
           </span>
@@ -75,7 +75,7 @@
             </span>
             <span *ngIf="!assets">
             <div class="row">
-              <div class="col-sm text-right">No</div>
+              <div class="col-sm text-right">{{'tables.no' | translate}}</div>
             </div>
           </span>
         </div>
@@ -84,7 +84,7 @@
       <!-- Option button -->
       <div class="form-group-btn">
         <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">
-          <span class="align-bottom">Close</span>
+          <span class="align-bottom">{{'buttons.close' | translate}}</span>
         </button>
       </div>
     </div>

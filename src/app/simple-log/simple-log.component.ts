@@ -4,6 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-simple-log',
@@ -38,7 +39,8 @@ export class SimpleLogComponent implements OnInit {
   constructor(
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
-    private mockupBackendService: MockupBackendService
+    private mockupBackendService: MockupBackendService,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.simpleLogMock) || null;
     // check which backend is required (fake or real)
@@ -49,10 +51,10 @@ export class SimpleLogComponent implements OnInit {
     }
     this.lastOpSummary = {
       timestamp: 0,
-      info: 'No info available',
+      info: this.translateService.instant('infrastructure.asset.noInfo'),
       status: '-'
     };
-   }
+  }
 
   ngOnInit() {
   }

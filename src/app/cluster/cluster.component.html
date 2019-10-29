@@ -1,7 +1,7 @@
 <!-- Component title -->
 <div class="row row-title">
   <div class="col-lg-12">
-    <h2 class="section-title">RESOURCES</h2>
+    <h2 class="section-title">{{'resources.title' | translate}}</h2>
   </div>
 </div>
 <!-- Cluster info card -->
@@ -10,7 +10,7 @@
     <div class="card">
       <div class="card-title-name">
         <h5 class="d-inline text-uppercase">{{clusterData.name | truncate}}</h5>
-        <p class="cluster-number hide-lg">STATUS</p>
+        <p class="cluster-number hide-lg text-uppercase">{{'tables.tableStatus' | translate}}</p>
       </div>
       <!-- Cluster card -->
         <div class="summary-box">
@@ -31,7 +31,7 @@
   <div class="col-lg-9 h-100">
     <div class="card">
       <div class="card-title-name">
-        <h5>SUMMARY</h5>
+        <h5>{{'resources.summary' | translate}}</h5>
       </div>
       <div class="summary-card">
         <div class="summary-box">
@@ -47,22 +47,22 @@
               {{clusterData.running_nodes}}/{{clusterData.total_nodes}}
             </div>
           </div>
-          <p class="nodes-run">{{clusterData.running_nodes}} running</p>
-          <p class="circle-name mt-0">NODES</p>
+          <p class="nodes-run">{{clusterData.running_nodes}} {{'status.running' | translate}}</p>
+          <p class="circle-name mt-0">{{'resources.nodes' | translate}}</p>
         </div>
         <div class="summary-box" id="scroll-cluster-table">
           <table class="table cluster-summary-table">
             <tr>
-              <th>ID</th>
+              <th>{{'tables.tableID' | translate}}</th>
               <td>{{clusterData.cluster_id}}</td>
             </tr>
             <tr>
-              <th>Types</th>
+              <th>{{'tables.tableType' | translate}}</th>
               <td class="text-lowercase">{{clusterData.cluster_type_name}}</td> 
             </tr>
             <tr>
-              <th>Labels</th>
-              <td *ngIf="!clusterData.labels || clusterData.labels === {} "> no </td>
+              <th>{{'tables.tableLabels' | translate}}</th>
+              <td *ngIf="!clusterData.labels || clusterData.labels === {} "> {{'tables.no' | translate}} </td>
               <td *ngIf="clusterData.labels">
                 <button *ngFor="let label of clusterData.labels| keyvalue" class="label-content-disabled" disabled>
                   <span *ngIf="label.key">{{label.key}}: {{label.value}}</span>  
@@ -70,7 +70,7 @@
               </td>
             </tr>
             <tr>
-              <th>Multitenant</th>
+              <th>{{'tables.tableMultitenant' | translate}}</th>
               <td class="text-lowercase">{{clusterData.multitenant_support}}</td>
             </tr>
           </table>
@@ -89,12 +89,12 @@
             [routerLink]="['/resources']" 
             routerLinkActive="active" 
             class="blue">
-            CLUSTER
+            {{'resources.cluster' | translate}}
           </a>
           <span class="grey"> > </span> 
-          <b>NODES</b>
+          <b>{{'resources.nodes' | translate}}</b>
           <span class="grey text-uppercase">
-             > {{clusterData.name}} 
+            > {{clusterData.name}} 
           </span>
         </h5>
       </div>
@@ -102,21 +102,21 @@
         <!-- Sorting messages -->
         <div class="col-8">  
           <p *ngIf="searchTerm && !filterField" class="sorting-message">
-            Filtered by term "{{ searchTerm }}".
-            <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
+              {{'sortingMessage.filteredBy' | translate:{value: searchTerm} }}
+            <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
           </p>
           <p *ngIf="filterField && !searchTerm" class="sorting-message">
-            Sorted by {{ sortedBy }},
-            <span *ngIf="reverse">ascendant. </span>
-            <span *ngIf="!reverse">descendant. </span>
-            <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
+              {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
+            <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: '. '} }} </span>
+            <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: '. '} }}</span>
+            <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
           </p>
           <p *ngIf="filterField && searchTerm" class="sorting-message">
-            Sorted by {{ sortedBy }}
-            <span *ngIf="reverse">ascendant </span>
-            <span *ngIf="!reverse">descendant </span>
-            and filtered by term "{{ searchTerm }}".
-            <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>
+            {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }}
+            <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ' '} }}</span>
+            <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: ' '} }}</span>
+            {{'sortingMessage.andFilteredBy' | translate:{value: searchTerm} }}
+            <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
           </p> 
         </div>
         <!-- Search input -->
@@ -127,7 +127,7 @@
                 name="searchTerm" 
                 [(ngModel)]="searchTerm"
                 type="text" 
-                placeholder="Search..."
+                placeholder="{{'searcher.placeholder' | translate }}"
                 class="form-control"> 
                 <div *ngIf="searchTerm === ''" class="search-icon">
                   <i class="material-icons">search</i>
@@ -154,7 +154,7 @@
                 [ngClass]="getCategoryCSSClass('node_id')"
                 scope="col" 
                 class="col-4 label-th ">
-                <span tooltip="ID" placement="bottom">ID</span>
+                <span tooltip="ID" placement="bottom">{{'tables.tableID' | translate}}</span>
                 <span *ngIf="sortedBy === 'node_id' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -167,7 +167,7 @@
                 [ngClass]="getCategoryCSSClass('ip')"
                 scope="col" 
                 class="col-3 label-th ">
-                <span tooltip="IP" placement="bottom">IP</span>
+                <span tooltip="IP" placement="bottom">{{'tables.tableIP' | translate}}</span>
                 <span *ngIf="sortedBy === 'ip' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -180,7 +180,7 @@
                 [ngClass]="getCategoryCSSClass('state_name')"
                 scope="col" 
                 class="col-3 label-th ">
-                <span tooltip="State" placement="bottom">State</span>
+                <span tooltip="State" placement="bottom">{{'tables.tableState' | translate}}</span>
                 <span *ngIf="sortedBy === 'state_name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -193,7 +193,7 @@
                 [ngClass]="getCategoryCSSClass('status_name')"
                 scope="col" 
                 class="col-2 label-th  text-center">
-                <span tooltip="Status" placement="bottom">Status</span>
+                <span tooltip="Status" placement="bottom">{{'tables.tableStatus' | translate}}</span>
                 <span *ngIf="sortedBy === 'status_name' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -208,7 +208,7 @@
                 [ngClass]="getCategoryCSSClass('labels')"
                 scope="col" 
                 class="col-12 label-th">
-                <span tooltip="Labels" placement="bottom">Labels</span>
+                <span tooltip="Labels" placement="bottom">{{'tables.tableLabels' | translate}}</span>
                 <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                   <i class="material-icons">expand_more</i>
                 </span>
@@ -245,7 +245,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-12" *ngIf="!node.labels"> no </div>
+              <div class="col-12" *ngIf="!node.labels"> {{'tables.no' | translate}} </div>
               <div class="col-12" *ngIf="node.labels">
                 <button 
                   *ngFor="let label of node.labels | keyvalue" 
@@ -262,7 +262,7 @@
                   <div 
                     *ngIf="isAnyLabelSelected(node.node_id) === false"
                     (click)="addLabel(node)"
-                    tooltip="Add" 
+                    tooltip="{{'label.addUp' | translate}}" 
                     placement="right"
                     class="label-btn-blue">
                     <i class="material-icons i-add">add</i>
@@ -270,7 +270,7 @@
                   <div 
                     *ngIf="isAnyLabelSelected(node.node_id) === true"
                     (click)="deleteLabel(node)"
-                    tooltip="Delete" 
+                    tooltip="{{'label.deleteUp' | translate}}" 
                     placement="right"
                     class="label-btn-red">
                     <i class="material-icons i-delete">delete</i>
@@ -287,9 +287,9 @@
         nodes && nodes.length === 0 &&
         !requestError"
         class="no-elements">
-        <p>There are not registered nodes in this cluster</p>
+        <p>{{'resources.noNodes' | translate}}</p>
       </div>
-       <!-- Requested error -->
+      <!-- Requested error -->
       <div *ngIf="loadedData && requestError" class="no-elements">
         <p>{{requestError}}</p>
       </div>

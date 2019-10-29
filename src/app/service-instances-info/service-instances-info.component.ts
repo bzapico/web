@@ -4,6 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { ServicesStatus } from '../definitions/enums/services-status.enum';
 
 @Component({
   selector: 'app-service-instances-info',
@@ -81,30 +82,14 @@ export class ServiceInstancesInfoComponent implements OnInit {
    */
   classStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case 'service_running': {
-        if (className.toLowerCase() === 'service_running') {
-          return true;
-        }
-        break;
-      }
-      case 'service_error': {
-        if (className.toLowerCase() === 'service_error') {
-          return true;
-        }
-        break;
-      }
-      case 'service_waiting': {
-        if (className.toLowerCase() === 'service_waiting') {
-          return true;
-        }
-        break;
-      }
-     default: {
-        if (className.toLowerCase() === 'service_scheduled') {
-          return true;
-        }
-        return false;
-      }
+      case ServicesStatus.ServiceRunning:
+        return className.toLowerCase() === ServicesStatus.ServiceRunning;
+      case ServicesStatus.ServiceError:
+        return className.toLowerCase() === ServicesStatus.ServiceError;
+      case ServicesStatus.ServiceWaiting:
+        return className.toLowerCase() === ServicesStatus.ServiceWaiting;
+      default:
+        return (className.toLowerCase() === ServicesStatus.ServiceWaiting);
     }
   }
 
