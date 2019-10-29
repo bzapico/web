@@ -105,7 +105,7 @@ export class InstallAgentComponent implements OnInit {
       name: ArchitectureType.LinAmd64,
       code: 0
     }, {
-      name:ArchitectureType.LinArm32,
+      name: ArchitectureType.LinArm32,
       code: 1
     }, {
       name: ArchitectureType.LinArm64,
