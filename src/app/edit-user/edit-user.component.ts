@@ -8,6 +8,8 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { RoleOptions } from '../definitions/enums/role-options.enum';
 
 /**
  * It sets the timeout in actions like undeploying or deleting
@@ -24,24 +26,20 @@ const TIMEOUT_ERROR = 5000;
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit {
-
   /**
    * Models that holds forms info
    */
   editUserForm: FormGroup;
   submitted = false;
   loading: boolean;
-
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Dialog title
    */
   title: string;
-
   /**
    * Models that hold organization id, user role, name, email and password
    */
@@ -52,7 +50,6 @@ export class EditUserComponent implements OnInit {
   rolesList: any[];
   selfEditProfile: boolean;
   profileRole: string;
-
   /**
    * NGX-select-dropdown
    */
@@ -70,12 +67,13 @@ export class EditUserComponent implements OnInit {
     private backendService: BackendService,
     private router: Router,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private translateService: TranslateService
   ) {
     this.roleOptions = [
-      'NalejAdmin',
-      'Operator',
-      'Developer'
+      RoleOptions.NalejAdmin,
+      RoleOptions.Operator,
+      RoleOptions.Developer
     ];
     const mock = localStorage.getItem(LocalStorageKeys.userEditMock) || null;
     // check which backend is required (fake or real)
@@ -92,11 +90,9 @@ export class EditUserComponent implements OnInit {
       email: [{value: '', disabled: true}],
       role: [null, Validators.required],
     });
-
     if (this.selfEditProfile === true) {
       this.userRole = this.profileRole;
     }
-
     this.selectConfig = {
       displayKey: 'role',
       search: false,
@@ -104,7 +100,7 @@ export class EditUserComponent implements OnInit {
       placeholder: this.userRole,
       limitTo: 3,
       moreText: 'more',
-      noResultsFound: 'No results found!'
+      noResultsFound: this.translateService.instant('apps.addConnection.noResults')
     };
     // Query role list
     this.backend.listRoles(this.organizationId)
@@ -117,24 +113,20 @@ export class EditUserComponent implements OnInit {
    * Convenience getter for easy access to form fields
    */
   get f() { return this.editUserForm.controls; }
-
   /**
    * Checks if the form has been modified before discarding changes
    * @param form Form object reference
    */
   discardChanges(form) {
     if (form.dirty) {
-      const discard = confirm('Discard changes?');
+      const discard = confirm(this.translateService.instant('modals.discardChanges'));
       if (discard) {
         this.bsModalRef.hide();
-      } else {
-        // Do nothing
       }
     } else {
       this.bsModalRef.hide();
     }
   }
-
   /**
    * Request to save the user data modifications
    * @param f Form object reference
@@ -156,21 +148,21 @@ export class EditUserComponent implements OnInit {
       .subscribe(response => {
         this.userName = f.userName.value;
         this.loading = false;
-        if (this.profileRole === 'NalejAdmin') {
+        if (this.profileRole === RoleOptions.NalejAdmin) {
           this.backend.changeRole(this.organizationId, this.email, this.getRoleId(f.role.value)).
           subscribe(responseRole => {
             this.notificationsService.add({
-              message: 'The user ' + this.userName + ' has been edited',
+              message: this.translateService.instant('organization.users.saveChange', {user: this.userName}),
               timeout: TIMEOUT_ACTION
             });
             this.bsModalRef.hide();
-            if (this.selfEditProfile === true && f.role.value === 'NalejAdmin') {
+            if (this.selfEditProfile === true && f.role.value === RoleOptions.NalejAdmin) {
               // no redirection for the nalejAdmin
-            } else if (this.selfEditProfile === true && f.role.value === 'Developer') {
+            } else if (this.selfEditProfile === true && f.role.value === RoleOptions.Developer) {
               this.router.navigate([
                 '/applications'
               ]);
-            } else if (this.selfEditProfile === true && f.role.value === 'Operator') {
+            } else if (this.selfEditProfile === true && f.role.value === RoleOptions.Operator) {
               this.router.navigate([
                 '/resources'
               ]);
@@ -178,7 +170,7 @@ export class EditUserComponent implements OnInit {
           }, error => {
             this.loading = false;
             this.notificationsService.add({
-              message: 'ERROR: ' + error.error.message,
+              message: this.translateService.instant('infrastructure.error', {error: error.error.message}),
               timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
@@ -187,7 +179,7 @@ export class EditUserComponent implements OnInit {
         } else {
           this.loading = false;
           this.notificationsService.add({
-            message: 'The user ' + this.userName + ' has been edited',
+            message:  this.translateService.instant('organization.users.saveChange', {user: this.userName}),
             timeout: TIMEOUT_ACTION
           });
           this.bsModalRef.hide();
@@ -195,7 +187,7 @@ export class EditUserComponent implements OnInit {
       }, error => {
         this.loading = false;
         this.notificationsService.add({
-          message: 'ERROR: ' + error.error.message,
+          message: this.translateService.instant('infrastructure.error', {error: error.error.message}),
           timeout: TIMEOUT_ERROR,
           type: 'warning'
         });
@@ -203,7 +195,6 @@ export class EditUserComponent implements OnInit {
       });
     }
   }
-
   /**
    * Search between roles list to get the required id
    * @param role Role name
@@ -218,7 +209,6 @@ export class EditUserComponent implements OnInit {
     });
     return roleId;
   }
-
   /**
    * Opens the modal view that holds change password editable component
    */

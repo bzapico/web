@@ -6,6 +6,8 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DebugPanelComponent } from '../debug-panel/debug-panel.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { NotificationsService } from '../services/notifications.service';
+import { TranslateService } from '@ngx-translate/core';
+import { RoleOptions } from '../definitions/enums/role-options.enum';
 
 /**
  * It sets the timeout for errors
@@ -23,17 +25,14 @@ export class LoginComponent implements OnInit {
    */
   loginForm: FormGroup;
   submitted = false;
-
   /**
    * Data model for user email
    */
   email: string;
-
   /**
    * Reference for the service that allows to open debug panel
    */
   modalRef: BsModalRef;
-
   /**
    * Loaded Data for login request status
    */
@@ -45,14 +44,15 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private modalService: BsModalService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private translateService: TranslateService
   ) {
   }
 
   ngOnInit() {
     if (this.route.snapshot.queryParamMap.get('unauthorized')) {
       this.notificationsService.add({
-        message: 'Session has expired, please log in',
+        message: this.translateService.instant('login.expired'),
         timeout: TIMEOUT_ERROR,
         type: 'warning'
       });
@@ -63,12 +63,10 @@ export class LoginComponent implements OnInit {
     });
     this.loginRequest = false;
   }
-
   /**
    * Convenience getter for easy access to form fields
    */
   get f() { return this.loginForm.controls; }
-
   /**
    * Triggered when clicking the login button and calls the login function on the auth service to check the credentials.
    * If credentials are correct, JWT Token would be stored in localStorage
@@ -88,17 +86,17 @@ export class LoginComponent implements OnInit {
           const jwtHelper: JwtHelperService = new JwtHelperService();
           const jwtTokenData = jwtHelper.decodeToken(response.token);
           switch (jwtTokenData.role) {
-            case 'NalejAdmin':
+            case RoleOptions.NalejAdmin:
               this.router.navigate([
                 '/organization'
               ]);
             break;
-            case 'Developer':
+            case RoleOptions.Developer:
               this.router.navigate([
                 '/applications'
               ]);
             break;
-            case 'Operator':
+            case RoleOptions.Operator:
               this.router.navigate([
                 '/resources'
               ]);
@@ -134,7 +132,6 @@ export class LoginComponent implements OnInit {
         }
       });
   }
-
   /**
    * Opens the modal view that holds the debug panel
    */
