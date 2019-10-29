@@ -9,15 +9,6 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
-
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
@@ -160,8 +151,7 @@ export class EditUserComponent implements OnInit {
           this.backend.changeRole(this.organizationId, this.email, this.getRoleId(f.role.value)).
           subscribe(responseRole => {
             this.notificationsService.add({
-              message: 'The user ' + this.userName + ' has been edited',
-              timeout: TIMEOUT_ACTION
+              message: 'The user ' + this.userName + ' has been edited'
             });
             this.bsModalRef.hide();
             if (this.selfEditProfile === true && f.role.value === 'NalejAdmin') {
@@ -179,7 +169,6 @@ export class EditUserComponent implements OnInit {
             this.loading = false;
             this.notificationsService.add({
               message: 'ERROR: ' + error.error.message,
-              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
             this.bsModalRef.hide();
@@ -187,8 +176,7 @@ export class EditUserComponent implements OnInit {
         } else {
           this.loading = false;
           this.notificationsService.add({
-            message: 'The user ' + this.userName + ' has been edited',
-            timeout: TIMEOUT_ACTION
+            message: 'The user ' + this.userName + ' has been edited'
           });
           this.bsModalRef.hide();
         }
@@ -196,7 +184,6 @@ export class EditUserComponent implements OnInit {
         this.loading = false;
         this.notificationsService.add({
           message: 'ERROR: ' + error.error.message,
-          timeout: TIMEOUT_ERROR,
           type: 'warning'
         });
         this.bsModalRef.hide();

@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
@@ -11,7 +10,6 @@ import { RegisterApplicationComponent } from '../register-application/register-a
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 import { Router } from '@angular/router';
 import { ManageConnectionsComponent } from '../manage-connections/manage-connections.component';
-import * as shape from 'd3-shape';
 import { Subscription, timer } from 'rxjs';
 import { NodeType } from '../definitions/enums/node-type.enum';
 import { GraphData } from '../definitions/models/graph-data';
@@ -20,65 +18,30 @@ import { AdvancedFilterOptionsComponent } from '../advanced-filter-options/advan
 import { TranslateService } from '@ngx-translate/core';
 import { ApplicationsService } from './applications.service';
 import { AppStatus } from '../definitions/enums/app-status.enum';
-/**
- * Refresh ratio
- */
-const REFRESH_INTERVAL = 20000;
-/**
- * It sets a height for clusters nodes in the graph
- */
-const CUSTOM_HEIGHT_CLUSTERS = 58;
-/**
- * It sets a height for instances nodes in the graph
- */
-const CUSTOM_HEIGHT_INSTANCES = 32;
-/**
- * It sets a height for registered nodes in the graph
- */
-const CUSTOM_HEIGHT_REGISTERED = 32;
-/**
- * It sets a border color for found nodes by a term in the graph
- */
-const FOUND_NODES_BORDER_COLOR = '#5800FF';
-/**
- * It sets a border size for found nodes by a term in the graph
- */
-const FOUND_NODES_BORDER_SIZE = 4;
-/**
- * It sets a color for registered nodes
- */
-const REGISTERED_NODES_COLOR = '#444444';
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
+import { ToolsComponent } from '../tools/tools.component';
 
 @Component({
   selector: 'applications',
   templateUrl: './applications.component.html',
   styleUrls: ['./applications.component.scss']
 })
-export class ApplicationsComponent implements OnInit, OnDestroy {
+export class ApplicationsComponent extends ToolsComponent implements OnInit, OnDestroy {
   /**
-   * Backend reference
+   * It sets a height for registered nodes in the graph
    */
-  backend: Backend;
+  private static readonly CUSTOM_HEIGHT_REGISTERED = 32;
   /**
-   * Model that hold organization ID
+   * It sets a color for registered nodes
    */
-  organizationId: string;
+  private static readonly REGISTERED_NODES_COLOR = '#444444';
+  /**
+   * It sets a color for registered nodes
+   */
+  private static readonly REGISTERED_NODES_TEXT_COLOR = '#FFFFFF';
   /**
    * Loaded Data status
    */
   loadedData: boolean;
-  /**
-   * List of available apps instances
-   */
-  instances: any[];
   /**
    * List of registered apps
    */
@@ -127,30 +90,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   requestError: string;
   /**
-   * Pie Chart options
-   */
-  gradient = true;
-  doughnut = true;
-  colorScheme = {
-    domain: ['#5800FF', '#828282']
-  };
-  /**
    * Graph options
    */
-  graphReset: boolean;
   graphDataLoaded: boolean;
-  graphData: GraphData<any[]>;
   searchGraphData: GraphData<KeyValue>;
-  orientation: string;
-  curve: any;
-  autoZoom: boolean;
-  autoCenter: boolean;
-  enableZoom: boolean;
-  colorSchemeGraph: any;
-  view: any[];
-  width: number;
-  height: string;
-  draggingEnabled: boolean;
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
@@ -166,7 +109,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * Model that hold the search term in search box
    */
   searchTerm: string;
-  searchTermGraph: string;
   searchTermRegistered: string;
   /**
    * Model that hold the quick filter
@@ -215,6 +157,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     private notificationsService: NotificationsService,
     private translateService: TranslateService,
     private router: Router) {
+    super();
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -222,8 +165,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     } else {
       this.backend = this.backendService;
     }
-    // Default initialization
-    this.instances = [];
     this.registered = [];
     this.labels = [];
     this.countRegistered = 0;
@@ -237,7 +178,6 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.reverse = false;
     this.reverseRegistered = false;
     this.searchTerm = '';
-    this.searchTermGraph = '';
     this.searchTermRegistered = '';
     this.showInstances = true;
     this.quickFilter = '';
@@ -245,18 +185,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this.filterField = false;
     this.filterFieldRegistered = false;
     // Graph initialization
-    this.graphReset = false;
-    this.orientation = 'TB';
-    this.curve = shape.curveBasis;
-    this.autoZoom = true;
-    this.autoCenter = true;
-    this.enableZoom = true;
-    this.draggingEnabled = false;
-    this.colorSchemeGraph = {
-      domain: ['#6C86F7']
-    };
     this.graphDataLoaded = false;
-    this.graphData = new GraphData([], []);
     this.searchGraphData = new GraphData({}, {});
     this.foundOccurrenceInCluster = false;
     this.foundOccurrenceInInstance = false;
@@ -268,13 +197,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // Get User data from localStorage
-    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
-    if (jwtData !== null) {
-      this.organizationId = JSON.parse(jwtData).organizationID;
-      if (this.organizationId !== null) {
-        this.refreshData();
-      }
+    super.ngOnInit();
+    if (this.organizationId !== null) {
+      this.refreshData();
     }
     this.showManageSubscription = this.applicationsService.showManageConnections.subscribe(show => {
       if (show) {
@@ -617,14 +542,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         .subscribe(() => {
           app.undeploying = true;
           this.notificationsService.add({
-            message:  this.translateService.instant('apps.instance.undeployMessage', { appName: app.name }),
-            timeout: TIMEOUT_ACTION
+            message:  this.translateService.instant('apps.instance.undeployMessage', { appName: app.name })
           });
           this.updateAppInstances(this.organizationId);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });
@@ -653,14 +576,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.backend.deleteRegistered(this.organizationId, app.app_descriptor_id)
         .subscribe(deleteResponse => {
           this.notificationsService.add({
-            message: this.translateService.instant('apps.registered.deleting', { appName: app.name }),
-            timeout: TIMEOUT_ACTION
+            message: this.translateService.instant('apps.registered.deleting', { appName: app.name })
           });
           this.updateRegisteredInstances(this.organizationId);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });
@@ -718,51 +639,34 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       this.isSearchingInGraph = true;
       if (Object.values(this.searchGraphData.nodes)
           .filter(node => node.label.toLowerCase().includes(this.searchTermGraph.toLowerCase())).length > 0) {
-        this.toGraphData(this.searchTermGraph);
+        this.toGraphData();
       }
       this.occurrencesGraphCounter();
     }
   }
   /**
-   * It returns filtered app instances avoiding duplicated instances by cluster ID
-   * @param clusterId Identifier for the cluster
-   */
-  private getAppsInCluster(clusterId: string) {
-    const appsInCluster = {};
-    if (this.instances) {
-      for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
-        const groups = this.instances[indexInstance].groups || [];
-        for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
-          const serviceInstances = groups[indexGroup].service_instances || [];
-          for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
-            if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
-              appsInCluster[serviceInstances[indexService].app_instance_id] = this.instances[indexInstance];
-            }
-          }
-        }
-      }
-    }
-    return Object.values(appsInCluster);
-  }
-  /**
    * Transforms the data needed to create the graph
    */
-  toGraphData(searchTermGraph?: string) {
+  toGraphData() {
     this.graphData.reset([], []);
     this.searchGraphData.reset({}, {});
     this.foundOccurrenceInCluster = false;
     this.foundOccurrenceInInstance = false;
     this.foundOccurrenceInRegistered = false;
-    if (searchTermGraph) {
-      searchTermGraph = searchTermGraph.toLowerCase();
+    if (this.searchTermGraph) {
+      this.searchTermGraph = this.searchTermGraph.toLowerCase();
     }
     this.clusters.forEach(cluster => {
       if (this.filters.clusters) {
-        this.setClusters(cluster, searchTermGraph);
+        this.setClusters(cluster);
       }
-      this.setRegisteredAndInstances(cluster, searchTermGraph);
+      this.setRegisteredAndInstances(cluster);
     });
-    this.setLinksBetweenApps();
+    if ((!this.foundOccurrenceInRegistered && !this.foundOccurrenceInInstance && !this.foundOccurrenceInCluster)
+        || ((this.foundOccurrenceInRegistered || this.foundOccurrenceInInstance || this.foundOccurrenceInCluster)
+            && !this.initialState.showOnlyNodes)) {
+      this.setLinksBetweenApps();
+    }
     this.setRelatedNodes();
     this.graphDataLoaded = true;
   }
@@ -789,27 +693,12 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
       if (this.initialState.showRelatedNodes) {
         this.initialState.showOnlyNodes = true;
       }
-      this.toGraphData(this.searchTermGraph);
+      this.toGraphData();
       this.occurrencesGraphCounter();
       if (this.searchTermGraph) {
         this.isSearchingInGraph = true;
       }
     });
-  }
-  /**
-   * Return if the marker is required
-   * @param link Link object
-   */
-  getMarker(link, origin: string) {
-    const index = this.graphData.nodes.map(x => x.id).indexOf(link[origin]);
-    if (index !== -1) {
-      if (link.is_between_apps) {
-        return 'url(#arrow)';
-      } else {
-        return '';
-      }
-    }
-    return '';
   }
   /**
    * Opens the modal view that holds the manage connections component
@@ -826,77 +715,30 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     };
   }
   /**
-   * It sets the links between apps
-   */
-  private setLinksBetweenApps() {
-    if ((!this.foundOccurrenceInRegistered && !this.foundOccurrenceInInstance && !this.foundOccurrenceInCluster)
-        || ((this.foundOccurrenceInRegistered || this.foundOccurrenceInInstance || this.foundOccurrenceInCluster)
-            && !this.initialState.showOnlyNodes)) {
-      const linksBetweenApps = {};
-      const connections = ['inbound_connections', 'outbound_connections'];
-      this.graphData.nodes.forEach(node => {
-        if (node.type === NodeType.Instances) {
-          connections.forEach(connection_type => {
-            node[connection_type].forEach(connection => {
-              const source = connection.source_instance_id;
-              const target = connection.target_instance_id;
-              const isSourceNode = this.graphData.nodes.filter(item => item.id === source).length > 0;
-              const isTargetNode = this.graphData.nodes.filter(item => item.id === target).length > 0;
-              if (isSourceNode && isTargetNode) {
-                linksBetweenApps[source + '_' + target] = {
-                  source: source,
-                  target: target,
-                  is_between_apps: true
-                };
-              }
-            });
-          });
-        }
-      });
-      this.graphData.links.push(...Object.values(linksBetweenApps));
-    }
-  }
-  /**
    * It sets clusters nodes to add them in the graph
    * @param cluster current cluster to generate related data to this.
-   * @param searchTermGraph term to search if it's necessary
    */
-  private setClusters(cluster: any, searchTermGraph?: string) {
+  private setClusters(cluster: any) {
     const clusterName = cluster.name.toLowerCase();
-    const nodeGroup = {
-      ...{
-        id: cluster.cluster_id,
-        label: cluster.name,
-        type: NodeType.Clusters,
-        tooltip: this.translateService.instant('resources.cluster') + cluster.name + ': '
-          + this.applicationsService.getBeautyStatusName(cluster.status_name),
-        group: cluster.cluster_id
-      },
-      ...this.applicationsService.getStyledNode(
-          this.applicationsService.getNodeColor(cluster.status_name),
-          this.applicationsService.getNodeTextColor(cluster.status_name),
-          (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-          (searchTermGraph && clusterName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
-          CUSTOM_HEIGHT_CLUSTERS)
-    };
-
+    const nodeGroup = this.generateClusterNode(
+      cluster,
+      this.translateService.instant('resources.cluster') + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name));
     if (!this.foundOccurrenceInCluster) {
-      this.foundOccurrenceInCluster = searchTermGraph && clusterName.includes(searchTermGraph);
+      this.foundOccurrenceInCluster = this.searchTermGraph && clusterName.includes(this.searchTermGraph);
     }
     this.searchGraphData.nodes[nodeGroup.id] = nodeGroup;
-    this.addNode(clusterName, nodeGroup, searchTermGraph);
+    this.addNode(clusterName, nodeGroup);
   }
   /**
    * It sets registered apps, instances and its relations
    * @param cluster current cluster to generate related data to this.
-   * @param searchTermGraph term to search if it's necessary
    */
-  private setRegisteredAndInstances(cluster: any, searchTermGraph?: string) {
+  private setRegisteredAndInstances(cluster: any) {
     const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
     instancesInCluster.forEach(instance => {
-      const registeredApp = this.getRegisteredApp(this.addNodeInstance(instance, cluster, searchTermGraph));
+      const registeredApp = this.getRegisteredApp(this.addNodeInstance(instance, cluster));
       if (registeredApp.length > 0) {
-        this.addNodeRegistered(cluster, registeredApp, searchTermGraph);
+        this.addNodeRegistered(cluster, registeredApp);
         if (this.filters.instances && this.filters.registered) {
           this.setLinksInGraph(
               registeredApp[0]['app_descriptor_id'],
@@ -904,9 +746,14 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         }
       }
       if (this.filters.clusters && this.filters.instances) {
-        this.setLinksInGraph(
-            instance['app_instance_id'],
-            cluster.cluster_id);
+        if ((this.areIncludedInstancesWithError
+            && instance.status_name.toLowerCase() !== AppStatus.Error
+            && instance.status_name !== AppStatus.DeploymentError)
+            || !this.areIncludedInstancesWithError) {
+          this.setLinksInGraph(
+              instance['app_instance_id'],
+              cluster.cluster_id);
+        }
       }
     });
     this.hideLinks();
@@ -915,9 +762,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * It adds node registered
    * @param cluster Cluster for relate with our node registered
    * @param registeredApp Registered app for generate node registered
-   * @param searchTermGraph Term to search in the graph
    */
-  private addNodeRegistered(cluster, registeredApp, searchTermGraph?: string) {
+  private addNodeRegistered(cluster, registeredApp) {
     const registeredName = registeredApp[0]['name'].toLowerCase();
     const nodeRegistered = {
       ...{
@@ -927,20 +773,22 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         tooltip: this.translateService.instant('apps.registeredTitle') + registeredApp[0]['name'],
         group: cluster.cluster_id
       },
-      ...this.applicationsService.getStyledNode(
-          REGISTERED_NODES_COLOR,
-          this.applicationsService.getNodeTextColor(cluster.status_name),
-          (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-          (searchTermGraph && registeredName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
-          CUSTOM_HEIGHT_REGISTERED)
+      ...this.getStyledNode(
+          ApplicationsComponent.REGISTERED_NODES_COLOR,
+          ApplicationsComponent.REGISTERED_NODES_TEXT_COLOR,
+          (this.searchTermGraph && registeredName.includes(this.searchTermGraph)) ?
+                            ToolsComponent.FOUND_NODES_BORDER_COLOR : '',
+          (this.searchTermGraph && registeredName.includes(this.searchTermGraph)) ?
+                            ToolsComponent.FOUND_NODES_BORDER_SIZE : 0,
+          ApplicationsComponent.CUSTOM_HEIGHT_REGISTERED)
     };
     if (!this.graphData.nodes.filter(node => node.id === nodeRegistered.id).length) {
       this.searchGraphData.nodes[nodeRegistered.id] = nodeRegistered;
       if (!this.foundOccurrenceInRegistered) {
-        this.foundOccurrenceInRegistered = searchTermGraph && registeredName.includes(searchTermGraph);
+        this.foundOccurrenceInRegistered = this.searchTermGraph && registeredName.includes(this.searchTermGraph);
       }
       if (this.filters.registered) {
-        this.addNode(registeredName, nodeRegistered, searchTermGraph);
+        this.addNode(registeredName, nodeRegistered);
       }
     }
   }
@@ -948,48 +796,32 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * It adds node instance to the graph and get node instance
    * @param instance Instance to generate the node instance
    * @param cluster Cluster for relate with our node instance
-   * @param searchTermGraph Term to search in the graph
    */
-  private addNodeInstance(instance, cluster, searchTermGraph?: string): any {
+  private addNodeInstance(instance, cluster): any {
     const instanceName = instance['name'].toLowerCase();
-    const nodeInstance = {
-    ...{
-      id: instance['app_instance_id'],
-      label: instance['name'],
-      type: NodeType.Instances,
-      inbound_connections: instance['inbound_connections'] || [],
-      outbound_connections: instance['outbound_connections'] || [],
-      tooltip: this.translateService.instant('apps.instance.idInstance')
-      + instance['name'] + ': ' + this.applicationsService.getBeautyStatusName(instance['status_name']),
-      group: cluster.cluster_id,
-      app_descriptor_id: instance['app_descriptor_id']
-    },
-    ...this.applicationsService.getStyledNode(
-        this.applicationsService.getNodeColor(instance['status_name']),
-        this.applicationsService.getNodeTextColor(instance['status_name']),
-        (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-        (searchTermGraph && instanceName.includes(searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : 0,
-        CUSTOM_HEIGHT_INSTANCES)
-    };
+    const nodeInstance = this.generateInstanceNode(
+      instance,
+      cluster,
+      this.translateService.instant('apps.instance.idInstance')
+      + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']));
     this.searchGraphData.nodes[nodeInstance.id] = nodeInstance;
     if (!this.foundOccurrenceInInstance) {
-      this.foundOccurrenceInInstance = searchTermGraph && instanceName.includes(searchTermGraph);
+      this.foundOccurrenceInInstance = this.searchTermGraph && instanceName.includes(this.searchTermGraph);
     }
     if (this.filters.instances) {
-      this.addNode(instanceName, nodeInstance, searchTermGraph);
+      this.addNode(instanceName, nodeInstance);
     }
     return nodeInstance;
   }
   /**
    * It adds nodes to the graph if it's necessary
-   * @param searchTermGraph Term to search in the graph
    * @param nodeName Node name to compare with the search term
    * @param node Node to add to our graph
    */
-  private addNode(nodeName: string, node, searchTermGraph?: string) {
-    if (!searchTermGraph
-        || (searchTermGraph && !nodeName.includes(searchTermGraph) && !this.initialState.showOnlyNodes)
-        || (searchTermGraph && nodeName.includes(searchTermGraph))) {
+  private addNode(nodeName: string, node) {
+    if (!this.searchTermGraph
+        || (this.searchTermGraph && !nodeName.includes(this.searchTermGraph) && !this.initialState.showOnlyNodes)
+        || (this.searchTermGraph && nodeName.includes(this.searchTermGraph))) {
       this.graphData.nodes.push(node);
     }
   }
@@ -1026,7 +858,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    * It generates the graph and it updates considering the REFRESH_INTERVAL
    */
   private refreshData() {
-    this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
+    this.refreshIntervalRef = timer(0, ToolsComponent.REFRESH_INTERVAL).subscribe(() => {
       if (!this.isSearchingInGraph) {
         Promise.all([
           this.backend.getClusters(this.organizationId).toPromise(),
@@ -1101,14 +933,5 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     } else {
       this.occurrencesCounter = this.graphData.nodes.filter(node => node.label.toLowerCase().includes(this.searchTermGraph)).length;
     }
-  }
-  /**
-   * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
-   */
-  resetGraphZoom() {
-    this.graphReset = true;
-    setTimeout(() => {
-      this.graphReset = false;
-    }, 1);
   }
 }

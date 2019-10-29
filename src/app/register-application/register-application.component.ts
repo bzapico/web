@@ -7,15 +7,6 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { UploadFile, UploadEvent, FileSystemFileEntry } from 'ngx-file-drop';
 
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
-
 @Component({
   selector: 'app-register-application',
   templateUrl: './register-application.component.html',
@@ -77,16 +68,14 @@ export class RegisterApplicationComponent implements OnInit {
    */
   registerApp() {
     this.backend.addAppDescriptor(this.organizationId, this.jsonFile)
-      .subscribe(addDescriptorResponse => {
+      .subscribe(() => {
         this.notificationsService.add({
-          message: 'Registered ' + this.jsonFile.name + 'app',
-          timeout: TIMEOUT_ACTION
+          message: 'Registered ' + this.jsonFile.name + 'app'
         });
         this.bsModalRef.hide();
       }, error => {
         this.notificationsService.add({
           message: error.error.message,
-          timeout: TIMEOUT_ERROR,
           type: 'warning'
         });
         this.bsModalRef.hide();

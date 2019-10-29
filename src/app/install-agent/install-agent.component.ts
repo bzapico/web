@@ -10,15 +10,6 @@ import { InventoryType } from '../definitions/enums/inventory-type.enum';
 import { TranslateService } from '@ngx-translate/core';
 import { ArchitectureType } from '../definitions/enums/architecture-type.enum';
 
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
-
 @Component({
   selector: 'app-install-agent',
   templateUrl: './install-agent.component.html',
@@ -29,14 +20,12 @@ export class InstallAgentComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Models that holds forms info
    */
   installAgentForm: FormGroup;
   submitted = false;
   loading: boolean;
-
   /**
    * Model that hold Edge Controller ID and its info
    */
@@ -51,12 +40,10 @@ export class InstallAgentComponent implements OnInit {
   openFromEc: boolean;
   ecCount: number;
   edgeControllerFromEC: string;
-
   /**
    * Models that hold all inventory list
    */
   inventory: any[];
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -64,14 +51,12 @@ export class InstallAgentComponent implements OnInit {
     backdrop: false,
     ignoreBackdropClick: true
   };
-
   /**
    * NGX-select-dropdown
    */
   tab = 1;
   options = [];
   selectConfig = {};
-
   agentTypeOptions: any[];
   agentTypeSelectConfig = {};
   architectureOptions: any[];
@@ -149,7 +134,6 @@ export class InstallAgentComponent implements OnInit {
       this.edgeControllerFromEC = this.translateService.instant('infrastructure.install-agent.select');
     }
   }
-
   /**
    * Gets the controllers list
    */
@@ -163,12 +147,10 @@ export class InstallAgentComponent implements OnInit {
     }
     return controllersList;
   }
-
   /**
    * Convenience getter for easy access to form fields
    */
   get f() { return this.installAgentForm.controls; }
-
   /**
    * Requests to install agent
    * @param f Form with the agent input data
@@ -198,24 +180,21 @@ export class InstallAgentComponent implements OnInit {
       target_host: f.target.value
     };
     this.backend.installAgent(this.organizationId, this.edgeControllerId, agent)
-      .subscribe(response => {
+      .subscribe(() => {
         this.loading = false;
         this.notificationsService.add({
           message: this.translateService.instant('infrastructure.install-agent.message', {targetHost: agent.target_host }),
-          timeout: TIMEOUT_ACTION
         });
         this.bsModalRef.hide();
       }, error => {
         this.loading = false;
         this.notificationsService.add({
           message: this.translateService.instant('infrastructure.error', {error: error.error.message}),
-          timeout: TIMEOUT_ERROR,
           type: 'warning'
         });
         this.bsModalRef.hide();
       });
   }
-
   /**
    * Checks if the form has been modified before discarding changes
    * @param form Form object reference
@@ -225,8 +204,6 @@ export class InstallAgentComponent implements OnInit {
       const discard = confirm(this.translateService.instant('modals.discardChanges'));
       if (discard) {
         this.bsModalRef.hide();
-      } else {
-        // Do nothing
       }
     } else {
       this.bsModalRef.hide();

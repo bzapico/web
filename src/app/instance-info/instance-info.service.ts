@@ -161,8 +161,6 @@ export class InstanceInfoService {
     if (instance.rules) {
       this.setInboundConnections(instance);
       this.generateOutboundConnections(instance);
-    }
-    if (instance.rules) {
       instance.rules.forEach(rule => {
         if (rule.auth_services) {
           rule.auth_services.forEach(authService => {

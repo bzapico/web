@@ -9,15 +9,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InventoryType } from '../definitions/enums/inventory-type.enum';
 import { TranslateService } from '@ngx-translate/core';
 
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
-
 @Component({
   selector: 'app-add-label',
   templateUrl: './add-label.component.html',
@@ -30,12 +21,10 @@ export class AddLabelComponent implements OnInit {
   addLabelForm: FormGroup;
   submitted = false;
   loading: boolean;
-
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Models that hold organization id
    */
@@ -45,7 +34,6 @@ export class AddLabelComponent implements OnInit {
   modalTitle: string;
   entity: any;
   entityType: string;
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -90,12 +78,10 @@ export class AddLabelComponent implements OnInit {
     ],
     });
   }
-
   /**
    * Convenience getter for easy access to form fields
    */
   get f() { return this.addLabelForm.controls; }
-
   /**
    * Request to add a new label
    * @param form Form object reference
@@ -121,18 +107,16 @@ export class AddLabelComponent implements OnInit {
               add_labels: true,
               labels: updatedEntity.labels
             }
-          ).subscribe(updateClusterResponse => {
+          ).subscribe(() => {
             this.loading = false;
             this.notificationsService.add({
-              message: this.translateService.instant('label.add-label.update', {entity: this.entity.name}),
-              timeout: TIMEOUT_ACTION,
+              message: this.translateService.instant('label.add-label.update', {entity: this.entity.name})
             });
             this.bsModalRef.hide();
           }, error => {
             this.loading = false;
             this.notificationsService.add({
               message: error.error.message,
-              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
           });
@@ -152,20 +136,10 @@ export class AddLabelComponent implements OnInit {
               add_labels: true,
               labels: updatedEntity.labels
             }
-          ).subscribe(updateNodeResponse => {
-            this.loading = false;
-            this.notificationsService.add({
-              message: this.translateService.instant('label.add-label.updateNode', {entity: this.entity.ip}),
-              timeout: TIMEOUT_ACTION,
-            });
-            this.bsModalRef.hide();
+          ).subscribe(() => {
+            this.showNotification(this.translateService.instant('label.add-label.updateNode', {entity: this.entity.ip}));
           }, error => {
-            this.loading = false;
-            this.notificationsService.add({
-              message: error.error.message,
-              timeout: TIMEOUT_ERROR,
-              type: 'warning'
-            });
+            this.showNotification(this.translateService.instant(error.error.message, 'warning'));
           });
           this.bsModalRef.hide();
           break;
@@ -182,20 +156,11 @@ export class AddLabelComponent implements OnInit {
               device_id: updatedEntity.device_id,
               labels: updatedEntity.labels
             }
-          ).subscribe(updateDeviceResponse => {
-            this.loading = false;
-            this.notificationsService.add({
-              message: this.translateService.instant('label.add-label.update', {entity: this.entity.device_id}),
-              timeout: TIMEOUT_ACTION,
-            });
-            this.bsModalRef.hide();
+          ).subscribe(() => {
+            this.showNotification(
+                this.translateService.instant('label.add-label.update', {entity: this.entity.device_id}));
           }, error => {
-            this.loading = false;
-            this.notificationsService.add({
-              message: error.error.message,
-              timeout: TIMEOUT_ERROR,
-              type: 'warning'
-            });
+              this.showNotification(this.translateService.instant(error.error.message, 'warning'));
           });
           this.bsModalRef.hide();
           break;
@@ -214,20 +179,11 @@ export class AddLabelComponent implements OnInit {
               add_labels: true,
               labels: updatedEntity.labels
             }
-          ).subscribe(updateAppResponse => {
-            this.loading = false;
-            this.notificationsService.add({
-              message: this.translateService.instant('label.add-label.update', {entity: this.entity.app_descriptor_id}),
-              timeout: TIMEOUT_ACTION,
-            });
-            this.bsModalRef.hide();
+          ).subscribe(() => {
+              this.showNotification(
+                  this.translateService.instant('label.add-label.update', {entity: this.entity.app_descriptor_id}));
           }, error => {
-            this.loading = false;
-            this.notificationsService.add({
-              message: error.error.message,
-              timeout: TIMEOUT_ERROR,
-              type: 'warning'
-            });
+              this.showNotification(this.translateService.instant(error.error.message, 'warning'));
           });
           break;
         case InventoryType.Ec:
@@ -244,20 +200,11 @@ export class AddLabelComponent implements OnInit {
                 add_labels: true,
                 labels: updatedEntity.labels
               }
-            ).subscribe(updateECResponse => {
-              this.loading = false;
-              this.notificationsService.add({
-                message: this.translateService.instant('label.add-label.update', {entity: this.entity.edge_controller_id}),
-                timeout: TIMEOUT_ACTION,
-              });
-              this.bsModalRef.hide();
+            ).subscribe(() => {
+                this.showNotification(
+                    this.translateService.instant('label.add-label.update', {entity: this.entity.edge_controller_id}));
             }, error => {
-              this.loading = false;
-              this.notificationsService.add({
-                message: error.error.message,
-                timeout: TIMEOUT_ERROR,
-                type: 'warning'
-              });
+                this.showNotification(this.translateService.instant(error.error.message, 'warning'));
             });
             this.bsModalRef.hide();
           break;
@@ -274,20 +221,11 @@ export class AddLabelComponent implements OnInit {
                 add_labels: true,
                 labels: updatedEntity.labels
               }
-            ).subscribe(updateAssetResponse => {
-              this.loading = false;
-              this.notificationsService.add({
-                message: this.translateService.instant('label.add-label.update', {entity: this.entity.asset_id}),
-                timeout: TIMEOUT_ACTION,
-              });
-              this.bsModalRef.hide();
+            ).subscribe(() => {
+                this.showNotification(
+                    this.translateService.instant('label.add-label.update', {entity: this.entity.asset_id}));
             }, error => {
-              this.loading = false;
-              this.notificationsService.add({
-                message: error.error.message,
-                timeout: TIMEOUT_ERROR,
-                type: 'warning'
-              });
+                this.showNotification(this.translateService.instant(error.error.message, 'warning'));
             });
             this.bsModalRef.hide();
           break;
@@ -296,7 +234,22 @@ export class AddLabelComponent implements OnInit {
       }
     }
   }
-
+  /**
+   * It shows notifications to the user
+   *  @param message Message to be showed
+   *  @param type Notification type
+   */
+  private showNotification(message: string, type?: string) {
+      this.loading = false;
+      const notification = {
+          message: message
+      };
+      if (type) {
+          notification['type'] = type;
+      }
+      this.notificationsService.add(notification);
+      this.bsModalRef.hide();
+  }
   /**
    * Checks if the form has been modified before discarding changes
    * @param form Form object reference
@@ -306,8 +259,6 @@ export class AddLabelComponent implements OnInit {
       const discard = confirm(this.translateService.instant('modals.discardChanges'));
       if (discard) {
         this.bsModalRef.hide();
-      } else {
-        // Do nothing
       }
     } else {
       this.bsModalRef.hide();

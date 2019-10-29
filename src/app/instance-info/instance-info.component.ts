@@ -28,7 +28,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Model that hold organization ID
    */
   organizationId: string;
-
   /**
    * Loaded Data status
    */
@@ -207,7 +206,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     clearInterval(this.refreshIntervalRef);
     this.refreshIntervalRef = null;
   }
-
   /**
    * Sortby pipe in the component
    * @param categoryName the name of the chosen category
@@ -229,7 +227,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       this.filterFieldRules = true;
     }
   }
-
   /**
    * Reset all the filters fields
    */
@@ -244,7 +241,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       this.sortedByRules = '';
     }
   }
-
   /**
    * Gets the category headers to add a class
    * @param categoryName the class for the header category
@@ -272,7 +268,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       }
     }
   }
-
   /**
    * Returns the descriptor beauty name
    * @param descriptorId Descriptor identifier
@@ -286,7 +281,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       return this.registered[index].name;
     }
   }
-
   /**
    * Returns the descriptor
    * @param instance Instance app
@@ -294,7 +288,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   getDescriptorFromInstance(instance): any {
     return this.registered.filter(x => x.app_descriptor_id === instance.app_descriptor_id);
   }
-
   /**
    * Requests to undeploy the selected instance
    * @param app Application instance object
@@ -478,7 +471,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       this.graphReset = false;
     }, 1);
   }
-    /**
+  /**
    * Request the list of registered apps and updates the instance info
    */
   private updateInfo() {
