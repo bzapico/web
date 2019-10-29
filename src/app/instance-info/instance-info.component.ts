@@ -14,90 +14,67 @@ import { InstanceServiceGroupInfoComponent } from '../instance-service-group-inf
 import { ServicesStatus } from '../definitions/enums/services-status.enum';
 import { InstanceInfoService } from './instance-info.service';
 
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
-
 @Component({
   selector: 'app-instance-info',
   templateUrl: './instance-info.component.html',
   styleUrls: ['./instance-info.component.scss']
 })
 export class InstanceInfoComponent implements OnInit, OnDestroy {
-
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Model that hold organization ID
    */
   organizationId: string;
-
   /**
    * Loaded Data status
    */
   loadedData: boolean;
-
   /**
    * Model that hold organization ID
    */
   instanceId: string;
-
   /**
    * Model that hold instance
    */
   instance: any;
   enabled: boolean;
   openFromInstance: boolean;
-
   /**
    * Registered instances list
    */
   registered: any[];
-
   /**
    * List of available services
    */
   services: any[];
-
   /**
    * List of available services groups
    */
   groups: any[];
-
   /**
    * List of labels
    */
   labels: any[];
   isSelectableLabel: boolean;
-
   /**
    * Open form registered reference
    */
   isOpenFromRegistered: boolean;
-
   /**
    * Interval reference
    */
   refreshIntervalRef: any;
-
   /**
    * Refresh ratio reference
    */
   REFRESH_RATIO = 5000;
-
   /**
    * Hold request error message or undefined
    */
   requestError: string;
-
   /**
    * Models that hold the sort info needed to sortBy pipe
    */
@@ -110,29 +87,24 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    */
   searchTerm: string;
   searchTermRules: string;
-
   /**
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
   filterFieldRules: boolean;
-
   /**
    * Reference for the service that allows the modal component
    */
   modalRef: BsModalRef;
-
   /**
    *  Show the services graph tab
    */
   showGraph: boolean;
-
   /**
    * Accordion options
    */
   nalejAccordion = 'nalejAccordion';
   isFirstOpen = true;
-
   /**
    * Graph options
    */
@@ -234,7 +206,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     clearInterval(this.refreshIntervalRef);
     this.refreshIntervalRef = null;
   }
-
   /**
    * Sortby pipe in the component
    * @param categoryName the name of the chosen category
@@ -256,7 +227,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       this.filterFieldRules = true;
     }
   }
-
   /**
    * Reset all the filters fields
    */
@@ -271,7 +241,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       this.sortedByRules = '';
     }
   }
-
   /**
    * Gets the category headers to add a class
    * @param categoryName the class for the header category
@@ -299,7 +268,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       }
     }
   }
-
   /**
    * Returns the descriptor beauty name
    * @param descriptorId Descriptor identifier
@@ -313,7 +281,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       return this.registered[index].name;
     }
   }
-
   /**
    * Returns the descriptor
    * @param instance Instance app
@@ -321,7 +288,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   getDescriptorFromInstance(instance): any {
     return this.registered.filter(x => x.app_descriptor_id === instance.app_descriptor_id);
   }
-
   /**
    * Requests to undeploy the selected instance
    * @param app Application instance object
@@ -331,22 +297,19 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     confirm(this.translateService.instant('apps.instance.undeployConfirm', { appName: app.name }));
     if (undeployConfirm) {
       this.backend.undeploy(this.organizationId, app.app_instance_id)
-        .subscribe(undeployResponse => {
+        .subscribe(() => {
           this.notificationsService.add({
-            message: this.translateService.instant('apps.instance.undeployMessage', { appName: app.name }),
-            timeout: TIMEOUT_ACTION
+            message: this.translateService.instant('apps.instance.undeployMessage', { appName: app.name })
           });
           this.router.navigate(['/applications']);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });
     }
   }
-
   /**
    * Checks if the status requires an special css class
    * @param status  status name
@@ -364,7 +327,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         return (className.toLowerCase() === ServicesStatus.ServiceWaiting);
     }
   }
-
   /**
    * Shows the graph in services card
    */
@@ -375,7 +337,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       this.showGraph = true;
     }
   }
-
   /**
    * Open services info modal window
    *  @param service service object
@@ -408,7 +369,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
-
   /**
    * Open group services info modal window
    *  @param group group object
@@ -433,7 +393,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
-
   /**
    * Open rules info modal window
    * @param rule rule object
@@ -461,7 +420,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   getBeautyStatusName(status: string) {
     this.instanceInfoService.getBeautyStatusName(status);
   }
-
   /**
    * Returns the length of service instances group
    */
@@ -476,7 +434,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       return 0;
     }
   }
-
   /**
    * Return the list of group services
    * @param groupId Group identifier
@@ -492,7 +449,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       return [];
     }
   }
-
   /**
    * Adds https in case of being required
    * @param endpoint String containing the endpoint
@@ -506,7 +462,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     }
     return URL;
   }
-
   /**
    * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
    */
@@ -516,7 +471,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       this.graphReset = false;
     }, 1);
   }
-    /**
+  /**
    * Request the list of registered apps and updates the instance info
    */
   private updateInfo() {
@@ -526,7 +481,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         this.updateInstanceInfo(this.organizationId);
       });
   }
-
   /**
    * Transforms the data needed to create the graph
    * @param instance instance object
@@ -536,7 +490,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.graphData = this.instanceInfoService.graphData;
     this.graphDataLoaded = true;
   }
-
   /**
    * Requests an updated list of available services group to update the current one
    * @param organizationId Organization identifier
@@ -567,7 +520,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         });
     }
   }
-
   /**
    * Compares the status of each instance service to determine if there are changes in the instances
    * @param instanceOutdated Outdated instance object
@@ -614,7 +566,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     });
     return anyChanges;
   }
-
   /**
    * Show the graph and hides the services table
    * @param displayGraph show if the graph is displayed

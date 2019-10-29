@@ -73,6 +73,7 @@ import { AppInfoDetailedComponent } from './app-info-detailed/app-info-detailed.
 import { GraphComponent } from './graph/graph.component';
 import { ServicesCardComponent } from './services-card/services-card.component';
 import { ActionButtonsCardComponent } from './action-buttons-card/action-buttons-card.component';
+import { ToolsComponent } from './tools/tools.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -132,7 +133,8 @@ export function createTranslateLoader(http: HttpClient) {
     AppInfoDetailedComponent,
     GraphComponent,
     ServicesCardComponent,
-    ActionButtonsCardComponent
+    ActionButtonsCardComponent,
+    ToolsComponent
   ],
   entryComponents: [
     DebugPanelComponent,
