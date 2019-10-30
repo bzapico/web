@@ -200,7 +200,7 @@ export class DeployInstanceComponent implements OnInit {
         this.registeredId = f.selectDrop.value.app_descriptor_id;
       }
       const instanceParams = [];
-      if (!this.selectedApp.parameters) {
+      if (this.selectedApp.parameters) {
         f.params.value.forEach(param => {
           instanceParams.push({
             parameterName: param[0].name,
