@@ -101,6 +101,13 @@
         background-color: $base-violet;
         opacity: .6;
     }
+    &:disabled {
+        cursor: none;
+        &:hover {
+            background-color: $super-dark-grey;
+            opacity: 1;
+        }
+    }
 }
 .nalej-form-btn-red {
     @extend .nalej-form-btn;
