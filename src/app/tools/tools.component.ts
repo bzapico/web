@@ -213,7 +213,7 @@ export class ToolsComponent implements OnInit {
       for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
         if (this.areIncludedInstancesWithError
             && (this.instances[indexInstance].status_name.toLowerCase() === AppStatus.Error
-                || this.instances[indexInstance].status_name === AppStatus.DeploymentError)) {
+                || this.instances[indexInstance].status_name.toLowerCase() === AppStatus.DeploymentError)) {
           appsInCluster[this.instances[indexInstance].app_instance_id] = this.instances[indexInstance];
         } else {
           const groups = this.instances[indexInstance].groups || [];

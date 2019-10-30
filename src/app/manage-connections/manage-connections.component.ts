@@ -166,12 +166,11 @@ export class ManageConnectionsComponent implements OnInit {
    * @param connection connections
    */
   disconnectInstance(connection) {
-    let deleteConfirm =
-      confirm(this.translateService.instant('apps.manageConnections.disconnectConfirm'));
+    let message = this.translateService.instant('apps.manageConnections.disconnectConfirm');
     if (connection.outbound_required) {
-      deleteConfirm =
-      confirm(this.translateService.instant('apps.manageConnections.disconnectConfirmOutboundRequired'));
+      message = this.translateService.instant('apps.manageConnections.disconnectConfirmOutboundRequired');
     }
+    const deleteConfirm = confirm(message);
     if (deleteConfirm) {
       this.backend.removeConnection(this.organizationId, {
         organization_id: this.organizationId,
@@ -183,7 +182,7 @@ export class ManageConnectionsComponent implements OnInit {
         outbound_name: connection.outbound_name,
         user_confirmation: true
       })
-        .subscribe(response => {
+        .subscribe(() => {
           this.notificationsService.add({
             message: 'Connection removed'
           });

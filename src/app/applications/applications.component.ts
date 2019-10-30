@@ -750,7 +750,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
       if (this.filters.clusters && this.filters.instances) {
         if ((this.areIncludedInstancesWithError
             && instance.status_name.toLowerCase() !== AppStatus.Error
-            && instance.status_name !== AppStatus.DeploymentError)
+            && instance.status_name.toLowerCase() !== AppStatus.DeploymentError)
             || !this.areIncludedInstancesWithError) {
           this.setLinksInGraph(
               instance['app_instance_id'],

@@ -438,7 +438,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
         }
         if ((this.areIncludedInstancesWithError
             && instance.status_name.toLowerCase() !== AppStatus.Error
-            && instance.status_name !== AppStatus.DeploymentError)
+            && instance.status_name.toLowerCase() !== AppStatus.DeploymentError)
             || !this.areIncludedInstancesWithError) {
           this.graphData.links.push({
             source: cluster.cluster_id,
