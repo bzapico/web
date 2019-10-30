@@ -18,7 +18,7 @@
 			"NetworkDisconnect": "Disconnect",
 			"NetworkInterface": "Interface",
 			"NetworkSource": "Source",
-			"NetworkTarget": "target",
+			"NetworkTarget": "Target",
 			"title": "INSTANCE INFO"
 		},
 		"noExposedPorts": "No exposed ports",
@@ -240,6 +240,7 @@
 		"typeGraph": "graph",
 		"typeList": "list"
 	},
+	"helpCenter": "Help center",
 	"infrastructure": {
 		"EIC": {
 			"unlinkEIC": "Unlink Edge Controller?",

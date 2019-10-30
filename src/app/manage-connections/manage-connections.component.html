@@ -88,7 +88,7 @@
             </span>
           </div>
         </div>
-        <div *ngIf="connections && connections.length > 0" class="manage-scroll ">
+        <div *ngIf="connections && connections.length > 0" class="manage-scroll">
           <div *ngFor=
             "let connection of connections |
             filter : searchTerm | filter: selectedApp; let i = index">

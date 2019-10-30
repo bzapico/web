@@ -177,9 +177,9 @@ export class ClusterComponent implements OnInit {
       case ClusterStatus.Online:
       case ClusterStatus.OnlineCordon:
         return className.toLowerCase() === ClusterStatus.Running;
-        case ClusterStatus.Error:
-        case ClusterStatus.Offline:
-        case ClusterStatus.OfflineCordon:
+      case ClusterStatus.Error:
+      case ClusterStatus.Offline:
+      case ClusterStatus.OfflineCordon:
         return className.toLowerCase() === ClusterStatus.Error;
       default:
         return className.toLowerCase() === ClusterStatus.Unknown;

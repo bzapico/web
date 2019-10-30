@@ -100,7 +100,7 @@
                   <div 
                     (click)="setOrder('clusters','name')"            
                     [ngClass]="getCategoryCSSClass('name')"
-                    tooltip="Name" 
+                    tooltip="{{'tables.tableName' | translate}}" 
                     placement="bottom"
                     scope="col" 
                     class="col-6 cluster-name-initial-text label-th">
@@ -117,7 +117,7 @@
                     [ngClass]="getCategoryCSSClass('instances')"
                     scope="col" 
                     class="col-6 text-center label-th">
-                    <span tooltip="Instances" placement="bottom">{{'tables.tableInstances' | translate}}</span>
+                    <span tooltip="{{'tables.tableInstances' | translate}}" placement="bottom">{{'tables.tableInstances' | translate}}</span>
                     <span *ngIf="sortedBy === 'instances' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
                     </span>
@@ -130,7 +130,7 @@
                     [ngClass]="getCategoryCSSClass('labels')"
                     scope="col" 
                     class="col-12 label-th">
-                    <span tooltip="Labels" placement="bottom">{{'tables.tableLabels' | translate}}</span>
+                    <span tooltip="{{'tables.tableLabels' | translate}}" placement="bottom">{{'tables.tableLabels' | translate}}</span>
                     <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
                     </span>
