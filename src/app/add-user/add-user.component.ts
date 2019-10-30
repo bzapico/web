@@ -9,15 +9,6 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { TranslateService } from '@ngx-translate/core';
 import { RoleOptions } from '../definitions/enums/role-options.enum';
 
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
-
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -138,7 +129,6 @@ export class AddUserComponent implements OnInit {
         this.loading = false;
         this.notificationsService.add({
           message: this.translateService.instant('organization.userCreated', {user: user.email}),
-          timeout: TIMEOUT_ACTION
         });
         this.bsModalRef.hide();
       }, error => {
@@ -146,13 +136,11 @@ export class AddUserComponent implements OnInit {
         if (error.status === 409) {
           this.notificationsService.add({
             message: this.translateService.instant('organization.userExists', {error: error.error.message}),
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         } else {
             this.notificationsService.add({
               message:  this.translateService.instant('infrastructure.error', {error: error.error.message}),
-              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
           }

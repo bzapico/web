@@ -12,15 +12,6 @@ import { AddLabelComponent } from '../add-label/add-label.component';
 import { DeviceGroupInfoComponent } from '../device-group-info/device-group-info.component';
 import { TranslateService } from '@ngx-translate/core';
 import { InventoryStatus } from '../definitions/enums/inventory-status.enum';
-
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
 /**
  * Refresh ratio reference
  */
@@ -202,7 +193,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
   }
-
   /**
    * Translates timestamps to the wish date
    * @param timestamp is an integer that represents the number of seconds elapsed
@@ -294,8 +284,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       notificationText = this.translateService.instant('devices.disabled');
       }
       this.notificationsService.add({
-        message: this.translateService.instant('devices.switcherMessage')  + notificationText,
-        timeout: TIMEOUT_ACTION
+        message: this.translateService.instant('devices.switcherMessage')  + notificationText
       });
     });
   }
@@ -448,14 +437,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       this.backend.removeDevice(this.organizationId, device.device_group_id, device.device_id)
       .subscribe(unlinkResponse => {
         this.notificationsService.add({
-          message: this.translateService.instant('devices.unlinkDeviceMessage',  {deviceId : device.device_id }),
-          timeout: TIMEOUT_ACTION
+          message: this.translateService.instant('devices.unlinkDeviceMessage',  {deviceId : device.device_id })
         });
         this.updateGroupsList(this.organizationId);
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });
@@ -636,7 +623,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     };
     this.modalRef = this.modalService.show(GroupConfigurationComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
+    this.modalService.onHide.subscribe(() => {
       this.updateGroupsList(this.organizationId);
     });
   }
@@ -662,24 +649,21 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (deleteConfirm) {
       if (this.getGroupDevices(group.device_group_id).length === 0) {
       this.backend.deleteGroup(this.organizationId, group.device_group_id)
-      .subscribe(response => {
+      .subscribe(() => {
         this.updateGroupsList(this.organizationId);
           this.notificationsService.add({
-            message: this.translateService.instant('devices.deleteGroupMessage', { groupName: group.name }),
-            timeout: TIMEOUT_ACTION
+            message: this.translateService.instant('devices.deleteGroupMessage', { groupName: group.name })
           });
       },
       error => {
         this.notificationsService.add({
           message: error.error.message,
-          timeout: TIMEOUT_ERROR,
           type: 'warning'
         });
       });
       } else {
         this.notificationsService.add({
           message: this.translateService.instant('devices.deleteGroupMessageNegative'),
-          timeout: TIMEOUT_ERROR,
           type: 'warning'
         });
       }

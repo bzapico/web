@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { mockClusterChart } from '../services/utils/clusters.mock';
-import { Backend } from '../definitions/interfaces/backend';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
@@ -8,65 +7,17 @@ import { EditClusterComponent } from '../edit-cluster/edit-cluster.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Cluster } from '../definitions/interfaces/cluster';
 import { AddLabelComponent } from '../add-label/add-label.component';
-import * as shape from 'd3-shape';
 import { Subscription, timer } from 'rxjs';
-import { NodeType } from '../definitions/enums/node-type.enum';
-import { AppStatus } from '../definitions/enums/app-status.enum';
-import { ClusterStatus } from '../definitions/enums/cluster-status.enum';
 import { TranslateService } from '@ngx-translate/core';
-
-/**
- * Refresh ratio
- */
-const REFRESH_INTERVAL = 20000;
-/**
- * It sets a height for clusters nodes in the graph
- */
-const CUSTOM_HEIGHT_CLUSTERS = 58;
-/**
- * It sets a height for instances nodes in the graph
- */
-const CUSTOM_HEIGHT_INSTANCES = 32;
-/**
- * It sets a border color for found nodes by a term in the graph
- */
-const FOUND_NODES_BORDER_COLOR = '#5800FF';
-/**
- * It sets a border size for found nodes by a term in the graph
- */
-const FOUND_NODES_BORDER_SIZE = 4;
-/**
- * It sets the status colors for nodes
- */
-const STATUS_COLORS = {
-  ONLINE: '#00E6A0',
-  OFFLINE: '#F7478A',
-  OTHER: '#FFEB6C'
-};
-/**
- * It sets the status colors for nodes
- */
-const STATUS_TEXT_COLORS = {
-  ONLINE: '#FFFFFF',
-  OFFLINE: '#FFFFFF',
-  OTHER: '#444444'
-};
-
+import { ToolsComponent } from '../tools/tools.component';
+import {AppStatus} from '../definitions/enums/app-status.enum';
 
 @Component({
   selector: 'app-resources',
   templateUrl: './resources.component.html',
   styleUrls: ['./resources.component.scss']
 })
-export class ResourcesComponent implements OnInit, OnDestroy {
-  /**
-   * Backend reference
-   */
-  backend: Backend;
-  /**
-   * Model that hold organization ID
-   */
-  organizationId: string;
+export class ResourcesComponent extends ToolsComponent implements OnInit, OnDestroy {
   /**
    * Loaded Data status
    */
@@ -79,10 +30,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * List of processed clusters list with its associated instances
    */
   clusterWithInstancesList: any[];
-  /**
-   * List of available apps instances
-   */
-  instances: any[];
   /**
    * Array containing charts data in the required format for NGX-Charts library rendering
    */
@@ -100,41 +47,14 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    */
   requestError: string;
   /**
-   * Pie Chart options
-   */
-  gradient = true;
-  doughnut = true;
-  colorScheme = {
-    domain: ['#5800FF', '#828282']
-  };
-  customColors = [
-    {
-      name: 'Running',
-      value: '#0000ff'
-    },
-    {
-      name: 'error',
-      value: '#00ff00'
-    }
-  ];
-  /**
    * NGX-Charts object-assign required object references (for rendering)
    */
   mockClusterChart: any;
   /**
    * Graph options
    */
-  graphReset: boolean;
   graphDataLoaded: boolean;
   graphData: any;
-  orientation: string;
-  curve: any;
-  autoZoom: boolean;
-  autoCenter: boolean;
-  enableZoom: boolean;
-  width: number;
-  height: string;
-  draggingEnabled: boolean;
   /**
    * Reference for the service that allows the user info component
    */
@@ -152,7 +72,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
    * Model that hold the search term in search box
    */
   searchTerm: string;
-  searchTermGraph: string;
   /**
    * Variable to store the value of the filter search text and sortBy pipe
    */
@@ -173,6 +92,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private translateService: TranslateService) {
+    super();
     const mock = localStorage.getItem(LocalStorageKeys.resourcesMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -183,7 +103,6 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     // Default initialization
     this.loadedData = false;
     this.clusters = [];
-    this.instances = [];
     this.clustersCount = 0;
     this.pieChartData = [];
     this.requestError = '';
@@ -191,19 +110,11 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.sortedBy = '';
     this.reverse = false;
     this.searchTerm = '';
-    this.searchTermGraph = '';
     this.isSearchingInGraph = false;
     // Filter field
     this.filterField = false;
     this.filterFieldClusters = false;
     // Graph initialization
-    this.graphReset = false;
-    this.orientation = 'TB';
-    this.curve = shape.curveBasis;
-    this.autoZoom = true;
-    this.autoCenter = true;
-    this.enableZoom = true;
-    this.draggingEnabled = false;
     this.graphDataLoaded = false;
     this.graphData = {
       nodes: [],
@@ -216,13 +127,9 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // Get User data from localStorage
-    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
-    if (jwtData !== null) {
-      this.organizationId = JSON.parse(jwtData).organizationID;
-      if (this.organizationId !== null) {
-        this.refreshData();
-      }
+    super.ngOnInit();
+    if (this.organizationId !== null) {
+      this.refreshData();
     }
   }
 
@@ -399,7 +306,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       }
     }
   }
-  /**
+ /**
   * Check if the label is selected. Return index number in selected labels or -1 if the label is not found.
   * @param entityId entity from selected label
   * @param labelKey label key from selected label
@@ -436,22 +343,11 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.toGraphData();
     this.occurrencesGraphCounter();
   }
-  getMarker(link: { [x: string]: any; is_between_apps: any; }, origin: string) {
-    const index = this.graphData.nodes.map((x: { id: any; }) => x.id).indexOf(link[origin]);
-    if (index !== -1) {
-      if (link.is_between_apps) {
-        return 'url(#arrow)';
-      } else {
-        return '';
-      }
-    }
-    return '';
-  }
   /**
    * Refresh all resources data as clusters list, instances, and cluster count and it updates it considering the REFRESH_INTERVAL
    */
   private refreshData() {
-    this.refreshIntervalRef = timer(0, REFRESH_INTERVAL).subscribe(() => {
+    this.refreshIntervalRef = timer(0, ToolsComponent.REFRESH_INTERVAL).subscribe(() => {
     if (!this.isSearchingInGraph) {
       Promise.all([this.backend.getClusters(this.organizationId).toPromise(),
         this.backend.getInstances(this.organizationId).toPromise(),
@@ -528,156 +424,36 @@ export class ResourcesComponent implements OnInit, OnDestroy {
       this.searchTermGraph = this.searchTermGraph.toLowerCase();
     }
     this.clusters.forEach(cluster => {
-      const clusterName = cluster.name.toLowerCase();
-      const nodeGroup = {
-        id: cluster.cluster_id,
-        label: cluster.name,
-        tooltip:  this.translateService.instant('resources.cluster') + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name),
-        color: this.getNodeColor(cluster.status_name),
-        text: this.getNodeTextColor(cluster.status_name),
-        group: cluster.cluster_id,
-        customHeight: CUSTOM_HEIGHT_CLUSTERS,
-        customBorderColor: (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-        customBorderWidth: (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
-      };
+      const nodeGroup = this.generateClusterNode(
+        cluster,
+  this.translateService.instant('resources.cluster') + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name));
       this.graphData.nodes.push(nodeGroup);
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
-        const instanceName = instance['name'].toLowerCase();
-        const nodeInstance = {
-          id: instance['app_instance_id'],
-          label: instance['name'],
-          tooltip: this.translateService.instant('apps.instance.idInstance')
-          + instance['name'] + ': ' + this.getBeautyStatusName(instance['status_name']),
-          color: this.getNodeColor(instance['status_name']),
-          text: this.getNodeTextColor(instance['status_name']),
-          type: NodeType.Instances,
-          group: cluster.cluster_id,
-          customHeight: CUSTOM_HEIGHT_INSTANCES,
-          inbound_connections: instance['inbound_connections'] || [],
-          outbound_connections: instance['outbound_connections'] || [],
-          customBorderColor: (this.searchTermGraph && instanceName.includes(this.searchTermGraph)) ? FOUND_NODES_BORDER_COLOR : '',
-          customBorderWidth: (this.searchTermGraph && instanceName.includes(this.searchTermGraph)) ? FOUND_NODES_BORDER_SIZE : ''
-        };
+        const nodeInstance = this.generateInstanceNode(
+          instance,
+          cluster,
+    this.translateService.instant('apps.instance.idInstance') + instance['name'] + ': '
+            + this.getBeautyStatusName(instance['status_name'])
+        );
         const index = this.graphData.nodes.map(x => x.id).indexOf(nodeInstance.id);
         if (index === -1) {
           this.graphData.nodes.push(nodeInstance);
         }
-        this.graphData.links.push({
-          source: cluster.cluster_id,
-          target: instance['app_instance_id'],
-          is_between_apps: false
-        });
+        if ((this.areIncludedInstancesWithError
+            && instance.status_name.toLowerCase() !== AppStatus.Error
+            && instance.status_name !== AppStatus.DeploymentError)
+            || !this.areIncludedInstancesWithError) {
+          this.graphData.links.push({
+            source: cluster.cluster_id,
+            target: instance['app_instance_id'],
+            is_between_apps: false
+          });
+        }
       });
     });
     this.setLinksBetweenApps();
     this.graphDataLoaded = true;
-  }
-  /**
-   * Sets links between apps
-   */
-  private setLinksBetweenApps() {
-    const linksBetweenApps = {};
-    const connections = ['inbound_connections', 'outbound_connections'];
-    this.graphData.nodes.forEach(node => {
-      if (node.type === NodeType.Instances) {
-        connections.forEach(connection_type => {
-          node[connection_type].forEach((connection: { source_instance_id: any; target_instance_id: any; }) => {
-            const source = connection.source_instance_id;
-            const target = connection.target_instance_id;
-            linksBetweenApps[ source + '_' + target] = {
-              source: source,
-              target: target,
-              is_between_apps: true
-            };
-          });
-        });
-      }
-    });
-    this.graphData.links.push(...Object.values(linksBetweenApps));
-  }
-  /**
-   * Return an specific color depending on the node status
-   * @param status Status name
-   */
-  private getNodeColor(status: string): string {
-    switch (status.toLowerCase()) {
-      case ClusterStatus.Running:
-      case ClusterStatus.Online:
-      case ClusterStatus.OnlineCordon:
-      return STATUS_COLORS.ONLINE;
-      case ClusterStatus.Error:
-      case ClusterStatus.Offline:
-      case ClusterStatus.OfflineCordon:
-      case AppStatus.DeploymentError:
-      case AppStatus.Incomplete:
-      case AppStatus.PlanningError:
-      case AppStatus.Error:
-        return STATUS_COLORS.OFFLINE;
-      case AppStatus.Queued:
-      case AppStatus.Deploying:
-      case AppStatus.Scheduled:
-      case AppStatus.Planning:
-        return STATUS_COLORS.OTHER;
-      default:
-        return STATUS_COLORS.OTHER;
-    }
-  }
-  /**
-   * Return an specific text color depending on the node status
-   * @param status Status name
-   */
-  private getNodeTextColor(status: string): string {
-    switch (status.toLowerCase()) {
-      case ClusterStatus.Running:
-      case ClusterStatus.Online:
-      case ClusterStatus.OnlineCordon:
-        return STATUS_TEXT_COLORS.ONLINE;
-      case ClusterStatus.Error:
-      case ClusterStatus.Offline:
-      case ClusterStatus.OfflineCordon:
-      case AppStatus.DeploymentError:
-      case AppStatus.Incomplete:
-      case AppStatus.PlanningError:
-      case AppStatus.Error:
-        return STATUS_TEXT_COLORS.OFFLINE;
-      case AppStatus.Queued:
-      case AppStatus.Deploying:
-      case AppStatus.Scheduled:
-      case AppStatus.Planning:
-        return STATUS_TEXT_COLORS.OTHER;
-      default:
-        return STATUS_TEXT_COLORS.OTHER;
-    }
-  }
-  /**
-   * Filters the backend incoming status to display it in removing the initial "service_"
-   * @param rawStatus string containing the status that the backend is sending
-   */
-  private getBeautyStatusName(rawStatus: string): string {
-    if (rawStatus.toLowerCase().startsWith('service_')) {
-      return rawStatus.substring('service_'.length, rawStatus.length);
-    }
-    return rawStatus;
-  }
-  /**
-   * It returns filtered app instances avoiding duplicated instances by cluster ID
-   * @param clusterId Identifier for the cluster
-   */
-  private getAppsInCluster(clusterId: string) {
-    const appsInCluster = {};
-    for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
-      const groups = this.instances[indexInstance].groups || [];
-      for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
-        const serviceInstances = groups[indexGroup].service_instances || [];
-        for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
-          if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
-            appsInCluster[this.instances[indexInstance].app_instance_id] = this.instances[indexInstance];
-          }
-        }
-      }
-    }
-    return Object.values(appsInCluster);
   }
   /**
    * Return a counter for the amount of search terms in graph
@@ -686,14 +462,5 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     this.occurrencesCounter = this.graphData.nodes.filter(
       (node: { label: { toLowerCase: () => { includes: (arg0: string) => void; }; }; }) =>
       node.label.toLowerCase().includes(this.searchTermGraph)).length;
-  }
-  /**
-   * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
-   */
-  resetGraphZoom() {
-    this.graphReset = true;
-    setTimeout(() => {
-      this.graphReset = false;
-    }, 1);
   }
 }

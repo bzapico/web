@@ -17,15 +17,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { InfrastructureService } from './infrastructure.service';
 import { InventoryStatus } from '../definitions/enums/inventory-status.enum';
 import { InventoryType } from '../definitions/enums/inventory-type.enum';
-
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
 /**
  * Refresh ratio reference
  */
@@ -257,7 +248,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         ignoreBackdropClick: false
       });
     this.agentModalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
+    this.modalService.onHide.subscribe(() => {
       this.updateInventoryList();
     });
   }
@@ -341,7 +332,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
               asset_id: item.asset_id,
               remove_labels: true,
               labels: this.selectedLabels[indexAsset].labels
-            }).subscribe(deleteLabelResponse => {
+            }).subscribe(() => {
               this.selectedLabels.splice(indexAsset, 1);
               this.updateInventoryList();
             });
@@ -451,8 +442,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
               this.createAgentToken(inventoryItem);
             } else {
               this.notificationsService.add({
-                message: this.translateService.instant('infrastructure.contextMenu.createAgentTokenMessage'),
-                timeout: TIMEOUT_ACTION
+                message: this.translateService.instant('infrastructure.contextMenu.createAgentTokenMessage')
               });
             }
           },
@@ -775,13 +765,11 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         this.backend.uninstallAgent(this.organizationId, asset.edge_controller_id, asset.asset_id)
           .subscribe(response => {
             this.notificationsService.add({
-              message: this.translateService.instant('infrastructure.asset.uninstallMessage', {asset_id : asset.asset_id }),
-              timeout: TIMEOUT_ACTION
+              message: this.translateService.instant('infrastructure.asset.uninstallMessage', {asset_id : asset.asset_id })
             });
           }, error => {
             this.notificationsService.add({
               message: error.error.message,
-              timeout:  TIMEOUT_ERROR,
               type: 'warning'
             });
           });
@@ -840,7 +828,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         ignoreBackdropClick: false
       });
     this.agentModalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
+    this.modalService.onHide.subscribe(() => {
       this.updateInventoryList();
     });
   }
@@ -860,7 +848,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         ignoreBackdropClick: false
       });
     this.agentModalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
+    this.modalService.onHide.subscribe(() => {
       this.updateInventoryList();
     });
   }
@@ -878,13 +866,11 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
           this.backend.unlinkEIC(this.organizationId, controller.edge_controller_id)
             .subscribe(response => {
               this.notificationsService.add({
-                message: this.translateService.instant('infrastructure.EIC.unlinkMessage'),
-                timeout: TIMEOUT_ACTION
+                message: this.translateService.instant('infrastructure.EIC.unlinkMessage')
               });
             }, error => {
               this.notificationsService.add({
                 message: error.error.message,
-                timeout:  TIMEOUT_ERROR,
                 type: 'warning'
               });
             });
@@ -953,14 +939,13 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         deviceGroupId: device.device_group_id,
         deviceId: device.device_id,
         enabled: device.enabled
-      }).subscribe((response: any) => {
+      }).subscribe(() => {
         let notificationText = this.translateService.instant('infrastructure.device.notificationTextEnabled');
         if (!device.enabled) {
         notificationText = this.translateService.instant('infrastructure.device.notificationTextDisabled');
         }
       this.notificationsService.add({
-        message: this.translateService.instant('infrastructure.device.enablementMessage') + notificationText,
-        timeout: TIMEOUT_ACTION
+        message: this.translateService.instant('infrastructure.device.enablementMessage') + notificationText
       });
       });
     }
@@ -973,15 +958,13 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     const unlinkConfirm = confirm(this.translateService.instant('infrastructure.device.unlinkConfirm'));
     if (unlinkConfirm) {
       this.backend.removeDevice(this.organizationId, device.device_group_id , device.device_id)
-        .subscribe(response => {
+        .subscribe(() => {
           this.notificationsService.add({
-            message: this.translateService.instant('infrastructure.device.unlinkMessage'),
-            timeout: TIMEOUT_ACTION
+            message: this.translateService.instant('infrastructure.device.unlinkMessage')
           });
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout:  TIMEOUT_ERROR,
             type: 'warning'
           });
         });

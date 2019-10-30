@@ -8,15 +8,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { TranslateService } from '@ngx-translate/core';
 
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
-
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -103,14 +94,12 @@ export class ChangePasswordComponent implements OnInit {
           this.loading = false;
           this.notificationsService.add({
             message: this.translateService.instant('changePass.passChanged'),
-            timeout: TIMEOUT_ACTION
           });
           this.bsModalRef.hide();
         }, error => {
           this.loading = false;
           this.notificationsService.add({
             message: error.error.message,
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         });

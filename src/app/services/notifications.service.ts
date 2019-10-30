@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-
-export interface Notification {
-  id?: string;
-  message: string;
-  type?: string;
-  timeout?: number;
-}
+import { Notification } from '../definitions/interfaces/notification';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationsService {
+  /**
+   * It sets the timeout in actions like undeploying or deleting
+   */
+  private static readonly TIMEOUT_ACTION = 3000;
+  /**
+   * It sets the timeout for errors
+   */
+  private static readonly TIMEOUT_ERROR = 5000;
 
   private _notifications: any[];
 
@@ -22,6 +24,15 @@ export class NotificationsService {
   * add()
   */
   add(notificationInstance: Notification) {
+    if (notificationInstance.type) {
+      if (notificationInstance.type === 'warning' && !notificationInstance.timeout) {
+        notificationInstance.timeout = NotificationsService.TIMEOUT_ERROR;
+      }
+    } else {
+      if (!notificationInstance.timeout) {
+        notificationInstance.timeout = NotificationsService.TIMEOUT_ACTION;
+      }
+    }
     this._notifications.push(notificationInstance);
   }
   /**

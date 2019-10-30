@@ -8,15 +8,6 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
-
 @Component({
   selector: 'edit-cluster',
   templateUrl: './edit-cluster.component.html',
@@ -86,14 +77,12 @@ export class EditClusterComponent implements OnInit {
           this.loading = false;
           this.notificationsService.add({
             message: this.translateService.instant('resources.saveChanges', {cluster: this.clusterName }),
-            timeout: TIMEOUT_ACTION
           });
           this.bsModalRef.hide();
         }, error => {
           this.loading = false;
           this.notificationsService.add({
             message: error.error.message,
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
           this.bsModalRef.hide();

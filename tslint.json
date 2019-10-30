@@ -128,11 +128,6 @@
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "cyclomatic-complexity": [false, 20],
-    "template-i18n": [
-      true, 
-      "check-id", 
-      "check-text"
-    ]
+    "cyclomatic-complexity": [false, 20]
   }
 }

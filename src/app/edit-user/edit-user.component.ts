@@ -11,15 +11,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { RoleOptions } from '../definitions/enums/role-options.enum';
 
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
-
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
@@ -153,7 +144,6 @@ export class EditUserComponent implements OnInit {
           subscribe(responseRole => {
             this.notificationsService.add({
               message: this.translateService.instant('organization.users.saveChange', {user: this.userName}),
-              timeout: TIMEOUT_ACTION
             });
             this.bsModalRef.hide();
             if (this.selfEditProfile === true && f.role.value === RoleOptions.NalejAdmin) {
@@ -171,7 +161,6 @@ export class EditUserComponent implements OnInit {
             this.loading = false;
             this.notificationsService.add({
               message: this.translateService.instant('infrastructure.error', {error: error.error.message}),
-              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
             this.bsModalRef.hide();
@@ -180,7 +169,6 @@ export class EditUserComponent implements OnInit {
           this.loading = false;
           this.notificationsService.add({
             message:  this.translateService.instant('organization.users.saveChange', {user: this.userName}),
-            timeout: TIMEOUT_ACTION
           });
           this.bsModalRef.hide();
         }
@@ -188,7 +176,6 @@ export class EditUserComponent implements OnInit {
         this.loading = false;
         this.notificationsService.add({
           message: this.translateService.instant('infrastructure.error', {error: error.error.message}),
-          timeout: TIMEOUT_ERROR,
           type: 'warning'
         });
         this.bsModalRef.hide();

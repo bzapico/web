@@ -9,15 +9,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InventoryType } from '../definitions/enums/inventory-type.enum';
 import { TranslateService } from '@ngx-translate/core';
 
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
-
 @Component({
   selector: 'app-add-label',
   templateUrl: './add-label.component.html',
@@ -88,13 +79,10 @@ export class AddLabelComponent implements OnInit {
       ]
     });
   }
-
   /**
    * Convenience getter for easy access to form fields
    */
-  get f() {
-    return this.addLabelForm.controls;
-  }
+  get f() { return this.addLabelForm.controls; }
   /**
    * Request to add a new label
    * @param form Form object reference
@@ -117,28 +105,20 @@ export class AddLabelComponent implements OnInit {
               clusterId: updatedEntity.cluster_id,
               add_labels: true,
               labels: updatedEntity.labels
-            })
-            .subscribe(
-              updateClusterResponse => {
-                this.loading = false;
-                this.notificationsService.add({
-                  message: this.translateService.instant(
-                    'label.add-label.update',
-                    { entity: this.entity.name }
-                  ),
-                  timeout: TIMEOUT_ACTION
-                });
-                this.bsModalRef.hide();
-              },
-              error => {
-                this.loading = false;
-                this.notificationsService.add({
-                  message: error.error.message,
-                  timeout: TIMEOUT_ERROR,
-                  type: 'warning'
-                });
-              }
-            );
+            }
+          ).subscribe(() => {
+            this.loading = false;
+            this.notificationsService.add({
+              message: this.translateService.instant('label.add-label.update', {entity: this.entity.name})
+            });
+            this.bsModalRef.hide();
+          }, error => {
+            this.loading = false;
+            this.notificationsService.add({
+              message: error.error.message,
+              type: 'warning'
+            });
+          });
           break;
         case InventoryType.Node:
           if (!updatedEntity.labels || updatedEntity.labels === '-') {
@@ -152,28 +132,12 @@ export class AddLabelComponent implements OnInit {
               nodeId: updatedEntity.node_id,
               add_labels: true,
               labels: updatedEntity.labels
-            })
-            .subscribe(
-              updateNodeResponse => {
-                this.loading = false;
-                this.notificationsService.add({
-                  message: this.translateService.instant(
-                    'label.add-label.updateNode',
-                    { entity: this.entity.ip }
-                  ),
-                  timeout: TIMEOUT_ACTION
-                });
-                this.bsModalRef.hide();
-              },
-              error => {
-                this.loading = false;
-                this.notificationsService.add({
-                  message: error.error.message,
-                  timeout: TIMEOUT_ERROR,
-                  type: 'warning'
-                });
-              }
-            );
+            }
+          ).subscribe(() => {
+            this.showNotification(this.translateService.instant('label.add-label.updateNode', {entity: this.entity.ip}));
+          }, error => {
+            this.showNotification(this.translateService.instant(error.error.message, 'warning'));
+          });
           this.bsModalRef.hide();
           break;
         case InventoryType.Device:
@@ -187,28 +151,13 @@ export class AddLabelComponent implements OnInit {
               device_group_id: updatedEntity.device_group_id,
               device_id: updatedEntity.device_id,
               labels: updatedEntity.labels
-            })
-            .subscribe(
-              updateDeviceResponse => {
-                this.loading = false;
-                this.notificationsService.add({
-                  message: this.translateService.instant(
-                    'label.add-label.update',
-                    { entity: this.entity.device_id }
-                  ),
-                  timeout: TIMEOUT_ACTION
-                });
-                this.bsModalRef.hide();
-              },
-              error => {
-                this.loading = false;
-                this.notificationsService.add({
-                  message: error.error.message,
-                  timeout: TIMEOUT_ERROR,
-                  type: 'warning'
-                });
-              }
-            );
+            }
+          ).subscribe(() => {
+            this.showNotification(
+                this.translateService.instant('label.add-label.update', {entity: this.entity.device_id}));
+          }, error => {
+              this.showNotification(this.translateService.instant(error.error.message, 'warning'));
+          });
           this.bsModalRef.hide();
           break;
         case InventoryType.App:
@@ -217,8 +166,29 @@ export class AddLabelComponent implements OnInit {
           }
           updatedEntity.labels[form.labelName.value] = form.labelValue.value;
           updatedEntity.add_labels = true;
-          this.backend
-            .updateAppDescriptor(
+          this.backend.updateAppDescriptor(
+            this.organizationId,
+            this.entity.app_descriptor_id,
+            {
+              organizationId: this.organizationId,
+              descriptorId: updatedEntity.app_descriptor_id,
+              add_labels: true,
+              labels: updatedEntity.labels
+            }
+          ).subscribe(() => {
+              this.showNotification(
+                  this.translateService.instant('label.add-label.update', {entity: this.entity.app_descriptor_id}));
+          }, error => {
+              this.showNotification(this.translateService.instant(error.error.message, 'warning'));
+          });
+          break;
+        case InventoryType.Ec:
+            if (!updatedEntity.labels || updatedEntity.labels === '-') {
+              updatedEntity.labels = {};
+            }
+            updatedEntity.labels[form.labelName.value] = form.labelValue.value;
+            updatedEntity.add_labels = true;
+            this.backend.updateEC(
               this.organizationId,
               this.entity.app_descriptor_id,
               {
@@ -227,63 +197,13 @@ export class AddLabelComponent implements OnInit {
                 add_labels: true,
                 labels: updatedEntity.labels
               }
-            )
-            .subscribe(
-              updateAppResponse => {
-                this.loading = false;
-                this.notificationsService.add({
-                  message: this.translateService.instant(
-                    'label.add-label.update',
-                    { entity: this.entity.app_descriptor_id }
-                  ),
-                  timeout: TIMEOUT_ACTION
-                });
-                this.bsModalRef.hide();
-              },
-              error => {
-                this.loading = false;
-                this.notificationsService.add({
-                  message: error.error.message,
-                  timeout: TIMEOUT_ERROR,
-                  type: 'warning'
-                });
-              }
-            );
-          break;
-        case InventoryType.Ec:
-          if (!updatedEntity.labels || updatedEntity.labels === '-') {
-            updatedEntity.labels = {};
-          }
-          updatedEntity.labels[form.labelName.value] = form.labelValue.value;
-          updatedEntity.add_labels = true;
-          this.backend
-            .updateEC(this.organizationId, updatedEntity.edge_controller_id, {
-              edge_controller_id: updatedEntity.edge_controller_id,
-              add_labels: true,
-              labels: updatedEntity.labels
-            })
-            .subscribe(
-              updateECResponse => {
-                this.loading = false;
-                this.notificationsService.add({
-                  message: this.translateService.instant(
-                    'label.add-label.update',
-                    { entity: this.entity.edge_controller_id }
-                  ),
-                  timeout: TIMEOUT_ACTION
-                });
-                this.bsModalRef.hide();
-              },
-              error => {
-                this.loading = false;
-                this.notificationsService.add({
-                  message: error.error.message,
-                  timeout: TIMEOUT_ERROR,
-                  type: 'warning'
-                });
-              }
-            );
-          this.bsModalRef.hide();
+            ).subscribe(() => {
+                this.showNotification(
+                    this.translateService.instant('label.add-label.update', {entity: this.entity.edge_controller_id}));
+            }, error => {
+                this.showNotification(this.translateService.instant(error.error.message, 'warning'));
+            });
+            this.bsModalRef.hide();
           break;
         case InventoryType.Asset:
           if (!updatedEntity.labels || updatedEntity.labels === '-') {
@@ -295,34 +215,35 @@ export class AddLabelComponent implements OnInit {
               asset_id: updatedEntity.asset_id,
               add_labels: true,
               labels: updatedEntity.labels
-            })
-            .subscribe(
-              updateAssetResponse => {
-                this.loading = false;
-                this.notificationsService.add({
-                  message: this.translateService.instant(
-                    'label.add-label.update',
-                    { entity: this.entity.asset_id }
-                  ),
-                  timeout: TIMEOUT_ACTION
-                });
-                this.bsModalRef.hide();
-              },
-              error => {
-                this.loading = false;
-                this.notificationsService.add({
-                  message: error.error.message,
-                  timeout: TIMEOUT_ERROR,
-                  type: 'warning'
-                });
-              }
-            );
-          this.bsModalRef.hide();
+            }
+            ).subscribe(() => {
+                this.showNotification(
+                    this.translateService.instant('label.add-label.update', {entity: this.entity.asset_id}));
+            }, error => {
+                this.showNotification(this.translateService.instant(error.error.message, 'warning'));
+            });
+            this.bsModalRef.hide();
           break;
         default:
           break;
       }
     }
+  }
+  /**
+   * It shows notifications to the user
+   *  @param message Message to be showed
+   *  @param type Notification type
+   */
+  private showNotification(message: string, type?: string) {
+      this.loading = false;
+      const notification = {
+          message: message
+      };
+      if (type) {
+          notification['type'] = type;
+      }
+      this.notificationsService.add(notification);
+      this.bsModalRef.hide();
   }
   /**
    * Checks if the form has been modified before discarding changes

@@ -6,14 +6,6 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
 
 @Component({
   selector: 'app-deploy-instance',
@@ -221,13 +213,11 @@ export class DeployInstanceComponent implements OnInit {
           this.onClose(false);
           this.bsModalRef.hide();
           this.notificationsService.add({
-            message: `Deploying instance of ${this.registeredName}`,
-            timeout: TIMEOUT_ACTION
+            message: `Deploying instance of ${this.registeredName}`
           });
         }, error => {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
           this.onClose(true);
@@ -404,7 +394,7 @@ export class DeployInstanceComponent implements OnInit {
   isInactiveNext(f) {
     let isInactiveNext = false;
     if (this.conditionExpression === 'basic') {
-      isInactiveNext = !this.selectedApp || !f.instanceName.value;
+      isInactiveNext = !this.selectedApp || this.selectedApp.id === -1 || !f.instanceName.value;
     } else if (this.conditionExpression === 'parameters') {
       this.selectedApp.parameters.map(param => {
         if (!param.category) {

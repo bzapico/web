@@ -10,15 +10,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../services/auth.service';
 
-/**
- * It sets the timeout in actions like undeploying or deleting
- */
-const TIMEOUT_ACTION = 3000;
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
-
 @Component({
   selector: 'user-info',
   templateUrl: './user-info.component.html',
@@ -118,14 +109,12 @@ export class UserInfoComponent implements OnInit {
               this.auth.logout();
             }
             this.notificationsService.add({
-              message: this.translateService.instant('organization.userDeleted', { userMail: this.email }),
-              timeout: TIMEOUT_ACTION
+              message: this.translateService.instant('organization.userDeleted', { userMail: this.email })
             });
             this.bsModalRef.hide();
           }, error => {
             this.notificationsService.add({
               message: error.error.message,
-              timeout: TIMEOUT_ERROR,
               type: 'warning'
             });
           });
