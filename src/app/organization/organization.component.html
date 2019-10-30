@@ -57,7 +57,7 @@
                 name="searchTerm" 
                 [(ngModel)]="searchTerm"
                 type="text" 
-                placeholder="Search..."
+                placeholder="{{'searcher.placeholder' | translate }}"
                 class="form-control"> 
                 <div *ngIf="searchTerm === ''" class="search-icon">
                   <i class="material-icons">search</i>
@@ -84,7 +84,9 @@
                   [ngClass]="getCategoryCSSClass('name')"
                   scope="col" 
                   class="col-3">
-                  <span tooltip="Name" placement="bottom">Name</span>
+                  <span tooltip="{{'tables.tableName' | translate }" placement="bottom">
+                    {{'tables.tableName' | translate }}
+                  </span>
                   <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -97,7 +99,9 @@
                   [ngClass]="getCategoryCSSClass('role')"
                   scope="col" 
                   class="col-2">
-                  <span tooltip="Role" placement="bottom">Role</span>
+                  <span tooltip="{{'tables.tableRole' | translate }}" placement="bottom">
+                    {{'tables.tableRole' | translate }}
+                  </span>
                   <span *ngIf="sortedBy === 'role' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -110,7 +114,9 @@
                   [ngClass]="getCategoryCSSClass('email')"
                   scope="col" 
                   class="col-5">
-                  <span tooltip="Email" placement="bottom">Email</span>
+                  <span tooltip="{{'tables.tableEmail' | translate }}" placement="bottom">
+                    {{'tables.tableEmail' | translate }}
+                  </span>
                   <span *ngIf="sortedBy === 'email' && !reverse" class="expand-chevron">
                     <i class="material-icons">expand_more</i>
                   </span>
@@ -119,7 +125,9 @@
                   </span>
                 </th>
                 <th scope="col" class="col-2 text-center">
-                  <span tooltip="Actions" placement="bottom">{{'organization.users.actions' | translate}}</span>
+                  <span tooltip=" {{'tables.tableActions' | translate}}" placement="bottom">
+                    {{'tables.tableActions' | translate}}
+                  </span>
                 </th>
               </tr>
             </thead>
@@ -134,13 +142,13 @@
                 <td class="col-2 actions-col">
                   <div    
                     (click)="openUserInfo(user)" 
-                    tooltip="Info" 
+                    tooltip=" {{'tables.tableInfo' | translate}}" 
                     placement="left">
                     <i class="material-icons info-icon">info</i>
                   </div>
                   <button 
                     (click)="openEditUser(user)" 
-                    tooltip="Edit" 
+                    tooltip=" {{'tables.tableEdit' | translate}}" 
                     placement="left"
                     class="action-btn-blue-2">
                     <i class="material-icons i-white-2">edit</i>

@@ -21,14 +21,12 @@ export class LabelsCardComponent {
     this.updateLabels = new EventEmitter<{action: string, selectedLabels: any[]}>();
     this.labelsData = [];
   }
-
   /**
    * Opens the modal view that holds add label component
    */
   addLabel() {
     this.updateLabels.emit({action: 'add', selectedLabels: this.selectedLabels});
   }
-
   /**
    * Deletes a selected label
    */
@@ -36,7 +34,6 @@ export class LabelsCardComponent {
     this.updateLabels.emit({action: 'delete', selectedLabels: this.selectedLabels});
     this.selectedLabels = [];
   }
-
   /**
    * Selects a label
    * @param label label entity

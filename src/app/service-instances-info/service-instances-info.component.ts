@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
@@ -11,12 +11,11 @@ import { ServicesStatus } from '../definitions/enums/services-status.enum';
   templateUrl: './service-instances-info.component.html',
   styleUrls: ['./service-instances-info.component.scss']
 })
-export class ServiceInstancesInfoComponent implements OnInit {
+export class ServiceInstancesInfoComponent {
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Data models for instances related information
    */
@@ -53,12 +52,8 @@ export class ServiceInstancesInfoComponent implements OnInit {
     } else {
       this.backend = this.backendService;
     }
-
     // Default initialization
     this.loadedData = true;
-  }
-
-  ngOnInit() {
   }
 
   /**
@@ -74,7 +69,6 @@ export class ServiceInstancesInfoComponent implements OnInit {
     }
     return URL;
   }
-
   /**
    * Checks if the service status requires an special css class
    * @param status Service status name
@@ -92,7 +86,6 @@ export class ServiceInstancesInfoComponent implements OnInit {
         return (className.toLowerCase() === ServicesStatus.ServiceWaiting);
     }
   }
-
   /**
    * Filters the backend incoming status to display it in removing the initial "service_"
    * @param rawStatus string containing the status that the backend is sending
@@ -103,5 +96,4 @@ export class ServiceInstancesInfoComponent implements OnInit {
     }
     return rawStatus;
   }
-
 }

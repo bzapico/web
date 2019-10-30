@@ -2,7 +2,7 @@
   <div class="modal-content">
     <!-- Header -->
     <div class="modal-header">
-      <h3 class="nalej-form-title">Register application</h3>
+      <h3 class="nalej-form-title">{{'apps.registerTitle' | translate}}</h3>
       <button 
         (click)="discardChanges()"
         type="button" 
@@ -13,13 +13,13 @@
     </div>
     <!-- Body -->
     <div class="modal-body">
-      <p class="upload-descriptor">Upload app descriptor file</p>
+      <p class="upload-descriptor">{{'apps.registerUpload' | translate}}</p>
       <file-drop 
         *ngIf="!readyToUpload"
         (onFileDrop)="onFileDrop($event)" 
         dropZoneClassName="file-drop">
         <span class="drop-title">
-          Drop here
+          {{'apps.registerDrop' | translate}}
           <p class="drop-note">
             <input
               (change)="fileSelectorChange($event)"
@@ -28,20 +28,20 @@
               accept="application/json"
               id="file"
               class="inputfile"/>
-            <label for="file" class="cursor-pointer blue">Or click here to choose your .json file</label>
+            <label for="file" class="cursor-pointer blue">{{'apps.registerFile' | translate}}</label>
           </p>
         </span>
       </file-drop>
       <div *ngIf="readyToUpload" class="drop-note-uploaded"> 
         <span class="drop-title-uploaded">{{jsonFile.name}}</span> 
         <span class="subtitle">
-          from {{fileName}}
+          {{'apps.registerFrom' | translate}} {{fileName}}
         </span>
-        <span class="subtitle-2">ready to be uploaded</span>
+        <span class="subtitle-2">{{'apps.registerReady' | translate}}</span>
       </div>
       <div class="form-group-btn">
         <button (click)="registerApp()" class="nalej-form-btn-blue">
-          Register
+          {{'buttons.register' | translate}}
         </button>
       </div>
     </div>

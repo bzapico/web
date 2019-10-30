@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
@@ -10,32 +10,27 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
   templateUrl: './device-group-created.component.html',
   styleUrls: ['./device-group-created.component.scss']
 })
-export class DeviceGroupCreatedComponent implements OnInit {
+export class DeviceGroupCreatedComponent {
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Loaded Data status
    */
   loadedData: boolean;
-
   /**
    * Model that hold organization ID
    */
   organizationId: string;
-
   /**
    * List of available devices groups
    */
   group: any[];
-
   /**
    * Holds the api key for the created group
    */
   groupApiKey: string;
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -59,14 +54,10 @@ export class DeviceGroupCreatedComponent implements OnInit {
     // group is initialized by initial state triggered in add devices group component
   }
 
-  ngOnInit() {
-  }
-
   /**
    * Close the modal window
    */
   closeModal() {
     this.bsModalRef.hide();
   }
-
 }

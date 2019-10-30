@@ -5,18 +5,18 @@
         (click)="openDebugPanel()" 
         class="form-login-heading"
         style="visibility:hidden">
-        NALEJ
+        {{'nalej' | translate}}
     </h2>
     <div class="login-card">
         <!-- Header -->
         <div class="modal-header">
-            <h3 class="nalej-form-title">Log in</h3>
+            <h3 class="nalej-form-title">{{'login.login' | translate}}</h3>
         </div>
         <!-- Body -->
         <div class="modal-body">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label>Email*</label>
+                    <label>{{'login.email' | translate}}*</label>
                     <input 
                         formControlName="email" 
                         type="text" 
@@ -28,13 +28,13 @@
                         class="form-control">{{email}}
                     <div class="error-h">
                         <div *ngIf="submitted && f.email.errors" class="error-message">
-                            <div *ngIf="f.email.errors.required">Email is required</div>
-                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                            <div *ngIf="f.email.errors.required">{{'login.emailRequired' | translate}}</div>
+                            <div *ngIf="f.email.errors.email">s{{'login.emailValid' | translate}}</div>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Password*</label>
+                    <label>{{'login.password' | translate}}*</label>
                     <input 
                         formControlName="password" 
                         type="password" 
@@ -44,15 +44,15 @@
                         class="form-control" >
                     <div class="error-h">
                         <div *ngIf="submitted && f.password.errors" class="error-message">
-                            <div *ngIf="f.password.errors.required">Password is required</div>
-                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                            <div *ngIf="f.password.errors.required">{{'login.passwordRequired' | translate}}</div>
+                            <div *ngIf="f.password.errors.minlength">{{'login.passwordValid' | translate}}</div>
                         </div>
                     </div>
                 </div>
                 <div class="btn-h">
                     <div *ngIf="!loginRequest" class="form-group-btn">
                         <button class="nalej-form-btn-blue">
-                            <span class="align-bottom">Log in</span>
+                            <span class="align-bottom">{{'login.login' | translate}}</span>
                         </button>
                     </div>
                 </div>

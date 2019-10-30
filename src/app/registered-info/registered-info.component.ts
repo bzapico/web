@@ -35,59 +35,48 @@ export class RegisteredInfoComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Model that hold organization ID
    */
   organizationId: string;
-
   /**
    * Loaded Data status
    */
   loadedData: boolean;
-
   /**
    * List of available services
    */
   services: any[];
-
   /**
    * Count of total services for summary card
    */
   servicesCount: number;
-
   /**
    * Model that hold descriptor ID
    */
   descriptorId: string;
-
   /**
    * Model that hold registered application descriptor data
    */
   registeredData: AppDescriptor;
   openFromRegistered: boolean;
-
   /**
    * List of available services groups
    */
   groups: any[];
-
   /**
    * List of labels
    */
   isSelectableLabel: boolean;
   entityId: string;
-
   /**
    * Open form instance reference
    */
   isOpenFromRegistered: boolean;
-
   /**
    * Hold request error message or undefined
    */
   requestError: string;
-
   /**
    * Models that hold the sort info needed to sortBy pipe
    */
@@ -95,35 +84,29 @@ export class RegisteredInfoComponent implements OnInit {
   sortedByRules: string;
   reverse: boolean;
   reverseRules: boolean;
-
   /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
   searchTermRules: string;
-
   /**
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
   filterFieldRules: boolean;
-
   /**
    * Reference for the service that allows the modal component
    */
   modalRef: BsModalRef;
-
   /**
    *  Show the services graph tab
    */
   showGraph: boolean;
-
   /**
    * Accordion options
    */
   nalejAccordion = 'nalejAccordion';
   isFirstOpen = true;
-
   /**
    * Graph options
    */
@@ -139,7 +122,6 @@ export class RegisteredInfoComponent implements OnInit {
   width: number;
   height: number;
   whiteColor: string;
-
 
   constructor(
     private modalService: BsModalService,
@@ -210,7 +192,6 @@ export class RegisteredInfoComponent implements OnInit {
     }
   }
 
-
   /* Sortby pipe in the component
    * @param categoryName the name of the chosen category
    */
@@ -231,7 +212,6 @@ export class RegisteredInfoComponent implements OnInit {
       this.filterFieldRules = true;
     }
   }
-
   /**
    * Reset all the filters fields
    */
@@ -246,7 +226,6 @@ export class RegisteredInfoComponent implements OnInit {
       this.sortedByRules = '';
     }
   }
-
   /**
    * Gets the category headers to add a class
    * @param categoryName the class for the header category
@@ -274,7 +253,6 @@ export class RegisteredInfoComponent implements OnInit {
       }
     }
   }
-
   /**
    * Opens the modal view that holds the deploy registered app component
    * @param app registered app to deploy
@@ -294,7 +272,6 @@ export class RegisteredInfoComponent implements OnInit {
       this.router.navigate(['/applications']);
     });
   }
-
   /**
    * Requests to delete the selected app
    * @param app Application object
@@ -319,7 +296,6 @@ export class RegisteredInfoComponent implements OnInit {
         });
     }
   }
-
   /**
    * Returns the length of the services in registered list. Represents the number of available services
    * @param registered selected registered
@@ -333,7 +309,6 @@ export class RegisteredInfoComponent implements OnInit {
     }
     return temporalCount;
   }
-
   /**
    * Returns the length of service registered group
    */
@@ -346,7 +321,6 @@ export class RegisteredInfoComponent implements OnInit {
     }
     return counter;
   }
-
   /**
    *  Return the list of group services
    * @param groupId Group identifier
@@ -361,7 +335,6 @@ export class RegisteredInfoComponent implements OnInit {
       return [];
     }
   }
-
   /**
   * Open services info modal window
   *  @param service service object
@@ -384,7 +357,6 @@ export class RegisteredInfoComponent implements OnInit {
     this.modalRef = this.modalService.show(ServiceInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
-
   /**
   * Open rules info modal window
   *  @param rule rule object
@@ -404,11 +376,9 @@ export class RegisteredInfoComponent implements OnInit {
       deviceGroupIds: rule.device_group_ids,
       deviceGroupNames: rule.device_group_names
     };
-
     this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
-
   /**
    * Shows the graph in services card
    * @param type display mode type
@@ -420,7 +390,6 @@ export class RegisteredInfoComponent implements OnInit {
       this.showGraph = true;
     }
   }
-
   /**
    * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
    */
@@ -430,7 +399,6 @@ export class RegisteredInfoComponent implements OnInit {
       this.graphReset = false;
     }, 1);
   }
-
   /**
    * Open group services info modal window
    *  @param group group object
@@ -443,12 +411,10 @@ export class RegisteredInfoComponent implements OnInit {
       name: group.name,
       serviceGroupId: group.service_group_id,
     };
-
     this.modalRef = this.modalService.show(RegisteredServiceGroupInfoComponent,
       { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
-
   /**
    * Updates labels
    * @param updateLabel label object
@@ -460,7 +426,6 @@ export class RegisteredInfoComponent implements OnInit {
       this.deleteLabel(updateLabel.selectedLabels);
     }
   }
-
   /**
    * Opens the modal view that holds add label component
    */
@@ -485,7 +450,6 @@ export class RegisteredInfoComponent implements OnInit {
       this.updateAppDescriptor();
     } );
   }
-
   /**
    * Deletes a selected label
    * @param selectedLabels selected labels by the user for delete them
@@ -510,7 +474,6 @@ export class RegisteredInfoComponent implements OnInit {
       });
     }
   }
-
   /**
    * Request the list of app descriptors
    */
@@ -540,7 +503,6 @@ export class RegisteredInfoComponent implements OnInit {
         this.requestError = errorResponse.error.message;
       });
   }
-
   /**
    * Transforms the data needed to create the graph
    * @param registered registered object
@@ -550,7 +512,6 @@ export class RegisteredInfoComponent implements OnInit {
     this.graphData = this.registeredInfoService.graphData;
     this.graphDataLoaded = true;
   }
-
   /**
    * Show the graph and hides the services table
    * @param displayGraph show if the graph is displayed

@@ -12,7 +12,7 @@ const STATUS_COLORS = {
   OTHER: '#FFEB6C'
 };
 /**
- * It sets the status colors for nodes
+ * It sets the status text colors for nodes
  */
 const STATUS_TEXT_COLORS = {
   RUNNING: '#FFFFFF',

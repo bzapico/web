@@ -46,8 +46,7 @@ export class LoginComponent implements OnInit {
     private modalService: BsModalService,
     private notificationsService: NotificationsService,
     private translateService: TranslateService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     if (this.route.snapshot.queryParamMap.get('unauthorized')) {

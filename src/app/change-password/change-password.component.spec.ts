@@ -5,6 +5,9 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonsModule, BsModalRef, TooltipModule } from 'ngx-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '../app.module';
 
 describe('ChangePasswordComponent', () => {
   let component: ChangePasswordComponent;
@@ -19,10 +22,18 @@ describe('ChangePasswordComponent', () => {
         ButtonsModule,
         TooltipModule,
         RouterTestingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
       providers: [
-        BsModalRef
+        BsModalRef,
+        TranslateService
       ]
     })
     .compileComponents();

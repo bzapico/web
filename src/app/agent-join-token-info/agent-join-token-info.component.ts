@@ -15,19 +15,16 @@ export class AgentJoinTokenInfoComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Loaded Data status
    */
   loadedData: boolean;
-
   /**
    * Model that hold organization ID, Edge Controller ID and agent
    */
   organizationId: string;
   edgeControllerId: string;
   agent: any;
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -49,7 +46,6 @@ export class AgentJoinTokenInfoComponent implements OnInit {
       this.backend = this.backendService;
     }
     this.agent = {};
-
     // Default initialization
     this.loadedData = false;
   }
@@ -74,7 +70,6 @@ export class AgentJoinTokenInfoComponent implements OnInit {
     });
     }
   }
-
   /**
    * Create a new JavaScript Date object based on the timestamp
    * and multiplied by 1000 so that the argument is in milliseconds, not seconds.
@@ -85,17 +80,13 @@ export class AgentJoinTokenInfoComponent implements OnInit {
     const year = date.getFullYear();
     const month = date.getMonth();
     const day = date.getDate();
-
     const formatedDate = month + '/' + day + '/' + year;
-
     return formatedDate;
   }
-
   /**
    * Close the modal window
    */
   closeModal() {
     this.bsModalRef.hide();
   }
-
 }

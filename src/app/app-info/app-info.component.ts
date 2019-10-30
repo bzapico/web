@@ -31,24 +31,20 @@ export class AppInfoComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Reference for the service that allows the modal component
    */
   modalRef: BsModalRef;
-
   /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
-
   /**
    *  Active List reference
    */
   showParameters: boolean;
   showNetwork: boolean;
   showSetup: boolean;
-
   /**
    * Accordion options
    */
@@ -111,9 +107,9 @@ export class AppInfoComponent implements OnInit {
         return className.toLowerCase() === AppStatus.Process;
     }
   }
-
   /**
    * Changes to active list
+   * @param listToShow list to show
    */
   changeActiveList(listToShow: string) {
     if (listToShow === 'parameters') {
@@ -130,9 +126,9 @@ export class AppInfoComponent implements OnInit {
       this.showSetup = true;
     }
   }
-
   /**
    * Reset all the filters fields
+   * @param listToShow list to show
    */
   resetFilters(listToShow: string) {
       if (listToShow === 'parameters') {
@@ -146,7 +142,6 @@ export class AppInfoComponent implements OnInit {
       this.searchTerm = '';
     }
   }
-
   /**
    * Disconnects app instance
    * @param connection connections
@@ -165,21 +160,27 @@ export class AppInfoComponent implements OnInit {
         outbound_name: fullConnection.outbound_name,
         user_confirmation: true
       }).subscribe(response => {
-            this.notificationsService.add({
-              message: 'Removing connection',
-              timeout: NOTIFICATION_TIMEOUT
-            });
-            this.updateInstance(instance);
-          });
+        this.notificationsService.add({
+          message: 'Removing connection',
+          timeout: NOTIFICATION_TIMEOUT
+        });
+        this.updateInstance(instance);
+      });
     }
   }
-
+  /**
+   * Gets connections
+   * @param instance instance
+   * @param type type
+   * @param nameType nameType
+   * @param name  name
+   * */
   getConnection(instance, type: string, nameType: string, name: string): any {
     return instance[type].filter(inbound => inbound[nameType] === name);
   }
-
   /**
    * Updates connections and appDropdownOptions
+   * @param instance instance
    */
   updateInstance(instance) {
     this.backend.getAppInstance(instance.organization_id, instance.app_instance_id)
@@ -191,7 +192,6 @@ export class AppInfoComponent implements OnInit {
         this.instance.inbound_net_interface = inst.inbound_net_interface;
       });
   }
-
   /**
    * Open app info detailed modal window
    *  @param app app object
@@ -208,11 +208,9 @@ export class AppInfoComponent implements OnInit {
       labels: app.labels,
       openFromInstance: this.openFromInstance
     };
-
     this.modalRef = this.modalService.show(AppInfoDetailedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
-
   /**
    * Open descriptor info detailed modal window
    *  @param descriptor descriptor object
@@ -227,11 +225,13 @@ export class AppInfoComponent implements OnInit {
       labels: descriptor.labels,
       openFromRegistered: this.openFromRegistered
     };
-
     this.modalRef = this.modalService.show(AppInfoDetailedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
-
+  /**
+  * Adds service and group
+  * @param interface_type interface_type object
+  */
   private addServiceAndGroup(interface_type: string) {
     this.registeredData[`${interface_type}s`].map(item => {
       this.registeredData.rules.map(rule => {
@@ -242,17 +242,21 @@ export class AppInfoComponent implements OnInit {
       });
     });
   }
-
+  /**
+  * Adds service and group to interfaces
+  */
   private addServiceAndGroupToInterfaces() {
     if (this.registeredData.inbound_net_interfaces) {
       this.addServiceAndGroup('inbound_net_interface');
     }
-
     if (this.registeredData.outbound_net_interfaces) {
       this.addServiceAndGroup('outbound_net_interface');
     }
   }
-
+  /**
+  * Adds service and group instance
+  * @param interface_type interface_type object
+  */
   private addServiceAndGroupInstance(interface_type: string) {
     this.instance[`${interface_type}s`].map(item => {
       this.instance.rules.map(rule => {
@@ -263,7 +267,9 @@ export class AppInfoComponent implements OnInit {
       });
     });
   }
-
+  /**
+  * Adds service and group to interfaces instance
+  */
   private addServiceAndGroupToInterfacesInstance() {
     if (this.instance.inbound_net_interfaces) {
       this.addServiceAndGroupInstance('inbound_net_interface');
@@ -272,14 +278,18 @@ export class AppInfoComponent implements OnInit {
       this.addServiceAndGroupInstance('outbound_net_interface');
     }
   }
-
+  /**
+  * Generates parameters from filters
+  */
   private getParametersFromFilters(): any {
     return {
-      basic:  this.registeredData.parameters ?  this.registeredData.parameters.filter(parameter => parameter.required) : [],
-      advanced: this.registeredData.parameters ?   this.registeredData.parameters.filter(parameter => !parameter.required) : []
+      basic:  this.registeredData.parameters ? this.registeredData.parameters.filter(parameter => parameter.required) : [],
+      advanced: this.registeredData.parameters ?  this.registeredData.parameters.filter(parameter => !parameter.required) : []
     };
   }
-
+  /**
+  * Generates parameters
+  */
   private generateParameters() {
     const params = this.getParametersFromFilters();
     if (this.openFromInstance) {

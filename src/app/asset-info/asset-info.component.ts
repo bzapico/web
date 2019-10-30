@@ -16,7 +16,6 @@ export class AssetInfoComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Models that hold organization id, asset ID, agent ID, asset IP, architecture,
    * cpus, show, created, labels, class, version, net interfaces, capacity,
@@ -41,22 +40,18 @@ export class AssetInfoComponent implements OnInit {
   status: string;
   summary: any;
   lastAlive: number;
-
   /**
    * Models that hold the Edge Controller name
    */
   ecName: string;
-
   /**
    * Model that holds onclose method defined in Infrastructure component
    */
   onClose: any;
-
   /**
    * Models that hold all inventory list
    */
   inventory: any[];
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -64,7 +59,6 @@ export class AssetInfoComponent implements OnInit {
     backdrop: false,
     ignoreBackdropClick: true
   };
-
   /**
    * Loaded Data status
    */
@@ -97,7 +91,6 @@ export class AssetInfoComponent implements OnInit {
    */
   getECname() {
     let edgeControllerName: any;
-
     for (let index = 0; index < this.inventory.length; index++) {
       if (
         this.inventory[index].edge_controller_id &&
@@ -108,7 +101,6 @@ export class AssetInfoComponent implements OnInit {
       }
     } return edgeControllerName;
   }
-
   /**
    * Create a new JavaScript Date object based on the timestamp
    * and multiplied by 1000 so that the argument is in milliseconds, not seconds.
@@ -119,12 +111,9 @@ export class AssetInfoComponent implements OnInit {
       const year = date.getFullYear();
       const month = date.getMonth();
       const day = date.getDate();
-
       const formatedDate = month + '/' + day + '/' + year;
-
     return formatedDate;
   }
-
   /**
    * Gets the return Edge Controller value from the modal and gives it to infrastructure
    * component to open the Edge Controller Info modal window
@@ -132,7 +121,6 @@ export class AssetInfoComponent implements OnInit {
   openEdgeControllerInfo() {
     let controller: any;
     let ecIndexFound;
-
     for (let i = 0; i < this.inventory.length; i++) {
       if (this.inventory[i].edge_controller_id === this.edgeControllerId &&
         this.inventory[i].type === InventoryType.Ec
@@ -140,11 +128,8 @@ export class AssetInfoComponent implements OnInit {
         ecIndexFound = i;
       }
     }
-
     controller = this.inventory[ecIndexFound];
-
     this.onClose(controller);
-
     this.bsModalRef.hide();
   }
 }

@@ -6,6 +6,7 @@ import { NotificationsService } from '../services/notifications.service';
 import { Backend } from '../definitions/interfaces/backend';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * It sets the timeout in actions like undeploying or deleting
@@ -28,12 +29,10 @@ export class ChangePasswordComponent implements OnInit {
   changePasswordForm: FormGroup;
   submitted = false;
   loading: boolean;
-
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Models that hold organization id, user id, and passwords
    */
@@ -48,7 +47,8 @@ export class ChangePasswordComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.passwordMock) || null;
     // check which backend is required (fake or real)
@@ -76,12 +76,10 @@ export class ChangePasswordComponent implements OnInit {
     const passwordConfirm = group.passwordConfirm.value;
     return newPassword === passwordConfirm ? true : false;
   }
-
   /**
    * Convenience getter for easy access to form fields
    */
   get f() { return this.changePasswordForm.controls; }
-
   /**
    * Request to save changes in the user password
    * @param f Form containing the user input
@@ -104,7 +102,7 @@ export class ChangePasswordComponent implements OnInit {
         .subscribe(response => {
           this.loading = false;
           this.notificationsService.add({
-            message: 'Password changed successfully',
+            message: this.translateService.instant('changePass.passChanged'),
             timeout: TIMEOUT_ACTION
           });
           this.bsModalRef.hide();
@@ -118,22 +116,18 @@ export class ChangePasswordComponent implements OnInit {
         });
     }
   }
-
   /**
    * Checks if the form has been modified before discarding changes
    * @param form Form object reference
    */
   discardChanges(form) {
     if (form.dirty) {
-      const discard = confirm('Discard changes?');
+      const discard = confirm(this.translateService.instant('modals.discardChanges'));
       if (discard) {
         this.bsModalRef.hide();
-      } else {
-        // Do nothing
       }
     } else {
       this.bsModalRef.hide();
     }
   }
-
 }

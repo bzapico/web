@@ -246,7 +246,6 @@ export class DeployInstanceComponent implements OnInit {
     this.availableParamsCategory.basic = false;
     this.availableParamsCategory.advanced = false;
     this.params = this.deployInstanceForm.get('params') as FormArray;
-
     if (this.selectedApp.parameters) {
       this.defaultParamsOpened = true;
       this.selectedApp.parameters.forEach(param => {
@@ -393,8 +392,8 @@ export class DeployInstanceComponent implements OnInit {
     if (f.targetInterface.value) {
       this.connections.push(
         {target_instance_id: this.instances.filter(inst => inst.name === f.targetInstance.value)[0].app_instance_id,
-         target_inbound_name: f.targetInterface.value,
-         source_outbound_name: this.requiredConnections[i].name}
+        target_inbound_name: f.targetInterface.value,
+        source_outbound_name: this.requiredConnections[i].name}
       );
     }
   }

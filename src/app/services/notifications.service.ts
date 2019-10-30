@@ -24,14 +24,12 @@ export class NotificationsService {
   add(notificationInstance: Notification) {
     this._notifications.push(notificationInstance);
   }
-
   /**
    * Get notifications list
    */
   get notifications() {
     return this._notifications;
   }
-
   /**
    * onClosed() will show close button to the right of the alert for dismiss option
    */
@@ -41,7 +39,6 @@ export class NotificationsService {
       this._notifications.splice(index, 1);
     }
   }
-
   /**
    * Generates UUID v4
    * https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
@@ -53,5 +50,4 @@ export class NotificationsService {
       return v.toString(16);
     });
   }
-
 }

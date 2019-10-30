@@ -5,16 +5,13 @@ import { Pipe, PipeTransform, Injectable } from '@angular/core';
 })
 @Injectable()
 export class FilterPipe implements PipeTransform {
-
   /**
    * @param items List of items to filter
    * @param term  a string term to compare with every property of the list
    * @param propertiesToFilterBy a key to add to the filter
    */
   static filter(items: Array<{ [key: string]: any }>, term: string,  propertiesToFilterBy?: string[] ): Array<{ [key: string]: any}> {
-
     const toCompare = term.toLowerCase();
-
     return items.filter(function (item: any) {
       if ( propertiesToFilterBy ) {
         for (const property of propertiesToFilterBy) {
@@ -22,7 +19,7 @@ export class FilterPipe implements PipeTransform {
             if (JSON.stringify(item[property]).toLowerCase().includes(toCompare)) {
               return true;
             }
-           } else if (item[property].toString().toLowerCase().includes(toCompare)) {
+          } else if (item[property].toString().toLowerCase().includes(toCompare)) {
             return true;
           }
         }
@@ -35,7 +32,7 @@ export class FilterPipe implements PipeTransform {
             if (JSON.stringify(item[property]).toLowerCase().includes(toCompare)) {
               return true;
             }
-           } else if (item[property].toString().toLowerCase().includes(toCompare)) {
+          } else if (item[property].toString().toLowerCase().includes(toCompare)) {
             return true;
           }
       }
@@ -43,7 +40,6 @@ export class FilterPipe implements PipeTransform {
       }
     });
   }
-
   /**
    * @param items object from array
    * @param term term's search

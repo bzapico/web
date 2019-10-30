@@ -30,27 +30,22 @@ export class UserInfoComponent implements OnInit {
    */
   userInfoForm: FormGroup;
   loading: boolean;
-
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Dialog title
    */
   title: string;
-
   /**
    * Text for the change password action button
    */
   buttonChangePassword: string;
-
   /**
    * Text for the delete user action button
    */
   buttonDeleteUser: string;
-
   /**
    * Models that hold user name, organization id, name, user email/ID and role selection
    */
@@ -60,12 +55,10 @@ export class UserInfoComponent implements OnInit {
   email: string;
   role: string;
   userId: string;
-
   /**
    * Change password modal window reference
    */
   bsPasswordModalRef: BsModalRef;
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -111,7 +104,6 @@ export class UserInfoComponent implements OnInit {
    * Convenience getter for easy access to form fields
    */
   get f() { return this.userInfoForm.controls; }
-
   /**
    *  Upon confirmation, deletes user
    * @param email A user to be deleted
@@ -138,11 +130,8 @@ export class UserInfoComponent implements OnInit {
             });
           });
       }
-    } else {
-      // Do nothing
     }
   }
-
   /**
    * Opens the modal view that holds change password editable component
    */

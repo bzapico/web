@@ -26,12 +26,10 @@ export class AddDevicesGroupComponent implements OnInit {
   addGroupForm: FormGroup;
   submitted = false;
   loading: boolean;
-
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Models that hold organization id
    */
@@ -39,7 +37,6 @@ export class AddDevicesGroupComponent implements OnInit {
   defaultConnectivity: boolean;
   groupApiKey: string;
   enabled: boolean;
-
   /**
    *  Models that hold group data
    */
@@ -47,7 +44,6 @@ export class AddDevicesGroupComponent implements OnInit {
   name: string;
   default_device_connectivity: boolean;
   device_group_api_key: string;
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -75,26 +71,34 @@ export class AddDevicesGroupComponent implements OnInit {
     } else {
       this.backend = this.backendService;
     }
-    this.device_group_id = this.translateService.instant('organization.loading');
+    this.device_group_id = this.translateService.instant(
+      'organization.loading'
+    );
     this.name = this.translateService.instant('organization.loading');
-    this.device_group_api_key = this.translateService.instant('organization.loading');
+    this.device_group_api_key = this.translateService.instant(
+      'organization.loading'
+    );
   }
 
   ngOnInit() {
     this.addGroupForm = this.formBuilder.group({
-      groupName: ['', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.pattern('^[A-Za-z0-9_]+$')
-      ]],
+      groupName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.pattern('^[A-Za-z0-9_]+$')
+        ]
+      ]
     });
   }
 
   /**
    * Convenience getter for easy access to form fields
    */
-  get f() { return this.addGroupForm.controls; }
-
+  get f() {
+    return this.addGroupForm.controls;
+  }
   /**
    * Requests to create a new device group
    * Create device group opens the device group created component modal  window confirmation
@@ -108,40 +112,45 @@ export class AddDevicesGroupComponent implements OnInit {
         name: form.groupName.value,
         enabled: this.enabled,
         default_device_connectivity: this.defaultConnectivity,
-        organization_id: this.organizationId,
+        organization_id: this.organizationId
       };
-      this.backend.addGroup(this.organizationId, groupData)
-      .subscribe(response => {
-        this.loading = false;
-        const initialState = {
-          groupApiKey: response.device_group_api_key,
-        };
-        this.bsModalRef.hide();
-        this.bsModalRef =
-          this.modalService.show(DeviceGroupCreatedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
-        this.bsModalRef.content.closeBtnName = 'Close';
-      }, error => {
-        this.loading = false;
-        this.notificationsService.add({
-          message: 'ERROR: ' + error.error.message,
-          timeout: TIMEOUT_ERROR,
-          type: 'warning'
-        });
-      });
+      this.backend.addGroup(this.organizationId, groupData).subscribe(
+        response => {
+          this.loading = false;
+          const initialState = {
+            groupApiKey: response.device_group_api_key
+          };
+          this.bsModalRef.hide();
+          this.bsModalRef = this.modalService.show(
+            DeviceGroupCreatedComponent,
+            { initialState, backdrop: 'static', ignoreBackdropClick: false }
+          );
+          this.bsModalRef.content.closeBtnName = 'Close';
+        },
+        error => {
+          this.loading = false;
+          this.notificationsService.add({
+            message: this.translateService.instant('infrastructure.error', {
+              error: error.error.message
+            }),
+            timeout: TIMEOUT_ERROR,
+            type: 'warning'
+          });
+        }
+      );
     }
   }
-
   /**
    * Checks if the form has been modified before discarding changes
    * @param form Form object reference
    */
   discardChanges(form) {
     if (form.dirty) {
-      const discard = confirm(this.translateService.instant('modals.discardChanges'));
+      const discard = confirm(
+        this.translateService.instant('modals.discardChanges')
+      );
       if (discard) {
         this.bsModalRef.hide();
-      } else {
-        // Do nothing
       }
     } else {
       this.bsModalRef.hide();

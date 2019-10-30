@@ -7,6 +7,9 @@ import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TooltipModule } from '@swimlane/ngx-charts';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '../app.module';
 
 describe('RuleInfoComponent', () => {
   let component: RuleInfoComponent;
@@ -22,11 +25,19 @@ describe('RuleInfoComponent', () => {
         BrowserAnimationsModule,
         TooltipModule,
         NgxGraphModule,
-        RouterTestingModule
+        RouterTestingModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
       providers: [
         BsModalRef,
-        BsModalService
+        BsModalService,
+        TranslateService
       ]
     })
     .compileComponents();

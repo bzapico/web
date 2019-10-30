@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { AccessType } from '../definitions/enums/access-type.enum';
 import { TranslateService } from '@ngx-translate/core';
-
+import { ServicesStatus } from '../definitions/enums/services-status.enum';
+/**
+ * It sets the status colors for nodes
+ */
 const STATUS_COLORS = {
   RUNNING: '#00E6A0',
   ERROR: '#F7478A',
   OTHER: '#FFEB6C'
 };
+/**
+ * It sets the status text colors for nodes
+ */
 const STATUS_TEXT_COLORS = {
   RUNNING: '#FFFFFF',
   ERROR: '#FFFFFF',
@@ -17,7 +23,6 @@ const STATUS_TEXT_COLORS = {
   providedIn: 'root'
 })
 export class InstanceInfoService {
-
   private _graphData: any;
   private _isGeneratedPublicRule: boolean;
   private _publicRule: any;
@@ -66,41 +71,42 @@ export class InstanceInfoService {
     }
     return rawStatus;
   }
-
   /**
    * Return an specific color depending on the node status
    * @param status Status name
    */
   getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
-      case this.translateService.instant('status.serviceRunning'):
+      case ServicesStatus.ServiceRunning:
         return STATUS_COLORS.RUNNING;
-      case this.translateService.instant('status.serviceError'):
+      case ServicesStatus.ServiceError:
         return STATUS_COLORS.ERROR;
-      case this.translateService.instant('status.serviceWaiting'):
+      case ServicesStatus.ServiceWaiting:
         return STATUS_COLORS.OTHER;
       default:
         return STATUS_COLORS.OTHER;
     }
   }
-
   /**
    * Return an specific color depending on the node status
    * @param status Status name
    */
   getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
-      case this.translateService.instant('status.serviceRunning'):
+      case ServicesStatus.ServiceRunning:
         return STATUS_TEXT_COLORS.RUNNING;
-      case this.translateService.instant('status.serviceError'):
+      case ServicesStatus.ServiceError:
         return STATUS_TEXT_COLORS.ERROR;
-      case this.translateService.instant('status.serviceWaiting'):
+      case ServicesStatus.ServiceWaiting:
         return STATUS_TEXT_COLORS.OTHER;
       default:
         return STATUS_TEXT_COLORS.OTHER;
     }
   }
-
+  /**
+   * Transforms the data needed to create the graph
+   * @param instance instance object
+   */
   toGraphData(instance) {
     this._graphData = {
       nodes: [],
@@ -192,7 +198,10 @@ export class InstanceInfoService {
       });
     }
   }
-
+  /**
+  * Sets services instances nodes and links
+  * @param group group object
+  */
   private setServicesInstancesNodesAndLinks(group) {
     group.service_instances.forEach(service => {
       const nodeService = {
@@ -217,7 +226,10 @@ export class InstanceInfoService {
       });
     });
   }
-
+  /**
+  * Sets inbound connections
+  * @param instance instance object
+  */
   private setInboundConnections(instance) {
     if (instance.inbound_net_interfaces && instance.inbound_net_interfaces.length > 0 ) {
       const inbounds = {};
@@ -258,7 +270,10 @@ export class InstanceInfoService {
       this.setInboundLinks(Object.values(inbounds), instance);
     }
   }
-
+  /**
+  * Sets outbound connections
+  * @param instance instance object
+  */
   private generateOutboundConnections(instance) {
     if (instance.outbound_net_interfaces && instance.outbound_net_interfaces.length > 0 ) {
       const outbounds = {};
@@ -299,7 +314,12 @@ export class InstanceInfoService {
       this.setOutboundLinks(Object.values(outbounds), instance);
     }
   }
-
+  /**
+   * Check if the connection is connected
+   * @param type type object
+   * @param instances_connections connections object
+   * @param bound bound object
+   */
   private isConnectedBound(type, instances_connections, bound): {isConnected: boolean, secondaryName: string} {
     const data = {
       inbound: {
@@ -321,7 +341,11 @@ export class InstanceInfoService {
       secondaryName: isConnected ? filteredData[0][data[type].name] : ''
     };
   }
-
+  /**
+   * Sets inbounds links
+   * @param instance instance object
+   * @param inbounds inbounds object
+   */
   private setInboundLinks(inbounds, instance) {
     inbounds.forEach(inbound => {
       const filteredData = instance.rules.filter(rule => inbound.label === rule.inbound_net_interface);
@@ -337,7 +361,11 @@ export class InstanceInfoService {
       }
     });
   }
-
+  /**
+   * Sets outbounds links
+   * @param instance instance object
+   * @param outbounds outbounds object
+   */
   private setOutboundLinks(outbounds, instance) {
     outbounds.forEach(outbound => {
       const filteredData = instance.rules.filter(rule => outbound.label === rule.outbound_net_interface);
@@ -353,7 +381,10 @@ export class InstanceInfoService {
       }
     });
   }
-
+  /**
+   * Sets public rules nodes
+   * @param rule rule object
+   */
   private setPublicRulesNodes(rule) {
     const ruleNode = {
       id: rule.rule_id,
@@ -391,7 +422,11 @@ export class InstanceInfoService {
     };
     this._graphData.nodes.push(ruleNode);
   }
-
+  /**
+   * Sets public rules links
+   * @param rule rule object
+   * @param group group object
+   */
   private setRulesLinks(rule, group) {
     group.service_instances.forEach(service => {
       if (service.name === rule.target_service_name) {
@@ -406,7 +441,11 @@ export class InstanceInfoService {
       }
     });
   }
-
+  /**
+   * Sets public connections
+   * @param rule rule object
+   * @param group group object
+   */
   private setPublicConnections(rule, group) {
     if (rule.access_name === AccessType.Public) {
       if (!this._isGeneratedPublicRule) {

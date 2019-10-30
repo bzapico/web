@@ -25,7 +25,6 @@ export class ManageConnectionsComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Model that hold manage connections and its info
    */
@@ -34,26 +33,22 @@ export class ManageConnectionsComponent implements OnInit {
   connections: any[];
   copyConnections: any[];
   selectedApp: any;
-
   /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
-
   /**
    * Models that holds forms info
    */
   manageConnectionsFilterForm: FormGroup;
   manageConnections: FormControl;
   filter: FormControl;
-
   /**
    * NGX-select-dropdown
    */
   tab = 1;
   appDropdownOptions: any[];
   selectConfig = {};
-
   /**
    * Reference for the service that allows the modal component
    */
@@ -76,10 +71,9 @@ export class ManageConnectionsComponent implements OnInit {
       } else {
         this.backend = this.backendService;
       }
-    this.title = 'MANAGE CONNECTIONS';
+    this.title = this.translateService.instant('apps.manageConnections.title');
     this.searchTerm = '';
     this.selectedApp = '';
-
     //  Manage connections dropdown
     this.manageConnections = null;
     this.connections = [];
@@ -98,18 +92,17 @@ export class ManageConnectionsComponent implements OnInit {
       displayKey: 'name',
       search: false,
       height: 'auto',
-      placeholder: 'No filter',
+      placeholder: this.translateService.instant('advancedFilterOptions.noFilters'),
       moreText: 'more',
-      noResultsFound: 'No results found!'
+      noResultsFound: this.translateService.instant('apps.addConnection.noResults')
     };
     this.updateConnections();
   }
 
-    /**
+  /**
    * Convenience getter for easy access to form fields
    */
   get f() { return this.manageConnectionsFilterForm.controls; }
-
   /**
    * Creates an array with the names to be filtered by
    */
@@ -118,16 +111,13 @@ export class ManageConnectionsComponent implements OnInit {
       organizationId: this.organizationId,
       defaultAutofocus: false,
     };
-
     this.modalRef = this.modalService.show(AddConnectionsComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.onClose = (newConnection: any) => {
       if (newConnection) {
-        }
-      };
+      }};
     this.modalRef.content.closeBtnName = 'Close';
     this.bsModalRef.hide();
   }
-
   /**
    * Updates connections and appDropdownOptions
    */
@@ -141,8 +131,7 @@ export class ManageConnectionsComponent implements OnInit {
         }
       });
   }
-
-    /**
+  /**
    * Returns app instances names and ids in an object array
    */
   getAppInstancesOptions() {
@@ -159,13 +148,12 @@ export class ManageConnectionsComponent implements OnInit {
         });
       });
       instances.push({
-        name: '----- NO FILTER -----',
-        id: '----- NO FILTER -----'
+        name: this.translateService.instant('advancedFilterOptions.noFiltersDrop'),
+        id: this.translateService.instant('advancedFilterOptions.noFiltersDrop')
       });
     }
     return instances;
   }
-
   /**
    * Disconnects app instance
    * @param connection connections
@@ -175,7 +163,7 @@ export class ManageConnectionsComponent implements OnInit {
       confirm(this.translateService.instant('apps.manageConnections.disconnectConfirm'));
     if (connection.outbound_required) {
       deleteConfirm =
-      confirm(this.translateService.instant('apps.manageConnections.disconnectConfirmOutboundRequired'));
+      confirm(this.translateService.instant('apps.manageConnections.disconnectConfirm'));
     }
     if (deleteConfirm) {
       this.backend.removeConnection(this.organizationId, {
@@ -190,36 +178,33 @@ export class ManageConnectionsComponent implements OnInit {
       })
         .subscribe(response => {
           this.notificationsService.add({
-            message: 'Connection removed',
+            message: this.translateService.instant('apps.manageConnections.disconnectMessage'),
             timeout: TIMEOUT_ACTION
           });
           this.updateConnections();
         });
     }
   }
-
   /**
    * Handler for change event on ngx-select-dropdown
    * @param f Form
    */
   filterByApp(f) {
-    // Workaround to enable "reseting" the filter to no filter after selecting an app
-    if (f.filter.value.name === '----- NO FILTER -----') {
+    // Workaround to enable "resetting" the filter to no filter after selecting an app
+    if (f.filter.value.name === this.translateService.instant('advancedFilterOptions.noFiltersDrop')) {
       f.filter.value = null;
       this.selectedApp = '';
     } else {
       this.selectedApp = f.filter.value.name;
     }
   }
-
   /**
    * Close the modal window
    */
   closeModal() {
     this.bsModalRef.hide();
   }
-
-    /**
+  /**
    * Reset all the filters fields
    */
   resetFilters() {
@@ -227,7 +212,7 @@ export class ManageConnectionsComponent implements OnInit {
   }
   /**
    * Navigates to the desired instance and closes the modal
-   * @param instanceId instance identificator
+   * @param instanceId instance identification
    */
   goToInstance(instanceId: string) {
     this.router.navigate(['/applications/instance/' + instanceId]);

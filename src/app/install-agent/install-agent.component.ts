@@ -114,10 +114,8 @@ export class InstallAgentComponent implements OnInit {
       name: ArchitectureType.WinAmd64,
       code: 3
     }];
-
     //  edgeControllerId
     this.edgeControllerId = null;
-
     const mock = localStorage.getItem(LocalStorageKeys.installAgentMock) || null;
     // check which backend is required (fake or real)
     if (mock && mock === 'true') {
@@ -155,7 +153,6 @@ export class InstallAgentComponent implements OnInit {
    */
   getControllersList() {
     const controllersList = [];
-
     for (let i = 0; i < this.inventory.length; i++) {
       if (this.inventory[i].type === InventoryType.Ec) {
         controllersList.push(this.inventory[i]);
@@ -163,12 +160,10 @@ export class InstallAgentComponent implements OnInit {
     }
     return controllersList;
   }
-
   /**
    * Convenience getter for easy access to form fields
    */
   get f() { return this.installAgentForm.controls; }
-
   /**
    * Requests to install agent
    * @param f Form with the agent input data
@@ -176,7 +171,6 @@ export class InstallAgentComponent implements OnInit {
   installAgent(f) {
     this.submitted = true;
     this.loading = true;
-
     if (!this.openFromEc && f.edgeController && f.edgeController.value) {
       this.edgeControllerId = f.edgeController.value.edge_controller_id;
     }
@@ -215,7 +209,6 @@ export class InstallAgentComponent implements OnInit {
         this.bsModalRef.hide();
       });
   }
-
   /**
    * Checks if the form has been modified before discarding changes
    * @param form Form object reference
@@ -225,8 +218,6 @@ export class InstallAgentComponent implements OnInit {
       const discard = confirm(this.translateService.instant('modals.discardChanges'));
       if (discard) {
         this.bsModalRef.hide();
-      } else {
-        // Do nothing
       }
     } else {
       this.bsModalRef.hide();
