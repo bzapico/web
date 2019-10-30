@@ -19,7 +19,7 @@ export class FilterPipe implements PipeTransform {
             if (JSON.stringify(item[property]).toLowerCase().includes(toCompare)) {
               return true;
             }
-          } else if (item[property].toString().toLowerCase().includes(toCompare)) {
+          } else if (item[property] && item[property].toString().toLowerCase().includes(toCompare)) {
             return true;
           }
         }
@@ -32,7 +32,7 @@ export class FilterPipe implements PipeTransform {
             if (JSON.stringify(item[property]).toLowerCase().includes(toCompare)) {
               return true;
             }
-          } else if (item[property].toString().toLowerCase().includes(toCompare)) {
+          } else if (item[property] && item[property].toString().toLowerCase().includes(toCompare)) {
             return true;
           }
       }
