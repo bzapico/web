@@ -318,4 +318,62 @@ export class AppInfoComponent implements OnInit {
       this.advancedParameters = params.advanced;
     }
   }
+  /**
+  * Get target
+  * @param outboundNetInterfaceName outboundNetInterfaceName object
+  */
+  getTarget(outboundNetInterfaceName: string): any {
+    let found = false;
+    if (this.instance.outbound_connection) {
+      for (let index = 0; index < this.instance.outbound_connections.length && !found; index++) {
+        const connection = this.instance.outbound_connections[index];
+        if (outboundNetInterfaceName === connection.outbound_name) {
+          found = true;
+          return {
+            interface_name: connection.inbound_name,
+            instance_name: connection.target_instance_name
+          };
+        }
+      }
+    } else {
+      return {
+        interface_name: '',
+        instance_name: ''
+      };
+    }
+  }
+  /**
+  * Get inbound connections
+  */
+  getInboundConnections(): any {
+    const inbounds = [];
+    if (this.instance.inbound_connections) {
+      this.instance.inbound_connections.forEach(connection => {
+        inbounds.push({
+          inbound_name: connection.inbound_name,
+          outbound_name: connection.outbound_name,
+          instance_name: connection.source_instance_name
+          });
+      });
+    }
+    if (this.instance.inbound_net_interfaces) {
+      this.instance.inbound_net_interfaces.forEach(inboundInterface => {
+        let found = false;
+        for (let index = 0; index < inbounds.length && !found; index++) {
+          const inbound = inbounds[index];
+          if ( inbound.inbound_name === inboundInterface.name) {
+            found = true;
+          }
+        }
+        if (!found) {
+          inbounds.push({
+            inbound_name: inboundInterface.name,
+            outbound_name: '',
+            instance_name: ''
+            });
+        }
+      });
+    }
+    return inbounds;
+  }
 }

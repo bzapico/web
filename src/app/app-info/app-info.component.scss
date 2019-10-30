@@ -13,6 +13,9 @@
     overflow-y: scroll;
     overflow-x: hidden;
     font-size:  .9em;
+    > div:first-child > span {
+        border-top: 0;
+    }
 }
 #summary-status {
     font-size: 20px;
