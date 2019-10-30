@@ -20,6 +20,7 @@ import { ApplicationsService } from './applications.service';
 import { AppStatus } from '../definitions/enums/app-status.enum';
 import { ToolsComponent } from '../tools/tools.component';
 import { Cluster } from '../definitions/interfaces/cluster';
+import { AppDescriptor } from '../definitions/models/app-descriptor';
 
 @Component({
   selector: 'applications',
@@ -46,7 +47,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
   /**
    * List of registered apps
    */
-  registered: any[];
+  registered: AppDescriptor[];
   /**
    * List of available clusters
    */

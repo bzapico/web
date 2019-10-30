@@ -168,10 +168,8 @@ export class AddLabelComponent implements OnInit {
           if (!updatedEntity.labels || updatedEntity.labels === '-') {
             updatedEntity.labels = {};
           }
-          console.log('PRELABELS ::: ', updatedEntity.labels);
           updatedEntity.labels[form.labelName.value] = form.labelValue.value;
           updatedEntity.add_labels = true;
-          console.log('POSTLABELS ::: ', updatedEntity.labels);
           this.backend.updateAppDescriptor(
             this.organizationId,
             this.entity.app_descriptor_id,

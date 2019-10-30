@@ -1,7 +1,7 @@
 export enum InventoryType {
-    Ec = 'EC',
-    Asset = 'Asset',
-    Device = 'Device',
+    Ec = 'ec',
+    Asset = 'asset',
+    Device = 'device',
     App = 'app',
     Node = 'node',
     Cluster = 'cluster'
