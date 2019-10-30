@@ -16,7 +16,7 @@ export interface Controller {
     // Labels defined by the user.
     labels?: any;
     // LastAliveTimestamp contains the last alive message received
-    last_alive_timestamp?: number;
+    last_alive_timestamp?: string;
     // List of assets
     assets?: any;
     // Status for the UI.

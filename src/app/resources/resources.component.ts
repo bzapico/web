@@ -10,7 +10,7 @@ import { AddLabelComponent } from '../add-label/add-label.component';
 import { Subscription, timer } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { ToolsComponent } from '../tools/tools.component';
-import {AppStatus} from '../definitions/enums/app-status.enum';
+import { AppStatus } from '../definitions/enums/app-status.enum';
 
 @Component({
   selector: 'app-resources',

@@ -1,9 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
-import { of, Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { mockJwtToken, mockUserList, mockOrganizationInfo, mockNodeList, mockDevicesList, mockGroupList,
-         mockEICJoinToken, mockAgentJoinToken, mockAppsInboundsList, mockAppsOutboundsList } from './utils/mocks';
+import {
+  mockAgentJoinToken,
+  mockAppsInboundsList,
+  mockAppsOutboundsList,
+  mockDevicesList,
+  mockEICJoinToken,
+  mockGroupList,
+  mockJwtToken,
+  mockNodeList,
+  mockOrganizationInfo,
+  mockUserList
+} from './utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 import { Asset } from '../definitions/interfaces/asset';
 import { HttpResponse } from '@angular/common/http';
@@ -12,6 +22,8 @@ import { mockClusterList, mockResourcesSummary } from './utils/clusters.mock';
 import { mockConnectionsList } from './utils/connections.mock';
 import { mockRegisteredAppsList } from './utils/registered-apps.mock';
 import { mockAppsInstancesList } from './utils/instances-apps.mock';
+import { OperatingSystemClass } from '../definitions/enums/operating-system-class.enum';
+import { OpStatus } from '../definitions/enums/op-status.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -192,34 +204,33 @@ export class MockupBackendService implements Backend {
       os: {
         name: 'petra',
         version: 'v1',
-        class: 'linux',
+        class: OperatingSystemClass.Linux,
         architecture: 'chagal'
       },
       hardware: {
-        cpus: {
+        cpus: [{
           manufacturer: 'GenuineIntel',
           model: 'Intel(R) Core(TM) i7-5557U CPU @ 3.10GHz',
           architecture: 'amd64',
           num_cores: 3
-        },
+        }],
         installed_ram: 2,
-        net_interfaces: {
+        net_interfaces: [{
           type: 'capacity',
           link_capacity: 5
-        }
+        }]
       },
-      storage: {
+      storage: [{
         type: 'ram',
         total_capacity: 7
-      },
-      last_op_summary: {
+      }],
+      last_op_result: {
         operation_id: '54654asd-654654-qweqwe',
         timestamp:  '1550746669',
-        status: 'scheduled',
+        status: OpStatus.SCHEDULED,
         info: 'info'
       },
-      last_alive_timestamp: '654654654',
-      status_name: 'ONLINE'
+      last_alive_timestamp: '654654654'
     };
 
     for (let index = 0; index < mockInventoryList.controllers.length; index++) {

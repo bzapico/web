@@ -3,7 +3,7 @@ import { InstanceInfoService } from './instance-info.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { createTranslateLoader } from '../app.module';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 describe('InstanceInfoService', () => {
   beforeEach(() => TestBed.configureTestingModule({

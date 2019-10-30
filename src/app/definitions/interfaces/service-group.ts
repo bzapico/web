@@ -1,6 +1,7 @@
 import { ServiceGroupDeploymentSpecs } from './service-group-deployment-specs';
 import { Service } from './service';
 import { CollocationPolicy } from '../enums/collocation-policy.enum';
+import { KeyValue } from '@angular/common';
 
 export interface ServiceGroup {
     // OrganizationId with the organization identifier.
@@ -18,5 +19,5 @@ export interface ServiceGroup {
     // Particular deployment specs for this service
     specs?: ServiceGroupDeploymentSpecs;
     // Labels defined by the user.
-    labels?: Map<string, string>;
+    labels?: KeyValue<string, string>;
 }

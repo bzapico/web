@@ -1,6 +1,10 @@
 /**
  * Interface that defines the Device info needed for creating the Device object instance
  */
+import { KeyValue } from './key-value';
+import { InventoryLocation } from './inventory-location';
+import { AssetInfo } from './asset-info';
+
 export interface Device {
   // OrganizationId with the organization identifier.
   organization_id: string;
@@ -13,7 +17,7 @@ export interface Device {
   // RegisterSince is the timestamp when the device joined the group.
   register_since?: number;
   // Labels defined by the user.
-  labels?: any;
+  labels?: KeyValue;
   // Enabled determines if the device can interact with the running applications.
   enabled?: boolean;
   // DeviceApiKey contains the API KEY used by the device to send data.
@@ -21,7 +25,7 @@ export interface Device {
   // DeviceStatus contains the status of the device (ONLINE/OFFLINE)
   device_status_name?: string;
   // location with the device location
-  location?: any;
+  location?: InventoryLocation;
   // AssetInfo with the information related to Hw, Storage and OS
-  asset_info?: any;
+  asset_info?: AssetInfo;
 }

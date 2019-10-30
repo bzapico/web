@@ -9,9 +9,9 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { SortByPipe } from '../pipes/sort-by.pipe';
 import { FormsModule } from '@angular/forms';
-import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
-import {createTranslateLoader} from '../app.module';
-import {HttpClient} from '@angular/common/http';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { createTranslateLoader } from '../app.module';
+import { HttpClient } from '@angular/common/http';
 
 describe('MainComponent', () => {
   let component: MainComponent;

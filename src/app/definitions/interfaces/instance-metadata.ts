@@ -1,5 +1,7 @@
 // This is a common metadata entity that collects information for a deployed instance. This instance can be a
 // service instance or a service group instance.
+import { KeyValue } from '@angular/common';
+
 export interface InstanceMetadata {
     // OrganizationId with the organization identifier.
     organization_id?: string;
@@ -20,7 +22,7 @@ export interface InstanceMetadata {
     // Number of unavailable replicas for this descriptor
     unavailable_replicas?: number;
     // Status of every item monitored by this metadata entry
-    status_name?: Map<string, string>;
+    status_name?: KeyValue<string, string>;
     // Relevant information for every monitored instance
-    info?: Map<string, string>;
+    info?: KeyValue<string, string>;
 }

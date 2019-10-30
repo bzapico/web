@@ -1,4 +1,6 @@
 import { Inventory } from '../../definitions/interfaces/inventory';
+import { OperatingSystemClass } from '../../definitions/enums/operating-system-class.enum';
+import { OpStatus } from '../../definitions/enums/op-status.enum';
 
 /**
  * Mock inventory summary containing total cpu, memory and storage
@@ -105,7 +107,7 @@ export const mockInventoryList: Inventory = {
             os: {
                 name: 'Darwin',
                 version: '18.6.0',
-                class: 'DARWIN',
+                class: OperatingSystemClass.Darwin,
                 class_name: 'DARWIN',
                 architecture: 'amd64'
             },
@@ -136,15 +138,13 @@ export const mockInventoryList: Inventory = {
                     total_capacity: 7
                 }
             ],
-            last_op_summary: {
+            last_op_result: {
                 operation_id: '8690b81e-9757-4272-9a48-84af007cb713',
-                timestamp:  1550746669,
-                op_status_name: 'INPROGRESS',
-                status: 'INPROGRESS',
+                timestamp:  '1550746669',
+                status: OpStatus.INPROGRESS,
                 info: 'metrics enabled',
             },
-            last_alive_timestamp: '654654654',
-            status_name: 'OFFLINE'
+            last_alive_timestamp: '654654654'
         },
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
@@ -161,7 +161,7 @@ export const mockInventoryList: Inventory = {
             os: {
                 name: 'petra',
                 version: 'v1',
-                class: 'linux',
+                class: OperatingSystemClass.Linux,
                 class_name: 'LINUX',
                 architecture: 'amd64'
             },
@@ -192,15 +192,13 @@ export const mockInventoryList: Inventory = {
                     total_capacity: 15
                 }
             ],
-            last_op_summary: {
+            last_op_result: {
                 operation_id: '54654asd-654654-qweqwe',
-                timestamp:  1563299414,
-                op_status_name: 'SCHEDULED',
-                status: 'SCHEDULED',
+                timestamp:  '1563299414',
+                status: OpStatus.SCHEDULED,
                 info: 'info'
             },
-            last_alive_timestamp: '654654654',
-            status_name: 'ONLINE'
+            last_alive_timestamp: '654654654'
         },
     ],
     controllers:

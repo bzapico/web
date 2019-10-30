@@ -15,6 +15,7 @@ import { RegisteredServiceGroupInfoComponent } from '../registered-service-group
 import { TranslateService } from '@ngx-translate/core';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { RegisteredInfoService } from './registered-info.service';
+import { KeyValue } from '../definitions/interfaces/key-value';
 
 @Component({
   selector: 'app-registered-info',
@@ -431,13 +432,16 @@ export class RegisteredInfoComponent implements OnInit {
    */
   addLabel() {
     const registeredDataForBackend = Object.assign({}, this.registeredData);
+    const labelsLikeArray: KeyValue = {};
     if (registeredDataForBackend.labels) {
-      const labelsLikeArray = {};
-      this.registeredData.labels.forEach(label => {
-        labelsLikeArray[label.key] = label.value;
-      });
-      registeredDataForBackend.labels = labelsLikeArray;
+      for (const labelsKey in this.registeredData.labels) {
+        if (this.registeredData.labels[labelsKey] === null || this.registeredData.labels[labelsKey] === undefined) {
+          continue;
+        }
+        labelsLikeArray[this.registeredData.labels[labelsKey]['key']] = this.registeredData.labels[labelsKey]['value'];
+      }
     }
+    registeredDataForBackend.labels = labelsLikeArray;
     const initialState = {
       organizationId: this.organizationId,
       entityType: this.translateService.instant('apps.registered.app'),

@@ -7,6 +7,7 @@ import { ServiceGroup } from '../interfaces/service-group';
 import { InboundNetworkInterface } from '../interfaces/inbound-network-interface';
 import { OutboundNetworkInterface } from '../interfaces/outbound-network-interface';
 import { AppParameter } from '../interfaces/app-parameter';
+import { KeyValue } from '../interfaces/key-value';
 
 export class AppDescriptor {
     // OrganizationId with the organization identifier.
@@ -16,12 +17,12 @@ export class AppDescriptor {
     // Name of the application.
     name?: string;
     // ConfigurationOptions defines a key-value map of configuration options.
-    configuration_options?: {};
+    configuration_options?: KeyValue;
     // EnvironmentVariables defines a key-value map of environment variables and values that will be passed to all
     // running services.
-    environment_variables?: {};
+    environment_variables?: KeyValue;
     // Labels defined by the user.
-    labels?: any;
+    labels?: KeyValue;
     // Rules that define the connectivity between the elements of an application.
     rules?: SecurityRule[];
     // Groups with the Service collocation strategies.

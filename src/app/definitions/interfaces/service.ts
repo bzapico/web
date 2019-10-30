@@ -3,6 +3,7 @@ import { ImageCredentials } from './image-credentials';
 import { Port } from './port';
 import { ConfigFile } from './config-file';
 import { ServiceType } from '../enums/service-type.enum';
+import { KeyValue } from '@angular/common';
 
 export interface Service {
     // OrganizationId with the organization identifier.
@@ -29,11 +30,11 @@ export interface Service {
     exposed_ports?: Port[];
     // EnvironmentVariables defines a key-value map of environment variables and values that will be passed to all
     // running services.
-    environment_variables?: Map<string, string>;
+    environment_variables?: KeyValue<string, string>;
     // Configs contains the configuration files required by the service.
     configs?: ConfigFile[];
     // Labels with the user defined labels.
-    labels?: Map<string, string>;
+    labels?: KeyValue<string, string>;
     // DeployAfter contains the list of service names that must be running before launching this service.
     deploy_after?: string[];
     // Run arguments

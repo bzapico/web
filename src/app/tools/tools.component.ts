@@ -6,6 +6,7 @@ import { NodeType } from '../definitions/enums/node-type.enum';
 import * as shape from 'd3-shape';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { Backend } from '../definitions/interfaces/backend';
+import { ApplicationInstance } from '../definitions/interfaces/application-instance';
 
 @Component({
   selector: 'tools',
@@ -70,7 +71,7 @@ export class ToolsComponent implements OnInit {
   /**
    * Instances list
    */
-  instances: any[];
+  instances: ApplicationInstance[];
   /**
    * Model that hold organization ID
    */

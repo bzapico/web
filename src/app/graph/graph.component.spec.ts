@@ -3,7 +3,7 @@ import { GraphComponent } from './graph.component';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { TooltipModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule  } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 describe('GraphComponent', () => {
   let fixture: ComponentFixture<GraphComponent>;

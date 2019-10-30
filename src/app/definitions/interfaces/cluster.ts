@@ -2,6 +2,7 @@
  * Interface that defines the Cluster info needed for creating the Cluster object instance
  */
 import { ClusterStatus } from '../enums/cluster-status.enum';
+import { KeyValue } from '@angular/common';
 
 export interface Cluster {
   // OrganizationId with the organization identifier.
@@ -19,13 +20,13 @@ export interface Cluster {
   // Status with the status of the cluster based on cluster alive signals sent between connectivity manager and checker
   status?: ClusterStatus;
   // Labels for the cluster.
-  labels?: Map<string, string>;
+  labels?: KeyValue<string, string>;
   // TotalNodes contains the total number of nodes in the cluster.
   total_nodes?: number;
   // RunningNodes contains the number of nodes in the system that are currently working.
   running_nodes?: number;
   // LastAliveTimestamp contains the last alive message received
-  last_alive_timestamp?: number;
+  last_alive_timestamp?: string;
   // State of the cluster with respect to provisioning and installation.
   state?: ClusterStatus;
   // StateName contains the name of the cluster state.

@@ -1,6 +1,7 @@
 import { InstanceMetadata } from './instance-metadata';
 import { ServiceInstance } from './service-instance';
 import { ServiceGroupDeploymentSpecs } from './service-group-deployment-specs';
+import { KeyValue } from '@angular/common';
 
 // ServiceGroupInstance structure to represent a collection of services that must be deployed following a given collocation
 // policy.
@@ -28,7 +29,7 @@ export interface ServiceGroupInstance {
     // Particular deployment specs for this service
     specs?: ServiceGroupDeploymentSpecs;
     // Labels defined by the user.
-    labels?: Map<string, string>;
+    labels?: KeyValue<string, string>;
     // all the global fqdn of the instances of the group
     global_fqdn?: string[];
 }

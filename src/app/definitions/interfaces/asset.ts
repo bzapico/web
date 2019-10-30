@@ -1,6 +1,12 @@
 /**
  * Interface that defines the Asset info needed for creating the Asset any instance
  */
+import { KeyValue } from './key-value';
+import { OperatingSystemInfo } from './operating-system-info';
+import { HardwareInfo } from './hardware-info';
+import { StorageHardwareInfo } from './storage-hardware-info';
+import { InventoryLocation } from './inventory-location';
+import { AgentOpSummary } from './agent-op-summary';
 
 export interface Asset {
     // OrganizationId with the organization identifier.
@@ -17,23 +23,19 @@ export interface Asset {
     // Created time
     created?: number;
     // Labels defined by the user.
-    labels?: any;
+    labels?: KeyValue;
     // OS contains Operating System information.
-    os?: any;
+    os?: OperatingSystemInfo;
     // Hardware information.
-    hardware?: any;
+    hardware?: HardwareInfo;
     // Storage information.
-    storage?: any;
+    storage?: StorageHardwareInfo[];
     // EicNetIp contains the current IP address that connects the asset to the EIC.
     eic_net_ip: string;
-    // LastOpSummary contains the result of the last operation fr this asset
-    last_op_summary?: any;
+    // LastOpResult contains the result of the last operation fr this asset
+    last_op_result?: AgentOpSummary;
     // LastAliveTimestamp contains the last alive message received
     last_alive_timestamp?: string;
-    // Status of the agent.
-    status?: string;
-    // StatusName with the status of the asset.
-    status_name?: string;
     // location with the asset location
-    location?: string;
+    location?: InventoryLocation;
 }
