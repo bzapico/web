@@ -40,7 +40,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates the logout request
    */
@@ -65,7 +64,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates to request organization info
    * @param organizationId Organization identifier
@@ -76,7 +74,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates to get organization users list
    * @param organizationId Organization identifier
@@ -87,7 +84,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
   * Simulates adding a user
   */
@@ -107,7 +103,6 @@ export class MockupBackendService implements Backend {
       }));
     }
   }
-
   /**
   * Simulates delete user
   */
@@ -120,7 +115,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
   * Simulates reset password
   */
@@ -130,7 +124,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates save user changes
    * @param userId String containing the user identifier - used to replicate expected backend behavior
@@ -161,7 +154,6 @@ export class MockupBackendService implements Backend {
       status: 200
     })).pipe(map(inventory => JSON.parse(inventory.body)));
   }
-
   /**
    * Simulates to request inventory summary data
    * @param organizationId Organization identifier
@@ -172,7 +164,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates install an agent
    * @param organizationId Organization identifier
@@ -221,10 +212,8 @@ export class MockupBackendService implements Backend {
       last_alive_timestamp: '654654654',
       status_name: 'ONLINE'
     };
-
     for (let index = 0; index < mockInventoryList.controllers.length; index++) {
       const controllersIds = mockInventoryList.controllers[index].edge_controller_id;
-
       if (controllersIds === asset.edge_controller_id) {
         mockInventoryList.controllers[index].assets.push({
           eic_net_ip: agent.target_host,
@@ -232,15 +221,12 @@ export class MockupBackendService implements Backend {
         });
       }
     }
-
     mockInventoryList.assets.push(asset);
-
     return of (new HttpResponse({
       body: JSON.stringify(asset),
       status: 200
     }));
   }
-
   /**
    * Simulates to update asset in inventory list
    * @param organizationId Organization identifier
@@ -266,7 +252,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates to update Edge Controller in inventory list
    * @param organizationId Organization identifier
@@ -292,7 +277,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates uninstall an agent
    * @param organizationId Organization identifier
@@ -302,7 +286,6 @@ export class MockupBackendService implements Backend {
   uninstallAgent(organizationId: string, edgeControllerId: string, assetId: any) {
     for (let indexEc = 0; indexEc < mockInventoryList.controllers.length; indexEc++) {
       const controllersIds = mockInventoryList.controllers[indexEc].edge_controller_id;
-
       if (controllersIds === edgeControllerId) {
         mockInventoryList.controllers[indexEc].assets.splice(indexEc, 1);
       }
@@ -315,7 +298,6 @@ export class MockupBackendService implements Backend {
         status: 200
       }));
   }
-
   /**
    * Creates a new token for an EIC to join the platform
    * @param organizationId Organization identifier
@@ -326,7 +308,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Creates a new agent related operation to EIC
    * @param organizationId Organization identifier
@@ -338,7 +319,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Operation to remove/uninstall an EIC
    * @param organizationId Organization identifier
@@ -384,7 +364,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates update nodes changes
    * @param organizationId organization identifier
@@ -449,7 +428,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates to request resources summary data
    * @param organizationId Organization identifier
@@ -486,7 +464,6 @@ export class MockupBackendService implements Backend {
       status: 200
     })).pipe(map(instances => JSON.parse(instances.body)));
   }
-
   /**
    * Simulates to get registered apps list
    * @param organizationId Organization identifier
@@ -497,7 +474,6 @@ export class MockupBackendService implements Backend {
       status: 200
     })).pipe(map(response => JSON.parse(response.body)));
   }
-
   /**
    * Simulates to request an specific instance information
    * @param organizationId Organization identifier
@@ -510,7 +486,6 @@ export class MockupBackendService implements Backend {
       status: 200
     })).pipe(map(response => JSON.parse(response.body)));
   }
-
   /**
    * Simulates to request an specific app descriptor information
    * @param organizationId Organization identifier
@@ -523,7 +498,6 @@ export class MockupBackendService implements Backend {
       status: 200
     })).pipe(map(response => JSON.parse(response.body)));
   }
-
   /**
    * Simulates to request registering an application descriptor
    * @param organizationId Organization identifier
@@ -538,7 +512,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates update application descriptor (registered app) changes
    * @param organizationId organization identifier
@@ -564,7 +537,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates deploying an app instance
    * @param organizationId organization identifier
@@ -572,7 +544,6 @@ export class MockupBackendService implements Backend {
    * @param name String with the instance name
    */
   deploy(organizationId: string, descriptorId: string, name: string) {
-
     const newInstance = JSON.parse(JSON.stringify(mockAppsInstancesList[0]));
     newInstance.organization_id = organizationId;
     newInstance.app_descriptor_id = descriptorId;
@@ -583,7 +554,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates undeploying an app instance
    * @param organizationId organization identifier
@@ -596,8 +566,7 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
-    /**
+  /**
    * Simulates delete an app descriptor
    * @param organizationId organization identifier
    * @param descriptorId Descriptor identifier
@@ -609,7 +578,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
 
     /********************
    * Application Network
@@ -625,7 +593,6 @@ export class MockupBackendService implements Backend {
       status: 200
     })).pipe(map(response => JSON.parse(response.body)));
   }
-
   /**
    * Simulates to request a list of available outbounds of an organization
    * @param organizationId Organization identifier
@@ -658,7 +625,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Operation that allows to remove a connection
   * @param organizationId Organization identifier
@@ -679,7 +645,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates retrieves a list all the established connections of an organization
    * @param organizationId Organization identifier
@@ -690,7 +655,6 @@ export class MockupBackendService implements Backend {
       status: 200
     })).pipe(map(response => JSON.parse(response.body)));
   }
-
   /**
    * Retrieves a list of available parameters of an instance
    * @param organizationId Organization identifier
@@ -716,7 +680,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates get cluster details
    */
@@ -753,7 +716,6 @@ export class MockupBackendService implements Backend {
       status: 200
     })).pipe(map(device => JSON.parse(device.body)));
   }
-
   /**
    * Simulates to update a device from a device array
    *  @param organizationId Organization identifier
@@ -765,7 +727,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Operation that allows to remove a device from the system
    * @param organizationId Organization identifier
@@ -783,8 +744,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
-
   /**
    * Operation that allows to remove a device from the system
   * @param organizationId Organization identifier
@@ -799,7 +758,6 @@ export class MockupBackendService implements Backend {
         status: 200
       }));
   }
-
   /**
    * Simulates to request the groups list
    * @param organizationId Organization identifier
@@ -811,7 +769,6 @@ export class MockupBackendService implements Backend {
       status: 200,
     })).pipe(map(response => JSON.parse(response.body)));
   }
-
   /**
    * Simulates to create a new group
    *  @param organizationId Organization identifier
@@ -835,7 +792,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates to delete a group
    *  @param organizationId Organization identifier
@@ -850,7 +806,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates to update a group from a group array
    * @param organizationId Organization identifier
@@ -862,7 +817,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Simulates to add labels to devices
    * @param organizationId Organization identifier
@@ -891,14 +845,12 @@ export class MockupBackendService implements Backend {
         keys.forEach(key => {
           mockInventoryList.devices[index].labels[key] = changes.labels[key];
         });
-
         return of (new HttpResponse({
           status: 200
         }));
       }
     }
   }
-
   /**
    * Simulates to remove labels from devices
    * @param organizationId Organization identifier
@@ -924,7 +876,6 @@ export class MockupBackendService implements Backend {
       status: 200
     }));
   }
-
   /**
    * Generates UUID v4
    * https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript

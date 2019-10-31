@@ -22,52 +22,42 @@ export class ClusterComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Model that hold organization ID
    */
   organizationId: string;
-
   /**
    * Loaded Data status
    */
   loadedData: boolean;
-
   /**
    * Model that hold cluster ID
    */
   clusterId: string;
-
   /**
    * Model that hold cluster data
    */
   clusterData: Cluster;
-
   /**
    * List of available clusters
    */
   clusters: any[];
-
   /**
    * List of available nodes
    */
   nodes: any[];
-
   /**
    * Count of total nodes
    */
   nodesCount: number;
-
   /**
    * Count of total clusters
    */
   clustersCount: number;
-
   /**
    * Hold request error message or undefined
    */
   requestError: string;
-
   /**
    * Pie Chart options
    */
@@ -86,7 +76,6 @@ export class ClusterComponent implements OnInit {
       value: '#00ff00'
     }
   ];
-
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
@@ -94,28 +83,23 @@ export class ClusterComponent implements OnInit {
   mockNodesChart: any;
   autoScale: any;
   clusterPieChart: any;
-
   /**
    * Reference for the service that allows the user info component
    */
   modalRef: BsModalRef;
-
   /**
    * Models that hold the sort info needed to sortBy pipe
    */
   sortedBy: string;
   reverse: boolean;
-
   /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
-
   /**
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
-
   /**
    * List of selected labels from an entity
    */
@@ -135,7 +119,6 @@ export class ClusterComponent implements OnInit {
     } else {
       this.backend = this.backendService;
     }
-
     // Default initialization
     this.loadedData = false;
     this.clusters = [];
@@ -144,15 +127,12 @@ export class ClusterComponent implements OnInit {
     this.clustersCount = 0;
     this.clusterData = {};
     this.requestError = '';
-
     // SortBy
     this.sortedBy = '';
     this.reverse = false;
     this.searchTerm = '';
-
     // Filter field
     this.filterField = false;
-
   /**
    * Mocked Charts
    */
@@ -197,15 +177,14 @@ export class ClusterComponent implements OnInit {
       case ClusterStatus.Online:
       case ClusterStatus.OnlineCordon:
         return className.toLowerCase() === ClusterStatus.Running;
-        case ClusterStatus.Error:
-        case ClusterStatus.Offline:
-        case ClusterStatus.OfflineCordon:
+      case ClusterStatus.Error:
+      case ClusterStatus.Offline:
+      case ClusterStatus.OfflineCordon:
         return className.toLowerCase() === ClusterStatus.Error;
       default:
         return className.toLowerCase() === ClusterStatus.Unknown;
     }
   }
-
   /**
    * Sortby pipe in the component
    */
@@ -217,7 +196,6 @@ export class ClusterComponent implements OnInit {
     this.sortedBy = categoryName;
     this.filterField = true;
   }
-
   /**
    * Reset all the filters fields
    */
@@ -226,7 +204,6 @@ export class ClusterComponent implements OnInit {
     this.searchTerm = '';
     this.sortedBy = '';
   }
-
   /**
    * Gets the category headers to add a class
    * @param categoryName class for the header category
@@ -242,7 +219,6 @@ export class ClusterComponent implements OnInit {
       }
     }
   }
-
   /**
    * Opens the modal view that holds add label component
    */
@@ -253,12 +229,10 @@ export class ClusterComponent implements OnInit {
       entity: node,
       modalTitle: node.ip
     };
-
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { });
   }
-
   /**
    * Deletes a selected label
    * @param entity selected label entity
@@ -279,11 +253,8 @@ export class ClusterComponent implements OnInit {
           this.selectedLabels.splice(index, 1);
           this.updateNodesList();
         });
-    } else {
-      // Do nothing
     }
   }
-
   /**
    * Selects a label
    * @param entityId entity from selected label
@@ -312,7 +283,6 @@ export class ClusterComponent implements OnInit {
       }
     }
   }
-
   /**
   * Check if the label is selected. Return index number in selected labels or -1 if the label is not found.
   * @param entityId entity from selected label
@@ -329,7 +299,6 @@ export class ClusterComponent implements OnInit {
     }
   return -1;
   }
-
   /**
    * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
    * @param entityId entity from selected label
@@ -338,12 +307,11 @@ export class ClusterComponent implements OnInit {
     if (this.selectedLabels.length > 0) {
       const indexSelected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
       if (indexSelected >= 0) {
-          return true;
+        return true;
       }
     }
     return false;
   }
-
   /**
    * Requests an updated list of available nodes to update the current one
    */
@@ -361,7 +329,10 @@ export class ClusterComponent implements OnInit {
       this.requestError = errorResponse.error.message;
     });
   }
-
+  /**
+   * Fulfill nulls to avoid data binding failure
+   * @param cluster cluster
+   */
   private preventEmptyFields(cluster: Cluster) {
     if (!cluster.name) {
       cluster.name = '-';

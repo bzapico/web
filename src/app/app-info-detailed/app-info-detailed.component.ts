@@ -18,7 +18,6 @@ export class AppInfoDetailedComponent {
   group: any;
   statusName: string;
   labels: any;
-
   /**
    * Loaded Data status
    */
@@ -26,8 +25,7 @@ export class AppInfoDetailedComponent {
 
   constructor(
     public bsModalRef: BsModalRef,
-  ) {
-  }
+  ) {}
 
   /**
    * Adds https in case of being required
@@ -42,7 +40,6 @@ export class AppInfoDetailedComponent {
     }
     return URL;
   }
-
   /**
    * Checks if the service status requires an special css class
    * @param status Service status name
@@ -60,7 +57,6 @@ export class AppInfoDetailedComponent {
         return className.toLowerCase() === ServicesStatus.ServiceWaiting;
     }
   }
-
   /**
    * Filters the backend incoming status to display it in removing the initial "service_"
    * @param rawStatus string containing the status that the backend is sending
@@ -71,12 +67,10 @@ export class AppInfoDetailedComponent {
     }
     return rawStatus;
   }
-
     /**
    * Close the modal window
    */
   closeModal() {
     this.bsModalRef.hide();
   }
-
 }

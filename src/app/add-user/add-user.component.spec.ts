@@ -5,6 +5,9 @@ import { ButtonsModule, BsModalRef, TooltipModule } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '../app.module';
 
 describe('AddUserComponent', () => {
   let component: AddUserComponent;
@@ -20,10 +23,18 @@ describe('AddUserComponent', () => {
         TooltipModule,
         SelectDropDownModule,
         RouterTestingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
       providers: [
         BsModalRef,
+        TranslateService
       ]
     })
     .compileComponents();

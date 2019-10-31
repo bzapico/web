@@ -155,7 +155,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.requestError = '';
     this.showGraph = true;
     this.enabled = false;
-
     // SortBy
     this.sortedBy = '';
     this.reverse = false;
@@ -329,6 +328,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   }
   /**
    * Shows the graph in services card
+   *  @param type type name
    */
   selectDisplayMode(type: string) {
     if (type === this.translateService.instant('graph.typeList')) {
@@ -365,13 +365,13 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       deployedOnCluster: service.deployed_on_cluster_id,
       labels: service.labels,
     };
-
     this.modalRef = this.modalService.show(ServiceInstancesInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
   /**
    * Open group services info modal window
    *  @param group group object
+   *  @param event event object
    */
   openGroupServicesInfo(group, event) {
     event.stopPropagation();
@@ -388,7 +388,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       globalFqdn: group.global_fqdn,
       metadata: group.metadata
     };
-
     this.modalRef = this.modalService.show(InstanceServiceGroupInfoComponent,
       { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
@@ -412,11 +411,13 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       deviceGroupIds: rule.device_group_ids,
       deviceGroupNames: rule.device_group_names,
     };
-
     this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
-
+  /**
+   * Gets beauty status name
+   * @param status status object
+   */
   getBeautyStatusName(status: string) {
     this.instanceInfoService.getBeautyStatusName(status);
   }
@@ -442,7 +443,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     const index = this.groups
     .map(x => x.service_group_instance_id)
     .indexOf(groupId);
-
     if (index !== -1) {
       return this.groups[index].service_instances;
     } else {

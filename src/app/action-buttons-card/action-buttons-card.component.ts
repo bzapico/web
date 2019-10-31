@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActionButtonsService } from './action-buttons.service';
 
-
 @Component({
   selector: 'action-buttons-card',
   templateUrl: './action-buttons-card.component.html',
@@ -15,8 +14,7 @@ export class ActionButtonsCardComponent {
 
   constructor(
     private actionButtonsService: ActionButtonsService
-  ) {
-  }
+  ) {}
 
   /**
    * Creates an array with the names to be filtered by
@@ -24,7 +22,6 @@ export class ActionButtonsCardComponent {
   openAddNewConnection() {
     this.actionButtonsService.openAddNewConnection();
   }
-
   /**
    * Requests to undeploy the selected instance
    * @param app Application instance object
@@ -32,7 +29,6 @@ export class ActionButtonsCardComponent {
   undeploy(app: {}) {
     this.actionButtonsService.undeploy(app);
   }
-
   /**
    * Opens the modal view that holds the deploy registered app component
    * @param app registered app to deploy
@@ -40,7 +36,6 @@ export class ActionButtonsCardComponent {
   deployRegistered(app: {}) {
     this.actionButtonsService.deployRegistered(app);
   }
-
   /**
    * Requests to delete the selected app
    * @param app Application object

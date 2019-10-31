@@ -1,4 +1,3 @@
-<!-- A buttons card-->
 <div class="card">
   <!-- Instance buttons -->
   <div *ngIf="!isOpenFromRegistered && loadedData" class="a-btns-box a-btns-box-big">
@@ -6,13 +5,13 @@
       (click)="openAddNewConnection()"
       class="a-btn-blue add-connections-btn">
       <i class="material-icons-round a-i-blue">link</i>
-      <p>Add new connection</p>
+      <p>{{'buttons.addNewConnections' | translate}}</p>
     </button>
     <button 
       (click)="undeploy(app)" 
       class="a-btn-grey">
       <i class="material-icons a-i-red">close</i>
-      Undeploy
+      {{'buttons.undeploy' | translate}}
     </button>
   </div>
   <!-- Registered buttons -->
@@ -21,13 +20,13 @@
       (click)="deployRegistered(app)"
       class="a-btn-blue">
       <i class="material-icons a-i-blue">play_arrow</i>
-      Deploy
+      {{'buttons.deploy' | translate}}
     </button>
     <button 
       (click)="deleteApp(app)" 
       class="a-btn-grey">
       <i class="material-icons a-i-red">delete</i>
-      Delete
+      {{'buttons.delete' | translate}}
     </button>
   </div>
 </div>

@@ -5,14 +5,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 export class ErrorHandlerService implements ErrorHandler {
 
-  constructor(
-  ) { }
+constructor() { }
 
-  /**
+/**
   * Handler for error
   * @param error: The error received from server
   */
-  handleError(error: HttpErrorResponse): void {
+handleError(error: HttpErrorResponse): void {
     switch (error.status) {
         case 200 : console.log('OK, the request has succeeded');
             break;
@@ -39,7 +38,7 @@ export class ErrorHandlerService implements ErrorHandler {
             break;
         case 501 : console.log('Not Implemented, the request method is not supported by the server and cannot be handled');
             break;
-        case 502 : console.log('Bad Gateaway, the server received an invalid response while acting as a gateway or proxy server');
+        case 502 : console.log('Bad Gateway, the server received an invalid response while acting as a gateway or proxy server');
             break;
         case 503 :
             console.log('Service Unavailable, the server is currently unavailable');
@@ -53,7 +52,6 @@ export class ErrorHandlerService implements ErrorHandler {
         default :
             console.log(error);
             break;
+        }
     }
-  }
 }
-

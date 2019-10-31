@@ -60,22 +60,23 @@ export class AddLabelComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.addLabelForm =
-        this.formBuilder
-            .group(
-  {
-    labelName:
-    ['',
-      [Validators.required,
-      Validators.minLength(1),
-      Validators.pattern('^[a-zA-Z0-9_.-]*$')]
-    ],
-    labelValue:
-    ['',
-      [Validators.required,
-      Validators.minLength(1),
-      Validators.pattern('^[a-zA-Z0-9_.-]*$')]
-    ],
+    this.addLabelForm = this.formBuilder.group({
+      labelName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(1),
+          Validators.pattern('^[a-zA-Z0-9_.-]*$')
+        ]
+      ],
+      labelValue: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(1),
+          Validators.pattern('^[a-zA-Z0-9_.-]*$')
+        ]
+      ]
     });
   }
   /**
@@ -98,10 +99,8 @@ export class AddLabelComponent implements OnInit {
           }
           updatedEntity.labels[form.labelName.value] = form.labelValue.value;
           updatedEntity.add_labels = true;
-          this.backend.saveClusterChanges(
-            this.organizationId,
-            this.entity.cluster_id,
-            {
+          this.backend
+            .saveClusterChanges(this.organizationId, this.entity.cluster_id, {
               organizationId: this.organizationId,
               clusterId: updatedEntity.cluster_id,
               add_labels: true,
@@ -127,10 +126,8 @@ export class AddLabelComponent implements OnInit {
           }
           updatedEntity.labels[form.labelName.value] = form.labelValue.value;
           updatedEntity.add_labels = true;
-          this.backend.updateNode(
-            this.organizationId,
-            this.entity.node_id,
-            {
+          this.backend
+            .updateNode(this.organizationId, this.entity.node_id, {
               organizationId: this.organizationId,
               nodeId: updatedEntity.node_id,
               add_labels: true,
@@ -148,9 +145,8 @@ export class AddLabelComponent implements OnInit {
             updatedEntity.labels = {};
           }
           updatedEntity.labels[form.labelName.value] = form.labelValue.value;
-          this.backend.addLabelToDevice(
-            this.organizationId,
-            {
+          this.backend
+            .addLabelToDevice(this.organizationId, {
               organization_id: this.organizationId,
               device_group_id: updatedEntity.device_group_id,
               device_id: updatedEntity.device_id,
@@ -194,9 +190,10 @@ export class AddLabelComponent implements OnInit {
             updatedEntity.add_labels = true;
             this.backend.updateEC(
               this.organizationId,
-              updatedEntity.edge_controller_id,
+              this.entity.app_descriptor_id,
               {
-                edge_controller_id: updatedEntity.edge_controller_id,
+                organizationId: this.organizationId,
+                descriptorId: updatedEntity.app_descriptor_id,
                 add_labels: true,
                 labels: updatedEntity.labels
               }
@@ -209,18 +206,16 @@ export class AddLabelComponent implements OnInit {
             this.bsModalRef.hide();
           break;
         case InventoryType.Asset:
-            if (!updatedEntity.labels || updatedEntity.labels === '-') {
-              updatedEntity.labels = {};
+          if (!updatedEntity.labels || updatedEntity.labels === '-') {
+            updatedEntity.labels = {};
+          }
+          updatedEntity.labels[form.labelName.value] = form.labelValue.value;
+          this.backend
+            .updateAsset(this.organizationId, updatedEntity.asset_id, {
+              asset_id: updatedEntity.asset_id,
+              add_labels: true,
+              labels: updatedEntity.labels
             }
-            updatedEntity.labels[form.labelName.value] = form.labelValue.value;
-            this.backend.updateAsset(
-              this.organizationId,
-              updatedEntity.asset_id,
-              {
-                asset_id: updatedEntity.asset_id,
-                add_labels: true,
-                labels: updatedEntity.labels
-              }
             ).subscribe(() => {
                 this.showNotification(
                     this.translateService.instant('label.add-label.update', {entity: this.entity.asset_id}));
@@ -256,7 +251,9 @@ export class AddLabelComponent implements OnInit {
    */
   discardChanges(form) {
     if (form.dirty) {
-      const discard = confirm(this.translateService.instant('modals.discardChanges'));
+      const discard = confirm(
+        this.translateService.instant('modals.discardChanges')
+      );
       if (discard) {
         this.bsModalRef.hide();
       }

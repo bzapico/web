@@ -156,7 +156,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.activeContextMenuGroupId = '';
     this.devicesCount = 0;
     this.devicesChart = [{
-      name: 'Running devices %',
+      name:  this.translateService.instant('devices.running'),
       series: []
     }];
     this.requestError = '';
@@ -171,7 +171,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.searchTerm = '';
     // Filter field
     this.filterField = false;
-
     /**
      * Charts reference init
      */
@@ -297,7 +296,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     const initialState = {
       organizationId: this.organizationId,
     };
-
     this.modalRef = this.modalService.show(AddDevicesGroupComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
@@ -332,7 +330,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       entity: device,
       modalTitle: device.device_id
     };
-
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { });
@@ -609,7 +606,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       defaultDeviceConnectivity: group.default_device_connectivity,
       enabled: group.enabled
     };
-
     this.modalRef = this.modalService.show(DeviceGroupInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }

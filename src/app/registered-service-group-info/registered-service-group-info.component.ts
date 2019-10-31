@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
@@ -6,8 +6,7 @@ import { BsModalRef } from 'ngx-bootstrap';
   templateUrl: './registered-service-group-info.component.html',
   styleUrls: ['./registered-service-group-info.component.scss']
 })
-export class RegisteredServiceGroupInfoComponent implements OnInit {
-
+export class RegisteredServiceGroupInfoComponent {
   /**
    * Data models for registered service group related information
    */
@@ -15,7 +14,6 @@ export class RegisteredServiceGroupInfoComponent implements OnInit {
   organizationId: string;
   appDescriptorId: string;
   serviceGroupId: string;
-
   /**
    * Loaded Data status
    */
@@ -24,9 +22,5 @@ export class RegisteredServiceGroupInfoComponent implements OnInit {
   constructor( public bsModalRef: BsModalRef ) {
     // Default initialization
     this.loadedData = false;
-   }
-
-  ngOnInit() {
   }
-
 }

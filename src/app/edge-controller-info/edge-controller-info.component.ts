@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
@@ -11,12 +11,11 @@ import { InventoryType } from '../definitions/enums/inventory-type.enum';
   templateUrl: './edge-controller-info.component.html',
   styleUrls: ['./edge-controller-info.component.scss']
 })
-export class EdgeControllerInfoComponent implements OnInit {
+export class EdgeControllerInfoComponent {
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Models that hold organization ID, Edge Controller ID, list of assets, show, created, name, labels and status
    */
@@ -28,17 +27,14 @@ export class EdgeControllerInfoComponent implements OnInit {
   name: string;
   labels: any;
   status: string;
-
   /**
    * Model that holds onclose method defined in Infrastructure component
    */
   onClose: any;
-
   /**
    * Models that hold all inventory list
    */
   inventory: any[];
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -46,7 +42,6 @@ export class EdgeControllerInfoComponent implements OnInit {
     backdrop: false,
     ignoreBackdropClick: true
   };
-
   /**
    * Loaded Data status
    */
@@ -64,12 +59,8 @@ export class EdgeControllerInfoComponent implements OnInit {
     } else {
       this.backend = this.mockupBackendService;
     }
-
     // Default initialization
     this.loadedData = true;
-  }
-
-  ngOnInit() {
   }
 
   /**
@@ -82,12 +73,9 @@ export class EdgeControllerInfoComponent implements OnInit {
       const year = date.getFullYear();
       const month = date.getMonth();
       const day = date.getDate();
-
       const formatedDate = month + '/' + day + '/' + year;
-
     return formatedDate;
   }
-
   /**
    * Gets the return asset value from the modal and gives it to infrastructure component
    * to open the Asset Info modal window
@@ -97,7 +85,6 @@ export class EdgeControllerInfoComponent implements OnInit {
     let asset: any;
     let assetIndexFound: number;
     assetIndexFound = -1;
-
     for (let i = 0; i < this.inventory.length && assetIndexFound === -1 ; i++) {
       if (
         this.inventory[i].type === InventoryType.Asset &&
@@ -107,11 +94,8 @@ export class EdgeControllerInfoComponent implements OnInit {
         assetIndexFound = i;
       }
     }
-
     asset = this.inventory[assetIndexFound];
-
     this.onClose(asset);
     this.bsModalRef.hide();
   }
-
 }

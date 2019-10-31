@@ -1,16 +1,24 @@
 {
 	"advancedFilterOptions": {
 		"noFilters": "No filters",
+		"noFiltersDrop": "----- NO FILTER -----",
 		"showNodes": "Show only nodes",
 		"showRelatedNodes": "Show only related nodes",
 		"title": "Advanced filter options"
+	},
+	"ajt": {
+		"associate": "Here it is the Agent Join Token associated to the Edge Controller",
+		"certificate": "Certificate",
+		"expiresOn": "Expires on",
+		"title": "Agent Join Token info",
+		"token": "Token"
 	},
 	"app-info": {
 		"instance": {
 			"NetworkDisconnect": "Disconnect",
 			"NetworkInterface": "Interface",
 			"NetworkSource": "Source",
-			"NetworkTarget": "target",
+			"NetworkTarget": "Target",
 			"title": "INSTANCE INFO"
 		},
 		"noExposedPorts": "No exposed ports",
@@ -31,9 +39,11 @@
 			"noResults": "No results found!",
 			"title": "ADD NEW CONNECTION"
 		},
+		"appConnections": "App connections",
 		"appInfo": "App info",
 		"appsRunning": "Apps running",
 		"deploy": "Deploy",
+		"deployTitle": "Deploy instance",
 		"deployed": "DEPLOYED",
 		"filters": {
 			"atLeastOne": "It is necessary to have one selected filter",
@@ -49,6 +59,7 @@
 			"noServices": "No available services",
 			"noServicesInGroup": "No available services in this group",
 			"otherSettings": "Other settings",
+			"ruleInfoTitle": "Rule info",
 			"rulesList": "rules",
 			"serviceGroupInfo": {
 				"appDescriptorId": "App descriptor ID",
@@ -58,6 +69,8 @@
 				"status": "Status",
 				"title": "Instance service group info"
 			},
+			"serviceInfoTitle": "Service info",
+			"serviceInsInfoTitle": "Service instances info",
 			"servicesList": "services",
 			"servicesTitle": "SERVICES",
 			"tableAccess": "Access",
@@ -78,6 +91,7 @@
 			"undeployConfirm": "Undeploy {{appName}}?",
 			"undeployMessage": " undeployed"
 		},
+		"instanceName": "Instance name",
 		"manageConnections": {
 			"addNewConnection": "Add new connection",
 			"appFilter": "APP FILTER",
@@ -85,7 +99,7 @@
 			"createdConnection": "Connections created",
 			"disconnect": "Disconnect",
 			"disconnectConfirm": "Disconnect?",
-			"disconnectConfirmOutboundRequired": "Disconnect?",
+			"disconnectMessage": "Connection removed",
 			"noConnections": "No connections",
 			"requiredFields": "Required field",
 			"sourceInstance": "Source instance",
@@ -94,11 +108,25 @@
 			"targetInterface": "Target interface",
 			"title": "Manage connections"
 		},
+		"nameRequired": "Name is required",
+		"nameShort": "Name is too short",
 		"noAppsDeployed": "NO APPS DEPLOYED",
 		"noAppsInstances": "No application instances deployed",
 		"noClusters": "No available clusters",
 		"noRegisteredApp": "No registered applications detected",
+		"outbound": "Outbounds",
 		"register": "Register",
+		"registerDrop": "Drop here",
+		"registerFile": "Or click here to choose your .json file",
+		"registerFileError": "JSON FILE ERROR: \"{{event}}\" File not valid for registering an app.",
+		"registerFrom": "from",
+		"registerMessage": "Registered {{jsonFile}} app",
+		"registerMissingAlert": "Missing required \"name\" field",
+		"registerReady": "ready to be uploaded",
+		"registerTitle": "Register application",
+		"registerUnavailable": "Folder upload is unavailable. Please upload a valid .json file",
+		"registerUpload": "Upload app descriptor file",
+		"registerUploadAlert": "Multiple files upload is unavailable",
 		"registered": {
 			"app": "app",
 			"deleteApp": "Delete {{appName}}?",
@@ -113,14 +141,33 @@
 		},
 		"registeredName": "Registered name",
 		"registeredTitle": "REGISTERED ",
+		"requiredConnections": "Required connections",
 		"title": "APPLICATIONS",
+		"typeRestriction": "Type restrictions:",
 		"undeploy": "Undeploy"
 	},
 	"buttons": {
+		"addNewConnections": "Add new connection",
+		"back": "Back",
 		"changePassword": "Change password",
 		"close": "Close",
+		"delete": "Delete",
 		"deleteUser": "Delete user",
-		"saveChanges": "Save changes"
+		"deploy": "Deploy",
+		"next": "Next",
+		"register": "Register",
+		"saveChanges": "Save changes",
+		"undeploy": "Undeploy"
+	},
+	"changePass": {
+		"newPass": "New Password",
+		"pass": "Password",
+		"passChanged": "Password changed successfully",
+		"passChar": "Password must be at least 6 characters",
+		"passConfirm": "Confirm password",
+		"passNotMatch": "Set passwords do not match",
+		"passReq": "Password is required",
+		"setPass": "Set passwords do not match"
 	},
 	"devices": {
 		"add": {
@@ -154,9 +201,12 @@
 		},
 		"disabled": "disabled",
 		"enabled": "enabled",
+		"groupGroupApi": "Here it is the API Key associated to the new devices group:",
+		"groupGroupTitle": "Device group successfully created",
 		"noDevices": "No devices",
 		"noDevicesRegistered": "No available devices registered in this group",
 		"noGroupsCreated": "No available groups have been created. Add a new group to be able to register devices in it.",
+		"running": "Running devices %",
 		"status": {
 			"title": "DEVICES STATUS TIMELINE"
 		},
@@ -190,6 +240,7 @@
 		"typeGraph": "graph",
 		"typeList": "list"
 	},
+	"helpCenter": "Help center",
 	"infrastructure": {
 		"EIC": {
 			"unlinkEIC": "Unlink Edge Controller?",
@@ -334,9 +385,20 @@
 		"noLabels": "No labels",
 		"title": "LABELS"
 	},
+	"login": {
+		"email": "Email",
+		"emailRequired": "Email is required",
+		"emailValid": "Email must be a valid email address",
+		"expired": "Session has expired, please log in",
+		"login": "Log in",
+		"password": "Password",
+		"passwordRequired": "Password is required",
+		"passwordValid": "Password must be at least 6 characters"
+	},
 	"modals": {
 		"discardChanges": "Discard changes?"
 	},
+	"nalej": "NALEJ",
 	"organization": {
 		"deleteUser": "Delete user?",
 		"filteredBy": "Filtered by term \"{{value}}\".",
@@ -345,11 +407,13 @@
 		"sortedBy": "Sorted by {{value}}",
 		"subscriptionType": "Free subscription",
 		"title": "ORGANIZATION",
+		"userCreated": "The user {{user}}  has been created successfully",
 		"userDeleted": "User {{userMail}} has been deleted",
+		"userExists": "ERROR: {{error}} already exists",
 		"userInfo": "User info",
 		"users": {
-			"actions": "Actions",
 			"add": "Add user",
+			"addEx": "e.g. NalejAdmin",
 			"andFiltered": "and filtered by term \"{{ value }}\".",
 			"ascendant": "ascendant{{value}}",
 			"descendant": "descendant{{value}}",
@@ -358,6 +422,8 @@
 			"name": "Name",
 			"reset": "Reset",
 			"role": "Role",
+			"roleReq": "A role is required",
+			"saveChange": "The user {{user}} has been edited",
 			"subscription": {
 				"check": "Check all our subscription modes and payments",
 				"plan": "Free",
@@ -376,10 +442,12 @@
 		"edit": "Edit",
 		"instances": "INSTANCES",
 		"list": "LIST",
+		"nameShort": "Cluster name is too short",
 		"noClusters": "NO CLUSTERS",
 		"noClustersAvailable": "No available clusters detected",
 		"noNodes": "There are not registered nodes in this cluster",
 		"nodes": "NODES",
+		"saveChanges": "The cluster {{cluster}} has been edited",
 		"summary": "SUMMARY",
 		"title": "RESOURCES"
 	},
@@ -423,12 +491,23 @@
 		"organizationId": "Organization ID",
 		"tableAccess": "Access",
 		"tableActions": "Actions",
+		"tableAdvanced": "Advanced",
 		"tableAppDescriptorID": "App descriptor ID",
+		"tableAppServices": "App services",
 		"tableAuth": "Auth",
+		"tableBasicInfo": "Basic information",
 		"tableCredentials": "Credentials",
+		"tableDefault": "Default",
+		"tableDeployAfter": "Deploy after",
+		"tableDeployedOn": "Deployed on cluster ID",
 		"tableDeployedOnCID": "Deployed on cluster ID",
 		"tableDevices": "Devices",
 		"tableDevicesGroup": "Devices group",
+		"tableEdit": "Edit",
+		"tableEmail": "Email",
+		"tableEndpoints": "Endpoints",
+		"tableEnvironmentVar": "Environment variables",
+		"tableExportedPorts": "Exported ports",
 		"tableExposedPorts": "Exposed ports",
 		"tableExternal": "External",
 		"tableGroup": "Group",
@@ -437,19 +516,27 @@
 		"tableIP": "IP",
 		"tableImage": "Image",
 		"tableInfo": "Info",
+		"tableInstanceID": "Instance ID",
 		"tableInstances": "Instances",
 		"tableInternal": "Internal",
 		"tableLabels": "Labels",
 		"tableLocation": "Location",
+		"tableMetadata": "Metadata",
 		"tableMultitenant": "Multitenant",
 		"tableName": "Name",
+		"tableParameters": "Parameters",
+		"tablePath": "Path",
 		"tablePort": "Port",
 		"tableReplicas": "Replicas",
+		"tableRole": "Role",
 		"tableRules": "Rules",
+		"tableServiceGroupId": "Service group ID",
 		"tableServices": "Services",
 		"tableState": "State",
 		"tableStatus": "Status",
 		"tableTarget": "Target",
+		"tableTargetInbound": "Target Inbound",
+		"tableTargetInstance": "Target Instance",
 		"tableType": "Type"
 	}
 }

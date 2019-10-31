@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
@@ -6,7 +6,7 @@ import { BsModalRef } from 'ngx-bootstrap';
   templateUrl: './device-group-info.component.html',
   styleUrls: ['./device-group-info.component.scss']
 })
-export class DeviceGroupInfoComponent implements OnInit {
+export class DeviceGroupInfoComponent {
   /**
    * Data models for device group related information
    */
@@ -25,8 +25,4 @@ export class DeviceGroupInfoComponent implements OnInit {
     // Default initialization
     this.loadedData = false;
   }
-
-  ngOnInit() {
-  }
-
 }

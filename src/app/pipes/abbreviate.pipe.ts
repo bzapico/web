@@ -13,14 +13,12 @@ export class AbbreviatePipe implements PipeTransform {
   transform(value: string): string {
     const NUM_TOTAL_CHARS = 8;
     const LAST_CHUNK_LENGTH = NUM_TOTAL_CHARS - 2;
-    let abbstring;
-
-    abbstring = value.slice(0, 1) + '...' + value.slice(value.length - LAST_CHUNK_LENGTH, value.length);
-
+    let abbString;
+    abbString = value.slice(0, 1) + '...' + value.slice(value.length - LAST_CHUNK_LENGTH, value.length);
     if (value.length <= NUM_TOTAL_CHARS) {
       return value;
     } else {
-      return abbstring;
+      return abbString;
     }
   }
 }

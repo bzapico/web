@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
@@ -10,12 +10,11 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
   templateUrl: './rule-info.component.html',
   styleUrls: ['./rule-info.component.scss']
 })
-export class RuleInfoComponent implements OnInit {
+export class RuleInfoComponent {
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Data models for rules related information
    */
@@ -47,12 +46,7 @@ export class RuleInfoComponent implements OnInit {
     } else {
       this.backend = this.backendService;
     }
-
     // Default initialization
     this.loadedData = false;
-   }
-
-  ngOnInit() {
   }
-
 }
