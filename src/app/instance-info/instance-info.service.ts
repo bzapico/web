@@ -240,17 +240,18 @@ export class InstanceInfoService {
     if (instance.inbound_net_interfaces && instance.inbound_net_interfaces.length > 0 ) {
       const inbounds = {};
       instance.inbound_net_interfaces.forEach(inbound => {
+        const bound = this.getBound('inbound', instance.inbound_connections, inbound);
         inbounds[inbound.name + '_i_' + instance.app_instance_id] = {
           id: inbound.name + '_i_' + instance.app_instance_id,
           label: inbound.name,
           tooltip: this.translateService.instant('graph.inbound') + inbound.name,
-          color: this.isConnectedBound('inbound', instance.inbound_connections, inbound).connectionColor,
+          color: bound.connectionColor,
           text: {
             color: '#000',
             y: 0
           },
           secondaryText: {
-            text: this.isConnectedBound('inbound', instance.inbound_connections, inbound).secondaryName,
+            text: bound.secondaryName,
             color: '#000'
           },
           shape: 'circle',
@@ -284,17 +285,18 @@ export class InstanceInfoService {
     if (instance.outbound_net_interfaces && instance.outbound_net_interfaces.length > 0 ) {
       const outbounds = {};
       instance.outbound_net_interfaces.forEach(outbound => {
+          const bound = this.getBound('outbound', instance.outbound_connections, outbound);
         outbounds[outbound.name + '_i_' + instance.app_instance_id] = {
           id: outbound.name + '_i_' + instance.app_instance_id,
           label: outbound.name,
           tooltip: this.translateService.instant('graph.outbound') + outbound.name,
-          color: this.isConnectedBound('outbound', instance.outbound_connections, outbound).connectionColor,
+          color: bound.connectionColor,
           text: {
             color: '#000',
             y: 0,
           },
           secondaryText: {
-            text: this.isConnectedBound('outbound', instance.outbound_connections, outbound).secondaryName,
+            text: bound.secondaryName,
             color: '#000'
           },
           shape: 'circle',
@@ -321,12 +323,12 @@ export class InstanceInfoService {
     }
   }
   /**
-   * Check if the connection is connected
+   * It get connections bound data
    * @param type type object
    * @param instances_connections connections object
    * @param bound bound object
    */
-  private isConnectedBound(type, instances_connections, bound): {isConnected: boolean, connectionColor: string, secondaryName: string} {
+  private getBound(type, instances_connections, bound): {connectionColor: string, secondaryName: string} {
     const data = {
       inbound: {
         rule: 'inbound_name',
@@ -343,7 +345,6 @@ export class InstanceInfoService {
     }
     const isConnected = filteredData.length > 0;
     return {
-      isConnected: isConnected,
       connectionColor: isConnected ? CONNECTION_STATUS_COLOR[filteredData[0]['status_name']] : CONNECTION_STATUS_COLOR.DISCONNECTED,
       secondaryName: isConnected ? filteredData[0][data[type].name] : ''
     };
