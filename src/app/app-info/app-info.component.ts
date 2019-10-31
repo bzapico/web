@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { NotificationsService } from '../services/notifications.service';
@@ -20,7 +20,7 @@ const NOTIFICATION_TIMEOUT = 3000; // 3 seconds
   styleUrls: ['./app-info.component.scss']
 })
 
-export class AppInfoComponent implements OnInit {
+export class AppInfoComponent implements OnChanges {
   @Input() instance: any;
   @Input() registeredData: any;
   @Input() openFromInstance: boolean;
@@ -70,15 +70,13 @@ export class AppInfoComponent implements OnInit {
     this.showParameters = true;
     this.showNetwork = false;
     this.showSetup = false;
-    this.instance = {};
-    this.registeredData = [];
     this.searchTerm = '';
     this.basicParameters = [];
     this.advancedParameters = [];
   }
 
-  ngOnInit() {
-    if (this.loadedData) {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.loadedData && !changes.loadedData.firstChange && changes.loadedData.currentValue) {
       this.addServiceAndGroupToInterfaces();
       this.addServiceAndGroupToInterfacesInstance();
       this.generateParameters();
@@ -271,10 +269,10 @@ export class AppInfoComponent implements OnInit {
   * Adds service and group to interfaces instance
   */
   private addServiceAndGroupToInterfacesInstance() {
-    if (this.instance.inbound_net_interfaces) {
+    if (this.instance && this.instance.inbound_net_interfaces) {
       this.addServiceAndGroupInstance('inbound_net_interface');
     }
-    if (this.instance.outbound_net_interfaces) {
+    if (this.instance && this.instance.outbound_net_interfaces) {
       this.addServiceAndGroupInstance('outbound_net_interface');
     }
   }
@@ -283,8 +281,10 @@ export class AppInfoComponent implements OnInit {
   */
   private getParametersFromFilters(): any {
     return {
-      basic:  this.registeredData.parameters ? this.registeredData.parameters.filter(parameter => parameter.required) : [],
-      advanced: this.registeredData.parameters ?  this.registeredData.parameters.filter(parameter => !parameter.required) : []
+      basic:  this.registeredData
+        && this.registeredData.parameters ? this.registeredData.parameters.filter(parameter => parameter.required) : [],
+      advanced: this.registeredData
+        && this.registeredData.parameters ?  this.registeredData.parameters.filter(parameter => !parameter.required) : []
     };
   }
   /**
@@ -300,6 +300,7 @@ export class AppInfoComponent implements OnInit {
               params.basic.forEach(param => {
                 parameters.parameters.forEach(item => {
                   if (item.parameter_name === param.name) {
+                    param['value'] = item.value;
                     this.basicParameters.push(param);
                   }
                 });
@@ -307,6 +308,7 @@ export class AppInfoComponent implements OnInit {
               params.advanced.forEach(param => {
                 parameters.parameters.forEach(item => {
                   if (item.parameter_name === param.name) {
+                    param['value'] = item.value;
                     this.advancedParameters.push(param);
                   }
                 });
