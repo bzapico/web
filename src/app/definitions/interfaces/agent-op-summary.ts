@@ -4,7 +4,9 @@
 import { OpStatus } from '../enums/op-status.enum';
 
 export interface AgentOpSummary {
-    // OperationId with the operation identifier.
+    /**
+     * OperationId with the operation identifier.
+     */
     operation_id?: string;
     // Timestamp of the response.
     timestamp?: string;

@@ -9,7 +9,9 @@ import { InventoryLocation } from './inventory-location';
 import { AgentOpSummary } from './agent-op-summary';
 
 export interface Asset {
-    // OrganizationId with the organization identifier.
+    /**
+     * OrganizationId with the organization identifier.
+     */
     organization_id: string;
     // EdgeControllerId with the EIC identifier.
     edge_controller_id: string;

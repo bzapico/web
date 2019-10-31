@@ -1,7 +1,9 @@
+/**
+ * AppParameter represents the definition of an application parameter
+ */
 import { ParamCategory } from '../enums/param-category.enum';
 import { ParamDataType } from '../enums/param-data-type.enum';
 
-// AppParameter represents the definition of an application parameter
 export interface AppParameter {
     // Name with the name of the parameter. It can not start with 'NALEJ'
     // It will be used to substitute it through the descriptor when application is deployed.
