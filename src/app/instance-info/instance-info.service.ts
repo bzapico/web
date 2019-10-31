@@ -344,6 +344,12 @@ export class InstanceInfoService {
       filteredData = instances_connections.filter(instance_connection => instance_connection[data[type].rule] === bound.name);
     }
     const isConnected = filteredData.length > 0;
+    if (type === 'inbound') {
+      return {
+        connectionColor: isConnected ? CONNECTION_STATUS_COLOR.ESTABLISHED : CONNECTION_STATUS_COLOR.DISCONNECTED,
+        secondaryName: isConnected ? '' : ''
+      };
+    }
     return {
       connectionColor: isConnected ? CONNECTION_STATUS_COLOR[filteredData[0]['status_name']] : CONNECTION_STATUS_COLOR.DISCONNECTED,
       secondaryName: isConnected ? filteredData[0][data[type].name] : ''

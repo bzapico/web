@@ -58,12 +58,6 @@
           [attr.fill]="path.fill"
           [attr.d]="path.d"/>
       </svg>
-      <text *ngIf="node.secondaryText && node.secondaryText.text && node.shape === 'circle'"
-        [attr.fill]="node.secondaryText.color"
-        [attr.x]="10"
-        [attr.y]="node.height + 5">
-        {{node.secondaryText.text}}
-      </text>
     </svg:g>
   </ng-template>
   <ng-template #linkTemplate let-link>
