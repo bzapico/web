@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Backend } from '../definitions/interfaces/backend';
@@ -9,14 +9,14 @@ import { NotificationsService } from '../services/notifications.service';
 import { AddConnectionsComponent } from '../add-connections/add-connections.component';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 
 @Component({
   selector: 'manage-connections',
   templateUrl: './manage-connections.component.html',
   styleUrls: ['./manage-connections.component.scss']
 })
-export class ManageConnectionsComponent implements OnInit {
+export class ManageConnectionsComponent implements OnInit, OnDestroy {
   static readonly REFRESH_INTERVAL = 10000;
   /**
    * Backend reference
@@ -99,7 +99,9 @@ export class ManageConnectionsComponent implements OnInit {
     };
     this.updateConnections();
   }
-
+  ngOnDestroy() {
+    this.refreshIntervalRef.unsubscribe();
+  }
   /**
    * Convenience getter for easy access to form fields
    */
@@ -123,14 +125,16 @@ export class ManageConnectionsComponent implements OnInit {
    * Updates connections and appDropdownOptions
    */
   updateConnections() {
-    this.backend.getListConnections(this.organizationId)
-    .subscribe(response => {
-      const anyResponse: any = response;
-      if (anyResponse.list) {
-        this.connections = anyResponse.list;
-        this.appDropdownOptions = this.getAppInstancesOptions();
-        }
-      });
+    this.refreshIntervalRef = timer(0, ManageConnectionsComponent.REFRESH_INTERVAL).subscribe(() => {
+      this.backend.getListConnections(this.organizationId)
+        .toPromise()
+          .then((list) => {
+            if (list.list) {
+              this.connections = list.list;
+              this.appDropdownOptions = this.getAppInstancesOptions();
+            }
+          });
+    });
   }
   /**
    * Returns app instances names and ids in an object array
@@ -180,7 +184,6 @@ export class ManageConnectionsComponent implements OnInit {
           this.notificationsService.add({
             message: this.translateService.instant('apps.manageConnections.disconnectMessage'),
           });
-          this.updateConnections();
         });
     }
   }

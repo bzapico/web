@@ -67,14 +67,6 @@
                 .action-btn-red {
                     height: 25px;
                     width: 25px;
-                    &:disabled {
-                        cursor: none;
-                        opacity: 0.6;
-                        &:hover {
-                            color: $base-red;
-                            background-color: #E8E8E8;
-                        }
-                    }
                 }
                 .i-red {
                     font-weight: 200;
