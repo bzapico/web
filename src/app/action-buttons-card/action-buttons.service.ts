@@ -57,10 +57,6 @@ export class ActionButtonsService {
       backdrop: 'static',
       ignoreBackdropClick: false
     });
-    this.modalRef.content.onClose = (newConnection: any) => {
-      if (newConnection) {
-      }
-    };
     this.modalRef.content.closeBtnName = 'Close';
     this.modalRef.hide();
   }
