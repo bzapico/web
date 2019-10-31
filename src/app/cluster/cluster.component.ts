@@ -337,9 +337,6 @@ export class ClusterComponent implements OnInit {
     if (!cluster.name) {
       cluster.name = '-';
     }
-    if (!cluster.description) {
-      cluster.description = '-';
-    }
     if (!cluster.total_nodes) {
       cluster.total_nodes = 0;
     }

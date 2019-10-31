@@ -6,6 +6,7 @@ import { NodeType } from '../definitions/enums/node-type.enum';
 import * as shape from 'd3-shape';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { Backend } from '../definitions/interfaces/backend';
+import { ApplicationInstance } from '../definitions/interfaces/application-instance';
 
 @Component({
   selector: 'tools',
@@ -70,7 +71,7 @@ export class ToolsComponent implements OnInit {
   /**
    * Instances list
    */
-  instances: any[];
+  instances: ApplicationInstance[];
   /**
    * Model that hold organization ID
    */
@@ -212,7 +213,7 @@ export class ToolsComponent implements OnInit {
       for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
         if (this.areIncludedInstancesWithError
             && (this.instances[indexInstance].status_name.toLowerCase() === AppStatus.Error
-                || this.instances[indexInstance].status_name === AppStatus.DeploymentError)) {
+                || this.instances[indexInstance].status_name.toLowerCase() === AppStatus.DeploymentError)) {
           appsInCluster[this.instances[indexInstance].app_instance_id] = this.instances[indexInstance];
         } else {
           const groups = this.instances[indexInstance].groups || [];

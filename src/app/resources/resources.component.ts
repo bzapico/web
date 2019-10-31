@@ -10,7 +10,7 @@ import { AddLabelComponent } from '../add-label/add-label.component';
 import { Subscription, timer } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { ToolsComponent } from '../tools/tools.component';
-import {AppStatus} from '../definitions/enums/app-status.enum';
+import { AppStatus } from '../definitions/enums/app-status.enum';
 
 @Component({
   selector: 'app-resources',
@@ -184,12 +184,11 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
   /**
    * Opens the modal view that holds the edit cluster component
    */
-  openEditCluster(cluster: { cluster_id: any; name: any; description: any; }) {
+  openEditCluster(cluster: Cluster) {
     const initialState = {
       organizationId: this.organizationId,
       clusterId: cluster.cluster_id,
-      clusterName: cluster.name,
-      clusterDescription: cluster.description
+      clusterName: cluster.name
     };
     this.modalRef = this.modalService.show(EditClusterComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
@@ -408,9 +407,6 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     if (!cluster.name) {
       cluster.name = '-';
     }
-    if (!cluster.description) {
-      cluster.description = '-';
-    }
   }
   /**
    * Transforms the data needed to create the graph
@@ -442,7 +438,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
         }
         if ((this.areIncludedInstancesWithError
             && instance.status_name.toLowerCase() !== AppStatus.Error
-            && instance.status_name !== AppStatus.DeploymentError)
+            && instance.status_name.toLowerCase() !== AppStatus.DeploymentError)
             || !this.areIncludedInstancesWithError) {
           this.graphData.links.push({
             source: cluster.cluster_id,

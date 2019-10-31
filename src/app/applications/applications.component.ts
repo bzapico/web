@@ -19,6 +19,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ApplicationsService } from './applications.service';
 import { AppStatus } from '../definitions/enums/app-status.enum';
 import { ToolsComponent } from '../tools/tools.component';
+import { Cluster } from '../definitions/interfaces/cluster';
+import { AppDescriptor } from '../definitions/models/app-descriptor';
 
 @Component({
   selector: 'applications',
@@ -45,11 +47,11 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
   /**
    * List of registered apps
    */
-  registered: any[];
+  registered: AppDescriptor[];
   /**
    * List of available clusters
    */
-  clusters: any[];
+  clusters: Cluster[];
   /**
    * List of labels
    */
@@ -428,7 +430,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
           descriptorId: entity.app_descriptor_id,
           remove_labels: true,
           labels: this.selectedLabels[index].labels
-        }).subscribe(updateAppResponse => {
+        }).subscribe(() => {
           this.selectedLabels.splice(index, 1);
           this.updateRegisteredInstances(this.organizationId);
         });
@@ -748,7 +750,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
       if (this.filters.clusters && this.filters.instances) {
         if ((this.areIncludedInstancesWithError
             && instance.status_name.toLowerCase() !== AppStatus.Error
-            && instance.status_name !== AppStatus.DeploymentError)
+            && instance.status_name.toLowerCase() !== AppStatus.DeploymentError)
             || !this.areIncludedInstancesWithError) {
           this.setLinksInGraph(
               instance['app_instance_id'],
@@ -835,7 +837,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
       this.graphData.nodes
         .map(node => {
           this.searchGraphData.links[node.id].forEach(searchNode => {
-            relatedNodes[node.id] = this.searchGraphData.nodes[searchNode];
+            relatedNodes[node.id] = this.graphData.nodes[searchNode];
           });
         });
       const uniqueNodes = {};
@@ -874,9 +876,6 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
               if (this.instances) {
                 this.processedRegisteredList();
               }
-              this.clusters.forEach(cluster => {
-                this.applicationsService.preventEmptyFields(cluster);
-              });
               this.updatePieChartStats(this.instances);
               if (!this.loadedData) {
                 this.loadedData = true;

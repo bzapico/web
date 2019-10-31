@@ -133,7 +133,7 @@
                   <label>{{basic.name}}</label>
                   <input
                     type="text"
-                    placeholder={{basic.default_value}}
+                    placeholder={{openFromRegistered?basic.default_value:basic.value}}
                     class="form-control"
                     disabled>
                   <label class="accordion-foot">{{'app-info.typeRestrictions' | translate:{restriction:basic.type} }}</label>
@@ -163,7 +163,7 @@
                   <label>{{advanced.name}}</label>
                   <input
                     type="text"
-                    placeholder={{advanced.default_value}}
+                    placeholder={{openFromRegistered?advanced.default_value:advanced.value}}
                     class="form-control"
                     disabled>
                   <label class="accordion-foot">

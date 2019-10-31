@@ -4,7 +4,7 @@ import { BackendService } from './backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { MockupBackendService } from './mockup-backend.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -59,7 +59,7 @@ export class AuthService {
    */
   logout() {
     this.backend.logout()
-      .subscribe(response => {
+      .subscribe(() => {
         // remove JWT token from local storage to log user out
         localStorage.removeItem(LocalStorageKeys.jwt);
         localStorage.removeItem(LocalStorageKeys.jwtData);

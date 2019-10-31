@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ApplicationInstance } from '../definitions/interfaces/application-instance';
 import { AppStatus } from '../definitions/enums/app-status.enum';
 
 @Injectable({
@@ -24,21 +23,6 @@ export class ApplicationsService {
       }
     });
     return temporalCount;
-  }
-  /**
-   * Fulfill nulls to avoid data binding failure
-   * @param instance Application instance
-   */
-  preventEmptyFields(instance: ApplicationInstance) {
-    if (!instance.description) {
-      instance.description = '-';
-    }
-    if (!instance.labels) {
-      instance.labels = '-';
-    }
-    if (!instance.status_name) {
-      instance.status_name = '-';
-    }
   }
   /**
    * Checks if the app status requires an special css class

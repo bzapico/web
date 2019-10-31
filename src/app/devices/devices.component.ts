@@ -112,10 +112,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    */
   nalejAccordion = 'nalejAccordion';
   /**
-   * NGX-Charts object-assign required object references (for rendering)
-   */
-  devicesTimelineChart: any;
-  /**
    * Models that hold the sort info needed to sortBy pipe
    */
   sortedBy: string;

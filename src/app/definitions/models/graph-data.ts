@@ -2,9 +2,13 @@
 * Model that defines the Graph info needed for creating the GraphData object instance
 */
 export class GraphData<T> {
-    // Nodes of our graph
+    /**
+     * Nodes of our graph
+     */
     private _nodes: T;
-    // Links of our graph
+    /**
+     * Links of our graph
+     */
     private _links: T;
 
     constructor(nodes: T, links: T) {

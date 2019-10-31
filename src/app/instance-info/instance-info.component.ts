@@ -182,6 +182,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       links: []
     };
     this.nextColorIndex = 0;
+    this.loadedData = false;
   }
 
   ngOnInit() {

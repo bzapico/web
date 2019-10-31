@@ -8,13 +8,14 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as shape from 'd3-shape';
-import { AppDescriptor } from '../definitions/interfaces/app-descriptor';
+import { AppDescriptor } from '../definitions/models/app-descriptor';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { ServiceInfoComponent } from '../service-info/service-info.component';
 import { RegisteredServiceGroupInfoComponent } from '../registered-service-group-info/registered-service-group-info.component';
 import { TranslateService } from '@ngx-translate/core';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { RegisteredInfoService } from './registered-info.service';
+import { KeyValue } from '../definitions/interfaces/key-value';
 
 @Component({
   selector: 'app-registered-info',
@@ -139,11 +140,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.isOpenFromRegistered = true;
     this.requestError = '';
     this.showGraph = true;
-    this.registeredData = {
-      groups: [],
-      environment_variables: {},
-      configuration_options: {}
-    };
+    this.registeredData = new AppDescriptor();
     // SortBy
     this.sortedBy = '';
     this.sortedByRules = '';
@@ -420,13 +417,16 @@ export class RegisteredInfoComponent implements OnInit {
    */
   addLabel() {
     const registeredDataForBackend = Object.assign({}, this.registeredData);
+    const labelsLikeArray: KeyValue = {};
     if (registeredDataForBackend.labels) {
-      const labelsLikeArray = {};
-      this.registeredData.labels.forEach(label => {
-        labelsLikeArray[label.key] = label.value;
-      });
-      registeredDataForBackend.labels = labelsLikeArray;
+      for (const labelsKey in this.registeredData.labels) {
+        if (this.registeredData.labels[labelsKey] === null || this.registeredData.labels[labelsKey] === undefined) {
+          continue;
+        }
+        labelsLikeArray[this.registeredData.labels[labelsKey]['key']] = this.registeredData.labels[labelsKey]['value'];
+      }
     }
+    registeredDataForBackend.labels = labelsLikeArray;
     const initialState = {
       organizationId: this.organizationId,
       entityType: this.translateService.instant('apps.registered.app'),

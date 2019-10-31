@@ -278,7 +278,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       entity: item,
       modalTitle: ''
     };
-    switch (item.type) {
+    switch (item.type.toLowerCase()) {
       case InventoryType.Ec:
         initialState.modalTitle = item.name;
         break;
@@ -418,7 +418,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param item inventory item
    */
   getItemOptions(item: any) {
-    switch (item.type) {
+    switch (item.type.toLowerCase()) {
       case InventoryType.Ec:
         const ecOptions = [];
         const ecOption1 = {
