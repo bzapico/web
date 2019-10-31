@@ -4,6 +4,7 @@ import { Port } from './port';
 import { ConfigFile } from './config-file';
 import { ServiceType } from '../enums/service-type.enum';
 import { KeyValue } from '@angular/common';
+import { DeploySpecs } from './deploy-specs';
 
 export interface Service {
     // OrganizationId with the organization identifier.
