@@ -236,7 +236,7 @@ export class InstanceInfoService {
           id: inbound.name + '_i_' + instance.app_instance_id,
           label: inbound.name,
           tooltip: this.translateService.instant('graph.inbound') + inbound.name,
-          color: this.isConnectedBound('inbound', instance.inbound_connections, inbound).isConnected ? '#00E6A0' : '#5800FF',
+          color: this.isConnectedBound('inbound', instance.inbound_connections, inbound).isConnected ? '#00E6A0' : '#444444',
           text: {
             color: '#000',
             y: 0
@@ -280,7 +280,7 @@ export class InstanceInfoService {
           id: outbound.name + '_i_' + instance.app_instance_id,
           label: outbound.name,
           tooltip: this.translateService.instant('graph.outbound') + outbound.name,
-          color: this.isConnectedBound('outbound', instance.outbound_connections, outbound).isConnected ? '#00E6A0' : '#5800FF',
+          color: this.isConnectedBound('outbound', instance.outbound_connections, outbound).isConnected ? '#00E6A0' : '#444444',
           text: {
             color: '#000',
             y: 0,
