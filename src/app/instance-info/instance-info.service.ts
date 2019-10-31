@@ -19,6 +19,14 @@ const STATUS_TEXT_COLORS = {
   OTHER: '#444444'
 };
 
+const CONNECTION_STATUS_COLOR = {
+  WAITING: '#FFEB6C',
+  ESTABLISHED: '#00E6A0',
+  TERMINATED: '#F7478A',
+  FAILED: '#F7478A',
+  DISCONNECTED: '#444444'
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -236,7 +244,7 @@ export class InstanceInfoService {
           id: inbound.name + '_i_' + instance.app_instance_id,
           label: inbound.name,
           tooltip: this.translateService.instant('graph.inbound') + inbound.name,
-          color: this.isConnectedBound('inbound', instance.inbound_connections, inbound).isConnected ? '#00E6A0' : '#444444',
+          color: this.isConnectedBound('inbound', instance.inbound_connections, inbound).connectionColor,
           text: {
             color: '#000',
             y: 0
@@ -280,7 +288,7 @@ export class InstanceInfoService {
           id: outbound.name + '_i_' + instance.app_instance_id,
           label: outbound.name,
           tooltip: this.translateService.instant('graph.outbound') + outbound.name,
-          color: this.isConnectedBound('outbound', instance.outbound_connections, outbound).isConnected ? '#00E6A0' : '#444444',
+          color: this.isConnectedBound('outbound', instance.outbound_connections, outbound).connectionColor,
           text: {
             color: '#000',
             y: 0,
@@ -318,7 +326,7 @@ export class InstanceInfoService {
    * @param instances_connections connections object
    * @param bound bound object
    */
-  private isConnectedBound(type, instances_connections, bound): {isConnected: boolean, secondaryName: string} {
+  private isConnectedBound(type, instances_connections, bound): {isConnected: boolean, connectionColor: string, secondaryName: string} {
     const data = {
       inbound: {
         rule: 'inbound_name',
@@ -336,6 +344,7 @@ export class InstanceInfoService {
     const isConnected = filteredData.length > 0;
     return {
       isConnected: isConnected,
+      connectionColor: isConnected ? CONNECTION_STATUS_COLOR[filteredData[0]['status_name']] : CONNECTION_STATUS_COLOR.DISCONNECTED,
       secondaryName: isConnected ? filteredData[0][data[type].name] : ''
     };
   }
