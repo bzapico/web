@@ -323,7 +323,7 @@ export class InstanceInfoService {
     }
   }
   /**
-   * It get connections bound data
+   * It gets connections bound data
    * @param type type object
    * @param instances_connections connections object
    * @param bound bound object
