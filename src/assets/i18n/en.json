@@ -100,7 +100,7 @@
 			"disconnect": "Disconnect",
 			"disconnectConfirm": "Disconnect?",
 			"disconnectConfirmOutboundRequired": "The connection is required for a correct performance of the instance. Do you want to delete it anyway?",
-			"disconnectMessage": "Connection removed",
+			"disconnectMessage": "Removing connection",
 			"noConnections": "No connections",
 			"requiredFields": "Required field",
 			"sourceInstance": "Source instance",

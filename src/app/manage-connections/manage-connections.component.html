@@ -114,7 +114,8 @@
               <div class="col-2 text-center label-td-flex">
                 <button 
                   (click)="disconnectInstance(connection)"
-                  tooltip="{{'apps.manageConnections.disconnect' | translate}}" 
+                  [disabled]="connection.status_name === 'SCHEDULED' || connection.status_name === 'WAITING'"
+                  tooltip="{{'apps.manageConnections.disconnect' | translate}}"
                   placement="left" 
                   class="action-btn-red">
                   <i class="material-icons i-red">link_off</i>

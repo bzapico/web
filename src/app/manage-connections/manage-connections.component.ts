@@ -9,6 +9,7 @@ import { NotificationsService } from '../services/notifications.service';
 import { AddConnectionsComponent } from '../add-connections/add-connections.component';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'manage-connections',
@@ -16,6 +17,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./manage-connections.component.scss']
 })
 export class ManageConnectionsComponent implements OnInit {
+  static readonly REFRESH_INTERVAL = 10000;
   /**
    * Backend reference
    */
@@ -48,6 +50,10 @@ export class ManageConnectionsComponent implements OnInit {
    * Reference for the service that allows the modal component
    */
   modalRef: BsModalRef;
+  /**
+   * Holds the reference of the interval that refreshes the lists
+   */
+  refreshIntervalRef: Subscription;
 
   constructor(
     public bsModalRef: BsModalRef,
