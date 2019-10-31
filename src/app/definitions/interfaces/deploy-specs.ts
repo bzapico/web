@@ -1,4 +1,4 @@
-interface DeploySpecs {
+export interface DeploySpecs {
     cpu?: number;
     memory?: number;
     replicas?: number;
