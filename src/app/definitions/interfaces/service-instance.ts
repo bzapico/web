@@ -3,6 +3,7 @@ import { Port } from './port';
 import { ConfigFile } from './config-file';
 import { Storage } from './storage';
 import { KeyValue } from '@angular/common';
+import { DeploySpecs } from './deploy-specs';
 
 export interface ServiceInstance {
     // OrganizationId with the organization identifier.
