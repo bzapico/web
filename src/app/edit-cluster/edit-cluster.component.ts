@@ -6,6 +6,7 @@ import { BackendService } from '../services/backend.service';
 import { BsModalRef } from 'ngx-bootstrap';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'edit-cluster',
@@ -20,12 +21,10 @@ export class EditClusterComponent implements OnInit {
   editClusterForm: FormGroup;
   submitted = false;
   loading: boolean;
-
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Models that hold organization id, cluster id, name
    */
@@ -38,7 +37,8 @@ export class EditClusterComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.clusterEditMock) || null;
     // check which backend is required (fake or real)
@@ -47,7 +47,8 @@ export class EditClusterComponent implements OnInit {
     } else {
       this.backend = this.backendService;
     }
-    this.clusterName = 'Loading...'; // Default initialization
+    // Default initialization
+    this.clusterName = this.translateService.instant('organization.loading');
   }
 
   ngOnInit() {
@@ -60,7 +61,6 @@ export class EditClusterComponent implements OnInit {
    * Convenience getter for easy access to form fields
    */
   get f() { return this.editClusterForm.controls; }
-
   /**
    * Request to save the cluster data modifications
    * @param f Form object reference
@@ -76,7 +76,7 @@ export class EditClusterComponent implements OnInit {
           this.clusterName = f.clusterName.value;
           this.loading = false;
           this.notificationsService.add({
-            message: 'The cluster ' + this.clusterName + ' has been edited'
+            message: this.translateService.instant('resources.saveChanges', {cluster: this.clusterName }),
           });
           this.bsModalRef.hide();
         }, error => {
@@ -89,18 +89,15 @@ export class EditClusterComponent implements OnInit {
         });
     }
   }
-
   /**
    * Checks if the form has been modified before discarding changes
    * @param form Form object reference
    */
   discardChanges(form) {
     if (form.dirty) {
-      const discard = confirm('Discard changes?');
+      const discard = confirm(this.translateService.instant('modals.discardChanges'));
       if (discard) {
         this.bsModalRef.hide();
-      } else {
-        // Do nothing
       }
     } else {
       this.bsModalRef.hide();

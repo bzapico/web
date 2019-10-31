@@ -21,7 +21,6 @@ export class OrganizationComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Models that hold organization id, name, subscription type and the users list
    */
@@ -30,34 +29,28 @@ export class OrganizationComponent implements OnInit {
   users: any[];
   profileRole: string;
   userId: string;
-
   /**
    * Loaded Data status
    */
   loadedData: boolean;
-
   /**
    * Reference for the service that allows the user info component
    */
   modalRef: BsModalRef;
   modalRefOnHide: any;
-
   /**
    * Hold request error message or undefined
    */
   requestError: string;
-
   /**
    * Models that hold the sort info needed to sortBy pipe
    */
   sortedBy: string;
   reverse: boolean;
-
   /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
-
   /**
    * Variable to store the value of the filter search text and sortBy pipe
    */
@@ -83,12 +76,10 @@ export class OrganizationComponent implements OnInit {
     this.organizationName = this.translateService.instant('organization.loading');
     this.users = [];
     this.requestError = '';
-
     // SortBy
     this.sortedBy = '';
     this.reverse = false;
     this.searchTerm = '';
-
     // Filter field
     this.filterField = false;
   }
@@ -116,7 +107,6 @@ export class OrganizationComponent implements OnInit {
       }
     );
   }
-
   /**
    * Opens the modal view that holds the user info component
    */
@@ -130,12 +120,10 @@ export class OrganizationComponent implements OnInit {
       userId: this.userId,
       defaultAutofocus: true,
     };
-
     this.modalRef = this.modalService.show(UserInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalRefOnHide = this.modalService.onHide.subscribe((reason: string) => {this.updateUserList(); });
   }
-
   /**
    * Opens the modal view that holds the user info and editable component
    */
@@ -151,7 +139,6 @@ export class OrganizationComponent implements OnInit {
       selfEditProfile: false,
       defaultAutofocus: true,
     };
-
     this.modalRef = this.modalService.show(EditUserComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
@@ -160,7 +147,6 @@ export class OrganizationComponent implements OnInit {
       }
     });
   }
-
   /**
    * Opens the modal view that holds add user component
    */
@@ -168,12 +154,10 @@ export class OrganizationComponent implements OnInit {
     const initialState = {
       organizationId: this.organizationId,
     };
-
     this.modalRef = this.modalService.show(AddUserComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { this.updateUserList(); });
   }
-
   /**
    * Requests an updated list of available users to update the current one
    */
@@ -205,7 +189,6 @@ export class OrganizationComponent implements OnInit {
     this.sortedBy = categoryName;
     this.filterField = true;
   }
-
   /**
    * Reset all the filters fields
    */
@@ -214,7 +197,6 @@ export class OrganizationComponent implements OnInit {
     this.searchTerm = '';
     this.sortedBy = '';
   }
-
   /**
    * Gets the category headers to add a class
    * @param categoryName class for the header category

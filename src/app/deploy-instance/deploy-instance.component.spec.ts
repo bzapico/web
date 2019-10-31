@@ -18,7 +18,7 @@ describe('DeployInstanceComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ DeployInstanceComponent,
         AutofocusDirective,
-       ],
+      ],
       imports: [
         FormsModule,
         ButtonsModule,

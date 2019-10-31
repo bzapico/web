@@ -16,7 +16,5 @@ export class TruncatePipe implements PipeTransform {
     } else {
       return value;
     }
-   }
+  }
 }
-
-

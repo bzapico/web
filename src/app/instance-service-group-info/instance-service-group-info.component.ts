@@ -8,7 +8,6 @@ import { ServicesStatus } from '../definitions/enums/services-status.enum';
   styleUrls: ['./instance-service-group-info.component.scss']
 })
 export class InstanceServiceGroupInfoComponent implements OnInit {
-
   /**
    * Data models for instance service group related information
    */
@@ -23,7 +22,6 @@ export class InstanceServiceGroupInfoComponent implements OnInit {
   status: any;
   globalFqdn: string;
   metadata: any;
-
   /**
    * Loaded Data status
    */
@@ -38,7 +36,6 @@ export class InstanceServiceGroupInfoComponent implements OnInit {
 
   ngOnInit() {
     this.status = this.status || '';
-
   }
 
   /**
@@ -51,7 +48,6 @@ export class InstanceServiceGroupInfoComponent implements OnInit {
     }
     return rawStatus;
   }
-
   /**
    * Checks if the status requires an special css class
    * @param status  status name
@@ -69,7 +65,6 @@ export class InstanceServiceGroupInfoComponent implements OnInit {
         return (className.toLowerCase() === ServicesStatus.ServiceWaiting);
     }
   }
-
   /**
    * Adds https in case of being required
    * @param endpoint String containing the endpoint

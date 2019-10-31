@@ -123,7 +123,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     /**
      * Mocked Charts
      */
-      Object.assign(this, {mockClusterChart});
+    Object.assign(this, {mockClusterChart});
   }
 
   ngOnInit() {
@@ -136,7 +136,8 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
   ngOnDestroy() {
     this.refreshIntervalRef.unsubscribe();
   }
-    /**
+
+  /**
    * Generates the NGX-Chart required JSON object for pie chart rendering
    * @param running Number of running nodes in a cluster
    * @param total Number of total nodes in a cluster
@@ -407,7 +408,6 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
       cluster.name = '-';
     }
   }
-
   /**
    * Transforms the data needed to create the graph
    */

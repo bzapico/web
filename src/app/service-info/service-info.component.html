@@ -3,7 +3,7 @@
   <div class="modal-content">
       <!-- Header -->
       <div class="modal-header">
-        <h3 class="modal-info-title mb-4">Service info</h3>
+        <h3 class="modal-info-title mb-4">{{'apps.instance.serviceInfoTitle' | translate}}</h3>
       </div>
       <!-- Body -->
       <div class="modal-body">
@@ -12,19 +12,19 @@
       <p class="modal-info-title-sm">{{serviceId}}</p>
       <div class="scroll-app-info">
         <div class="row">
-          <div class="col-sm modal-info-table-title mb-3">Replicas</div>
+          <div class="col-sm modal-info-table-title mb-3">{{'tables.tableReplicas' | translate}}</div>
           <h3 class="modal-info-h3-title col-sm text-right">{{specs.replicas}}</h3>
         </div>
         <br>
         <span *ngIf="exposedPorts">
           <div class="row">
-            <div class="col-sm modal-info-table-title mb-3">Exposed ports</div>
+            <div class="col-sm modal-info-table-title mb-3">{{'tables.tableExportedPorts' | translate}}</div>
           </div>
             <div class="row">
               <div class="col-sm"></div>
-              <div class="col-sm">Port</div>
-              <div class="col-sm text-right">Internal</div>
-              <div class="col-sm text-right">External</div>
+              <div class="col-sm">{{'tables.tablePort' | translate}}</div>
+              <div class="col-sm text-right">{{'tables.tableInternal' | translate}}</div>
+              <div class="col-sm text-right">{{'tables.tableExternal' | translate}}</div>
             </div>
           </span>
           <div *ngFor="let exposedPort of exposedPorts">
@@ -38,20 +38,20 @@
             </span>
             <span *ngIf="!exposedPorts">
             <div class="row">
-              <div class="col-sm text-right">No</div>
+              <div class="col-sm text-right">{{'tables.no' | translate}}</div>
             </div>
           </span>
           </div>
           <br>
           <span *ngIf="endpoints">
           <div class="row">
-            <div class="col-sm modal-info-table-title mb-3">Endpoints</div>
+            <div class="col-sm modal-info-table-title mb-3">{{'tables.tableEndpoints' | translate}}</div>
           </div>
             <div class="row">
               <div class="col-sm"></div>
-              <div class="col-sm">Port</div>
-              <div class="col-sm text-right">Type</div>
-              <div class="col-sm text-right">Path</div>
+              <div class="col-sm">{{'tables.tablePort' | translate}}</div>
+              <div class="col-sm text-right">{{'tables.tableType' | translate}}</div>
+              <div class="col-sm text-right">{{'tables.tablePath' | translate}}</div>
             </div>
           </span>
         <div *ngFor="let exposedPort of exposedPorts">
@@ -66,28 +66,28 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-sm modal-info-table-title mb-3">Environment variables</div>
+          <div class="col-sm modal-info-table-title mb-3">{{'tables.tableEnvironmentVar' | translate}}</div>
         </div>
         <div *ngFor="let environmentVariable of environmentVariables | keyvalue" class="row">
           <div *ngIf="environmentVariables" class="col-sm text-right">
             <div class="text-right grey">{{environmentVariable.key}}</div>
             <div class="text-right">{{environmentVariable.value}}</div>
           </div>
-          <div *ngIf="!environmentVariables" class="col-sm text-right">No</div>
+          <div *ngIf="!environmentVariables" class="col-sm text-right">{{'tables.no' | translate}}</div>
         </div>
         <br>
         <div class="row">
-          <div class="col-sm modal-info-table-title mb-3">Service group ID</div>
+          <div class="col-sm modal-info-table-title mb-3">{{'tables.tableServiceGroupId' | translate}}</div>
           <div class="col-sm text-right">{{groupId}}</div>
         </div>
         <br>
         <div class="row">
-          <div class="col-sm modal-info-table-title mb-3">App descriptor ID</div>
+          <div class="col-sm modal-info-table-title mb-3">App descriptor ID{{'tables.tableAppDescriptorID' | translate}}</div>
           <div class="col-sm text-right">{{appDescriptorId}}</div>
         </div>
         <br>
         <div class="row">
-          <div class="col-sm modal-info-table-title mb-3">Labels</div>
+          <div class="col-sm modal-info-table-title mb-3">{{'tables.tableLabels' | translate}}</div>
         </div>
         <div *ngFor="let label of labels | keyvalue" class="row">
           <div *ngIf="labels" class="col-sm text-right">
@@ -95,14 +95,14 @@
               {{label.key}}: {{label.value}}
             </button>
           </div>
-          <div *ngIf="!labels" class="col-sm text-right">No</div>
+          <div *ngIf="!labels" class="col-sm text-right">{{'tables.no' | translate}}</div>
         </div>
         <br>
       </div>      
       <!-- Option button -->
       <div class="form-group-btn">
         <button (click)="bsModalRef.hide()" class="nalej-form-btn-blue">
-          <span class="align-bottom">Close</span>
+          <span class="align-bottom">{{'buttons.close' | translate}}</span>
         </button>
       </div>
     </div>

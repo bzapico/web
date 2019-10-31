@@ -2,6 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BsModalRef, ModalModule, BsModalService } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '../app.module';
 
 import { AgentJoinTokenInfoComponent } from './agent-join-token-info.component';
 
@@ -17,11 +20,19 @@ describe('AgentJoinTokenInfoComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule,
         ModalModule.forRoot(),
-     ],
-     providers: [
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
+    ],
+    providers: [
         BsModalRef,
-        BsModalService
-     ]
+        BsModalService,
+        TranslateService
+    ]
     })
     .compileComponents();
   }));

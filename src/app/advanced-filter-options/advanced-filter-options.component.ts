@@ -26,13 +26,15 @@ export class AdvancedFilterOptionsComponent implements OnInit {
     this.defaultFilter = this.bsModalService.config.initialState['defaultFilter'];
   }
 
+  /**
+   * Save changes
+   */
   saveChanges() {
     this.bsModalService.config.initialState['showOnlyNodes'] = this.showOnlyNodes;
     this.bsModalService.config.initialState['showRelatedNodes'] = this.showRelatedNodes;
     this.bsModalService.config.initialState['defaultFilter'] = this.defaultFilter;
     this.closeModal();
   }
-
   /**
    * Reset all the filters fields
    */
@@ -41,7 +43,6 @@ export class AdvancedFilterOptionsComponent implements OnInit {
     this.showOnlyNodes = false;
     this.showRelatedNodes = false;
   }
-
   /**
    * Change the filter options to use radio button
    */
@@ -49,12 +50,10 @@ export class AdvancedFilterOptionsComponent implements OnInit {
     this.resetFilters();
     this[filterOption] = true;
   }
-
   /**
    * Close the modal window
    */
   closeModal() {
     this.bsModalRef.hide();
   }
-
 }

@@ -12,12 +12,10 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./device-info.component.scss']
 })
 export class DeviceInfoComponent implements OnInit {
-
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Models that hold organization id, device group ID, device ID, created, labels and status
    */
@@ -29,22 +27,18 @@ export class DeviceInfoComponent implements OnInit {
   status: string;
   enabled: boolean;
   groupName: string;
-
   /**
    * List of available devices groups
    */
   groups: any[];
-
   /**
    * Hold request error message or undefined
    */
   requestError: string;
-
   /**
    * Model that holds onclose method defined in Infrastructure component
    */
   onClose: any;
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -52,7 +46,6 @@ export class DeviceInfoComponent implements OnInit {
     backdrop: false,
     ignoreBackdropClick: true
   };
-
   /**
    * Loaded Data status
    */
@@ -71,7 +64,6 @@ export class DeviceInfoComponent implements OnInit {
     } else {
       this.backend = this.backendService;
     }
-
     // Default initialization
     this.loadedData = false;
   }
@@ -102,7 +94,6 @@ export class DeviceInfoComponent implements OnInit {
     }
     return this.translateService.instant('infrastructure.device.notFound');
   }
-
   /**
    * Create a new JavaScript Date object based on the timestamp
    * and multiplied by 1000 so that the argument is in milliseconds, not seconds.
@@ -113,12 +104,9 @@ export class DeviceInfoComponent implements OnInit {
       const year = date.getFullYear();
       const month = date.getMonth();
       const day = date.getDate();
-
       const formatedDate = month + '/' + day + '/' + year;
-
     return formatedDate;
   }
-
   /**
    * Go to devices group view
    */

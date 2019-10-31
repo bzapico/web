@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
@@ -11,23 +11,20 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './simple-log.component.html',
   styleUrls: ['./simple-log.component.scss']
 })
-export class SimpleLogComponent implements OnInit {
+export class SimpleLogComponent  {
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Loaded Data status
    */
   loadedData: boolean;
-
   /**
    * Model that hold organization ID and last operations summary
    */
   organizationId: string;
   lastOpSummary: any;
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -56,9 +53,6 @@ export class SimpleLogComponent implements OnInit {
     };
   }
 
-  ngOnInit() {
-  }
-
   /**
    * Create a new JavaScript Date object based on the timestamp
    * and multiplied by 1000 so that the argument is in milliseconds, not seconds.
@@ -73,7 +67,6 @@ export class SimpleLogComponent implements OnInit {
       let hour: any = date.getHours();
       let min: any = date.getMinutes();
       let sec: any = date.getSeconds();
-
       if (hour < 10) {
         hour = '0' + hour;
       }
@@ -84,17 +77,14 @@ export class SimpleLogComponent implements OnInit {
         sec = '0' + sec;
       }
       const formatedDate = month + '/' + day + '/' + year + ' - ' + hour + ':' + min + ':' + sec ;
-
       return formatedDate;
     }
     return 'undefined';
   }
-
   /**
    * Close the modal window
    */
   closeModal() {
     this.bsModalRef.hide();
   }
-
 }

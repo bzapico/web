@@ -2,7 +2,7 @@
   <div class="modal-content">
     <!-- Header -->
     <div class="modal-header">
-      <h3 class="nalej-form-title">Edit {{clusterName}}</h3>
+      <h3 class="nalej-form-title">{{'resources.edit' | translate}} {{clusterName}}</h3>
       <button 
         (click)="discardChanges(f)"
         type="button" 
@@ -15,7 +15,7 @@
     <div class="modal-body">
       <form [formGroup]="editClusterForm" (ngSubmit)="saveClusterChanges(f)">
         <div class="form-group">
-          <label>Name</label>
+          <label>{{'tables.tableName' | translate}}</label>
           <input 
             formControlName="clusterName"
             type="text" 
@@ -27,14 +27,14 @@
             <div *ngIf="!submitted && f.clusterName.errors" class="error-message"></div>
             <div class="error-h">
               <div *ngIf="submitted && f.clusterName.errors" class="error-message">
-                <div *ngIf="f.clusterName.errors.minlength">Cluster name is too short</div>
-                <div *ngIf="f.clusterName.errors.pattern">Cannot contain special ial characters</div>
+                <div *ngIf="f.clusterName.errors.minlength">{{'resources.nameShort' | translate}}</div>
+                <div *ngIf="f.clusterName.errors.pattern">{{'label.add-label.specialChar' | translate}}</div>
               </div>
             </div>
         </div>
         <div class="form-group-btn">
           <button class="nalej-form-btn-blue" [disabled]="loading">
-            <span class="align-bottom">Save changes</span>
+            <span class="align-bottom">{{'buttons.saveChanges' | translate}}</span>
           </button>
         </div>
       </form>

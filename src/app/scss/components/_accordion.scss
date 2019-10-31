@@ -5,7 +5,6 @@
     overflow-y: scroll;
     overflow-x: hidden;
     height: 92%;
-    width: 80%;
     .accordion-tabs {
         .card-body {
             flex: 1 1 auto;
@@ -120,13 +119,6 @@
             > span > div:last-child > div > hr {
                 border: none;
             }
-        }
-    }
-}
-.accordion-box {
-    .label-nalej-table {
-        .label-tbody {
-            border-top: 0;
         }
     }
 }

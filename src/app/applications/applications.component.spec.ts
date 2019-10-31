@@ -27,7 +27,7 @@ describe('ApplicationsComponent', () => {
         FilterPipe,
         SortByPipe,
         ContextualMenuComponent
-       ],
+      ],
       imports: [
         HttpClientTestingModule,
         NgxChartsModule,

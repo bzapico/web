@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
@@ -10,12 +10,11 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
   templateUrl: './service-info.component.html',
   styleUrls: ['./service-info.component.scss']
 })
-export class ServiceInfoComponent implements OnInit {
- /**
+export class ServiceInfoComponent {
+  /**
    * Backend reference
    */
   backend: Backend;
-
   name: string;
   image: string;
   serviceId: string;
@@ -26,7 +25,6 @@ export class ServiceInfoComponent implements OnInit {
   appDescriptorId: string;
   labels: any;
   environmentVariables: string;
-
   /**
    * Loaded Data status
    */
@@ -44,11 +42,7 @@ export class ServiceInfoComponent implements OnInit {
     } else {
       this.backend = this.backendService;
     }
-
     // Default initialization
     this.loadedData = true;
-  }
-
-  ngOnInit() {
   }
 }

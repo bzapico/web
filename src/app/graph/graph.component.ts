@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'graph',
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.scss']
 })
-export class GraphComponent implements OnInit {
+export class GraphComponent {
 
   @Input() links: any[];
   @Input() nodes: any[];
@@ -19,9 +19,6 @@ export class GraphComponent implements OnInit {
   constructor() {
     this.links = [];
     this.nodes = [];
-  }
-
-  ngOnInit() {
   }
 
   /**
@@ -41,5 +38,4 @@ export class GraphComponent implements OnInit {
       return 'url(#arrow)';
     }
   }
-
 }

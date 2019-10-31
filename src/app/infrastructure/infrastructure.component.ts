@@ -178,7 +178,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
   }
-   /**
+  /**
    * Sortby pipe in the component
    */
   setOrder(categoryName: string) {
@@ -252,7 +252,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       this.updateInventoryList();
     });
   }
-    /**
+  /**
    * Opens context menu
    * @param item inventory item
    */
@@ -652,7 +652,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    */
   private getECsCount() {
     let ecCount = 0;
-
     this.inventory.forEach(item => {
       if (item.type === InventoryType.Ec) {
         ecCount += 1;

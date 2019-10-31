@@ -198,7 +198,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   exports: [
     LoginComponent
-   ],
+  ],
   providers: [
     AuthService,
     BackendService,

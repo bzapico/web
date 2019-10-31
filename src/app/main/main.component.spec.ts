@@ -3,7 +3,7 @@ import { MainComponent } from './main.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { OrganizationComponent } from '../organization/organization.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { ModalModule, BsModalService } from 'ngx-bootstrap';
+import { ModalModule, BsModalService, TooltipModule } from 'ngx-bootstrap';
 import { AuthService } from '../services/auth.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FilterPipe } from '../pipes/filter.pipe';
@@ -30,6 +30,7 @@ describe('MainComponent', () => {
         ModalModule.forRoot(),
         HttpClientTestingModule,
         RouterTestingModule,
+        TooltipModule.forRoot(),
         FormsModule,
         TranslateModule.forRoot({
           loader: {

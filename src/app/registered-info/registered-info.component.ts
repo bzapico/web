@@ -180,7 +180,6 @@ export class RegisteredInfoComponent implements OnInit {
     }
   }
 
-
   /* Sortby pipe in the component
    * @param categoryName the name of the chosen category
    */
@@ -242,7 +241,6 @@ export class RegisteredInfoComponent implements OnInit {
       }
     }
   }
-
   /**
    * Opens the modal view that holds the deploy registered app component
    * @param app registered app to deploy
@@ -262,7 +260,6 @@ export class RegisteredInfoComponent implements OnInit {
       this.router.navigate(['/applications']);
     });
   }
-
   /**
    * Requests to delete the selected app
    * @param app Application object
@@ -285,7 +282,6 @@ export class RegisteredInfoComponent implements OnInit {
         });
     }
   }
-
   /**
    * Returns the length of the services in registered list. Represents the number of available services
    * @param registered selected registered
@@ -299,7 +295,6 @@ export class RegisteredInfoComponent implements OnInit {
     }
     return temporalCount;
   }
-
   /**
    * Returns the length of service registered group
    */
@@ -312,7 +307,6 @@ export class RegisteredInfoComponent implements OnInit {
     }
     return counter;
   }
-
   /**
    *  Return the list of group services
    * @param groupId Group identifier
@@ -327,7 +321,6 @@ export class RegisteredInfoComponent implements OnInit {
       return [];
     }
   }
-
   /**
   * Open services info modal window
   *  @param service service object
@@ -350,7 +343,6 @@ export class RegisteredInfoComponent implements OnInit {
     this.modalRef = this.modalService.show(ServiceInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
-
   /**
   * Open rules info modal window
   *  @param rule rule object
@@ -370,11 +362,9 @@ export class RegisteredInfoComponent implements OnInit {
       deviceGroupIds: rule.device_group_ids,
       deviceGroupNames: rule.device_group_names
     };
-
     this.modalRef = this.modalService.show(RuleInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
-
   /**
    * Shows the graph in services card
    * @param type display mode type
@@ -386,7 +376,6 @@ export class RegisteredInfoComponent implements OnInit {
       this.showGraph = true;
     }
   }
-
   /**
    * Helper to workaround the reset graph status through the DOM refresh, using *ngIf
    */
@@ -396,7 +385,6 @@ export class RegisteredInfoComponent implements OnInit {
       this.graphReset = false;
     }, 1);
   }
-
   /**
    * Open group services info modal window
    *  @param group group object
@@ -409,12 +397,10 @@ export class RegisteredInfoComponent implements OnInit {
       name: group.name,
       serviceGroupId: group.service_group_id,
     };
-
     this.modalRef = this.modalService.show(RegisteredServiceGroupInfoComponent,
       { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
   }
-
   /**
    * Updates labels
    * @param updateLabel label object
@@ -426,7 +412,6 @@ export class RegisteredInfoComponent implements OnInit {
       this.deleteLabel(updateLabel.selectedLabels);
     }
   }
-
   /**
    * Opens the modal view that holds add label component
    */
@@ -454,7 +439,6 @@ export class RegisteredInfoComponent implements OnInit {
       this.updateAppDescriptor();
     } );
   }
-
   /**
    * Deletes a selected label
    * @param selectedLabels selected labels by the user for delete them
@@ -479,7 +463,6 @@ export class RegisteredInfoComponent implements OnInit {
       });
     }
   }
-
   /**
    * Request the list of app descriptors
    */
@@ -509,7 +492,6 @@ export class RegisteredInfoComponent implements OnInit {
         this.requestError = errorResponse.error.message;
       });
   }
-
   /**
    * Transforms the data needed to create the graph
    * @param registered registered object
@@ -519,7 +501,6 @@ export class RegisteredInfoComponent implements OnInit {
     this.graphData = this.registeredInfoService.graphData;
     this.graphDataLoaded = true;
   }
-
   /**
    * Show the graph and hides the services table
    * @param displayGraph show if the graph is displayed

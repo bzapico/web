@@ -5,6 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonsModule, BsModalRef } from 'ngx-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from '../app.module';
 
 import { By } from '@angular/platform-browser';
 
@@ -20,10 +23,18 @@ describe('EditClusterComponent', () => {
         FormsModule,
         ButtonsModule,
         RouterTestingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
       ],
       providers: [
-        BsModalRef
+        BsModalRef,
+        TranslateService
       ]
     })
     .compileComponents();

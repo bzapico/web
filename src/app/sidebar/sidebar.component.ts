@@ -17,25 +17,21 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Models that hold user name, role and email on sidebar
    */
   name: string;
   role: string;
   email: string;
-
   /**
    * Models that hold user id and organizationId
    */
   userId: string;
   organizationId: string;
-
   /**
    * Reference for the service that allows to open debug panel and profile modal view
    */
@@ -81,7 +77,6 @@ export class SidebarComponent implements OnInit {
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => { location.reload(); });
   }
-
   /**
    * Opens the modal view that holds the user info and editable component
    */
@@ -94,7 +89,6 @@ export class SidebarComponent implements OnInit {
       organizationId: this.organizationId,
       selfEditProfile: true,
     };
-
     this.modalRef = this.modalService.show(EditUserComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
@@ -104,7 +98,6 @@ export class SidebarComponent implements OnInit {
       }
     });
   }
-
   /**
    * Requests an updated profile user to update the current one
    */
@@ -116,7 +109,6 @@ export class SidebarComponent implements OnInit {
         this.role = response.role_name;
     });
   }
-
   /**
    * Cleans the credentials and leads to login page
    */

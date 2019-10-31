@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../services/backend.service';
@@ -12,12 +12,11 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './group-configuration.component.html',
   styleUrls: ['./group-configuration.component.scss']
 })
-export class GroupConfigurationComponent implements OnInit {
+export class GroupConfigurationComponent {
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Model that hold organization ID, default connectivity and enabled or disabled option
    */
@@ -26,12 +25,10 @@ export class GroupConfigurationComponent implements OnInit {
   enabled: boolean;
   name: string;
   device_group_id: string;
-
   /**
    * List of available groups
    */
   group: any;
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -58,9 +55,6 @@ export class GroupConfigurationComponent implements OnInit {
     // group is initialized by devices group component
     this.defaultConnectivity = false;
     this.enabled = false;
-  }
-
-  ngOnInit() {
   }
 
   /**
@@ -91,7 +85,6 @@ export class GroupConfigurationComponent implements OnInit {
     });
     this.bsModalRef.hide();
   }
-
   /**
    * Close the modal window
    */

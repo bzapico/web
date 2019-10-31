@@ -4,7 +4,6 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'sortBy'
 })
 export class SortByPipe implements PipeTransform {
-
   /**
    * Check if a value is a string
    *  @param value value to be checked as a string
@@ -12,7 +11,6 @@ export class SortByPipe implements PipeTransform {
   static isString(value: any) {
     return typeof value === 'string' || value instanceof String;
   }
-
   /**
    * Sorts values ignoring the case
    * @param a first param to ignore the case
@@ -24,14 +22,12 @@ export class SortByPipe implements PipeTransform {
     }
     return SortByPipe.defaultCompare(a, b);
   }
-
   /**
    * Default compare method
    * @param a first param to compare
    * @param b second param to compare
    */
-
-   static defaultCompare(a: any, b: any) {
+  static defaultCompare(a: any, b: any) {
     if (a === b) {
       return 0;
     }
@@ -43,17 +39,15 @@ export class SortByPipe implements PipeTransform {
     }
     return a > b ? 1 : -1;
   }
-
   /**
    * Parse expression, split into items
    * @param expression expression to be parsed
    */
-   static parseExpression(expression: string): string[] {
+  static parseExpression(expression: string): string[] {
     expression = expression.replace(/\[(\w+)\]/g, '.$1');
     expression = expression.replace(/^\./, '');
     return expression.split('.');
   }
-
   /**
    * Get value by expression
    * @param object get ordered nested object elements
@@ -73,22 +67,19 @@ export class SortByPipe implements PipeTransform {
     }
     return object;
   }
-
   /**
-   * Setted value by expression
+   * Set value by expression
    * @param object set ordered nested object elements
-   * @param value value to be setted
+   * @param value value to be set
    * @param expression expression to set value by
    */
-   static setValue(object: any, value: any, expression: string[]) {
+  static setValue(object: any, value: any, expression: string[]) {
     let i;
     for (i = 0; i < expression.length - 1; i++) {
       object = object[expression[i]];
     }
-
     object[expression[i]] = value;
   }
-
   transform(value: any | any[], expression?: any, reverse?: boolean, isCaseInsensitive: boolean = false, comparator?: Function): any {
     if (!value) {
       return value;
@@ -104,7 +95,6 @@ export class SortByPipe implements PipeTransform {
     }
     return value;
   }
-
   /**
    * Sort array
    * @param expressions expression that returns array as it is
@@ -140,7 +130,6 @@ export class SortByPipe implements PipeTransform {
     }
     return array;
   }
-
   /**
    * Transform Object
    * @param expressions expression to be transformed
@@ -169,7 +158,6 @@ export class SortByPipe implements PipeTransform {
     SortByPipe.setValue(value, this.transform(oldValue, lastPredicate, reverse, isCaseInsensitive), parsedExpression);
     return value;
   }
-
   /**
    * Apply multiple expressions
    * @param value value to be checked

@@ -196,33 +196,33 @@
               <div *ngIf="openFromInstance" class="label-nalej-table no-m-row no-p-col">
                 <div *ngIf="instance.inbound_net_interfaces" class="label-thead row">
                   <div class="col-4 label-th">
-                    <span tooltip="Interface" placement="bottom">
+                    <span tooltip="{{'app-info.instance.NetworkInterface' | translate}}" placement="bottom">
                       {{'app-info.instance.NetworkInterface' | translate}}
                     </span>
                   </div>
                   <div class="col-4 label-th text-center">
-                    <span tooltip="Source" placement="bottom">
+                    <span tooltip="{{'app-info.instance.NetworkSource' | translate}}" placement="bottom">
                       {{'app-info.instance.NetworkSource' | translate}}
                     </span>
                   </div>
                   <div class="col-4 label-th text-right">
-                    <span tooltip="Disconnect" placement="bottom">
+                    <span tooltip="{{'app-info.instance.NetworkDisconnect' | translate}}" placement="bottom">
                       {{'app-info.instance.NetworkDisconnect' | translate}}
                     </span>
                   </div>
                 </div>
-                <div *ngIf="instance.inbound_net_interfaces" class="scroll-accordion-info">
+                <div *ngIf="getInboundConnections().length > 0" class="scroll-accordion-info">
                   <div *ngFor=
-                    "let connection of instance.inbound_net_interfaces |
+                    "let connection of getInboundConnections() |
                     filter : searchTerm; let i = index">
                     <span class="label-tbody row">
                       <div class="col-4">
-                        <span class="grey">{{connection.name}}</span>
+                        <span class="grey">{{connection.inbound_name}}</span>
                       </div>
                       <div class="col-4 text-center">
-                        <span>{{connection.target_service_group_name}}</span>
+                        <span class="grey">{{connection.outbound_name}}</span>
                         <br>
-                        <span>{{connection.target_service_name}}</span>
+                        <span>{{connection.instance_name}}</span>
                       </div>
                       <div class="col-4 text-right px-4">
                         <button
@@ -285,36 +285,36 @@
             <div *ngIf="openFromInstance" class="label-nalej-table no-m-row no-p-col">
               <div *ngIf="instance.outbound_net_interfaces" class="label-thead row">
                 <div class="col-4 label-th">
-                  <span tooltip="Interface" placement="bottom">
+                  <span tooltip="{{'app-info.instance.NetworkInterface' | translate}}" placement="bottom">
                     {{'app-info.instance.NetworkInterface' | translate}}
                   </span>
                 </div>
                 <div class="col-4 label-th text-center">
-                  <span tooltip="Target" placement="bottom">
+                  <span tooltip="{{'app-info.instance.NetworkTarget' | translate}}" placement="bottom">
                     {{'app-info.instance.NetworkTarget' | translate}}
                   </span>
                 </div>
                 <div class="col-4 label-th text-right">
-                  <span tooltip="Disconnect" placement="bottom">
+                  <span tooltip="{{'app-info.instance.NetworkDisconnect' | translate}}" placement="bottom">
                     {{'app-info.instance.NetworkDisconnect' | translate}}
                   </span>
                 </div>
               </div>
               <div *ngIf="instance.outbound_net_interfaces" class="scroll-accordion-info">
-                <div *ngFor="let connection of instance.outbound_net_interfaces |
+                <div *ngFor="let interface of instance.outbound_net_interfaces |
                   filter : searchTerm; let i = index">
                   <span class="label-tbody row">
                     <div class="col-4">
-                      <span class="grey">{{connection.name}}</span>
+                      <span class="grey">{{interface.name}}</span>
                     </div>
                     <div class="col-4 text-center">
-                      <span>{{connection.target_service_group_name}}</span>
+                      <span class="grey">{{getTarget(interface.name).interface_name}}</span>
                       <br>
-                      <span>{{connection.target_service_name}}</span>
+                      <span>{{getTarget(interface.name).instance_name}}</span>
                     </div>
                     <div class="col-4 text-right px-4">
                       <button
-                        (click)="disconnectInstance(connection, 'inbound_connections', 'inbound_name', instance)"
+                        (click)="disconnectInstance(interface, 'inbound_connections', 'inbound_name', instance)"
                         tooltip="{{'apps.manageConnections.disconnect' | translate}}"
                         placement="left"
                         class="action-btn-red">

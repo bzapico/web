@@ -23,10 +23,8 @@ export class AppInfoDetailedComponent {
    */
   loadedData: boolean;
 
-  constructor(
-    public bsModalRef: BsModalRef,
-  ) {
-  }
+  constructor(public bsModalRef: BsModalRef) {}
+
   /**
    * Adds https in case of being required
    * @param endpoint String containing the endpoint
@@ -67,7 +65,7 @@ export class AppInfoDetailedComponent {
     }
     return rawStatus;
   }
-   /**
+  /**
    * Close the modal window
    */
   closeModal() {

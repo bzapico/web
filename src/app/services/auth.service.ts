@@ -8,11 +8,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-
 /**
  * Service that enables authentication in the platform
  */
-
 @Injectable()
 export class AuthService {
   /**
@@ -56,7 +54,6 @@ export class AuthService {
       return response;
     }));
   }
-
   /**
    * Request to logout the platform
    */
@@ -70,7 +67,6 @@ export class AuthService {
         this.router.navigate(['login']);
       });
   }
-
   /**
    * Helper function that checks if the user is authenticated assenting if JWT Token is valid
    */
@@ -81,5 +77,4 @@ export class AuthService {
     }
     return false;
   }
-
 }

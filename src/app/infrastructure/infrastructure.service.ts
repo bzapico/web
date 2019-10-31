@@ -7,8 +7,7 @@ import { InventoryStatus } from '../definitions/enums/inventory-status.enum';
 })
 export class InfrastructureService {
 
-  constructor(private translateService: TranslateService) { }
-
+  constructor(private translateService: TranslateService) {}
   /**
    * Checks if the status requires an special css class
    * @param status  status name
