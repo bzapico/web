@@ -10,27 +10,48 @@ import { AppParameter } from '../interfaces/app-parameter';
 import { KeyValue } from '../interfaces/key-value';
 
 export class AppDescriptor {
-    // OrganizationId with the organization identifier.
+    /**
+     * OrganizationId with the organization identifier.
+     */
     organization_id?: string;
-    // AppDescriptorId with the application descriptor identifier.
+    /**
+     * AppDescriptorId with the application descriptor identifier.
+     */
     app_descriptor_id?: string;
-    // Name of the application.
+    /**
+     * Name of the application.
+     */
     name?: string;
-    // ConfigurationOptions defines a key-value map of configuration options.
+    /**
+     * ConfigurationOptions defines a key-value map of configuration options.
+     */
     configuration_options?: KeyValue;
-    // EnvironmentVariables defines a key-value map of environment variables and values that will be passed to all
-    // running services.
+    /**
+     * EnvironmentVariables defines a key-value map of environment variables and values that will be passed to all running services.
+     */
     environment_variables?: KeyValue;
-    // Labels defined by the user.
+    /**
+     * Labels defined by the user.
+     */
     labels?: KeyValue;
-    // Rules that define the connectivity between the elements of an application.
+    /**
+     * Rules that define the connectivity between the elements of an application.
+     */
     rules?: SecurityRule[];
-    // Groups with the Service collocation strategies.
+    /**
+     * Groups with the Service collocation strategies.
+     */
     groups?: ServiceGroup[];
-    // AppParameter with the parameters definition of an application
+    /**
+     * AppParameter with the parameters definition of an application
+     */
     parameters?: AppParameter[];
-    // InboundNetInterfaces with a list of inbounds
+    /**
+     * InboundNetInterfaces with a list of inbounds
+     */
     inbound_net_interfaces?: InboundNetworkInterface[];
-    // OutboundNetInterfaces with a list of outbounds
+    /**
+     * OutboundNetInterfaces with a list of outbounds
+     */
     outbound_net_interfaces?: OutboundNetworkInterface[];
 }
