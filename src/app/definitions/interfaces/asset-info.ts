@@ -6,10 +6,16 @@ import { HardwareInfo } from './hardware-info';
 import { StorageHardwareInfo } from './storage-hardware-info';
 
 export interface AssetInfo {
-    // OS contains Operating System information.
+    /**
+     * OS contains Operating System information.
+     */
     os?: OperatingSystemInfo;
-    // Hardware information.
+    /**
+     * Hardware information.
+     */
     hardware?: HardwareInfo;
-    // Storage information.
+    /**
+     * Storage information.
+     */
     storage?: StorageHardwareInfo[];
 }

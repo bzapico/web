@@ -8,10 +8,16 @@ export interface AgentOpSummary {
      * OperationId with the operation identifier.
      */
     operation_id?: string;
-    // Timestamp of the response.
+    /**
+     * Timestamp of the response.
+     */
     timestamp?: string;
-    // Status indicates if the operation was successful
+    /**
+     * Status indicates if the operation was successful
+     */
     status?: OpStatus;
-    // Info with additional information for an operation.
+    /**
+     * Info with additional information for an operation.
+     */
     info?: string;
 }

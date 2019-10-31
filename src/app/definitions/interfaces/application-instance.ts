@@ -11,40 +11,73 @@ import { KeyValue } from '@angular/common';
 import { AppStatus } from '../enums/app-status.enum';
 
 export interface ApplicationInstance {
-  // OrganizationId with the organization identifier.
+  /**
+   * OrganizationId with the organization identifier.
+   */
   organization_id?: string;
-  // AppDescriptorId with the application descriptor identifier.
+  /**
+   * AppDescriptorId with the application descriptor identifier.
+   */
   app_descriptor_id?: string;
-  // AppInstanceId with the application instance identifier.
+  /**
+   * AppInstanceId with the application instance identifier.
+   */
   app_instance_id?: string;
-  // Name of the application.
+  /**
+   * Name of the application.
+   */
   name?: string;
-  // ConfigurationOptions defines a key-value map of configuration options.
+  /**
+   * ConfigurationOptions defines a key-value map of configuration options.
+   */
   configuration_options?: KeyValue<string, string>;
-  // EnvironmentVariables defines a key-value map of environment variables and values that will be passed to all.
-  // running services.
+  /**
+   * EnvironmentVariables defines a key-value map of environment variables and values that will be passed to all running services.
+   */
   environment_variables?: KeyValue<string, string>;
-  // Labels defined by the user.
+  /**
+   * Labels defined by the user.
+   */
   labels?: KeyValue<string, string>;
-  // Rules that define the connectivity between the elements of an application.
+  /**
+   * Rules that define the connectivity between the elements of an application.
+   */
   rules?: SecurityRule[];
-  // Groups with the Service collocation strategies.
+  /**
+   * Groups with the Service collocation strategies.
+   */
   groups?: ServiceGroupInstance[];
-  // Status of the deployed instance.
+  /**
+   * Status of the deployed instance.
+   */
   status?: AppStatus;
-  // Status name of the instance.
+  /**
+   * Status name of the instance.
+   */
   status_name?: string;
-  // Metadata descriptor for the instances triggered by this app.
+  /**
+   * Metadata descriptor for the instances triggered by this app.
+   */
   metadata?: InstanceMetadata[];
-  // Textual information about this particular application instance.
+  /**
+   * Textual information about this particular application instance.
+   */
   info?: string;
-  // InboundNetInterfaces with a list of inbounds.
+  /**
+   * InboundNetInterfaces with a list of inbounds.
+   */
   inbound_net_interfaces?: InboundNetworkInterface[];
-  // OutboundNetInterfaces with a list of outbounds.
+  /**
+   * OutboundNetInterfaces with a list of outbounds.
+   */
   outbound_net_interfaces?: OutboundNetworkInterface[];
-  // InboundConnections with a list of connections where the instance is the target.
+  /**
+   * InboundConnections with a list of connections where the instance is the target.
+   */
   inbound_connections?: ConnectionInstance[];
-  // OutboundConnections with a list of connections where the instance is the source.
+  /**
+   * OutboundConnections with a list of connections where the instance is the source.
+   */
   outbound_connections?: ConnectionInstance[];
   // Temporal workaround to avoid losing undeploying status on update,
   // until the backend updates the app status after triggering undeploy action.
