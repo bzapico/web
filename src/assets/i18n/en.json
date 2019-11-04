@@ -235,6 +235,8 @@
 		"inbound": "INBOUND ",
 		"outbound": "OUTBOUND ",
 		"rule": "RULE ",
+		"publicAccessLabel": "Public Access",
+		"publicAccessTooltip": "PUBLIC ACCESS ",
 		"scroll": "Scroll on graph to zoom.",
 		"service": "SERVICE ",
 		"title": "Graph",

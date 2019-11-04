@@ -402,16 +402,12 @@ export class InstanceInfoService {
   private setPublicRulesNodes(rule) {
     const ruleNode = {
       id: rule.rule_id,
-      label: '',
-      tooltip: this.translateService.instant('graph.rule') + rule.name,
+      label: this.translateService.instant('graph.publicAccessLabel'),
+      tooltip: this.translateService.instant('graph.publicAccessTooltip') + rule.name,
       color: '#5800FF',
       text: {
         color: '#000',
         y: 0
-      },
-      secondaryText: {
-        text: 'Public Access',
-        color: '#000'
       },
       shape: 'circle',
       customRadius: 24,
