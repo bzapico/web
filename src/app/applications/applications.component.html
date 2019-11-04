@@ -260,8 +260,8 @@
             </div>
             <div *ngFor=
               "let app of instances |
-              sortBy : sortedBy : reverse : 'case-insensitive' |
-              filter : searchTerm" 
+              sortBy : sortedBy : reverse : true |
+              filter : searchTerm : ['name', 'labels', 'status_name']"
               class="label-tbody row">
               <!-- This solution applies when the backend updates the app status after triggering undeploy action 
                 (https://daisho.atlassian.net/browse/NP-1679)
@@ -396,8 +396,8 @@
             <div>
               <div *ngFor=
                 "let app of registered |
-                sortBy : sortedBy : reverse : 'case-insensitive' |
-                filter : searchTerm"
+                sortBy : sortedBy : reverse : true |
+                filter : searchTerm : ['name', 'labels']"
                 class="label-tbody row">
                 <div class="col-10">
                   <div class="row">
