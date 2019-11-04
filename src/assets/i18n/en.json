@@ -502,7 +502,7 @@
 		"tableAuth": "Auth",
 		"tableBasicInfo": "Basic information",
 		"tableCredentials": "Credentials",
-		"tableDefault": "Default",
+		"tableBasic": "Basic",
 		"tableDeployAfter": "Deploy after",
 		"tableDeployedOn": "Deployed on cluster ID",
 		"tableDeployedOnCID": "Deployed on cluster ID",

@@ -397,9 +397,9 @@ export class DeployInstanceComponent implements OnInit {
       isInactiveNext = !this.selectedApp || this.selectedApp.id === -1 || !f.instanceName.value;
     } else if (this.conditionExpression === 'parameters') {
       this.selectedApp.parameters.map(param => {
-        if (!param.category) {
-          isInactiveNext = (isInactiveNext || (param.value === param.default_value));
-        }
+          if (!param.category && !param.value) {
+            isInactiveNext = true;
+          }
       });
     }
     return isInactiveNext;
@@ -416,8 +416,8 @@ export class DeployInstanceComponent implements OnInit {
         break;
       case 'parameters':
         this.selectedApp.parameters.map(param => {
-          if (!param.category) {
-            isInactiveDeploy = (isInactiveDeploy || (param.value === param.default_value));
+          if (!param.category && !param.value) {
+            isInactiveDeploy = true;
           }
         });
         break;

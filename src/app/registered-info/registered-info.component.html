@@ -104,7 +104,7 @@
                   <span (click)="resetFilters('services')" class="reset-search">
                     {{'sortingMessage.reset' | translate}}
                   </span>
-                </p>{{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
+                </p>
                 <p *ngIf="filterField && searchTerm" class="sorting-message">
                   {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
                   <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ' '} }} </span>
