@@ -72,7 +72,7 @@ export class ActionButtonsService {
     );
     if (undeployConfirm) {
       this.backend.undeploy(app.organization_id, app.app_instance_id).subscribe(
-        undeployResponse => {
+        () => {
           this.notificationsService.add({
             message: this.translateService.instant('apps.instance.undeployMessage', { appName: app.name })
           });

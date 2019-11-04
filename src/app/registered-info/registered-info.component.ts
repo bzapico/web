@@ -10,8 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as shape from 'd3-shape';
 import { AppDescriptor } from '../definitions/models/app-descriptor';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
-import { ServiceInfoComponent } from '../service-info/service-info.component';
-import { RegisteredServiceGroupInfoComponent } from '../registered-service-group-info/registered-service-group-info.component';
+import { ServiceInfoComponent } from './service-info/service-info.component';
+import { RegisteredServiceGroupInfoComponent } from './registered-service-group-info/registered-service-group-info.component';
 import { TranslateService } from '@ngx-translate/core';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { RegisteredInfoService } from './registered-info.service';
@@ -35,10 +35,6 @@ export class RegisteredInfoComponent implements OnInit {
    * Loaded Data status
    */
   loadedData: boolean;
-  /**
-   * List of available services
-   */
-  services: any[];
   /**
    * Count of total services for summary card
    */
@@ -134,7 +130,6 @@ export class RegisteredInfoComponent implements OnInit {
     }
     // Default initialization
     this.openFromRegistered = true;
-    this.services = [];
     this.servicesCount = 0;
     this.isSelectableLabel = true;
     this.isOpenFromRegistered = true;
@@ -180,7 +175,8 @@ export class RegisteredInfoComponent implements OnInit {
     }
   }
 
-  /* Sortby pipe in the component
+  /**
+   *  Sortby pipe in the component
    * @param categoryName the name of the chosen category
    */
   setOrder(list: string, categoryName: string) {

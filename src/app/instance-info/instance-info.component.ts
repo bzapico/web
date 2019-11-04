@@ -7,10 +7,10 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import * as shape from 'd3-shape';
-import { ServiceInstancesInfoComponent } from '../service-instances-info/service-instances-info.component';
+import { ServiceInstancesInfoComponent } from './service-instances-info/service-instances-info.component';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { TranslateService } from '@ngx-translate/core';
-import { InstanceServiceGroupInfoComponent } from '../instance-service-group-info/instance-service-group-info.component';
+import { InstanceServiceGroupInfoComponent } from './instance-service-group-info/instance-service-group-info.component';
 import { ServicesStatus } from '../definitions/enums/services-status.enum';
 import { InstanceInfoService } from './instance-info.service';
 

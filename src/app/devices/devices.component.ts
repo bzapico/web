@@ -6,10 +6,10 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { mockDevicesChart } from '../services/utils/mocks';
-import { AddDevicesGroupComponent } from '../add-devices-group/add-devices-group.component';
-import { GroupConfigurationComponent } from '../group-configuration/group-configuration.component';
+import { AddDevicesGroupComponent } from './add-devices-group/add-devices-group.component';
+import { GroupConfigurationComponent } from './group-configuration/group-configuration.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
-import { DeviceGroupInfoComponent } from '../device-group-info/device-group-info.component';
+import { DeviceGroupInfoComponent } from './device-group-info/device-group-info.component';
 import { TranslateService } from '@ngx-translate/core';
 import { InventoryStatus } from '../definitions/enums/inventory-status.enum';
 /**

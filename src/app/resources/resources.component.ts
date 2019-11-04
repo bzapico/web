@@ -3,7 +3,7 @@ import { mockClusterChart } from '../services/utils/clusters.mock';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { EditClusterComponent } from '../edit-cluster/edit-cluster.component';
+import { EditClusterComponent } from './edit-cluster/edit-cluster.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Cluster } from '../definitions/interfaces/cluster';
 import { AddLabelComponent } from '../add-label/add-label.component';
