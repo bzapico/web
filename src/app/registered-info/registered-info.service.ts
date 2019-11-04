@@ -158,7 +158,7 @@ export class RegisteredInfoService {
           id: inbound.name + '_i_' + registered.app_descriptor_id,
           label: inbound.name,
           tooltip: this.translateService.instant('graph.inbound') + inbound.name,
-          color: this.isConnectedBound('inbound', registered.inbound_connections, inbound).isConnected ? '#00E6A0' : '#5800FF',
+          color: this.isConnectedBound('inbound', registered.inbound_connections, inbound).isConnected ? '#5800ff' : '#444444',
           text: {
             color: '#000',
             y: 0
@@ -199,7 +199,7 @@ export class RegisteredInfoService {
           id: outbound.name + '_i_' + registered.app_descriptor_id,
           label: outbound.name,
           tooltip: this.translateService.instant('graph.outbound') + outbound.name,
-          color: this.isConnectedBound('outbound', registered.outbound_connections, outbound).isConnected ? '#00E6A0' : '#5800FF',
+          color: this.isConnectedBound('outbound', registered.outbound_connections, outbound).isConnected ? '#5800ff' : '#444444',
           text: {
             color: '#000',
             y: 0,

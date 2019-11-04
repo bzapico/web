@@ -20,10 +20,10 @@ const STATUS_TEXT_COLORS = {
 };
 
 const CONNECTION_STATUS_COLOR = {
-  WAITING: '#FFEB6C',
-  ESTABLISHED: '#00E6A0',
-  TERMINATED: '#F7478A',
-  FAILED: '#F7478A',
+  WAITING: '#5800FF',
+  ESTABLISHED: '#5800FF',
+  TERMINATED: '#444444',
+  FAILED: '#444444',
   DISCONNECTED: '#444444'
 };
 
@@ -244,15 +244,15 @@ export class InstanceInfoService {
         inbounds[inbound.name + '_i_' + instance.app_instance_id] = {
           id: inbound.name + '_i_' + instance.app_instance_id,
           label: inbound.name,
-          tooltip: this.translateService.instant('graph.inbound') + inbound.name,
+          tooltip:
+            this.translateService.instant('graph.inbound') +
+            inbound.name +
+            this.translateService.instant('graph.status') +
+            bound.statusName,
           color: bound.connectionColor,
           text: {
             color: '#000',
             y: 0
-          },
-          secondaryText: {
-            text: bound.secondaryName,
-            color: '#000'
           },
           shape: 'circle',
           customRadius: 24,
@@ -289,15 +289,15 @@ export class InstanceInfoService {
         outbounds[outbound.name + '_i_' + instance.app_instance_id] = {
           id: outbound.name + '_i_' + instance.app_instance_id,
           label: outbound.name,
-          tooltip: this.translateService.instant('graph.outbound') + outbound.name,
+          tooltip:
+            this.translateService.instant('graph.outbound') +
+            outbound.name +
+            this.translateService.instant('graph.status') +
+            bound.statusName,
           color: bound.connectionColor,
           text: {
             color: '#000',
             y: 0,
-          },
-          secondaryText: {
-            text: bound.secondaryName,
-            color: '#000'
           },
           shape: 'circle',
           customRadius: 24,
@@ -328,7 +328,7 @@ export class InstanceInfoService {
    * @param instances_connections connections object
    * @param bound bound object
    */
-  private getBound(type, instances_connections, bound): {connectionColor: string, secondaryName: string} {
+  private getBound(type, instances_connections, bound): {connectionColor: string, statusName: string} {
     const data = {
       inbound: {
         rule: 'inbound_name',
@@ -344,15 +344,9 @@ export class InstanceInfoService {
       filteredData = instances_connections.filter(instance_connection => instance_connection[data[type].rule] === bound.name);
     }
     const isConnected = filteredData.length > 0;
-    if (type === 'inbound') {
-      return {
-        connectionColor: isConnected ? CONNECTION_STATUS_COLOR.ESTABLISHED : CONNECTION_STATUS_COLOR.DISCONNECTED,
-        secondaryName: isConnected ? '' : ''
-      };
-    }
     return {
-      connectionColor: isConnected ? CONNECTION_STATUS_COLOR[filteredData[0]['status_name']] : CONNECTION_STATUS_COLOR.DISCONNECTED,
-      secondaryName: isConnected ? filteredData[0][data[type].name] : ''
+      connectionColor: isConnected ? CONNECTION_STATUS_COLOR.ESTABLISHED : CONNECTION_STATUS_COLOR.DISCONNECTED,
+      statusName: isConnected ? filteredData[0]['status_name'] : this.translateService.instant('graph.statusNoConnection')
     };
   }
   /**
@@ -402,16 +396,12 @@ export class InstanceInfoService {
   private setPublicRulesNodes(rule) {
     const ruleNode = {
       id: rule.rule_id,
-      label: '',
-      tooltip: this.translateService.instant('graph.rule') + rule.name,
+      label: this.translateService.instant('graph.publicAccessLabel'),
+      tooltip: this.translateService.instant('graph.publicAccessTooltip') + rule.name,
       color: '#5800FF',
       text: {
         color: '#000',
         y: 0
-      },
-      secondaryText: {
-        text: 'Public Access',
-        color: '#000'
       },
       shape: 'circle',
       customRadius: 24,

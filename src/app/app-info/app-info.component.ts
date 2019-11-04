@@ -282,9 +282,10 @@ export class AppInfoComponent implements OnChanges {
   private getParametersFromFilters(): any {
     return {
       basic:  this.registeredData
-        && this.registeredData.parameters ? this.registeredData.parameters.filter(parameter => parameter.required) : [],
+        && this.registeredData.parameters ? this.registeredData.parameters.filter(parameter => !parameter.category) : [],
       advanced: this.registeredData
-        && this.registeredData.parameters ?  this.registeredData.parameters.filter(parameter => !parameter.required) : []
+        && this.registeredData.parameters ?
+          this.registeredData.parameters.filter(parameter => parameter.category && parameter.category === 'ADVANCED') : []
     };
   }
   /**
@@ -326,7 +327,7 @@ export class AppInfoComponent implements OnChanges {
   */
   getTarget(outboundNetInterfaceName: string): any {
     let found = false;
-    if (this.instance.outbound_connection) {
+    if (this.instance.outbound_connections) {
       for (let index = 0; index < this.instance.outbound_connections.length && !found; index++) {
         const connection = this.instance.outbound_connections[index];
         if (outboundNetInterfaceName === connection.outbound_name) {

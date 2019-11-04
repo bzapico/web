@@ -39,6 +39,7 @@
 			"noResults": "No results found!",
 			"title": "ADD NEW CONNECTION"
 		},
+		"accessRules": "ACCESS RULES",
 		"appConnections": "App connections",
 		"appInfo": "App info",
 		"appsRunning": "Apps running",
@@ -230,16 +231,20 @@
 		"unlinkDeviceMessage": "Unlinking {{deviceId}}"
 	},
 	"graph": {
-		"autoRefresh": "Auto refresh every 5 seconds. Scroll on graph to zoom.",
+		"autoRefresh": "Auto refresh every 20 seconds. Scroll on graph to zoom.",
 		"group": "GROUP ",
 		"inbound": "INBOUND ",
 		"outbound": "OUTBOUND ",
 		"rule": "RULE ",
+		"publicAccessLabel": "Public Access",
+		"publicAccessTooltip": "PUBLIC ACCESS ",
 		"scroll": "Scroll on graph to zoom.",
 		"service": "SERVICE ",
 		"title": "Graph",
 		"typeGraph": "graph",
-		"typeList": "list"
+		"typeList": "list",
+		"status": " - status ",
+		"statusNoConnection": "no connection"
 	},
 	"helpCenter": "Help center",
 	"infrastructure": {
@@ -498,7 +503,7 @@
 		"tableAuth": "Auth",
 		"tableBasicInfo": "Basic information",
 		"tableCredentials": "Credentials",
-		"tableDefault": "Default",
+		"tableBasic": "Basic",
 		"tableDeployAfter": "Deploy after",
 		"tableDeployedOn": "Deployed on cluster ID",
 		"tableDeployedOnCID": "Deployed on cluster ID",
