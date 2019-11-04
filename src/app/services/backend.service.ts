@@ -463,13 +463,16 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
    * @param instanceId Instance identifier
    */
-  undeploy(organizationId: string, instanceId: string) {
+  undeploy(organizationId: string, instanceId: string, confirmation?: {user_confirmation: boolean}) {
+    const undeployData = {
+      organization_id: organizationId,
+      app_instance_id: instanceId
+    };
+    if (confirmation) {
+      undeployData['user_confirmation'] = confirmation.user_confirmation;
+    }
     return this.post(
-      API_URL + 'apps/inst/' + organizationId + '/' + instanceId + '/undeploy',
-      {
-        organization_id: organizationId,
-        app_instance_id: instanceId
-      }
+      API_URL + 'apps/inst/' + organizationId + '/' + instanceId + '/undeploy', undeployData
     );
   }
   // POST '/v1/apps/desc/{organization_id}/{app_descriptor_id}/delete'

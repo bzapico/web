@@ -293,11 +293,14 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * @param app Application instance object
    */
   undeploy(app) {
-    const undeployConfirm =
-    confirm(this.translateService.instant('apps.instance.undeployConfirm', { appName: app.name }));
+    let message = this.translateService.instant('apps.instance.undeployConfirm', { appName: app.name });
+    if (app.inbound_connections || app.outbound_connections) {
+      message = this.translateService.instant('apps.instance.undeployDoubleCheckConfirm', { appName: app.name });
+    }
+    const undeployConfirm = confirm(message);
     if (undeployConfirm) {
-      this.backend.undeploy(this.organizationId, app.app_instance_id)
-        .subscribe(() => {
+      this.backend.undeploy(this.organizationId, app.app_instance_id, {user_confirmation: true})
+          .subscribe(() => {
           this.notificationsService.add({
             message: this.translateService.instant('apps.instance.undeployMessage', { appName: app.name })
           });

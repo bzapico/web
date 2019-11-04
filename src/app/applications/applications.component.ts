@@ -538,9 +538,13 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * @param app Application instance object
    */
   undeploy(app) {
-    const undeployConfirm = confirm(this.translateService.instant('apps.instance.undeployConfirm', { appName: app.name }));
+    let message = this.translateService.instant('apps.instance.undeployConfirm', { appName: app.name });
+    if (app.inbound_connections || app.outbound_connections) {
+      message = this.translateService.instant('apps.instance.undeployDoubleCheckConfirm', { appName: app.name });
+    }
+    const undeployConfirm = confirm(message);
     if (undeployConfirm) {
-      this.backend.undeploy(this.organizationId, app.app_instance_id)
+      this.backend.undeploy(this.organizationId, app.app_instance_id, {user_confirmation: true})
         .subscribe(() => {
           app.undeploying = true;
           this.notificationsService.add({

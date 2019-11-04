@@ -40,7 +40,7 @@ export interface Backend {
     addAppDescriptor(organizationId: string, descriptor: any);
     updateAppDescriptor(organizationId: string, descriptorId: string, changes: any);
     deploy(organizationId: string, descriptorId: string, name: string, params?: any, connections?: any[]);
-    undeploy(organizationId: string, instanceId: string);
+    undeploy(organizationId: string, instanceId: string,  confirmation?: {user_confirmation: boolean});
     deleteRegistered(organizationId: string, descriptorId: string);
     // Application network
     getListAvailableInstanceInbounds(organizationId: string);

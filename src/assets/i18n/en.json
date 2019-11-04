@@ -90,7 +90,8 @@
 			"tableTargetInBig": "(group, service, port)",
 			"title": "APPLICATIONS",
 			"undeployConfirm": "Undeploy {{appName}}?",
-			"undeployMessage": " undeployed"
+			"undeployDoubleCheckConfirm": "The app {{appName}} has inbound/outbound connections. Do you want to undeploy it anyway?",
+			"undeployMessage": " Tha app {{appName}} is being undeployed"
 		},
 		"instanceName": "Instance name",
 		"manageConnections": {
