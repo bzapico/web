@@ -326,7 +326,7 @@ export class AppInfoComponent implements OnChanges {
   */
   getTarget(outboundNetInterfaceName: string): any {
     let found = false;
-    if (this.instance.outbound_connection) {
+    if (this.instance.outbound_connections) {
       for (let index = 0; index < this.instance.outbound_connections.length && !found; index++) {
         const connection = this.instance.outbound_connections[index];
         if (outboundNetInterfaceName === connection.outbound_name) {

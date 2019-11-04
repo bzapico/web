@@ -243,7 +243,7 @@
 		"typeGraph": "graph",
 		"typeList": "list",
 		"status": " - status ",
-		"statusNoConnection": "not connected"
+		"statusNoConnection": "no connection"
 	},
 	"helpCenter": "Help center",
 	"infrastructure": {
