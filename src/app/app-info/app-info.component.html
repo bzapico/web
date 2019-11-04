@@ -226,6 +226,7 @@
                       </div>
                       <div class="col-4 text-right px-4">
                         <button
+                          *ngIf="connection.outbound_name"
                           (click)="disconnectInstance(connection, 'inbound_connections', 'inbound_name', instance)"
                           tooltip="{{'apps.manageConnections.disconnect' | translate}}"
                           placement="left"
@@ -314,6 +315,7 @@
                     </div>
                     <div class="col-4 text-right px-4">
                       <button
+                        *ngIf="getTarget(interface.name).instance_name"
                         (click)="disconnectInstance(interface, 'inbound_connections', 'inbound_name', instance)"
                         tooltip="{{'apps.manageConnections.disconnect' | translate}}"
                         placement="left"

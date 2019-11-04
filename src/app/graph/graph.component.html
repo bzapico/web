@@ -18,25 +18,15 @@
       [tooltipTitle]="node.tooltip"
       [ngSwitch]="node.shape">
       <svg:rect *ngSwitchCase="'rectangle'"
-        [attr.width]="node.icon? node.width + ((node.icon.x * 2) + node.icon.width): node.width"
+        [attr.width]="node.width"
         [attr.height]="node.customHeight || node.height"
         [attr.fill]="node.color"/>
       <svg:text *ngSwitchCase="'rectangle'"
         [attr.fill]="node.text.color"
-        [attr.x]="node.icon? (node.icon.x * 2) + node.icon.width: 10"
+        [attr.x]="10"
         [attr.y]="node.height/2 + 3">
         {{node.label}}
       </svg:text>
-      <svg *ngIf="node.icon && node.shape === 'rectangle'"
-        [attr.width]="node.icon.width"
-        [attr.height]="node.icon.height"
-        [attr.x]="node.icon.x"
-        [attr.y]="node.icon.y"
-        [attr.viewBox]="node.icon.viewBox">
-        <path *ngFor="let path of node.icon.paths"
-          [attr.fill]="path.fill"
-          [attr.d]="path.d"/>
-      </svg>
       <text *ngSwitchCase="'circle'"
         [attr.fill]="node.text.color"
         [attr.x]="10"
