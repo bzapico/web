@@ -282,9 +282,10 @@ export class AppInfoComponent implements OnChanges {
   private getParametersFromFilters(): any {
     return {
       basic:  this.registeredData
-        && this.registeredData.parameters ? this.registeredData.parameters.filter(parameter => parameter.required) : [],
+        && this.registeredData.parameters ? this.registeredData.parameters.filter(parameter => !parameter.category) : [],
       advanced: this.registeredData
-        && this.registeredData.parameters ?  this.registeredData.parameters.filter(parameter => !parameter.required) : []
+        && this.registeredData.parameters ?
+          this.registeredData.parameters.filter(parameter => parameter.category && parameter.category === 'ADVANCED') : []
     };
   }
   /**
