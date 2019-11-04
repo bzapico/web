@@ -241,7 +241,9 @@
 		"service": "SERVICE ",
 		"title": "Graph",
 		"typeGraph": "graph",
-		"typeList": "list"
+		"typeList": "list",
+		"status": " - status ",
+		"statusNoConnection": "not connected"
 	},
 	"helpCenter": "Help center",
 	"infrastructure": {
