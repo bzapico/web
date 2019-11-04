@@ -35,11 +35,11 @@
 		"typeRestrictions": "Type restrictions: {{restriction}}"
 	},
 	"apps": {
+		"accessRules": "ACCESS RULES",
 		"addConnection": {
 			"noResults": "No results found!",
 			"title": "ADD NEW CONNECTION"
 		},
-		"accessRules": "ACCESS RULES",
 		"appConnections": "App connections",
 		"appInfo": "App info",
 		"appsRunning": "Apps running",
@@ -236,16 +236,16 @@
 		"group": "GROUP ",
 		"inbound": "INBOUND ",
 		"outbound": "OUTBOUND ",
-		"rule": "RULE ",
 		"publicAccessLabel": "Public Access",
 		"publicAccessTooltip": "PUBLIC ACCESS ",
+		"rule": "RULE ",
 		"scroll": "Scroll on graph to zoom.",
 		"service": "SERVICE ",
+		"status": " - status ",
+		"statusNoConnection": "no connection",
 		"title": "Graph",
 		"typeGraph": "graph",
-		"typeList": "list",
-		"status": " - status ",
-		"statusNoConnection": "no connection"
+		"typeList": "list"
 	},
 	"helpCenter": "Help center",
 	"infrastructure": {
@@ -502,9 +502,9 @@
 		"tableAppDescriptorID": "App descriptor ID",
 		"tableAppServices": "App services",
 		"tableAuth": "Auth",
+		"tableBasic": "Basic",
 		"tableBasicInfo": "Basic information",
 		"tableCredentials": "Credentials",
-		"tableBasic": "Basic",
 		"tableDeployAfter": "Deploy after",
 		"tableDeployedOn": "Deployed on cluster ID",
 		"tableDeployedOnCID": "Deployed on cluster ID",
