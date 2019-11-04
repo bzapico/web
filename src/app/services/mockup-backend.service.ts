@@ -570,7 +570,7 @@ export class MockupBackendService implements Backend {
    * @param organizationId organization identifier
    * @param instanceId Instance identifier
    */
-  undeploy(organizationId: string, instanceId: string) {
+  undeploy(organizationId: string, instanceId: string, confirmation?: {user_confirmation: boolean}) {
     const indexInstance = mockAppsInstancesList.map(x => x.app_instance_id).indexOf(instanceId);
     mockAppsInstancesList.splice(indexInstance, 1);
     return of(new HttpResponse({
