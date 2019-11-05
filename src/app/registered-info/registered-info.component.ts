@@ -8,7 +8,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as shape from 'd3-shape';
-import { AppDescriptor } from '../definitions/models/app-descriptor';
+import { ApplicationDescriptor } from '../definitions/models/application-descriptor';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { ServiceInfoComponent } from './service-info/service-info.component';
 import { RegisteredServiceGroupInfoComponent } from './registered-service-group-info/registered-service-group-info.component';
@@ -46,7 +46,7 @@ export class RegisteredInfoComponent implements OnInit {
   /**
    * Model that hold registered application descriptor data
    */
-  registeredData: AppDescriptor;
+  registeredData: ApplicationDescriptor;
   openFromRegistered: boolean;
   /**
    * List of available services groups
@@ -135,7 +135,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.isOpenFromRegistered = true;
     this.requestError = '';
     this.showGraph = true;
-    this.registeredData = new AppDescriptor();
+    this.registeredData = new ApplicationDescriptor();
     // SortBy
     this.sortedBy = '';
     this.sortedByRules = '';
