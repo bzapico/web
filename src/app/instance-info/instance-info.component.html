@@ -234,7 +234,7 @@
                       </div>
                       <div *ngFor=
                         "let service of getGroupServices(group.service_group_instance_id) |
-                        sortBy : sortedBy : reverse : 'case-insensitive' |
+                        sortBy : sortedBy : reverse : true |
                         filter : searchTerm">
                         <div class="label-tbody row">
                           <div class="col-1 label-td grey"> 
@@ -460,7 +460,7 @@
                 </div>
                 <div *ngFor=
                   "let rule of instance.rules |
-                  sortBy : sortedByRules : reverseRules : 'case-insensitive' |
+                  sortBy : sortedByRules : reverseRules : true |
                   filter : searchTermRules">
                   <div class="label-tbody row">
                     <div class="col-3 label-td">
@@ -504,7 +504,7 @@
             <div *ngIf=
               "loadedData &&
               instance &&
-              !instance.rules
+              !instance.rules &&
               !requestError"
               class="no-elements">
               {{'apps.instance.noRules' | translate}}

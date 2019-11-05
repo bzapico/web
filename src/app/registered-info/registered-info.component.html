@@ -428,11 +428,11 @@
                 </div>
                 <div *ngFor=
                   "let rule of registeredData.rules |
-                  sortBy : sortedByRules : reverseRules : 'case-insensitive' |
+                  sortBy : sortedByRules : reverseRules : true |
                   filter : searchTermRules">
                   <div class="label-tbody row">
                     <div class="col-3 label-td">
-                      {{rule.access}}
+                      {{rule.access_name}}
                       <br>
                       {{rule.name | truncate}}
                     </div>
@@ -472,7 +472,7 @@
             <div *ngIf=
               "loadedData &&
               registeredData &&
-              !registeredData.rules
+              !registeredData.rules &&
               !requestError"
               class="no-elements">
               {{'apps.instance.noRules' | translate}}

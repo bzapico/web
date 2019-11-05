@@ -13,6 +13,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { InstanceServiceGroupInfoComponent } from './instance-service-group-info/instance-service-group-info.component';
 import { ServicesStatus } from '../definitions/enums/services-status.enum';
 import { InstanceInfoService } from './instance-info.service';
+import { ApplicationDescriptor } from '../definitions/models/application-descriptor';
+import { ServiceGroupInstance } from '../definitions/interfaces/service-group-instance';
 
 @Component({
   selector: 'app-instance-info',
@@ -45,15 +47,11 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   /**
    * Registered instances list
    */
-  registered: any[];
-  /**
-   * List of available services
-   */
-  services: any[];
+  registered: ApplicationDescriptor[];
   /**
    * List of available services groups
    */
-  groups: any[];
+  groups: ServiceGroupInstance[];
   /**
    * List of labels
    */
@@ -266,19 +264,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
           return this.translateService.instant('devices.disabled');
         }
       }
-    }
-  }
-  /**
-   * Returns the descriptor beauty name
-   * @param descriptorId Descriptor identifier
-   */
-  getDescriptorName(descriptorId: string) {
-    const index =
-    this.registered
-        .map(x => x.app_descriptor_id).
-        indexOf(descriptorId);
-    if (index !== -1) {
-      return this.registered[index].name;
     }
   }
   /**

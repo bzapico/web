@@ -1,7 +1,7 @@
 import { InboundNetworkInterface } from '../interfaces/inbound-network-interface';
 import { OutboundNetworkInterface } from '../interfaces/outbound-network-interface';
 import { KeyValue } from '../interfaces/key-value';
-import {SecurityRule} from '../interfaces/security-rule';
+import { SecurityRule } from '../interfaces/security-rule';
 
 export abstract class Application {
     /**
