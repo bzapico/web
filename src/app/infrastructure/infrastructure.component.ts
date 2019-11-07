@@ -17,11 +17,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { InfrastructureService } from './infrastructure.service';
 import { InventoryStatus } from '../definitions/enums/inventory-status.enum';
 import { InventoryType } from '../definitions/enums/inventory-type.enum';
-import { Device } from '../definitions/interfaces/device';
+import { Device } from '../definitions/models/device';
 import { Asset } from '../definitions/interfaces/asset';
 import { Controller } from '../definitions/interfaces/controller';
 import { ChartData } from '../definitions/interfaces/chart-data';
-import { Subscription, timer} from 'rxjs';
+import { Subscription, timer } from 'rxjs';
+import { Inventory } from '../definitions/interfaces/inventory';
+import { Item } from '../definitions/models/item';
 
 @Component({
   selector: 'app-infrastructure',
@@ -48,7 +50,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   /**
    * List of available inventory
    */
-  inventory: {}[];
+  plainInventory: Item[];
   /**
    * List of available devices, assets and edge controllers
    */
@@ -135,7 +137,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       this.backend = this.backendService;
     }
     // Default initialization
-    this.inventory = [];
+    this.plainInventory = [];
     this.assets = [];
     this.devices = [];
     this.controllers = [];
@@ -241,7 +243,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   installAgent() {
     const initialState = {
       organizationId: this.organizationId,
-      inventory: this.inventory,
+      inventory: this.plainInventory,
       defaultAutofocus: false,
       ecCount: this.getECsCount()
     };
@@ -544,8 +546,8 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Normalize the inventory list and added type
    * @param response Backend response where to modify the data
    */
-  private normalizeInventoryItems(response: any) {
-    this.inventory = [];
+  private normalizeInventoryItems(response: Inventory) {
+    this.plainInventory = [];
     this.ecsOnline = 0;
     if (response.controllers) {
       this.ecsTotal = response.controllers.length;
@@ -556,81 +558,86 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     } else {
       if (response.devices) {
         response.devices.forEach(device => {
-          device.type = InventoryType.Device;
-          device.id = device.device_id;
-          device.status = device.device_status_name;
-          if (!device.location
-            || !device.location.geolocation
-            ) {
-            device.location = 'undefined';
-          } else {
-            device.location = device.location.geolocation;
-          }
-          if (!device.labels || device.labels === undefined || device.labels === null) {
-            device.labels = {};
-          }
-          device.status = device.device_status_name;
-          this.inventory.push(device);
+          console.log('DEVICE ID ::: ', device);
         });
       }
-      if (response.assets) {
-        response.assets.forEach(asset => {
-          asset.type = InventoryType.Asset;
-          asset.id = asset.asset_id;
-          if (!asset.location
-            || !asset.location.geolocation) {
-            asset.location = 'undefined';
-          } else {
-            asset.location = asset.location.geolocation;
-          }
-          if (!asset.labels || asset.labels === undefined || asset.labels === null) {
-            asset.labels = {};
-          }
-          asset.status = asset.status_name;
-          this.inventory.push(asset);
-        });
-      }
-      if (response.controllers) {
-        response.controllers.forEach(controller => {
-          controller.type = InventoryType.Ec;
-          controller.id = controller.edge_controller_id;
-          if (!controller.location
-            || !controller.location.geolocation) {
-            controller.location = 'undefined';
-          } else {
-            controller.location = controller.location.geolocation;
-          }
-          if (!controller.labels || controller.labels === undefined || controller.labels === null) {
-            controller.labels = {};
-          }
-          if (controller.status_name.toLowerCase() === InventoryStatus.Online) {
-            this.ecsOnline += 1;
-          }
-          controller.status = controller.status_name;
-          controller.assets = [];
-          if (response.assets) {
-            response.assets.forEach(asset => {
-              if (asset.edge_controller_id === controller.edge_controller_id) {
-                const assetIp = asset.eic_net_ip ? asset.eic_net_ip : 'undefined';
-                controller.assets.push({
-                  asset_id: asset.asset_id,
-                  eic_net_ip: assetIp,
-                  status: asset.status_name,
-                  edge_controller_id:
-                  asset.edge_controller_id});
-              }
-            });
-          }
-          this.inventory.push(controller);
-        });
-      }
+      // if (response.devices) {
+      //   response.devices.forEach(device => {
+      //     device.type = InventoryType.Device;
+      //     device.id = '';
+      //     device.status = device.device_status_name;
+      //     if (!device.location
+      //       || !device.location.geolocation
+      //       ) {
+      //       device.location = 'undefined';
+      //     } else {
+      //       device.location = device.location.geolocation;
+      //     }
+      //     if (!device.labels || device.labels === undefined || device.labels === null) {
+      //       device.labels = {};
+      //     }
+      //     device.status = device.device_status_name;
+      //     this.plainInventory.push(device);
+      //   });
+      // }
+      // if (response.assets) {
+      //   response.assets.forEach(asset => {
+      //     asset.type = InventoryType.Asset;
+      //     asset.id = asset.asset_id;
+      //     if (!asset.location
+      //       || !asset.location.geolocation) {
+      //       asset.location = 'undefined';
+      //     } else {
+      //       asset.location = asset.location.geolocation;
+      //     }
+      //     if (!asset.labels || asset.labels === undefined || asset.labels === null) {
+      //       asset.labels = {};
+      //     }
+      //     asset.status = asset.status_name;
+      //     this.plainInventory.push(asset);
+      //   });
+      // }
+      // if (response.controllers) {
+      //   response.controllers.forEach(controller => {
+      //     controller.type = InventoryType.Ec;
+      //     controller.id = controller.edge_controller_id;
+      //     if (!controller.location
+      //       || !controller.location.geolocation) {
+      //       controller.location = 'undefined';
+      //     } else {
+      //       controller.location = controller.location.geolocation;
+      //     }
+      //     if (!controller.labels || controller.labels === undefined || controller.labels === null) {
+      //       controller.labels = {};
+      //     }
+      //     if (controller.status_name.toLowerCase() === InventoryStatus.Online) {
+      //       this.ecsOnline += 1;
+      //     }
+      //     controller.status = controller.status_name;
+      //     controller.assets = [];
+      //     if (response.assets) {
+      //       response.assets.forEach(asset => {
+      //         if (asset.edge_controller_id === controller.edge_controller_id) {
+      //           const assetIp = asset.eic_net_ip ? asset.eic_net_ip : 'undefined';
+      //           controller.assets.push({
+      //             asset_id: asset.asset_id,
+      //             eic_net_ip: assetIp,
+      //             status: asset.status_name,
+      //             edge_controller_id:
+      //             asset.edge_controller_id});
+      //         }
+      //       });
+      //     }
+      //     this.plainInventory.push(controller);
+      //   });
+      // }
     }
   }
   /**
    * Gets the Edge Controllers count in inventory list
    */
   private getECsCount() {
-    return this.inventory.filter(item => item.type === InventoryType.Ec).length;
+    return this.plainInventory.filter(item => item.type === InventoryType.Ec).length;
   }
   /**
    * Updates the pie chart with latest changes
@@ -682,7 +689,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       status: asset.status_name,
       summary: asset.last_op_summary,
       lastAlive: asset.last_alive_timestamp,
-      inventory: this.inventory,
+      inventory: this.plainInventory,
     };
     this.assetModalRef = this.modalService.show(
     AssetInfoComponent, {
@@ -764,7 +771,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       labels: controller.labels,
       status: controller.status,
       type: controller.type,
-      inventory: this.inventory
+      inventory: this.plainInventory
     };
     this.ecModalRef = this.modalService.show(
       EdgeControllerInfoComponent, {

@@ -1,11 +1,13 @@
 /**
  * Interface that defines the Device info needed for creating the Device object instance
  */
-import { KeyValue } from './key-value';
-import { InventoryLocation } from './inventory-location';
-import { AssetInfo } from './asset-info';
+import { KeyValue } from '../interfaces/key-value';
+import { InventoryLocation } from '../interfaces/inventory-location';
+import { AssetInfo } from '../interfaces/asset-info';
+import { Item } from './item';
+import { InventoryType } from '../enums/inventory-type.enum';
 
-export interface Device {
+export class Device extends Item {
   // OrganizationId with the organization identifier.
   organization_id: string;
   // DevicesGroupId with the device group identifier.
@@ -28,4 +30,24 @@ export interface Device {
   location?: InventoryLocation;
   // AssetInfo with the information related to Hw, Storage and OS
   asset_info?: AssetInfo;
+
+  get id(): string {
+    return this.device_id;
+  }
+
+  get type(): InventoryType {
+    return InventoryType.Device;
+  }
+
+  get status(): string {
+    return this.device_status_name;
+  }
+
+  get locationData(): string {
+    return this.location && this.location.geolocation ? this.location.geolocation : 'undefined';
+  }
+
+  get labelsData(): KeyValue {
+    return this.labels || {};
+  }
 }
