@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { InventoryStatus } from '../definitions/enums/inventory-status.enum';
+import { ChartData } from '../definitions/interfaces/chart-data';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class InfrastructureService {
    * @param total Number of total ECs online
    * @returns anonym array with the required object structure for pie chart rendering
    */
-  generateSummaryChartData(online: number, total: number): any[] {
+  generateSummaryChartData(online: number, total: number): ChartData[] {
     return [
       {
         name: this.translateService.instant('infrastructure.chart.online'),

@@ -17,10 +17,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { InfrastructureService } from './infrastructure.service';
 import { InventoryStatus } from '../definitions/enums/inventory-status.enum';
 import { InventoryType } from '../definitions/enums/inventory-type.enum';
-/**
- * Refresh ratio reference
- */
-const REFRESH_RATIO = 6000; // 6 seconds
+import { Device } from '../definitions/interfaces/device';
+import { Asset } from '../definitions/interfaces/asset';
+import { Controller } from '../definitions/interfaces/controller';
+import { ChartData } from '../definitions/interfaces/chart-data';
+import { Subscription, timer} from 'rxjs';
 
 @Component({
   selector: 'app-infrastructure',
@@ -28,6 +29,10 @@ const REFRESH_RATIO = 6000; // 6 seconds
   styleUrls: ['./infrastructure.component.scss']
 })
 export class InfrastructureComponent implements OnInit, OnDestroy  {
+  /**
+   * Refresh ratio reference
+   */
+  private static readonly REFRESH_RATIO = 6000;
   /**
    * Backend reference
    */
@@ -43,21 +48,21 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   /**
    * List of available inventory
    */
-  inventory: any[];
+  inventory: {}[];
   /**
    * List of available devices, assets and edge controllers
    */
-  devices: any[];
-  assets: any[];
-  controllers: any [];
+  devices: Device[];
+  assets: Asset[];
+  controllers: Controller[];
   /**
    * Interval reference
    */
-  refreshIntervalRef: any;
+  refreshIntervalRef: Subscription;
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
-  infrastructurePieChart: any;
+  infrastructurePieChart: ChartData[];
   /**
    * Pie Chart options
    */
@@ -160,10 +165,9 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
       if (this.organizationId !== null) {
-        this.updateInventoryList();
-        this.refreshIntervalRef = setInterval(() => {
+        this.refreshIntervalRef = timer(0, InfrastructureComponent.REFRESH_RATIO).subscribe(() => {
           this.updateInventoryList();
-        }, REFRESH_RATIO); // Refresh each 60 seconds
+        });
         this.backend.getInventorySummary(this.organizationId)
         .subscribe(summary => {
           if (summary) {
@@ -176,7 +180,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     }
   }
   ngOnDestroy() {
-    clearInterval(this.refreshIntervalRef);
+    this.refreshIntervalRef.unsubscribe();
   }
   /**
    * Sortby pipe in the component
@@ -551,15 +555,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     if (!response) {
     } else {
       if (response.devices) {
-        response.devices.forEach((device: {
-          type: string;
-          id: any;
-          device_id: any;
-          status: any;
-          device_status_name: any;
-          location: any;
-          labels: any;
-          }) => {
+        response.devices.forEach(device => {
           device.type = InventoryType.Device;
           device.id = device.device_id;
           device.status = device.device_status_name;
@@ -578,15 +574,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         });
       }
       if (response.assets) {
-        response.assets.forEach((asset: {
-          type: string;
-          id: any;
-          asset_id: any;
-          location: any;
-          labels: any;
-          status?: string;
-          status_name: string;
-          }) => {
+        response.assets.forEach(asset => {
           asset.type = InventoryType.Asset;
           asset.id = asset.asset_id;
           if (!asset.location
@@ -603,16 +591,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         });
       }
       if (response.controllers) {
-        response.controllers.forEach((controller: {
-          type: string;
-          id: any;
-          edge_controller_id: any;
-          location: any;
-          status: string;
-          status_name: string;
-          labels: any;
-          assets?: any;
-          }) => {
+        response.controllers.forEach(controller => {
           controller.type = InventoryType.Ec;
           controller.id = controller.edge_controller_id;
           if (!controller.location
@@ -651,13 +630,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Gets the Edge Controllers count in inventory list
    */
   private getECsCount() {
-    let ecCount = 0;
-    this.inventory.forEach(item => {
-      if (item.type === InventoryType.Ec) {
-        ecCount += 1;
-      }
-    });
-    return ecCount;
+    return this.inventory.filter(item => item.type === InventoryType.Ec).length;
   }
   /**
    * Updates the pie chart with latest changes
