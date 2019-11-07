@@ -5,8 +5,9 @@ import { ServiceGroupInstance } from '../interfaces/service-group-instance';
 import { InstanceMetadata } from '../interfaces/instance-metadata';
 import { ConnectionInstance } from '../interfaces/connection-instance';
 import { AppStatus } from '../enums/app-status.enum';
+import { Application } from './application';
 
-export class ApplicationInstance {
+export class ApplicationInstance extends Application {
   /**
    * AppInstanceId with the application instance identifier.
    */

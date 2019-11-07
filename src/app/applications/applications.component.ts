@@ -874,8 +874,8 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
               clusters.clusters.forEach(cluster => {
                 cluster.total_nodes = parseInt(cluster.total_nodes, 10);
               });
-              this.clusters = clusters.clusters;
-              this.instances = instances.instances;
+              this.clusters = clusters.clusters || [];
+              this.instances = instances.instances || [];
               this.registered = registered.descriptors || [];
               if (this.instances) {
                 this.processedRegisteredList();

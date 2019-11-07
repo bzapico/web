@@ -221,7 +221,8 @@ export class AppInfoComponent implements OnChanges {
       name: descriptor.name,
       rules: descriptor.rules,
       labels: descriptor.labels,
-      openFromRegistered: this.openFromRegistered
+      openFromRegistered: this.openFromRegistered,
+      openFromInstance: this.openFromInstance
     };
     this.modalRef = this.modalService.show(AppInfoDetailedComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';

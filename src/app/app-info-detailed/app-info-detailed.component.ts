@@ -15,9 +15,12 @@ export class AppInfoDetailedComponent {
   appDescriptorId: string;
   appInstanceId: string;
   name: string;
-  group: any;
+  groups: any[];
   statusName: string;
   labels: any;
+  rules: any[];
+  openFromInstance: boolean;
+  openFromRegistered: boolean;
   /**
    * Loaded Data status
    */
