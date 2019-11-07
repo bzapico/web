@@ -328,7 +328,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     };
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { });
   }
   /**
    * Deletes a selected label
@@ -345,7 +344,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           device_id: entity.device_id,
           device_group_id: entity.device_group_id,
           labels: this.selectedLabels[index].labels
-        }).subscribe(deleteLabelResponse => {
+        }).subscribe(() => {
           this.selectedLabels.splice(index, 1);
           this.updateDevicesList(this.organizationId);
         });
@@ -431,7 +430,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     confirm(this.translateService.instant('devices.unlinkDeviceConfirm', {deviceId : device.device_id }));
     if (unlinkConfirm) {
       this.backend.removeDevice(this.organizationId, device.device_group_id, device.device_id)
-      .subscribe(unlinkResponse => {
+      .subscribe(() => {
         this.notificationsService.add({
           message: this.translateService.instant('devices.unlinkDeviceMessage',  {deviceId : device.device_id })
         });
