@@ -7,7 +7,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { RegisterApplicationComponent } from './register-application/register-application.component';
-import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
+import { DeployInstanceComponent } from './deploy-instance/deploy-instance.component';
 import { Router } from '@angular/router';
 import { ManageConnectionsComponent } from './manage-connections/manage-connections.component';
 import { Subscription, timer } from 'rxjs';

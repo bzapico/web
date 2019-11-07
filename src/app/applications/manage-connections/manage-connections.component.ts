@@ -6,7 +6,7 @@ import { BackendService } from '../../services/backend.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { MockupBackendService } from '../../services/mockup-backend.service';
 import { NotificationsService } from '../../services/notifications.service';
-import { AddConnectionsComponent } from '../../add-connections/add-connections.component';
+import { AddConnectionsComponent } from '../add-connections/add-connections.component';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { Subscription, timer } from 'rxjs';
