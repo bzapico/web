@@ -6,21 +6,21 @@ import { mockAppChart, mockAppPieChart } from '../services/utils/mocks';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AddLabelComponent } from '../add-label/add-label.component';
-import { RegisterApplicationComponent } from '../register-application/register-application.component';
-import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
+import { RegisterApplicationComponent } from './register-application/register-application.component';
+import { DeployInstanceComponent } from './deploy-instance/deploy-instance.component';
 import { Router } from '@angular/router';
-import { ManageConnectionsComponent } from '../manage-connections/manage-connections.component';
+import { ManageConnectionsComponent } from './manage-connections/manage-connections.component';
 import { Subscription, timer } from 'rxjs';
 import { NodeType } from '../definitions/enums/node-type.enum';
 import { GraphData } from '../definitions/models/graph-data';
 import { KeyValue } from '../definitions/interfaces/key-value';
-import { AdvancedFilterOptionsComponent } from '../advanced-filter-options/advanced-filter-options.component';
+import { AdvancedFilterOptionsComponent } from './advanced-filter-options/advanced-filter-options.component';
 import { TranslateService } from '@ngx-translate/core';
 import { ApplicationsService } from './applications.service';
 import { AppStatus } from '../definitions/enums/app-status.enum';
 import { ToolsComponent } from '../tools/tools.component';
 import { Cluster } from '../definitions/interfaces/cluster';
-import { AppDescriptor } from '../definitions/models/app-descriptor';
+import { ApplicationDescriptor } from '../definitions/models/application-descriptor';
 
 @Component({
   selector: 'applications',
@@ -47,7 +47,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
   /**
    * List of registered apps
    */
-  registered: AppDescriptor[];
+  registered: ApplicationDescriptor[];
   /**
    * List of available clusters
    */
@@ -874,8 +874,8 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
               clusters.clusters.forEach(cluster => {
                 cluster.total_nodes = parseInt(cluster.total_nodes, 10);
               });
-              this.clusters = clusters.clusters;
-              this.instances = instances.instances;
+              this.clusters = clusters.clusters || [];
+              this.instances = instances.instances || [];
               this.registered = registered.descriptors || [];
               if (this.instances) {
                 this.processedRegisteredList();

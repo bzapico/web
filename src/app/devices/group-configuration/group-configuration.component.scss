@@ -1,0 +1,20 @@
+@import '../../scss/variables/mixins';
+
+.check-options {
+    padding-top: 2em;
+    padding-bottom: 1em;
+    p {
+        font-size: .9em;
+        display: inline-block;
+    }
+    .add-dev-checkbox {
+        float: right;
+    }
+    @include for-desktop-up() {
+        padding-top: 2em;
+        padding-bottom: 2em;
+    }
+}
+.devices-checkbox {
+    cursor: pointer;
+}

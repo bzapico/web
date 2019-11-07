@@ -7,10 +7,10 @@ import { AuthGuard } from './guards/auth.guard';
 import { OrganizationComponent } from './organization/organization.component';
 import { ResourcesComponent } from './resources/resources.component';
 import { ApplicationsComponent } from './applications/applications.component';
-import { ClusterComponent } from './cluster/cluster.component';
+import { ClusterComponent } from './resources/cluster/cluster.component';
 import { DevicesComponent } from './devices/devices.component';
-import { RegisteredInfoComponent } from './registered-info/registered-info.component';
-import { InstanceInfoComponent } from './instance-info/instance-info.component';
+import { RegisteredInfoComponent } from './applications/registered-info/registered-info.component';
+import { InstanceInfoComponent } from './applications/instance-info/instance-info.component';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 
 const appRoutes: Routes = [
