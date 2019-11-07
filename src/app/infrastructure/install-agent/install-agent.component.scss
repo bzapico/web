@@ -1,0 +1,7 @@
+@import '../../scss/variables/mixins';
+
+.form-group-btn {
+    @include for-desktop-only { 
+        margin-top: 1em;
+    }
+}
