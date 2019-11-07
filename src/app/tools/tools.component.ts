@@ -214,7 +214,7 @@ export class ToolsComponent implements OnInit {
         if (this.areIncludedInstancesWithError
             && (this.instances[indexInstance].status_name.toLowerCase() === AppStatus.Error
                 || this.instances[indexInstance].status_name.toLowerCase() === AppStatus.DeploymentError)) {
-          appsInCluster[this.instances[indexInstance].getId()] = this.instances[indexInstance];
+          appsInCluster[this.instances[indexInstance].app_instance_id] = this.instances[indexInstance];
         } else {
           const groups = this.instances[indexInstance].groups || [];
           for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
@@ -310,28 +310,28 @@ export class ToolsComponent implements OnInit {
           ToolsComponent.CUSTOM_HEIGHT_CLUSTERS)
     };
   }
-  generateInstanceNode(instance: any, cluster: any, tooltip: string): any {
-    const instanceName = instance['name'].toLowerCase();
+  generateInstanceNode(instance: ApplicationInstance, cluster: any, tooltip: string): any {
+    const instanceName = instance.name.toLowerCase();
     return {
     ...{
-      id: instance.getId(),
-      app_descriptor_id: instance['app_descriptor_id'],
-      label: instance['name'],
+      id: instance.app_instance_id,
+      app_descriptor_id: instance.app_descriptor_id,
+      label: instance.name,
       type: NodeType.Instances,
       tooltip: tooltip,
       group: cluster.cluster_id
     },
     ...this.getStyledNode(
-        this.getNodeColor(instance['status_name']),
-        this.getNodeTextColor(instance['status_name']),
+        this.getNodeColor(instance.status_name),
+        this.getNodeTextColor(instance.status_name),
         (this.searchTermGraph && instanceName.includes(this.searchTermGraph)) ?
                           ToolsComponent.FOUND_NODES_BORDER_COLOR : '',
         (this.searchTermGraph && instanceName.includes(this.searchTermGraph)) ?
                           ToolsComponent.FOUND_NODES_BORDER_SIZE : 0,
         ToolsComponent.CUSTOM_HEIGHT_INSTANCES
     ),
-        inbound_connections: instance['inbound_connections'] || [],
-        outbound_connections: instance['outbound_connections'] || [],
+        inbound_connections: instance.inbound_connections || [],
+        outbound_connections: instance.outbound_connections || [],
     };
   }
 }
