@@ -1,3 +1,13 @@
+/* 
+ *  This is the default license template.
+ *  
+ *  File: style.css
+ *  Author: blanca
+ *  Copyright (c) 2019 blanca
+ *  
+ *  To edit this license information: Press Ctrl+Shift+P and press 'Create new License Template...'.
+ */
+
 @import "./reset.css";
 @import "./bootstrap.min.css";
 @import "./bootstrap-card.css";

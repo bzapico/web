@@ -1,65 +1,71 @@
-<!-- Labels card-->
-<div class="card">
-  <div *ngIf="loadedData" class="card-title-name hide-title-sm mb-3">
-    <h5>{{'label.title' | translate}}</h5>
+<!-- 
+  Copyright 2019 Nalej
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div *ngIf="isSelectableLabel && loadedData">
+  <div *ngIf="labelsData && labelsData['labels']">
+    <button 
+      *ngFor="let label of labelsData['labels']"
+      [ngClass]=
+        "{
+          'label-content-selected': label.selected,
+          'label-content': !label.selected
+        }" 
+      (click)="onLabelClick(label)">
+      {{label.key}}: {{label.value}}
+    </button>
+    <div class="label-btns">
+      <div 
+        *ngIf="selectedLabels.length === 0" 
+        (click)="addLabel()"
+        tooltip="{{'label.addLabel' | translate}}" 
+        placement="auto"
+        class="label-btn-blue" >
+        <i class="material-icons i-add">add</i>
+      </div>
+      <div 
+        *ngIf="selectedLabels.length > 0" 
+        (click)="deleteLabel()"
+        tooltip="{{'label.deleteLabel' | translate}}"
+        placement="auto"
+        class="label-btn-red">
+        <i class="material-icons i-delete">delete</i>
+      </div>
+    </div>
   </div>
-  <!-- Show selectable label -->
-  <div *ngIf="isSelectableLabel && loadedData">
-    <div *ngIf="labelsData && labelsData['labels']">
-      <button 
-        *ngFor="let label of labelsData['labels']"
-        [ngClass]=
-          "{
-            'label-content-selected': label.selected,
-            'label-content': !label.selected
-          }" 
-        (click)="onLabelClick(label)">
-        {{label.key}}: {{label.value}}
+  <div *ngIf="labelsData && !labelsData['labels']">
+    <div class="label-btns">
+      <div
+        (click)="addLabel()"
+        tooltip="{{'label.addLabel' | translate}}" 
+        placement="auto"
+        class="label-btn-blue">
+        <i class="material-icons i-add">add</i>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Show only readable labels -->
+<div *ngIf="!isSelectableLabel && loadedData">
+  <div *ngIf="labelsData['labels']">
+    <div *ngFor="let label of labelsData['labels']">
+      <button class="label-content-disabled" disabled>
+          {{label.key}}: {{label.value}}
       </button>
-      <div class="label-btns">
-        <div 
-          *ngIf="selectedLabels.length === 0" 
-          (click)="addLabel()"
-          tooltip="{{'label.addLabel' | translate}}" 
-          placement="auto"
-          class="label-btn-blue" >
-          <i class="material-icons i-add">add</i>
-        </div>
-        <div 
-          *ngIf="selectedLabels.length > 0" 
-          (click)="deleteLabel()"
-          tooltip="{{'label.deleteLabel' | translate}}"
-          placement="auto"
-          class="label-btn-red">
-          <i class="material-icons i-delete">delete</i>
-        </div>
-      </div>
-    </div>
-    <div *ngIf="labelsData && !labelsData['labels']">
-      <div class="label-btns">
-          <div
-            (click)="addLabel()"
-            tooltip="{{'label.addLabel' | translate}}" 
-            placement="auto"
-            class="label-btn-blue">
-            <i class="material-icons i-add">add</i>
-          </div>
-        </div>
     </div>
   </div>
-  <!-- Show only readable labels -->
-  <div *ngIf="!isSelectableLabel && loadedData">
-    <div *ngIf="labelsData['labels']">
-      <div *ngFor="let label of labelsData['labels']">
-        <button class="label-content-disabled" disabled>
-            {{label.key}}: {{label.value}}
-        </button>
-      </div>
-    </div>
-    <div *ngIf="!labelsData['labels']" class="no-elements">
-      <div class="no-elements">
-        {{'label.noLabels' | translate}}
-      </div>
+  <div *ngIf="!labelsData['labels']" class="no-elements">
+    <div class="no-elements">
+      {{'label.noLabels' | translate}}
     </div>
   </div>
 </div>
