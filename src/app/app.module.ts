@@ -63,7 +63,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AdvancedFilterOptionsComponent } from './applications/advanced-filter-options/advanced-filter-options.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { DeviceGroupInfoComponent } from './devices/device-group-info/device-group-info.component';
-import { InstanceServiceGroupInfoComponent } from './applications/instance-info/instance-service-group-info/instance-service-group-info.component';
+import { InstanceServiceGroupInfoComponent
+  } from './applications/instance-info/instance-service-group-info/instance-service-group-info.component';
 import { RegisteredServiceGroupInfoComponent
   } from './applications/registered-info/registered-service-group-info/registered-service-group-info.component';
 import { ManageConnectionsComponent } from './applications/manage-connections/manage-connections.component';
