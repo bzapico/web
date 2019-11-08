@@ -1,4 +1,3 @@
-import { Inventory } from '../../definitions/interfaces/inventory';
 import { OperatingSystemClass } from '../../definitions/enums/operating-system-class.enum';
 import { OpStatus } from '../../definitions/enums/op-status.enum';
 
@@ -14,7 +13,7 @@ export const mockInventorySummary = {
 /**
  * Mocked inventory list
  */
-export const mockInventoryList: Inventory = {
+export const mockInventoryList = {
     devices: [
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
@@ -55,7 +54,7 @@ export const mockInventoryList: Inventory = {
                 lab39: 'label22',
                 lab40: 'label2298754',
                 lab41: 'label22',
-                lab42: 'label22',
+                lab42: 'label22'
             },
             enabled: true,
             device_status_name : 'ONLINE'

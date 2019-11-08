@@ -18,8 +18,8 @@ import { InfrastructureService } from './infrastructure.service';
 import { InventoryStatus } from '../definitions/enums/inventory-status.enum';
 import { InventoryType } from '../definitions/enums/inventory-type.enum';
 import { Device } from '../definitions/models/device';
-import { Asset } from '../definitions/interfaces/asset';
-import { Controller } from '../definitions/interfaces/controller';
+import { Asset } from '../definitions/models/asset';
+import { Controller } from '../definitions/models/controller';
 import { ChartData } from '../definitions/interfaces/chart-data';
 import { Subscription, timer } from 'rxjs';
 import { Inventory } from '../definitions/interfaces/inventory';
@@ -556,11 +556,12 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     }
     if (!response) {
     } else {
-      if (response.devices) {
+      this.plainInventory = [...(response.devices || []), ...(response.assets || []), ...(response.controllers || [])];
+      /*if (response.devices) {
         response.devices.forEach(device => {
           console.log('DEVICE ID ::: ', device);
         });
-      }
+      }*/
       // if (response.devices) {
       //   response.devices.forEach(device => {
       //     device.type = InventoryType.Device;
@@ -637,7 +638,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Gets the Edge Controllers count in inventory list
    */
   private getECsCount() {
-    return this.plainInventory.filter(item => item.type === InventoryType.Ec).length;
+    return this.plainInventory.filter(item => item.mapType() === InventoryType.Ec).length;
   }
   /**
    * Updates the pie chart with latest changes

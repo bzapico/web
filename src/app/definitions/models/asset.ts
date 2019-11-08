@@ -1,14 +1,17 @@
 /**
  * Interface that defines the Asset info needed for creating the Asset any instance
  */
-import { KeyValue } from './key-value';
-import { OperatingSystemInfo } from './operating-system-info';
-import { HardwareInfo } from './hardware-info';
-import { StorageHardwareInfo } from './storage-hardware-info';
-import { InventoryLocation } from './inventory-location';
-import { AgentOpSummary } from './agent-op-summary';
+import { KeyValue } from '../interfaces/key-value';
+import { OperatingSystemInfo } from '../interfaces/operating-system-info';
+import { HardwareInfo } from '../interfaces/hardware-info';
+import { StorageHardwareInfo } from '../interfaces/storage-hardware-info';
+import { InventoryLocation } from '../interfaces/inventory-location';
+import { AgentOpSummary } from '../interfaces/agent-op-summary';
+import { InventoryType } from '../enums/inventory-type.enum';
+import { Item } from './item';
+import { ConnectedStatus } from '../enums/connected-status.enum';
 
-export interface Asset {
+export class Asset implements Item {
     /**
      * OrganizationId with the organization identifier.
      */
@@ -63,7 +66,31 @@ export interface Asset {
      */
     last_alive_timestamp?: string;
     /**
+     * Status of the asset.
+     */
+    status?: ConnectedStatus;
+    /**
      * location with the asset location
      */
     location?: InventoryLocation;
+
+    mapId(): string {
+        return this.asset_id;
+    }
+
+    mapType(): InventoryType {
+        return InventoryType.Asset;
+    }
+
+    mapStatus(): string {
+        return this.status;
+    }
+
+    mapLocation(): string {
+        return this.location && this.location.geolocation ? this.location.geolocation : 'undefined';
+    }
+
+    mapLabels(): KeyValue {
+        return this.labels || {};
+    }
 }

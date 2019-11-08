@@ -7,7 +7,7 @@ import { AssetInfo } from '../interfaces/asset-info';
 import { Item } from './item';
 import { InventoryType } from '../enums/inventory-type.enum';
 
-export class Device extends Item {
+export class Device implements Item {
   // OrganizationId with the organization identifier.
   organization_id: string;
   // DevicesGroupId with the device group identifier.
@@ -31,23 +31,23 @@ export class Device extends Item {
   // AssetInfo with the information related to Hw, Storage and OS
   asset_info?: AssetInfo;
 
-  get id(): string {
+  mapId(): string {
     return this.device_id;
   }
 
-  get type(): InventoryType {
+  mapType(): InventoryType {
     return InventoryType.Device;
   }
 
-  get status(): string {
+  mapStatus(): string {
     return this.device_status_name;
   }
 
-  get locationData(): string {
+  mapLocation(): string {
     return this.location && this.location.geolocation ? this.location.geolocation : 'undefined';
   }
 
-  get labelsData(): KeyValue {
+  mapLabels(): KeyValue {
     return this.labels || {};
   }
 }

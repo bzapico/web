@@ -339,25 +339,25 @@ export const mockDevicesChart = [
 export const mockDevicesList = [
     [
         {
-            'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-            'device_group_id': '70e3b907-54b4-4aa1-9f9b-3b15f1af7d99',
-            'device_id': 'dh006',
-            'register_since': '1550746714',
-            'enabled': true,
-            'device_status_name': 'OFFLINE',
-            'labels': {
+            organization_id: '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+            device_group_id: '70e3b907-54b4-4aa1-9f9b-3b15f1af7d99',
+            device_id: 'dh006',
+            register_since: '1550746714',
+            enabled: true,
+            device_status_name: 'OFFLINE',
+            labels: {
                 'app': 'kuard4',
                 'the': 'label'
             }
         },
         {
-            'organization_id': 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
-            'device_group_id': 'a56b9900-0fef-41b0-bb7c-adf0055274cd',
-            'device_id': 'dh007',
-            'register_since': '1550746656',
-            'enabled': true,
-            'device_status_name': 'ONLINE',
-            'labels': {
+            organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
+            device_group_id: 'a56b9900-0fef-41b0-bb7c-adf0055274cd',
+            device_id: 'dh007',
+            register_since: '1550746656',
+            enabled: true,
+            device_status_name: 'ONLINE',
+            labels: {
                 'lab12': 'label12',
                 'lab23': 'label22',
                 'lab24': 'label22',
@@ -385,35 +385,35 @@ export const mockDevicesList = [
     ],
     [
         {
-            'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-            'device_group_id': '70e3b907-54b4-4aa1-9f9b-3b15f1af7d99',
-            'device_id': 'dh001',
-            'register_since': '1550746644',
-            'enabled': true,
-            'device_status_name': 'OFFLINE',
-            'labels': {
+            organization_id: '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+            device_group_id: '70e3b907-54b4-4aa1-9f9b-3b15f1af7d99',
+            device_id: 'dh001',
+            register_since: '1550746644',
+            enabled: true,
+            device_status_name: 'OFFLINE',
+            labels: {
             }
         }
     ],
     [
         {
-            'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-            'device_group_id': '90651fde-4090-47e9-a838-735969d94302',
-            'device_id': 'dh002',
-            'register_since': '1550746647',
-            'enabled': false,
-            'device_status_name': 'OFFLINE',
-            'labels': {
+            organization_id: '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+            device_group_id: '90651fde-4090-47e9-a838-735969d94302',
+            device_id: 'dh002',
+            register_since: '1550746647',
+            enabled: false,
+            device_status_name: 'OFFLINE',
+            labels: {
             }
         },
         {
-            'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-            'device_group_id': '90651fde-4090-47e9-a838-735969d94302',
-            'device_id': 'dh003',
-            'register_since': '1550746651',
-            'enabled': true,
-            'device_status_name': 'OFFLINE',
-            'labels': {
+            organization_id: '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+            device_group_id: '90651fde-4090-47e9-a838-735969d94302',
+            device_id: 'dh003',
+            register_since: '1550746651',
+            enabled: true,
+            device_status_name: 'OFFLINE',
+            labels: {
                 'app2': 'quee2',
                 'drone': '321'
             }
@@ -421,23 +421,23 @@ export const mockDevicesList = [
     ],
     [
         {
-            'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-            'device_group_id': 'dbc47863-4bad-4ea9-92dd-52bad1b395cf',
-            'device_id': 'dh004',
-            'register_since': '1550746653',
-            'enabled': true,
-            'device_status_name': 'OFFLINE',
-            'labels': {
+            organization_id: '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+            device_group_id: 'dbc47863-4bad-4ea9-92dd-52bad1b395cf',
+            device_id: 'dh004',
+            register_since: '1550746653',
+            enabled: true,
+            device_status_name: 'OFFLINE',
+            labels: {
             }
         },
         {
-            'organization_id': '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-            'device_group_id': 'dbc47863-4bad-4ea9-92dd-52bad1b395cf',
-            'device_id': 'dh005',
-            'register_since': '1550746656',
-            'enabled': true,
-            'device_status_name': 'OFFLINE',
-            'labels': {
+            organization_id: '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+            device_group_id: 'dbc47863-4bad-4ea9-92dd-52bad1b395cf',
+            device_id: 'dh005',
+            register_since: '1550746656',
+            enabled: true,
+            device_status_name: 'OFFLINE',
+            labels: {
             }
         }
     ]

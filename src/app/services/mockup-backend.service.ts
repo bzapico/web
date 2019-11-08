@@ -15,7 +15,6 @@ import {
   mockUserList
 } from './utils/mocks';
 import { Group } from '../definitions/interfaces/group';
-import { Asset } from '../definitions/interfaces/asset';
 import { HttpResponse } from '@angular/common/http';
 import { mockInventoryList, mockInventorySummary } from './utils/inventory.mock';
 import { mockClusterList, mockResourcesSummary } from './utils/clusters.mock';
@@ -183,7 +182,7 @@ export class MockupBackendService implements Backend {
    * @param agent Agent identifier
    */
   installAgent(organizationId: string, edgeControllerId: any, agent: any) {
-    const asset: Asset = {
+    const asset = {
       organization_id: organizationId,
       edge_controller_id: edgeControllerId,
       asset_id: this.uuidv4(),

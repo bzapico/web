@@ -1,5 +1,5 @@
-import { Controller } from './controller';
-import { Asset } from './asset';
+import { Controller } from '../models/controller';
+import { Asset } from '../models/asset';
 import { Device } from '../models/device';
 
 /**
