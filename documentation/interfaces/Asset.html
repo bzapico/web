@@ -1,16 +1,3 @@
-<!-- 
-  Copyright 2019 Nalej
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-      http://www.apache.org/licenses/LICENSE-2.0
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
- -->
-
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -77,13 +64,6 @@
             <code>src/app/definitions/interfaces/asset.ts</code>
         </p>
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>Interface that defines the Asset info needed for creating the Asset any instance</p>
-
-            </p>
 
 
         <section>
@@ -128,7 +108,7 @@
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#last_op_summary">last_op_summary</a>
+                                        <a href="#last_op_result">last_op_result</a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
@@ -144,14 +124,6 @@
                                 <li>
                                             <span class="modifier">Optional</span>
                                         <a href="#show">show</a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#status">status</a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#status_name">status_name</a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
@@ -195,6 +167,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>AgentId with the agent identifier that is monitoring this asset if any.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -224,6 +202,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>AssetId with the asset identifier.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -258,6 +242,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Created time</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -287,6 +277,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>EdgeControllerId with the EIC identifier.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -316,6 +312,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>EicNetIp contains the current IP address that connects the asset to the EIC.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -328,7 +330,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>hardware:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                        <code>hardware:         <code><a href="../interfaces/HardwareInfo.html" target="_self" >HardwareInfo</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -336,7 +338,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            <i>Type : </i>        <code><a href="../interfaces/HardwareInfo.html" target="_self" >HardwareInfo</a></code>
 
                                         </td>
                                     </tr>
@@ -350,6 +352,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Hardware information.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -362,7 +370,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>labels:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                        <code>labels:         <code><a href="../interfaces/KeyValue.html" target="_self" >KeyValue</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -370,7 +378,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            <i>Type : </i>        <code><a href="../interfaces/KeyValue.html" target="_self" >KeyValue</a></code>
 
                                         </td>
                                     </tr>
@@ -384,6 +392,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Labels defined by the user.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -418,19 +432,25 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>LastAliveTimestamp contains the last alive message received</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="last_op_summary"></a>
-                                        <span class="name"><b>last_op_summary</b><a href="#last_op_summary"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="last_op_result"></a>
+                                        <span class="name"><b>last_op_result</b><a href="#last_op_result"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>last_op_summary:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                        <code>last_op_result:         <code><a href="../interfaces/AgentOpSummary.html" target="_self" >AgentOpSummary</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -438,7 +458,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            <i>Type : </i>        <code><a href="../interfaces/AgentOpSummary.html" target="_self" >AgentOpSummary</a></code>
 
                                         </td>
                                     </tr>
@@ -452,6 +472,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>LastOpResult contains the result of the last operation fr this asset</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -464,7 +490,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>location:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>location:         <code><a href="../interfaces/InventoryLocation.html" target="_self" >InventoryLocation</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -472,7 +498,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <i>Type : </i>        <code><a href="../interfaces/InventoryLocation.html" target="_self" >InventoryLocation</a></code>
 
                                         </td>
                                     </tr>
@@ -486,6 +512,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>location with the asset location</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -515,6 +547,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>OrganizationId with the organization identifier.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -527,7 +565,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>os:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                        <code>os:         <code><a href="../interfaces/OperatingSystemInfo.html" target="_self" >OperatingSystemInfo</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -535,7 +573,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            <i>Type : </i>        <code><a href="../interfaces/OperatingSystemInfo.html" target="_self" >OperatingSystemInfo</a></code>
 
                                         </td>
                                     </tr>
@@ -549,6 +587,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>OS contains Operating System information.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -583,74 +627,13 @@
 
 
 
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="status"></a>
-                                        <span class="name"><b>status</b><a href="#status"><span class="icon ion-ios-link"></span></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>status:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="status_name"></a>
-                                        <span class="name"><b>status_name</b><a href="#status_name"><span class="icon ion-ios-link"></span></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>status_name:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
-
-
-
-
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Show flag to determine if this asset should be shown on the UI. This flag is internally used
+for the async uninstall/removal of the asset.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -663,7 +646,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>storage:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                        <code>storage:     <code>StorageHardwareInfo[]</code>
 </code>
                                     </td>
                                 </tr>
@@ -671,7 +654,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            <i>Type : </i>    <code>StorageHardwareInfo[]</code>
 
                                         </td>
                                     </tr>
@@ -685,6 +668,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Storage information.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -692,40 +681,71 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface Asset {
-    // OrganizationId with the organization identifier.
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { KeyValue } from &#x27;./key-value&#x27;;
+import { OperatingSystemInfo } from &#x27;./operating-system-info&#x27;;
+import { HardwareInfo } from &#x27;./hardware-info&#x27;;
+import { StorageHardwareInfo } from &#x27;./storage-hardware-info&#x27;;
+import { InventoryLocation } from &#x27;./inventory-location&#x27;;
+import { AgentOpSummary } from &#x27;./agent-op-summary&#x27;;
+
+export interface Asset {
+    /**
+     * OrganizationId with the organization identifier.
+     */
     organization_id: string;
-    // EdgeControllerId with the EIC identifier.
+    /**
+     * EdgeControllerId with the EIC identifier.
+     */
     edge_controller_id: string;
-    // AssetId with the asset identifier.
+    /**
+     * AssetId with the asset identifier.
+     */
     asset_id: string;
-    // AgentId with the agent identifier that is monitoring this asset if any.
+    /**
+     * AgentId with the agent identifier that is monitoring this asset if any.
+     */
     agent_id: string;
-    // Show flag to determine if this asset should be shown on the UI. This flag is internally used
-    // for the async uninstall/removal of the asset.
+    /**
+     * Show flag to determine if this asset should be shown on the UI. This flag is internally used
+     * for the async uninstall/removal of the asset.
+     */
     show?: boolean;
-    // Created time
+    /**
+     * Created time
+     */
     created?: number;
-    // Labels defined by the user.
-    labels?: any;
-    // OS contains Operating System information.
-    os?: any;
-    // Hardware information.
-    hardware?: any;
-    // Storage information.
-    storage?: any;
-    // EicNetIp contains the current IP address that connects the asset to the EIC.
+    /**
+     * Labels defined by the user.
+     */
+    labels?: KeyValue;
+    /**
+     * OS contains Operating System information.
+     */
+    os?: OperatingSystemInfo;
+    /**
+     * Hardware information.
+     */
+    hardware?: HardwareInfo;
+    /**
+     * Storage information.
+     */
+    storage?: StorageHardwareInfo[];
+    /**
+     * EicNetIp contains the current IP address that connects the asset to the EIC.
+     */
     eic_net_ip: string;
-    // LastOpSummary contains the result of the last operation fr this asset
-    last_op_summary?: any;
-    // LastAliveTimestamp contains the last alive message received
+    /**
+     * LastOpResult contains the result of the last operation fr this asset
+     */
+    last_op_result?: AgentOpSummary;
+    /**
+     * LastAliveTimestamp contains the last alive message received
+     */
     last_alive_timestamp?: string;
-    // Status of the agent.
-    status?: string;
-    // StatusName with the status of the asset.
-    status_name?: string;
-    // location with the asset location
-    location?: string;
+    /**
+     * location with the asset location
+     */
+    location?: InventoryLocation;
 }
 </code></pre>
     </div>

@@ -1,16 +1,3 @@
-<!-- 
-  Copyright 2019 Nalej
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-      http://www.apache.org/licenses/LICENSE-2.0
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
- -->
-
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -174,13 +161,7 @@
                                 <a href="#devicesOnTimeline">devicesOnTimeline</a>
                             </li>
                             <li>
-                                <a href="#devicesTimelineChart">devicesTimelineChart</a>
-                            </li>
-                            <li>
                                 <a href="#displayedGroups">displayedGroups</a>
-                            </li>
-                            <li>
-                                <a href="#displayedGroupsNamesLength">displayedGroupsNamesLength</a>
                             </li>
                             <li>
                                 <a href="#enabled">enabled</a>
@@ -220,9 +201,6 @@
                             </li>
                             <li>
                                 <a href="#referenceLines">referenceLines</a>
-                            </li>
-                            <li>
-                                <a href="#REFRESH_RATIO">REFRESH_RATIO</a>
                             </li>
                             <li>
                                 <a href="#refreshIntervalRef">refreshIntervalRef</a>
@@ -307,9 +285,6 @@
                                 <a href="#getCategoryCSSClass">getCategoryCSSClass</a>
                             </li>
                             <li>
-                                <a href="#getDevices">getDevices</a>
-                            </li>
-                            <li>
                                 <a href="#getDevicesGroupOptions">getDevicesGroupOptions</a>
                             </li>
                             <li>
@@ -357,6 +332,7 @@
                                 <a href="#unlinkDevice">unlinkDevice</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#updateDevicesList">updateDevicesList</a>
                             </li>
                             <li>
@@ -365,13 +341,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#updateDevicesStatusLineChart">updateDevicesStatusLineChart</a>
-                            </li>
-                            <li>
-                                <a href="#updateDisplayedGroupsNamesLength">updateDisplayedGroupsNamesLength</a>
-                            </li>
-                            <li>
                                 <a href="#updateGroupsList">updateGroupsList</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateInventoryStatusLineChart">updateInventoryStatusLineChart</a>
                             </li>
                         </ul>
                     </td>
@@ -391,12 +365,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(modalService: BsModalService, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>, translateService: TranslateService)</code>
+<code>constructor(modalService: <a href="../interfaces/Service.html">BsModalService</a>, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>, translateService: <a href="../interfaces/Service.html">TranslateService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/app/devices/devices.component.ts:159</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/app/devices/devices.component.ts:156</a></div>
                             </td>
                         </tr>
 
@@ -417,7 +391,7 @@
                                                         <td>modalService</td>
                                                   
                                                         <td>
-                                                                    <code>BsModalService</code>
+                                                                        <code><a href="../interfaces/Service.html" target="_self" >BsModalService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -465,7 +439,7 @@
                                                         <td>translateService</td>
                                                   
                                                         <td>
-                                                                    <code>TranslateService</code>
+                                                                        <code><a href="../interfaces/Service.html" target="_self" >TranslateService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -513,8 +487,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="396"
-                            class="link-to-prism">src/app/devices/devices.component.ts:396</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="316"
+                            class="link-to-prism">src/app/devices/devices.component.ts:316</a></div>
                 </td>
             </tr>
 
@@ -554,8 +528,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="454"
-                            class="link-to-prism">src/app/devices/devices.component.ts:454</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="348"
+                            class="link-to-prism">src/app/devices/devices.component.ts:348</a></div>
                 </td>
             </tr>
 
@@ -631,8 +605,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="305"
-                            class="link-to-prism">src/app/devices/devices.component.ts:305</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="243"
+                            class="link-to-prism">src/app/devices/devices.component.ts:243</a></div>
                 </td>
             </tr>
 
@@ -724,8 +698,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="235"
-                            class="link-to-prism">src/app/devices/devices.component.ts:235</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="228"
+                            class="link-to-prism">src/app/devices/devices.component.ts:228</a></div>
                 </td>
             </tr>
 
@@ -767,8 +741,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="743"
-                            class="link-to-prism">src/app/devices/devices.component.ts:743</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="669"
+                            class="link-to-prism">src/app/devices/devices.component.ts:669</a></div>
                 </td>
             </tr>
 
@@ -840,8 +814,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="471"
-                            class="link-to-prism">src/app/devices/devices.component.ts:471</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="363"
+                            class="link-to-prism">src/app/devices/devices.component.ts:363</a></div>
                 </td>
             </tr>
 
@@ -917,8 +891,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="373"
-                            class="link-to-prism">src/app/devices/devices.component.ts:373</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="295"
+                            class="link-to-prism">src/app/devices/devices.component.ts:295</a></div>
                 </td>
             </tr>
 
@@ -994,8 +968,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="555"
-                            class="link-to-prism">src/app/devices/devices.component.ts:555</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="441"
+                            class="link-to-prism">src/app/devices/devices.component.ts:441</a></div>
                 </td>
             </tr>
 
@@ -1071,8 +1045,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="357"
-                            class="link-to-prism">src/app/devices/devices.component.ts:357</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="280"
+                            class="link-to-prism">src/app/devices/devices.component.ts:280</a></div>
                 </td>
             </tr>
 
@@ -1130,47 +1104,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getDevices"></a>
-                    <span class="name">
-                        <b>
-                            getDevices
-                        </b>
-                        <a href="#getDevices"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getDevices()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="425"
-                            class="link-to-prism">src/app/devices/devices.component.ts:425</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Gets the devices array list and traverse the group array list to show in table</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="getDevicesGroupOptions"></a>
                     <span class="name">
                         <b>
@@ -1189,8 +1122,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="612"
-                            class="link-to-prism">src/app/devices/devices.component.ts:612</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="493"
+                            class="link-to-prism">src/app/devices/devices.component.ts:493</a></div>
                 </td>
             </tr>
 
@@ -1266,8 +1199,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="439"
-                            class="link-to-prism">src/app/devices/devices.component.ts:439</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="334"
+                            class="link-to-prism">src/app/devices/devices.component.ts:334</a></div>
                 </td>
             </tr>
 
@@ -1343,8 +1276,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="526"
-                            class="link-to-prism">src/app/devices/devices.component.ts:526</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="414"
+                            class="link-to-prism">src/app/devices/devices.component.ts:414</a></div>
                 </td>
             </tr>
 
@@ -1452,8 +1385,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="541"
-                            class="link-to-prism">src/app/devices/devices.component.ts:541</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="428"
+                            class="link-to-prism">src/app/devices/devices.component.ts:428</a></div>
                 </td>
             </tr>
 
@@ -1529,8 +1462,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="220"
-                            class="link-to-prism">src/app/devices/devices.component.ts:220</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="215"
+                            class="link-to-prism">src/app/devices/devices.component.ts:215</a></div>
                 </td>
             </tr>
 
@@ -1568,8 +1501,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="206"
-                            class="link-to-prism">src/app/devices/devices.component.ts:206</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="202"
+                            class="link-to-prism">src/app/devices/devices.component.ts:202</a></div>
                 </td>
             </tr>
 
@@ -1607,8 +1540,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="604"
-                            class="link-to-prism">src/app/devices/devices.component.ts:604</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="486"
+                            class="link-to-prism">src/app/devices/devices.component.ts:486</a></div>
                 </td>
             </tr>
 
@@ -1673,8 +1606,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="497"
-                            class="link-to-prism">src/app/devices/devices.component.ts:497</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="386"
+                            class="link-to-prism">src/app/devices/devices.component.ts:386</a></div>
                 </td>
             </tr>
 
@@ -1782,8 +1715,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="595"
-                            class="link-to-prism">src/app/devices/devices.component.ts:595</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="477"
+                            class="link-to-prism">src/app/devices/devices.component.ts:477</a></div>
                 </td>
             </tr>
 
@@ -1874,8 +1807,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="692"
-                            class="link-to-prism">src/app/devices/devices.component.ts:692</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="622"
+                            class="link-to-prism">src/app/devices/devices.component.ts:622</a></div>
                 </td>
             </tr>
 
@@ -1953,8 +1886,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="710"
-                            class="link-to-prism">src/app/devices/devices.component.ts:710</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="638"
+                            class="link-to-prism">src/app/devices/devices.component.ts:638</a></div>
                 </td>
             </tr>
 
@@ -2026,8 +1959,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="228"
-                            class="link-to-prism">src/app/devices/devices.component.ts:228</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="222"
+                            class="link-to-prism">src/app/devices/devices.component.ts:222</a></div>
                 </td>
             </tr>
 
@@ -2103,8 +2036,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="347"
-                            class="link-to-prism">src/app/devices/devices.component.ts:347</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="271"
+                            class="link-to-prism">src/app/devices/devices.component.ts:271</a></div>
                 </td>
             </tr>
 
@@ -2144,8 +2077,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="334"
-                            class="link-to-prism">src/app/devices/devices.component.ts:334</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="259"
+                            class="link-to-prism">src/app/devices/devices.component.ts:259</a></div>
                 </td>
             </tr>
 
@@ -2221,8 +2154,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="570"
-                            class="link-to-prism">src/app/devices/devices.component.ts:570</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="455"
+                            class="link-to-prism">src/app/devices/devices.component.ts:455</a></div>
                 </td>
             </tr>
 
@@ -2283,6 +2216,7 @@
                     <a name="updateDevicesList"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Private</span>
                             updateDevicesList
                         </b>
                         <a href="#updateDevicesList"><span class="icon ion-ios-link"></span></a>
@@ -2291,15 +2225,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateDevicesList(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateDevicesList(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="272"
-                            class="link-to-prism">src/app/devices/devices.component.ts:272</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="547"
+                            class="link-to-prism">src/app/devices/devices.component.ts:547</a></div>
                 </td>
             </tr>
 
@@ -2377,8 +2312,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="728"
-                            class="link-to-prism">src/app/devices/devices.component.ts:728</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="655"
+                            class="link-to-prism">src/app/devices/devices.component.ts:655</a></div>
                 </td>
             </tr>
 
@@ -2400,93 +2335,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="updateDevicesStatusLineChart"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            updateDevicesStatusLineChart
-                        </b>
-                        <a href="#updateDevicesStatusLineChart"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>updateDevicesStatusLineChart()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="644"
-                            class="link-to-prism">src/app/devices/devices.component.ts:644</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Updates timeline chart</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="updateDisplayedGroupsNamesLength"></a>
-                    <span class="name">
-                        <b>
-                            updateDisplayedGroupsNamesLength
-                        </b>
-                        <a href="#updateDisplayedGroupsNamesLength"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>updateDisplayedGroupsNamesLength()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="415"
-                            class="link-to-prism">src/app/devices/devices.component.ts:415</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Updates the displayed groups chars length to calculate the number of letters displayed according to the size of the viewport</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="updateGroupsList"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Private</span>
                             updateGroupsList
                         </b>
                         <a href="#updateGroupsList"><span class="icon ion-ios-link"></span></a>
@@ -2495,15 +2347,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateGroupsList(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateGroupsList(organizationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="250"
-                            class="link-to-prism">src/app/devices/devices.component.ts:250</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="525"
+                            class="link-to-prism">src/app/devices/devices.component.ts:525</a></div>
                 </td>
             </tr>
 
@@ -2557,6 +2410,49 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateInventoryStatusLineChart"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            updateInventoryStatusLineChart
+                        </b>
+                        <a href="#updateInventoryStatusLineChart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateInventoryStatusLineChart()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="577"
+                            class="link-to-prism">src/app/devices/devices.component.ts:577</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates timeline chart</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
     <section>
     
@@ -2583,7 +2479,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/devices/devices.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/devices/devices.component.ts:113</a></div>
                             </td>
                         </tr>
 
@@ -2616,7 +2512,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/devices/devices.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/devices/devices.component.ts:55</a></div>
                             </td>
                         </tr>
 
@@ -2656,7 +2552,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/devices/devices.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/devices/devices.component.ts:118</a></div>
                             </td>
                         </tr>
 
@@ -2683,7 +2579,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/devices/devices.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/devices/devices.component.ts:78</a></div>
                             </td>
                         </tr>
 
@@ -2710,7 +2606,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/devices/devices.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/devices/devices.component.ts:79</a></div>
                             </td>
                         </tr>
 
@@ -2737,7 +2633,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/devices/devices.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/devices/devices.component.ts:75</a></div>
                             </td>
                         </tr>
 
@@ -2770,7 +2666,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/devices/devices.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/devices/devices.component.ts:67</a></div>
                             </td>
                         </tr>
 
@@ -2803,7 +2699,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/devices/devices.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/devices/devices.component.ts:101</a></div>
                             </td>
                         </tr>
 
@@ -2830,7 +2726,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/devices/devices.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/devices/devices.component.ts:92</a></div>
                             </td>
                         </tr>
 
@@ -2863,43 +2759,10 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/devices/devices.component.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/devices/devices.component.ts:84</a></div>
                             </td>
                         </tr>
 
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="devicesTimelineChart"></a>
-                        <span class="name">
-                            <b>
-                            devicesTimelineChart</b>
-                            <a href="#devicesTimelineChart"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/app/devices/devices.component.ts:138</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>NGX-Charts object-assign required object references (for rendering)</p>
-</div>
-                    </td>
-                </tr>
 
             </tbody>
         </table>
@@ -2923,46 +2786,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/devices/devices.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/devices/devices.component.ts:83</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>List of active displayed group</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="displayedGroupsNamesLength"></a>
-                        <span class="name">
-                            <b>
-                            displayedGroupsNamesLength</b>
-                            <a href="#displayedGroupsNamesLength"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/devices/devices.component.ts:58</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Models that keeps the displayed groups names length</p>
 </div>
                     </td>
                 </tr>
@@ -2989,7 +2819,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/devices/devices.component.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/devices/devices.component.ts:77</a></div>
                             </td>
                         </tr>
 
@@ -3016,7 +2846,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/app/devices/devices.component.ts:154</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/app/devices/devices.component.ts:152</a></div>
                             </td>
                         </tr>
 
@@ -3048,7 +2878,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/devices/devices.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/devices/devices.component.ts:117</a></div>
                             </td>
                         </tr>
 
@@ -3081,7 +2911,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/devices/devices.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/devices/devices.component.ts:71</a></div>
                             </td>
                         </tr>
 
@@ -3114,7 +2944,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/devices/devices.component.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/devices/devices.component.ts:88</a></div>
                             </td>
                         </tr>
 
@@ -3147,7 +2977,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/devices/devices.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/devices/devices.component.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -3180,7 +3010,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/devices/devices.component.ts:89</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/devices/devices.component.ts:100</a></div>
                             </td>
                         </tr>
 
@@ -3213,7 +3043,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/devices/devices.component.ts:95</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/devices/devices.component.ts:105</a></div>
                             </td>
                         </tr>
 
@@ -3251,7 +3081,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/devices/devices.component.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/app/devices/devices.component.ts:139</a></div>
                             </td>
                         </tr>
 
@@ -3284,7 +3114,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/devices/devices.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/devices/devices.component.ts:76</a></div>
                             </td>
                         </tr>
 
@@ -3311,7 +3141,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/devices/devices.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/devices/devices.component.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -3349,7 +3179,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/devices/devices.component.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/devices/devices.component.ts:129</a></div>
                             </td>
                         </tr>
 
@@ -3386,48 +3216,10 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/devices/devices.component.ts:123</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/app/devices/devices.component.ts:130</a></div>
                             </td>
                         </tr>
 
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="REFRESH_RATIO"></a>
-                        <span class="name">
-                            <b>
-                            REFRESH_RATIO</b>
-                            <a href="#REFRESH_RATIO"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>20000</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/devices/devices.component.ts:84</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Refresh ratio reference</p>
-</div>
-                    </td>
-                </tr>
 
             </tbody>
         </table>
@@ -3451,7 +3243,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/devices/devices.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/devices/devices.component.ts:96</a></div>
                             </td>
                         </tr>
 
@@ -3484,7 +3276,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/devices/devices.component.ts:100</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/devices/devices.component.ts:109</a></div>
                             </td>
                         </tr>
 
@@ -3549,7 +3341,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/devices/devices.component.ts:121</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/devices/devices.component.ts:128</a></div>
                             </td>
                         </tr>
 
@@ -3576,7 +3368,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/app/devices/devices.component.ts:149</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/app/devices/devices.component.ts:148</a></div>
                             </td>
                         </tr>
 
@@ -3614,7 +3406,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/app/devices/devices.component.ts:159</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/app/devices/devices.component.ts:156</a></div>
                             </td>
                         </tr>
 
@@ -3646,7 +3438,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/devices/devices.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/devices/devices.component.ts:125</a></div>
                             </td>
                         </tr>
 
@@ -3672,7 +3464,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/devices/devices.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/devices/devices.component.ts:127</a></div>
                             </td>
                         </tr>
 
@@ -3698,7 +3490,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/devices/devices.component.ts:119</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/app/devices/devices.component.ts:126</a></div>
                             </td>
                         </tr>
 
@@ -3724,7 +3516,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/devices/devices.component.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/devices/devices.component.ts:121</a></div>
                             </td>
                         </tr>
 
@@ -3750,7 +3542,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/devices/devices.component.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/devices/devices.component.ts:123</a></div>
                             </td>
                         </tr>
 
@@ -3776,7 +3568,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/devices/devices.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/devices/devices.component.ts:122</a></div>
                             </td>
                         </tr>
 
@@ -3802,7 +3594,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/devices/devices.component.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/devices/devices.component.ts:124</a></div>
                             </td>
                         </tr>
 
@@ -3856,11 +3648,16 @@ import { MockupBackendService } from &#x27;../services/mockup-backend.service&#x
 import { NotificationsService } from &#x27;../services/notifications.service&#x27;;
 import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
 import { mockDevicesChart } from &#x27;../services/utils/mocks&#x27;;
-import { AddDevicesGroupComponent } from &#x27;../add-devices-group/add-devices-group.component&#x27;;
-import { GroupConfigurationComponent } from &#x27;../group-configuration/group-configuration.component&#x27;;
+import { AddDevicesGroupComponent } from &#x27;./add-devices-group/add-devices-group.component&#x27;;
+import { GroupConfigurationComponent } from &#x27;./group-configuration/group-configuration.component&#x27;;
 import { AddLabelComponent } from &#x27;../add-label/add-label.component&#x27;;
-import { DeviceGroupInfoComponent } from &#x27;../device-group-info/device-group-info.component&#x27;;
+import { DeviceGroupInfoComponent } from &#x27;./device-group-info/device-group-info.component&#x27;;
 import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { InventoryStatus } from &#x27;../definitions/enums/inventory-status.enum&#x27;;
+/**
+ * Refresh ratio reference
+ */
+const REFRESH_RATIO &#x3D; 20000; // 20 seconds
 
 @Component({
   selector: &#x27;app-devices&#x27;,
@@ -3872,27 +3669,22 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Model that hold organization ID and group ID
    */
   organizationId: string;
-
   /**
    * Loaded Data status
    */
   loadedData: boolean;
-
   /**
    * List of available devices
    */
   devices: any[];
-
   /**
    * List of available devices groups
    */
   groups: any[];
-
   /**
    *  Models that hold group data
    */
@@ -3901,59 +3693,40 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   enabled: boolean;
   default_device_connectivity: boolean;
   device_group_api_key: string;
-
-  /**
-   * Models that keeps the displayed groups names length
-   */
-  displayedGroupsNamesLength: number;
-
   /**
    * List of active displayed group
    */
   displayedGroups: any[];
   devicesOnTimeline: any[];
-
   /**
    * List of labels
    */
   labels: any[];
-
   /**
    * Count of total devices for summary card
    */
   devicesCount: number;
-
   /**
    * Interval reference
    */
   refreshIntervalRef: any;
-
-  /**
-   * Refresh ratio reference
-   */
-  REFRESH_RATIO &#x3D; 20000; // 20 seconds
-
   /**
    * Charts references
    */
   mockDevicesChart: any;
   devicesChart: any;
-
   /**
    * Reference for the service that allows the add group component
    */
   modalRef: BsModalRef;
-
   /**
    * Hold request error message or undefined
    */
   requestError: string;
-
   /**
    * Active context menu groupID
    */
   activeContextMenuGroupId: string;
-
   /**
    * Line Chart options
    */
@@ -3976,33 +3749,23 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       value: 0
     }
   ];
-
   /**
    * Accordion options
    */
   nalejAccordion &#x3D; &#x27;nalejAccordion&#x27;;
-
-  /**
-   * NGX-Charts object-assign required object references (for rendering)
-   */
-  devicesTimelineChart: any;
-
   /**
    * Models that hold the sort info needed to sortBy pipe
    */
   sortedBy: string;
   reverse: boolean;
-
   /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
-
   /**
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
-
   /**
    * List of selected labels from an entity
    */
@@ -4031,7 +3794,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.activeContextMenuGroupId &#x3D; &#x27;&#x27;;
     this.devicesCount &#x3D; 0;
     this.devicesChart &#x3D; [{
-      name: &#x27;Running devices %&#x27;,
+      name:  this.translateService.instant(&#x27;devices.running&#x27;),
       series: []
     }];
     this.requestError &#x3D; &#x27;&#x27;;
@@ -4046,7 +3809,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.searchTerm &#x3D; &#x27;&#x27;;
     // Filter field
     this.filterField &#x3D; false;
-
     /**
      * Charts reference init
      */
@@ -4062,15 +3824,13 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         this.refreshIntervalRef &#x3D; setInterval(() &#x3D;&gt; {
           this.updateGroupsList(this.organizationId);
         },
-        this.REFRESH_RATIO); // Refresh each 60 seconds
+        REFRESH_RATIO); // Refresh each 60 seconds
     }
-    this.updateDisplayedGroupsNamesLength();
   }
 
   ngOnDestroy() {
     clearInterval(this.refreshIntervalRef);
   }
-
   /**
    * Translates timestamps to the wish date
    * @param timestamp is an integer that represents the number of seconds elapsed
@@ -4078,7 +3838,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   parseTimestampToDate(timestamp: any) {
     return new Date(Number.parseInt(timestamp, 10) * 1000);
   }
-
   /**
    * Method that counts the number of devices
    */
@@ -4092,61 +3851,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     });
     return temporalCount;
   }
-
-  /**
-   * Requests an updated list of available devices group to update the current one
-   * @param organizationId Organization identifier
-   */
-  updateGroupsList(organizationId: string) {
-    if (organizationId !&#x3D;&#x3D; null) {
-      // Requests an updated devices group list
-      this.backend.getGroups(this.organizationId)
-      .subscribe(response &#x3D;&gt; {
-        this.groups &#x3D; response.groups || [];
-        this.groups.forEach(group &#x3D;&gt; {
-          group.isFirstOpen &#x3D; true;
-        });
-        this.updateDisplayedGroupsNamesLength();
-        this.updateDevicesList(this.organizationId);
-      }, errorResponse &#x3D;&gt; {
-          this.loadedData &#x3D; true;
-          this.requestError &#x3D; errorResponse.error.message;
-        });
-    }
-  }
-
-  /**
-   * Requests an updated list of devices to update the current one
-   * @param organizationId organization identifier
-   */
-  updateDevicesList(organizationId: string) {
-    const tmpDevices &#x3D; [];
-    if (organizationId !&#x3D;&#x3D; null) {
-      // Request to get devices
-      if (this.groups.length &gt; 0) {
-        this.groups.forEach((group, index) &#x3D;&gt; {
-          this.backend.getDevices(this.organizationId, group.device_group_id)
-          .subscribe(response &#x3D;&gt; {
-              tmpDevices.push(response.devices || []);
-              if (!this.loadedData &amp;&amp; index &#x3D;&#x3D;&#x3D; this.groups.length - 1) {
-                this.loadedData &#x3D; true;
-              }
-              if (tmpDevices.length &#x3D;&#x3D;&#x3D; this.groups.length) {
-                this.devices &#x3D; tmpDevices;
-              }
-              this.updateDevicesOnTimeline();
-              this.updateDevicesStatusLineChart();
-            }, errorResponse &#x3D;&gt; {
-              this.loadedData &#x3D; true;
-              this.requestError &#x3D; errorResponse.error.message;
-            });
-          });
-      } else {
-        this.loadedData &#x3D; true;
-      }
-    }
-  }
-
   /**
    * Checks if the devices status requires an special css class
    * @param status devices status name
@@ -4155,28 +3859,15 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   classStatusCheck(status: string, className: string): boolean {
     if (status) {
       switch (status.toLowerCase()) {
-        case this.translateService.instant(&#x27;status.online&#x27;): {
-          if (className.toLowerCase() &#x3D;&#x3D;&#x3D; this.translateService.instant(&#x27;status.online&#x27;)) {
-            return true;
-          }
-          break;
-        }
-        case this.translateService.instant(&#x27;status.offline&#x27;): {
-          if (className.toLowerCase() &#x3D;&#x3D;&#x3D; this.translateService.instant(&#x27;status.offline&#x27;)) {
-            return true;
-          }
-          break;
-        }
-       default: {
-          if (className.toLowerCase() &#x3D;&#x3D;&#x3D; this.translateService.instant(&#x27;status.process&#x27;)) {
-            return true;
-          }
-          return false;
-        }
+        case InventoryStatus.Online:
+          return className.toLowerCase() &#x3D;&#x3D;&#x3D; InventoryStatus.Online;
+        case InventoryStatus.Offline:
+          return className.toLowerCase() &#x3D;&#x3D;&#x3D; InventoryStatus.Offline;
+        default:
+          return className.toLowerCase() &#x3D;&#x3D;&#x3D; InventoryStatus.Process;
       }
     }
   }
-
   /**
    * Sortby pipe in the component
    * @param categoryName the name of the chosen category
@@ -4190,7 +3881,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       this.filterField &#x3D; true;
     }
   }
-
   /**
    * Reset all the filters fields
    */
@@ -4199,7 +3889,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.searchTerm &#x3D; &#x27;&#x27;;
     this.sortedBy &#x3D; &#x27;&#x27;;
   }
-
   /**
    * Gets the category headers to add a class
    * @param categoryName the class for the header category
@@ -4215,31 +3904,28 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       }
     }
   }
-
   /**
    * Checkbox switcher statement to select one of enabled device to be executed.
    * @param device device data to update
    */
   enableSwitcher(device: { enabled: boolean; device_group_id: any; device_id: any; }) {
-   device.enabled &#x3D; !device.enabled;
+    device.enabled &#x3D; !device.enabled;
    // backend call
-   this.backend.updateDevice(this.organizationId, {
+    this.backend.updateDevice(this.organizationId, {
       organizationId: this.organizationId,
       deviceGroupId: device.device_group_id,
       deviceId: device.device_id,
       enabled: device.enabled
-   }).subscribe( updateDeviceResponse &#x3D;&gt; {
-     let notificationText &#x3D; this.translateService.instant(&#x27;devices.enabled&#x27;);
-     if (!device.enabled) {
+    }).subscribe( updateDeviceResponse &#x3D;&gt; {
+      let notificationText &#x3D; this.translateService.instant(&#x27;devices.enabled&#x27;);
+      if (!device.enabled) {
       notificationText &#x3D; this.translateService.instant(&#x27;devices.disabled&#x27;);
-     }
-    this.notificationsService.add({
-      message: this.translateService.instant(&#x27;devices.switcherMessage&#x27;)  + notificationText,
-      timeout: 3000
+      }
+      this.notificationsService.add({
+        message: this.translateService.instant(&#x27;devices.switcherMessage&#x27;)  + notificationText
+      });
     });
-   });
   }
-
   /**
    * Opens the modal view that holds add group component
    */
@@ -4248,7 +3934,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     const initialState &#x3D; {
       organizationId: this.organizationId,
     };
-
     this.modalRef &#x3D; this.modalService.show(AddDevicesGroupComponent, {initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
     this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; {
@@ -4258,30 +3943,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       allowHide &#x3D; false;
     });
   }
-
-  /**
-   * Updates the displayed groups chars length to calculate the number of letters displayed according to the size of the viewport
-   */
-  updateDisplayedGroupsNamesLength() {
-    this.displayedGroupsNamesLength &#x3D; 0;
-    this.displayedGroups.forEach(group &#x3D;&gt; {
-      this.displayedGroupsNamesLength +&#x3D; group.name.length;
-    });
-  }
-
-  /**
-   * Gets the devices array list and traverse the group array list to show in table
-   */
-  getDevices() {
-    const groupDevices &#x3D; [];
-    this.devices.forEach(group &#x3D;&gt; {
-      group.forEach(device &#x3D;&gt; {
-        groupDevices.push(device);
-      });
-    });
-    return groupDevices;
-  }
-
   /**
    * Search for an specific array of devices that are part of the same group
    * @param groupId Group identifier
@@ -4296,7 +3957,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
     return [];
   }
-
   /**
    * Opens the modal view that holds add label component
    * @param device Device object
@@ -4308,12 +3968,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       entity: device,
       modalTitle: device.device_id
     };
-
     this.modalRef &#x3D; this.modalService.show(AddLabelComponent, {initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
     this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; { });
   }
-
   /**
    * Deletes a selected label
    * @param entity selected label entity
@@ -4333,11 +3991,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           this.selectedLabels.splice(index, 1);
           this.updateDevicesList(this.organizationId);
         });
-    } else {
-      // Do nothing
     }
   }
-
   /**
    * Selects a label
    * @param entityId entity from selected label
@@ -4366,8 +4021,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       }
     }
   }
-
- /**
+  /**
   * Check if the label is selected. Returns index number in selected labels or -1 if the label is not found.
   * @param entityId entity from selected label
   * @param labelKey label key from selected label
@@ -4383,7 +4037,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
   return -1;
   }
-
   /**
    * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
    * @param entityId entity from selected label
@@ -4397,7 +4050,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     }
     return false;
   }
-
   /**
    * Returns human-understandable category name
    * @param sortedByRawCategory Raw category name
@@ -4412,32 +4064,28 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         return sortedByRawCategory;
     }
   }
-
   /**
    * Requests to unlink the selected device
    * @param device device item
    */
   unlinkDevice(device: any) {
     const unlinkConfirm &#x3D;
-    confirm(this.translateService.instant(&#x27;devices.unlinkDeviceConfirm&#x27;, {device_id : device.device_id }));
+    confirm(this.translateService.instant(&#x27;devices.unlinkDeviceConfirm&#x27;, {deviceId : device.device_id }));
     if (unlinkConfirm) {
       this.backend.removeDevice(this.organizationId, device.device_group_id, device.device_id)
-        .subscribe(unlinkResponse &#x3D;&gt; {
+      .subscribe(unlinkResponse &#x3D;&gt; {
         this.notificationsService.add({
-          message: this.translateService.instant(&#x27;devices.unlinkDeviceMessage&#x27;, {device_id : device.device_id }),
-          timeout: 3000
+          message: this.translateService.instant(&#x27;devices.unlinkDeviceMessage&#x27;,  {deviceId : device.device_id })
         });
         this.updateGroupsList(this.organizationId);
         }, error &#x3D;&gt; {
           this.notificationsService.add({
             message: error.error.message,
-            timeout: 5000,
             type: &#x27;warning&#x27;
           });
         });
-    }
+      }
   }
-
   /**
    * Opens context menu
    * @param group device group
@@ -4454,7 +4102,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   onContextualMenuClose(group) {
     this.activeContextMenuGroupId &#x3D; &#x27;&#x27;;
   }
-
   /**
    * Get the item options to show in the context menu
    * @param group device group
@@ -4487,11 +4134,63 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     groupOptions.push(groupOption3);
     return groupOptions;
   }
-
+  /**
+   * Requests an updated list of available devices group to update the current one
+   * @param organizationId Organization identifier
+   */
+  private updateGroupsList(organizationId: string) {
+    if (organizationId !&#x3D;&#x3D; null) {
+      // Requests an updated devices group list
+      this.backend.getGroups(this.organizationId)
+      .subscribe(response &#x3D;&gt; {
+        if (response.groups) {
+          response.groups.forEach(group &#x3D;&gt; {
+            group.isFirstOpen &#x3D; true;
+          });
+        }
+        this.groups &#x3D; response.groups || [];
+        this.updateDevicesList(this.organizationId);
+      }, errorResponse &#x3D;&gt; {
+          this.loadedData &#x3D; true;
+          this.requestError &#x3D; errorResponse.error.message;
+        });
+    }
+  }
+  /**
+   * Requests an updated list of devices to update the current one
+   * @param organizationId organization identifier
+   */
+  private updateDevicesList(organizationId: string) {
+    const tmpDevices &#x3D; [];
+    if (organizationId !&#x3D;&#x3D; null) {
+      // Request to get devices
+      if (this.groups.length &gt; 0) {
+        this.groups.forEach((group, index) &#x3D;&gt; {
+          this.backend.getDevices(this.organizationId, group.device_group_id)
+          .subscribe(response &#x3D;&gt; {
+              tmpDevices.push(response.devices || []);
+              if (!this.loadedData &amp;&amp; index &#x3D;&#x3D;&#x3D; this.groups.length - 1) {
+                this.loadedData &#x3D; true;
+              }
+              if (tmpDevices.length &#x3D;&#x3D;&#x3D; this.groups.length) {
+                this.devices &#x3D; tmpDevices;
+              }
+              this.updateDevicesOnTimeline();
+              this.updateInventoryStatusLineChart();
+            }, errorResponse &#x3D;&gt; {
+              this.loadedData &#x3D; true;
+              this.requestError &#x3D; errorResponse.error.message;
+            });
+          });
+      } else {
+        this.loadedData &#x3D; true;
+      }
+    }
+  }
   /**
    * Updates timeline chart
    */
-  private updateDevicesStatusLineChart() {
+  private updateInventoryStatusLineChart() {
     let connectedDevicesCount &#x3D; 0;
     let selectedGroupDevicesCountTotal &#x3D; 0;
 
@@ -4517,7 +4216,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (seconds &lt; 10) {
       seconds &#x3D; &#x27;0&#x27; + now.getSeconds();
     }
-
     let value &#x3D; 0;
     if (connectedDevicesCount &gt; 0 &amp;&amp; selectedGroupDevicesCountTotal !&#x3D;&#x3D; 0) {
       value &#x3D; connectedDevicesCount / selectedGroupDevicesCountTotal * 100;
@@ -4526,7 +4224,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       &#x27;value&#x27;: value.toFixed(2),
       &#x27;name&#x27;:  now.getHours() + &#x27;:&#x27; + minutes + &#x27;:&#x27; + seconds
     };
-
     if (this.devicesChart[0].series.length &gt; 4) {
       // Removes first element
       this.devicesChart[0].series.shift();
@@ -4534,7 +4231,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.devicesChart[0].series.push(entry);
     this.devicesChart &#x3D; [...this.devicesChart];
   }
-
   /**
   * Open device group info modal window
   *  @param group group object
@@ -4548,11 +4244,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       defaultDeviceConnectivity: group.default_device_connectivity,
       enabled: group.enabled
     };
-
     this.modalRef &#x3D; this.modalService.show(DeviceGroupInfoComponent, { initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
   }
-
   /**
    * Opens the modal view that holds group configuration component
    * @param group device group
@@ -4567,11 +4261,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     };
     this.modalRef &#x3D; this.modalService.show(GroupConfigurationComponent, {initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
-    this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; {
+    this.modalService.onHide.subscribe(() &#x3D;&gt; {
       this.updateGroupsList(this.organizationId);
     });
   }
-
   /**
    * Updates devices values array for timeline
    */
@@ -4585,7 +4278,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         }
       });
   }
-
   /**
    *  Upon confirmation, deletes a device group
    *  @param group device group
@@ -4593,47 +4285,49 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   private deleteGroup(group) {
     const deleteConfirm &#x3D; confirm(this.translateService.instant(&#x27;devices.deleteGroup&#x27;));
     if (deleteConfirm) {
-      if (this.countDevices() &#x3D;&#x3D;&#x3D; 0) {
+      if (this.getGroupDevices(group.device_group_id).length &#x3D;&#x3D;&#x3D; 0) {
       this.backend.deleteGroup(this.organizationId, group.device_group_id)
-      .subscribe(response &#x3D;&gt; {
-        this.backend.getGroups(this.organizationId)
-        .subscribe(getGroupsResponse &#x3D;&gt; {
-            this.groups &#x3D; getGroupsResponse.groups;
-            if (!this.groups) {
-              this.groups &#x3D; [];
-            }
-          this.updateDisplayedGroupsNamesLength();
-          });
+      .subscribe(() &#x3D;&gt; {
+        this.updateGroupsList(this.organizationId);
           this.notificationsService.add({
-            message: this.translateService.instant(&#x27;devices.deleteGroupMessage&#x27;, { groupName: group.name }),
-            timeout: 3000
+            message: this.translateService.instant(&#x27;devices.deleteGroupMessage&#x27;, { groupName: group.name })
           });
       },
       error &#x3D;&gt; {
         this.notificationsService.add({
           message: error.error.message,
-          timeout: 5000,
           type: &#x27;warning&#x27;
         });
       });
       } else {
         this.notificationsService.add({
           message: this.translateService.instant(&#x27;devices.deleteGroupMessageNegative&#x27;),
-          timeout: 5000,
           type: &#x27;warning&#x27;
         });
       }
-      }
+    }
   }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;!-- Component title --&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;!-- 
+  Copyright 2019 Nalej
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ --&gt;
+
 &lt;div class&#x3D;&quot;row row-title&quot;&gt;
   &lt;div class&#x3D;&quot;col-12&quot;&gt;
-    &lt;h2 class&#x3D;&quot;section-title&quot;&gt;{{&#x27;devices.title&#x27;|translate}}&lt;/h2&gt;
+    &lt;h2 class&#x3D;&quot;section-title&quot;&gt;{{&#x27;devices.title&#x27; | translate}}&lt;/h2&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;!-- Summary and devices status timeline row --&gt;
@@ -4641,34 +4335,34 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   &lt;div class&#x3D;&quot;col-lg-4 h-100&quot;&gt;
     &lt;div class&#x3D;&quot;card&quot;&gt;
       &lt;div class&#x3D;&quot;card-title-name&quot;&gt;
-        &lt;h5&gt;{{&#x27;devices.summary.title&#x27;|translate}}&lt;/h5&gt;
+        &lt;h5&gt;{{&#x27;devices.summary.title&#x27; | translate}}&lt;/h5&gt;
       &lt;/div&gt;
       &lt;div *ngIf&#x3D;&quot;groups &amp;&amp; groups.length &gt; 0&quot; class&#x3D;&quot;summary-card&quot;&gt;
         &lt;div class&#x3D;&quot;summary-box&quot;&gt;
           &lt;div class&#x3D;&quot;circle&quot;&gt;
               &lt;span &gt;{{groups.length}}&lt;/span&gt;
           &lt;/div&gt;
-          &lt;p class&#x3D;&quot;circle-name&quot;&gt;{{&#x27;devices.summary.groups.title&#x27;|translate}}&lt;/p&gt;
+          &lt;p class&#x3D;&quot;circle-name&quot;&gt;{{&#x27;devices.summary.groups.title&#x27; | translate}}&lt;/p&gt;
         &lt;/div&gt;        
         &lt;div class&#x3D;&quot;summary-box&quot;&gt;
           &lt;div class&#x3D;&quot;circle&quot;&gt;
             &lt;span&gt;{{countDevices()}}&lt;/span&gt; 
           &lt;/div&gt;
-            &lt;p class&#x3D;&quot;circle-name&quot;&gt;{{&#x27;devices.title&#x27;|translate}}&lt;/p&gt;
+            &lt;p class&#x3D;&quot;circle-name&quot;&gt;{{&#x27;devices.title&#x27; | translate}}&lt;/p&gt;
         &lt;/div&gt;
       &lt;/div&gt;
       &lt;div *ngIf&#x3D;&quot;groups &amp;&amp; groups.length &#x3D;&#x3D;&#x3D; 0&quot; class&#x3D;&quot;no-elements&quot;&gt;
-        {{&#x27;devices.summary.noAvailable&#x27;|translate}}
+        {{&#x27;devices.summary.noAvailable&#x27; | translate}}
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;div class&#x3D;&quot;col-lg-8 h-100&quot;&gt;
     &lt;div class&#x3D;&quot;card p-4&quot;&gt;
       &lt;div class&#x3D;&quot;card-title-name&quot;&gt;
-        &lt;h5&gt;{{&#x27;devices.status.title&#x27;|translate}}&lt;/h5&gt;
+        &lt;h5&gt;{{&#x27;devices.status.title&#x27; | translate}}&lt;/h5&gt;
       &lt;/div&gt;
       &lt;div *ngIf&#x3D;&quot;countDevices() &#x3D;&#x3D;&#x3D; 0&quot; class&#x3D;&quot;no-elements&quot;&gt; 
-        {{&#x27;devices.noDevices&#x27;|translate}}
+        {{&#x27;devices.noDevices&#x27; | translate}}
       &lt;/div&gt;
       &lt;div *ngIf&#x3D;&quot;countDevices() &gt; 0&quot; class&#x3D;&quot;line-chart-box&quot;&gt;
         &lt;ngx-charts-line-chart
@@ -4703,13 +4397,13 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     &lt;div class&#x3D;&quot;card p-4&quot;&gt;
       &lt;div class&#x3D;&quot;row mb-15&quot;&gt;
         &lt;div class&#x3D;&quot;col-10 card-title-name-mb&quot;&gt;
-          &lt;h5&gt;{{&#x27;devices.title&#x27;|translate}}&lt;/h5&gt;
+          &lt;h5&gt;{{&#x27;devices.title&#x27; | translate}}&lt;/h5&gt;
         &lt;/div&gt;
         &lt;!-- Add group --&gt;
         &lt;div class&#x3D;&quot;col-2 add-group-box&quot;&gt;
           &lt;button (click)&#x3D;&quot;addGroup()&quot; class&#x3D;&quot;add-group-btn&quot;&gt;
             &lt;i class&#x3D;&quot;material-icons i-add&quot;&gt;add&lt;/i&gt;
-            {{&#x27;devices.addGroup&#x27;|translate}}
+            {{&#x27;devices.addGroup&#x27; | translate}}
           &lt;/button&gt;
         &lt;/div&gt;
       &lt;/div&gt;
@@ -4724,26 +4418,26 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           &lt;!-- Sorting messages --&gt;
           &lt;div class&#x3D;&quot;col-8&quot;&gt;  
             &lt;p *ngIf&#x3D;&quot;searchTerm &amp;&amp; !filterField&quot; class&#x3D;&quot;sorting-message&quot;&gt;
-              {{&#x27;sortingMessage.filteredBy&#x27;|translate:{value: searchTerm} }}
+              {{&#x27;sortingMessage.filteredBy&#x27; | translate:{value: searchTerm} }}
               &lt;span (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;reset-search&quot;&gt;
-                {{&#x27;sortingMessage.reset&#x27;|translate}}
+                {{&#x27;sortingMessage.reset&#x27; | translate}}
               &lt;/span&gt;
             &lt;/p&gt;
             &lt;p *ngIf&#x3D;&quot;filterField &amp;&amp; !searchTerm&quot; class&#x3D;&quot;sorting-message&quot;&gt;
-              {{&#x27;sortingMessage.sortedBy&#x27;|translate:{value: getBeautyCategoryName(sortedBy)} }}
-              &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;ascendant. &lt;/span&gt;
-              &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;descendant. &lt;/span&gt;
+              {{&#x27;sortingMessage.sortedBy&#x27; | translate:{value: getBeautyCategoryName(sortedBy)} }}
+              &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;{{&#x27;sortingMessage.ascendant&#x27; | translate:{value: &#x27;. &#x27;} }} &lt;/span&gt;
+              &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;{{&#x27;sortingMessage.descendant&#x27; | translate:{value: &#x27;. &#x27;} }}&lt;/span&gt;
               &lt;span (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;reset-search&quot;&gt;
-                {{&#x27;sortingMessage.reset&#x27;|translate}}
+                {{&#x27;sortingMessage.reset&#x27; | translate}}
               &lt;/span&gt;
             &lt;/p&gt;
             &lt;p *ngIf&#x3D;&quot;filterField &amp;&amp; searchTerm&quot; class&#x3D;&quot;sorting-message&quot;&gt;
-              {{&#x27;sortingMessage.sortedBy&#x27;|translate:{value: getBeautyCategoryName(sortedBy)} }}
-              &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;ascendant &lt;/span&gt;
-              &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;descendant &lt;/span&gt;
-              {{&#x27;sortingMessage.andFilteredBy&#x27;|translate:{value: searchTerm} }}.
+              {{&#x27;sortingMessage.sortedBy&#x27; | translate:{value: getBeautyCategoryName(sortedBy)} }}
+              &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;{{&#x27;sortingMessage.ascendant&#x27; | translate:{value: &#x27; &#x27;} }}&lt;/span&gt;
+              &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;{{&#x27;sortingMessage.descendant&#x27; | translate:{value: &#x27; &#x27;} }}&lt;/span&gt;
+              {{&#x27;sortingMessage.andFilteredBy&#x27; | translate:{value: searchTerm} }}.
               &lt;span (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;reset-search&quot;&gt;
-                {{&#x27;sortingMessage.reset&#x27;|translate}}
+                {{&#x27;sortingMessage.reset&#x27; | translate}}
               &lt;/span&gt;
             &lt;/p&gt; 
           &lt;/div&gt;
@@ -4755,7 +4449,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                   name&#x3D;&quot;searchTerm&quot; 
                   [(ngModel)]&#x3D;&quot;searchTerm&quot;
                   type&#x3D;&quot;text&quot; 
-                  placeholder&#x3D;&quot;{{&#x27;searcher.placeholder&#x27;|translate }}&quot;
+                  placeholder&#x3D;&quot;{{&#x27;searcher.placeholder&#x27; | translate }}&quot;
                   class&#x3D;&quot;form-control&quot;&gt; 
                   &lt;div *ngIf&#x3D;&quot;searchTerm &#x3D;&#x3D;&#x3D; &#x27;&#x27;&quot; class&#x3D;&quot;search-icon&quot;&gt;
                     &lt;i class&#x3D;&quot;material-icons&quot;&gt;search&lt;/i&gt;
@@ -4769,17 +4463,15 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         &lt;/div&gt;
         &lt;!-- Devices tabs --&gt;
         &lt;div class&#x3D;&quot;row h-100&quot;&gt;
-          &lt;div class&#x3D;&quot;col accordion-box accordion-devices&quot;&gt;
+          &lt;div *ngIf&#x3D;&quot;groups.length &gt; 0&quot; class&#x3D;&quot;col accordion-box accordion-devices&quot;&gt;
             &lt;accordion 
               *ngFor&#x3D;&quot;let group of groups&quot;
               class&#x3D;&quot;accordion-tabs&quot;&gt;
               &lt;accordion-group
-                *ngIf&#x3D;&quot;groups.length &gt; 0&quot;
                 heading&#x3D;&quot;{{group.name}}&quot;
                 [panelClass]&#x3D;&quot;nalejAccordion&quot;
-                [isOpen]&#x3D;&quot;group.isFirstOpen&quot;
-                (click)&#x3D;&quot;group.isFirstOpen &#x3D; !group.isFirstOpen&quot;&gt;
-                  &lt;span     
+                [isOpen]&#x3D;&quot;group.isFirstOpen&quot;&gt;
+                  &lt;span
                     accordion-heading 
                     class&#x3D;&quot;accordion-icons-box&quot;&gt;
                     &lt;i class&#x3D;&quot;material-icons accordion-arrow&quot;&gt;arrow_drop_down&lt;/i&gt;
@@ -4820,7 +4512,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                               (click)&#x3D;&quot;setOrder(&#x27;name&#x27;)&quot;
                               [ngClass]&#x3D;&quot;getCategoryCSSClass(&#x27;name&#x27;)&quot;
                               class&#x3D;&quot;label-th col-4&quot;&gt;
-                              &lt;span tooltip&#x3D;&quot;{{&#x27;devices.tableName&#x27;|translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;{{&#x27;devices.tableName&#x27;|translate}}&lt;/span&gt;
+                              &lt;span tooltip&#x3D;&quot;{{&#x27;devices.tableName&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;{{&#x27;devices.tableName&#x27; | translate}}&lt;/span&gt;
                               &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;name&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                                 &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                               &lt;/span&gt;
@@ -4833,7 +4525,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                               (click)&#x3D;&quot;setOrder(&#x27;date&#x27;)&quot; 
                               [ngClass]&#x3D;&quot;getCategoryCSSClass(&#x27;date&#x27;)&quot;
                               class&#x3D;&quot;label-th col-4&quot;&gt;
-                              &lt;span tooltip&#x3D;&quot;{{&#x27;devices.tableDate&#x27;|translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;{{&#x27;devices.tableDate&#x27;|translate}}&lt;/span&gt;
+                              &lt;span tooltip&#x3D;&quot;{{&#x27;devices.tableDate&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;{{&#x27;devices.tableDate&#x27; | translate}}&lt;/span&gt;
                               &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;date&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                                 &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                               &lt;/span&gt;
@@ -4846,7 +4538,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                               (click)&#x3D;&quot;setOrder(&#x27;status&#x27;)&quot; 
                               [ngClass]&#x3D;&quot;getCategoryCSSClass(&#x27;status&#x27;)&quot;
                               class&#x3D;&quot;label-th col-4 text-center&quot;&gt;
-                              &lt;span tooltip&#x3D;&quot;{{&#x27;devices.tableStatus&#x27;|translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;{{&#x27;devices.tableStatus&#x27;|translate}}&lt;/span&gt;
+                              &lt;span tooltip&#x3D;&quot;{{&#x27;devices.tableStatus&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;{{&#x27;devices.tableStatus&#x27; | translate}}&lt;/span&gt;
                               &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;status&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                                 &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                               &lt;/span&gt;
@@ -4859,7 +4551,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                               (click)&#x3D;&quot;setOrder(&#x27;labels&#x27;)&quot; 
                               [ngClass]&#x3D;&quot;getCategoryCSSClass(&#x27;labels&#x27;)&quot;
                               class&#x3D;&quot;label-th col-12&quot;&gt;
-                              &lt;span tooltip&#x3D;&quot;{{&#x27;devices.tableLabels&#x27;|translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;{{&#x27;devices.tableLabels&#x27;|translate}}&lt;/span&gt;
+                              &lt;span tooltip&#x3D;&quot;{{&#x27;devices.tableLabels&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;{{&#x27;devices.tableLabels&#x27; | translate}}&lt;/span&gt;
                               &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;labels&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                                 &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                               &lt;/span&gt;
@@ -4872,7 +4564,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                         &lt;div 
                           *ngIf&#x3D;&quot;countDevices() &gt; 0&quot;
                           class&#x3D;&quot;label-th col-1 text-center&quot;&gt;
-                          &lt;span tooltip&#x3D;&quot;{{&#x27;devices.tableActions&#x27;|translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;{{&#x27;devices.tableActions&#x27;|translate}}&lt;/span&gt; 
+                          &lt;span tooltip&#x3D;&quot;{{&#x27;devices.tableActions&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;{{&#x27;devices.tableActions&#x27; | translate}}&lt;/span&gt; 
                         &lt;/div&gt;
                       &lt;/div&gt;
                       &lt;span *ngIf&#x3D;&quot;
@@ -4892,9 +4584,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                                   class&#x3D;&quot;col-4 label-td col-center-lowercase&quot;
                                   [ngClass]&#x3D;
                                   &quot;{
-                                    &#x27;status-dot&#x27;:classStatusCheck(device.device_status_name, &#x27;status.online&#x27;|translate),
-                                    &#x27;status-dot-error&#x27;:classStatusCheck(device.device_status_name, &#x27;status.offline&#x27;|translate),
-                                    &#x27;status-dot-process&#x27;:classStatusCheck(device.device_status_name, &#x27;status.process&#x27;|translate)
+                                    &#x27;status-dot&#x27;:classStatusCheck(device.device_status_name, &#x27;status.online&#x27; | translate),
+                                    &#x27;status-dot-error&#x27;:classStatusCheck(device.device_status_name, &#x27;status.offline&#x27; | translate),
+                                    &#x27;status-dot-process&#x27;:classStatusCheck(device.device_status_name, &#x27;status.process&#x27; | translate)
                                   }&quot;&gt; 
                                   &lt;span 
                                     tooltip&#x3D;&quot;{{device.device_status_name}}&quot; 
@@ -4910,7 +4602,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                                 &lt;div *ngIf&#x3D;&quot;!device.labels&quot; class&#x3D;&quot;col-12&quot;&gt;
                                   &lt;div 
                                     (click)&#x3D;&quot;addLabel(device)&quot;
-                                    tooltip&#x3D;&quot;{{&#x27;label.add&#x27;|translate}}&quot; 
+                                    tooltip&#x3D;&quot;{{&#x27;label.add&#x27; | translate}}&quot; 
                                     placement&#x3D;&quot;right&quot;
                                     class&#x3D;&quot;label-btn-blue&quot;&gt;
                                       &lt;i class&#x3D;&quot;material-icons i-add&quot;&gt;add&lt;/i&gt;  
@@ -4928,23 +4620,24 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                                     class&#x3D;&quot;label-content&quot;&gt;
                                     {{label.key}}: {{label.value}}
                                   &lt;/button&gt;
-                                  &lt;div class&#x3D;&quot;label-btns&quot;&gt;
+                                  &lt;div class&#x3D;&quot;label-btns&quot;&gt; 
                                     &lt;div 
-                                      *ngIf&#x3D;&quot;isAnyLabelSelected(device.device_id) &#x3D;&#x3D;&#x3D; false&quot;
-                                      (click)&#x3D;&quot;addLabel(device)&quot;
-                                      tooltip&#x3D;&quot;{{&#x27;label.add&#x27;|translate}}&quot; 
-                                      placement&#x3D;&quot;right&quot;
-                                      class&#x3D;&quot;label-btn-blue&quot;&gt;
-                                      &lt;i class&#x3D;&quot;material-icons i-add&quot;&gt;add&lt;/i&gt;
+                                      *ngIf&#x3D;&quot;isAnyLabelSelected(device.device_id); else isNotAnyLabelSelected&quot; 
+                                      (click)&#x3D;&quot;deleteLabel(device)&quot; 
+                                      tooltip&#x3D;&quot;{{&#x27;label.deleteUp&#x27; | translate}}&quot; 
+                                      placement&#x3D;&quot;right&quot; 
+                                      class&#x3D;&quot;label-btn-red&quot;&gt; 
+                                      &lt;i class&#x3D;&quot;material-icons i-delete&quot;&gt;delete&lt;/i&gt; 
                                     &lt;/div&gt;
-                                    &lt;div 
-                                      *ngIf&#x3D;&quot;isAnyLabelSelected(device.device_id) &#x3D;&#x3D;&#x3D; true&quot;
-                                      (click)&#x3D;&quot;deleteLabel(device)&quot;
-                                      tooltip&#x3D;&quot;{{&#x27;label.delete&#x27;|translate}}&quot; 
-                                      placement&#x3D;&quot;right&quot;
-                                      class&#x3D;&quot;label-btn-red&quot;&gt;
-                                      &lt;i class&#x3D;&quot;material-icons i-delete&quot;&gt;delete&lt;/i&gt;
-                                    &lt;/div&gt;
+                                    &lt;ng-template #isNotAnyLabelSelected&gt; 
+                                      &lt;div 
+                                        (click)&#x3D;&quot;addLabel(device)&quot; 
+                                        tooltip&#x3D;&quot;{{&#x27;label.addUp&#x27; | translate}}&quot; 
+                                        placement&#x3D;&quot;right&quot; 
+                                        class&#x3D;&quot;label-btn-blue&quot;&gt;
+                                        &lt;i class&#x3D;&quot;material-icons i-add&quot;&gt;add&lt;/i&gt;
+                                      &lt;/div&gt; 
+                                    &lt;/ng-template&gt; 
                                   &lt;/div&gt;
                                 &lt;/div&gt;
                               &lt;/div&gt;
@@ -4954,7 +4647,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                                 &lt;button 
                                   *ngIf&#x3D;&quot;device.enabled&quot;
                                   (click)&#x3D;&quot;enableSwitcher(device)&quot;
-                                  tooltip&#x3D;&quot;{{&#x27;devices.enabled&#x27;|translate}}&quot; 
+                                  tooltip&#x3D;&quot;{{&#x27;devices.enabled&#x27; | translate}}&quot; 
                                   placement&#x3D;&quot;left&quot;
                                   class&#x3D;&quot;action-btn-blue-2&quot;&gt;
                                   &lt;i class&#x3D;&quot;material-icons i-white-2&quot;&gt;play_arrow&lt;/i&gt;
@@ -4962,14 +4655,14 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                                 &lt;button
                                   *ngIf&#x3D;&quot;!device.enabled&quot; 
                                   (click)&#x3D;&quot;enableSwitcher(device)&quot;
-                                  tooltip&#x3D;&quot;{{&#x27;devices.disabled&#x27;|translate}}&quot; 
+                                  tooltip&#x3D;&quot;{{&#x27;devices.disabled&#x27; | translate}}&quot; 
                                   placement&#x3D;&quot;left&quot;
                                   class&#x3D;&quot;action-btn-grey-2 position-relative&quot;&gt;
                                   &lt;i class&#x3D;&quot;material-icons i-black-2&quot;&gt;pause&lt;/i&gt;
                                 &lt;/button&gt;
                                 &lt;button 
                                   (click)&#x3D;&quot;unlinkDevice(device)&quot;
-                                  tooltip&#x3D;&quot;{{&#x27;devices.unlinkDevice&#x27;|translate}}&quot; 
+                                  tooltip&#x3D;&quot;{{&#x27;devices.unlinkDevice&#x27; | translate}}&quot; 
                                   placement&#x3D;&quot;bottom&quot; 
                                   class&#x3D;&quot;action-btn-red-2&quot;&gt;
                                   &lt;i class&#x3D;&quot;material-icons i-red-2&quot;&gt;delete&lt;/i&gt;
@@ -4986,11 +4679,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                     &quot;getGroupDevices(group.device_group_id).length &#x3D;&#x3D;&#x3D; 0 &amp;&amp;
                     loadedData&quot;
                     class&#x3D;&quot;no-elements-in-group&quot;&gt;
-                    {{&#x27;devices.noDevicesRegistered&#x27;|translate}}
-                  &lt;/div&gt;
-                  &lt;!-- No info to show --&gt;
-                  &lt;div *ngIf&#x3D;&quot;groups &amp;&amp; groups.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; !requestError&quot; class&#x3D;&quot;no-elements&quot;&gt;
-                    {{&#x27;devices.noGroupsCreated&#x27;|translate}}
+                    {{&#x27;devices.noDevicesRegistered&#x27; | translate}}
                   &lt;/div&gt;
                   &lt;!-- Requested error --&gt;
                   &lt;div *ngIf&#x3D;&quot;requestError&quot; class&#x3D;&quot;no-elements&quot;&gt;
@@ -4998,6 +4687,10 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                   &lt;/div&gt;
               &lt;/accordion-group&gt;
             &lt;/accordion&gt;
+          &lt;/div&gt;
+          &lt;!-- No info to show --&gt;
+          &lt;div *ngIf&#x3D;&quot;loadedData &amp;&amp; groups.length &#x3D;&#x3D;&#x3D; 0&quot; class&#x3D;&quot;col no-elements-in-group&quot;&gt;  
+            {{&#x27;devices.noGroupsCreated&#x27; | translate}}
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/span&gt;
@@ -5026,7 +4719,20 @@ export class DevicesComponent implements OnInit, OnDestroy  {
                 <p class="comment">
                     <code>./devices.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;../scss/variables/colors&#x27;;
+                <pre class="line-numbers"><code class="language-scss">/* 
+ *  Copyright 2019 Nalej
+ *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+@import &#x27;../scss/variables/colors&#x27;;
 @import &#x27;../scss/variables/mixins&#x27;;
 @import &#x27;../scss/components/accordion&#x27;;
 
@@ -5120,7 +4826,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
         .accordion-btn {
             top: 2px !important;
         }
-    }    
+    }
 }
 </code></pre>
     </div>
@@ -5150,8 +4856,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Component title --><div class="row row-title">  <div class="col-12">    <h2 class="section-title">{{\'devices.title\'|translate}}</h2>  </div></div><!-- Summary and devices status timeline row --><div class="row row-info">  <div class="col-lg-4 h-100">    <div class="card">      <div class="card-title-name">        <h5>{{\'devices.summary.title\'|translate}}</h5>      </div>      <div *ngIf="groups && groups.length > 0" class="summary-card">        <div class="summary-box">          <div class="circle">              <span >{{groups.length}}</span>          </div>          <p class="circle-name">{{\'devices.summary.groups.title\'|translate}}</p>        </div>                <div class="summary-box">          <div class="circle">            <span>{{countDevices()}}</span>           </div>            <p class="circle-name">{{\'devices.title\'|translate}}</p>        </div>      </div>      <div *ngIf="groups && groups.length === 0" class="no-elements">        {{\'devices.summary.noAvailable\'|translate}}      </div>    </div>  </div>  <div class="col-lg-8 h-100">    <div class="card p-4">      <div class="card-title-name">        <h5>{{\'devices.status.title\'|translate}}</h5>      </div>      <div *ngIf="countDevices() === 0" class="no-elements">         {{\'devices.noDevices\'|translate}}      </div>      <div *ngIf="countDevices() > 0" class="line-chart-box">        <ngx-charts-line-chart          [scheme]="colorScheme"          [results]="devicesChart"          [xAxis]="showXAxis"          [yAxis]="showYAxis"          [gradient]="gradient"           [showXAxisLabel]="showXAxisLabel"          [showYAxisLabel]="showYAxisLabel"          [yScaleMin]="0"          [yScaleMax]="100"          [showGridLines]="showGridLines"          [showRefLines]="showRefLines"          [schemeType]="schemeType"          [customColors]="customColors"          [rangeFillOpacity]="rangeFillOpacity"          [referenceLines]="referenceLines"          [showRefLabels]="showRefLabels">        </ngx-charts-line-chart>        <div class="line-chart-y-axis">          <span class="grey">100%</span>          <span class="grey mb-4">0%</span>        </div>        </div>    </div>  </div></div><!-- Deployed devices list panel card--><div class="row row-main">  <div class="col-lg-12 h-100">    <div class="card p-4">      <div class="row mb-15">        <div class="col-10 card-title-name-mb">          <h5>{{\'devices.title\'|translate}}</h5>        </div>        <!-- Add group -->        <div class="col-2 add-group-box">          <button (click)="addGroup()" class="add-group-btn">            <i class="material-icons i-add">add</i>            {{\'devices.addGroup\'|translate}}          </button>        </div>      </div>      <span *ngIf="loadedData" class="loaded-devices">        <!-- Search box -->        <div            *ngIf=          "groups && groups.length > 0 &&          countDevices() != 0 &&          loadedData"          class="row mb-15">          <!-- Sorting messages -->          <div class="col-8">              <p *ngIf="searchTerm && !filterField" class="sorting-message">              {{\'sortingMessage.filteredBy\'|translate:{value: searchTerm} }}              <span (click)="resetFilters(filterField)" class="reset-search">                {{\'sortingMessage.reset\'|translate}}              </span>            </p>            <p *ngIf="filterField && !searchTerm" class="sorting-message">              {{\'sortingMessage.sortedBy\'|translate:{value: getBeautyCategoryName(sortedBy)} }}              <span *ngIf="reverse">ascendant. </span>              <span *ngIf="!reverse">descendant. </span>              <span (click)="resetFilters(filterField)" class="reset-search">                {{\'sortingMessage.reset\'|translate}}              </span>            </p>            <p *ngIf="filterField && searchTerm" class="sorting-message">              {{\'sortingMessage.sortedBy\'|translate:{value: getBeautyCategoryName(sortedBy)} }}              <span *ngIf="reverse">ascendant </span>              <span *ngIf="!reverse">descendant </span>              {{\'sortingMessage.andFilteredBy\'|translate:{value: searchTerm} }}.              <span (click)="resetFilters(filterField)" class="reset-search">                {{\'sortingMessage.reset\'|translate}}              </span>            </p>           </div>          <!-- Search input -->          <div class="col-4">            <form>              <div class="search-box">                <input                   name="searchTerm"                   [(ngModel)]="searchTerm"                  type="text"                   placeholder="{{\'searcher.placeholder\'|translate }}"                  class="form-control">                   <div *ngIf="searchTerm === \'\'" class="search-icon">                    <i class="material-icons">search</i>                  </div>                       <div *ngIf="searchTerm !== \'\'" class="close-icon">                    <i (click)="resetFilters()" class="material-icons">close</i>                  </div>              </div>            </form>          </div>              </div>        <!-- Devices tabs -->        <div class="row h-100">          <div class="col accordion-box accordion-devices">            <accordion               *ngFor="let group of groups"              class="accordion-tabs">              <accordion-group                *ngIf="groups.length > 0"                heading="{{group.name}}"                [panelClass]="nalejAccordion"                [isOpen]="group.isFirstOpen"                (click)="group.isFirstOpen = !group.isFirstOpen">                  <span                         accordion-heading                     class="accordion-icons-box">                    <i class="material-icons accordion-arrow">arrow_drop_down</i>                    <div class="accordion-btn">                      <button                         (click)="openContextualMenu($event, group)"                        [ngClass]=                          "{                            \'action-btn-grey\': group.device_group_id !== activeContextMenuGroupId,                            \'action-btn-grey-selected\': group.device_group_id === activeContextMenuGroupId                          }"                         class="action-btn-grey position-relative"                        >                        <i class="material-icons i-black">more_vert</i>                        <app-contextual-menu                           [visible]="group.device_group_id === activeContextMenuGroupId"                           [options]="getDevicesGroupOptions(group)"                          (closed)="onContextualMenuClose(group)">                        </app-contextual-menu>                      </button>                     </div>                  </span>                  <!-- Devices table -->                  <div *ngIf=                    "devices &&                    devices.length > 0 &&                    groups &&                     groups.length > 0 &&                    getGroupDevices(group.device_group_id).length !== 0 &&                    !requestError"                     class="nalej-table-box no-p-col no-m-row">                    <div class="label-nalej-table">                      <div *ngIf="!searchTerm" class="label-thead row">                        <div class="col-11">                          <div class="row">                            <div                               *ngIf="countDevices() > 0"                              (click)="setOrder(\'name\')"                              [ngClass]="getCategoryCSSClass(\'name\')"                              class="label-th col-4">                              <span tooltip="{{\'devices.tableName\'|translate}}" placement="bottom">{{\'devices.tableName\'|translate}}</span>                              <span *ngIf="sortedBy === \'name\' && !reverse" class="expand-chevron">                                <i class="material-icons">expand_more</i>                              </span>                              <span *ngIf="sortedBy === \'name\' && reverse" class="expand-chevron">                                <i class="material-icons">expand_less</i>                              </span>                            </div>                            <div                               *ngIf="countDevices() > 0"                              (click)="setOrder(\'date\')"                               [ngClass]="getCategoryCSSClass(\'date\')"                              class="label-th col-4">                              <span tooltip="{{\'devices.tableDate\'|translate}}" placement="bottom">{{\'devices.tableDate\'|translate}}</span>                              <span *ngIf="sortedBy === \'date\' && !reverse" class="expand-chevron">                                <i class="material-icons">expand_more</i>                              </span>                              <span *ngIf="sortedBy === \'date\' && reverse" class="expand-chevron">                                <i class="material-icons">expand_less</i>                              </span>                            </div>                            <div                               *ngIf="countDevices() > 0"                              (click)="setOrder(\'status\')"                               [ngClass]="getCategoryCSSClass(\'status\')"                              class="label-th col-4 text-center">                              <span tooltip="{{\'devices.tableStatus\'|translate}}" placement="bottom">{{\'devices.tableStatus\'|translate}}</span>                              <span *ngIf="sortedBy === \'status\' && !reverse" class="expand-chevron">                                <i class="material-icons">expand_more</i>                              </span>                              <span *ngIf="sortedBy === \'status\' && reverse" class="expand-chevron">                                <i class="material-icons">expand_less</i>                              </span>                            </div>                             <div                               *ngIf="countDevices() > 0"                              (click)="setOrder(\'labels\')"                               [ngClass]="getCategoryCSSClass(\'labels\')"                              class="label-th col-12">                              <span tooltip="{{\'devices.tableLabels\'|translate}}" placement="bottom">{{\'devices.tableLabels\'|translate}}</span>                              <span *ngIf="sortedBy === \'labels\' && !reverse" class="expand-chevron">                                <i class="material-icons">expand_more</i>                              </span>                              <span *ngIf="sortedBy === \'labels\' && reverse" class="expand-chevron">                                <i class="material-icons">expand_less</i>                              </span>                            </div>                          </div>                        </div>                        <div                           *ngIf="countDevices() > 0"                          class="label-th col-1 text-center">                          <span tooltip="{{\'devices.tableActions\'|translate}}" placement="bottom">{{\'devices.tableActions\'|translate}}</span>                         </div>                      </div>                      <span *ngIf="                          groups && groups.length > 0 &&                          countDevices() !== 0 &&                          loadedData">                        <div *ngFor=                          "let device of getGroupDevices(group.device_group_id) |                          sortBy : sortedBy : reverse : \'case-insensitive\' |                          filter : searchTerm">                          <div class="label-tbody row">                            <div class="col-11">                              <div class="row mb-2">                                <div class="col-4 label-td">{{device.device_id}}</div>                                 <div *ngIf="device.register_since" class="col-4 label-td">{{parseTimestampToDate(device.register_since) | date: \'dd/MM/yyyy\'}}</div>                                  <div                                   class="col-4 label-td col-center-lowercase"                                  [ngClass]=                                  "{                                    \'status-dot\':classStatusCheck(device.device_status_name, \'status.online\'|translate),                                    \'status-dot-error\':classStatusCheck(device.device_status_name, \'status.offline\'|translate),                                    \'status-dot-process\':classStatusCheck(device.device_status_name, \'status.process\'|translate)                                  }">                                   <span                                     tooltip="{{device.device_status_name}}"                                     placement="bottom"                                    class="tooltip-fix">                                  </span>                                  <span class="hide-lg">                                    {{device.device_status_name}}                                  </span>                                </div>                              </div>                              <div class="row">                                <div *ngIf="!device.labels" class="col-12">                                  <div                                     (click)="addLabel(device)"                                    tooltip="{{\'label.add\'|translate}}"                                     placement="right"                                    class="label-btn-blue">                                      <i class="material-icons i-add">add</i>                                    </div>                                </div>                                <div *ngIf="device.labels" class="col-12">                                  <button                                     *ngFor="let label of device.labels| keyvalue"                                     (click)="onLabelClick(device.device_id, label.key, label.value)"                                    [ngClass]=                                    "{                                      \'label-content-selected\': indexOfLabelSelected(device.device_id, label.key, label.value) >= 0 ,                                      \'label-content\': indexOfLabelSelected(device.device_id, label.key, label.value) === -1                                    }"                                     class="label-content">                                    {{label.key}}: {{label.value}}                                  </button>                                  <div class="label-btns">                                    <div                                       *ngIf="isAnyLabelSelected(device.device_id) === false"                                      (click)="addLabel(device)"                                      tooltip="{{\'label.add\'|translate}}"                                       placement="right"                                      class="label-btn-blue">                                      <i class="material-icons i-add">add</i>                                    </div>                                    <div                                       *ngIf="isAnyLabelSelected(device.device_id) === true"                                      (click)="deleteLabel(device)"                                      tooltip="{{\'label.delete\'|translate}}"                                       placement="right"                                      class="label-btn-red">                                      <i class="material-icons i-delete">delete</i>                                    </div>                                  </div>                                </div>                              </div>                            </div>                            <div class="col-1 label-td-flex">                              <div class="actions-col actions-col-fix">                                <button                                   *ngIf="device.enabled"                                  (click)="enableSwitcher(device)"                                  tooltip="{{\'devices.enabled\'|translate}}"                                   placement="left"                                  class="action-btn-blue-2">                                  <i class="material-icons i-white-2">play_arrow</i>                                </button>                                <button                                  *ngIf="!device.enabled"                                   (click)="enableSwitcher(device)"                                  tooltip="{{\'devices.disabled\'|translate}}"                                   placement="left"                                  class="action-btn-grey-2 position-relative">                                  <i class="material-icons i-black-2">pause</i>                                </button>                                <button                                   (click)="unlinkDevice(device)"                                  tooltip="{{\'devices.unlinkDevice\'|translate}}"                                   placement="bottom"                                   class="action-btn-red-2">                                  <i class="material-icons i-red-2">delete</i>                                </button>                              </div>                            </div>                          </div>                        </div>                      </span>                    </div>                  </div>                   <!-- No devices to show -->                  <div *ngIf=                    "getGroupDevices(group.device_group_id).length === 0 &&                    loadedData"                    class="no-elements-in-group">                    {{\'devices.noDevicesRegistered\'|translate}}                  </div>                  <!-- No info to show -->                  <div *ngIf="groups && groups.length === 0 && !requestError" class="no-elements">                    {{\'devices.noGroupsCreated\'|translate}}                  </div>                  <!-- Requested error -->                  <div *ngIf="requestError" class="no-elements">                    <p>{{ requestError }}</p>                  </div>              </accordion-group>            </accordion>          </div>        </div>      </span>      <!-- Loader -->      <div *ngIf="!loadedData" class="nalej-loader-box h-100 w-100">        <div class="loader">          <svg class="circular" viewBox="25 25 50 50">            <circle               class="path"               cx="50"               cy="50"               r="20"               fill="none"               stroke-width="2"               stroke-miterlimit="10"/>          </svg>        </div>      </div>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><!--   Copyright 2019 Nalej  Licensed under the Apache License, Version 2.0 (the "License");  you may not use this file except in compliance with the License.  You may obtain a copy of the License at      http://www.apache.org/licenses/LICENSE-2.0  Unless required by applicable law or agreed to in writing, software  distributed under the License is distributed on an "AS IS" BASIS,  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the specific language governing permissions and  limitations under the License. --><div class="row row-title">  <div class="col-12">    <h2 class="section-title">{{\'devices.title\' | translate}}</h2>  </div></div><!-- Summary and devices status timeline row --><div class="row row-info">  <div class="col-lg-4 h-100">    <div class="card">      <div class="card-title-name">        <h5>{{\'devices.summary.title\' | translate}}</h5>      </div>      <div *ngIf="groups && groups.length > 0" class="summary-card">        <div class="summary-box">          <div class="circle">              <span >{{groups.length}}</span>          </div>          <p class="circle-name">{{\'devices.summary.groups.title\' | translate}}</p>        </div>                <div class="summary-box">          <div class="circle">            <span>{{countDevices()}}</span>           </div>            <p class="circle-name">{{\'devices.title\' | translate}}</p>        </div>      </div>      <div *ngIf="groups && groups.length === 0" class="no-elements">        {{\'devices.summary.noAvailable\' | translate}}      </div>    </div>  </div>  <div class="col-lg-8 h-100">    <div class="card p-4">      <div class="card-title-name">        <h5>{{\'devices.status.title\' | translate}}</h5>      </div>      <div *ngIf="countDevices() === 0" class="no-elements">         {{\'devices.noDevices\' | translate}}      </div>      <div *ngIf="countDevices() > 0" class="line-chart-box">        <ngx-charts-line-chart          [scheme]="colorScheme"          [results]="devicesChart"          [xAxis]="showXAxis"          [yAxis]="showYAxis"          [gradient]="gradient"           [showXAxisLabel]="showXAxisLabel"          [showYAxisLabel]="showYAxisLabel"          [yScaleMin]="0"          [yScaleMax]="100"          [showGridLines]="showGridLines"          [showRefLines]="showRefLines"          [schemeType]="schemeType"          [customColors]="customColors"          [rangeFillOpacity]="rangeFillOpacity"          [referenceLines]="referenceLines"          [showRefLabels]="showRefLabels">        </ngx-charts-line-chart>        <div class="line-chart-y-axis">          <span class="grey">100%</span>          <span class="grey mb-4">0%</span>        </div>        </div>    </div>  </div></div><!-- Deployed devices list panel card--><div class="row row-main">  <div class="col-lg-12 h-100">    <div class="card p-4">      <div class="row mb-15">        <div class="col-10 card-title-name-mb">          <h5>{{\'devices.title\' | translate}}</h5>        </div>        <!-- Add group -->        <div class="col-2 add-group-box">          <button (click)="addGroup()" class="add-group-btn">            <i class="material-icons i-add">add</i>            {{\'devices.addGroup\' | translate}}          </button>        </div>      </div>      <span *ngIf="loadedData" class="loaded-devices">        <!-- Search box -->        <div            *ngIf=          "groups && groups.length > 0 &&          countDevices() != 0 &&          loadedData"          class="row mb-15">          <!-- Sorting messages -->          <div class="col-8">              <p *ngIf="searchTerm && !filterField" class="sorting-message">              {{\'sortingMessage.filteredBy\' | translate:{value: searchTerm} }}              <span (click)="resetFilters(filterField)" class="reset-search">                {{\'sortingMessage.reset\' | translate}}              </span>            </p>            <p *ngIf="filterField && !searchTerm" class="sorting-message">              {{\'sortingMessage.sortedBy\' | translate:{value: getBeautyCategoryName(sortedBy)} }}              <span *ngIf="reverse">{{\'sortingMessage.ascendant\' | translate:{value: \'. \'} }} </span>              <span *ngIf="!reverse">{{\'sortingMessage.descendant\' | translate:{value: \'. \'} }}</span>              <span (click)="resetFilters(filterField)" class="reset-search">                {{\'sortingMessage.reset\' | translate}}              </span>            </p>            <p *ngIf="filterField && searchTerm" class="sorting-message">              {{\'sortingMessage.sortedBy\' | translate:{value: getBeautyCategoryName(sortedBy)} }}              <span *ngIf="reverse">{{\'sortingMessage.ascendant\' | translate:{value: \' \'} }}</span>              <span *ngIf="!reverse">{{\'sortingMessage.descendant\' | translate:{value: \' \'} }}</span>              {{\'sortingMessage.andFilteredBy\' | translate:{value: searchTerm} }}.              <span (click)="resetFilters(filterField)" class="reset-search">                {{\'sortingMessage.reset\' | translate}}              </span>            </p>           </div>          <!-- Search input -->          <div class="col-4">            <form>              <div class="search-box">                <input                   name="searchTerm"                   [(ngModel)]="searchTerm"                  type="text"                   placeholder="{{\'searcher.placeholder\' | translate }}"                  class="form-control">                   <div *ngIf="searchTerm === \'\'" class="search-icon">                    <i class="material-icons">search</i>                  </div>                       <div *ngIf="searchTerm !== \'\'" class="close-icon">                    <i (click)="resetFilters()" class="material-icons">close</i>                  </div>              </div>            </form>          </div>              </div>        <!-- Devices tabs -->        <div class="row h-100">          <div *ngIf="groups.length > 0" class="col accordion-box accordion-devices">            <accordion               *ngFor="let group of groups"              class="accordion-tabs">              <accordion-group                heading="{{group.name}}"                [panelClass]="nalejAccordion"                [isOpen]="group.isFirstOpen">                  <span                    accordion-heading                     class="accordion-icons-box">                    <i class="material-icons accordion-arrow">arrow_drop_down</i>                    <div class="accordion-btn">                      <button                         (click)="openContextualMenu($event, group)"                        [ngClass]=                          "{                            \'action-btn-grey\': group.device_group_id !== activeContextMenuGroupId,                            \'action-btn-grey-selected\': group.device_group_id === activeContextMenuGroupId                          }"                         class="action-btn-grey position-relative"                        >                        <i class="material-icons i-black">more_vert</i>                        <app-contextual-menu                           [visible]="group.device_group_id === activeContextMenuGroupId"                           [options]="getDevicesGroupOptions(group)"                          (closed)="onContextualMenuClose(group)">                        </app-contextual-menu>                      </button>                     </div>                  </span>                  <!-- Devices table -->                  <div *ngIf=                    "devices &&                    devices.length > 0 &&                    groups &&                     groups.length > 0 &&                    getGroupDevices(group.device_group_id).length !== 0 &&                    !requestError"                     class="nalej-table-box no-p-col no-m-row">                    <div class="label-nalej-table">                      <div *ngIf="!searchTerm" class="label-thead row">                        <div class="col-11">                          <div class="row">                            <div                               *ngIf="countDevices() > 0"                              (click)="setOrder(\'name\')"                              [ngClass]="getCategoryCSSClass(\'name\')"                              class="label-th col-4">                              <span tooltip="{{\'devices.tableName\' | translate}}" placement="bottom">{{\'devices.tableName\' | translate}}</span>                              <span *ngIf="sortedBy === \'name\' && !reverse" class="expand-chevron">                                <i class="material-icons">expand_more</i>                              </span>                              <span *ngIf="sortedBy === \'name\' && reverse" class="expand-chevron">                                <i class="material-icons">expand_less</i>                              </span>                            </div>                            <div                               *ngIf="countDevices() > 0"                              (click)="setOrder(\'date\')"                               [ngClass]="getCategoryCSSClass(\'date\')"                              class="label-th col-4">                              <span tooltip="{{\'devices.tableDate\' | translate}}" placement="bottom">{{\'devices.tableDate\' | translate}}</span>                              <span *ngIf="sortedBy === \'date\' && !reverse" class="expand-chevron">                                <i class="material-icons">expand_more</i>                              </span>                              <span *ngIf="sortedBy === \'date\' && reverse" class="expand-chevron">                                <i class="material-icons">expand_less</i>                              </span>                            </div>                            <div                               *ngIf="countDevices() > 0"                              (click)="setOrder(\'status\')"                               [ngClass]="getCategoryCSSClass(\'status\')"                              class="label-th col-4 text-center">                              <span tooltip="{{\'devices.tableStatus\' | translate}}" placement="bottom">{{\'devices.tableStatus\' | translate}}</span>                              <span *ngIf="sortedBy === \'status\' && !reverse" class="expand-chevron">                                <i class="material-icons">expand_more</i>                              </span>                              <span *ngIf="sortedBy === \'status\' && reverse" class="expand-chevron">                                <i class="material-icons">expand_less</i>                              </span>                            </div>                             <div                               *ngIf="countDevices() > 0"                              (click)="setOrder(\'labels\')"                               [ngClass]="getCategoryCSSClass(\'labels\')"                              class="label-th col-12">                              <span tooltip="{{\'devices.tableLabels\' | translate}}" placement="bottom">{{\'devices.tableLabels\' | translate}}</span>                              <span *ngIf="sortedBy === \'labels\' && !reverse" class="expand-chevron">                                <i class="material-icons">expand_more</i>                              </span>                              <span *ngIf="sortedBy === \'labels\' && reverse" class="expand-chevron">                                <i class="material-icons">expand_less</i>                              </span>                            </div>                          </div>                        </div>                        <div                           *ngIf="countDevices() > 0"                          class="label-th col-1 text-center">                          <span tooltip="{{\'devices.tableActions\' | translate}}" placement="bottom">{{\'devices.tableActions\' | translate}}</span>                         </div>                      </div>                      <span *ngIf="                          groups && groups.length > 0 &&                          countDevices() !== 0 &&                          loadedData">                        <div *ngFor=                          "let device of getGroupDevices(group.device_group_id) |                          sortBy : sortedBy : reverse : \'case-insensitive\' |                          filter : searchTerm">                          <div class="label-tbody row">                            <div class="col-11">                              <div class="row mb-2">                                <div class="col-4 label-td">{{device.device_id}}</div>                                 <div *ngIf="device.register_since" class="col-4 label-td">{{parseTimestampToDate(device.register_since) | date: \'dd/MM/yyyy\'}}</div>                                  <div                                   class="col-4 label-td col-center-lowercase"                                  [ngClass]=                                  "{                                    \'status-dot\':classStatusCheck(device.device_status_name, \'status.online\' | translate),                                    \'status-dot-error\':classStatusCheck(device.device_status_name, \'status.offline\' | translate),                                    \'status-dot-process\':classStatusCheck(device.device_status_name, \'status.process\' | translate)                                  }">                                   <span                                     tooltip="{{device.device_status_name}}"                                     placement="bottom"                                    class="tooltip-fix">                                  </span>                                  <span class="hide-lg">                                    {{device.device_status_name}}                                  </span>                                </div>                              </div>                              <div class="row">                                <div *ngIf="!device.labels" class="col-12">                                  <div                                     (click)="addLabel(device)"                                    tooltip="{{\'label.add\' | translate}}"                                     placement="right"                                    class="label-btn-blue">                                      <i class="material-icons i-add">add</i>                                    </div>                                </div>                                <div *ngIf="device.labels" class="col-12">                                  <button                                     *ngFor="let label of device.labels| keyvalue"                                     (click)="onLabelClick(device.device_id, label.key, label.value)"                                    [ngClass]=                                    "{                                      \'label-content-selected\': indexOfLabelSelected(device.device_id, label.key, label.value) >= 0 ,                                      \'label-content\': indexOfLabelSelected(device.device_id, label.key, label.value) === -1                                    }"                                     class="label-content">                                    {{label.key}}: {{label.value}}                                  </button>                                  <div class="label-btns">                                     <div                                       *ngIf="isAnyLabelSelected(device.device_id); else isNotAnyLabelSelected"                                       (click)="deleteLabel(device)"                                       tooltip="{{\'label.deleteUp\' | translate}}"                                       placement="right"                                       class="label-btn-red">                                       <i class="material-icons i-delete">delete</i>                                     </div>                                    <ng-template #isNotAnyLabelSelected>                                       <div                                         (click)="addLabel(device)"                                         tooltip="{{\'label.addUp\' | translate}}"                                         placement="right"                                         class="label-btn-blue">                                        <i class="material-icons i-add">add</i>                                      </div>                                     </ng-template>                                   </div>                                </div>                              </div>                            </div>                            <div class="col-1 label-td-flex">                              <div class="actions-col actions-col-fix">                                <button                                   *ngIf="device.enabled"                                  (click)="enableSwitcher(device)"                                  tooltip="{{\'devices.enabled\' | translate}}"                                   placement="left"                                  class="action-btn-blue-2">                                  <i class="material-icons i-white-2">play_arrow</i>                                </button>                                <button                                  *ngIf="!device.enabled"                                   (click)="enableSwitcher(device)"                                  tooltip="{{\'devices.disabled\' | translate}}"                                   placement="left"                                  class="action-btn-grey-2 position-relative">                                  <i class="material-icons i-black-2">pause</i>                                </button>                                <button                                   (click)="unlinkDevice(device)"                                  tooltip="{{\'devices.unlinkDevice\' | translate}}"                                   placement="bottom"                                   class="action-btn-red-2">                                  <i class="material-icons i-red-2">delete</i>                                </button>                              </div>                            </div>                          </div>                        </div>                      </span>                    </div>                  </div>                   <!-- No devices to show -->                  <div *ngIf=                    "getGroupDevices(group.device_group_id).length === 0 &&                    loadedData"                    class="no-elements-in-group">                    {{\'devices.noDevicesRegistered\' | translate}}                  </div>                  <!-- Requested error -->                  <div *ngIf="requestError" class="no-elements">                    <p>{{ requestError }}</p>                  </div>              </accordion-group>            </accordion>          </div>          <!-- No info to show -->          <div *ngIf="loadedData && groups.length === 0" class="col no-elements-in-group">              {{\'devices.noGroupsCreated\' | translate}}          </div>        </div>      </span>      <!-- Loader -->      <div *ngIf="!loadedData" class="nalej-loader-box h-100 w-100">        <div class="loader">          <svg class="circular" viewBox="25 25 50 50">            <circle               class="path"               cx="50"               cy="50"               r="20"               fill="none"               stroke-width="2"               stroke-miterlimit="10"/>          </svg>        </div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'ToolsComponent', 'selector': 'tools'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'DevicesComponent'};
 </script>

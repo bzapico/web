@@ -1,16 +1,3 @@
-/* 
- *  Copyright 2019 Nalej
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *      http://www.apache.org/licenses/LICENSE-2.0
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
-
 'use strict';
 
 
@@ -78,13 +65,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' : 'data-target="#xs-components-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' }>
+                                            'data-target="#components-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' : 'data-target="#xs-components-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' :
-                                            'id="xs-components-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' :
+                                            'id="xs-components-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' }>
                                             <li class="link">
                                                 <a href="components/ActionButtonsCardComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">ActionButtonsCardComponent</a>
@@ -270,6 +257,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">SimpleLogComponent</a>
                                             </li>
                                             <li class="link">
+                                                <a href="components/ToolsComponent.html"
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToolsComponent</a>
+                                            </li>
+                                            <li class="link">
                                                 <a href="components/UserInfoComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">UserInfoComponent</a>
                                             </li>
@@ -277,13 +268,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#directives-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' : 'data-target="#xs-directives-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' }>
+                                        'data-target="#directives-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' : 'data-target="#xs-directives-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' }>
                                         <span class="icon ion-md-code-working"></span>
                                         <span>Directives</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' :
-                                        'id="xs-directives-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' :
+                                        'id="xs-directives-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' }>
                                         <li class="link">
                                             <a href="directives/AutofocusDirective.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules">AutofocusDirective</a>
@@ -292,13 +283,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' : 'data-target="#xs-injectables-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' }>
+                                        'data-target="#injectables-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' : 'data-target="#xs-injectables-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' :
-                                        'id="xs-injectables-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' :
+                                        'id="xs-injectables-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' }>
                                         <li class="link">
                                             <a href="injectables/AuthService.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>AuthService</a>
@@ -315,13 +306,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#pipes-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' : 'data-target="#xs-pipes-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' }>
+                                            'data-target="#pipes-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' : 'data-target="#xs-pipes-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' }>
                                             <span class="icon ion-md-add"></span>
                                             <span>Pipes</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="pipes-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' :
-                                            'id="xs-pipes-links-module-AppModule-3d15ac1e93fecfaa53b165e20cc12581"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="pipes-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' :
+                                            'id="xs-pipes-links-module-AppModule-f4c138a4912bec908183117e0f906d8a"' }>
                                             <li class="link">
                                                 <a href="pipes/AbbreviatePipe.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">AbbreviatePipe</a>
@@ -352,6 +343,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
+                                <a href="classes/Application.html" data-type="entity-link">Application</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ApplicationDescriptor.html" data-type="entity-link">ApplicationDescriptor</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ApplicationInstance.html" data-type="entity-link">ApplicationInstance</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/GraphData.html" data-type="entity-link">GraphData</a>
                             </li>
                         </ul>
@@ -372,6 +372,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ErrorHandlerService.html" data-type="entity-link">ErrorHandlerService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/InfrastructureService.html" data-type="entity-link">InfrastructureService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/InstanceInfoService.html" data-type="entity-link">InstanceInfoService</a>
@@ -412,13 +415,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
-                                <a href="interfaces/AppDescriptor.html" data-type="entity-link">AppDescriptor</a>
+                                <a href="interfaces/AgentOpSummary.html" data-type="entity-link">AgentOpSummary</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/ApplicationInstance.html" data-type="entity-link">ApplicationInstance</a>
+                                <a href="interfaces/AppParameter.html" data-type="entity-link">AppParameter</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Asset.html" data-type="entity-link">Asset</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/AssetInfo.html" data-type="entity-link">AssetInfo</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Backend.html" data-type="entity-link">Backend</a>
@@ -430,22 +436,88 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/ComponentMockOption.html" data-type="entity-link">ComponentMockOption</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/ConfigFile.html" data-type="entity-link">ConfigFile</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ConnectionInstance.html" data-type="entity-link">ConnectionInstance</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/Controller.html" data-type="entity-link">Controller</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CpuInfo.html" data-type="entity-link">CpuInfo</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DeploySpecs.html" data-type="entity-link">DeploySpecs</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Device.html" data-type="entity-link">Device</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/Endpoint.html" data-type="entity-link">Endpoint</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/Group.html" data-type="entity-link">Group</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/HardwareInfo.html" data-type="entity-link">HardwareInfo</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ImageCredentials.html" data-type="entity-link">ImageCredentials</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/InboundNetworkInterface.html" data-type="entity-link">InboundNetworkInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/InstanceMetadata.html" data-type="entity-link">InstanceMetadata</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Inventory.html" data-type="entity-link">Inventory</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/InventoryLocation.html" data-type="entity-link">InventoryLocation</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/KeyValue.html" data-type="entity-link">KeyValue</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/NetworkingHardwareInfo.html" data-type="entity-link">NetworkingHardwareInfo</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/Notification.html" data-type="entity-link">Notification</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/OperatingSystemInfo.html" data-type="entity-link">OperatingSystemInfo</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/OutboundNetworkInterface.html" data-type="entity-link">OutboundNetworkInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/Port.html" data-type="entity-link">Port</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SecurityRule.html" data-type="entity-link">SecurityRule</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/Service.html" data-type="entity-link">Service</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ServiceGroup.html" data-type="entity-link">ServiceGroup</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ServiceGroupDeploymentSpecs.html" data-type="entity-link">ServiceGroupDeploymentSpecs</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ServiceGroupInstance.html" data-type="entity-link">ServiceGroupInstance</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ServiceInstance.html" data-type="entity-link">ServiceInstance</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/Storage.html" data-type="entity-link">Storage</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/StorageHardwareInfo.html" data-type="entity-link">StorageHardwareInfo</a>
                             </li>
                         </ul>
                     </li>

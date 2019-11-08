@@ -1,16 +1,3 @@
-<!-- 
-  Copyright 2019 Nalej
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-      http://www.apache.org/licenses/LICENSE-2.0
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
- -->
-
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -74,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/app-info/app-info.component.ts</code>
+    <code>src/app/applications/app-info/app-info.component.ts</code>
 </p>
 
 
@@ -83,7 +70,7 @@
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
     </p>
 
 
@@ -214,11 +201,20 @@
                                 <a href="#generateParameters">generateParameters</a>
                             </li>
                             <li>
+                                <a href="#getConnection">getConnection</a>
+                            </li>
+                            <li>
+                                <a href="#getInboundConnections">getInboundConnections</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#getParametersFromFilters">getParametersFromFilters</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit">ngOnInit</a>
+                                <a href="#getTarget">getTarget</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnChanges">ngOnChanges</a>
                             </li>
                             <li>
                                 <a href="#openAppInfoDetailed">openAppInfoDetailed</a>
@@ -228,6 +224,9 @@
                             </li>
                             <li>
                                 <a href="#resetFilters">resetFilters</a>
+                            </li>
+                            <li>
+                                <a href="#updateInstance">updateInstance</a>
                             </li>
                         </ul>
                     </td>
@@ -245,13 +244,13 @@
                                 <a href="#instance">instance</a>
                             </li>
                             <li>
+                                <a href="#loadedData">loadedData</a>
+                            </li>
+                            <li>
                                 <a href="#openFromInstance">openFromInstance</a>
                             </li>
                             <li>
                                 <a href="#openFromRegistered">openFromRegistered</a>
-                            </li>
-                            <li>
-                                <a href="#registered">registered</a>
                             </li>
                             <li>
                                 <a href="#registeredData">registeredData</a>
@@ -273,12 +272,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(translateService: TranslateService, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>, modalService: BsModalService, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>)</code>
+<code>constructor(translateService: <a href="../interfaces/Service.html">TranslateService</a>, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>, modalService: <a href="../interfaces/Service.html">BsModalService</a>, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/app-info/app-info.component.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -299,7 +298,7 @@
                                                         <td>translateService</td>
                                                   
                                                         <td>
-                                                                    <code>TranslateService</code>
+                                                                        <code><a href="../interfaces/Service.html" target="_self" >TranslateService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -323,7 +322,7 @@
                                                         <td>modalService</td>
                                                   
                                                         <td>
-                                                                    <code>BsModalService</code>
+                                                                        <code><a href="../interfaces/Service.html" target="_self" >BsModalService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -382,7 +381,28 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/app-info/app-info.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:50</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loadedData"></a>
+                        <b>loadedData</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:54</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -403,7 +423,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/app-info/app-info.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:52</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -424,28 +444,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/app-info/app-info.component.ts:28</a></div>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="registered"></a>
-                        <b>registered</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/app-info/app-info.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:53</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -466,7 +465,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/app-info/app-info.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:51</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -504,14 +503,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="244"
-                            class="link-to-prism">src/app/app-info/app-info.component.ts:244</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="260"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:260</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Adds service and group</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -521,6 +522,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -535,6 +537,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>interface_type object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -576,14 +582,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="265"
-                            class="link-to-prism">src/app/app-info/app-info.component.ts:265</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="285"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:285</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Adds service and group instance</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -593,6 +601,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -607,6 +616,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>interface_type object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -648,14 +661,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="255"
-                            class="link-to-prism">src/app/app-info/app-info.component.ts:255</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="273"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:273</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Adds service and group to interfaces</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -689,14 +704,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="276"
-                            class="link-to-prism">src/app/app-info/app-info.component.ts:276</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="298"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:298</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Adds service and group to interfaces instance</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -728,8 +745,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="156"
-                            class="link-to-prism">src/app/app-info/app-info.component.ts:156</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:138</a></div>
                 </td>
             </tr>
 
@@ -747,6 +764,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -761,6 +779,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>list to show</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -800,8 +822,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">src/app/app-info/app-info.component.ts:97</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:117</a></div>
                 </td>
             </tr>
 
@@ -886,15 +908,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>disconnectInstance(connection)</code>
+<code>disconnectInstance(connection, type, nameType, instance)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="192"
-                            class="link-to-prism">src/app/app-info/app-info.component.ts:192</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="173"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:173</a></div>
                 </td>
             </tr>
 
@@ -926,6 +948,39 @@
                                     <td>
                                         <p>connections</p>
 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>type</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>nameType</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>instance</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
                                     </td>
                                 </tr>
                             </tbody>
@@ -968,17 +1023,184 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="293"
-                            class="link-to-prism">src/app/app-info/app-info.component.ts:293</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="321"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:321</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Generates parameters</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getConnection"></a>
+                    <span class="name">
+                        <b>
+                            getConnection
+                        </b>
+                        <a href="#getConnection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getConnection(instance, type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, nameType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="202"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:202</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets connections</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>instance</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>instance</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>type</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>nameType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>nameType</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>name</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getInboundConnections"></a>
+                    <span class="name">
+                        <b>
+                            getInboundConnections
+                        </b>
+                        <a href="#getInboundConnections"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getInboundConnections()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="378"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:378</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get inbound connections</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                 </td>
@@ -1009,14 +1231,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="286"
-                            class="link-to-prism">src/app/app-info/app-info.component.ts:286</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="309"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:309</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Generates parameters from filters</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
@@ -1030,26 +1254,103 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ngOnInit"></a>
+                    <a name="getTarget"></a>
                     <span class="name">
                         <b>
-                            ngOnInit
+                            getTarget
                         </b>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        <a href="#getTarget"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnInit()</code>
+<code>getTarget(outboundNetInterfaceName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/app/app-info/app-info.component.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="355"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:355</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get target</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>outboundNetInterfaceName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>outboundNetInterfaceName object</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <b>
+                            ngOnChanges
+                        </b>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges(changes: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:104</a></div>
                 </td>
             </tr>
 
@@ -1058,8 +1359,39 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>changes</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -1087,8 +1419,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="208"
-                            class="link-to-prism">src/app/app-info/app-info.component.ts:208</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="223"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:223</a></div>
                 </td>
             </tr>
 
@@ -1160,8 +1492,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="229"
-                            class="link-to-prism">src/app/app-info/app-info.component.ts:229</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="242"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:242</a></div>
                 </td>
             </tr>
 
@@ -1233,8 +1565,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="175"
-                            class="link-to-prism">src/app/app-info/app-info.component.ts:175</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="157"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:157</a></div>
                 </td>
             </tr>
 
@@ -1252,6 +1584,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1266,6 +1599,83 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>list to show</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateInstance"></a>
+                    <span class="name">
+                        <b>
+                            updateInstance
+                        </b>
+                        <a href="#updateInstance"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateInstance(instance)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="209"
+                            class="link-to-prism">src/app/applications/app-info/app-info.component.ts:209</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates connections and appDropdownOptions</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>instance</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>instance</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1309,7 +1719,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/app-info/app-info.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -1336,7 +1746,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/app-info/app-info.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -1369,7 +1779,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/app-info/app-info.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:79</a></div>
                             </td>
                         </tr>
 
@@ -1395,7 +1805,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/app-info/app-info.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:78</a></div>
                             </td>
                         </tr>
 
@@ -1422,7 +1832,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/app-info/app-info.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -1460,7 +1870,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/app-info/app-info.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:77</a></div>
                             </td>
                         </tr>
 
@@ -1493,7 +1903,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/app-info/app-info.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:67</a></div>
                             </td>
                         </tr>
 
@@ -1526,7 +1936,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/app-info/app-info.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:72</a></div>
                             </td>
                         </tr>
 
@@ -1553,7 +1963,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/app-info/app-info.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:71</a></div>
                             </td>
                         </tr>
 
@@ -1586,7 +1996,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/app-info/app-info.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/applications/app-info/app-info.component.ts:73</a></div>
                             </td>
                         </tr>
 
@@ -1599,16 +2009,16 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnChanges, SimpleChanges } from &#x27;@angular/core&#x27;;
 import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
-import { Backend } from &#x27;../definitions/interfaces/backend&#x27;;
-import { NotificationsService } from &#x27;../services/notifications.service&#x27;;
+import { Backend } from &#x27;../../definitions/interfaces/backend&#x27;;
+import { NotificationsService } from &#x27;../../services/notifications.service&#x27;;
 import { BsModalRef, BsModalService } from &#x27;ngx-bootstrap&#x27;;
 import { AppInfoDetailedComponent } from &#x27;../app-info-detailed/app-info-detailed.component&#x27;;
-import { AppStatus } from &#x27;../definitions/enums/app-status.enum&#x27;;
-import {BackendService} from &#x27;../services/backend.service&#x27;;
-import {MockupBackendService} from &#x27;../services/mockup-backend.service&#x27;;
-import {LocalStorageKeys} from &#x27;../definitions/const/local-storage-keys&#x27;;
+import { AppStatus } from &#x27;../../definitions/enums/app-status.enum&#x27;;
+import { BackendService } from &#x27;../../services/backend.service&#x27;;
+import { MockupBackendService } from &#x27;../../services/mockup-backend.service&#x27;;
+import { LocalStorageKeys } from &#x27;../../definitions/const/local-storage-keys&#x27;;
 
 /**
  * Notification timeout reference
@@ -1621,41 +2031,36 @@ const NOTIFICATION_TIMEOUT &#x3D; 3000; // 3 seconds
   styleUrls: [&#x27;./app-info.component.scss&#x27;]
 })
 
-export class AppInfoComponent implements OnInit {
+export class AppInfoComponent implements OnChanges {
   @Input() instance: any;
-  @Input() registered: any;
   @Input() registeredData: any;
   @Input() openFromInstance: boolean;
   @Input() openFromRegistered: boolean;
+  @Input() loadedData: boolean;
 
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Reference for the service that allows the modal component
    */
   modalRef: BsModalRef;
-
   /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
-
   /**
    *  Active List reference
    */
   showParameters: boolean;
   showNetwork: boolean;
   showSetup: boolean;
-
   /**
    * Accordion options
    */
   nalejAccordionSmall &#x3D; &#x27;nalejAccordionSmall&#x27;;
   isFirstOpen &#x3D; true;
-
   basicParameters: any[];
   advancedParameters: any[];
 
@@ -1676,18 +2081,17 @@ export class AppInfoComponent implements OnInit {
     this.showParameters &#x3D; true;
     this.showNetwork &#x3D; false;
     this.showSetup &#x3D; false;
-    this.instance &#x3D; {};
-    this.registered &#x3D; [];
-    this.registeredData &#x3D; [];
     this.searchTerm &#x3D; &#x27;&#x27;;
     this.basicParameters &#x3D; [];
     this.advancedParameters &#x3D; [];
   }
 
-  ngOnInit() {
-    this.addServiceAndGroupToInterfaces();
-    this.addServiceAndGroupToInterfacesInstance();
-    this.generateParameters();
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.loadedData &amp;&amp; !changes.loadedData.firstChange &amp;&amp; changes.loadedData.currentValue) {
+      this.addServiceAndGroupToInterfaces();
+      this.addServiceAndGroupToInterfacesInstance();
+      this.generateParameters();
+    }
   }
 
   /**
@@ -1697,62 +2101,24 @@ export class AppInfoComponent implements OnInit {
    */
   classInstanceStatusCheck(status: string, className: string): boolean {
     switch (status.toLowerCase()) {
-      case AppStatus.Running: {
-        if (className.toLowerCase() &#x3D;&#x3D;&#x3D; AppStatus.Running) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.DeploymentError: {
-        if (className.toLowerCase() &#x3D;&#x3D;&#x3D; AppStatus.DeploymentError) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.Error: {
-        if (className.toLowerCase() &#x3D;&#x3D;&#x3D; AppStatus.Error) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.Incomplete: {
-        if (className.toLowerCase() &#x3D;&#x3D;&#x3D; AppStatus.Incomplete) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.PlanningError: {
-        if (className.toLowerCase() &#x3D;&#x3D;&#x3D; AppStatus.PlanningError) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.Queued: {
-        if (className.toLowerCase() &#x3D;&#x3D;&#x3D; AppStatus.Process) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.Planning: {
-        if (className.toLowerCase() &#x3D;&#x3D;&#x3D; AppStatus.Process) {
-          return true;
-        }
-        break;
-      }
-      case AppStatus.Scheduled: {
-        if (className.toLowerCase() &#x3D;&#x3D;&#x3D; AppStatus.Process) {
-          return true;
-        }
-        break;
-      }
-      default: {
-        return (className.toLowerCase() &#x3D;&#x3D;&#x3D; AppStatus.Process);
-      }
+      case AppStatus.Running:
+        return className.toLowerCase() &#x3D;&#x3D;&#x3D; AppStatus.Running;
+      case AppStatus.DeploymentError:
+      case AppStatus.PlanningError:
+      case AppStatus.Incomplete:
+      case AppStatus.Error:
+        return className.toLowerCase() &#x3D;&#x3D;&#x3D; AppStatus.Error;
+      case AppStatus.Queued:
+      case AppStatus.Planning:
+      case AppStatus.Scheduled:
+        return className.toLowerCase() &#x3D;&#x3D;&#x3D; AppStatus.Process;
+      default:
+        return className.toLowerCase() &#x3D;&#x3D;&#x3D; AppStatus.Process;
     }
   }
-
   /**
    * Changes to active list
+   * @param listToShow list to show
    */
   changeActiveList(listToShow: string) {
     if (listToShow &#x3D;&#x3D;&#x3D; &#x27;parameters&#x27;) {
@@ -1769,9 +2135,9 @@ export class AppInfoComponent implements OnInit {
       this.showSetup &#x3D; true;
     }
   }
-
   /**
    * Reset all the filters fields
+   * @param listToShow list to show
    */
   resetFilters(listToShow: string) {
       if (listToShow &#x3D;&#x3D;&#x3D; &#x27;parameters&#x27;) {
@@ -1785,23 +2151,56 @@ export class AppInfoComponent implements OnInit {
       this.searchTerm &#x3D; &#x27;&#x27;;
     }
   }
-
   /**
    * Disconnects app instance
    * @param connection connections
    */
-  disconnectInstance(connection) {
-    const deleteConfirm &#x3D;
-    confirm(this.translateService.instant(&#x27;apps.manageConnections.disconnectConfirm&#x27;));
+  disconnectInstance(connection, type, nameType, instance) {
+    const fullConnection &#x3D; this.getConnection(instance, type, nameType, connection.name)[0];
+    const deleteConfirm &#x3D; confirm(this.translateService.instant(&#x27;apps.manageConnections.disconnectConfirm&#x27;));
     if (deleteConfirm) {
-      connection.connected &#x3D; false;
-      this.notificationsService.add({
-        message: &#x27;App disconnected&#x27;,
-        timeout: NOTIFICATION_TIMEOUT
+      this.backend.removeConnection(instance.organization_id, {
+        organization_id: instance.organization_id,
+        source_instance_id: fullConnection.source_instance_id,
+        source_instance_name: fullConnection.source_instance_name,
+        target_instance_id: fullConnection.target_instance_id,
+        target_instance_name: fullConnection.target_instance_name,
+        inbound_name: fullConnection.inbound_name,
+        outbound_name: fullConnection.outbound_name,
+        user_confirmation: true
+      }).subscribe(response &#x3D;&gt; {
+        this.notificationsService.add({
+          message: &#x27;Removing connection&#x27;,
+          timeout: NOTIFICATION_TIMEOUT
+        });
+        this.updateInstance(instance);
       });
     }
   }
-
+  /**
+   * Gets connections
+   * @param instance instance
+   * @param type type
+   * @param nameType nameType
+   * @param name  name
+   * */
+  getConnection(instance, type: string, nameType: string, name: string): any {
+    return instance[type].filter(inbound &#x3D;&gt; inbound[nameType] &#x3D;&#x3D;&#x3D; name);
+  }
+  /**
+   * Updates connections and appDropdownOptions
+   * @param instance instance
+   */
+  updateInstance(instance) {
+    this.backend.getAppInstance(instance.organization_id, instance.app_instance_id)
+      .subscribe(inst &#x3D;&gt; {
+        this.instance.inbound_connections &#x3D; inst.inbound_connections;
+        this.instance.outbound_connections &#x3D; inst.outbound_connections;
+        this.instance.rules &#x3D; inst.rules;
+        this.instance.outbound_net_interface &#x3D; inst.outbound_net_interface;
+        this.instance.inbound_net_interface &#x3D; inst.inbound_net_interface;
+      });
+  }
   /**
    * Open app info detailed modal window
    *  @param app app object
@@ -1818,11 +2217,9 @@ export class AppInfoComponent implements OnInit {
       labels: app.labels,
       openFromInstance: this.openFromInstance
     };
-
     this.modalRef &#x3D; this.modalService.show(AppInfoDetailedComponent, { initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
   }
-
   /**
    * Open descriptor info detailed modal window
    *  @param descriptor descriptor object
@@ -1835,13 +2232,16 @@ export class AppInfoComponent implements OnInit {
       name: descriptor.name,
       rules: descriptor.rules,
       labels: descriptor.labels,
-      openFromRegistered: this.openFromRegistered
+      openFromRegistered: this.openFromRegistered,
+      openFromInstance: this.openFromInstance
     };
-
     this.modalRef &#x3D; this.modalService.show(AppInfoDetailedComponent, { initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
   }
-
+  /**
+  * Adds service and group
+  * @param interface_type interface_type object
+  */
   private addServiceAndGroup(interface_type: string) {
     this.registeredData[&#x60;${interface_type}s&#x60;].map(item &#x3D;&gt; {
       this.registeredData.rules.map(rule &#x3D;&gt; {
@@ -1852,17 +2252,21 @@ export class AppInfoComponent implements OnInit {
       });
     });
   }
-
+  /**
+  * Adds service and group to interfaces
+  */
   private addServiceAndGroupToInterfaces() {
     if (this.registeredData.inbound_net_interfaces) {
       this.addServiceAndGroup(&#x27;inbound_net_interface&#x27;);
     }
-
     if (this.registeredData.outbound_net_interfaces) {
       this.addServiceAndGroup(&#x27;outbound_net_interface&#x27;);
     }
   }
-
+  /**
+  * Adds service and group instance
+  * @param interface_type interface_type object
+  */
   private addServiceAndGroupInstance(interface_type: string) {
     this.instance[&#x60;${interface_type}s&#x60;].map(item &#x3D;&gt; {
       this.instance.rules.map(rule &#x3D;&gt; {
@@ -1873,24 +2277,32 @@ export class AppInfoComponent implements OnInit {
       });
     });
   }
-
+  /**
+  * Adds service and group to interfaces instance
+  */
   private addServiceAndGroupToInterfacesInstance() {
-    if (this.instance.inbound_net_interfaces) {
+    if (this.instance &amp;&amp; this.instance.inbound_net_interfaces) {
       this.addServiceAndGroupInstance(&#x27;inbound_net_interface&#x27;);
     }
-
-    if (this.instance.outbound_net_interfaces) {
+    if (this.instance &amp;&amp; this.instance.outbound_net_interfaces) {
       this.addServiceAndGroupInstance(&#x27;outbound_net_interface&#x27;);
     }
   }
-
+  /**
+  * Generates parameters from filters
+  */
   private getParametersFromFilters(): any {
     return {
-      basic: this.registered.parameters ? this.registered.parameters.filter(parameter &#x3D;&gt; parameter.required) : [],
-      advanced: this.registered.parameters ? this.registered.parameters.filter(parameter &#x3D;&gt; !parameter.required) : []
+      basic:  this.registeredData
+        &amp;&amp; this.registeredData.parameters ? this.registeredData.parameters.filter(parameter &#x3D;&gt; !parameter.category) : [],
+      advanced: this.registeredData
+        &amp;&amp; this.registeredData.parameters ?
+          this.registeredData.parameters.filter(parameter &#x3D;&gt; parameter.category &amp;&amp; parameter.category &#x3D;&#x3D;&#x3D; &#x27;ADVANCED&#x27;) : []
     };
   }
-
+  /**
+  * Generates parameters
+  */
   private generateParameters() {
     const params &#x3D; this.getParametersFromFilters();
     if (this.openFromInstance) {
@@ -1901,6 +2313,7 @@ export class AppInfoComponent implements OnInit {
               params.basic.forEach(param &#x3D;&gt; {
                 parameters.parameters.forEach(item &#x3D;&gt; {
                   if (item.parameter_name &#x3D;&#x3D;&#x3D; param.name) {
+                    param[&#x27;value&#x27;] &#x3D; item.value;
                     this.basicParameters.push(param);
                   }
                 });
@@ -1908,6 +2321,7 @@ export class AppInfoComponent implements OnInit {
               params.advanced.forEach(param &#x3D;&gt; {
                 parameters.parameters.forEach(item &#x3D;&gt; {
                   if (item.parameter_name &#x3D;&#x3D;&#x3D; param.name) {
+                    param[&#x27;value&#x27;] &#x3D; item.value;
                     this.advancedParameters.push(param);
                   }
                 });
@@ -1919,19 +2333,89 @@ export class AppInfoComponent implements OnInit {
       this.advancedParameters &#x3D; params.advanced;
     }
   }
+  /**
+  * Get target
+  * @param outboundNetInterfaceName outboundNetInterfaceName object
+  */
+  getTarget(outboundNetInterfaceName: string): any {
+    let found &#x3D; false;
+    if (this.instance.outbound_connections) {
+      for (let index &#x3D; 0; index &lt; this.instance.outbound_connections.length &amp;&amp; !found; index++) {
+        const connection &#x3D; this.instance.outbound_connections[index];
+        if (outboundNetInterfaceName &#x3D;&#x3D;&#x3D; connection.outbound_name) {
+          found &#x3D; true;
+          return {
+            interface_name: connection.inbound_name,
+            instance_name: connection.target_instance_name
+          };
+        }
+      }
+    } else {
+      return {
+        interface_name: &#x27;&#x27;,
+        instance_name: &#x27;&#x27;
+      };
+    }
+  }
+  /**
+  * Get inbound connections
+  */
+  getInboundConnections(): any {
+    const inbounds &#x3D; [];
+    if (this.instance.inbound_connections) {
+      this.instance.inbound_connections.forEach(connection &#x3D;&gt; {
+        inbounds.push({
+          inbound_name: connection.inbound_name,
+          outbound_name: connection.outbound_name,
+          instance_name: connection.source_instance_name
+          });
+      });
+    }
+    if (this.instance.inbound_net_interfaces) {
+      this.instance.inbound_net_interfaces.forEach(inboundInterface &#x3D;&gt; {
+        let found &#x3D; false;
+        for (let index &#x3D; 0; index &lt; inbounds.length &amp;&amp; !found; index++) {
+          const inbound &#x3D; inbounds[index];
+          if ( inbound.inbound_name &#x3D;&#x3D;&#x3D; inboundInterface.name) {
+            found &#x3D; true;
+          }
+        }
+        if (!found) {
+          inbounds.push({
+            inbound_name: inboundInterface.name,
+            outbound_name: &#x27;&#x27;,
+            instance_name: &#x27;&#x27;
+            });
+        }
+      });
+    }
+    return inbounds;
+  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;!-- Application instances id card --&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;!-- 
+  Copyright 2019 Nalej
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ --&gt;
+
 &lt;div class&#x3D;&quot;card&quot;&gt;
-  &lt;div class&#x3D;&quot;card-title-name&quot;&gt;
-    &lt;h5 *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;d-inline&quot;&gt;{{&#x27;app-info.instance.title&#x27;|translate}}&lt;/h5&gt;
-    &lt;h5 *ngIf&#x3D;&quot;openFromRegistered&quot; class&#x3D;&quot;d-inline&quot;&gt;{{&#x27;app-info.registered.title&#x27;|translate}}&lt;/h5&gt;
+  &lt;div *ngIf&#x3D;&quot;loadedData&quot; class&#x3D;&quot;card-title-name&quot;&gt;
+    &lt;h5 *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;d-inline&quot;&gt;{{&#x27;app-info.instance.title&#x27; | translate}}&lt;/h5&gt;
+    &lt;h5 *ngIf&#x3D;&quot;openFromRegistered&quot; class&#x3D;&quot;d-inline&quot;&gt;{{&#x27;app-info.registered.title&#x27; | translate}}&lt;/h5&gt;
     &lt;div
       *ngIf&#x3D;&quot;openFromInstance&quot;
-      tooltip&#x3D;&quot;{{&#x27;tables.tableInfo&#x27;|translate}}&quot; 
+      tooltip&#x3D;&quot;{{&#x27;tables.tableInfo&#x27; | translate}}&quot; 
       placement&#x3D;&quot;left&quot;
       (click)&#x3D;&quot;openAppInfoDetailed(instance)&quot;
       class&#x3D;&quot;app-info-button&quot;&gt;
@@ -1939,31 +2423,31 @@ export class AppInfoComponent implements OnInit {
     &lt;/div&gt;
     &lt;div
       *ngIf&#x3D;&quot;openFromRegistered&quot;
-      tooltip&#x3D;&quot;{{&#x27;tables.tableInfo&#x27;|translate}}&quot; 
+      tooltip&#x3D;&quot;{{&#x27;tables.tableInfo&#x27; | translate}}&quot; 
       placement&#x3D;&quot;left&quot;
       (click)&#x3D;&quot;openDescriptorDetailed(registeredData)&quot;
       class&#x3D;&quot;app-info-button&quot;&gt;
       &lt;i class&#x3D;&quot;material-icons info-icon&quot;&gt;info&lt;/i&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class&#x3D;&quot;summary-app-card&quot;&gt;
+  &lt;div *ngIf&#x3D;&quot;loadedData&quot; class&#x3D;&quot;summary-app-card&quot;&gt;
     &lt;!-- Summary instances table--&gt;
     &lt;div class&#x3D;&quot;summary-table&quot;&gt;
       &lt;div class&#x3D;&quot;summary-table-tr&quot;&gt;
-        &lt;div class&#x3D;&quot;summary-table-th&quot;&gt;{{&#x27;devices.tableName&#x27;|translate}}&lt;/div&gt;
+        &lt;div class&#x3D;&quot;summary-table-th&quot;&gt;{{&#x27;devices.tableName&#x27; | translate}}&lt;/div&gt;
         &lt;div *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;text-uppercase summary-table-td&quot;&gt;{{instance.name}}&lt;/div&gt; 
         &lt;div *ngIf&#x3D;&quot;openFromRegistered&quot; class&#x3D;&quot;text-uppercase summary-table-td-big&quot;&gt;{{registeredData.name}}&lt;/div&gt; 
       &lt;/div&gt;
       &lt;div *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;summary-table-tr&quot;&gt;
-        &lt;div class&#x3D;&quot;summary-table-th&quot;&gt;{{&#x27;devices.tableStatus&#x27;|translate}}&lt;/div&gt; 
+        &lt;div class&#x3D;&quot;summary-table-th&quot;&gt;{{&#x27;devices.tableStatus&#x27; | translate}}&lt;/div&gt; 
         &lt;div id&#x3D;&quot;summary-status&quot; class&#x3D;&quot;summary-table-td&quot;&gt;
           &lt;span 
             *ngIf&#x3D;&quot;instance &amp;&amp; instance.status_name&quot;
             [ngClass]&#x3D;
               &quot;{
-                &#x27;big-status-dot&#x27;:classInstanceStatusCheck(instance.status_name, &#x27;status.running&#x27;|translate),
-                &#x27;big-status-dot-error&#x27;:classInstanceStatusCheck(instance.status_name, &#x27;status.error&#x27;|translate),
-                &#x27;big-status-dot-process&#x27;:classInstanceStatusCheck(instance.status_name, &#x27;status.process&#x27;|translate)
+                &#x27;big-status-dot&#x27;:classInstanceStatusCheck(instance.status_name, &#x27;status.running&#x27; | translate),
+                &#x27;big-status-dot-error&#x27;:classInstanceStatusCheck(instance.status_name, &#x27;status.error&#x27; | translate),
+                &#x27;big-status-dot-process&#x27;:classInstanceStatusCheck(instance.status_name, &#x27;status.process&#x27; | translate)
               }&quot;
             tooltip&#x3D;&quot;{{instance.status_name}}&quot; 
             placement&#x3D;&quot;bottom&quot;
@@ -1973,20 +2457,20 @@ export class AppInfoComponent implements OnInit {
         &lt;/div&gt;
       &lt;/div&gt;
       &lt;div *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;summary-table-tr&quot;&gt;
-        &lt;div class&#x3D;&quot;summary-table-th&quot;&gt;{{&#x27;apps.instance.tableInstanceOf&#x27;|translate}}&lt;/div&gt;
+        &lt;div class&#x3D;&quot;summary-table-th&quot;&gt;{{&#x27;apps.instance.tableInstanceOf&#x27; | translate}}&lt;/div&gt;
         &lt;!-- GET REGISTERED AND SET THE RIGHT NAME --&gt; 
         &lt;div class&#x3D;&quot;summary-table-td&quot;&gt;
           &lt;a 
             [routerLink]&#x3D;&quot;[&#x27;/applications/registered&#x27;, instance.app_descriptor_id]&quot; 
             routerLinkActive&#x3D;&quot;active&quot; 
             class&#x3D;&quot;blue&quot;&gt;
-            {{registered.name}}
+            {{registeredData.name}}
           &lt;/a&gt;
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
     &lt;!-- Summary tabs --&gt;
-    &lt;div class&#x3D;&quot;summary-info-box&quot;&gt;
+    &lt;div class&#x3D;&quot;flex-grow-0&quot;&gt;
       &lt;ul class&#x3D;&quot;tabs-box&quot;&gt;
         &lt;li 
           (click)&#x3D;&quot;changeActiveList(&#x27;parameters&#x27;)&quot; 
@@ -1996,7 +2480,7 @@ export class AppInfoComponent implements OnInit {
               &#x27;tabs-btn-selected&#x27;: showParameters &amp;&amp; !showNetwork &amp;&amp; !showSetup
             }&quot; 
           class&#x3D;&quot;tabs-btn&quot;&gt;
-          {{&#x27;app-info.tabs.parameters&#x27;|translate}}
+          {{&#x27;app-info.tabs.parameters&#x27; | translate}}
         &lt;/li&gt;
         &lt;li 
           (click)&#x3D;&quot;changeActiveList(&#x27;network&#x27;)&quot; 
@@ -2006,7 +2490,7 @@ export class AppInfoComponent implements OnInit {
               &#x27;tabs-btn-selected&#x27;: showNetwork &amp;&amp; !showParameters &amp;&amp; !showSetup
             }&quot; 
           class&#x3D;&quot;tabs-btn&quot;&gt;
-            {{&#x27;app-info.tabs.networks&#x27;|translate}}
+            {{&#x27;app-info.tabs.networks&#x27; | translate}}
         &lt;/li&gt;
         &lt;li 
           (click)&#x3D;&quot;changeActiveList(&#x27;setup&#x27;)&quot; 
@@ -2016,18 +2500,18 @@ export class AppInfoComponent implements OnInit {
               &#x27;tabs-btn-selected&#x27;: showSetup &amp;&amp; !showParameters &amp;&amp; !showNetwork 
             }&quot; 
           class&#x3D;&quot;tabs-btn&quot;&gt;
-            {{&#x27;app-info.tabs.setup&#x27;|translate}}
+            {{&#x27;app-info.tabs.setup&#x27; | translate}}
         &lt;/li&gt;
       &lt;/ul&gt;
     &lt;/div&gt;
     &lt;!-- Search box --&gt;
-    &lt;div class&#x3D;&quot;summary-info-box&quot;&gt;
+    &lt;div class&#x3D;&quot;flex-grow-0&quot;&gt;
       &lt;div class&#x3D;&quot;search-box&quot;&gt;
         &lt;input 
           name&#x3D;&quot;searchTerm&quot; 
           [(ngModel)]&#x3D;&quot;searchTerm&quot;
           type&#x3D;&quot;text&quot; 
-          placeholder&#x3D;&quot;{{&#x27;searcher.placeholder&#x27;|translate }}&quot;
+          placeholder&#x3D;&quot;{{&#x27;searcher.placeholder&#x27; | translate }}&quot;
           class&#x3D;&quot;form-control&quot;&gt; 
         &lt;div *ngIf&#x3D;&quot;searchTerm &#x3D;&#x3D;&#x3D; &#x27;&#x27;&quot; class&#x3D;&quot;search-icon&quot;&gt;
           &lt;i class&#x3D;&quot;material-icons&quot;&gt;search&lt;/i&gt;
@@ -2038,9 +2522,9 @@ export class AppInfoComponent implements OnInit {
       &lt;/div&gt;
     &lt;/div&gt;
     &lt;!-- List to show box --&gt;
-    &lt;div class&#x3D;&quot;summary-info-box&quot;&gt;
+    &lt;div class&#x3D;&quot; flex-grow-1&quot;&gt;
       &lt;!-- Parameters list --&gt;
-      &lt;div *ngIf&#x3D;&quot;showParameters&quot; class&#x3D;&quot;summary-parameters&quot;&gt;
+      &lt;div *ngIf&#x3D;&quot;showParameters&quot;&gt;
         &lt;!-- Basic Parameters list --&gt;
         &lt;div class&#x3D;&quot;accordion-box&quot;&gt;
           &lt;accordion 
@@ -2054,19 +2538,19 @@ export class AppInfoComponent implements OnInit {
                 class&#x3D;&quot;accordion-icons-box&quot;&gt;
                 &lt;i class&#x3D;&quot;material-icons accordion-arrow&quot;&gt;arrow_drop_down&lt;/i&gt;
               &lt;/span&gt;
-              &lt;div *ngIf&#x3D;&quot;basicParameters.length &gt; 0&quot; class&#x3D;&quot;form-group scroll-app-info&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;basicParameters.length &gt; 0&quot; class&#x3D;&quot;form-group scroll-accordion-info&quot;&gt;
                 &lt;div *ngFor&#x3D;&quot;let basic of basicParameters|filter : searchTerm;&quot;&gt;
                   &lt;label&gt;{{basic.name}}&lt;/label&gt;
                   &lt;input
                     type&#x3D;&quot;text&quot;
-                    placeholder&#x3D;{{basic.default_value}}
+                    placeholder&#x3D;{{openFromRegistered?basic.default_value:basic.value}}
                     class&#x3D;&quot;form-control&quot;
                     disabled&gt;
-                  &lt;label class&#x3D;&quot;accordion-foot&quot;&gt;{{&#x27;app-info.typeRestrictions&#x27;|translate:{restriction:basic.type} }}&lt;/label&gt;
+                  &lt;label class&#x3D;&quot;accordion-foot&quot;&gt;{{&#x27;app-info.typeRestrictions&#x27; | translate:{restriction:basic.type} }}&lt;/label&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
-              &lt;div *ngIf&#x3D;&quot;basicParameters.length &#x3D;&#x3D;&#x3D; 0&quot; class&#x3D;&quot;scroll-app-info&quot;&gt;
-                &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.registered.noBasicParameters&#x27;|translate}}&lt;/p&gt;
+              &lt;div *ngIf&#x3D;&quot;basicParameters.length &#x3D;&#x3D;&#x3D; 0&quot; class&#x3D;&quot;scroll-accordion-info&quot;&gt;
+                &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.registered.noBasicParameters&#x27; | translate}}&lt;/p&gt;
               &lt;/div&gt;
             &lt;/accordion-group&gt;
           &lt;/accordion&gt;
@@ -2084,29 +2568,29 @@ export class AppInfoComponent implements OnInit {
                 class&#x3D;&quot;accordion-icons-box&quot;&gt;
                 &lt;i class&#x3D;&quot;material-icons accordion-arrow&quot;&gt;arrow_drop_down&lt;/i&gt;
               &lt;/span&gt;
-              &lt;div *ngIf&#x3D;&quot;advancedParameters.length &gt; 0&quot; class&#x3D;&quot;form-group scroll-app-info&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;advancedParameters.length &gt; 0&quot; class&#x3D;&quot;form-group scroll-accordion-info&quot;&gt;
                 &lt;div *ngFor&#x3D;&quot;let advanced of advancedParameters|filter : searchTerm;&quot;&gt;
                   &lt;label&gt;{{advanced.name}}&lt;/label&gt;
                   &lt;input
                     type&#x3D;&quot;text&quot;
-                    placeholder&#x3D;{{advanced.default_value}}
+                    placeholder&#x3D;{{openFromRegistered?advanced.default_value:advanced.value}}
                     class&#x3D;&quot;form-control&quot;
                     disabled&gt;
                   &lt;label class&#x3D;&quot;accordion-foot&quot;&gt;
-                    {{&#x27;app-info.typeRestrictions&#x27;|translate:{restriction:advanced.type} }}
+                    {{&#x27;app-info.typeRestrictions&#x27; | translate:{restriction:advanced.type} }}
                   &lt;/label&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
-              &lt;div *ngIf&#x3D;&quot;advancedParameters.length &#x3D;&#x3D;&#x3D; 0&quot; class&#x3D;&quot;scroll-app-info&quot;&gt;
-                &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.registered.noAdvancedParameters&#x27;|translate}}&lt;/p&gt;
+              &lt;div *ngIf&#x3D;&quot;advancedParameters.length &#x3D;&#x3D;&#x3D; 0&quot; class&#x3D;&quot;scroll-accordion-info&quot;&gt;
+                &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.registered.noAdvancedParameters&#x27; | translate}}&lt;/p&gt;
               &lt;/div&gt;
             &lt;/accordion-group&gt;
           &lt;/accordion&gt;
         &lt;/div&gt;
       &lt;/div&gt;
       &lt;!-- Networks list --&gt;
-      &lt;div *ngIf&#x3D;&quot;showNetwork&quot; class&#x3D;&quot;summary-network&quot;&gt;
-        &lt;div class&#x3D;&quot;accordion-box accordion-box-small&quot;&gt;
+      &lt;div *ngIf&#x3D;&quot;showNetwork&quot;&gt;
+        &lt;div class&#x3D;&quot;accordion-box&quot;&gt;
           &lt;accordion 
             class&#x3D;&quot;accordion-tabs&quot;&gt;
             &lt;accordion-group 
@@ -2119,41 +2603,42 @@ export class AppInfoComponent implements OnInit {
                 &lt;i class&#x3D;&quot;material-icons accordion-arrow&quot;&gt;arrow_drop_down&lt;/i&gt;
               &lt;/span&gt;
               &lt;!-- INSTANCE INFO network-inbounds --&gt;
-              &lt;div *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;label-nalej-table no-m-row&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;label-nalej-table no-m-row no-p-col&quot;&gt;
                 &lt;div *ngIf&#x3D;&quot;instance.inbound_net_interfaces&quot; class&#x3D;&quot;label-thead row&quot;&gt;
                   &lt;div class&#x3D;&quot;col-4 label-th&quot;&gt;
-                    &lt;span tooltip&#x3D;&quot;Interface&quot; placement&#x3D;&quot;bottom&quot;&gt;
-                      {{&#x27;app-info.instance.NetworkInterface&#x27;|translate}}
+                    &lt;span tooltip&#x3D;&quot;{{&#x27;app-info.instance.NetworkInterface&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
+                      {{&#x27;app-info.instance.NetworkInterface&#x27; | translate}}
                     &lt;/span&gt;
                   &lt;/div&gt;
                   &lt;div class&#x3D;&quot;col-4 label-th text-center&quot;&gt;
-                    &lt;span tooltip&#x3D;&quot;Source&quot; placement&#x3D;&quot;bottom&quot;&gt;
-                      {{&#x27;app-info.instance.NetworkSource&#x27;|translate}}
+                    &lt;span tooltip&#x3D;&quot;{{&#x27;app-info.instance.NetworkSource&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
+                      {{&#x27;app-info.instance.NetworkSource&#x27; | translate}}
                     &lt;/span&gt;
                   &lt;/div&gt;
                   &lt;div class&#x3D;&quot;col-4 label-th text-right&quot;&gt;
-                    &lt;span tooltip&#x3D;&quot;Disconnect&quot; placement&#x3D;&quot;bottom&quot;&gt;
-                      {{&#x27;app-info.instance.NetworkDisconnect&#x27;|translate}}
+                    &lt;span tooltip&#x3D;&quot;{{&#x27;app-info.instance.NetworkDisconnect&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
+                      {{&#x27;app-info.instance.NetworkDisconnect&#x27; | translate}}
                     &lt;/span&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
-                &lt;div class&#x3D;&quot;scroll-app-info&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;getInboundConnections().length &gt; 0&quot; class&#x3D;&quot;scroll-accordion-info&quot;&gt;
                   &lt;div *ngFor&#x3D;
-                    &quot;let connection of instance.inbound_net_interfaces |
+                    &quot;let connection of getInboundConnections() |
                     filter : searchTerm; let i &#x3D; index&quot;&gt;
                     &lt;span class&#x3D;&quot;label-tbody row&quot;&gt;
                       &lt;div class&#x3D;&quot;col-4&quot;&gt;
-                        &lt;span class&#x3D;&quot;grey&quot;&gt;{{connection.name}}&lt;/span&gt;
+                        &lt;span class&#x3D;&quot;grey&quot;&gt;{{connection.inbound_name}}&lt;/span&gt;
                       &lt;/div&gt;
                       &lt;div class&#x3D;&quot;col-4 text-center&quot;&gt;
-                        &lt;span&gt;{{connection.target_service_group_name}}&lt;/span&gt;
+                        &lt;span class&#x3D;&quot;grey&quot;&gt;{{connection.outbound_name}}&lt;/span&gt;
                         &lt;br&gt;
-                        &lt;span&gt;{{connection.target_service_name}}&lt;/span&gt;
+                        &lt;span&gt;{{connection.instance_name}}&lt;/span&gt;
                       &lt;/div&gt;
                       &lt;div class&#x3D;&quot;col-4 text-right px-4&quot;&gt;
                         &lt;button
-                          (click)&#x3D;&quot;disconnectInstance(connection)&quot;
-                          tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.disconnect&#x27;|translate}}&quot;
+                          *ngIf&#x3D;&quot;connection.outbound_name&quot;
+                          (click)&#x3D;&quot;disconnectInstance(connection, &#x27;inbound_connections&#x27;, &#x27;inbound_name&#x27;, instance)&quot;
+                          tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.disconnect&#x27; | translate}}&quot;
                           placement&#x3D;&quot;left&quot;
                           class&#x3D;&quot;action-btn-red&quot;&gt;
                           &lt;i class&#x3D;&quot;material-icons i-red&quot;&gt;link_off&lt;/i&gt;
@@ -2162,13 +2647,13 @@ export class AppInfoComponent implements OnInit {
                     &lt;/span&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
-                &lt;div *ngIf&#x3D;&quot;!instance.inbound_net_interfaces&quot; class&#x3D;&quot;scroll-app-info p-2&quot;&gt;
-                  &lt;p class&#x3D;&quot;grey py-2&quot;&gt;{{&#x27;apps.registered.noInboundInterfaces&#x27;|translate}}&lt;/p&gt;
+                &lt;div *ngIf&#x3D;&quot;!instance.inbound_net_interfaces&quot; class&#x3D;&quot;scroll-accordion-info&quot;&gt;
+                  &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.registered.noInboundInterfaces&#x27; | translate}}&lt;/p&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
               &lt;!-- DESCRIPTOR INFO network-inbounds--&gt;
-              &lt;div *ngIf&#x3D;&quot;openFromRegistered&quot; class&#x3D;&quot;label-nalej-table no-m-row&quot;&gt;
-                &lt;div *ngIf&#x3D;&quot;registeredData.inbound_net_interfaces&quot; class&#x3D;&quot;scroll-app-info&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;openFromRegistered&quot; class&#x3D;&quot;label-nalej-table no-m-row no-p-col&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;registeredData.inbound_net_interfaces&quot; class&#x3D;&quot;scroll-accordion-info&quot;&gt;
                   &lt;div *ngFor&#x3D;
                     &quot;let connection of registeredData.inbound_net_interfaces | filter : searchTerm&quot;&gt;
                     &lt;span class&#x3D;&quot;label-tbody row&quot;&gt;
@@ -2183,14 +2668,14 @@ export class AppInfoComponent implements OnInit {
                     &lt;/span&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
-                &lt;div *ngIf&#x3D;&quot;!registeredData.inbound_net_interfaces&quot; class&#x3D;&quot;scroll-app-info p-2&quot;&gt;
-                  &lt;p class&#x3D;&quot;grey py-2&quot;&gt;{{&#x27;apps.registered.noInboundInterfaces&#x27;|translate}}&lt;/p&gt;
+                &lt;div *ngIf&#x3D;&quot;!registeredData.inbound_net_interfaces&quot; class&#x3D;&quot;scroll-accordion-info&quot;&gt;
+                  &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.registered.noInboundInterfaces&#x27; | translate}}&lt;/p&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
             &lt;/accordion-group&gt;
           &lt;/accordion&gt;
         &lt;/div&gt;
-        &lt;div class&#x3D;&quot;accordion-box accordion-box-small&quot;&gt;
+        &lt;div class&#x3D;&quot;accordion-box&quot;&gt;
           &lt;accordion
           class&#x3D;&quot;accordion-tabs&quot;&gt;
           &lt;accordion-group
@@ -2205,60 +2690,59 @@ export class AppInfoComponent implements OnInit {
             &lt;span
               accordion-heading 
               class&#x3D;&quot;accordion-legend&quot;&gt;
-              &lt;p&gt;{{&#x27;app-info.requiredElements&#x27;|translate}}&lt;/p&gt;
+              &lt;p&gt;{{&#x27;app-info.requiredElements&#x27; | translate}}&lt;/p&gt;
             &lt;/span&gt;
             &lt;!-- INSTANCE INFO network-outbounds --&gt;
-            &lt;div *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;label-nalej-table no-m-row&quot;&gt;
+            &lt;div *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;label-nalej-table no-m-row no-p-col&quot;&gt;
               &lt;div *ngIf&#x3D;&quot;instance.outbound_net_interfaces&quot; class&#x3D;&quot;label-thead row&quot;&gt;
                 &lt;div class&#x3D;&quot;col-4 label-th&quot;&gt;
-                  &lt;span tooltip&#x3D;&quot;Interface&quot; placement&#x3D;&quot;bottom&quot;&gt;
-                    {{&#x27;app-info.instance.NetworkInterface&#x27;|translate}}
+                  &lt;span tooltip&#x3D;&quot;{{&#x27;app-info.instance.NetworkInterface&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
+                    {{&#x27;app-info.instance.NetworkInterface&#x27; | translate}}
                   &lt;/span&gt;
                 &lt;/div&gt;
                 &lt;div class&#x3D;&quot;col-4 label-th text-center&quot;&gt;
-                  &lt;span tooltip&#x3D;&quot;Target&quot; placement&#x3D;&quot;bottom&quot;&gt;
-                    {{&#x27;app-info.instance.NetworkTarget&#x27;|translate}}
+                  &lt;span tooltip&#x3D;&quot;{{&#x27;app-info.instance.NetworkTarget&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
+                    {{&#x27;app-info.instance.NetworkTarget&#x27; | translate}}
                   &lt;/span&gt;
                 &lt;/div&gt;
                 &lt;div class&#x3D;&quot;col-4 label-th text-right&quot;&gt;
-                  &lt;span tooltip&#x3D;&quot;Disconnect&quot; placement&#x3D;&quot;bottom&quot;&gt;
-                    {{&#x27;app-info.instance.NetworkDisconnect&#x27;|translate}}
+                  &lt;span tooltip&#x3D;&quot;{{&#x27;app-info.instance.NetworkDisconnect&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
+                    {{&#x27;app-info.instance.NetworkDisconnect&#x27; | translate}}
                   &lt;/span&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
-              &lt;div class&#x3D;&quot;scroll-app-info&quot;&gt;
-                &lt;div class&#x3D;&quot;scroll-app-info&quot;&gt;
-                  &lt;div *ngFor&#x3D;&quot;let connection of instance.outbound_net_interfaces |
-                    filter : searchTerm; let i &#x3D; index&quot;&gt;
-                    &lt;span class&#x3D;&quot;label-tbody row&quot;&gt;
-                      &lt;div class&#x3D;&quot;col-4&quot;&gt;
-                        &lt;span class&#x3D;&quot;grey&quot;&gt;{{connection.name}}&lt;/span&gt;
-                      &lt;/div&gt;
-                      &lt;div class&#x3D;&quot;col-4 text-center&quot;&gt;
-                        &lt;span&gt;{{connection.target_service_group_name}}&lt;/span&gt;
-                        &lt;br&gt;
-                        &lt;span&gt;{{connection.target_service_name}}&lt;/span&gt;
-                      &lt;/div&gt;
-                      &lt;div class&#x3D;&quot;col-4 text-right px-4&quot;&gt;
-                        &lt;button
-                          (click)&#x3D;&quot;disconnectInstance(connection)&quot;
-                          tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.disconnect&#x27;|translate}}&quot;
-                          placement&#x3D;&quot;left&quot;
-                          class&#x3D;&quot;action-btn-red&quot;&gt;
-                          &lt;i class&#x3D;&quot;material-icons i-red&quot;&gt;link_off&lt;/i&gt;
-                        &lt;/button&gt;
-                      &lt;/div&gt;
-                    &lt;/span&gt;
-                  &lt;/div&gt;
-                  &lt;div *ngIf&#x3D;&quot;!instance.outbound_net_interfaces&quot; class&#x3D;&quot;scroll-app-info p-2&quot;&gt;
-                    &lt;p class&#x3D;&quot;grey py-2&quot;&gt;{{&#x27;apps.registered.noOutboundInterfaces&#x27;|translate}}&lt;/p&gt;
-                  &lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;instance.outbound_net_interfaces&quot; class&#x3D;&quot;scroll-accordion-info&quot;&gt;
+                &lt;div *ngFor&#x3D;&quot;let interface of instance.outbound_net_interfaces |
+                  filter : searchTerm; let i &#x3D; index&quot;&gt;
+                  &lt;span class&#x3D;&quot;label-tbody row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-4&quot;&gt;
+                      &lt;span class&#x3D;&quot;grey&quot;&gt;{{interface.name}}&lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-4 text-center&quot;&gt;
+                      &lt;span class&#x3D;&quot;grey&quot;&gt;{{getTarget(interface.name).interface_name}}&lt;/span&gt;
+                      &lt;br&gt;
+                      &lt;span&gt;{{getTarget(interface.name).instance_name}}&lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-4 text-right px-4&quot;&gt;
+                      &lt;button
+                        *ngIf&#x3D;&quot;getTarget(interface.name).instance_name&quot;
+                        (click)&#x3D;&quot;disconnectInstance(interface, &#x27;inbound_connections&#x27;, &#x27;inbound_name&#x27;, instance)&quot;
+                        tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.disconnect&#x27; | translate}}&quot;
+                        placement&#x3D;&quot;left&quot;
+                        class&#x3D;&quot;action-btn-red&quot;&gt;
+                        &lt;i class&#x3D;&quot;material-icons i-red&quot;&gt;link_off&lt;/i&gt;
+                      &lt;/button&gt;
+                    &lt;/div&gt;
+                  &lt;/span&gt;
                 &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;!instance.outbound_net_interfaces&quot; class&#x3D;&quot;scroll-accordion-info&quot;&gt;
+                &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.registered.noOutboundInterfaces&#x27; | translate}}&lt;/p&gt;
               &lt;/div&gt;
             &lt;/div&gt;
             &lt;!-- REGISTERED INFO network-outbounds --&gt;
-            &lt;div *ngIf&#x3D;&quot;openFromRegistered&quot; class&#x3D;&quot;label-nalej-table no-m-row&quot;&gt;
-              &lt;div *ngIf&#x3D;&quot;registeredData.outbound_net_interfaces&quot; class&#x3D;&quot;scroll-app-info&quot;&gt;
+            &lt;div *ngIf&#x3D;&quot;openFromRegistered&quot; class&#x3D;&quot;label-nalej-table no-m-row no-p-col&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;registeredData.outbound_net_interfaces&quot; class&#x3D;&quot;scroll-accordion-info&quot;&gt;
                 &lt;div *ngFor&#x3D;
                   &quot;let connection of registeredData.outbound_net_interfaces |
                   filter : searchTerm&quot;&gt;
@@ -2274,8 +2758,8 @@ export class AppInfoComponent implements OnInit {
                   &lt;/span&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
-              &lt;div *ngIf&#x3D;&quot;!registeredData.outbound_net_interfaces&quot; class&#x3D;&quot;scroll-app-info p-2&quot;&gt;
-                &lt;p class&#x3D;&quot;grey py-2&quot;&gt;{{&#x27;apps.registered.noOutboundInterfaces&#x27;|translate}}&lt;/p&gt;
+              &lt;div *ngIf&#x3D;&quot;!registeredData.outbound_net_interfaces&quot; class&#x3D;&quot;scroll-accordion-info&quot;&gt;
+                &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.registered.noOutboundInterfaces&#x27; | translate}}&lt;/p&gt;
               &lt;/div&gt;
             &lt;/div&gt;
           &lt;/accordion-group&gt;
@@ -2283,13 +2767,13 @@ export class AppInfoComponent implements OnInit {
         &lt;/div&gt;
       &lt;/div&gt;
       &lt;!-- Setup list --&gt;
-      &lt;div *ngIf&#x3D;&quot;showSetup&quot; class&#x3D;&quot;summary-parameters&quot;&gt;
+      &lt;div *ngIf&#x3D;&quot;showSetup&quot;&gt;
         &lt;!-- Environment variables list --&gt;
         &lt;div class&#x3D;&quot;accordion-box&quot;&gt;
           &lt;accordion 
             class&#x3D;&quot;accordion-tabs&quot;&gt;
             &lt;accordion-group 
-              heading&#x3D;&quot;{{&#x27;apps.instance.environmentVariables&#x27;|translate}}&quot;
+              heading&#x3D;&quot;{{&#x27;apps.instance.environmentVariables&#x27; | translate}}&quot;
               [panelClass]&#x3D;&quot;nalejAccordionSmall&quot;
               [isOpen]&#x3D;&quot;isFirstOpen&quot;&gt;
               &lt;span
@@ -2299,7 +2783,7 @@ export class AppInfoComponent implements OnInit {
               &lt;/span&gt;
               &lt;div class&#x3D;&quot;label-nalej-table no-p-col no-m-row&quot;&gt;
                 &lt;!-- REGISTERED INFO Environment variables --&gt;
-                &lt;div *ngIf&#x3D;&quot;openFromRegistered&quot; class&#x3D;&quot;scroll-app-info&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;openFromRegistered&quot; class&#x3D;&quot;scroll-accordion-info&quot;&gt;
                   &lt;div *ngIf&#x3D;&quot;registeredData.environment_variables&quot;&gt;
                     &lt;div *ngFor&#x3D;&quot;let variable of registeredData.environment_variables | keyvalue&quot; class&#x3D;&quot;row label-tbody&quot;&gt;
                       &lt;div class&#x3D;&quot;col-6 grey&quot;&gt;
@@ -2311,11 +2795,11 @@ export class AppInfoComponent implements OnInit {
                     &lt;/div&gt;
                   &lt;/div&gt;
                   &lt;div *ngIf&#x3D;&quot;!registeredData.environment_variables&quot;&gt;
-                    &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.instance.noEnvironmentVariables&#x27;|translate}}&lt;/p&gt;
+                    &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.instance.noEnvironmentVariables&#x27; | translate}}&lt;/p&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
                 &lt;!-- INSTANCE INFO Environment variables --&gt;
-                &lt;div *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;scroll-app-info&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;scroll-accordion-info&quot;&gt;
                   &lt;div *ngIf&#x3D;&quot;instance.environment_variables&quot;&gt;
                     &lt;div *ngFor&#x3D;&quot;let variable of instance.environment_variables | keyvalue&quot; class&#x3D;&quot;row label-tbody&quot;&gt;
                       &lt;div class&#x3D;&quot;col-6 grey&quot;&gt;
@@ -2327,7 +2811,7 @@ export class AppInfoComponent implements OnInit {
                     &lt;/div&gt;
                   &lt;/div&gt;
                   &lt;div *ngIf&#x3D;&quot;!instance.environment_variables&quot;&gt;
-                    &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.instance.noEnvironmentVariables&#x27;|translate}}&lt;/p&gt;
+                    &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.instance.noEnvironmentVariables&#x27; | translate}}&lt;/p&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
@@ -2339,7 +2823,7 @@ export class AppInfoComponent implements OnInit {
           &lt;accordion 
             class&#x3D;&quot;accordion-tabs&quot;&gt;
             &lt;accordion-group 
-              heading&#x3D;&quot;{{&#x27;apps.instance.otherSettings&#x27;|translate}}&quot;
+              heading&#x3D;&quot;{{&#x27;apps.instance.otherSettings&#x27; | translate}}&quot;
               [panelClass]&#x3D;&quot;nalejAccordionSmall&quot;
               [isOpen]&#x3D;&quot;isFirstOpen&quot;&gt;
               &lt;span     
@@ -2349,9 +2833,9 @@ export class AppInfoComponent implements OnInit {
               &lt;/span&gt;
               &lt;div class&#x3D;&quot;label-nalej-table no-p-col no-m-row&quot;&gt;
                 &lt;!-- REGISTERED INFO Other setting --&gt;
-                &lt;div *ngIf&#x3D;&quot;openFromRegistered&quot; class&#x3D;&quot;scroll-app-info&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;openFromRegistered&quot; class&#x3D;&quot;scroll-accordion-info&quot;&gt;
                   &lt;div *ngIf&#x3D;&quot;registeredData.configuration_options&quot;&gt;
-                    &lt;p class&#x3D;&quot;text-left&quot;&gt;{{&#x27;apps.instance.otherSettings&#x27;|translate}}&lt;/p&gt;
+                    &lt;p class&#x3D;&quot;text-left&quot;&gt;{{&#x27;apps.instance.otherSettings&#x27; | translate}}&lt;/p&gt;
                     &lt;div *ngFor&#x3D;&quot;let configuration of registeredData.configuration_options| keyvalue&quot; class&#x3D;&quot;row mb-1&quot;&gt;
                       &lt;div class&#x3D;&quot;col-12 grey text-right&quot;&gt;
                         {{configuration.key}} 
@@ -2362,13 +2846,13 @@ export class AppInfoComponent implements OnInit {
                     &lt;/div&gt;
                   &lt;/div&gt;
                   &lt;div *ngIf&#x3D;&quot;!registeredData.configuration_options&quot;&gt;
-                    &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.instance.noOtherSettings&#x27;|translate}}&lt;/p&gt;
+                    &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.instance.noOtherSettings&#x27; | translate}}&lt;/p&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
                 &lt;!-- INSTANCE INFO Other setting --&gt;
-                &lt;div *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;scroll-app-info&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;openFromInstance&quot; class&#x3D;&quot;scroll-accordion-info&quot;&gt;
                   &lt;div *ngIf&#x3D;&quot;instance.configuration_options&quot;&gt;
-                    &lt;p class&#x3D;&quot;text-left&quot;&gt;{{&#x27;apps.instance.otherSettings&#x27;|translate}}&lt;/p&gt;
+                    &lt;p class&#x3D;&quot;text-left&quot;&gt;{{&#x27;apps.instance.otherSettings&#x27; | translate}}&lt;/p&gt;
                     &lt;div *ngFor&#x3D;&quot;let configuration of instance.configuration_options| keyvalue&quot; class&#x3D;&quot;row mb-1&quot; &gt;
                       &lt;div class&#x3D;&quot;col-12 grey text-right&quot;&gt;
                         {{configuration.key}} 
@@ -2379,7 +2863,7 @@ export class AppInfoComponent implements OnInit {
                     &lt;/div&gt;
                   &lt;/div&gt;
                   &lt;div *ngIf&#x3D;&quot;!instance.configuration_options&quot;&gt;
-                    &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.instance.noOtherSettings&#x27;|translate}}&lt;/p&gt;
+                    &lt;p class&#x3D;&quot;grey&quot;&gt;{{&#x27;apps.instance.noOtherSettings&#x27; | translate}}&lt;/p&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
@@ -2397,15 +2881,35 @@ export class AppInfoComponent implements OnInit {
                 <p class="comment">
                     <code>./app-info.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;../scss/variables/colors&#x27;;
-@import &#x27;../scss/variables/mixins&#x27;;
-@import &#x27;../scss/components/accordion&#x27;;
+                <pre class="line-numbers"><code class="language-scss">/* 
+ *  Copyright 2019 Nalej
+ *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+@import &#x27;../../scss/variables/colors&#x27;;
+@import &#x27;../../scss/variables/mixins&#x27;;
+@import &#x27;../../scss/components/accordion&#x27;;
 
 .summary-app-card {
     width: 100%;
     height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
+}
+.scroll-accordion-info {
+    height: 100%;
+    font-size:  .9em;
+    &gt; div:first-child &gt; span {
+        border-top: 0;
+    }
 }
 #summary-status {
     font-size: 20px;
@@ -2453,28 +2957,17 @@ export class AppInfoComponent implements OnInit {
     display: inline;
     float: right;
 }
-.summary-info-box {
-    width: 100%;
-}
-.scroll-app-info {
-    margin: 0;
-    max-height: 120px;
-    font-size: 12px;
-    @media screen and (max-height: 872px) {
-        height: auto;
-        margin: 0;
-    }
-}
 .label-nalej-table .label-thead .label-th {
     font-size: 13px;
 }
-
+.label-nalej-table {
+    overflow-y: hidden;
+}
 .accordion-box {
     width: 100%;
+    overflow: hidden;
     .form-group {
         margin: 0;
-        overflow-y: scroll;
-        height: 100px;
         padding: 0 5px 0 18px;
         input {
             &amp;::placeholder {
@@ -2539,8 +3032,8 @@ export class AppInfoComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Application instances id card --><div class="card">  <div class="card-title-name">    <h5 *ngIf="openFromInstance" class="d-inline">{{\'app-info.instance.title\'|translate}}</h5>    <h5 *ngIf="openFromRegistered" class="d-inline">{{\'app-info.registered.title\'|translate}}</h5>    <div      *ngIf="openFromInstance"      tooltip="{{\'tables.tableInfo\'|translate}}"       placement="left"      (click)="openAppInfoDetailed(instance)"      class="app-info-button">      <i class="material-icons info-icon">info</i>    </div>    <div      *ngIf="openFromRegistered"      tooltip="{{\'tables.tableInfo\'|translate}}"       placement="left"      (click)="openDescriptorDetailed(registeredData)"      class="app-info-button">      <i class="material-icons info-icon">info</i>    </div>  </div>  <div class="summary-app-card">    <!-- Summary instances table-->    <div class="summary-table">      <div class="summary-table-tr">        <div class="summary-table-th">{{\'devices.tableName\'|translate}}</div>        <div *ngIf="openFromInstance" class="text-uppercase summary-table-td">{{instance.name}}</div>         <div *ngIf="openFromRegistered" class="text-uppercase summary-table-td-big">{{registeredData.name}}</div>       </div>      <div *ngIf="openFromInstance" class="summary-table-tr">        <div class="summary-table-th">{{\'devices.tableStatus\'|translate}}</div>         <div id="summary-status" class="summary-table-td">          <span             *ngIf="instance && instance.status_name"            [ngClass]=              "{                \'big-status-dot\':classInstanceStatusCheck(instance.status_name, \'status.running\'|translate),                \'big-status-dot-error\':classInstanceStatusCheck(instance.status_name, \'status.error\'|translate),                \'big-status-dot-process\':classInstanceStatusCheck(instance.status_name, \'status.process\'|translate)              }"            tooltip="{{instance.status_name}}"             placement="bottom"            class="big-status-dot">            {{instance.status_name}}          </span>        </div>      </div>      <div *ngIf="openFromInstance" class="summary-table-tr">        <div class="summary-table-th">{{\'apps.instance.tableInstanceOf\'|translate}}</div>        <!-- GET REGISTERED AND SET THE RIGHT NAME -->         <div class="summary-table-td">          <a             [routerLink]="[\'/applications/registered\', instance.app_descriptor_id]"             routerLinkActive="active"             class="blue">            {{registered.name}}          </a>        </div>      </div>    </div>    <!-- Summary tabs -->    <div class="summary-info-box">      <ul class="tabs-box">        <li           (click)="changeActiveList(\'parameters\')"           [ngClass]=            "{              \'active\': showParameters && !showNetwork && !showSetup,              \'tabs-btn-selected\': showParameters && !showNetwork && !showSetup            }"           class="tabs-btn">          {{\'app-info.tabs.parameters\'|translate}}        </li>        <li           (click)="changeActiveList(\'network\')"           [ngClass]=            "{              \'active\': showNetwork && !showParameters && !showSetup,              \'tabs-btn-selected\': showNetwork && !showParameters && !showSetup            }"           class="tabs-btn">            {{\'app-info.tabs.networks\'|translate}}        </li>        <li           (click)="changeActiveList(\'setup\')"           [ngClass]=            "{              \'active\': showSetup && !showParameters && !showNetwork ,              \'tabs-btn-selected\': showSetup && !showParameters && !showNetwork             }"           class="tabs-btn">            {{\'app-info.tabs.setup\'|translate}}        </li>      </ul>    </div>    <!-- Search box -->    <div class="summary-info-box">      <div class="search-box">        <input           name="searchTerm"           [(ngModel)]="searchTerm"          type="text"           placeholder="{{\'searcher.placeholder\'|translate }}"          class="form-control">         <div *ngIf="searchTerm === \'\'" class="search-icon">          <i class="material-icons">search</i>        </div>             <div *ngIf="searchTerm !== \'\'" class="close-icon">          <i (click)="resetFilters()" class="material-icons">close</i>        </div>      </div>    </div>    <!-- List to show box -->    <div class="summary-info-box">      <!-- Parameters list -->      <div *ngIf="showParameters" class="summary-parameters">        <!-- Basic Parameters list -->        <div class="accordion-box">          <accordion             class="accordion-tabs">            <accordion-group               heading="Basic"              [panelClass]="nalejAccordionSmall"              [isOpen]="isFirstOpen">              <span                     accordion-heading                 class="accordion-icons-box">                <i class="material-icons accordion-arrow">arrow_drop_down</i>              </span>              <div *ngIf="basicParameters.length > 0" class="form-group scroll-app-info">                <div *ngFor="let basic of basicParameters|filter : searchTerm;">                  <label>{{basic.name}}</label>                  <input                    type="text"                    placeholder={{basic.default_value}}                    class="form-control"                    disabled>                  <label class="accordion-foot">{{\'app-info.typeRestrictions\'|translate:{restriction:basic.type} }}</label>                </div>              </div>              <div *ngIf="basicParameters.length === 0" class="scroll-app-info">                <p class="grey">{{\'apps.registered.noBasicParameters\'|translate}}</p>              </div>            </accordion-group>          </accordion>        </div>        <!-- Advanced Parameters list -->        <div class="accordion-box">          <accordion             class="accordion-tabs">            <accordion-group               heading="Advanced"              [panelClass]="nalejAccordionSmall"              [isOpen]="isFirstOpen">              <span                     accordion-heading                 class="accordion-icons-box">                <i class="material-icons accordion-arrow">arrow_drop_down</i>              </span>              <div *ngIf="advancedParameters.length > 0" class="form-group scroll-app-info">                <div *ngFor="let advanced of advancedParameters|filter : searchTerm;">                  <label>{{advanced.name}}</label>                  <input                    type="text"                    placeholder={{advanced.default_value}}                    class="form-control"                    disabled>                  <label class="accordion-foot">                    {{\'app-info.typeRestrictions\'|translate:{restriction:advanced.type} }}                  </label>                </div>              </div>              <div *ngIf="advancedParameters.length === 0" class="scroll-app-info">                <p class="grey">{{\'apps.registered.noAdvancedParameters\'|translate}}</p>              </div>            </accordion-group>          </accordion>        </div>      </div>      <!-- Networks list -->      <div *ngIf="showNetwork" class="summary-network">        <div class="accordion-box accordion-box-small">          <accordion             class="accordion-tabs">            <accordion-group               heading="Inbounds"              [panelClass]="nalejAccordionSmall"              [isOpen]="isFirstOpen">              <span                     accordion-heading                 class="accordion-icons-box">                <i class="material-icons accordion-arrow">arrow_drop_down</i>              </span>              <!-- INSTANCE INFO network-inbounds -->              <div *ngIf="openFromInstance" class="label-nalej-table no-m-row">                <div *ngIf="instance.inbound_net_interfaces" class="label-thead row">                  <div class="col-4 label-th">                    <span tooltip="Interface" placement="bottom">                      {{\'app-info.instance.NetworkInterface\'|translate}}                    </span>                  </div>                  <div class="col-4 label-th text-center">                    <span tooltip="Source" placement="bottom">                      {{\'app-info.instance.NetworkSource\'|translate}}                    </span>                  </div>                  <div class="col-4 label-th text-right">                    <span tooltip="Disconnect" placement="bottom">                      {{\'app-info.instance.NetworkDisconnect\'|translate}}                    </span>                  </div>                </div>                <div class="scroll-app-info">                  <div *ngFor=                    "let connection of instance.inbound_net_interfaces |                    filter : searchTerm; let i = index">                    <span class="label-tbody row">                      <div class="col-4">                        <span class="grey">{{connection.name}}</span>                      </div>                      <div class="col-4 text-center">                        <span>{{connection.target_service_group_name}}</span>                        <br>                        <span>{{connection.target_service_name}}</span>                      </div>                      <div class="col-4 text-right px-4">                        <button                          (click)="disconnectInstance(connection)"                          tooltip="{{\'apps.manageConnections.disconnect\'|translate}}"                          placement="left"                          class="action-btn-red">                          <i class="material-icons i-red">link_off</i>                        </button>                      </div>                    </span>                  </div>                </div>                <div *ngIf="!instance.inbound_net_interfaces" class="scroll-app-info p-2">                  <p class="grey py-2">{{\'apps.registered.noInboundInterfaces\'|translate}}</p>                </div>              </div>              <!-- DESCRIPTOR INFO network-inbounds-->              <div *ngIf="openFromRegistered" class="label-nalej-table no-m-row">                <div *ngIf="registeredData.inbound_net_interfaces" class="scroll-app-info">                  <div *ngFor=                    "let connection of registeredData.inbound_net_interfaces | filter : searchTerm">                    <span class="label-tbody row">                      <div class="col-6">                        <span class="grey">{{connection.name}}</span>                      </div>                      <div class="col-6 text-right">                        <span>{{connection.target_service_group_name}}</span>                        <br>                        <span>{{connection.target_service_name}}</span>                      </div>                    </span>                  </div>                </div>                <div *ngIf="!registeredData.inbound_net_interfaces" class="scroll-app-info p-2">                  <p class="grey py-2">{{\'apps.registered.noInboundInterfaces\'|translate}}</p>                </div>              </div>            </accordion-group>          </accordion>        </div>        <div class="accordion-box accordion-box-small">          <accordion          class="accordion-tabs">          <accordion-group            heading="Outbound"            [panelClass]="nalejAccordionSmall"            [isOpen]="isFirstOpen">            <span              accordion-heading               class="accordion-icons-box">              <i class="material-icons accordion-arrow">arrow_drop_down</i>            </span>            <span              accordion-heading               class="accordion-legend">              <p>{{\'app-info.requiredElements\'|translate}}</p>            </span>            <!-- INSTANCE INFO network-outbounds -->            <div *ngIf="openFromInstance" class="label-nalej-table no-m-row">              <div *ngIf="instance.outbound_net_interfaces" class="label-thead row">                <div class="col-4 label-th">                  <span tooltip="Interface" placement="bottom">                    {{\'app-info.instance.NetworkInterface\'|translate}}                  </span>                </div>                <div class="col-4 label-th text-center">                  <span tooltip="Target" placement="bottom">                    {{\'app-info.instance.NetworkTarget\'|translate}}                  </span>                </div>                <div class="col-4 label-th text-right">                  <span tooltip="Disconnect" placement="bottom">                    {{\'app-info.instance.NetworkDisconnect\'|translate}}                  </span>                </div>              </div>              <div class="scroll-app-info">                <div class="scroll-app-info">                  <div *ngFor="let connection of instance.outbound_net_interfaces |                    filter : searchTerm; let i = index">                    <span class="label-tbody row">                      <div class="col-4">                        <span class="grey">{{connection.name}}</span>                      </div>                      <div class="col-4 text-center">                        <span>{{connection.target_service_group_name}}</span>                        <br>                        <span>{{connection.target_service_name}}</span>                      </div>                      <div class="col-4 text-right px-4">                        <button                          (click)="disconnectInstance(connection)"                          tooltip="{{\'apps.manageConnections.disconnect\'|translate}}"                          placement="left"                          class="action-btn-red">                          <i class="material-icons i-red">link_off</i>                        </button>                      </div>                    </span>                  </div>                  <div *ngIf="!instance.outbound_net_interfaces" class="scroll-app-info p-2">                    <p class="grey py-2">{{\'apps.registered.noOutboundInterfaces\'|translate}}</p>                  </div>                </div>              </div>            </div>            <!-- REGISTERED INFO network-outbounds -->            <div *ngIf="openFromRegistered" class="label-nalej-table no-m-row">              <div *ngIf="registeredData.outbound_net_interfaces" class="scroll-app-info">                <div *ngFor=                  "let connection of registeredData.outbound_net_interfaces |                  filter : searchTerm">                  <span class="label-tbody row">                    <div class="col-6">                      <span class="grey">{{connection.name}}</span>                    </div>                    <div class="col-6 text-right">                      <span>{{connection.target_service_group_name}}</span>                      <br>                      <span>{{connection.target_service_name}}</span>                    </div>                  </span>                </div>              </div>              <div *ngIf="!registeredData.outbound_net_interfaces" class="scroll-app-info p-2">                <p class="grey py-2">{{\'apps.registered.noOutboundInterfaces\'|translate}}</p>              </div>            </div>          </accordion-group>          </accordion>        </div>      </div>      <!-- Setup list -->      <div *ngIf="showSetup" class="summary-parameters">        <!-- Environment variables list -->        <div class="accordion-box">          <accordion             class="accordion-tabs">            <accordion-group               heading="{{\'apps.instance.environmentVariables\'|translate}}"              [panelClass]="nalejAccordionSmall"              [isOpen]="isFirstOpen">              <span                accordion-heading                 class="accordion-icons-box">                <i class="material-icons accordion-arrow">arrow_drop_down</i>              </span>              <div class="label-nalej-table no-p-col no-m-row">                <!-- REGISTERED INFO Environment variables -->                <div *ngIf="openFromRegistered" class="scroll-app-info">                  <div *ngIf="registeredData.environment_variables">                    <div *ngFor="let variable of registeredData.environment_variables | keyvalue" class="row label-tbody">                      <div class="col-6 grey">                        {{variable.key}}                       </div>                      <div class="col-6 text-right">                        {{variable.value}}                      </div>                    </div>                  </div>                  <div *ngIf="!registeredData.environment_variables">                    <p class="grey">{{\'apps.instance.noEnvironmentVariables\'|translate}}</p>                  </div>                </div>                <!-- INSTANCE INFO Environment variables -->                <div *ngIf="openFromInstance" class="scroll-app-info">                  <div *ngIf="instance.environment_variables">                    <div *ngFor="let variable of instance.environment_variables | keyvalue" class="row label-tbody">                      <div class="col-6 grey">                        {{variable.key}}                       </div>                      <div class="col-6 text-right">                        {{variable.value}}                      </div>                    </div>                  </div>                  <div *ngIf="!instance.environment_variables">                    <p class="grey">{{\'apps.instance.noEnvironmentVariables\'|translate}}</p>                  </div>                </div>              </div>            </accordion-group>          </accordion>        </div>        <!-- Other setting  list -->        <div class="accordion-box">          <accordion             class="accordion-tabs">            <accordion-group               heading="{{\'apps.instance.otherSettings\'|translate}}"              [panelClass]="nalejAccordionSmall"              [isOpen]="isFirstOpen">              <span                     accordion-heading                 class="accordion-icons-box">                <i class="material-icons accordion-arrow">arrow_drop_down</i>              </span>              <div class="label-nalej-table no-p-col no-m-row">                <!-- REGISTERED INFO Other setting -->                <div *ngIf="openFromRegistered" class="scroll-app-info">                  <div *ngIf="registeredData.configuration_options">                    <p class="text-left">{{\'apps.instance.otherSettings\'|translate}}</p>                    <div *ngFor="let configuration of registeredData.configuration_options| keyvalue" class="row mb-1">                      <div class="col-12 grey text-right">                        {{configuration.key}}                       </div>                      <div class="col-12 text-right">                        {{configuration.value}}                      </div>                    </div>                  </div>                  <div *ngIf="!registeredData.configuration_options">                    <p class="grey">{{\'apps.instance.noOtherSettings\'|translate}}</p>                  </div>                </div>                <!-- INSTANCE INFO Other setting -->                <div *ngIf="openFromInstance" class="scroll-app-info">                  <div *ngIf="instance.configuration_options">                    <p class="text-left">{{\'apps.instance.otherSettings\'|translate}}</p>                    <div *ngFor="let configuration of instance.configuration_options| keyvalue" class="row mb-1" >                      <div class="col-12 grey text-right">                        {{configuration.key}}                       </div>                      <div class="col-12 text-right">                        {{configuration.value}}                      </div>                    </div>                  </div>                  <div *ngIf="!instance.configuration_options">                    <p class="grey">{{\'apps.instance.noOtherSettings\'|translate}}</p>                  </div>                </div>              </div>            </accordion-group>          </accordion>        </div>      </div>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><!--   Copyright 2019 Nalej  Licensed under the Apache License, Version 2.0 (the "License");  you may not use this file except in compliance with the License.  You may obtain a copy of the License at      http://www.apache.org/licenses/LICENSE-2.0  Unless required by applicable law or agreed to in writing, software  distributed under the License is distributed on an "AS IS" BASIS,  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the specific language governing permissions and  limitations under the License. --><div class="card">  <div *ngIf="loadedData" class="card-title-name">    <h5 *ngIf="openFromInstance" class="d-inline">{{\'app-info.instance.title\' | translate}}</h5>    <h5 *ngIf="openFromRegistered" class="d-inline">{{\'app-info.registered.title\' | translate}}</h5>    <div      *ngIf="openFromInstance"      tooltip="{{\'tables.tableInfo\' | translate}}"       placement="left"      (click)="openAppInfoDetailed(instance)"      class="app-info-button">      <i class="material-icons info-icon">info</i>    </div>    <div      *ngIf="openFromRegistered"      tooltip="{{\'tables.tableInfo\' | translate}}"       placement="left"      (click)="openDescriptorDetailed(registeredData)"      class="app-info-button">      <i class="material-icons info-icon">info</i>    </div>  </div>  <div *ngIf="loadedData" class="summary-app-card">    <!-- Summary instances table-->    <div class="summary-table">      <div class="summary-table-tr">        <div class="summary-table-th">{{\'devices.tableName\' | translate}}</div>        <div *ngIf="openFromInstance" class="text-uppercase summary-table-td">{{instance.name}}</div>         <div *ngIf="openFromRegistered" class="text-uppercase summary-table-td-big">{{registeredData.name}}</div>       </div>      <div *ngIf="openFromInstance" class="summary-table-tr">        <div class="summary-table-th">{{\'devices.tableStatus\' | translate}}</div>         <div id="summary-status" class="summary-table-td">          <span             *ngIf="instance && instance.status_name"            [ngClass]=              "{                \'big-status-dot\':classInstanceStatusCheck(instance.status_name, \'status.running\' | translate),                \'big-status-dot-error\':classInstanceStatusCheck(instance.status_name, \'status.error\' | translate),                \'big-status-dot-process\':classInstanceStatusCheck(instance.status_name, \'status.process\' | translate)              }"            tooltip="{{instance.status_name}}"             placement="bottom"            class="big-status-dot">            {{instance.status_name}}          </span>        </div>      </div>      <div *ngIf="openFromInstance" class="summary-table-tr">        <div class="summary-table-th">{{\'apps.instance.tableInstanceOf\' | translate}}</div>        <!-- GET REGISTERED AND SET THE RIGHT NAME -->         <div class="summary-table-td">          <a             [routerLink]="[\'/applications/registered\', instance.app_descriptor_id]"             routerLinkActive="active"             class="blue">            {{registeredData.name}}          </a>        </div>      </div>    </div>    <!-- Summary tabs -->    <div class="flex-grow-0">      <ul class="tabs-box">        <li           (click)="changeActiveList(\'parameters\')"           [ngClass]=            "{              \'active\': showParameters && !showNetwork && !showSetup,              \'tabs-btn-selected\': showParameters && !showNetwork && !showSetup            }"           class="tabs-btn">          {{\'app-info.tabs.parameters\' | translate}}        </li>        <li           (click)="changeActiveList(\'network\')"           [ngClass]=            "{              \'active\': showNetwork && !showParameters && !showSetup,              \'tabs-btn-selected\': showNetwork && !showParameters && !showSetup            }"           class="tabs-btn">            {{\'app-info.tabs.networks\' | translate}}        </li>        <li           (click)="changeActiveList(\'setup\')"           [ngClass]=            "{              \'active\': showSetup && !showParameters && !showNetwork ,              \'tabs-btn-selected\': showSetup && !showParameters && !showNetwork             }"           class="tabs-btn">            {{\'app-info.tabs.setup\' | translate}}        </li>      </ul>    </div>    <!-- Search box -->    <div class="flex-grow-0">      <div class="search-box">        <input           name="searchTerm"           [(ngModel)]="searchTerm"          type="text"           placeholder="{{\'searcher.placeholder\' | translate }}"          class="form-control">         <div *ngIf="searchTerm === \'\'" class="search-icon">          <i class="material-icons">search</i>        </div>             <div *ngIf="searchTerm !== \'\'" class="close-icon">          <i (click)="resetFilters()" class="material-icons">close</i>        </div>      </div>    </div>    <!-- List to show box -->    <div class=" flex-grow-1">      <!-- Parameters list -->      <div *ngIf="showParameters">        <!-- Basic Parameters list -->        <div class="accordion-box">          <accordion             class="accordion-tabs">            <accordion-group               heading="Basic"              [panelClass]="nalejAccordionSmall"              [isOpen]="isFirstOpen">              <span                     accordion-heading                 class="accordion-icons-box">                <i class="material-icons accordion-arrow">arrow_drop_down</i>              </span>              <div *ngIf="basicParameters.length > 0" class="form-group scroll-accordion-info">                <div *ngFor="let basic of basicParameters|filter : searchTerm;">                  <label>{{basic.name}}</label>                  <input                    type="text"                    placeholder={{openFromRegistered?basic.default_value:basic.value}}                    class="form-control"                    disabled>                  <label class="accordion-foot">{{\'app-info.typeRestrictions\' | translate:{restriction:basic.type} }}</label>                </div>              </div>              <div *ngIf="basicParameters.length === 0" class="scroll-accordion-info">                <p class="grey">{{\'apps.registered.noBasicParameters\' | translate}}</p>              </div>            </accordion-group>          </accordion>        </div>        <!-- Advanced Parameters list -->        <div class="accordion-box">          <accordion             class="accordion-tabs">            <accordion-group               heading="Advanced"              [panelClass]="nalejAccordionSmall"              [isOpen]="isFirstOpen">              <span                     accordion-heading                 class="accordion-icons-box">                <i class="material-icons accordion-arrow">arrow_drop_down</i>              </span>              <div *ngIf="advancedParameters.length > 0" class="form-group scroll-accordion-info">                <div *ngFor="let advanced of advancedParameters|filter : searchTerm;">                  <label>{{advanced.name}}</label>                  <input                    type="text"                    placeholder={{openFromRegistered?advanced.default_value:advanced.value}}                    class="form-control"                    disabled>                  <label class="accordion-foot">                    {{\'app-info.typeRestrictions\' | translate:{restriction:advanced.type} }}                  </label>                </div>              </div>              <div *ngIf="advancedParameters.length === 0" class="scroll-accordion-info">                <p class="grey">{{\'apps.registered.noAdvancedParameters\' | translate}}</p>              </div>            </accordion-group>          </accordion>        </div>      </div>      <!-- Networks list -->      <div *ngIf="showNetwork">        <div class="accordion-box">          <accordion             class="accordion-tabs">            <accordion-group               heading="Inbounds"              [panelClass]="nalejAccordionSmall"              [isOpen]="isFirstOpen">              <span                     accordion-heading                 class="accordion-icons-box">                <i class="material-icons accordion-arrow">arrow_drop_down</i>              </span>              <!-- INSTANCE INFO network-inbounds -->              <div *ngIf="openFromInstance" class="label-nalej-table no-m-row no-p-col">                <div *ngIf="instance.inbound_net_interfaces" class="label-thead row">                  <div class="col-4 label-th">                    <span tooltip="{{\'app-info.instance.NetworkInterface\' | translate}}" placement="bottom">                      {{\'app-info.instance.NetworkInterface\' | translate}}                    </span>                  </div>                  <div class="col-4 label-th text-center">                    <span tooltip="{{\'app-info.instance.NetworkSource\' | translate}}" placement="bottom">                      {{\'app-info.instance.NetworkSource\' | translate}}                    </span>                  </div>                  <div class="col-4 label-th text-right">                    <span tooltip="{{\'app-info.instance.NetworkDisconnect\' | translate}}" placement="bottom">                      {{\'app-info.instance.NetworkDisconnect\' | translate}}                    </span>                  </div>                </div>                <div *ngIf="getInboundConnections().length > 0" class="scroll-accordion-info">                  <div *ngFor=                    "let connection of getInboundConnections() |                    filter : searchTerm; let i = index">                    <span class="label-tbody row">                      <div class="col-4">                        <span class="grey">{{connection.inbound_name}}</span>                      </div>                      <div class="col-4 text-center">                        <span class="grey">{{connection.outbound_name}}</span>                        <br>                        <span>{{connection.instance_name}}</span>                      </div>                      <div class="col-4 text-right px-4">                        <button                          *ngIf="connection.outbound_name"                          (click)="disconnectInstance(connection, \'inbound_connections\', \'inbound_name\', instance)"                          tooltip="{{\'apps.manageConnections.disconnect\' | translate}}"                          placement="left"                          class="action-btn-red">                          <i class="material-icons i-red">link_off</i>                        </button>                      </div>                    </span>                  </div>                </div>                <div *ngIf="!instance.inbound_net_interfaces" class="scroll-accordion-info">                  <p class="grey">{{\'apps.registered.noInboundInterfaces\' | translate}}</p>                </div>              </div>              <!-- DESCRIPTOR INFO network-inbounds-->              <div *ngIf="openFromRegistered" class="label-nalej-table no-m-row no-p-col">                <div *ngIf="registeredData.inbound_net_interfaces" class="scroll-accordion-info">                  <div *ngFor=                    "let connection of registeredData.inbound_net_interfaces | filter : searchTerm">                    <span class="label-tbody row">                      <div class="col-6">                        <span class="grey">{{connection.name}}</span>                      </div>                      <div class="col-6 text-right">                        <span>{{connection.target_service_group_name}}</span>                        <br>                        <span>{{connection.target_service_name}}</span>                      </div>                    </span>                  </div>                </div>                <div *ngIf="!registeredData.inbound_net_interfaces" class="scroll-accordion-info">                  <p class="grey">{{\'apps.registered.noInboundInterfaces\' | translate}}</p>                </div>              </div>            </accordion-group>          </accordion>        </div>        <div class="accordion-box">          <accordion          class="accordion-tabs">          <accordion-group            heading="Outbound"            [panelClass]="nalejAccordionSmall"            [isOpen]="isFirstOpen">            <span              accordion-heading               class="accordion-icons-box">              <i class="material-icons accordion-arrow">arrow_drop_down</i>            </span>            <span              accordion-heading               class="accordion-legend">              <p>{{\'app-info.requiredElements\' | translate}}</p>            </span>            <!-- INSTANCE INFO network-outbounds -->            <div *ngIf="openFromInstance" class="label-nalej-table no-m-row no-p-col">              <div *ngIf="instance.outbound_net_interfaces" class="label-thead row">                <div class="col-4 label-th">                  <span tooltip="{{\'app-info.instance.NetworkInterface\' | translate}}" placement="bottom">                    {{\'app-info.instance.NetworkInterface\' | translate}}                  </span>                </div>                <div class="col-4 label-th text-center">                  <span tooltip="{{\'app-info.instance.NetworkTarget\' | translate}}" placement="bottom">                    {{\'app-info.instance.NetworkTarget\' | translate}}                  </span>                </div>                <div class="col-4 label-th text-right">                  <span tooltip="{{\'app-info.instance.NetworkDisconnect\' | translate}}" placement="bottom">                    {{\'app-info.instance.NetworkDisconnect\' | translate}}                  </span>                </div>              </div>              <div *ngIf="instance.outbound_net_interfaces" class="scroll-accordion-info">                <div *ngFor="let interface of instance.outbound_net_interfaces |                  filter : searchTerm; let i = index">                  <span class="label-tbody row">                    <div class="col-4">                      <span class="grey">{{interface.name}}</span>                    </div>                    <div class="col-4 text-center">                      <span class="grey">{{getTarget(interface.name).interface_name}}</span>                      <br>                      <span>{{getTarget(interface.name).instance_name}}</span>                    </div>                    <div class="col-4 text-right px-4">                      <button                        *ngIf="getTarget(interface.name).instance_name"                        (click)="disconnectInstance(interface, \'inbound_connections\', \'inbound_name\', instance)"                        tooltip="{{\'apps.manageConnections.disconnect\' | translate}}"                        placement="left"                        class="action-btn-red">                        <i class="material-icons i-red">link_off</i>                      </button>                    </div>                  </span>                </div>              </div>              <div *ngIf="!instance.outbound_net_interfaces" class="scroll-accordion-info">                <p class="grey">{{\'apps.registered.noOutboundInterfaces\' | translate}}</p>              </div>            </div>            <!-- REGISTERED INFO network-outbounds -->            <div *ngIf="openFromRegistered" class="label-nalej-table no-m-row no-p-col">              <div *ngIf="registeredData.outbound_net_interfaces" class="scroll-accordion-info">                <div *ngFor=                  "let connection of registeredData.outbound_net_interfaces |                  filter : searchTerm">                  <span class="label-tbody row">                    <div class="col-6">                      <span class="grey">{{connection.name}}</span>                    </div>                    <div class="col-6 text-right">                      <span>{{connection.target_service_group_name}}</span>                      <br>                      <span>{{connection.target_service_name}}</span>                    </div>                  </span>                </div>              </div>              <div *ngIf="!registeredData.outbound_net_interfaces" class="scroll-accordion-info">                <p class="grey">{{\'apps.registered.noOutboundInterfaces\' | translate}}</p>              </div>            </div>          </accordion-group>          </accordion>        </div>      </div>      <!-- Setup list -->      <div *ngIf="showSetup">        <!-- Environment variables list -->        <div class="accordion-box">          <accordion             class="accordion-tabs">            <accordion-group               heading="{{\'apps.instance.environmentVariables\' | translate}}"              [panelClass]="nalejAccordionSmall"              [isOpen]="isFirstOpen">              <span                accordion-heading                 class="accordion-icons-box">                <i class="material-icons accordion-arrow">arrow_drop_down</i>              </span>              <div class="label-nalej-table no-p-col no-m-row">                <!-- REGISTERED INFO Environment variables -->                <div *ngIf="openFromRegistered" class="scroll-accordion-info">                  <div *ngIf="registeredData.environment_variables">                    <div *ngFor="let variable of registeredData.environment_variables | keyvalue" class="row label-tbody">                      <div class="col-6 grey">                        {{variable.key}}                       </div>                      <div class="col-6 text-right">                        {{variable.value}}                      </div>                    </div>                  </div>                  <div *ngIf="!registeredData.environment_variables">                    <p class="grey">{{\'apps.instance.noEnvironmentVariables\' | translate}}</p>                  </div>                </div>                <!-- INSTANCE INFO Environment variables -->                <div *ngIf="openFromInstance" class="scroll-accordion-info">                  <div *ngIf="instance.environment_variables">                    <div *ngFor="let variable of instance.environment_variables | keyvalue" class="row label-tbody">                      <div class="col-6 grey">                        {{variable.key}}                       </div>                      <div class="col-6 text-right">                        {{variable.value}}                      </div>                    </div>                  </div>                  <div *ngIf="!instance.environment_variables">                    <p class="grey">{{\'apps.instance.noEnvironmentVariables\' | translate}}</p>                  </div>                </div>              </div>            </accordion-group>          </accordion>        </div>        <!-- Other setting  list -->        <div class="accordion-box">          <accordion             class="accordion-tabs">            <accordion-group               heading="{{\'apps.instance.otherSettings\' | translate}}"              [panelClass]="nalejAccordionSmall"              [isOpen]="isFirstOpen">              <span                     accordion-heading                 class="accordion-icons-box">                <i class="material-icons accordion-arrow">arrow_drop_down</i>              </span>              <div class="label-nalej-table no-p-col no-m-row">                <!-- REGISTERED INFO Other setting -->                <div *ngIf="openFromRegistered" class="scroll-accordion-info">                  <div *ngIf="registeredData.configuration_options">                    <p class="text-left">{{\'apps.instance.otherSettings\' | translate}}</p>                    <div *ngFor="let configuration of registeredData.configuration_options| keyvalue" class="row mb-1">                      <div class="col-12 grey text-right">                        {{configuration.key}}                       </div>                      <div class="col-12 text-right">                        {{configuration.value}}                      </div>                    </div>                  </div>                  <div *ngIf="!registeredData.configuration_options">                    <p class="grey">{{\'apps.instance.noOtherSettings\' | translate}}</p>                  </div>                </div>                <!-- INSTANCE INFO Other setting -->                <div *ngIf="openFromInstance" class="scroll-accordion-info">                  <div *ngIf="instance.configuration_options">                    <p class="text-left">{{\'apps.instance.otherSettings\' | translate}}</p>                    <div *ngFor="let configuration of instance.configuration_options| keyvalue" class="row mb-1" >                      <div class="col-12 grey text-right">                        {{configuration.key}}                       </div>                      <div class="col-12 text-right">                        {{configuration.value}}                      </div>                    </div>                  </div>                  <div *ngIf="!instance.configuration_options">                    <p class="grey">{{\'apps.instance.noOtherSettings\' | translate}}</p>                  </div>                </div>              </div>            </accordion-group>          </accordion>        </div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'ToolsComponent', 'selector': 'tools'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'AppInfoComponent'};
 </script>

@@ -1,16 +1,3 @@
-<!-- 
-  Copyright 2019 Nalej
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-      http://www.apache.org/licenses/LICENSE-2.0
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
- -->
-
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -74,17 +61,11 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/simple-log/simple-log.component.ts</code>
+    <code>src/app/infrastructure/simple-log/simple-log.component.ts</code>
 </p>
 
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-    </p>
 
 
 <section>
@@ -177,9 +158,6 @@
                                 <a href="#closeModal">closeModal</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit">ngOnInit</a>
-                            </li>
-                            <li>
                                 <a href="#parseTimestampToDate">parseTimestampToDate</a>
                             </li>
                         </ul>
@@ -200,12 +178,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(bsModalRef: BsModalRef, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>)</code>
+<code>constructor(bsModalRef: BsModalRef, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, translateService: <a href="../interfaces/Service.html">TranslateService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/simple-log/simple-log.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/infrastructure/simple-log/simple-log.component.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -258,6 +236,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>translateService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/Service.html" target="_self" >TranslateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -298,8 +288,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">src/app/simple-log/simple-log.component.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">src/app/infrastructure/simple-log/simple-log.component.ts:113</a></div>
                 </td>
             </tr>
 
@@ -308,45 +298,6 @@
                 <td class="col-md-4">
                     <div class="io-description"><p>Close the modal window</p>
 </div>
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <b>
-                            ngOnInit
-                        </b>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/app/simple-log/simple-log.component.ts:57</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -378,8 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/app/simple-log/simple-log.component.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/app/infrastructure/simple-log/simple-log.component.ts:87</a></div>
                 </td>
             </tr>
 
@@ -424,7 +375,7 @@ and multiplied by 1000 so that the argument is in milliseconds, not seconds.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/simple-log/simple-log.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/infrastructure/simple-log/simple-log.component.ts:44</a></div>
                             </td>
                         </tr>
 
@@ -458,7 +409,7 @@ and multiplied by 1000 so that the argument is in milliseconds, not seconds.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/simple-log/simple-log.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/infrastructure/simple-log/simple-log.component.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -493,7 +444,7 @@ and multiplied by 1000 so that the argument is in milliseconds, not seconds.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/simple-log/simple-log.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/infrastructure/simple-log/simple-log.component.ts:57</a></div>
                             </td>
                         </tr>
 
@@ -526,7 +477,7 @@ and multiplied by 1000 so that the argument is in milliseconds, not seconds.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/simple-log/simple-log.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/infrastructure/simple-log/simple-log.component.ts:53</a></div>
                             </td>
                         </tr>
 
@@ -553,7 +504,7 @@ and multiplied by 1000 so that the argument is in milliseconds, not seconds.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/simple-log/simple-log.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/infrastructure/simple-log/simple-log.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -586,7 +537,7 @@ and multiplied by 1000 so that the argument is in milliseconds, not seconds.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/simple-log/simple-log.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/infrastructure/simple-log/simple-log.component.ts:52</a></div>
                             </td>
                         </tr>
 
@@ -605,35 +556,33 @@ and multiplied by 1000 so that the argument is in milliseconds, not seconds.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { Backend } from &#x27;../definitions/interfaces/backend&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { Backend } from &#x27;../../definitions/interfaces/backend&#x27;;
 import { BsModalRef } from &#x27;ngx-bootstrap&#x27;;
-import { BackendService } from &#x27;../services/backend.service&#x27;;
-import { MockupBackendService } from &#x27;../services/mockup-backend.service&#x27;;
-import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
+import { BackendService } from &#x27;../../services/backend.service&#x27;;
+import { MockupBackendService } from &#x27;../../services/mockup-backend.service&#x27;;
+import { LocalStorageKeys } from &#x27;../../definitions/const/local-storage-keys&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
 
 @Component({
   selector: &#x27;app-simple-log&#x27;,
   templateUrl: &#x27;./simple-log.component.html&#x27;,
   styleUrls: [&#x27;./simple-log.component.scss&#x27;]
 })
-export class SimpleLogComponent implements OnInit {
+export class SimpleLogComponent  {
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Loaded Data status
    */
   loadedData: boolean;
-
   /**
    * Model that hold organization ID and last operations summary
    */
   organizationId: string;
   lastOpSummary: any;
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -645,7 +594,8 @@ export class SimpleLogComponent implements OnInit {
   constructor(
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
-    private mockupBackendService: MockupBackendService
+    private mockupBackendService: MockupBackendService,
+    private translateService: TranslateService
   ) {
     const mock &#x3D; localStorage.getItem(LocalStorageKeys.simpleLogMock) || null;
     // check which backend is required (fake or real)
@@ -656,12 +606,9 @@ export class SimpleLogComponent implements OnInit {
     }
     this.lastOpSummary &#x3D; {
       timestamp: 0,
-      info: &#x27;No info available&#x27;,
+      info: this.translateService.instant(&#x27;infrastructure.asset.noInfo&#x27;),
       status: &#x27;-&#x27;
     };
-   }
-
-  ngOnInit() {
   }
 
   /**
@@ -678,7 +625,6 @@ export class SimpleLogComponent implements OnInit {
       let hour: any &#x3D; date.getHours();
       let min: any &#x3D; date.getMinutes();
       let sec: any &#x3D; date.getSeconds();
-
       if (hour &lt; 10) {
         hour &#x3D; &#x27;0&#x27; + hour;
       }
@@ -689,29 +635,39 @@ export class SimpleLogComponent implements OnInit {
         sec &#x3D; &#x27;0&#x27; + sec;
       }
       const formatedDate &#x3D; month + &#x27;/&#x27; + day + &#x27;/&#x27; + year + &#x27; - &#x27; + hour + &#x27;:&#x27; + min + &#x27;:&#x27; + sec ;
-
       return formatedDate;
     }
     return &#x27;undefined&#x27;;
   }
-
   /**
    * Close the modal window
    */
   closeModal() {
     this.bsModalRef.hide();
   }
-
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;modal-card&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;!-- 
+  Copyright 2019 Nalej
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ --&gt;
+
+&lt;div class&#x3D;&quot;modal-card&quot;&gt;
   &lt;div class&#x3D;&quot;modal-content dev-group-content&quot;&gt;
     &lt;!-- Header --&gt;
     &lt;div class&#x3D;&quot;modal-header&quot;&gt;
-      &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;Last operation info&lt;/h3&gt;
+      &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;{{&#x27;infrastructure.asset.lastLog&#x27; | translate}}&lt;/h3&gt;
       &lt;button 
         (click)&#x3D;&quot;closeModal()&quot;
         type&#x3D;&quot;button&quot; 
@@ -723,23 +679,37 @@ export class SimpleLogComponent implements OnInit {
     &lt;!-- Body --&gt;
     &lt;div class&#x3D;&quot;modal-body&quot;&gt;
       &lt;div class&#x3D;&quot;simple-log&quot;&gt;
-        &lt;p *ngIf&#x3D;&quot;!lastOpSummary || !lastOpSummary.timestamp&quot;&gt;Date: No info&lt;/p&gt;
-        &lt;p *ngIf&#x3D;&quot;lastOpSummary.timestamp&quot;&gt;Date: {{parseTimestampToDate()}}&lt;/p&gt;
-        &lt;p *ngIf&#x3D;&quot;!lastOpSummary || !lastOpSummary.status&quot;&gt;Status: unknown&lt;/p&gt;
-        &lt;p *ngIf&#x3D;&quot;lastOpSummary.status&quot;&gt;Status: {{lastOpSummary.status}}&lt;/p&gt;
-        &lt;p *ngIf&#x3D;&quot;!lastOpSummary || !lastOpSummary.info&quot;&gt;No info&lt;/p&gt;
-        &lt;p *ngIf&#x3D;&quot;lastOpSummary.info&quot;&gt;Info: {{lastOpSummary.info}}&lt;/p&gt;
+        &lt;p *ngIf&#x3D;&quot;!lastOpSummary || !lastOpSummary.timestamp&quot;&gt;{{&#x27;infrastructure.asset.noDate&#x27; | translate}}&lt;/p&gt;
+        &lt;p *ngIf&#x3D;&quot;lastOpSummary.timestamp&quot;&gt;{{&#x27;infrastructure.asset.date&#x27; | translate}}: {{parseTimestampToDate()}}&lt;/p&gt;
+        &lt;p *ngIf&#x3D;&quot;!lastOpSummary || !lastOpSummary.status&quot;&gt;{{&#x27;infrastructure.asset.status&#x27; | translate}}:&lt;/p&gt;
+        &lt;p *ngIf&#x3D;&quot;lastOpSummary.status&quot;&gt;{{&#x27;tables.tableStatus&#x27; | translate}}: {{lastOpSummary.status}}&lt;/p&gt;
+        &lt;p *ngIf&#x3D;&quot;!lastOpSummary || !lastOpSummary.info&quot;&gt;{{&#x27;infrastructure.asset.noInfo&#x27; | translate}&lt;/p&gt;
+        &lt;p *ngIf&#x3D;&quot;lastOpSummary.info&quot;&gt;{{&#x27;tables.tableInfo&#x27; | translate}}: {{lastOpSummary.info}}&lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
                     <code>./simple-log.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;../scss/variables/colors&#x27;;
+                <pre class="line-numbers"><code class="language-scss">/* 
+ *  Copyright 2019 Nalej
+ *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+@import &#x27;../../scss/variables/colors&#x27;;
 
 .simple-log {
     background-color: $dark-grey;
@@ -778,8 +748,8 @@ export class SimpleLogComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content dev-group-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Last operation info</h3>      <button         (click)="closeModal()"        type="button"         aria-label="Close"        class="close" >        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <div class="simple-log">        <p *ngIf="!lastOpSummary || !lastOpSummary.timestamp">Date: No info</p>        <p *ngIf="lastOpSummary.timestamp">Date: {{parseTimestampToDate()}}</p>        <p *ngIf="!lastOpSummary || !lastOpSummary.status">Status: unknown</p>        <p *ngIf="lastOpSummary.status">Status: {{lastOpSummary.status}}</p>        <p *ngIf="!lastOpSummary || !lastOpSummary.info">No info</p>        <p *ngIf="lastOpSummary.info">Info: {{lastOpSummary.info}}</p>      </div>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><!--   Copyright 2019 Nalej  Licensed under the Apache License, Version 2.0 (the "License");  you may not use this file except in compliance with the License.  You may obtain a copy of the License at      http://www.apache.org/licenses/LICENSE-2.0  Unless required by applicable law or agreed to in writing, software  distributed under the License is distributed on an "AS IS" BASIS,  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the specific language governing permissions and  limitations under the License. --><div class="modal-card">  <div class="modal-content dev-group-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">{{\'infrastructure.asset.lastLog\' | translate}}</h3>      <button         (click)="closeModal()"        type="button"         aria-label="Close"        class="close" >        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <div class="simple-log">        <p *ngIf="!lastOpSummary || !lastOpSummary.timestamp">{{\'infrastructure.asset.noDate\' | translate}}</p>        <p *ngIf="lastOpSummary.timestamp">{{\'infrastructure.asset.date\' | translate}}: {{parseTimestampToDate()}}</p>        <p *ngIf="!lastOpSummary || !lastOpSummary.status">{{\'infrastructure.asset.status\' | translate}}:</p>        <p *ngIf="lastOpSummary.status">{{\'tables.tableStatus\' | translate}}: {{lastOpSummary.status}}</p>        <p *ngIf="!lastOpSummary || !lastOpSummary.info">{{\'infrastructure.asset.noInfo\' | translate}</p>        <p *ngIf="lastOpSummary.info">{{\'tables.tableInfo\' | translate}}: {{lastOpSummary.info}}</p>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'ToolsComponent', 'selector': 'tools'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'SimpleLogComponent'};
 </script>

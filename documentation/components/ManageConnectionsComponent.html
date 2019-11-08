@@ -1,16 +1,3 @@
-<!-- 
-  Copyright 2019 Nalej
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-      http://www.apache.org/licenses/LICENSE-2.0
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
- -->
-
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -74,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/manage-connections/manage-connections.component.ts</code>
+    <code>src/app/applications/manage-connections/manage-connections.component.ts</code>
 </p>
 
 
@@ -84,6 +71,7 @@
     </p>
     <p class="comment">
                     <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
     </p>
 
 
@@ -174,6 +162,14 @@
                                 <a href="#organizationId">organizationId</a>
                             </li>
                             <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#REFRESH_INTERVAL">REFRESH_INTERVAL</a>
+                            </li>
+                            <li>
+                                <a href="#refreshIntervalRef">refreshIntervalRef</a>
+                            </li>
+                            <li>
                                 <a href="#searchTerm">searchTerm</a>
                             </li>
                             <li>
@@ -214,6 +210,9 @@
                             </li>
                             <li>
                                 <a href="#goToInstance">goToInstance</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit">ngOnInit</a>
@@ -259,12 +258,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(bsModalRef: BsModalRef, modalService: BsModalService, formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>, translateService: TranslateService, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(bsModalRef: BsModalRef, modalService: <a href="../interfaces/Service.html">BsModalService</a>, formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>, translateService: <a href="../interfaces/Service.html">TranslateService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:82</a></div>
                             </td>
                         </tr>
 
@@ -297,7 +296,7 @@
                                                         <td>modalService</td>
                                                   
                                                         <td>
-                                                                    <code>BsModalService</code>
+                                                                        <code><a href="../interfaces/Service.html" target="_self" >BsModalService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -357,7 +356,7 @@
                                                         <td>translateService</td>
                                                   
                                                         <td>
-                                                                    <code>TranslateService</code>
+                                                                        <code><a href="../interfaces/Service.html" target="_self" >TranslateService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -417,8 +416,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="213"
-                            class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:213</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="232"
+                            class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:232</a></div>
                 </td>
             </tr>
 
@@ -458,8 +457,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="168"
-                            class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:168</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="192"
+                            class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:192</a></div>
                 </td>
             </tr>
 
@@ -531,8 +530,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="200"
-                            class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:200</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="220"
+                            class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:220</a></div>
                 </td>
             </tr>
 
@@ -604,8 +603,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="143"
-                            class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:143</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="168"
+                            class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:168</a></div>
                 </td>
             </tr>
 
@@ -645,8 +644,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="227"
-                            class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:227</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="245"
+                            class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:245</a></div>
                 </td>
             </tr>
 
@@ -680,7 +679,7 @@
 
 
                                     <td>
-                                        <p>instance identificator</p>
+                                        <p>instance identification</p>
 
                                     </td>
                                 </tr>
@@ -695,6 +694,45 @@
                     </div>
                     <div class="io-description">
                         
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <b>
+                            ngOnDestroy
+                        </b>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="128"
+                            class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:128</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
                     </div>
                 </td>
             </tr>
@@ -722,8 +760,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:83</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:109</a></div>
                 </td>
             </tr>
 
@@ -761,8 +799,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="111"
-                            class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:111</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:138</a></div>
                 </td>
             </tr>
 
@@ -802,8 +840,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="220"
-                            class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:220</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="238"
+                            class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:238</a></div>
                 </td>
             </tr>
 
@@ -843,8 +881,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="129"
-                            class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:129</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="153"
+                            class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:153</a></div>
                 </td>
             </tr>
 
@@ -888,7 +926,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:73</a></div>
                             </td>
                         </tr>
 
@@ -915,7 +953,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:50</a></div>
                             </td>
                         </tr>
 
@@ -949,7 +987,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:85</a></div>
                             </td>
                         </tr>
 
@@ -976,7 +1014,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:56</a></div>
                             </td>
                         </tr>
 
@@ -1003,7 +1041,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:57</a></div>
                             </td>
                         </tr>
 
@@ -1030,7 +1068,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:68</a></div>
                             </td>
                         </tr>
 
@@ -1057,7 +1095,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:67</a></div>
                             </td>
                         </tr>
 
@@ -1084,7 +1122,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:66</a></div>
                             </td>
                         </tr>
 
@@ -1117,7 +1155,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:78</a></div>
                             </td>
                         </tr>
 
@@ -1150,13 +1188,80 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:54</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Model that hold manage connections and its info</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="REFRESH_INTERVAL"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Static</span>
+                                <span class="modifier">Readonly</span>
+                            REFRESH_INTERVAL</b>
+                            <a href="#REFRESH_INTERVAL"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>10000</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:46</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="refreshIntervalRef"></a>
+                        <span class="name">
+                            <b>
+                            refreshIntervalRef</b>
+                            <a href="#refreshIntervalRef"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Subscription</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:82</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Holds the reference of the interval that refreshes the lists</p>
 </div>
                     </td>
                 </tr>
@@ -1183,7 +1288,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -1221,7 +1326,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:74</a></div>
                             </td>
                         </tr>
 
@@ -1248,7 +1353,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -1280,7 +1385,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:72</a></div>
                             </td>
                         </tr>
 
@@ -1313,7 +1418,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:55</a></div>
                             </td>
                         </tr>
 
@@ -1342,7 +1447,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/manage-connections/manage-connections.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/applications/manage-connections/manage-connections.component.ts:134</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1360,29 +1465,30 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
 import { BsModalRef, BsModalService } from &#x27;ngx-bootstrap&#x27;;
 import { FormGroup, FormBuilder, FormControl } from &#x27;@angular/forms&#x27;;
-import { Backend } from &#x27;../definitions/interfaces/backend&#x27;;
-import { BackendService } from &#x27;../services/backend.service&#x27;;
-import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
-import { MockupBackendService } from &#x27;../services/mockup-backend.service&#x27;;
-import { NotificationsService } from &#x27;../services/notifications.service&#x27;;
+import { Backend } from &#x27;../../definitions/interfaces/backend&#x27;;
+import { BackendService } from &#x27;../../services/backend.service&#x27;;
+import { LocalStorageKeys } from &#x27;../../definitions/const/local-storage-keys&#x27;;
+import { MockupBackendService } from &#x27;../../services/mockup-backend.service&#x27;;
+import { NotificationsService } from &#x27;../../services/notifications.service&#x27;;
 import { AddConnectionsComponent } from &#x27;../add-connections/add-connections.component&#x27;;
 import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
+import { Subscription, timer } from &#x27;rxjs&#x27;;
 
 @Component({
   selector: &#x27;manage-connections&#x27;,
   templateUrl: &#x27;./manage-connections.component.html&#x27;,
   styleUrls: [&#x27;./manage-connections.component.scss&#x27;]
 })
-export class ManageConnectionsComponent implements OnInit {
+export class ManageConnectionsComponent implements OnInit, OnDestroy {
+  static readonly REFRESH_INTERVAL &#x3D; 10000;
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Model that hold manage connections and its info
    */
@@ -1391,30 +1497,30 @@ export class ManageConnectionsComponent implements OnInit {
   connections: any[];
   copyConnections: any[];
   selectedApp: any;
-
   /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
-
   /**
    * Models that holds forms info
    */
   manageConnectionsFilterForm: FormGroup;
   manageConnections: FormControl;
   filter: FormControl;
-
   /**
    * NGX-select-dropdown
    */
   tab &#x3D; 1;
   appDropdownOptions: any[];
   selectConfig &#x3D; {};
-
   /**
    * Reference for the service that allows the modal component
    */
   modalRef: BsModalRef;
+  /**
+   * Holds the reference of the interval that refreshes the lists
+   */
+  refreshIntervalRef: Subscription;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -1433,10 +1539,9 @@ export class ManageConnectionsComponent implements OnInit {
       } else {
         this.backend &#x3D; this.backendService;
       }
-    this.title &#x3D; &#x27;MANAGE CONNECTIONS&#x27;;
+    this.title &#x3D; this.translateService.instant(&#x27;apps.manageConnections.title&#x27;);
     this.searchTerm &#x3D; &#x27;&#x27;;
     this.selectedApp &#x3D; &#x27;&#x27;;
-
     //  Manage connections dropdown
     this.manageConnections &#x3D; null;
     this.connections &#x3D; [];
@@ -1455,18 +1560,19 @@ export class ManageConnectionsComponent implements OnInit {
       displayKey: &#x27;name&#x27;,
       search: false,
       height: &#x27;auto&#x27;,
-      placeholder: &#x27;No filter&#x27;,
+      placeholder: this.translateService.instant(&#x27;advancedFilterOptions.noFilters&#x27;),
       moreText: &#x27;more&#x27;,
-      noResultsFound: &#x27;No results found!&#x27;
+      noResultsFound: this.translateService.instant(&#x27;apps.addConnection.noResults&#x27;)
     };
     this.updateConnections();
   }
-
-    /**
+  ngOnDestroy() {
+    this.refreshIntervalRef.unsubscribe();
+  }
+  /**
    * Convenience getter for easy access to form fields
    */
   get f() { return this.manageConnectionsFilterForm.controls; }
-
   /**
    * Creates an array with the names to be filtered by
    */
@@ -1475,31 +1581,29 @@ export class ManageConnectionsComponent implements OnInit {
       organizationId: this.organizationId,
       defaultAutofocus: false,
     };
-
     this.modalRef &#x3D; this.modalService.show(AddConnectionsComponent, { initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
     this.modalRef.content.onClose &#x3D; (newConnection: any) &#x3D;&gt; {
       if (newConnection) {
-        }
-      };
+      }};
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
     this.bsModalRef.hide();
   }
-
   /**
    * Updates connections and appDropdownOptions
    */
   updateConnections() {
-    this.backend.getListConnections(this.organizationId)
-    .subscribe(response &#x3D;&gt; {
-      const anyResponse: any &#x3D; response;
-      if (anyResponse.connections) {
-        this.connections &#x3D; anyResponse.connections;
-        this.appDropdownOptions &#x3D; this.getAppInstancesOptions();
-        }
-      });
+    this.refreshIntervalRef &#x3D; timer(0, ManageConnectionsComponent.REFRESH_INTERVAL).subscribe(() &#x3D;&gt; {
+      this.backend.getListConnections(this.organizationId)
+        .toPromise()
+          .then((list) &#x3D;&gt; {
+            if (list.list) {
+              this.connections &#x3D; list.list;
+              this.appDropdownOptions &#x3D; this.getAppInstancesOptions();
+            }
+          });
+    });
   }
-
-    /**
+  /**
    * Returns app instances names and ids in an object array
    */
   getAppInstancesOptions() {
@@ -1516,24 +1620,22 @@ export class ManageConnectionsComponent implements OnInit {
         });
       });
       instances.push({
-        name: &#x27;----- NO FILTER -----&#x27;,
-        id: &#x27;----- NO FILTER -----&#x27;
+        name: this.translateService.instant(&#x27;advancedFilterOptions.noFiltersDrop&#x27;),
+        id: this.translateService.instant(&#x27;advancedFilterOptions.noFiltersDrop&#x27;)
       });
     }
     return instances;
   }
-
   /**
    * Disconnects app instance
    * @param connection connections
    */
   disconnectInstance(connection) {
-    let deleteConfirm &#x3D;
-      confirm(this.translateService.instant(&#x27;apps.manageConnections.disconnectConfirm&#x27;));
+    let message &#x3D; this.translateService.instant(&#x27;apps.manageConnections.disconnectConfirm&#x27;);
     if (connection.outbound_required) {
-      deleteConfirm &#x3D;
-      confirm(this.translateService.instant(&#x27;apps.manageConnections.disconnectConfirmOutboundRequired&#x27;));
+      message &#x3D; this.translateService.instant(&#x27;apps.manageConnections.disconnectConfirmOutboundRequired&#x27;);
     }
+    const deleteConfirm &#x3D; confirm(message);
     if (deleteConfirm) {
       this.backend.removeConnection(this.organizationId, {
         organization_id: this.organizationId,
@@ -1545,38 +1647,33 @@ export class ManageConnectionsComponent implements OnInit {
         outbound_name: connection.outbound_name,
         user_confirmation: true
       })
-        .subscribe(response &#x3D;&gt; {
+        .subscribe(() &#x3D;&gt; {
           this.notificationsService.add({
-            message: &#x27;Connection removed&#x27;,
-            timeout: 3000
+            message: this.translateService.instant(&#x27;apps.manageConnections.disconnectMessage&#x27;),
           });
-          this.updateConnections();
         });
     }
   }
-
   /**
    * Handler for change event on ngx-select-dropdown
    * @param f Form
    */
   filterByApp(f) {
-    // Workaround to enable &quot;reseting&quot; the filter to no filter after selecting an app
-    if (f.filter.value.name &#x3D;&#x3D;&#x3D; &#x27;----- NO FILTER -----&#x27;) {
+    // Workaround to enable &quot;resetting&quot; the filter to no filter after selecting an app
+    if (f.filter.value.name &#x3D;&#x3D;&#x3D; this.translateService.instant(&#x27;advancedFilterOptions.noFiltersDrop&#x27;)) {
       f.filter.value &#x3D; null;
       this.selectedApp &#x3D; &#x27;&#x27;;
     } else {
       this.selectedApp &#x3D; f.filter.value.name;
     }
   }
-
   /**
    * Close the modal window
    */
   closeModal() {
     this.bsModalRef.hide();
   }
-
-    /**
+  /**
    * Reset all the filters fields
    */
   resetFilters() {
@@ -1584,7 +1681,7 @@ export class ManageConnectionsComponent implements OnInit {
   }
   /**
    * Navigates to the desired instance and closes the modal
-   * @param instanceId instance identificator
+   * @param instanceId instance identification
    */
   goToInstance(instanceId: string) {
     this.router.navigate([&#x27;/applications/instance/&#x27; + instanceId]);
@@ -1595,10 +1692,23 @@ export class ManageConnectionsComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;modal-card&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;!-- 
+  Copyright 2019 Nalej
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ --&gt;
+
+&lt;div class&#x3D;&quot;modal-card&quot;&gt;
   &lt;!-- Header --&gt;
   &lt;div class&#x3D;&quot;modal-header&quot;&gt;
-    &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;{{title}}&lt;/h3&gt;
+    &lt;h3 class&#x3D;&quot;nalej-form-title text-uppercase&quot;&gt;{{title}}&lt;/h3&gt;
     &lt;button 
       (click)&#x3D;&quot;closeModal()&quot;
       type&#x3D;&quot;button&quot; 
@@ -1614,15 +1724,15 @@ export class ManageConnectionsComponent implements OnInit {
         (click)&#x3D;&quot;openAddNewConnection()&quot;
         class&#x3D;&quot;apps-actions-btn&quot;&gt;
         &lt;i class&#x3D;&quot;material-icons-round i-options&quot;&gt;link&lt;/i&gt;
-        {{&#x27;apps.manageConnections.addNewConnection&#x27;|translate}}
+        {{&#x27;apps.manageConnections.addNewConnection&#x27; | translate}}
       &lt;/button&gt;
     &lt;/div&gt;
-    &lt;h3 class&#x3D;&quot;nalej-form-title &quot;&gt;{{&#x27;apps.manageConnections.connectionsList&#x27;|translate}}&lt;/h3&gt;
+    &lt;h3 class&#x3D;&quot;nalej-form-title &quot;&gt;{{&#x27;apps.manageConnections.connectionsList&#x27; | translate}}&lt;/h3&gt;
     &lt;div class&#x3D;&quot;modal-center-box&quot;&gt;
       &lt;!-- Filters --&gt;
       &lt;form [formGroup]&#x3D;&quot;manageConnectionsFilterForm&quot;  class&#x3D;&quot;w-100 hide-sm-md-h&quot;&gt;
         &lt;div *ngIf&#x3D;&quot;connections &amp;&amp; connections.length &gt; 0&quot; class&#x3D;&quot;form-group form-group-drop filter-drop-box&quot;&gt;
-          &lt;label class&#x3D;&quot;app-filter-label&quot;&gt;{{&#x27;apps.manageConnections.appFilter&#x27;|translate}}&lt;/label&gt;
+          &lt;label class&#x3D;&quot;app-filter-label&quot;&gt;{{&#x27;apps.manageConnections.appFilter&#x27; | translate}}&lt;/label&gt;
           &lt;ngx-select-dropdown 
             formControlName&#x3D;&quot;filter&quot; 
             [multiple]&#x3D;&quot;false&quot; 
@@ -1646,7 +1756,7 @@ export class ManageConnectionsComponent implements OnInit {
           name&#x3D;&quot;searchTerm&quot; 
           [(ngModel)]&#x3D;&quot;searchTerm&quot;
           type&#x3D;&quot;text&quot; 
-          placeholder&#x3D;&quot;{{&#x27;searcher.placeholder&#x27;|translate }}&quot;
+          placeholder&#x3D;&quot;{{&#x27;searcher.placeholder&#x27; | translate }}&quot;
           class&#x3D;&quot;form-control&quot;&gt; 
         &lt;div *ngIf&#x3D;&quot;searchTerm &#x3D;&#x3D;&#x3D; &#x27;&#x27;&quot; class&#x3D;&quot;search-icon&quot;&gt;
           &lt;i class&#x3D;&quot;material-icons&quot;&gt;search&lt;/i&gt;
@@ -1657,35 +1767,35 @@ export class ManageConnectionsComponent implements OnInit {
       &lt;/div&gt;
       &lt;!-- Table --&gt;
       &lt;div *ngIf&#x3D;&quot;!connections || connections.length &#x3D;&#x3D;&#x3D; 0&quot; class&#x3D;&quot;mt-0&quot;&gt;
-        {{&#x27;apps.manageConnections.noConnections&#x27;|translate}}
+        {{&#x27;apps.manageConnections.noConnections&#x27; | translate}}
       &lt;/div&gt;
       &lt;div *ngIf&#x3D;&quot;connections &amp;&amp; connections.length &gt; 0&quot; class&#x3D;&quot;label-nalej-table no-p-col no-m-row&quot;&gt;
         &lt;div class&#x3D;&quot;label-thead row&quot;&gt;
           &lt;div class&#x3D;&quot;col-5 label-th&quot;&gt;
-            &lt;span tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.sourceInstance&#x27;|translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
-              {{&#x27;apps.manageConnections.sourceInstance&#x27;|translate}}
+            &lt;span tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.sourceInstance&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
+              {{&#x27;apps.manageConnections.sourceInstance&#x27; | translate}}
             &lt;/span&gt;
             &lt;br&gt;
-            &lt;span tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.sourceInterface&#x27;|translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
-              {{&#x27;apps.manageConnections.sourceInterface&#x27;|translate}}
+            &lt;span tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.sourceInterface&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
+              {{&#x27;apps.manageConnections.sourceInterface&#x27; | translate}}
             &lt;/span&gt;
           &lt;/div&gt;
           &lt;div  class&#x3D;&quot;col-5 label-th&quot;&gt;
-            &lt;span tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.targetInstance&#x27;|translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
-              {{&#x27;apps.manageConnections.targetInstance&#x27;|translate}}
+            &lt;span tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.targetInstance&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
+              {{&#x27;apps.manageConnections.targetInstance&#x27; | translate}}
             &lt;/span&gt;
             &lt;br&gt;
-            &lt;span tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.targetInterface&#x27;|translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
-              {{&#x27;apps.manageConnections.targetInterface&#x27;|translate}}
+            &lt;span tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.targetInterface&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
+              {{&#x27;apps.manageConnections.targetInterface&#x27; | translate}}
             &lt;/span&gt;
           &lt;/div&gt;
           &lt;div class&#x3D;&quot;col-2 label-th text-center&quot;&gt;
-            &lt;span tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.disconnect&#x27;|translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
-              {{&#x27;apps.manageConnections.disconnect&#x27;|translate}}
+            &lt;span tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.disconnect&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;
+              {{&#x27;apps.manageConnections.disconnect&#x27; | translate}}
             &lt;/span&gt;
           &lt;/div&gt;
         &lt;/div&gt;
-        &lt;div *ngIf&#x3D;&quot;connections &amp;&amp; connections.length &gt; 0&quot; class&#x3D;&quot;scroll-app-info &quot;&gt;
+        &lt;div *ngIf&#x3D;&quot;connections &amp;&amp; connections.length &gt; 0&quot; class&#x3D;&quot;manage-scroll&quot;&gt;
           &lt;div *ngFor&#x3D;
             &quot;let connection of connections |
             filter : searchTerm | filter: selectedApp; let i &#x3D; index&quot;&gt;
@@ -1711,7 +1821,7 @@ export class ManageConnectionsComponent implements OnInit {
               &lt;div class&#x3D;&quot;col-2 text-center label-td-flex&quot;&gt;
                 &lt;button 
                   (click)&#x3D;&quot;disconnectInstance(connection)&quot;
-                  tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.disconnect&#x27;|translate}}&quot; 
+                  tooltip&#x3D;&quot;{{&#x27;apps.manageConnections.disconnect&#x27; | translate}}&quot;
                   placement&#x3D;&quot;left&quot; 
                   class&#x3D;&quot;action-btn-red&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons i-red&quot;&gt;link_off&lt;/i&gt;
@@ -1731,8 +1841,21 @@ export class ManageConnectionsComponent implements OnInit {
                 <p class="comment">
                     <code>./manage-connections.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;../scss/variables/colors&#x27;;
-@import &#x27;../scss/variables/mixins&#x27;;
+                <pre class="line-numbers"><code class="language-scss">/* 
+ *  Copyright 2019 Nalej
+ *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+@import &#x27;../../scss/variables/colors&#x27;;
+@import &#x27;../../scss/variables/mixins&#x27;;
 
 .apps-actions-btn {
     background-color: $base-violet;
@@ -1759,7 +1882,6 @@ export class ManageConnectionsComponent implements OnInit {
         right: 176px;
     }
 }
-
 .modal-body {
     .nalej-form-title{
         font-size: 12px;
@@ -1785,17 +1907,18 @@ export class ManageConnectionsComponent implements OnInit {
         }
         .label-nalej-table {
             overflow-y: hidden;
-            .scroll-app-info {
-                height: 416px;
-                margin: 0;
-                width: 100%;
-                @media screen and (max-height: 994px) {
-                    height: 230px;
-                    margin: 1.5em 0;
+            height: 100%;
+            .manage-scroll {
+                overflow-y: scroll;
+                overflow-x: hidden;
+                height: 100%;
+                max-height: 400px;
+                font-size: 13px;
+                div:first-child &gt; span {
+                    border-top: 0;
                 }
-                @include for-quarter-h {
-                    min-height: 165px;
-                    margin: 1em 0;
+                @media screen and (max-height: 994px) {
+                    max-height: 230px;
                 }
                 .action-btn-red {
                     height: 25px;
@@ -1806,9 +1929,6 @@ export class ManageConnectionsComponent implements OnInit {
                     font-size: 15px;
                     top: 6px;
                     left: 5px;
-                }
-                div:nth-child(1){
-                    border: none;
                 }
             }
             .label-thead {
@@ -1831,13 +1951,6 @@ export class ManageConnectionsComponent implements OnInit {
             }
         }
     }
-}
-
-.ngx-dropdown-container.ngx-dropdown-list-container ul {
-    max-height: 300px;
-}
-ul.available-items {
-    max-height: 300px;
 }
 </code></pre>
     </div>
@@ -1867,8 +1980,8 @@ ul.available-items {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <!-- Header -->  <div class="modal-header">    <h3 class="nalej-form-title">{{title}}</h3>    <button       (click)="closeModal()"      type="button"       aria-label="Close"      class="close" >      <span aria-hidden="true">&times;</span>    </button>  </div>  <!-- Body -->  <div class="modal-body">    <div class="modal-center-box">      <button         (click)="openAddNewConnection()"        class="apps-actions-btn">        <i class="material-icons-round i-options">link</i>        {{\'apps.manageConnections.addNewConnection\'|translate}}      </button>    </div>    <h3 class="nalej-form-title ">{{\'apps.manageConnections.connectionsList\'|translate}}</h3>    <div class="modal-center-box">      <!-- Filters -->      <form [formGroup]="manageConnectionsFilterForm"  class="w-100 hide-sm-md-h">        <div *ngIf="connections && connections.length > 0" class="form-group form-group-drop filter-drop-box">          <label class="app-filter-label">{{\'apps.manageConnections.appFilter\'|translate}}</label>          <ngx-select-dropdown             formControlName="filter"             [multiple]="false"             [ngClass]=              "{                 \'ngx-error\': !manageConnections,                \'base-light-grey\': !f.filter.value              }"            [config]="selectConfig"             (change)="filterByApp(f)"            [options]="appDropdownOptions">          </ngx-select-dropdown>          <div class="form-group-drop-arrow">             <i class="material-icons">arrow_drop_down</i>          </div>        </div>      </form>      <!-- Search box -->      <div *ngIf="connections && connections.length > 0" class="search-box hide-sm-md-h">        <input           name="searchTerm"           [(ngModel)]="searchTerm"          type="text"           placeholder="{{\'searcher.placeholder\'|translate }}"          class="form-control">         <div *ngIf="searchTerm === \'\'" class="search-icon">          <i class="material-icons">search</i>        </div>             <div *ngIf="searchTerm !== \'\'" class="close-icon">          <i (click)="resetFilters()" class="material-icons">close</i>        </div>      </div>      <!-- Table -->      <div *ngIf="!connections || connections.length === 0" class="mt-0">        {{\'apps.manageConnections.noConnections\'|translate}}      </div>      <div *ngIf="connections && connections.length > 0" class="label-nalej-table no-p-col no-m-row">        <div class="label-thead row">          <div class="col-5 label-th">            <span tooltip="{{\'apps.manageConnections.sourceInstance\'|translate}}" placement="bottom">              {{\'apps.manageConnections.sourceInstance\'|translate}}            </span>            <br>            <span tooltip="{{\'apps.manageConnections.sourceInterface\'|translate}}" placement="bottom">              {{\'apps.manageConnections.sourceInterface\'|translate}}            </span>          </div>          <div  class="col-5 label-th">            <span tooltip="{{\'apps.manageConnections.targetInstance\'|translate}}" placement="bottom">              {{\'apps.manageConnections.targetInstance\'|translate}}            </span>            <br>            <span tooltip="{{\'apps.manageConnections.targetInterface\'|translate}}" placement="bottom">              {{\'apps.manageConnections.targetInterface\'|translate}}            </span>          </div>          <div class="col-2 label-th text-center">            <span tooltip="{{\'apps.manageConnections.disconnect\'|translate}}" placement="bottom">              {{\'apps.manageConnections.disconnect\'|translate}}            </span>          </div>        </div>        <div *ngIf="connections && connections.length > 0" class="scroll-app-info ">          <div *ngFor=            "let connection of connections |            filter : searchTerm | filter: selectedApp; let i = index">            <span class="label-tbody row">              <div class="col-5 label-td">                <span                   (click)="goToInstance(connection.source_instance_id)"                   class="blue cursor-pointer">                  {{connection.source_instance_name}}                </span>                <br>                <span class="grey">{{connection.outbound_name}}</span>                <span *ngIf="connection.outbound_required" class="pink">*</span>              </div>              <div class="col-5">                <span                  (click)="goToInstance(connection.target_instance_id)"                  class="blue cursor-pointer">{{connection.target_instance_name}}                </span>                <br>                <span class="grey">{{connection.inbound_name}}</span>              </div>              <div class="col-2 text-center label-td-flex">                <button                   (click)="disconnectInstance(connection)"                  tooltip="{{\'apps.manageConnections.disconnect\'|translate}}"                   placement="left"                   class="action-btn-red">                  <i class="material-icons i-red">link_off</i>                </button>              </div>            </span>          </div>        </div>      </div>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><!--   Copyright 2019 Nalej  Licensed under the Apache License, Version 2.0 (the "License");  you may not use this file except in compliance with the License.  You may obtain a copy of the License at      http://www.apache.org/licenses/LICENSE-2.0  Unless required by applicable law or agreed to in writing, software  distributed under the License is distributed on an "AS IS" BASIS,  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the specific language governing permissions and  limitations under the License. --><div class="modal-card">  <!-- Header -->  <div class="modal-header">    <h3 class="nalej-form-title text-uppercase">{{title}}</h3>    <button       (click)="closeModal()"      type="button"       aria-label="Close"      class="close" >      <span aria-hidden="true">&times;</span>    </button>  </div>  <!-- Body -->  <div class="modal-body">    <div class="modal-center-box">      <button         (click)="openAddNewConnection()"        class="apps-actions-btn">        <i class="material-icons-round i-options">link</i>        {{\'apps.manageConnections.addNewConnection\' | translate}}      </button>    </div>    <h3 class="nalej-form-title ">{{\'apps.manageConnections.connectionsList\' | translate}}</h3>    <div class="modal-center-box">      <!-- Filters -->      <form [formGroup]="manageConnectionsFilterForm"  class="w-100 hide-sm-md-h">        <div *ngIf="connections && connections.length > 0" class="form-group form-group-drop filter-drop-box">          <label class="app-filter-label">{{\'apps.manageConnections.appFilter\' | translate}}</label>          <ngx-select-dropdown             formControlName="filter"             [multiple]="false"             [ngClass]=              "{                 \'ngx-error\': !manageConnections,                \'base-light-grey\': !f.filter.value              }"            [config]="selectConfig"             (change)="filterByApp(f)"            [options]="appDropdownOptions">          </ngx-select-dropdown>          <div class="form-group-drop-arrow">             <i class="material-icons">arrow_drop_down</i>          </div>        </div>      </form>      <!-- Search box -->      <div *ngIf="connections && connections.length > 0" class="search-box hide-sm-md-h">        <input           name="searchTerm"           [(ngModel)]="searchTerm"          type="text"           placeholder="{{\'searcher.placeholder\' | translate }}"          class="form-control">         <div *ngIf="searchTerm === \'\'" class="search-icon">          <i class="material-icons">search</i>        </div>             <div *ngIf="searchTerm !== \'\'" class="close-icon">          <i (click)="resetFilters()" class="material-icons">close</i>        </div>      </div>      <!-- Table -->      <div *ngIf="!connections || connections.length === 0" class="mt-0">        {{\'apps.manageConnections.noConnections\' | translate}}      </div>      <div *ngIf="connections && connections.length > 0" class="label-nalej-table no-p-col no-m-row">        <div class="label-thead row">          <div class="col-5 label-th">            <span tooltip="{{\'apps.manageConnections.sourceInstance\' | translate}}" placement="bottom">              {{\'apps.manageConnections.sourceInstance\' | translate}}            </span>            <br>            <span tooltip="{{\'apps.manageConnections.sourceInterface\' | translate}}" placement="bottom">              {{\'apps.manageConnections.sourceInterface\' | translate}}            </span>          </div>          <div  class="col-5 label-th">            <span tooltip="{{\'apps.manageConnections.targetInstance\' | translate}}" placement="bottom">              {{\'apps.manageConnections.targetInstance\' | translate}}            </span>            <br>            <span tooltip="{{\'apps.manageConnections.targetInterface\' | translate}}" placement="bottom">              {{\'apps.manageConnections.targetInterface\' | translate}}            </span>          </div>          <div class="col-2 label-th text-center">            <span tooltip="{{\'apps.manageConnections.disconnect\' | translate}}" placement="bottom">              {{\'apps.manageConnections.disconnect\' | translate}}            </span>          </div>        </div>        <div *ngIf="connections && connections.length > 0" class="manage-scroll">          <div *ngFor=            "let connection of connections |            filter : searchTerm | filter: selectedApp; let i = index">            <span class="label-tbody row">              <div class="col-5 label-td">                <span                   (click)="goToInstance(connection.source_instance_id)"                   class="blue cursor-pointer">                  {{connection.source_instance_name}}                </span>                <br>                <span class="grey">{{connection.outbound_name}}</span>                <span *ngIf="connection.outbound_required" class="pink">*</span>              </div>              <div class="col-5">                <span                  (click)="goToInstance(connection.target_instance_id)"                  class="blue cursor-pointer">{{connection.target_instance_name}}                </span>                <br>                <span class="grey">{{connection.inbound_name}}</span>              </div>              <div class="col-2 text-center label-td-flex">                <button                   (click)="disconnectInstance(connection)"                  tooltip="{{\'apps.manageConnections.disconnect\' | translate}}"                  placement="left"                   class="action-btn-red">                  <i class="material-icons i-red">link_off</i>                </button>              </div>            </span>          </div>        </div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'ToolsComponent', 'selector': 'tools'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'ManageConnectionsComponent'};
 </script>

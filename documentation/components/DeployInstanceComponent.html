@@ -1,16 +1,3 @@
-<!-- 
-  Copyright 2019 Nalej
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-      http://www.apache.org/licenses/LICENSE-2.0
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
- -->
-
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -74,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/deploy-instance/deploy-instance.component.ts</code>
+    <code>src/app/applications/deploy-instance/deploy-instance.component.ts</code>
 </p>
 
 
@@ -149,17 +136,32 @@
                                 <a href="#appFromRegistered">appFromRegistered</a>
                             </li>
                             <li>
+                                <a href="#areRequiredConnections">areRequiredConnections</a>
+                            </li>
+                            <li>
                                 <a href="#availableParamsCategory">availableParamsCategory</a>
                             </li>
                             <li>
                                 <a href="#backend">backend</a>
                             </li>
                             <li>
+                                <a href="#basicInformationDot">basicInformationDot</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Public</span>
                                 <a href="#bsModalRef">bsModalRef</a>
                             </li>
                             <li>
+                                <a href="#conditionExpression">conditionExpression</a>
+                            </li>
+                            <li>
                                 <a href="#config">config</a>
+                            </li>
+                            <li>
+                                <a href="#connections">connections</a>
+                            </li>
+                            <li>
+                                <a href="#connectionsDot">connectionsDot</a>
                             </li>
                             <li>
                                 <a href="#defaultAutofocus">defaultAutofocus</a>
@@ -174,10 +176,13 @@
                                 <a href="#instanceName">instanceName</a>
                             </li>
                             <li>
-                                <a href="#loadedData">loadedData</a>
+                                <a href="#instances">instances</a>
                             </li>
                             <li>
-                                <a href="#loading">loading</a>
+                                <a href="#instancesNames">instancesNames</a>
+                            </li>
+                            <li>
+                                <a href="#loadedData">loadedData</a>
                             </li>
                             <li>
                                 <a href="#onClose">onClose</a>
@@ -192,10 +197,10 @@
                                 <a href="#organizationId">organizationId</a>
                             </li>
                             <li>
-                                <a href="#params">params</a>
+                                <a href="#parametersDot">parametersDot</a>
                             </li>
                             <li>
-                                <a href="#registeredApp">registeredApp</a>
+                                <a href="#params">params</a>
                             </li>
                             <li>
                                 <a href="#registeredApps">registeredApps</a>
@@ -207,7 +212,19 @@
                                 <a href="#registeredName">registeredName</a>
                             </li>
                             <li>
+                                <a href="#reload">reload</a>
+                            </li>
+                            <li>
+                                <a href="#required">required</a>
+                            </li>
+                            <li>
+                                <a href="#requiredConnections">requiredConnections</a>
+                            </li>
+                            <li>
                                 <a href="#selectConfig">selectConfig</a>
+                            </li>
+                            <li>
+                                <a href="#selectDrop">selectDrop</a>
                             </li>
                             <li>
                                 <a href="#selectedApp">selectedApp</a>
@@ -216,10 +233,34 @@
                                 <a href="#selectedOptions">selectedOptions</a>
                             </li>
                             <li>
+                                <a href="#showBack">showBack</a>
+                            </li>
+                            <li>
+                                <a href="#showDeploy">showDeploy</a>
+                            </li>
+                            <li>
+                                <a href="#showNext">showNext</a>
+                            </li>
+                            <li>
                                 <a href="#submitted">submitted</a>
                             </li>
                             <li>
                                 <a href="#tab">tab</a>
+                            </li>
+                            <li>
+                                <a href="#targetInstance">targetInstance</a>
+                            </li>
+                            <li>
+                                <a href="#targetInstanceConfig">targetInstanceConfig</a>
+                            </li>
+                            <li>
+                                <a href="#targetInterface">targetInterface</a>
+                            </li>
+                            <li>
+                                <a href="#targetInterfaceConfig">targetInterfaceConfig</a>
+                            </li>
+                            <li>
+                                <a href="#targetInterfaceOptions">targetInterfaceOptions</a>
                             </li>
                         </ul>
                     </td>
@@ -240,10 +281,36 @@
                                 <a href="#discardChanges">discardChanges</a>
                             </li>
                             <li>
+                                <a href="#isInactiveDeploy">isInactiveDeploy</a>
+                            </li>
+                            <li>
+                                <a href="#isInactiveNext">isInactiveNext</a>
+                            </li>
+                            <li>
+                                <a href="#nextStep">nextStep</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                             <li>
                                 <a href="#onRegisteredChange">onRegisteredChange</a>
+                            </li>
+                            <li>
+                                <a href="#previousStep">previousStep</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setBasicState">setBasicState</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setConnectionsAndInstances">setConnectionsAndInstances</a>
+                            </li>
+                            <li>
+                                <a href="#targetInstanceSelectionChange">targetInstanceSelectionChange</a>
+                            </li>
+                            <li>
+                                <a href="#targetInterfaceSelectionChange">targetInterfaceSelectionChange</a>
                             </li>
                             <li>
                                 <a href="#toggleAdvancedParameters">toggleAdvancedParameters</a>
@@ -288,7 +355,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:73</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:120</a></div>
                             </td>
                         </tr>
 
@@ -405,14 +472,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="157"
-                            class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:157</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="221"
+                            class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:221</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>It deploys an instance using data from the form</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -421,6 +490,7 @@
                                 <tr>
                                     <td>Name</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -432,6 +502,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>Form</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -471,8 +545,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="249"
-                            class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:249</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="288"
+                            class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:288</a></div>
                 </td>
             </tr>
 
@@ -526,6 +600,193 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="isInactiveDeploy"></a>
+                    <span class="name">
+                        <b>
+                            isInactiveDeploy
+                        </b>
+                        <a href="#isInactiveDeploy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isInactiveDeploy(f)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="437"
+                            class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:437</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handler for set the disabled state to the button deploy</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>f</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Form</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isInactiveNext"></a>
+                    <span class="name">
+                        <b>
+                            isInactiveNext
+                        </b>
+                        <a href="#isInactiveNext"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isInactiveNext(f)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="420"
+                            class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:420</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handler for set the disabled state to the button next</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>f</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Form</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextStep"></a>
+                    <span class="name">
+                        <b>
+                            nextStep
+                        </b>
+                        <a href="#nextStep"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>nextStep()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="346"
+                            class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:346</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handler for go to the next step</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <b>
@@ -544,8 +805,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="113"
-                            class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:113</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="176"
+                            class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:176</a></div>
                 </td>
             </tr>
 
@@ -583,8 +844,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="220"
-                            class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:220</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="258"
+                            class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:258</a></div>
                 </td>
             </tr>
 
@@ -638,6 +899,298 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="previousStep"></a>
+                    <span class="name">
+                        <b>
+                            previousStep
+                        </b>
+                        <a href="#previousStep"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>previousStep()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="317"
+                            class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:317</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handler for go to the previous step</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setBasicState"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            setBasicState
+                        </b>
+                        <a href="#setBasicState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setBasicState()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="483"
+                            class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:483</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handler for reset the form to the basic state</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setConnectionsAndInstances"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            setConnectionsAndInstances
+                        </b>
+                        <a href="#setConnectionsAndInstances"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setConnectionsAndInstances()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="459"
+                            class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:459</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handler for generate required connections, instances names and init the config for target instance</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="targetInstanceSelectionChange"></a>
+                    <span class="name">
+                        <b>
+                            targetInstanceSelectionChange
+                        </b>
+                        <a href="#targetInstanceSelectionChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>targetInstanceSelectionChange(f)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="387"
+                            class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:387</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handler for get data to interface config select</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>f</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Form</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="targetInterfaceSelectionChange"></a>
+                    <span class="name">
+                        <b>
+                            targetInterfaceSelectionChange
+                        </b>
+                        <a href="#targetInterfaceSelectionChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>targetInterfaceSelectionChange(f, i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="407"
+                            class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:407</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handler for capture data from interface config select</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>f</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Form</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>i</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Index to capture the correct required connection</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="toggleAdvancedParameters"></a>
                     <span class="name">
                         <b>
@@ -656,8 +1209,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="266"
-                            class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:266</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="303"
+                            class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:303</a></div>
                 </td>
             </tr>
 
@@ -697,8 +1250,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="274"
-                            class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:274</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="310"
+                            class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:310</a></div>
                 </td>
             </tr>
 
@@ -742,7 +1295,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:79</a></div>
                             </td>
                         </tr>
 
@@ -769,7 +1322,34 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:66</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="areRequiredConnections"></a>
+                        <span class="name">
+                            <b>
+                            areRequiredConnections</b>
+                            <a href="#areRequiredConnections"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:112</a></div>
                             </td>
                         </tr>
 
@@ -801,7 +1381,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -828,13 +1408,46 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:52</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Backend reference</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="basicInformationDot"></a>
+                        <span class="name">
+                            <b>
+                            basicInformationDot</b>
+                            <a href="#basicInformationDot"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:105</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Options to active dots</p>
 </div>
                     </td>
                 </tr>
@@ -862,7 +1475,34 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:124</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="conditionExpression"></a>
+                        <span class="name">
+                            <b>
+                            conditionExpression</b>
+                            <a href="#conditionExpression"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:100</a></div>
                             </td>
                         </tr>
 
@@ -897,7 +1537,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:70</a></div>
                             </td>
                         </tr>
 
@@ -907,6 +1547,60 @@
 </div>
                     </td>
                 </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="connections"></a>
+                        <span class="name">
+                            <b>
+                            connections</b>
+                            <a href="#connections"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>literal type[]</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:117</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="connectionsDot"></a>
+                        <span class="name">
+                            <b>
+                            connectionsDot</b>
+                            <a href="#connectionsDot"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:107</a></div>
+                            </td>
+                        </tr>
+
 
             </tbody>
         </table>
@@ -930,10 +1624,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:77</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>It models necessary options for params step</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -957,7 +1657,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:57</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:78</a></div>
                             </td>
                         </tr>
 
@@ -984,7 +1684,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:45</a></div>
                             </td>
                         </tr>
 
@@ -1017,7 +1717,61 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:64</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="instances"></a>
+                        <span class="name">
+                            <b>
+                            instances</b>
+                            <a href="#instances"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>any[]</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:113</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="instancesNames"></a>
+                        <span class="name">
+                            <b>
+                            instancesNames</b>
+                            <a href="#instancesNames"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>string[]</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:114</a></div>
                             </td>
                         </tr>
 
@@ -1044,34 +1798,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:23</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="loading"></a>
-                        <span class="name">
-                            <b>
-                            loading</b>
-                            <a href="#loading"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -1098,7 +1825,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:92</a></div>
                             </td>
                         </tr>
 
@@ -1131,7 +1858,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -1163,7 +1890,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:87</a></div>
                             </td>
                         </tr>
 
@@ -1190,7 +1917,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:56</a></div>
                             </td>
                         </tr>
 
@@ -1200,6 +1927,33 @@
 </div>
                     </td>
                 </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="parametersDot"></a>
+                        <span class="name">
+                            <b>
+                            parametersDot</b>
+                            <a href="#parametersDot"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:106</a></div>
+                            </td>
+                        </tr>
+
 
             </tbody>
         </table>
@@ -1223,34 +1977,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:60</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="registeredApp"></a>
-                        <span class="name">
-                            <b>
-                            registeredApp</b>
-                            <a href="#registeredApp"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:81</a></div>
                             </td>
                         </tr>
 
@@ -1277,7 +2004,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -1304,7 +2031,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -1337,10 +2064,97 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:61</a></div>
                             </td>
                         </tr>
 
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="reload"></a>
+                        <span class="name">
+                            <b>
+                            reload</b>
+                            <a href="#reload"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:101</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="required"></a>
+                        <span class="name">
+                            <b>
+                            required</b>
+                            <a href="#required"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:118</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="requiredConnections"></a>
+                        <span class="name">
+                            <b>
+                            requiredConnections</b>
+                            <a href="#requiredConnections"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>any[]</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:111</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Configuration for connections step</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -1369,7 +2183,34 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:88</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectDrop"></a>
+                        <span class="name">
+                            <b>
+                            selectDrop</b>
+                            <a href="#selectDrop"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:46</a></div>
                             </td>
                         </tr>
 
@@ -1396,7 +2237,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:65</a></div>
                             </td>
                         </tr>
 
@@ -1428,7 +2269,94 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:86</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showBack"></a>
+                        <span class="name">
+                            <b>
+                            showBack</b>
+                            <a href="#showBack"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:96</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Options to show/hide navigation buttons</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showDeploy"></a>
+                        <span class="name">
+                            <b>
+                            showDeploy</b>
+                            <a href="#showDeploy"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:98</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showNext"></a>
+                        <span class="name">
+                            <b>
+                            showNext</b>
+                            <a href="#showNext"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:97</a></div>
                             </td>
                         </tr>
 
@@ -1454,7 +2382,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -1486,7 +2414,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:85</a></div>
                             </td>
                         </tr>
 
@@ -1496,6 +2424,141 @@
 </div>
                     </td>
                 </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="targetInstance"></a>
+                        <span class="name">
+                            <b>
+                            targetInstance</b>
+                            <a href="#targetInstance"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:115</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="targetInstanceConfig"></a>
+                        <span class="name">
+                            <b>
+                            targetInstanceConfig</b>
+                            <a href="#targetInstanceConfig"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:120</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="targetInterface"></a>
+                        <span class="name">
+                            <b>
+                            targetInterface</b>
+                            <a href="#targetInterface"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:116</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="targetInterfaceConfig"></a>
+                        <span class="name">
+                            <b>
+                            targetInterfaceConfig</b>
+                            <a href="#targetInterfaceConfig"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:119</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="targetInterfaceOptions"></a>
+                        <span class="name">
+                            <b>
+                            targetInterfaceOptions</b>
+                            <a href="#targetInterfaceOptions"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>literal type[]</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:99</a></div>
+                            </td>
+                        </tr>
+
 
             </tbody>
         </table>
@@ -1521,7 +2584,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/app/deploy-instance/deploy-instance.component.ts:155</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">src/app/applications/deploy-instance/deploy-instance.component.ts:216</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1540,13 +2603,13 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { Backend } from &#x27;../definitions/interfaces/backend&#x27;;
+import { Backend } from &#x27;../../definitions/interfaces/backend&#x27;;
 import { BsModalRef } from &#x27;ngx-bootstrap&#x27;;
-import { BackendService } from &#x27;../services/backend.service&#x27;;
-import { MockupBackendService } from &#x27;../services/mockup-backend.service&#x27;;
-import { NotificationsService } from &#x27;../services/notifications.service&#x27;;
-import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
-import { FormGroup, FormBuilder, Validators, FormArray } from &#x27;@angular/forms&#x27;;
+import { BackendService } from &#x27;../../services/backend.service&#x27;;
+import { MockupBackendService } from &#x27;../../services/mockup-backend.service&#x27;;
+import { NotificationsService } from &#x27;../../services/notifications.service&#x27;;
+import { LocalStorageKeys } from &#x27;../../definitions/const/local-storage-keys&#x27;;
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from &#x27;@angular/forms&#x27;;
 
 @Component({
   selector: &#x27;app-deploy-instance&#x27;,
@@ -1554,37 +2617,31 @@ import { FormGroup, FormBuilder, Validators, FormArray } from &#x27;@angular/for
   styleUrls: [&#x27;./deploy-instance.component.scss&#x27;]
 })
 export class DeployInstanceComponent implements OnInit {
-
   /**
    * Models that holds forms info
    */
   deployInstanceForm: FormGroup;
+  selectDrop: FormControl;
   submitted &#x3D; false;
-  loading: boolean;
   loadedData: boolean;
-
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Model that hold organization ID
    */
   organizationId: string;
-
   /**
    * Model that hold app registered ID and its name
    */
   registeredId: string;
   registeredName: string;
   openFromRegistered: boolean;
-  registeredApp: any;
   registeredApps: any[];
   instanceName: string;
   selectedApp: any;
   appFromRegistered: any;
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -1592,14 +2649,14 @@ export class DeployInstanceComponent implements OnInit {
     backdrop: false,
     ignoreBackdropClick: true
   };
-
+  /**
+   * It models necessary options for params step
+   */
   defaultAutofocus: string;
-
   defaultParamsOpened: boolean;
   advParamsOpened: boolean;
   availableParamsCategory &#x3D; { basic: false, advanced: false};
   params: FormArray;
-
   /**
    * NGX-select-dropdown
    */
@@ -1607,11 +2664,38 @@ export class DeployInstanceComponent implements OnInit {
   selectedOptions &#x3D; [];
   options &#x3D; [];
   selectConfig &#x3D; {};
-
   /**
    * Model that holds onclose method
    */
   onClose: any;
+  /**
+   * Options to show/hide navigation buttons
+   */
+  showBack: boolean;
+  showNext: boolean;
+  showDeploy: boolean;
+  targetInterfaceOptions: {}[];
+  conditionExpression: string;
+  reload: boolean;
+  /**
+   * Options to active dots
+   */
+  basicInformationDot: boolean;
+  parametersDot: boolean;
+  connectionsDot: boolean;
+  /**
+   * Configuration for connections step
+   */
+  requiredConnections: any[];
+  areRequiredConnections: boolean;
+  instances: any[];
+  instancesNames: string[];
+  targetInstance: FormControl;
+  targetInterface: FormControl;
+  connections: {}[];
+  required: boolean;
+  targetInterfaceConfig: any;
+  targetInstanceConfig: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -1620,7 +2704,6 @@ export class DeployInstanceComponent implements OnInit {
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService
   ) {
-
     const mock &#x3D; localStorage.getItem(LocalStorageKeys.deployInstanceMock) || null;
     // check which backend is required (fake or real)
     if (mock &amp;&amp; mock &#x3D;&#x3D;&#x3D; &#x27;true&#x27;) {
@@ -1628,7 +2711,6 @@ export class DeployInstanceComponent implements OnInit {
     } else {
       this.backend &#x3D; this.backendService;
     }
-
     // Default initialization
     this.loadedData &#x3D; false;
     this.openFromRegistered &#x3D; false;
@@ -1637,11 +2719,13 @@ export class DeployInstanceComponent implements OnInit {
       displayKey: &#x27;name&#x27;,
       search: false,
       height: &#x27;auto&#x27;,
-      placeholder: &#x27;Registered name&#x27;,
+      placeholder: &#x27;Select any registered name&#x27;,
       limitTo: this.registeredApps.length,
       moreText: &#x27;more&#x27;,
       noResultsFound: &#x27;No results found!&#x27;
     };
+    this.targetInterfaceConfig &#x3D; {};
+    this.targetInstanceConfig &#x3D; {};
     if (!this.registeredName) {
       this.registeredName &#x3D; &#x27;Descriptor not found&#x27;;
     }
@@ -1649,22 +2733,39 @@ export class DeployInstanceComponent implements OnInit {
       basic: false,
       advanced: false
     };
+    this.showBack &#x3D; false;
+    this.showNext &#x3D; true;
+    this.showDeploy &#x3D; false;
+    this.basicInformationDot &#x3D; true;
+    this.parametersDot &#x3D; false;
+    this.connectionsDot &#x3D; false;
+    this.conditionExpression &#x3D; &#x27;basic&#x27;;
+    this.reload &#x3D; true;
+    this.selectDrop &#x3D; new FormControl(null, Validators.required);
+    this.targetInstance &#x3D; new FormControl(null, Validators.required);
+    this.targetInterface &#x3D; new FormControl(null, Validators.required);
+    this.instancesNames &#x3D; [];
+    this.instances &#x3D; [];
+    this.connections &#x3D; [];
+    this.areRequiredConnections &#x3D; false;
+    this.requiredConnections &#x3D; [];
   }
 
   ngOnInit() {
     this.deployInstanceForm &#x3D; this.formBuilder.group({
       registeredName: [{value: &#x27;&#x27;, disabled: true}],
-      selectDrop: [null, Validators.required],
       instanceName: [&#x27;&#x27;, [Validators.required, Validators.minLength(3), Validators.pattern(&#x27;^[a-zA-Z0-9]+$&#x27;)]],
       params: this.formBuilder.array([ ])
     });
-
+    this.deployInstanceForm.addControl(&#x27;selectDrop&#x27;, this.selectDrop);
+    this.deployInstanceForm.addControl(&#x27;targetInstance&#x27;, this.targetInstance);
+    this.deployInstanceForm.addControl(&#x27;targetInterface&#x27;, this.targetInterface);
     this.backend.getRegisteredApps(this.organizationId)
     .subscribe(response &#x3D;&gt; {
         this.registeredApps &#x3D; response.descriptors || [];
+        this.registeredApps.unshift({id: -1, name: &#x27;Select any registered name&#x27;});
         this.loadedData &#x3D; true;
     });
-
     if (this.openFromRegistered &amp;&amp; this.appFromRegistered) {
       this.selectedApp &#x3D; this.appFromRegistered;
       this.registeredName &#x3D; this.selectedApp.name;
@@ -1677,9 +2778,7 @@ export class DeployInstanceComponent implements OnInit {
           param.value &#x3D; param.default_value;
         });
         this.selectedApp.parameters.forEach(param &#x3D;&gt; {
-          this.params.push(this.formBuilder.group(
-            [param]
-          ));
+          this.params.push(this.formBuilder.group([param]));
           if (!param.category) {
             this.availableParamsCategory.basic &#x3D; true;
           } else {
@@ -1689,12 +2788,14 @@ export class DeployInstanceComponent implements OnInit {
       }
     }
   }
-
   /**
    * Convenience getter for easy access to form fields
    */
   get f() { return this.deployInstanceForm.controls; }
-
+  /**
+   * It deploys an instance using data from the form
+   * @param f Form
+   */
   deployInstance(f) {
     this.instanceName &#x3D; f.instanceName.value;
     this.submitted &#x3D; true;
@@ -1702,87 +2803,62 @@ export class DeployInstanceComponent implements OnInit {
       if (!this.registeredId) {
         this.registeredId &#x3D; f.selectDrop.value.app_descriptor_id;
       }
-      this.loading &#x3D; true;
-      if (!this.selectedApp.parameters) {
-        this.backend.deploy(this.organizationId, this.registeredId, this.instanceName)
-          .subscribe(deployResponse &#x3D;&gt; {
-            this.loading &#x3D; false;
-            this.onClose(false);
-            this.bsModalRef.hide();
-            this.notificationsService.add({
-              message: &#x27;Deploying instance of &#x27; + this.registeredName,
-              timeout: 3000
-            });
-          }, error &#x3D;&gt; {
-            this.loading &#x3D; false;
-            this.notificationsService.add({
-              message: error.error.message,
-              timeout: 5000,
-              type: &#x27;warning&#x27;
-            });
-            this.onClose(true);
-            this.bsModalRef.hide();
-          });
-      } else {
-        const instanceParams &#x3D; [];
+      const instanceParams &#x3D; [];
+      if (this.selectedApp.parameters) {
         f.params.value.forEach(param &#x3D;&gt; {
-         instanceParams.push({
-           parameterName: param[0].name,
-           value: param[0].value
+          instanceParams.push({
+            parameterName: param[0].name,
+            value: param[0].value
           });
         });
-        this.backend.deploy(this.organizationId, this.registeredId, this.instanceName, instanceParams)
-          .subscribe(deployResponse &#x3D;&gt; {
-            this.loading &#x3D; false;
-            this.onClose(false);
-            this.bsModalRef.hide();
-            this.notificationsService.add({
-              message: &#x27;Deploying instance of &#x27; + this.registeredName,
-              timeout: 3000
-            });
-          }, error &#x3D;&gt; {
-            this.loading &#x3D; false;
-            this.notificationsService.add({
-              message: error.error.message,
-              timeout: 5000,
-              type: &#x27;warning&#x27;
-            });
-            this.onClose(true);
-            this.bsModalRef.hide();
+      }
+      this.backend.deploy(this.organizationId, this.registeredId, this.instanceName, instanceParams, this.connections)
+        .subscribe(() &#x3D;&gt; {
+          this.onClose(false);
+          this.bsModalRef.hide();
+          this.notificationsService.add({
+            message: &#x60;Deploying instance of ${this.registeredName}&#x60;
           });
+        }, error &#x3D;&gt; {
+          this.notificationsService.add({
+            message: error.error.message,
+            type: &#x27;warning&#x27;
+          });
+          this.onClose(true);
+          this.bsModalRef.hide();
+        });
       }
     }
-  }
-
   /**
    * Handler for change event on ngx-select-dropdown
    * @param f Form
    */
   onRegisteredChange(f) {
     this.selectedApp &#x3D; f.selectDrop.value;
+    this.setConnectionsAndInstances();
     this.registeredName &#x3D; this.selectedApp.name;
     this.availableParamsCategory.basic &#x3D; false;
     this.availableParamsCategory.advanced &#x3D; false;
     this.params &#x3D; this.deployInstanceForm.get(&#x27;params&#x27;) as FormArray;
-
     if (this.selectedApp.parameters) {
       this.defaultParamsOpened &#x3D; true;
       this.selectedApp.parameters.forEach(param &#x3D;&gt; {
         param.value &#x3D; param.default_value;
       });
       this.selectedApp.parameters.forEach(param &#x3D;&gt; {
-        this.params.push(this.formBuilder.group(
-          [param]
-        ));
+        this.params.push(this.formBuilder.group([param]));
         if (!param.category) {
           this.availableParamsCategory.basic &#x3D; true;
         } else {
           this.availableParamsCategory.advanced &#x3D; true;
         }
       });
+    } else if (!this.selectedApp.parameters &amp;&amp; !this.selectedApp.outbound_net_interfaces) {
+      this.showBack &#x3D; true;
+      this.showNext &#x3D; false;
+      this.showDeploy &#x3D; true;
     }
   }
-
   /**
    * Checks if the form has been modified before discarding changes
    * @param form Form object reference
@@ -1793,8 +2869,6 @@ export class DeployInstanceComponent implements OnInit {
       if (discard) {
         this.onClose(true);
         this.bsModalRef.hide();
-      } else {
-        // Do nothing
       }
     } else {
       this.onClose(true);
@@ -1808,7 +2882,6 @@ export class DeployInstanceComponent implements OnInit {
     this.defaultParamsOpened &#x3D; false;
     this.advParamsOpened &#x3D; !this.advParamsOpened;
   }
-
   /**
    * Toggle default parameters
    */
@@ -1816,60 +2889,286 @@ export class DeployInstanceComponent implements OnInit {
     this.advParamsOpened &#x3D; false;
     this.defaultParamsOpened &#x3D; !this.defaultParamsOpened;
   }
-
+  /**
+   * Handler for go to the previous step
+   */
+  previousStep() {
+    switch (this.conditionExpression) {
+      case &#x27;basic&#x27;:
+        this.setBasicState();
+        break;
+      case &#x27;parameters&#x27;:
+        this.conditionExpression &#x3D; &#x27;basic&#x27;;
+        this.parametersDot &#x3D; false;
+        this.basicInformationDot &#x3D; true;
+        this.setBasicState();
+        break;
+      case &#x27;connections&#x27;:
+        if (this.selectedApp.parameters) {
+          this.conditionExpression &#x3D; &#x27;parameters&#x27;;
+          this.parametersDot &#x3D; true;
+          this.connectionsDot &#x3D; false;
+          this.showDeploy &#x3D; false;
+          this.showNext &#x3D; true;
+        } else {
+          this.conditionExpression &#x3D; &#x27;basic&#x27;;
+          this.showBack &#x3D; false;
+          this.setBasicState();
+        }
+        break;
+    }
+  }
+  /**
+   * Handler for go to the next step
+   */
+  nextStep() {
+    this.setConnectionsAndInstances();
+    switch (this.conditionExpression) {
+      case &#x27;basic&#x27;:
+        if (this.selectedApp.parameters) {
+          this.conditionExpression &#x3D; &#x27;parameters&#x27;;
+          this.parametersDot &#x3D; true;
+          this.basicInformationDot &#x3D; false;
+          if (!this.areRequiredConnections) {
+            this.showDeploy &#x3D; true;
+            this.showNext &#x3D; false;
+          }
+        } else {
+            if (this.areRequiredConnections) {
+              this.conditionExpression &#x3D; &#x27;connections&#x27;;
+              this.basicInformationDot &#x3D; false;
+              this.connectionsDot &#x3D; true;
+              this.showNext &#x3D; false;
+              this.showDeploy &#x3D; true;
+            } else {
+              this.showDeploy &#x3D; true;
+              this.showNext &#x3D; false;
+            }
+        }
+        this.showBack &#x3D; true;
+        break;
+      case &#x27;parameters&#x27;:
+        this.parametersDot &#x3D; false;
+        this.connectionsDot &#x3D; true;
+        this.showDeploy &#x3D; true;
+        this.showNext &#x3D; false;
+        if (this.instances.length &gt; 0 &amp;&amp; this.areRequiredConnections) {
+          this.conditionExpression &#x3D; &#x27;connections&#x27;;
+        }
+        break;
+    }
+  }
+  /**
+   * Handler for get data to interface config select
+   * @param f Form
+   */
+  targetInstanceSelectionChange(f) {
+    if (f.targetInstance.value) {
+      this.targetInterfaceOptions &#x3D;
+          this.instances.filter(inst &#x3D;&gt; inst.name &#x3D;&#x3D;&#x3D; f.targetInstance.value)[0].inbound_net_interfaces.map(item &#x3D;&gt; item.name);
+      this.targetInterfaceConfig &#x3D; {
+        displayKey: &#x27;name&#x27;,
+        search: false,
+        height: &#x27;auto&#x27;,
+        placeholder: &#x27;Select any interface name&#x27;,
+        limitTo: this.targetInterfaceOptions.length,
+        moreText: &#x27;more&#x27;,
+        noResultsFound: &#x27;No results found!&#x27;
+      };
+    }
+  }
+  /**
+   * Handler for capture data from interface config select
+   * @param f Form
+   * @param i Index to capture the correct required connection
+   */
+  targetInterfaceSelectionChange(f, i: number) {
+    if (f.targetInterface.value) {
+      this.connections.push(
+        {target_instance_id: this.instances.filter(inst &#x3D;&gt; inst.name &#x3D;&#x3D;&#x3D; f.targetInstance.value)[0].app_instance_id,
+        target_inbound_name: f.targetInterface.value,
+        source_outbound_name: this.requiredConnections[i].name}
+      );
+    }
+  }
+  /**
+   * Handler for set the disabled state to the button next
+   * @param f Form
+   */
+  isInactiveNext(f) {
+    let isInactiveNext &#x3D; false;
+    if (this.conditionExpression &#x3D;&#x3D;&#x3D; &#x27;basic&#x27;) {
+      isInactiveNext &#x3D; !this.selectedApp || this.selectedApp.id &#x3D;&#x3D;&#x3D; -1 || !f.instanceName.value;
+    } else if (this.conditionExpression &#x3D;&#x3D;&#x3D; &#x27;parameters&#x27;) {
+      this.selectedApp.parameters.map(param &#x3D;&gt; {
+          if (!param.category &amp;&amp; !param.value) {
+            isInactiveNext &#x3D; true;
+          }
+      });
+    }
+    return isInactiveNext;
+  }
+  /**
+   * Handler for set the disabled state to the button deploy
+   * @param f Form
+   */
+  isInactiveDeploy(f) {
+    let isInactiveDeploy &#x3D; false;
+    switch (this.conditionExpression) {
+      case &#x27;basic&#x27;:
+        isInactiveDeploy &#x3D; !this.selectedApp || !f.instanceName.value;
+        break;
+      case &#x27;parameters&#x27;:
+        this.selectedApp.parameters.map(param &#x3D;&gt; {
+          if (!param.category &amp;&amp; !param.value) {
+            isInactiveDeploy &#x3D; true;
+          }
+        });
+        break;
+      case &#x27;connections&#x27;:
+        isInactiveDeploy &#x3D; this.connections.length &#x3D;&#x3D;&#x3D; 0 || this.connections.length &lt; this.requiredConnections.length;
+        break;
+    }
+    return isInactiveDeploy;
+  }
+  /**
+   * Handler for generate required connections, instances names and init the config for target instance
+   */
+  private setConnectionsAndInstances() {
+    if (this.selectedApp &amp;&amp; this.selectedApp.outbound_net_interfaces) {
+      this.requiredConnections &#x3D; this.selectedApp.outbound_net_interfaces.filter(item &#x3D;&gt; item.required);
+      this.areRequiredConnections &#x3D; this.requiredConnections.length &gt; 0;
+    } else {
+      this.requiredConnections &#x3D; [];
+      this.areRequiredConnections &#x3D; false;
+    }
+    if (this.instances &amp;&amp; this.instances.length &gt; 0) {
+      this.instancesNames &#x3D; this.instances.filter(instance &#x3D;&gt; instance.inbound_net_interfaces).map(inst &#x3D;&gt; inst.name);
+      this.targetInstanceConfig &#x3D; {
+        displayKey: &#x27;name&#x27;,
+        search: false,
+        height: &#x27;auto&#x27;,
+        placeholder: &#x27;Select any instance name&#x27;,
+        limitTo: this.instancesNames.length,
+        moreText: &#x27;more&#x27;,
+        noResultsFound: &#x27;No results found!&#x27;
+      };
+    }
+  }
+  /**
+   * Handler for reset the form to the basic state
+   */
+  private setBasicState() {
+    this.reload &#x3D; false;
+    this.ngOnInit();
+    this.connectionsDot &#x3D; false;
+    this.basicInformationDot &#x3D; true;
+    this.reload &#x3D; true;
+    this.showBack &#x3D; false;
+    this.showDeploy &#x3D; false;
+    this.showNext &#x3D; true;
+    this.deployInstanceForm.controls.selectDrop.setValue({id: -1, name: &#x27;Select any registered name&#x27;});
+    if (!(this.openFromRegistered &amp;&amp; this.appFromRegistered)) {
+      this.selectedApp &#x3D; null;
+    }
+  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;modal-card&quot;&gt;
-    &lt;div class&#x3D;&quot;modal-content&quot;&gt;
-      &lt;!-- Header --&gt;
-      &lt;div class&#x3D;&quot;modal-header&quot;&gt;
-        &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;Deploy instance&lt;/h3&gt;
-        &lt;button 
-          (click)&#x3D;&quot;discardChanges(f)&quot;
-          type&#x3D;&quot;button&quot; 
-          aria-label&#x3D;&quot;Close&quot;
-          class&#x3D;&quot;close&quot; &gt;
-          &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
-        &lt;/button&gt;
-      &lt;/div&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;!-- 
+  Copyright 2019 Nalej
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ --&gt;
+
+&lt;div class&#x3D;&quot;modal-card&quot;&gt;
+  &lt;div class&#x3D;&quot;modal-content&quot;&gt;
+    &lt;!-- Header --&gt;
+    &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+      &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;{{&#x27;apps.deployTitle&#x27; | translate}}&lt;/h3&gt;
+      &lt;button 
+        (click)&#x3D;&quot;discardChanges(f)&quot;
+        type&#x3D;&quot;button&quot; 
+        aria-label&#x3D;&quot;Close&quot;
+        class&#x3D;&quot;close&quot; &gt;
+        &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+      &lt;/button&gt;
     &lt;/div&gt;
-    &lt;!-- Body --&gt;
-    &lt;div class&#x3D;&quot;modal-body&quot;&gt;
-      &lt;div *ngIf&#x3D;&quot;loadedData&quot;&gt;
-        &lt;form [formGroup]&#x3D;&quot;deployInstanceForm&quot; (ngSubmit)&#x3D;&quot;deployInstance(f)&quot;&gt;
-          &lt;div class&#x3D;&quot;scroll-modal-form&quot;&gt;
-            &lt;div *ngIf&#x3D;&quot;!openFromRegistered&quot; class&#x3D;&quot;form-group form-group-drop&quot;&gt;
-              &lt;label&gt;Registered name&lt;/label&gt;
-              &lt;ngx-select-dropdown 
-                formControlName&#x3D;&quot;selectDrop&quot; 
-                [multiple]&#x3D;&quot;false&quot; 
-                [config]&#x3D;&quot;selectConfig&quot; 
-                [options]&#x3D;&quot;registeredApps&quot;
-                (change)&#x3D;&quot;onRegisteredChange(f)&quot;
-                [ngClass]&#x3D;&quot;{ &#x27;base-light-grey&#x27;: !f.selectDrop.value }&quot;&gt;
-              &lt;/ngx-select-dropdown&gt;
-              &lt;div class&#x3D;&quot;form-group-drop-arrow&quot;&gt; 
-                &lt;i class&#x3D;&quot;material-icons&quot;&gt;arrow_drop_down&lt;/i&gt;
-              &lt;/div&gt;
-              &lt;div class&#x3D;&quot;error-h&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- Body --&gt;
+  &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;loadedData&quot;&gt;
+      &lt;form [formGroup]&#x3D;&quot;deployInstanceForm&quot; (ngSubmit)&#x3D;&quot;deployInstance(f)&quot;&gt;
+        &lt;div class&#x3D;&quot;stepper-box&quot;&gt;
+          &lt;div [ngClass]&#x3D;&quot;{ &#x27;active&#x27;: basicInformationDot }&quot; class&#x3D;&quot;step&quot;&gt;
+            &lt;div class&#x3D;&quot;step-title&quot;&gt;{{&#x27;tables.tableBasicInfo&#x27; | translate}}&lt;/div&gt;
+            &lt;div class&#x3D;&quot;step-bar-left&quot;&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;step-bar-right&quot;&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;step-circle&quot;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div [ngClass]&#x3D;&quot;{ &#x27;active&#x27;: parametersDot }&quot; class&#x3D;&quot;step&quot;&gt;
+            &lt;div class&#x3D;&quot;step-title&quot;&gt;{{&#x27;tables.tableParameters&#x27; | translate}}&lt;/div&gt;
+            &lt;div class&#x3D;&quot;step-bar-left&quot;&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;step-bar-right&quot;&gt;&lt;/div&gt;
+            &lt;div *ngIf&#x3D;&quot;selectedApp &amp;&amp; !selectedApp.parameters&quot; aria-label&#x3D;&quot;Close&quot; class&#x3D;&quot;not-valid-step&quot;&gt;
+              &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
             &lt;/div&gt;
-            &lt;div *ngIf&#x3D;&quot;openFromRegistered&quot; class&#x3D;&quot;form-group&quot;&gt;
-              &lt;label&gt;Registered name&lt;/label&gt;
-              &lt;input 
-                formControlName&#x3D;&quot;registeredName&quot; 
-                type&#x3D;&quot;text&quot; 
+            &lt;div *ngIf&#x3D;&quot;!selectedApp || (selectedApp &amp;&amp; selectedApp.parameters)&quot; class&#x3D;&quot;step-circle&quot;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div [ngClass]&#x3D;&quot;{ &#x27;active&#x27;: connectionsDot }&quot; class&#x3D;&quot;step&quot;&gt;
+            &lt;div class&#x3D;&quot;step-title&quot;&gt;{{&#x27;apps.appConnections&#x27; | translate}}&lt;/div&gt;
+            &lt;div class&#x3D;&quot;step-bar-left&quot;&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;step-bar-right&quot;&gt;&lt;/div&gt;
+            &lt;div *ngIf&#x3D;&quot;selectedApp &amp;&amp; !areRequiredConnections&quot; aria-label&#x3D;&quot;Close&quot; class&#x3D;&quot;not-valid-step&quot;&gt;
+              &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div *ngIf&#x3D;&quot;!selectedApp || (selectedApp &amp;&amp; areRequiredConnections)&quot; class&#x3D;&quot;step-circle&quot;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div [ngSwitch]&#x3D;&quot;conditionExpression&quot;&gt;
+          &lt;!--BASIC STEP--&gt;
+          &lt;ng-template [ngSwitchCase]&#x3D;&quot;&#x27;basic&#x27;&quot;&gt;
+            &lt;div *ngIf&#x3D;&quot;openFromRegistered; else openFromAnotherPoint&quot; class&#x3D;&quot;form-group&quot;&gt;
+              &lt;label&gt;{{&#x27;apps.registeredName&#x27; | translate}}&lt;/label&gt;
+              &lt;input
+                formControlName&#x3D;&quot;registeredName&quot;
+                type&#x3D;&quot;text&quot;
                 placeholder&#x3D;&quot;{{registeredName}}&quot;
                 class&#x3D;&quot;form-control&quot;&gt;
               &lt;div class&#x3D;&quot;error-h&quot;&gt;&lt;/div&gt;
             &lt;/div&gt;
+            &lt;ng-template #openFromAnotherPoint&gt;
+              &lt;div class&#x3D;&quot;form-group form-group-drop&quot;&gt;
+                &lt;label&gt;{{&#x27;apps.registeredName&#x27; | translate}}&lt;/label&gt;
+                &lt;ngx-select-dropdown
+                  *ngIf&#x3D;&quot;reload&quot;
+                  formControlName&#x3D;&quot;selectDrop&quot;
+                  [multiple]&#x3D;&quot;false&quot;
+                  [config]&#x3D;&quot;selectConfig&quot;
+                  [options]&#x3D;&quot;registeredApps&quot;
+                  (change)&#x3D;&quot;onRegisteredChange(f)&quot;
+                  [ngClass]&#x3D;&quot;{ &#x27;base-light-grey&#x27;: !f.selectDrop.value }&quot;&gt;
+                &lt;/ngx-select-dropdown&gt;
+                &lt;div class&#x3D;&quot;form-group-drop-arrow&quot;&gt;
+                  &lt;i class&#x3D;&quot;material-icons&quot;&gt;arrow_drop_down&lt;/i&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;error-h&quot;&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/ng-template&gt;
             &lt;div class&#x3D;&quot;form-group&quot;&gt;
-              &lt;label&gt;Instance name*&lt;/label&gt;
-              &lt;input 
-                formControlName&#x3D;&quot;instanceName&quot; 
-                type&#x3D;&quot;text&quot; 
+              &lt;label&gt;{{&#x27;apps.instanceName&#x27; | translate}}*&lt;/label&gt;
+              &lt;input
+                formControlName&#x3D;&quot;instanceName&quot;
+                type&#x3D;&quot;text&quot;
                 value&#x3D;&quot;instanceName&quot;
                 placeholder&#x3D;&quot;Instance name&quot;
                 appAutofocus&#x3D;&quot;{{defaultAutofocus}}&quot;
@@ -1877,93 +3176,168 @@ export class DeployInstanceComponent implements OnInit {
                 class&#x3D;&quot;form-control&quot;&gt;
               &lt;div class&#x3D;&quot;error-h&quot;&gt;
                 &lt;div *ngIf&#x3D;&quot;submitted &amp;&amp; f.instanceName.errors&quot; class&#x3D;&quot;error-message&quot;&gt;
-                  &lt;div *ngIf&#x3D;&quot;f.instanceName.errors.required&quot;&gt;Name is required&lt;/div&gt;
-                  &lt;div *ngIf&#x3D;&quot;f.instanceName.errors.minlength&quot;&gt;Name is too short&lt;/div&gt;
-                  &lt;div *ngIf&#x3D;&quot;f.instanceName.errors.pattern&quot;&gt;Cannot contain special characters&lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;f.instanceName.errors.required&quot;&gt;{{&#x27;apps.nameRequired&#x27; | translate}}&lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;f.instanceName.errors.minlength&quot;&gt;{{&#x27;apps.nameShort&#x27; | translate}}&lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;f.instanceName.errors.pattern&quot;&gt;{{&#x27;label.add-label.specialChar&#x27; | translate}}&lt;/div&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
             &lt;/div&gt;
+          &lt;/ng-template&gt;
+          &lt;!--PARAMETERS STEP--&gt;
+          &lt;ng-template [ngSwitchCase]&#x3D;&quot;&#x27;parameters&#x27;&quot;&gt;
             &lt;div *ngIf&#x3D;&quot;selectedApp &amp;&amp; availableParamsCategory.basic&quot; class&#x3D;&quot;form-group&quot;&gt;
-              &lt;label&gt;Parameters&lt;/label&gt;
+              &lt;label&gt;{{&#x27;tables.tableParameters&#x27; | translate}}&lt;/label&gt;
               &lt;!-- DEFAULT PARAMETERS --&gt;
               &lt;div class&#x3D;&quot;accordion&quot;&gt;
-                &lt;div class&#x3D;&quot;accordion-header&quot; (click)&#x3D;&quot;toggleDefaultParameters()&quot;&gt;Default&lt;/div&gt;
-                &lt;div 
-                  *ngIf&#x3D;&quot;defaultParamsOpened&quot;
-                  class&#x3D;&quot;accordion-body&quot;&gt;
-                  &lt;div 
-                    *ngFor&#x3D;&quot;let param of selectedApp.parameters&quot;
-                    class&#x3D;&quot;form-group&quot;&gt;
+                &lt;div class&#x3D;&quot;accordion-header&quot; (click)&#x3D;&quot;toggleDefaultParameters()&quot;&gt;
+                  &lt;i class&#x3D;&quot;material-icons accordion-arrow&quot;&gt;arrow_drop_down&lt;/i&gt;
+                  &lt;span&gt;{{&#x27;tables.tableBasic&#x27; | translate}}&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;defaultParamsOpened&quot; class&#x3D;&quot;accordion-body scroll-modal-form&quot;&gt;
+                  &lt;div *ngFor&#x3D;&quot;let param of selectedApp.parameters&quot; class&#x3D;&quot;form-group&quot;&gt;
                     &lt;div *ngIf&#x3D;&quot;!param.category || param.category&#x3D;&#x3D;&#x3D;&#x27;BASIC&#x27;&quot;&gt;
                       &lt;label&gt;{{param.name}}&lt;/label&gt;
-                      &lt;input 
-                        type&#x3D;&quot;text&quot; 
+                      &lt;input
+                        type&#x3D;&quot;text&quot;
                         placeholder&#x3D;&quot;{{param.name}}&quot;
                         class&#x3D;&quot;form-control&quot;
                         value&#x3D;&quot;{{param.value}}&quot;
-                        (input)&#x3D;&quot;param.value &#x3D; $event.target.value&quot;
-                        &gt;
-                      &lt;label class&#x3D;&quot;accordion-foot&quot;&gt;Type restrictions: {{param.type}}&lt;/label&gt;
+                        (input)&#x3D;&quot;param.value &#x3D; $event.target.value&quot;&gt;
+                      &lt;label class&#x3D;&quot;accordion-foot&quot;&gt;{{&#x27;apps.typeRestriction&#x27; | translate}} {{param.type}}&lt;/label&gt;
                     &lt;/div&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
               &lt;div class&#x3D;&quot;accordion&quot; *ngIf&#x3D;&quot;selectedApp &amp;&amp; availableParamsCategory.advanced&quot; &gt;
-                  &lt;div class&#x3D;&quot;accordion-header&quot; (click)&#x3D;&quot;toggleAdvancedParameters()&quot;&gt;Advanced&lt;/div&gt;
-                  &lt;div 
-                    *ngIf&#x3D;&quot;advParamsOpened&quot;
-                    class&#x3D;&quot;accordion-body&quot;&gt;
-                    &lt;div 
-                      *ngFor&#x3D;&quot;let param of selectedApp.parameters&quot;
-                      class&#x3D;&quot;form-group&quot;&gt;
-                      &lt;div *ngIf&#x3D;&quot;param.category&#x3D;&#x3D;&#x3D;&#x27;ADVANCED&#x27;&quot;&gt;
-                        &lt;label&gt;{{param.name}}&lt;/label&gt;
-                        &lt;input 
-                          type&#x3D;&quot;text&quot; 
-                          placeholder&#x3D;&quot;{{param.name}}&quot;
-                          class&#x3D;&quot;form-control&quot;
-                          value&#x3D;&quot;{{param.value}}&quot;
-                          (input)&#x3D;&quot;param.value &#x3D; $event.target.value&quot;
-                          &gt;
-                        &lt;label class&#x3D;&quot;accordion-foot&quot;&gt;Type restrictions: {{param.type}}&lt;/label&gt;
-                      &lt;/div&gt;
+                &lt;div class&#x3D;&quot;accordion-header&quot; (click)&#x3D;&quot;toggleAdvancedParameters()&quot;&gt;
+                  &lt;i class&#x3D;&quot;material-icons accordion-arrow&quot;&gt;arrow_drop_down&lt;/i&gt;
+                  &lt;span&gt;{{&#x27;tables.tableAdvanced&#x27; | translate}}&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;advParamsOpened&quot; class&#x3D;&quot;accordion-body&quot;&gt;
+                  &lt;div *ngFor&#x3D;&quot;let param of selectedApp.parameters&quot; class&#x3D;&quot;form-group&quot;&gt;
+                    &lt;div *ngIf&#x3D;&quot;param.category&#x3D;&#x3D;&#x3D;&#x27;ADVANCED&#x27;&quot;&gt;
+                      &lt;label&gt;{{param.name}}&lt;/label&gt;
+                      &lt;input type&#x3D;&quot;text&quot;
+                        placeholder&#x3D;&quot;{{param.name}}&quot;
+                        class&#x3D;&quot;form-control&quot;
+                        value&#x3D;&quot;{{param.value}}&quot;
+                        (input)&#x3D;&quot;param.value &#x3D; $event.target.value&quot;&gt;
+                      &lt;label class&#x3D;&quot;accordion-foot&quot;&gt;{{&#x27;apps.typeRestriction&#x27; | translate}} {{param.type}}&lt;/label&gt;
                     &lt;/div&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
+              &lt;/div&gt;
               &lt;!-- ADVANCED PARAMETERS--&gt;
             &lt;/div&gt;
-          &lt;/div&gt;
-        &lt;/form&gt;
-        &lt;div class&#x3D;&quot;form-group-btn&quot;&gt;
-          &lt;button class&#x3D;&quot;nalej-form-btn-blue&quot; (click)&#x3D;&quot;deployInstance(f)&quot; [disabled]&#x3D;&quot;loading&quot;&gt;
-            &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Deploy&lt;/span&gt;
-          &lt;/button&gt;
+          &lt;/ng-template&gt;
+          &lt;!--CONNECTIONS STEP--&gt;
+          &lt;ng-template [ngSwitchCase]&#x3D;&quot;&#x27;connections&#x27;&quot;&gt;
+            &lt;div *ngIf&#x3D;&quot;selectedApp &amp;&amp; selectedApp.outbound_net_interfaces&quot;&gt;
+              &lt;label *ngIf&#x3D;&quot;requiredConnections&quot; class&#x3D;&quot;required-connections-title&quot;&gt;{{&#x27;apps.requiredConnections&#x27; | translate}}&lt;/label&gt;
+              &lt;div class&#x3D;&quot;accordion&quot;&gt;
+                &lt;div class&#x3D;&quot;accordion-header&quot;&gt;
+                  &lt;i class&#x3D;&quot;material-icons accordion-arrow&quot;&gt;arrow_drop_down&lt;/i&gt;
+                  &lt;span&gt;{{&#x27;apps.outbound&#x27; | translate}}&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;accordion-body required-connections-box&quot;&gt;
+                  &lt;div *ngFor&#x3D;&quot;let connection of requiredConnections; let i &#x3D; index;&quot;&gt;
+                      &lt;!-- Target Instance dropdown --&gt;
+                      &lt;span class&#x3D;&quot;outbound-title&quot;&gt;{{connection[&#x27;name&#x27;]}}&lt;/span&gt;
+                      &lt;div class&#x3D;&quot;form-group form-group-drop&quot;&gt;
+                        &lt;label&gt;{{&#x27;tables.tableTargetInstance&#x27; | translate}}&lt;/label&gt;
+                        &lt;ngx-select-dropdown
+                          formControlName&#x3D;&quot;targetInstance&quot;
+                          [multiple]&#x3D;&quot;false&quot;
+                          [config]&#x3D;&quot;targetInstanceConfig&quot;
+                          [options]&#x3D;&quot;instancesNames&quot;
+                          (change)&#x3D;&quot;targetInstanceSelectionChange(f)&quot;
+                          [ngClass]&#x3D;&quot;{ &#x27;base-light-grey&#x27;: !f.targetInstance.value }&quot;&gt;
+                        &lt;/ngx-select-dropdown&gt;
+                        &lt;div class&#x3D;&quot;form-group-drop-arrow&quot;&gt;
+                          &lt;i class&#x3D;&quot;material-icons&quot;&gt;arrow_drop_down&lt;/i&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;error-h&quot;&gt;&lt;/div&gt;
+                      &lt;/div&gt;
+                      &lt;div class&#x3D;&quot;form-group form-group-drop&quot;&gt;
+                      &lt;!-- Target Inbound dropdown --&gt;
+                        &lt;label&gt;{{&#x27;tables.tableTargetInbound&#x27; | translate}}&lt;/label&gt;
+                        &lt;ngx-select-dropdown
+                          formControlName&#x3D;&quot;targetInterface&quot;
+                          [multiple]&#x3D;&quot;false&quot;
+                          [config]&#x3D;&quot;targetInterfaceConfig&quot;
+                          [options]&#x3D;&quot;targetInterfaceOptions&quot;
+                          (change)&#x3D;&quot;targetInterfaceSelectionChange(f, i)&quot;
+                          [ngClass]&#x3D;&quot;{ &#x27;base-light-grey&#x27;: !f.targetInterface.value }&quot;&gt;
+                        &lt;/ngx-select-dropdown&gt;
+                        &lt;div class&#x3D;&quot;form-group-drop-arrow&quot;&gt;
+                          &lt;i class&#x3D;&quot;material-icons&quot;&gt;arrow_drop_down&lt;/i&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;error-h&quot;&gt;&lt;/div&gt;
+                      &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/ng-template&gt;
         &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;!-- Loader --&gt;
-      &lt;div *ngIf&#x3D;&quot;!loadedData&quot; class&#x3D;&quot;nalej-loader-box&quot;&gt;
-        &lt;div class&#x3D;&quot;loader&quot;&gt;
-          &lt;svg class&#x3D;&quot;circular&quot; viewBox&#x3D;&quot;25 25 50 50&quot;&gt;
-            &lt;circle 
-            class&#x3D;&quot;path&quot; 
-            cx&#x3D;&quot;50&quot; 
-            cy&#x3D;&quot;50&quot; 
-            r&#x3D;&quot;20&quot; 
-            fill&#x3D;&quot;none&quot; 
-            stroke-width&#x3D;&quot;2&quot; 
-            stroke-miterlimit&#x3D;&quot;10&quot;/&gt;
-          &lt;/svg&gt;
-        &lt;/div&gt;
+      &lt;/form&gt;
+      &lt;div class&#x3D;&quot;stepper-actions-btn&quot;&gt;
+        &lt;button *ngIf&#x3D;&quot;showBack&quot;
+          (click)&#x3D;&quot;previousStep()&quot;
+          class&#x3D;&quot;nalej-form-btn-red&quot;&gt;
+          &lt;i class&#x3D;&quot;material-icons i-arrow-left&quot;&gt;keyboard_arrow_left&lt;/i&gt;
+          &lt;span&gt;{{&#x27;buttons.back&#x27; | translate}}&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;button *ngIf&#x3D;&quot;showNext&quot;
+          [disabled]&#x3D;&quot;isInactiveNext(f)&quot;
+          (click)&#x3D;&quot;nextStep()&quot;
+          class&#x3D;&quot;nalej-form-btn-blue&quot;&gt;
+          &lt;i class&#x3D;&quot;material-icons i-arrow-right&quot;&gt;keyboard_arrow_right&lt;/i&gt;
+          &lt;span&gt;{{&#x27;buttons.next&#x27; | translate}}&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;button *ngIf&#x3D;&quot;showDeploy&quot; (click)&#x3D;&quot;deployInstance(f)&quot; [disabled]&#x3D;&quot;isInactiveDeploy(f)&quot; class&#x3D;&quot;nalej-form-btn-blue&quot;&gt;
+          &lt;span class&#x3D;&quot;deploy-btn&quot;&gt;{{&#x27;buttons.deploy&#x27; | translate}}&lt;/span&gt;
+        &lt;/button&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/div&gt;</code></pre>
+    &lt;!-- Loader --&gt;
+    &lt;div *ngIf&#x3D;&quot;!loadedData&quot; class&#x3D;&quot;nalej-loader-box&quot;&gt;
+      &lt;div class&#x3D;&quot;loader&quot;&gt;
+        &lt;svg class&#x3D;&quot;circular&quot; viewBox&#x3D;&quot;25 25 50 50&quot;&gt;
+          &lt;circle 
+          class&#x3D;&quot;path&quot; 
+          cx&#x3D;&quot;50&quot; 
+          cy&#x3D;&quot;50&quot; 
+          r&#x3D;&quot;20&quot; 
+          fill&#x3D;&quot;none&quot; 
+          stroke-width&#x3D;&quot;2&quot; 
+          stroke-miterlimit&#x3D;&quot;10&quot;/&gt;
+        &lt;/svg&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
                     <code>./deploy-instance.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;../scss/variables/colors&#x27;;
+                <pre class="line-numbers"><code class="language-scss">/* 
+ *  Copyright 2019 Nalej
+ *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+@import &#x27;../../scss/variables/colors&#x27;;
 
 .accordion {
     border: 2px solid $light-grey;
@@ -1971,6 +3345,7 @@ export class DeployInstanceComponent implements OnInit {
     max-height: 338px;
     overflow-y: scroll;
     overflow-x: hidden;
+    margin-bottom: 3px;
 }
 .accordion-header {
     display: flex;
@@ -1978,18 +3353,36 @@ export class DeployInstanceComponent implements OnInit {
     align-items: center;
     width: 100%;
     height: 3em;
-    background-color: $super-light-grey;
+    background-color: $light-grey;
     cursor: pointer;
-    color: $base-violet;
-    font-size: .8em;
-    text-indent: 17px;
+    position: relative;
+    span {
+        color: $base-violet;
+        font-size: .8em;
+        margin-left: 52px;
+        font-weight: 500;
+    }
+    .accordion-arrow {
+        color: $secondary-grey;
+        font-size: 27px;
+        position: absolute;
+        top: 9px;
+        left: 15px;
+    }
 }
 .accordion-body {
     width: 322px;
     margin: 0 auto;
+    .outbound-title {
+        font-size: 13px;
+        margin: .5em 0;
+        color: $super-dark-grey;
+        font-weight: 500;
+        display: block;
+    }
 }
 .accordion-foot {
-    color: $base-light-grey;
+    color: $low-grey;
     text-transform: lowercase;
     font-size: .7em;
     &amp;::first-letter {
@@ -1999,11 +3392,144 @@ export class DeployInstanceComponent implements OnInit {
 .form-group {
     margin: .5em 0;
 }
+.stepper-box {
+    display: table;
+    width: 80%;
+    margin: 0 auto;
+    background-color: $white;
 
+    .step {
+        display: table-cell;
+        position: relative;
+        padding: 24px 0;
+        &amp;:first-child:active {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        &amp;:last-child:active {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        &amp;:hover .step-circle {
+            background-color: $base-light-grey;
+        }
+        &amp;:first-child .step-bar-left,
+        &amp;:last-child .step-bar-right {
+            display: none;
+        }
+        .not-valid-step {
+            margin: 0 auto;
+            text-align: center;
+            line-height: 11px;
+            font-size: 23px;
+            font-weight: 500;
+            color: $base-light-grey;
+        }
+        .step-circle {
+            width: 13px;
+            height: 13px;
+            margin: 0 auto;
+            background-color: $base-light-grey;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 13px;
+            font-size: 16px;
+            font-weight: 500;
+            color: $white;
+        }
+        &amp;.active .step-circle {
+            background-color: $base-violet;
+        }
+        .step-title {
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 9px;
+            text-align: center;
+            color:$base-light-grey;
+        }
+        &amp;.active .step-title {
+            color: $super-dark-grey;
+        }
+        .step-bar-right {
+            position: absolute;
+            top: 54px;
+            border-top: 2px solid $light-grey;
+            right: 0;
+            left: 50%;
+            margin-left: 7px;
+        }
+        .step-bar-left {
+            position: absolute;
+            top: 54px;
+            border-top: 2px solid $light-grey;
+            left: 0;
+            right: 50%;
+            margin-right: 7px;
+        }
+    }
+}
+.stepper-actions-btn {
+    display: inline-block;
+    width: 100%;
+    margin-top: 2em;
+    .nalej-form-btn-blue {
+        float: right;
+        width: 138px;
+        position: relative;
+        font-size: 14px;
+        font-weight: 500;
+        padding-right: 30px;
+        .i-arrow-right {
+            color: $light-grey;
+            position: absolute;
+            top: 14px;
+            right: 33px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+    }
+    .nalej-form-btn-red {
+        float: left;
+        width: 138px;
+        position: relative;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: $light-grey;
+        padding-right: 16px;
+        .i-arrow-left {
+            color: $base-red;
+            position: absolute;
+            top: 14px;
+            left: 8px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        &amp;:hover {
+            background-color: $base-red;
+            .i-arrow-left {
+                color: $light-grey;
+                transition: .3s;
+            }
+        }
+    }
+}
 @media screen and (max-height: 820px){
     .scroll-modal-form {
         max-height: 380px;
     }
+}
+
+.required-connections-box {
+    min-height: 242px;
+}
+.required-connections-title {
+    font-size: 13px;
+    color: $base-grey;
+    margin-bottom: .2em;
+    font-weight: 500;
+}
+.deploy-btn {
+    margin-left: 25px;    
 }
 </code></pre>
     </div>
@@ -2033,8 +3559,8 @@ export class DeployInstanceComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">    <div class="modal-content">      <!-- Header -->      <div class="modal-header">        <h3 class="nalej-form-title">Deploy instance</h3>        <button           (click)="discardChanges(f)"          type="button"           aria-label="Close"          class="close" >          <span aria-hidden="true">&times;</span>        </button>      </div>    </div>    <!-- Body -->    <div class="modal-body">      <div *ngIf="loadedData">        <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">          <div class="scroll-modal-form">            <div *ngIf="!openFromRegistered" class="form-group form-group-drop">              <label>Registered name</label>              <ngx-select-dropdown                 formControlName="selectDrop"                 [multiple]="false"                 [config]="selectConfig"                 [options]="registeredApps"                (change)="onRegisteredChange(f)"                [ngClass]="{ \'base-light-grey\': !f.selectDrop.value }">              </ngx-select-dropdown>              <div class="form-group-drop-arrow">                 <i class="material-icons">arrow_drop_down</i>              </div>              <div class="error-h"></div>            </div>            <div *ngIf="openFromRegistered" class="form-group">              <label>Registered name</label>              <input                 formControlName="registeredName"                 type="text"                 placeholder="{{registeredName}}"                class="form-control">              <div class="error-h"></div>            </div>            <div class="form-group">              <label>Instance name*</label>              <input                 formControlName="instanceName"                 type="text"                 value="instanceName"                placeholder="Instance name"                appAutofocus="{{defaultAutofocus}}"                [ngClass]="{ \'is-invalid\': submitted && f.instanceName.errors }"                class="form-control">              <div class="error-h">                <div *ngIf="submitted && f.instanceName.errors" class="error-message">                  <div *ngIf="f.instanceName.errors.required">Name is required</div>                  <div *ngIf="f.instanceName.errors.minlength">Name is too short</div>                  <div *ngIf="f.instanceName.errors.pattern">Cannot contain special characters</div>                </div>              </div>            </div>            <div *ngIf="selectedApp && availableParamsCategory.basic" class="form-group">              <label>Parameters</label>              <!-- DEFAULT PARAMETERS -->              <div class="accordion">                <div class="accordion-header" (click)="toggleDefaultParameters()">Default</div>                <div                   *ngIf="defaultParamsOpened"                  class="accordion-body">                  <div                     *ngFor="let param of selectedApp.parameters"                    class="form-group">                    <div *ngIf="!param.category || param.category===\'BASIC\'">                      <label>{{param.name}}</label>                      <input                         type="text"                         placeholder="{{param.name}}"                        class="form-control"                        value="{{param.value}}"                        (input)="param.value = $event.target.value"                        >                      <label class="accordion-foot">Type restrictions: {{param.type}}</label>                    </div>                  </div>                </div>              </div>              <div class="accordion" *ngIf="selectedApp && availableParamsCategory.advanced" >                  <div class="accordion-header" (click)="toggleAdvancedParameters()">Advanced</div>                  <div                     *ngIf="advParamsOpened"                    class="accordion-body">                    <div                       *ngFor="let param of selectedApp.parameters"                      class="form-group">                      <div *ngIf="param.category===\'ADVANCED\'">                        <label>{{param.name}}</label>                        <input                           type="text"                           placeholder="{{param.name}}"                          class="form-control"                          value="{{param.value}}"                          (input)="param.value = $event.target.value"                          >                        <label class="accordion-foot">Type restrictions: {{param.type}}</label>                      </div>                    </div>                  </div>                </div>              <!-- ADVANCED PARAMETERS-->            </div>          </div>        </form>        <div class="form-group-btn">          <button class="nalej-form-btn-blue" (click)="deployInstance(f)" [disabled]="loading">            <span class="align-bottom">Deploy</span>          </button>        </div>      </div>      <!-- Loader -->      <div *ngIf="!loadedData" class="nalej-loader-box">        <div class="loader">          <svg class="circular" viewBox="25 25 50 50">            <circle             class="path"             cx="50"             cy="50"             r="20"             fill="none"             stroke-width="2"             stroke-miterlimit="10"/>          </svg>        </div>      </div>    </div>  </div></div>'
-    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><!--   Copyright 2019 Nalej  Licensed under the Apache License, Version 2.0 (the "License");  you may not use this file except in compliance with the License.  You may obtain a copy of the License at      http://www.apache.org/licenses/LICENSE-2.0  Unless required by applicable law or agreed to in writing, software  distributed under the License is distributed on an "AS IS" BASIS,  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the specific language governing permissions and  limitations under the License. --><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">{{\'apps.deployTitle\' | translate}}</h3>      <button         (click)="discardChanges(f)"        type="button"         aria-label="Close"        class="close" >        <span aria-hidden="true">&times;</span>      </button>    </div>  </div>  <!-- Body -->  <div class="modal-body">    <div *ngIf="loadedData">      <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">        <div class="stepper-box">          <div [ngClass]="{ \'active\': basicInformationDot }" class="step">            <div class="step-title">{{\'tables.tableBasicInfo\' | translate}}</div>            <div class="step-bar-left"></div>            <div class="step-bar-right"></div>            <div class="step-circle"></div>          </div>          <div [ngClass]="{ \'active\': parametersDot }" class="step">            <div class="step-title">{{\'tables.tableParameters\' | translate}}</div>            <div class="step-bar-left"></div>            <div class="step-bar-right"></div>            <div *ngIf="selectedApp && !selectedApp.parameters" aria-label="Close" class="not-valid-step">              <span aria-hidden="true">&times;</span>            </div>            <div *ngIf="!selectedApp || (selectedApp && selectedApp.parameters)" class="step-circle"></div>          </div>          <div [ngClass]="{ \'active\': connectionsDot }" class="step">            <div class="step-title">{{\'apps.appConnections\' | translate}}</div>            <div class="step-bar-left"></div>            <div class="step-bar-right"></div>            <div *ngIf="selectedApp && !areRequiredConnections" aria-label="Close" class="not-valid-step">              <span aria-hidden="true">&times;</span>            </div>            <div *ngIf="!selectedApp || (selectedApp && areRequiredConnections)" class="step-circle"></div>          </div>        </div>        <div [ngSwitch]="conditionExpression">          <!--BASIC STEP-->          <ng-template [ngSwitchCase]="\'basic\'">            <div *ngIf="openFromRegistered; else openFromAnotherPoint" class="form-group">              <label>{{\'apps.registeredName\' | translate}}</label>              <input                formControlName="registeredName"                type="text"                placeholder="{{registeredName}}"                class="form-control">              <div class="error-h"></div>            </div>            <ng-template #openFromAnotherPoint>              <div class="form-group form-group-drop">                <label>{{\'apps.registeredName\' | translate}}</label>                <ngx-select-dropdown                  *ngIf="reload"                  formControlName="selectDrop"                  [multiple]="false"                  [config]="selectConfig"                  [options]="registeredApps"                  (change)="onRegisteredChange(f)"                  [ngClass]="{ \'base-light-grey\': !f.selectDrop.value }">                </ngx-select-dropdown>                <div class="form-group-drop-arrow">                  <i class="material-icons">arrow_drop_down</i>                </div>                <div class="error-h"></div>              </div>            </ng-template>            <div class="form-group">              <label>{{\'apps.instanceName\' | translate}}*</label>              <input                formControlName="instanceName"                type="text"                value="instanceName"                placeholder="Instance name"                appAutofocus="{{defaultAutofocus}}"                [ngClass]="{ \'is-invalid\': submitted && f.instanceName.errors }"                class="form-control">              <div class="error-h">                <div *ngIf="submitted && f.instanceName.errors" class="error-message">                  <div *ngIf="f.instanceName.errors.required">{{\'apps.nameRequired\' | translate}}</div>                  <div *ngIf="f.instanceName.errors.minlength">{{\'apps.nameShort\' | translate}}</div>                  <div *ngIf="f.instanceName.errors.pattern">{{\'label.add-label.specialChar\' | translate}}</div>                </div>              </div>            </div>          </ng-template>          <!--PARAMETERS STEP-->          <ng-template [ngSwitchCase]="\'parameters\'">            <div *ngIf="selectedApp && availableParamsCategory.basic" class="form-group">              <label>{{\'tables.tableParameters\' | translate}}</label>              <!-- DEFAULT PARAMETERS -->              <div class="accordion">                <div class="accordion-header" (click)="toggleDefaultParameters()">                  <i class="material-icons accordion-arrow">arrow_drop_down</i>                  <span>{{\'tables.tableBasic\' | translate}}</span>                </div>                <div *ngIf="defaultParamsOpened" class="accordion-body scroll-modal-form">                  <div *ngFor="let param of selectedApp.parameters" class="form-group">                    <div *ngIf="!param.category || param.category===\'BASIC\'">                      <label>{{param.name}}</label>                      <input                        type="text"                        placeholder="{{param.name}}"                        class="form-control"                        value="{{param.value}}"                        (input)="param.value = $event.target.value">                      <label class="accordion-foot">{{\'apps.typeRestriction\' | translate}} {{param.type}}</label>                    </div>                  </div>                </div>              </div>              <div class="accordion" *ngIf="selectedApp && availableParamsCategory.advanced" >                <div class="accordion-header" (click)="toggleAdvancedParameters()">                  <i class="material-icons accordion-arrow">arrow_drop_down</i>                  <span>{{\'tables.tableAdvanced\' | translate}}</span>                </div>                <div *ngIf="advParamsOpened" class="accordion-body">                  <div *ngFor="let param of selectedApp.parameters" class="form-group">                    <div *ngIf="param.category===\'ADVANCED\'">                      <label>{{param.name}}</label>                      <input type="text"                        placeholder="{{param.name}}"                        class="form-control"                        value="{{param.value}}"                        (input)="param.value = $event.target.value">                      <label class="accordion-foot">{{\'apps.typeRestriction\' | translate}} {{param.type}}</label>                    </div>                  </div>                </div>              </div>              <!-- ADVANCED PARAMETERS-->            </div>          </ng-template>          <!--CONNECTIONS STEP-->          <ng-template [ngSwitchCase]="\'connections\'">            <div *ngIf="selectedApp && selectedApp.outbound_net_interfaces">              <label *ngIf="requiredConnections" class="required-connections-title">{{\'apps.requiredConnections\' | translate}}</label>              <div class="accordion">                <div class="accordion-header">                  <i class="material-icons accordion-arrow">arrow_drop_down</i>                  <span>{{\'apps.outbound\' | translate}}</span>                </div>                <div class="accordion-body required-connections-box">                  <div *ngFor="let connection of requiredConnections; let i = index;">                      <!-- Target Instance dropdown -->                      <span class="outbound-title">{{connection[\'name\']}}</span>                      <div class="form-group form-group-drop">                        <label>{{\'tables.tableTargetInstance\' | translate}}</label>                        <ngx-select-dropdown                          formControlName="targetInstance"                          [multiple]="false"                          [config]="targetInstanceConfig"                          [options]="instancesNames"                          (change)="targetInstanceSelectionChange(f)"                          [ngClass]="{ \'base-light-grey\': !f.targetInstance.value }">                        </ngx-select-dropdown>                        <div class="form-group-drop-arrow">                          <i class="material-icons">arrow_drop_down</i>                        </div>                        <div class="error-h"></div>                      </div>                      <div class="form-group form-group-drop">                      <!-- Target Inbound dropdown -->                        <label>{{\'tables.tableTargetInbound\' | translate}}</label>                        <ngx-select-dropdown                          formControlName="targetInterface"                          [multiple]="false"                          [config]="targetInterfaceConfig"                          [options]="targetInterfaceOptions"                          (change)="targetInterfaceSelectionChange(f, i)"                          [ngClass]="{ \'base-light-grey\': !f.targetInterface.value }">                        </ngx-select-dropdown>                        <div class="form-group-drop-arrow">                          <i class="material-icons">arrow_drop_down</i>                        </div>                        <div class="error-h"></div>                      </div>                  </div>                </div>              </div>            </div>          </ng-template>        </div>      </form>      <div class="stepper-actions-btn">        <button *ngIf="showBack"          (click)="previousStep()"          class="nalej-form-btn-red">          <i class="material-icons i-arrow-left">keyboard_arrow_left</i>          <span>{{\'buttons.back\' | translate}}</span>        </button>        <button *ngIf="showNext"          [disabled]="isInactiveNext(f)"          (click)="nextStep()"          class="nalej-form-btn-blue">          <i class="material-icons i-arrow-right">keyboard_arrow_right</i>          <span>{{\'buttons.next\' | translate}}</span>        </button>        <button *ngIf="showDeploy" (click)="deployInstance(f)" [disabled]="isInactiveDeploy(f)" class="nalej-form-btn-blue">          <span class="deploy-btn">{{\'buttons.deploy\' | translate}}</span>        </button>      </div>    </div>    <!-- Loader -->    <div *ngIf="!loadedData" class="nalej-loader-box">      <div class="loader">        <svg class="circular" viewBox="25 25 50 50">          <circle           class="path"           cx="50"           cy="50"           r="20"           fill="none"           stroke-width="2"           stroke-miterlimit="10"/>        </svg>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'ToolsComponent', 'selector': 'tools'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'DeployInstanceComponent'};
 </script>
