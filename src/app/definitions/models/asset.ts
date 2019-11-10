@@ -8,10 +8,10 @@ import { StorageHardwareInfo } from '../interfaces/storage-hardware-info';
 import { InventoryLocation } from '../interfaces/inventory-location';
 import { AgentOpSummary } from '../interfaces/agent-op-summary';
 import { InventoryType } from '../enums/inventory-type.enum';
-import { Item } from './item';
 import { ConnectedStatus } from '../enums/connected-status.enum';
+import { Item } from './item';
 
-export class Asset implements Item {
+export class Asset extends Item {
     /**
      * OrganizationId with the organization identifier.
      */
@@ -73,6 +73,40 @@ export class Asset implements Item {
      * location with the asset location
      */
     location?: InventoryLocation;
+
+    constructor(
+        organization_id: string,
+        edge_controller_id: string,
+        asset_id: string,
+        agent_id: string,
+        show: boolean,
+        created: number,
+        labels: KeyValue,
+        os: OperatingSystemInfo,
+        hardware: HardwareInfo,
+        storage: StorageHardwareInfo[],
+        eic_net_ip: string,
+        last_op_result: AgentOpSummary,
+        last_alive_timestamp: string,
+        status: ConnectedStatus,
+        location: InventoryLocation) {
+        super();
+        this.organization_id = organization_id;
+        this.edge_controller_id = edge_controller_id;
+        this.asset_id = asset_id;
+        this.agent_id = agent_id;
+        this.show = show;
+        this.created = created;
+        this.labels = labels;
+        this.os = os;
+        this.hardware = hardware;
+        this.storage = storage;
+        this.eic_net_ip = eic_net_ip;
+        this.last_op_result = last_op_result;
+        this.last_alive_timestamp = last_alive_timestamp;
+        this.status = status;
+        this.location = location;
+    }
 
     mapId(): string {
         return this.asset_id;

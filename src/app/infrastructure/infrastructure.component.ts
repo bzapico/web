@@ -424,7 +424,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param item inventory item
    */
   getItemOptions(item: any) {
-    switch (item.type.toLowerCase()) {
+    switch (item.type) {
       case InventoryType.Ec:
         const ecOptions = [];
         const ecOption1 = {
@@ -556,82 +556,86 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     }
     if (!response) {
     } else {
-      this.plainInventory = [...(response.devices || []), ...(response.assets || []), ...(response.controllers || [])];
-      /*if (response.devices) {
+      if (response.devices) {
         response.devices.forEach(device => {
-          console.log('DEVICE ID ::: ', device);
+          this.plainInventory
+            .push(
+              new Device(
+                  device.organization_id,
+                  device.device_group_id,
+                  device.device_id,
+                  device.asset_device_id,
+                  device.register_since,
+                  device.labels,
+                  device.enabled,
+                  device.device_api_key,
+                  device.device_status_name,
+                  device.location,
+                  device.asset_info)
+              );
         });
-      }*/
-      // if (response.devices) {
-      //   response.devices.forEach(device => {
-      //     device.type = InventoryType.Device;
-      //     device.id = '';
-      //     device.status = device.device_status_name;
-      //     if (!device.location
-      //       || !device.location.geolocation
-      //       ) {
-      //       device.location = 'undefined';
-      //     } else {
-      //       device.location = device.location.geolocation;
-      //     }
-      //     if (!device.labels || device.labels === undefined || device.labels === null) {
-      //       device.labels = {};
-      //     }
-      //     device.status = device.device_status_name;
-      //     this.plainInventory.push(device);
-      //   });
-      // }
-      // if (response.assets) {
-      //   response.assets.forEach(asset => {
-      //     asset.type = InventoryType.Asset;
-      //     asset.id = asset.asset_id;
-      //     if (!asset.location
-      //       || !asset.location.geolocation) {
-      //       asset.location = 'undefined';
-      //     } else {
-      //       asset.location = asset.location.geolocation;
-      //     }
-      //     if (!asset.labels || asset.labels === undefined || asset.labels === null) {
-      //       asset.labels = {};
-      //     }
-      //     asset.status = asset.status_name;
-      //     this.plainInventory.push(asset);
-      //   });
-      // }
-      // if (response.controllers) {
-      //   response.controllers.forEach(controller => {
-      //     controller.type = InventoryType.Ec;
-      //     controller.id = controller.edge_controller_id;
-      //     if (!controller.location
-      //       || !controller.location.geolocation) {
-      //       controller.location = 'undefined';
-      //     } else {
-      //       controller.location = controller.location.geolocation;
-      //     }
-      //     if (!controller.labels || controller.labels === undefined || controller.labels === null) {
-      //       controller.labels = {};
-      //     }
-      //     if (controller.status_name.toLowerCase() === InventoryStatus.Online) {
-      //       this.ecsOnline += 1;
-      //     }
-      //     controller.status = controller.status_name;
-      //     controller.assets = [];
-      //     if (response.assets) {
-      //       response.assets.forEach(asset => {
-      //         if (asset.edge_controller_id === controller.edge_controller_id) {
-      //           const assetIp = asset.eic_net_ip ? asset.eic_net_ip : 'undefined';
-      //           controller.assets.push({
-      //             asset_id: asset.asset_id,
-      //             eic_net_ip: assetIp,
-      //             status: asset.status_name,
-      //             edge_controller_id:
-      //             asset.edge_controller_id});
-      //         }
-      //       });
-      //     }
-      //     this.plainInventory.push(controller);
-      //   });
-      // }
+      }
+      if (response.assets) {
+        response.assets.forEach(asset => {
+          this.plainInventory
+            .push(
+              new Asset(
+                  asset.organization_id,
+                  asset.edge_controller_id,
+                  asset.asset_id,
+                  asset.agent_id,
+                  asset.show,
+                  asset.created,
+                  asset.labels,
+                  asset.os,
+                  asset.hardware,
+                  asset.storage,
+                  asset.eic_net_ip,
+                  asset.last_op_result,
+                  asset.last_alive_timestamp,
+                  asset.status,
+                  asset.location
+              ));
+        });
+      }
+      if (response.controllers) {
+        response.controllers.forEach(controller => {
+        if (controller.status.toLowerCase() === InventoryStatus.Online) {
+          this.ecsOnline++;
+        }
+          controller.assets = [];
+          if (response.assets) {
+            response.assets.forEach(asset => {
+              if (asset.edge_controller_id === controller.edge_controller_id) {
+                const assetIp = asset.eic_net_ip ? asset.eic_net_ip : 'undefined';
+                controller.assets.push({
+                  asset_id: asset.asset_id,
+                  eic_net_ip: assetIp,
+                  status: asset.mapStatus(),
+                  edge_controller_id:
+                  asset.edge_controller_id});
+              }
+            });
+          }
+          this.plainInventory
+            .push(
+              new Controller(
+                controller.organization_id,
+                controller.edge_controller_id,
+                controller.show,
+                controller.created,
+                controller.name,
+                controller.labels,
+                controller.last_alive_timestamp,
+                controller.status,
+                controller.location,
+                controller.last_op_result,
+                controller.asset_info,
+                controller.assets
+              ));
+        });
+      }
+      console.log('FULL PLAIN INVENTORY ::: ', this.plainInventory);
     }
   }
   /**
@@ -744,7 +748,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     if (uninstallConfirm) {
       if (this.organizationId !== null) {
         this.backend.uninstallAgent(this.organizationId, asset.edge_controller_id, asset.asset_id)
-          .subscribe(response => {
+          .subscribe(() => {
             this.notificationsService.add({
               message: this.translateService.instant('infrastructure.asset.uninstallMessage', {asset_id : asset.asset_id })
             });

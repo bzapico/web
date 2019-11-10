@@ -1,13 +1,13 @@
 /**
  * Interface that defines the Edge Controller info needed for creating the Edge Controller object instance
  */
-import { Item } from './item';
 import { InventoryType } from '../enums/inventory-type.enum';
 import { KeyValue } from '../interfaces/key-value';
 import { InventoryLocation } from '../interfaces/inventory-location';
 import { AssetInfo } from '../interfaces/asset-info';
+import { Item } from './item';
 
-export class Controller implements Item {
+export class Controller extends Item {
     // OrganizationId with the organization identifier.
     organization_id: string;
     // EdgeControllerId with the EIC identifier.
@@ -33,6 +33,34 @@ export class Controller implements Item {
     asset_info?: AssetInfo;
 
     assets?: any[];
+
+    constructor(
+        organization_id: string,
+        edge_controller_id: string,
+        show: boolean,
+        created: number,
+        name: string,
+        labels: any,
+        last_alive_timestamp: string,
+        status: string,
+        location: InventoryLocation,
+        last_op_result: string,
+        asset_info: AssetInfo,
+        assets: any[]) {
+        super();
+        this.organization_id = organization_id;
+        this.edge_controller_id = edge_controller_id;
+        this.show = show;
+        this.created = created;
+        this.name = name;
+        this.labels = labels;
+        this.last_alive_timestamp = last_alive_timestamp;
+        this.status = status;
+        this.location = location;
+        this.last_op_result = last_op_result;
+        this.asset_info = asset_info;
+        this.assets = assets;
+    }
 
     mapId(): string {
         return this.edge_controller_id;

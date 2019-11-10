@@ -4,10 +4,10 @@
 import { KeyValue } from '../interfaces/key-value';
 import { InventoryLocation } from '../interfaces/inventory-location';
 import { AssetInfo } from '../interfaces/asset-info';
-import { Item } from './item';
 import { InventoryType } from '../enums/inventory-type.enum';
+import { Item } from './item';
 
-export class Device implements Item {
+export class Device extends Item {
   // OrganizationId with the organization identifier.
   organization_id: string;
   // DevicesGroupId with the device group identifier.
@@ -30,6 +30,32 @@ export class Device implements Item {
   location?: InventoryLocation;
   // AssetInfo with the information related to Hw, Storage and OS
   asset_info?: AssetInfo;
+
+  constructor(
+    organization_id: string,
+    device_group_id: string,
+    device_id: string,
+    asset_device_id: string,
+    register_since: number,
+    labels: KeyValue,
+    enabled: boolean,
+    device_api_key: string,
+    device_status_name: string,
+    location: InventoryLocation,
+    asset_info: AssetInfo) {
+    super();
+    this.organization_id = organization_id;
+    this.device_group_id = device_group_id;
+    this.device_id = device_id;
+    this.asset_device_id = asset_device_id;
+    this.register_since = register_since;
+    this.labels = labels;
+    this.enabled = enabled;
+    this.device_api_key = device_api_key;
+    this.device_status_name = device_status_name;
+    this.location = location;
+    this.asset_info = asset_info;
+  }
 
   mapId(): string {
     return this.device_id;
