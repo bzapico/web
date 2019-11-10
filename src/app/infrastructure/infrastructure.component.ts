@@ -554,8 +554,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
     } else {
       this.ecsTotal = 0;
     }
-    if (!response) {
-    } else {
+    if (response) {
       if (response.devices) {
         response.devices.forEach(device => {
           this.plainInventory
@@ -635,7 +634,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
               ));
         });
       }
-      console.log('FULL PLAIN INVENTORY ::: ', this.plainInventory);
     }
   }
   /**
@@ -750,7 +748,8 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         this.backend.uninstallAgent(this.organizationId, asset.edge_controller_id, asset.asset_id)
           .subscribe(() => {
             this.notificationsService.add({
-              message: this.translateService.instant('infrastructure.asset.uninstallMessage', {asset_id : asset.asset_id })
+              message: this.translateService.instant('infrastructure.asset.uninstallMessage',
+                  { asset_id : asset.asset_id })
             });
           }, error => {
             this.notificationsService.add({
