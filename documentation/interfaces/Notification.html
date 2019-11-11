@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/services/notifications.service.ts</code>
+            <code>src/app/definitions/interfaces/notification.ts</code>
         </p>
 
 
@@ -240,62 +240,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-
-export interface Notification {
-  id?: string;
-  message: string;
-  type?: string;
-  timeout?: number;
-}
-
-@Injectable({
-  providedIn: &#x27;root&#x27;
-})
-export class NotificationsService {
-
-  private _notifications: any[];
-
-  constructor() {
-    this._notifications &#x3D; [];
-  }
-
-  /**
-  * add()
-  */
-  add(notificationInstance: Notification) {
-    this._notifications.push(notificationInstance);
-  }
-
-  /**
-   * Get notifications list
-   */
-  get notifications() {
-    return this._notifications;
-  }
-
-  /**
-   * onClosed() will show close button to the right of the alert for dismiss option
-   */
-  onClosed(dismissedNotification) {
-    const index &#x3D; this._notifications.map(x &#x3D;&gt; x.id).indexOf(dismissedNotification.id);
-    if (index !&#x3D;&#x3D; -1) {
-      this._notifications.splice(index, 1);
-    }
-  }
-
-  /**
-   * Generates UUID v4
-   * https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
-   */
-  uuidv4() {
-    return &#x27;xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx&#x27;.replace(/[xy]/g, function (c) {
-      // tslint:disable-next-line:no-bitwise
-      const r &#x3D; Math.random() * 16 | 0, v &#x3D; c &#x3D;&#x3D;&#x3D; &#x27;x&#x27; ? r : (r &amp; 0x3 | 0x8);
-      return v.toString(16);
-    });
-  }
-
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface Notification {
+    id?: string;
+    message: string;
+    type?: string;
+    timeout?: number;
 }
 </code></pre>
     </div>

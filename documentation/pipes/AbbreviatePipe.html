@@ -104,8 +104,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/app/pipes/abbreviate.pipe.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/app/pipes/abbreviate.pipe.ts:39</a></div>
                 </td>
             </tr>
 
@@ -182,14 +182,12 @@ export class AbbreviatePipe implements PipeTransform {
   transform(value: string): string {
     const NUM_TOTAL_CHARS &#x3D; 8;
     const LAST_CHUNK_LENGTH &#x3D; NUM_TOTAL_CHARS - 2;
-    let abbstring;
-
-    abbstring &#x3D; value.slice(0, 1) + &#x27;...&#x27; + value.slice(value.length - LAST_CHUNK_LENGTH, value.length);
-
+    let abbString;
+    abbString &#x3D; value.slice(0, 1) + &#x27;...&#x27; + value.slice(value.length - LAST_CHUNK_LENGTH, value.length);
     if (value.length &lt;&#x3D; NUM_TOTAL_CHARS) {
       return value;
     } else {
-      return abbstring;
+      return abbString;
     }
   }
 }

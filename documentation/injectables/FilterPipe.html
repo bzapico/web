@@ -137,8 +137,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/app/pipes/filter.pipe.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/app/pipes/filter.pipe.ts:39</a></div>
                 </td>
             </tr>
 
@@ -244,8 +244,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/app/pipes/filter.pipe.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/app/pipes/filter.pipe.ts:74</a></div>
                 </td>
             </tr>
 
@@ -342,16 +342,13 @@
 })
 @Injectable()
 export class FilterPipe implements PipeTransform {
-
   /**
    * @param items List of items to filter
    * @param term  a string term to compare with every property of the list
    * @param propertiesToFilterBy a key to add to the filter
    */
   static filter(items: Array&lt;{ [key: string]: any }&gt;, term: string,  propertiesToFilterBy?: string[] ): Array&lt;{ [key: string]: any}&gt; {
-
     const toCompare &#x3D; term.toLowerCase();
-
     return items.filter(function (item: any) {
       if ( propertiesToFilterBy ) {
         for (const property of propertiesToFilterBy) {
@@ -359,7 +356,7 @@ export class FilterPipe implements PipeTransform {
             if (JSON.stringify(item[property]).toLowerCase().includes(toCompare)) {
               return true;
             }
-           } else if (item[property].toString().toLowerCase().includes(toCompare)) {
+          } else if (item[property] &amp;&amp; item[property].toString().toLowerCase().includes(toCompare)) {
             return true;
           }
         }
@@ -372,7 +369,7 @@ export class FilterPipe implements PipeTransform {
             if (JSON.stringify(item[property]).toLowerCase().includes(toCompare)) {
               return true;
             }
-           } else if (item[property].toString().toLowerCase().includes(toCompare)) {
+          } else if (item[property] &amp;&amp; item[property].toString().toLowerCase().includes(toCompare)) {
             return true;
           }
       }
@@ -380,7 +377,6 @@ export class FilterPipe implements PipeTransform {
       }
     });
   }
-
   /**
    * @param items object from array
    * @param term term&#x27;s search
