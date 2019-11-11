@@ -64,13 +64,6 @@
             <code>src/app/definitions/interfaces/device.ts</code>
         </p>
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>Interface that defines the Device info needed for creating the Device object instance</p>
-
-            </p>
 
 
         <section>
@@ -181,7 +174,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>asset_info:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                        <code>asset_info:         <code><a href="../interfaces/AssetInfo.html" target="_self" >AssetInfo</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -189,7 +182,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            <i>Type : </i>        <code><a href="../interfaces/AssetInfo.html" target="_self" >AssetInfo</a></code>
 
                                         </td>
                                     </tr>
@@ -375,7 +368,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>labels:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                        <code>labels:         <code><a href="../interfaces/KeyValue.html" target="_self" >KeyValue</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -383,7 +376,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            <i>Type : </i>        <code><a href="../interfaces/KeyValue.html" target="_self" >KeyValue</a></code>
 
                                         </td>
                                     </tr>
@@ -409,7 +402,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>location:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                        <code>location:         <code><a href="../interfaces/InventoryLocation.html" target="_self" >InventoryLocation</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -417,7 +410,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            <i>Type : </i>        <code><a href="../interfaces/InventoryLocation.html" target="_self" >InventoryLocation</a></code>
 
                                         </td>
                                     </tr>
@@ -501,7 +494,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface Device {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { KeyValue } from &#x27;./key-value&#x27;;
+import { InventoryLocation } from &#x27;./inventory-location&#x27;;
+import { AssetInfo } from &#x27;./asset-info&#x27;;
+
+export interface Device {
   // OrganizationId with the organization identifier.
   organization_id: string;
   // DevicesGroupId with the device group identifier.
@@ -513,7 +510,7 @@
   // RegisterSince is the timestamp when the device joined the group.
   register_since?: number;
   // Labels defined by the user.
-  labels?: any;
+  labels?: KeyValue;
   // Enabled determines if the device can interact with the running applications.
   enabled?: boolean;
   // DeviceApiKey contains the API KEY used by the device to send data.
@@ -521,9 +518,9 @@
   // DeviceStatus contains the status of the device (ONLINE/OFFLINE)
   device_status_name?: string;
   // location with the device location
-  location?: any;
+  location?: InventoryLocation;
   // AssetInfo with the information related to Hw, Storage and OS
-  asset_info?: any;
+  asset_info?: AssetInfo;
 }
 </code></pre>
     </div>

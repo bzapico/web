@@ -101,7 +101,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/services/error-handler.service.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/services/error-handler.service.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -136,8 +136,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/app/services/error-handler.service.ts:15</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/app/services/error-handler.service.ts:40</a></div>
                 </td>
             </tr>
 
@@ -204,14 +204,13 @@ import { HttpErrorResponse } from &#x27;@angular/common/http&#x27;;
 
 export class ErrorHandlerService implements ErrorHandler {
 
-  constructor(
-  ) { }
+constructor() { }
 
-  /**
+/**
   * Handler for error
   * @param error: The error received from server
   */
-  handleError(error: HttpErrorResponse): void {
+handleError(error: HttpErrorResponse): void {
     switch (error.status) {
         case 200 : console.log(&#x27;OK, the request has succeeded&#x27;);
             break;
@@ -238,7 +237,7 @@ export class ErrorHandlerService implements ErrorHandler {
             break;
         case 501 : console.log(&#x27;Not Implemented, the request method is not supported by the server and cannot be handled&#x27;);
             break;
-        case 502 : console.log(&#x27;Bad Gateaway, the server received an invalid response while acting as a gateway or proxy server&#x27;);
+        case 502 : console.log(&#x27;Bad Gateway, the server received an invalid response while acting as a gateway or proxy server&#x27;);
             break;
         case 503 :
             console.log(&#x27;Service Unavailable, the server is currently unavailable&#x27;);
@@ -252,10 +251,9 @@ export class ErrorHandlerService implements ErrorHandler {
         default :
             console.log(error);
             break;
+        }
     }
-  }
 }
-
 </code></pre>
     </div>
 

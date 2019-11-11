@@ -187,6 +187,10 @@
                             <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#showNotification">showNotification</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -219,12 +223,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, bsModalRef: BsModalRef, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>)</code>
+<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, bsModalRef: BsModalRef, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>, translateService: <a href="../interfaces/Service.html">TranslateService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/add-label/add-label.component.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/add-label/add-label.component.ts:69</a></div>
                             </td>
                         </tr>
 
@@ -301,6 +305,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>translateService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/Service.html" target="_self" >TranslateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -341,8 +357,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="91"
-                            class="link-to-prism">src/app/add-label/add-label.component.ts:91</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/app/add-label/add-label.component.ts:116</a></div>
                 </td>
             </tr>
 
@@ -414,8 +430,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="292"
-                            class="link-to-prism">src/app/add-label/add-label.component.ts:292</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="278"
+                            class="link-to-prism">src/app/add-label/add-label.component.ts:278</a></div>
                 </td>
             </tr>
 
@@ -487,8 +503,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/app/add-label/add-label.component.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/app/add-label/add-label.component.ts:88</a></div>
                 </td>
             </tr>
 
@@ -499,6 +515,101 @@
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showNotification"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            showNotification
+                        </b>
+                        <a href="#showNotification"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>showNotification(message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, type?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="263"
+                            class="link-to-prism">src/app/add-label/add-label.component.ts:263</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>It shows notifications to the user</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>message</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Message to be showed</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>Notification type</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -530,7 +641,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/add-label/add-label.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/add-label/add-label.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -563,7 +674,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/add-label/add-label.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/add-label/add-label.component.ts:53</a></div>
                             </td>
                         </tr>
 
@@ -597,7 +708,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/add-label/add-label.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/add-label/add-label.component.ts:73</a></div>
                             </td>
                         </tr>
 
@@ -632,7 +743,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/add-label/add-label.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/add-label/add-label.component.ts:66</a></div>
                             </td>
                         </tr>
 
@@ -665,7 +776,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/add-label/add-label.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/add-label/add-label.component.ts:61</a></div>
                             </td>
                         </tr>
 
@@ -692,7 +803,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/add-label/add-label.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/add-label/add-label.component.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -719,7 +830,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/add-label/add-label.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/add-label/add-label.component.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -746,7 +857,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/add-label/add-label.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/add-label/add-label.component.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -773,7 +884,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/add-label/add-label.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/add-label/add-label.component.ts:49</a></div>
                             </td>
                         </tr>
 
@@ -800,7 +911,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/add-label/add-label.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/add-label/add-label.component.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -827,7 +938,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/add-label/add-label.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/add-label/add-label.component.ts:57</a></div>
                             </td>
                         </tr>
 
@@ -859,7 +970,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/add-label/add-label.component.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/add-label/add-label.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -888,7 +999,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/add-label/add-label.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/add-label/add-label.component.ts:111</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -914,6 +1025,8 @@ import { BackendService } from &#x27;../services/backend.service&#x27;;
 import { BsModalRef } from &#x27;ngx-bootstrap&#x27;;
 import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
 import { FormGroup, FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
+import { InventoryType } from &#x27;../definitions/enums/inventory-type.enum&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
 
 @Component({
   selector: &#x27;app-add-label&#x27;,
@@ -921,19 +1034,16 @@ import { FormGroup, FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
   styleUrls: [&#x27;./add-label.component.scss&#x27;]
 })
 export class AddLabelComponent implements OnInit {
-
   /**
    * Models that holds forms info
    */
   addLabelForm: FormGroup;
   submitted &#x3D; false;
   loading: boolean;
-
   /**
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Models that hold organization id
    */
@@ -943,7 +1053,6 @@ export class AddLabelComponent implements OnInit {
   modalTitle: string;
   entity: any;
   entityType: string;
-
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -957,7 +1066,8 @@ export class AddLabelComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private translateService: TranslateService
   ) {
     const mock &#x3D; localStorage.getItem(LocalStorageKeys.addLabelMock) || null;
     // check which backend is required (fake or real)
@@ -969,29 +1079,29 @@ export class AddLabelComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.addLabelForm &#x3D;
-        this.formBuilder
-            .group(
-  {labelName:
-                [&#x27;&#x27;,
-                  [Validators.required,
-                  Validators.minLength(1),
-                  Validators.pattern(&#x27;^[a-zA-Z0-9_.-]*$&#x27;)]
-                ],
-               labelValue:
-                [&#x27;&#x27;,
-                  [Validators.required,
-                  Validators.minLength(1),
-                  Validators.pattern(&#x27;^[a-zA-Z0-9_.-]*$&#x27;)]
-                ],
+    this.addLabelForm &#x3D; this.formBuilder.group({
+      labelName: [
+        &#x27;&#x27;,
+        [
+          Validators.required,
+          Validators.minLength(1),
+          Validators.pattern(&#x27;^[a-zA-Z0-9_.-]*$&#x27;)
+        ]
+      ],
+      labelValue: [
+        &#x27;&#x27;,
+        [
+          Validators.required,
+          Validators.minLength(1),
+          Validators.pattern(&#x27;^[a-zA-Z0-9_.-]*$&#x27;)
+        ]
+      ]
     });
   }
-
   /**
    * Convenience getter for easy access to form fields
    */
   get f() { return this.addLabelForm.controls; }
-
   /**
    * Request to add a new label
    * @param form Form object reference
@@ -1002,100 +1112,74 @@ export class AddLabelComponent implements OnInit {
     if (!form.labelName.errors &amp;&amp; !form.labelValue.errors) {
       this.loading &#x3D; true;
       switch (this.entityType.toLowerCase()) {
-        case &#x27;cluster&#x27;:
+        case InventoryType.Cluster:
           if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
             updatedEntity.labels &#x3D; {};
           }
           updatedEntity.labels[form.labelName.value] &#x3D; form.labelValue.value;
           updatedEntity.add_labels &#x3D; true;
-          this.backend.saveClusterChanges(
-            this.organizationId,
-            this.entity.cluster_id,
-            {
+          this.backend
+            .saveClusterChanges(this.organizationId, this.entity.cluster_id, {
               organizationId: this.organizationId,
               clusterId: updatedEntity.cluster_id,
               add_labels: true,
               labels: updatedEntity.labels
             }
-          ).subscribe(updateClusterResponse &#x3D;&gt; {
+          ).subscribe(() &#x3D;&gt; {
             this.loading &#x3D; false;
             this.notificationsService.add({
-              message: &#x27;Updated &#x27; + this.entity.name,
-              timeout: 3000,
+              message: this.translateService.instant(&#x27;label.add-label.update&#x27;, {entity: this.entity.name})
             });
             this.bsModalRef.hide();
           }, error &#x3D;&gt; {
             this.loading &#x3D; false;
             this.notificationsService.add({
               message: error.error.message,
-              timeout: 5000,
               type: &#x27;warning&#x27;
             });
           });
           break;
-        case &#x27;node&#x27;:
+        case InventoryType.Node:
           if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
             updatedEntity.labels &#x3D; {};
           }
           updatedEntity.labels[form.labelName.value] &#x3D; form.labelValue.value;
           updatedEntity.add_labels &#x3D; true;
-          this.backend.updateNode(
-            this.organizationId,
-            this.entity.node_id,
-            {
+          this.backend
+            .updateNode(this.organizationId, this.entity.node_id, {
               organizationId: this.organizationId,
               nodeId: updatedEntity.node_id,
               add_labels: true,
               labels: updatedEntity.labels
             }
-          ).subscribe(updateNodeResponse &#x3D;&gt; {
-            this.loading &#x3D; false;
-            this.notificationsService.add({
-              message: &#x27;Updated &#x27; + this.entity.ip + &#x27; node&#x27;,
-              timeout: 3000,
-            });
-            this.bsModalRef.hide();
+          ).subscribe(() &#x3D;&gt; {
+            this.showNotification(this.translateService.instant(&#x27;label.add-label.updateNode&#x27;, {entity: this.entity.ip}));
           }, error &#x3D;&gt; {
-            this.loading &#x3D; false;
-            this.notificationsService.add({
-              message: error.error.message,
-              timeout: 5000,
-              type: &#x27;warning&#x27;
-            });
+            this.showNotification(this.translateService.instant(error.error.message, &#x27;warning&#x27;));
           });
           this.bsModalRef.hide();
           break;
-        case &#x27;device&#x27;:
+        case InventoryType.Device:
           if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
             updatedEntity.labels &#x3D; {};
           }
           updatedEntity.labels[form.labelName.value] &#x3D; form.labelValue.value;
-          this.backend.addLabelToDevice(
-            this.organizationId,
-            {
+          this.backend
+            .addLabelToDevice(this.organizationId, {
               organization_id: this.organizationId,
               device_group_id: updatedEntity.device_group_id,
               device_id: updatedEntity.device_id,
               labels: updatedEntity.labels
             }
-          ).subscribe(updateDeviceResponse &#x3D;&gt; {
-            this.loading &#x3D; false;
-            this.notificationsService.add({
-              message: &#x27;Updated &#x27; + this.entity.device_id,
-              timeout: 3000,
-            });
-            this.bsModalRef.hide();
+          ).subscribe(() &#x3D;&gt; {
+            this.showNotification(
+                this.translateService.instant(&#x27;label.add-label.update&#x27;, {entity: this.entity.device_id}));
           }, error &#x3D;&gt; {
-            this.loading &#x3D; false;
-            this.notificationsService.add({
-              message: error.error.message,
-              timeout: 5000,
-              type: &#x27;warning&#x27;
-            });
+              this.showNotification(this.translateService.instant(error.error.message, &#x27;warning&#x27;));
           });
           this.bsModalRef.hide();
           break;
-        case &#x27;app&#x27;:
+        case InventoryType.App:
           if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
             updatedEntity.labels &#x3D; {};
           }
@@ -1110,23 +1194,14 @@ export class AddLabelComponent implements OnInit {
               add_labels: true,
               labels: updatedEntity.labels
             }
-          ).subscribe(updateAppResponse &#x3D;&gt; {
-            this.loading &#x3D; false;
-            this.notificationsService.add({
-              message: &#x27;Updated &#x27; + this.entity.app_descriptor_id,
-              timeout: 3000,
-            });
-            this.bsModalRef.hide();
+          ).subscribe(() &#x3D;&gt; {
+              this.showNotification(
+                  this.translateService.instant(&#x27;label.add-label.update&#x27;, {entity: this.entity.app_descriptor_id}));
           }, error &#x3D;&gt; {
-            this.loading &#x3D; false;
-            this.notificationsService.add({
-              message: error.error.message,
-              timeout: 5000,
-              type: &#x27;warning&#x27;
-            });
+              this.showNotification(this.translateService.instant(error.error.message, &#x27;warning&#x27;));
           });
           break;
-        case &#x27;ec&#x27;:
+        case InventoryType.Ec:
             if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
               updatedEntity.labels &#x3D; {};
             }
@@ -1134,56 +1209,37 @@ export class AddLabelComponent implements OnInit {
             updatedEntity.add_labels &#x3D; true;
             this.backend.updateEC(
               this.organizationId,
-              updatedEntity.edge_controller_id,
+              this.entity.app_descriptor_id,
               {
-                edge_controller_id: updatedEntity.edge_controller_id,
+                organizationId: this.organizationId,
+                descriptorId: updatedEntity.app_descriptor_id,
                 add_labels: true,
                 labels: updatedEntity.labels
               }
-            ).subscribe(updateECResponse &#x3D;&gt; {
-              this.loading &#x3D; false;
-              this.notificationsService.add({
-                message: &#x27;Updated &#x27; + this.entity.edge_controller_id,
-                timeout: 3000,
-              });
-              this.bsModalRef.hide();
+            ).subscribe(() &#x3D;&gt; {
+                this.showNotification(
+                    this.translateService.instant(&#x27;label.add-label.update&#x27;, {entity: this.entity.edge_controller_id}));
             }, error &#x3D;&gt; {
-              this.loading &#x3D; false;
-              this.notificationsService.add({
-                message: error.error.message,
-                timeout: 5000,
-                type: &#x27;warning&#x27;
-              });
+                this.showNotification(this.translateService.instant(error.error.message, &#x27;warning&#x27;));
             });
             this.bsModalRef.hide();
           break;
-        case &#x27;asset&#x27;:
-            if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
-              updatedEntity.labels &#x3D; {};
+        case InventoryType.Asset:
+          if (!updatedEntity.labels || updatedEntity.labels &#x3D;&#x3D;&#x3D; &#x27;-&#x27;) {
+            updatedEntity.labels &#x3D; {};
+          }
+          updatedEntity.labels[form.labelName.value] &#x3D; form.labelValue.value;
+          this.backend
+            .updateAsset(this.organizationId, updatedEntity.asset_id, {
+              asset_id: updatedEntity.asset_id,
+              add_labels: true,
+              labels: updatedEntity.labels
             }
-            updatedEntity.labels[form.labelName.value] &#x3D; form.labelValue.value;
-            this.backend.updateAsset(
-              this.organizationId,
-              updatedEntity.asset_id,
-              {
-                asset_id: updatedEntity.asset_id,
-                add_labels: true,
-                labels: updatedEntity.labels
-              }
-            ).subscribe(updateAssetResponse &#x3D;&gt; {
-              this.loading &#x3D; false;
-              this.notificationsService.add({
-                message: &#x27;Updated &#x27; + this.entity.asset_id,
-                timeout: 3000,
-              });
-              this.bsModalRef.hide();
+            ).subscribe(() &#x3D;&gt; {
+                this.showNotification(
+                    this.translateService.instant(&#x27;label.add-label.update&#x27;, {entity: this.entity.asset_id}));
             }, error &#x3D;&gt; {
-              this.loading &#x3D; false;
-              this.notificationsService.add({
-                message: error.error.message,
-                timeout: 5000,
-                type: &#x27;warning&#x27;
-              });
+                this.showNotification(this.translateService.instant(error.error.message, &#x27;warning&#x27;));
             });
             this.bsModalRef.hide();
           break;
@@ -1192,18 +1248,33 @@ export class AddLabelComponent implements OnInit {
       }
     }
   }
-
+  /**
+   * It shows notifications to the user
+   *  @param message Message to be showed
+   *  @param type Notification type
+   */
+  private showNotification(message: string, type?: string) {
+      this.loading &#x3D; false;
+      const notification &#x3D; {
+          message: message
+      };
+      if (type) {
+          notification[&#x27;type&#x27;] &#x3D; type;
+      }
+      this.notificationsService.add(notification);
+      this.bsModalRef.hide();
+  }
   /**
    * Checks if the form has been modified before discarding changes
    * @param form Form object reference
    */
   discardChanges(form) {
     if (form.dirty) {
-      const discard &#x3D; confirm(&#x27;Discard changes?&#x27;);
+      const discard &#x3D; confirm(
+        this.translateService.instant(&#x27;modals.discardChanges&#x27;)
+      );
       if (discard) {
         this.bsModalRef.hide();
-      } else {
-        // Do nothing
       }
     } else {
       this.bsModalRef.hide();
@@ -1214,11 +1285,24 @@ export class AddLabelComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;modal-card&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;!-- 
+  Copyright 2019 Nalej
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ --&gt;
+
+&lt;div class&#x3D;&quot;modal-card&quot;&gt;
   &lt;div class&#x3D;&quot;modal-content&quot;&gt;
     &lt;!-- Header --&gt;
     &lt;div class&#x3D;&quot;modal-header&quot;&gt;
-      &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;Add label to {{entityType}}&lt;/h3&gt;
+      &lt;h3 class&#x3D;&quot;nalej-form-title&quot;&gt;{{&#x27;label.add-label.title&#x27; | translate}}{{entityType}}&lt;/h3&gt;
       &lt;button 
         (click)&#x3D;&quot;discardChanges(f)&quot;
         type&#x3D;&quot;button&quot; 
@@ -1232,11 +1316,11 @@ export class AddLabelComponent implements OnInit {
       &lt;h3 class&#x3D;&quot;label-title&quot;&gt;{{modalTitle}}&lt;/h3&gt;
       &lt;form [formGroup]&#x3D;&quot;addLabelForm&quot; (ngSubmit)&#x3D;&quot;addLabel(f)&quot;&gt;
         &lt;div class&#x3D;&quot;form-group&quot;&gt;
-          &lt;label&gt;Label key*&lt;/label&gt;
+          &lt;label&gt;{{&#x27;label.add-label.key&#x27; | translate}}*&lt;/label&gt;
             &lt;input 
             formControlName&#x3D;&quot;labelName&quot; 
             type&#x3D;&quot;text&quot; 
-            placeholder&#x3D;&quot;e.g. Group&quot; 
+            placeholder&#x3D;&quot;{{&#x27;label.add-label.egGroup&#x27; | translate}}&quot; 
             appAutofocus&#x3D;&quot;true&quot;
             [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: submitted &amp;&amp; f.labelName.errors }&quot;
             pattern&#x3D;&quot;^[a-zA-Z0-9_.-]*$&quot;
@@ -1245,17 +1329,17 @@ export class AddLabelComponent implements OnInit {
           &lt;div *ngIf&#x3D;&quot;!submitted &amp;&amp; f.labelName.errors&quot; class&#x3D;&quot;error-message&quot;&gt;&lt;/div&gt;
           &lt;div class&#x3D;&quot;error-h&quot;&gt;
             &lt;div *ngIf&#x3D;&quot;submitted &amp;&amp; f.labelName.errors&quot; class&#x3D;&quot;error-message&quot;&gt;
-              &lt;div *ngIf&#x3D;&quot;f.labelName.errors.required&quot;&gt;Label key is required&lt;/div&gt;
-              &lt;div *ngIf&#x3D;&quot;f.labelName.errors.pattern&quot;&gt;Cannot contain special ial characters&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;f.labelName.errors.required&quot;&gt;{{&#x27;label.add-label.keyReq&#x27; | translate}}&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;f.labelName.errors.pattern&quot;&gt;{{&#x27;label.add-label.specialChar&#x27; | translate}}&lt;/div&gt;
             &lt;/div&gt;
           &lt;/div&gt;
         &lt;/div&gt;
         &lt;div class&#x3D;&quot;form-group&quot;&gt;
-          &lt;label&gt;Label value*&lt;/label&gt;
+          &lt;label&gt;{{&#x27;label.add-label.value&#x27; | translate}}*&lt;/label&gt;
             &lt;input 
             formControlName&#x3D;&quot;labelValue&quot; 
             type&#x3D;&quot;text&quot; 
-            placeholder&#x3D;&quot;e.g. MyGroup&quot; 
+            placeholder&#x3D;&quot;{{&#x27;label.add-label.egMyGroup&#x27; | translate}}&quot; 
             [ngClass]&#x3D;&quot;{ &#x27;is-invalid&#x27;: submitted &amp;&amp; f.labelValue.errors }&quot;
             pattern&#x3D;&quot;^[a-zA-Z0-9_.-]*$&quot;
             required
@@ -1263,27 +1347,41 @@ export class AddLabelComponent implements OnInit {
           &lt;div *ngIf&#x3D;&quot;!submitted &amp;&amp; f.labelValue.errors&quot; class&#x3D;&quot;error-message&quot;&gt;&lt;/div&gt;
           &lt;div class&#x3D;&quot;error-h&quot;&gt;
             &lt;div *ngIf&#x3D;&quot;submitted &amp;&amp; f.labelValue.errors&quot; class&#x3D;&quot;error-message&quot;&gt;
-              &lt;div *ngIf&#x3D;&quot;f.labelValue.errors.required&quot;&gt;Label value is required&lt;/div&gt;
-              &lt;div *ngIf&#x3D;&quot;f.labelValue.errors.pattern&quot;&gt;Cannot contain special ial characters&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;f.labelValue.errors.required&quot;&gt;{{&#x27;label.add-label.valueReq&#x27; | translate}}&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;f.labelValue.errors.pattern&quot;&gt;{{&#x27;label.add-label.specialChar&#x27; | translate}}&lt;/div&gt;
             &lt;/div&gt;
           &lt;/div&gt;
         &lt;/div&gt;
         &lt;div class&#x3D;&quot;form-group-btn&quot;&gt;
           &lt;button class&#x3D;&quot;nalej-form-btn-blue&quot; [disabled]&#x3D;&quot;loading&quot;&gt;
-            &lt;span class&#x3D;&quot;align-bottom&quot;&gt;Save changes&lt;/span&gt;
+            &lt;span class&#x3D;&quot;align-bottom&quot;&gt;{{&#x27;buttons.saveChanges&#x27; | translate}}&lt;/span&gt;
           &lt;/button&gt;
         &lt;/div&gt;
       &lt;/form&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
                     <code>./add-label.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;../scss/variables/colors&#x27;;
+                <pre class="line-numbers"><code class="language-scss">/* 
+ *  Copyright 2019 Nalej
+ *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+@import &#x27;../scss/variables/colors&#x27;;
 
 .label-title {
   font-size: 1.2em;
@@ -1319,8 +1417,8 @@ export class AddLabelComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">Add label to {{entityType}}</h3>      <button         (click)="discardChanges(f)"        type="button"         aria-label="Close"        class="close" >        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <h3 class="label-title">{{modalTitle}}</h3>      <form [formGroup]="addLabelForm" (ngSubmit)="addLabel(f)">        <div class="form-group">          <label>Label key*</label>            <input             formControlName="labelName"             type="text"             placeholder="e.g. Group"             appAutofocus="true"            [ngClass]="{ \'is-invalid\': submitted && f.labelName.errors }"            pattern="^[a-zA-Z0-9_.-]*$"            required            class="form-control">          <div *ngIf="!submitted && f.labelName.errors" class="error-message"></div>          <div class="error-h">            <div *ngIf="submitted && f.labelName.errors" class="error-message">              <div *ngIf="f.labelName.errors.required">Label key is required</div>              <div *ngIf="f.labelName.errors.pattern">Cannot contain special ial characters</div>            </div>          </div>        </div>        <div class="form-group">          <label>Label value*</label>            <input             formControlName="labelValue"             type="text"             placeholder="e.g. MyGroup"             [ngClass]="{ \'is-invalid\': submitted && f.labelValue.errors }"            pattern="^[a-zA-Z0-9_.-]*$"            required            class="form-control" >          <div *ngIf="!submitted && f.labelValue.errors" class="error-message"></div>          <div class="error-h">            <div *ngIf="submitted && f.labelValue.errors" class="error-message">              <div *ngIf="f.labelValue.errors.required">Label value is required</div>              <div *ngIf="f.labelValue.errors.pattern">Cannot contain special ial characters</div>            </div>          </div>        </div>        <div class="form-group-btn">          <button class="nalej-form-btn-blue" [disabled]="loading">            <span class="align-bottom">Save changes</span>          </button>        </div>      </form>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><!--   Copyright 2019 Nalej  Licensed under the Apache License, Version 2.0 (the "License");  you may not use this file except in compliance with the License.  You may obtain a copy of the License at      http://www.apache.org/licenses/LICENSE-2.0  Unless required by applicable law or agreed to in writing, software  distributed under the License is distributed on an "AS IS" BASIS,  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the specific language governing permissions and  limitations under the License. --><div class="modal-card">  <div class="modal-content">    <!-- Header -->    <div class="modal-header">      <h3 class="nalej-form-title">{{\'label.add-label.title\' | translate}}{{entityType}}</h3>      <button         (click)="discardChanges(f)"        type="button"         aria-label="Close"        class="close" >        <span aria-hidden="true">&times;</span>      </button>    </div>    <!-- Body -->    <div class="modal-body">      <h3 class="label-title">{{modalTitle}}</h3>      <form [formGroup]="addLabelForm" (ngSubmit)="addLabel(f)">        <div class="form-group">          <label>{{\'label.add-label.key\' | translate}}*</label>            <input             formControlName="labelName"             type="text"             placeholder="{{\'label.add-label.egGroup\' | translate}}"             appAutofocus="true"            [ngClass]="{ \'is-invalid\': submitted && f.labelName.errors }"            pattern="^[a-zA-Z0-9_.-]*$"            required            class="form-control">          <div *ngIf="!submitted && f.labelName.errors" class="error-message"></div>          <div class="error-h">            <div *ngIf="submitted && f.labelName.errors" class="error-message">              <div *ngIf="f.labelName.errors.required">{{\'label.add-label.keyReq\' | translate}}</div>              <div *ngIf="f.labelName.errors.pattern">{{\'label.add-label.specialChar\' | translate}}</div>            </div>          </div>        </div>        <div class="form-group">          <label>{{\'label.add-label.value\' | translate}}*</label>            <input             formControlName="labelValue"             type="text"             placeholder="{{\'label.add-label.egMyGroup\' | translate}}"             [ngClass]="{ \'is-invalid\': submitted && f.labelValue.errors }"            pattern="^[a-zA-Z0-9_.-]*$"            required            class="form-control" >          <div *ngIf="!submitted && f.labelValue.errors" class="error-message"></div>          <div class="error-h">            <div *ngIf="submitted && f.labelValue.errors" class="error-message">              <div *ngIf="f.labelValue.errors.required">{{\'label.add-label.valueReq\' | translate}}</div>              <div *ngIf="f.labelValue.errors.pattern">{{\'label.add-label.specialChar\' | translate}}</div>            </div>          </div>        </div>        <div class="form-group-btn">          <button class="nalej-form-btn-blue" [disabled]="loading">            <span class="align-bottom">{{\'buttons.saveChanges\' | translate}}</span>          </button>        </div>      </form>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'ToolsComponent', 'selector': 'tools'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'AddLabelComponent'};
 </script>

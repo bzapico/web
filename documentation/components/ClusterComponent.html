@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/cluster/cluster.component.ts</code>
+    <code>src/app/resources/cluster/cluster.component.ts</code>
 </p>
 
 
@@ -223,9 +223,6 @@
                                 <a href="#deleteLabel">deleteLabel</a>
                             </li>
                             <li>
-                                <a href="#generateClusterChartData">generateClusterChartData</a>
-                            </li>
-                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#generateSummaryChartData">generateSummaryChartData</a>
                             </li>
@@ -275,12 +272,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(modalService: BsModalService, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>)</code>
+<code>constructor(modalService: <a href="../interfaces/Service.html">BsModalService</a>, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, translateService: <a href="../interfaces/Service.html">TranslateService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/cluster/cluster.component.ts:120</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:132</a></div>
                             </td>
                         </tr>
 
@@ -301,7 +298,7 @@
                                                         <td>modalService</td>
                                                   
                                                         <td>
-                                                                    <code>BsModalService</code>
+                                                                        <code><a href="../interfaces/Service.html" target="_self" >BsModalService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -338,6 +335,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>translateService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/Service.html" target="_self" >TranslateService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -385,8 +394,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="272"
-                            class="link-to-prism">src/app/cluster/cluster.component.ts:272</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="251"
+                            class="link-to-prism">src/app/resources/cluster/cluster.component.ts:251</a></div>
                 </td>
             </tr>
 
@@ -453,8 +462,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="208"
-                            class="link-to-prism">src/app/cluster/cluster.component.ts:208</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/app/resources/cluster/cluster.component.ts:199</a></div>
                 </td>
             </tr>
 
@@ -546,8 +555,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="289"
-                            class="link-to-prism">src/app/cluster/cluster.component.ts:289</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="266"
+                            class="link-to-prism">src/app/resources/cluster/cluster.component.ts:266</a></div>
                 </td>
             </tr>
 
@@ -601,100 +610,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="generateClusterChartData"></a>
-                    <span class="name">
-                        <b>
-                            generateClusterChartData
-                        </b>
-                        <a href="#generateClusterChartData"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>generateClusterChartData(running: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, total: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="191"
-                            class="link-to-prism">src/app/cluster/cluster.component.ts:191</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Generates the NGX-Chart required JSON object for pie chart rendering</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>running</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>Number of running nodes in a cluster</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>total</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>Number of total nodes in a cluster</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>any[]</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>anonym array with the required object structure for pie chart rendering</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="generateSummaryChartData"></a>
                     <span class="name">
                         <b>
@@ -715,8 +630,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="408"
-                            class="link-to-prism">src/app/cluster/cluster.component.ts:408</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="379"
+                            class="link-to-prism">src/app/resources/cluster/cluster.component.ts:379</a></div>
                 </td>
             </tr>
 
@@ -809,8 +724,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="257"
-                            class="link-to-prism">src/app/cluster/cluster.component.ts:257</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="237"
+                            class="link-to-prism">src/app/resources/cluster/cluster.component.ts:237</a></div>
                 </td>
             </tr>
 
@@ -886,8 +801,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="345"
-                            class="link-to-prism">src/app/cluster/cluster.component.ts:345</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="318"
+                            class="link-to-prism">src/app/resources/cluster/cluster.component.ts:318</a></div>
                 </td>
             </tr>
 
@@ -985,8 +900,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="360"
-                            class="link-to-prism">src/app/cluster/cluster.component.ts:360</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="332"
+                            class="link-to-prism">src/app/resources/cluster/cluster.component.ts:332</a></div>
                 </td>
             </tr>
 
@@ -1058,8 +973,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="159"
-                            class="link-to-prism">src/app/cluster/cluster.component.ts:159</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="168"
+                            class="link-to-prism">src/app/resources/cluster/cluster.component.ts:168</a></div>
                 </td>
             </tr>
 
@@ -1097,8 +1012,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="316"
-                            class="link-to-prism">src/app/cluster/cluster.component.ts:316</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="290"
+                            class="link-to-prism">src/app/resources/cluster/cluster.component.ts:290</a></div>
                 </td>
             </tr>
 
@@ -1198,14 +1113,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="388"
-                            class="link-to-prism">src/app/cluster/cluster.component.ts:388</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="362"
+                            class="link-to-prism">src/app/resources/cluster/cluster.component.ts:362</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Fulfill nulls to avoid data binding failure</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1215,6 +1132,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1229,6 +1147,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>cluster</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1268,8 +1190,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="247"
-                            class="link-to-prism">src/app/cluster/cluster.component.ts:247</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="228"
+                            class="link-to-prism">src/app/resources/cluster/cluster.component.ts:228</a></div>
                 </td>
             </tr>
 
@@ -1309,8 +1231,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="235"
-                            class="link-to-prism">src/app/cluster/cluster.component.ts:235</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="217"
+                            class="link-to-prism">src/app/resources/cluster/cluster.component.ts:217</a></div>
                 </td>
             </tr>
 
@@ -1381,8 +1303,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="373"
-                            class="link-to-prism">src/app/cluster/cluster.component.ts:373</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="344"
+                            class="link-to-prism">src/app/resources/cluster/cluster.component.ts:344</a></div>
                 </td>
             </tr>
 
@@ -1426,7 +1348,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/cluster/cluster.component.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:110</a></div>
                             </td>
                         </tr>
 
@@ -1453,7 +1375,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/cluster/cluster.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:50</a></div>
                             </td>
                         </tr>
 
@@ -1486,7 +1408,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/cluster/cluster.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:66</a></div>
                             </td>
                         </tr>
 
@@ -1519,7 +1441,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/cluster/cluster.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -1552,7 +1474,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/cluster/cluster.component.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:111</a></div>
                             </td>
                         </tr>
 
@@ -1579,7 +1501,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/cluster/cluster.component.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:70</a></div>
                             </td>
                         </tr>
 
@@ -1612,7 +1534,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/cluster/cluster.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:82</a></div>
                             </td>
                         </tr>
 
@@ -1652,7 +1574,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/cluster/cluster.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:92</a></div>
                             </td>
                         </tr>
 
@@ -1693,7 +1615,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/cluster/cluster.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:95</a></div>
                             </td>
                         </tr>
 
@@ -1719,7 +1641,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/cluster/cluster.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:91</a></div>
                             </td>
                         </tr>
 
@@ -1746,7 +1668,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/cluster/cluster.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:128</a></div>
                             </td>
                         </tr>
 
@@ -1778,7 +1700,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/cluster/cluster.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:90</a></div>
                             </td>
                         </tr>
 
@@ -1811,7 +1733,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/cluster/cluster.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -1844,7 +1766,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/cluster/cluster.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:108</a></div>
                             </td>
                         </tr>
 
@@ -1877,7 +1799,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/cluster/cluster.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:109</a></div>
                             </td>
                         </tr>
 
@@ -1904,7 +1826,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/cluster/cluster.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:115</a></div>
                             </td>
                         </tr>
 
@@ -1937,7 +1859,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/cluster/cluster.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:74</a></div>
                             </td>
                         </tr>
 
@@ -1970,7 +1892,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/cluster/cluster.component.ts:57</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:78</a></div>
                             </td>
                         </tr>
 
@@ -2003,7 +1925,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/cluster/cluster.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:54</a></div>
                             </td>
                         </tr>
 
@@ -2036,7 +1958,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/cluster/cluster.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:86</a></div>
                             </td>
                         </tr>
 
@@ -2069,7 +1991,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/cluster/cluster.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:120</a></div>
                             </td>
                         </tr>
 
@@ -2096,7 +2018,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/cluster/cluster.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:124</a></div>
                             </td>
                         </tr>
 
@@ -2134,7 +2056,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/cluster/cluster.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:132</a></div>
                             </td>
                         </tr>
 
@@ -2167,7 +2089,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/cluster/cluster.component.ts:104</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/resources/cluster/cluster.component.ts:119</a></div>
                             </td>
                         </tr>
 
@@ -2187,16 +2109,18 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { Backend } from &#x27;../definitions/interfaces/backend&#x27;;
+import { Backend } from &#x27;../../definitions/interfaces/backend&#x27;;
 import { BsModalRef, BsModalService } from &#x27;ngx-bootstrap&#x27;;
-import { BackendService } from &#x27;../services/backend.service&#x27;;
-import { MockupBackendService } from &#x27;../services/mockup-backend.service&#x27;;
-import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#x27;;
-import { mockNodesChart } from &#x27;../services/utils/mocks&#x27;;
-import { mockClusterChart } from &#x27;../services/utils/clusters.mock&#x27;;
+import { BackendService } from &#x27;../../services/backend.service&#x27;;
+import { MockupBackendService } from &#x27;../../services/mockup-backend.service&#x27;;
+import { LocalStorageKeys } from &#x27;../../definitions/const/local-storage-keys&#x27;;
+import { mockNodesChart } from &#x27;../../services/utils/mocks&#x27;;
+import { mockClusterChart } from &#x27;../../services/utils/clusters.mock&#x27;;
 import { ActivatedRoute } from &#x27;@angular/router&#x27;;
-import { Cluster } from &#x27;../definitions/interfaces/cluster&#x27;;
-import { AddLabelComponent } from &#x27;../add-label/add-label.component&#x27;;
+import { Cluster } from &#x27;../../definitions/interfaces/cluster&#x27;;
+import { AddLabelComponent } from &#x27;../../add-label/add-label.component&#x27;;
+import { ClusterStatus } from &#x27;../../definitions/enums/cluster-status.enum&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
 
 @Component({
   selector: &#x27;app-cluster&#x27;,
@@ -2208,52 +2132,42 @@ export class ClusterComponent implements OnInit {
    * Backend reference
    */
   backend: Backend;
-
   /**
    * Model that hold organization ID
    */
   organizationId: string;
-
   /**
    * Loaded Data status
    */
   loadedData: boolean;
-
   /**
    * Model that hold cluster ID
    */
   clusterId: string;
-
   /**
    * Model that hold cluster data
    */
   clusterData: Cluster;
-
   /**
    * List of available clusters
    */
   clusters: any[];
-
   /**
    * List of available nodes
    */
   nodes: any[];
-
   /**
    * Count of total nodes
    */
   nodesCount: number;
-
   /**
    * Count of total clusters
    */
   clustersCount: number;
-
   /**
    * Hold request error message or undefined
    */
   requestError: string;
-
   /**
    * Pie Chart options
    */
@@ -2272,7 +2186,6 @@ export class ClusterComponent implements OnInit {
       value: &#x27;#00ff00&#x27;
     }
   ];
-
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
@@ -2280,28 +2193,23 @@ export class ClusterComponent implements OnInit {
   mockNodesChart: any;
   autoScale: any;
   clusterPieChart: any;
-
   /**
    * Reference for the service that allows the user info component
    */
   modalRef: BsModalRef;
-
   /**
    * Models that hold the sort info needed to sortBy pipe
    */
   sortedBy: string;
   reverse: boolean;
-
   /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
-
   /**
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
-
   /**
    * List of selected labels from an entity
    */
@@ -2311,7 +2219,8 @@ export class ClusterComponent implements OnInit {
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private translateService: TranslateService
   ) {
     const mock &#x3D; localStorage.getItem(LocalStorageKeys.clusterMock) || null;
     // check which backend is required (fake or real)
@@ -2320,7 +2229,6 @@ export class ClusterComponent implements OnInit {
     } else {
       this.backend &#x3D; this.backendService;
     }
-
     // Default initialization
     this.loadedData &#x3D; false;
     this.clusters &#x3D; [];
@@ -2329,64 +2237,43 @@ export class ClusterComponent implements OnInit {
     this.clustersCount &#x3D; 0;
     this.clusterData &#x3D; {};
     this.requestError &#x3D; &#x27;&#x27;;
-
     // SortBy
     this.sortedBy &#x3D; &#x27;&#x27;;
     this.reverse &#x3D; false;
     this.searchTerm &#x3D; &#x27;&#x27;;
-
     // Filter field
     this.filterField &#x3D; false;
-
   /**
    * Mocked Charts
    */
     Object.assign(this, {mockClusterChart, mockNodesChart});
-   }
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params &#x3D;&gt; {
       this.clusterId &#x3D; params[&#x27;clusterId&#x27;]; // (+) converts string &#x27;id&#x27; to a number
-   });
+    });
      // Get User data from localStorage
-     const jwtData &#x3D; localStorage.getItem(LocalStorageKeys.jwtData) || null;
-     if (jwtData !&#x3D;&#x3D; null) {
-       this.organizationId &#x3D; JSON.parse(jwtData).organizationID;
-       if (this.organizationId !&#x3D;&#x3D; null) {
+      const jwtData &#x3D; localStorage.getItem(LocalStorageKeys.jwtData) || null;
+      if (jwtData !&#x3D;&#x3D; null) {
+        this.organizationId &#x3D; JSON.parse(jwtData).organizationID;
+        if (this.organizationId !&#x3D;&#x3D; null) {
          // Requests top card summary data
-         this.backend.getResourcesSummary(this.organizationId)
+          this.backend.getResourcesSummary(this.organizationId)
           .subscribe(summary &#x3D;&gt; {
             this.clustersCount &#x3D; summary[&#x27;total_clusters&#x27;];
             this.nodesCount &#x3D; summary[&#x27;total_nodes&#x27;];
           });
-         this.updateNodesList();
-       }
-     }
-     this.backend.getClusterDetail(this.organizationId, this.clusterId)
+          this.updateNodesList();
+        }
+      }
+      this.backend.getClusterDetail(this.organizationId, this.clusterId)
       .subscribe(cluster &#x3D;&gt; {
         this.preventEmptyFields(cluster);
         this.clusterData &#x3D; cluster;
         this.clusterPieChart &#x3D; this.generateSummaryChartData(this.clusterData.running_nodes, this.clusterData.total_nodes);
       });
   }
-
-  /**
-   * Generates the NGX-Chart required JSON object for pie chart rendering
-   * @param running Number of running nodes in a cluster
-   * @param total Number of total nodes in a cluster
-   * @returns anonym array with the required object structure for pie chart rendering
-   */
-  generateClusterChartData(running: number, total: number): any[] {
-    return [
-      {
-        name: &#x27;Running&#x27;,
-        value: running
-      },
-      {
-        name: &#x27;Stopped&#x27;,
-        value: total - running
-      }];
-    }
 
   /**
    * Checks if the cluster status requires an special css class
@@ -2396,27 +2283,18 @@ export class ClusterComponent implements OnInit {
   classStatusCheck(status: string, className: string): boolean {
     status &#x3D; status || &#x27;&#x27;;
     switch (status.toLowerCase()) {
-      case &#x27;running&#x27;: {
-        if (className.toLowerCase() &#x3D;&#x3D;&#x3D; &#x27;running&#x27;) {
-          return true;
-        }
-        break;
-      }
-      case &#x27;error&#x27;: {
-        if (className.toLowerCase() &#x3D;&#x3D;&#x3D; &#x27;error&#x27;) {
-          return true;
-        }
-        break;
-      }
-     default: {
-        if (className.toLowerCase() &#x3D;&#x3D;&#x3D; &#x27;process&#x27;) {
-          return true;
-        }
-        return false;
-      }
+      case ClusterStatus.Running:
+      case ClusterStatus.Online:
+      case ClusterStatus.OnlineCordon:
+        return className.toLowerCase() &#x3D;&#x3D;&#x3D; ClusterStatus.Running;
+      case ClusterStatus.Error:
+      case ClusterStatus.Offline:
+      case ClusterStatus.OfflineCordon:
+        return className.toLowerCase() &#x3D;&#x3D;&#x3D; ClusterStatus.Error;
+      default:
+        return className.toLowerCase() &#x3D;&#x3D;&#x3D; ClusterStatus.Unknown;
     }
   }
-
   /**
    * Sortby pipe in the component
    */
@@ -2428,7 +2306,6 @@ export class ClusterComponent implements OnInit {
     this.sortedBy &#x3D; categoryName;
     this.filterField &#x3D; true;
   }
-
   /**
    * Reset all the filters fields
    */
@@ -2437,7 +2314,6 @@ export class ClusterComponent implements OnInit {
     this.searchTerm &#x3D; &#x27;&#x27;;
     this.sortedBy &#x3D; &#x27;&#x27;;
   }
-
   /**
    * Gets the category headers to add a class
    * @param categoryName class for the header category
@@ -2453,7 +2329,6 @@ export class ClusterComponent implements OnInit {
       }
     }
   }
-
   /**
    * Opens the modal view that holds add label component
    */
@@ -2464,18 +2339,16 @@ export class ClusterComponent implements OnInit {
       entity: node,
       modalTitle: node.ip
     };
-
     this.modalRef &#x3D; this.modalService.show(AddLabelComponent, {initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
     this.modalService.onHide.subscribe((reason: string) &#x3D;&gt; { });
   }
-
   /**
    * Deletes a selected label
    * @param entity selected label entity
    */
   deleteLabel(entity) {
-    const deleteConfirm &#x3D; confirm(&#x27;Delete labels?&#x27;);
+    const deleteConfirm &#x3D; confirm(this.translateService.instant(&#x27;label.deleteLabels&#x27;));
     if (deleteConfirm) {
       const index &#x3D; this.selectedLabels.map(x &#x3D;&gt; x.entityId).indexOf(entity.node_id);
       this.backend.updateNode(
@@ -2490,11 +2363,8 @@ export class ClusterComponent implements OnInit {
           this.selectedLabels.splice(index, 1);
           this.updateNodesList();
         });
-    } else {
-      // Do nothing
     }
   }
-
   /**
    * Selects a label
    * @param entityId entity from selected label
@@ -2523,8 +2393,7 @@ export class ClusterComponent implements OnInit {
       }
     }
   }
-
- /**
+  /**
   * Check if the label is selected. Return index number in selected labels or -1 if the label is not found.
   * @param entityId entity from selected label
   * @param labelKey label key from selected label
@@ -2540,7 +2409,6 @@ export class ClusterComponent implements OnInit {
     }
   return -1;
   }
-
   /**
    * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
    * @param entityId entity from selected label
@@ -2549,16 +2417,15 @@ export class ClusterComponent implements OnInit {
     if (this.selectedLabels.length &gt; 0) {
       const indexSelected &#x3D; this.selectedLabels.map(x &#x3D;&gt; x.entityId).indexOf(entityId);
       if (indexSelected &gt;&#x3D; 0) {
-          return true;
+        return true;
       }
     }
     return false;
   }
-
   /**
    * Requests an updated list of available nodes to update the current one
    */
- updateNodesList() {
+  updateNodesList() {
     this.requestError &#x3D; &#x27;&#x27;; // Empty error before requesting new list
     // Requests an updated nodes list
     this.backend.getNodes(this.organizationId, this.clusterId)
@@ -2572,13 +2439,13 @@ export class ClusterComponent implements OnInit {
       this.requestError &#x3D; errorResponse.error.message;
     });
   }
-
+  /**
+   * Fulfill nulls to avoid data binding failure
+   * @param cluster cluster
+   */
   private preventEmptyFields(cluster: Cluster) {
     if (!cluster.name) {
       cluster.name &#x3D; &#x27;-&#x27;;
-    }
-    if (!cluster.description) {
-      cluster.description &#x3D; &#x27;-&#x27;;
     }
     if (!cluster.total_nodes) {
       cluster.total_nodes &#x3D; 0;
@@ -2596,11 +2463,11 @@ export class ClusterComponent implements OnInit {
   private generateSummaryChartData(running: number, total: number): any[] {
     return [
       {
-        name: &#x27;Running&#x27;,
+        name: this.translateService.instant(&#x27;status.runningUp&#x27;),
         value: running
       },
       {
-        name: &#x27;Stopped&#x27;,
+        name: this.translateService.instant(&#x27;status.stopped&#x27;),
         value: total - running
       }];
   }
@@ -2609,10 +2476,22 @@ export class ClusterComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;!-- Component title --&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;!-- 
+  Copyright 2019 Nalej
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ --&gt;
+
 &lt;div class&#x3D;&quot;row row-title&quot;&gt;
   &lt;div class&#x3D;&quot;col-lg-12&quot;&gt;
-    &lt;h2 class&#x3D;&quot;section-title&quot;&gt;RESOURCES&lt;/h2&gt;
+    &lt;h2 class&#x3D;&quot;section-title&quot;&gt;{{&#x27;resources.title&#x27; | translate}}&lt;/h2&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;!-- Cluster info card --&gt;
@@ -2621,7 +2500,7 @@ export class ClusterComponent implements OnInit {
     &lt;div class&#x3D;&quot;card&quot;&gt;
       &lt;div class&#x3D;&quot;card-title-name&quot;&gt;
         &lt;h5 class&#x3D;&quot;d-inline text-uppercase&quot;&gt;{{clusterData.name | truncate}}&lt;/h5&gt;
-        &lt;p class&#x3D;&quot;cluster-number hide-lg&quot;&gt;STATUS&lt;/p&gt;
+        &lt;p class&#x3D;&quot;cluster-number hide-lg text-uppercase&quot;&gt;{{&#x27;tables.tableStatus&#x27; | translate}}&lt;/p&gt;
       &lt;/div&gt;
       &lt;!-- Cluster card --&gt;
         &lt;div class&#x3D;&quot;summary-box&quot;&gt;
@@ -2629,9 +2508,9 @@ export class ClusterComponent implements OnInit {
             class&#x3D;&quot;text-center text-uppercase&quot;
             [ngClass]&#x3D;
             &quot;{
-              &#x27;blue&#x27;:classStatusCheck(clusterData.status_name, &#x27;running&#x27;),
-              &#x27;red&#x27;:classStatusCheck(clusterData.status_name, &#x27;error&#x27;),
-              &#x27;teal&#x27;:classStatusCheck(clusterData.status_name, &#x27;process&#x27;)
+              &#x27;teal&#x27;: classStatusCheck(clusterData.status_name, &#x27;running&#x27;),
+              &#x27;red&#x27;: classStatusCheck(clusterData.status_name, &#x27;error&#x27;),
+              &#x27;yellow&#x27;: classStatusCheck(clusterData.status_name, &#x27;process&#x27;)
             }&quot;&gt;
             {{clusterData.status_name}}
           &lt;/h3&gt;
@@ -2642,7 +2521,7 @@ export class ClusterComponent implements OnInit {
   &lt;div class&#x3D;&quot;col-lg-9 h-100&quot;&gt;
     &lt;div class&#x3D;&quot;card&quot;&gt;
       &lt;div class&#x3D;&quot;card-title-name&quot;&gt;
-        &lt;h5&gt;SUMMARY&lt;/h5&gt;
+        &lt;h5&gt;{{&#x27;resources.summary&#x27; | translate}}&lt;/h5&gt;
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;summary-card&quot;&gt;
         &lt;div class&#x3D;&quot;summary-box&quot;&gt;
@@ -2658,30 +2537,30 @@ export class ClusterComponent implements OnInit {
               {{clusterData.running_nodes}}/{{clusterData.total_nodes}}
             &lt;/div&gt;
           &lt;/div&gt;
-          &lt;p class&#x3D;&quot;nodes-run&quot;&gt;{{clusterData.running_nodes}} running&lt;/p&gt;
-          &lt;p class&#x3D;&quot;circle-name mt-0&quot;&gt;NODES&lt;/p&gt;
+          &lt;p class&#x3D;&quot;nodes-run&quot;&gt;{{clusterData.running_nodes}} {{&#x27;status.running&#x27; | translate}}&lt;/p&gt;
+          &lt;p class&#x3D;&quot;circle-name mt-0&quot;&gt;{{&#x27;resources.nodes&#x27; | translate}}&lt;/p&gt;
         &lt;/div&gt;
         &lt;div class&#x3D;&quot;summary-box&quot; id&#x3D;&quot;scroll-cluster-table&quot;&gt;
           &lt;table class&#x3D;&quot;table cluster-summary-table&quot;&gt;
             &lt;tr&gt;
-              &lt;th&gt;ID&lt;/th&gt;
+              &lt;th&gt;{{&#x27;tables.tableID&#x27; | translate}}&lt;/th&gt;
               &lt;td&gt;{{clusterData.cluster_id}}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;tr&gt;
-              &lt;th&gt;Types&lt;/th&gt;
+              &lt;th&gt;{{&#x27;tables.tableType&#x27; | translate}}&lt;/th&gt;
               &lt;td class&#x3D;&quot;text-lowercase&quot;&gt;{{clusterData.cluster_type_name}}&lt;/td&gt; 
             &lt;/tr&gt;
             &lt;tr&gt;
-              &lt;th&gt;Labels&lt;/th&gt;
-              &lt;td *ngIf&#x3D;&quot;!clusterData.labels || clusterData.labels &#x3D;&#x3D;&#x3D; {} &quot;&gt; no &lt;/td&gt;
+              &lt;th&gt;{{&#x27;tables.tableLabels&#x27; | translate}}&lt;/th&gt;
+              &lt;td *ngIf&#x3D;&quot;!clusterData.labels || clusterData.labels &#x3D;&#x3D;&#x3D; {} &quot;&gt; {{&#x27;tables.no&#x27; | translate}} &lt;/td&gt;
               &lt;td *ngIf&#x3D;&quot;clusterData.labels&quot;&gt;
-                &lt;button *ngFor&#x3D;&quot;let label of clusterData.labels| keyvalue&quot; class&#x3D;&quot;label-content-disabled&quot;&gt;
+                &lt;button *ngFor&#x3D;&quot;let label of clusterData.labels| keyvalue&quot; class&#x3D;&quot;label-content-disabled&quot; disabled&gt;
                   &lt;span *ngIf&#x3D;&quot;label.key&quot;&gt;{{label.key}}: {{label.value}}&lt;/span&gt;  
                 &lt;/button&gt;
               &lt;/td&gt;
             &lt;/tr&gt;
             &lt;tr&gt;
-              &lt;th&gt;Multitenant&lt;/th&gt;
+              &lt;th&gt;{{&#x27;tables.tableMultitenant&#x27; | translate}}&lt;/th&gt;
               &lt;td class&#x3D;&quot;text-lowercase&quot;&gt;{{clusterData.multitenant_support}}&lt;/td&gt;
             &lt;/tr&gt;
           &lt;/table&gt;
@@ -2700,12 +2579,12 @@ export class ClusterComponent implements OnInit {
             [routerLink]&#x3D;&quot;[&#x27;/resources&#x27;]&quot; 
             routerLinkActive&#x3D;&quot;active&quot; 
             class&#x3D;&quot;blue&quot;&gt;
-            CLUSTER
+            {{&#x27;resources.cluster&#x27; | translate}}
           &lt;/a&gt;
           &lt;span class&#x3D;&quot;grey&quot;&gt; &gt; &lt;/span&gt; 
-          &lt;b&gt;NODES&lt;/b&gt;
+          &lt;b&gt;{{&#x27;resources.nodes&#x27; | translate}}&lt;/b&gt;
           &lt;span class&#x3D;&quot;grey text-uppercase&quot;&gt;
-             &gt; {{clusterData.name}} 
+            &gt; {{clusterData.name}} 
           &lt;/span&gt;
         &lt;/h5&gt;
       &lt;/div&gt;
@@ -2713,21 +2592,21 @@ export class ClusterComponent implements OnInit {
         &lt;!-- Sorting messages --&gt;
         &lt;div class&#x3D;&quot;col-8&quot;&gt;  
           &lt;p *ngIf&#x3D;&quot;searchTerm &amp;&amp; !filterField&quot; class&#x3D;&quot;sorting-message&quot;&gt;
-            Filtered by term &quot;{{ searchTerm }}&quot;.
-            &lt;span (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;reset-search&quot;&gt;Reset&lt;/span&gt;
+              {{&#x27;sortingMessage.filteredBy&#x27; | translate:{value: searchTerm} }}
+            &lt;span (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;reset-search&quot;&gt;{{&#x27;sortingMessage.reset&#x27; | translate}}&lt;/span&gt;
           &lt;/p&gt;
           &lt;p *ngIf&#x3D;&quot;filterField &amp;&amp; !searchTerm&quot; class&#x3D;&quot;sorting-message&quot;&gt;
-            Sorted by {{ sortedBy }},
-            &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;ascendant. &lt;/span&gt;
-            &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;descendant. &lt;/span&gt;
-            &lt;span (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;reset-search&quot;&gt;Reset&lt;/span&gt;
+              {{&#x27;sortingMessage.sortedBy&#x27; | translate:{value: sortedBy} }},
+            &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;{{&#x27;sortingMessage.ascendant&#x27; | translate:{value: &#x27;. &#x27;} }} &lt;/span&gt;
+            &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;{{&#x27;sortingMessage.descendant&#x27; | translate:{value: &#x27;. &#x27;} }}&lt;/span&gt;
+            &lt;span (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;reset-search&quot;&gt;{{&#x27;sortingMessage.reset&#x27; | translate}}&lt;/span&gt;
           &lt;/p&gt;
           &lt;p *ngIf&#x3D;&quot;filterField &amp;&amp; searchTerm&quot; class&#x3D;&quot;sorting-message&quot;&gt;
-            Sorted by {{ sortedBy }}
-            &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;ascendant &lt;/span&gt;
-            &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;descendant &lt;/span&gt;
-            and filtered by term &quot;{{ searchTerm }}&quot;.
-            &lt;span (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;reset-search&quot;&gt;Reset&lt;/span&gt;
+            {{&#x27;sortingMessage.sortedBy&#x27; | translate:{value: sortedBy} }}
+            &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;{{&#x27;sortingMessage.ascendant&#x27; | translate:{value: &#x27; &#x27;} }}&lt;/span&gt;
+            &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;{{&#x27;sortingMessage.descendant&#x27; | translate:{value: &#x27; &#x27;} }}&lt;/span&gt;
+            {{&#x27;sortingMessage.andFilteredBy&#x27; | translate:{value: searchTerm} }}
+            &lt;span (click)&#x3D;&quot;resetFilters(filterField)&quot; class&#x3D;&quot;reset-search&quot;&gt;{{&#x27;sortingMessage.reset&#x27; | translate}}&lt;/span&gt;
           &lt;/p&gt; 
         &lt;/div&gt;
         &lt;!-- Search input --&gt;
@@ -2738,7 +2617,7 @@ export class ClusterComponent implements OnInit {
                 name&#x3D;&quot;searchTerm&quot; 
                 [(ngModel)]&#x3D;&quot;searchTerm&quot;
                 type&#x3D;&quot;text&quot; 
-                placeholder&#x3D;&quot;Search...&quot;
+                placeholder&#x3D;&quot;{{&#x27;searcher.placeholder&#x27; | translate }}&quot;
                 class&#x3D;&quot;form-control&quot;&gt; 
                 &lt;div *ngIf&#x3D;&quot;searchTerm &#x3D;&#x3D;&#x3D; &#x27;&#x27;&quot; class&#x3D;&quot;search-icon&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;search&lt;/i&gt;
@@ -2761,54 +2640,54 @@ export class ClusterComponent implements OnInit {
           &lt;div class&#x3D;&quot;label-thead &quot;&gt;
             &lt;div class&#x3D;&quot;row&quot;&gt;
               &lt;div 
-                (click)&#x3D;&quot;setOrder(&#x27;node_id&#x27;)&quot;
-                [ngClass]&#x3D;&quot;getCategoryCSSClass(&#x27;node_id&#x27;)&quot;
+                (click)&#x3D;&quot;setOrder(&#x27;ID&#x27;)&quot;
+                [ngClass]&#x3D;&quot;getCategoryCSSClass(&#x27;ID&#x27;)&quot;
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-4 label-th &quot;&gt;
-                &lt;span tooltip&#x3D;&quot;ID&quot; placement&#x3D;&quot;bottom&quot;&gt;ID&lt;/span&gt;
-                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;node_id&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
+                &lt;span tooltip&#x3D;&quot;{{&#x27;tables.tableID&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;{{&#x27;tables.tableID&#x27; | translate}}&lt;/span&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;ID&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;node_id&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;ID&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/div&gt;
               &lt;div 
-                (click)&#x3D;&quot;setOrder(&#x27;ip&#x27;)&quot;
-                [ngClass]&#x3D;&quot;getCategoryCSSClass(&#x27;ip&#x27;)&quot;
+                (click)&#x3D;&quot;setOrder(&#x27;IP&#x27;)&quot;
+                [ngClass]&#x3D;&quot;getCategoryCSSClass(&#x27;IP&#x27;)&quot;
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-3 label-th &quot;&gt;
-                &lt;span tooltip&#x3D;&quot;IP&quot; placement&#x3D;&quot;bottom&quot;&gt;IP&lt;/span&gt;
-                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;ip&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
+                &lt;span tooltip&#x3D;&quot;{{&#x27;tables.tableIP&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;{{&#x27;tables.tableIP&#x27; | translate}}&lt;/span&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;IP&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;ip&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;IP&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/div&gt;
               &lt;div 
-                (click)&#x3D;&quot;setOrder(&#x27;state_name&#x27;)&quot;
-                [ngClass]&#x3D;&quot;getCategoryCSSClass(&#x27;state_name&#x27;)&quot;
+                (click)&#x3D;&quot;setOrder(&#x27;state&#x27;)&quot;
+                [ngClass]&#x3D;&quot;getCategoryCSSClass(&#x27;state&#x27;)&quot;
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-3 label-th &quot;&gt;
-                &lt;span tooltip&#x3D;&quot;State&quot; placement&#x3D;&quot;bottom&quot;&gt;State&lt;/span&gt;
-                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;state_name&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
+                &lt;span tooltip&#x3D;&quot;{{&#x27;tables.tableState&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;{{&#x27;tables.tableState&#x27; | translate}}&lt;/span&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;state&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;state_name&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;state&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/div&gt;
               &lt;div 
-                (click)&#x3D;&quot;setOrder(&#x27;status_name&#x27;)&quot;
-                [ngClass]&#x3D;&quot;getCategoryCSSClass(&#x27;status_name&#x27;)&quot;
+                (click)&#x3D;&quot;setOrder(&#x27;status&#x27;)&quot;
+                [ngClass]&#x3D;&quot;getCategoryCSSClass(&#x27;status&#x27;)&quot;
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-2 label-th  text-center&quot;&gt;
-                &lt;span tooltip&#x3D;&quot;Status&quot; placement&#x3D;&quot;bottom&quot;&gt;Status&lt;/span&gt;
-                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;status_name&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
+                &lt;span tooltip&#x3D;&quot;{{&#x27;tables.tableStatus&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;{{&#x27;tables.tableStatus&#x27; | translate}}&lt;/span&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;status&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
-                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;status_name&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;status&#x27; &amp;&amp; reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_less&lt;/i&gt;
                 &lt;/span&gt;
               &lt;/div&gt;
@@ -2819,7 +2698,7 @@ export class ClusterComponent implements OnInit {
                 [ngClass]&#x3D;&quot;getCategoryCSSClass(&#x27;labels&#x27;)&quot;
                 scope&#x3D;&quot;col&quot; 
                 class&#x3D;&quot;col-12 label-th&quot;&gt;
-                &lt;span tooltip&#x3D;&quot;Labels&quot; placement&#x3D;&quot;bottom&quot;&gt;Labels&lt;/span&gt;
+                &lt;span tooltip&#x3D;&quot;{{&#x27;tables.tableLabels&#x27; | translate}}&quot; placement&#x3D;&quot;bottom&quot;&gt;{{&#x27;tables.tableLabels&#x27; | translate}}&lt;/span&gt;
                 &lt;span *ngIf&#x3D;&quot;sortedBy &#x3D;&#x3D;&#x3D; &#x27;labels&#x27; &amp;&amp; !reverse&quot; class&#x3D;&quot;expand-chevron&quot;&gt;
                   &lt;i class&#x3D;&quot;material-icons&quot;&gt;expand_more&lt;/i&gt;
                 &lt;/span&gt;
@@ -2856,7 +2735,7 @@ export class ClusterComponent implements OnInit {
               &lt;/div&gt;
             &lt;/div&gt;
             &lt;div class&#x3D;&quot;row&quot;&gt;
-              &lt;div class&#x3D;&quot;col-12&quot; *ngIf&#x3D;&quot;!node.labels&quot;&gt; no &lt;/div&gt;
+              &lt;div class&#x3D;&quot;col-12&quot; *ngIf&#x3D;&quot;!node.labels&quot;&gt; {{&#x27;tables.no&#x27; | translate}} &lt;/div&gt;
               &lt;div class&#x3D;&quot;col-12&quot; *ngIf&#x3D;&quot;node.labels&quot;&gt;
                 &lt;button 
                   *ngFor&#x3D;&quot;let label of node.labels | keyvalue&quot; 
@@ -2873,7 +2752,7 @@ export class ClusterComponent implements OnInit {
                   &lt;div 
                     *ngIf&#x3D;&quot;isAnyLabelSelected(node.node_id) &#x3D;&#x3D;&#x3D; false&quot;
                     (click)&#x3D;&quot;addLabel(node)&quot;
-                    tooltip&#x3D;&quot;Add&quot; 
+                    tooltip&#x3D;&quot;{{&#x27;label.addUp&#x27; | translate}}&quot; 
                     placement&#x3D;&quot;right&quot;
                     class&#x3D;&quot;label-btn-blue&quot;&gt;
                     &lt;i class&#x3D;&quot;material-icons i-add&quot;&gt;add&lt;/i&gt;
@@ -2881,7 +2760,7 @@ export class ClusterComponent implements OnInit {
                   &lt;div 
                     *ngIf&#x3D;&quot;isAnyLabelSelected(node.node_id) &#x3D;&#x3D;&#x3D; true&quot;
                     (click)&#x3D;&quot;deleteLabel(node)&quot;
-                    tooltip&#x3D;&quot;Delete&quot; 
+                    tooltip&#x3D;&quot;{{&#x27;label.deleteUp&#x27; | translate}}&quot; 
                     placement&#x3D;&quot;right&quot;
                     class&#x3D;&quot;label-btn-red&quot;&gt;
                     &lt;i class&#x3D;&quot;material-icons i-delete&quot;&gt;delete&lt;/i&gt;
@@ -2898,9 +2777,9 @@ export class ClusterComponent implements OnInit {
         nodes &amp;&amp; nodes.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp;
         !requestError&quot;
         class&#x3D;&quot;no-elements&quot;&gt;
-        &lt;p&gt;There are not registered nodes in this cluster&lt;/p&gt;
+        &lt;p&gt;{{&#x27;resources.noNodes&#x27; | translate}}&lt;/p&gt;
       &lt;/div&gt;
-       &lt;!-- Requested error --&gt;
+      &lt;!-- Requested error --&gt;
       &lt;div *ngIf&#x3D;&quot;loadedData &amp;&amp; requestError&quot; class&#x3D;&quot;no-elements&quot;&gt;
         &lt;p&gt;{{requestError}}&lt;/p&gt;
       &lt;/div&gt;
@@ -2929,8 +2808,21 @@ export class ClusterComponent implements OnInit {
                 <p class="comment">
                     <code>./cluster.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;../scss/variables/colors&#x27;;
-@import &#x27;../scss/variables/mixins&#x27;;
+                <pre class="line-numbers"><code class="language-scss">/* 
+ *  Copyright 2019 Nalej
+ *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+@import &#x27;../../scss/variables/colors&#x27;;
+@import &#x27;../../scss/variables/mixins&#x27;;
 
 .cluster-number {
     float: right;
@@ -3016,6 +2908,9 @@ export class ClusterComponent implements OnInit {
         margin-top: 0em;
     }
 }
+.nalej-table-box .label-tbody {
+    border-top: 0;
+}
 </code></pre>
     </div>
 
@@ -3044,8 +2939,8 @@ export class ClusterComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Component title --><div class="row row-title">  <div class="col-lg-12">    <h2 class="section-title">RESOURCES</h2>  </div></div><!-- Cluster info card --><div class="row row-info">  <div class="col-lg-3 h-100">    <div class="card">      <div class="card-title-name">        <h5 class="d-inline text-uppercase">{{clusterData.name | truncate}}</h5>        <p class="cluster-number hide-lg">STATUS</p>      </div>      <!-- Cluster card -->        <div class="summary-box">          <h3             class="text-center text-uppercase"            [ngClass]=            "{              \'blue\':classStatusCheck(clusterData.status_name, \'running\'),              \'red\':classStatusCheck(clusterData.status_name, \'error\'),              \'teal\':classStatusCheck(clusterData.status_name, \'process\')            }">            {{clusterData.status_name}}          </h3>        </div>    </div>  </div>  <!-- Summary cluster info card -->  <div class="col-lg-9 h-100">    <div class="card">      <div class="card-title-name">        <h5>SUMMARY</h5>      </div>      <div class="summary-card">        <div class="summary-box">          <div class="donut-chart">            <ngx-charts-pie-chart              [scheme]="colorScheme"               [results]="clusterPieChart"               [doughnut]= "doughnut"              [gradient]="gradient"              [explodeSlices]="false">            </ngx-charts-pie-chart>            <div class="donut-number">              {{clusterData.running_nodes}}/{{clusterData.total_nodes}}            </div>          </div>          <p class="nodes-run">{{clusterData.running_nodes}} running</p>          <p class="circle-name mt-0">NODES</p>        </div>        <div class="summary-box" id="scroll-cluster-table">          <table class="table cluster-summary-table">            <tr>              <th>ID</th>              <td>{{clusterData.cluster_id}}</td>            </tr>            <tr>              <th>Types</th>              <td class="text-lowercase">{{clusterData.cluster_type_name}}</td>             </tr>            <tr>              <th>Labels</th>              <td *ngIf="!clusterData.labels || clusterData.labels === {} "> no </td>              <td *ngIf="clusterData.labels">                <button *ngFor="let label of clusterData.labels| keyvalue" class="label-content-disabled">                  <span *ngIf="label.key">{{label.key}}: {{label.value}}</span>                  </button>              </td>            </tr>            <tr>              <th>Multitenant</th>              <td class="text-lowercase">{{clusterData.multitenant_support}}</td>            </tr>          </table>        </div>      </div>    </div>  </div></div><!-- Nodes panel card--><div class="row row-main">  <div class="col-lg-12 h-100">    <div class="card">      <div class="card-title-name">        <h5>          <a             [routerLink]="[\'/resources\']"             routerLinkActive="active"             class="blue">            CLUSTER          </a>          <span class="grey"> > </span>           <b>NODES</b>          <span class="grey text-uppercase">             > {{clusterData.name}}           </span>        </h5>      </div>      <div class="row mb-3">        <!-- Sorting messages -->        <div class="col-8">            <p *ngIf="searchTerm && !filterField" class="sorting-message">            Filtered by term "{{ searchTerm }}".            <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>          </p>          <p *ngIf="filterField && !searchTerm" class="sorting-message">            Sorted by {{ sortedBy }},            <span *ngIf="reverse">ascendant. </span>            <span *ngIf="!reverse">descendant. </span>            <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>          </p>          <p *ngIf="filterField && searchTerm" class="sorting-message">            Sorted by {{ sortedBy }}            <span *ngIf="reverse">ascendant </span>            <span *ngIf="!reverse">descendant </span>            and filtered by term "{{ searchTerm }}".            <span (click)="resetFilters(filterField)" class="reset-search">Reset</span>          </p>         </div>        <!-- Search input -->        <div class="col-4">          <form>            <div class="search-box">              <input                 name="searchTerm"                 [(ngModel)]="searchTerm"                type="text"                 placeholder="Search..."                class="form-control">                 <div *ngIf="searchTerm === \'\'" class="search-icon">                  <i class="material-icons">search</i>                </div>                     <div *ngIf="searchTerm !== \'\'" class="close-icon">                  <i class="material-icons" (click)="resetFilters(filterField)">close</i>                </div>            </div>          </form>        </div>            </div>      <!-- Clusters table -->      <div *ngIf=        "loadedData &&        nodes &&        nodes.length > 0 &&        !requestError"        class="nalej-table-box nalej-table-p">        <div class="label-nalej-table">          <div class="label-thead ">            <div class="row">              <div                 (click)="setOrder(\'node_id\')"                [ngClass]="getCategoryCSSClass(\'node_id\')"                scope="col"                 class="col-4 label-th ">                <span tooltip="ID" placement="bottom">ID</span>                <span *ngIf="sortedBy === \'node_id\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'node_id\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </div>              <div                 (click)="setOrder(\'ip\')"                [ngClass]="getCategoryCSSClass(\'ip\')"                scope="col"                 class="col-3 label-th ">                <span tooltip="IP" placement="bottom">IP</span>                <span *ngIf="sortedBy === \'ip\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'ip\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </div>              <div                 (click)="setOrder(\'state_name\')"                [ngClass]="getCategoryCSSClass(\'state_name\')"                scope="col"                 class="col-3 label-th ">                <span tooltip="State" placement="bottom">State</span>                <span *ngIf="sortedBy === \'state_name\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'state_name\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </div>              <div                 (click)="setOrder(\'status_name\')"                [ngClass]="getCategoryCSSClass(\'status_name\')"                scope="col"                 class="col-2 label-th  text-center">                <span tooltip="Status" placement="bottom">Status</span>                <span *ngIf="sortedBy === \'status_name\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'status_name\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </div>            </div>            <div class="row">              <div                 (click)="setOrder(\'labels\')"                [ngClass]="getCategoryCSSClass(\'labels\')"                scope="col"                 class="col-12 label-th">                <span tooltip="Labels" placement="bottom">Labels</span>                <span *ngIf="sortedBy === \'labels\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'labels\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </div>            </div>          </div>          <div *ngFor=            "let node of nodes |            sortBy : sortedBy : reverse : \'case-insensitive\' |            filter : searchTerm" class="label-tbody">            <div class="row">              <div class="col-4 label-td">{{node.node_id}}</div>              <div class="col-3 label-td">{{node.ip}}</div>                <div class="col-3 label-td text-lowercase ">{{node.state_name}}</div>              <div                 class="col-2 label-td col-center-lowercase"                [ngClass]=                "{                  \'status-dot\':classStatusCheck(node.status_name, \'running\'),                  \'status-dot-error\':classStatusCheck(node.status_name, \'error\'),                  \'status-dot-process\':classStatusCheck(node.status_name, \'process\')                }">                <span                 tooltip= "{{node.status_name | lowercase}}"                 placement="bottom"                class="tooltip-fix">                </span>                <span class="hide-lg">                  {{node.status_name}}                </span>              </div>            </div>            <div class="row">              <div class="col-12" *ngIf="!node.labels"> no </div>              <div class="col-12" *ngIf="node.labels">                <button                   *ngFor="let label of node.labels | keyvalue"                   (click)="onLabelClick(node.node_id,label.key, label.value)"                  [ngClass]=                    "{                      \'label-content-selected\': indexOfLabelSelected(node.node_id,label.key, label.value) >= 0 ,                      \'label-content\': indexOfLabelSelected(node.node_id,label.key, label.value) === -1                    }"                   class="label-content">                  {{label.key}}: {{label.value}}                </button>                <div class="label-btns">                  <div                     *ngIf="isAnyLabelSelected(node.node_id) === false"                    (click)="addLabel(node)"                    tooltip="Add"                     placement="right"                    class="label-btn-blue">                    <i class="material-icons i-add">add</i>                  </div>                  <div                     *ngIf="isAnyLabelSelected(node.node_id) === true"                    (click)="deleteLabel(node)"                    tooltip="Delete"                     placement="right"                    class="label-btn-red">                    <i class="material-icons i-delete">delete</i>                  </div>                </div>              </div>            </div>          </div>        </div>      </div>      <!-- No info to show -->      <div *ngIf=        "loadedData &&        nodes && nodes.length === 0 &&        !requestError"        class="no-elements">        <p>There are not registered nodes in this cluster</p>      </div>       <!-- Requested error -->      <div *ngIf="loadedData && requestError" class="no-elements">        <p>{{requestError}}</p>      </div>      <!-- Loader -->      <div *ngIf="!loadedData"class="nalej-loader-box">        <div class="loader">          <svg class="circular" viewBox="25 25 50 50">            <circle               class="path"               cx="50"               cy="50"               r="20"               fill="none"               stroke-width="2"               stroke-miterlimit="10"/>          </svg>        </div>      </div>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+        var COMPONENT_TEMPLATE = '<div><!--   Copyright 2019 Nalej  Licensed under the Apache License, Version 2.0 (the "License");  you may not use this file except in compliance with the License.  You may obtain a copy of the License at      http://www.apache.org/licenses/LICENSE-2.0  Unless required by applicable law or agreed to in writing, software  distributed under the License is distributed on an "AS IS" BASIS,  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the specific language governing permissions and  limitations under the License. --><div class="row row-title">  <div class="col-lg-12">    <h2 class="section-title">{{\'resources.title\' | translate}}</h2>  </div></div><!-- Cluster info card --><div class="row row-info">  <div class="col-lg-3 h-100">    <div class="card">      <div class="card-title-name">        <h5 class="d-inline text-uppercase">{{clusterData.name | truncate}}</h5>        <p class="cluster-number hide-lg text-uppercase">{{\'tables.tableStatus\' | translate}}</p>      </div>      <!-- Cluster card -->        <div class="summary-box">          <h3             class="text-center text-uppercase"            [ngClass]=            "{              \'teal\': classStatusCheck(clusterData.status_name, \'running\'),              \'red\': classStatusCheck(clusterData.status_name, \'error\'),              \'yellow\': classStatusCheck(clusterData.status_name, \'process\')            }">            {{clusterData.status_name}}          </h3>        </div>    </div>  </div>  <!-- Summary cluster info card -->  <div class="col-lg-9 h-100">    <div class="card">      <div class="card-title-name">        <h5>{{\'resources.summary\' | translate}}</h5>      </div>      <div class="summary-card">        <div class="summary-box">          <div class="donut-chart">            <ngx-charts-pie-chart              [scheme]="colorScheme"               [results]="clusterPieChart"               [doughnut]= "doughnut"              [gradient]="gradient"              [explodeSlices]="false">            </ngx-charts-pie-chart>            <div class="donut-number">              {{clusterData.running_nodes}}/{{clusterData.total_nodes}}            </div>          </div>          <p class="nodes-run">{{clusterData.running_nodes}} {{\'status.running\' | translate}}</p>          <p class="circle-name mt-0">{{\'resources.nodes\' | translate}}</p>        </div>        <div class="summary-box" id="scroll-cluster-table">          <table class="table cluster-summary-table">            <tr>              <th>{{\'tables.tableID\' | translate}}</th>              <td>{{clusterData.cluster_id}}</td>            </tr>            <tr>              <th>{{\'tables.tableType\' | translate}}</th>              <td class="text-lowercase">{{clusterData.cluster_type_name}}</td>             </tr>            <tr>              <th>{{\'tables.tableLabels\' | translate}}</th>              <td *ngIf="!clusterData.labels || clusterData.labels === {} "> {{\'tables.no\' | translate}} </td>              <td *ngIf="clusterData.labels">                <button *ngFor="let label of clusterData.labels| keyvalue" class="label-content-disabled" disabled>                  <span *ngIf="label.key">{{label.key}}: {{label.value}}</span>                  </button>              </td>            </tr>            <tr>              <th>{{\'tables.tableMultitenant\' | translate}}</th>              <td class="text-lowercase">{{clusterData.multitenant_support}}</td>            </tr>          </table>        </div>      </div>    </div>  </div></div><!-- Nodes panel card--><div class="row row-main">  <div class="col-lg-12 h-100">    <div class="card">      <div class="card-title-name">        <h5>          <a             [routerLink]="[\'/resources\']"             routerLinkActive="active"             class="blue">            {{\'resources.cluster\' | translate}}          </a>          <span class="grey"> > </span>           <b>{{\'resources.nodes\' | translate}}</b>          <span class="grey text-uppercase">            > {{clusterData.name}}           </span>        </h5>      </div>      <div class="row mb-3">        <!-- Sorting messages -->        <div class="col-8">            <p *ngIf="searchTerm && !filterField" class="sorting-message">              {{\'sortingMessage.filteredBy\' | translate:{value: searchTerm} }}            <span (click)="resetFilters(filterField)" class="reset-search">{{\'sortingMessage.reset\' | translate}}</span>          </p>          <p *ngIf="filterField && !searchTerm" class="sorting-message">              {{\'sortingMessage.sortedBy\' | translate:{value: sortedBy} }},            <span *ngIf="reverse">{{\'sortingMessage.ascendant\' | translate:{value: \'. \'} }} </span>            <span *ngIf="!reverse">{{\'sortingMessage.descendant\' | translate:{value: \'. \'} }}</span>            <span (click)="resetFilters(filterField)" class="reset-search">{{\'sortingMessage.reset\' | translate}}</span>          </p>          <p *ngIf="filterField && searchTerm" class="sorting-message">            {{\'sortingMessage.sortedBy\' | translate:{value: sortedBy} }}            <span *ngIf="reverse">{{\'sortingMessage.ascendant\' | translate:{value: \' \'} }}</span>            <span *ngIf="!reverse">{{\'sortingMessage.descendant\' | translate:{value: \' \'} }}</span>            {{\'sortingMessage.andFilteredBy\' | translate:{value: searchTerm} }}            <span (click)="resetFilters(filterField)" class="reset-search">{{\'sortingMessage.reset\' | translate}}</span>          </p>         </div>        <!-- Search input -->        <div class="col-4">          <form>            <div class="search-box">              <input                 name="searchTerm"                 [(ngModel)]="searchTerm"                type="text"                 placeholder="{{\'searcher.placeholder\' | translate }}"                class="form-control">                 <div *ngIf="searchTerm === \'\'" class="search-icon">                  <i class="material-icons">search</i>                </div>                     <div *ngIf="searchTerm !== \'\'" class="close-icon">                  <i class="material-icons" (click)="resetFilters(filterField)">close</i>                </div>            </div>          </form>        </div>            </div>      <!-- Clusters table -->      <div *ngIf=        "loadedData &&        nodes &&        nodes.length > 0 &&        !requestError"        class="nalej-table-box nalej-table-p">        <div class="label-nalej-table">          <div class="label-thead ">            <div class="row">              <div                 (click)="setOrder(\'ID\')"                [ngClass]="getCategoryCSSClass(\'ID\')"                scope="col"                 class="col-4 label-th ">                <span tooltip="{{\'tables.tableID\' | translate}}" placement="bottom">{{\'tables.tableID\' | translate}}</span>                <span *ngIf="sortedBy === \'ID\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'ID\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </div>              <div                 (click)="setOrder(\'IP\')"                [ngClass]="getCategoryCSSClass(\'IP\')"                scope="col"                 class="col-3 label-th ">                <span tooltip="{{\'tables.tableIP\' | translate}}" placement="bottom">{{\'tables.tableIP\' | translate}}</span>                <span *ngIf="sortedBy === \'IP\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'IP\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </div>              <div                 (click)="setOrder(\'state\')"                [ngClass]="getCategoryCSSClass(\'state\')"                scope="col"                 class="col-3 label-th ">                <span tooltip="{{\'tables.tableState\' | translate}}" placement="bottom">{{\'tables.tableState\' | translate}}</span>                <span *ngIf="sortedBy === \'state\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'state\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </div>              <div                 (click)="setOrder(\'status\')"                [ngClass]="getCategoryCSSClass(\'status\')"                scope="col"                 class="col-2 label-th  text-center">                <span tooltip="{{\'tables.tableStatus\' | translate}}" placement="bottom">{{\'tables.tableStatus\' | translate}}</span>                <span *ngIf="sortedBy === \'status\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'status\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </div>            </div>            <div class="row">              <div                 (click)="setOrder(\'labels\')"                [ngClass]="getCategoryCSSClass(\'labels\')"                scope="col"                 class="col-12 label-th">                <span tooltip="{{\'tables.tableLabels\' | translate}}" placement="bottom">{{\'tables.tableLabels\' | translate}}</span>                <span *ngIf="sortedBy === \'labels\' && !reverse" class="expand-chevron">                  <i class="material-icons">expand_more</i>                </span>                <span *ngIf="sortedBy === \'labels\' && reverse" class="expand-chevron">                  <i class="material-icons">expand_less</i>                </span>              </div>            </div>          </div>          <div *ngFor=            "let node of nodes |            sortBy : sortedBy : reverse : \'case-insensitive\' |            filter : searchTerm" class="label-tbody">            <div class="row">              <div class="col-4 label-td">{{node.node_id}}</div>              <div class="col-3 label-td">{{node.ip}}</div>                <div class="col-3 label-td text-lowercase ">{{node.state_name}}</div>              <div                 class="col-2 label-td col-center-lowercase"                [ngClass]=                "{                  \'status-dot\':classStatusCheck(node.status_name, \'running\'),                  \'status-dot-error\':classStatusCheck(node.status_name, \'error\'),                  \'status-dot-process\':classStatusCheck(node.status_name, \'process\')                }">                <span                 tooltip= "{{node.status_name | lowercase}}"                 placement="bottom"                class="tooltip-fix">                </span>                <span class="hide-lg">                  {{node.status_name}}                </span>              </div>            </div>            <div class="row">              <div class="col-12" *ngIf="!node.labels"> {{\'tables.no\' | translate}} </div>              <div class="col-12" *ngIf="node.labels">                <button                   *ngFor="let label of node.labels | keyvalue"                   (click)="onLabelClick(node.node_id,label.key, label.value)"                  [ngClass]=                    "{                      \'label-content-selected\': indexOfLabelSelected(node.node_id,label.key, label.value) >= 0 ,                      \'label-content\': indexOfLabelSelected(node.node_id,label.key, label.value) === -1                    }"                   class="label-content">                  {{label.key}}: {{label.value}}                </button>                <div class="label-btns">                  <div                     *ngIf="isAnyLabelSelected(node.node_id) === false"                    (click)="addLabel(node)"                    tooltip="{{\'label.addUp\' | translate}}"                     placement="right"                    class="label-btn-blue">                    <i class="material-icons i-add">add</i>                  </div>                  <div                     *ngIf="isAnyLabelSelected(node.node_id) === true"                    (click)="deleteLabel(node)"                    tooltip="{{\'label.deleteUp\' | translate}}"                     placement="right"                    class="label-btn-red">                    <i class="material-icons i-delete">delete</i>                  </div>                </div>              </div>            </div>          </div>        </div>      </div>      <!-- No info to show -->      <div *ngIf=        "loadedData &&        nodes && nodes.length === 0 &&        !requestError"        class="no-elements">        <p>{{\'resources.noNodes\' | translate}}</p>      </div>      <!-- Requested error -->      <div *ngIf="loadedData && requestError" class="no-elements">        <p>{{requestError}}</p>      </div>      <!-- Loader -->      <div *ngIf="!loadedData"class="nalej-loader-box">        <div class="loader">          <svg class="circular" viewBox="25 25 50 50">            <circle               class="path"               cx="50"               cy="50"               r="20"               fill="none"               stroke-width="2"               stroke-miterlimit="10"/>          </svg>        </div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'ToolsComponent', 'selector': 'tools'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
     var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
     var ACTUAL_COMPONENT = {'name': 'ClusterComponent'};
 </script>

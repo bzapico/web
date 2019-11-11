@@ -60,7 +60,9 @@
 
 ### **Style and code formatting**
 
-- Nalej follows the [Golang code style guide](https://golang.org/doc/effective_go.html). Use gofmt on your code to automatically fix the majority of mechanical style issues.
+- Nalej uses [TSlint](https://palantir.github.io/tslint/) that is is an extensible static analysis tool that checks TypeScript code for readability, maintainability, and functionality errors.
+- To avoid errors and enforce conventions in the styles, Nalej uses [stylelint](https://stylelint.io/user-guide/configuration).
+- For syntax, conventions, and application structure Nalej is based on [Angular Style guide](https://angular.io/guide/styleguide).
 
 ### **Third-party libraries**
 

@@ -27,7 +27,6 @@ The front end for **NALEJ**
     - [Installation](#installation)
     - [Development server](#development-server)
     - [Code scaffolding](#code-scaffolding)
-    - [Build](#build)
     - [Running unit tests](#running-unit-tests)
     - [Documentation](#documentation)
     - [Further help](#further-help)
@@ -132,10 +131,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ### Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-### Build
-
-In order to build and compile this repository run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Using `--prod` flag will produce a dependency injection error (generated conflict between two libraries: [ngx-bootstrap](https://github.com/valor-software/ngx-bootstrap) and [ngx-graph](https://github.com/swimlane/ngx-graph)).
 
 ### Running unit tests
 
