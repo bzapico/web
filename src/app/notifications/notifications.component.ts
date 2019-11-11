@@ -4,6 +4,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { BackendService } from '../services/backend.service';
 import { Backend } from '../definitions/interfaces/backend';
 import { NotificationsService } from '../services/notifications.service';
+import { Notification } from '../definitions/interfaces/notification';
 
 @Component({
   selector: 'notifications',
@@ -11,7 +12,7 @@ import { NotificationsService } from '../services/notifications.service';
   styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent {
-  @Input() notifications: any[];
+  @Input() notifications: Notification[];
   /**
    * Backend handler (mocked up or real backend)
    */
@@ -37,7 +38,7 @@ export class NotificationsComponent {
   /**
    * Notifications have dismiss option. Enabling it will show close button to the right of the alert.
    */
-  onClosed(dismissedNotifications: any): void {
+  onClosed(dismissedNotifications: any) {
     this.notificationsService.onClosed(dismissedNotifications);
   }
 }

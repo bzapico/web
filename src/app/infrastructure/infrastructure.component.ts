@@ -614,8 +614,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
                   asset_id: asset.asset_id,
                   eic_net_ip: assetIp,
                   status: asset.mapStatus(),
-                  edge_controller_id:
-                  asset.edge_controller_id});
+                  edge_controller_id: asset.edge_controller_id});
               }
             });
           }

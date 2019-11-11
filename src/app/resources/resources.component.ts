@@ -244,7 +244,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Opens the modal view that holds add label component
    * @param entity selected label entity
    */
-  addLabel(entity: { name: any; }) {
+  addLabel(entity: { name: string; }) {
     const initialState = {
       organizationId: this.organizationId,
       entityType: 'cluster',
@@ -253,7 +253,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     };
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {this.updateClusterList(); });
+    this.modalService.onHide.subscribe(() => {this.updateClusterList(); });
   }
   /**
    * Deletes a selected label

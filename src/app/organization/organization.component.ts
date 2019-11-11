@@ -11,6 +11,7 @@ import { UpdateEventsService } from '../services/update-events.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { User } from '../definitions/interfaces/user';
 
 @Component({
   selector: 'organization',
@@ -27,7 +28,7 @@ export class OrganizationComponent implements OnInit {
    */
   organizationId: string;
   organizationName: string;
-  users: any[];
+  users: User[];
   profileRole: string;
   userId: string;
   /**

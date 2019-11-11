@@ -410,7 +410,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
     };
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
+    this.modalService.onHide.subscribe(() => {
       this.updateRegisteredInstances(this.organizationId);
     } );
   }

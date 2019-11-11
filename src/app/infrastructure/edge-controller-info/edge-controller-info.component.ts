@@ -5,6 +5,8 @@ import { BackendService } from '../../services/backend.service';
 import { MockupBackendService } from '../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { InventoryType } from '../../definitions/enums/inventory-type.enum';
+import { Asset } from '../../definitions/models/asset';
+import { KeyValue } from '../../definitions/interfaces/key-value';
 
 @Component({
   selector: 'app-edge-controller-info',
@@ -21,11 +23,11 @@ export class EdgeControllerInfoComponent {
    */
   organizationId: string;
   id: string;
-  assets: any[];
+  assets: Asset[];
   show: string;
   created: string;
   name: string;
-  labels: any;
+  labels: KeyValue;
   status: string;
   /**
    * Model that holds onclose method defined in Infrastructure component
@@ -82,7 +84,7 @@ export class EdgeControllerInfoComponent {
    *  @param assetReduced Reduced asset info to locate the whole asset object
    */
   openAssetInfo(assetReduced) {
-    let asset: any;
+    let asset: Asset;
     let assetIndexFound: number;
     assetIndexFound = -1;
     for (let i = 0; i < this.inventory.length && assetIndexFound === -1 ; i++) {

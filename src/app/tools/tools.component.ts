@@ -234,7 +234,7 @@ export class ToolsComponent implements OnInit {
    * Return if the marker is required
    * @param link Link object
    */
-  getMarker(link: { [x: string]: any; is_between_apps: any; }, origin: string) {
+  getMarker(link: { [x: string]: any; is_between_apps: boolean; }, origin: string) {
     const index = this.graphData.nodes.map((x: { id: any; }) => x.id).indexOf(link[origin]);
     if (index !== -1) {
       if (link.is_between_apps) {

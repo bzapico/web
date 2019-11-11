@@ -319,7 +319,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Opens the modal view that holds add label component
    * @param device Device object
    */
-  addLabel(device: { device_id: any; }) {
+  addLabel(device: { device_id: string; }) {
     const initialState = {
       organizationId: this.organizationId,
       entityType: this.translateService.instant('label.entityTypeDevice'),

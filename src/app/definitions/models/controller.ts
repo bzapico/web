@@ -31,7 +31,11 @@ export class Controller extends Item {
     last_op_result?: string;
     // AssetInfo with the information related to Hw, Storage and OS
     asset_info?: AssetInfo;
-
+    /**
+     * Assets is useful to relates controller with its assets,
+     * however in the future we have to disconnect this from controller
+     * because it is not a real part of the model.
+     */
     assets?: any[];
 
     constructor(

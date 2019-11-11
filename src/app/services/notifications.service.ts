@@ -14,7 +14,7 @@ export class NotificationsService {
    */
   private static readonly TIMEOUT_ERROR = 5000;
 
-  private _notifications: any[];
+  private _notifications: Notification[];
 
   constructor() {
     this._notifications = [];

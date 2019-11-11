@@ -9,11 +9,6 @@ import { NotificationsService } from '../services/notifications.service';
 import { TranslateService } from '@ngx-translate/core';
 import { RoleOptions } from '../definitions/enums/role-options.enum';
 
-/**
- * It sets the timeout for errors
- */
-const TIMEOUT_ERROR = 5000;
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -52,7 +47,6 @@ export class LoginComponent implements OnInit {
     if (this.route.snapshot.queryParamMap.get('unauthorized')) {
       this.notificationsService.add({
         message: this.translateService.instant('login.expired'),
-        timeout: TIMEOUT_ERROR,
         type: 'warning'
       });
     }
@@ -111,21 +105,18 @@ export class LoginComponent implements OnInit {
           this.loginRequest = false;
           this.notificationsService.add({
             message: error.error.message,
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         } else if (error.message) {
           this.loginRequest = false;
           this.notificationsService.add({
             message: error.message,
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         } else {
           this.loginRequest = false;
           this.notificationsService.add({
             message: 'ERROR',
-            timeout: TIMEOUT_ERROR,
             type: 'warning'
           });
         }
@@ -137,6 +128,6 @@ export class LoginComponent implements OnInit {
   openDebugPanel() {
     this.modalRef = this.modalService.show(DebugPanelComponent);
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { location.reload(); });
+    this.modalService.onHide.subscribe(() => { location.reload(); });
   }
 }
