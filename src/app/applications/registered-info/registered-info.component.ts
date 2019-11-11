@@ -103,7 +103,6 @@ export class RegisteredInfoComponent implements OnInit {
   graphData: any;
   orientation: string;
   curve: any;
-  view: any[];
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;

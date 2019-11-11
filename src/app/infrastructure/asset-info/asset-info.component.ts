@@ -89,7 +89,7 @@ export class AssetInfoComponent implements OnInit {
    * Gets the Edge Controller name
    */
   getECname() {
-    let edgeControllerName: any;
+    let edgeControllerName: string;
     for (let index = 0; index < this.inventory.length; index++) {
       if (
         this.inventory[index].edge_controller_id &&

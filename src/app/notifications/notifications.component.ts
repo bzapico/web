@@ -38,7 +38,7 @@ export class NotificationsComponent {
   /**
    * Notifications have dismiss option. Enabling it will show close button to the right of the alert.
    */
-  onClosed(dismissedNotifications: any) {
+  onClosed(dismissedNotifications: Notification) {
     this.notificationsService.onClosed(dismissedNotifications);
   }
 }

@@ -65,7 +65,7 @@ export class AgentJoinTokenInfoComponent implements OnInit {
       .subscribe((agent: any[]) => {
         this.agent = agent || [];
         this.loadedData = true;
-    }, errorResponse => {
+    }, () => {
       this.loadedData = true;
     });
     }

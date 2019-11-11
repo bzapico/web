@@ -131,7 +131,7 @@ export class RegisterApplicationComponent {
    */
   fileSelectorChange(e) {
     const fileReader = new FileReader();
-    fileReader.onload = (event) => {
+    fileReader.onload = () => {
       try {
         this.jsonFile = JSON.parse(fileReader.result as string);
         this.readyToUpload = true;

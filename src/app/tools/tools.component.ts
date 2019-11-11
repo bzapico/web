@@ -3,7 +3,6 @@ import { ClusterStatus } from '../definitions/enums/cluster-status.enum';
 import { AppStatus } from '../definitions/enums/app-status.enum';
 import { GraphData } from '../definitions/models/graph-data';
 import { NodeType } from '../definitions/enums/node-type.enum';
-import * as shape from 'd3-shape';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { Backend } from '../definitions/interfaces/backend';
 import { ApplicationInstance } from '../definitions/models/application-instance';
@@ -62,7 +61,6 @@ export class ToolsComponent implements OnInit {
   graphData: GraphData<any[]>;
   graphReset: boolean;
   orientation: string;
-  curve: any;
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;
@@ -81,7 +79,7 @@ export class ToolsComponent implements OnInit {
    */
   gradient: boolean;
   doughnut: boolean;
-  colorScheme: any;
+  colorScheme: {domain: string[]};
   /**
    * Search process
    */
@@ -92,7 +90,6 @@ export class ToolsComponent implements OnInit {
     this.graphReset = false;
     this.instances = [];
     this.orientation = 'TB';
-    this.curve = shape.curveBasis;
     this.autoZoom = true;
     this.autoCenter = true;
     this.enableZoom = true;

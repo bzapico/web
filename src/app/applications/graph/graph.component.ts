@@ -14,7 +14,6 @@ export class GraphComponent {
   @Input() autoCenter: boolean;
   @Input() curve: any;
   @Input() enableZoom: boolean;
-  @Input() view: any[];
 
   constructor() {
     this.links = [];

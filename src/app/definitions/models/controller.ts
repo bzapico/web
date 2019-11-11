@@ -6,6 +6,7 @@ import { KeyValue } from '../interfaces/key-value';
 import { InventoryLocation } from '../interfaces/inventory-location';
 import { AssetInfo } from '../interfaces/asset-info';
 import { Item } from './item';
+import { AssetsForController } from './assets-for-controller';
 
 export class Controller extends Item {
     // OrganizationId with the organization identifier.
@@ -36,7 +37,7 @@ export class Controller extends Item {
      * however in the future we have to disconnect this from controller
      * because it is not a real part of the model.
      */
-    assets?: any[];
+    assets?: AssetsForController[];
 
     constructor(
         organization_id: string,
@@ -50,7 +51,7 @@ export class Controller extends Item {
         location: InventoryLocation,
         last_op_result: string,
         asset_info: AssetInfo,
-        assets: any[]) {
+        assets: AssetsForController[]) {
         super();
         this.organization_id = organization_id;
         this.edge_controller_id = edge_controller_id;

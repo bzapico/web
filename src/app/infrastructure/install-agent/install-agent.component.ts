@@ -9,6 +9,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { InventoryType } from '../../definitions/enums/inventory-type.enum';
 import { TranslateService } from '@ngx-translate/core';
 import { ArchitectureType } from '../../definitions/enums/architecture-type.enum';
+import { Controller } from '../../definitions/models/controller';
+import { Item } from '../../definitions/models/item';
 
 @Component({
   selector: 'app-install-agent',
@@ -36,14 +38,14 @@ export class InstallAgentComponent implements OnInit {
   targetHost: FormControl;
   architecture: FormControl;
   type: FormControl;
-  controllersList: any[];
+  controllersList: Controller[];
   openFromEc: boolean;
   ecCount: number;
   edgeControllerFromEC: string;
   /**
    * Models that hold all inventory list
    */
-  inventory: any[];
+  inventory: Item[];
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -59,9 +61,7 @@ export class InstallAgentComponent implements OnInit {
   selectConfig = {};
   agentTypeOptions: any[];
   agentTypeSelectConfig = {};
-  architectureOptions: any[];
   architectureSelectConfig = {};
-  edgeControllerOptions: any[];
   edgeControllerSelectConfig = {};
 
   constructor(
@@ -138,7 +138,7 @@ export class InstallAgentComponent implements OnInit {
   getControllersList() {
     const controllersList = [];
     for (let i = 0; i < this.inventory.length; i++) {
-      if (this.inventory[i].type === InventoryType.Ec) {
+      if (this.inventory[i].mapType() === InventoryType.Ec) {
         controllersList.push(this.inventory[i]);
       }
     }

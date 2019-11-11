@@ -15,6 +15,7 @@ import { ServicesStatus } from '../../definitions/enums/services-status.enum';
 import { InstanceInfoService } from './instance-info.service';
 import { ApplicationDescriptor } from '../../definitions/models/application-descriptor';
 import { ServiceGroupInstance } from '../../definitions/interfaces/service-group-instance';
+import { ApplicationInstance } from '../../definitions/models/application-instance';
 
 @Component({
   selector: 'app-instance-info',
@@ -41,7 +42,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   /**
    * Model that hold instance
    */
-  instance: any;
+  instance: ApplicationInstance;
   enabled: boolean;
   openFromInstance: boolean;
   /**
@@ -115,7 +116,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   autoCenter: boolean;
   enableZoom: boolean;
   colorScheme: any;
-  view: any[];
   width: number;
   height: number;
   draggingEnabled: boolean;
@@ -144,11 +144,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.isSelectableLabel = false;
     this.isOpenFromRegistered = false;
     this.groups = [];
-    this.instance = {
-        groups: [],
-        environment_variables: {},
-        configuration_options: {}
-      };
+    this.instance = new ApplicationInstance();
     this.registered = [];
     this.requestError = '';
     this.showGraph = true;
@@ -270,7 +266,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Returns the descriptor
    * @param instance Instance app
    */
-  getDescriptorFromInstance(instance): any {
+  getDescriptorFromInstance(instance): ApplicationDescriptor[] {
     return this.registered.filter(x => x.app_descriptor_id === instance.app_descriptor_id);
   }
   /**

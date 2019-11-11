@@ -80,7 +80,6 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
   /**
    * Charts references
    */
-  mockAppChart: any;
   mockAppPieChart: any;
   appsChart: any;
   /**

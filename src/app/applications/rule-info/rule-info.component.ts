@@ -25,7 +25,7 @@ export class RuleInfoComponent {
   targetServiceGroupName: string;
   targetPort: string;
   authServiceGroupName: string;
-  authServices: any;
+  authServices: string[];
   deviceGroupIds: any;
   deviceGroupNames: any;
   appDescriptorId: string;

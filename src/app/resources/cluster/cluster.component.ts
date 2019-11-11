@@ -4,8 +4,6 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BackendService } from '../../services/backend.service';
 import { MockupBackendService } from '../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
-import { mockNodesChart } from '../../services/utils/mocks';
-import { mockClusterChart } from '../../services/utils/clusters.mock';
 import { ActivatedRoute } from '@angular/router';
 import { Cluster } from '../../definitions/interfaces/cluster';
 import { AddLabelComponent } from '../../add-label/add-label.component';
@@ -38,10 +36,6 @@ export class ClusterComponent implements OnInit {
    * Model that hold cluster data
    */
   clusterData: Cluster;
-  /**
-   * List of available clusters
-   */
-  clusters: any[];
   /**
    * List of available nodes
    */
@@ -79,9 +73,6 @@ export class ClusterComponent implements OnInit {
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
-  mockClusterChart: any;
-  mockNodesChart: any;
-  autoScale: any;
   clusterPieChart: any;
   /**
    * Reference for the service that allows the user info component
@@ -121,7 +112,6 @@ export class ClusterComponent implements OnInit {
     }
     // Default initialization
     this.loadedData = false;
-    this.clusters = [];
     this.nodes = [];
     this.nodesCount = 0;
     this.clustersCount = 0;
@@ -133,10 +123,6 @@ export class ClusterComponent implements OnInit {
     this.searchTerm = '';
     // Filter field
     this.filterField = false;
-  /**
-   * Mocked Charts
-   */
-    Object.assign(this, {mockClusterChart, mockNodesChart});
   }
 
   ngOnInit() {

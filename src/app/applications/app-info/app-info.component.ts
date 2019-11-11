@@ -8,6 +8,8 @@ import { AppStatus } from '../../definitions/enums/app-status.enum';
 import { BackendService } from '../../services/backend.service';
 import { MockupBackendService } from '../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
+import { ApplicationDescriptor } from '../../definitions/models/application-descriptor';
+import { ParamCategory } from '../../definitions/enums/param-category.enum';
 
 /**
  * Notification timeout reference
@@ -22,7 +24,7 @@ const NOTIFICATION_TIMEOUT = 3000; // 3 seconds
 
 export class AppInfoComponent implements OnChanges {
   @Input() instance: any;
-  @Input() registeredData: any;
+  @Input() registeredData: ApplicationDescriptor;
   @Input() openFromInstance: boolean;
   @Input() openFromRegistered: boolean;
   @Input() loadedData: boolean;
@@ -286,7 +288,7 @@ export class AppInfoComponent implements OnChanges {
         && this.registeredData.parameters ? this.registeredData.parameters.filter(parameter => !parameter.category) : [],
       advanced: this.registeredData
         && this.registeredData.parameters ?
-          this.registeredData.parameters.filter(parameter => parameter.category && parameter.category === 'ADVANCED') : []
+          this.registeredData.parameters.filter(parameter => parameter.category && parameter.category === ParamCategory.Advanced) : []
     };
   }
   /**

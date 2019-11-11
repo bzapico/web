@@ -44,7 +44,6 @@ export class EditUserComponent implements OnInit {
   /**
    * NGX-select-dropdown
    */
-  tab = 1;
   selectedOptions = [];
   options = [];
   selectConfig = {};

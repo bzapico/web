@@ -24,6 +24,7 @@ import { ChartData } from '../definitions/interfaces/chart-data';
 import { Subscription, timer } from 'rxjs';
 import { Inventory } from '../definitions/interfaces/inventory';
 import { Item } from '../definitions/models/item';
+import { AssetsForController } from '../definitions/models/assets-for-controller';
 
 @Component({
   selector: 'app-infrastructure',
@@ -610,11 +611,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             response.assets.forEach(asset => {
               if (asset.edge_controller_id === controller.edge_controller_id) {
                 const assetIp = asset.eic_net_ip ? asset.eic_net_ip : 'undefined';
-                controller.assets.push({
-                  asset_id: asset.asset_id,
-                  eic_net_ip: assetIp,
-                  status: asset.mapStatus(),
-                  edge_controller_id: asset.edge_controller_id});
+                controller.assets.push(new AssetsForController(asset.asset_id, assetIp, asset.mapStatus(), asset.edge_controller_id));
               }
             });
           }

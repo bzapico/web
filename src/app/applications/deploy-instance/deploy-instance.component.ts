@@ -6,6 +6,7 @@ import { MockupBackendService } from '../../services/mockup-backend.service';
 import { NotificationsService } from '../../services/notifications.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { ApplicationInstance } from '../../definitions/models/application-instance';
 
 @Component({
   selector: 'app-deploy-instance',
@@ -84,7 +85,7 @@ export class DeployInstanceComponent implements OnInit {
    */
   requiredConnections: any[];
   areRequiredConnections: boolean;
-  instances: any[];
+  instances: ApplicationInstance[];
   instancesNames: string[];
   targetInstance: FormControl;
   targetInterface: FormControl;

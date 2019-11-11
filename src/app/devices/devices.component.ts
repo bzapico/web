@@ -274,7 +274,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       deviceGroupId: device.device_group_id,
       deviceId: device.device_id,
       enabled: device.enabled
-    }).subscribe( updateDeviceResponse => {
+    }).subscribe( () => {
       let notificationText = this.translateService.instant('devices.enabled');
       if (!device.enabled) {
       notificationText = this.translateService.instant('devices.disabled');

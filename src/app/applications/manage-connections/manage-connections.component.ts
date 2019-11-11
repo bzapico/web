@@ -28,8 +28,7 @@ export class ManageConnectionsComponent implements OnInit, OnDestroy {
   organizationId: string;
   title: string;
   connections: any[];
-  copyConnections: any[];
-  selectedApp: any;
+  selectedApp: string;
   /**
    * Model that hold the search term in search box
    */
@@ -43,8 +42,7 @@ export class ManageConnectionsComponent implements OnInit, OnDestroy {
   /**
    * NGX-select-dropdown
    */
-  tab = 1;
-  appDropdownOptions: any[];
+  appDropdownOptions: {name: string, id: string}[];
   selectConfig = {};
   /**
    * Reference for the service that allows the modal component
@@ -139,7 +137,7 @@ export class ManageConnectionsComponent implements OnInit, OnDestroy {
   /**
    * Returns app instances names and ids in an object array
    */
-  getAppInstancesOptions() {
+  getAppInstancesOptions(): {name: string, id: string}[] {
     const instances = [];
     if (this.connections && this.connections !== []) {
       this.connections.forEach(connectionName => {
