@@ -12,7 +12,7 @@ export class ContextualMenuComponent {
   constructor() {}
 
   @Input() visible: boolean;
-  @Input() options: any[];
+  @Input() options: {action: any, item: any, name: string}[];
   @Output() closed = new EventEmitter<boolean>();
 
   onClick(option) {

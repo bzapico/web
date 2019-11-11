@@ -262,12 +262,12 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Opens context menu
    * @param item inventory item
    */
-  openContextualMenu(event, item: any) {
+  openContextualMenu(event, item: Item) {
     event.stopPropagation();
-    if (item.id === this.activeContextMenuItemId) {
+    if (item.mapId() === this.activeContextMenuItemId) {
       this.activeContextMenuItemId = '';
     } else {
-      this.activeContextMenuItemId = item.id;
+      this.activeContextMenuItemId = item.mapId();
     }
   }
   onContextualMenuClose(item) {
@@ -277,14 +277,14 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Opens the modal view that holds add label component
    * @param item Item object
    */
-  addLabel(item: any) {
+  addLabel(item: (Device & Asset & Controller)) {
     const initialState = {
       organizationId: this.organizationId,
-      entityType: item.type,
+      entityType: item.mapType(),
       entity: item,
       modalTitle: ''
     };
-    switch (item.type.toLowerCase()) {
+    switch (item.mapType().toLowerCase()) {
       case InventoryType.Ec:
         initialState.modalTitle = item.name;
         break;
@@ -292,50 +292,51 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         if (item.eic_net_ip) {
           initialState.modalTitle = item.eic_net_ip;
         } else {
-          initialState.modalTitle = item.asset_id;
+          initialState.modalTitle = item.mapId();
         }
         break;
       case InventoryType.Device:
-        initialState.modalTitle =  item.id;
+        initialState.modalTitle = item.mapId();
         break;
       default:
         break;
     }
     this.addLabelModalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.addLabelModalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { });
   }
   /**
    * Deletes a selected label
    * @param item selected label item
    */
-  deleteLabel(item: any) {
+  deleteLabel(item: (Device | Asset | Controller)) {
     const deleteConfirm = confirm(this.translateService.instant('infrastructure.label.deleteLabel'));
     if (deleteConfirm) {
-      switch (item.type) {
+      switch (item.mapType()) {
         case InventoryType.Ec:
-          const indexEC = this.selectedLabels.map(x => x.id).indexOf(item.id);
-          this.backend.updateEC(
-            this.organizationId,
-            item.edge_controller_id,
-            {
-              organizationId: this.organizationId,
-              edge_controller_id: item.edge_controller_id,
-              remove_labels: true,
-              labels: this.selectedLabels[indexEC].labels
-            }).subscribe(() => {
+          const indexEC = this.selectedLabels.map(x => x.id).indexOf(item.mapId());
+          if (!(item instanceof Device)) {
+            this.backend.updateEC(
+                this.organizationId,
+                item.edge_controller_id,
+                {
+                  organizationId: this.organizationId,
+                  edge_controller_id: item.edge_controller_id,
+                  remove_labels: true,
+                  labels: this.selectedLabels[indexEC].labels
+                }).subscribe(() => {
               this.selectedLabels.splice(indexEC, 1);
               this.updateInventoryList();
             });
+          }
           break;
         case InventoryType.Asset:
-          const indexAsset = this.selectedLabels.map(x => x.id).indexOf(item.id);
+          const indexAsset = this.selectedLabels.map(x => x.id).indexOf(item.mapId());
           this.backend.updateAsset(
             this.organizationId,
-            item.asset_id,
+            item.mapId(),
             {
               organizationId: this.organizationId,
-              asset_id: item.asset_id,
+              asset_id: item.mapId(),
               remove_labels: true,
               labels: this.selectedLabels[indexAsset].labels
             }).subscribe(() => {
@@ -344,18 +345,20 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             });
           break;
         case InventoryType.Device:
-          const indexDevice = this.selectedLabels.map(x => x.id).indexOf(item.id);
-          this.backend.removeLabelFromDevice(
-            this.organizationId,
-            {
-              organizationId: this.organizationId,
-              device_id: item.device_id,
-              device_group_id: item.device_group_id,
-              labels: this.selectedLabels[indexDevice].labels
-            }).subscribe(() => {
+          const indexDevice = this.selectedLabels.map(x => x.id).indexOf(item.mapId());
+          if (item instanceof Device) {
+            this.backend.removeLabelFromDevice(
+                this.organizationId,
+                {
+                  organizationId: this.organizationId,
+                  device_id: item.mapId(),
+                  device_group_id: item.device_group_id,
+                  labels: this.selectedLabels[indexDevice].labels
+                }).subscribe(() => {
               this.selectedLabels.splice(indexDevice, 1);
               this.updateInventoryList();
             });
+          }
           break;
         default:
           break;
@@ -368,14 +371,14 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param labelKey label key from selected label
    * @param labelValue label value from selected label
    */
-  onLabelClick(item: any, labelKey: any, labelValue: any) {
-    const selectedIndex = this.indexOfLabelSelected(item.id, labelKey, labelValue);
+  onLabelClick(item: Item, labelKey: string, labelValue: string) {
+    const selectedIndex = this.indexOfLabelSelected(item.mapId(), labelKey, labelValue);
     const newLabel = {
-      id: item.id,
+      id: item.mapId(),
       labels: {}
     } ;
     if (selectedIndex === -1 ) {
-      const selected = this.selectedLabels.map(x => x.id).indexOf(item.id);
+      const selected = this.selectedLabels.map(x => x.id).indexOf(item.mapId());
       if (selected === -1) {
         newLabel.labels[labelKey] = labelValue;
         this.selectedLabels.push(newLabel);
@@ -394,7 +397,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
    * @param id entity from selected label
    */
-  isAnyLabelSelected(id) {
+  isAnyLabelSelected(id: string) {
     if (this.selectedLabels.length > 0) {
       const indexSelected = this.selectedLabels.map(x => x.id).indexOf(id);
       if (indexSelected >= 0) {
@@ -409,7 +412,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param labelKey label key from selected label
    * @param labelValue label value from selected label
    */
-  indexOfLabelSelected(id, labelKey, labelValue) {
+  indexOfLabelSelected(id: string, labelKey: string, labelValue: string) {
     for (let index = 0; index < this.selectedLabels.length; index++) {
       if (this.selectedLabels[index].id === id &&
         this.selectedLabels[index].labels[labelKey] === labelValue
@@ -423,27 +426,27 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Get the item options to show in the context menu
    * @param item inventory item
    */
-  getItemOptions(item: any) {
-    switch (item.type) {
+  getItemOptions(item: Item) {
+    switch (item.mapType()) {
       case InventoryType.Ec:
         const ecOptions = [];
         const ecOption1 = {
           name: this.translateService.instant('infrastructure.contextMenu.moreInfo'),
-          action: (inventoryItem: any) => {
+          action: (inventoryItem: Controller) => {
             this.openEdgeControllerInfo(inventoryItem);
           },
           item: item
         };
         const ecOption2 = {
           name: this.translateService.instant('infrastructure.contextMenu.installAgent'),
-          action: (inventoryItem: any) => {
+          action: (inventoryItem: Controller) => {
             this.installAgentFromEC(inventoryItem);
           },
           item: item
         };
         const ecOption3 = {
           name: this.translateService.instant('infrastructure.contextMenu.createAgentToken'),
-          action: (inventoryItem: any) => {
+          action: (inventoryItem: Controller) => {
             if (inventoryItem.status === InventoryStatus.Online) {
               this.createAgentToken(inventoryItem);
             } else {
@@ -456,7 +459,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         };
         const ecOption4 = {
           name: this.translateService.instant('infrastructure.contextMenu.unlinkEC'),
-          action: (inventoryItem: any) => {
+          action: (inventoryItem: Controller) => {
             this.unlinkEIC(inventoryItem);
           },
           item: item
@@ -470,21 +473,21 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         const assetOptions = [];
         const assetOption1 = {
           name: this.translateService.instant('infrastructure.contextMenu.moreInfo'),
-          action: (inventoryItem: any) => {
+          action: (inventoryItem: Asset) => {
             this.openAssetInfo(inventoryItem);
           },
           item: item
         };
         const assetOption2 = {
           name: this.translateService.instant('infrastructure.contextMenu.lastOperationLog'),
-          action: (inventoryItem: any) => {
+          action: (inventoryItem: Asset) => {
             this.lastOperationLog(inventoryItem);
           },
           item: item
         };
         const assetOption3 = {
           name: this.translateService.instant('infrastructure.contextMenu.uninstallAgent'),
-          action: (inventoryItem: any) => {
+          action: (inventoryItem: Asset) => {
             this.uninstallAgent(inventoryItem);
           },
           item: item
@@ -497,21 +500,21 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         const deviceOptions = [];
         const deviceOption1 = {
           name: this.translateService.instant('infrastructure.contextMenu.moreInfo'),
-          action: (inventoryItem: any) => {
+          action: (inventoryItem: Device) => {
             this.openDeviceInfo(inventoryItem);
           },
           item: item
         };
         const deviceOption2 = {
           name: this.translateService.instant('infrastructure.contextMenu.toggleEnablement'),
-          action: (inventoryItem: any) => {
+          action: (inventoryItem: Device) => {
             this.deviceEnablement(inventoryItem);
           },
           item: item
         };
         const deviceOption3 = {
           name: this.translateService.instant('infrastructure.contextMenu.unlinkDevice'),
-          action: (inventoryItem: any) => {
+          action: (inventoryItem: Device) => {
             this.unlinkDevice(inventoryItem);
           },
           item: item
@@ -658,19 +661,19 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   * Open Asset info modal window
   *  @param asset asset object
   */
-  private openAssetInfo(asset: any) {
+  private openAssetInfo(asset: Asset) {
     if (!asset.os || Object.keys(asset.os).length === 0) {
       asset.os = {version: '-', class_name: '-'};
     }
     if (!asset.hardware || Object.keys(asset.hardware).length === 0) {
       asset.hardware = {
-        cpus: [{manufacturer: '-', model: '-', architecture: '-', num_cores: '-'}],
-        installed_ram: '-',
-        net_interfaces: [{type: '-', link_capacity: '-'}]
+        cpus: [{manufacturer: '-', model: '-', architecture: '-', num_cores: 0}],
+        installed_ram: 0,
+        net_interfaces: [{type: '-', link_capacity: 0}]
       };
     }
     if (!asset.storage || Object.keys(asset.storage).length === 0) {
-      asset.storage = [{total_capacity: '-'}];
+      asset.storage = [{total_capacity: 0}];
     }
     const initialStateAsset = {
       organizationId: this.organizationId,
@@ -689,8 +692,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       storages: asset.storage,
       capacity: asset.hardware.installed_ram,
       eic: asset.eic_net_ip,
-      status: asset.status_name,
-      summary: asset.last_op_summary,
+      status: asset.mapStatus(),
       lastAlive: asset.last_alive_timestamp,
       inventory: this.plainInventory,
     };
@@ -701,7 +703,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       ignoreBackdropClick: false
     });
     // onClose is used if the Asset modal comes while closing it, which means that we need to trigger a new edge controller modal
-    this.assetModalRef.content.onClose = (ecFromAsset: any) => {
+    this.assetModalRef.content.onClose = (ecFromAsset: Controller) => {
     if (ecFromAsset) {
       this.openEdgeControllerInfo(ecFromAsset);
       }
@@ -713,14 +715,14 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   * Open last operation log
   *  @param asset asset object
   */
-  private lastOperationLog(asset: any) {
+  private lastOperationLog(asset: Asset) {
     let lastOpSummary;
-    if (asset.last_op_summary) {
-      lastOpSummary = asset.last_op_summary;
+    if (asset.last_op_result) {
+      lastOpSummary = asset.last_op_result;
     } else {
       lastOpSummary = {
-        timestamp: 0,
-        status: 'undefined',
+        timestamp: '0',
+        status: null,
         info: this.translateService.instant('infrastructure.asset.noInfo'),
       };
     }
@@ -741,7 +743,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   * Uninstall agent
   *  @param asset asset object
   */
-  private uninstallAgent(asset: any) {
+  private uninstallAgent(asset: Asset) {
     const uninstallConfirm = confirm(this.translateService.instant('infrastructure.asset.uninstallAgent'));
     if (uninstallConfirm) {
       if (this.organizationId !== null) {
@@ -764,7 +766,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   * Open Edge Controllers info modal window
   *  @param controller Edge controller object
   */
-  private openEdgeControllerInfo(controller: any) {
+  private openEdgeControllerInfo(controller: Controller) {
     const initialStateEC = {
       organizationId: this.organizationId,
       id: controller.edge_controller_id,
@@ -774,7 +776,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       name: controller.name,
       labels: controller.labels,
       status: controller.status,
-      type: controller.type,
+      type: controller.mapType(),
       inventory: this.plainInventory
     };
     this.ecModalRef = this.modalService.show(
@@ -784,7 +786,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         ignoreBackdropClick: false
       });
     // onClose is used if the EC modal comes while closing it, which means that we need to trigger a new edge controller modal
-    this.ecModalRef.content.onClose = (assetFromEC: any) => {
+    this.ecModalRef.content.onClose = (assetFromEC: Asset) => {
       if (assetFromEC) {
         this.openAssetInfo(assetFromEC);
       }
@@ -796,7 +798,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Opens the modal view that holds the install Agent modal component
    * @param controller edge controller to install
    */
-  private installAgentFromEC(controller: any) {
+  private installAgentFromEC(controller: Controller) {
     const initialState = {
       organizationId: this.organizationId,
       edgeControllerId: controller.edge_controller_id,
@@ -820,7 +822,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Creates a new token for an Agent to join the platform
    * @param controller edge controller identifier
    */
-  private createAgentToken(controller: any) {
+  private createAgentToken(controller: Controller) {
     const initialState = {
       organizationId: this.organizationId,
       edgeControllerId: controller.edge_controller_id
@@ -840,7 +842,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Operation to remove/uninstall an EIC
    * @param controller identifier
    */
-  private unlinkEIC(controller: any) {
+  private unlinkEIC(controller: Controller) {
     if (controller.assets.length > 0) {
       alert(this.translateService.instant('infrastructure.EIC.unlinkEICError'));
     } else {
@@ -848,7 +850,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       if (unlinkConfirm) {
         if (this.organizationId !== null) {
           this.backend.unlinkEIC(this.organizationId, controller.edge_controller_id)
-            .subscribe(response => {
+            .subscribe(() => {
               this.notificationsService.add({
                 message: this.translateService.instant('infrastructure.EIC.unlinkMessage')
               });
@@ -866,7 +868,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Opens the modal view that holds the device info component
    * @param device device to be opened
    */
-  openDeviceInfo(device: any) {
+  openDeviceInfo(device: Device) {
     const initialState = {
       organizationId: this.organizationId,
       deviceGroupId: device.device_group_id,
@@ -901,7 +903,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Executes devices enablement switcher statement to select one of enabled device to be executed.
    * @param device device in inventory item
    */
-  private deviceEnablement(device: any) {
+  private deviceEnablement(device: Device) {
     let deviceCurrentEnablementStr = this.translateService.instant('infrastructure.device.DISABLED');
     let deviceFutureEnablementStr = this.translateService.instant('infrastructure.device.enable');
     if (device.enabled) {
@@ -938,7 +940,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Operation to unlink a device
    * @param device device in inventory item
    */
-  private unlinkDevice(device: any) {
+  private unlinkDevice(device: Device) {
     const unlinkConfirm = confirm(this.translateService.instant('infrastructure.device.unlinkConfirm'));
     if (unlinkConfirm) {
       this.backend.removeDevice(this.organizationId, device.device_group_id , device.device_id)

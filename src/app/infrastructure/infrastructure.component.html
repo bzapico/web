@@ -82,24 +82,24 @@
           <!-- Quick filters -->
           <div class="col">
             <div class="quick-filters-title">{{'infrastructure.quickFilters.title' | translate}}</div>
-            <button (click)="addQuickFilter('EC')"
-              [ngClass]="{'quick-filters-btn-selected': quickFilter === 'EC', 'quick-filters-btn': '!quickFilter'}"
+            <button (click)="addQuickFilter('ec')"
+              [ngClass]="{'quick-filters-btn-selected': quickFilter === 'ec', 'quick-filters-btn': '!quickFilter'}"
               tooltip="{{'infrastructure.quickFilters.tooltipECs' | translate}}"
               placement="bottom"
               class="quick-filters-btn">
               <i class="material-icons i-filters">device_hub</i>
               <span>{{'infrastructure.quickFilters.ecs' | translate}}</span>
             </button>
-            <button (click)="addQuickFilter('ASSET')"
-              [ngClass]="{'quick-filters-btn-selected': quickFilter === 'ASSET', 'quick-filters-btn': '!quickFilter'}"
+            <button (click)="addQuickFilter('asset')"
+              [ngClass]="{'quick-filters-btn-selected': quickFilter === 'asset', 'quick-filters-btn': '!quickFilter'}"
               tooltip="{{'infrastructure.quickFilters.tooltipAssets' | translate}}"
               placement="bottom"
               class="quick-filters-btn">
               <i class="material-icons i-filters">memory</i>
               <span>{{'infrastructure.quickFilters.assets' | translate}}</span>
             </button>
-            <button (click)="addQuickFilter('DEVICE')"
-              [ngClass]="{'quick-filters-btn-selected': quickFilter === 'DEVICE', 'quick-filters-btn': '!quickFilter'}"
+            <button (click)="addQuickFilter('device')"
+              [ngClass]="{'quick-filters-btn-selected': quickFilter === 'device', 'quick-filters-btn': '!quickFilter'}"
               tooltip="{{'infrastructure.quickFilters.tooltipDevices' | translate}}"
               placement="bottom"
               class="quick-filters-btn">
@@ -130,8 +130,8 @@
         <div class="row row-sorting-lg">
           <div class="col">
             <p *ngIf="searchTerm && !filterField && !quickFilter" class="sorting-message">
-              {{ ( plainInventory | filter : quickFilter : ['type']
-                | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }}
+              {{ ( plainInventory | filter : quickFilter : ['mapType']
+                | filter : searchTerm : ['mapType', 'id', 'location', 'labels', 'status'])?.length }}
               {{'sortingMessage.resultsFilteredBy' | translate:{value: searchTerm} }}
               <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p>
@@ -142,14 +142,14 @@
               <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p>
             <p *ngIf="quickFilter && !filterField && !searchTerm" class="sorting-message">
-              {{ ( plainInventory | filter : quickFilter : ['type']
-                | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }}
+              {{ ( plainInventory | filter : quickFilter : ['mapType']
+                | filter : searchTerm : ['mapType', 'id', 'location', 'labels', 'status'])?.length }}
               {{'sortingMessage.resultsFilteredBy' | translate:{value: quickFilter} }}
               <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
-              {{ ( plainInventory | filter : quickFilter : ['type']
-                | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }}
+              {{ ( plainInventory | filter : quickFilter : ['mapType']
+                | filter : searchTerm : ['mapType', 'id', 'location', 'labels', 'status'])?.length }}
               {{'sortingMessage.resultsFound' | translate }}
               {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
               <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ', '} }} </span>
@@ -158,8 +158,8 @@
               <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p>
             <p *ngIf="filterField && quickFilter && !searchTerm" class="sorting-message">
-              {{ ( plainInventory | filter : quickFilter : ['type']
-                | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }}
+              {{ ( plainInventory | filter : quickFilter : ['mapType']
+                | filter : searchTerm : ['mapType', 'id', 'location', 'labels', 'status'])?.length }}
               {{'sortingMessage.resultsFound' | translate }}
               {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
               <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ', '} }} </span>
@@ -168,8 +168,8 @@
               <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p>
             <p *ngIf="quickFilter && searchTerm && !filterField" class="sorting-message">
-              {{ ( plainInventory | filter : quickFilter : ['type']
-                | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }}
+              {{ ( plainInventory | filter : quickFilter : ['mapType']
+                | filter : searchTerm : ['mapType', 'id', 'location', 'labels', 'status'])?.length }}
               {{'sortingMessage.resultsFilteredBy' | translate:{value: searchTerm} }}
               {{'sortingMessage.resultsFilteredBy' | translate:{value: quickFilter} }}
               <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
@@ -281,8 +281,8 @@
             </div>
             <div *ngFor="let item of plainInventory |
               sortBy : sortedBy : reverse : true |
-              filter : searchTerm : ['type', 'id', 'location', 'labels', 'status']|
-              filter : quickFilter : ['type']"  class="label-tbody row">
+              filter : searchTerm : ['mapType', 'id', 'location', 'labels', 'status']|
+              filter : quickFilter : ['mapType']"  class="label-tbody row">
               <div class="col-2 label-td-flex-text">
                 <span tooltip="{{'tables.tableType' | translate}}" placement="top">{{item.mapType()}}</span>
               </div>
@@ -313,7 +313,7 @@
                 </div>
                 <div class="row">
                   <div *ngIf="item.labels" class="col-12">
-                    <div *ngFor="let label of item.labels | keyvalue"
+                    <div *ngFor="let label of item.labels"
                       (click)="onLabelClick(item, label.key, label.value)"
                       [ngClass]="
                         {'label-content-selected': indexOfLabelSelected(item.mapId(), label.key, label.value) >= 0 ,

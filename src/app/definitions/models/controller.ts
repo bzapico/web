@@ -20,7 +20,7 @@ export class Controller extends Item {
     // Name of the EIC.
     name?: string;
     // Labels defined by the user.
-    labels?: any;
+    labels?: KeyValue;
     // LastAliveTimestamp contains the last alive message received
     last_alive_timestamp?: string;
     // Status for the UI.
@@ -40,7 +40,7 @@ export class Controller extends Item {
         show: boolean,
         created: number,
         name: string,
-        labels: any,
+        labels: KeyValue,
         last_alive_timestamp: string,
         status: string,
         location: InventoryLocation,

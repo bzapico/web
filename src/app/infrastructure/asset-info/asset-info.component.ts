@@ -38,7 +38,6 @@ export class AssetInfoComponent implements OnInit {
   capacity: string;
   eic: string;
   status: string;
-  summary: any;
   lastAlive: number;
   /**
    * Models that hold the Edge Controller name
