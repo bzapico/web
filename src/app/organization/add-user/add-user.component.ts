@@ -45,7 +45,7 @@ export class AddUserComponent implements OnInit {
   selectedOptions = [];
   options = [];
   selectConfig = {};
-  roleOptions: any[];
+  roleOptions: RoleOptions[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -96,7 +96,7 @@ export class AddUserComponent implements OnInit {
   samePasswords(group: FormGroup) {
     const password = group.controls.password.value;
     const passwordConfirm = group.controls.passwordConfirm.value;
-    return password === passwordConfirm ? true : false;
+    return password === passwordConfirm;
   }
   /**
    * Convenience getter for easy access to form fields
