@@ -4,7 +4,7 @@
 
 Overall:
 
-- Corporative font and pallet
+- Corporative font and palette
 - Customized [graph](https://swimlane.github.io/ngx-graph/) adding silhouettes and icons to create a visual impact.
 - Implementation and use of new classes, enums and interfaces.
 - Added mechanisms to reuse code like services, presentation components and inheritance.
