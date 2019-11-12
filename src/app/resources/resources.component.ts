@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { mockClusterChart } from '../services/utils/clusters.mock';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
@@ -46,10 +45,6 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Hold request error message or undefined
    */
   requestError: string;
-  /**
-   * NGX-Charts object-assign required object references (for rendering)
-   */
-  mockClusterChart: any;
   /**
    * Graph options
    */
@@ -120,10 +115,6 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
       nodes: [],
       links: []
     };
-    /**
-     * Mocked Charts
-     */
-    Object.assign(this, {mockClusterChart});
   }
 
   ngOnInit() {

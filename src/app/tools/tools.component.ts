@@ -204,7 +204,7 @@ export class ToolsComponent implements OnInit {
    * It returns filtered app instances avoiding duplicated instances by cluster ID
    * @param clusterId Identifier for the cluster
    */
-  getAppsInCluster(clusterId: string): any[] {
+  getAppsInCluster(clusterId: string): ApplicationInstance[] {
     const appsInCluster = {};
     if (this.instances) {
       for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
@@ -231,8 +231,8 @@ export class ToolsComponent implements OnInit {
    * Return if the marker is required
    * @param link Link object
    */
-  getMarker(link: { [x: string]: any; is_between_apps: boolean; }, origin: string) {
-    const index = this.graphData.nodes.map((x: { id: any; }) => x.id).indexOf(link[origin]);
+  getMarker(link: { source: string; target: string; is_between_apps: boolean; }, origin: string) {
+    const index = this.graphData.nodes.map((x: { id: string; }) => x.id).indexOf(link[origin]);
     if (index !== -1) {
       if (link.is_between_apps) {
         return 'url(#arrow)';

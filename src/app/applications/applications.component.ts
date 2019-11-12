@@ -4,6 +4,7 @@ import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { mockAppChart, mockAppPieChart } from '../services/utils/mocks';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import * as shape from 'd3-shape';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { RegisterApplicationComponent } from './register-application/register-application.component';
@@ -21,6 +22,7 @@ import { AppStatus } from '../definitions/enums/app-status.enum';
 import { ToolsComponent } from '../tools/tools.component';
 import { Cluster } from '../definitions/interfaces/cluster';
 import { ApplicationDescriptor } from '../definitions/models/application-descriptor';
+import { NameValue } from '../definitions/interfaces/name-value';
 
 @Component({
   selector: 'applications',
@@ -95,10 +97,11 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    */
   graphDataLoaded: boolean;
   searchGraphData: GraphData<KeyValue>;
+  curve: any;
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
-  instancesPieChart: any;
+  instancesPieChart: NameValue[];
   /**
    * Models that hold the sort info needed to sortBy pipe
    */
@@ -186,6 +189,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
     this.filterField = false;
     this.filterFieldRegistered = false;
     // Graph initialization
+    this.curve = shape.curveBasis;
     this.graphDataLoaded = false;
     this.searchGraphData = new GraphData({}, {});
     this.foundOccurrenceInCluster = false;
@@ -286,7 +290,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * @param total Number of total nodes in a cluster
    * @returns anonym array with the required object structure for pie chart rendering
    */
-  private generateSummaryChartData(running: number, total: number): any[] {
+  private generateSummaryChartData(running: number, total: number): NameValue[] {
     return [{name: 'Running', value: running}, {name: 'Stopped', value: total - running}];
   }
   /**
