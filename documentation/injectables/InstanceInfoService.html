@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/instance-info/instance-info.service.ts</code>
+            <code>src/app/applications/instance-info/instance-info.service.ts</code>
         </p>
 
 
@@ -106,14 +106,14 @@
                                 <a href="#getBeautyStatusName">getBeautyStatusName</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getBound">getBound</a>
+                            </li>
+                            <li>
                                 <a href="#getNodeColor">getNodeColor</a>
                             </li>
                             <li>
                                 <a href="#getNodeTextColor">getNodeTextColor</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#isConnectedBound">isConnectedBound</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -184,12 +184,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(translateService: TranslateService)</code>
+<code>constructor(translateService: <a href="../interfaces/Service.html">TranslateService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/instance-info/instance-info.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -210,7 +210,7 @@
                                                         <td>translateService</td>
                                                   
                                                         <td>
-                                                                    <code>TranslateService</code>
+                                                                        <code><a href="../interfaces/Service.html" target="_self" >TranslateService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -249,21 +249,23 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>generateOutboundConnections(group, instance)</code>
+                    <code>generateOutboundConnections(instance)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="263"
-                            class="link-to-prism">src/app/instance-info/instance-info.service.ts:263</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="310"
+                            class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:310</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Sets outbound connections</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -272,18 +274,10 @@
                                 <tr>
                                     <td>Name</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>group</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
                                 <tr>
                                     <td>instance</td>
 
@@ -292,6 +286,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>instance object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -331,8 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/app/instance-info/instance-info.service.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="102"
+                            class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:102</a></div>
                 </td>
             </tr>
 
@@ -390,6 +388,107 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getBound"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            getBound
+                        </b>
+                        <a href="#getBound"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getBound(type, instances_connections, bound)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="357"
+                            class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:357</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>It gets connections bound data</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>type object</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>instances_connections</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>connections object</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>bound</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>bound object</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>literal type</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getNodeColor"></a>
                     <span class="name">
                         <b>
@@ -408,8 +507,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/app/instance-info/instance-info.service.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:112</a></div>
                 </td>
             </tr>
 
@@ -485,8 +584,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="91"
-                            class="link-to-prism">src/app/instance-info/instance-info.service.ts:91</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="128"
+                            class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:128</a></div>
                 </td>
             </tr>
 
@@ -544,92 +643,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="isConnectedBound"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            isConnectedBound
-                        </b>
-                        <a href="#isConnectedBound"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>isConnectedBound(type, instances_connections, bound)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="305"
-                            class="link-to-prism">src/app/instance-info/instance-info.service.ts:305</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>type</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>instances_connections</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>bound</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>literal type</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="setInboundConnections"></a>
                     <span class="name">
                         <b>
@@ -643,21 +656,23 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>setInboundConnections(group, instance)</code>
+                    <code>setInboundConnections(instance)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="221"
-                            class="link-to-prism">src/app/instance-info/instance-info.service.ts:221</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="265"
+                            class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:265</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Sets inbound connections</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -666,18 +681,10 @@
                                 <tr>
                                     <td>Name</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>group</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
                                 <tr>
                                     <td>instance</td>
 
@@ -686,6 +693,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>instance object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -727,14 +738,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="327"
-                            class="link-to-prism">src/app/instance-info/instance-info.service.ts:327</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="383"
+                            class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:383</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Sets inbounds links</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -743,6 +756,7 @@
                                 <tr>
                                     <td>Name</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -754,6 +768,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>inbounds object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>instance</td>
@@ -763,6 +781,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>instance object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -804,14 +826,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="340"
-                            class="link-to-prism">src/app/instance-info/instance-info.service.ts:340</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="403"
+                            class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:403</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Sets outbounds links</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -820,6 +844,7 @@
                                 <tr>
                                     <td>Name</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -831,6 +856,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>outbounds object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>instance</td>
@@ -840,6 +869,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>instance object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -881,14 +914,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="407"
-                            class="link-to-prism">src/app/instance-info/instance-info.service.ts:407</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="479"
+                            class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:479</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Sets public connections</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -897,6 +932,7 @@
                                 <tr>
                                     <td>Name</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -908,6 +944,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>rule object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>group</td>
@@ -917,6 +957,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>group object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -951,21 +995,23 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>setPublicRulesNodes(rule, group)</code>
+                    <code>setPublicRulesNodes(rule)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="353"
-                            class="link-to-prism">src/app/instance-info/instance-info.service.ts:353</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="422"
+                            class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:422</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Sets public rules nodes</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -974,6 +1020,7 @@
                                 <tr>
                                     <td>Name</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -985,15 +1032,10 @@
                                     </td>
 
 
-                                </tr>
-                                <tr>
-                                    <td>group</td>
-
                                     <td>
-                                        No
+                                        <p>rule object</p>
+
                                     </td>
-
-
                                 </tr>
                             </tbody>
                         </table>
@@ -1035,14 +1077,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="392"
-                            class="link-to-prism">src/app/instance-info/instance-info.service.ts:392</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="460"
+                            class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:460</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Sets public rules links</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1051,6 +1095,7 @@
                                 <tr>
                                     <td>Name</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1062,6 +1107,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>rule object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>group</td>
@@ -1071,6 +1120,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>group object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1112,14 +1165,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="196"
-                            class="link-to-prism">src/app/instance-info/instance-info.service.ts:196</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="237"
+                            class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:237</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Sets services instances nodes and links</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1128,6 +1183,7 @@
                                 <tr>
                                     <td>Name</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1139,6 +1195,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>group object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1178,14 +1238,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="104"
-                            class="link-to-prism">src/app/instance-info/instance-info.service.ts:104</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:144</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Transforms the data needed to create the graph</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1194,6 +1256,7 @@
                                 <tr>
                                     <td>Name</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1205,6 +1268,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>instance object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1249,7 +1316,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/instance-info/instance-info.service.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -1277,7 +1344,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/instance-info/instance-info.service.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:61</a></div>
                             </td>
                         </tr>
 
@@ -1305,7 +1372,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/instance-info/instance-info.service.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -1334,7 +1401,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/instance-info/instance-info.service.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:74</a></div>
                                 </td>
                             </tr>
 
@@ -1345,7 +1412,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/instance-info/instance-info.service.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:78</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1403,7 +1470,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/instance-info/instance-info.service.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:82</a></div>
                                 </td>
                             </tr>
 
@@ -1414,7 +1481,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/instance-info/instance-info.service.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:86</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1472,7 +1539,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/instance-info/instance-info.service.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:90</a></div>
                                 </td>
                             </tr>
 
@@ -1483,7 +1550,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/instance-info/instance-info.service.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/applications/instance-info/instance-info.service.ts:94</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1531,25 +1598,38 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { AccessType } from &#x27;../definitions/enums/access-type.enum&#x27;;
+import { AccessType } from &#x27;../../definitions/enums/access-type.enum&#x27;;
 import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
-
+import { ServicesStatus } from &#x27;../../definitions/enums/services-status.enum&#x27;;
+/**
+ * It sets the status colors for nodes
+ */
 const STATUS_COLORS &#x3D; {
   RUNNING: &#x27;#00E6A0&#x27;,
   ERROR: &#x27;#F7478A&#x27;,
   OTHER: &#x27;#FFEB6C&#x27;
 };
+/**
+ * It sets the status text colors for nodes
+ */
 const STATUS_TEXT_COLORS &#x3D; {
   RUNNING: &#x27;#FFFFFF&#x27;,
   ERROR: &#x27;#FFFFFF&#x27;,
   OTHER: &#x27;#444444&#x27;
 };
 
+const CONNECTION_STATUS_COLOR &#x3D; {
+  WAITING: &#x27;#5800FF&#x27;,
+  ESTABLISHED: &#x27;#5800FF&#x27;,
+  TERMINATED: &#x27;#444444&#x27;,
+  FAILED: &#x27;#444444&#x27;,
+  DISCONNECTED: &#x27;#444444&#x27;
+};
+
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class InstanceInfoService {
-
   private _graphData: any;
   private _isGeneratedPublicRule: boolean;
   private _publicRule: any;
@@ -1598,41 +1678,42 @@ export class InstanceInfoService {
     }
     return rawStatus;
   }
-
   /**
    * Return an specific color depending on the node status
    * @param status Status name
    */
   getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
-      case this.translateService.instant(&#x27;status.serviceRunning&#x27;):
+      case ServicesStatus.ServiceRunning:
         return STATUS_COLORS.RUNNING;
-      case this.translateService.instant(&#x27;status.serviceError&#x27;):
+      case ServicesStatus.ServiceError:
         return STATUS_COLORS.ERROR;
-      case this.translateService.instant(&#x27;status.serviceWaiting&#x27;):
+      case ServicesStatus.ServiceWaiting:
         return STATUS_COLORS.OTHER;
       default:
         return STATUS_COLORS.OTHER;
     }
   }
-
   /**
    * Return an specific color depending on the node status
    * @param status Status name
    */
   getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
-      case this.translateService.instant(&#x27;status.serviceRunning&#x27;):
+      case ServicesStatus.ServiceRunning:
         return STATUS_TEXT_COLORS.RUNNING;
-      case this.translateService.instant(&#x27;status.serviceError&#x27;):
+      case ServicesStatus.ServiceError:
         return STATUS_TEXT_COLORS.ERROR;
-      case this.translateService.instant(&#x27;status.serviceWaiting&#x27;):
+      case ServicesStatus.ServiceWaiting:
         return STATUS_TEXT_COLORS.OTHER;
       default:
         return STATUS_TEXT_COLORS.OTHER;
     }
   }
-
+  /**
+   * Transforms the data needed to create the graph
+   * @param instance instance object
+   */
   toGraphData(instance) {
     this._graphData &#x3D; {
       nodes: [],
@@ -1676,7 +1757,6 @@ export class InstanceInfoService {
         };
         this._graphData.nodes.push(nodeGroup);
         this.setServicesInstancesNodesAndLinks(group);
-        // THOSE DATA ARE NOT AVAILABLE FOR NOW
         if (instance.rules) {
           instance.rules.forEach(rule &#x3D;&gt; {
             if (rule.access_name &#x3D;&#x3D;&#x3D; AccessType.InboundAppnet &amp;&amp; !rule[&#x27;inbound_net_interface&#x27;]) {
@@ -1685,9 +1765,6 @@ export class InstanceInfoService {
               rule[&#x27;outbound_net_interface&#x27;] &#x3D; instance.outbound_net_interfaces.map(connection &#x3D;&gt; connection.name)[0];
             }
           });
-          // THOSE DATA ARE NOT AVAILABLE FOR NOW
-          this.setInboundConnections(group, instance);
-          this.generateOutboundConnections(group, instance);
           instance.rules.forEach(rule &#x3D;&gt; {
             this.setPublicConnections(rule, group);
           });
@@ -1695,6 +1772,8 @@ export class InstanceInfoService {
       });
     }
     if (instance.rules) {
+      this.setInboundConnections(instance);
+      this.generateOutboundConnections(instance);
       instance.rules.forEach(rule &#x3D;&gt; {
         if (rule.auth_services) {
           rule.auth_services.forEach(authService &#x3D;&gt; {
@@ -1724,7 +1803,10 @@ export class InstanceInfoService {
       });
     }
   }
-
+  /**
+  * Sets services instances nodes and links
+  * @param group group object
+  */
   private setServicesInstancesNodesAndLinks(group) {
     group.service_instances.forEach(service &#x3D;&gt; {
       const nodeService &#x3D; {
@@ -1749,24 +1831,27 @@ export class InstanceInfoService {
       });
     });
   }
-
-  private setInboundConnections(group, instance) {
+  /**
+  * Sets inbound connections
+  * @param instance instance object
+  */
+  private setInboundConnections(instance) {
     if (instance.inbound_net_interfaces &amp;&amp; instance.inbound_net_interfaces.length &gt; 0 ) {
       const inbounds &#x3D; {};
       instance.inbound_net_interfaces.forEach(inbound &#x3D;&gt; {
+        const bound &#x3D; this.getBound(&#x27;inbound&#x27;, instance.inbound_connections, inbound);
         inbounds[inbound.name + &#x27;_i_&#x27; + instance.app_instance_id] &#x3D; {
           id: inbound.name + &#x27;_i_&#x27; + instance.app_instance_id,
           label: inbound.name,
-          tooltip: this.translateService.instant(&#x27;graph.inbound&#x27;) + inbound.name,
-          group: group,
-          color: this.isConnectedBound(&#x27;inbound&#x27;, instance.inbound_connections, inbound).isConnected ? &#x27;#00E6A0&#x27; : &#x27;#5800FF&#x27;,
+          tooltip:
+            this.translateService.instant(&#x27;graph.inbound&#x27;) +
+            inbound.name +
+            this.translateService.instant(&#x27;graph.status&#x27;) +
+            bound.statusName,
+          color: bound.connectionColor,
           text: {
             color: &#x27;#000&#x27;,
             y: 0
-          },
-          secoundaryText: {
-            text: this.isConnectedBound(&#x27;inbound&#x27;, instance.inbound_connections, inbound).secoundaryName,
-            color: &#x27;#000&#x27;
           },
           shape: &#x27;circle&#x27;,
           customRadius: 24,
@@ -1791,24 +1876,27 @@ export class InstanceInfoService {
       this.setInboundLinks(Object.values(inbounds), instance);
     }
   }
-
-  private generateOutboundConnections(group, instance) {
+  /**
+  * Sets outbound connections
+  * @param instance instance object
+  */
+  private generateOutboundConnections(instance) {
     if (instance.outbound_net_interfaces &amp;&amp; instance.outbound_net_interfaces.length &gt; 0 ) {
       const outbounds &#x3D; {};
       instance.outbound_net_interfaces.forEach(outbound &#x3D;&gt; {
+          const bound &#x3D; this.getBound(&#x27;outbound&#x27;, instance.outbound_connections, outbound);
         outbounds[outbound.name + &#x27;_i_&#x27; + instance.app_instance_id] &#x3D; {
           id: outbound.name + &#x27;_i_&#x27; + instance.app_instance_id,
           label: outbound.name,
-          tooltip: this.translateService.instant(&#x27;graph.outbound&#x27;) + outbound.name,
-          group: group,
-          color: this.isConnectedBound(&#x27;outbound&#x27;, instance.outbound_connections, outbound).isConnected ? &#x27;#00E6A0&#x27; : &#x27;#5800FF&#x27;,
+          tooltip:
+            this.translateService.instant(&#x27;graph.outbound&#x27;) +
+            outbound.name +
+            this.translateService.instant(&#x27;graph.status&#x27;) +
+            bound.statusName,
+          color: bound.connectionColor,
           text: {
             color: &#x27;#000&#x27;,
             y: 0,
-          },
-          secoundaryText: {
-            text: this.isConnectedBound(&#x27;outbound&#x27;, instance.outbound_connections, outbound).secoundaryName,
-            color: &#x27;#000&#x27;
           },
           shape: &#x27;circle&#x27;,
           customRadius: 24,
@@ -1833,8 +1921,13 @@ export class InstanceInfoService {
       this.setOutboundLinks(Object.values(outbounds), instance);
     }
   }
-
-  private isConnectedBound(type, instances_connections, bound): {isConnected: boolean, secoundaryName: string} {
+  /**
+   * It gets connections bound data
+   * @param type type object
+   * @param instances_connections connections object
+   * @param bound bound object
+   */
+  private getBound(type, instances_connections, bound): {connectionColor: string, statusName: string} {
     const data &#x3D; {
       inbound: {
         rule: &#x27;inbound_name&#x27;,
@@ -1851,51 +1944,63 @@ export class InstanceInfoService {
     }
     const isConnected &#x3D; filteredData.length &gt; 0;
     return {
-      isConnected: isConnected,
-      secoundaryName: isConnected ? filteredData[0][data[type].name] : &#x27;&#x27;
+      connectionColor: isConnected ? CONNECTION_STATUS_COLOR.ESTABLISHED : CONNECTION_STATUS_COLOR.DISCONNECTED,
+      statusName: isConnected ? filteredData[0][&#x27;status_name&#x27;] : this.translateService.instant(&#x27;graph.statusNoConnection&#x27;)
     };
   }
-
+  /**
+   * Sets inbounds links
+   * @param instance instance object
+   * @param inbounds inbounds object
+   */
   private setInboundLinks(inbounds, instance) {
     inbounds.forEach(inbound &#x3D;&gt; {
       const filteredData &#x3D; instance.rules.filter(rule &#x3D;&gt; inbound.label &#x3D;&#x3D;&#x3D; rule.inbound_net_interface);
       if (filteredData.length &gt; 0) {
-        this._graphData.links.push({
-          source: inbound.id,
-          target: this._graphData.nodes.filter(node &#x3D;&gt; node.label &#x3D;&#x3D;&#x3D; filteredData[0][&#x27;target_service_name&#x27;])[0].id,
-          notMarker: true
-        });
+        const nodeTarget &#x3D; this._graphData.nodes.filter(node &#x3D;&gt; node.label &#x3D;&#x3D;&#x3D; filteredData[0][&#x27;target_service_name&#x27;]);
+        if (nodeTarget.length &gt; 0) {
+          this._graphData.links.push({
+            source: inbound.id,
+            target: nodeTarget[0].id,
+            notMarker: true
+          });
+        }
       }
     });
   }
-
+  /**
+   * Sets outbounds links
+   * @param instance instance object
+   * @param outbounds outbounds object
+   */
   private setOutboundLinks(outbounds, instance) {
     outbounds.forEach(outbound &#x3D;&gt; {
       const filteredData &#x3D; instance.rules.filter(rule &#x3D;&gt; outbound.label &#x3D;&#x3D;&#x3D; rule.outbound_net_interface);
-      if (filteredData.length &gt; 0) {
-        this._graphData.links.push({
-          source: outbound.id,
-          target: this._graphData.nodes.filter(node &#x3D;&gt; node.label &#x3D;&#x3D;&#x3D; filteredData[0][&#x27;target_service_name&#x27;])[0].id,
-          notMarker: true
-        });
+      if (filteredData.length &gt; 0 ) {
+        const nodeTarget &#x3D; this._graphData.nodes.filter(node &#x3D;&gt; node.label &#x3D;&#x3D;&#x3D; filteredData[0][&#x27;target_service_name&#x27;]);
+        if (nodeTarget.length &gt; 0) {
+          this._graphData.links.push({
+            source: outbound.id,
+            target: nodeTarget[0].id,
+            notMarker: true
+          });
+        }
       }
     });
   }
-
-  private setPublicRulesNodes(rule, group) {
+  /**
+   * Sets public rules nodes
+   * @param rule rule object
+   */
+  private setPublicRulesNodes(rule) {
     const ruleNode &#x3D; {
       id: rule.rule_id,
-      label: &#x27;&#x27;,
-      tooltip: this.translateService.instant(&#x27;graph.rule&#x27;) + rule.name,
-      group: group.service_group_instance_id,
+      label: this.translateService.instant(&#x27;graph.publicAccessLabel&#x27;),
+      tooltip: this.translateService.instant(&#x27;graph.publicAccessTooltip&#x27;) + rule.name,
       color: &#x27;#5800FF&#x27;,
       text: {
         color: &#x27;#000&#x27;,
         y: 0
-      },
-      secoundaryText: {
-        text: &#x27;Public Access&#x27;,
-        color: &#x27;#000&#x27;
       },
       shape: &#x27;circle&#x27;,
       customRadius: 24,
@@ -1920,7 +2025,11 @@ export class InstanceInfoService {
     };
     this._graphData.nodes.push(ruleNode);
   }
-
+  /**
+   * Sets public rules links
+   * @param rule rule object
+   * @param group group object
+   */
   private setRulesLinks(rule, group) {
     group.service_instances.forEach(service &#x3D;&gt; {
       if (service.name &#x3D;&#x3D;&#x3D; rule.target_service_name) {
@@ -1935,11 +2044,15 @@ export class InstanceInfoService {
       }
     });
   }
-
+  /**
+   * Sets public connections
+   * @param rule rule object
+   * @param group group object
+   */
   private setPublicConnections(rule, group) {
     if (rule.access_name &#x3D;&#x3D;&#x3D; AccessType.Public) {
       if (!this._isGeneratedPublicRule) {
-        this.setPublicRulesNodes(rule, group);
+        this.setPublicRulesNodes(rule);
         this.setRulesLinks(rule, group);
         this._isGeneratedPublicRule &#x3D; true;
       }

@@ -1,101 +1,115 @@
+/*
+ *  Copyright 2019 Nalej
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
 @import '../scss/variables/colors';
 @import '../scss/variables/mixins';
 
 /* - - - Summary app card - - - */
 .donut-chart {
-    text-align: center;
-    position: relative;
-    max-width: 100%;
-    @include for-desktop-only {
-        max-width: 110px;
-        max-height: 110px;
-    }
-    @include for-big-desktop-up {
-        min-width: 200px;
-        min-height: 200px;
-    }
+	text-align: center;
+	position: relative;
+	max-width: 100%;
+	@include for-desktop-only {
+		max-width: 110px;
+		max-height: 110px;
+	}
+	@include for-big-desktop-up {
+		min-width: 200px;
+		min-height: 200px;
+	}
 }
 .donut-number {
-    color: $super-dark-grey;
-    font-size: 1em;
-    @include for-desktop-only {
-        font-size: .8em;
-    }
+	color: $super-dark-grey;
+	font-size: 1em;
+	@include for-desktop-only {
+		font-size: .8em;
+	}
 }
 .clusters-run {
-    font-size: .8em;
-    margin-top: -1em;
-    color: $base-violet;
-    text-align: center;
-    margin-bottom: 0;
-    font-weight: 500;
-    @include for-big-desktop-up {
-        font-size: 1em;
-        margin-top: 0em;
-    }
+	font-size: .8em;
+	margin-top: -1em;
+	color: $base-violet;
+	text-align: center;
+	margin-bottom: 0;
+	font-weight: 500;
+	@include for-big-desktop-up {
+		font-size: 1em;
+		margin-top: 0;
+	}
 }
 .row-info-app {
-    max-height: 286px;
-    @include for-desktop-h {
-        max-height: 197px;
-    }
+	max-height: 286px;
+	@include for-desktop-h {
+		max-height: 197px;
+	}
 }
+
 /* - - - Cluster graph card - - - */
 .graph {
-    height: 97%;
+	height: 97%;
 }
-.graph-search-box { 
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    .form-control {
-        font-size: 1rem;
-        padding: .375rem 1rem .5rem 1rem;
-        margin-right: 1em;
-    }
-    > input {
-        text-align: left;
-        &::placeholder {
-            font-size: .9em;
-            color: $base-light-grey;
-        }
-    }
-    .search-button {
-        margin: .2em 0;
-        @include for-desktop-up {
-            margin: .4em 0px;
-        }
-        .i-search {
-            position: absolute;
-            top: 4px;
-            left: 5px;
-            @include for-desktop-up {
-                font-size: 1.3em;
-                top: 3px;
-                left: 2px;
-            }
-        }
-    }
+.graph-search-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	.form-control {
+		font-size: 1rem;
+		padding: .375rem 1rem .5rem;
+		margin-right: 1em;
+	}
+	> input {
+		text-align: left;
+		&::placeholder {
+			font-size: .9em;
+			color: $base-light-grey;
+		}
+	}
+	.search-button {
+		margin: .2em 0;
+		@include for-desktop-up {
+			margin: .4em 0;
+		}
+		.i-search {
+			position: absolute;
+			top: 4px;
+			left: 5px;
+			@include for-desktop-up {
+				font-size: 1.3em;
+				top: 3px;
+				left: 2px;
+			}
+		}
+	}
 }
 .search-box {
-    width: 100%;
-    margin-right: 0em;
+	width: 100%;
+	margin-right: 0;
 }
 
 /* - - - List card - - - */
 .label-nalej-table {
-    .label-thead {
-        margin-bottom: 10px;
-    }
+	.label-thead {
+		margin-bottom: 10px;
+	}
 }
 
-@media screen and (max-width:1568px){
-    .edit-full-text {
-        display: none;
-    }
-    .edit-initial-text {
-        &::before {
-            content: 'E';
-        }
-    }
+@media screen and (max-width: 1568px) {
+	.edit-full-text {
+		display: none;
+	}
+	.edit-initial-text {
+		&::before {
+			content: 'E';
+		}
+	}
 }

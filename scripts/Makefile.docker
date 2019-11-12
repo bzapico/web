@@ -11,7 +11,7 @@ define docker-build-recipe
 		if [ -d components/$$img/dockerenv ]; then \
 			cp -rv components/$$img/dockerenv $(CONTEXTPATH)/. ; \
 		fi ; \
-		$(DOCKERCMD) build --no-cache -t $(REGISTRY_HOST)/$(DOCKER_REPOSITORY)/$$img:$(VERSION) -f components/$$img/$(DOCKERFILE) $(CONTEXTPATH) && \
+		{ $(DOCKERCMD) build --no-cache -t $(DOCKER_REPOSITORY)/$$img:$(DOCKER_VERSION) -f components/$$img/$(DOCKERFILE) $(CONTEXTPATH) || exit 1; } && \
 		echo " - Built $$img Docker image using components/$$img/$(DOCKERFILE) and $(CONTEXTPATH) contents" ; \
 	else  \
 		echo " - $$img has no $(DOCKERFILE) file" ; \
@@ -22,8 +22,12 @@ endef
 define docker-push-recipe
 @for img in $(1); do \
 	if [ -f components/$$img/$(DOCKERFILE) ]; then \
-		$(DOCKERCMD) push $(REGISTRY_HOST)/$(DOCKER_REPOSITORY)/$$img:$(VERSION) && \
-		echo " - Pushed $$img Docker image to $(AZURE_CR) Docker registry" ; \
+		{ $(DOCKERCMD) push $(DOCKER_REPOSITORY)/$$img:$(DOCKER_VERSION) || exit 1; } && \
+		echo " - Pushed $$img Docker image to DockerHub" ; \
+		if [ $(LATEST) -eq "true" ]; then \
+			{ $(DOCKERCMD) tag $(DOCKER_REPOSITORY)/$$img:$(DOCKER_VERSION) $(DOCKER_REPOSITORY)/$$img:latest || exit 1; } && \
+			{ $(DOCKERCMD) push $(DOCKER_REPOSITORY)/$$img:latest || exit 1; } && \
+		fi ; \
 	else  \
 		echo " - $$img has no $(DOCKERFILE) file" ; \
 	fi ; \
@@ -38,11 +42,11 @@ docker-build:
 	@echo ">>> Finished building Docker images"
 
 docker-push:
-	@echo ">>> Pushing Docker images to $(AZURE_CR) registry"
+	@echo ">>> Pushing Docker images to DockerHub"
 	$(call docker-push-recipe,$(IMGS))
 	@echo ">>> Finished pushing Docker images"
 
-publish: image az-login docker-push
+publish: image docker-push
 
 
 # DEPRECATED TARGETS

@@ -149,7 +149,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/definitions/models/graph-data.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/definitions/models/graph-data.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -225,10 +225,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/definitions/models/graph-data.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/definitions/models/graph-data.ts:38</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Links of our graph</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -253,10 +259,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/definitions/models/graph-data.ts:6</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/definitions/models/graph-data.ts:34</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Nodes of our graph</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -289,8 +301,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/app/definitions/models/graph-data.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/app/definitions/models/graph-data.ts:61</a></div>
                 </td>
             </tr>
 
@@ -375,7 +387,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/definitions/models/graph-data.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/definitions/models/graph-data.ts:45</a></div>
                                 </td>
                             </tr>
 
@@ -386,7 +398,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/definitions/models/graph-data.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/definitions/models/graph-data.ts:49</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -440,7 +452,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/definitions/models/graph-data.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/definitions/models/graph-data.ts:53</a></div>
                                 </td>
                             </tr>
 
@@ -451,7 +463,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/definitions/models/graph-data.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/definitions/models/graph-data.ts:57</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -495,9 +507,13 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class GraphData&lt;T&gt; {
-    // Nodes of our graph
+    /**
+     * Nodes of our graph
+     */
     private _nodes: T;
-    // Links of our graph
+    /**
+     * Links of our graph
+     */
     private _links: T;
 
     constructor(nodes: T, links: T) {

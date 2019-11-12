@@ -1,257 +1,275 @@
+/*
+ *  Copyright 2019 Nalej
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
 @import '../scss/variables/colors';
 @import '../scss/variables/mixins';
 
 /* - - - Summary app card - - - */
 .donut-chart {
-    text-align: center;
-    position: relative;
-    max-width: 100%;
-    @include for-desktop-only {
-        max-width: 110px;
-        max-height: 110px;
-    }
-    @include for-big-desktop-up {
-        min-width: 200px;
-        min-height: 200px;  
-    }  
+	text-align: center;
+	position: relative;
+	max-width: 100%;
+	@include for-desktop-only {
+		max-width: 110px;
+		max-height: 110px;
+	}
+	@include for-big-desktop-up {
+		min-width: 200px;
+		min-height: 200px;
+	}
 }
 .donut-number {
-    color: $super-dark-grey;
-    font-size: 1em;
-    @include for-desktop-only {
-        font-size: .8em;
-    }
+	color: $super-dark-grey;
+	font-size: 1em;
+	@include for-desktop-only {
+		font-size: .8em;
+	}
 }
 .apps-run {
-    font-size: .8em;
-    margin-top: -1em;
-    color: $base-violet;
-    text-align: center;
-    margin-bottom: 0;
-    font-weight: 500;
-    @include for-big-desktop-up {
-        font-size: 1em;
-        margin-top: 0em;
-    }
+	font-size: .8em;
+	margin-top: -1em;
+	color: $base-violet;
+	text-align: center;
+	margin-bottom: 0;
+	font-weight: 500;
+	@include for-big-desktop-up {
+		font-size: 1em;
+		margin-top: 0;
+	}
 }
 .row-info-app {
-    max-height: 286px;
-    @include for-desktop-h {
-        max-height: 197px;
-    }
+	max-height: 286px;
+	@include for-desktop-h {
+		max-height: 197px;
+	}
 }
 
 /* - - - Apps table card - - - */
 .app-info {
-    color: $base-violet;
-    cursor: pointer;
-    font-weight: 500;
-    outline: none;
-    text-transform: capitalize;
+	color: $base-violet;
+	cursor: pointer;
+	font-weight: 500;
+	outline: none;
+	text-transform: capitalize;
 }
 .actions-col-fix {
-    padding: 0.75rem 0;
+	padding: 0.75rem 0;
 }
 .instance-disabled {
-    color: $base-grey;
-    cursor: default;
-    outline: none;
-    text-transform: capitalize;
+	color: $base-grey;
+	cursor: default;
+	outline: none;
+	text-transform: capitalize;
 }
 
 /* - - - List card - - - */
 .label-nalej-table {
-    .label-thead {
-        margin-bottom: 10px;
-    }
+	.label-thead {
+		margin-bottom: 10px;
+	}
 }
 
 /* - - - Search box - - - */
 .search-box {
-    width: 100%;
-    margin-right: 0em;
+	width: 100%;
+	margin-right: 0;
 }
 .search-button {
-    margin: .2em 0;
-    @include for-desktop-up {
-        margin: .4em 0px;
-    }
-    i {
-        position: absolute;
-        top: 4px;
-        left: 5px;
-        width: 24px;
-        @include for-desktop-up {
-            font-size: 1.3em;
-            top: 3px;
-            left: 2px;
-        }
-    }
+	margin: .2em 0;
+	@include for-desktop-up {
+		margin: .4em 0;
+	}
+	i {
+		position: absolute;
+		top: 4px;
+		left: 5px;
+		width: 24px;
+		@include for-desktop-up {
+			font-size: 1.3em;
+			top: 3px;
+			left: 2px;
+		}
+	}
 }
-.label-tbody{
-    .status-dot-nalej, .status-dot:before, .status-dot-error:before, .status-dot-process:before, 
-    .modal-body .status-dot:before, .modal-body .status-dot-error:before, 
-    .modal-body .status-dot-process:before {
-        margin: 0;
-    }
-}
-@media screen and (max-width:1723px){
-    .app-actions-full-text {
-        display: none;
-    }
-    .app-actions-initial-text {
-        &::before {
-            content: 'A';
-        }
-    }
+.label-tbody {
+	.status-dot-nalej,
+	.status-dot::before,
+	.status-dot-error::before,
+	.status-dot-process::before,
+	.modal-body .status-dot::before,
+	.modal-body .status-dot-error::before,
+	.modal-body .status-dot-process::before {
+		margin: 0;
+	}
 }
 
-.nalej-table-box.no-p-col.no-m-row.ng-star-inserted div:first-child {
-    border: none;
+@media screen and (max-width: 1723px) {
+	.app-actions-full-text {
+		display: none;
+	}
+	.app-actions-initial-text {
+		&::before {
+			content: 'A';
+		}
+	}
 }
+
 /* - - - Apps buttons - - - */
 .apps-options {
-    float: right;
-    margin-bottom: 43px;
-    @include for-desktop-only {
-        margin-bottom: 21px;
-    }
-    .apps-actions-btn {
-        background-color: $base-violet;
-        border-radius: 5px;
-        font-weight: 500;
-        padding: .5em 1.2em;
-        cursor: pointer;
-        color: $white;
-        border: none;
-        text-indent: 2em;
-        position: relative;
-        font-size: .9em;
-        outline: none;
-        &:hover {
-            color: $white;
-            transition: 0.3s;
-            background-color: $base-violet;
-            opacity: 0.6;
-        }
-        .i-options {
-            font-size: 24px;
-            position: absolute;
-            top: 6px;
-            left: -15px;
-        }
-    }
+	float: right;
+	margin-bottom: 43px;
+	@include for-desktop-only {
+		margin-bottom: 21px;
+	}
+	.apps-actions-btn {
+		background-color: $base-violet;
+		border-radius: 5px;
+		font-weight: 500;
+		padding: .5em 1.2em;
+		cursor: pointer;
+		color: $white;
+		border: none;
+		text-indent: 2em;
+		position: relative;
+		font-size: .9em;
+		outline: none;
+		&:hover {
+			color: $white;
+			transition: 0.3s;
+			background-color: $base-violet;
+			opacity: 0.6;
+		}
+		.i-options {
+			font-size: 24px;
+			position: absolute;
+			top: 6px;
+			left: -15px;
+		}
+	}
 }
 
 /* - - - App graph card - - - */
 .graph {
-    height: 97%;
+	height: 97%;
 }
 .advanced-filter-box {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    .advanced-filter-icon i {
-        position: absolute;
-        top: 11px;
-        right: 61px;
-        font-size: 1.3em;
-        color: $base-violet;
-        cursor: pointer;
-        z-index: 2;
-    }
+	width: 100%;
+	height: 100%;
+	position: relative;
+	.advanced-filter-icon i {
+		position: absolute;
+		top: 11px;
+		right: 61px;
+		font-size: 1.3em;
+		color: $base-violet;
+		cursor: pointer;
+		z-index: 2;
+	}
 }
-.graph-search-box { 
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    .form-control {
-        font-size: 1rem;
-        padding: .375rem 2.2rem .5rem 1rem;
-        margin-right: 1em;
-    }
-    > input {
-        text-align: left;
-        &::placeholder {
-            font-size: .9em;
-            color: $base-light-grey;
-        }
-    }
-    .search-button {
-        margin: .2em 0;
-        @include for-desktop-up {
-            margin: .4em 0px;
-        }
-        .i-search {
-            position: absolute;
-            top: 4px;
-            left: 5px;
-            @include for-desktop-up {
-                font-size: 1.3em;
-                top: 3px;
-                left: 2px;
-            }
-        }
-    }
+.graph-search-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	.form-control {
+		font-size: 1rem;
+		padding: .375rem 2.2rem .5rem 1rem;
+		margin-right: 1em;
+	}
+	> input {
+		text-align: left;
+		&::placeholder {
+			font-size: .9em;
+			color: $base-light-grey;
+		}
+	}
+	.search-button {
+		margin: .2em 0;
+		@include for-desktop-up {
+			margin: .4em 0;
+		}
+		.i-search {
+			position: absolute;
+			top: 4px;
+			left: 5px;
+			@include for-desktop-up {
+				font-size: 1.3em;
+				top: 3px;
+				left: 2px;
+			}
+		}
+	}
 }
 
 /* - - - Quick filters  - - - */
 .quick-filters-box {
-    background-color: $super-light-grey;
-    border-radius: 10px;
-    width: 338px;
-    height: 38px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding-inline-start: 0px;
-    margin-block-end: 0px;
-    ul {
-        margin-bottom: 0;     
-        
-    }
-    li {
-        &:first-child{
-            cursor: default;
-        }
-        list-style-type: none;
-        display: inline-block;
-        margin-right: 20px;
-        cursor: pointer;
-    }
-    .i-filter {
-        color: $base-light-grey;
-        font-size: 1em;
-        padding: 0 1em;
-        margin-top: 5px;
-    }
-    .quick-filters-btn {
-        font-size: .65em;
-        font-weight: 700;
-        color: $base-light-grey;
-    }
-    .quick-filters-btn-selected {
-        font-size: .65em;
-        font-weight: 700;
-        color: $base-violet;
-    }
+	background-color: $super-light-grey;
+	border-radius: 10px;
+	width: 338px;
+	height: 38px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding-inline-start: 0;
+	margin-block-end: 0;
+	ul {
+		margin-bottom: 0;
+	}
+	li {
+		&:first-child {
+			cursor: default;
+		}
+
+		list-style-type: none;
+		display: inline-block;
+		margin-right: 20px;
+		cursor: pointer;
+	}
+	.i-filter {
+		color: $base-light-grey;
+		font-size: 1em;
+		padding: 0 1em;
+		margin-top: 5px;
+	}
+	.quick-filters-btn {
+		font-size: .65em;
+		font-weight: 700;
+		color: $base-light-grey;
+	}
+	.quick-filters-btn-selected {
+		font-size: .65em;
+		font-weight: 700;
+		color: $base-violet;
+	}
 }
 // Temporal workaround, in the future we should use the contextual menu component
 // https://nalej.atlassian.net/browse/NP-2005
 .contextual-menu-wrapper {
-    color: $white;
-    background-color: #404040;
-    min-width: 148px;
-    position: absolute;
-    top: 0px;
-    right: 35px;
-    border-radius: 5px;
-    padding: 8px 16px;
-    z-index: 2;
-    div {
-        font-size:  12px;
-        text-align: right;
-        padding: 2.4px 0;
-    }
+	color: $white;
+	background-color: $dark-grey;
+	min-width: 148px;
+	position: absolute;
+	top: 0;
+	right: 35px;
+	border-radius: 5px;
+	padding: 8px 16px;
+	z-index: 2;
+	div {
+		font-size: 12px;
+		text-align: right;
+		padding: 2.4px 0;
+	}
+}
+.nalej-table-box.no-p-col.no-m-row div:first-child {
+	border: none;
 }

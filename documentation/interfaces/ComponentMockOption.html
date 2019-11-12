@@ -171,6 +171,10 @@ import { LocalStorageKeys } from &#x27;../definitions/const/local-storage-keys&#
 import { NotificationsService } from &#x27;../services/notifications.service&#x27;;
 
 /**
+ * It sets the timeout for errors
+ */
+const TIMEOUT_ERROR &#x3D; 5000;
+/**
  * Interface for the objects that will be listed in the debug panel
  */
 export interface ComponentMockOption {
@@ -187,9 +191,9 @@ export const AvailableComponents &#x3D; {
   profile: &#x27;Profile&#x27;,
   notifications: &#x27;Notifications&#x27;,
   sidebar: &#x27;Sidebar&#x27;,
-  userinfo: &#x27;User Info&#x27;,
+  userInfo: &#x27;User Info&#x27;,
   userEdit: &#x27;User Edit&#x27;,
-  editcluster: &#x27;Edit Cluster&#x27;,
+  editCluster: &#x27;Edit Cluster&#x27;,
   addUser: &#x27;Add User&#x27;,
   addLabel: &#x27;Add Label&#x27;,
   devices: &#x27;Devices&#x27;,
@@ -235,7 +239,7 @@ export class DebugPanelComponent implements OnInit {
     ) {
     this.notificationsMock &#x3D; (localStorage.getItem(LocalStorageKeys.notificationsMock) &#x3D;&#x3D;&#x3D; &#x27;true&#x27; ? true : false);
     this.url &#x3D; localStorage.getItem(LocalStorageKeys.url) || &#x27;&#x27;;
-   }
+    }
 
   ngOnInit() {
     // Load values from localStorage and populate options list
@@ -251,7 +255,7 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.resources,
       mock: localStorage.getItem(LocalStorageKeys.resourcesMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
-     this.components.push({
+    this.components.push({
       name: AvailableComponents.cluster,
       mock: localStorage.getItem(LocalStorageKeys.clusterMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });   this.components.push({
@@ -271,7 +275,7 @@ export class DebugPanelComponent implements OnInit {
       mock: localStorage.getItem(LocalStorageKeys.sidebarMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
     this.components.push({
-      name: AvailableComponents.userinfo,
+      name: AvailableComponents.userInfo,
       mock: localStorage.getItem(LocalStorageKeys.userInfoMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
     this.components.push({
@@ -279,7 +283,7 @@ export class DebugPanelComponent implements OnInit {
       mock: localStorage.getItem(LocalStorageKeys.userEditMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
     this.components.push({
-      name: AvailableComponents.editcluster,
+      name: AvailableComponents.editCluster,
       mock: localStorage.getItem(LocalStorageKeys.clusterEditMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
     this.components.push({
@@ -310,7 +314,7 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.registeredInfo,
       mock: localStorage.getItem(LocalStorageKeys.registeredInfoMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
-     this.components.push({
+    this.components.push({
       name: AvailableComponents.registerApp,
       mock: localStorage.getItem(LocalStorageKeys.registerAppMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
@@ -371,7 +375,6 @@ export class DebugPanelComponent implements OnInit {
       mock: localStorage.getItem(LocalStorageKeys.manageConnectionsMock) &#x3D;&#x3D;&#x3D; &#x27;false&#x27; ? &#x27;false&#x27; : &#x27;true&#x27;
     });
   }
-
   /**
    * Modifies all components mocks values
    * @param newValue new mock value
@@ -416,7 +419,6 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.advancedFilterOptions, newValue);
     localStorage.setItem(LocalStorageKeys.manageConnectionsMock, newValue);
   }
-
   /**
    * Persist the modifications on the local storage
    * @param componentMockOption Object containing the selected option name and mock value
@@ -448,13 +450,13 @@ export class DebugPanelComponent implements OnInit {
       case AvailableComponents.sidebar:
         localStorage.setItem(LocalStorageKeys.sidebarMock, componentMockOption.mock);
       break;
-      case AvailableComponents.userinfo:
+      case AvailableComponents.userInfo:
         localStorage.setItem(LocalStorageKeys.userInfoMock, componentMockOption.mock);
       break;
       case AvailableComponents.userEdit:
         localStorage.setItem(LocalStorageKeys.userEditMock, componentMockOption.mock);
       break;
-      case AvailableComponents.editcluster:
+      case AvailableComponents.editCluster:
         localStorage.setItem(LocalStorageKeys.clusterEditMock, componentMockOption.mock);
       break;
       case AvailableComponents.addUser:
@@ -530,7 +532,6 @@ export class DebugPanelComponent implements OnInit {
         console.log(&#x27;Selected option not registered as available component&#x27;);
     }
   }
-
   /**
    * Adds a new notification to notificationsService list so it can be displayed on screen
    */
@@ -539,14 +540,13 @@ export class DebugPanelComponent implements OnInit {
       id: this.notificationsService.uuidv4(),
       message: &#x27;Test notification&#x27;,
       type: &#x27;info&#x27;,
-      timeout: 5000
+      timeout: TIMEOUT_ERROR,
     });
   }
   urlChange($event) {
     this.url &#x3D; $event;
     localStorage.setItem(LocalStorageKeys.url, this.url);
   }
-
 }
 </code></pre>
     </div>
