@@ -8,7 +8,6 @@ define yaml-render-recipe
 		cd $(TARGET)/yaml/$(2) && find . -type f -name '*.yaml' | xargs sed -i '' 's/__NPH_VERSION/$(VERSION)/g' && cd - > /dev/null ; \
 		cd $(TARGET)/yaml/$(2) && find . -type f -name '*.yaml' | xargs sed -i '' 's/__NPH_NAMESPACE/nalej/g' && cd - > /dev/null ; \
 		cd $(TARGET)/yaml/$(2) && find . -type f -name '*.yaml' | xargs sed -i '' 's/__NPH_REGISTRY_NAMESPACE/$(DOCKER_REPOSITORY)/g' && cd - > /dev/null ; \
-		cd $(TARGET)/yaml/$(2) && find . -type f -name '*.yaml' | xargs sed -i '' 's/__NPH_REGISTRY/$(REGISTRY_HOST)/g' && cd - > /dev/null ; \
 	fi ; \
 done
 endef
