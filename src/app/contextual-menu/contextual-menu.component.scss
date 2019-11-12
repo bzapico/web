@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -13,28 +13,27 @@
 
 @import '../scss/variables/mixins';
 @import '../scss/variables/colors';
-
 .contextual-menu {
-    min-width: 148px;
-    color: $white;
-    border-radius: 5px;
-    position: absolute;
-    top: 0px;
-    right: 35px;
-    background-color: $dark-grey;
-    padding: 8px 16px;
-    z-index: 2;
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        li {   
-            font-size:  12px;
-            text-align: right;
-            padding: 2.4px 0;
-        }
-    }
-    @include for-desktop-up {
-        right: 27px;
-    }
+	min-width: 148px;
+	color: $white;
+	border-radius: 5px;
+	position: absolute;
+	top: 0;
+	right: 35px;
+	background-color: $dark-grey;
+	padding: 8px 16px;
+	z-index: 2;
+	ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		li {
+			font-size: 12px;
+			text-align: right;
+			padding: 2.4px 0;
+		}
+	}
+	@include for-desktop-up {
+		right: 27px;
+	}
 }

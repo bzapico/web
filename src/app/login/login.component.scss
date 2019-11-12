@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -13,47 +13,45 @@
 
 @import '../scss/variables/colors';
 @import '../scss/variables/mixins';
-
 .login {
-  height: 100vh;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: $white;
-  background-image: linear-gradient(-85deg, $super-dark-grey, $dark-grey);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	height: 100vh;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: $white;
+	background-image: linear-gradient( -85deg, $super-dark-grey, $dark-grey );
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .login-card {
-  background-color:$white;
-  width: 400px;
-  border: 0;
-  border-radius: 10px;
-  outline: 0;
-  padding: 2rem;
-  height: 421px;
+	background-color: $white;
+	width: 400px;
+	border: 0;
+	border-radius: 10px;
+	outline: 0;
+	padding: 2rem;
+	height: 421px;
 }
 .form-login-heading {
-  color: $white;
-  letter-spacing: 1.9em;
-  text-indent: 35px;
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 19px;
+	color: $white;
+	letter-spacing: 1.9em;
+	text-indent: 35px;
+	text-align: center;
+	margin-bottom: 20px;
+	font-size: 19px;
 }
-.loader-position{
-  top: 0%;
+.loader-position {
+	top: 0%;
 }
 .nalej-loader-box {
-  margin-top: 3em;
-  min-height: 4em ;
+	margin-top: 3em;
+	min-height: 4em;
 }
-
 .form-group-btn {
-  @include for-desktop-only {
-    margin-top: 3em;
-  }
+	@include for-desktop-only {
+		margin-top: 3em;
+	}
 }
 .btn-h {
-  height: 1.6em;
+	height: 1.6em;
 }
