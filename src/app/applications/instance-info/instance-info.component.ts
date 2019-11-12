@@ -111,7 +111,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   graphDataLoaded: boolean;
   graphData: any;
   orientation: string;
-  curve: any;
+  curve = shape.curveBasis;
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;
@@ -162,7 +162,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
      // Graph initialization
     this.graphReset = false;
     this.orientation = 'TB';
-    this.curve = shape.curveBasis;
     this.autoZoom = true;
     this.autoCenter = true;
     this.enableZoom = true;

@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
-import { mockAppChart, mockAppPieChart } from '../services/utils/mocks';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import * as shape from 'd3-shape';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
@@ -80,11 +79,6 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    */
   refreshIntervalRef: Subscription;
   /**
-   * Charts references
-   */
-  mockAppPieChart: any;
-  appsChart: any;
-  /**
    * Reference for the service that allows the modal component
    */
   modalRef: BsModalRef;
@@ -97,7 +91,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    */
   graphDataLoaded: boolean;
   searchGraphData: GraphData<KeyValue>;
-  curve: any;
+  curve = shape.curveBasis;
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
@@ -173,7 +167,6 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
     this.labels = [];
     this.countRegistered = 0;
     this.loadedData = false;
-    this.appsChart = [{name: 'Running apps %', series: []}];
     this.requestError = '';
     this.activeContextMenuId = '';
      // SortBy
@@ -189,16 +182,11 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
     this.filterField = false;
     this.filterFieldRegistered = false;
     // Graph initialization
-    this.curve = shape.curveBasis;
     this.graphDataLoaded = false;
     this.searchGraphData = new GraphData({}, {});
     this.foundOccurrenceInCluster = false;
     this.foundOccurrenceInInstance = false;
     this.foundOccurrenceInRegistered = false;
-    /**
-     * Charts reference init
-     */
-    Object.assign(this, {mockAppChart, mockAppPieChart});
   }
 
   ngOnInit() {
@@ -719,7 +707,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
     };
     this.modalRef = this.modalService.show(ManageConnectionsComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalRef.content.onClose = (cancelled: boolean) => {
+    this.modalRef.content.onClose = () => {
       this.updateAppInstances(this.organizationId);
     };
   }

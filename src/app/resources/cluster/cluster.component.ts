@@ -40,7 +40,7 @@ export class ClusterComponent implements OnInit {
   /**
    * List of available nodes
    */
-  nodes: any[];
+  nodes: Node[];
   /**
    * Count of total nodes
    */

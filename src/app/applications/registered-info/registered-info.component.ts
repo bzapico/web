@@ -102,7 +102,7 @@ export class RegisteredInfoComponent implements OnInit {
   graphReset: boolean;
   graphData: any;
   orientation: string;
-  curve: any;
+  curve = shape.curveBasis;
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;
@@ -147,7 +147,6 @@ export class RegisteredInfoComponent implements OnInit {
     this.filterFieldRules = false;
      // Graph initialization
     this.orientation = 'TB';
-    this.curve = shape.curveBasis;
     this.autoZoom = true;
     this.autoCenter = true;
     this.enableZoom = true;
