@@ -6,6 +6,9 @@ import { NodeType } from '../definitions/enums/node-type.enum';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { Backend } from '../definitions/interfaces/backend';
 import { ApplicationInstance } from '../definitions/models/application-instance';
+import { Cluster } from '../definitions/interfaces/cluster';
+import { StyledNode } from '../definitions/interfaces/styled-node';
+import { GraphNode } from '../definitions/interfaces/graph-node';
 
 @Component({
   selector: 'tools',
@@ -231,7 +234,7 @@ export class ToolsComponent implements OnInit {
    * Return if the marker is required
    * @param link Link object
    */
-  getMarker(link: { source: string; target: string; is_between_apps: boolean; }, origin: string) {
+  getMarker(link: { source: string; target: string; is_between_apps: boolean; }, origin: string): string {
     const index = this.graphData.nodes.map((x: { id: string; }) => x.id).indexOf(link[origin]);
     if (index !== -1) {
       if (link.is_between_apps) {
@@ -250,7 +253,7 @@ export class ToolsComponent implements OnInit {
    * @param customBorderWidth Border width for the node
    * @param customHeight Height for the node
    */
-  getStyledNode(color: string, textColor: string, customBorderColor: string, customBorderWidth: number, customHeight: number): {} {
+  getStyledNode(color: string, textColor: string, customBorderColor: string, customBorderWidth: number, customHeight: number): StyledNode {
     return {
       color: color,
       text: textColor,
@@ -286,7 +289,7 @@ export class ToolsComponent implements OnInit {
     });
     this.graphData.links.push(...Object.values(linksBetweenApps));
   }
-  generateClusterNode(cluster: any, tooltip: string): any {
+  generateClusterNode(cluster: Cluster, tooltip: string): GraphNode & StyledNode {
     const clusterName = cluster.name.toLowerCase();
     const status = cluster.state ? (cluster.state === ClusterStatus.Installed ? cluster.status_name : cluster.state) : cluster.status_name;
     return {
@@ -307,7 +310,7 @@ export class ToolsComponent implements OnInit {
           ToolsComponent.CUSTOM_HEIGHT_CLUSTERS)
     };
   }
-  generateInstanceNode(instance: ApplicationInstance, cluster: any, tooltip: string): any {
+  generateInstanceNode(instance: ApplicationInstance, cluster: any, tooltip: string): GraphNode & StyledNode {
     const instanceName = instance.name.toLowerCase();
     return {
     ...{

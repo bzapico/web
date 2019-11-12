@@ -11,6 +11,7 @@ import { Subscription, timer } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { ToolsComponent } from '../tools/tools.component';
 import { AppStatus } from '../definitions/enums/app-status.enum';
+import { NameValue } from '../definitions/interfaces/name-value';
 
 @Component({
   selector: 'app-resources',
@@ -33,7 +34,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
   /**
    * Array containing charts data in the required format for NGX-Charts library rendering
    */
-  pieChartData: any[];
+  pieChartData: NameValue[];
   /**
    * Count of total clusters
    */
@@ -136,7 +137,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * @param total Number of total nodes in a cluster
    * @returns anonym array with the required object structure for pie chart rendering
    */
-  generateClusterChartData(running: number, total: number): any[] {
+  generateClusterChartData(running: number): NameValue[] {
     return [
       {
         name: 'Running',
@@ -144,7 +145,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
       },
       {
         name: 'Stopped',
-        value: total - running
+        value: this.clusters.length - running
       }
     ];
   }
@@ -353,7 +354,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
             if (!this.loadedData) {
               this.loadedData = true;
             }
-            this.updatePieChartStats(this.clusters);
+            this.updatePieChartStats();
             this.toGraphData();
           })
           .catch(errorResponse => {
@@ -365,17 +366,16 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
   }
   /**
    * Updates the pieChartsData status
-   * @param clusters Array containing the cluster list that sources the chart values
    */
-  private updatePieChartStats(clusters: any[]) {
+  private updatePieChartStats() {
     let online = 0;
-    if (clusters) {
-      clusters.forEach(cluster => {
+    if (this.clusters) {
+      this.clusters.forEach(cluster => {
         if (cluster.status_name === 'ONLINE') {
-          online += 1;
+          online++;
         }
       });
-      this.pieChartData = this.generateClusterChartData(online, clusters.length);
+      this.pieChartData = this.generateClusterChartData(online);
     }
   }
   /**

@@ -16,6 +16,7 @@ import { InstanceInfoService } from './instance-info.service';
 import { ApplicationDescriptor } from '../../definitions/models/application-descriptor';
 import { ServiceGroupInstance } from '../../definitions/interfaces/service-group-instance';
 import { ApplicationInstance } from '../../definitions/models/application-instance';
+import { Subscription, timer } from 'rxjs';
 
 @Component({
   selector: 'app-instance-info',
@@ -23,6 +24,10 @@ import { ApplicationInstance } from '../../definitions/models/application-instan
   styleUrls: ['./instance-info.component.scss']
 })
 export class InstanceInfoComponent implements OnInit, OnDestroy {
+  /**
+   * Refresh ratio reference
+   */
+  private static REFRESH_RATIO = 5000;
   /**
    * Backend reference
    */
@@ -65,11 +70,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   /**
    * Interval reference
    */
-  refreshIntervalRef: any;
-  /**
-   * Refresh ratio reference
-   */
-  REFRESH_RATIO = 5000;
+  refreshIntervalRef: Subscription;
   /**
    * Hold request error message or undefined
    */
@@ -187,17 +188,17 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
         if (this.organizationId !== null) {
-          this.updateInfo();
+          this.refreshIntervalRef
+            = timer(0, InstanceInfoComponent.REFRESH_RATIO)
+              .subscribe(() => {
+                this.updateInfo();
+              });
         }
     }
-    this.refreshIntervalRef = setInterval(() => {
-      this.updateInfo();
-    }, this.REFRESH_RATIO); // Refresh each 5 seconds
   }
 
   ngOnDestroy() {
-    clearInterval(this.refreshIntervalRef);
-    this.refreshIntervalRef = null;
+    this.refreshIntervalRef.unsubscribe();
   }
   /**
    * Sortby pipe in the component
@@ -425,12 +426,12 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    */
   getGroupServices(groupId: string) {
     const index = this.groups
-    .map(x => x.service_group_instance_id)
-    .indexOf(groupId);
-    if (index !== -1) {
-      return this.groups[index].service_instances;
-    } else {
+      .map(x => x.service_group_instance_id)
+      .indexOf(groupId);
+    if (index === -1) {
       return [];
+    } else {
+      return this.groups[index].service_instances;
     }
   }
   /**
