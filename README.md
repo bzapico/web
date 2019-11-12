@@ -121,13 +121,14 @@ Tested and supported resolutions in pixels:
 
 ### Installation
 
-- `Clone the repository`
-- `Change to project directory`
-- `npm install`
+1. `Clone the repository`
+2. `Change to project directory`
+3. `npm install`
 
 ### Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Modify apiUrl in the src/environments/environment.ts to https://web.demo.nalej.io/
+2. Run `npm start` for a dev server.
+3. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files, also in this task, every change will be linted.
 
 ### Code scaffolding
 
@@ -135,11 +136,19 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ### Build
 
-In order to build and compile this repository run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+In order to build and compile this repository run `npm run build` to build(dev version) the project. If you want a production build you just run `npm run build-prod`, in both cases the build artifacts will be stored in the `dist/` directory.
+Also you can generate a build using our local profile running `npm run build-local`.
+On the other hand, if you want generate a production version and serve it in local just run `npm run build-and-serve-prod-local`.
+
+### Linting
+
+* Run `npm run lint` to check that the code accomplish with every tslint rule.
+* Run `npm run fix-lint` to fix every error in the code that don't accomplish with every tslint rule.
+* Run `npm run style-lint` to check that the code accomplish with every style lint rule.
 
 ### Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ### Documentation
 
