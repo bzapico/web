@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -12,12 +12,11 @@
  */
 
 @import '../scss/variables/colors';
-
 .change-password {
-    color: $base-violet;
-    text-align: center;
-    font-size: .8em;
-    font-weight: 500;
-    cursor: pointer;
-    margin-top: 2em;
+	color: $base-violet;
+	text-align: center;
+	font-size: .8em;
+	font-weight: 500;
+	cursor: pointer;
+	margin-top: 2em;
 }

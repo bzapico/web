@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -16,123 +16,120 @@
 
 /* - - - Company card - - - */
 .company-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%;
-    @include for-desktop-h {
-        flex-direction: row;
-        text-align: left;
-    }
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	height: 100%;
+	@include for-desktop-h {
+		flex-direction: row;
+		text-align: left;
+	}
 }
 .company-img {
-    display: block;
-    img {
-        height: 112px;
-        width: 112px;
-        @include for-desktop-h {
-            height: 100px;
-            width: 100px;
-        }
-    }
+	display: block;
+	img {
+		height: 112px;
+		width: 112px;
+		@include for-desktop-h {
+			height: 100px;
+			width: 100px;
+		}
+	}
 }
 .company-info-text {
-    margin-top: 1.5rem;
-    margin-bottom: .5rem;
-    @include for-desktop-h {
-        margin-left: 1.5em;
-        margin-top: 0;
-        margin-bottom: 0;
-    }
+	margin-top: 1.5rem;
+	margin-bottom: .5rem;
+	@include for-desktop-h {
+		margin-left: 1.5em;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 }
 .company-name {
-    font-size: 1em;
-    font-weight: 700;
-    text-transform: capitalize;
+	font-size: 1em;
+	font-weight: 700;
+	text-transform: capitalize;
 }
 .company-subscription {
-    font-size: .8em;
-    color: $base-violet;
-    margin-bottom: 0;
-    font-weight: 500;
+	font-size: .8em;
+	color: $base-violet;
+	margin-bottom: 0;
+	font-weight: 500;
 }
 .company-users {
-    color: $base-grey;
-    font-size: .8em;
-    margin-bottom: 0;
+	color: $base-grey;
+	font-size: .8em;
+	margin-bottom: 0;
 }
 
 /* - - - Users table card - - - */
 .table-users {
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 .search-box {
-    width: 250px;
-    @include for-desktop-up {
-        margin-right: 0em;
-    }
-    .search-icon i {
-        @include for-desktop-up {
-            right: 7px;
-        }
-    }
-    .close-icon i {
-        @include for-desktop-up {
-            right: 7px;
-        }
-    }
+	width: 250px;
+	@include for-desktop-up {
+		margin-right: 0;
+	}
+	.close-icon i,
+	.search-icon i {
+		@include for-desktop-up {
+			right: 7px;
+		}
+	}
 }
-.add-user-btn{
-    margin-top: 2em;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.add-user-btn {
+	margin-top: 2em;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 .nalej-table-box {
-    @include for-md-desktop-up {
-        padding-top: 0; 
-    }
+	@include for-md-desktop-up {
+		padding-top: 0;
+	}
 }
+
 /* - - - Subscription card - - - */
 .subscription-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    text-align: center;
-    .subscription-icon {
-        height: 87px;
-        width: 87px;
-        border-radius: 50%;
-        font-size: 1em;
-        margin: 0 auto;
-        background-color: $base-violet;
-        color: $white;
-        @include for-desktop-up {
-            height: 70px;
-            width: 70px;
-        }
-        i {
-            font-size: 2.2em;
-            margin: 25px;
-            @include for-desktop-up {
-                margin: 18px;
-            }
-        }
-    }
-    .subscription-check {
-        font-size: .9em;
-        color: $base-grey;  
-    }
-    .subscription-plan {
-        color: $base-violet;
-        @include for-desktop-up {
-            font-size: 1.5rem;
-        }
-    }
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	text-align: center;
+	.subscription-icon {
+		height: 87px;
+		width: 87px;
+		border-radius: 50%;
+		font-size: 1em;
+		margin: 0 auto;
+		background-color: $base-violet;
+		color: $white;
+		@include for-desktop-up {
+			height: 70px;
+			width: 70px;
+		}
+		i {
+			font-size: 2.2em;
+			margin: 25px;
+			@include for-desktop-up {
+				margin: 18px;
+			}
+		}
+	}
+	.subscription-check {
+		font-size: .9em;
+		color: $base-grey;
+	}
+	.subscription-plan {
+		color: $base-violet;
+		@include for-desktop-up {
+			font-size: 1.5rem;
+		}
+	}
 }

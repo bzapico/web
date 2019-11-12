@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,10 +19,10 @@ $base-violet: #5800FF;
 $base-pink: #FF00D3;
 
 $super-dark-grey: #151515;
-$dark-grey: #444444;
+$dark-grey: #444;
 $base-grey: #828282;
 $base-light-grey: #BFBFBF;
-$light-grey: #EEEEEE;
+$light-grey: #EEE;
 $super-light-grey: #F8F8F8;
 
 $base-red: #F7478A;
@@ -31,34 +31,24 @@ $status-teal: #00E6A0;
 $status-yellow:#FFEB6C;
 
 // Extra colors
-$white: #FFFFFF;
-$black: #000000;
+$white: #FFF;
+$black: #000;
 $main-grey: #6B6B6B;
 $main-bg: #F5F5F5;
 $secondary-grey: #707070;
 $low-grey: #CACACA;
+.blue {color: $base-violet !important;}
 
-.blue {
-    color: $base-violet !important;
-}
-.grey {
-    color: $base-grey !important;
-}
-.dark-grey {
-    color: $dark-grey !important;
-}
-.red {
-    color: $base-red !important;
-}
-.pink {
-    color: $base-pink !important;
-}
-.teal {
-    color: $status-teal !important;
-}
-.yellow {
-    color: $status-yellow !important;
-}
-.base-light-grey {
-    color: $base-light-grey !important;
-}
+.grey {color: $base-grey !important;}
+
+.dark-grey {color: $dark-grey !important;}
+
+.red {color: $base-red !important;}
+
+.pink {color: $base-pink !important;}
+
+.teal {color: $status-teal !important;}
+
+.yellow {color: $status-yellow !important;}
+
+.base-light-grey {color: $base-light-grey !important;}

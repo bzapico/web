@@ -26,7 +26,7 @@ export enum OpStatus {
     /**
      * Success to indicate that the operation was successfully executed.
      */
-    SUCCESS = 'SUCESS',
+    SUCCESS = 'SUCCESS',
     /**
      * Fail to indicate that the operation failed.
      */
