@@ -19,7 +19,6 @@ import { NotificationsService } from '../../services/notifications.service';
 import { MockupBackendService } from '../../services/mockup-backend.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
-import * as shape from 'd3-shape';
 import { ServiceInstancesInfoComponent } from './service-instances-info/service-instances-info.component';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { TranslateService } from '@ngx-translate/core';
@@ -30,6 +29,8 @@ import { ApplicationDescriptor } from '../../definitions/models/application-desc
 import { ServiceGroupInstance } from '../../definitions/interfaces/service-group-instance';
 import { ApplicationInstance } from '../../definitions/models/application-instance';
 import { Subscription, timer } from 'rxjs';
+import { GraphData } from '../../definitions/interfaces/graph-data';
+import { ColorScheme } from '../../definitions/interfaces/color-scheme';
 
 @Component({
   selector: 'app-instance-info',
@@ -123,13 +124,12 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    */
   graphReset: boolean;
   graphDataLoaded: boolean;
-  graphData: any;
+  graphData: GraphData;
   orientation: string;
-  curve = shape.curveBasis;
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;
-  colorScheme: any;
+  colorScheme: ColorScheme;
   width: number;
   height: number;
   draggingEnabled: boolean;

@@ -278,7 +278,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Checkbox switcher statement to select one of enabled device to be executed.
    * @param device device data to update
    */
-  enableSwitcher(device: { enabled: boolean; device_group_id: any; device_id: any; }) {
+  enableSwitcher(device: { enabled: boolean; device_group_id: string; device_id: string; }) {
     device.enabled = !device.enabled;
    // backend call
     this.backend.updateDevice(this.organizationId, {
@@ -345,7 +345,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Deletes a selected label
    * @param entity selected label entity
    */
-  deleteLabel(entity: { device_id: any; device_group_id: any; }) {
+  deleteLabel(entity: { device_id: string; device_group_id: string; }) {
     const deleteConfirm = confirm(this.translateService.instant('label.deleteLabels'));
     if (deleteConfirm) {
       const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.device_id);
@@ -368,7 +368,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param labelKey label key from selected label
    * @param labelValue label value from selected label
    */
-  onLabelClick(entityId: any, labelKey: string | number, labelValue: any) {
+  onLabelClick(entityId: string, labelKey: string | number, labelValue: string) {
     const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
     const newLabel = {
       entityId: entityId,
@@ -396,7 +396,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   * @param labelKey label key from selected label
   * @param labelValue label value from selected label
   */
-  indexOfLabelSelected(entityId: any, labelKey: string | number, labelValue: any) {
+  indexOfLabelSelected(entityId: string, labelKey: string | number, labelValue: string) {
     for (let index = 0; index < this.selectedLabels.length; index++) {
       if (this.selectedLabels[index].entityId === entityId &&
           this.selectedLabels[index].labels[labelKey] === labelValue
@@ -410,7 +410,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
    * @param entityId entity from selected label
    */
-  isAnyLabelSelected(entityId: any) {
+  isAnyLabelSelected(entityId: string) {
     if (this.selectedLabels.length > 0) {
       const indexSelected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
       if (indexSelected >= 0) {

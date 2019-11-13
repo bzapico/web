@@ -243,7 +243,7 @@ export class BackendService implements Backend {
    * @param edgeControllerId Edge controller id
    * @param assetId Asset identifier
    */
-  uninstallAgent(organizationId: string, edgeControllerId: string, assetId: any) {
+  uninstallAgent(organizationId: string, edgeControllerId: string, assetId: string) {
     return this.post(
       API_URL + 'agent/' + organizationId + '/' + assetId + '/uninstall',
       {
@@ -285,7 +285,7 @@ export class BackendService implements Backend {
    * @param ecId Edge controller id
    * @param ec Edge controller updated object
    */
-  updateEC(organizationId: string, ecId: any, ec: any) {
+  updateEC(organizationId: string, ecId: string, ec: any) {
     return this.post(
       API_URL + 'inventory/' + organizationId + '/ec/' + ecId + '/update',
       ec
@@ -314,7 +314,7 @@ export class BackendService implements Backend {
    * @param assetId Edge controller id
    * @param asset Asset object updated
    */
-  updateAsset(organizationId: string, assetId: any, asset: any) {
+  updateAsset(organizationId: string, assetId: string, asset: any) {
     return this.post(
       API_URL + 'inventory/' + organizationId + '/asset/' + assetId + '/update',
       asset
@@ -672,7 +672,7 @@ export class BackendService implements Backend {
    * @param groupId Device Group identifier
    * @param deviceId device identifier
    */
-  removeDevice(organizationId: string, groupId: string, deviceId: any) {
+  removeDevice(organizationId: string, groupId: string, deviceId: string) {
     return this.post(
       API_URL + 'device/' + organizationId + '/remove',
       {
@@ -688,7 +688,7 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
    * @param deviceId device identifier
    */
-    removeDeviceFromInventoryMockup(organizationId: string, deviceId: any) {
+    removeDeviceFromInventoryMockup(organizationId: string, deviceId: string) {
       return this.post(
         API_URL + 'device/' + organizationId + '/remove',
         {

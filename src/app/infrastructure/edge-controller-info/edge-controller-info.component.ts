@@ -38,7 +38,7 @@ export class EdgeControllerInfoComponent {
   id: string;
   assets: Asset[];
   show: string;
-  created: string;
+  created: number;
   name: string;
   labels: KeyValue;
   status: string;
@@ -83,7 +83,7 @@ export class EdgeControllerInfoComponent {
    * and multiplied by 1000 so that the argument is in milliseconds, not seconds.
    * @param timestamp is an integer that represents the number of seconds elapsed
    */
-  parseTimestampToDate(timestamp: any) {
+  parseTimestampToDate(timestamp: number) {
       const date = new Date(timestamp * 1000);
       const year = date.getFullYear();
       const month = date.getMonth();

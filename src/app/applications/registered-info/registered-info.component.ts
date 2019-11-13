@@ -20,7 +20,6 @@ import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as shape from 'd3-shape';
 import { ApplicationDescriptor } from '../../definitions/models/application-descriptor';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { ServiceInfoComponent } from './service-info/service-info.component';
@@ -116,7 +115,6 @@ export class RegisteredInfoComponent implements OnInit {
   graphReset: boolean;
   graphData: any;
   orientation: string;
-  curve = shape.curveBasis;
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;

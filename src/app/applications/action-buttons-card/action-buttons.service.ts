@@ -22,9 +22,9 @@ import { Backend } from '../../definitions/interfaces/backend';
 import { BackendService } from '../../services/backend.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { MockupBackendService } from '../../services/mockup-backend.service';
-import {ApplicationDescriptor} from '../../definitions/models/application-descriptor';
-import {Application} from '../../definitions/models/application';
-import {ApplicationInstance} from '../../definitions/models/application-instance';
+import { ApplicationDescriptor } from '../../definitions/models/application-descriptor';
+import { Application } from '../../definitions/models/application';
+import { ApplicationInstance } from '../../definitions/models/application-instance';
 
 @Injectable({
   providedIn: 'root'

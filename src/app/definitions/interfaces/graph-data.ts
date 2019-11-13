@@ -11,16 +11,10 @@
  *  limitations under the License.
  */
 
-import { NodeType } from '../enums/node-type.enum';
-import { ConnectionInstance } from './connection-instance';
+import { GraphNode } from './graph-node';
+import { GraphLink } from './graph-link';
 
-export interface GraphNode {
-    id: string;
-    app_descriptor_id?: string;
-    label: string;
-    type?: NodeType.Clusters | NodeType.Instances;
-    tooltip: string;
-    group: string;
-    inbound_connections?: ConnectionInstance[];
-    outbound_connections?: ConnectionInstance[];
+export interface GraphData {
+    nodes: GraphNode[];
+    links: GraphLink[];
 }

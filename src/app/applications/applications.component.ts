@@ -35,8 +35,8 @@ import { Cluster } from '../definitions/interfaces/cluster';
 import { ApplicationDescriptor } from '../definitions/models/application-descriptor';
 import { NameValue } from '../definitions/interfaces/name-value';
 import { ApplicationInstance } from '../definitions/models/application-instance';
-import {GraphNode} from '../definitions/interfaces/graph-node';
-import {StyledNode} from '../definitions/interfaces/styled-node';
+import { GraphNode } from '../definitions/interfaces/graph-node';
+import { StyledNode } from '../definitions/interfaces/styled-node';
 
 @Component({
   selector: 'applications',

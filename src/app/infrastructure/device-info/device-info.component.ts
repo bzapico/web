@@ -35,7 +35,7 @@ export class DeviceInfoComponent implements OnInit {
   organizationId: string;
   deviceGroupId: string;
   deviceId: string;
-  created: string;
+  created: number;
   labels: any;
   status: string;
   enabled: boolean;
@@ -112,7 +112,7 @@ export class DeviceInfoComponent implements OnInit {
    * and multiplied by 1000 so that the argument is in milliseconds, not seconds.
    * @param timestamp is an integer that represents the number of seconds elapsed
    */
-  parseTimestampToDate(timestamp: any) {
+  parseTimestampToDate(timestamp: number) {
       const date = new Date(timestamp * 1000);
       const year = date.getFullYear();
       const month = date.getMonth();

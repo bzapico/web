@@ -23,6 +23,7 @@ import { MockupBackendService } from '../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { ApplicationDescriptor } from '../../definitions/models/application-descriptor';
 import { ParamCategory } from '../../definitions/enums/param-category.enum';
+import { ApplicationInstance } from '../../definitions/models/application-instance';
 
 /**
  * Notification timeout reference
@@ -36,7 +37,7 @@ const NOTIFICATION_TIMEOUT = 3000; // 3 seconds
 })
 
 export class AppInfoComponent implements OnChanges {
-  @Input() instance: any;
+  @Input() instance: ApplicationInstance;
   @Input() registeredData: ApplicationDescriptor;
   @Input() openFromInstance: boolean;
   @Input() openFromRegistered: boolean;
@@ -195,14 +196,14 @@ export class AppInfoComponent implements OnChanges {
    * Updates connections and appDropdownOptions
    * @param instance instance
    */
-  updateInstance(instance) {
+  updateInstance(instance: ApplicationInstance) {
     this.backend.getAppInstance(instance.organization_id, instance.app_instance_id)
       .subscribe(inst => {
         this.instance.inbound_connections = inst.inbound_connections;
         this.instance.outbound_connections = inst.outbound_connections;
         this.instance.rules = inst.rules;
-        this.instance.outbound_net_interface = inst.outbound_net_interface;
-        this.instance.inbound_net_interface = inst.inbound_net_interface;
+        this.instance.outbound_net_interfaces = inst.outbound_net_interfaces;
+        this.instance.inbound_net_interfaces = inst.inbound_net_interfaces;
       });
   }
   /**

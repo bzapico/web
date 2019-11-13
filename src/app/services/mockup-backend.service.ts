@@ -194,7 +194,7 @@ export class MockupBackendService implements Backend {
    * @param edgeControllerId Edge Controller identifier
    * @param agent Agent identifier
    */
-  installAgent(organizationId: string, edgeControllerId: any, agent: any) {
+  installAgent(organizationId: string, edgeControllerId: string, agent: any) {
     const asset = {
       organization_id: organizationId,
       edge_controller_id: edgeControllerId,
@@ -307,7 +307,7 @@ export class MockupBackendService implements Backend {
    * @param edgeControllerId Edge Controller identifier
    * @param assetId Asset identifier
    */
-  uninstallAgent(organizationId: string, edgeControllerId: string, assetId: any) {
+  uninstallAgent(organizationId: string, edgeControllerId: string, assetId: string) {
     for (let indexEc = 0; indexEc < mockInventoryList.controllers.length; indexEc++) {
       const controllersIds = mockInventoryList.controllers[indexEc].edge_controller_id;
       if (controllersIds === edgeControllerId) {
@@ -756,7 +756,7 @@ export class MockupBackendService implements Backend {
    * @param organizationId Organization identifier
    * @param deviceId device identifier
    */
-  removeDevice(organizationId: string, groupId: string, deviceId: any) {
+  removeDevice(organizationId: string, groupId: string, deviceId: string) {
     for (let index = 0; index < mockDevicesList.length; index++) {
       for (let indexDevice = 0; indexDevice < mockDevicesList[index].length; indexDevice++) {
         if (mockDevicesList[index][indexDevice].device_id === deviceId) {
@@ -773,7 +773,7 @@ export class MockupBackendService implements Backend {
    * @param organizationId Organization identifier
    * @param deviceId device identifier
    */
-  removeDeviceFromInventoryMockup(organizationId: string, deviceId: any) {
+  removeDeviceFromInventoryMockup(organizationId: string, deviceId: string) {
     const index = mockInventoryList.devices.map(x => x.device_id).indexOf(deviceId);
     if (index !== -1) {
       mockInventoryList.devices.splice(index, 1);

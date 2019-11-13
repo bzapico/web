@@ -12,6 +12,9 @@
  */
 
 import { Component, Input } from '@angular/core';
+import * as shape from 'd3-shape';
+import { GraphLink } from '../../definitions/interfaces/graph-link';
+import { GraphNode } from '../../definitions/interfaces/graph-node';
 
 @Component({
   selector: 'graph',
@@ -20,13 +23,14 @@ import { Component, Input } from '@angular/core';
 })
 export class GraphComponent {
 
-  @Input() links: any[];
-  @Input() nodes: any[];
+  @Input() links: GraphLink[];
+  @Input() nodes: GraphNode[];
   @Input() orientation: string;
   @Input() autoZoom: boolean;
   @Input() autoCenter: boolean;
-  @Input() curve: any;
   @Input() enableZoom: boolean;
+
+  curve = shape.curveBasis;
 
   constructor() {
     this.links = [];
@@ -37,7 +41,7 @@ export class GraphComponent {
    * Return if the marker is required
    * @param link Link object
    */
-  getMarker(link) {
+  getMarker(link): string {
     if (!link.notMarker) {
       const index = this.nodes.map(x => x.id).indexOf(link.source);
       if (index !== -1) {
