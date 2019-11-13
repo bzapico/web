@@ -15,7 +15,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import * as shape from 'd3-shape';
 import { EditClusterComponent } from './edit-cluster/edit-cluster.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Cluster } from '../definitions/interfaces/cluster';
@@ -65,7 +64,6 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    */
   graphDataLoaded: boolean;
   graphData: any;
-  curve = shape.curveBasis;
   /**
    * Reference for the service that allows the user info component
    */

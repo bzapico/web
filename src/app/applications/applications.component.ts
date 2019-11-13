@@ -16,7 +16,6 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import * as shape from 'd3-shape';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { RegisterApplicationComponent } from './register-application/register-application.component';
@@ -104,7 +103,6 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    */
   graphDataLoaded: boolean;
   searchGraphData: GraphData<KeyValue>;
-  curve = shape.curveBasis;
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */

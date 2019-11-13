@@ -22,6 +22,8 @@ import { ApplicationInstance } from '../definitions/models/application-instance'
 import { Cluster } from '../definitions/interfaces/cluster';
 import { StyledNode } from '../definitions/interfaces/styled-node';
 import { GraphNode } from '../definitions/interfaces/graph-node';
+import { ColorScheme } from '../definitions/interfaces/color-scheme';
+import * as shape from 'd3-shape';
 
 @Component({
   selector: 'tools',
@@ -76,6 +78,7 @@ export class ToolsComponent implements OnInit {
   graphData: GraphData<any[]>;
   graphReset: boolean;
   orientation: string;
+  curve = shape.curveBasis;
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;
@@ -94,7 +97,7 @@ export class ToolsComponent implements OnInit {
    */
   gradient: boolean;
   doughnut: boolean;
-  colorScheme: {domain: string[]};
+  colorScheme: ColorScheme;
   /**
    * Search process
    */
