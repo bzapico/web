@@ -230,7 +230,7 @@
                         </div>
                         <div *ngFor=
                           "let service of getGroupServices(group.service_group_id) |
-                          sortBy : sortedBy : reverse : 'case-insensitive' |
+                          sortBy : sortedBy : reverse : true |
                           filter : searchTerm">
                           <div class="label-tbody row">
                             <div class="col-12">
