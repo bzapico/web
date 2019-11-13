@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -15,97 +15,97 @@
 // This file contains SCSS helper classes.
 // -----------------------------------------------------------------------------
 
-@import  'app/scss/variables/mixins';
+@import 'app/scss/variables/mixins';
 
 /* - - - Hide and show styles - - - */
 .hide-xs {
-  @include for-xs-desktop-h  {
-    display: none !important;
-  }
+	@include for-xs-desktop-h  {
+		display: none !important;
+	}
 }
 .show-sm {
-  display: none;
-  @include for-quarter-only {
-    display: block !important;
-  }
+	display: none;
+	@include for-quarter-only {
+		display: block !important;
+	}
 }
 .hide-sm {
-  display: block;
-  @include for-quarter-only {
-    display: none !important;
-  }
+	display: block;
+	@include for-quarter-only {
+		display: none !important;
+	}
 }
 .hide-sm-md-h {
-  display: block;
-  @include for-md-desktop-h {
-    display: none !important;
-  }
+	display: block;
+	@include for-md-desktop-h {
+		display: none !important;
+	}
 }
 .show-md {
-  display: none;
-  @include for-desktop-only{
-    display: block !important;
-  }
+	display: none;
+	@include for-desktop-only{
+		display: block !important;
+	}
 }
 .hide-md {
-  @include for-desktop-only {
-    display: none !important;
-  }
+	@include for-desktop-only {
+		display: none !important;
+	}
 }
 .hide-md-h {
-  @include for-desktop-h {
-    display: none !important;
-  }
-  @include for-sm-desktop-up {
-    display: none !important;
-  }
+	@include for-desktop-h {
+		display: none !important;
+	}
+	@include for-sm-desktop-up {
+		display: none !important;
+	}
 }
 .hide-lg {
-  @include for-quarter-up {
-    display: none !important;
-  }
+	@include for-quarter-up {
+		display: none !important;
+	}
 }
 .hide-title-sm {
-  @media screen and (max-height: 780px) {
-    display: none !important;
-  }
+	@media screen and (max-height: 780px) {
+		display: none !important;
+	}
 }
 
 /* - - - Tooltip fix - - - */
 .tooltip-fix {
-  @include for-quarter-up{
-    height: 20px;
-    width: 30px;
-    position: absolute;
-    top: 33%;
-    left: 40%;
-    cursor: pointer;
-  }
+	@include for-quarter-up{
+		height: 20px;
+		width: 30px;
+		position: absolute;
+		top: 33%;
+		left: 40%;
+		cursor: pointer;
+	}
 }
 
 /* - - - No elements in tables - - - */
 .no-elements {
-  height: 80%;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  p {
-    line-height: 1.2;
-  }
+	height: 80%;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	p {
+		line-height: 1.2;
+	}
 }
 .no-elements-in-group {
-  height: 88%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-/* - - - Font sizes - - - */
-.typo-small {
-  font-size: .6em;
+	height: 88%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
+/* - - - Font sizes - - - */
+.typo-small {
+	font-size: .6em;
+}
 .mb-15 {
-  margin-bottom: 15px;
+	margin-bottom: 15px;
 }

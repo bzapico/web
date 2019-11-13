@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,464 +14,453 @@
 // -----------------------------------------------------------------------------
 // Tables
 // -----------------------------------------------------------------------------
-
 .col-center-lowercase {
-    text-align: center;
-    text-transform: lowercase;
+	text-align: center;
+	text-transform: lowercase;
 }
 .col-right-low {
-    text-align: right;
-    text-transform: lowercase;
+	text-align: right;
+	text-transform: lowercase;
+}
+.nalej-table-grey-bg {
+	background-color: $super-light-grey;
+	border-radius: 10px;
+	padding: 1em 1.6em;
+	overflow: hidden;
+	.label-thead {
+		background-color: $super-light-grey;
+	}
+	.label-tbody {
+		border-top: .8px solid $light-grey;
+	}
+	div :nth-child(2) > div {
+		border: none;
+	}
 }
 .nalej-table-box {
-    height: 80%;
-    width: 100%;
-    overflow: hidden;
+	height: 80%;
+	width: 100%;
+	overflow: hidden;
+	&.no-p-col.no-m-row > div > div:nth-child(2) {
+		border-top: none;
+	}
 }
-.no-p-col [class*="col-"] {
-    padding: 0;
+.no-p-col [class*='col-'] {
+	padding: 0;
 }
-.no-m-row [class*="row"]{
-    margin-right: 0px;
-    margin-left: 0px;
+.no-m-row [class*='row']{
+	margin-right: 0;
+	margin-left: 0;
+}
+
+
+/* - - - Search box - - - */
+.search-box {
+	width: 325px;
+	position: relative;
+	font-size: 1rem;
+	float: right;
+	margin-right: 2em;
+	@include for-sm-desktop-up {
+		margin-bottom: .2rem;
+		margin-right: 0;
+	}
+	.form-control {
+		font-size: 1rem;
+		padding: .375rem 2.1rem .5rem 0;
+	}
+	> input {
+		border: 2px solid $light-grey;
+		border-radius: 5px;
+		text-indent: 1em;
+		text-align: left;
+		background-color: transparent;
+		padding-right: 2.7rem !important;
+		&::placeholder {
+			font-size: .9em;
+			color: $base-light-grey;
+		}
+		&:focus {
+			z-index: 2;
+			border-color: $base-violet;
+			outline: none;
+			box-shadow: none;
+			padding-right: 0 !important;
+			&::placeholder {
+				color: $white;
+			}
+		}
+	}
+	.search-icon {
+		position: absolute;
+		top: 9px;
+		right: 23px;
+		color: $base-light-grey;
+		cursor: pointer;
+	}
+	.close-icon {
+		position: absolute;
+		top: 11px;
+		right: 23px;
+		color: $base-violet;
+		cursor: pointer;
+		i {
+			font-size: 16px;
+			font-weight: 500;
+		}
+	}
 }
 
 /* - - -  Nalej big table - - - */
 .nalej-table {
-    height: 100%;
-    display: block;
-    width: 100%;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    thead, tbody, tr, td, th {
-        display: block;
-    }
-    thead {
-        background-color: $white;
-        th {
-            float: left;
-            border: none;
-            font-size: .9em;
-            font-weight: 500;
-            cursor: pointer;
-            &.default{
-                color: #212529;
-                i {
-                color: #212529;
-                }
-            }
-            &.enabled {
-                i {
-                color: $base-violet;;
-                }
-                span i{
-                visibility: visible;
-                }
-            }
-            &.disabled {
-                color: $base-grey;
-                i {
-                color: $base-grey;
-                }
-            }
-        }
-        .expand-chevron {
-            position: relative;
-            cursor: pointer;
-            top: 3px;
-            right: 3px;
-            i {
-                font-size: 1.1em;
-            }
-        }
-    }   
-
-    .nalej-thead {
-        position: sticky;
-        top: 0;
-        background-color: $white;
-        z-index: 1;
-        min-height: 26px;
-    }
-
-    tr:after {
-        content: ' ';
-        display: block;
-        visibility: hidden;
-        clear: both;
-    }
-    tbody {
-        tr:first-child td {
-            border: none;
-        }
-        td {
-            float: left;
-            padding: 0.75rem;
-            font-size: .9em;
-            border-top: .8px solid #f6f6f6;
-            color: $base-grey;
-        }
-    }
+	height: 100%;
+	display: block;
+	width: 100%;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+	thead,
+	tbody,
+	tr,
+	td,
+	th {
+		display: block;
+	}
+	thead {
+		background-color: $white;
+		th {
+			float: left;
+			border: none;
+			font-size: .9em;
+			font-weight: 500;
+			cursor: pointer;
+			&.default{
+				color: $super-dark-grey;
+				i {
+					color: $super-dark-grey;
+				}
+			}
+			&.enabled {
+				i {
+					color: $base-violet;
+				}
+				span i{
+					visibility: visible;
+				}
+			}
+			&.disabled {
+				color: $base-grey;
+				span i {
+					color: $base-grey;
+				}
+			}
+		}
+		.expand-chevron {
+			position: relative;
+			cursor: pointer;
+			top: 3px;
+			right: 3px;
+			font-size: 15px;
+		}
+	}
+	.nalej-thead {
+		position: sticky;
+		top: 0;
+		background-color: $white;
+		z-index: 1;
+		min-height: 26px;
+	}
+	tr::after {
+		content: ' ';
+		display: block;
+		visibility: hidden;
+		clear: both;
+	}
+	tbody {
+		td {
+			float: left;
+			padding: 0.75rem;
+			font-size: .9em;
+			border-top: .8px solid $super-light-grey;
+			color: $base-grey;
+		}
+		tr:first-child td {
+			border: none;
+		}
+	}
 }
+
 /* - - -  Label Nalej big table - - - */
 .nalej-table-p {
-    padding: 0 1em;
+	padding: 0 1em;
 }
-
 .label-nalej-table {
-    height: 100%;
-    display: block;
-    width: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    .label-thead {
-        position: sticky;
-        top: 0;
-        background-color: $white;
-        z-index: 1;
-        min-height: 26px;
-        margin-bottom: 40px;
-        .label-th {
-            float: left;
-            font-size: .9em;
-            font-weight: 500;
-            cursor: pointer;
-            &.default{
-                color: #212529;
-                i {
-                color: #212529;
-                }
-            }
-            &.enabled {
-                i {
-                color: $base-violet;;
-                }
-                span i{
-                visibility: visible;
-                }
-            }
-            &.disabled {
-                color: $base-grey;
-                i {
-                color: $base-grey;
-                }
-            }
-        }
-        .expand-chevron {
-            position: relative;
-            cursor: pointer;
-            top: 3px;
-            right: 3px;
-            i {
-                font-size: 1.1em;
-            }
-        }
-    }   
-    .label-tbody {
-        border-top: .8px solid #f6f6f6;
-        padding: .9rem 0;
-        .label-td {
-            float: left;
-            font-size: .9em;
-            color: $base-grey;
-            outline: none;
-        }
-        .label-td-flex {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        .label-td-flex-text {
-            font-size: .9em;
-            color: $base-grey;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-        }
-    }
-}
-.nalej-table-box {
-    &.no-p-col.no-m-row > div > div:nth-child(2) {
-        border-top: none;
-    }
+	height: 100%;
+	display: block;
+	width: 100%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+	.label-thead {
+		position: sticky;
+		top: 0;
+		background-color: $white;
+		z-index: 1;
+		min-height: 26px;
+		margin-bottom: 40px;
+		.expand-chevron {
+			position: relative;
+			cursor: pointer;
+			top: 3px;
+			right: 3px;
+			i {
+				font-size: 1.1em;
+			}
+		}
+		.label-th {
+			float: left;
+			font-size: .9em;
+			font-weight: 500;
+			cursor: pointer;
+			&.default {
+				color: $super-dark-grey;
+				i {
+					color: $super-dark-grey;
+				}
+			}
+			&.disabled {
+				color: $base-grey;
+				i {
+					color: $base-grey;
+				}
+			}
+			&.enabled {
+				i {
+					color: $base-violet;
+				}
+				span i{
+					visibility: visible;
+				}
+			}
+		}
+	}
+	.label-tbody {
+		border-top: .8px solid $super-light-grey;
+		padding: .9rem 0;
+		.label-td {
+			float: left;
+			font-size: .9em;
+			color: $base-grey;
+			outline: none;
+		}
+		.label-td-flex {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+		}
+		.label-td-flex-text {
+			font-size: .9em;
+			color: $base-grey;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: flex-start;
+		}
+	}
 }
 
 /* - - -  Search and sort in tables - - - */
 .sorting-message {
-    color: $base-light-grey;
-    font-size: .9em;
-    padding: .55rem;
-    margin-bottom: 0;
-    font-weight: 500;
-    min-height: 39px;
-    .reset-search{
-        cursor: pointer;
-        color: $base-violet;
-    }
-    @include for-sm-desktop-up {
-        padding: .4rem .75rem;
-    }
-}
-
-/* - - - Search box - - - */
-.search-box {    
-    width: 325px;
-    position: relative; 
-    font-size: 1rem;
-    float: right;
-    margin-right: 2em;
-    @include for-sm-desktop-up {
-        margin-bottom: .2rem;
-        margin-right: 0;
-    }
-    .form-control {
-        font-size: 1rem;
-        padding: .375rem 2.1rem .5rem 0rem;
-    }
-    > input {
-        border: 2px solid $light-grey;
-        border-radius: 5px;
-        text-indent: 1em;
-        text-align: left;
-        background-color: transparent;
-        padding-right: 2.7rem!important;
-        &::placeholder {
-            font-size: .9em;
-            color: $base-light-grey;
-        }
-        &:focus {
-            z-index: 2;
-            border-color: $base-violet;
-            outline: none;
-            box-shadow: none;
-            padding-right: 0!important;
-            &::placeholder {
-                color: $white;
-            }
-        }
-    }
-    .search-icon i {
-        position: absolute;
-        top: 9px;
-        right: 23px;
-        color: $base-light-grey;
-        cursor: pointer;
-    }
-    .close-icon i {
-        position: absolute;
-        top: 11px;
-        right: 23px;
-        font-size: 16px;
-        font-weight: 500;
-        color: $base-violet;
-        cursor: pointer;
-    }
+	color: $base-light-grey;
+	font-size: .9em;
+	padding: .55rem;
+	margin-bottom: 0;
+	font-weight: 500;
+	min-height: 39px;
+	.reset-search{
+		cursor: pointer;
+		color: $base-violet;
+	}
+	@include for-sm-desktop-up {
+		padding: .4rem .75rem;
+	}
 }
 
 /* - - - Status dots for tables - - - */
-.status-dot-nalej {
-    content:'\A';
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    display:inline-block;
-    margin: 0 5px 0 0;
+.status-dot-nalej,
+%status-dot-nalej {
+	content: '\A';
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 0 5px 0 0;
 }
 .status-dot {
-    @include for-desktop-up {
-        text-align: center;
-    }
-    &:before {
-        @extend .status-dot-nalej;
-        background: $status-teal;
-        @include for-desktop-up {
-            margin: 0 23px;
-        }
-    }
+	@include for-desktop-up {
+		text-align: center;
+	}
+	&::before {
+		@extend %status-dot-nalej;
+
+		background: $status-teal;
+		@include for-desktop-up {
+			margin: 0 23px;
+		}
+	}
 }
-.status-dot-error{
-    @include for-desktop-up {
-        text-align: center;
-    }
-    &:before {
-        @extend .status-dot-nalej;
-        background: $base-red;
-        @include for-desktop-up {
-            margin: 0 23px;
-        }
-    }
+.status-dot-error {
+	@include for-desktop-up {
+		text-align: center;
+	}
+	&::before {
+		@extend %status-dot-nalej;
+
+		background: $base-red;
+		@include for-desktop-up {
+			margin: 0 23px;
+		}
+	}
 }
 .status-dot-process {
-    @include for-desktop-up {
-        text-align: center;
-    }
-    &:before {
-        @extend .status-dot-nalej;
-        background: $status-yellow;
-        @include for-desktop-up {
-            margin: 0 23px;
-        }
-    }
-}
+	@include for-desktop-up {
+		text-align: center;
+	}
+	&::before {
+		@extend %status-dot-nalej;
 
-.big-status-dot-nalej {
-    content:'\A';
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    display:inline-block;
-    margin-right: 7px;
+		background: $status-yellow;
+		@include for-desktop-up {
+			margin: 0 23px;
+		}
+	}
+}
+.big-status-dot-nalej,
+%big-status-dot-nalej {
+	content: '\A';
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	display: inline-block;
+	margin-right: 7px;
 }
 .big-status-dot {
-    &:before {
-        @extend .big-status-dot-nalej;
-        background: $status-teal;
-        @include for-desktop-up {
-            width: 12px;
-            height: 12px;
-        }
-    }
+	&::before {
+		@extend %big-status-dot-nalej;
+
+		background: $status-teal;
+		@include for-desktop-up {
+			width: 12px;
+			height: 12px;
+		}
+	}
 }
 .big-status-dot-error{
-    &:before {
-        @extend .big-status-dot-nalej;
-        background: $base-red;
-        @include for-desktop-up {
-            width: 12px;
-            height: 12px;
-        }
-    }
+	&::before {
+		@extend %big-status-dot-nalej;
+
+		background: $base-red;
+		@include for-desktop-up {
+			width: 12px;
+			height: 12px;
+		}
+	}
 }
 .big-status-dot-process {
-    &:before {
-        @extend .big-status-dot-nalej;
-        background: $status-yellow;
-        @include for-desktop-up {
-            width: 12px;
-            height: 12px;
-        }
-    }
+	&::before {
+		@extend %big-status-dot-nalej;
+
+		background: $status-yellow;
+		@include for-desktop-up {
+			width: 12px;
+			height: 12px;
+		}
+	}
 }
 
 /* - - - Tabs - - - */
 .tabs-box {
-    background-color: $super-light-grey;
-    border-radius: 10px;
-    width: 100%;
-    height: 38px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding-inline-start: 0px;
-    margin-block-end: 0px;
-    margin-bottom: 5px;
-    li {
-        list-style-type: none;
-        display: inline-block;
-        margin-right: 20px;
-        cursor: pointer;
-    }
-    .tabs-btn {
-        font-size: .65em;
-        font-weight: 700;
-        color: $base-light-grey;
-    }
-    .tabs-btn-selected {
-        font-size: .65em;
-        font-weight: 700;
-        color: $base-violet;
-    }
+	background-color: $super-light-grey;
+	border-radius: 10px;
+	width: 100%;
+	height: 38px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	padding-inline-start: 0;
+	margin-block-end: 0;
+	margin-bottom: 5px;
+	li {
+		list-style-type: none;
+		display: inline-block;
+		margin-right: 20px;
+		cursor: pointer;
+	}
+	.tabs-btn {
+		font-size: .65em;
+		font-weight: 700;
+		color: $base-light-grey;
+	}
+	.tabs-btn-selected {
+		font-size: .65em;
+		font-weight: 700;
+		color: $base-violet;
+	}
 }
 
 /* - - - Table for summary card - - - */
 .summary-table {
-    width: 100%;
-    margin: 10px 0;
-    .status-dot-nalej, 
-    .status-dot:before, 
-    .status-dot-error:before, 
-    .status-dot-process:before {
-        margin: 3px;
-    }
-    .summary-table-tr {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: row;
-        padding: 3px 0;
-        align-items: center;
-    } 
-    .summary-table-th {
-        color: $base-grey;
-        border: none;
-        font-weight: 400;
-        vertical-align: inherit;
-        display: inline;
-        font-size: 14px;
-        @include for-desktop-only {
-            font-size: .8em;
-        }
-    }
-    .summary-table-td {
-        vertical-align: inherit;
-        border: none;
-        text-align: right;
-        color: $dark-grey;
-        display: inline;
-        font-size: 16px;
-        @include for-desktop-only {
-            font-size: .8em;
-            text-align: right;
-        }
-    }
-    .summary-table-td-big {
-        vertical-align: inherit;
-        border: none;
-        text-align: right;
-        color: $dark-grey;
-        display: inline;
-        font-size: 20px;
-        @include for-desktop-only {
-            font-size: .8em;
-            text-align: right;
-        }
-    }
-    .nalej-table-grey-bg {
-        background-color: $super-light-grey;
-        border-radius: 10px;
-        padding: 1em 1.6em;
-        overflow: hidden;
-        .label-thead {
-            background-color: $super-light-grey;
-        }
-        .label-tbody {
-            border-top: .8px solid $light-grey;
-        }
-        div:nth-child(2) > div {
-            border: none;
-        }
-    }
-}
-.nalej-table-grey-bg {
-    background-color: $super-light-grey;
-    border-radius: 10px;
-    padding: 1em 1.6em;
-    overflow: hidden;
-
-    .label-thead {
-        background-color: $super-light-grey;
-    }
-
-    .label-tbody {
-        border-top: .8px solid $light-grey;
-    }
-
-    div:nth-child(2) > div {
-        border: none;
-    }
+	width: 100%;
+	margin: 10px 0;
+	.status-dot-nalej,
+	.status-dot::before,
+	.status-dot-error::before,
+	.status-dot-process::before {
+		margin: 3px;
+	}
+	.summary-table-tr {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: row;
+		padding: 3px 0;
+		align-items: center;
+	}
+	.summary-table-th {
+		color: $base-grey;
+		border: none;
+		font-weight: 400;
+		vertical-align: inherit;
+		display: inline;
+		font-size: 14px;
+		@include for-desktop-only {
+			font-size: .8em;
+		}
+	}
+	.summary-table-td {
+		vertical-align: inherit;
+		border: none;
+		text-align: right;
+		color: $dark-grey;
+		display: inline;
+		font-size: 16px;
+		@include for-desktop-only {
+			font-size: .8em;
+			text-align: right;
+		}
+	}
+	.summary-table-td-big {
+		vertical-align: inherit;
+		border: none;
+		text-align: right;
+		color: $dark-grey;
+		display: inline;
+		font-size: 20px;
+		@include for-desktop-only {
+			font-size: .8em;
+			text-align: right;
+		}
+	}
 }

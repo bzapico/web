@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,148 +17,152 @@
 
 /* - - - Forms styles - - - */
 .nalej-form-title{
-    font-size: 13px;
-    display: inline;
-    color: $super-dark-grey;
-    button span {
-        color: $base-grey;
-    }
+	font-size: 13px;
+	display: inline;
+	color: $super-dark-grey;
+	button span {
+		color: $base-grey;
+	}
 }
-.form-group {
-    margin-bottom: 0rem;
-    label {
-        font-size: 13px;
-        color: $base-grey;
-        margin-bottom: .2em;
-        font-weight: 500;
-    }
-    input {
-        &::placeholder {
-            color:$base-light-grey;
-        }
-        &:focus {
-            &::placeholder {
-                color: $white;
-            }
-        }
-    }
+.form-group,
+%form-group {
+	margin-bottom: 0;
+	label {
+		font-size: 13px;
+		color: $base-grey;
+		margin-bottom: .2em;
+		font-weight: 500;
+	}
+	input {
+		&::placeholder {
+			color: $base-light-grey;
+		}
+		&:focus {
+			&::placeholder {
+				color: $white;
+			}
+		}
+	}
 }
 .form-group-btn {
-    @extend .form-group;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 3em;
-    @include for-desktop-only { 
-        margin-top: 2em;
-    }
-}
+	@extend %form-group;
 
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-top: 3em;
+	@include for-desktop-only {
+		margin-top: 2em;
+	}
+}
 .form-control {
-    position: relative;
-    height: 40px;
-    font-size: 13px;
-    text-align: center;
-    color: $dark-grey;
-    border: 2px solid $light-grey;
-    caret-color: $base-violet;
-    &:focus {
-        z-index: 2;
-        border-color: $base-violet;
-        outline: none;
-        color: $dark-grey;
-        box-shadow: none;
-        &::placeholder {
-            color: $white;
-        }
-    }
-    input {
-        &:checked {
-            outline: none;
-        }
-        &:-webkit-autofill {
-            background-color: $white;
-        }
-    }
-    &:disabled, &[readonly] {
-        background-color: $super-light-grey;
-        border-color: $super-light-grey;
-    }
+	position: relative;
+	height: 40px;
+	font-size: 13px;
+	text-align: center;
+	color: $dark-grey;
+	border: 2px solid $light-grey;
+	caret-color: $base-violet;
+	&:focus {
+		z-index: 2;
+		border-color: $base-violet;
+		outline: none;
+		color: $dark-grey;
+		box-shadow: none;
+		&::placeholder {
+			color: $white;
+		}
+	}
+	.form-group input:focus {
+		&:checked {
+			outline: none;
+		}
+		&:-webkit-autofill {
+			background-color: $white;
+		}
+	}
+	&:disabled,
+	&[readonly] {
+		background-color: $super-light-grey;
+		border-color: $super-light-grey;
+	}
 }
 
-  /* - - - Forms button styles - - - */
-.nalej-form-btn {
-    border: 0px;
-    border-radius: 5px;
-    width: 232px;
-    font-size: 13px;
-    text-align: center;
-    height: 51px;
-    font-weight: 500;
-    cursor: pointer;
-    &:focus {
-        outline: none;
-        box-shadow: none;
-    }
-    &:disabled {
-        background-color: $dark-grey;
-    }
+/* - - - Forms button styles - - - */
+.nalej-form-btn,
+%nalej-form-btn {
+	border: 0;
+	border-radius: 5px;
+	width: 232px;
+	font-size: 13px;
+	text-align: center;
+	height: 51px;
+	font-weight: 500;
+	cursor: pointer;
+	&:focus {
+		outline: none;
+		box-shadow: none;
+	}
+	&:disabled {
+		background-color: $dark-grey;
+	}
 }
 .nalej-form-btn-blue {
-    @extend .nalej-form-btn;
-    color: $white;
-    background-color: $base-violet;
-    &:hover {
-        color: $white;
-        transition: .3s;
-        background-color: $base-violet;
-        opacity: .6;
-    }
-    &:disabled {
-        cursor: none;
-        &:hover {
-            background-color: $super-dark-grey;
-            opacity: 1;
-        }
-    }
+	@extend %nalej-form-btn;
+
+	color: $white;
+	background-color: $base-violet;
+	&:hover {
+		color: $white;
+		transition: .3s;
+		background-color: $base-violet;
+		opacity: .6;
+	}
+	&:disabled {
+		cursor: none;
+		&:hover {
+			background-color: $super-dark-grey;
+			opacity: 1;
+		}
+	}
 }
 .nalej-form-btn-red {
-    @extend .nalej-form-btn;
-    background-color: $super-light-grey;
-    color: $base-red;
-    position: relative;
-    text-indent: 18px;
-    .delete-icon {
-        color: $base-red;
-        position: absolute;
-        top: 15px;
-        left: 35px;
-        font-size: 21px;
-    }
-    &:hover {
-        background-color: $base-red;
-        color: $super-light-grey;
-        transition: .3s;
-        .delete-icon {
-            color: $super-light-grey;
-            transition: .3s;
-        }
-    }
-}
+	@extend %nalej-form-btn;
 
+	background-color: $super-light-grey;
+	color: $base-red;
+	position: relative;
+	text-indent: 18px;
+	.delete-icon {
+		color: $base-red;
+		position: absolute;
+		top: 15px;
+		left: 35px;
+		font-size: 21px;
+	}
+	&:hover {
+		background-color: $base-red;
+		color: $super-light-grey;
+		transition: .3s;
+		.delete-icon {
+			color: $super-light-grey;
+			transition: .3s;
+		}
+	}
+}
 .error-h {
-    height: 19px;
-    margin-top: .2em;
-    .error-message {
-        font-size: 12px;
-        color: $base-red;
-    }
+	height: 19px;
+	margin-top: .2em;
+	.error-message {
+		font-size: 12px;
+		color: $base-red;
+	}
 }
 .is-invalid {
-    border: 2px solid $base-red !important;
-    &:focus {
-        border-color: transparent;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-    }
+	border: 2px solid $base-red !important;
+	&:focus {
+		border-color: transparent;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
 }

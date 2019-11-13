@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,46 +17,58 @@
 
 /* - - -  Pie charts - - - */
 .ngx-charts .label {
-    display: none;
+	display: none;
 }
 .pie-grid .percent-label {
-    font-size: 1em;
-    display: block;
+	font-size: 1em;
+	display: block;
 }
-.line-chart-box .ngx-charts text { 
-    fill: $base-grey; 
+.line-chart-box .ngx-charts text {
+	fill: $base-grey;
 }
-  
+
 /* - - -  Line charts  - - - */
 .line-chart-box {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    height: 88%;
-    width: 98%;
-    .ngx-charts {
-        .gridline-path {
-            stroke: transparent!important;
-            stroke-width: 1;
-            fill: none;
-        }
-        .refline-path {
-            stroke: $light-grey!important;
-            stroke-width: 1;
-            stroke-dasharray: 0 !important;
-            stroke-dashoffset: 0 !important;
-        }
-        .y {
-            .tick {
-            display: none !important;
-            }
-        }
-    }
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	height: 88%;
+	width: 98%;
+	.ngx-charts {
+		.gridline-path {
+			stroke: transparent !important;
+			stroke-width: 1;
+			fill: none;
+		}
+		.refline-path {
+			stroke: $light-grey !important;
+			stroke-width: 1;
+			stroke-dasharray: 0 !important;
+			stroke-dashoffset: 0 !important;
+		}
+		.y {
+			.tick {
+				display: none !important;
+			}
+		}
+	}
 }
 .line-chart-y-axis {
-    font-size: .8em;
-    display: flex;
-    flex-direction:column;
-    justify-content: space-between;
+	font-size: .8em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
-  
+.donut-number {
+	color: $super-dark-grey;
+	font-size: .9em;
+	font-weight: 500;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate( -50%, -50% );
+	-webkit-transform: translate( -50%, -50% );
+	@include for-desktop-only {
+		font-size: .8em;
+	}
+}

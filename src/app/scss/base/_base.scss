@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -15,67 +15,64 @@
 // Basic styles.
 // -----------------------------------------------------------------------------
 
-@import  'app/scss/variables/mixins';
-@import  'app/scss/variables/colors';
-
-html, body {
-    margin: 0px;
-    height: 100%;
-    overflow-x: hidden;
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-    box-sizing: border-box;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
-    text-rendering: optimizeLegibility !important;
-    -webkit-font-smoothing: antialiased !important;
+@import 'app/scss/variables/mixins';
+@import 'app/scss/variables/colors';
+html,
+body {
+	margin: 0;
+	height: 100%;
+	overflow-x: hidden;
+	font-family: 'Lato' , sans-serif;
+	font-weight: 400;
+	box-sizing: border-box;
+	text-shadow: 1px 1px 1px rgba( 0, 0, 0, 0.004 );
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
 }
-
 *,
 *::before,
 *::after {
-    box-sizing: inherit;
-    font-family: 'Lato', sans-serif;
+	box-sizing: inherit;
+	font-family: 'Lato' , sans-serif;
 }
-h1 { 
-    font-weight: 500; 
+h1 {
+	font-weight: 500;
 }
 
 /* - - - Basic styles for links - - - */
-
 a {
-    color: $base-violet;
-    text-decoration: none;
-    font-weight: 500;
-    &:hover {
-      color: $base-violet;
-      text-decoration: none;
-    }
+	color: $base-violet;
+	text-decoration: none;
+	font-weight: 500;
+	&:hover {
+		color: $base-violet;
+		text-decoration: none;
+	}
 }
 .section-title {
-    color: $super-dark-grey;
-    font-weight: 700;
-    margin-bottom: 0;
-    @include for-desktop-only  { 
-        font-size: 1.5rem;
-    }
+	color: $super-dark-grey;
+	font-weight: 700;
+	margin-bottom: 0;
+	@include for-desktop-only  {
+		font-size: 1.5rem;
+	}
 }
-
 .fw-link {
-    font-weight: 500;
-    color: $base-violet;
-    cursor: pointer;
+	font-weight: 500;
+	color: $base-violet;
+	cursor: pointer;
 }
 
 /* - - - Basic styles for typography - - - */
 .fw-light {
-    font-weight: 200;
+	font-weight: 200;
 }
 .fw-regular {
-    font-weight: 400;
+	font-weight: 400;
 }
 .fw-bold {
-    font-weight: 500;
+	font-weight: 500;
 }
 .fw-black {
-    font-weight: 700;
+	font-weight: 700;
 }

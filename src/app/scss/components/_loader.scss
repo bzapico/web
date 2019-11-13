@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,80 +14,79 @@
 // -----------------------------------------------------------------------------
 // Loader
 // -----------------------------------------------------------------------------
-
 .nalej-loader-box {
-  display: block;
-  position: relative;
-  min-height: 15em;
-  min-width: 5em;
-  .circular {
-    animation: rotate 2s linear infinite;
-    height: 100%;
-    transform-origin: center center;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
-  .path {
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
-    animation: dash 1.5s ease-in-out infinite, color 2s ease-in-out infinite;
-    stroke-linecap: round;
-  }
-  @keyframes rotate {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes dash {
-    0% {
-      stroke-dasharray: 1, 200;
-      stroke-dashoffset: 0;
-    }
-    50% {
-      stroke-dasharray: 89, 200;
-      stroke-dashoffset: -35px;
-    }
-    100% {
-      stroke-dasharray: 89, 200;
-      stroke-dashoffset: -124px;
-    }
-  }
-  @keyframes color {
-    100%,
-    0% {
-      stroke: $base-violet
-    }
-    50% {
-      stroke: $base-red;
-    }
-    100% {
-      stroke: $base-violet
-    }
-  }
+	display: block;
+	position: relative;
+	min-height: 15em;
+	min-width: 5em;
+	.circular {
+		animation: rotate 2s linear infinite;
+		height: 100%;
+		transform-origin: center center;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+	}
+	.path {
+		stroke-dasharray: 1 , 200;
+		stroke-dashoffset: 0;
+		animation: dash 1.5s ease-in-out infinite , color 2s ease-in-out infinite;
+		stroke-linecap: round;
+	}
+	@keyframes rotate {
+		100% {
+			transform: rotate( 360deg );
+		}
+	}
+	@keyframes dash {
+		0% {
+			stroke-dasharray: 1 , 200;
+			stroke-dashoffset: 0;
+		}
+		50% {
+			stroke-dasharray: 89 , 200;
+			stroke-dashoffset: -35px;
+		}
+		100% {
+			stroke-dasharray: 89 , 200;
+			stroke-dashoffset: -124px;
+		}
+	}
+	@keyframes color {
+		100%,
+		0% {
+			stroke: $base-violet;
+		}
+		50% {
+			stroke: $base-red;
+		}
+		100% {
+			stroke: $base-violet;
+		}
+	}
 }
 .loader {
-  margin: 0 auto;
-  width: 60px;
-  position: absolute;
-  display: block;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  -webkit-transform: translate3d(0, -50%, 0);
-  -moz-transform: translate3d(0, -50%, 0);
-  -o-transform: translate3d(0, -50%, 0);
-  -ms-transform: translate3d(0, -50%, 0);
-  transform: translate3d(0, -50%, 0);
-  text-align: center;
-  top: 50%;
-  &:before {
-    content: '';
-    display: block;
-    padding-top: 100%;
-  }
+	margin: 0 auto;
+	width: 60px;
+	position: absolute;
+	display: block;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	-webkit-transform: translate3d( 0, -50%, 0 );
+	-moz-transform: translate3d( 0, -50%, 0 );
+	-o-transform: translate3d( 0, -50%, 0 );
+	-ms-transform: translate3d( 0, -50%, 0 );
+	transform: translate3d( 0, -50%, 0 );
+	text-align: center;
+	top: 50%;
+	&::before {
+		content: '';
+		display: block;
+		padding-top: 100%;
+	}
 }
