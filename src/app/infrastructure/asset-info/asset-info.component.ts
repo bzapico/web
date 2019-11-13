@@ -18,6 +18,7 @@ import { BackendService } from '../../services/backend.service';
 import { MockupBackendService } from '../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { InventoryType } from '../../definitions/enums/inventory-type.enum';
+import { Controller } from '../../definitions/models/controller';
 
 @Component({
   selector: 'app-asset-info',
@@ -131,7 +132,7 @@ export class AssetInfoComponent implements OnInit {
    * component to open the Edge Controller Info modal window
    */
   openEdgeControllerInfo() {
-    let controller: any;
+    let controller: Controller;
     let ecIndexFound;
     for (let i = 0; i < this.inventory.length; i++) {
       if (this.inventory[i].edge_controller_id === this.edgeControllerId &&

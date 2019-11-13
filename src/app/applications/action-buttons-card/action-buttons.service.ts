@@ -22,6 +22,9 @@ import { Backend } from '../../definitions/interfaces/backend';
 import { BackendService } from '../../services/backend.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { MockupBackendService } from '../../services/mockup-backend.service';
+import {ApplicationDescriptor} from '../../definitions/models/application-descriptor';
+import {Application} from '../../definitions/models/application';
+import {ApplicationInstance} from '../../definitions/models/application-instance';
 
 @Injectable({
   providedIn: 'root'
@@ -77,7 +80,7 @@ export class ActionButtonsService {
    * Requests to undeploy the selected instance
    * @param app Application instance object
    */
-  undeploy(app: any) {
+  undeploy(app: ApplicationInstance) {
     const undeployConfirm = confirm(
       this.translateService.instant('apps.instance.undeployConfirm', {
         appName: app.name
@@ -104,7 +107,7 @@ export class ActionButtonsService {
    * Opens the modal view that holds the deploy registered app component
    * @param app registered app to deploy
    */
-  deployRegistered(app: any) {
+  deployRegistered(app: ApplicationDescriptor) {
     const initialState = {
       organizationId: app.organization_id,
       registeredId: app.app_descriptor_id,
@@ -127,7 +130,7 @@ export class ActionButtonsService {
    * Requests to delete the selected app
    * @param app Application object
    */
-  deleteApp(app: any) {
+  deleteApp(app: Application) {
     const deleteConfirm = confirm(
       this.translateService.instant('apps.registered.deleteApp', {
         appName: app.name

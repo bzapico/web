@@ -25,6 +25,9 @@ import { AddLabelComponent } from '../add-label/add-label.component';
 import { DeviceGroupInfoComponent } from './device-group-info/device-group-info.component';
 import { TranslateService } from '@ngx-translate/core';
 import { InventoryStatus } from '../definitions/enums/inventory-status.enum';
+import { Subscription, timer } from 'rxjs';
+import { Device } from '../definitions/models/device';
+import { Group } from '../definitions/interfaces/group';
 /**
  * Refresh ratio reference
  */
@@ -55,7 +58,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * List of available devices groups
    */
-  groups: any[];
+  groups: Group[];
   /**
    *  Models that hold group data
    */
@@ -67,8 +70,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * List of active displayed group
    */
-  displayedGroups: any[];
-  devicesOnTimeline: any[];
+  devicesOnTimeline: Device[];
   /**
    * List of labels
    */
@@ -80,7 +82,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Interval reference
    */
-  refreshIntervalRef: any;
+  refreshIntervalRef: Subscription;
   /**
    * Charts references
    */
@@ -159,7 +161,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     // Default initialization
     this.devices = [];
     this.groups = [];
-    this.displayedGroups = [];
     this.labels = [];
     this.loadedData = false;
     this.activeContextMenuGroupId = '';
@@ -191,16 +192,14 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
-      this.updateGroupsList(this.organizationId);
-        this.refreshIntervalRef = setInterval(() => {
-          this.updateGroupsList(this.organizationId);
-        },
-        REFRESH_RATIO); // Refresh each 60 seconds
+      this.refreshIntervalRef = timer(0, REFRESH_RATIO).subscribe(() => {
+        this.updateGroupsList(this.organizationId);
+      });
     }
   }
 
   ngOnDestroy() {
-    clearInterval(this.refreshIntervalRef);
+    this.refreshIntervalRef.unsubscribe();
   }
   /**
    * Translates timestamps to the wish date
@@ -438,7 +437,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Requests to unlink the selected device
    * @param device device item
    */
-  unlinkDevice(device: any) {
+  unlinkDevice(device: Device) {
     const unlinkConfirm =
     confirm(this.translateService.instant('devices.unlinkDeviceConfirm', {deviceId : device.device_id }));
     if (unlinkConfirm) {
@@ -578,8 +577,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       });
     }
     const now = new Date(Date.now());
-    let minutes: any = now.getMinutes();
-    let seconds: any = now.getSeconds();
+    let minutes: string | number = now.getMinutes();
+    let seconds: string | number = now.getSeconds();
     if (minutes < 10) {
       minutes = '0' + now.getMinutes();
     }
@@ -605,7 +604,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   * Open device group info modal window
   *  @param group group object
   */
-  private openDeviceGroupInfo(group: any) {
+  private openDeviceGroupInfo(group: Group) {
     const initialState = {
       organizationId: this.organizationId,
       name: group.name,

@@ -288,7 +288,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * @param labelKey label key from selected label
    * @param labelValue label value from selected label
    */
-  onLabelClick(entityId: any, labelKey: string | number, labelValue: any) {
+  onLabelClick(entityId: string, labelKey: string | number, labelValue: string) {
     const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
     const newLabel = {
       entityId: entityId,
@@ -316,7 +316,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
   * @param labelKey label key from selected label
   * @param labelValue label value from selected label
   */
-  indexOfLabelSelected(entityId: any, labelKey: string | number, labelValue: any) {
+  indexOfLabelSelected(entityId: string, labelKey: string | number, labelValue: string) {
     for (let index = 0; index < this.selectedLabels.length; index++) {
       if (this.selectedLabels[index].entityId === entityId &&
           this.selectedLabels[index].labels[labelKey] === labelValue
@@ -330,7 +330,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
    * @param entityId entity from selected label
    */
-  isAnyLabelSelected(entityId: any) {
+  isAnyLabelSelected(entityId: string) {
     if (this.selectedLabels.length > 0) {
       const indexSelected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
       if (indexSelected >= 0) {

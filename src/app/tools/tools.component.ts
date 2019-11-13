@@ -286,7 +286,7 @@ export class ToolsComponent implements OnInit {
     this.graphData.nodes.forEach(node => {
       if (node.type === NodeType.Instances) {
         connections.forEach(connection_type => {
-          node[connection_type].forEach((connection: { source_instance_id: any; target_instance_id: any; }) => {
+          node[connection_type].forEach((connection: { source_instance_id: string; target_instance_id: string; }) => {
             const source = connection.source_instance_id;
             const target = connection.target_instance_id;
             const isSourceNode = this.graphData.nodes.filter(item => item.id === source).length > 0;
@@ -325,7 +325,7 @@ export class ToolsComponent implements OnInit {
           ToolsComponent.CUSTOM_HEIGHT_CLUSTERS)
     };
   }
-  generateInstanceNode(instance: ApplicationInstance, cluster: any, tooltip: string): GraphNode & StyledNode {
+  generateInstanceNode(instance: ApplicationInstance, cluster: Cluster, tooltip: string): GraphNode & StyledNode {
     const instanceName = instance.name.toLowerCase();
     return {
     ...{

@@ -29,6 +29,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AddLabelComponent } from '../../add-label/add-label.component';
 import { RegisteredInfoService } from './registered-info.service';
 import { KeyValue } from '../../definitions/interfaces/key-value';
+import { SecurityRule } from '../../definitions/interfaces/security-rule';
 
 @Component({
   selector: 'app-registered-info',
@@ -354,11 +355,11 @@ export class RegisteredInfoComponent implements OnInit {
   * Open rules info modal window
   *  @param rule rule object
   */
-  openRulesInfo(rule) {
+  openRulesInfo(rule: SecurityRule) {
     const initialState = {
       organizationId: this.organizationId,
       ruleId: rule.rule_id,
-      access: rule.access,
+      access: rule.access_name,
       appDescriptorId: rule.app_descriptor_id,
       authServices: rule.auth_services,
       authServiceGroupName: rule.auth_service_group_name,

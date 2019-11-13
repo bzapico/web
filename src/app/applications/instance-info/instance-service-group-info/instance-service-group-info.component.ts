@@ -32,7 +32,7 @@ export class InstanceServiceGroupInfoComponent implements OnInit {
   serviceGroupId: string;
   serviceGroupInstanceId: string;
   serviceInstances: any;
-  status: any;
+  status: string;
   globalFqdn: string;
   metadata: any;
   /**

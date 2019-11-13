@@ -72,7 +72,7 @@ export class InstallAgentComponent implements OnInit {
   tab = 1;
   options = [];
   selectConfig = {};
-  agentTypeOptions: any[];
+  agentTypeOptions: {name: ArchitectureType, code: number}[];
   agentTypeSelectConfig = {};
   architectureSelectConfig = {};
   edgeControllerSelectConfig = {};

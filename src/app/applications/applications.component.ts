@@ -34,6 +34,9 @@ import { ToolsComponent } from '../tools/tools.component';
 import { Cluster } from '../definitions/interfaces/cluster';
 import { ApplicationDescriptor } from '../definitions/models/application-descriptor';
 import { NameValue } from '../definitions/interfaces/name-value';
+import { ApplicationInstance } from '../definitions/models/application-instance';
+import {GraphNode} from '../definitions/interfaces/graph-node';
+import {StyledNode} from '../definitions/interfaces/styled-node';
 
 @Component({
   selector: 'applications',
@@ -271,7 +274,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * Updates pie chart status
    * @param instances Array of instance objects
    */
-  updatePieChartStats(instances: any[]) {
+  updatePieChartStats(instances: ApplicationInstance[]) {
     let running = 0;
     if (instances) {
       instances.forEach(app => {
@@ -619,7 +622,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * Opens application instances context menu
    * @param instance application instances
    */
-  openInstanceContextualMenu(event, instance: any) {
+  openInstanceContextualMenu(event, instance: ApplicationInstance) {
     event.stopPropagation();
     if (instance.app_instance_id === this.activeContextMenuId) {
       this.activeContextMenuId = '';
@@ -631,7 +634,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * Opens registered apps context menu
    * @param registered registered app
    */
-  openRegisteredContextualMenu(event, registered: any) {
+  openRegisteredContextualMenu(event, registered: ApplicationDescriptor) {
     event.stopPropagation();
     if (registered.app_descriptor_id === this.activeContextMenuId) {
       this.activeContextMenuId = '';
@@ -726,7 +729,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * It sets clusters nodes to add them in the graph
    * @param cluster current cluster to generate related data to this.
    */
-  private setClusters(cluster: any) {
+  private setClusters(cluster: Cluster) {
     const clusterName = cluster.name.toLowerCase();
     const nodeGroup = this.generateClusterNode(
       cluster,
@@ -741,7 +744,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * It sets registered apps, instances and its relations
    * @param cluster current cluster to generate related data to this.
    */
-  private setRegisteredAndInstances(cluster: any) {
+  private setRegisteredAndInstances(cluster: Cluster) {
     const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
     instancesInCluster.forEach(instance => {
       const registeredApp = this.getRegisteredApp(this.addNodeInstance(instance, cluster));
@@ -771,7 +774,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * @param cluster Cluster for relate with our node registered
    * @param registeredApp Registered app for generate node registered
    */
-  private addNodeRegistered(cluster, registeredApp) {
+  private addNodeRegistered(cluster: Cluster, registeredApp: ApplicationDescriptor[]) {
     const registeredName = registeredApp[0]['name'].toLowerCase();
     const nodeRegistered = {
       ...{
@@ -805,7 +808,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * @param instance Instance to generate the node instance
    * @param cluster Cluster for relate with our node instance
    */
-  private addNodeInstance(instance, cluster): any {
+  private addNodeInstance(instance: ApplicationInstance, cluster: Cluster): GraphNode & StyledNode {
     const instanceName = instance['name'].toLowerCase();
     const nodeInstance = this.generateInstanceNode(
       instance,

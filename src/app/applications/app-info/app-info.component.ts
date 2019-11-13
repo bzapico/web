@@ -228,7 +228,7 @@ export class AppInfoComponent implements OnChanges {
    * Open descriptor info detailed modal window
    *  @param descriptor descriptor object
    */
-  openDescriptorDetailed(descriptor) {
+  openDescriptorDetailed(descriptor: ApplicationDescriptor) {
     const initialState = {
       organizationId: descriptor.organization_id,
       appDescriptorId: descriptor.app_descriptor_id,

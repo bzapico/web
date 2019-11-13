@@ -73,5 +73,4 @@ export interface Backend {
     addGroup(organizationId: string, groupData: any);
     deleteGroup(organizationId: string, groupId: any);
     updateGroup(organizationId: string, groupData: any);
-
 }
