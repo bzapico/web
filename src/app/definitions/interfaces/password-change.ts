@@ -11,8 +11,9 @@
  *  limitations under the License.
  */
 
-import { UserChanges } from './user-changes';
-
-export interface User extends UserChanges {
-    organization_id: string;
+export interface PasswordChange {
+    passwordConfirm: string;
+    password: string;
+    new_password: string;
+    email: string;
 }

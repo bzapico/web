@@ -11,8 +11,10 @@
  *  limitations under the License.
  */
 
-import { UserChanges } from './user-changes';
+import { RoleOptions } from '../enums/role-options.enum';
 
-export interface User extends UserChanges {
-    organization_id: string;
+export interface UserChanges {
+    email: string;
+    name: string;
+    role_name: RoleOptions;
 }

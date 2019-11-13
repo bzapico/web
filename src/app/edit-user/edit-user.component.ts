@@ -148,12 +148,12 @@ export class EditUserComponent implements OnInit {
         email: this.email,
         role_name: f.role.value
       })
-      .subscribe(response => {
+      .subscribe(() => {
         this.userName = f.userName.value;
         this.loading = false;
         if (this.profileRole === RoleOptions.NalejAdmin) {
           this.backend.changeRole(this.organizationId, this.email, this.getRoleId(f.role.value)).
-          subscribe(responseRole => {
+          subscribe(() => {
             this.notificationsService.add({
               message: this.translateService.instant('organization.users.saveChange', {user: this.userName}),
             });

@@ -138,7 +138,7 @@ export class AddUserComponent implements OnInit {
     }
     this.loading = true;
     this.backend.addUser(this.organizationId, user)
-      .subscribe(response => {
+      .subscribe(() => {
         this.loading = false;
         this.notificationsService.add({
           message: this.translateService.instant('organization.userCreated', {user: user.email}),

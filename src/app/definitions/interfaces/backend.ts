@@ -12,6 +12,9 @@
  */
 
 import { Observable } from 'rxjs';
+import { PasswordChange } from './password-change';
+import { AddUserRequest } from './add-user-request';
+import { UserChanges } from './user-changes';
 
 export interface Backend {
     // Login
@@ -21,10 +24,10 @@ export interface Backend {
     getUserProfileInfo(organizationId: string, userId: string);
     getOrganizationInfo(organizationId: string);
     getOrganizationUsers(organizationId: string);
-    addUser(organizationId: string, user: any);
+    addUser(organizationId: string, user: AddUserRequest);
     deleteUser(organizationId: string, userId: string);
-    resetPassword(organizationId: string, changePassword: any);
-    saveUserChanges(organizationId: string, changes: any);
+    resetPassword(organizationId: string, changePassword: PasswordChange);
+    saveUserChanges(organizationId: string, changes: UserChanges);
     listRoles(organizationId: string);
     changeRole(organizationId: string, userId: string, roleId: string);
     // Infrastructure

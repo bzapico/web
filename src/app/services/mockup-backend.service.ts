@@ -41,7 +41,7 @@ import { OpStatus } from '../definitions/enums/op-status.enum';
   providedIn: 'root'
 })
 export class MockupBackendService implements Backend {
-  mockGroupList: any;
+  mockGroupList: Group;
 
   constructor() {
   }

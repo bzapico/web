@@ -11,8 +11,8 @@
  *  limitations under the License.
  */
 
-import { UserChanges } from './user-changes';
+import { User } from './user';
 
-export interface User extends UserChanges {
-    organization_id: string;
+export interface AddUserRequest extends User {
+    password: string;
 }
