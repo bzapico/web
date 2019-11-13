@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -12,13 +12,12 @@
  */
 
 @import '../../scss/variables/colors';
-
 .simple-log {
-    background-color: $dark-grey;
-    width: 100%;
-    color: $white;
-    padding: 1em;
-    border-radius: 5px;
-    margin: 1em 0;
-    font-size: .79em;
+	background-color: $dark-grey;
+	width: 100%;
+	color: $white;
+	padding: 1em;
+	border-radius: 5px;
+	margin: 1em 0;
+	font-size: .79em;
 }
