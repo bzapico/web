@@ -11,10 +11,6 @@
  *  limitations under the License.
  */
 
-// -----------------------------------------------------------------------------
-// Color variables and styles
-// -----------------------------------------------------------------------------
-
 $base-violet: #5800FF;
 $base-pink: #FF00D3;
 
@@ -30,13 +26,12 @@ $hover-red: #FF0061;
 $status-teal: #00E6A0;
 $status-yellow:#FFEB6C;
 
-// Extra colors
 $white: #FFF;
 $black: #000;
 $main-grey: #6B6B6B;
 $main-bg: #F5F5F5;
 $secondary-grey: #707070;
-$low-grey: #CACACA;
+/* stylelint-disable declaration-no-important */
 .blue {
 	color: $base-violet !important;
 }
@@ -61,3 +56,4 @@ $low-grey: #CACACA;
 .base-light-grey {
 	color: $base-light-grey !important;
 }
+/* stylelint-enable */

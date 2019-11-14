@@ -54,14 +54,6 @@
 		display: block;
 	}
 }
-.accordion-foot {
-	color: $low-grey;
-	text-transform: lowercase;
-	font-size: .7em;
-	&::first-letter {
-		text-transform: capitalize;
-	}
-}
 .form-group {
 	margin: .5em 0;
 }

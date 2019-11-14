@@ -10,11 +10,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-// -----------------------------------------------------------------------------
-//  Media Queries mixins.
-// -----------------------------------------------------------------------------
-
 @mixin for-third-only {
 	@media all and (max-width: 1146px), all and  (max-height: 1417px) {
 		@content;
@@ -110,10 +105,6 @@
 		@content;
 	}
 }
-
-// -----------------------------------------------------------------------------
-// Font sizes mixins.
-// -----------------------------------------------------------------------------
 
 $font-12: 12px;
 $font-16: 16px;

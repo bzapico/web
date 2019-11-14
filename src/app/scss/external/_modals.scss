@@ -10,19 +10,15 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-// -----------------------------------------------------------------------------
-// Modals
-// -----------------------------------------------------------------------------
-
 @import 'app/scss/variables/mixins';
 
-/* - - - Modal window styles - - - */
+/* stylelint-disable declaration-no-important */
 .modal.fade {
 	display: flex !important;
 	justify-content: center;
 	align-items: center;
 }
+/* stylelint-enable */
 .modal-dialog {
 	vertical-align: middle;
 	max-width: 1112px;
@@ -63,8 +59,6 @@
 		outline: none;
 	}
 }
-
-/* - - - Scroll app info styles- - - */
 .scroll-app-info {
 	margin: 3.5em 0;
 	max-height: 475px;
@@ -86,8 +80,6 @@
 		margin: 1.5em 0;
 	}
 }
-
-/* - - - Scroll modal form - - - */
 .scroll-modal-form {
 	margin: 1.5em 0;
 	overflow-y: scroll;
@@ -170,8 +162,6 @@
 		}
 	}
 }
-
-/* - - - Modal info- - - */
 .modal-info-h3-title {
 	color: $super-dark-grey;
 	font-size: 1.5rem;

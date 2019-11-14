@@ -13,8 +13,6 @@
 
 @import '../../scss/variables/colors';
 @import '../../scss/variables/mixins';
-
-/* - - -Summary card instances table - - - */
 .summary-instances-table {
 	.status-dot-nalej,
 	.status-dot::before,
@@ -51,17 +49,11 @@
 		}
 	}
 }
-
-/* - - - Services graph / tables - - - */
-/* - - -  Graph - - - */
 .graph {
 	height: 96%;
 }
-
-/* - - - Tables - - - */
 .search-box {
 	width: 237px;
-	margin-right: 1em;
 	margin-right: 0;
 }
 .card-title-name {
@@ -71,17 +63,17 @@
 .info-icon {
 	font-size: 30px;
 }
-.label-thead {
+.nalej-thead {
 	margin-bottom: 0;
 }
-.label-tbody {
-	.label-td-flex {
+.nalej-tbody {
+	.nalej-td-flex {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: flex-end;
 	}
-	.label-td {
+	.nalej-td {
 		float: left;
 		font-size: .9em;
 		color: $base-grey;
@@ -89,9 +81,9 @@
 	}
 }
 .accordion-box {
-	.label-nalej-table {
-		.label-tbody {
-			.label-td {
+	.nalej-table {
+		.nalej-tbody {
+			.nalej-td {
 				align-self: center;
 			}
 		}
@@ -103,7 +95,7 @@
 		height: 50%;
 		overflow: hidden;
 	}
-	.label-thead {
+	.nalej-thead {
 		background-color: $super-light-grey;
 	}
 }

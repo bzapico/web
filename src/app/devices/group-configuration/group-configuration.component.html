@@ -33,13 +33,13 @@
           <span 
             *ngIf="!enabled" 
             (click)="enabled = true"
-            class="devices-checkbox">
+            class="checkbox-pointer">
             <i class="material-icons grey">check_box_outline_blank</i>
           </span>
           <span 
             *ngIf="enabled" 
             (click)="enabled = false"
-            class="devices-checkbox">
+            class="checkbox-pointer">
             <i class="material-icons blue">check_box</i>
           </span>
         </div>
@@ -49,13 +49,13 @@
           <span 
             *ngIf="!defaultConnectivity" 
             (click)="defaultConnectivity = true"
-            class="devices-checkbox">
+            class="checkbox-pointer">
             <i class="material-icons grey">check_box_outline_blank</i>
           </span>
           <span 
             *ngIf="defaultConnectivity" 
             (click)="defaultConnectivity = false"
-            class="devices-checkbox">
+            class="checkbox-pointer">
             <i class="material-icons blue">check_box</i>
           </span>
         </div>   

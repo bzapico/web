@@ -86,94 +86,90 @@
         users &&
         users.length > 0 && 
         !requestError" 
-        class="table-users">
-        <div class="nalej-table-box">
-          <table class="nalej-table">
-            <thead class="nalej-thead">
-              <tr>
-                <th 
-                  (click)="setOrder('name')"            
-                  [ngClass]="getCategoryCSSClass('name')"
-                  scope="col" 
-                  class="col-3">
-                  <span tooltip="{{'tables.tableName' | translate }" placement="bottom">
-                    {{'tables.tableName' | translate }}
-                  </span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  (click)="setOrder('role')"            
-                  [ngClass]="getCategoryCSSClass('role')"
-                  scope="col" 
-                  class="col-2">
-                  <span tooltip="{{'tables.tableRole' | translate }}" placement="bottom">
-                    {{'tables.tableRole' | translate }}
-                  </span>
-                  <span *ngIf="sortedBy === 'role' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'role' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  (click)="setOrder('email')"            
-                  [ngClass]="getCategoryCSSClass('email')"
-                  scope="col" 
-                  class="col-5">
-                  <span tooltip="{{'tables.tableEmail' | translate }}" placement="bottom">
-                    {{'tables.tableEmail' | translate }}
-                  </span>
-                  <span *ngIf="sortedBy === 'email' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'email' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th scope="col" class="col-2 text-center">
-                  <span tooltip=" {{'tables.tableActions' | translate}}" placement="bottom">
-                    {{'tables.tableActions' | translate}}
-                  </span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=
-                "let user of users |
-                sortBy : sortedBy : reverse : true |
-                filter : searchTerm">
-                <td class="col-3">{{user.name}}</td>
-                <td (click)="openUserInfo(user)" class="col-2 pink fw-bold">{{user.role_name}}</td>
-                <td class="col-5">{{user.email}}</td>
-                <td class="col-2 actions-col">
-                  <div    
-                    (click)="openUserInfo(user)" 
-                    tooltip=" {{'tables.tableInfo' | translate}}" 
-                    placement="left">
-                    <i class="material-icons info-icon">info</i>
-                  </div>
-                  <button 
-                    (click)="openEditUser(user)" 
-                    tooltip=" {{'tables.tableEdit' | translate}}" 
-                    placement="left"
-                    class="action-btn-blue-2">
-                    <i class="material-icons i-white-2">edit</i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        class="nalej-table-box no-p-col no-m-row">
+        <div class="nalej-table">
+          <div class="nalej-thead row">
+            <div 
+              (click)="setOrder('name')"            
+              [ngClass]="getCategoryCSSClass('name')"
+              scope="col" 
+              class="label-th col-3">
+              <span tooltip="{{'tables.tableName' | translate }}" placement="bottom">
+                {{'tables.tableName' | translate }}
+              </span>
+              <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
+                <i class="material-icons">expand_more</i>
+              </span>
+              <span class="expand-chevron" *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
+                <i class="material-icons">expand_less</i>
+              </span>
+            </div>
+            <div 
+              (click)="setOrder('role')"            
+              [ngClass]="getCategoryCSSClass('role')"
+              scope="col" 
+              class="label-th col-2">
+              <span tooltip="{{'tables.tableRole' | translate }}" placement="bottom">
+                {{'tables.tableRole' | translate }}
+              </span>
+              <span *ngIf="sortedBy === 'role' && !reverse" class="expand-chevron">
+                <i class="material-icons">expand_more</i>
+              </span>
+              <span *ngIf="sortedBy === 'role' && reverse" class="expand-chevron">
+                <i class="material-icons">expand_less</i>
+              </span>
+            </div>
+            <div 
+              (click)="setOrder('email')"            
+              [ngClass]="getCategoryCSSClass('email')"
+              scope="col" 
+              class="label-th col-5">
+              <span tooltip="{{'tables.tableEmail' | translate }}" placement="bottom">
+                {{'tables.tableEmail' | translate }}
+              </span>
+              <span *ngIf="sortedBy === 'email' && !reverse" class="expand-chevron">
+                <i class="material-icons">expand_more</i>
+              </span>
+              <span *ngIf="sortedBy === 'email' && reverse" class="expand-chevron">
+                <i class="material-icons">expand_less</i>
+              </span>
+            </div>
+            <div scope="col" class="label-th col-2 text-center">
+              <span tooltip=" {{'tables.tableActions' | translate}}" placement="bottom">
+                {{'tables.tableActions' | translate}}
+              </span>
+            </div>
+          </div>
+          <div *ngFor=
+            "let user of users |
+            sortBy : sortedBy : reverse : true |
+            filter : searchTerm">
+            <div class="nalej-tbody row">
+              <div class="nalej-td col-3">{{user.name}}</div>
+              <div (click)="openUserInfo(user)" class="nalej-td col-2 pink fw-bold">{{user.role_name}}</div>
+              <div class="nalej-td col-5">{{user.email}}</div>
+              <div class="nalej-td col-2 actions-col">
+                <div    
+                  (click)="openUserInfo(user)" 
+                  tooltip=" {{'tables.tableInfo' | translate}}" 
+                  placement="left">
+                  <i class="material-icons info-icon">info</i>
+                </div>
+                <button 
+                  (click)="openEditUser(user)" 
+                  tooltip=" {{'tables.tableEdit' | translate}}" 
+                  placement="left"
+                  class="action-btn-blue-2">
+                  <i class="material-icons i-white-2">edit</i>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <!-- Add user button -->
-        <div class="add-user-btn">
-          <button (click)="addUser()" class="btn nalej-btn-lg" >{{'organization.users.add' | translate}}</button>
-        </div>
+      </div>
+      <!-- Add user button -->
+      <div class="add-user-btn">
+        <button (click)="addUser()" class="btn nalej-btn-lg" >{{'organization.users.add' | translate}}</button>
       </div>
       <!-- No info to show -->
       <div *ngIf=

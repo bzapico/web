@@ -10,10 +10,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-// -----------------------------------------------------------------------------
-// Alerts
-// -----------------------------------------------------------------------------
 .alert-message {
 	-ms-word-wrap: break-word;
 	word-wrap: break-word;
@@ -41,8 +37,6 @@
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-
-	/* overrides */
 	.alert {
 		position: relative;
 		overflow: hidden;

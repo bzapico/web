@@ -10,12 +10,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-// -----------------------------------------------------------------------------
-// Forms
-// -----------------------------------------------------------------------------
-
-/* - - - Forms styles - - - */
 .nalej-form-title{
 	font-size: 13px;
 	display: inline;
@@ -87,8 +81,6 @@
 		border-color: $super-light-grey;
 	}
 }
-
-/* - - - Forms button styles - - - */
 .nalej-form-btn,
 %nalej-form-btn {
 	border: 0;
@@ -159,7 +151,7 @@
 	}
 }
 .is-invalid {
-	border: 2px solid $base-red !important;
+	border: 2px solid $base-red;
 	&:focus {
 		border-color: transparent;
 		-webkit-box-shadow: none;

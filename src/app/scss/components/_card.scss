@@ -10,12 +10,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-// -----------------------------------------------------------------------------
-// Cards
-// -----------------------------------------------------------------------------
-
-/* - - - Main row styles- - - */
 .row-title {
 	margin-bottom: 15px;
 	@include for-desktop-h {
@@ -49,8 +43,6 @@
 		height: 67%;
 	}
 }
-
-/* - - - App instances / registered row styles- - - */
 .row-app-main {
 	height: 97%;
 	@extend %no-gutters-fix;
@@ -78,8 +70,6 @@
 	flex-wrap: nowrap;
 	@extend %no-gutters-fix;
 }
-
-/* - - - Basic card styles- - - */
 .card {
 	-webkit-box-shadow: 0 16px 50px 2px rgba( 0, 0, 0, 0.16 );
 	-moz-box-shadow: 0 16px 50px 2px rgba( 0, 0, 0, 0.16 );
@@ -110,8 +100,6 @@
 		}
 	}
 }
-
-/* - - - Summary card styles- - - */
 .summary-card {
 	display: flex;
 	flex-direction: row;
@@ -136,8 +124,6 @@
 	min-height: 129px;
 	min-width: 50%;
 }
-
-/* - - - Summary circles styles - - - */
 .circle {
 	display: flex;
 	flex-direction: column;

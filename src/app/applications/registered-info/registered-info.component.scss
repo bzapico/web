@@ -13,9 +13,6 @@
 
 @import '../../scss/variables/colors';
 @import '../../scss/variables/mixins';
-
-/* - - - Services graph / tables - - - */
-/* - - -  Graph - - - */
 .graph {
 	height: 96%;
 	width: 100%;
@@ -26,8 +23,6 @@
 		display: none;
 	}
 }
-
-/* - - - Tables - - - */
 .search-box {
 	width: 237px;
 	margin-right: 1em;
@@ -40,20 +35,20 @@
 .info-icon {
 	font-size: 30px;
 }
-.label-nalej-table {
-	.label-thead {
+.nalej-table {
+	.nalej-thead {
 		margin-bottom: 0;
 	}
-	.label-tbody {
-		.label-td-flex {
+	.nalej-tbody {
+		.nalej-td-flex {
 			align-items: flex-end;
 		}
 	}
 }
 .accordion-box {
-	.label-nalej-table {
-		.label-tbody {
-			.label-td {
+	.nalej-table {
+		.nalej-tbody {
+			.nalej-td {
 				align-self: center;
 			}
 		}
@@ -66,7 +61,7 @@
 		height: 50%;
 		overflow: hidden;
 	}
-	.label-thead {
+	.nalej-thead {
 		background-color: $super-light-grey;
 	}
 }

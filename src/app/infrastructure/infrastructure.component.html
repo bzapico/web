@@ -212,8 +212,8 @@
           inventory.length > 0 && 
           !requestError" 
           class="nalej-table-box">
-          <div class="label-nalej-table nalej-table-p">
-            <div class="label-thead row">
+          <div class="nalej-table no-p-col no-m-row">
+            <div class="nalej-thead row">
               <div 
                 (click)="setOrder('type')"            
                 [ngClass]="getCategoryCSSClass('type')"
@@ -314,16 +314,16 @@
               "let item of inventory |
               sortBy : sortedBy : reverse : 'case-insensitive' |
               filter : searchTerm : ['type', 'id', 'location', 'labels', 'status']|
-              filter : quickFilter : ['type']"  class="label-tbody row">
-              <div class="col-2 label-td-flex-text">
+              filter : quickFilter : ['type']"  class="nalej-tbody row">
+              <div class="col-2 nalej-td-flex-text">
                 <span tooltip="{{'tables.tableType' | translate}}" placement="top">{{item.type}}</span>
               </div>
               <div class="col-9">
                 <div class="row">
-                  <div class="col-4 label-td">
+                  <div class="col-4 nalej-td">
                     <span tooltip="{{'tables.tableID' | translate}}" placement="top">{{item.id}}</span>
                   </div>
-                  <div class="col-4 label-td col-center-lowercase"> 
+                  <div class="col-4 nalej-td col-center-lowercase"> 
                     <span *ngIf="item.status"
                       [ngClass]=
                         "{
@@ -339,7 +339,7 @@
                       {{item.status}}
                     </span>
                   </div>
-                  <div class="col-4 label-td">
+                  <div class="col-4 nalej-td">
                     <span tooltip="{{'tables.tableLocation' | translate}}" placement="top">
                       {{item.location}}
                     </span>
@@ -379,7 +379,7 @@
                   </div> 
                 </div>
               </div>
-              <div class="col-1 text-center label-td-flex">
+              <div class="col-1 text-center nalej-td-flex">
                 <button 
                   (click)="openContextualMenu($event, item)"
                   [ngClass]=

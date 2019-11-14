@@ -10,12 +10,8 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-// -----------------------------------------------------------------------------
-// Ngx-dropdown
-// -----------------------------------------------------------------------------
-
 @import 'app/scss/variables/colors';
+/* stylelint-disable declaration-no-important */
 .ngx-dropdown-container .ngx-dropdown-button {
 	height: 40px;
 	font-size: 13px;
@@ -86,6 +82,15 @@
 		color: $light-grey !important;
 	}
 }
+/* stylelint-enable */
 ul.available-items {
 	max-height: 200px;
+}
+label.accordion-foot {
+	color: $base-light-grey;
+	text-transform: lowercase;
+	font-size: 10px;
+	&::first-letter {
+		text-transform: capitalize;
+	}
 }

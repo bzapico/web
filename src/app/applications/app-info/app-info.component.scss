@@ -73,10 +73,10 @@
 	display: inline;
 	float: right;
 }
-.label-nalej-table .label-thead .label-th {
+.nalej-table .nalej-thead .label-th {
 	font-size: 13px;
 }
-.label-nalej-table {
+.nalej-table {
 	overflow-y: hidden;
 }
 .accordion-box {
@@ -110,14 +110,6 @@
 			position: absolute;
 			top: 5px;
 			left: 5px;
-		}
-	}
-	label.accordion-foot {
-		color: $base-light-grey;
-		text-transform: lowercase;
-		font-size: 10px !important;
-		&::first-letter {
-			text-transform: capitalize;
 		}
 	}
 }

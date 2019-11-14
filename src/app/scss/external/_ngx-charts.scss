@@ -10,12 +10,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-// -----------------------------------------------------------------------------
-// Ngx-charts
-// -----------------------------------------------------------------------------
-
-/* - - -  Pie charts - - - */
 .ngx-charts .label {
 	display: none;
 }
@@ -26,8 +20,6 @@
 .line-chart-box .ngx-charts text {
 	fill: $base-grey;
 }
-
-/* - - -  Line charts  - - - */
 .line-chart-box {
 	display: flex;
 	flex-direction: row;
@@ -36,19 +28,19 @@
 	width: 98%;
 	.ngx-charts {
 		.gridline-path {
-			stroke: transparent !important;
+			stroke: transparent;
 			stroke-width: 1;
 			fill: none;
 		}
 		.refline-path {
-			stroke: $light-grey !important;
+			stroke: $light-grey;
 			stroke-width: 1;
-			stroke-dasharray: 0 !important;
-			stroke-dashoffset: 0 !important;
+			stroke-dasharray: 0;
+			stroke-dashoffset: 0;
 		}
 		.y {
 			.tick {
-				display: none !important;
+				display: none;
 			}
 		}
 	}

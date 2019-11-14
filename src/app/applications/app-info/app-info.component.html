@@ -205,8 +205,8 @@
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
               <!-- INSTANCE INFO network-inbounds -->
-              <div *ngIf="openFromInstance" class="label-nalej-table no-m-row no-p-col">
-                <div *ngIf="instance.inbound_net_interfaces" class="label-thead row">
+              <div *ngIf="openFromInstance" class="nalej-table no-m-row no-p-col">
+                <div *ngIf="instance.inbound_net_interfaces" class="nalej-thead row">
                   <div class="col-4 label-th">
                     <span tooltip="{{'app-info.instance.NetworkInterface' | translate}}" placement="bottom">
                       {{'app-info.instance.NetworkInterface' | translate}}
@@ -227,7 +227,7 @@
                   <div *ngFor=
                     "let connection of getInboundConnections() |
                     filter : searchTerm; let i = index">
-                    <span class="label-tbody row">
+                    <span class="nalej-tbody row">
                       <div class="col-4">
                         <span class="grey">{{connection.inbound_name}}</span>
                       </div>
@@ -254,11 +254,11 @@
                 </div>
               </div>
               <!-- DESCRIPTOR INFO network-inbounds-->
-              <div *ngIf="openFromRegistered" class="label-nalej-table no-m-row no-p-col">
+              <div *ngIf="openFromRegistered" class="nalej-table no-m-row no-p-col">
                 <div *ngIf="registeredData.inbound_net_interfaces" class="scroll-accordion-info">
                   <div *ngFor=
                     "let connection of registeredData.inbound_net_interfaces | filter : searchTerm">
-                    <span class="label-tbody row">
+                    <span class="nalej-tbody row">
                       <div class="col-6">
                         <span class="grey">{{connection.name}}</span>
                       </div>
@@ -295,8 +295,8 @@
               <p>{{'app-info.requiredElements' | translate}}</p>
             </span>
             <!-- INSTANCE INFO network-outbounds -->
-            <div *ngIf="openFromInstance" class="label-nalej-table no-m-row no-p-col">
-              <div *ngIf="instance.outbound_net_interfaces" class="label-thead row">
+            <div *ngIf="openFromInstance" class="nalej-table no-m-row no-p-col">
+              <div *ngIf="instance.outbound_net_interfaces" class="nalej-thead row">
                 <div class="col-4 label-th">
                   <span tooltip="{{'app-info.instance.NetworkInterface' | translate}}" placement="bottom">
                     {{'app-info.instance.NetworkInterface' | translate}}
@@ -316,7 +316,7 @@
               <div *ngIf="instance.outbound_net_interfaces" class="scroll-accordion-info">
                 <div *ngFor="let interface of instance.outbound_net_interfaces |
                   filter : searchTerm; let i = index">
-                  <span class="label-tbody row">
+                  <span class="nalej-tbody row">
                     <div class="col-4">
                       <span class="grey">{{interface.name}}</span>
                     </div>
@@ -343,12 +343,12 @@
               </div>
             </div>
             <!-- REGISTERED INFO network-outbounds -->
-            <div *ngIf="openFromRegistered" class="label-nalej-table no-m-row no-p-col">
+            <div *ngIf="openFromRegistered" class="nalej-table no-m-row no-p-col">
               <div *ngIf="registeredData.outbound_net_interfaces" class="scroll-accordion-info">
                 <div *ngFor=
                   "let connection of registeredData.outbound_net_interfaces |
                   filter : searchTerm">
-                  <span class="label-tbody row">
+                  <span class="nalej-tbody row">
                     <div class="col-6">
                       <span class="grey">{{connection.name}}</span>
                     </div>
@@ -383,11 +383,11 @@
                 class="accordion-icons-box">
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
-              <div class="label-nalej-table no-p-col no-m-row">
+              <div class="nalej-table no-p-col no-m-row">
                 <!-- REGISTERED INFO Environment variables -->
                 <div *ngIf="openFromRegistered" class="scroll-accordion-info">
                   <div *ngIf="registeredData.environment_variables">
-                    <div *ngFor="let variable of registeredData.environment_variables | keyvalue" class="row label-tbody">
+                    <div *ngFor="let variable of registeredData.environment_variables | keyvalue" class="row nalej-tbody">
                       <div class="col-6 grey">
                         {{variable.key}} 
                       </div>
@@ -403,7 +403,7 @@
                 <!-- INSTANCE INFO Environment variables -->
                 <div *ngIf="openFromInstance" class="scroll-accordion-info">
                   <div *ngIf="instance.environment_variables">
-                    <div *ngFor="let variable of instance.environment_variables | keyvalue" class="row label-tbody">
+                    <div *ngFor="let variable of instance.environment_variables | keyvalue" class="row nalej-tbody">
                       <div class="col-6 grey">
                         {{variable.key}} 
                       </div>
@@ -433,7 +433,7 @@
                 class="accordion-icons-box">
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
-              <div class="label-nalej-table no-p-col no-m-row">
+              <div class="nalej-table no-p-col no-m-row">
                 <!-- REGISTERED INFO Other setting -->
                 <div *ngIf="openFromRegistered" class="scroll-accordion-info">
                   <div *ngIf="registeredData.configuration_options">

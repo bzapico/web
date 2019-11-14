@@ -218,8 +218,8 @@
           !requestError && 
           showInstances" 
           class="nalej-table-box no-p-col no-m-row">
-          <div class="label-nalej-table">
-            <div class="label-thead row">
+          <div class="nalej-table">
+            <div class="nalej-thead row">
               <div class="col-10">
                 <div class="row">
                   <div 
@@ -274,7 +274,7 @@
               "let app of instances |
               sortBy : sortedBy : reverse : true |
               filter : searchTerm : ['name', 'labels', 'status_name']"
-              class="label-tbody row">
+              class="nalej-tbody row">
               <!-- This solution applies when the backend updates the app status after triggering undeploy action 
                 (https://daisho.atlassian.net/browse/NP-1679)
                 <td 
@@ -283,7 +283,7 @@
                 class="col-2"> -->
               <div class="col-10">
                 <div class="row">
-                  <div class="col-6 label-td">
+                  <div class="col-6 nalej-td">
                     <span
                       (click)="goToInstanceView(app)"
                       [ngClass]="(app.undeploying)? 'instance-disabled': 'app-info'"
@@ -299,7 +299,7 @@
                     }"
                     tooltip="{{app.status_name | lowercase}}" 
                     placement="bottom"
-                    class="col-6 label-td col-center-lowercase"> 
+                    class="col-6 nalej-td col-center-lowercase"> 
                   </div>
                 </div>
                 <div class="row">
@@ -312,7 +312,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-2 text-center label-td-flex">
+              <div class="col-2 text-center nalej-td-flex">
                 <button
                   (click)="openInstanceContextualMenu($event, app)"
                   [ngClass]="{
@@ -353,8 +353,8 @@
           && !requestError
           && !showInstances"
           class="nalej-table-box no-p-col no-m-row">
-            <div class="label-nalej-table">
-              <div class="label-thead row">
+            <div class="nalej-table">
+              <div class="nalej-thead row">
                 <div class="col-10">
                   <div class="row">
                     <div 
@@ -410,15 +410,15 @@
                 "let app of registered |
                 sortBy : sortedBy : reverse : true |
                 filter : searchTerm : ['name', 'labels']"
-                class="label-tbody row">
+                class="nalej-tbody row">
                 <div class="col-10">
                   <div class="row">
                     <div 
                       [routerLink]="['registered', app.app_descriptor_id]" 
-                      class="col-6 label-td">
+                      class="col-6 nalej-td">
                       <span tooltip="{{'apps.appInfo' | translate}}" placement="top" class="app-info">{{app.name}}</span>
                     </div>
-                    <div class="col-6 text-center label-td"> 
+                    <div class="col-6 text-center nalej-td"> 
                       {{getServicesCount(app)}}
                     </div>
                   </div>
@@ -457,7 +457,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-2 actions-col label-td-flex">
+                <div class="col-2 actions-col nalej-td-flex">
                   <button
                     (click)="openRegisteredContextualMenu($event, app)"
                     [ngClass]= 

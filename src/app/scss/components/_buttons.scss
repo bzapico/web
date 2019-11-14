@@ -10,12 +10,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-// -----------------------------------------------------------------------------
-// Buttons
-// -----------------------------------------------------------------------------
-
-/* - - - Basic buttons styles- - - */
 .btn-primary,
 %btn-primary {
 	width: 257px;
@@ -45,8 +39,6 @@ button[type='submit']:disabled {
 	font-weight: 500;
 	background: linear-gradient( to right, $base-grey 0%, $dark-grey 100% );
 }
-
-/* - - - Actions btns styles - - - */
 .action-btn,
 %action-btn {
 	height: 32px;
@@ -175,13 +167,7 @@ button[type='submit']:disabled {
 		opacity: 0.6;
 	}
 }
-
 //  Action buttons when there are two in a column
-.actions-col {
-	justify-content: center;
-	display: flex !important;
-	flex-direction: row;
-}
 .action-btn-blue-2 {
 	@extend %action-btn-blue;
 
@@ -231,8 +217,6 @@ button[type='submit']:disabled {
 		left: 5px;
 	}
 }
-
-/* - - -  Label buttons - - - */
 .label-content-model,
 %label-content-model {
 	margin: 1px;
@@ -246,8 +230,6 @@ button[type='submit']:disabled {
 	padding: 1px 10px;
 	background-color: $white;
 }
-
-// Normal label style
 .label-content,
 %label-content {
 	@extend %label-content-model;
@@ -263,8 +245,6 @@ button[type='submit']:disabled {
 		outline: none;
 	}
 }
-
-// Disabled label style
 .label-content-disabled {
 	@extend %label-content;
 	&:disabled {
@@ -277,8 +257,6 @@ button[type='submit']:disabled {
 		}
 	}
 }
-
-// Selected label style
 .label-content-selected {
 	@extend %label-content-model;
 
@@ -293,8 +271,6 @@ button[type='submit']:disabled {
 		box-shadow: none;
 	}
 }
-
-// Add and delete label container
 .label-btns {
 	width: 30px;
 	height: 20px;
@@ -345,4 +321,7 @@ button[type='submit']:disabled {
 	top: 2px;
 	left: 2px;
 	color: $white;
+}
+.checkbox-pointer {
+	cursor: pointer;
 }

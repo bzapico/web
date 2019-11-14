@@ -49,10 +49,6 @@
 	.dev-group-api {
 		padding-top: 1em;
 		padding-bottom: 2em;
-		@include for-sm-desktop-up {
-			padding-top: 2em !important;
-			padding-bottom: 3em !important;
-		}
 		span {
 			text-align: center;
 			font-size: .7em;

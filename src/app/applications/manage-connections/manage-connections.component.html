@@ -75,8 +75,8 @@
       <div *ngIf="!connections || connections.length === 0" class="mt-0">
         {{'apps.manageConnections.noConnections' | translate}}
       </div>
-      <div *ngIf="connections && connections.length > 0" class="label-nalej-table no-p-col no-m-row">
-        <div class="label-thead row">
+      <div *ngIf="connections && connections.length > 0" class="nalej-table no-p-col no-m-row">
+        <div class="nalej-thead row">
           <div class="col-5 label-th">
             <span tooltip="{{'apps.manageConnections.sourceInstance' | translate}}" placement="bottom">
               {{'apps.manageConnections.sourceInstance' | translate}}
@@ -105,8 +105,8 @@
           <div *ngFor=
             "let connection of connections |
             filter : searchTerm | filter: selectedApp; let i = index">
-            <span class="label-tbody row">
-              <div class="col-5 label-td">
+            <span class="nalej-tbody row">
+              <div class="col-5 nalej-td">
                 <span 
                   (click)="goToInstance(connection.source_instance_id)" 
                   class="blue cursor-pointer">
@@ -124,7 +124,7 @@
                 <br>
                 <span class="grey">{{connection.inbound_name}}</span>
               </div>
-              <div class="col-2 text-center label-td-flex">
+              <div class="col-2 text-center nalej-td-flex">
                 <button 
                   (click)="disconnectInstance(connection)"
                   tooltip="{{'apps.manageConnections.disconnect' | translate}}"

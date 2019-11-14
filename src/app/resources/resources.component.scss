@@ -13,8 +13,6 @@
 
 @import '../scss/variables/colors';
 @import '../scss/variables/mixins';
-
-/* - - - Summary app card - - - */
 .donut-chart {
 	text-align: center;
 	position: relative;
@@ -53,8 +51,6 @@
 		max-height: 197px;
 	}
 }
-
-/* - - - Cluster graph card - - - */
 .graph {
 	height: 97%;
 }
@@ -95,10 +91,8 @@
 	width: 100%;
 	margin-right: 0;
 }
-
-/* - - - List card - - - */
-.label-nalej-table {
-	.label-thead {
+.nalej-table {
+	.nalej-thead {
 		margin-bottom: 10px;
 	}
 }

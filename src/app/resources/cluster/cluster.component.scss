@@ -21,8 +21,6 @@
 		margin-bottom: 0;
 	}
 }
-
-/* - - - Cluster table card - - - */
 #scroll-cluster-table {
 	min-height: 128px;
 	width: 51%;
@@ -71,8 +69,6 @@
 		}
 	}
 }
-
-/* - - - Cluster card pie chart - - - */
 .donut-chart {
 	height: 92%;
 	text-align: center;
@@ -99,6 +95,6 @@
 		margin-top: 0;
 	}
 }
-.nalej-table-box .label-tbody {
+.nalej-table-box .nalej-tbody {
 	border-top: 0;
 }
