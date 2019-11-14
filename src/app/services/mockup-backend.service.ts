@@ -36,6 +36,10 @@ import { mockRegisteredAppsList } from './utils/registered-apps.mock';
 import { mockAppsInstancesList } from './utils/instances-apps.mock';
 import { OperatingSystemClass } from '../definitions/enums/operating-system-class.enum';
 import { OpStatus } from '../definitions/enums/op-status.enum';
+import { AddUserRequest } from '../definitions/interfaces/add-user-request';
+import { PasswordChange } from '../definitions/interfaces/password-change';
+import { UserChanges } from '../definitions/interfaces/user-changes';
+import { InstallAgentRequest } from '../definitions/interfaces/install-agent-request';
 
 @Injectable({
   providedIn: 'root'
@@ -111,7 +115,7 @@ export class MockupBackendService implements Backend {
   /**
    * Simulates adding a user
    */
-  addUser(organizationId: string, user: any) {
+  addUser(organizationId: string, user: AddUserRequest) {
     const index = mockUserList.map(x => x.email).indexOf(user.email);
     if (index === -1) {
       mockUserList.push(user);
@@ -142,7 +146,7 @@ export class MockupBackendService implements Backend {
   /**
    * Simulates reset password
    */
-  resetPassword(organizationId: string, passwordChange: any) {
+  resetPassword(organizationId: string, passwordChange: PasswordChange) {
     return of (new HttpResponse({
       body: passwordChange,
       status: 200
@@ -152,7 +156,7 @@ export class MockupBackendService implements Backend {
    * Simulates save user changes
    * @param userId String containing the user identifier - used to replicate expected backend behavior
    */
-  saveUserChanges(organizationId: string, user: any) {
+  saveUserChanges(organizationId: string, user: UserChanges) {
     const index = mockUserList.map(x => x.email).indexOf(user.email);
     if (index !== -1) {
       mockUserList[index].name = user.name;
@@ -194,10 +198,10 @@ export class MockupBackendService implements Backend {
    * @param edgeControllerId Edge Controller identifier
    * @param agent Agent identifier
    */
-  installAgent(organizationId: string, edgeControllerId: string, agent: any) {
+  installAgent(agent: InstallAgentRequest) {
     const asset = {
-      organization_id: organizationId,
-      edge_controller_id: edgeControllerId,
+      organization_id: agent.organization_id,
+      edge_controller_id: agent.edge_controller_id,
       asset_id: this.uuidv4(),
       agent_id: this.uuidv4(),
       eic_net_ip: agent.target_host,

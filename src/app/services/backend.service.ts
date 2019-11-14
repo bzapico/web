@@ -17,6 +17,9 @@ import { environment } from 'src/environments/environment';
 import { Backend } from '../definitions/interfaces/backend';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { AddUserRequest } from '../definitions/interfaces/add-user-request';
+import { UserChanges } from '../definitions/interfaces/user-changes';
+import { InstallAgentRequest } from '../definitions/interfaces/install-agent-request';
 
 /**
  * URL of the public API
@@ -127,7 +130,7 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
    * @param user New user data
    */
-  addUser(organizationId: string, user: any) {
+  addUser(organizationId: string, user: AddUserRequest) {
     return this.post(
       API_URL + 'users/' + organizationId + '/add',
       user
@@ -154,7 +157,7 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
    * @param user Object containing user data
    */
-  saveUserChanges(organizationId: string, user: any) {
+  saveUserChanges(organizationId: string, user: UserChanges) {
     return this.post(
       API_URL + 'users/' + organizationId + '/update',
       user
@@ -224,16 +227,16 @@ export class BackendService implements Backend {
    * @param edgeControllerId Edge controller id
    * @param agent Agent installer
    */
-  installAgent(organizationId: string, edgeControllerId: string, agent: any) {
+  installAgent(agent: InstallAgentRequest) {
     const installAgentRequestObj = {
-      organization_id: organizationId,
-      edge_controller_id: edgeControllerId,
+      organization_id: agent.organization_id,
+      edge_controller_id: agent.edge_controller_id,
       agent_type: agent.agent_type,
-      credentials: {username: agent.username, password: agent.password},
+      credentials: {username: agent.credentials.username, password: agent.credentials.credentials, is_sudoer: agent.credentials.is_sudoer},
       target_host: agent.target_host
     };
     return this.post(
-      API_URL + 'ec/' + organizationId + '/agent/install', installAgentRequestObj
+      API_URL + 'ec/' + agent.organization_id + '/agent/install', installAgentRequestObj
     );
   }
   // POST '/v1/agent/{organization_id}/{edge_controller_id}/uninstall'

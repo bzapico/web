@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
 import { PasswordChange } from './password-change';
 import { AddUserRequest } from './add-user-request';
 import { UserChanges } from './user-changes';
+import { InstallAgentRequest } from './install-agent-request';
 
 export interface Backend {
     // Login
@@ -33,7 +34,7 @@ export interface Backend {
     // Infrastructure
     getInventory(organizationId: string);
     getInventorySummary(organizationId: string);
-    installAgent(organizationId: string, edgeControllerId: string, agent: any);
+    installAgent(agent: InstallAgentRequest);
     uninstallAgent(organizationId: string, edgeControllerId: string, assetId: string);
     createEICToken(organizationId: string);
     createAgentJoinToken(organizationId: string,  edgeControllerId: string);
