@@ -16,6 +16,7 @@ import { PasswordChange } from './password-change';
 import { AddUserRequest } from './add-user-request';
 import { UserChanges } from './user-changes';
 import { InstallAgentRequest } from './install-agent-request';
+import { AddAppDescriptorRequest } from './add-app-descriptor-request';
 
 export interface Backend {
     // Login
@@ -54,7 +55,7 @@ export interface Backend {
     getRegisteredApps(organizationId: string);
     getAppInstance(organizationId: string, instanceId: string);
     getAppDescriptor(organizationId: string, descriptorId: string);
-    addAppDescriptor(organizationId: string, descriptor: any);
+    addAppDescriptor(organizationId: string, descriptor: AddAppDescriptorRequest);
     updateAppDescriptor(organizationId: string, descriptorId: string, changes: any);
     deploy(organizationId: string, descriptorId: string, name: string, params?: any, connections?: any[]);
     undeploy(organizationId: string, instanceId: string,  confirmation?: {user_confirmation: boolean});

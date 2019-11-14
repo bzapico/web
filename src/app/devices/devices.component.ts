@@ -28,6 +28,7 @@ import { InventoryStatus } from '../definitions/enums/inventory-status.enum';
 import { Subscription, timer } from 'rxjs';
 import { Device } from '../definitions/models/device';
 import { Group } from '../definitions/interfaces/group';
+import { KeyValue } from '../definitions/interfaces/key-value';
 /**
  * Refresh ratio reference
  */
@@ -74,7 +75,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * List of labels
    */
-  labels: any[];
+  labels: KeyValue;
   /**
    * Count of total devices for summary card
    */

@@ -31,6 +31,7 @@ import { ApplicationInstance } from '../../definitions/models/application-instan
 import { Subscription, timer } from 'rxjs';
 import { GraphData } from '../../definitions/interfaces/graph-data';
 import { ColorScheme } from '../../definitions/interfaces/color-scheme';
+import { KeyValue } from '../../definitions/interfaces/key-value';
 
 @Component({
   selector: 'app-instance-info',
@@ -75,7 +76,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   /**
    * List of labels
    */
-  labels: any[];
+  labels: KeyValue;
   isSelectableLabel: boolean;
   /**
    * Open form registered reference
@@ -158,7 +159,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.isSelectableLabel = false;
     this.isOpenFromRegistered = false;
     this.groups = [];
-    this.instance = new ApplicationInstance();
+    this.instance = null;
     this.registered = [];
     this.requestError = '';
     this.showGraph = true;

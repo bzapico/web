@@ -19,6 +19,8 @@ import { MockupBackendService } from '../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { InventoryType } from '../../definitions/enums/inventory-type.enum';
 import { Controller } from '../../definitions/models/controller';
+import { KeyValue } from '../../definitions/interfaces/key-value';
+import { Item } from '../../definitions/models/item';
 
 @Component({
   selector: 'app-asset-info',
@@ -42,7 +44,7 @@ export class AssetInfoComponent implements OnInit {
   assetIp: string;
   show: string;
   created: string;
-  labels: any;
+  labels: KeyValue;
   class: string;
   version: string;
   architecture: string;
@@ -64,7 +66,7 @@ export class AssetInfoComponent implements OnInit {
   /**
    * Models that hold all inventory list
    */
-  inventory: any[];
+  inventory: Item[];
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -102,17 +104,17 @@ export class AssetInfoComponent implements OnInit {
   /**
    * Gets the Edge Controller name
    */
-  getECname() {
-    let edgeControllerName: string;
+  getECname(): string {
+    let edgeControllerName = '';
     for (let index = 0; index < this.inventory.length; index++) {
-      if (
-        this.inventory[index].edge_controller_id &&
-        this.inventory[index].name &&
-        this.inventory[index].edge_controller_id === this.edgeControllerId
-        ) {
-      edgeControllerName = this.inventory[index].name;
+      if (this.inventory[index].mapType() === InventoryType.Ec
+        && (this.inventory[index] as Controller).edge_controller_id
+        && (this.inventory[index] as Controller).name
+        && (this.inventory[index] as Controller).edge_controller_id === this.edgeControllerId) {
+      edgeControllerName = (this.inventory[index] as Controller).name;
       }
-    } return edgeControllerName;
+    }
+    return edgeControllerName;
   }
   /**
    * Create a new JavaScript Date object based on the timestamp
@@ -135,13 +137,12 @@ export class AssetInfoComponent implements OnInit {
     let controller: Controller;
     let ecIndexFound;
     for (let i = 0; i < this.inventory.length; i++) {
-      if (this.inventory[i].edge_controller_id === this.edgeControllerId &&
-        this.inventory[i].type === InventoryType.Ec
-        ) {
+      if (this.inventory[i].mapType() === InventoryType.Ec
+        && (this.inventory[i] as Controller).edge_controller_id === this.edgeControllerId) {
         ecIndexFound = i;
       }
     }
-    controller = this.inventory[ecIndexFound];
+    controller = this.inventory[ecIndexFound] as Controller;
     this.onClose(controller);
     this.bsModalRef.hide();
   }

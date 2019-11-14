@@ -18,6 +18,7 @@ import { BackendService } from '../../services/backend.service';
 import { MockupBackendService } from '../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { TranslateService } from '@ngx-translate/core';
+import { KeyValue } from '../../definitions/interfaces/key-value';
 
 @Component({
   selector: 'app-device-info',
@@ -36,7 +37,7 @@ export class DeviceInfoComponent implements OnInit {
   deviceGroupId: string;
   deviceId: string;
   created: number;
-  labels: any;
+  labels: KeyValue;
   status: string;
   enabled: boolean;
   groupName: string;

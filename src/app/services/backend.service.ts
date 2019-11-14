@@ -20,6 +20,7 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { AddUserRequest } from '../definitions/interfaces/add-user-request';
 import { UserChanges } from '../definitions/interfaces/user-changes';
 import { InstallAgentRequest } from '../definitions/interfaces/install-agent-request';
+import {AddAppDescriptorRequest} from '../definitions/interfaces/add-app-descriptor-request';
 
 /**
  * URL of the public API
@@ -429,7 +430,7 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
    * @param descriptor Descriptor object
    */
-  addAppDescriptor(organizationId: string, descriptor: any) {
+  addAppDescriptor(organizationId: string, descriptor: AddAppDescriptorRequest) {
     return this.post(
       API_URL + 'apps/desc/' + organizationId + '/add',
       descriptor

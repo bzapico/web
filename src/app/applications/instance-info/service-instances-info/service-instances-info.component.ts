@@ -18,6 +18,7 @@ import { BackendService } from '../../../services/backend.service';
 import { MockupBackendService } from '../../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../../definitions/const/local-storage-keys';
 import { ServicesStatus } from '../../../definitions/enums/services-status.enum';
+import { KeyValue } from '../../../definitions/interfaces/key-value';
 
 @Component({
   selector: 'app-service-instances-info',
@@ -42,7 +43,7 @@ export class ServiceInstancesInfoComponent {
   typeName: string;
   credentials: any;
   environmentVariables: any;
-  labels: any;
+  labels: KeyValue;
   groupId: string;
   appDescriptorId: string;
   instanceId: string;

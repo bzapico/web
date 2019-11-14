@@ -71,7 +71,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
   /**
    * List of labels
    */
-  labels: any[];
+  labels: KeyValue;
   /**
    * List of selected labels from an entity
    */

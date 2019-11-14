@@ -17,6 +17,26 @@ import { KeyValue } from '../interfaces/key-value';
 import { SecurityRule } from '../interfaces/security-rule';
 
 export abstract class Application {
+    constructor(
+        organization_id: string,
+        app_descriptor_id: string,
+        name: string,
+        rules: SecurityRule[],
+        configuration_options: KeyValue,
+        environment_variables: KeyValue,
+        labels: KeyValue,
+        inbound_net_interfaces: InboundNetworkInterface[],
+        outbound_net_interfaces: OutboundNetworkInterface[]) {
+        this.organization_id = organization_id;
+        this.app_descriptor_id = app_descriptor_id;
+        this.name = name;
+        this.rules = rules;
+        this.configuration_options = configuration_options;
+        this.environment_variables = environment_variables;
+        this.labels = labels;
+        this.inbound_net_interfaces = inbound_net_interfaces;
+        this.outbound_net_interfaces = outbound_net_interfaces;
+    }
     /**
      * OrganizationId with the organization identifier.
      */

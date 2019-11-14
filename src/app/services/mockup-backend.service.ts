@@ -40,6 +40,8 @@ import { AddUserRequest } from '../definitions/interfaces/add-user-request';
 import { PasswordChange } from '../definitions/interfaces/password-change';
 import { UserChanges } from '../definitions/interfaces/user-changes';
 import { InstallAgentRequest } from '../definitions/interfaces/install-agent-request';
+import { AddAppDescriptorRequest } from '../definitions/interfaces/add-app-descriptor-request';
+import { ApplicationDescriptor } from '../definitions/models/application-descriptor';
 
 @Injectable({
   providedIn: 'root'
@@ -531,12 +533,25 @@ export class MockupBackendService implements Backend {
    * @param organizationId Organization identifier
    * @param descriptor Descriptor object
    */
-  addAppDescriptor(organizationId: string, descriptor: any) {
+  addAppDescriptor(organizationId: string, descriptor: AddAppDescriptorRequest) {
     // Not validating the descriptor
-    descriptor.app_descriptor_id = this.uuidv4();
-    mockRegisteredAppsList.push(descriptor);
+    const generatedDescriptor
+      = new ApplicationDescriptor(
+        descriptor.organization_id,
+        this.uuidv4(),
+        descriptor.name,
+        descriptor.rules,
+        descriptor.configuration_options,
+        descriptor.environment_variables,
+        descriptor.labels,
+        descriptor.inbound_net_interfaces,
+        descriptor.outbound_net_interfaces,
+        descriptor.groups,
+        descriptor.parameters
+    );
+    mockRegisteredAppsList.push(generatedDescriptor);
     return of (new HttpResponse({
-      body: JSON.stringify(descriptor),
+      body: JSON.stringify(generatedDescriptor),
       status: 200
     }));
   }

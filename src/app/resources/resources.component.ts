@@ -24,6 +24,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToolsComponent } from '../tools/tools.component';
 import { AppStatus } from '../definitions/enums/app-status.enum';
 import { NameValue } from '../definitions/interfaces/name-value';
+import { GraphData } from '../definitions/models/graph-data';
 
 @Component({
   selector: 'app-resources',
@@ -42,7 +43,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
   /**
    * List of processed clusters list with its associated instances
    */
-  clusterWithInstancesList: any[];
+  clusterWithInstancesList: (Cluster & {instances: number})[];
   /**
    * Array containing charts data in the required format for NGX-Charts library rendering
    */
@@ -63,7 +64,6 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Graph options
    */
   graphDataLoaded: boolean;
-  graphData: any;
   /**
    * Reference for the service that allows the user info component
    */
@@ -125,10 +125,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     this.filterFieldClusters = false;
     // Graph initialization
     this.graphDataLoaded = false;
-    this.graphData = {
-      nodes: [],
-      links: []
-    };
+    this.graphData = new GraphData([], []);
   }
 
   ngOnInit() {
@@ -416,10 +413,8 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Transforms the data needed to create the graph
    */
   private toGraphData() {
-    this.graphData = {
-      nodes: [],
-      links: []
-    };
+    this.graphData.nodes = [];
+    this.graphData.links = [];
     if (this.searchTermGraph) {
       this.searchTermGraph = this.searchTermGraph.toLowerCase();
     }
