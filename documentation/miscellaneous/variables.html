@@ -70,13 +70,13 @@
                             <a href="#ENGLISH" title="src/app/app.component.ts"><b>ENGLISH</b>&nbsp;&nbsp;&nbsp;(src/.../app.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#environment" title="src/environments/environment.prod.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</a>
+                            <a href="#environment" title="src/environments/environment.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
                         </li>
                         <li>
                             <a href="#environment" title="src/environments/environment.local.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.local.ts)</a>
                         </li>
                         <li>
-                            <a href="#environment" title="src/environments/environment.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
+                            <a href="#environment" title="src/environments/environment.prod.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</a>
                         </li>
                         <li>
                             <a href="#LocalStorageKeys" title="src/app/definitions/const/local-storage-keys.ts"><b>LocalStorageKeys</b>&nbsp;&nbsp;&nbsp;(src/.../local-storage-keys.ts)</a>
@@ -175,13 +175,13 @@
                             <a href="#STATUS_TEXT_COLORS" title="src/app/applications/instance-info/instance-info.service.ts"><b>STATUS_TEXT_COLORS</b>&nbsp;&nbsp;&nbsp;(src/.../instance-info.service.ts)</a>
                         </li>
                         <li>
-                            <a href="#TIMEOUT_ERROR" title="src/app/debug-panel/debug-panel.component.ts"><b>TIMEOUT_ERROR</b>&nbsp;&nbsp;&nbsp;(src/.../debug-panel.component.ts)</a>
+                            <a href="#TIMEOUT_ERROR" title="src/app/login/login.component.ts"><b>TIMEOUT_ERROR</b>&nbsp;&nbsp;&nbsp;(src/.../login.component.ts)</a>
                         </li>
                         <li>
                             <a href="#TIMEOUT_ERROR" title="src/app/devices/add-devices-group/add-devices-group.component.ts"><b>TIMEOUT_ERROR</b>&nbsp;&nbsp;&nbsp;(src/.../add-devices-group.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#TIMEOUT_ERROR" title="src/app/login/login.component.ts"><b>TIMEOUT_ERROR</b>&nbsp;&nbsp;&nbsp;(src/.../login.component.ts)</a>
+                            <a href="#TIMEOUT_ERROR" title="src/app/debug-panel/debug-panel.component.ts"><b>TIMEOUT_ERROR</b>&nbsp;&nbsp;&nbsp;(src/.../debug-panel.component.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -459,7 +459,7 @@
             </tbody>
         </table>
 </section>
-    <h3>src/environments/environment.prod.ts</h3>
+    <h3>src/environments/environment.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
@@ -482,7 +482,9 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
-  production: true,
+  production: false,
+  // hardcoded local environment API ip address
+  // apiUrl: &#x27;http://192.168.99.100&#x27;
   apiUrl: getBaseUrl()
 }</code>
                         </td>
@@ -525,7 +527,7 @@
             </tbody>
         </table>
 </section>
-    <h3>src/environments/environment.ts</h3>
+    <h3>src/environments/environment.prod.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
@@ -548,9 +550,7 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
-  production: false,
-  // hardcoded local environment API ip address
-  // apiUrl: &#x27;http://192.168.99.100&#x27;
+  production: true,
   apiUrl: getBaseUrl()
 }</code>
                         </td>
@@ -4100,7 +4100,7 @@
             </tbody>
         </table>
 </section>
-    <h3>src/app/devices/add-devices-group/add-devices-group.component.ts</h3>
+    <h3>src/app/login/login.component.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
@@ -4136,7 +4136,7 @@
             </tbody>
         </table>
 </section>
-    <h3>src/app/login/login.component.ts</h3>
+    <h3>src/app/devices/add-devices-group/add-devices-group.component.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
